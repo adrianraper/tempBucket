@@ -1,0 +1,3 @@
+\r\ngood session insert root= user= productCode= at=2009-11-11 04:28:46
+failed session insert root=163 user=11259 productCode=33 at=2009-11-11 04:34:56
+good session insert root=163 user=11259 courseID=1213672591135 productCode=33 at=2009-11-11 04:39:41

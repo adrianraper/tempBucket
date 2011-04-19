@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:fxc="com.fxcomps.vacombobox.*"
+				xmlns:ui="com.clarityenglish.dms.view.account.ui.*"
+				borderAlpha="0.9"
+				borderColor="{Constants.popupBackgroundColour}"
+				creationComplete="creationComplete()"
+				implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.events.SearchEvent;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+		import com.clarityenglish.dms.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.dms.vo.account.Account;
+		import com.gskinner.StringUtils;
+		import flash.events.Event;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("searchAccountsWindowTitle");
+			
+			nameFormItem.label = copyProvider.getCopyForId("nameFormItem");
+			resellerFormItem.label = copyProvider.getCopyForId("resellerFormItem");
+			accountStatusFormItem.label = copyProvider.getCopyForId("accountStatusFormItem");
+			referenceFormItem.label = copyProvider.getCopyForId("referenceFormItem");
+			invoiceNumberFormItem.label = copyProvider.getCopyForId("invoiceNumberFormItem");
+			titlesFormItem.label = copyProvider.getCopyForId("titlesFormItem");
+			filterTitlesCheckBox.label = copyProvider.getCopyForId("filterTitlesCheckBox");
+			invoiceEmptyCheckBox.label = referenceEmptyCheckBox.label = copyProvider.getCopyForId("empty");
+			
+			searchButton.label = copyProvider.getCopyForId("search");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+		}
+		
+		private function creationComplete():void {
+			nameTextInput.setFocus();
+			nameTextInput.setSelection(0, 0);
+			
+			selectTitlesPanel.parentView = this;
+			
+			selectTitlesPanel.products = DictionarySingleton.getInstance().products;
+		}
+		
+		private function submit():void {
+			// Create a new search event
+			var searchEvent:SearchEvent = new SearchEvent(SearchEvent.SEARCH, null, true);
+			
+			// Add the relevant conditions to the search event (all case insensitive)
+			searchEvent.addRegExpCondition("name", new RegExp(nameTextInput.text, "i"));
+			
+			// These conditions should only be added if anything is entered in the boxes
+			if (resellerComboBox.selectedItem) searchEvent.addEqualsCondition("resellerCode", resellerComboBox.value);
+			if (accountStatusComboBox.selectedItem) searchEvent.addEqualsCondition("accountStatus", accountStatusComboBox.value);
+						
+			if (invoiceEmptyCheckBox.selected) {
+				searchEvent.addEqualsCondition("invoiceNumber", "");
+			} else {
+				if (StringUtils.trim(invoiceNumberTextInput.text)) searchEvent.addEqualsCondition("invoiceNumber", StringUtils.trim(invoiceNumberTextInput.text));
+			}
+			
+			if (referenceEmptyCheckBox.selected) {
+				searchEvent.addEqualsCondition("reference", "");
+			} else {
+				if (StringUtils.trim(referenceTextInput.text)) searchEvent.addEqualsCondition("reference", StringUtils.trim(referenceTextInput.text));
+			}
+			
+			// Search by title (need to change the ConfigureTitlesWindow to be a general selection window instead of configuration)
+			if (filterTitlesCheckBox.selected) {
+				var productCodes:Array = new Array();
+				for (var productCode:String in selectTitlesPanel.getProductCodes())
+					productCodes.push(new Number(productCode));
+					
+				searchEvent.addFunctionCondition(function(obj:Object, params:Array):Boolean {
+					var account:Account = obj as Account;
+					
+					// Get all the product codes in the account into an array
+					var titleProductCodes:Array = account.children.map(function(item:*, index:int, array:Array):Number {
+						var title:Title = item as Title;
+						return title.productCode;
+					} );
+					
+					// Make sure that every entry in the selected product codes are in the account's titles
+					return params.every(function(item:*, index:int, array:Array):Boolean {
+						var productCode:Number = item as Number;
+						return titleProductCodes.indexOf(productCode) > -1;
+					} );
+					
+				}, productCodes);
+			}
+			
+			// This is a special case - we need to take further action in the view before dispatching the event to the mediator
+			// so the view is listening specifically to this popup (normally we would call dispatchEvent on parentView).
+			dispatchEvent(searchEvent);
+			
+			removePopup();
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Form defaultButton="{searchButton}">
+		<mx:FormItem id="nameFormItem" labelWidth="120">
+			<mx:TextInput id="nameTextInput" />
+		</mx:FormItem>
+		<mx:FormItem id="resellerFormItem" labelWidth="120">
+			<fxc:VAComboBox id="resellerComboBox" dataField="data" dataProvider="{DictionarySingleton.getInstance().resellers}" />
+		</mx:FormItem>
+		<mx:FormItem id="accountStatusFormItem" labelWidth="120">
+			<fxc:VAComboBox id="accountStatusComboBox" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountStatus}" />
+		</mx:FormItem>
+		<mx:FormItem id="invoiceNumberFormItem" labelWidth="120" width="100%">
+			<mx:HBox>
+				<mx:TextInput id="invoiceNumberTextInput" enabled="{!invoiceEmptyCheckBox.selected}" />
+				<mx:CheckBox id="invoiceEmptyCheckBox" labelPlacement="right" paddingTop="4" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem id="referenceFormItem" direction="horizontal" labelWidth="120" width="100%">
+			<mx:HBox>
+				<mx:TextInput id="referenceTextInput" enabled="{!referenceEmptyCheckBox.selected}" />
+				<mx:CheckBox id="referenceEmptyCheckBox" labelPlacement="right" paddingTop="4" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem id="titlesFormItem" labelWidth="120" minWidth="0" minHeight="0">
+			<mx:CheckBox id="filterTitlesCheckBox" click="PopUpManager.centerPopUp(this)" />
+			<ui:SelectTitlesPanel id="selectTitlesPanel" visible="{filterTitlesCheckBox.selected}" includeInLayout="{filterTitlesCheckBox.selected}" minWidth="0" minHeight="0" useSubmitControls="false" headerHeight="0" borderThicknessRight="0" borderThicknessLeft="0" borderThicknessBottom="0" />
+		</mx:FormItem>
+		<mx:ControlBar>
+			<mx:Button id="searchButton" click="submit()"/>
+			<mx:Button id="cancelButton" click="removePopup();" />
+		</mx:ControlBar>
+	</mx:Form>
+</mx:Panel>

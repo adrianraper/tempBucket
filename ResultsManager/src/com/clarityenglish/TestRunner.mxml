@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:flexui="flexunit.flexui.*" creationComplete="creationComplete()">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.tests.manageables.ManageableTest;
+		import com.clarityenglish.tests.remoting.*;
+		import flexunit.framework.TestSuite;
+		
+		private function creationComplete():void {
+			testRunner.test = createTestSuite();
+			testRunner.startTest();
+		}
+		
+		private function createTestSuite():TestSuite {
+			var testSuite:TestSuite = new TestSuite();
+			//testSuite.addTestSuite(ManageableTest);
+			
+			var preTestSuite:TestSuite = new TestSuite();
+			preTestSuite.addTestSuite(PreTestSuite);
+			
+			//preTestSuite.addTest(new GetCopyTest());
+			//preTestSuite.addTest(new LoginTest());
+			
+			var loggedInTestSuite:TestSuite = new TestSuite();
+			loggedInTestSuite.addTest(new LoginTest());
+			loggedInTestSuite.addTest(new GetAllManageablesTest());
+			loggedInTestSuite.addTest(new GetContentTest());
+			loggedInTestSuite.addTest(new GetLicencesTest());
+			loggedInTestSuite.addTest(new GetLoginOptsTest());
+			
+			//testSuite.addTestSuite(loggedInTestSuite);
+			
+			return preTestSuite;
+		}
+		
+		]]>
+	</mx:Script>
+	<flexui:TestRunnerBase id="testRunner" width="100%" height="100%"/>
+</mx:Application>

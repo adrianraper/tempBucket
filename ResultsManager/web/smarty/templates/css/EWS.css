@@ -1,0 +1,12 @@
+/* Style sheet for Early Warning System */
+/*
+	Not being picked up by smarty templates?
+	So written on 101.tpl for the moment.
+*/
+div.account {border:1px solid gray; margin-bottom:10px;
+			}
+a {font-family: Verdana, Helvetica, sans-serif; color: blue;}	
+body {font-size: 11px;
+	font-family: Verdana, Helvetica, sans-serif;}
+
+.satisfaction-explanation { background-color: #e6EEEE; padding:10px; width:600px }

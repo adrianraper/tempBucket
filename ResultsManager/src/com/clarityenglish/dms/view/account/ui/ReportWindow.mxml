@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:fxc="com.fxcomps.vacombobox.*"
+				borderAlpha="0.9"
+				borderColor="{Constants.popupBackgroundColour}"
+				creationComplete="creationComplete()"
+				implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.dms.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.dms.view.account.events.AccountEvent;
+		import flash.events.Event;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		
+		[Bindable]
+		public var reportTemplateDefinitions:Array;
+		public var accounts:Array;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("selectReportWindowTitle");
+			
+			okButton.label = copyProvider.getCopyForId("ok");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+		}
+		
+		
+		private function submit():void {
+			// Create a new search event
+			dispatchEvent(new AccountEvent(AccountEvent.GENERATE_REPORT, accounts, comboBox.selectedItem.title));
+			
+			removePopup();
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+		
+		private function creationComplete():void {
+			comboBox.selectedIndex = 0;
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Form defaultButton="{okButton}">
+		<fxc:VAComboBox id="comboBox" dataProvider="{reportTemplateDefinitions}" labelField="description" />
+		<mx:ControlBar>
+			<mx:Button id="okButton" click="submit()"/>
+			<mx:Button id="cancelButton" click="removePopup();" />
+		</mx:ControlBar>
+	</mx:Form>
+</mx:TitleWindow>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   skinClass="com.clarityenglish.recorder.view.skins.ApplicationSkin">
+	<fx:Script>
+		<![CDATA[
+		import com.clarityenglish.recorder.events.PartEvent;
+		import com.clarityenglish.recorder.view.waveform.events.RecorderEvent;
+		import flash.events.Event;
+		import flash.events.MouseEvent;
+		import mx.controls.ProgressBar;
+		import spark.components.Button;
+		import spark.components.Group;
+		import spark.components.Label;
+		import spark.primitives.BitmapImage;
+		import com.clarityenglish.recorder.view.waveform.components.WaveformView;
+		import com.clarityenglish.recorder.Constants;
+		
+		// This is one way of passing data to the skins for display
+		[Bindable]
+		public var versionLabel:String = "V" + Constants.VERSION_NUMBER;
+		
+		[SkinPart]
+		public var recordWaveformView:WaveformView;
+		
+		[SkinPart]
+		public var modelWaveformView:WaveformView;
+		
+		[SkinPart]
+		public var progressLabel:Label;
+		
+		[SkinPart]
+		public var progressBar:ProgressBar;
+		
+		[SkinPart]
+		public var clarityLogoButton:Button;
+		
+		override protected function getCurrentSkinState():String {
+			return currentState;
+		}
+		
+		override protected function partAdded(partName:String, instance:Object):void {
+			switch (instance) {
+				case clarityLogoButton:
+					clarityLogoButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.WEBLINK, "weblink", true)); } );
+					break;
+				default:
+					super.partAdded(partName, instance);			
+					dispatchEvent(new PartEvent(PartEvent.PART_ADDED, partName, instance));
+			}
+		}
+		
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" enterState="invalidateSkinState()" />
+		<s:State name="record" enterState="invalidateSkinState()" />
+		<s:State name="compare" enterState="invalidateSkinState()" />
+		<s:State name="disabled" enterState="invalidateSkinState()" />
+		<s:State name="progress" enterState="invalidateSkinState()" />
+	</s:states>
+	
+</s:BorderContainer>

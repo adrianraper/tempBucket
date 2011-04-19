@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s:Group xmlns:ai="http://ns.adobe.com/ai/2009"
+		 xmlns:lib="assets.graphics.WaveformViewBackground.*"
+		 xmlns:fc="http://ns.adobe.com/flashcatalyst/2009"
+		 xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+		 xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:flm="http://ns.adobe.com/flame/2008">
+	<s:Rect d:id="3" flm:variant="1" x="0" y="0" height="100%" width="100%">
+		<s:fill>
+			<s:LinearGradient rotation="270" scaleX="840.521" x="639.843" y="840.521">
+				<s:GradientEntry color="#C90B12" ratio="0"/>
+				<s:GradientEntry color="#D71018" ratio="0.205621"/>
+				<s:GradientEntry color="#F51C24" ratio="0.488189"/>
+				<s:GradientEntry color="#941C24" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+</s:Group>

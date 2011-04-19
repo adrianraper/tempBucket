@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	creationComplete="creationComplete()" 
+	width="530"
+	height="500" 
+	borderAlpha="0.9"
+	borderColor="{Constants.popupBackgroundColour}"
+	implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.model.utils.ExcelImportError;
+		import com.clarityenglish.resultsmanager.model.utils.ExcelImportParser;
+		import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
+		import com.clarityenglish.resultsmanager.view.shared.events.LogEvent;
+		import com.clarityenglish.common.vo.manageable.Group;
+		import flash.events.Event;
+		import flash.net.FileFilter;
+		import flash.net.FileReference;
+		import flash.system.System;
+		import mx.controls.Alert;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		private var _parentGroup:Group;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		public var fileReference:FileReference;
+		
+		[Bindable]
+		public var editMode:Boolean;
+		
+		[Bindable]
+		private var importControlsVisible:Boolean = true;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			title = copyProvider.getCopyForId("importWindow");
+			browseButton.label = copyProvider.getCopyForId("browse");
+			//editButton.label = copyProvider.getCopyForId("edit");
+			startXMLImportButton.label = startExcelImportButton.label = copyProvider.getCopyForId("startImport");
+			//checkDataButton.label = copyProvider.getCopyForId("checkData");
+			closeWindowButton.label = copyProvider.getCopyForId("close");
+			copyFailedToClipboardButton.label = copyProvider.getCopyForId("importCopyFailedToClipboard");
+			
+			var replaceObj:Object = new Object();
+			replaceObj.helpFolder = Constants.HOST + Constants.HELP_FOLDER;
+			//TraceUtils.myTrace("helpFolder=" + replaceObj.helpFolder);
+			helpTextArea.htmlText = copyProvider.getCopyForId("importHelp", replaceObj);
+			helpTextLabel.text = copyProvider.getCopyForId("helpArea");
+			
+			//excelImportInstructions.text = copyProvider.getCopyForId("excelImportInstructions");			
+			browseButton.label = copyProvider.getCopyForId("browse");
+			importTypeLabel.text = copyProvider.getCopyForId("chooseImportType");
+			xmlLabel1.text = copyProvider.getCopyForId("XMLInstruction1");
+			xmlLabel2.text = copyProvider.getCopyForId("XMLInstruction2");
+			xmlLabel3.htmlText = copyProvider.getCopyForId("XMLInstruction3", replaceObj);
+			excelLabel1.text = copyProvider.getCopyForId("excelInstruction1");
+			excelLabel2.text = copyProvider.getCopyForId("excelInstruction2");
+			excelLabel3.text = copyProvider.getCopyForId("excelInstruction3");
+			excelLabel4.htmlText = copyProvider.getCopyForId("excelInstruction4", replaceObj);
+			dataCheckLabel1.text = copyProvider.getCopyForId("dataCheckLabel1");
+			resultsLabel1.text = copyProvider.getCopyForId("resultsLabel1");
+			//excelTextArea.text = copyProvider.getCopyForId("pasteExcelHere");
+			notImplementedYet.text = copyProvider.getCopyForId("notImplementedYet");
+			
+			// v3.5 Allow import with update
+			importWithUpdate.label = copyProvider.getCopyForId("importWithUpdate");
+			//importJustPreview.label = copyProvider.getCopyForId("importJustPreview");
+			
+		}
+		
+		public function set parentGroup(value:Group):void {
+			_parentGroup = value;
+		}
+		
+		public function setImportResults(importResults:Array):void {
+			// Show the grid. This is now viewstack 4
+			//importTypeViewStack.selectedIndex = 0;			
+			importTypeViewStack.selectedIndex = 3;			
+			
+			// Show the import results in the grid
+			dataGrid.dataProvider = importResults;
+			
+			// Hide the buttons now the import has happened
+			importControlsVisible = false;
+			
+			// Enabled to copy to clipboard button
+			copyFailedToClipboardButton.enabled = true;
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+		
+		private function creationComplete():void { }
+		
+		private function browse():void {
+			var fileFilter:FileFilter = new FileFilter("XML files", "*.xml");
+			fileReference.addEventListener(Event.SELECT, onSelect);
+			fileReference.addEventListener(Event.CANCEL, onCancel);
+			fileReference.browse( [ fileFilter ] );
+		}
+		
+		private function onSelect(e:Event):void {
+			fileReference.removeEventListener(Event.SELECT, onSelect);
+			fileReference.removeEventListener(Event.CANCEL, onCancel);
+			
+			filenameTextInput.text = fileReference.name;
+		}
+		
+		private function onCancel(e:Event):void {
+			fileReference.removeEventListener(Event.SELECT, onSelect);
+			fileReference.removeEventListener(Event.CANCEL, onCancel);
+		}
+		
+		private function startXMLImport():void {
+			parentView.dispatchEvent(new ManageableEvent(ManageableEvent.IMPORT, null, _parentGroup, true));
+		}
+		
+		private function startExcelImport():void {
+			var manageablesObj:Object;
+			
+			try {
+				// This will come from the clipboard rather than a text area.
+				// Ah, no there is no getClipboard function due to privacy. So you have to provide a textArea for manual pasting.
+				manageablesObj = ExcelImportParser.excelPasteToManageables(excelTextArea.text);
+				//manageablesObj = ExcelImportParser.excelPasteToManageables(System.getClipboard());
+			
+				var manageablesArray:Array = new Array();
+				manageablesArray["groups"] = manageablesObj.groups;
+				manageablesArray["users"] = manageablesObj.users;
+			
+				// v3.6.1 Allow import/move or preview?
+				if (importWithUpdate.selected) {
+					// Two choices since I can't just add a flag to the event saying "move as well as import"
+					// Either I add this flag to each manageable, or I call a different event.
+					var importEventName:String = ManageableEvent.IMPORT_MOVE_FROM_EXCEL;
+				} else {
+					importEventName = ManageableEvent.IMPORT_FROM_EXCEL;
+				}
+				TraceUtils.myTrace("importView, go to event " + importEventName);
+				//parentView.dispatchEvent(new ManageableEvent(ManageableEvent.IMPORT_FROM_EXCEL, manageablesArray, _parentGroup, true));
+				parentView.dispatchEvent(new ManageableEvent(importEventName, manageablesArray, _parentGroup, true));
+				
+			} catch (e:ExcelImportError) {
+				switch (e.message) {
+					case ExcelImportError.NO_USERNAME_HEADER:
+						parentView.dispatchEvent(new LogEvent(LogEvent.ERROR, copyProvider.getCopyForId("excelNoUsernameHeader"), true));
+						break;
+					default:
+						parentView.dispatchEvent(new LogEvent(LogEvent.ERROR, e.message, true));
+				}
+			}
+			
+		}
+		
+		/**
+		 * If the Excel import type is chosen automatically pop up the edit box (ticket #64)
+		 */
+		private function onImportTypeChange():void {
+			//if (importTypeComboBox.selectedItem == "Excel") importTypeViewStack.selectedIndex = 1;
+		}
+		
+		/**
+		 * Copy failed results to the clipboard (ticket #85)
+		 */
+		private function copyFailedResultsToClipboard():void {
+			// First get all the failed results
+			var failedResults:Array = dataGrid.dataProvider.source.filter(function(item:Object, index:int, array:Array):Boolean {
+				return !item.success;
+			} );
+			
+			// Turn this into comma seperated usernames
+			var usernames:Array = failedResults.map(function(item:Object, index:int, array:Array):String {
+				return item.name;
+			} );
+			
+			if (usernames.length == 0) {
+				Alert.show(copyProvider.getCopyForId("importNothingToCopyToClipboard"), "Notice");
+			} else {
+				// Copy the text to the clipboard
+				System.setClipboard(usernames.join(", "));
+				Alert.show(copyProvider.getCopyForId("importCopyToClipboardSuccessful"), "Notice");
+			}
+		}
+		
+		]]>
+	</mx:Script>
+	<mx:VDividedBox width="100%" height="100%">
+		<mx:VBox width="100%">
+			<mx:HBox width="100%">
+				<mx:Label id="importTypeLabel" styleName="subHeadingLabelBlack" />
+				<mx:ComboBox id="importTypeComboBox" dataProvider="{['Excel', 'XML']}" selectedIndex="0" change="onImportTypeChange()" />
+			</mx:HBox>
+			<mx:HRule width="100%"></mx:HRule>
+			<mx:ViewStack id="importTypeViewStack" width="100%" height="100%" creationPolicy="all" selectedIndex="{importTypeComboBox.selectedIndex}">
+				<mx:VBox id="excelInitialLayout" width="100%" height="100%">
+					<mx:Label id="excelLabel1" styleName="subHeadingLabelBlack" />
+					<mx:HBox paddingBottom="10" width="100%">
+						<mx:Image id="excelHelpImage" width="60%" scaleContent="true" height="100%" maintainAspectRatio="true"
+							completeEffect="Fade" source="@Embed('/../assets/ExcelSample.jpg')" 
+							/>
+						<mx:Text id="excelLabel4" height="100%" width="40%" />
+					</mx:HBox>
+					<mx:Label id="excelLabel2" styleName="subHeadingLabelBlack" />
+					<mx:TextArea id="excelTextArea" width="100%" height="50" />
+					<mx:HBox width="100%">
+						<mx:Label id="excelLabel3" styleName="subHeadingLabelBlack" />
+						<mx:Button id="startExcelImportButton" enabled="{excelTextArea.text.length > 0}" click="startExcelImport()" />
+						<mx:Spacer width="50%" />
+						<mx:CheckBox id="importWithUpdate" selected="false" />
+						<!-- <mx:CheckBox id="importJustPreview" selected="false" /> -->
+					</mx:HBox>
+				</mx:VBox>
+				<mx:VBox id="xmlInitialLayout" width="100%" height="80%">
+					<mx:TitleWindow width="60%" height="100" horizontalAlign="center" verticalAlign="middle">
+						<mx:Label id="notImplementedYet" fontWeight="bold" />
+					</mx:TitleWindow>
+					<!-- Don't implement XML yet -->
+					<mx:HBox includeInLayout="false" visible="false">
+						<mx:Label id="xmlLabel1" styleName="subHeadingLabelBlack" />
+						<mx:Button id="browseButton" click="browse()" />
+					</mx:HBox>
+					<mx:TextInput id="filenameTextInput" editable="false" visible="false" includeInLayout="false" />
+					<mx:HBox includeInLayout="false" visible="false" paddingBottom="10" width="100%">
+						<mx:Image id="xmlHelpImage" width="60%" scaleContent="true" height="100%" maintainAspectRatio="true"
+							completeEffect="Fade" source="@Embed('/../assets/XMLSample.jpg')" 
+							/>
+						<mx:Text id="xmlLabel3" height="100%" width="40%" />
+					</mx:HBox>
+					<mx:HBox includeInLayout="false" visible="false" width="100%">
+						<mx:Label id="xmlLabel2" styleName="subHeadingLabelBlack" />
+						<mx:Button id="startXMLImportButton" enabled="{filenameTextInput.text.length > 0}" click="startXMLImport()" />
+					</mx:HBox>
+				</mx:VBox>
+				<mx:VBox id="dataCheckLayout" width="100%" height="80%">
+					<mx:Label id="dataCheckLabel1" styleName="subHeadingLabelBlack" />
+					<mx:Button id="startImportButton" click="startXMLImport()" />
+				</mx:VBox>
+				<mx:VBox id="importResultsLayout" width="100%" height="80%">
+					<mx:Label id="resultsLabel1" styleName="subHeadingLabelBlack" />
+					<mx:DataGrid id="dataGrid" width="100%" height="100%" alternatingItemColors="[#F4FBFF, #FFFFFF]" resizableColumns="false" rowHeight="22">
+						<mx:columns>
+							<mx:DataGridColumn dataField="success" headerText="" width="22" itemRenderer="com.clarityenglish.resultsmanager.view.management.ui.treeClasses.TickCrossRenderer" />
+							<mx:DataGridColumn dataField="name" headerText="Name" />
+							<mx:DataGridColumn dataField="message" headerText="Message" />
+							<mx:DataGridColumn dataField="type" headerText="Type" width="50" />
+						</mx:columns>
+					</mx:DataGrid>
+					<mx:HBox width="100%">
+						<mx:Spacer width="100%" />
+						<mx:Button id="copyFailedToClipboardButton" enabled="false" click="copyFailedResultsToClipboard()" />
+					</mx:HBox>
+				</mx:VBox>
+			</mx:ViewStack>
+		</mx:VBox>
+		<mx:VBox width="100%">
+			<mx:Label id="helpTextLabel" styleName="subHeadingLabelBlack" />
+			<mx:TextArea id="helpTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="100%" backgroundColor="0xF9FFA7"/>
+		</mx:VBox>
+	</mx:VDividedBox>
+	<!--  Try a rather new layout
+	<mx:ViewStack id="importTypeViewStack" width="100%" height="100%" creationPolicy="all" selectedIndex="0">
+		<mx:VDividedBox width="100%" height="100%">
+			<mx:VBox width="100%" height="70%">
+				<mx:HBox width="100%" includeInLayout="{importControlsVisible}">
+					<mx:ComboBox id="importTypeComboBox" dataProvider="{['XML', 'Excel']}" selectedIndex="1" change="onImportTypeChange()" />
+					<mx:VRule height="22" />
+					<mx:ViewStack width="100%" height="100%" horizontalScrollPolicy="off" creationPolicy="all" selectedIndex="{importTypeComboBox.selectedIndex}">
+						<mx:HBox width="100%" height="100%">
+							<mx:TextInput id="filenameTextInput" editable="false" />
+							<mx:Button id="browseButton" click="browse()" />
+						</mx:HBox>
+						<mx:HBox width="100%" height="100%">
+							<mx:Button id="editButton" click="importTypeViewStack.selectedIndex = 1" />
+						</mx:HBox>
+					</mx:ViewStack>
+					<mx:Spacer width="100%"/>
+					<mx:Button id="startImportButton" enabled="{filenameTextInput.text.length > 0}" click="startImport()" />
+				</mx:HBox>
+				<mx:DataGrid id="dataGrid" width="100%" height="100%" alternatingItemColors="[#F4FBFF, #FFFFFF]" resizableColumns="false" rowHeight="22">
+					<mx:columns>
+						<mx:DataGridColumn dataField="success" headerText="" width="22" itemRenderer="com.clarityenglish.resultsmanager.view.management.ui.treeClasses.TickCrossRenderer" />
+						<mx:DataGridColumn dataField="name" headerText="Name" />
+						<mx:DataGridColumn dataField="message" headerText="Message" />
+						<mx:DataGridColumn dataField="type" headerText="Type" width="50" />
+					</mx:columns>
+				</mx:DataGrid>
+				<mx:HBox visible="{!importControlsVisible}" includeInLayout="{!importControlsVisible}" width="100%">
+					<mx:Spacer width="100%" />
+					<mx:Button id="copyFailedToClipboardButton" enabled="false" click="copyFailedResultsToClipboard()" />
+				</mx:HBox>
+			</mx:VBox>
+			<mx:Label id="helpTextLabel" styleName="subHeadingLabelBlack" />
+			<mx:TextArea id="helpTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="30%" backgroundColor="0xF9FFA7"/>
+		</mx:VDividedBox>
+		<mx:VBox width="100%" height="100%">
+			<mx:HBox width="100%">
+				<mx:Text width="100%" id="excelImportInstructions" selectable="false" />
+				<mx:Button id="startExcelImportButton" enabled="{excelTextArea.text.length > 0}" click="startExcelImport()" />
+			</mx:HBox>
+			<mx:TextArea id="excelTextArea" width="100%" height="100%" />
+		</mx:VBox>
+	</mx:ViewStack>
+	-->
+	<mx:ControlBar width="100%" horizontalAlign="right">
+		<mx:Button id="closeWindowButton" click="removePopup()" />
+	</mx:ControlBar>
+	
+</mx:TitleWindow>

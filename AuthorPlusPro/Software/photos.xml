@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<photos program="Author Plus Online" version="6.5.0.1">
+<size value="165x250">
+<category name="Animals">
+<file><path/><name>Animals_001.jpg</name></file>
+<file><path/><name>Animals_002.jpg</name></file>
+<file><path/><name>Animals_003.jpg</name></file>
+<file><path/><name>Animals_004.jpg</name></file>
+<file><path/><name>Animals_005.jpg</name></file>
+<file><path/><name>Animals_006.jpg</name></file>
+<file><path/><name>Animals_007.jpg</name></file>
+<file><path/><name>Animals_008.jpg</name></file>
+<file><path/><name>Animals_009.jpg</name></file>
+<file><path/><name>Animals_010.jpg</name></file>
+</category>
+<category name="Business">
+<file><path/><name>Business_001.jpg</name></file>
+<file><path/><name>Business_002.jpg</name></file>
+<file><path/><name>Business_003.jpg</name></file>
+<file><path/><name>Business_004.jpg</name></file>
+<file><path/><name>Business_005.jpg</name></file>
+<file><path/><name>Business_006.jpg</name></file>
+<file><path/><name>Business_007.jpg</name></file>
+<file><path/><name>Business_008.jpg</name></file>
+<file><path/><name>Business_009.jpg</name></file>
+<file><path/><name>Business_010.jpg</name></file>
+</category>
+<category name="Colourful">
+<file><path/><name>Decorative_001.jpg</name></file>
+<file><path/><name>Decorative_002.jpg</name></file>
+<file><path/><name>Decorative_003.jpg</name></file>
+<file><path/><name>Decorative_004.jpg</name></file>
+<file><path/><name>Decorative_005.jpg</name></file>
+<file><path/><name>Decorative_006.jpg</name></file>
+<file><path/><name>Decorative_007.jpg</name></file>
+<file><path/><name>Decorative_008.jpg</name></file>
+<file><path/><name>Decorative_009.jpg</name></file>
+<file><path/><name>Decorative_010.jpg</name></file>
+</category>
+<category name="Education">
+<file><path/><name>Education_001.jpg</name></file>
+<file><path/><name>Education_002.jpg</name></file>
+<file><path/><name>Education_003.jpg</name></file>
+<file><path/><name>Education_004.jpg</name></file>
+<file><path/><name>Education_005.jpg</name></file>
+<file><path/><name>Education_006.jpg</name></file>
+<file><path/><name>Education_007.jpg</name></file>
+<file><path/><name>Education_008.jpg</name></file>
+<file><path/><name>Education_009.jpg</name></file>
+<file><path/><name>Education_010.jpg</name></file>
+</category>
+<category name="Food">
+<file><path/><name>Food_001.jpg</name></file>
+<file><path/><name>Food_002.jpg</name></file>
+<file><path/><name>Food_003.jpg</name></file>
+<file><path/><name>Food_004.jpg</name></file>
+<file><path/><name>Food_005.jpg</name></file>
+<file><path/><name>Food_006.jpg</name></file>
+<file><path/><name>Food_007.jpg</name></file>
+<file><path/><name>Food_008.jpg</name></file>
+<file><path/><name>Food_009.jpg</name></file>
+<file><path/><name>Food_010.jpg</name></file>
+</category>
+<category name="Nature">
+<file><path/><name>Nature_001.jpg</name></file>
+<file><path/><name>Nature_002.jpg</name></file>
+<file><path/><name>Nature_003.jpg</name></file>
+<file><path/><name>Nature_004.jpg</name></file>
+<file><path/><name>Nature_005.jpg</name></file>
+<file><path/><name>Nature_006.jpg</name></file>
+<file><path/><name>Nature_007.jpg</name></file>
+<file><path/><name>Nature_008.jpg</name></file>
+<file><path/><name>Nature_009.jpg</name></file>
+<file><path/><name>Nature_010.jpg</name></file>
+</category>
+<category name="People">
+<file><path/><name>People_001.jpg</name></file>
+<file><path/><name>People_002.jpg</name></file>
+<file><path/><name>People_003.jpg</name></file>
+<file><path/><name>People_004.jpg</name></file>
+<file><path/><name>People_005.jpg</name></file>
+<file><path/><name>People_006.jpg</name></file>
+<file><path/><name>People_007.jpg</name></file>
+<file><path/><name>People_008.jpg</name></file>
+<file><path/><name>People_009.jpg</name></file>
+<file><path/><name>People_010.jpg</name></file>
+</category>
+<category name="Places">
+<file><path/><name>Places_001.jpg</name></file>
+<file><path/><name>Places_002.jpg</name></file>
+<file><path/><name>Places_003.jpg</name></file>
+<file><path/><name>Places_004.jpg</name></file>
+<file><path/><name>Places_005.jpg</name></file>
+<file><path/><name>Places_006.jpg</name></file>
+<file><path/><name>Places_007.jpg</name></file>
+<file><path/><name>Places_008.jpg</name></file>
+<file><path/><name>Places_009.jpg</name></file>
+<file><path/><name>Places_010.jpg</name></file>
+</category>
+<category name="Sports">
+<file><path/><name>Sports_001.jpg</name></file>
+<file><path/><name>Sports_002.jpg</name></file>
+<file><path/><name>Sports_003.jpg</name></file>
+<file><path/><name>Sports_004.jpg</name></file>
+<file><path/><name>Sports_005.jpg</name></file>
+<file><path/><name>Sports_006.jpg</name></file>
+<file><path/><name>Sports_007.jpg</name></file>
+<file><path/><name>Sports_008.jpg</name></file>
+<file><path/><name>Sports_009.jpg</name></file>
+<file><path/><name>Sports_010.jpg</name></file>
+</category>
+<category name="Technology">
+<file><path/><name>Technology_001.jpg</name></file>
+<file><path/><name>Technology_002.jpg</name></file>
+<file><path/><name>Technology_003.jpg</name></file>
+<file><path/><name>Technology_004.jpg</name></file>
+<file><path/><name>Technology_005.jpg</name></file>
+<file><path/><name>Technology_006.jpg</name></file>
+<file><path/><name>Technology_007.jpg</name></file>
+<file><path/><name>Technology_008.jpg</name></file>
+<file><path/><name>Technology_009.jpg</name></file>
+<file><path/><name>Technology_010.jpg</name></file>
+</category>
+</size>
+<size value="250x165">
+<category name="Animals">
+<file><path/><name>Animals_h001.jpg</name></file>
+<file><path/><name>Animals_h002.jpg</name></file>
+</category>
+<category name="Business">
+<file><path/><name>Business_h001.jpg</name></file>
+<file><path/><name>Business_h002.jpg</name></file>
+</category>
+<category name="Colourful">
+<file><path/><name>Decorative_h001.jpg</name></file>
+<file><path/><name>Decorative_h002.jpg</name></file>
+</category>
+<category name="Education">
+<file><path/><name>Education_h001.jpg</name></file>
+<file><path/><name>Education_h002.jpg</name></file>
+</category>
+<category name="Food">
+<file><path/><name>Food_h001.jpg</name></file>
+<file><path/><name>Food_h002.jpg</name></file>
+</category>
+<category name="Nature">
+<file><path/><name>Nature_h001.jpg</name></file>
+<file><path/><name>Nature_h002.jpg</name></file>
+</category>
+<category name="People">
+<file><path/><name>People_h001.jpg</name></file>
+<file><path/><name>People_h002.jpg</name></file>
+</category>
+<category name="Places">
+<file><path/><name>Places_h001.jpg</name></file>
+<file><path/><name>Places_h002.jpg</name></file>
+</category>
+<category name="Sports">
+<file><path/><name>Sports_h001.jpg</name></file>
+<file><path/><name>Sports_h002.jpg</name></file>
+</category>
+<category name="Technology">
+<file><path/><name>Technology_h001.jpg</name></file>
+<file><path/><name>Technology_h002.jpg</name></file>
+</category>
+</size>
+<size value="405x70">
+<category name="Animals">
+<file><path/><name>Animals_b001.jpg</name></file>
+<file><path/><name>Animals_b002.jpg</name></file>
+</category>
+<category name="Business">
+<file><path/><name>Business_b001.jpg</name></file>
+<file><path/><name>Business_b002.jpg</name></file>
+</category>
+<category name="Colourful">
+<file><path/><name>Decorative_b001.jpg</name></file>
+<file><path/><name>Decorative_b002.jpg</name></file>
+</category>
+<category name="Education">
+<file><path/><name>Education_b001.jpg</name></file>
+<file><path/><name>Education_b002.jpg</name></file>
+</category>
+<category name="Food">
+<file><path/><name>Food_b001.jpg</name></file>
+<file><path/><name>Food_b002.jpg</name></file>
+</category>
+<category name="Nature">
+<file><path/><name>Nature_b001.jpg</name></file>
+<file><path/><name>Nature_b002.jpg</name></file>
+</category>
+<category name="People">
+<file><path/><name>People_b001.jpg</name></file>
+<file><path/><name>People_b002.jpg</name></file>
+</category>
+<category name="Places">
+<file><path/><name>Places_b001.jpg</name></file>
+<file><path/><name>Places_b002.jpg</name></file>
+</category>
+<category name="Sports">
+<file><path/><name>Sports_b001.jpg</name></file>
+<file><path/><name>Sports_b002.jpg</name></file>
+</category>
+<category name="Technology">
+<file><path/><name>Technology_b001.jpg</name></file>
+<file><path/><name>Technology_b002.jpg</name></file>
+</category>
+</size>
+</photos>
+

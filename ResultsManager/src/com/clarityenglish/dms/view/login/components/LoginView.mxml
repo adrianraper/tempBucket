@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:view="com.clarityenglish.dms.view.login.components.*"
+		   implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.dms.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.common.events.LoginEvent;
+		import mx.controls.Alert;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			loginWindow.title = copyProvider.getCopyForId("dmsLoginWindow");
+			usernameFormItem.label = copyProvider.getCopyForId("loginUsername");
+			passwordFormItem.label = copyProvider.getCopyForId("loginPassword");
+			loginButton.label = copyProvider.getCopyForId("loginButton");
+			
+			setInputFocus();
+		}
+		
+		private function setInputFocus():void {
+			usernameTextInput.setFocus();
+			usernameTextInput.setSelection(0, usernameTextInput.text.length);
+		}
+		
+		[Bindable(event="loginChange")]
+		private function get loginEnabled():Boolean {
+			return (usernameTextInput.text != "" && passwordTextInput.text != "");
+		}
+		
+		private function login():void {
+			dispatchEvent(new LoginEvent(LoginEvent.LOGIN, usernameTextInput.text, passwordTextInput.text, true));
+		}
+		
+		public function showInvalidLogin():void {
+			Alert.show(copyProvider.getCopyForId("invalidLogin"), copyProvider.getCopyForId("invalidLoginWindowTitle"), Alert.OK, this);
+		}
+
+		// AR added to clear out data from the fields once you have logged in.
+		public function clearData():void {
+			usernameTextInput.text = "";
+			passwordTextInput.text = "";
+		}
+		
+		]]>
+	</mx:Script>
+	<mx:VBox height="100%" paddingBottom="50" paddingTop="50" paddingLeft="50" >
+		<!--<mx:Image id="RMlogo" scaleContent="true" height="100%" minHeight="100" maintainAspectRatio="true"
+				completeEffect="Fade" source="@Embed('/../assets/RMLogo.swf')" />-->
+		<mx:Image id="ClarityLogo" scaleContent="true" height="100%" minHeight="100" maintainAspectRatio="true"
+				completeEffect="Fade" source="@Embed('/../assets/ClarityLogo.swf')" />
+	</mx:VBox>
+ 	<mx:TitleWindow id="loginWindow" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
+					horizontalCenter="0" verticalCenter="0" 
+					borderAlpha="0.9" borderColor="{Constants.popupBackgroundColour}" >
+		<mx:Form paddingTop="10" width="100%" height="100%" defaultButton="{loginButton}">
+			<mx:HBox width="100%" includeInLayout="{Constants.DEBUG_MODE}" visible="{Constants.DEBUG_MODE}">
+				<mx:Button label="Adrian Raper" click="dispatchEvent(new LoginEvent(LoginEvent.LOGIN, 'dmsAdrian', 'dms', true))" />
+			</mx:HBox>
+			
+			<mx:FormItem id="usernameFormItem">
+				<mx:TextInput id="usernameTextInput" width="100%" change="dispatchEvent(new Event('loginChange'))" text="" />
+			</mx:FormItem>
+			<mx:FormItem id="passwordFormItem">
+				<mx:TextInput id="passwordTextInput" width="100%" change="dispatchEvent(new Event('loginChange'))" displayAsPassword="true" text="" />
+			</mx:FormItem>
+			<!-- 
+			<mx:FormItem id="accountTypeFormItem">
+				<mx:RadioButton id="individual" groupName="accountTypeGroup" value="5" label="individual accounts" />
+				<mx:RadioButton id="institution" groupName="accountTypeGroup" label="institution accounts" />
+			</mx:FormItem>
+			 -->
+			<mx:FormItem>
+				<mx:Button id="loginButton" enabled="{loginEnabled}" click="login()" />
+			</mx:FormItem>
+		</mx:Form>
+	</mx:TitleWindow>
+	
+</mx:Canvas>

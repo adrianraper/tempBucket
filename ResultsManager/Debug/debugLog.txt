@@ -1,0 +1,24 @@
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/TenseBuster-NAmerican/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ActiveReading-International/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/RoadToIELTS-Academic/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/RoadToIELTS-General/course.xml
+Apr 07 03:28:27  [notice] specific folder for Author Plus
+Apr 07 03:28:27  [notice] get content from =../../../../../ap/clarity/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/BusinessWriting-International/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/StudySkillsSuccess-International/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ItsYourJob/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ClearPronunciation/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/EnglishForHotelStaff/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/IssuesInEnglish2-NAmerican/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ConnectedSpeech-NAmerican/course.xml
+Apr 07 03:28:27  [notice] specific folder for Language Key Hotel Test
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/LanguageKey/Bayer/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/CSCS/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ClarityEnglishSuccess/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ItsYourJob/emu.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/CSCS/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/ILATest/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/SunOnJapanese/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/MyCanada/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/LamourDesTemps/course.xml
+Apr 07 03:28:27  [notice] get content from =../../../../../Content/Peacekeeper/course.xml

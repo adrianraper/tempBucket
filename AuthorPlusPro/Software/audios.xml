@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<audios program="Author Plus Online" version="6.5.0.1">
+<ex name="MultipleChoice">MultipleChoice.mp3</ex>
+<ex name="Quiz">Quiz.mp3</ex>
+<ex name="Dropdown">Dropdown.mp3</ex>
+<ex name="Stopdrop">Stopdrop.mp3</ex>
+<ex name="DragAndDrop">DragAndDrop.mp3</ex>
+<ex name="DragOn">DragOn.mp3</ex>
+<ex name="Stopgap">StopGap.mp3</ex>
+<ex name="Cloze">Cloze.mp3</ex>
+<ex name="Countdown">Countdown.mp3</ex>
+<ex name="Countdown-preview">Countdown-preview.mp3 </ex>
+<ex name="Analyze">Analyze.mp3</ex>
+<ex name="Presentation">Presentation.mp3</ex>
+<ex name="TargetSpotting">TargetSpotting.mp3</ex>
+<ex name="TargetSpotting-hidden">TargetSpotting-hidden.mp3</ex>
+<ex name="Proofreading">Proofreading.mp3</ex>
+<ex name="Bullet">Presentation-QB.mp3</ex>
+<ex name="ErrorCorrection">ErrorCorrection-CorrectMistakes.mp3</ex>
+<ex name="QuestionSpotter">TargetSpotting-QB.mp3</ex>
+<ex name="QuestionSpotter-hidden">TargetSpotting-hidden-QB.mp3</ex>
+</audios>
+
+
+
+
+
+

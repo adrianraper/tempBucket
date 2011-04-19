@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:ui="com.clarityenglish.resultsmanager.view.loginopts.ui.*"
+		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.resultsmanager.model.LoginOptsProxy;
+		import com.clarityenglish.resultsmanager.view.loginopts.events.LoginOptEvent;
+		import flash.events.Event;
+		import mx.controls.CheckBox;
+		
+		/**
+		 * Set any copy in this component and call setCopyProvider on any child components
+		 * 
+		 * @param	copyProvider An object implementing CopyProvider
+		 */
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			loginTypeFormItem.label = copyProvider.getCopyForId("loginTypeLoginOpt");
+			usernameOnly.label = copyProvider.getCopyForId("usernameOnly");
+			studentIDOnly.label = copyProvider.getCopyForId("studentIDOnly");
+			usernameAndStudentID.label = copyProvider.getCopyForId("usernameAndStudentID");
+			
+			// v3.1 Remove this item, a LT licence is not allowed to use anonymous login
+			// and an AA one doesn't need it!
+			//anonLoginFormItem.label = copyProvider.getCopyForId("anonLoginLoginOpt");
+			//anonLoginYes.label = copyProvider.getCopyForId("yes");
+			//anonLoginNo.label = copyProvider.getCopyForId("no");
+			
+			passwordRequiredFormItem.label = copyProvider.getCopyForId("passwordRequiredLoginOpt");
+			passwordRequiredYes.label = copyProvider.getCopyForId("yes");
+			passwordRequiredNo.label = copyProvider.getCopyForId("no");
+			
+			unregisteredLearnersFormItem.label = copyProvider.getCopyForId("unregisteredLearnersLoginOpt");
+			nonCELoginYes.label = copyProvider.getCopyForId("yes");
+			nonCELoginNo.label = copyProvider.getCopyForId("no");
+			
+			requiredSelfRegisteredFieldsFormItem.label = copyProvider.getCopyForId("requiredSelfRegisteredFieldsLoginOpt");
+			srName.label = copyProvider.getCopyForId("srName");
+			srStudentID.label = copyProvider.getCopyForId("srStudentID");
+			srEmail.label = copyProvider.getCopyForId("srEmail");
+			srPassword.label = copyProvider.getCopyForId("srPassword");
+			srBirthday.label = copyProvider.getCopyForId("srBirthday");
+			srCountry.label = copyProvider.getCopyForId("srCountry");
+			srCompany.label = copyProvider.getCopyForId("srCompany");
+			srCustom1.label = copyProvider.getCopyForId("srCustom1");
+			srCustom2.label = copyProvider.getCopyForId("srCustom2");
+			srCustom3.label = copyProvider.getCopyForId("srCustom3");
+			srCustom4.label = copyProvider.getCopyForId("srCustom4");
+			
+			updateButton.label = copyProvider.getCopyForId("updateLoginOpts");
+			revertButton.label = copyProvider.getCopyForId("revertLoginOpts");
+		}
+		
+		public function get selfRegisterSelectedItems():Array {
+			var checkboxes:Array = [ srName, srStudentID, srEmail, srPassword, srBirthday, srCountry, srCompany, srCustom1, srCustom2, srCustom3, srCustom4 ];
+			
+			var result:Array = new Array();
+			for each (var checkbox:CheckBox in checkboxes)
+				result.push( { field: checkbox.data, enabled: checkbox.selected } );
+					
+			return result;
+		}
+		// v3.1 You have to switch off all the flags since one variable holds on/off + details
+		private function handleNoUnregisteredUsers(e:Event):void {
+			// Any way to handle this as a loop through the form id?
+			srName.selected = false;
+			srStudentID.selected = false;
+			srEmail.selected = false;
+			srPassword.selected = false;
+			srBirthday.selected = false;
+			srCountry.selected = false;
+			srCompany.selected = false;
+			srCustom1.selected = false;
+			srCustom2.selected = false;
+			srCustom3.selected = false;
+			srCustom4.selected = false;
+		}
+		// v3.1 Kind of nice to default the name and password as required fields
+		private function handleAllowUnregisteredUsers(e:Event):void {
+			// Anyway to handle this as a loop through the form id?
+			srName.selected = true;
+			srPassword.selected = true;
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Form height="100%">
+		<mx:FormItem id="loginTypeFormItem" direction="horizontal">
+			<mx:RadioButtonGroup id="loginTypeOption" />
+			<mx:RadioButton id="usernameOnly" groupName="loginTypeOption" value="{LoginOptsProxy.USERNAME_ONLY}" />
+			<mx:RadioButton id="studentIDOnly" groupName="loginTypeOption" value="{LoginOptsProxy.STUDENTID_ONLY}" />
+			<mx:RadioButton id="usernameAndStudentID" groupName="loginTypeOption" value="{LoginOptsProxy.USERNAME_AND_STUDENTID}" />
+		</mx:FormItem>
+		<!-- 
+		<mx:FormItem id="anonLoginFormItem" direction="horizontal">
+			<mx:RadioButtonGroup id="anonLoginOption" />
+			<mx:RadioButton id="anonLoginYes" groupName="anonLoginOption" value="{true}" />
+			<mx:RadioButton id="anonLoginNo" groupName="anonLoginOption" value="{false}" />
+		</mx:FormItem>
+		 -->
+		<mx:FormItem id="passwordRequiredFormItem" direction="horizontal">
+			<mx:RadioButtonGroup id="passwordRequiredOption" />
+			<mx:RadioButton id="passwordRequiredYes" groupName="passwordRequiredOption" value="{true}" />
+			<mx:RadioButton id="passwordRequiredNo" groupName="passwordRequiredOption" value="{false}" />
+		</mx:FormItem>
+		
+		<mx:FormItem id="unregisteredLearnersFormItem" direction="horizontal">
+			<mx:RadioButtonGroup id="unregisteredLearnersOption" />
+			<mx:RadioButton id="nonCELoginYes" click="handleAllowUnregisteredUsers(event);" groupName="unregisteredLearnersOption" value="{true}" />
+			<mx:RadioButton id="nonCELoginNo" click="handleNoUnregisteredUsers(event);" groupName="unregisteredLearnersOption" value="{false}" />
+		</mx:FormItem>
+		
+		<mx:FormItem id="requiredSelfRegisteredFieldsFormItem" direction="vertical" visible="{unregisteredLearnersOption.selectedValue == true}">
+			<mx:CheckBox id="srName" data="{LoginOptsProxy.SR_NAME}" />
+			<mx:CheckBox id="srStudentID" data="{LoginOptsProxy.SR_STUDENTID}" />
+			<mx:CheckBox id="srEmail" data="{LoginOptsProxy.SR_EMAIL}" />
+			<mx:CheckBox id="srPassword" data="{LoginOptsProxy.SR_PASSWORD}" />
+			<mx:CheckBox id="srBirthday" data="{LoginOptsProxy.SR_BIRTHDAY}" enabled="false" />
+			<mx:CheckBox id="srCountry" data="{LoginOptsProxy.SR_COUNTRY}" />
+			<mx:CheckBox id="srCompany" data="{LoginOptsProxy.SR_COMPANY}" enabled="false" />
+			<mx:CheckBox id="srCustom1" data="{LoginOptsProxy.SR_CUSTOM1}" />
+			<mx:CheckBox id="srCustom2" data="{LoginOptsProxy.SR_CUSTOM2}" />
+			<mx:CheckBox id="srCustom3" data="{LoginOptsProxy.SR_CUSTOM3}" />
+			<mx:CheckBox id="srCustom4" data="{LoginOptsProxy.SR_CUSTOM4}" />
+		</mx:FormItem>
+		
+		<mx:Spacer height="100%"/>
+		
+		<mx:ControlBar>
+			<mx:Button id="updateButton" click="dispatchEvent(new LoginOptEvent(LoginOptEvent.UPDATE))" />
+			<mx:Button id="revertButton" click="dispatchEvent(new LoginOptEvent(LoginOptEvent.REVERT))" />
+		</mx:ControlBar>
+		
+	</mx:Form>
+	
+</mx:Canvas>

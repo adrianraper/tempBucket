@@ -1,0 +1,3 @@
+﻿	return "http://dock/Fixbench/ResultsManager/RM.php";
+//	return "http://claritymain/area1/ResultsManager/Start.php";
+//	return "http://www.ClarityEnglish.com/area1/ResultsManager/Start.php";

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Path data="M 8.66 0 L 17.32 0 L 12.99 3.75 L 8.66 7.5 L 4.33 3.75 L 0 0 L 8.66 0 Z" winding="nonZero" x="2.98" y="9.75">
+		<s:fill>
+			<s:SolidColor color="#333333" color.over="#666666" color.disabled="#F2F2F2"/>
+		</s:fill>
+	</s:Path>
+	<s:RichText ai:aa="2" color="#333333" columnCount="1" fontFamily="Verdana" fontSize="10" d:id="13" kerning="on" lineHeight="12.1766" tabStops="S31.3113708496094" text="More" textAlign="center" d:userLabel="More" flm:variant="6" whiteSpaceCollapse="preserve" x="0" y="0" color.over="#666666" tabStops.over="S0" color.disabled="#F2F2F2" tabStops.disabled="S0"/>
+</s:Skin>

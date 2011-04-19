@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+		  xmlns:cud="com.clarityenglish.assets.*"
+		  xmlns:arc90="com.arc90.flexlib.containers.*"
+		  xmlns:controls="com.brightPoint.controls.*" 
+		  horizontalScrollPolicy="off"
+		  horizontalAlign="left"
+		  paddingRight="10"
+		  creationComplete="creationComplete()"
+		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+/*
+Copyright (c) 2008, Thomas W. Gonzalez
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+www.brightpointinc.com
+*/
+		import com.clarityenglish.assets.ConcurrentUserDisplay;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.utils.TraceUtils;
+		import flash.display.Loader;
+		import flash.display.Sprite;
+		import flash.events.Event;
+		import flash.display.*;
+		import flash.system.LoaderContext;
+		import flash.system.ApplicationDomain;
+		import mx.managers.SystemManager;
+		import org.davekeen.utils.DateUtils;
+		import com.clarityenglish.resultsmanager.Constants;
+		import mx.formatters.DateFormatter;
+		
+		private var copyProvider:CopyProvider;
+		[Bindable]
+		public var dataProvider:Object;
+		//[Bindable]
+		//public var singleValue:Number;
+		[Bindable]
+		public var maxOtherUsers:Number;
+
+		// v3.5.0
+		[Bindable]
+		public var AAlicence:Boolean;
+		//[Bindable]
+		//public var loadedSM:SystemManager;
+		
+		/*
+		[Embed('/../assets/concurrentUserDisplay.swf', mimeType="application/octet-stream")]
+		private var UserDisplay:Class;
+		[Bindable]
+		private var userDisplay:Sprite;
+		private function creationComplete():void {
+			var l:Loader = new Loader();
+			var lc:LoaderContext = new LoaderContext(false, ApplicationDomain.currentDomain);
+			l.contentLoaderInfo.addEventListener(Event.COMPLETE, loadedAsset);
+			l.loadBytes(new UserDisplay(), lc);
+		}
+		private function loadedAsset(e:Event):void {
+			userDisplay = e.target.content as Sprite;
+			TraceUtils.myTrace("users = " + (userDisplay as UserDisplay).concurrentUsers);
+		}
+		public function loadedAsset():void {
+			loadedSM = SystemManager(AAUserDisplay.content);
+		}
+		*/
+		private function creationComplete():void {
+		}
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			title = copyProvider.getCopyForId("licenceStatistics");
+			otherUserCountsLabel.text = copyProvider.getCopyForId("otherUserCounts");
+			expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate");
+			//licencesUsedLabel.text = copyProvider.getCopyForId("licenceTitleUsers");
+		}
+		//public function setStudentValues(singleValue:Number, maxValue:Number):void {
+		public function setStudentValues(singleValue:Number, thisTitle:Title):void {
+			var maxValue:Number = thisTitle.maxStudents;
+			TraceUtils.myTrace(singleValue + " licences of  " + maxValue);
+			// rescale the single value so that it is a %. This avoids resetting the ratios
+			// But what if you don't do this, keep single and max and just ignore the ratios? Yes, thsi works.
+			if (maxValue<=0) maxValue = 100;
+			//var percentValue:Number = singleValue * (100 / maxValue);
+			//singleValue = thisValue;
+			//maxValue = thisMax;
+			//gauge.setStyle("alertRatios",[maxValue / 3,2 * (maxValue / 3),maxValue])
+			//gauge.setStyle('fontSize', 24);
+			//gauge.showMinMax = true;
+			gauge.value = 0;
+			function timerHandler(event:TimerEvent):void {
+				gauge.maxValue = maxValue;
+				//gauge.value = percentValue;
+				gauge.value = singleValue;
+			}
+			var myTimer:Timer = new Timer(1000, 1);
+			myTimer.addEventListener("timer", timerHandler);
+			myTimer.start();
+			// Commented as our T_Licences table simply doesn't have full data in it
+			// Now reset UsageOps.php to pull out statistics from the T_Session table
+			// I now want to put the licence start date in here
+			var licenceDateFormatter:DateFormatter = new DateFormatter();
+			licenceDateFormatter.formatString = "D MMMM, YYYY";
+			var replaceObj:Object = new Object();
+			replaceObj.startDate = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			replaceObj.x = singleValue;
+			replaceObj.y = maxValue;
+			licenceTitleUsersTxt.text = copyProvider.getCopyForId("licenceTitleUsers", replaceObj);
+			//licencesUsedLabel.text = "sorry, not yet available...";			
+			// Also for the pdf header
+			//licencesUsedLbl.text = copyProvider.getCopyForId("licencesUsed", replaceObj);
+			licencesUsedLbl.text = singleValue.toString();
+		}
+		public function setAALicence(licenceNumber:uint):void {
+			AAlicencesUsedLabel.text = "Concurrent licences: " + licenceNumber;
+			//(userDisplay as ConcurrentUserDisplay).concurrentLicences = licenceNumber;
+			//(userDisplay as UserDisplay).concurrentLicences = licenceNumber;
+			//(userDisplay as UserDisplay).init();
+			//loadedSM.application["concurrentUsers"] = licenceNumber;
+			//loadedSM.application["init"]();
+			TraceUtils.myTrace("try to call init");
+			(AAUserDisplay as ConcurrentUserDisplay).value = licenceNumber;
+		}
+		// AR We know the date - can I display it as a static calendar page?
+		//public function setExpiryDate(thisDate:String):void {
+		public function setExpiryDate(thisTitle:Title):void {
+			var myDate:Date = DateUtils.ansiStringToDate(thisTitle.expiryDate);
+			//TraceUtils.myTrace(thisDate + " goes to " + myDate.toString());
+			expiryDateCalendar.selectedDate = myDate;
+			expiryDateCalendar.selectableRange = myDate;
+		}
+		// AR 
+		public function setDataMaximum(otherUsersMax:Number):void {
+			TraceUtils.myTrace("max other users=" + otherUsersMax);
+			maxOtherUsers = otherUsersMax;
+			
+		}
+		// v3.6 Other information, mostly used for getting data for the pdf
+		public function setTitleInformation(thisTitle:Title):void {
+			/*
+			TraceUtils.myTrace("account=" + Constants.accountName);
+			var replaceObj:Object = new Object();
+			replaceObj.accountName = Constants.accountName;
+			replaceObj.title = thisTitle.name;
+			replaceObj.licences = thisTitle.maxStudents;
+			replaceObj.licenceType = copyProvider.getCopyForId("licenceType" + thisTitle.licenceType);
+			// Need to format the following dates as d MMM, YYYY
+			var licenceDateFormatter:DateFormatter = new DateFormatter();
+			licenceDateFormatter.formatString = "D MMMM, YYYY";
+			replaceObj.startDate = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			replaceObj.endDate = licenceDateFormatter.format(thisTitle.expiryDate);
+			//TraceUtils.myTrace("replaceObj=" + replaceObj.title + " " + replaceObj.accountName + " " + replaceObj.licenceType);
+			accountNameLbl.text = copyProvider.getCopyForId("usageStatsAccountName", replaceObj);
+			titleNameLbl.text = copyProvider.getCopyForId("usageStatsProductLicence", replaceObj);
+			licenceDatesLbl.text = copyProvider.getCopyForId("usageStatsLicenceDates", replaceObj);
+			*/
+			// Need to format the following dates as d MMM, YYYY
+			var licenceDateFormatter:DateFormatter = new DateFormatter();
+			licenceDateFormatter.formatString = "D MMMM, YYYY";
+			accountNameLbl.text = Constants.accountName;
+			titleNameLbl.text = thisTitle.name;
+			licencesLbl.text = thisTitle.maxStudents.toString();
+			licenceTypeLbl.text = copyProvider.getCopyForId("licenceType" + thisTitle.licenceType);
+			licenceStartDateLbl.text = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			licenceEndDateLbl.text = licenceDateFormatter.format(thisTitle.expiryDate);
+			printingDateLbl.text = licenceDateFormatter.format(new Date());
+			// You don't know licences used at this point...
+		}
+		
+		]]>
+	</mx:Script>
+    <!-- Define custom colors for use as chart fills. -->
+    <mx:SolidColor id="sc1" color="0xB2242A" alpha="1"/>
+    <mx:SolidColor id="sc2" color="0xD3724A" alpha="1"/>
+    <mx:SolidColor id="sc3" color="0xE4B549" alpha="1"/>
+    <mx:SolidColor id="sc4" color="0xEEE83C" alpha="1"/>
+    <mx:SolidColor id="sc5" color="0x35A556" alpha="1"/>
+	<!-- I am sure I should be able to do this, but I get a compile warning
+    <mx:Style>
+		Label { fontWeight: bold; }
+	</mx:Style>
+	-->
+	<mx:VBox id="pdfHeader" visible="false" includeInLayout="false" width="100%">
+		<mx:Label id="accountNameLbl" />
+		<mx:Label id="titleNameLbl" />
+		<mx:Label id="licenceStartDateLbl" />
+		<mx:Label id="licenceEndDateLbl" />
+		<mx:Label id="licencesUsedLbl" />
+		<mx:Label id="licencesLbl" />
+		<mx:Label id="licenceTypeLbl" />
+		<mx:Label id="printingDateLbl" />
+	</mx:VBox>
+	<mx:HBox width="100%" height="100%">
+		<mx:VBox id="expiryDate" height="100%" width="200" paddingTop="10" horizontalAlign="center">
+			<mx:DateChooser id="expiryDateCalendar" yearNavigationEnabled="false" />
+			<mx:Label id="expiryDateLabel" fontWeight="bold"/>
+		</mx:VBox>
+		<mx:VBox id="AAlicencesUsed" height="100%" width="230" paddingTop="10" horizontalAlign="center" visible="{AAlicence}" includeInLayout="{AAlicence}">
+			<!-- 
+				<mx:Image source="{userDisplay}" id="AAuserDisplay" />
+				<mx:SWFLoader id="AAUserDisplay" source="@Embed(source='/../assets/concurrentUserDisplay.swf')" complete="loadedAsset();" />
+			-->
+			<cud:ConcurrentUserDisplay id="AAUserDisplay" value="12" width="100%" height="170" />
+			<mx:Spacer height="100%" />
+			<mx:Label id="AAlicencesUsedLabel" fontWeight="bold"/>
+		</mx:VBox>
+		<mx:VBox id="licencesUsed" height="100%" width="200" paddingTop="10" horizontalAlign="center" visible="{!AAlicence}" includeInLayout="{!AAlicence}">
+			<controls:Gauge width="80%" minValue="0" showValue="true"  
+				id="gauge" verticalCenter="0" horizontalCenter="0"
+				diameter="160" 
+				alertAlphas="[.7,.9,.6]" 
+				alertColors="[0x00FF00,0xFFFF00,0xEE0000]" 
+				alertRatios="[33,66,100]" 
+				maxValue="100"
+				fontSize="22"
+				showMinMax="true"
+				faceColor="{Constants.mainBackgroundColour}" 
+				ticksColor="0xFFFFFF"
+				fontColor="0xFFFFFF"
+				pointerColor="{Constants.popupBackgroundColour}" 
+				bezelColor="0x999999"
+				faceShadowColor="0x777777"
+			/>
+			<mx:Text width="100%" textAlign="center" id="licenceTitleUsersTxt" fontWeight="bold"/>
+		</mx:VBox>
+			<!-- diameter="180" value="{singleValue}" maxValue="{maxValue}" -->
+		<mx:VBox id="otherUsers" height="100%" paddingTop="10" horizontalAlign="center" verticalAlign="middle" visible="{!AAlicence}" includeInLayout="{!AAlicence}">
+			<mx:ColumnChart id="columnChart" height="160" maxWidth="200" dataProvider="{dataProvider}" showDataTips="true" >
+				<mx:horizontalAxis >
+					<mx:CategoryAxis id="bcha" categoryField="type"/>
+				</mx:horizontalAxis>
+				<mx:verticalAxis>
+					<mx:LinearAxis maximum="{maxOtherUsers}" minimum="0" interval="1" />
+				</mx:verticalAxis>
+				<mx:series>
+					<mx:ColumnSeries xField="type" yField="count"
+						fills="{[sc1, sc2, sc3, sc4, sc5]}">
+					</mx:ColumnSeries>
+				</mx:series>
+			</mx:ColumnChart>
+			<mx:Label width="100%" textAlign="center" id="otherUserCountsLabel" fontWeight="bold" />
+		</mx:VBox>
+	</mx:HBox>
+</mx:TitleWindow>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="shortcut icon" href="../../Software/Recorder.ico" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Clarity Recorder</title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-873320-5']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+	<script type="text/javascript" src="../../Software/Common/swfobject2.js"></script>
+	<script type="text/javascript">
+		// ****
+		// Change this variable along with the above fixed paths
+		var webShare = "../..";
+		var coordsWidth = "100%"; var coordsHeight = "100%";
+		//var coordsWidth = "800"; var coordsHeight = "250";
+		// 
+		// *********
+
+		var startControl = webShare + "/Software/";
+		var flashvars = {
+		};
+		//var flashvars = {};
+		var params = {
+			scale: "noScale"
+		};
+		var attr = {
+			id: "ClarityRecorder"
+		};
+		var expressInstall = startControl + "Common/expressInstall.swf";
+		swfobject.embedSWF(startControl + "Recorder/bin/WebRecorder.swf", "altContent", coordsWidth, coordsHeight, "10.1", expressInstall, flashvars, params, attr);
+	</script>
+<style type="text/css">
+html, body {
+	margin: 0px 0px auto;
+	text-align:center;
+	height: 100%;
+}
+</style>
+<body>
+	<div align="center" id="altContent">
+		<p>This application requires Adobe's Flash player, running at least version 10.1</p>
+		<p>It seems your browser doesn't have this.</p>
+		<p>Please download the latest Adobe Flash Player.</p>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+	</div>
+</body>
+</html>
