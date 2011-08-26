@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+		  xmlns:arc90="com.arc90.flexlib.containers.*"
+		  horizontalScrollPolicy="off"
+		  horizontalAlign="center"
+		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import flexunit.flexui.patterns.AssertNotNullPattern;
+		import mx.charts.chartClasses.IAxis;
+		import mx.charts.HitData;
+		import mx.charts.series.items.PieSeriesItem;
+		// AR added for padding numbers
+		import com.gskinner.StringUtils;
+		
+		[Bindable]
+		public var dataProvider:Object;
+		
+		// AR To let us work out what units to use on the x axis
+		public var maxDuration:Number;
+		// AR and the axis labelling. If I make this a string I get lots of compile errors or run time for null object
+		// when I use it in secondToHours (not in setDataMaximum though)
+		//public var tickLabel:Number;
+		[Bindable]
+		private var tickLabel:String;
+
+		[Bindable]
+		private var tickMaximum:Number;
+		[Bindable]
+		private var tickInterval:Number;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setDataMaximum(value:Number):void {
+			maxDuration = value;
+			//tickLabel = new String("Hours and minutes");
+			tickLabel = copyProvider.getCopyForId("courseTimeLabelHours");
+			// above 5 hours set it to nearest higher 10 hours (6000 seconds)
+			if (maxDuration>18000) {
+				// this is in hours
+				tickMaximum = (Math.ceil(Math.round(maxDuration / 3600) /10) * 10) * 3600;
+				if (maxDuration>180000) {
+					tickInterval = 10 * 3600; // if more than 50 hours, tick every 10 hours
+				} else if (maxDuration>36000) {
+					tickInterval = 5 * 3600; // if more than 10 hours, tick every 5 hours
+				} else {
+					tickInterval = 2 * 3600; // if up to 10 hours, tick every 2 hours
+				}
+			// between 2 and 5, set it to 5
+			} else if (maxDuration > 7200) {
+				// this is in hours
+				tickMaximum = 5 * 3600;
+				tickInterval = 1 * 3600; // a tick every hour
+			// between 1 and 2, set it to 2
+			} else if (maxDuration > 3600) {
+				// this is in hours
+				tickMaximum = 2 * 3600;
+				tickInterval = 0.5 * 3600; // a tick every 30 mins
+				tickLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes");
+			} else {
+				// this is in minutes
+				tickMaximum = 60 * 60;
+				tickInterval = 15 * 60; // a tick every 15 mins
+				//tickLabel = new String("Minutes and seconds");
+				tickLabel = copyProvider.getCopyForId("courseTimeLabelMinutesSeconds");
+				//tickLabel = 10;
+			}
+			trace("getAxisDetails maxDuration=" + maxDuration + " tickMax=" + tickMaximum + " tickInt=" + tickInterval + " tickLabel=" + tickLabel);
+		};
+
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("courseTimeCounts");
+			this.copyProvider = copyProvider;
+		}
+		
+		/**
+		 * 
+		 * AR But the data comes from the table in seconds not minutes
+		 * and it would also be good to either convert to hours or minutes depending on the largest number
+		 * Convert minutes to hours for display on the horizontal axis. Done.
+		 * You also need to make sure that the horizontal axis displays ticks only at whole numbers of the unit
+		 * 
+		 * @param	labelValue
+		 * @param	previousValue
+		 * @param	axis
+		 * @return
+		 */
+		private function secondsToAxisUnit(labelValue:Object, previousValue:Object = null, axis:IAxis = null):String {
+			// AR It is seconds
+			//var minutes:Number = new Number(labelValue);
+			var seconds:Number = new Number(labelValue);
+			// AR Put the units on the axis once, not on each value
+			//return Math.round(minutes/60) + "h";
+			// AR and figure out if you are showing hours or minutes
+			// AR I don't understand why I have to add this next line - if not I get a run time error
+			if (tickLabel == null) tickLabel = new String("");
+			// AR For the axis the formatting is based on the maximum number on the axis
+			return getFormattedSeconds(seconds, tickMaximum);
+		}
+		private function secondsToDataTipUnit(labelValue:Object, pV:Object = null, axis:IAxis = null):String {
+			// AR For the data tips the formatting is based on the actual value
+			var seconds:Number = new Number(labelValue);
+			var unitLabel:String;
+			if (seconds > 3600) {
+				//unitLabel = "hours and minutes";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes").toLowerCase();
+			} else {
+				//unitLabel = "minutes and seconds";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelMinutesSeconds").toLowerCase();
+			}
+			return getFormattedSeconds(seconds, seconds) + " " + unitLabel;
+		}
+		private function getFormattedSeconds(seconds:Number = 0, thisMax:Number = 3600):String {
+			// AR This breaks seconds down into xx:yy where xx is either hours or minutes depending
+			// on how big the value of seconds is.
+			var lblhours:Number;
+			var lblminutes:Number;
+			var lblseconds:Number;
+			if (thisMax > 3600) {
+				// Round the seconds if you are showing hours
+				lblhours = Math.floor(seconds / 3600);
+				lblminutes = Math.round((seconds - (lblhours * 3600)) / 60);
+				return String(lblhours) + ":" + StringUtils.padLeft(String(lblminutes),"0",2);
+			} else {
+				// Drop hours label if less than 1
+				lblminutes = Math.floor(seconds / 60);
+				lblseconds = seconds - (lblminutes * 60);
+				return String(lblminutes) + ":" + StringUtils.padLeft(String(lblseconds),"0",2);
+			}
+		}
+		private function dataTipFunction(item:HitData):String {
+			//trace("duration=" + item.item.duration);
+			// data tip will show minutes or hours based on this value, not the max
+			//var unitLabel:String;
+			//if (item.item.duration > 3600) {
+			//	unitLabel = "hours and minutes";
+			//} else {
+			//	unitLabel = "minutes and seconds";
+			//}
+			return item.item.courseName + "<br/><b>" + secondsToDataTipUnit(item.item.duration) + "</b>";
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:BarChart id="barChart"
+				 width="100%"
+				 paddingTop="10"
+				 dataProvider="{dataProvider}"
+				 dataTipFunction="dataTipFunction"
+				 showDataTips="true">
+				
+		<mx:verticalAxis>
+			<mx:CategoryAxis dataProvider="{dataProvider}" categoryField="courseName"/>
+		</mx:verticalAxis>
+		
+		<mx:horizontalAxis>
+			<mx:LinearAxis labelFunction="secondsToAxisUnit" 
+							maximum="{tickMaximum}" 
+							minimum="0" 
+							interval="{tickInterval}"
+							title="{tickLabel}" />
+		</mx:horizontalAxis>
+		
+		<mx:series>
+			<mx:BarSeries yField="courseName" xField="duration" >
+				<mx:showDataEffect>
+					<mx:SeriesInterpolate duration="500" />
+				</mx:showDataEffect>
+			</mx:BarSeries>
+		</mx:series>
+	</mx:BarChart>
+	
+</mx:TitleWindow>

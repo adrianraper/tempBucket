@@ -1,0 +1,1 @@
+Please use convertSettings.pl to convert the chart settings xml file to a string and copy the string into .as code instead of having a xml in client folder in terms of security and information hiding.

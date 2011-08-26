@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+		  xmlns:arc90="com.arc90.flexlib.containers.*"
+		  horizontalScrollPolicy="off"
+		  horizontalAlign="center"
+		  creationComplete="initLocalConnection()"
+		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.utils.TraceUtils;
+		import flash.net.LocalConnection;
+
+		//import mx.charts.chartClasses.IAxis;
+		//import mx.charts.HitData;
+		//import mx.charts.series.items.PieSeriesItem;
+		// AR added for padding numbers
+		import com.gskinner.StringUtils;
+		
+		private var conn:LocalConnection;
+
+		//[Bindable]
+		//public var dataProvider:Object;
+		//public var dataProviderUsers:Object;
+		//[Bindable]
+		//public var dataProviderTimes:Object;
+
+		// For the Flash counter
+		[Embed(source="/../assets/counter.swf")]
+		//[Embed(source="/../assets/ClarityLogo.swf")]
+		[Bindable]
+		public var Counter:Class;
+		
+		private var copyProvider:CopyProvider;
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			//title = copyProvider.getCopyForId("courseUserCounts");
+			title = copyProvider.getCopyForId("singleCourseCount");
+			courseTimeCountsLabel.text = copyProvider.getCopyForId("singleCourseTimeCount");
+			courseUserCountsLabel.text = copyProvider.getCopyForId("singleCourseUserCount");
+			this.copyProvider = copyProvider;
+		}
+		
+		// For talking to the (Flash) counter
+		private function initLocalConnection():void{
+			conn = new LocalConnection();
+		}
+		private function setCounterValue(count:Number):void {
+			TraceUtils.myTrace("mxml.setCounterValue with " + String(count));
+			conn.send("_counter", "setCounterValue", count);
+		}
+
+		public function setDataValues(courseCount:Number, timeCount:Number):void {
+			singleUserCountLabel.text = String(courseCount);
+			// Also use localConnection to tell the Flash counter this figure
+			setCounterValue(courseCount);
+			
+			var seconds:Number = new Number(timeCount);
+			var unitLabel:String;
+			if (seconds > 3600) {
+				//unitLabel = "hours and minutes";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes").toLowerCase();
+			} else {
+				//unitLabel = "minutes and seconds";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelMinutesSeconds").toLowerCase();
+			}
+			singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds) + " " + unitLabel;
+		}	
+		private function getFormattedSeconds(seconds:Number = 0, thisMax:Number = 3600):String {
+			// AR This breaks seconds down into xx:yy where xx is either hours or minutes depending
+			// on how big the value of seconds is.
+			var lblhours:Number;
+			var lblminutes:Number;
+			var lblseconds:Number;
+			if (thisMax > 3600) {
+				// Round the seconds if you are showing hours
+				lblhours = Math.floor(seconds / 3600);
+				lblminutes = Math.round((seconds - (lblhours * 3600)) / 60);
+				return String(lblhours) + ":" + StringUtils.padLeft(String(lblminutes),"0",2);
+			} else {
+				// Drop hours label if less than 1
+				lblminutes = Math.floor(seconds / 60);
+				lblseconds = seconds - (lblminutes * 60);
+				return String(lblminutes) + ":" + StringUtils.padLeft(String(lblseconds),"0",2);
+			}
+		}
+		public function displayNonPrintableGraphics(isVisible:Boolean):void {
+			//TraceUtils.myTrace("try to hide counter=" + isVisible);
+			counter.visible = isVisible;
+			singleUserCountLabel.visible = !isVisible;
+		}
+
+		
+		]]>
+	</mx:Script>
+	<mx:VBox id="courseCountsContainer" width="100%">
+		<mx:HBox width="100%">
+			<mx:Label width="50%" id="courseUserCountsLabel" fontWeight="bold" />
+			<mx:Label id="courseTimeCountsLabel" fontWeight="bold" />
+		</mx:HBox>
+		<mx:HBox width="100%">
+			<mx:VBox id="scu" width="50%" height="100%" paddingLeft="20" paddingBottom="10" minHeight="100" verticalAlign="middle" >
+				<mx:SWFLoader includeInLayout="false" id="counter" source="{Counter}" width="200" scaleContent="false" maintainAspectRatio="true" /> 
+				<mx:Label id="singleUserCountLabel" includeInLayout="true" visible="false" fontSize="16" />
+				<!-- 
+					<mx:Image source="{Counter}" />
+				-->
+				<!--
+					<mx:SWFLoader id="counter" source="@Embed(source='/../assets/counter.swf')" scaleContent="false" maintainAspectRatio="true" /> 
+				-->
+			</mx:VBox>			
+			<mx:VBox id="sct" width="50%" height="100%" paddingLeft="20" paddingBottom="10" minHeight="80" verticalAlign="middle" >
+				<mx:Label id="singleTimeCountLabel" fontSize="16" />
+			</mx:VBox>			
+		</mx:HBox>
+	</mx:VBox>
+</mx:TitleWindow>

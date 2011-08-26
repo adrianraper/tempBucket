@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<title>Author Plus - from Clarity</title>
+	<link rel="shortcut icon" href="http://webserver/Clarity/Software/Clarity.ico" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="language" content="en" />
+	<!--
+	*********
+	*********
+	// Change all instances of www.ClarityEnglish.com to your own installation of Author Plus
+	*********
+	v6.4.3 Change to using JavaScriptFlashGateway for communication
+	v6.5 Change to ExternalInterface
+	
+	********* 
+	// Embedding of a Flash object in an html page using swfobject
+	// This is the main script for SCORM communication to the LMS's API object
+	// This is the main script for SCORM communication with Author Plus
+	-->
+
+	<script type="text/javascript" language="JavaScript" src="http://webserver/Clarity/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="http://webserver/Clarity/Software/Common/openwin.js"></script>
+	<script type="text/javascript" language="JavaScript" src="http://webserver/Clarity/Software/Common/APIWrapper.js"></script>
+	<script type="text/javascript" language="JavaScript" src="http://webserver/Clarity/Software/Common/ExtIntSCORMScripts.js"></script>
+	<script language="JavaScript" type="text/javascript">
+		// 
+		// ****
+		// Change this variable along with the above fixed paths
+		var webShare = "http://webserver/Clarity";
+		// 
+		// ****
+		// This sets the start parameters for an LMS that supports the SCORM parameters attribute in CAM
+		// but doesn't support cmi.launch_data so needs to hardcode the starting unit for each html page
+		//var _parameters = "?start=1001-u1"
+		//var _parameters = window.location.search;
+
+		function thisMovie(movieName) {
+			if (window.document[movieName]) {
+				return window.document[movieName];
+			}
+			if (navigator.appName.indexOf("Microsoft Internet") == -1) {
+				if (document.embeds && document.embeds[movieName])
+					return document.embeds[movieName];
+			} else { // if (navigator.appName.indexOf("Microsoft Internet")!=-1)
+				return document.getElementById(movieName);
+			}
+		}
+		
+		function onLoad() {
+			thisMovie("APOStart").focus();
+		}
+		// *********
+		// *********
+		// Running scale, width and height with swfobject is off
+		// If I set both to 100%, then IE shows a very small image, FF shows nothing (but the app is running)
+		// If I set a specific height, then it doesn't matter what I put for width
+		<!--
+		// *********
+		// *********
+		// You need to make changes to the following lines if your Author Plus installation didn't follow the default folder structure
+		// Plus all instances of js include scripts that are coded in the rest of the file
+		//
+		// Change this line to point to the location of the Author Plus file control.swf (usually http://webserver/Clarity/Software/Common)
+		var startControl = webShare + "/Software/Common/";
+		// Change this line to point to the default location of the location.txt file for Author Plus
+		var userdatapath = webShare + "/area1/AuthorPlus";
+		// Change this line to send more variables to Author Plus
+		// Pass the LMS, html to Flash communication method instead
+		var argList = "?browser=true&scormCommunication=ExtInt&location=remote-location.txt&userdatapath=" + userdatapath;
+		//-->
+		// v6.5.5.6 Allow resize screen mode
+		if (swfobject.getQueryParamValue("resize")=="true") {;
+			var coordsWidth = "100%"; var coordsHeight = "100%";
+		} else {
+			var coordsWidth = 760; var coordsHeight = 640;
+		}
+		var flashvars = {
+			prefix: "",
+			productCode: "1"
+		};
+		var params = {
+			allowScriptAccess: "always",
+			allowfullscreen: "true"
+		};
+		// v6.5.5.6 Allow resize screen mode
+		if (swfobject.getQueryParamValue("resize")=="true") {
+			params.scale="showall";
+		} else {
+			params.scale="noScale";
+		}
+		var attr = {
+			id: "APOStart",
+			name: "APOStart"
+		};
+		// 
+		// You can override the default debugging here (originally set in APIWrapper.js)
+		//_Debug = true;		
+		var expressInstall = startControl + "expressInstall.swf";
+		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
+	</script>
+<style type="text/css">
+html, body {
+	margin: 0px 0px auto;
+	text-align:center;
+	height: 100%;
+}
+</style>
+</head>
+<!-- Catch LMS navigation taking you away from the sco without a terminate call -->
+<body onLoad="onLoad();" onUnload="return unloadPage();">
+	<div align="center" id="altContent">
+		<p>This application requires Adobe's Flash player, running at least version 9.</p>
+		<p>It seems your browser doesn't have this.</p>
+		<p>Please download the latest Adobe Flash Player.</p>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+	</div>
+<NOSCRIPT>
+This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
+Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
+to switch this on and then refresh this page.</NOSCRIPT>
+</body>
+</html>

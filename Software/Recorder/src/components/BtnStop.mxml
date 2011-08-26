@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Group d:id="28" flm:knockout="false" x="0" y="5">
+		<s:Rect height="23" d:id="29" radiusX="3.98381" radiusY="3.98381" flm:variant="12" width="24" x="0" y="0">
+			<s:fill>
+				<s:LinearGradient scaleX="23.4424" x="0" y="11.7217">
+					<s:GradientEntry color="#333333" ratio="0"/>
+					<s:GradientEntry color="#757576" ratio="0.521212"/>
+					<s:GradientEntry color="#333333" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group d:id="30" flm:knockout="false" x="0" y.over="0" id="group1" y.down="2" y.up="1" y.disabled="1">
+		<s:Rect height="24" d:id="31" radiusX="3.98381" radiusY="3.98381" flm:variant="13" width="24" x="0" y="0">
+			<s:fill>
+				<s:LinearGradient rotation="180" scaleX="23.4445" x="23.4427" y="11.7212">
+					<s:GradientEntry color="#E6E6E6" ratio="0"/>
+					<s:GradientEntry color="#FFFFFF" ratio="0.672727"/>
+					<s:GradientEntry color="#FAFAFA" ratio="0.853051"/>
+					<s:GradientEntry color="#E6E6E6" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Rect height="12" width="12" x="6" y.over="6" id="rect1" y.down="8" y.up="7" y.disabled="7">
+		<s:fill>
+			<s:SolidColor color="#333333" color.over="#FABE78" color.down="#F7931E" color.disabled="#CCCCCC"/>
+		</s:fill>
+	</s:Rect>
+</s:Skin>

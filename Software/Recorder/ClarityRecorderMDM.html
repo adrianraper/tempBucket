@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="shortcut icon" href="../../Software/Recorder.ico" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Clarity Recorder</title>
+</head>
+	<script type="text/javascript" src="../../Software/Common/swfobject2.js"></script>
+	<script type="text/javascript">
+		// ****
+		// Change this variable along with the above fixed paths
+		var webShare = "../..";
+		var coordsWidth = "850"; var coordsHeight = "350";
+		// 
+		// *********
+
+		var startControl = webShare + "/Software/";
+		var flashvars = {
+		};
+		//var flashvars = {};
+		var params = {
+			scale: "noScale"
+		};
+		var attr = {
+			id: "ClarityRecorder"
+		};
+		// v6.5.6 This file is only called when you are offline, so you will not be able to use expressInstall which relies on online!
+		//var expressInstall = startControl + "Common/expressInstall.swf";
+		//swfobject.embedSWF(startControl + "Recorder/bin/WebRecorder.swf", "altContent", coordsWidth, coordsHeight, "10.1", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "Recorder/bin/WebRecorder.swf", "altContent", coordsWidth, coordsHeight, "10.1", false, flashvars, params, attr);
+	</script>  
+<style type="text/css">
+html, body {
+	margin: 0px 0px auto;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+</style>
+<body>
+	<div align="center" id="altContent">
+		<p>This application requires Adobe's Flash player, running at least version 10.1</p>
+		<p>It seems your browser doesn't have this.</p>
+		<p>If you can connect to the internet, please download the latest Adobe Flash Player from<br />
+		<a href="http://www.adobe.com/go/getflashplayer">www.adobe.com/go/getflashplayer</a><p/>
+		<p>Or you can install it from your CD by running install_flash_player_active_x.exe.</p>
+	</div>
+</body>
+</html>

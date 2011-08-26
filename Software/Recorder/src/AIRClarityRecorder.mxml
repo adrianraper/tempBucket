@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:recorder="com.clarityenglish.recorder.*"
+					   initialize="init()"
+					   creationComplete="creationComplete()"
+					   showStatusBar="false"
+					   backgroundAlpha="0"
+					   width="680" height="250"
+					   resizeAffordanceWidth="0">
+	<fx:Script>
+		<![CDATA[
+		import com.clarityenglish.recorder.adaptor.AIRRecorderAdaptor;
+		import com.clarityenglish.recorder.adaptor.IRecorderAdaptor;
+		import com.clarityenglish.recorder.ApplicationFacade;
+		import com.clarityenglish.recorder.events.ResizeWindowEvent;
+		import com.clarityenglish.recorder.events.AIRWindowEvent;
+		import flash.display.NativeWindow;
+		import flash.events.Event;
+		import flash.events.TimerEvent;
+		import flash.system.ApplicationDomain;
+		import flash.system.Capabilities;
+		import air.update.ApplicationUpdaterUI;
+		import air.update.events.UpdateEvent;
+		import air.update.events.StatusUpdateEvent;
+		import air.update.events.StatusUpdateErrorEvent;
+		import flash.events.ErrorEvent;
+		import flash.utils.Timer;
+		import mx.controls.Alert;
+		import gs.util.PlayerUtils;
+		import com.clarityenglish.recorder.Constants;
+		import com.clarityenglish.utils.TraceUtils;
+		//import nl.demonsters.debugger.MonsterDebugger;
+		//public var debugger:MonsterDebugger;
+		
+		public var recorderAdaptor:IRecorderAdaptor;
+		private var appUpdater:ApplicationUpdaterUI;
+		
+		public var helpFolder:String;
+		private var noMoreStopping:Boolean;
+		
+		private function init():void {
+			recorderAdaptor = new AIRRecorderAdaptor();
+			
+			// I also want to listen for FileSelect and Cancel from the file save as dialog as then I can release
+			// the AIR alwaysInFront that I have set when saving.
+			recorderAdaptor.addEventListener(Event.CANCEL, onSaveComplete);
+			recorderAdaptor.addEventListener(Event.SELECT, onSaveComplete);
+			
+			this.addEventListener(Event.CLOSING, onClosing);
+			this.addEventListener(Event.CLOSE, onClose);
+			// Event.CLOSE is common to AIR and Web
+			//recorderAdaptor.addEventListener(Event.CLOSE, onClose);
+
+			// Read the AIR descriptor file settings, if they exist, and use that for version on the screen.
+			if (PlayerUtils.isAirApplication()) {
+				var appDescriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var ns:Namespace = appDescriptor.namespace();
+				var appVersion:String = appDescriptor.ns::version[0];
+				recorder.applicationView.versionLabel = "V" + appVersion;
+				//trace("appmediator, version=" + appVersion);
+			}
+			//trace("help me from " + this.url);
+			helpFolder = ""; // the help file will be in the same folder as the swf
+
+			// To help with exiting
+			noMoreStopping = false;
+		}
+		
+		private function creationComplete():void {
+			//debugger = new MonsterDebugger(this);
+			//MonsterDebugger.trace(this, "starting up AIRClarityRecorder.mxml");
+			trace("I am running AIR Clarity Recorder");
+			
+			ApplicationFacade.getInstance(ApplicationFacade.NAME).sendNotification(ApplicationFacade.STARTUP, recorder.applicationView);
+			
+			recorder.addEventListener(ResizeWindowEvent.RESIZE_HEIGHT_BY_RATIO, onResizeHeightByRatio);
+			recorder.addEventListener(AIRWindowEvent.RELEASE_ALWAYS_IN_FRONT, onReleaseAlwaysInFront);
+			
+			// The AIR app should check to see if there is an update
+			// Use the AIR built-in framework
+			appUpdater = new ApplicationUpdaterUI();
+			appUpdater.configurationFile = new File("app:/updateConfig.xml"); 
+			// The following appUpdated settings should be read from a configuration file really.
+			// But how do I package that with the AIR app? Put it in the /bin folder and use adt with file_or_dir and -C option
+			//appUpdater.updateURL = "http://www.ClarityEnglish.com/Software/Updates/ClarityRecorderUpdate.xml";
+			//appUpdater.delay = 30; // check every month
+			//appUpdater.delay = 1; // check every day for the moment
+			appUpdater.addEventListener(UpdateEvent.INITIALIZED, onAppUpdate);
+			appUpdater.addEventListener(ErrorEvent.ERROR, onError);
+			appUpdater.addEventListener(StatusUpdateEvent.UPDATE_STATUS, onAppStatusUpdate );
+			appUpdater.addEventListener(StatusUpdateErrorEvent.UPDATE_ERROR, onAppStatusError );
+			appUpdater.initialize();
+			
+		}
+		
+		private function onSaveComplete(e:Event):void {
+			// Release the AIR always on front now that you have all the save information you want (or the user has cancelled)
+			trace("onSaveComplete");
+			this.releaseAlwaysInFront();
+		}
+		private function onReleaseAlwaysInFront(e:AIRWindowEvent):void {
+			// Release the AIR always on front now that you have all the save information you want (or the user has cancelled)
+			this.releaseAlwaysInFront();
+		}
+		
+		private function onAppStatusUpdate(event:StatusUpdateEvent):void {
+			//Alert.show("onAppStatusUpdate, available=" + event.available + " version=" + event.version);
+		}
+		private function onAppStatusError(event:StatusUpdateErrorEvent):void {
+			Alert.show("Sorry there was a problem updating the application. Please report this error to your support team. " + event.toString(),"Updating");
+		}
+		private function onAppUpdate(event:UpdateEvent):void {
+			// If using the UI version, by the time this is called everything has been done. Really?
+			// But if calling the manual version, you would now need to run a checkForUpdate.
+			// Start the process of checking for a new update and to install
+			// You need this for testing as it forces it always to happen, but it overrides the delay so remove for production
+			//appUpdater.checkNow();
+		}
+		private function onError(event:ErrorEvent):void {
+			// There is lots of information you could use in the event
+			Alert.show("Sorry, there was a problem with the update. Please visit www.ClarityEnglish.com support pages and download the new version from there.","Updating");
+		}
+		
+		public function bringToFront():void {
+			trace("AIR asked to bring to front");
+			var window:NativeWindow = stage.nativeWindow;
+			//var bringToFrontSuccess:Boolean = window.orderToFront(); // this doesn't work
+			window.alwaysInFront = true; 
+			window.restore();
+			window.activate();
+			window.alwaysInFront = false; 
+		}
+		public function setAlwaysInFront():void {
+			trace("AIR asked to set always in front");
+			var window:NativeWindow = stage.nativeWindow;
+			window.alwaysInFront = true; 
+			window.restore();
+			window.activate();
+		}
+		public function releaseAlwaysInFront():void {
+			trace("AIR asked to release always in front");
+			var window:NativeWindow = stage.nativeWindow;
+			window.restore();
+			window.alwaysInFront = false;
+			// Should you send it to the back as part of this action?
+			// NOTE: In the ideal world you would only move behind the window that currently has the focus.
+			// No, this is triggered for every move to a new exercise, so completely wrong.
+			//window.orderToBack();
+		}
+
+		// This is all well and good, but the localConnection commands I want to issue just don't happen quickly
+		// enough before the close actually happens. So I need to add in a little delay.
+		private function onClosing(e:Event):void {
+			trace("AIRClarityRecorder app closing");
+			//TraceUtils.myTrace("AIRClarityRecorder app closing");
+			// I should be able to use isDefaultPrevented() to stop me doing this recursively, but it doesn't seem to work
+			// So just use a simple class boolean.
+			if (!noMoreStopping) {
+				noMoreStopping = true;
+				e.preventDefault();
+				ApplicationFacade.getInstance(ApplicationFacade.NAME).sendNotification(ApplicationFacade.CLOSE_RECORDER);
+				// Then after a little delay trigger the close again
+				var exitShortly:Timer = new Timer(500, 1);
+				exitShortly.addEventListener(TimerEvent.TIMER_COMPLETE, finalExit);
+				exitShortly.start();
+			}
+		}
+		private function finalExit(e:TimerEvent):void {
+			trace("finalExit");
+			close();
+		}
+		private function onClose(e:Event):void {
+			trace("AIRClarityRecorder app close");
+			//ApplicationFacade.getInstance(ApplicationFacade.NAME).sendNotification(ApplicationFacade.CLOSE_RECORDER);
+		}
+
+		private function onResizeHeightByRatio(e:ResizeWindowEvent):void {
+			height = Math.min(Math.round(height * e.ratio), Capabilities.screenResolutionY);
+		}
+			
+		]]>
+	</fx:Script>
+	
+	<recorder:Recorder id="recorder" left="0" right="0" top="0" bottom="0" />
+	
+</s:WindowedApplication>

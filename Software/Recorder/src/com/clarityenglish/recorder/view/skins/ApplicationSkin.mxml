@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fc="http://ns.adobe.com/flashcatalyst/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:flm="http://ns.adobe.com/flame/2008"
+		xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+		xmlns:ai="http://ns.adobe.com/ai/2009"
+		xmlns:ATE="http://ns.adobe.com/ate/2009"
+		xmlns:graphics="assets.graphics.*"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:waveform="com.clarityenglish.recorder.view.waveform.components.*"
+		width="100%" height="100%">
+	
+    <!-- This binds the skin to the component and lets us set a literal for display in the component -->
+	<fx:Metadata>
+       [HostComponent("com.clarityenglish.recorder.view.ApplicationView")]
+    </fx:Metadata>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="record" />
+		<s:State name="compare" />
+		<s:State name="disabled" />
+		<s:State name="progress" />
+	</s:states>
+	
+	<s:transitions>
+		<s:Transition>
+			<s:Fade targets="{[recordWaveformView, modelWaveformView]}"/>
+		</s:Transition>
+	</s:transitions>
+	
+	<graphics:BackgroundGradient id="backgroundGradient" left="0" right="0" top="0" bottom="0" />
+	<graphics:LightningGraphic y.record="132" y.compare="260" includeInLayout="false" />
+	
+	<!-- Remove some of the left and top margins 
+	<s:VGroup x="36" top="20" bottom="22" width="100%" height="100%">  
+	// v4.0.1.3 Also set both waveforms to be select rather than drag
+	-->
+	<s:VGroup x="10" top="10" bottom="22" width="100%" height="100%">
+		<waveform:WaveformView id="recordWaveformView" x="16" width="100%" height="100%" dragMode="drag" includeIn="record,compare" />
+		<waveform:WaveformView id="modelWaveformView" x="16" width="100%" height="100%" dragMode="select" includeIn="compare" />
+	</s:VGroup>
+	
+	<s:Group horizontalCenter="0" verticalCenter="0" visible.normal="false" visible.record="false" visible.compare="false" visible.progress="true">
+		<s:VGroup>
+			<s:Label id="progressLabel" text="Doing stuff..." />
+			<mx:ProgressBar id="progressBar" mode="manual" />
+		</s:VGroup>
+	</s:Group>
+	<s:Group horizontalCenter="-250" verticalCenter="0" visible.normal="true" visible.record="false" visible.compare="false" visible.progress="false">
+		<s:Label id="warningLabel" width="200" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
+	</s:Group>
+	
+	<s:RichText ai:aa="2" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" d:id="8" kerning="on"
+				tabStops="S28.4577007293701 S56.9154014587402 S85.3731021881104 S113.83080291748 S142.288503646851 S170.746204376221 S199.203905105591" text="{hostComponent.versionLabel}" trackingRight="-2.5%" d:userLabel="V4.0"
+				flm:variant="2" whiteSpaceCollapse="preserve" left="10" bottom="5" />
+	<!-- 		
+	<s:RichText ai:aa="2" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" d:id="7" kerning="on"
+				tabStops="S28.4577007293701 S56.9154014587402 S85.3731021881104 S113.83080291748 S142.288503646851 S170.746204376221 S199.203905105591" text="Copyright © 2010 Clarity Language Consultants Ltd." trackingRight="-2.5%" d:userLabel="Copyright © 2010 Clarity Language Consultants Ltd."
+				flm:variant="2" whiteSpaceCollapse="preserve" right="36" bottom="5" />
+	<graphics:ClarityLogo2 right="5" bottom="5" />
+	-->
+	<s:Button id="clarityLogoButton" skinClass="components.ClarityLogo" toolTip="www.ClarityEnglish.com" right="25" bottom="5" />
+</s:Skin>

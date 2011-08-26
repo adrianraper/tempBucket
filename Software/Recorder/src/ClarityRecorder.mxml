@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:recorder="com.clarityenglish.recorder.*"
+			   initialize="init()"
+			   creationComplete="creationComplete()">
+	<fx:Script>
+		<![CDATA[
+		import com.clarityenglish.recorder.adaptor.IRecorderAdaptor;
+		import com.clarityenglish.recorder.adaptor.WebRecorderAdaptor;
+		import com.clarityenglish.recorder.ApplicationFacade;
+		//import nl.demonsters.debugger.MonsterDebugger;
+		//public var debugger:MonsterDebugger;
+		
+		public var recorderAdaptor:IRecorderAdaptor;
+		
+		public var helpFolder:String;
+		
+		private function init():void {
+			//var debugger:MonsterDebugger = new MonsterDebugger(this);
+			//MonsterDebugger.trace(this, "starting up WebClarityRecorder.mxml");
+			recorderAdaptor = new WebRecorderAdaptor();
+			this.addEventListener(Event.CLOSE, onClose);
+			
+			// The help file will be in a Software folder in whatever domain you are in
+			// v4.0.1.16 Actually, surely I am always in that folder too aren't I? And if you are running locally this fails
+			// Well, no. If you run from /Software/Recorder/OnlineVersion.html loading bin/WebRecorder.swf, then this folder is the higher level one
+			// so this call fails in that case. Hmm. For now I might have to just messily duplicate the help file and images.
+			//helpFolder = "/Software/Recorder/bin/"; 
+			helpFolder = "./";
+		}
+		
+		private function creationComplete():void {
+			ApplicationFacade.getInstance(ApplicationFacade.NAME).sendNotification(ApplicationFacade.STARTUP, recorder.applicationView);
+		}
+		
+		// This is not called when you close the browser that the swf is running in.
+		private function onClose(e:Event):void {
+			//MonsterDebugger.trace(this, "onClose");
+		}
+		
+		]]>
+	</fx:Script>
+	
+	<recorder:Recorder id="recorder" width="100%" height="100%" />
+	
+</s:Application>

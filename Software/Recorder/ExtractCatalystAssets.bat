@@ -1,0 +1,1 @@
+unzip.exe fxp/*.fxp -x html-template/* .* libs/* src/PrivateData.mxml mimetype

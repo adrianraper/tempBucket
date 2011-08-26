@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s:Group xmlns:ai="http://ns.adobe.com/ai/2009"
+		 xmlns:lib="assets.graphics.WaveformViewBackground.*"
+		 xmlns:fc="http://ns.adobe.com/flashcatalyst/2009"
+		 xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+		 xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:flm="http://ns.adobe.com/flame/2008">
+	
+	<s:Group left="19" top="10" right="68" bottom="0">
+		<s:Rect alpha="0.3" height="122" radiusX="8.65899" radiusY="8.65368" left="2" right="2" top="2" bottom="0">
+			<s:fill>
+				<s:SolidColor/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="122" radiusX="8.7085" radiusY="8.70142" left="0" right="0" top="0" bottom="2">
+			<s:fill>
+				<s:LinearGradient rotation="270" scaleX="122.74" x="614.096" y="{height - 12}">
+					<s:GradientEntry color="#807F7F" ratio="0"/>
+					<s:GradientEntry color="#CACACA" ratio="0.0944882"/>
+					<s:GradientEntry color="#CCCCCC" ratio="0.648485"/>
+					<s:GradientEntry color="#FFFFFF" ratio="0.874016"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<s:Group left="0" right="0" top="0" bottom="30">
+		<s:Rect left="0" right="45" top="4" bottom="7" bottomLeftRadiusX="25" topLeftRadiusX="25" bottomRightRadiusX="25" topRightRadiusX="25">
+			<s:fill>
+				<s:SolidColor color="#4D4D4D"/>
+			</s:fill>
+		</s:Rect>
+		
+		<!-- This without the scrub bar -->
+		<s:Rect left="7" right="70" top="10" bottom="14" bottomLeftRadiusX="20" topLeftRadiusX="20" bottomRightRadiusX="20" topRightRadiusX="20" >
+		<!-- -->
+		<!-- This with the scrub bar
+		<s:Rect left="7" right="70" top="10" bottom="31" bottomLeftRadiusX="20" topLeftRadiusX="20" bottomRightRadiusX="20" topRightRadiusX="20" >
+		-->
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+</s:Group>

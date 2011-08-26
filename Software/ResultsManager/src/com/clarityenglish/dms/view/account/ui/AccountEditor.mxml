@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TabNavigator xmlns:mx="http://www.adobe.com/2006/mxml"
+				 xmlns:ui="com.clarityenglish.dms.view.account.ui.*"
+				 implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.dms.view.account.events.AccountEvent;
+		import com.clarityenglish.dms.vo.account.Account;
+		import mx.utils.ObjectUtil;
+		
+		[Bindable]
+		public var account:Account;
+		
+		[Bindable]
+		private var _editMode:Boolean;
+		
+		public var eventType:String;
+		
+		public function set editMode(editMode:Boolean):void {
+			
+			// If we are starting to edit we need to clone the account (so changes can be cancelled)
+			if (editMode) account = ObjectUtil.copy(account) as Account;
+			
+			_editMode = editMode;
+		}
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			detailsPane.label = copyProvider.getCopyForId("detailsPane");
+			titlesPane.label = copyProvider.getCopyForId("titlesPane");
+			licencesPane.label = copyProvider.getCopyForId("licencesPane");
+			
+			// This fixes a bug where the label does not fully display
+			validateNow();
+			
+			// Set copy in the sub-components
+			detailsPane.setCopyProvider(copyProvider);
+			titlesPane.setCopyProvider(copyProvider);
+			licencesPane.setCopyProvider(copyProvider);
+		}
+		
+		public function save():void {
+			if (titlesPane.validate() && detailsPane.validate() && licencesPane.validate()) {
+				titlesPane.save();
+				detailsPane.save();
+				licencesPane.save();
+				
+				dispatchEvent(new AccountEvent(eventType, [ account ], null, true));
+			}
+		}
+		
+		public function cancel():void {
+			titlesPane.cancel();
+			detailsPane.cancel();
+			licencesPane.cancel();
+			
+			editMode = false;
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<ui:DetailsPane id="detailsPane" width="100%" height="100%" editMode="{_editMode}" account="{account}" />
+	<ui:TitlesPane id="titlesPane" width="100%" height="100%" editMode="{_editMode}" account="{account}" />
+	<ui:LicencesPane id="licencesPane" width="100%" height="100%" visible="{_editMode}" editMode="{_editMode}" account="{account}" />
+	
+</mx:TabNavigator>

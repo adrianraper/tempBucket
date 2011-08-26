@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:fxc="com.fxcomps.vacombobox.*"
+				borderAlpha="0.9" borderColor="{Constants.popupBackgroundColour}"
+				creationComplete="creationComplete()"
+				implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
+		import com.clarityenglish.common.vo.manageable.Group;
+		import com.clarityenglish.common.vo.manageable.User;
+		import flash.events.Event;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		import org.davekeen.utils.DateUtils;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		private var _user:User;
+		[Bindable] private var _users:Array;
+		private var _parentGroup:Group;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		[Bindable]
+		public var editMode:Boolean;
+		
+		[Bindable]
+		private var userTypeDataProvider:Object;
+		
+		// TODO: Teachers inside a MyGroup need to have an additional 'Edit content in MyGroup' checkbox - not sure what this updates
+		// in the database though.
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("addUserWindowTitle");
+			userNameFormItem.label = copyProvider.getCopyForId("name");
+			learnerIDFormItem.label = copyProvider.getCopyForId("learner_id");
+			emailFormItem.label = copyProvider.getCopyForId("email");
+			passwordFormItem.label = copyProvider.getCopyForId("password");
+			userTypeFormItem.label = copyProvider.getCopyForId("userType");
+			addButton.label = copyProvider.getCopyForId(editMode ? "update" : "add");
+			cancelButton.label = copyProvider.getCopyForId("cancel");
+			expireFormItem.label = copyProvider.getCopyForId("expires");
+			neverRadioButton.label = copyProvider.getCopyForId("never");
+			
+			// v3.5 If the licenced number of one of these types is 0, don't show it as an option to select
+			userTypeDataProvider = [ { label: copyProvider.getCopyForId("student"), data: User.USER_TYPE_STUDENT } ];
+			if (Constants.maxReporters > 0) userTypeDataProvider.push( { label: copyProvider.getCopyForId("reporter"), data: User.USER_TYPE_REPORTER } );
+			if (Constants.maxTeachers > 0) userTypeDataProvider.push( { label: copyProvider.getCopyForId("teacher"), data: User.USER_TYPE_TEACHER } );
+			if (Constants.maxAuthors > 0) userTypeDataProvider.push( { label: copyProvider.getCopyForId("author"), data: User.USER_TYPE_AUTHOR } );
+		}
+		
+		public function set parentGroup(value:Group):void {
+			_parentGroup = value;
+		}
+		
+		public function set users(value:Array):void {
+			if (value.length == 1) {
+				user = value[0];
+				_users = null;
+			} else {
+				_user = null;
+				_users = value;
+			}
+		}
+		
+		private function set user(value:User):void {
+			_user = value;
+			
+			userNameTextInput.text = _user.name;
+			learnerIDTextInput.text = _user.studentID;
+			emailTextInput.text = _user.email;
+			passwordTextInput.text = _user.password;
+			
+			if (_user.expiryDate) {
+				expireButtonGroup.selection = expireRadioButton;
+				expireDateField.selectedDate = DateUtils.ansiStringToDate(_user.expiryDate);
+			} else {
+				expireButtonGroup.selection = neverRadioButton;
+				expireDateField.text = "";
+			}
+			
+			if (userTypeFormItem.visible) userTypeComboBox.value = _user.userType;
+		}
+		
+		private function submit():void {
+			// v3.1 Since a reporter can ONLY see details for themselves, we can let them update
+			//if (Constants.userType != User.USER_TYPE_REPORTER) {
+				if (!_users) {
+					// Single user update
+					_user.name = userNameTextInput.text;
+					_user.studentID = learnerIDTextInput.text;
+					_user.email = emailTextInput.text;
+					_user.password = passwordTextInput.text;
+					
+					// If visible set the expiry date
+					if (expireFormItem.visible) _user.expiryDate = (expireButtonGroup.selection == neverRadioButton) ? null : DateUtils.dateToAnsiString(expireDateField.selectedDate);
+					//TraceUtils.myTrace("date from calendar is " + _user.expiryDate);
+					
+					// If visible set the user type
+					if (userTypeFormItem.visible) _user.userType = userTypeComboBox.value as int;
+						
+					// Since PopUps live on a different branch of the display tree we need to explicitly dispatch the event from the parentView
+					parentView.dispatchEvent(new ManageableEvent(editMode ? ManageableEvent.UPDATE_USERS : ManageableEvent.ADD_USER, [ _user ], _parentGroup, true));
+				} else {
+					// Multiple user update
+					
+					// If a password has been entered then set it on all users
+					if (passwordTextInput.text != "")
+						for each (var user:User in _users)
+							user.password = passwordTextInput.text;
+					
+					if (expireButtonGroup.selection)
+						for each (user in _users)
+							user.expiryDate = (expireButtonGroup.selection == neverRadioButton) ? null : DateUtils.dateToAnsiString(expireDateField.selectedDate);
+					
+					if (userTypeComboBox.value != null) {
+						for each (user in _users)
+							user.userType = userTypeComboBox.value as int;
+					}
+					
+					// Since PopUps live on a different branch of the display tree we need to explicitly dispatch the event from the parentView
+					parentView.dispatchEvent(new ManageableEvent(ManageableEvent.UPDATE_USERS, _users, _parentGroup, true));
+				}
+			//}
+			
+			removePopup();
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+		
+		private function creationComplete():void {
+			userNameTextInput.setFocus();
+			userNameTextInput.setSelection(0, 0);
+			
+			// Make fields visible or invisible depending on whether we are editing a single or multiple users
+			userNameFormItem.includeInLayout = userNameFormItem.visible = (_users == null);
+			learnerIDFormItem.includeInLayout = learnerIDFormItem.visible = (_users == null);
+			emailFormItem.includeInLayout = emailFormItem.visible = (_users == null);
+			
+			// Set expiry date is only available to admins and teachers
+			expireFormItem.includeInLayout = expireFormItem.visible = (Constants.userType == User.USER_TYPE_ADMINISTRATOR ||
+																	   Constants.userType == User.USER_TYPE_TEACHER ||
+																	   Constants.userType == User.USER_TYPE_DMS);
+																	   
+			// Determine if the user themselves is in the edited users (different methods if we are editing 
+			var isEditingSelf:Boolean;
+			
+			if (_users) {
+				// v3.3 Multi-group users
+				//var ids:Array = _users.map(function(user:User, index:int, array:Array):String { return user.id; } );
+				var ids:Array = _users.map(function(user:User, index:int, array:Array):String { return user.userID; } );
+				isEditingSelf = (ids.indexOf(Constants.userID) > -1);
+			} else {
+				//isEditingSelf = (Constants.userID == _user.id);
+				isEditingSelf = (Constants.userID == _user.userID);
+			}
+			
+			// Change user type is only available to administrators whilst in edit mode and not editing themselves
+			userTypeFormItem.includeInLayout = userTypeFormItem.visible = (editMode &&
+																		   Constants.userType == User.USER_TYPE_ADMINISTRATOR &&
+																		   !isEditingSelf);
+			// Expiry date changing is not availble for yourself! Even the admin!
+			if (isEditingSelf) {
+				neverRadioButton.enabled = expireRadioButton.enabled = expireDateField.enabled = false;
+			}
+																		   
+			// The add button is not available to reporters
+			// v3.1 Yes it is, to let them edit their own password. Reporters can only see details for themselves
+			//addButton.visible = addButton.includeInLayout = (Constants.userType != User.USER_TYPE_REPORTER);
+		}
+		
+		/**
+		 * This event is fired when the expire type is changed from 'never' to 'expires' or vica versa.  In the event that the user selects
+		 * the date radio button and there is no date this defaults the date to 1 year from today.
+		 * 
+		 * @param	e
+		 */
+		private function onExpireTypeChange(e:Event):void {
+			if (expireButtonGroup.selection == expireRadioButton && !expireDateField.selectedDate) {
+				var date:Date = new Date();
+				date.fullYear++;
+				
+				expireDateField.selectedDate = date;
+			}
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Form defaultButton="{addButton}">
+		<mx:FormItem id="userNameFormItem" labelWidth="120">
+			<mx:TextInput id="userNameTextInput" />
+		</mx:FormItem>
+		<mx:FormItem id="learnerIDFormItem" labelWidth="120">
+			<mx:TextInput id="learnerIDTextInput" />
+		</mx:FormItem>
+		<mx:FormItem id="emailFormItem" labelWidth="120">
+			<mx:TextInput id="emailTextInput" />
+		</mx:FormItem>
+		<mx:FormItem id="passwordFormItem" labelWidth="120">
+			<mx:TextInput id="passwordTextInput" displayAsPassword="false" />
+		</mx:FormItem>
+		
+		<mx:RadioButtonGroup id="expireButtonGroup" change="onExpireTypeChange(event)" />
+		<mx:FormItem id="expireFormItem" labelWidth="120">
+			<mx:HBox>
+				<mx:RadioButton id="neverRadioButton" groupName="expireButtonGroup" />
+				<mx:RadioButton id="expireRadioButton" groupName="expireButtonGroup" paddingTop="4" />
+				<mx:DateField id="expireDateField" formatString="YYYY/MM/DD" enabled="{expireButtonGroup.selection == expireRadioButton}" yearNavigationEnabled="true" />
+			</mx:HBox>
+		</mx:FormItem>
+		
+		<mx:FormItem id="userTypeFormItem" labelWidth="120" width="100%">
+			<fxc:VAComboBox id="userTypeComboBox" width="100%" dataField="data" dataProvider="{userTypeDataProvider}" />
+		</mx:FormItem>
+		<mx:ControlBar>
+		<!--
+			// You are allowed to add a name OR an ID
+			<mx:Button id="addButton" enabled="{userNameTextInput.text.length > 0 || _users}" click="submit()"/>
+		 -->
+			<mx:Button id="addButton" enabled="{userNameTextInput.text.length > 0 || learnerIDTextInput.text.length > 0 || _users}" click="submit()"/>
+			<mx:Button id="cancelButton" click="removePopup();" />
+		</mx:ControlBar>
+	</mx:Form>
+</mx:TitleWindow>

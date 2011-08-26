@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   creationComplete="creationComplete()">
+	<fx:Script>
+		<![CDATA[
+		import flash.events.StatusEvent;
+		import flash.net.LocalConnection;
+		import nl.demonsters.debugger.MonsterDebugger;
+		private var debugger:MonsterDebugger;
+		
+		private var localConnection:LocalConnection;
+		
+		private function creationComplete():void {
+			debugger = new MonsterDebugger(this);
+			localConnection = new LocalConnection();
+			localConnection.addEventListener(StatusEvent.STATUS, function(e:StatusEvent):void { 
+				trace(e.level); 
+				MonsterDebugger.trace(this, e);
+			} );
+		}
+		
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:HorizontalLayout />
+	</s:layout>
+	
+	<s:Button label="cmdPlay" click="localConnection.send('_clarityRecorder', 'cmdPlay')" />
+	<s:Button label="cmdPause" click="localConnection.send('_clarityRecorder', 'cmdPause')" />
+	<s:Button label="cmdStop" click="localConnection.send('_clarityRecorder', 'cmdStop')" />
+	<s:Button label="cmdRecord" click="localConnection.send('_clarityRecorder', 'cmdRecord')" />
+	<s:Button label="cmdSave" click="localConnection.send('_clarityRecorder', 'cmdSave', 'localconnectionsave.mp3')" />
+	<s:Button label="cmdCompareTo" click="localConnection.send('_clarityRecorder', 'cmdCompareTo', 'localconnectioncompare.mp3')" />
+	<s:Button label="cmdCompareTo Remote" click="localConnection.send('_clarityRecorder', 'cmdCompareTo', 'http://www.ruffness.com/ruffness/mp3/fortress.mp3')" />
+	<s:Button label="getVersion" click="localConnection.send('_clarityRecorder', 'getVersion')" />
+	
+</s:Application>

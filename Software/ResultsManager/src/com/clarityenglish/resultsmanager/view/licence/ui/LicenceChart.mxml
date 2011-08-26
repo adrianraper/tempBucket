@@ -1,0 +1,55 @@
+﻿<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" horizontalGap="1" implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import flash.filters.DropShadowFilter;
+		
+		private var _dataProvider:Object;
+		
+		[Bindable]
+		private var dropShadowFilter:DropShadowFilter = new DropShadowFilter(4, 45, 0x000000, 0.3, 1, 1, 1, 15);
+		
+		private var copyProvider:CopyProvider;
+		
+		[Bindable]
+		private var label1:String;
+		
+		[Bindable]
+		private var label2:String;
+		
+		/**
+		 * Set any copy in this component and call setCopyProvider on any child components
+		 * 
+		 * @param	copyProvider An object implementing CopyProvider
+		 */
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+		}
+		
+		public function get dataProvider():Object { return _dataProvider; }
+		
+		public function set dataProvider(value:Object):void {
+			_dataProvider = value;
+			
+			var assigned:int = value.assigned;
+			var unassigned:int = value.unassigned;
+			
+			box1.percentWidth = assigned / (assigned + unassigned) * 100;
+			box2.percentWidth = unassigned / (assigned + unassigned) * 100;
+			
+			label1 = assigned.toString() + ((unassigned == 0) ? " [" + copyProvider.getCopyForId("full") + "]" : "");
+			label2 = unassigned.toString();
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:Box id="box1" width="0%" height="100%" minWidth="0" backgroundColor="#22FF22" filters="{[dropShadowFilter]}" verticalAlign="center" horizontalAlign="center">
+		<mx:Label text="{label1}" fontSize="12" fontWeight="bold" paddingTop="5" textAlign="center" />
+	</mx:Box>
+
+	<mx:Box id="box2" width="0%" height="100%" minWidth="0" backgroundColor="#FF2222" filters="{[dropShadowFilter]}" verticalAlign="center" horizontalAlign="center">
+		<mx:Label text="{label2}" fontSize="12" fontWeight="bold" paddingTop="5" textAlign="center" />
+	</mx:Box>
+	
+</mx:HBox>

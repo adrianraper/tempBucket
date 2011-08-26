@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+		  xmlns:arc90="com.arc90.flexlib.containers.*"
+		  horizontalScrollPolicy="off"
+		  horizontalAlign="center"
+		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		[Bindable]
+		public var dataProvider:Object;
+		//private var formattedData:String;
+		[Bindable]
+		private var numberOfFailures:String;
+		[Bindable]
+		private var failureReason:String;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("failedLoginCounts");
+			noFailedLogins.text = copyProvider.getCopyForId("noFailedLogins");
+			numberOfFailures = copyProvider.getCopyForId("failures");
+			failureReason = copyProvider.getCopyForId("failureReasons");
+			this.copyProvider = copyProvider;
+		}
+		// The data provider is a simple array. Format it for the screen
+		// Or is it worth using a simple datagrid?
+		//public function formatData():void {
+		//	for (var reason in dataProvider) {
+		//	}
+		//}
+		// TODO I am using an array from CONSTANTS. But it might be simpler just to use a switch function here
+		// with text from literals. I think this is the only place I will care.
+		public function errorCodeToText(item:Object, column:DataGridColumn):String {
+			//TraceUtils.myTrace("errorCode:" + item.F_ReasonCode);
+			//return Constants.errorCodeOrchid[item.F_ReasonCode];
+			// v3.6 MySQL returns string rather than number, so force it here
+			switch (Number(item.F_ReasonCode)) {
+				case 0:
+				case 201:
+				case 202:
+				case 207:
+					return copyProvider.getCopyForId("unknownFailedLoginReason");
+					break;
+				case 203:
+					return copyProvider.getCopyForId("noSuchLearnerID");
+					break;
+				case 204:
+					return copyProvider.getCopyForId("passwordWrong");
+					break;
+				case 208:
+					return copyProvider.getCopyForId("accountExpired");
+					break;
+				case 211:
+					return copyProvider.getCopyForId("licenceFull");
+					break;
+				case 212:
+					return copyProvider.getCopyForId("concurrentLicenceFull");
+					break;
+				case 209:
+					return copyProvider.getCopyForId("licenceNotAllocated");
+					break;
+				case 210:
+					return copyProvider.getCopyForId("blockedByDoubleLogin");
+					break;
+				default:
+					return copyProvider.getCopyForId("unknownFailedLoginReason");
+			}
+		}
+		]]>
+	</mx:Script>
+	
+	<mx:HBox id="failedLoginContainer" width="100%" horizontalGap="0" paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10">
+		<mx:Label id="noFailedLogins" includeInLayout="{dataProvider.length==0}" visible="{dataProvider.length==0}" />
+		<!-- <mx:Label text="{dataProvider}" color="#440000" fontWeight="bold" /> -->
+        <mx:DataGrid includeInLayout="{dataProvider.length>0}" visible="{dataProvider.length>0}" id="failedDataGrid" width="100%" height="100%" 
+				rowCount="{dataProvider.length}" dataProvider="{dataProvider}"
+				editable="false">
+            <mx:columns>
+                <mx:DataGridColumn width="50" dataField="failedLogins" headerText="{numberOfFailures}"/>
+                <mx:DataGridColumn width="200" labelFunction="errorCodeToText" dataField="F_ReasonCode" headerText="{failureReason}"/>
+            </mx:columns>
+        </mx:DataGrid>
+
+	</mx:HBox>
+	
+</mx:TitleWindow>

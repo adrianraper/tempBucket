@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+		  xmlns:arc90="com.arc90.flexlib.containers.*"
+		  horizontalScrollPolicy="off"
+		  horizontalAlign="center"
+		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		[Bindable]
+		public var dataProvider:Object;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			title = copyProvider.getCopyForId("courseUserCounts");
+		}
+		// AR we want to switch chart types based on the number of courses
+		//[Bindable]
+		//TraceUtils.myTrace("CourseUserCounts.mxml");
+		//private function get multipleCourses():Boolean {
+		//	TraceUtils.myTrace("get multipleCourses.CourseUserCounts.mxml");
+		//	TraceUtils.myTrace("userCounts, dp.length=" + dataProvider.length);
+		//	if (dataProvider.length > 1) {
+		//		return true;
+		//	} else {
+		//		return false;
+		//	}
+		//}	
+		]]>
+	</mx:Script>
+	<mx:PieChart id="pieChart"
+				 width="100%"
+				 dataProvider="{dataProvider}" 
+				 showDataTips="true">
+		<mx:series>
+			<mx:PieSeries field="userCount" nameField="courseName" labelPosition="insideWithCallout" explodeRadius="0.01">
+				<mx:showDataEffect>
+					<mx:SeriesInterpolate duration="500" />
+				</mx:showDataEffect>
+			</mx:PieSeries>
+		</mx:series>
+		
+		<!--<mx:annotationElements>
+		</mx:annotationElements>-->
+		
+	</mx:PieChart>
+	<mx:Legend dataProvider="{pieChart}" width="100%" direction="horizontal" />
+</mx:TitleWindow>

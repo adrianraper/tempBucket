@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Author Plus - from Clarity</TITLE>
+<!--
+*********
+v6.4.3 Change to using JavaScriptFlashGateway for communication
+v6.5 Change to ExternalInterface
+********* 
+// Embedding of a Flash object in an html page using swfobject
+// This is the main script for SCORM communication to the LMS's API object
+// This is the main script for SCORM communication with Author Plus
+-->
+<script language="JavaScript" src="/Fixbench/Software/Common/openwin.js"></script>
+<script language="JavaScript" src="/Fixbench/Software/Common/swfobject2.js"></script>
+<script language="JavaScript" src="/Fixbench/Software/Common/APIWrapper.js"></script>
+<script language="JavaScript" src="/Fixbench/Software/Common/ExtIntSCORMScripts.js"></script>
+<script language="JavaScript" type="text/javascript">
+// 
+// ****
+// Change this variable along with the above fixed paths
+var webShare = "/Fixbench";
+// 
+// ****
+// This sets the start parameters for an LMS that supports the SCORM parameters attribute in CAM
+// but doesn't support cmi.launch_data so needs to hardcode the starting unit for each html page
+//var _parameters = "?start=1001-u1"
+//var _parameters = window.location.search;
+
+// Functions used by regular Author Plus (focus only works in IE)
+// Specific Author Plus functions
+function APOStart_DoFSCommand(command, args) {
+	if (command == "scrolltop") {
+		scrollTo(0,0);
+	}
+	else if (command == "browserExit") {
+		var xwinobj=null;
+		xwinobj=window.opener;
+		if (xwinobj!=null) {
+			window.close();
+		}
+	}
+}
+var IE  = (navigator.appVersion.indexOf("MSIE") != -1) ? true : false;
+function focusIt(){
+	if (IE) {
+		if(document.layers){
+			document.APOStart.focus()
+		}
+		else if(document.all){
+			document.all["APOStart"].focus()
+		}
+	} else {
+		// but give it a go
+		window.APOStart.focus();
+	}
+}
+//-->
+</SCRIPT>
+<script language="JavaScript" type="text/javascript">
+	<!--
+	// *********
+	// *********
+	// You need to make changes to the following lines if your Author Plus installation didn't follow the default folder structure
+	// Plus all instances of js include scripts that are coded in the rest of the file
+	//
+	// Change this line to point to the location of the Author Plus file control.swf (usually /Clarity/Software/Common)
+	var startControl = webShare + "/Software/Common";
+	// Change this line to point to the default location of the licence.ini and location.ini files for Author Plus
+	var userdatapath = webShare + "/AuthorPlus";
+	// Change this line to send more variables to Author Plus
+	// Pass the LMS, html to Flash communication method instead
+	//var argList = "?browser=true&scorm=true&location=remote-location.ini&licence=licence.ini&userdatapath=" + userdatapath;
+	var argList = "?browser=true&scormCommunication=ExtInt&location=location-SQLServer.ini&licence=licence-163.ini&userdatapath=" + userdatapath;
+	//-->
+	var coordsWidth = 760; var coordsHeight = 640;
+	// If you want to use a magnified screen, these dimensions are to the right scale
+	// Do note that occasionally line breaks will change fractionally which might cause odd effects.
+	//var coordsWidth = 910; var coordsHeight = 605;
+	//var coordsWidth = 1137; var coordsHeight = 756;
+	var flashvars = {};
+	var params = {allowScriptAccess: "always",
+					salign: "t",
+					bgcolor: "#FFFFFF"};
+	var attributes = {id: "APOStart", 
+					name: "APOStart"};
+	var expressInstallSWF = false;
+	// 
+	// You can override the default debugging here (originally set in APIWrapper.js)
+	//_Debug = true;
+	swfobject.embedSWF(webShare + '/Software/Common/control.swf' + argList, "noflashcontent", coordsWidth, coordsHeight, "8", expressInstallSWF, flashvars, params, attributes);
+// -->
+</script>
+<style type="text/css">
+<!--
+body {
+	margin-left: 4px;
+	margin-top: 4px;
+}
+-->
+</style>
+</HEAD>
+<!-- Catch LMS navigation taking you away from the sco without a terminate call -->
+<BODY bgcolor="#FFFFFF" onLoad="focusIt();" onUnload="return unloadPage();">
+<div align="center"> 
+	<div id="noflashcontent">
+		<p>This application requires Adobe's Flash player, running at least version 8.</p>
+		<p>It seems your browser doesn't have this at the moment.</p>
+		<p>Please download the latest Adobe Flash Player.</p>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+	</div>
+</div>
+<NOSCRIPT>
+This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
+Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
+to switch this on and then refresh this page.</NOSCRIPT>
+</BODY>
+</HTML>
