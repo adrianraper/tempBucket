@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item version="6.4" caption="Unit 11: Developing%20world" id="0">
+	<item caption-position="bc" x="68" y="140" unit="1" caption="Words"
+			alt="Word Power - words and phrases to talk about a variety of development issues and aid."
+			id="1150975666560" picture="Words" enabledFlag="3">
+		<item unit="1" id="1151344244910" caption="Introduction" fileName="1151344244910.xml" action="1151344244910" exerciseID="1151344244910" enabledFlag="3"/>
+		<item unit="1" id="1151344244573" caption="Terms%20connected%20with%20aid" fileName="1151344244573.xml" action="1151344244573" exerciseID="1151344244573" enabledFlag="3"/>
+		<item unit="1" id="1151344244933" caption="Fund-raising" fileName="1151344244933.xml" action="1151344244933" exerciseID="1151344244933" enabledFlag="3"/>
+		<item unit="1" id="1151344244495" caption="Aid%20words%20practice" fileName="1151344244495.xml" action="1151344244495" exerciseID="1151344244495" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="140" unit="2" caption="Listening"
+			alt="Listening - a radio talk about an international charity and a discussion about a British invention."
+			id="1150976269060" picture="Listening" enabledFlag="3">
+		<item unit="2" id="1151344244817" caption="Introduction" fileName="1151344244817.xml" action="1151344244817" exerciseID="1151344244817" enabledFlag="3"/>
+		<item unit="2" id="1151344244009" caption="Multiple%20choice%20%281%29" fileName="1151344244009.xml" action="1151344244009" exerciseID="1151344244009" enabledFlag="3"/>
+		<item unit="2" id="1151344244398" caption="Multiple%20choice%20%282%29" fileName="1151344244398.xml" action="1151344244398" exerciseID="1151344244398" enabledFlag="3"/>
+		<item unit="2" id="1151344244026" caption="Sentence%20completion" fileName="1151344244026.xml" action="1151344244026" exerciseID="1151344244026" enabledFlag="3"/>
+		<item unit="2" id="1155523998171" caption="Matching" fileName="1155523998171.xml" action="1155523998171" exerciseID="1155523998171" enabledFlag="3"/>
+		<item unit="2" id="1151344244199" caption="Labelling%20a%20diagram" fileName="1151344244199.xml" action="1151344244199" exerciseID="1151344244199" enabledFlag="3"/>
+		<item unit="2" id="1151344244577" caption="Multiple%20choice%20%283%29" fileName="1151344244577.xml" action="1151344244577" exerciseID="1151344244577" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="68" y="218" unit="3" caption="Reading"
+			alt="Academic Reading - an article about terrace farming in Nepal and an article describing a water disinfection system highly suited for use in developing countries."
+			id="1150983040232" picture="Reading" enabledFlag="3">
+		<item unit="3" id="1151344244497" caption="Introduction" fileName="1151344244497.xml" action="1151344244497" exerciseID="1151344244497" enabledFlag="3"/>
+		<item unit="3" id="1151344244509" caption="Matching" fileName="1151344244509.xml" action="1151344244509" exerciseID="1151344244509" enabledFlag="3"/>
+		<item unit="3" id="1151344244341" caption="Table%20completion" fileName="1151344244341.xml" action="1151344244341" exerciseID="1151344244341" enabledFlag="3"/>
+		<item unit="3" id="1151344244681" caption="Diagram%20completion" fileName="1151344244681.xml" action="1151344244681" exerciseID="1151344244681" enabledFlag="3"/>
+		<item unit="3" id="1151344244836" caption="Short-answer%20questions" fileName="1151344244836.xml" action="1151344244836" exerciseID="1151344244836" enabledFlag="3"/>
+		<item unit="3" id="1151344244784" caption="Sentence%20completion" fileName="1151344244784.xml" action="1151344244784" exerciseID="1151344244784" enabledFlag="3"/>
+		<item unit="3" id="1151344244888" caption="Multiple%20selection" fileName="1151344244888.xml" action="1151344244888" exerciseID="1151344244888" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="277" y="140" unit="4" caption="Writing"
+			alt="Academic Writing - a report based on a table and a dynamic chart, and a composition giving and justifying your opinion."
+			id="1150986578200" picture="Writing1" enabledFlag="3">
+		<item unit="4" id="1151344244171" caption="Introduction" fileName="1151344244171.xml" action="1151344244171" exerciseID="1151344244171" enabledFlag="3"/>
+		<item unit="4" id="1151344244226" caption="Practice%20activity%20A" fileName="1151344244226.xml" action="1151344244226" exerciseID="1151344244226" enabledFlag="3"/>
+		<item unit="4" id="1151344244286" caption="Sample%20answer A" fileName="1151344244286.xml" action="1151344244286" exerciseID="1151344244286" enabledFlag="3"/>
+		<item unit="4" id="1151344244619" caption="Practice%20activity%20B" fileName="1151344244619.xml" action="1151344244619" exerciseID="1151344244619" enabledFlag="3"/>
+		<item unit="4" id="1151344244519" caption="Sample%20answer B" fileName="1151344244519.xml" action="1151344244519" exerciseID="1151344244519" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="218" unit="5" caption="Speaking"
+			alt="Speaking - video clips and practice exercises for talking about a topic in Part 2."
+			id="1150988437216" picture="Speaking" enabledFlag="3">
+		<item unit="5" id="1151344244813" caption="Introduction" fileName="1151344244813.xml" action="1151344244813" exerciseID="1151344244813" enabledFlag="3"/>
+		<item unit="5" id="1151344244890" caption="Watch%20a%20candidate%20%281%29" fileName="1151344244890.xml" action="1151344244890" exerciseID="1151344244890" enabledFlag="3"/>
+		<item unit="5" id="1151344244971" caption="Three%20candidates'%20performance" fileName="1151344244971.xml" action="1151344244971" exerciseID="1151344244971" enabledFlag="3"/>
+		<item unit="5" id="1151344244225" caption="Watch%20a%20candidate%20%282%29" fileName="1151344244225.xml" action="1151344244225" exerciseID="1151344244225" enabledFlag="3"/>
+		<item unit="5" id="1151344244656" caption="Advice%20to%20a%20candidate" fileName="1151344244656.xml" action="1151344244656" exerciseID="1151344244656" enabledFlag="3"/>
+	</item>
+</item>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item version="6.4" caption="Unit 12: Science%20and%20technology" id="0">
+	<item caption-position="bc" x="68" y="140" unit="1" caption="Words"
+			alt="Word Power - words and phrases to talk about the Internet, astronomy, sciences and scientists."
+			id="1150989032232" picture="Words" enabledFlag="3">
+		<item unit="1" id="1151344259314" caption="Introduction" fileName="1151344259314.xml" action="1151344259314" exerciseID="1151344259314" enabledFlag="3"/>
+		<item unit="1" id="1151344259393" caption="Internet%20vocabulary" fileName="1151344259393.xml" action="1151344259393" exerciseID="1151344259393" enabledFlag="3"/>
+		<item unit="1" id="1151344259380" caption="Astronomy%20vocabulary" fileName="1151344259380.xml" action="1151344259380" exerciseID="1151344259380" enabledFlag="3"/>
+		<item unit="1" id="1151344259436" caption="Complete%20the%20notes" fileName="1151344259436.xml" action="1151344259436" exerciseID="1151344259436" enabledFlag="3"/>
+		<item unit="1" id="1154687339606" caption="Course%20vocabulary" fileName="1154687339606.xml" action="1154687339606" exerciseID="1154687339606" enabledFlag="3"/>
+		<item unit="1" id="1155638258242" caption="Stopgap" fileName="1155638258242.xml" action="1155638258242" exerciseID="1155638258242" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="140" unit="2" caption="Listening"
+			alt="Listening - a telephone conversation about a faulty washing machine and a lecture about setting up a web site."
+			id="1150965786562" picture="Listening" enabledFlag="3">
+		<item unit="2" id="1151344259153" caption="Introduction" fileName="1151344259153.xml" action="1151344259153" exerciseID="1151344259153" enabledFlag="3"/>
+		<item unit="2" id="1151344259533" caption="Form%20completion" fileName="1151344259533.xml" action="1151344259533" exerciseID="1151344259533" enabledFlag="3"/>
+		<item unit="2" id="1151344259234" caption="Multiple%20selection%20%281%29" fileName="1151344259234.xml" action="1151344259234" exerciseID="1151344259234" enabledFlag="3"/>
+		<item unit="2" id="1151344259298" caption="Short%20answers" fileName="1151344259298.xml" action="1151344259298" exerciseID="1151344259298" enabledFlag="3"/>
+		<item unit="2" id="1151344259537" caption="Multiple%20selection%20%282%29" fileName="1151344259537.xml" action="1151344259537" exerciseID="1151344259537" enabledFlag="3"/>
+		<item unit="2" id="1151344259715" caption="Sentence%20completion" fileName="1151344259715.xml" action="1151344259715" exerciseID="1151344259715" enabledFlag="3"/>
+		<item unit="2" id="1151344259935" caption="Classification" fileName="1151344259935.xml" action="1151344259935" exerciseID="1151344259935" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="68" y="218" unit="3" caption="Reading"
+			alt="Academic Reading - an article describing research into methods of controlling insects electronically and an article discussing the possibility of life on other planets."
+			id="1150968819062" picture="Reading" enabledFlag="3">
+		<item unit="3" id="1154627442168" caption="Introduction" fileName="1154627442168.xml" action="1154627442168" exerciseID="1154627442168" enabledFlag="3"/>
+		<item unit="3" id="1151344259045" caption="Matching%20%281%29" fileName="1151344259045.xml" action="1151344259045" exerciseID="1151344259045" enabledFlag="3"/>
+		<item unit="3" id="1151344259264" caption="Classification" fileName="1151344259264.xml" action="1151344259264" exerciseID="1151344259264" enabledFlag="3"/>
+		<item unit="3" id="1151344259319" caption="Multiple%20choice" fileName="1151344259319.xml" action="1151344259319" exerciseID="1151344259319" enabledFlag="3"/>
+		<item unit="3" id="1151344259704" caption="Yes,%20No,%20Not%20given" fileName="1151344259704.xml" action="1151344259704" exerciseID="1151344259704" enabledFlag="3"/>
+		<item unit="3" id="1151344259839" caption="Matching%20%282%29" fileName="1151344259839.xml" action="1151344259839" exerciseID="1151344259839" enabledFlag="3"/>
+		<item unit="3" id="1151344259757" caption="Summary%20completion" fileName="1151344259757.xml" action="1151344259757" exerciseID="1151344259757" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="277" y="140" unit="4" caption="Writing"
+			alt="Academic Writing - a report on a diagram showing a process, and a composition discussing the causes of a problem and suggesting solutions."
+			id="1151028416280" picture="Writing1" enabledFlag="3">
+		<item unit="4" id="1151344259472" caption="Introduction" fileName="1151344259472.xml" action="1151344259472" exerciseID="1151344259472" enabledFlag="3"/>
+		<item unit="4" id="1151344259606" caption="Practice%20activity%20A" fileName="1151344259606.xml" action="1151344259606" exerciseID="1151344259606" enabledFlag="3"/>
+		<item unit="4" id="1151344259304" caption="Sample%20answer A" fileName="1151344259304.xml" action="1151344259304" exerciseID="1151344259304" enabledFlag="3"/>
+		<item unit="4" id="1151344259097" caption="Practice%20activity%20B" fileName="1151344259097.xml" action="1151344259097" exerciseID="1151344259097" enabledFlag="3"/>
+		<item unit="4" id="1151344259490" caption="Sample%20answer B" fileName="1151344259490.xml" action="1151344259490" exerciseID="1151344259490" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="218" unit="5" caption="Speaking"
+			alt="Speaking - video clips and practice exercises for taking part in a discussion in Part 3."
+			id="1151030401701" picture="Speaking" enabledFlag="3">
+		<item unit="5" id="1151344259681" caption="Introduction" fileName="1151344259681.xml" action="1151344259681" exerciseID="1151344259681" enabledFlag="3"/>
+		<item unit="5" id="1151344259941" caption="Preparation" fileName="1151344259941.xml" action="1151344259941" exerciseID="1151344259941" enabledFlag="3"/>
+		<item unit="5" id="1151344259849" caption="Let's%20think" fileName="1151344259849.xml" action="1151344259849" exerciseID="1151344259849" enabledFlag="3"/>
+		<item unit="5" id="1151344259499" caption="Watch%20a%20candidate%20%281%29" fileName="1151344259499.xml" action="1151344259499" exerciseID="1151344259499" enabledFlag="3"/>
+		<item unit="5" id="1151344259115" caption="Watch%20a%20candidate%20%282%29" fileName="1151344259115.xml" action="1151344259115" exerciseID="1151344259115" enabledFlag="3"/>
+		<item unit="5" id="1151344259505" caption="Watch%20two%20candidates" fileName="1151344259505.xml" action="1151344259505" exerciseID="1151344259505" enabledFlag="3"/>
+		<item unit="5" id="1151344259808" caption="Advice%20before%20you%20leave" fileName="1151344259808.xml" action="1151344259808" exerciseID="1151344259808" enabledFlag="3"/>
+	</item>
+</item>
