@@ -99,7 +99,7 @@ ALTER TABLE `rack80829`.`T_AccountRoot` ADD COLUMN `F_OptOutEmailDate` DATETIME 
 INSERT INTO `T_LicenceType` VALUES (6,'Transferable Tracking');
 
 -- Remove the T_AccountRoot.F_Email at some point. For now disable it in DMS
---UPDATE T_AccountRoot SET F_Email = NULL;
+-- UPDATE T_AccountRoot SET F_Email = NULL;
 -- You can't do this as Rickson's login pages use F_Email.
 -- ALTER TABLE `rack80829`.`T_AccountRoot` ADD COLUMN `F_Email` VARCHAR(256) NULL AFTER `F_Prefix` ;
 -- ALTER TABLE `rack80829`.`T_AccountRoot` DROP COLUMN `F_Email` ;

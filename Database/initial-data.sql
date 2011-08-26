@@ -1,4 +1,4 @@
-﻿-- MySQL dump 10.13  Distrib 5.1.35, for Win32 (ia32)
+-- MySQL dump 10.13  Distrib 5.1.35, for Win32 (ia32)
 --
 -- Host: localhost    Database: rack80829_dbo
 -- ------------------------------------------------------
@@ -126,7 +126,6 @@ INSERT INTO `T_Product` VALUES
 (45,'Issues in English 2',NULL,20),
 (46,'Connected Speech',NULL,21),
 (47,'HCT\'s i-Read',NULL,888),
-(48,'York project',NULL,50),
 (49,'Study Skills Success V9',NULL,7),
 (1001,'It\'s Your Job',NULL,8);
 /*!40000 ALTER TABLE `T_Product` ENABLE KEYS */;
@@ -144,8 +143,7 @@ INSERT INTO `T_ProductLanguage` VALUES (1,'NAMEN',''),(45,'EN','IssuesInEnglish2
 (47,'EN','i-Read'),
 (36,'JP','ILATest-Japanese'),
 (49,'EN','StudySkillsSuccessV9-International'),
-(49,'NAMEN','StudySkillsSuccessV9-NAmerican'),
-(48,'EN','York');
+(49,'NAMEN','StudySkillsSuccessV9-NAmerican');
 /*!40000 ALTER TABLE `T_ProductLanguage` ENABLE KEYS */;
 UNLOCK TABLES;
 
