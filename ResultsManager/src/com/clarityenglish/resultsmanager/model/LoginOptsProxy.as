@@ -3,6 +3,8 @@ Proxy - PureMVC
 */
 package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.resultsmanager.Constants;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
 	import org.davekeen.delegates.IDelegateResponder;
@@ -50,6 +52,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function getLoginOpts():void {
+			TraceUtils.myTrace("proxy.getEmailOpts");
 			new RemoteDelegate("getLoginOpts", [], this).execute();
 		}
 		
@@ -138,7 +141,7 @@ package com.clarityenglish.resultsmanager.model {
 					selfRegister = Number(data.selfRegister);
 					// v3.5 This fails to correctly tell between 0 (false) and 1 (true). The db field is an integer.
 					//passwordRequired = data.passwordRequired as Boolean;
-					passwordRequired = (Number(data.passwordRequired)==0) ? false: true;
+					passwordRequired = (Number(data.passwordRequired) == 0) ? false: true;
 					
 					sendNotification(RMNotifications.LOGINOPTS_LOADED);
 					break;

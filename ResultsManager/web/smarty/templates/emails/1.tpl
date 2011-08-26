@@ -46,7 +46,6 @@ font-size: 11px;}
 	{else}
 		{assign var='countExpiringTitles' value=$countExpiringTitles+1}
 	{/if}
-
   {/foreach}
 	{if $individual=='true'} 
 	  <tr align="left" valign="top">
@@ -101,12 +100,16 @@ font-size: 11px;}
     <td class="style1">
 		<strong>{$title->name}</strong><br/>
 		Licence type: {get_dictionary_label name=licenceType data=$title->licenceType dictionary_source=AccountOps}<br/>
-		{if $title->name == "Results Manager"}
-			Number of teachers: {$title->maxTeachers}<br/>
-			Number of reporters: {$title->maxReporters}<br/>
+		{* If it is an AA RM, don't say anything here *}
+		{if $title->name == "Results Manager"} 
+			{if $title->licenceType == 1}
+				Number of teachers: {$title->maxTeachers}<br/>
+				Number of reporters: {$title->maxReporters}<br/>
+			{/if}
 		{else}
 			Number of students: {$title->maxStudents}<br/>
 		{/if}
+
 		Hosted by: Clarity<br/>
 		Start date: {format_ansi_date ansiDate=$title->licenceStartDate}<br/>
 		<a style="background-color:#FFFF00">Expiry date: {format_ansi_date ansiDate=$title->expiryDate}</a><br/>
@@ -146,9 +149,12 @@ font-size: 11px;}
     <td class="style1">
 		<strong>{$title->name}</strong><br/>
 		Licence type: {get_dictionary_label name=licenceType data=$title->licenceType dictionary_source=AccountOps}<br/>
-		{if $title->name == "Results Manager"}
-			Number of teachers: {$title->maxTeachers}<br/>
-			Number of reporters: {$title->maxReporters}<br/>
+		{* If it is an AA RM, don't say anything here *}
+		{if $title->name == "Results Manager"} 
+			{if $title->licenceType == 1}
+				Number of teachers: {$title->maxTeachers}<br/>
+				Number of reporters: {$title->maxReporters}<br/>
+			{/if}
 		{else}
 			Number of students: {$title->maxStudents}<br/>
 		{/if}
@@ -189,6 +195,14 @@ font-size: 11px;}
   </tr>
   </tbody>
 </table>
+<!-- 
+-- Resellers' contact details - if any
+-->
+{assign var="resellerDetails" value="`$template_dir`includes/Reseller_Details_`$account->resellerCode`.tpl"}
+{if ($resellerDetails|file_exists)}
+	{include file="file:includes/Reseller_Details_`$account->resellerCode`.tpl"}
+{/if}
+
 <!-- 
 -- Email signature 
 -->

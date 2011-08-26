@@ -118,7 +118,13 @@ function securityAction (&$amfbody) {
 										'beforeFilter', 
 										array($methodName));
 			if ($allow === '__amfphp_error' || $allow === false) {
-				$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+				// v3.6 Change the text of this message as it does happen quite often
+				//$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+				if ($className=='DMSService' || $className=='ClarityService') {
+					$ex = new MessageException(E_USER_ERROR, "Your authentication has been lost, please login again.", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+				} else {
+					$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+				}
 				MessageException::throwException($amfbody, $ex);
 				return false;
 			} 

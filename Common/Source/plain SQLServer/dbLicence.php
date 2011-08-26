@@ -523,12 +523,14 @@ EOD;
 		// v6.5.6 It is possible that you will send a comma delimited list of roots rather than just one.
 			// and what if you send a wildcard? Meaning that ALL roots should be checked (such as HCT)
 		//	AND s.F_RootID=?
+		// v6.5.6.6 BUT if you are only counting sessions that have scores as part of licence control, you should do the same with existing licences!
 		$sql = <<<EOD
 			SELECT COUNT(s.F_SessionID) as Sessions
 			FROM T_Session s
 			WHERE s.F_UserID=?
-                        AND s.F_ProductCode = ?
-			AND s.F_StartDateStamp  >= ?
+				AND s.F_ProductCode = ?
+				AND s.F_StartDateStamp  >= ?
+				AND EXISTS (SELECT * FROM T_Score c WHERE c.F_SessionID=s.F_SessionID)
 EOD;
 		if ($rootID!='*') {
 			$sql.= " AND s.F_RootID in ($rootID)";
@@ -575,6 +577,10 @@ EOD;
 			// v6.5.6.4 RM has a much more sophisticated system.
 			//	1) Deleted users are not counted here
 			//	2) Users who start a session but no scores should be counted
+			// AR It might be useful to let this module pick up the licence start date (assuming you send a root) if it is not set.
+			//  This would make it useful to non-Orchid programs as well.
+			// v6.5.6.6 Change the rules for a Transferable Licence (6) - in which case you only care about active students
+			// Drop the check on a EXISTS score as I think this slows things down considerably. Mind you - it is very fast on production
 			$rootID = $vars['ROOTID'];
 			/*
 			$sql = <<<EOD
@@ -587,13 +593,14 @@ EOD;
 				AND s.F_StartDateStamp>?
 EOD;
 			*/
+			//	AND s.F_StartDateStamp>CONVERT(datetime,?,120) 
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT s.F_UserID)  AS activeStudentCount
 				FROM T_Session s, T_User u
 				WHERE s.F_ProductCode=?
 				AND u.F_UserID = s.F_UserID
 				AND u.F_UserType=0
-				AND s.F_StartDateStamp>? 
+				AND s.F_StartDateStamp>?
 				AND EXISTS (SELECT * FROM T_Score c WHERE c.F_SessionID=s.F_SessionID)
 EOD;
 			if ($rootID!='*') {
@@ -609,28 +616,33 @@ EOD;
 			$dbObj = $rs->FetchNextObj();
 			//$licencesUsed = (int)$dbObj->licencesUsed;
 			$activeLicencesUsed = (int)$dbObj->activeStudentCount;
-			
-			// See above why need to also count sessions that have no active users.
-			$sql = <<<EOD
-				SELECT COUNT(DISTINCT s.F_UserID) AS allDeletedCount
-				FROM T_Session s
-				left join T_User u
-				on s.F_UserID = u.F_UserID
-				WHERE s.F_ProductCode=?
-				AND u.F_UserID IS NULL
-				AND s.F_UserID > 0
-				AND s.F_StartDateStamp>?
+
+			//$node .= "<note licenceType='". $vars['LICENCETYPE'] ."' />";
+			if ($vars['LICENCETYPE']=='6') {
+				$orphanedLicencesUsed=0;
+			} else {
+				// See above why need to also count sessions that have no active users.
+				$sql = <<<EOD
+					SELECT COUNT(DISTINCT s.F_UserID) AS allDeletedCount
+					FROM T_Session s
+					left join T_User u
+					on s.F_UserID = u.F_UserID
+					WHERE s.F_ProductCode=?
+					AND u.F_UserID IS NULL
+					AND s.F_UserID > 0
+					AND s.F_StartDateStamp>?
 EOD;
-			if ($rootID!='*') {
-				$sql.= " AND s.F_RootID in ($rootID)";
+				if ($rootID!='*') {
+					$sql.= " AND s.F_RootID in ($rootID)";
+				}
+				$rs = $db->Execute($sql, $bindingParams);
+				if ($rs->RecordCount()==0) {
+					// throw an error should be impossible
+					return false;
+				}
+				$dbObj = $rs->FetchNextObj();
+				$orphanedLicencesUsed = (int)$dbObj->allDeletedCount;
 			}
-			$rs = $db->Execute($sql, $bindingParams);
-			if ($rs->RecordCount()==0) {
-				// throw an error should be impossible
-				return false;
-			}
-			$dbObj = $rs->FetchNextObj();
-			$orphanedLicencesUsed = (int)$dbObj->allDeletedCount;
 			
 			// Add them up
 			$licencesUsed = $activeLicencesUsed + $orphanedLicencesUsed;

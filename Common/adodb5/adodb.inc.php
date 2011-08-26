@@ -940,6 +940,19 @@
 	 */
 	function Execute($sql,$inputarr=false) 
 	{
+		// Clarity. I want to see all SQL statements that I execute in a session. Log them from here.
+		/*
+		$separator="\r\n==start sql==================\r\n";
+		//$myFile = dirname(__FILE__)."/sqllogs.txt";
+		$myFile = '/tmp'.'/sqllogs.txt';
+		//$myFile = dirname(__FILE__).'/../Logs'.'/sqllogs.txt';
+		$fh = fopen($myFile, "ab") or die("fail to open $myFile");
+		fwrite($fh, $separator);
+		fwrite($fh, $sql);
+		if ($inputarr)
+			fwrite($fh, '; ('.implode(',', $inputarr).')');
+		*/
+		//Clarity		
 		if ($this->fnExecute) {
 			$fn = $this->fnExecute;
 			$ret = $fn($this,$sql,$inputarr);

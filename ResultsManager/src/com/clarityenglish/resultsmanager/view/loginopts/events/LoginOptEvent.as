@@ -7,8 +7,8 @@
 	 */
 	public class LoginOptEvent extends Event {
 		
-		public static const UPDATE:String = "update";
-		public static const REVERT:String = "revert";
+		public static const UPDATE:String = "loginoptupdate";
+		public static const REVERT:String = "loginoptrevert";
 		
 		public function LoginOptEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false) { 
 			super(type, bubbles, cancelable);

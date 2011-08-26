@@ -55,7 +55,8 @@ EOD;
 											"a.F_LanguageCode",
 											"a.F_MaxTeachers",
 											"a.F_MaxAuthors", 
-											"a.F_MaxReporters"));
+											"a.F_MaxReporters",
+											"a.F_LicenceType"));
 			}
 			
 			$sql  = "SELECT ".join(",", $selectFields);
@@ -69,7 +70,7 @@ EOD;
 			if ($productCode) {
 				$sql .=	<<<EOD
 						RIGHT JOIN
-							(SELECT F_RootID, F_LanguageCode, F_MaxTeachers, F_MaxAuthors, F_MaxReporters, F_ExpiryDate
+							(SELECT F_RootID, F_LanguageCode, F_MaxTeachers, F_MaxAuthors, F_MaxReporters, F_ExpiryDate, F_LicenceType
 							FROM T_Accounts
 							WHERE F_ProductCode = ?) a ON a.F_RootID = m.F_RootID
 EOD;
@@ -232,6 +233,7 @@ EOD;
 	
 	// v3.0.6 I don't think this really has anything to do with RM or DMS login. It is for setting student login.
 	// I think it fits better under AccountOps, although carefully protected as it is an RM update and a DMS update.
+	// for now we are keeping accountOps for DMS, so leave it here, and add EmailOpts too!
 	function getLoginOpts() {
 		// AR Change to the account table
 		//$sql = "SELECT F_LoginOption, F_SelfRegister, F_Verified FROM T_GroupStructure WHERE F_GroupID=?";
@@ -243,7 +245,6 @@ EOD;
 					 "selfRegister" => $resultObj['F_SelfRegister'],
 					 "passwordRequired" => $resultObj['F_Verified']);
 	}
-	
 	function setLoginOpts($loginOption, $selfRegister, $passwordRequired) {
 		// AR Change to the account table
 		//$sql = "UPDATE T_GroupStructure SET F_LoginOption=?, F_SelfRegister=?, F_Verified=? WHERE F_GroupID=?";
@@ -255,6 +256,80 @@ EOD;
 		$sql = "UPDATE T_AccountRoot SET F_LoginOption=$loginOption, F_SelfRegister=$selfRegister, F_Verified=$useVerified WHERE F_RootID=?";
 		//NetDebug::trace("sql=".$sql);
 		$this->db->Execute($sql, array(Session::get('rootID')));
+	}
+	
+	// To hold each contact email and the type of message that they should receive
+	// Note that admin emails are NOT saved in the T_AccountEmails to avoid duplication and problems with editing
+	// So you 
+	function getEmailOpts() {
+		$bindingParams = array(Session::get('rootID'));
+		//	SELECT IF((e.F_Email IS NULL), u.F_Email, e.F_Email), e.F_MessageType 
+		// TODO: Not tested in SQL Server yet
+		$sql .=	<<<EOD
+			SELECT CASE WHEN (e.F_Email IS NULL) THEN u.F_Email ELSE e.F_Email END as F_Email, e.F_MessageType 
+			FROM T_AccountEmails e, T_AccountRoot r, T_User u
+			WHERE r.F_RootID = ?
+			AND r.F_RootID = e.F_RootID
+			AND r.F_AdminUserID = u.F_UserID
+			ORDER BY e.F_AdminUser DESC
+EOD;
+		//echo $sql;
+		$resultObj = $this->db->GetArray($sql, $bindingParams);
+		$emailArray = array();
+		if ($resultObj) {
+			foreach ($resultObj as $result) {
+				$emailArray[] = array('email' => $result['F_Email'],'messageType' => intval($result['F_MessageType']));
+			}
+		}
+		//echo print_r($emailArray);
+		return $emailArray;
+	}
+	function setEmailOpts($emailArray) {
+		$bindingParams = array(Session::get('rootID'));
+		// First clear out existing emails and settings
+		$this->db->Execute("DELETE FROM T_AccountEmails WHERE F_RootID=?", $bindingParams);
+		
+		$rootID = Session::get('rootID');
+		for ($i=0; $i<count($emailArray); $i++) {
+			// The first item is the admin user - so this has a special seting. This is why we do it with a for loop counter
+			$emailItem = $emailArray[$i];
+			if ($i == 0) {
+				$email = null;
+				$adminUser=true;
+			} else {
+				$email = $emailItem['email'];
+				$adminUser=false;
+			}
+			$messageType = $emailItem['messageType'];
+			NetDebug::trace("item ".$i.' has email='.$email.' and message='.$messageType. ' and admin='.$adminUser);
+
+			if ($i==0 || ($email != '' && $email != null)) {
+				if ($messageType == null || $messageType == '')
+					$messageType=0;
+				$dbObj = array();
+				$dbObj['F_RootID'] = $rootID;
+				$dbObj['F_Email'] = $email;
+				$dbObj['F_MessageType'] = $messageType;
+				$dbObj['F_AdminUser'] = $adminUser;
+				$this->db->AutoExecute("T_AccountEmails", $dbObj, "INSERT");
+			}
+		}
+		/*
+		foreach ($emailArray as $emailItem) {
+			// The first item is the admin user - so this has a special seting. This is why we do it with a for loop counter
+			$email = $emailItem['email'];
+			$messageType = $emailItem['messageType'];
+			if ($email != '' && $email != null) {
+				if ($messageType == null || $messageType == '')
+					$messageType=0;
+				$dbObj = array();
+				$dbObj['F_RootID'] = $rootID;
+				$dbObj['F_Email'] = $email;
+				$dbObj['F_MessageType'] = $messageType;
+				$this->db->AutoExecute("T_AccountEmails", $dbObj, "INSERT");
+			}
+		}
+		*/
 	}
 	
 }

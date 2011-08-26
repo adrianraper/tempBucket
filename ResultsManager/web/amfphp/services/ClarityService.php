@@ -35,6 +35,11 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+
+// v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
+// I already getContent - will that clash or duplicate?
+require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
+
 // v3.4.3 Remove as not used
 //require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
@@ -79,8 +84,9 @@ class ClarityService extends AbstractService {
 		$this->reportOps = new ReportOps($this->db);
 
 	}
-	
-	function login($username, $password, $rootID = null) {
+	// Allow several optional parameters to come from Flash
+	// $productCode is deprecated
+	function login($username, $password, $rootID = null, $dbHost=null, $productCode = null) {
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,
 								 User::USER_TYPE_AUTHOR,
@@ -88,7 +94,7 @@ class ClarityService extends AbstractService {
 								 
 		$loginObj = $this->loginOps->login($username, $password, $allowedUserTypes, $rootID, 2);
 		
-		if ($loginObj) {			
+		if ($loginObj) {	
 			// RM specific setup values for this root
 			if (isset($loginObj->F_LangaugeCode) && strlength($loginObj->F_LanguageCode)>0) {
 				Session::set('languageCode', $loginObj->F_LanguageCode);
@@ -104,6 +110,11 @@ class ClarityService extends AbstractService {
 			// v3.5 I also need to know the usertype for AP privacy
 			Session::set('userType', (int)$loginObj->F_UserType);
 			
+			// v3.5 Add dbHost if we want anything other than default.
+			// Duh, can't do it here as you have already read dbDetails!
+			if ($dbHost)
+				Session::set('dbHost', $dbHost);
+
 			// On login RM needs to count the total number of manageables in this account to determine whether or not we display students or not.
 			// This is ridiculous. At least we should be doing a quick SQL call to get the numbers. This check is doing everything.
 			// v3.0.4 Are we saving at least the list of groups so that when we do this a second time to really get them it doesn't take so long?
@@ -111,7 +122,6 @@ class ClarityService extends AbstractService {
 			//$manageablesCount = AuthenticationOps::countAuthenticatedUsers() + AuthenticationOps::countAuthenticatedGroups();
 			$manageablesCount = $this->manageableOps->countUsersInGroup(Session::get('groupIDs'));
 			
-			//NetDebug::trace('ClarityService ORIG_PATH_INFO'.$_SERVER["ORIG_PATH_INFO"]);
 			// v3.5 Special (temporary) change for Taihung University (18000 accounts) for Kima.
 			// and SciencesPo, and HSBC?
 			if ((int)$loginObj->F_RootID==13770 || (int)$loginObj->F_RootID==13700 || (int)$loginObj->F_RootID==11056) {
@@ -122,6 +132,7 @@ class ClarityService extends AbstractService {
 			}
 			
 			// v3.4 I would like to send back (some) account root information as well (remember that accounts in RM means titles)
+			// v3.6 Maybe it is better to do a separate getAccount call as I also want things like adminUser's email
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
 			//NetDebug::trace('accountRoot='.$accountRoot->prefix);
 
@@ -152,9 +163,16 @@ class ClarityService extends AbstractService {
 						 "maxTeachers" => (int)$loginObj->F_MaxTeachers,
 						 "maxReporters" => (int)$loginObj->F_MaxReporters,
 						 "maxAuthors" => (int)$loginObj->F_MaxAuthors,
+						 // v3.6 And the licence type of RM
+						 "licenceType" => (int)$loginObj->F_LicenceType,
 						 );
 		} else {
 			//NetDebug::trace('originalStartPage='.$_SESSION['originalStartpage'].'!');
+			if (isset($_SESSION['dbHost'])) {
+				NetDebug::trace('ClarityService session.dbHost='.$_SESSION['dbHost']);
+			} else {
+				NetDebug::trace('ClarityService session.dbHost not set');
+			}
 			NetDebug::trace('db used '.$GLOBALS['db']);
 			// Invalid username/password
 			return false;
@@ -171,6 +189,14 @@ class ClarityService extends AbstractService {
 	
 	function setLoginOpts($loginOption, $selfRegister, $passwordRequired) {
 		return $this->loginOps->setLoginOpts($loginOption, $selfRegister, $passwordRequired);
+	}
+	// v3.6 For setting email options. It would be more sensible to put this in accountOps, but that is saved for DMS
+	// so I will bundle with loginOpts, which is incorrectly bundled with loginOps!
+	function getEmailOpts() {
+		return $this->loginOps->getEmailOpts();
+	}
+	function setEmailOpts($emailOptionsArray) {
+		return $this->loginOps->setEmailOpts($emailOptionsArray);
 	}
 	
 	/**

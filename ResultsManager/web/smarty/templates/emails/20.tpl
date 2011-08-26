@@ -7,63 +7,30 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Clarity English - Usage Statistics</title>
-		<!-- <cc>adrian.raper@clarityenglish.com</cc> -->
-<style type="text/css">
-{literal}
-<!--
-p {
-	margin: 0 0 6px 0; 
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
--->
-{/literal}
-</style>
+		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
-<body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
-	
-<div style="margin: 8px; 
-		background-image:url(http://www.ClarityEnglish.com/images/banner_user_statistics.jpg);
-		background-repeat: no-repeat;
-		background-position: left top;
-		width: 600px;
-		">&nbsp;
-	<div style="margin-left: 16px; 
-				margin-right: 32px;
-				margin-top: 115px;
-				margin-bottom: 10px;
-		">
-		<p>Dear Colleague</p>
-	  <p>Please click below to see the monthly usage statistics for your account.</p>
-	  <div style="margin-left: 16px; 
-					margin-right: 32px;
-					margin-top: 12px;
-					margin-bottom: 12px;
-					background-color: #EBEBEB;
-					width:500px;">&nbsp;
-			<div style="padding: 10px 4px 18px 40px;
-				">
-				<p><strong><a href="http://www.ClarityEnglish.com/area1/ResultsManager/directUsageStats.php?session={$session}" target='_blank'>{$account->name} statistics<a></strong></p>
-			</div>
-	  </div>
-<p>You can access Results Manager any time on your Clarity English account page using your login name and password, which are shown below.
-You can also use this page to change your account details.</p>
-		<div style="margin-left: 16px; 
-					margin-right: 32px;
-					margin-top: 12px;
-					margin-bottom: 12px;
-					background-color: #EBEBEB;
-					width:500px;">&nbsp;
-			<div style="padding: 10px 4px 18px 40px;
-				">
-				<p><strong><a href="http://www.ClarityEnglish.com" target="_blank">www.ClarityEnglish.com</a></strong><br/>
-				Login name: <strong>{$account->adminUser->name}</strong><br/>
-				Password: <strong>{$account->adminUser->password}</strong><br/>
-			</div>
+<body>
+<div style="width:600px; margin:0 auto; padding:0;">
+	<img src="http://www.clarityenglish.com/images/email/email_banner.jpg" alt="Clarity English - Usage Statistics" style="font-family: Verdana, Arial, Helvetica, sans-serif; border:0; margin:0; text-align:center"/>
+    <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;">Dear Colleague</p>
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;">Please click below to see the monthly usage statistics for your account.</p>
+        <div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+        	<span style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;"><a href="http://www.ClarityEnglish.com/area1/ResultsManager/directUsageStats.php?session={$session}" target='_blank'>{$account->name} statistics</a></span>
+        </div>
+        
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;">You can also use Results Manager on your Clarity English account page to see your usage statistics. Login with your admin account, shown below. If you would like us to remind you of your password, please just email us, or use the 'Forgot password' link on www.ClarityEnglish.com.</p>
+        
+        <div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+        	<span style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;"><a href="http://www.ClarityEnglish.com" style="color:#003366; font-weight:bold;" target='_blank'>www.ClarityEnglish.com</a></span>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#000000; padding:2px 0 0 0; margin:0">Login name: <strong>{$account->adminUser->name}</strong></p>
 		</div>
-<p>Please let me know if you would like other statistics or a different format, we will do our best to help.</p>
-{include file='file:includes/TechnicalDirector_Email_Signature.tpl'}
-	</div>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;">Please let me know if you would like other statistics or a different format, we will do our best to help.</p>
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 12px; padding:0; color:#000000;">Best regards<br/>
+		Adrian</p>
+		{include file='file:includes/TechnicalDirector_Email_Signature.tpl'}
+    </div>
 </div>
 </body>
+</html>
 </html>

@@ -45,7 +45,8 @@ class AP_Progress.Views.ViewBase
 		
 		// v6.5.6.4 New SSS realigned a bit
 		//_global.myTrace("xx branding title for " + _global.ORCHID.root.licenceHolder.licenceNS.branding);
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			// Note that ProgressApp hardcodes this too to draw the grey background behind it.
 			HEADER_HINT_HEIGHT = 31;
 			var headerXOffset = 20;

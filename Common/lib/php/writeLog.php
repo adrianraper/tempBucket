@@ -1,19 +1,30 @@
 <?php
 // Write out any data sent to you
 // Build up the message
+// Use ; to delimit to make it easier to process
+$msg = '';
 if (isset($_POST['thisWidget'])) {
-	$msg.=$_POST['thisWidget'].' ';
+	$msg.=$_POST['thisWidget'].'; ';
 } else {
-	$msg.='A widget'.': ';
+	$msg.='unknown;';
 }
 if (isset($_POST['referrer'])) {
-	$msg.='from '.$_POST['referrer'].' ';
+	//$msg.='from '.$_POST['referrer'].' ';
+	$msg.=$_POST['referrer'].'; ';
 } else {
-	$msg.='from unknown website ';
+	$msg.='unknown;';
 }
 if (isset($_POST['stageWidth'])) {
-	$msg.='using width='.$_POST['stageWidth'].' ';
+	//$msg.='using width='.$_POST['stageWidth'].' ';
+	$msg.=$_POST['stageWidth'].'; ';
+} else {
+	$msg.='0;';
 }
-$now = date('Y-m-j');
-error_log($msg."on $now\r\n", 3, '../../logs/widgetLog.txt');
+$msg.= date('Y-m-d');
+//error_log($msg."on $now\r\n", 3, '..\..\..\..\BritishCouncil\widgetLog.txt');
+//error_log($msg."on $now\r\n", 3, dirname(__FILE__).'/../../../../BritishCouncil/widgetLog.txt');
+// Because of multiple webservers, we need, as a first step, to use IP to get different logs
+error_log("$msg\r\n", 3, dirname(__FILE__).'/../../../../BritishCouncil/widgetLog.txt');
+$logName = 'widgetLog_'.$_SERVER['SERVER_ADDR'].'.txt';
+error_log("$msg\r\n", 3, dirname(__FILE__).'/../../../../BritishCouncil/'.$logName);
 ?>

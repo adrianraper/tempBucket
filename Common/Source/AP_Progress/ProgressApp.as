@@ -82,7 +82,8 @@ class AP_Progress.ProgressApp
 				var nStartY	= 0;
 				var nWidth	= GlobalVar.G_DISPLAY_WIDTH+1;
 				// v6.5.6.4 New SSS
-				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+					_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 					var nHeight	= 30;
 					nStartX+= 1;
 					nWidth+= 1;
@@ -98,7 +99,8 @@ class AP_Progress.ProgressApp
 			}
 			
 		// v6.5.6.4 New SSS doesn't want internal buttons
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toString().toLowerCase().indexOf("clarity/sssv9")>=0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toString().toLowerCase().indexOf("clarity/sssv9")>=0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toString().toLowerCase().indexOf("clarity/cp2")>=0) {
 			GlobalVar.G_DISPLAY_START_X = 1;
 			GlobalVar.G_DISPLAY_START_Y = 0;
 			//GlobalVar.G_DISPLAY_WIDTH = 661;

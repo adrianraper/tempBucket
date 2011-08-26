@@ -288,11 +288,14 @@ class Classes.xmlUnitClass extends Classes.xmlFunc {
 	/* add root node (with the course name as caption) */
 	function addRootNode() : Void {
 		var rootNode:XMLNode = this.createElement("item");
-		rootNode.attributes.id = "0";	// this is always 0!
+		// this is always 0!
+		// v6.5.6.6 Can't we put in the courseID here?
+		//rootNode.attributes.id = "0";	
+		rootNode.attributes.id = control.data.currentCourse.id;	
 		//v6.4.2.1 Try escaping the name instead of changing characters.
 		rootNode.attributes.caption = escape(control.data.currentCourse.name);
 		// v0.16.1, DL: add version no. to menu.xml as well
-		rootNode.attributes.version = "6.5";	// v0.16.1, DL: version no. of menu.xml is now v6.4
+		rootNode.attributes.version = "6.5.6";	// v0.16.1, DL: version no. of menu.xml is now v6.4
 		this.appendChild(rootNode);
 	}
 	

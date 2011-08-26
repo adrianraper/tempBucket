@@ -30,6 +30,12 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	// Put this line on to see all sql calls before they are made
 	//$db->debug = true;
 	
+	// v3.6 UTF8 character mismatch between PHP and MySQL
+	if ($dbDetails->driver == 'mysql') {
+		$charSetRC = mysql_set_charset('utf8');
+		//echo 'charSet='.$charSetRC;
+	}
+	
 	// Fetch mode to use
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	
@@ -121,6 +127,7 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 			$rC = $Progress->getUser( $vars, $node );
 			break;
 		case 'GETUSERDETAIL':
+		case 'GETUSERBYSTUDENTID':
 			// v6.5.5.5 Bad naming
 			//$rC = $Progress->getUserDetail( $vars, $node );
 			$rC = $Progress->getUserByStudentID( $vars, $node );
@@ -142,6 +149,12 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 			if ($rC) {
 				$rC = $Progress->getAllScores( $vars, $node );
 			}
+			// v6.5.6.5 Protea uses full unit ID
+			if ($vars['PRODUCTCODE']==45 || $vars['PRODUCTCODE']==46) {
+				require_once(dirname(__FILE__)."/dbContent.php");
+				$Content	= new CONTENT();
+				$rC = $Content->encodeUnitIDs($vars, $node);
+			}
 			break;
 			
 		// v6.4.2.8 For comparative progress reporting - probably not called directly
@@ -152,13 +165,12 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 		case 'WRITESCORE':
 			// v6.5.5.6 Protea integration - need to decode course, unit and exerciseID
 			// v6.5.6 No longer, Protea now passes correct IDs
-			/*
+			// v6.5.6.5 yes they do, but Clarity programs don't. Or rather Clarity passes unitID as the sequence number not the full ID
 			if ($vars['PRODUCTCODE']==45 || $vars['PRODUCTCODE']==46) {
 				require_once(dirname(__FILE__)."/dbContent.php");
 				$Content	= new CONTENT();
-				$rC = $Content->decodeProteaIDs($vars, $node);
+				$rC = $Content->decodeUnitIDs($vars, $node);
 			}
-			*/
 			$rC = $Progress->insertScore( $vars, $node );
 			if ($rC) {
 			    $rC = $Progress->updateSession( $vars, $node );

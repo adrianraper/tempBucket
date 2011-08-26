@@ -24,23 +24,25 @@
 		var attr = {
 			id: "ClarityRecorder"
 		};
-		var expressInstall = startControl + "Common/expressInstall.swf";
-		swfobject.embedSWF(startControl + "Recorder/bin/WebRecorder.swf", "altContent", coordsWidth, coordsHeight, "10.1", expressInstall, flashvars, params, attr);
+		// v6.5.6 This file is only called when you are offline, so you will not be able to use expressInstall which relies on online!
+		//var expressInstall = startControl + "Common/expressInstall.swf";
+		//swfobject.embedSWF(startControl + "Recorder/bin/WebRecorder.swf", "altContent", coordsWidth, coordsHeight, "10.1", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "Recorder/bin/WebRecorder.swf", "altContent", coordsWidth, coordsHeight, "10.1", false, flashvars, params, attr);
 	</script>  
 <style type="text/css">
 html, body {
 	margin: 0px 0px auto;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
+	font-size: 11px;
 }
 </style>
 <body>
 	<div align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 10.1</p>
 		<p>It seems your browser doesn't have this.</p>
-		<p>Please download the latest Adobe Flash Player.</p>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
-		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+		<p>If you can connect to the internet, please download the latest Adobe Flash Player from<br />
+		<a href="http://www.adobe.com/go/getflashplayer">www.adobe.com/go/getflashplayer</a><p/>
+		<p>Or you can install it from your CD by running install_flash_player_active_x.exe.</p>
 	</div>
 </body>
 </html>

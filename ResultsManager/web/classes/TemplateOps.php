@@ -42,10 +42,14 @@ class TemplateOps {
 
 	function checkTemplate($folder, $templateID) {
 		// Protect against directory traversal
-		$folder = ereg_replace("../", "", $folder);
+		// Bug. I don't use a folder structure anywhere, so this was fine. But when I do, this regex picks up
+		// any character rather than just the period it is supposed to!
+		//$folder = ereg_replace("../", "", $folder);
+		$folder = str_replace("../", "", $folder);
 		$templateFolder = $GLOBALS['smarty_template_dir'].$folder."/";
 		$templateFile = $templateFolder.$templateID.".tpl";
 		//echo "checking $templateFile";
+		//AbstractService::$debugLog->warning("checking file ".$templateFile);
 		if (file_exists($templateFile)) {
 			return true;
 		} else {
@@ -56,7 +60,8 @@ class TemplateOps {
 	function getTemplates($folder) {
 		if ($folder) {
 			// Protect against directory traversal
-			$folder = ereg_replace("../", "", $folder);
+			//$folder = ereg_replace("../", "", $folder);
+			$folder = str_replace("../", "", $folder);
 			$templateDir = $GLOBALS['smarty_template_dir'].$folder."/";
 		} else {
 			$templateDir = $GLOBALS['smarty_template_dir'];
@@ -98,11 +103,16 @@ class TemplateOps {
 			$smarty->clear_cache($templateName.".tpl");
 		}
 		// Add in the data arrays
-		foreach ($dataArray as $key => $value)
+		foreach ($dataArray as $key => $value) {
+			//echo "fetchTemplate has data for ".$key;
 			$smarty->assign($key, $value);
+		}
 		
 		// Always add in the copy array
 		$smarty->assign("copy", $this->copyOps->getCopyArray());
+		
+		// v3.4 And the template folder? This to allow you to do file_exists within a template.
+		$smarty->assign("template_dir", $smarty->template_dir);
 		
 		return $smarty->fetch($templateName.".tpl");
 	}

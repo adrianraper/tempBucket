@@ -105,16 +105,15 @@ package com.clarityenglish.dms.model {
 		 * @param	account
 		 */
 		public function showInResultsManager(account:Account):void {
-			var urlRequest:URLRequest = new URLRequest(Constants.RESULTS_MANAGER_URL);
-			urlRequest.method = Constants.URL_REQUEST_METHOD;
+			var urlRequest:URLRequest = new URLRequest(Constants.HOST + "../../../area1/" + Constants.RESULTS_MANAGER_URL);
+			urlRequest.method = URLRequestMethod.GET;
 			
 			var postVariables:URLVariables = new URLVariables();
 			postVariables.username = account.adminUser.name;
 			postVariables.password = account.adminUser.password;
 			
 			urlRequest.data = postVariables;
-			
-			navigateToURL(urlRequest, "_blank");
+			navigateToURL(urlRequest, "_blank");			
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

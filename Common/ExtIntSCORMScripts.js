@@ -16,7 +16,7 @@ var _LMS="CLiKS"; // CLiKS from NIIT
 var _LMS="TestTrack";
 var _LMS="Blackboard";
 var _LMS="Moodle"; // default
-if (_Debug == true) alert("loading ExtIntSCORMScripts.js");
+//if (_Debug == true) alert("loading ExtIntSCORMScripts.js");
 // v6.4.1.4 Since you will try to terminate if this page is unloaded, only do it once
 var _alreadyTerminated;
 
@@ -44,7 +44,7 @@ function LMSInitialize(returnFunction) {
 	var rc=0;
 	var errCode=0;
 	var varArray = new Array();
-	if (_Debug == true) alert("LMSInitialize");
+	//if (_Debug == true) alert("a. LMSInitialize");
 	// Note that you CAN run the call like this, but it is obliterated by the next flashProxy.call.
 	//flashProxy.call("LMSTrace", "dss.js.call LMSInitialize");	
 	//thisMovie().LMSTrace("dss.js.call LMSInitialize");
@@ -52,7 +52,7 @@ function LMSInitialize(returnFunction) {
 	//v6.4.3 Acknowledge that you are controlled by SCO right now
 	_alreadyTerminated = false;
 	rc = doInitialize();
-	if (_Debug == true) alert("LMSInitialize.rc=" + rc);
+	if (_Debug == true) alert("b. LMSInitialize.rc=" + rc);
 	if (rc == "false"){
 		errCode = "noAPI";
 		//mySCOObj.SetVariable("SCORMInitVar", "error:"+errCode);

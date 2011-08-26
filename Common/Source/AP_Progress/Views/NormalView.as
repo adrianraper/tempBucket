@@ -54,7 +54,8 @@ class AP_Progress.Views.NormalView extends ViewBase
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
 			var thisHeight = GlobalVar.G_DISPLAY_HEIGHT-20;
 			var thisWidth = GlobalVar.G_DISPLAY_WIDTH-8;
-		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			var thisHeight = GlobalVar.G_DISPLAY_HEIGHT;
 			var thisWidth = GlobalVar.G_DISPLAY_WIDTH;
 		} else {

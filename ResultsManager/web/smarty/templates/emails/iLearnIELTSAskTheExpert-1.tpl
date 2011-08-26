@@ -6,13 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>iLearnIELTS: Ask the expert</title>
-	<!-- <from>support@ilearnIELTS.com</from> -->
+	<!-- <from>cr@ilearnIELTS.com</from> -->
+	<!-- <bcc>support@clarityenglish.com</bcc> -->
 </head>
-<body>
-From: {$fromName}<br/>
-Email: {$fromEmail}<br/>
+<body style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px;">
+<p>User full name: {$name}<br/>
+Email: {$email}<br/>
+Expiry date: {$expiryDate}<br />
+Package: {$IELTSversion} version<br />
 Country: {$country}<br/>
 Question:<br/>
 {$question}<br/>
+</p>
+<p>Link: /mypackage.php</p>
 </body>
 </html>

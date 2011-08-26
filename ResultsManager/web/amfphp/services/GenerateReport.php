@@ -77,7 +77,8 @@ class XSLTFunctions {
 	}
 }
 
-session_start();
+// This will be called in config.php. If it was recalled here, it would generate a PHP warning and do nothing.
+//session_start();
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
@@ -110,7 +111,9 @@ $clarityService = new ClarityService();
 $reportDom = $clarityService->getReport($onReportablesIDObjects, $onClass, $forReportableIDObjects, $forClass, $opts, $template);
 // AR If I want to see the XML before it gets processed?
 //$reportDom->formatOutput = true; 
-//header("Content-Type: text/xml"); echo $reportDom->saveXML(); exit(0);
+//header("Content-Type: text/xml; charset=utf-8"); echo $reportDom->saveXML(); exit(0);
+//header("Content-Type: text/xml; charset=utf-8"); echo utf8_encode($reportDom->saveXML()); exit(0);
+//header("Content-Type: text/xml; charset=utf-8"); echo htmlspecialchars($reportDom->saveXML(), ENT_COMPAT, 'UTF-8'); exit(0);
 
 // At this point I could check to see if it is a BIG report. If so, I could warn, or I could switch views
 // Add the warning in report.xsl as this is easiest, although perhaps a little late!

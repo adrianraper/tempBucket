@@ -1,36 +1,17 @@
 {* Email footer for subscription related emails *}
-<table width="470" border="0" cellspacing="0" cellpadding="0">
-  <tr align="left" valign="top">
-    <td width="470" height="10" class="style1">
-		If you have any queries, please do contact me.<br/>
-		Best regards<br/>
-		Ms Christine Ng<br/>
-		(Accounts Manager)<br/>
-	</td>
-  </tr>
-  <tr>
-    <td width="470" height="10"><hr align="left" width="380" size="1" /></td>
-  </tr>
-  <tr>
-    <td class="style2">
-	{include file='file:includes/Monthly_Email_Footer.tpl'}
-	</td>
-  </tr>
-  <tr>
-    <td colspan="2" height="10"><hr align="left" width="380" size="1" /></td>
-  </tr>
-  <tr>
-    <td class="style2"><strong>Clarity Accounts Department</strong><font color="#666666"> | Hong Kong Office<br />
-            Clarity Language Consultants Ltd (UK and HK since 1992)</font></td>
-  </tr>
-  <tr>
-    <td height="7"></td>
-  </tr>
-  <tr>
-    <td class="style2"><font color="#666666">T: +852-2791 1787<br />
-      F: +852-2791 6484<br />
-      E: accounts@clarityenglish.com<br />
-	<a href="http://www.ClarityEnglish.com/facebook" target="_blank"><img src="http://www.clarityenglish.com/images/facebook_blk.jpg" alt="Follow us on facebook." border="0" /></a><br />      </font></td>
-  </tr>
-
-</table>
+<div>
+	<span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:18px; margin:0; padding:0; color:#000000;"><strong>Ms Christine Ng</strong></span>
+    <span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:11px; margin:0; padding:0; color:#000000;"> | Accounts Manager | Hong Kong Office</span>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:11px; margin:0; padding:0; color:#000000;">Clarity Language Consultants Ltd (UK and HK since 1992)</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:10px; margin:0; padding:2px 0 0 0; color:#000000;">
+		<strong>T</strong>: +852-2791 1787 | 
+		<strong>F</strong>: +852-2791 6484
+	</p>
+    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:10px; margin:0; padding:2px 0 0 0; color:#000000;">
+		<strong>E</strong>: accounts@clarityenglish.com | 
+	</p>
+    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:10px; margin:0; padding:2px 0 0 0; color:#000000;">
+		<strong>W</strong>: <a href="http://www.clarityenglish.com" target="_blank" style="font-size:10px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#000000">www.clarityenglish.com</a> | 
+		<strong>Facebook</strong>: <a href="http://www.facebook.com/clarityenglish" target="_blank" style="font-size:10px; font-family:Verdana, Arial, Helvetica, sans-serif; color:#000000">www.facebook.com/clarityenglish</a>
+	</p>
+</div>

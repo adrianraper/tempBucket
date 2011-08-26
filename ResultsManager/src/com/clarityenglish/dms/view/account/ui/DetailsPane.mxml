@@ -29,7 +29,8 @@
 			
 			rootIDFormItem.label = copyProvider.getCopyForId("rootIDFormItem");
 			nameFormItem.label = copyProvider.getCopyForId("nameFormItem");
-			emailFormItem.label = copyProvider.getCopyForId("emailFormItem");
+			// v3.6 Drop T_AccountRoot.F_Email
+			//emailFormItem.label = copyProvider.getCopyForId("emailFormItem");
 			prefixFormItem.label = copyProvider.getCopyForId("prefixFormItem");
 			resellerFormItem.label = copyProvider.getCopyForId("resellerFormItem");
 			accountStatusFormItem.label = copyProvider.getCopyForId("accountStatusFormItem");
@@ -49,6 +50,7 @@
 			loginOptionFormItem.label = copyProvider.getCopyForId("loginOptionFormItem");
 			// v3.5 Opt out of emails
 			optOutEmailsFormItem.label = copyProvider.getCopyForId("optOutEmailsFormItem");
+			optOutEmailDateFormItem.label = copyProvider.getCopyForId("optOutEmailDateFormItem");
 		}
 		
 		public function validate():Boolean {
@@ -70,7 +72,8 @@
 		 */
 		public function save():void {
 			account.name = nameTextInput.text;
-			account.email = emailTextInput.text;
+			// v3.6 Drop T_AccountRoot.F_Email
+			//account.email = emailTextInput.text;
 			account.prefix = prefixTextInput.text;
 			account.resellerCode = resellerComboBox.value as Number;
 			account.accountStatus = accountStatusComboBox.value as Number;
@@ -89,6 +92,7 @@
 			//TraceUtils.myTrace("account.loginOption=" + account.loginOption + " from " + loginOptionInput.text);
 			// v3.5 Email flexibility
 			account.optOutEmails = optOutEmailsCheckBox.selected;
+			account.optOutEmailDate = optOutEmailDateTextInput.text;
 		}
 		
 		/**
@@ -121,9 +125,12 @@
 		<mx:FormItem id="nameFormItem">
 			<mx:TextInput width="250" id="nameTextInput" enabled="{editMode}" text="{account.name}" />
 		</mx:FormItem>
+		<!-- 			
+		// v3.6 Drop T_AccountRoot.F_Email
 		<mx:FormItem id="emailFormItem">
 			<mx:TextInput width="250" id="emailTextInput" enabled="{editMode}" text="{account.email}" />
 		</mx:FormItem>
+		-->
 		<mx:FormItem id="prefixFormItem">
 			<mx:TextInput width="80" id="prefixTextInput" enabled="{editMode}" text="{account.prefix}" />
 		</mx:FormItem>
@@ -133,12 +140,15 @@
 		<mx:FormItem id="accountStatusFormItem">
 			<fxc:VAComboBox id="accountStatusComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountStatus}" value="{account.accountStatus}" />
 		</mx:FormItem>
+		<mx:FormItem id="selfHostFormItem" >
+			<mx:CheckBox id="selfHostCheckBox" enabled="{editMode}" selected="{account.selfHost}" />
+		</mx:FormItem>
 		<mx:HBox>
-			<mx:FormItem id="selfHostFormItem" paddingLeft="49">
-				<mx:CheckBox id="selfHostCheckBox" enabled="{editMode}" selected="{account.selfHost}" />
-			</mx:FormItem>
-			<mx:FormItem id="optOutEmailsFormItem">
+			<mx:FormItem id="optOutEmailsFormItem" paddingLeft="15" >
 				<mx:CheckBox id="optOutEmailsCheckBox" enabled="{editMode}" selected="{account.optOutEmails}" />
+			</mx:FormItem>
+			<mx:FormItem id="optOutEmailDateFormItem" visible="{optOutEmailsCheckBox.selected}" >
+				<mx:TextInput width="150" id="optOutEmailDateTextInput" enabled="{editMode}" text="{account.optOutEmailDate}" />
 			</mx:FormItem>
 		</mx:HBox>
 		<mx:FormItem id="loginOptionFormItem">

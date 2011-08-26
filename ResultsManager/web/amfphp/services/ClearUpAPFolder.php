@@ -18,9 +18,13 @@ if (!Authenticate::isAuthenticated()) {
 // Do a read of the database to get all active accounts into an array
 $conditions = array();
 $conditions['active'] = true;
+$conditions['notLicenceType'] = 5;
 $testingAccounts = null;
 // Get the array of active accounts just once, then you can use it many times.
 $accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
+
+// For reporting only
+$takeAction = false;
 
 // Get all folders under /ap/ for your current domain
 $root = dirname(__FILE__)."/../../../../..";
@@ -42,6 +46,7 @@ keepActiveAccounts($dir);
 
 // Open a known directory, and proceed to read its contents
 function keepActiveAccounts($dir) {
+	global $takeAction;
 	echo $dir."<br/>";
 	if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
@@ -51,12 +56,13 @@ function keepActiveAccounts($dir) {
 					if (is_dir($dir.$file)) {
 						//echo "folder: $file, ";
 						if (folderRelatedToAP($file)) {
-							echo "keep $file <br/>";
+							echo "Keep /ap/$file <br/>";
 							// Then, for this good folder, get rid of any subfolders that are not /Courses
 							keepCoursesFolder($dir.$file."/");
 						} else {
-							echo "Lets xx $file <br/>";
-							rename($dir.$file,$dir.'xx-'.$file);
+							echo "Lets xx /ap/$file <br/>";
+							if ($takeAction) 
+								rename($dir.$file,$dir.'xx-'.$file);
 						}
 					} else {
 						//echo "don't want file $file, ";
@@ -73,6 +79,7 @@ function keepActiveAccounts($dir) {
 }
 
 function keepCoursesFolder($dir) {
+	global $takeAction;
 	//echo $dir;
 	if (is_dir($dir)) {
 		if ($dh = opendir($dir)) {
@@ -83,12 +90,13 @@ function keepCoursesFolder($dir) {
 					if (is_dir($dir.$file)) {
 						// And only keep /Courses
 						if ($file=='Courses') {
-							echo "    keep $file <br/>";
+							echo "&nbsp;&nbsp;keep $file <br/>";
 							// Now lets open course.xml and find out which courses are still active
 							keepActiveCourses($dir);
 						} else {
-							echo "    Lets xx $file <br/>";
-							rename($dir.$file, $dir.'xx-'.$file);
+							echo "&nbsp;&nbsp;Lets xx $file <br/>";
+							if ($takeAction) 
+								rename($dir.$file, $dir.'xx-'.$file);
 						}
 					} else {
 						// Keep all files (although maybe we should delete .zip files)
@@ -106,6 +114,7 @@ function keepCoursesFolder($dir) {
 
 // Open course.xml and then xx all folders in Courses that are not listed in course.xml
 function keepActiveCourses($dir) {
+	global $takeAction;
 	//echo $dir."<br/>";
 	// Read course.xml
 	if (file_exists($dir."course.xml")) {
@@ -125,10 +134,11 @@ function keepActiveCourses($dir) {
 				if (is_dir($courseFolder.$file)) {
 					// And only keep those listed in course.xml
 					if (stripos($courseXML,'subFolder="'.$file.'"')!==false) {
-						echo "        keep $file <br/>";
+						echo "&nbsp;&nbsp;&nbsp;&nbsp;keep course $file <br/>";
 					} else {
-						echo "        Lets xx $file <br/>";
-						rename($courseFolder.$file, $courseFolder.'xx-'.$file);
+						echo "&nbsp;&nbsp;&nbsp;&nbsp;Lets xx course $file <br/>";
+						if ($takeAction) 
+							rename($courseFolder.$file, $courseFolder.'xx-'.$file);
 					}
 				} else {
 					// Keep all files (although maybe we should delete .zip files)
@@ -145,10 +155,16 @@ function keepActiveCourses($dir) {
 
 
 function folderRelatedToAP($folderName) {
+	global $takeAction;
 	global $accounts;
-	// Lets keep an exclusion list for folders that are connected through &content in location files
-	$exclusionList = array('hsbcindia', 'tung', 'templates', 'templates_empty');
-	if (in_array(strtolower($folderName), $exclusionList)) return true;
+	// Lets keep an inclusion list for folders that are connected through &content in location files
+	//$inclusionList = array('hsbcindia', 'tung', 'templates', 'templates_empty');
+	$inclusionList = array('hsbcindia', 'templates', 'templates_empty');
+	if (in_array(strtolower($folderName), $inclusionList)) return true;
+
+	// and an exclusion list  - I know that we don't want to keep these
+	$exclusionList = array('stangbo');
+	if (in_array(strtolower($folderName), $exclusionList)) return false;
 	
 	if ($accounts) {
 		// Does this folder exist in the T_Accounts.F_ContentLocation for any active account?

@@ -6,7 +6,8 @@
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
-session_start();
+// DMSService does this
+//session_start();
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
@@ -53,11 +54,26 @@ foreach ($emailArray as $email) {
 	$accountEmail['data']['account'] = array_shift($dmsService->getAccounts(array($email['data']['account_id'])));
 	// v3.6 Actually you should be picking up the to and cc from the account, not what you sent
 	//$accountEmail['to'] = $email['to'];
-	$accountEmail['to'] = $accountEmail['data']['account']->adminUser->email;
+	//$accountEmail['to'] = $accountEmail['data']['account']->adminUser->email;
+	// Now other emails come from reseller and RM
+	// Once the sub emails is done, this will work, for now this is still old style
+	$accountEmails = array($accountEmail['data']['account']->adminUser->email);
+	// $accountEmails = $dmsService->accountOps->getEmailsForMessageType($email['data']['account_id'], 1);
+	// If there is a reseller they are also 'ccd.
+	$resellerEmail = array($dmsService->accountOps->getResellerEmail($accountEmail['data']['account']->resellerCode));
+	
+	// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
+	$adminEmail = array_shift($accountEmails);
+	$ccEmails = array_merge($accountEmails, $resellerEmail);
+	//echo 'root='.$email['data']['account_id'].' adminEmail='.$adminEmail.' reseller='.implode(',',$resellerEmail).' all cc='.implode(',',$ccEmails);
+
 	// v3.6 Don't duplicate to and cc, which many DMS records do
-	if ($accountEmail['data']['account']->email != $accountEmail['to']) {
-		$accountEmail['cc'] = explode(",", $accountEmail['data']['account']->email);
-	}
+	//if ($accountEmail['data']['account']->email != $accountEmail['to']) {
+	//	$accountEmail['cc'] = explode(",", $accountEmail['data']['account']->email);
+	//}
+	$accountEmail['to'] = $adminEmail;
+	$accountEmail['cc'] = $ccEmails;
+	
 	//if (isset($email['bcc']) $accountEmail['bcc'] = $email['bcc'];
 	// For now cc ALL emails sent out by the system to accounts@clarityenglish.com. 
 	// This is now handled by the templates.

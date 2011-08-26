@@ -24,6 +24,7 @@ class ReportOps {
 		// And what if you are reporting on multiple groups? What if they have different editedContent?
 		// So first get the group(s) from $onReportables and find the parents.
 		// TODO: I am going to start this just looking at $onReportables=manageables, not content. Please do the other way round later.
+		// TODO: v3.5 MySQL query needs to have all userIDs as well as groupIDs
 		if ($onClass == "Group" || $onClass == "User") {
 			$groupIDs = array();				
 			if ($onClass == "Group") {
@@ -129,6 +130,7 @@ class ReportOps {
 		$sql = $reportBuilder->buildReportSQL();
 		//echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
+		//echo 'hi'; exit();
 		// v3.4 If a particular report needs score details (as the Clarity test does), this would seem like a good place to get the data.
 		// Build a second SQL and get the data from it into another array. Then you can process this array below too.
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
@@ -152,7 +154,12 @@ class ReportOps {
 		// Add in the headers to the root XML object
 		foreach ($headers as $header => $headerValue) {
 			//echo "$header has $headerValue";
-			$reportXML->setAttribute($header, $headerValue);
+			
+			if (!mb_check_encoding($value, 'UTF-8')) {
+				$reportXML->setAttribute($header, utf8_encode($headerValue));
+			} else {
+				$reportXML->setAttribute($header, $headerValue);
+			}
 		}
 		
 		// Go through the results replacing IDs with names, seconds with hh:ss and converting everything to an XML document
@@ -163,8 +170,16 @@ class ReportOps {
 			//echo var_dump($row);
 			$row = $this->processRowFields($row);
 			
-			foreach ($row as $key => $value)
-				$rowXML->setAttribute($key, $value);
+			foreach ($row as $key => $value) {
+				// This was throwing up the error DOMElement::setAttribute() [domelement.setattribute]: string is not in UTF-8
+				// But if I solve it using utf8_encode, then it screws up Chinese characters.
+				//$rowXML->setAttribute($key, $value);
+				if (!mb_check_encoding($value, 'UTF-8')) {
+					$rowXML->setAttribute($key, utf8_encode($value));
+				} else {
+					$rowXML->setAttribute($key, $value);
+				}
+			}
 			
 			$reportXML->appendChild($rowXML);
 		}
@@ -180,7 +195,11 @@ class ReportOps {
 				$row = $this->processRowFields($row);
 				
 				foreach ($row as $key => $value)
-					$rowXML->setAttribute($key, $value);
+					if (!mb_check_encoding($value, 'UTF-8')) {
+						$rowXML->setAttribute($key, utf8_encode($value));
+					} else {
+						$rowXML->setAttribute($key, $value);
+					}
 				
 				$reportXML->appendChild($rowXML);
 			}
@@ -287,18 +306,23 @@ class ReportOps {
 		// v3.4 Note that the unitID comes from attribute 'unit' in menu.xml rather than 'id', which it should.
 		// So Connected Speech and IIE2, which now correctly write id to T_Score, show it as -no name-
 		// but since they used to write 'unit' we now need to cope with both.
+		// v6.5.6.5 But RM as is sending Unit:3 to me, so when I query the db, my SQL has unit=3. 
+		// This decoding is neither here nor there. I need to change the query.
 		if (isset($row['unitID'])) {
 			$unitID = $row['unitID'];
 			unset($row['unitID']);
 			//$row['unitName'] = $title->courses[$courseID]->units[$unitID]->caption;
 			if (isset($title->courses[$courseID]->units[$unitID])) {
+				//echo 'no need to decode '.$unitID.'<br/>';
 				$row['unitName'] = $title->courses[$courseID]->units[$unitID]->name;
 			} else {
+				//echo 'need to decode '.$unitID.'<br/>';
 				// I would now like to search to see if the 'id' rather than the 'unit' matches.
 				// ContentOps.php changed to save unitID as an attribute of the unit class.
 				$bestName = "-no name- ($unitID)";
 				foreach ($title->courses[$courseID]->units as $unit) {
-					if ($unit->unitID == $unitID) {
+					//if ($unit->unitID == $unitID) {
+					if ($unit->sequenceNum == $unitID) {
 						$bestName = $unit->name;
 						// As well as saving the name, swap to use this id so that the exercise name below is found too
 						$unitID = $unit->id;

@@ -247,6 +247,9 @@ EOD;
 			$searchType = "both";
 		} else if (($vars['LOGINOPTION'] & 1) == 1) {
 			$searchType = "name";
+		// v6.5.6.5 Add search by email
+		} else if (($vars['LOGINOPTION'] & 8) == 8) {
+			$searchType = "email";
 		// v6.5.4.7 ClarityEnglish.com special case
 		} else if (($vars['LOGINOPTION'] & 64) == 64) {
 			$searchType = "userID";
@@ -268,6 +271,7 @@ EOD;
 		// Go get this user - if it exists
 		$rs = $this->selectUser($vars, $searchType);
 		if ($rs) {
+			//echo 'count='.$rs->RecordCount();
 			switch ($rs->RecordCount()) {
 				case 0:
 					// No such user
@@ -307,9 +311,13 @@ EOD;
 					// build user info 
 					//v6.5.5.9 RL: add city as return
 					// v6.5.6 HCT SCORM. Also we may have found which root of many the user is in, and we need to pass that back
+					// AR We user F_UserProfileOption as a means to hold productCode for global R2I. Not sure it is really necessary...
+					// AR And send back registrationDate, for use by global R2I
+					// TODO deprecate using userName for name
 					$node .= "<user userID='" .$dbObj->F_UserID ."'
 						userSettings='" .$dbObj->F_UserSettings ."'
 						userName='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
+						name='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
 						country='" .htmlspecialchars($dbObj->F_Country, ENT_QUOTES, 'UTF-8') ."'
 						city='" .htmlspecialchars($dbObj->F_City, ENT_QUOTES, 'UTF-8') ."'
 						email='" .htmlspecialchars($dbObj->F_Email, ENT_QUOTES, 'UTF-8') ."'
@@ -317,7 +325,8 @@ EOD;
 						groupID='" .$dbObj->groupID ."'
 						rootID='" .$dbObj->rootID ."'
 						expiryDate='" .$dbObj->formattedDate ."'
-						productCode='" .$dbObj->F_UserProfileOption ."'
+						registrationDate='" .$dbObj->registrationDate ."'
+						userProfileOption='" .$dbObj->F_UserProfileOption ."'
 						studentID='" .htmlspecialchars($dbObj->F_StudentID, ENT_QUOTES, 'UTF-8') ."' />";
 
 				//	break;
@@ -422,7 +431,12 @@ EOD;
 					// v6.5.6 If you haven't passed a groupID, then it is sufficent to simply say you haven't found the user.
 					if ($vars['GROUPID']>0) {
 						$tmpRootID = $this->selectRootIDViaGroupID( $vars );
-						if ($tmpRootID) $hasRoot = true;
+						// If the group doesn't exist, you have a data problem (or the ID has been typed wrongly)
+						if ($tmpRootID) {
+							$hasRoot = true;
+						} else {
+							$node .= "<err code=\"207\">db doesn't have group ".$vars['GROUPID']."</err>";
+						}
 	
 						if ($searchType == "id") {
 							if( $hasRoot ){
@@ -464,6 +478,8 @@ EOD;
 					$vars['USERTYPE'] = $dbObj->F_UserType;
 					$userExpiryTimestamp = strtotime($dbObj->formattedDate);
 					// build user info
+					// AR v6.5.6.5 You have to send back expiry date for R2I registration. Well, not really but no harm.
+					// TODO This should be a common function for all selectUser type calls.
 					$node .= "<user userID='" .$dbObj->F_UserID ."'
 						name='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
 						userSettings='" .$dbObj->F_UserSettings ."'
@@ -474,8 +490,10 @@ EOD;
 						rootID='" .$dbObj->rootID ."'
 						password='" .htmlspecialchars($dbObj->F_Password, ENT_QUOTES, 'UTF-8') ."'
 						userProfileOption='" .$dbObj->F_UserProfileOption ."'
+						expiryDate='" .$dbObj->F_ExpiryDate ."'
+						registrationDate='" .$dbObj->registrationDate ."'
 						studentID='" .htmlspecialchars($dbObj->F_StudentID, ENT_QUOTES, 'UTF-8')  ."' />";
-
+						
 					break;
 				default:
 					// Something is wrong with the database
@@ -510,6 +528,7 @@ EOD;
 		return true;
 	}
 	// v6.5.5.5 A bad name
+	// TODO This should be merged into selectUser or a generic getUser
 	//function getUserDetail( &$vars, &$node ){
 	function getUserByStudentID( &$vars, &$node ){
 		global $db;
@@ -519,6 +538,7 @@ EOD;
 		$rs = $this->selectUserDetailByStudentID($vars);
 		if ($rs->RecordCount() > 0) {
 			// v6.5.6.5 Wouldn't it be cleaner to do a while loop with FetchNextObj?
+			// And isn't it most likely to be an error if there are multiple?
 			foreach($rs as $k=>$row) {
 				$userExpiryTimestamp = $row['formattedDate'];
 				$node .= "<user userID='{$row['F_UserID']}' "
@@ -530,12 +550,16 @@ EOD;
 					."studentID='{$row['F_StudentID']}'/>";
 			}
 		} else {
-			throw new Exception("Query failed");
+			// Is it really an exception if no records are found?
+			//throw new Exception("Query failed");
+			$node .= "<err code=\"203\">no such user</err>";
+			return false;
 		}
 		$rs->Close();
 		return true;
 	}
 
+	// TODO This should be merged into selectUser or a generic getUser
 	function getUserByEmail( &$vars, &$node ){
 		global $db;
 		// Go get this user - if it exists
@@ -571,8 +595,9 @@ EOD;
 			$node .= "<user userID='".$vars[USERID]."' "
 					."rootID='$thisRoot'/>";
 		} else {
-			// Where is this exception caught?
-			throw new Exception("Query failed");
+			// Where is this exception caught? It would be better to send back an expected error format
+			//throw new Exception("Query failed");
+			$node .= "<err code=\"207\">db doesn't have group $</err>";
 		}
 		$rs->Close();
 		return true;
@@ -580,6 +605,8 @@ EOD;
 
 	// v6.5.4.6 Seapare action to see if this user can be or is allocated a licenceID
 	// This function is most likely not be used as we are dropping licence allocation
+	// v6.5.6.5 Take it out
+	/*
 	function checkLicenceAllocation( &$vars, &$node) {
 		global $db;
 		// now check on licence allocation
@@ -674,7 +701,8 @@ EOD;
 		}
 		return true;
 	}
-
+	*/
+	
 	// v6.5.4.6 Separate action to record this licence (protect against double login)
 	// v6.5.5.0 This is really instance not licence
 	//function saveLicenceID( &$vars, &$node ) {
@@ -766,12 +794,14 @@ EOD;
 		$cid  = $vars['COURSEID'];
 
 		//Edward: modify query
-		if ($vars['DATABASEVERSION']>3) {
+		if ($vars['DATABASEVERSION']>4) {
+			// v6.5.6.6 Something wrong here as this query was the same as the old one below!
+			// Now we have F_CourseID in T_Score. Or at least we ought to have. Seems GlobalRoadToIELTS has null for all fields
+			// Do a query to update them from session join
 			$sql = <<<EOD
-			SELECT c.* FROM T_Score c, T_Session s
-			WHERE s.F_UserID=?
-			AND c.F_SessionID=s.F_SessionID
-			AND s.F_CourseID=?
+			SELECT c.* FROM T_Score c
+			WHERE c.F_UserID=?
+			AND c.F_CourseID=?
 			ORDER BY c.F_DateStamp
 EOD;
 		} else {
@@ -814,6 +844,25 @@ EOD;
 		// Then we need another that just picks up the scored ones
 		//Edward: modify query
 		// AR: At least in MySQL it goes very much quicker as a JOIN. How about SQL Server? The query execution plan seems about the same.
+		// v6.5.6.6 Big delay in this call in MySQL. Need to avoid a join of score and session. 
+		// One answer is to denormalise and add F_RootID to T_Score
+		// Another is to pre-fetch all userIDs in this root. Try this for now see how it goes. But there are some accounts with tens of thousands of users in a root.
+		// Terrible! Query never even completed direct in MySQL. Mind you there were 13000 users!
+		// What about joining on membership instead? Ah, seems promising.
+		/*
+				SELECT SC.F_ExerciseID, SC.F_UnitID, AVG(SC.F_Score) AS AvgScore, COUNT(SC.F_Score) AS NumberDone
+				FROM T_Score SC
+				WHERE SC.F_CourseID=1151344082236
+				AND SC.F_Score>=0
+				AND SC.F_UserID in (
+					SELECT u.F_UserID FROM T_User u, T_Membership m
+					WHERE u.F_UserID = m.F_UserID
+					AND m.F_RootID=169
+					AND u.F_UserID<>231422
+				)
+				GROUP BY SC.F_ExerciseID, SC.F_UnitID
+				ORDER BY SC.F_ExerciseID;
+		*/
 		if ($vars['DATABASEVERSION']>3) {
 			/*
 			SELECT SC.F_ExerciseID, SC.F_UnitID, AVG(SC.F_Score) AS AvgScore, COUNT(SC.F_Score) AS NumberDone
@@ -827,7 +876,7 @@ EOD;
 			GROUP BY SC.F_ExerciseID, SC.F_UnitID
 			ORDER BY SC.F_ExerciseID;
 			*/
-			$sql = <<<EOD
+			/*
 			SELECT SC.F_ExerciseID, SC.F_UnitID, AVG(SC.F_Score) AS AvgScore, COUNT(SC.F_Score) AS NumberDone
 				FROM T_Score SC, T_Session SE
 				WHERE SE.F_SessionID = SC.F_SessionID
@@ -835,6 +884,17 @@ EOD;
 				AND SE.F_CourseID=?
 				AND SE.F_RootID=?
 				AND SC.F_Score>=0
+				GROUP BY SC.F_ExerciseID, SC.F_UnitID
+				ORDER BY SC.F_ExerciseID;
+			*/
+			$sql = <<<EOD
+			SELECT SC.F_ExerciseID, SC.F_UnitID, AVG(SC.F_Score) AS AvgScore, COUNT(SC.F_Score) AS NumberDone
+				FROM T_Score SC, T_Membership m
+				WHERE m.F_UserID<>?
+				AND SC.F_CourseID=?
+				AND SC.F_Score>=0
+				AND SC.F_UserID = m.F_UserID
+				AND m.F_RootID=?
 				GROUP BY SC.F_ExerciseID, SC.F_UnitID
 				ORDER BY SC.F_ExerciseID;
 EOD;
@@ -891,7 +951,8 @@ EOD;
 			$node .= "<session>updated</session>";
 		}
 		// A temporary update function for Protea records
-		$rC = $this->updateSessionCourseID($vars, $node);
+		// v6.5.6.5 No longer - we do now know courseID in the session record. So drop this code.
+		//$rC = $this->updateSessionCourseID($vars, $node);
 		return true;
 	}
 	// v6.5.4.6 Change password function
@@ -968,6 +1029,9 @@ EOD;
 			$searchType = "both";
 		} else if (($vars['LOGINOPTION'] & 1) == 1) {
 			$searchType = "name";
+		// v6.5.6.5 Allow email as a unique field for login
+		} else if (($vars['LOGINOPTION'] & 8) == 8) {
+			$searchType = "email";
 		}
 		// v6.5.4.7 ClarityEnglish.com special case
 		else if (($vars['LOGINOPTION'] & 64) == 64) {
@@ -989,7 +1053,7 @@ EOD;
 		}
 		$rC = $this->checkUniqueName( $vars, $searchType );
 		if (!$rC ) {
-			$node .= "<err code='206'>a user with this name or id already exists</err>";
+			$node .= "<err code='206'>a user with this unique $searchType already exists</err>";
 			return false;
 		}
 
@@ -1007,6 +1071,11 @@ EOD;
 		} else {
 			$vars['USERID'] = $userID;
 			// v6.5.6 You also need to send back groupID and expiryDate to be consistent with startUser
+			if (isset($vars['EXPIRYDATE'])) {
+				$expiryDate = $vars['EXPIRYDATE'];
+			} else {
+				$expiryDate = '';
+			}
 			// v6.5.6 Protect variables that might not exist
 			if (isset($vars['STUDENTID'])) {
 				$sid = $vars['STUDENTID'];
@@ -1047,7 +1116,7 @@ EOD;
 				custom1='".htmlspecialchars($custom1, ENT_QUOTES, 'UTF-8')."'
 				productCode='".$vars['PRODUCTCODE']."'
 				groupID='" .$vars['GROUPID'] ."'
-				expiryDate=''
+				expiryDate='$expiryDate'
 				studentID='".htmlspecialchars($sid, ENT_QUOTES, 'UTF-8')."'  />";
 		}
 		$rC = $this->insertMembership( $vars );
@@ -1219,6 +1288,9 @@ EOD;
 	}
 	// v6.5.5.0 For item analysis and portfolios
 	function insertScoreDetails($vars, &$node) {
+		// v6.5.6.6 No point writing detail records for anonymous users - even if home users have userID=-1, it wouldn't matter as what would they do with scoredetails anyway?
+		if ($vars['USERID']<0) 
+			return true;
 		// Break down the pseudo XML items into array elements
 		$xml = simplexml_load_string($vars['SENTDATA']);
 		//var_dump($xml);
@@ -1252,7 +1324,8 @@ EOD;
 		global $db;
 
 		$userID  = $vars['USERID'];
-		$rootID  = $vars['ROOTID'];
+		// v6.5.6.6 Make sure we have an integer root, even if useless
+		$rootID  = intval($vars['ROOTID']);
 		$productCode  = $vars['PRODUCTCODE'];
 		$dateStamp = $vars['DATESTAMP'];
 		$logCode = $vars['LOGCODE'];
@@ -1477,7 +1550,7 @@ EOD;
 	}
 
 	//6.5.4.7 WZ the function is used to select the rootID from PHP code, if there is a new user.
-	// we know his group from the serial number, then since there MUST be an admin user already,
+	// We know his group from the serial number, then since there MUST be an admin user already,
 	// T_Membership will link group and root
 	function selectRootIDViaGroupID( &$vars ){
 		global $db;
@@ -1491,11 +1564,13 @@ EOD;
 		$rs = $db->Execute($sql, $bindingParams);
 		// v6.5.5.0 There must only be one record, either send the first, or error if more than one
 		//if ($rs->RecordCount>=1) {
-		if ( $rs->RecordCount() ==1 ) {
+		if ( $rs->RecordCount()==1 ) {
 			$dbObj = $rs->FetchNextObj();
 			return $dbObj->F_RootID;
 		} else {
-			throw new Exception("Root via Group query failed");
+			// AR Don't throw exceptions that you are not catching!
+			//throw new Exception("Root via Group query failed, db has no group=".$gid);
+			//$node .= "<err code=\"207\">db doesn't have group $gid</err>";
 			return false;
 		}
 	}
@@ -1677,13 +1752,20 @@ EOD;
 		} else {
 			$myCourseID = null;
 		}
+		// v6.5.6.6 A new bit of data
+		if (isset($vars['PRODUCTCODE'])) {
+			$productCode = $vars['PRODUCTCODE'];
+		} else {
+			$productCode = null;
+		}
 		// prefer exerciseID, but itemID is acceptable
 		if (isset($vars['EXERCISEID'])) {
 			$eid = $vars['EXERCISEID'];
 		} else {
 			$eid = $vars['ITEMID'];
 		}
-		$bindingParams = array($vars['USERID'], $date,
+		$userID = $vars['USERID'];
+		$bindingParams = array($userID, $date,
 				$vars['UNITID'], $vars['SESSIONID'], $eid,
 				$vars['TESTUNITS'],
 				$vars['SCORE'], $vars['CORRECT'], $vars['WRONG'], $vars['SKIPPED'],
@@ -1693,22 +1775,48 @@ EOD;
 		// v6.5.5.3 Added F_CourseID to T_Score
 		if ($vars['DATABASEVERSION']>4) {
 			$bindingParams[]= $myCourseID;
+			// v6.5.6.5 New idea - write anonymous records to an ancilliary table that will not slow down reporting
+			$tableName = 'T_Score';
+			if ($vars['DATABASEVERSION']>5) {
+				if ($userID<1) {
+					$tableName = 'T_ScoreAnonymous';
+				}
+			}
 			// v6.5.5.5 MySQL migration
 			//		) VALUES (?, CONVERT(datetime,?,120), ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-			$sql = <<<EOD
-				INSERT INTO T_Score (
-					F_UserID, F_DateStamp,
-					F_UnitID, F_SessionID, F_ExerciseID,
-					F_TestUnits,
-					F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed,
-					F_Duration, F_CourseID
-					) VALUES (
-					?, ?,
-					?, ?, ?,
-					?,
-					?, ?, ?, ?,
-					?, ? )
+			// Denormalise score and session and add productCode into score to help with reporting
+			if ($vars['DATABASEVERSION']>5) {
+				$bindingParams[]= $productCode;
+				$sql = <<<EOD
+					INSERT INTO $tableName (
+						F_UserID, F_DateStamp,
+						F_UnitID, F_SessionID, F_ExerciseID,
+						F_TestUnits,
+						F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed,
+						F_Duration, F_CourseID, F_ProductCode
+						) VALUES (
+						?, ?,
+						?, ?, ?,
+						?,
+						?, ?, ?, ?,
+						?, ?, ? )
 EOD;
+			} else {
+				$sql = <<<EOD
+					INSERT INTO $tableName (
+						F_UserID, F_DateStamp,
+						F_UnitID, F_SessionID, F_ExerciseID,
+						F_TestUnits,
+						F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed,
+						F_Duration, F_CourseID
+						) VALUES (
+						?, ?,
+						?, ?, ?,
+						?,
+						?, ?, ?, ?,
+						?, ? )
+EOD;
+			}
 		// v6.5.5.5 MySQL migration
 		//} else if ($vars['DATABASEVERSION']>1) {
 		//	$sql = <<<EOD
@@ -1728,7 +1836,13 @@ EOD;
 EOD;
 		}
 
-		$rs = $db->Execute($sql, $bindingParams);
+		// v6.5.6.6 Since we now have a primary key on T_Score, we need to catch any SQL duplicate key errors gracefully
+		try {
+			$rs = $db->Execute($sql, $bindingParams);
+		} catch (Exception $e) {
+			// write out the $e->message to an error log please
+			$rs = false;
+		}
 		if (!$rs) {
 			return false;
 		} else {
@@ -1891,6 +2005,7 @@ EOD;
 		// Or I could always update Protea session records on the basis that you are more likely
 		// to accidentally go into the wrong level for the first exercise than the last.
 		//		AND F_CourseID is null
+		// v6.5.6.5 No longer - we do now know courseID in the session record. So drop this code.
 		$sid = $vars['SESSIONID'];
 		if (isset($vars['COURSEID'])) {
 			$myCourseID = $vars['COURSEID'];
@@ -1990,6 +2105,9 @@ EOD;
 		// v6.5.5.2 This will fail to match with some Turkish characters
 		$name = strtoupper($vars['NAME']);
 		$studentID = strtoupper($vars['STUDENTID']);
+		// v6.5.6.5 Allow email to be the unique field used for login
+		if (isset($vars['EMAIL']))
+			$email = strtoupper($vars['EMAIL']);
 		$rootID = $vars['ROOTID'];
 		// v6.5.6 use adodb functions for this database specific stuff instead
 		//if (strpos($vars['DBDRIVER'],"mssql")>=0 || strpos($vars['DBDRIVER'],"sqlite")>=0) {
@@ -2002,6 +2120,9 @@ EOD;
 		if ($searchType == "name") {
 			$whereClause = "WHERE {$db->upperCase}(u.F_UserName)=? ";
 			$bindingParams[] = $name;
+		} else if ($searchType == "email") {
+			$whereClause = "WHERE {$db->upperCase}(u.F_Email)=? ";
+			$bindingParams[] = $email;
 		} else {
 			// v6.4.2 If you are adding both, then neither of them should be present
 			// v6.5.5.0 (ES) need brackets round this OR
@@ -2172,15 +2293,25 @@ EOD;
 		global $db;
 		$userID=$vars['USERID'];
 		$courseID=$vars['COURSEID'];
-		$bindingParams = array($userID, $userID, $courseID);
+		$bindingParams = array($userID, $courseID);
 		//Edward: modify query
-		$sql = <<<EOD
+		// v6.5.6.6 Again, what a stupid query. Why do you need to join it on session at all?
+		/*
 			SELECT F_ExerciseID, MAX( F_Score ) AS maxScore, COUNT(F_Score) AS cntScore, MAX( F_ScoreCorrect ) AS totalScore
 			FROM T_Score c, T_Session s
 			WHERE s.F_UserID=?
 			AND c.F_UserID=?
                         AND c.F_SessionID=s.F_SessionID
 			AND s.F_CourseID=?
+			AND c.F_Score>=0
+			AND c.F_ExerciseID>=100
+			GROUP BY F_ExerciseID
+		*/
+		$sql = <<<EOD
+			SELECT F_ExerciseID, MAX( F_Score ) AS maxScore, COUNT(F_Score) AS cntScore, MAX( F_ScoreCorrect ) AS totalScore
+			FROM T_Score c
+			WHERE c.F_UserID=?
+			AND c.F_CourseID=?
 			AND c.F_Score>=0
 			AND c.F_ExerciseID>=100
 			GROUP BY F_ExerciseID
@@ -2195,8 +2326,9 @@ EOD;
 		$bindingParams = array($userID, $courseID);
 		// v6.5.4.5 Remove the unnecessary max scores as all 0
 		//Edward: modify query
+		// v6.5.6.6 Again, what a stupid query. Why do you need to join it on session at all?
 		if ($vars['DATABASEVERSION']>3) {
-			$sql = <<<EOD
+		/*
 			SELECT F_ExerciseID, COUNT(F_Score) AS cntScore
 			FROM T_Score c, T_Session s
 			WHERE s.F_UserID=?
@@ -2205,17 +2337,26 @@ EOD;
 			AND F_Score<0
 			AND c.F_ExerciseID>=100
 			GROUP BY F_ExerciseID
+		*/
+			$sql = <<<EOD
+				SELECT F_ExerciseID, COUNT(F_Score) AS cntScore
+				FROM T_Score c
+				WHERE c.F_UserID=?
+				AND c.F_CourseID=?
+				AND c.F_Score<0
+				AND c.F_ExerciseID>=100
+				GROUP BY F_ExerciseID
 EOD;
 		} else {
                         $sql = <<<EOD
-			SELECT F_ExerciseID, COUNT(F_Score) AS cntScore
-			FROM T_Score c, T_Session s
-			WHERE c.F_UserID=?
-			AND c.F_SessionID=s.F_SessionID
-			AND s.F_CourseID=?
-			AND F_Score<0
-			AND c.F_ExerciseID>=100
-			GROUP BY F_ExerciseID
+				SELECT F_ExerciseID, COUNT(F_Score) AS cntScore
+				FROM T_Score c, T_Session s
+				WHERE c.F_UserID=?
+				AND c.F_SessionID=s.F_SessionID
+				AND s.F_CourseID=?
+				AND F_Score<0
+				AND c.F_ExerciseID>=100
+				GROUP BY F_ExerciseID
 EOD;
 		}
 		$rs = $db->Execute($sql, $bindingParams);
@@ -2423,6 +2564,8 @@ EOD;
 		$studentID = $vars['STUDENTID'];
 		$userID = $vars['USERID'];
 		$rootID = $vars['ROOTID'];
+		if (isset($vars['EMAIL']))
+			$email = strtoupper($vars['EMAIL']);
 		// v6.5.6 It is possible that you will send a comma delimited list of roots rather than just one.
 		// and what if you send a wildcard? Meaning that ALL roots should be checked (such as HCT)
 		//$bindingParams = array($rootID);
@@ -2444,6 +2587,7 @@ EOD;
 		if ($searchType == "userID") {
 			$whereClause = " AND u.F_UserID=? ";
 			$bindingParams[] = $userID;
+			
 		} else if ($searchType == "name") {
 			// v6.4.2.7 Let username be case insensitive - it seems that MySQL and PHP make it case sensitive by default
 			// v6.5.5.2 Since Turkish doesn't use the same collation for upper casing, allow the original case to match too
@@ -2454,6 +2598,11 @@ EOD;
 			$whereClause = " AND ({$db->upperCase}(u.F_UserName)=? OR u.F_UserName=?)";
 			$bindingParams[] = $upperCaseName;
 			$bindingParams[] = $name;
+			
+		} else if ($searchType == "email") {
+			$whereClause = " AND {$db->upperCase}(u.F_Email)=? ";
+			$bindingParams[] = $email;
+			
 		} else {
 			if ($searchType == "both") {
 				$whereClause = " AND ({$db->upperCase}(u.F_UserName)=? OR u.F_UserName=?) AND ({$db->upperCase}(u.F_StudentID)=? OR u.F_StudentID=?) ";
@@ -2487,7 +2636,7 @@ EOD;
 			//	SELECT u.F_ExpiryDate as formattedDate, u.*, m.F_GroupID as groupID
 			//	AND m.F_RootID=?
 			$sql = <<<EOD
-				SELECT u.F_ExpiryDate as formattedDate, u.*, m.F_GroupID as groupID, m.F_RootID as rootID
+				SELECT u.F_ExpiryDate as formattedDate, u.F_RegistrationDate as registrationDate, u.*, m.F_GroupID as groupID, m.F_RootID as rootID
 				FROM T_User u, T_Membership m
 				WHERE u.F_UserID = m.F_UserID
 				$rootClause
@@ -2565,7 +2714,7 @@ EOD;
 			// v6.5.5.5 MySQL migration
 			//	SELECT CONVERT(char(19), u.F_ExpiryDate,120) as formattedDate, u.*, m.F_GroupID as groupID, m.F_RootID as rootID  FROM T_User u, T_Membership m
 			$sql = <<<EOD
-				SELECT u.F_ExpiryDate as formattedDate, u.*, m.F_GroupID as groupID, m.F_RootID as rootID
+				SELECT u.F_ExpiryDate as formattedDate, u.F_RegistrationDate as registrationDate, u.*, m.F_GroupID as groupID, m.F_RootID as rootID
 				FROM T_User u, T_Membership m
 				WHERE u.F_UserID = m.F_UserID
 				$whereClause
@@ -2601,6 +2750,8 @@ EOD;
 		// In SQLServer it takes off 7 days.
 		//	SELECT CONVERT(char(11), u.F_ExpiryDate-7,120) as formattedDate, u.* FROM T_User u
 		//if ($vars['DBDRIVER']=="mysql") {
+		// I think this is probably something to do with getRegDate call, which is now deprecated, but it doesn't make sense.
+		/*
 		if (strpos($vars['DBDRIVER'],"mysql")!==false) {
 			$sql = <<<EOD
 				SELECT DATE_FORMAT(DATE_SUB(u.F_ExpiryDate, INTERVAL 7 DAY),'%Y-%m-%d') as formattedDate, u.* FROM T_User u
@@ -2612,6 +2763,11 @@ EOD;
 				WHERE {$db->upperCase}(u.F_studentID)=?
 EOD;
 		}
+		*/
+		$sql = <<<EOD
+			SELECT u.F_ExpiryDate as formattedDate, u.* FROM T_User u
+				WHERE {$db->upperCase}(u.F_studentID)=?
+EOD;
 		// Send back full recordSet for evaluation and use
 		return $db->Execute($sql, $bindingParams);
 	}
@@ -2691,6 +2847,7 @@ EOD;
 	}
 
 	// WZ for auto-register
+	// AR deprecated.
 	function getRegDate(&$vars, &$node){
 		global $db;
 		// Go get this user - if it exists
@@ -2699,8 +2856,8 @@ EOD;
 		$rs = $this->selectUserDetailByStudentID($vars);
 		if ($rs->RecordCount() > 0) {
 			foreach($rs as $k=>$row) {
-				$userRegDate = $row[F_RegistrationDate];
-				$node .= "<user userID='{$row[F_UserID]}' "
+				$userRegDate = $row['F_RegistrationDate'];
+				$node .= "<user userID='".$row['F_UserID']."' "
 					."regDate='{$userRegDate}'/>";
 			}
 		} else {
@@ -2726,8 +2883,8 @@ EOD;
 		if ($rs->RecordCount() > 0) {
 			foreach($rs as $k=>$row) {
 				$node .= "<user userID='{$userID}' "
-					."startDate='{$row[STARTDATE]}' "
-					."endDate='{$row[ENDDATE]}'/>";
+					."startDate='".$row['STARTDATE']."' "
+					."endDate='".$row['ENDDATE']."'/>";
 			}
 		} else {
 			//throw new Exception("Registration date query failed");
@@ -2737,6 +2894,7 @@ EOD;
 		return true;
 	}
 
+	// TODO This should be merged into selectUser or a generic getUser
 	function Emu_getUser( &$vars, &$node ) {
 		global $db; // This means using the global variable $db.
 
@@ -2811,8 +2969,10 @@ EOD;
 					}
 
 					// build user info
+					// Should deprectate passing back userName and instead pass back name
 					$node .= "<user userID='" .$dbObj->F_UserID ."'
 						userName='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
+						name='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
 						email='" .htmlspecialchars($dbObj->F_Email, ENT_QUOTES, 'UTF-8') ."'
 						startDate='" .$userStartTimestamp."'
 						expiryDate='" .$userExpiryTimestamp."'
@@ -2864,7 +3024,7 @@ EOD;
 		// WZ Added for IYJ SCORM - assumes that the only way to login with ID is SCORM. Hmmm
 		}else if ($searchType == "id") {
 			$prefix = $vars['PREFIX'];
-			$whereClause = " AND ({$db->upperCase}(u.F_StudentID)=? OR u.F_StudentID=?) AND AT.F_Prefix=?";
+			$whereClause = " AND ({$db->upperCase}(U.F_StudentID)=? OR U.F_StudentID=?) AND AT.F_Prefix=?";
 			$bindingParams[] = $upperCaseStudentID;
 			$bindingParams[] = $studentID;
 			$bindingParams[] = $prefix;
@@ -2890,8 +3050,8 @@ EOD;
 EOD;
 		} else {
 			$sql = <<<EOD
-					SELECT NULL as formattedDate, u.*, m.F_GroupID as groupID FROM T_User u, T_Membership m
-					WHERE u.F_UserID = m.F_UserID
+					SELECT NULL as formattedDate, U.*, M.F_GroupID as groupID FROM T_User U, T_Membership M
+					WHERE U.F_UserID = M.F_UserID
 					$whereClause
 EOD;
 		}
@@ -2977,6 +3137,7 @@ EOD;
 
 	// v6.5.5.6 ClarityLifeSkills - or individual licences
 	// For now this is a copy of Emu_getUser, but it might be better as copy of globalGetUser or something like that
+	// TODO This should be merged into selectUser or a generic getUser
 	function CLS_getUser( &$vars, &$node ) {
 		global $db; // This means using the global variable $db.
 
@@ -3020,8 +3181,10 @@ EOD;
 					$userType = $dbObj->F_UserType;
 
 					// build user info
+					// TODO should deprecate passing back userName and instead use name
 					$node .= "<user userID='" .$dbObj->F_UserID ."'
 						userName='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
+						name='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
 						email='" .htmlspecialchars($dbObj->F_Email, ENT_QUOTES, 'UTF-8') ."'
 						country='" .htmlspecialchars($dbObj->F_Country, ENT_QUOTES, 'UTF-8') ."'
 						startDate='" .$userStartTimestamp."'
@@ -3063,11 +3226,11 @@ EOD;
 		// First get unique userIDs - hopefully just one
 		//		AND U.F_PASSWORD=?
 		$sql = <<<EOD
-				SELECT DISTINCT(U.F_UserID)
-				FROM T_User U, T_Membership M, T_Accounts T
-				WHERE U.F_UserID=M.F_UserID
-				AND M.F_RootID=T.F_RootID
-				AND T.F_LicenceType=5
+				SELECT DISTINCT(u.F_UserID)
+				FROM T_User u, T_Membership m, T_Accounts t
+				WHERE u.F_UserID=m.F_UserID
+				AND m.F_RootID=t.F_RootID
+				AND t.F_LicenceType=5
 				AND {$db->upperCase}(u.F_Email)=?
 EOD;
 		$rs = $db->Execute($sql, $bindingParams);
@@ -3076,11 +3239,11 @@ EOD;
 		if ($rs->RecordCount()==1) {
 			$dbObj = $rs->FetchNextObj();
 			$sql = <<<EOD
-					SELECT U.*, M.F_RootID as RootID, A.F_Prefix as Prefix
-					FROM T_User U, T_Membership M, T_AccountRoot A
-					WHERE U.F_UserID=M.F_UserID
-					AND M.F_RootID = A.F_RootID
-					AND U.F_UserID = $dbObj->F_UserID
+					SELECT u.*, m.F_RootID as RootID, a.F_Prefix as Prefix
+					FROM T_User u, T_Membership m, T_AccountRoot a
+					WHERE u.F_UserID=m.F_UserID
+					AND m.F_RootID = a.F_RootID
+					AND u.F_UserID = $dbObj->F_UserID
 EOD;
 			$rs = $db->Execute($sql);
 		}
@@ -3498,6 +3661,7 @@ EOD;
 		return $result;
 	}
 
+	// TODO This should be merged into selectUser or a generic getUser
 	function getUserWithoutRoot( &$vars, &$node ) {
 		global $db; // This means using the global variable $db.
 
@@ -3553,8 +3717,10 @@ EOD;
 					$userType = $dbObj->F_UserType;
 
 					// build user info
+					// TODO deprectate userName for name
 					$node .= "<user userID='" .$dbObj->F_UserID ."'
 						userName='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
+						name='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
 						email='" .htmlspecialchars($dbObj->F_Email, ENT_QUOTES, 'UTF-8') ."'
 						studentID='" .htmlspecialchars($dbObj->F_StudentID, ENT_QUOTES, 'UTF-8') ."'
 						country='" .htmlspecialchars($dbObj->F_Country, ENT_QUOTES, 'UTF-8') ."'
@@ -3621,11 +3787,11 @@ EOD;
 		// First get unique userIDs - hopefully just one
 
 		$sql = <<<EOD
-				SELECT DISTINCT(U.F_UserID)
-				FROM T_User U, T_Membership M, T_Accounts T
-				WHERE U.F_UserID=M.F_UserID
-				AND M.F_RootID=T.F_RootID
-				AND T.F_LicenceType=5
+				SELECT DISTINCT(u.F_UserID)
+				FROM T_User u, T_Membership m, T_Accounts t
+				WHERE u.F_UserID=m.F_UserID
+				AND m.F_RootID=t.F_RootID
+				AND t.F_LicenceType=5
 				$whereClause
 EOD;
 		$rs = $db->Execute($sql, $bindingParams);
@@ -3634,11 +3800,11 @@ EOD;
 		if ($rs->RecordCount()==1) {
 			$dbObj = $rs->FetchNextObj();
 			$sql = <<<EOD
-					SELECT U.*, M.F_RootID as RootID, A.F_Prefix as Prefix
-					FROM T_User U, T_Membership M, T_AccountRoot A
-					WHERE U.F_UserID=M.F_UserID
-					AND M.F_RootID = A.F_RootID
-					AND U.F_UserID = $dbObj->F_UserID
+					SELECT u.*, m.F_RootID as RootID, a.F_Prefix as Prefix
+					FROM T_User u, T_Membership m, T_AccountRoot a
+					WHERE u.F_UserID=m.F_UserID
+					AND m.F_RootID = a.F_RootID
+					AND u.F_UserID = $dbObj->F_UserID
 EOD;
 			$rs = $db->Execute($sql);
 		}

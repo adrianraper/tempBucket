@@ -105,6 +105,7 @@ EOD;
 			throw new Exception("Unable to get edited content until manageables have been read for the first time.");
 		
 		// v3.5 Don't pull in subgroups
+		
 		$groupIDArray = $groupIDs;
 		//$groupIDArray = array_unique(array_merge($groupIDs, Session::get('valid_groupIDs')));
 		
@@ -112,7 +113,11 @@ EOD;
 		// Its not as if I am going to do anything other than get information about those groups.
 		//AuthenticationOps::authenticateGroupIDs($groupIDArray);
 		
+		//NetDebug::trace("groupIDArray=".print_r($groupIDArray));
+		//echo "groupIDArray=".print_r($groupIDArray);
 		$groupIdInString = join(",", $groupIDArray);
+		//NetDebug::trace("groupIDString=".$groupIdInString);
+		//echo "groupIDString=".$groupIdInString;
 		
 		//		SELECT F_GroupID, F_EditedContentUID, F_ProductF_ProductCode, F_CourseID, F_UnitID, F_ExerciseID, F_EnabledFlag, F_Mode
 		// v3.5 WZ suggests ordering by mode then contentUID. He also prefers to order by hierarchy of groupIDs rather than just groupID.
@@ -826,7 +831,8 @@ EOD;
 		$thisTitle = new Title();
 		$thisTitle-> productCode = $productCode;
 		if (intval($productCode) > 1000) {
-			$thisTitle->indexFile = "emu.xml";
+			// case sensitive
+			$thisTitle->indexFile = "Emu.xml";
 		} else {
 			$thisTitle->indexFile = "course.xml";
 		}
@@ -995,7 +1001,8 @@ EOD;
 				//NetDebug::trace("this folder is code=".$folder);
 				//NetDebug::trace("this product is code=".$titleObj->F_ProductCode);
 				if (intval($titleObj->F_ProductCode) > 1000) {
-					$titleObj->indexFile = "emu.xml";
+					// case-sensitive
+					$titleObj->indexFile = "Emu.xml";
 				} else {
 					$titleObj->indexFile = "course.xml";
 				}
@@ -1396,7 +1403,10 @@ EOD;
 			$bindingParams = array($productCode);
 			$rs = $this->db->getRow($sql, $bindingParams);
 			$partialReturn['contentLocation'] = $rs['F_ContentLocation'];
+			// If you had to come here, then useful to send back the languageCode you found
+			//$partialReturn['languageCode'] = $rs['F_LanguageCode'];
 		}
+		$partialReturn['languageCode'] = $rs['F_LanguageCode'];
 		return $partialReturn;
 	}
 }

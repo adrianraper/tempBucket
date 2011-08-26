@@ -457,7 +457,8 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 			myW = 60; myH = 60;
 			myScroll = false;
 			myLeftMargin = 0;
-			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0||
+				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 				myBackgroundColour = 0xFFD25E;
 			}
 		}
@@ -509,7 +510,8 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 		} else if (paneName == "Related_SP") {
 			// v6.4.2.4 use literals (sweet biscuits takes this as exam tip)
 			// v6.5.5.8 Different titles have different uses of the Related text
-			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 				myTitleBar = _global.ORCHID.literalModelObj.getLiteral("related", "buttons");
 			} else {
 				myTitleBar = _global.ORCHID.literalModelObj.getLiteral("tip", "labels");
@@ -1130,6 +1132,37 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 				//myInitObject.border_param = true;
 				//myTrace("adding feedback to contentHolder="+ contentHolder);
 			} // else {
+			// Testing embedded fonts
+/*			
+				if (paneName == "Title_SP") {
+					myTrace("from field " + _global.ORCHID.root.buttonsHolder.ExerciseScreen.fontTest);
+					//var myFormat = _global.ORCHID.root.buttonsHolder.ExerciseScreen.fontTest.getTextFormat();
+					var myFormat = new TextFormat();
+					myFormat.font = "Verdant";
+					myFormat.size=14;
+					var myDepth = _global.ORCHID.root.buttonsHolder.ExerciseScreen.fontTest.getDepth();
+					//contentHolder.createTextField("fonttest",85555,10,10,500,75);
+					_global.ORCHID.root.buttonsHolder.ExerciseScreen.createTextField("fonttester",myDepth+1,680,170,100,75);
+					//var myTextField = contentHolder.fonttest;
+					var myTextField = _global.ORCHID.root.buttonsHolder.ExerciseScreen.fonttester;
+					myTrace("to field " + myTextField);
+					myTextField.embedFonts = true;
+					myTextField.setNewTextFormat(myFormat);
+					//myTextField.text = substTags(thisText.paragraph[i].plainText, substList);
+					myTextField.text = "Gd_b@";
+					myTrace("well, I tried with " + myFormat.font);
+					_global.ORCHID.root.buttonsHolder.ExerciseScreen.fontTest.text = "Gd_b@";
+					var myDepth = _global.ORCHID.root.buttonsHolder.ExerciseScreen.fontTest.getDepth();
+					var newText = _global.ORCHID.root.buttonsHolder.ExerciseScreen.createTextField('text5',myDepth+1,680,190,100,75);
+					//text5.embedFonts = false;
+					_global.ORCHID.root.buttonsHolder.ExerciseScreen.text5.embedFonts = true;
+					_global.ORCHID.root.buttonsHolder.ExerciseScreen.text5.html = true;
+					//var myHtmlString = "<font face='Ipa-samd Uclphon1 SILDoulosL' size='18'>hAB_@CD</font>";
+					var myHtmlString = "<font face='Verdana' size='18'>hAB_@CD</font>";
+					//var myHtmlString = "<font face='Mathematica1' size='18'>_@ABC</font>";
+					_global.ORCHID.root.buttonsHolder.ExerciseScreen.text5.htmlText = myHtmlString;
+				}
+*/
 				var me = contentHolder.attachMovie("FTextWithFieldsSymbol","ExerciseBox"+myPara, paraDepth--, myInitObject)
 				//myTrace("added twf to content, depth=" + paraDepth);
 				//trace("added twf " + me);
@@ -1477,6 +1510,10 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 						} else if (me.location == "URL") {
 							var myjbURL = me.filename;
 							myTrace("URL media file= " + myjbURL)
+						//v6.5.6.5 Allow media to come from a branding folder
+						} else if (me.location == "brandMovies") {
+							var myjbURL = _global.ORCHID.paths.brandMovies + me.filename;
+							myTrace("brand media file= " + myjbURL)
 						// v6.4.2.6 New type of "original" for an exercise in an MGS, but with media in the original
 						} else if (me.location == "original") {
 							var myjbURL = _global.ORCHID.paths.media + me.filename;
@@ -1978,6 +2015,10 @@ getFullMediaPath = function (me) {
 		// v6.5.5.5 Slight change to steaming media path name
 		var myFile = _global.ORCHID.paths.streamingMediaFolder + me.filename;
 		myTrace("full URL for streaming= " + myFile)
+	// v6.5.6.5 Brand media
+	} else if (me.location == "brandMovies") {
+		var myFile = _global.ORCHID.paths.brandMovies + me.filename;
+		myTrace("location is brandMovies:" + myFile)
 	//v6.4.2 Allow for media to come from a fully specified location
 	} else if (me.location.toUpperCase() == "URL") {
 		// v6.4.2.4 Allow our existing paths to be used here
@@ -4426,6 +4467,9 @@ printMediaItem = function(thisMediaItem, contentHolder) {
 		// v6.5.5.5 Slight change to steaming media path name
 		var myFile = _global.ORCHID.paths.streamingMediaFolder + me.filename;
 		//myTrace("showMediaItem file= " + myFile)
+	// v6.5.6.5 Brand
+	} else if (me.location == "brandMovies") {
+		var myFile = _global.ORCHID.paths.brandMovies + me.filename;
 	//v6.4.2 Allow for media to come from a fully specified location
 	} else if (me.location == "URL") {
 		var myFile = me.filename;

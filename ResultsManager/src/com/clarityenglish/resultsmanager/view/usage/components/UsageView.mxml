@@ -410,7 +410,8 @@
 				replaceObj.endDate = this.userTypeCounts.licenceEndDateLbl.text;
 				pdf.addText(this.copyProvider.getCopyForId("usageStatsLicenceDates", replaceObj), xData, yNextLine);
 				yNextLine = yNextLine + yDiff;
-				if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT) {
+				if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
+					selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
 					pdf.addText( this.copyProvider.getCopyForId("usageStatsLicencesUsedLabel"), xLabel, yNextLine );
 					replaceObj.used = this.userTypeCounts.licencesUsedLbl.text;
 					pdf.addText( this.copyProvider.getCopyForId("usageStatsLicencesUsed", replaceObj), xData, yNextLine );

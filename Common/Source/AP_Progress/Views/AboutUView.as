@@ -20,6 +20,7 @@ class AP_Progress.Views.AboutUView extends ViewBase
 	
 	// v6.5.5.8
 	static private var CP_PRODUCT_NAME:String = "clarity/pro";
+	static private var CP2_PRODUCT_NAME:String = "clarity/cp2";
 	static private var SSSV9_PRODUCT_NAME:String = "clarity/sssv9";
 	
 	// member variables
@@ -74,7 +75,8 @@ class AP_Progress.Views.AboutUView extends ViewBase
 		var v1:Number= 0;
 		
 		// v6.5.6.4 New SSS realigned a bit
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			var xOffset = 18;
 			var yOffset = 18;
 		} else {
@@ -107,6 +109,7 @@ class AP_Progress.Views.AboutUView extends ViewBase
 				var explainNoRecord_y = 472;
 				break;
 			case SSSV9_PRODUCT_NAME:
+			case CP2_PRODUCT_NAME:
 				var explainNoRecord_y = 456;
 				break;
 			default:

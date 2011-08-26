@@ -248,7 +248,8 @@ package com.clarityenglish.resultsmanager.view.usage {
 					usageView.userTypeCounts.setExpiryDate(selectedTitle);
 					// v3.6 Or rather, we need a different view for LT
 					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_AA) {
-					if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT) {
+					if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
+						selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
 						TraceUtils.myTrace("usageMediator: titleUserCounts=" + data.titleUserCounts + " of max=" + selectedTitle.maxStudents);
 						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle.maxStudents);
 						usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle);

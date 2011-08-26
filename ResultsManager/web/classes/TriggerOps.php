@@ -15,9 +15,9 @@ class TriggerOps {
 	 * If $triggerIDArray is specified then only get those triggers, otherwise get them all.
 	 * If $timeStamp is specified, the trigger must be valid at that time.
 	 */
-	function getTriggers($triggerIDArray = null, $timeStamp = null, $frequency = null) {
-		
-		// Get all the trigger
+	function getTriggers($msgType = null, $triggerIDArray = null, $timeStamp = null, $frequency = null) {
+		//echo $msgType.'     '.intval($msgType).'       '.is_numeric(intval($msgType)).'#';
+		// Get all the triggers
 		$sql  = "SELECT ".Trigger::getSelectFields($this->db)." ";
 		$sql .= "FROM T_Triggers t ";
 		
@@ -32,6 +32,9 @@ class TriggerOps {
 		}
 		if ($frequency) {
 			$where[] = "(t.F_Frequency = '".strtolower($frequency)."')";
+		}
+		if (!is_null($msgType) && is_numeric(intval($msgType))) {
+			$where[] = "(t.F_MessageType = ".intval($msgType).")";
 		}
 		if (sizeof($where) > 0) {
 			$sql .= "WHERE ".implode(" AND ", $where)." ";
@@ -82,11 +85,15 @@ class TriggerOps {
 				if (isset($trigger->condition->active)) $accountConditions["active"] = $trigger->condition->active;
 				// v3.4.3
 				if (isset($trigger->condition->selfHost)) $accountConditions["selfHost"] = $trigger->condition->selfHost;
+				// v3.5 Subscription reminders also based on start date now. This should mean the RM start date.
+				if (isset($trigger->condition->startDate)) $accountConditions["startDate"] = $trigger->condition->startDate;
+				if (isset($trigger->condition->startDay)) $accountConditions["startDay"] = $trigger->condition->startDay;
+				
 				// These next conditions are not account conditions, but are for searching users within the found accounts
 				//if (isset($trigger->condition->contactMethod)) $accountConditions["contactMethod"] = $trigger->condition->contactMethod;
 				//if (isset($trigger->condition->userStartDate)) $accountConditions["userStartDate"] = $trigger->condition->userStartDate;
 
-				// v3.5 The trigger system should accounts that have opted out of email reminders 
+				// v3.5 The trigger system should ignore accounts that have opted out of subscription reminders 
 				$accountConditions["optOutEmails"] = true;
 				// (unless we override this for internal reports)
 				if (isset($trigger->condition->optOutEmails) && ($trigger->condition->optOutEmails == false)) {
@@ -96,13 +103,15 @@ class TriggerOps {
 				//$expiryDate = $trigger->condition->expiryDate;
 				//$triggerResults = $this->accountOps->getAccounts(null, $expiryDate);
 				// Pick up the root if specified in the trigger. Group doesn't make any sense for accounts.
-				if (isset($trigger->rootID) && ($trigger->rootID > 0)) {
+				if (is_array($trigger->rootID)) {
+					$accountIDs = $trigger->rootID;
+				} elseif (isset($trigger->rootID) && ($trigger->rootID > 0)) {
 					$accountIDs = Array($trigger->rootID);
 				} else {
 					$accountIDs = null;
 				}
 				$triggerResults = $this->accountOps->getAccounts($accountIDs, $accountConditions);
-				//echo "got ".count($triggerResults)." accounts</br>"; //that expire on ".$trigger->condition->expiryDate ." < br / > ";
+				//echo "got ".count($triggerResults)." accounts that expire on ".$trigger->condition->expiryDate ."<br />";
 				//$executor = $trigger->executor;
 				break;
 			// Not built yet...

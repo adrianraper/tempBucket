@@ -1,5 +1,7 @@
 <?php
 // v6.5.6.3 Deprecated as Protea now uses menu.xml to get Clarity IDs.
+// v6.5.6.5 Reinstated, though different, as protea sends full unit id and Clarity send unit sequence number
+
 class CONTENT {
 	function CONTENT() {
 	}
@@ -1910,5 +1912,261 @@ class CONTENT {
 		return true;
 	}
 	
+	/*this function decode the long unitIDs to short for both IIE2 and CS*/
+	function decodeUnitIDs( &$vars, &$node){
+		if ($vars['UNITID'] > "1000") //mean long unitID, need to decode
+		{	//totally 32 unitIDs(8 units, 4 levels) from IIE2 & 27 unitIDs 
+			//(from 9 units, 3 levels) from  CS  conditional checks are in 
+			//assending order
+			if($vars['UNITID'] == "1266909924912" || 
+			   $vars['UNITID'] == "1266911583646" || 
+			   $vars['UNITID'] == "1266911888224" || 
+			   $vars['UNITID'] == "1267072541890" ||
+			   $vars['UNITID'] == "1267081035590" ||
+			   $vars['UNITID'] == "1267081083350" ||
+			   $vars['UNITID'] == "1267081124570" ) 
+				$vars['UNITID'] = 1;
+			elseif ($vars['UNITID'] == "1266911374834" ||
+					$vars['UNITID'] == "1266911583647" || 
+					$vars['UNITID'] == "1266911888225" || 
+					$vars['UNITID'] == "1267072541891" ||
+					$vars['UNITID'] == "1267081035591" ||
+					$vars['UNITID'] == "1267081083351" ||
+					$vars['UNITID'] == "1267081124571" )
+				$vars['UNITID'] = 2;		
+			elseif ($vars['UNITID'] == "1266911374835" || 
+					$vars['UNITID'] == "1266911583648" || 
+					$vars['UNITID'] == "1266911888226" || 
+					$vars['UNITID'] == "1267072541892" ||
+					$vars['UNITID'] == "1267081035592" ||	
+					$vars['UNITID'] == "1267081083352" ||
+					$vars['UNITID'] == "1267081124572" )
+				$vars['UNITID'] = 3;
+			elseif ($vars['UNITID'] == "1266911374836" || 
+					$vars['UNITID'] == "1266911583649" || 
+					$vars['UNITID'] == "1266911888227" || 
+					$vars['UNITID'] == "1267072541893" || 
+					$vars['UNITID'] == "1267081035593" ||
+					$vars['UNITID'] == "1267081083353" ||
+					$vars['UNITID'] == "1267081124573" )
+				$vars['UNITID'] = 4;
+			elseif ($vars['UNITID'] == "1266911374837" || 
+					$vars['UNITID'] == "1266911583650" || 
+					$vars['UNITID'] == "1266911888228" || 
+					$vars['UNITID'] == "1267072541894" ||
+					$vars['UNITID'] == "1267081035594" ||
+					$vars['UNITID'] == "1267081083354" ||
+					$vars['UNITID'] == "1267081124574" )
+				$vars['UNITID'] = 5;
+			elseif ($vars['UNITID'] == "1266911374838" || 
+					$vars['UNITID'] == "1266911583651" || 
+					$vars['UNITID'] == "1266911888229" || 
+					$vars['UNITID'] == "1267072541895" ||
+					$vars['UNITID'] == "1267081035595" ||
+					$vars['UNITID'] == "1267081083355" ||
+					$vars['UNITID'] == "1267081124575" )
+				$vars['UNITID'] = 6;
+			elseif ($vars['UNITID'] == "1266911374839" || 
+					$vars['UNITID'] == "1266911583652" || 
+					$vars['UNITID'] == "1266911888230" ||
+					$vars['UNITID'] == "1267072541896" ||										
+					$vars['UNITID'] == "1267081035596" ||
+					$vars['UNITID'] == "1267081083356" ||
+					$vars['UNITID'] == "1267081124576" )
+				$vars['UNITID'] = 7;
+			elseif ($vars['UNITID'] == "1266911374840" || 
+					$vars['UNITID'] == "1266911583653" || 
+					$vars['UNITID'] == "1266911888231" || 
+					$vars['UNITID'] == "1267072541897" ||
+					$vars['UNITID'] == "1267081035597" ||
+					$vars['UNITID'] == "1267081083357" ||
+					$vars['UNITID'] == "1267081124577" )
+				$vars['UNITID'] = 8;
+			elseif ($vars['UNITID'] == "1267081035598" ||
+					$vars['UNITID'] == "1267081083358" ||
+					$vars['UNITID'] == "1267081124578" )
+				$vars['UNITID'] = 9;
+			else 
+				$vars['UNITID'] = 0;
+		}
+		//echo "<br />".$vars['UNITID']."<br />";
+	}
+	
+	function encodeUnitIDs(&$vars, &$node){
+		$sub_nodes = explode("<score ", $node);
+		//print_r($sub_nodes);
+		$num_of_subnodes = count($sub_nodes);
+		//echo $num_of_subnodes;
+		for ($value = 1; $value < $num_of_subnodes; $value++) {
+			//echo $sub_nodes[$value];
+			$look = strstr($sub_nodes[$value], "unit");
+			//echo "LOOK: ".$look."\n";
+			sscanf($look, "unit='%d'", $short_unitID);
+			//echo "short_unitID: ".$short_unitID."<br>";
+			//$short_unitID = 1;
+
+			//COURSEID + short_unitID = unique key to idientify the long unitID
+			//IIE2 has 4 courses, CS has 3 courses
+			if($vars['COURSEID'] == "1266909801303"){ //IIE2 level1
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1266909924912";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1266911374834";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1266911374835";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1266911374836";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1266911374837";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1266911374838";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1266911374839";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1266911374840"; 
+				else
+					$vars['UNITID'] = "0"; 
+			}
+			elseif ($vars['COURSEID'] == "1266910065334"){//IIE2 level2
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1266911583646";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1266911583647";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1266911583648";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1266911583649";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1266911583650";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1266911583651";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1266911583652";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1266911583653";
+				else
+					$vars['UNITID'] = "0";
+			}
+			elseif ($vars['COURSEID'] == "1266910065335"){//IIE2 level3
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1266911888224";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1266911888225";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1266911888226";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1266911888227";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1266911888228";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1266911888229";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1266911888230";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1266911888231";
+				else
+					$vars['UNITID'] = "0";
+			}
+			elseif ($vars['COURSEID'] == "1266910065336"){//IIE2 level4
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1267072541890";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1267072541891";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1267072541892";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1267072541893";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1267072541894";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1267072541895";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1267072541896";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1267072541897";
+				else
+					$vars['UNITID'] = "0";
+			}
+			elseif ($vars['COURSEID'] == "1267078592421"){//CS level1
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1267081035590";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1267081035591";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1267081035592";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1267081035593";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1267081035594";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1267081035595";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1267081035596";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1267081035597";
+				elseif($short_unitID == 9)
+					$vars['UNITID'] = "1267081035598";
+				else
+					$vars['UNITID'] = "0";
+			}
+			elseif ($vars['COURSEID'] == "1267078592422"){//CS level2
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1267072541890";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1267072541891";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1267072541892";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1267072541893";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1267072541894";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1267072541895";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1267072541896";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1267072541897";
+				elseif($short_unitID == 9)
+					$vars['UNITID'] = "1267081083358";
+				else
+					$vars['UNITID'] = "0";
+			}
+			elseif ($vars['COURSEID'] == "1267078592423"){//CS level3
+				if($short_unitID == 1)
+					$vars['UNITID'] = "1267081124570";
+				elseif($short_unitID == 2)
+					$vars['UNITID'] = "1267081124571";
+				elseif($short_unitID == 3)
+					$vars['UNITID'] = "1267081124572";
+				elseif($short_unitID == 4)
+					$vars['UNITID'] = "1267081124573";
+				elseif($short_unitID == 5)
+					$vars['UNITID'] = "1267081124574";
+				elseif($short_unitID == 6)
+					$vars['UNITID'] = "1267081124575";
+				elseif($short_unitID == 7)
+					$vars['UNITID'] = "1267081124576";
+				elseif($short_unitID == 8)
+					$vars['UNITID'] = "1267081124577";
+				elseif($short_unitID == 9)
+					$vars['UNITID'] = "1267081124578";
+				else
+					$vars['UNITID'] = "0";
+			}
+			else
+				$vars['UNITID'] = "0";
+		
+			//paste the $vars['UNITID'] back to $node
+			$replace = "unit='".$vars['UNITID']."'";
+			//echo "replace: ".$replace."\n";
+			$search2 = "unit='".$short_unitID."'";
+			//echo "search2: ".$search2."\n";
+			$sub_nodes[$value] = str_replace($search2, $replace, $sub_nodes[$value]);
+			//echo "DEBUG!!!!!!!!!!".$sub_nodes[$value]."\n\n";	
+		}
+	//print_r($sub_nodes);
+	$node = implode("<score ", $sub_nodes);
+	//print($node);
+	}
 }
 ?>

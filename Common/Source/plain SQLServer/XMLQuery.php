@@ -26,8 +26,8 @@ class XMLQuery {
 	//} else {
 	//	echo "post=$post";
 	//}
-	//Global $node;
-	//$node .= "<note>" .urlencode($post)  ."</note>";
+	global $node;
+	$node .= "<note>" .$post  ."</note>";
 	
 //        $post = '<query method="getRMSettings" rootID="10779" dbHost="1" />';
 //        $post = '<query method="countUsers" rootID="1" />';
@@ -113,7 +113,8 @@ class XMLQuery {
 		'QUESTIONID' => 0,
 		//v6.5.4.5 New fields for db version 2
 		//v6.5.4.5 which database version
-		'DATABASEVERSION' => 0,
+		// v6.5.6.6 Default to 6 so that certificate queries, which don't send it, will work for now
+		'DATABASEVERSION' => 6,
 		//v6.5.4.5 which product
 		'PRODUCTCODE' => 0,
 		'GROUPID' => 0,

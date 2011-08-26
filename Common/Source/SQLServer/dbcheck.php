@@ -20,14 +20,30 @@ require_once(dirname(__FILE__)."/dbProgress.php");
 	// make the database connection
 	global $db;
 	//$dbDetails = new DBDetails($vars['DBHOST']);
-	$dbDetails = new DBDetails('2');
-	$vars['ROOTID'] = 163;
+	if (isset($_REQUEST['dbHost'])) {
+		$dbHost = intval($_REQUEST['dbHost']);
+	} else {
+		$dbHost = 2;
+	}
+	if (isset($_REQUEST['rootID'])) {
+		$rootID = intval($_REQUEST['rootID']);
+	} else {
+		$rootID = 163;
+	}
+	$dbDetails = new DBDetails($dbHost);
+	$vars['ROOTID'] = $rootID;
 	// make the database connection
 	$vars['DBDRIVER']=$dbDetails->driver;
-	$node .="<note>".$dbDetails->dsn."</note>";
+	// You shouldn't display the full details, but what is it safe to display?
+	//$node .="<note>".$dbDetails->dsn."</note>";
+	$node .='<note>'.$dbDetails->driver.'://'.$dbDetails->user.':'.'********'.'@'.$dbDetails->host.'/'.$dbDetails->dbname.'</note>';
 	$db = &ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	//$db->debug = true;
+	// v3.6 UTF8 character mismatch between PHP and MySQL
+	if ($dbDetails->driver == 'mysql') {
+		$charSetRC = mysql_set_charset('utf8');
+	}
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	
 	// load the progress functions - all code is in this class now

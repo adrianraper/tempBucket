@@ -9,6 +9,9 @@
 	<xsl:template match="/">
 		<html>
 			<head>
+				<!-- You need this to avoid DOM warning: DOMElement::setAttribute() [domelement.setattribute]: string is not in UTF-8 -->
+				<link rel="shortcut icon" href="/Software/RM.ico" type="image/x-icon" />
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 				<title>Results Manager Generated Report</title>
 				
 				<link rel="stylesheet" type="text/css" href="../../reports/standard/dhtmlx/dhtmlxGrid/codebase/headerFooter.css" />

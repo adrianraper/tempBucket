@@ -25,6 +25,9 @@ class Condition {
 	var $active;
 	// v3.4.3
 	var $selfHost;
+	// v3.5 For subscription reminders
+	var $startDate;
+	var $startDay;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -46,6 +49,10 @@ class Condition {
 			$this->method = $conditionArray['method'];
 		if (isset($conditionArray['expiryDate'])) 
 			$this->expiryDate = $this->evaluateDateVariables($conditionArray['expiryDate']);
+		if (isset($conditionArray['startDate'])) 
+			$this->startDate = $this->evaluateDateVariables($conditionArray['startDate']);
+		if (isset($conditionArray['startDay'])) 
+			$this->startDay = $this->evaluateDateVariables($conditionArray['startDay']);
 		if (isset($conditionArray['registrationDate'])) 
 			$this->registrationDate = $this->evaluateDateVariables($conditionArray['registrationDate']);
 		// Must be a clever PHP way to do this...
@@ -87,6 +94,8 @@ class Condition {
 		$result = "?method=".$this->method;
 		if ($this->expiryDate)
 			$result .= "&expiryDate=".$this->expiryDate;
+		if ($this->startDate)
+			$result .= "&startDate=".$this->startDate;
 		if ($this->registrationDate)
 			$result .= "&registrationDate=".$this->registrationDate;
 		if ($this->select)
@@ -107,11 +116,20 @@ class Condition {
 		// for dates
 		// expecting {reference}, +/-, number, unit 
 		// eg {now}+3d or {now}-1y
-		sscanf($base, "{%[a-z]}%d%s", $reference, $number, $unit);
+		// Can I have fractions of a number? {now}-1.5m?
+		//sscanf($base, "{%[a-z]}%d%s", $reference, $number, $unit);
+		sscanf($base, "{%[a-z]}%f%s", $reference, $number, $unit);
 		//echo "ref=$reference number=$number unit=$unit<br/>";
 		switch ($reference) {
 			case "yearend":
 				$baseTimeStamp = mktime(0, 0, 0, 12, 31, date("Y")+1);
+				break;
+			// v3.5 If you want to get any date that matches today's day part.
+			// But this probably doesn't happen here.
+			case "day":
+				$built = date('d'); //$db->SQLDate('d');
+				// You don't want to do anything else with this
+				return $built;
 				break;
 			case "now":
 			default:
@@ -134,6 +152,9 @@ class Condition {
 			case "d":
 				//$built = date('Y-m-d', date_add($baseTimeStamp, new DateInterval("P$numberD")));
 				$built = date('Y-m-d', $baseTimeStamp + ($number * 86400)); // seconds in a day
+				break;
+			case "w":
+				$built = date('Y-m-d', $baseTimeStamp + ($number * 604800)); // seconds in a week - on average
 				break;
 			case "m":
 				//$built = date('Y-m-d', date_add($baseTimeStamp, new DateInterval("P$numberM")));

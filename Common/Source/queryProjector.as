@@ -375,6 +375,8 @@ sendQuery = function(queryXML, resultXML) {
 			}
 			//myTrace("query.rootID=" + this.queryNS.thisQuery.rootID + " query.method=" + this.queryNS.thisQuery.method);
 			// Once the query is created, we need to know which db to focus on
+			// v6.5.6.5 Since we add new queries, this rather stupid switch goes wrong and queries teh .mdb database!
+			/*
 			switch (this.queryNS.thisQuery.method.toUpperCase()) {
 			case "GETRMSETTINGS":
 			case "STARTSESSION":
@@ -409,6 +411,8 @@ sendQuery = function(queryXML, resultXML) {
 				var targetDB = "score";
 				break;
 			}
+			*/
+			var targetDB = "score";
 			// First of all we need to make the db connection
 			// v6.4.3 mdm script 2 - no need for callback - revert to 1
 			var thisCallBack = new Object();

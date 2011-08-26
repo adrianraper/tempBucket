@@ -25,6 +25,7 @@ function addDaysToTimestamp($timestamp, $days) {
 
 function specificEmail($account) {
 	global $dmsService;
+	// TODO: implement $dmsService->emailOps->sendOrEchoEmail
 	// If the admin email is different from the account email, cc
 	$emailArray = array("to" => $account->adminUser->email
 							,"data" => array("account" => $account)
@@ -38,7 +39,7 @@ function specificEmail($account) {
 	if (isset($_REQUEST['template'])) {
 		$templateID = $_REQUEST['template'];
 	} else {
-		$templateID = 'system_maintenance';
+		//$templateID = 'system_maintenance';
 		//$templateID = 'system_maintenance_CE_Feb2011';
 		//$templateID = 'system_maintenance_CLS_Feb2011';
 	}
@@ -72,7 +73,8 @@ if (stristr($testingTriggers, "System")) {
 	//$conditions['notLicenceType'] = 5;
 	$conditions['licenceType'] = 5;
 	//$conditions['accountType'] = 1; // Standard invoice
-	$accounts = $dmsService->accountOps->getAccounts(null, $conditions);
+	$rootList = array(163,5);
+	$accounts = $dmsService->accountOps->getAccounts($rootList, $conditions);
 	//$accounts = $dmsService->accountOps->getAccounts(array(1), $conditions);
 	if ($accounts) {
 		foreach ($accounts as $account) {

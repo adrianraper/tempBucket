@@ -52,6 +52,9 @@ package com.clarityenglish.resultsmanager.controller {
 			// If the username/password are defined as FlashVars then automate the login
 			var username:String = Application.application.parameters.username;
 			var password:String = Application.application.parameters.password;
+			// v4.3 If you pass in the dbHost as FlashVars, then send that to php too
+			// No, this can be done in loginProxy (where we also add rootID if that has been sent)
+			//var dbHost:uint = Application.application.parameters.dbHost;
 			
 			if (username && password) sendNotification(CommonNotifications.LOGIN, new LoginEvent(LoginEvent.LOGIN, username, password));
 			

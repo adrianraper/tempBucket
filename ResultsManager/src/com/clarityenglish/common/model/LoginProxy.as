@@ -37,8 +37,24 @@ package com.clarityenglish.common.model {
 				// Just push a null if it hasn't been passed
 				params.push(null);
 			}
+			// v3.4 If you pass dbHost, the backend wants to know it. But by the time you can read from here, it is too late.
+			// So we will have to stick to session variables.
+			/*
+			if (Application.application.parameters.dbHost) {
+				params.push(new Number(Application.application.parameters.dbhost));
+			} else {
+				// Just push a null if it hasn't been passed
+				params.push(null);
+			}
 			// v3.1 If you pass a productCode, then limit account information to that product
-			if (Application.application.parameters.productCode) params.push(new Number(Application.application.parameters.productCode));
+			// I think this is not used at all in the backend.
+			if (Application.application.parameters.productCode) {
+				params.push(new Number(Application.application.parameters.productCode));
+			} else {
+				// Just push a null if it hasn't been passed
+				params.push(null);
+			}
+			*/
 			
 			new RemoteDelegate("login", params, this).execute();
 		}

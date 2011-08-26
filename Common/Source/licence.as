@@ -571,6 +571,12 @@ licenceNS.setProductBranding = function(productCode) {
 	case 44:
 		branding = "Clarity/PlacementTest";
 		break;
+	case 50:
+		branding = "Clarity/CP2";
+		break;
+	case 48:
+		branding = "York/AUK";
+		break;
 	case 20:
 		branding = "NAS/MyC";
 		break;
@@ -602,9 +608,6 @@ licenceNS.setProductBranding = function(productCode) {
 		break;
 	case 42:
 		branding = "LanguageKey/HotelTest";
-		break;
-	case 48:
-		branding = "York/Project";
 		break;
 		
 	default:

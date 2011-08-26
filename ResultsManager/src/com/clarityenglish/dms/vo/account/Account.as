@@ -15,7 +15,8 @@
 		
 		public var name:String;
 		public var prefix:String;
-		public var email:String;
+		// v3.6 Drop AccountRoot F_Email
+		//public var email:String;
 		public var tacStatus:Number;
 		public var accountStatus:Number;
 		// v3.0.5 Change status handling
@@ -34,6 +35,7 @@
 		public var selfHostDomain:String;
 		// v3.5 Flexibility of email system
 		public var optOutEmails:Boolean;
+		public var optOutEmailDate:String;
 		
 		public var adminUser:User;
 		

@@ -67,7 +67,8 @@ class EmailService extends AbstractService {
 									);
 			}
 			// Note that sendEmails ignores the first parameter which is supposed to be $from. It picks up $from in the template header.
-			$this->emailOps->sendEmails('', $template, $dataArray);
+			// I should send back any errors generated - or should I handle them here?
+			return $this->emailOps->sendEmails('', $template, $dataArray);
 		}
 	}
 	

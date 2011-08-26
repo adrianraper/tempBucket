@@ -1,278 +1,112 @@
-{* Name: Account updated letter *}
+{* Name: Update letter *}
 {* Description: Contains licence details, the admin account, direct links to the programs and support information. *}
+{* Parameters: $account *}
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Clarity English - subscription update</title>
+		<title>Clarity English - Your account update</title>
 		<!-- <cc>accounts@clarityenglish.com</cc> -->
 		<!-- <bcc>andrew.stokes@clarityenglish.com</bcc> -->
-<style type="text/css">
-{literal}
-<!--
-.style1 {font-family: Verdana, Arial, Helvetica, sans-serif;
-font-size: 12px;}
-.style2 {font-family: Verdana, Arial, Helvetica, sans-serif;
-font-size: 11px;}
--->
-{/literal}
-</style>
 </head>
-<body class="style1">
-<!-- 
--- Introduction
--->
-<table border="0" cellpadding="0" cellspacing="0" width="600" >
-  <tbody>
-  <tr align="left" valign="top">
-    <td height="10" width="450"></td>
-    <td height="10" width="150"></td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="28" class="style1">Dear Colleague</td>
-    <td height="28"></td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="28" class="style1">Updated account: <strong>{$account->name}</strong></td>
-    <td height="28" class="style1"></td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="28" class="style1">This email is to confirm that your account has been updated.
-	Listed below are licence details of the
-	{if $account->titles|@count > 1}programs
-	{else}program
-	{/if} you have subscribed to. There is a section explaining how to get the support you and your colleagues need.
-	{foreach name=orderDetails from=$account->titles item=title}
-		{if $title->name|stristr:"Results Manager"}
-			{assign var='hasRM' value='true'}
-			Finally, as you have subscribed to Results Manager, the admin account details to start this program are included.
-		{/if}
-		{if $title->name|stristr:"Author Plus"}
-			{assign var='hasAP' value='true'}
-		{/if}
-	{/foreach}
-	</td>
-    <td height="28"></td>
-  </tr>
-	<tr align="left" valign="top">
-		<td colspan="2"><hr align="left" width="420" size="1" /></td>
-	</tr>
-	</tbody>
-</table>
-<!-- 
--- Section containing details of titles ordered
--->
-<br/><a style="background-color:#FFFF00"><b>1. Licence details</b></a><br/>
-<table border="0" cellpadding="0" cellspacing="0" width="600" >
-  <tbody>
-  <tr align="left" valign="top">
-    <td height="10" width="25"></td>
-    <td height="10" width="375"></td>
-    <td height="10" width="200" align="left"></td>
-  </tr>
 {foreach name=orderDetails from=$account->titles item=title}
-	{* Just totally skip IYJ Practice Centre *}
- {if !$title->name|stristr:"Practice Centre"}
-
-  {* Make this a more generic function that sets stuff the templates need for each title, but that isn't part of the php title class *}
-  {* But I can't get the variables that I set in the include file to come back to here. So see clumsy method below. *}
-
-  <tr align="left" valign="top">
-    <td class="style1">
-		<b>&#8226;</b>
-	</td>
-    <td class="style1">
-		<strong>{$title->name}</strong><br/>
-		{if in_array($title->productCode, array(3,9,10,33,38,45,46))}
-			{if $title->languageCode=='EN'} 
-				{assign var='languageName' value='International English'}
-			{elseif $title->languageCode=='NAMEN'} 
-				{assign var='languageName' value='North American English'}
-			{elseif $title->languageCode=='BREN'} 
-				{assign var='languageName' value='British English'}
-			{elseif $title->languageCode=='INDEN'} 
-				{assign var='languageName' value='Indian English'}
-			{elseif $title->languageCode=='ZHO'} 
-				{assign var='languageName' value='with Chinese instruction'}
-			{else} 
-				{assign var='languageName' value=$title->languageCode}
-			{/if}
-			Version: {$languageName}<br/>
+	{if $title->name|stristr:"Results Manager"}
+		{assign var='hasRM' value='true'}
+		{if $title->licenceType == 2}
+			{assign var='hasAARM' value='true'}
 		{/if}
-		Licence type: {get_dictionary_label name=licenceType data=$title->licenceType dictionary_source=AccountOps}<br/>
-		{if $title->name == "Results Manager"}
-			Number of teachers: {$title->maxTeachers}<br/>
-			Number of reporters: {$title->maxReporters}<br/>
-		{else}
-			Number of students: {$title->maxStudents}<br/>
-		{/if}
-		Hosted by: Clarity<br/>
-		Start date: {format_ansi_date ansiDate=$title->licenceStartDate}<br/>
-		Expiry date: {format_ansi_date ansiDate=$title->expiryDate}<br/>
-	</td>
-    <td class="style1">
-		{include file='file:includes/titleTemplateDetails.tpl' method='image'}
-		{* <img src="http://www.clarityenglish.com/images/englishonline/{$titleImage}" border="0" /> *}
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="10"></td>
-  </tr>
- {/if}
+	{/if}
+	{if $title->name|stristr:"Author Plus"}
+		{assign var='hasAP' value='true'}
+	{/if}
 {/foreach}
-  </tr>
- </tbody>
-</table>
+{* Also work out some other stuff about the licences to help with wording *}
+{if $account->titles|@count > 1}
+	{assign var='multipleTitles' value='true'}
+{/if}
+<div style="width:600px; margin:0 auto; padding:0;">
+	<img src="http://www.clarityenglish.com/images/email/email_banner.jpg" alt="Clarity English - Account information" style="border:0; margin:0; text-align:center"/>
+    <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Dear Colleague</p>
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">Updated account: {$account->name}</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">This email is to confirm that your Clarity English account has been updated. The email has reminders of some technical and administrative aspects of your account, so please keep it in a safe place, as you may want to refer to it later.</p>
+
+        <div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">In this email we deal with the following areas.</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">1. Licence details</p>
+			<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">2. The functions of your Administrator account</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">3. Setting up a direct link to your Clarity English programs</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">5. Support</p>
+        </div>
+	
 <!-- 
--- Information about starting
+-- 1. Licence Details
 -->
-	<br/><a style="background-color:#FFFF00"><b>2. Using the titles</b></a><br/>
-<table border="0" cellpadding="0" cellspacing="0" width="600" >
-  <tbody>
-  <tr align="left" valign="top">
-    <td height="10" width="450"></td>
-    <td height="10" width="150"></td>
-  </tr>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">1. Licence details</p>
+	{include file='file:includes/Title_Details_Section.tpl' enabled='on'}
 <!-- 
--- This is for Anonymous Access login at CE.com
+-- 2. Administrator account details
+-- 	Different sections for AA and LT
 -->
-{if $account->loginOption&128}
-  <tr align="left" valign="top">
-    <td class="style1">
-		<b>Login at www.ClarityEnglish.com/shared/{$account->prefix}</b>. This website will let your colleagues and learners
-		log in to use all the titles. As your account is set for Anonymous Access there is no login name. The password that everybody
-		should use is the same as your admin account listed below.<br/>
-		Password: {$account->adminUser->password}<br/>
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="4"></td>
-  </tr>
-  <tr align="left" valign="top">
-    <td class="style1">
-		You also have an admin account at <b>www.ClarityEnglish.com</b>. This is purely for you as the administrator and should not be
-		shared with anyone. You can use this account to change the password that everyone uses, and to change language versions.
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td class="style1">
-		Your admin account:<br/> 
-		Login name: {$account->adminUser->name}<br/>
-		Password: {$account->adminUser->password}<br/>
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="4"></td>
-  </tr>
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">2. The functions of your Administrator account</p>
+	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Login name: {$account->adminUser->name}</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Password: {$account->adminUser->password}</p>
+	</div>
+{if $hasAARM==true}
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Note that you should restrict access to the Administrator account to a single person. 
+		It should not be given out to learners, as this account gives access to usage statistics for all your programs.</p> 
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">The password for learners is:</p>
+	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+		{* TODO: How to pick up the first student in this account and get that password? *}
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Learner password: {$account->adminUser->password}</p>
+	</div>
 {else}
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Note that you should restrict access to the Administrator account to a single person. 
+		This account gives access to all teacher and learner records and to all add and delete functions. It is the master account. The Administrator can set up Teacher, Author, Reporter and Learner accounts which you can allocate to others
+		within your instiitution. (The exact nature of these accounts is explained in the Results Manager User Manual, see the link below.)</p>
+{/if}
 <!-- 
--- This section for Learner Tracking login at CE.com
+-- 3. Setting up a direct link to your Clarity English programs
 -->
-  <tr align="left" valign="top">
-    <td class="style1">
-		<b>Login at www.ClarityEnglish.com</b>. This website will let you, your colleagues and learners
-		log in to use all the titles.<br/>
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="4"></td>
-  </tr>
-  <tr align="left" valign="top">
-    <td class="style1">
-		Your admin account:<br/> 
-		Login name: {$account->adminUser->name}<br/>
-		Password: {$account->adminUser->password}<br/>
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="4"></td>
-  </tr>
-  <tr align="left" valign="top">
-    <td class="style1">
-	Note that the admin account should be restricted to a single administrator. It enables the user to access
-	all teacher and learner details and to delete everything.
-	</td>
-  </tr>
-{/if}
-  <tr align="left" valign="top">
-    <td height="10"></td>
-  </tr>
-{if $hasAP == 'true'}
-  <tr align="left" valign="top">
-    <td class="style1">
-		<b>Author Plus</b> has two parts - the Teacher tool that teachers use to create material and the Learner tool
-		that delivers the material. Only people that you designate in Results Manager as teachers will be able to use
-		the authoring tool. So teachers will see two icons when they login to www.ClarityEnglish.com for Author Plus.
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="10"></td>
-  </tr>
-{/if}
-{if $hasRM == 'true'}
-  <tr align="left" valign="top">
-    <td class="style1">
-		<b>Results Manager</b> is the tool that you will use to add groups, teachers and learners to your account.
-		You will find a Results Manager icon on your account page once you login to www.ClarityEnglish.com.
-		If you want to read the user guide directly, you can <a href="http://www.ClarityEnglish.com/Software/ResultsManager/Help/Guide.pdf" target="_blank">follow this link</a>.
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="10"></td>
-  </tr>
-{/if}
-  <tr align="left" valign="top">
-    <td class="style1">
-	If you have your own website and you want learners to link directly to the titles without going through www.ClarityEnglish.com, use the following direct links:
-	</td>
-  </tr>
-  </tbody></table>
-  <table border="0" cellpadding="0" cellspacing="0" width="600" >
-  <tbody>
-  <tr align="left" valign="top">
-    <td height="4" width="600"></td>
-  </tr>
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">3. Setting up a direct link to your Clarity English programs</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Learners can access your Clarity English programs from <a href="http://www.clarityenglish.com" target="_blank">www.clarityenglish.com</a>. 
+			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access. 
+			Please note that a direct link should only be pasted in a password-protected area of your website. This is to prevent access from unlicensed learners.</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Copy and paste the following direct {if $multipleTitles=='true'}links{else}link{/if} into your website:</p>
 {foreach name=orderDetails from=$account->titles item=title}
-	{if !$title->name|stristr:"Results Manager" && !$title->name|stristr:"Practice Centre"}
-  <tr align="left" valign="top">
-    <td class="style1">
-		{include file='file:includes/titleTemplateDetails.tpl' method='startPage'}
-		{* http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}<br/> *}
-	</td>
-  </tr>
-  <tr align="left" valign="top">
-    <td height="10"></td>
-  </tr>
-  {/if}
+{if !$title->name|stristr:"Results Manager" && !$title->name|stristr:"Practice Centre" && $title->productCode!='3'}
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 10px 0; padding:0; color:#000000;">{include file='file:includes/titleTemplateDetails.tpl' method='startPage'}</p>
+{/if}
 {/foreach}
-  </tbody></table>
-
 <!-- 
--- Information about admin
+-- 4. Support
 -->
-<table border="0" cellpadding="0" cellspacing="0" width="600" >
-  <tbody>
-  <tr align="left" valign="top">
-    <td height="10" width="450"></td>
-    <td height="10" width="150"></td>
-  </tr>
-
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">4. Support</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If at any time you have queries, requests or suggestions, please do not hesitate to contact the Clarity support team:</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">
+	Email: <a href="mailto:support@clarityenglish.com">support@clarityenglish.com</a> <br />
+	United Kingdom phone: 0845 130 5627<br />
+	Hong Kong phone: (+852) 2791 1787
+	</p>
 <!-- 
--- Support information
+-- End
 -->
-  <tr align="left" valign="top">
-    <td class="style1">
-		<br/><a style="background-color:#FFFF00"><b>3. Support.</b></a><br/>
-		If at any time you have any queries, please do not hesitate to contact our Technical Support team:<br/>
-		Email: <a href="mailto:support@clarityenglish.com">support@clarityenglish.com</a><br/>
-		Phone: (UK) 0845 130 5627; (Hong Kong) +852 2791 1787<br/>
-		<br/>
-		Please also visit <a href="www.ClaritySupport.com">www.ClaritySupport.com</a> for user guides, tutorials and other support.<br/>
-		<br/>
-	</td>
-  </tr>
+<!-- 
+-- Resellers' contact details - if any
+-->
+{* Simpler to handle all resellers in one file
+	{assign var="resellerDetails" value="`$template_dir`includes/Reseller_Details_`$account->resellerCode`.tpl"}
+	{if ($resellerDetails|file_exists)}
+		{include file="file:includes/Reseller_Details_`$account->resellerCode`.tpl"}
+	{/if}
+*}
+	{include file='file:includes/Reseller_Details.tpl' resellerCode=$account->resellerCode}
 <!-- 
 -- Email signature 
 -->
-	{include file='file:includes/TechnicalDirector_Email_Signature.tpl'}
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 10px 0; padding:0; color:#000000;">Finally, may I take this opportunity to thank you for choosing Clarity programs. We will do everything we can to help you make them a great success with your colleagues and your learners.</p>
+{include file='file:includes/TechnicalDirector_Email_Signature.tpl'}
+</div>
+</div>
 </body>
 </html>

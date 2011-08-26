@@ -23,7 +23,7 @@
 	<mx:Style source="/../css/clarity.css" />
 	
 	<!--
-			// For testing Sam's initializing problem - which turned out to be using Flash 9.0.16.0
+		// For testing Sam's initializing problem - which turned out to be using Flash 9.0.16.0
 	-->
 	<mx:Script>
 		<![CDATA[
@@ -141,7 +141,22 @@
 			 */
 			public function configureTabsForTitles(Titles:Array):void {
 				// See if every title is an AA licence.
+				// v3.6 This should now be based on the licence type of RM
+				// Except that you haven't got title for RM!
+				// DONE. Sort this out later.
+				// Now picked up and saved from login
 				var allAAlicences:Boolean = true;
+				if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
+					Constants.licenceType == Title.LICENCE_TYPE_TT)
+					allAAlicences = false;
+				/*
+				for each (var title:Title in Titles) {
+					if (title.productCode == 2) {
+						TraceUtils.myTrace("RM licence type is " + title.licenceType);
+						allAAlicences = (title.licenceType & Title.LICENCE_TYPE_AA) == Title.LICENCE_TYPE_AA;
+						break;
+					}
+				}
 				for each (var title:Title in Titles) {
 					TraceUtils.myTrace("checking " + title.name + " type=" + title.licenceType);
 					if (title.licenceType != Title.LICENCE_TYPE_AA) {
@@ -149,15 +164,19 @@
 						break;
 					}
 				}
+				*/
 				if (allAAlicences) {
 					if (mainStack.contains(managementView)) {
 						TraceUtils.myTrace("so hide management view");
 						mainStack.removeChild(managementView);
 					}
+					// v3.6 We will now show the Control Centre as part of the AA RM, but hide the access control part.
+					/*
 					if (mainStack.contains(loginOptsView)) {
 						TraceUtils.myTrace("and loginopts");
 						mainStack.removeChild(loginOptsView);
 					}
+					*/
 				} else {
 					if ((mainStack.contains(managementView))) {
 						//mainStack.addChild(managementView);
@@ -185,6 +204,15 @@
 						TraceUtils.myTrace("and loginopts");
 						mainStack.removeChild(loginOptsView);
 					}
+				} else if (directStart=="ControlCentre") {
+					TraceUtils.myTrace("Direct start to control centre");
+					if (!(mainStack.contains(loginOptsView))) {
+						TraceUtils.myTrace("so add loginOptsView");
+						mainStack.addChild(loginOptsView);
+					}
+					// And how to make this the initially shown tab?
+					mainStack.selectedIndex = 2;
+					
 				} else {
 					showAlert("Sorry, there is no direct access to Results Manager for " + directStart, "Starting problem");
 				}

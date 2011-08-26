@@ -583,6 +583,13 @@ controlNS.setupPaths = function() {
 			}
 			myTrace("and load brand from: " + _global.ORCHID.paths.brandMovies,0);
 		}
+		// v6.5.6.5 Allow brand movies to have prefix in it. If it does, substitute it here.
+		// It is possible that you don't know the prefix at this point. So better to do it in OrchidObjects
+		//var prefixString = "#prefix#";
+		//if (_global.ORCHID.paths.brandMovies.indexOf(prefixString)>=0) {
+		//	_global.ORCHID.paths.brandMovies = findReplace(_global.ORCHID.paths.brandMovies,prefixString,_global.ORCHID.commandLine.prefix);
+		//}
+		
 		// v6.3.4 Should you load courses from somewhere else?
 		if (_global.ORCHID.commandLine.content == undefined) {
 			_global.ORCHID.paths.content = _global.ORCHID.paths.root;
@@ -655,10 +662,24 @@ controlNS.setupPaths = function() {
 		// Or you could hardcode good domains. This would mean that you need to update control.swf each time
 		// you add a new CDN or something.
 		// http://claritymain/Content/
-		var contentDomain = _global.ORCHID.paths.content.split("/").slice(0,-2).join("/");
-		//System.security.allowDomain("http://claritymain, http://www.ClarityEnglish.com");
-		System.security.allowDomain(contentDomain);
-		myTrace("allowDomain from " + contentDomain);
+		// /Content/
+		// http://d1evmpzy97k5y8.cloudfront.net/
+		/*
+		if (_global.ORCHID.paths.content.substr(0,7)=='http://') {
+			var contentDomain = _global.ORCHID.paths.content.substr(0, _global.ORCHID.paths.content.indexOf("/",7));
+		} else {
+			var contentDomain = _global.ORCHID.paths.content.split("/").slice(0,-2).join("/");
+		}
+		*/
+		if (_global.ORCHID.paths.content.substr(0,7)=='http://') {
+			var domainEnd = _global.ORCHID.paths.content.indexOf("/",7);
+			if (domainEnd<=0) domainEnd=_global.ORCHID.paths.content.length;
+			var contentDomain = _global.ORCHID.paths.content.substr(0, domainEnd);
+			//System.security.allowDomain("http://claritymain, http://www.ClarityEnglish.com");
+			//System.security.allowDomain("http://claritymain, http://www.ClarityEnglish.com");
+			System.security.allowDomain(contentDomain);
+			myTrace("allowDomain from " + contentDomain);
+		}
 		
 		if (_global.ORCHID.commandLine.MGSName != undefined) {
 			myTrace("and use MGSName: " + _global.ORCHID.commandLine.MGSName,0);

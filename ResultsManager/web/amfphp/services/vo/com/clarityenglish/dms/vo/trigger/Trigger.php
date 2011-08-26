@@ -16,6 +16,7 @@ class Trigger {
 	var $executor;
 	var $frequency;
 	var $timeStamp; // used if we want to run the trigger against a date that is not today
+	var $messageType;
 
 	function Trigger($timeStamp = null) {
 		//echo "build trigger for $timeStamp";
@@ -46,6 +47,7 @@ class Trigger {
 		$this->validToDate = $obj->F_ValidToDate;
 		$this->executor = $obj->F_Executor;
 		$this->frequency = $obj->F_Frequency;
+		$this->messageType = $obj->F_MessageType;
 		
 		// Property that needs interpreting
 		$this->parseCondition($obj->F_Condition);
@@ -66,6 +68,7 @@ class Trigger {
 		$array['F_ValidToDate'] = $this->validToDate;
 		$array['F_Executor'] = $this->executor;
 		$array['F_Frequency'] = $this->frequency;
+		$array['F_MessageType'] = $this->messageType;
 
 		$array['F_Condition'] = $this->condition->toString();
 
@@ -82,6 +85,7 @@ class Trigger {
 						"$prefix.F_ValidFromDate",
 						"$prefix.F_ValidToDate",
 						"$prefix.F_Frequency",
+						"$prefix.F_MessageType",
 						"$prefix.F_Executor");
 		
 		return implode(",", $fields);

@@ -146,6 +146,11 @@ class Log_file extends Log
         register_shutdown_function(array(&$this, '_Log_file'));
     }
 
+	// Clarity. Let you change the filename
+	function setFileName($filename) {
+		$this->_filename = $filename;
+	}
+	
     /**
      * Destructor
      */

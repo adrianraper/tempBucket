@@ -1,17 +1,21 @@
 <?php
-
+// The whole of licence ops is deprecated, so remove it.
 class LicenceOps {
 
 	var $db;
 
 	function LicenceOps($db) {
+	/*
 		$this->db = $db;
 		
 		$this->manageableOps = new ManageableOps($db);
 		$this->copyOps = new CopyOps($db);
+	*/
 	}
 
 	// v3.2 This function is deprecated
+	// So remove it
+	/*
 	function getLicences() {
 		$sql = 	<<<EOD
 				SELECT l.F_ProductCode, l.F_UserID
@@ -107,10 +111,13 @@ EOD;
 		
 		return true;
 	}
+	*/
 	
 	/**
 	 * Dynamically generate a licence.ini file from the given account id and product code
 	 */
+	// This function is deprecated as we don't use licence files anymore
+	/*
 	function generateLicenceFile($accountID, $productCode) {
 		// Since this may not be included (if this is a RM install, for example) we can't create AccountOps or TemplateOps in the constructor.
 		$accountOps = new AccountOps($this->db);
@@ -134,6 +141,7 @@ EOD;
 		
 		return $licenceFileText;
 	}
+	*/
 
 }
 

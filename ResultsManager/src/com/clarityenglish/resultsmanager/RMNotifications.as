@@ -7,7 +7,9 @@
 	public class RMNotifications {
 		public static const STARTUP:String = "startup";
 		public static const UPDATE_LOGIN_OPTS:String = "update_login_opts";
+		public static const UPDATE_EMAIL_OPTS:String = "update_email_opts";
 		public static const LOGINOPTS_LOADED:String = "loginopts_loaded";
+		public static const EMAILOPTS_LOADED:String = "emailopts_loaded";
 		public static const HIDDEN_CONTENT_LOADED:String = "hidden_content_loaded";
 		public static const EDITED_CONTENT_LOADED:String = "edited_content_loaded";
 		public static const SET_CONTENT_VISIBLE:String = "set_content_visible";

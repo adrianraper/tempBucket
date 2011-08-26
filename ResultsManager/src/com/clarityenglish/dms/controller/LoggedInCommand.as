@@ -21,6 +21,8 @@ package com.clarityenglish.dms.controller {
 			
 			Constants.userID = data.userID.toString();
 			Constants.userType = data.userType as Number;
+			// v3.6 If I send back database details as well, pick them up here for display
+			Constants.dbDetails = data.dbDetails as String;
 			
 			// v3.0.5 Change status handling
 			facade.registerProxy(new DictionaryProxy( [ "accountStatus",

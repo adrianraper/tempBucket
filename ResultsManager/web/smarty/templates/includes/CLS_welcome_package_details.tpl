@@ -37,7 +37,7 @@
 		{* The language code should be decoded from the table *}
 		{* I have no idea how to get the program description from the name *}
 		{* And we would ideally only list the language if there is more than one they could have chosen *}
-		{if in_array($title->productCode, array(3,9,10,33,38,45,46,48,1001))}
+		{if in_array($title->productCode, array(3,9,10,33,38,45,46,48,49,1001))}
 			{if $title->languageCode=='EN'} 
 				{assign var='languageName' value='(International English)'}
 			{elseif $title->languageCode=='NAMEN'} 

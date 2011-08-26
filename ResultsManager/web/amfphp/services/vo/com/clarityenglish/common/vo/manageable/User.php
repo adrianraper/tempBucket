@@ -75,8 +75,10 @@ class User extends Manageable {
 	 * @param obj The object returned for the record by FetchNextObject()
 	 */
 	function fromDatabaseObj($obj, $db = null) {
+		// see Group.php for note about MySQL data types
 		//$this->id = $obj->F_UserID;
-		$this->userID = $obj->F_UserID;
+		//$this->userID = $obj->F_UserID;
+		$this->userID = intval($obj->F_UserID);
 		//$this->name = $this->apos_decode($obj->F_UserName);
 		$this->name = $obj->F_UserName;
 		$this->email = $obj->F_Email;

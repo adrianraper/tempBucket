@@ -10,12 +10,12 @@
 			
 			<lit name="notice">Notice</lit>
 			<lit name="noStudentsAlert">The account you are logging into has a very large number of users. For performance reasons learners will be hidden and some functions will be disabled.</lit>
-			<lit name="noStudentsDeleteAlert">RM is running in 'no students' mode. Be aware that you might be deleting students that you cannot see! Only click yes if you are certain of what you are doing.</lit>
+			<lit name="noStudentsDeleteAlert">RM is running in 'no students' mode. You might be deleting students that you cannot see! Only click yes if you are certain of what you are doing.</lit>
 			
 			<lit name="userManagementTab">Management Centre</lit>
 			<lit name="licenceManagementTab">Licences</lit>
-			<lit name="usageStatisticsTab">Usage statistics</lit>
-			<lit name="loginOptionsTab">Access control</lit>
+			<lit name="usageStatisticsTab">Usage Statistics</lit>
+			<lit name="loginOptionsTab">Control Centre</lit>
 			
 			<lit name="tree_collapseAll">Collapse all</lit>
 			<lit name="tree_showAllGroups">Show all groups</lit>
@@ -190,6 +190,7 @@
 			<lit name="licenceType3">Network/Concurrent Access</lit>
 			<lit name="licenceType4">Single</lit>
 			<lit name="licenceType5">Individual</lit>
+			<lit name="licenceType6">Transferable Tracking</lit>
 			
 			<lit name="draggingItems">Dragging ({itemCount}) items.</lit>
 			<lit name="generateReportWindowTitle">What do you want to include in the report?</lit>
@@ -251,6 +252,9 @@
 			<lit name="filteredTreeAlert">The tree is filtered and this might affect hidden users. Are you sure you want to continue?</lit>
 			<lit name="noExpiredUsers">There are no expired learners within the selected group(s).</lit>
 			
+			<lit name="accessControl">Learner access control</lit>
+			<lit name="emailControl">Email control</lit>
+			
 			<lit name="loginTypeLoginOpt">To log in, what should a learner type?</lit>
 			<lit name="usernameOnly">Name</lit>
 			<lit name="studentIDOnly">Learner ID</lit>
@@ -273,7 +277,21 @@
 			<lit name="srCustom4">Custom 4</lit>
 			<lit name="updateLoginOpts">Update login options</lit>
 			<lit name="revertLoginOpts">Reset login options</lit>
-			
+
+			<lit name="adminEmail">Administrator email</lit>
+			<lit name="otherEmail">Other contact</lit>
+			<lit name="emailHeader1">Who</lit>
+			<lit name="emailHeader2">Email</lit>
+			<lit name="emailHeader3">Subscription reminders</lit>
+			<lit name="emailHeader4">Usage statistics</lit>
+			<lit name="emailHeader5">Service notices</lit>
+			<lit name="emailHeader6">Support information</lit>
+			<lit name="emailHeader7">Upgrade information</lit>
+			<lit name="emailHeader8">Product information</lit>
+			<lit name="updateEmails">Update email options</lit>
+			<lit name="revertEmails">Reset email options</lit>
+			<lit name="controlCentreHelpTitle">Control Centre - what happens on this screen?</lit>
+
 			<lit name="excelImportInstructions">The help panel shows you how to import users from Excel.</lit>
 			
 			<lit name="userAccessError">You do not have permission to access all these users [{ids}].</lit>
@@ -304,6 +322,22 @@
 					<p class="list">What do all the user and group icons mean? <u><a href="{helpFile}{iconsRef}{pdfBookmarks}" target="_blank">More details...</a></u></p>
 					<p class="spacing"></p>
 					<p class="list">Finding a user. Right-click on a group and choose Search. More details...<u><a href="{searchAnimation}" target="_blank">Click to watch...</a></u></p>
+				]]>
+			</lit>
+			<lit name="loginOptsHelp">
+				<![CDATA[
+					<p><b>Learner access control</b> lets you set what learners have to type when they login. You can use name, ID or both. You can use or ignore a password.</p>
+					<p>Self-register. If you want to allow any learner to register themselves to use the program, set the information that they should type. Otherwise only learners whose names are already in Results Manager will be allowed to login.</p>
+					<p></p>
+					<p><b>Email control</b> lets you control which email addresses receive which type of email from Clarity:</p>
+					<ul>
+					<li>Subscription reminders. These emails warn you before your subscription becomes due.</li>
+					<li>Usage statistics. Monthly emails that let you see, with one click, the usage statistics for your institution.</li>
+					<li>Service notices. Warnings of possible disruption to the servers for maintenance or upgrades. </li>
+					<li>Support information. Teacher support materials.</li>
+					<li>Upgrade information. Information about the latest upgrades to the programs in your account.</li>
+					<li>Product information. Information about Clarity programs.</li>
+					</ul>
 				]]>
 			</lit>
 			<lit name="usageStatisticsHelp">
@@ -426,7 +460,7 @@
 			<lit name="contentLocationFormItem">Content location:</lit>
 			<lit name="contentLocationHelp">(only fill this in for Author Plus - or for special cases)</lit>
 			<lit name="AuthorPlusContentLocationEmpty">You must fill in a content location for Author Plus, usually it is just the account prefix.</lit>
-			<lit name="mismatchedLanguageCode">One of the titles has a language code set that is NOT in the database (or is empty).</lit>
+			<lit name="mismatchedLanguageCode">One of the titles, {productCode}, has a language code, {languageCode}, set that is NOT in the database (or is empty).</lit>
 			
 			<lit name="rootIDFormItem">RootID:</lit>
 			<lit name="nameFormItem">Name:</lit>
@@ -445,6 +479,7 @@
 			<lit name="selfHostFormItem">Self-hosted:</lit>
 			<lit name="loginOptionFormItem">Student login option:</lit>
 			<lit name="optOutEmailsFormItem">Opt out of emails:</lit>
+			<lit name="optOutEmailDateFormItem">until</lit>
 			
 			<lit name="keyColumn">Licence key</lit>
 			<lit name="valueColumn">Licence value</lit>

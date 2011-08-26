@@ -11,19 +11,19 @@
 		<xsl:for-each select="/report/row[@userName=$myName and not(@sessionID=preceding-sibling::row/@sessionID)]">
 			<xsl:call-template name="testSectionScores">
 				<xsl:with-param name="myName" select="@userName"/>
-				<xsl:with-param name="myTest">ILA Level Check A3</xsl:with-param>
+				<xsl:with-param name="myTest">LearnEnglish Level Test A</xsl:with-param>
 				<xsl:with-param name="mySessionID" select="@sessionID"/>
 				<xsl:with-param name="myStartDate" select="@start_date"/>
 			</xsl:call-template>
 			<xsl:call-template name="testSectionScores">
 				<xsl:with-param name="myName" select="@userName"/>
-				<xsl:with-param name="myTest">ILA Level Check B3</xsl:with-param>
+				<xsl:with-param name="myTest">LearnEnglish Level Test B</xsl:with-param>
 				<xsl:with-param name="mySessionID" select="@sessionID"/>
 				<xsl:with-param name="myStartDate" select="@start_date"/>
 			</xsl:call-template>
 			<xsl:call-template name="testSectionScores">
 				<xsl:with-param name="myName" select="@userName"/>
-				<xsl:with-param name="myTest">ILA Level Check C3</xsl:with-param>
+				<xsl:with-param name="myTest">LearnEnglish Level Test C</xsl:with-param>
 				<xsl:with-param name="mySessionID" select="@sessionID"/>
 				<xsl:with-param name="myStartDate" select="@start_date"/>
 			</xsl:call-template>
@@ -55,7 +55,7 @@
 				<xsl:variable name="readingDuration" select="php:function('XSLTFunctions::secondsToMinutes', string(sum(/report/row[@userName=$myName and @unitName=$myTest and @sessionID=$mySessionID and substring-before(@exerciseName,' ')='Reading']/@duration)))" />
 				 -->
 				<xsl:choose>
-					<xsl:when test="$myTest='ILA Level Check A3'">
+					<xsl:when test="$myTest='LearnEnglish Level Test A'">
 						<td>
 							<xsl:choose>
 								<xsl:when test="$grammarCorrect &lt; 5"> A0 </xsl:when>
@@ -89,7 +89,7 @@
 							</xsl:choose>
 						</td>
 					</xsl:when>
-					<xsl:when test="$myTest='ILA Level Check B3'">
+					<xsl:when test="$myTest='LearnEnglish Level Test B'">
 						<td>
 						<xsl:choose>
 							<xsl:when test="$grammarCorrect &lt; 8"> A2 </xsl:when>
@@ -119,7 +119,7 @@
 							</xsl:choose>
 						</td>
 					</xsl:when>
-					<xsl:when test="$myTest='ILA Level Check C3'">
+					<xsl:when test="$myTest='LearnEnglish Level Test C'">
 						<td>
 						<xsl:choose>
 							<xsl:when test="$grammarCorrect &lt; 8"> B2 </xsl:when>
@@ -162,7 +162,7 @@
 	<xsl:template match="/">
 		<html>
 			<head>
-				<title>BC ILA Level Check CEF Summary Report</title>
+				<title>LearnEnglish Level Test Summary Report</title>
 				<link href="../../reports/printable/report.css" rel="stylesheet" type="text/css" />
 				<script>
 					function truncateText(text, maxLength) {

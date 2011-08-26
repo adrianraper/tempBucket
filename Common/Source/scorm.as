@@ -520,7 +520,7 @@ scormNS.initCallback = function(response) {
 	if (scormNS.SCORMjsVersion.error == undefined) {
 		scormNS.version = scormNS.SCORMjsVersion.value;
 		// this value will let you set the variable names you need for talking to
-		// different versions of SCORM (1.2 and 1.3)
+		// different versions of SCORM (1.2 and 2004)
 	} else {
 		// we will make an assumption about the version then (in getCMIName)
 	}

@@ -18,6 +18,7 @@
 		public static const LICENCE_TYPE_CT:int = 3;
 		public static const LICENCE_TYPE_SINGLE:int = 4;
 		public static const LICENCE_TYPE_I:int = 5;
+		public static const LICENCE_TYPE_TT:int = 6;
 		
 		/**
 		 * The collection of courses belonging to this title

@@ -287,7 +287,6 @@ ProgramSettingsObject.prototype.load = function() {
 					_global.ORCHID.paths.streamingMedia=_global.ORCHID.functions.addSlash(_global.ORCHID.paths.content) + _global.ORCHID.functions.addSlash("streamingMedia");
 					myTrace("default paths.streamingMedia =" + _global.ORCHID.paths.streamingMedia);
 				}
-				
 				// I'm still not going to touch the MGS root - hoping to drop it altogether
 				this.master.MGSRoot = tN.attributes.MGSRoot;
 				//myTrace("account settings: key=" + tN.toString());
@@ -323,6 +322,10 @@ ProgramSettingsObject.prototype.load = function() {
 									_global.ORCHID.root.licenceHolder.licenceNS.licenceServer = new Object();
 								}
 								_global.ORCHID.root.licenceHolder.licenceNS.licenceServer.name = tN.attributes[specialKey];
+								break;
+							// v6.5.6.5 Allow licence to override brandMovies
+							case "brandMovies":
+								_global.ORCHID.paths.brandMovies = tN.attributes[specialKey];
 								break;
 							// v6.5.5.5 Allow forced literal language from here too (particularly useful for Author Plus)
 							case "language":
@@ -365,6 +368,14 @@ ProgramSettingsObject.prototype.load = function() {
 		// v6.4.3 Check that the database connection is closed now that you are logged in
 		myTrace("try to call dbClose");
 		_global.ORCHID.root.queryHolder.dbClose();
+
+		// v6.5.6.5 Allow brand movies to have prefix in it. If it does, substitute it here.
+		// You've waited this long because brandMovies might come from licenceAttributes or location.txt
+		var prefixString = "#prefix#";
+		if (_global.ORCHID.paths.brandMovies.indexOf(prefixString)>=0) {
+			_global.ORCHID.paths.brandMovies = _global.ORCHID.functions.addSlash(findReplace(_global.ORCHID.paths.brandMovies,prefixString,_global.ORCHID.commandLine.prefix));
+			myTrace("replacing prefix in brandMovies to be " + _global.ORCHID.paths.brandMovies);
+		}		
 		
 		// a successful call will have ...
 		// v6.5.4.3 Yiu, will have if there is no error, account expiry
@@ -3140,6 +3151,8 @@ ScoreObject.prototype.writeOut = function() {
 							'duration="' + this.duration + '" ' +
 							// v6.5.5.3 Pass the courseID which we will now also store in T_Score ready for removing it from T_Session
 							'courseID="' + myCourseID + '" ' +
+							// v6.5.6.6 Pass the productCode which we will save in T_Score
+							'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' +
 							//'sessionDuration="' + nDurationInSec + '" ' +
 							// pass the database version that you read during getRMSettings
 							'databaseVersion="' + _global.ORCHID.programSettings.databaseVersion + '" ' +

@@ -8,6 +8,7 @@ package com.clarityenglish.resultsmanager.controller {
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.resultsmanager.model.LoginOptsProxy;
+	import com.clarityenglish.resultsmanager.model.EmailOptsProxy;
 	import com.clarityenglish.resultsmanager.model.ManageableProxy;
 	import com.clarityenglish.resultsmanager.model.ReportProxy;
 	import com.clarityenglish.resultsmanager.model.UploadProxy;
@@ -42,6 +43,8 @@ package com.clarityenglish.resultsmanager.controller {
 			Constants.maxTeachers = data.maxTeachers as Number;
 			Constants.maxAuthors = data.maxAuthors as Number;
 			Constants.maxReporters = data.maxReporters as Number;
+			// v3.6 For RM licence type
+			Constants.licenceType = data.licenceType as Number;
 			
 			TraceUtils.myTrace("loggedInCommand for " + Constants.userID + " as " + Constants.userType + " called " + Constants.userName); // + " data.userID=" + data.userID);
 			TraceUtils.myTrace("member of group(s) " + Constants.groupID.toString() + "=" + Constants.parentGroupIDs.toString());
@@ -54,6 +57,7 @@ package com.clarityenglish.resultsmanager.controller {
 			facade.registerProxy(new LicenceProxy());
 			facade.registerProxy(new UsageProxy());
 			facade.registerProxy(new LoginOptsProxy());
+			facade.registerProxy(new EmailOptsProxy());
 			
 			// Send another COPY_LOADED notification in case the language has changed (this forces everything to update its copy)
 			sendNotification(CommonNotifications.COPY_LOADED);

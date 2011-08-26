@@ -371,6 +371,10 @@ exerciseNS.clearExercise = function(exerciseNum) {
 	// v6.4.1 clear out any media screens still showing
 	_global.ORCHID.root.buttonsHolder.MessageScreen.media_SP.removeMovieClip();
 	
+	// v6.5.6.6 Specifically clear the shrink/expand buttons used in CP2 so they don't hang around.
+	_global.ORCHID.root.buttonsHolder.ExerciseScreen.shrinkExample_pb.setEnabled(false);
+	_global.ORCHID.root.buttonsHolder.ExerciseScreen.expandExample_pb.setEnabled(false);
+	
 	//remove reading all the scroll panes
 	for (var i in _global.ORCHID.root.buttonsHolder.ExerciseScreen) {
 		if (_global.ORCHID.root.buttonsHolder.ExerciseScreen[i]._name != undefined &&

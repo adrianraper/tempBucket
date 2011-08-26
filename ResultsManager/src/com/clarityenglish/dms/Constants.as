@@ -11,7 +11,7 @@
 		 * The version of the software, used to tie bugs and version control together.
 		 * Keep this in sync with RM since there is so much common code.
 		 */
-		public static var version:String = "3.6.1";
+		public static var version:String = "3.6.2";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
@@ -21,7 +21,8 @@
 		/** This is used to determine what to open when the user selected 'Open in Results Manager' in DMS.  This page must accept
 		 *  username and password as request parameters */
 		public static function get RESULTS_MANAGER_URL():String {
-			include "/../../../return_resultsmanager_url.txt";
+			//include "/../../../return_resultsmanager_url.txt";
+			return 'ResultsManager/Start.php';
 		}
 		
 		/** This is overridden by any passed parameter */
@@ -65,6 +66,11 @@
 		 * The type of the logged in user - for DMS this is always User.USER_TYPE_DMS
 		 */
 		public static var userType:Number;
+		
+		/**
+		 * The database connection string
+		 */
+		public static var dbDetails:String;
 		
 		/**
 		 * Use this section to define colours and other style settings that are not in css

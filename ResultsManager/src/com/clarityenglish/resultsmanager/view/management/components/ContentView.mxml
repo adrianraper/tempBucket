@@ -411,7 +411,8 @@
 			if (thisExercise)
 				theLink += '&startingPoint=ex:' + thisExercise.id;
 				
-			// v3.4 We only need to tell them the IDs I think
+			// v3.4 We only need to tell them the IDs I think.
+			// v3.6 Surely it is better to show the whole URL - I mean, why not?
 			Alert.show(theLink, 'Direct start IDs', Alert.OK);
 		}
 		
@@ -497,14 +498,16 @@
 			sentVariables.preview = 'true';
 			// I won't send password, you can type this again. In the end I should set up a localConnection query so that Orchid 
 			// can ask you to provide name/password and direct start stuff.
-			/*
+			// v3.6 Can we try again?
+			
 			if (thisCourse)
 				sentVariables.course = thisCourse.id;
-			if (thisUnit)
+			if (thisUnit) {
 				sentVariables.startingPoint = 'unit:' + thisUnit.id;
-			if (thisExercise)
+			} else if (thisExercise) {
 				sentVariables.startingPoint = 'ex:' + thisExercise.id;
-			*/
+			}
+			
 			urlRequest.data = sentVariables;
 			navigateToURL(urlRequest, "_blank");
 		}

@@ -70,7 +70,11 @@ class Group extends Manageable {
 	 * @param obj The object returned for the record by FetchNextObject()
 	 */
 	function fromDatabaseObj($obj) {
-		$this->id = $obj->F_GroupID;
+		// In SQLServer, this comes back as integer. In MySQL it comes back as string.
+		// Can I fix this in adodb? I can't see where. Hmmm.
+		//NetDebug::trace('group: $obj->F_GroupID.type='.gettype(intval($obj->F_GroupID)));
+		//$this->id = $obj->F_GroupID;
+		$this->id = intval($obj->F_GroupID);
 		//$this->name = $this->apos_decode($obj->F_GroupName);
 		$this->name = $obj->F_GroupName;
 		$this->description = $obj->F_GroupDescription;

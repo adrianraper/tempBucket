@@ -115,6 +115,7 @@
 <!--Subscription details-->
 {* We currently only have two mutually exclusive packages. So if they have ordered TB it means they have package 1, if IYJ then package 2 *}
 {* Not at all sure how we would work this out if more packages become overlapping. Will need a package ID(s) somewhere in T_AccountRoot *}
+{* It is now based on offerID, which we store in T_Subscription. How to get that? *}
 {foreach name=orderDetails from=$account->titles item=title}
     {if ($title->productCode==9)} 
 		{assign var='generalEnglishpackage' value='true'}
@@ -126,7 +127,7 @@
 {if $generalEnglishpackage=='true'}
 	{assign var='thisImage' value='title_GE_email.jpg'}
 	{assign var='thisName' value='General English'}
-	{assign var='thisPackageList' value='3,9,33,39'}
+	{assign var='thisPackageList' value='9,33,39,49'}
 	{include file='file:includes/CLS_welcome_package_details.tpl'}	
 {/if}
 {if $careerEnglishpackage=='true'}
@@ -165,7 +166,8 @@
   <tr>
     <td width="15"></td>
     <td width="305" height="15">
-       Your name: <strong>{$account->adminUser->name}</strong></td>
+       Your name: <strong>{$account->adminUser->name}</strong>
+	</td>
   </tr>
 
   <tr>
@@ -217,7 +219,7 @@
   <tr>
     <td height="10" style="font-size:9px">
    		Your privacy is important to us. Please review ClarityLifeSkills.com privacy policy by clicking here:<br />
-<a href="http://www.ClarityLifeSkills.com/disclaimer.php" target="_blank">http://www.ClarityLifeSkills.com/disclaimer.php</a>    </td>
+<a href="http://www.ClarityLifeSkills.com/disclaimer.php" target="_blank">www.ClarityLifeSkills.com/disclaimer.php</a>    </td>
     </tr>
   <tr>
     <td>    </td>

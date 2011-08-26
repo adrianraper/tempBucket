@@ -8,7 +8,7 @@
     <movie fps="30" />
     <movie width="920" />
     <movie height="800" />
-    <movie version="9" />
+    <movie version="10" />
     <movie background="#FFFFFF" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
@@ -39,7 +39,7 @@
     <option staticLinkRSL="True" />
     <option additional="" />
     <option compilerConstants="" />
-    <option customSDK="C:\Program Files\Adobe\Adobe Flash Builder 4\sdks\3.5.0" />
+    <option customSDK="C:\Program Files\flex_sdk_3.6.0" />
   </build>
   <!-- SWC Include Libraries -->
   <includeLibraries>
@@ -47,8 +47,8 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="datavisualization.swc" />
-    <element path="datavisualization_rb.swc" />
+    <element path="libs\datavisualization.swc" />
+    <element path="libs\datavisualization_rb.swc" />
     <element path="libs\PureMVC_AS3_2_0_4.swc" />
     <element path="libs\FlexUnit.swc" />
     <element path="libs\arc90flexlib.swc" />

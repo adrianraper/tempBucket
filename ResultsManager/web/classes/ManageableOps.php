@@ -192,7 +192,10 @@ class ManageableOps {
 		// You should only call this function if you know the user exists, but you still need to get their userID
 		// If this function fails, generate an exception
 		// v3.6 But you don't know that this user has a unique learnerID!
-		$loginOption = Session::get('loginOption');
+		// And some DMS stuff doesn't use this at all
+		if (Session::is_set('loginOption')) {
+			$loginOption = Session::get('loginOption');
+		}
 		if ($loginOption==2) {
 			$user = $this->getUserByLearnerId($userDetails);
 		} else {
@@ -250,7 +253,7 @@ class ManageableOps {
 		// Ensure the username is unique within this context
 		//		WHERE t.F_ProductCode=1001
 		$sql = 	<<<EOD
-				SELECT u.F_UserID 
+				SELECT distinct(u.F_UserID)
 				FROM T_User u 
 				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
 				JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
@@ -258,7 +261,6 @@ class ManageableOps {
 				AND u.F_Email=?
 EOD;
 		$rs = $this->db->Execute($sql, array($licenceType, $email));
-		
 		switch ($rs->RecordCount()) {
 			case 0:
 				// There are no duplicates
@@ -268,6 +270,37 @@ EOD;
 				// Can we return the whole user object instead?
 				return false;
 		}
+	}
+	/*
+	 * Given an email and password, do they match for this licence type
+	 */
+	function checkEmailPassword($email, $password, $licenceType=5) {
+		
+		$sql = 	<<<EOD
+				SELECT distinct(u.F_UserID) 
+				FROM T_User u 
+				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
+				JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
+				WHERE t.F_LicenceType=?
+				AND u.F_Email=?
+				AND u.F_Password=?
+EOD;
+		$rs = $this->db->Execute($sql, array($licenceType, $email, $password));
+		
+		return $rs->RecordCount();
+		/*
+		switch ($rs->RecordCount()) {
+			case 0:
+				// No matches
+				return false;
+			case 1:
+				// One matching record, all is well
+				return true;
+			default:
+				// Multiple matches  - which should give a different error
+				return false;
+		}
+		*/
 	}
 	/*
 	 * Return the user's details if the email address matches.
@@ -1099,20 +1132,32 @@ EOD;
 	// and any kind of recursive SQL call tends to be DBMS specific (and complicated to write/maintain).
 	// We should make a call like this a standard part of all logins. Orchid and Arthur too.
 	public function getGroupParents($startGroupID) {
+		//error_log("RM session rootID=".Session::get('rootID')."\r\n", 3, $GLOBALS['logs_dir']."RMOps_error.log");
+
 		$result = array();
 		$groupID = $startGroupID;
+		//echo "getParentGroups=".$startGroupID." dbHost=".$_SESSION['dbHost'];
+		//echo $GLOBALS['db'];
 		$keepGoingUp = true;
 		do {
 			$result[] = $groupID;
 			$sql = <<<EOD
-					SELECT F_GroupParent
+					SELECT F_GroupParent as parentID
 					FROM T_Groupstructure
 					WHERE F_GroupID=?
 EOD;
+			//echo $sql.",$groupID";
 			$groupRS = $this->db->Execute($sql, array($groupID));
-			if ($groupRS)
-				$parentGroupID = $groupRS->FetchNextObj()->F_GroupParent;
+			//error_log("groupID=$groupID, type=".gettype($groupID).", records=".$groupRS->RecordCount(), 3, "/tmp/RMOps_error.log");
+			if ($groupRS) {
+			//if ($groupRS->RecordCount()==1) {
+				$parentGroupID = $groupRS->FetchNextObj()->parentID;
+			} else {
+				// If, for some reason, you don't get any records, things are desperate and you should crash out
+				throw new Exception("Your group doesn't exist ($groupID)");
+			}
 			// Have we found the root group?
+			//echo "groupID=$groupID and parentGroupID=".$parentGroupID;
 			if ($groupID == $parentGroupID) {
 				$keepGoingUp = false;
 			} else {
@@ -1264,7 +1309,8 @@ EOD;
 				throw new Exception("More than one account with this root ($rootID)");
 		}
 		// I am going to put this into session variables so I can get it again
-		Session::get('loginOption',$loginOption);
+		//Session::get('loginOption',$loginOption); // Set NOT get please!
+		Session::set('loginOption',$loginOption);
 		
 		// v3.6.1 Check T_LicenceAttributes - for now just to get groupedRoots
 		// TODO This is ridiculous to call it here, it should be passed to here. Likewise loginOption.

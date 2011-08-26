@@ -48,6 +48,7 @@ menuNS.displaySubMenu = function() {
 		//	thisSub._x = Math.floor(this._x + (menuDim.width * 0.95));
 		//	thisSub._y = Math.floor(this._y + (menuDim.height * 0));
 		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0 ||
 			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 			thisSub._x = Math.floor(this._x - 30);
 			thisSub._y = Math.floor(this._y - 30);
@@ -58,6 +59,8 @@ menuNS.displaySubMenu = function() {
 		// v6.5.5.8 CP has distinctive menus
 		// v6.5.6.4 New SSS
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+			thisSub.setSize(421,294);
+		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			thisSub.setSize(421,294);
 		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 			thisSub.setSize(558,475);
@@ -72,6 +75,8 @@ menuNS.displaySubMenu = function() {
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 			// I want it to be transparent
 			//thisSub.setColour(0xFFFFFF);
+		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			thisSub.setColour(0x9FB62C);
 		} else {
 			if (_global.ORCHID.root.buttonsHolder.buttonsNS.interface.tileColour != undefined) {
 				thisSub.setColour(_global.ORCHID.root.buttonsHolder.buttonsNS.interface.tileColour);
@@ -97,11 +102,13 @@ menuNS.displaySubMenu = function() {
 		// v6.5.5.8 Clear Pronunciation has distinctive menus
 		// v6.5.6.4 New SSS
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0 ||
 			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 				
 			var scaffoldSubMenu = _global.ORCHID.course.scaffold.getObjectByID(this.id);
 			// Note that SSS doesn't use a title caption or progress
-			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 				//myTrace("scaffold progress = " + scaffoldSubMenu.progress.numExercisesDone[0]);
 				var progressPercent = 100 * scaffoldSubMenu.progress.numExercisesDone[0] / scaffoldSubMenu.progress.numExercises;
 				// Rounding function
@@ -113,7 +120,9 @@ menuNS.displaySubMenu = function() {
 				// You can either shave the caption (which looks like Unit 1: Fill/Pill), or you can hope the unit number is corrrectly set.
 				//var titleCaption = this.caption;
 				// Introduction (unit 25) gets the name from caption. Or rather it has no name.
-				if (this.unit>0 && this.unit<=25) {
+				// v6.5.6.6 CP2 doesn't use this title caption
+				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 &&
+					this.unit>0 && this.unit<=25) {
 					var titleCaption = "Unit " + this.unit;
 				} else {
 					//var titleCaption = this.caption;
@@ -122,7 +131,11 @@ menuNS.displaySubMenu = function() {
 				thisSub.setUnitTitles(titleCaption, progressCaption);
 				// v6.5.5.8 Now move this left a bit so you can add a close button
 				//var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:390, _y:8}; 
-				var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:300, _y:10}; 
+				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+					var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:300, _y:10}
+				} else {
+					var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:10, _y:10}
+				}
 				if (scaffoldSubMenu.progress.numExercisesDone[0]==0 || scaffoldSubMenu.progress.numExercisesDone[0]==undefined) {
 				} else {
 					thisSub.attachMovie("FProgressIndicatorSymbol", "progressIndicator", menuNS.depth++, initObj);
@@ -358,9 +371,15 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 			// v6.5.5.5 Clear Pronunciation
 			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
 				var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:-18, _y:6}; 
+			// v6.5.5.5 Clear Pronunciation 2
+			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+				var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:-18, _y:6}; 
 			// v6.5.5.5 English for Hotel Staff
 			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("sky/efhs") >= 0) {
 				var initObj = {height:23, width:10, lineThick:1, doneFill:0xAD002B, _x:0, _y:2};
+			// v6.5.6.6 AccessUK
+			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("york/auk") >= 0) {
+				var initObj = {height:22, width:10, lineThick:1, doneFill:0x383838, _x:0, _y:2};
 			} else {
 				var initObj = {height:23, width:12, lineThick:1};
 			}
@@ -369,7 +388,8 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 			// Try making it at the same level. Well, onRollOver works, but only get one! And menu coords are not set yet. So go back.
 			// v6.5.5.8 Clear Pronunciation wants no progress indicator if 0% or if it is the introduction unit
 			//myTrace("progress, ex=" + progressItems[i].numExercisesDone[0]);
-			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 &&
+			if ((_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) &&
 				((progressItems[i].numExercisesDone[0]==0 || progressItems[i].numExercisesDone[0]==undefined) ||
 				(thisMenu.unit<1 || thisMenu.unit>25))) {
 			} else {
@@ -424,12 +444,13 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 		//myTrace("drawItems, vscroll=" + this.vscroll);
 		var canScrollUp = false;
 		var canScrollDown = false
-		//myTrace("unitsHolder at x=" + this._x + ", y=" + this._y + " " + this);
+		//myTrace("drawItems at x=" + this._x + ", y=" + this._y + " " + this);
+		myTrace("drawItems topY=" + this.topY);
 		for (var i in items) {
-			if (items[i].x >= this.leftx && 
-				items[i].y >= (this.topy + this.vscroll) && 
-				items[i].x <= this.rightx && 
-				items[i].y <= (this.bottomy + this.vscroll)) {
+			if (items[i].x >= this.leftX && 
+				items[i].y >= (this.topY + this.vscroll) && 
+				items[i].x <= this.rightX && 
+				items[i].y <= (this.bottomY + this.vscroll)) {
 				// OK to display
 				var thisMenu = this["mainMenu"+items[i].id];
 				//myTrace("menu at x=" + items[i].x + ", y=" + items[i].y + " " + items[i].caption);

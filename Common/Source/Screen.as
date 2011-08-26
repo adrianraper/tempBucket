@@ -599,11 +599,17 @@ _global.ORCHID.root.buttonsHolder.ExerciseScreen.display = function() {
 	// CUP noScroll code
 	// Do you want to see the shrinker button for the example region?
 	if (_global.ORCHID.LoadedExercises[0].regions & _global.ORCHID.regionMode.example) {
-		//trace("I do want to see a shrink button");
+		//myTrace("I do want to see a shrink button");
 		this.shrinkExample_pb.setEnabled(true);
+		// v6.5.6.5 I don't understand why, but when I set the button to disabled, I lose the release action.
+		this.shrinkExample_pb.setReleaseAction(_global.ORCHID.viewObj.cmdShrink);
 		this.expandExample_pb.setEnabled(false);
+		// I also want them to appear on top of the title. You have to be very careful of which depth you choose.
+		// I originally choose ExerciseDepth, and the Example_SP never got cleared.
+		this.shrinkExample_pb.swapDepths(_global.ORCHID.MsgBoxDepth+1);
+		this.expandExample_pb.swapDepths(_global.ORCHID.MsgBoxDepth+2);
 	} else {
-		//trace("There is no example region");
+		//myTrace("There is no example region");
 		this.shrinkExample_pb.setEnabled(false);
 		this.expandExample_pb.setEnabled(false);
 	}
@@ -1573,6 +1579,7 @@ _global.ORCHID.root.buttonsHolder.IntroScreen.display = function() {
 		// v6.4.2 Problem due to 404 error takes forever to be generated
 		// so temporaily only check for custom stuff if told to from parameters
 	//v6.4.2.1 Move so that you only do one or the other - and stuff in the licence seems most important
+	// v6.5.6.5 Note that if you send brandMovies through licence attributes, it won't be set yet, so this will look in a different location!
 	if (_global.ORCHID.root.licenceHolder.licenceNS.customisation[0] != "" && _global.ORCHID.root.licenceHolder.licenceNS.customisation[0] != undefined) {
 		myTrace("load image " + _global.ORCHID.paths.brandMovies + _global.ORCHID.root.licenceHolder.licenceNS.customisation[0] + " (licence)");
 		//this.defaultImage.loadMovie(_global.ORCHID.paths.root + _global.ORCHID.paths.brand + _global.ORCHID.root.licenceHolder.licenceNS.customisation[0]);
@@ -1639,7 +1646,7 @@ _global.ORCHID.root.buttonsHolder.IntroScreen.display = function() {
 		//	this.myInt = setInterval(this, "loadDefault", 1000);
 		//}
 	} else {
-		//myTrace("FLA has no customImageHolder, so load defaultImageHolder");
+		//myTrace("FLA has no intro customImageHolder, so load defaultImageHolder");
 		// trigger the default image to load immediately, again if a placeholder is in the movie
 		if (this.defaultImageHolder != undefined) {
 			this.loadDefault();

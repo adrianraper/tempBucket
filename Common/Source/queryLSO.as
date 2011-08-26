@@ -156,7 +156,9 @@ getUser = function(query) {
 	//if (query.name == "" || query.name == "_orchid") { // && query.studentID == "") {
 		if (_global.ORCHID.commandLine.action == "anonymous") {
 			myTrace("anonymous use, so no progress");
-			query.buildString += "<user name='' userID='-1' />";
+			// v6.5.6.5 We need to send back userName
+			//query.buildString += "<user name='' userID='-1' />";
+			query.buildString += "<user userName='' userID='-1' />";
 			return true;
 		} else if (_global.ORCHID.root.licenceHolder.licenceNS.licencing.toLowerCase().indexOf("single") >= 0) {
 			// v6.4.2.4 If you are running lso it probably means direct from CD, or single user.
@@ -178,7 +180,9 @@ getUser = function(query) {
 			//query.buildString = "<user name='_orchid' userID='0' />";
 			// Give a nicer name (for certificate and progress)
 			//query.buildString = "<user name='_orchid' userID='1' />";
-			query.buildString = "<user name='" + query.name + "' userID='1' />";
+			// v6.5.6.5 We need to send back userName
+			//query.buildString = "<user name='" + query.name + "' userID='1' />";
+			query.buildString = "<user userName='" + query.name + "' userID='1' />";
 			return true;
 			// You need to be sure that you have a lso space for this user - only needs to happen once
 			// do it below. No - this is done in dbInterface already
@@ -205,7 +209,9 @@ getUser = function(query) {
 					return false;
 				} else {
 				//	this.onReturnCode(me[i]);
-					query.buildString += "<user name='" + me[i].name + "' " + 
+					// v6.5.6.5 We need to send back userName
+					//query.buildString += "<user name='" + me[i].name + "' " + 
+					query.buildString += "<user userName='" + me[i].name + "' " + 
 										"userID='" + me[i].userID + "' " +
 										"userSettings='" + me[i].userSettings + "' " +
 										"country='" + me[i].country + "' " +
@@ -255,7 +261,9 @@ addUser = function(query) {
 	var newID = me.push(userObj) - 1;
 	me[newID].userID = newID;
 	query.userID = newID;
-	query.buildString += "<user name='" + me[newID].name + "' " + 
+	// v6.5.6.5 We need to send back userName
+	//query.buildString += "<user name='" + me[newID].name + "' " + 
+	query.buildString += "<user userName='" + me[newID].name + "' " + 
 						"userID='" + me[newID].userID + "' " +
 						"userSettings='" + me[newID].userSettings + "' " +
 						"country='" + me[newID].country + "' " +

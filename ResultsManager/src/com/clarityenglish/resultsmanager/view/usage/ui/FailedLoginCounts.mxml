@@ -36,9 +36,10 @@
 		// TODO I am using an array from CONSTANTS. But it might be simpler just to use a switch function here
 		// with text from literals. I think this is the only place I will care.
 		public function errorCodeToText(item:Object, column:DataGridColumn):String {
-			//TraceUtils.myTrace("errorCode:" + item.F_ReasonCode + " is " + Constants.errorCodeOrchid[item.F_ReasonCode]);
+			//TraceUtils.myTrace("errorCode:" + item.F_ReasonCode);
 			//return Constants.errorCodeOrchid[item.F_ReasonCode];
-			switch (item.F_ReasonCode) {
+			// v3.6 MySQL returns string rather than number, so force it here
+			switch (Number(item.F_ReasonCode)) {
 				case 0:
 				case 201:
 				case 202:

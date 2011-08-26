@@ -148,14 +148,43 @@ class ReportBuilder {
 		// there is no need for T_Session in this call at all.
 		//				INNER JOIN T_Session ss ON s.F_SessionID=ss.F_SessionID
 		// Now, because courseID is not unique for R2I we need session back again!
+		// Desperation for HCT. PC suggests INNER JOINS are very bad news too
+		//				T_Score s, T_User u, T_Membership m, T_Groupstructure g, T_Session ss
+		// But the real problem is the join of score and session (which can be easily removed as productCode can come from using courseID on T_CourseInfo)
+		// and the first/last attempts SELECT. I wonder if I can write a stored procedure and cursor to do this in two queries?
+		// Or build a slightly different query when I have a limited number of userIDs - and MySQL
+		// a) Replace session with courseIn
+		// b) remove SessionID>0
+		// Now gone further and denormalised so we write ProductCode to T_Score, so no need for T_CourseInfo
+		//				INNER JOIN T_CourseInfo c ON s.F_CourseID=c.F_CourseID
 		$attempts = $this->getOpt(ReportBuilder::ATTEMPTS);
 		$forUsers = $this->getOpt(ReportBuilder::FOR_USERS);
+		// We MUST have a list of users, so if it is not sent, we should build one from the groups we are sent
+		if (!$forUsers && ($forGroups = $this->getOpt(ReportBuilder::FOR_GROUPS))) {
+			$forGroupsInString = implode(",", $forGroups);
+			$sqlForUsers = <<<EOD
+						SELECT m.F_UserID
+						FROM T_Membership m
+						WHERE m.F_GroupID IN ($forGroupsInString)
+EOD;
+			$rs = $this->db->Execute($sqlForUsers);
+			$forUsers = Array();
+			switch ($rs->RecordCount()) {
+				case 0:
+					// There are no records - the SQL will return empty so nothing to do
+					break;
+				default:
+					// There is more than one user with this email address in this context
+					// What can we tell the learner?
+					while ($userObj = $rs->FetchNextObj())
+						$forUsers[] = $userObj->F_UserID;
+			}
+		}
 		$fromClause = <<<EOD
 						T_Score s
 						INNER JOIN T_User u ON s.F_UserID=u.F_UserID
 						INNER JOIN T_Membership m ON s.F_UserID=m.F_UserID
 						INNER JOIN T_Groupstructure g on g.F_GroupID = m.F_GroupID
-						INNER JOIN T_Session ss ON s.F_SessionID=ss.F_SessionID
 EOD;
 		if ($attempts == "first" || $attempts == "last") {
 			$fromClause.= <<<EOD
@@ -164,22 +193,32 @@ EOD;
 									MIN(F_DateStamp) first_attempt,
 									MAX(F_DateStamp) last_attempt
 									FROM T_Score 
-									WHERE F_SessionID > 0
 EOD;
 			if ($forUsers) {
 				$forUsersInString = implode(",", $forUsers);
-				$fromClause.=" AND F_UserID IN ($forUsersInString) ";
+				$fromClause.=" WHERE F_UserID IN ($forUsersInString) ";
 			}	
 			$fromClause.= <<<EOD
-									GROUP BY F_ExerciseID, F_UserID) attempts ON s.F_ExerciseID=attempts.e
+									GROUP BY F_ExerciseID, F_UserID
+EOD;
+			// sql server doesn't let you order by in a sub select
+			if (stripos("mysql",$GLOBALS['dbms'])!==false) $fromClause.= ' ORDER BY F_ExerciseID, F_UserID ';
+			$fromClause.= <<<EOD
+									) attempts ON s.F_ExerciseID=attempts.e
 																			  AND s.F_UserID = attempts.u
 EOD;
 		}
 		$this->selectBuilder->setFrom($fromClause);
+		// From earlier INNER JOINS
+		//$this->selectBuilder->addWhere('s.F_UserID=u.F_UserID');
+		//$this->selectBuilder->addWhere('g.F_GroupID = m.F_GroupID');
+		//$this->selectBuilder->addWhere('s.F_UserID=u.F_UserID');
+		//$this->selectBuilder->addWhere('s.F_SessionID=ss.F_SessionID');
 		
 		// Selection of common columns
 		// v3.4 To allow productCode to be sent back too. Put it first to help sorting the returned results if grouped.
-		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("ss.F_ProductCode", "productCode");		
+		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("c.F_ProductCode", "productCode");		
+		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_ProductCode", "productCode");		
 		// v3.4 This could be read from s.F_CourseID if I want session to be by product not course
 		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("ss.F_CourseID", "courseID");
 		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_CourseID", "courseID");
@@ -305,6 +344,7 @@ EOD;
 		// For specific unit ids
 		if ($forUnits = $this->getOpt(ReportBuilder::FOR_UNITS)) {
 			$forUnitsInString = implode(",", $forUnits);
+			//echo $forUnitsInString;
 			$this->selectBuilder->addWhere("s.F_UnitID IN ($forUnitsInString)");
 		}
 		
@@ -314,34 +354,56 @@ EOD;
 			$this->selectBuilder->addWhere("s.F_ExerciseID IN ($forExercisesInString)");
 		}
 		
-		// For idobjects (e.g. CourseID=? AND UnitID=? AND ExerciseID=?)
+		// For idObjects (e.g. CourseID=? AND UnitID=? AND ExerciseID=?)
 		if ($idObjects = $this->getOpt(ReportBuilder::FOR_IDOBJECTS)) {
+			$titleReport = !isset($idObjects[0]["Unit"]) ? true : false;
+			$exerciseReport = isset($idObjects[0]["Exercise"]) ? true : false;
 			//print_r($idObjects);
-			foreach ($idObjects as $idObject) {
+			// v3.5 If I only have course objects, then I want to make a simple list rather than a whole set of individual clauses
+			// Except that you don't come in here if you are doing a course report.
+			// So what I want to do is set it for title reports which send title AND course.
+			// Is this a title report?
+			if ($titleReport) {
 				$wheres = array();
-				foreach ($idObject as $class => $id) {
-					//echo "$class=$id";
-					switch ($class) {
-						case "Title":
-							break;
-						case "Course":
-							// v3.4 This could be read from s.F_CourseID if I want session to be by product not course
-							//$wheres[] = "ss.F_CourseID=".$id;
-							$wheres[] = "s.F_CourseID=".$id;
-							break;
-						case "Unit":
-							$wheres[] = "s.F_UnitID=".$id;
-							break;
-						case "Exercise":
-							$wheres[] = "s.F_ExerciseID=".$id;
-							break;
-						default:
-							throw new Exception("Unknown id object ".$class);
+				foreach ($idObjects as $idObject) {
+					$wheres[] = $idObject["Course"];
+				}
+				$this->selectBuilder->addWhere("s.F_CourseID IN (".implode(',', $wheres).")");
+			} else {
+				foreach ($idObjects as $idObject) {
+					$wheres = array();
+					foreach ($idObject as $class => $id) {
+						//echo "$class=$id";
+						switch ($class) {
+							case "Title":
+								break;
+							case "Course":
+								// v3.4 This could be read from s.F_CourseID if I want session to be by product not course
+								//$wheres[] = "ss.F_CourseID=".$id;
+								$wheres[] = "s.F_CourseID=".$id;
+								break;
+							// Likewise, if this is an exercise report I want to drop the unit clause as entirely unnecessary
+							// It would be good if I could rely on exerciseID to be absolutely unique across courses, then
+							// I could just make it a simple list. Things like certificates don't count anyway.
+							// Even so, there are some 750 exercises listed in T_Score that are associated with more than 1 course.
+							// Let's hope it doesn't matter! Exercise reports are quite rare I would think, but surely even
+							// rarer across different titles...
+							case "Unit":
+								if (!$exerciseReport) {
+									$wheres[] = "s.F_UnitID=".$id;
+								}
+								break;
+							case "Exercise":
+								$wheres[] = "s.F_ExerciseID=".$id;
+								break;
+							default:
+								throw new Exception("Unknown id object ".$class);
+						}
 					}
+					// Passing true as a parameter to addWhere marks these as OR clauses instead of the default AND
+					$this->selectBuilder->addWhere("(".implode(" AND ", $wheres).")", true);
 				}
 				
-				// Passing true as a parameter or addWhere marks these as OR clauses instead of the default AND
-				$this->selectBuilder->addWhere("(".implode(" AND ", $wheres).")", true);
 			}
 		}
 		// v3.0.4 If you want special ordering

@@ -10,7 +10,7 @@
 		/**
 		 * The version of the software, used to tie bugs and version control together.
 		 */
-		public static var version:String = "3.6.1.0";
+		public static var version:String = "3.6.2.0";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
@@ -88,6 +88,7 @@
 		public static var prefix:String;
 		public static var groupID:String;
 		public static var parentGroupIDs:Array;
+		public static var licenceType:Number;
 		
 		/**
 		 * Use this section to define colours and other style settings that are not in css

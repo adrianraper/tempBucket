@@ -69,6 +69,12 @@ class AbstractService {
 		
 		$this->db = &ADONewConnection($GLOBALS['db']);
 		
+		// v3.6 UTF8 character mismatch between PHP and MySQL
+		if ($GLOBALS['dbms'] == 'mysql') {
+			$charSetRC = mysql_set_charset('utf8');
+			//echo 'charSet='.$charSetRC;
+		}
+		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 		
 		// Create the database logger and set the database
@@ -77,7 +83,10 @@ class AbstractService {
 		
 		// v3.3 And one for debug logging. I don't see why the above doesn't really seem to work through the factory.
 		// How to make it write to the folder I want?
-		//AbstractService::$debugLog = &Log::factory('file', 'debugLog.txt');
+		// v3.4 Sometimes I want to use a file log in DMS. If I set it up here, does it mean overhead with every single call?
+		// I don't think so, it only does opening etc when called to write.
+		AbstractService::$debugLog = & Log::factory('file');
+		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');	
 		
 		// v3.2 To get rid of the need for CONVERT statements in some SQLServer instances
 		//if ($GLOBALS['dbms'] == 'mssql_n') {

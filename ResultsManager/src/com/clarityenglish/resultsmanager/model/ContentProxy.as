@@ -149,7 +149,7 @@ package com.clarityenglish.resultsmanager.model {
 		public function mapEditedContentForGroup(group:Group = null):void {
 			
 			//MonsterDebugger.trace(this, "reset dataProvider for group=" + group.name);
-			TraceUtils.myTrace("reset dataProvider for group=" + group.name);
+			//TraceUtils.myTrace("reset dataProvider for group=" + group.name);
 			// The algorithm to work out if a given uid is edited is to cascade down the groups, starting from the top.
 			// The top means the very top for the account, not just the top group you can see.
 			// If you find the uid for a group, then it is edited.

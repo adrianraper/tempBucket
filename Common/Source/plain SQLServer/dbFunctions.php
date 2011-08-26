@@ -80,7 +80,8 @@ EOD;
 		$bindingParams[] = $email;
 		$bindingParams[] = $ip;
 		$bindingParams[] = $MachineID;
-		
+		// v6.5.6.5 No need for CONVERT with a MySQL database
+		//	'Network', CONVERT(datetime, ?, 120), 0,
 		$sql = <<<EOD
 			INSERT INTO T_Registration (F_InstitutionName, F_Product, F_ExpiryDate, F_MaxStu, 
 									F_Licencing, F_CreateDate, F_UserID, 
@@ -89,7 +90,7 @@ EOD;
 									F_Email, F_IP, F_MachineID)
 			VALUES
 			(?, ?, ?, ?, 
-			'Network', CONVERT(datetime, ?, 120), 0,
+			'Network', ?, 0,
 			?, ?, ?, ?, ?, ?, ?, ?,
 			?, ?, ?, ?, ?, ?, ?,
 			?, ?, ?

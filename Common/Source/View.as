@@ -1696,16 +1696,25 @@ View.prototype.cmdSetupRecorder = function() {
 		*/
 		var AIRRecorderVersion = _global.ORCHID.projector.recorderRegistry;
 		myTrace("AIRRecorderVersion from registry is " + AIRRecorderVersion);
+		// v6.5.6.5 Do I mean &&? Network installations don't include the MDMRecorder yet. 
+		// But surely it is the best option, even if you actually HAVE recorder installed because it starts immediately, you don't need another dialog.
+		// The only drawback is that if you have a later Recorder installed, this would play the one burnt on the CD.
+		// For now I will just do this for licence=single which is most likely to be library versions. No, see below.
 		if (_global.ORCHID.commandLine.isConnected || AIRRecorderVersion>4) {
+		//if (_global.ORCHID.root.licenceHolder.licenceNS.licenceType!=4 && (_global.ORCHID.commandLine.isConnected || AIRRecorderVersion>4)) {
 			var badgerApp = _global.ORCHID.paths.movie + "..\\..\\Recorder\\MDMBadger.exe";
 			var badgerAppFolder = _global.ORCHID.paths.movie + "..\\..\\Recorder";
 			var badgerParameters = " /online=" + _global.ORCHID.commandLine.isConnected.toString();
 			myTrace(badgerApp + badgerParameters);
+			// v6.5.6.5 need to catch any ZINC exceptions - or is it the Badger program that needs to catch them?
 			mdm.exec_adv("Badger",100,100,280,260,"",badgerApp + badgerParameters,badgerAppFolder,2,4); 
 			_global.ORCHID.projector.badgerStarted = true;
 		} else {
 			// You are running through MDM and are not online and the Recorder has not been installed on this computer.
-			// So keep it simple and just run the swf rather than try to install the AIR app.
+			// So keep it simple and just run the swf rather than try to install the AIR app. So this is a ZINC file.
+			// No, not ZINC, surely just a Flash wrapper? No, it is ZINC. But maybe loading html and swf. IE6 might not like that.
+			// However, there is a very normal XP computer in the office that won't run MDMRecorder at all (opens, but blank screen)
+			// so I think I have to go back to the version that worked for everyone except Brian.
 			var badgerApp = _global.ORCHID.paths.movie + "..\\..\\Recorder\\MDMRecorder.exe";
 			var badgerAppFolder = _global.ORCHID.paths.movie + "..\\..\\Recorder";
 			myTrace(badgerApp);
@@ -2660,7 +2669,8 @@ View.prototype.cmdProgress = function(component) {
 		// v6.4.3 Now much bigger
 		//var initObj = { _x:180, _y:160, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
 		// v6.5.6.4 New SSS needs progress to start lower than the jukebox so it doesn't underlay it
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			var initObj = { _x:45, _y:60, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
 		} else {
 			var initObj = { _x:45, _y:41, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
@@ -2680,7 +2690,8 @@ View.prototype.cmdProgress = function(component) {
 		myPane.setResizeButton(false);
 		myPane.setMinSize(500, 250);
 		// v6.5.6.4 New SSS needs progress to start lower than the jukebox so it doesn't underlay it
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			var maxHeight = _global.ORCHID.root.buttonsHolder.buttonsNS.interfaceDefault.usedScreenHeight - 80;
 			// v6.4.2.7 base screen height on the fla (this one is as big as you can get it)
 		} else {
@@ -2725,7 +2736,8 @@ View.prototype.cmdProgress = function(component) {
 			myTrace("send analysis cmd to progress");
 			myProgress.displayAnalysis();
 		}
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9")>=0) { 
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9")>=0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2")>=0) { 
 			myPane.setButtons([{caption:_global.ORCHID.literalModelObj.getLiteral("print", "buttons"), setReleaseAction:myPane.onPrint, noClose:true},
 							{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title1", "messages"), setReleaseAction:myPane.onScores, noClose:true, tabStyle:true},
 							{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title2", "messages"), setReleaseAction:myPane.onCompare, noClose:true},
@@ -4111,10 +4123,14 @@ View.prototype.cmdCountdownHint = function(word) {
 View.prototype.cmdShrink = function (component) {
 	// remember the scroll position
 	// v6.3.3 move exercise panels to buttons holder
+	myTrace("cmdShrink");
 	var scrollPos = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.getScrollPosition();
 	//trace('shrink the example region');
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.expandExample_pb.setEnabled(true);
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.shrinkExample_pb.setEnabled(false);
+	// v6.5.6.5 I don't understand why, but when I set the button to disabled, I lose the release action.
+	_global.ORCHID.root.buttonsHolder.ExerciseScreen.expandExample_pb.setReleaseAction(_global.ORCHID.viewObj.cmdExpand);
+	
 	// v6.3.3 move exercise panels to buttons holder
 	//_root.exerciseHolder.Example_SP._visible = false;
 	//var eRDepth = _root.exerciseHolder.Example_SP.regionDepth;
@@ -4138,10 +4154,14 @@ View.prototype.cmdShrink = function (component) {
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.setScrollPosition(scrollPos.x,scrollPos.y);
 };
 View.prototype.cmdExpand = function (component) {
+	myTrace("cmdExpand");
 	// v6.3.3 move exercise panels to buttons holder
 	//trace('expand the example region');
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.expandExample_pb.setEnabled(false);
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.shrinkExample_pb.setEnabled(true);
+	// v6.5.6.5 I don't understand why, but when I set the button to disabled, I lose the release action.
+	_global.ORCHID.root.buttonsHolder.ExerciseScreen.shrinkExample_pb.setReleaseAction(_global.ORCHID.viewObj.cmdShrink);
+
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.Example_SP._visible = true;
 	var eRDepth = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Example_SP.regionDepth;
 	//trace('example region depth=' + eRDepth);
@@ -5421,7 +5441,8 @@ View.prototype.displayReadingText = function(textID) {
 			// v6.5.5.8 Allow thinner windows
 			// v6.5.5.8 And CP wants them over on the right hand side of the screen
 			// So you'll have to work out what the width is so you can set the x to still be visible.
-			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 				var rightSide = 760;
 				var windowX = rightSide - thisMaxWidth - 70;
 				var coords={x:windowX, y:154, width:thisMaxWidth, height:340, minW:180};
@@ -6216,11 +6237,11 @@ View.prototype.selectCourseInner = function(courseXMLNode) {
 	// v6.5.5.6 Streaming media always wants the parallel courses structure. So this is not an else.
 	//} else {
 	}
-		// Just replace the content path with the streaming media path if you set it
-		// This won't work if your content path is relative and your streaming media path is absolute. Hmmm. Need to totally rebuild.
-		//_global.ORCHID.paths.streamingMediaFolder = findReplace(_global.ORCHID.paths.media, _global.ORCHID.paths.content, _global.ORCHID.paths.streamingMedia);
-		_global.ORCHID.paths.streamingMediaFolder = _global.ORCHID.functions.addSlash(_global.ORCHID.functions.addSlash(_global.ORCHID.functions.addSlash(_global.ORCHID.paths.streamingMedia) + courseXMLNode.attributes["courseFolder"]) + mainSubPath + mediaFolder);
-		myTrace("calculated streaming media folder to " + _global.ORCHID.paths.streamingMediaFolder );
+	// Just replace the content path with the streaming media path if you set it
+	// This won't work if your content path is relative and your streaming media path is absolute. Hmmm. Need to totally rebuild.
+	//_global.ORCHID.paths.streamingMediaFolder = findReplace(_global.ORCHID.paths.media, _global.ORCHID.paths.content, _global.ORCHID.paths.streamingMedia);
+	_global.ORCHID.paths.streamingMediaFolder = _global.ORCHID.functions.addSlash(_global.ORCHID.functions.addSlash(_global.ORCHID.functions.addSlash(_global.ORCHID.paths.streamingMedia) + courseXMLNode.attributes["courseFolder"]) + mainSubPath + mediaFolder);
+	myTrace("calculated streaming media folder to " + _global.ORCHID.paths.streamingMediaFolder );
 	//}
 	_global.ORCHID.viewObj.clearScreen("CourseListScreen"); 
 	var thisCourse = new _global.ORCHID.root.objectHolder.CourseObject(courseXMLNode.attributes["id"]);
@@ -6329,7 +6350,8 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 
 	// v6.3.5 Use better CE pop up window
 	// v6.5.6.4 I think all could move, but just SSS for now.
-	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		var initObj = {_x:200, _y:140, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
 	} else {
 		var initObj = {_x:230, _y:48, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
@@ -6412,7 +6434,8 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 		}
 		myTrace("msgBox.setButtons to  " + _global.ORCHID.literalModelObj.getLiteral("seeTheAnswer", "buttons"));
 		// v6.5.5.8 CP switches the buttons alignment, and the easiest way to make it right is to change it here!
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			myMsgBox.setButtons([{caption:_global.ORCHID.literalModelObj.getLiteral(thisLiteralName, "buttons"), setReleaseAction:myObj.onTryAgain},
 						{caption:_global.ORCHID.literalModelObj.getLiteral("seeTheAnswer", "buttons"), setReleaseAction:myObj.seeTheAnswers},
 						{caption:_global.ORCHID.literalModelObj.getLiteral("forward", "buttons"), setReleaseAction:myObj.finish}]);
@@ -6441,7 +6464,8 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
 		myMsgBox.setSize(350, 210);
 	// v6.5.6.4 New SSS
-	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		myMsgBox.setSize(450, 310);
 	} else {
 		myMsgBox.setSize(350, 200);
@@ -6460,7 +6484,8 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 		//contentHolder.createTextField("list_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 0,0,350,50);
 		contentHolder.createTextField("list_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 5,5,350,50);
 	// v6.5.6.4 New SSS
-	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		contentHolder.createTextField("list_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 200,50,250,100);
 	} else {
 		contentHolder.createTextField("list_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 125,20,190,10);
@@ -6481,24 +6506,25 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 		var afterText = "<br>What do you want to do now?";
 		clt.setHTMLText("<font size='12'>" + scoreText + keyText + afterText + "</font>", _global.ORCHID.basicText);
 	// v6.5.6.4 New SSS
-	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		// Use four different text boxes, one for score, one for right, wrong and skipped
 		scoreText = "<font size='12'>" + scoreText + "</font>";
 		clt.setHTMLText(scoreText, _global.ORCHID.basicText);
-		contentHolder.createTextField("list_correct_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,80,100,40);
-		contentHolder.createTextField("list_wrong_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,110,100,40);
-		contentHolder.createTextField("list_skipped_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,140,100,40);
-		var correctText = "<font size='14' color='#00FF00'>" + thisScore.correct + " " + _global.ORCHID.literalModelObj.getLiteral("correct", "labels") + "</font>";
+		contentHolder.createTextField("list_correct_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,84,100,40);
+		contentHolder.createTextField("list_wrong_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,114,100,40);
+		contentHolder.createTextField("list_skipped_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,144,100,40);
+		var correctText = "<font size='12' color='#006600'><b>" + thisScore.correct + " " + _global.ORCHID.literalModelObj.getLiteral("correct", "labels") + "</b></font>";
 		contentHolder.list_correct_txt.html = true;
 		contentHolder.list_correct_txt.setHTMLText(correctText, _global.ORCHID.basicText);
-		var wrongText = "<font size='14' color='#FF0000'>" + thisScore.wrong + " " + _global.ORCHID.literalModelObj.getLiteral("wrong", "labels") + "</font>";
+		var wrongText = "<font size='12' color='#FF0000'><b>" + thisScore.wrong + " " + _global.ORCHID.literalModelObj.getLiteral("wrong", "labels") + "</b></font>";
 		contentHolder.list_wrong_txt.html = true;
 		contentHolder.list_wrong_txt.setHTMLText(wrongText, _global.ORCHID.basicText);
-		var skippedText = "<font size='14' color='#0000FF'>" + thisScore.skipped + " " + _global.ORCHID.literalModelObj.getLiteral("missed", "labels") + "</font>";
+		var skippedText = "<font size='12' color='#0000FF'><b>" + thisScore.skipped + " " + _global.ORCHID.literalModelObj.getLiteral("missed", "labels") + "</b></font>";
 		contentHolder.list_skipped_txt.html = true;
 		contentHolder.list_skipped_txt.setHTMLText(skippedText, _global.ORCHID.basicText);
 		var correctGraphic = contentHolder.attachMovie("Tick", "correctGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:200, _y:90 });
-		var wrongGraphic = contentHolder.attachMovie("Cross", "wrongGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:200, _y:120 });
+		var wrongGraphic = contentHolder.attachMovie("Cross", "wrongGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:206, _y:120 });
 		var skippedGraphic = contentHolder.attachMovie("Missed", "skippedGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:200, _y:150 });
 		
 		var pg = contentHolder.attachMovie("scoreWall", "pieChart", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:40, _y:40 });

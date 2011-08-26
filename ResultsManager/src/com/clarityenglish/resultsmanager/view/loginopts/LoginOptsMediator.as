@@ -7,13 +7,18 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.resultsmanager.model.LoginOptsProxy;
-	import com.clarityenglish.resultsmanager.RMNotifications;
 	import com.clarityenglish.resultsmanager.view.loginopts.events.LoginOptEvent;
+	import com.clarityenglish.resultsmanager.model.EmailOptsProxy;
+	import com.clarityenglish.resultsmanager.view.loginopts.events.EmailOptEvent;
+	import com.clarityenglish.resultsmanager.RMNotifications;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	import com.clarityenglish.resultsmanager.view.loginopts.components.*;
 	import com.clarityenglish.resultsmanager.view.loginopts.*;
+	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.resultsmanager.Constants;
+	import com.clarityenglish.utils.TraceUtils;
 	
 	/**
 	 * A Mediator
@@ -37,6 +42,8 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 			
 			loginOptsView.addEventListener(LoginOptEvent.UPDATE, onUpdate);
 			loginOptsView.addEventListener(LoginOptEvent.REVERT, onRevert);
+			loginOptsView.addEventListener(EmailOptEvent.UPDATE, onEmailUpdate);
+			loginOptsView.addEventListener(EmailOptEvent.REVERT, onEmailRevert);
 		}
 		
 		private function get loginOptsView():LoginOptsView {
@@ -69,6 +76,7 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 		override public function listNotificationInterests():Array {
 			return [
 					RMNotifications.LOGINOPTS_LOADED,
+					RMNotifications.EMAILOPTS_LOADED,
 					CommonNotifications.COPY_LOADED,
 				];
 		}
@@ -102,6 +110,7 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 					loginOptsView.srStudentID.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_STUDENTID);
 					loginOptsView.srEmail.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_EMAIL);
 					loginOptsView.srPassword.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_PASSWORD);
+					/*
 					loginOptsView.srBirthday.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_BIRTHDAY);
 					loginOptsView.srCountry.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_COUNTRY);
 					loginOptsView.srCompany.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_COMPANY);
@@ -109,8 +118,41 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 					loginOptsView.srCustom2.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_CUSTOM2);
 					loginOptsView.srCustom3.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_CUSTOM3);
 					loginOptsView.srCustom4.selected = loginOptsProxy.isSelfRegisterOptionSet(LoginOptsProxy.SR_CUSTOM4);
+					*/
+					// v3.6 Here we can hide the access control completely if we need to
+					if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
+						Constants.licenceType == Title.LICENCE_TYPE_TT) {
+						loginOptsView.accessControlPanel.visible = true;
+						loginOptsView.accessControlPanel.includeInLayout = true;
+					}
 					
 					break;
+				case RMNotifications.EMAILOPTS_LOADED:
+					var emailOptsProxy:EmailOptsProxy = facade.retrieveProxy(EmailOptsProxy.NAME) as EmailOptsProxy;
+					
+					// Set the options from the proxy
+					// Loop through all emails received
+					//TraceUtils.myTrace("loginOptsMediator.EMAILOPTS_LOADED");
+					var emailCount:uint = emailOptsProxy.getEmailCount();
+					for (var i:uint = 0; i < emailCount; i++) {
+						loginOptsView['email' + Number(i+1) + 'Address'].text = emailOptsProxy.getEmail(i);
+						loginOptsView['email' + Number(i+1) + 'Type1'].selected = emailOptsProxy.getSubscriptionReminders(i);
+						loginOptsView['email' + Number(i+1) + 'Type2'].selected = emailOptsProxy.getUsageStatistics(i);
+						loginOptsView['email' + Number(i+1) + 'Type3'].selected = emailOptsProxy.getServiceNotices(i);
+						loginOptsView['email' + Number(i+1) + 'Type4'].selected = emailOptsProxy.getSupportNotices(i);
+						loginOptsView['email' + Number(i+1) + 'Type5'].selected = emailOptsProxy.getUpgradeInformation(i);
+						loginOptsView['email' + Number(i+1) + 'Type6'].selected = emailOptsProxy.getProductInformation(i);
+					}
+					// Clear out the rest
+					for (i=emailCount; i < 5; i++) {
+						loginOptsView['email' + Number(i + 1) + 'Address'].text = '';
+						loginOptsView['email' + Number(i + 1) + 'Type1'].selected = false;
+						loginOptsView['email' + Number(i+1) + 'Type2'].selected = false;
+						loginOptsView['email' + Number(i+1) + 'Type3'].selected = false;
+						loginOptsView['email' + Number(i+1) + 'Type4'].selected = false;
+						loginOptsView['email' + Number(i+1) + 'Type5'].selected = false;
+						loginOptsView['email' + Number(i+1) + 'Type6'].selected = false;
+					}
 				default:
 					break;
 			}
@@ -131,6 +173,36 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 		private function onRevert(e:LoginOptEvent):void {
 			var loginOptsProxy:LoginOptsProxy = facade.retrieveProxy(LoginOptsProxy.NAME) as LoginOptsProxy;
 			loginOptsProxy.getLoginOpts();
+		}
+
+		private function onEmailUpdate(e:EmailOptEvent):void {
+			// Get the data from the view, format it in the proxy and save
+			var emailOptionsArray:Array = new Array();
+			// TODO: We shouldn't just fix this at 5 items, can we count rows in the grid?
+			for (var i:uint = 1; i <= 5; i++) {
+				var thisEmailItem:Object = new Object();
+				thisEmailItem.email = loginOptsView['email' + i + 'Address'].text;
+				thisEmailItem.messageType = ((loginOptsView['email' + i + 'Type1'].selected) ? EmailOptsProxy.SUBSCRIPTION_REMINDERS : 0)
+									+ ((loginOptsView['email' + i + 'Type2'].selected) ? EmailOptsProxy.USAGE_STATISTICS : 0)
+									+ ((loginOptsView['email' + i + 'Type3'].selected) ? EmailOptsProxy.SERVICE_NOTICES : 0)
+									+ ((loginOptsView['email' + i + 'Type4'].selected) ? EmailOptsProxy.SUPPORT_NOTICES : 0)
+									+ ((loginOptsView['email' + i + 'Type5'].selected) ? EmailOptsProxy.UPGRADE_INFORMATION : 0)
+									+ ((loginOptsView['email' + i + 'Type6'].selected) ? EmailOptsProxy.PRODUCT_INFORMATION : 0);
+				//TraceUtils.myTrace('mediator.onEmailUpdate index=' + i + ' email=' + thisEmailItem.email + ' messageType=' + thisEmailItem.messageType);
+				//if (thisEmailItem.email!='')
+				if (thisEmailItem.email) {
+					emailOptionsArray.push(thisEmailItem);
+					//TraceUtils.myTrace("keep this item then");
+				} else {
+					//TraceUtils.myTrace("ignore this empty item");
+				}
+			}			
+			sendNotification(RMNotifications.UPDATE_EMAIL_OPTS, emailOptionsArray);
+		}
+		
+		private function onEmailRevert(e:EmailOptEvent):void {
+			var emailOptsProxy:EmailOptsProxy = facade.retrieveProxy(EmailOptsProxy.NAME) as EmailOptsProxy;
+			emailOptsProxy.getEmailOpts();
 		}
 
 	}

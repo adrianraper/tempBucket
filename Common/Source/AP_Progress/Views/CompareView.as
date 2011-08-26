@@ -40,7 +40,8 @@ class AP_Progress.Views.CompareView extends ViewBase
 		listener.onLoadComplete = function(target_mc:MovieClip):Void {
 			
 		// v6.5.6.4 New SSS realigned a bit
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 			var xOffset = 0;
 			var yOffset = 10;
 		} else {

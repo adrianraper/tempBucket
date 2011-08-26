@@ -22,6 +22,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.ph
 // v3.1 Add for trigger processing
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Trigger.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Condition.php");
+// v3.6 Added for direct sending via API
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/EmailAPI.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/email/TemplateDefinition.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
@@ -29,7 +31,8 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
-require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
+// v3.4 Removed as not used
+//require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
 require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
@@ -37,6 +40,12 @@ require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
+
+// v3.4 This is used for internal queries
+require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
+
+// V4.3 New subscription classes
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
 
 // v3.1 New trigger module
 require_once(dirname(__FILE__)."/../../classes/TriggerOps.php");
@@ -68,13 +77,18 @@ class DMSService extends AbstractService {
 		$this->accountOps = new AccountOps($this->db);
 		$this->templateOps = new TemplateOps($this->db);
 		$this->emailOps = new EmailOps($this->db);
-		$this->licenceOps = new LicenceOps($this->db);
+		//$this->licenceOps = new LicenceOps($this->db);
 		$this->manageableOps = new ManageableOps($this->db);
 		
 		// v3.1 New trigger module
 		$this->triggerOps = new TriggerOps($this->db);
 		// v3.2 For Reporting
 		$this->usageOps = new UsageOps($this->db);
+		// v3.2 For shopping cart
+		$this->subscriptionOps = new SubscriptionOps($this->db);
+		
+		// v3.4 For internal queries - how to use a different dbHost?
+		$this->internalQueryOps = new InternalQueryOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -85,6 +99,18 @@ class DMSService extends AbstractService {
 		// Only users of type USER_TYPE_DMS are allowed to login to DMS
 		$loginObj = $this->loginOps->login($username, $password, array(User::USER_TYPE_DMS, User::USER_TYPE_DMS_VIEWER), $rootID);
 		
+		//NetDebug::trace('originalStartPage='.$_SESSION['originalStartpage'].'!');
+		if (isset($_SESSION['dbHost'])) {
+			NetDebug::trace('DMSService session.dbHost='.$_SESSION['dbHost']);
+		} else {
+			NetDebug::trace('DMSService session.dbHost not set');
+		}
+		// We don't want to tell anyone the password of the connection string
+		$pattern = '/([a-zA-Z0-9]+):\/\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)@([a-zA-Z0-9-_.]+)\/([a-zA-Z0-9]+)/';
+		$replace = '\1://\2:********@\4/\5';
+		$dbDetails = preg_replace($pattern, $replace, $GLOBALS['db']);
+		NetDebug::trace('db used '.$dbDetails);
+		
 		if ($loginObj) {
 			// Set the identity and rootID for logging. Also see the above constructor
 			AbstractService::$log->setIdent($loginObj->F_UserID);
@@ -94,7 +120,8 @@ class DMSService extends AbstractService {
 			
 			return array("userID" => (int)$loginObj->F_UserID,
 						 "userType" => (int)$loginObj->F_UserType,
-						 "languageCode" => "EN");
+						 "languageCode" => "EN",
+						 "dbDetails" => $dbDetails);
 		} else {
 			// Invalid username/password
 			return false;
@@ -149,6 +176,10 @@ class DMSService extends AbstractService {
 		return $this->templateOps->getTemplates("dms_reports");
 	}
 	
+	// v3.4 For regular internal queries. Better to call direct and not clutter up here
+	//function getGlobalR2IUser() {
+	//	return $this->internalQueryOps->getGlobalR2IUser($id);
+	//}
 	/*
 	 * Copied from RM - not necessary
 	 *

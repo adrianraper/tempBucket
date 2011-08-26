@@ -23,22 +23,32 @@
 <td>{$account->prefix}</td>
 <td>{$account->id}</td>
 {if $countLicences>0}
-	<td>{$countLicencesUsed*100/$countLicences|number_format:0}% ({$countLicencesUsed} of {$countLicences})</td>
+	<td>{$countLicencesUsed*100/$countLicences|number_format:0}%</td>
+	<td>{$countLicencesUsed} of {$countLicences}</td>
 {else}
+	<td>-</td>
 	<td>-</td>
 {/if}
 {if $countLicencesUsed>0}
-	{assign var='satisfaction' value=$account->sessionCounts*5/$countLicencesUsed}
+	{* 
+	{assign var='satisfaction' value=100*7*$account->sessionCounts/$denominator} // This fails
+	*}
+	{assign var='denominator' value=$countLicencesUsed*5*$account->daysUsed}
+	{assign var='satisfaction' value=$account->sessionCounts*100*7/$denominator}
 	{if $satisfaction>100} {assign var='satisfaction' value=100} {/if}
-	<td>{$satisfaction|number_format:0}% ({$account->sessionCounts})</td>
+	<td>{$satisfaction|number_format:0}%</td>
+	<td>{$account->sessionCounts}</td>
 {else}
 	<td>-</td>
+	<td>0</td>
 {/if}
 {* 
 	Explanation: 100% usage would be each student who has used up a licence using the program 5 days out of 7
 	So this is 20 days in a month (assume that these stats were done for the last 30 days).
 	Can't use brackets in the expression so 100/20 = 5
+	How many days between start and expiry?	$account->daysUsed
 *}
 <td>{$account->failedSessionCount}</td>
+<td>{$account->startDate|truncate:10:""}</td>
 <td>{$account->expiryDate|truncate:10:""}</td>
 </tr>

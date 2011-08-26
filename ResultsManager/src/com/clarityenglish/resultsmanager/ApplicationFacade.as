@@ -46,6 +46,7 @@
 			registerCommand(RMNotifications.SET_EXTRA_GROUPS, SetExtraGroupsCommand);
 			registerCommand(RMNotifications.SET_CONTENT_VISIBLE, SetContentVisibleCommand);
 			registerCommand(RMNotifications.UPDATE_LOGIN_OPTS, UpdateLoginOptsCommand);
+			registerCommand(RMNotifications.UPDATE_EMAIL_OPTS, UpdateEmailOptsCommand);
 			// v3.4
 			registerCommand(RMNotifications.EDIT_EXERCISE, EditInAuthorPlusCommand);
 			registerCommand(RMNotifications.MOVE_CONTENT_AFTER, EditedContentCommand);

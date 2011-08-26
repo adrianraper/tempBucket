@@ -18,7 +18,7 @@ class UsageOps {
 		$rootID = Session::get('rootID');
 		// What stats do we want for AA licences? Well, everything except for licence counts
 		if ($title->licenceType == 2) {
-			NetDebug::trace("AA usage stats please");		
+			//NetDebug::trace("AA usage stats please");		
 			//$usage['sessionDuration'] = $this->getAASessionDuration($title, $fromDate, $toDate);
 		} else {
 			// AR also read the number of title/user licences that have been used. This is based on licence
@@ -40,9 +40,11 @@ class UsageOps {
 		foreach ($account->titles as $title) {
 			// As well as licences used, I want to know if this account is purely one licence type.
 			// If an AA licence has had RM added, it too should be AA
+			// This should also pick up Transferable Tracking
 			switch ($title->licenceType) {
 				case 1:
-					$title->licencesUsed = $this->getTitleUserCounts($title, $account->id);
+				case 6:
+					$title->licencesUsed = $this->getTitleUserCountsApprox($title, $account->id);
 					$accountLicenceTypes = $accountLicenceTypes | 1;
 					break;
 				case 2:
@@ -66,6 +68,7 @@ class UsageOps {
 		$account->licenceType=$accountLicenceTypes;
 	}
 	function getFailedSessionsForAccount($account, $fromDate, $toDate) {
+	//echo 'getFailedSessionsForAccount='.$account->name;
 		$counter=0;
 		foreach ($account->titles as $title) {
 			$allFailures = $this->getFailedLoginCounts($title, $account->id, $fromDate, $toDate);
@@ -80,6 +83,7 @@ class UsageOps {
 		$account->failedSessionCount = $counter;
 	}
 	function getSessionsForAccount($account, $fromDate, $toDate) {
+	//echo 'getSessionsForAccount='.$account->name;
 		$counter = 0;
 		$rs = $this->getDMSSessionCounts($account->id, $fromDate, $toDate);
 		foreach ($account->titles as $title) {
@@ -176,7 +180,13 @@ EOD;
 			//		select count(F_SessionID) sessionCount, month(F_StartDateStamp) month
 			//		select count(F_SessionID) sessionCount, $sqldatemonth month
 			// Or month is a common function to T-SQL and MySQL. Not SQLite though.
-			$sqldatemonth = $this->db->SQLDATE('m', F_StartDateStamp);
+			//v3.6 This fails in sqlite and the adodb functions don't have SQLDATE. 
+			// strftime('%m',F_StartDateStamp) is what we need.
+			if (strpos($GLOBALS['db'],"sqlite")!==false) {
+				$sqldatemonth = "strftime('%m',F_StartDateStamp) ";
+			} else {
+				$sqldatemonth = $this->db->SQLDATE('m', F_StartDateStamp);
+			}
 			$sql = 	<<<EOD
 					select count(F_SessionID) sessionCount, $sqldatemonth month
 					from T_Session
@@ -281,7 +291,8 @@ EOD;
 		$brokenDate = explode("-", $myYearBit[0]);
 		//NetDebug::trace("UsageOps expiryDate=".date('Y-m-d', strtotime($title-> expiryDate)));
 		//if ($brokenDate[2] >= '2049') {
-		if ($brokenDate[0] >= '2049') {
+		//if ($brokenDate[0] >= '2049') {
+		if ($brokenDate[0] >= '2037') {
 			// if it is, then licence start date is 1 year ago today (ignore time)
 			//$fromDateStamp = date('m/d/Y', strtotime("-1 year"));
 			$fromDateStamp = date('Y-m-d', strtotime("-1 year"));
@@ -329,9 +340,54 @@ EOD;
 		// v3.4 Now you pass rootID in case you are working in DMS mode
 		//$rs = $this->db->GetRow($sql, array($title->productCode, Session::get('rootID')));
 		$rs = $this->db->GetRow($sql, array($title->productCode, $rootID));
-		//NetDebug::trace("UsageOps.sql.rs=".$rs['activeStudentCount']);
+		//NetDebug::trace("UsageOps.sql.active.rs=".$rs['activeStudentCount']);
 		
-		// Then any type of user who has a session, but deleted from T_User
+		// v3.6 The new 'transfer' licence will ONLY count active students so you can get back a licence
+		// that you have already used by deleting the student from RM
+		if ($title->licenceType == 6) {
+			$deletedCount=0;
+		} else {
+			// Then any type of user who has a session, but deleted from T_User
+			$sql = 	<<<EOD
+					SELECT COUNT(DISTINCT s.F_UserID) AS allDeletedCount
+					FROM T_Session s
+					left join T_User u
+					on s.F_UserID = u.F_UserID
+					WHERE s.F_ProductCode=?
+					AND s.F_RootID=?
+					AND s.F_StartDateStamp>'$fromDateStamp'
+					AND u.F_UserID IS NULL
+					AND s.F_UserID > 0
+EOD;
+			//NetDebug::trace("UsageOps ".$sql);
+			//$rs2 = $this->db->GetRow($sql, array($title->productCode, Session::get('rootID')));
+			$rs2 = $this->db->GetRow($sql, array($title-> productCode, $rootID));
+			//NetDebug::trace("UsageOps.sql.deleted.rs=".$rs2['allDeletedCount']);
+			$deletedCount = $rs2['allDeletedCount'];
+		}
+
+		return $rs['activeStudentCount'] + $deletedCount;
+	}
+	// AR This is used in EarlyWarningSystem. It is much quicker, and a little rough
+	private function getTitleUserCountsApprox($title, $rootID) {
+		$myYearBit = explode(" ", $title->expiryDate);
+		$brokenDate = explode("-", $myYearBit[0]);
+		if ($brokenDate[0] >= '2037') {
+			$fromDateStamp = date('Y-m-d', strtotime("-1 year"));
+		} else {
+			$fromDateStamp = $title->licenceStartDate;
+		}
+		$sql = 	<<<EOD
+			SELECT COUNT(DISTINCT s.F_UserID) AS activeStudentCount
+			FROM T_Session s, T_User u
+			WHERE s.F_ProductCode=?
+			AND s.F_RootID=?
+			AND s.F_UserID = u.F_UserID
+			AND u.F_UserType=0
+			AND s.F_StartDateStamp>'$fromDateStamp'
+EOD;
+		$rs = $this->db->GetRow($sql, array($title->productCode, $rootID));
+		
 		$sql = 	<<<EOD
 				SELECT COUNT(DISTINCT s.F_UserID) AS allDeletedCount
 				FROM T_Session s
@@ -343,11 +399,10 @@ EOD;
 				AND u.F_UserID IS NULL
 				AND s.F_UserID > 0
 EOD;
-		//NetDebug::trace("UsageOps ".$sql);
-		//$rs2 = $this->db->GetRow($sql, array($title->productCode, Session::get('rootID')));
-		$rs2 = $this->db->GetRow($sql, array($title->productCode, $rootID));
+		$rs2 = $this->db->GetRow($sql, array($title-> productCode, $rootID));
+		$deletedCount = $rs2['allDeletedCount'];
 
-		return $rs['activeStudentCount'] + $rs2['allDeletedCount'];
+		return $rs['activeStudentCount'] + $deletedCount;
 	}
 	
 	private function getFailedLoginCounts($title, $rootID, $fromDate, $toDate) {
@@ -422,7 +477,7 @@ EOD;
 					GROUP BY c.F_ExerciseID
 					ORDER BY c.F_ExerciseID
 EOD;
-			NetDebug::trace("UsageOps.EMUcoverage productCode IN ".$emuList);
+			//NetDebug::trace("UsageOps.EMUcoverage productCode IN ".$emuList);
 			//$emurs = $this->db->GetArray($sql, array(Session::get('userID')));
 			$emurs = $this->db->GetArray($sql, $userID);
 		} else {
@@ -443,7 +498,7 @@ EOD;
 					GROUP BY c.F_ExerciseID
 					ORDER BY c.F_ExerciseID
 EOD;
-			NetDebug::trace("UsageOps.APcoverage productCode IN ".$authorPlusList);
+			//NetDebug::trace("UsageOps.APcoverage productCode IN ".$authorPlusList);
 			$authorplusrs = $this->db->GetArray($sql, $userID);
 		} else {
 			$authorplusrs = array();
@@ -523,7 +578,7 @@ EOD;
 			GROUP BY itemID
 			ORDER BY itemID
 EOD;
-			NetDebug::trace("UsageOps.EMUEveryonecoverage=".$sql);
+			//NetDebug::trace("UsageOps.EMUEveryonecoverage=".$sql);
 			//$emurs = $this->db->GetArray($sql, $userID, $startDate, $endDate);
 			$emurs = $this->db->GetArray($sql, $bindingParams);
 			*/
@@ -666,7 +721,7 @@ EOD;
 				ORDER BY c.F_ExerciseID
 EOD;
 
-			NetDebug::trace("UsageOps.APEveryonecoverage=".$sql);
+			//NetDebug::trace("UsageOps.APEveryonecoverage=".$sql);
 			$workingrs = $this->db->GetArray($sql, $bindingParams);
 			//NetDebug::trace("records=".count($workingrs));
 			$authorplusrs = array();
@@ -750,7 +805,7 @@ EOD;
 			GROUP BY c.F_CourseID 
 EOD;
 		}
-		NetDebug::trace("UsageOps.EveryoneNumbers=".$sql." with ".implode(", ",$bindingParams));
+		//NetDebug::trace("UsageOps.EveryoneNumbers=".$sql." with ".implode(", ",$bindingParams));
 		$overallrs = $this->db->GetArray($sql, $bindingParams);
 		// Add this as the first records in the return array. Yikes, that is so clumsy.
 		return array_merge($overallrs, $emurs, $authorplusrs);

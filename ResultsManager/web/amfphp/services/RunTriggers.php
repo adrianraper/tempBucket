@@ -1,6 +1,6 @@
 <?php
 /*
- * This script is run by the Windows scheduler on a daily basis.
+ * This script is run by the cronjob on a daily basis.
  */
 
 /*
@@ -8,13 +8,21 @@
  * email templates that need to be sent when something happens or becomes true
  * database updates that are fired when something happens
  */
+// Warning - this script takes a long time to run, can you override the timeout without nasty consequences? 
+ini_set('max_execution_time', 120); // 2 minutes
 
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
+// Don't get fooled by old session variables
+if (isset($_SESSION['dbHost'])) unset($_SESSION['dbHost']);
+if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
+
 $dmsService = new DMSService();
 
-session_start();
+// Session start done in DMSService
+//session_start();
+
 date_default_timezone_set('UTC');
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
@@ -24,6 +32,12 @@ if (!Authenticate::isAuthenticated()) {
 		exit(0);
 	}
 }
+// Set up line breaks for whether this is outputting to html page or a text file
+if (isset($_SERVER["SERVER_NAME"])) {
+	$newLine = '<br/>';
+} else {
+	$newLine = "\n";
+}
 
 function addDaysToTimestamp($timestamp, $days) {
 	//return date("Y-m-d", $timestamp + ($days * 86400));
@@ -31,9 +45,10 @@ function addDaysToTimestamp($timestamp, $days) {
 }
 
 // Maybe I will want to be able to pass an array of triggers to this as well as getting all of them
-function runTriggers($triggerIDArray = null, $triggerDate = null, $frequency = null) {
+function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $frequency = "daily") {
 	//echo "runTriggers"; 
 	global $dmsService;
+	global $newLine;
 	
 	// Pick up all triggers that are valid on the given date (usually this is going to be today)
 	if (!$triggerDate) $triggerDate = time();
@@ -42,15 +57,27 @@ function runTriggers($triggerIDArray = null, $triggerDate = null, $frequency = n
 	//if (!$frequency) $frequency= "daily";
 	
 	// You may limit the triggers to those in an array of IDs
-	$triggers = $dmsService->triggerOps->getTriggers($triggerIDArray, $triggerDate, $frequency);
-	//echo 'got '.count($triggers) .' triggers'."<br/>";
+	// New, and a particular type.
+	$triggers = $dmsService->triggerOps->getTriggers($msgType, $triggerIDArray, $triggerDate, $frequency);
+	echo 'got '.count($triggers) .' '.$frequency.' triggers with type='.$msgType.$newLine;
 
 	// Run the condition of each trigger against the database and pull back all objects that meet the condition
 	foreach ($triggers as $trigger) {
-		//echo 'trigger '.$trigger->name."<br/>";
+		//echo 'trigger '.$trigger->name.$newLine;
+		//continue;
 		// This should go into triggerOps I think.
+		// If you want to override the root for testing do it here, or from the URL
+		// Also see EmailToAllActiveAccounts for startRootID and stopRootID
+		if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
+			$trigger->rootID=$_REQUEST['rootID'];
+		} else {
+		//	$trigger->rootID=10719;
+			//$trigger->rootID=Array(5,7,28,163,10719,11091);
+			//$trigger->rootID=Array();
+		}
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
-		//echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.'<br/>';
+		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
+		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);
 		
 		// Now send all the matched objects to the executor with the templateID
 		switch ($trigger->executor) {
@@ -61,7 +88,7 @@ function runTriggers($triggerIDArray = null, $triggerDate = null, $frequency = n
 					// Do this so that you can log what the select returns
 					//$roots = Array();
 					foreach ($triggerResults as $record) {
-						echo "root=".$record['F_RootID']."</br>";
+						echo "root=".$record['F_RootID'].$newLine;
 						//$roots[] = $record['F_RootID'];
 					}
 					$dmsService->triggerOps->updateDatabase($trigger->condition->update);
@@ -70,82 +97,113 @@ function runTriggers($triggerIDArray = null, $triggerDate = null, $frequency = n
 				break;
 				
 			case "email":
-				// If the request variable 'send' is not defined then just print the emails to the screen, don't actually send anything.  This is to
-				// prevent accidental sends when testing!
+				//foreach ($triggerResults as $account) {
+					// TODO: If you do it like this, you are calling emailOps->sendEmails multiple times, with extra overhead.
+					// Should use emailAPI and make sure that that can cope with an array of emails before working out whether
+					// to send or echo. And perhaps it could cope with start and stop rootIDs too.
+					//$emailData = array("account" => $account, "expiryDate" => $trigger->condition->expiryDate);
+					//$dmsService-> emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
+				//}
+				$emailArray = array();
+				foreach ($triggerResults as $result) {
+					// v3.6 You now get email addresses from T_AccountEmails.
+					// So look up T_AccountEmails with the account root and the message type that we are trying to send
+					// Then all matching emails will get this. 
+					//echo 'getMessages for id='.$result->id.' and type='.$trigger->messageType.$newLine;
+					$accountEmails = $dmsService->accountOps->getEmailsForMessageType($result->id, $trigger->messageType);
+					//echo 'accountEmails='.count($accountEmails).'-'.implode(',',$accountEmails).$newLine;
+					// If there is a reseller they are also 'ccd.
+					$resellerEmail = array($dmsService->accountOps->getResellerEmail($result->resellerCode));
+					//echo 'resellerEmail='.$resellerEmail.$newLine;
+					
+					// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
+					$adminEmail = array_shift($accountEmails);
+					//echo "admin=$adminEmail";
+					$ccEmails = array_merge($accountEmails, $resellerEmail);
+					
+					$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir']);
+					$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
+					$emailArray[] = $thisEmail;
+				}
+				// If the request variable 'send' is not defined then just print the emails to the screen, don't actually send anything.  
+				// This is to prevent accidental sends when testing!
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-					// Arrange the accounts into a $emailArray ready to pass to sendEmails
-					// Clearly I am trying to abstract the emailOps from the details of accounts, but does this really do it?
-					$emailArray = array();
-					foreach ($triggerResults as $result) {
-						//$emailArray[] = array("to" => $result->email, "data" => array("account" => $result, "opts" => $opts));
-						// You can put the cc and bcc into each email template if you don't want every emailed trigger to get cc'd
-						// Actually we want to use the admin account email as the main one, and perhaps cc the overall one if different
-													//,"cc" => array("accounts@clarityenglish.com")
-													//,"bcc" => array("andrew.stokes@clarityenglish.com")
-						$accountEmail = $result->email;
-						$adminEmail = $result->adminUser->email;
-						if ($accountEmail != $adminEmail && $accountEmail && $accountEmail!= '') {
-							$emailArray[] = array("to" => $adminEmail
-													,"data" => array("account" => $result, "expiryDate" => $trigger->condition->expiryDate)
-													,"cc" => array($accountEmail)
-												);
-						} else {
-							$emailArray[] = array("to" => $adminEmail
-													,"data" => array("account" => $result, "expiryDate" => $trigger->condition->expiryDate)
-												);
-						}
-					}
 					// Send the emails
-					// We are currently not using the from field and simply sending everything from support.
-					// This is wrong. We should get the 'from' from the template as well - which means do it in emailOps
 					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-					//echo "sent ".count($triggerResults)." email(s) for trigger ".$trigger->triggerID."; ";
 				} else {
-					foreach ($triggerResults as $result) {
-						$accountEmail = $result->email;
-						$adminEmail = $result->adminUser->email;
-						//echo "<b>".$result->email.":</b><br/><br/>".$dmsService-> emailOps->fetchEmail("expiry_reminder", array("account" => $result, "opts" => $opts))."<hr/>";
-						//echo "<b>".$result->email.":</b><br/><br/>"."xxx"."<hr/>";
-						if ($accountEmail != $adminEmail && $accountEmail && $accountEmail!= '') {
-							echo "<b>Email: ".$adminEmail.", cc: ".$accountEmail."</b><br/><br/>".$dmsService-> emailOps->fetchEmail($trigger->templateID, array("account" => $result, "expiryDate" => $trigger->condition->expiryDate))."<hr/>";
+					// Or print on screen
+					foreach($emailArray as $email) {
+						if ($email["cc"]) {
+							echo "<b>Email: ".$email["to"].", cc: ".implode(',',$email["cc"])."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
 						} else {
-							echo "<b>Email: ".$adminEmail."</b><br/><br/>".$dmsService->emailOps->fetchEmail($trigger->templateID, array("account" => $result, "expiryDate" => $trigger->condition->expiryDate))."<hr/>";
+							echo "<b>Email: ".$email["to"]."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
 						}
 					}
 				}
 				break;
 				
-			case "usageStats":
-				// This means a more complex operation has to happen on each triggerResult
-				$dmsService->usageOps->clearDirectStartRecords();
+			case "internalEmail":
+				// If you want to send Clarity an email about an account use this. 
+				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+					// Arrange the accounts into a $emailArray ready to pass to sendEmails
+					$emailArray = array();
+					foreach ($triggerResults as $result) {
+						// The email should go to the reseller (cc to Clarity)
+						$resellerEmail = $dmsService->accountOps->getResellerEmail($result->resellerCode);
+						$clarityEmail = 'sales@clarityenglish.com';
+						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir']);
+						$thisEmail = array("to" => $resellerEmail, "cc" => array($clarityEmail), "data" => $emailData);
+						$emailArray[] = $thisEmail;
+						echo $result->name.', '.$resellerEmail.$newLine;
+					}
+					// Send the emails
+					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+					//echo "sent ".count($triggerResults)." email(s) for trigger ".$trigger->triggerID.$newLine;
+				} else {
+					foreach ($triggerResults as $result) {
+						// The email should go to the reseller (cc to Clarity)
+						$resellerEmail = $dmsService->accountOps->getResellerEmail($result->resellerCode);
+						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir']);
+						echo "<b>Email: ".$resellerEmail."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $emailData)."<hr/>";
+					}
+				}
+				break;
 				
+			case "usageStats":
+				
+				$emailArray = array();
+				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+					// Only update T_DirectStart if you are actually inserting new records
+					$dmsService->usageOps->clearDirectStartRecords();
+				}
 				foreach ($triggerResults as $account) {
-					// This will write a record to the database, and tell us the securityString
-					$securityString = $dmsService->usageOps->insertDirectStartRecord($account);
-					// Then send an email. But why is this in usageOps - why not just here?
-					//$dmsService->usageOps->sendDirectStartEmail($account, $trigger->templateID, $securityString);
-					$accountEmail = $account->email;
-					$adminEmail = $account->adminUser->email;
-					// To allow for testing without sending out real emails
+					// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
 					if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-						if ($accountEmail != $adminEmail && $accountEmail && $accountEmail!= '') {
-							$emailArray[] = array("to" => $adminEmail
-													,"data" => array("account" => $account, "session" => $securityString)
-													,"cc" => array($accountEmail)
-													);
-						} else {
-							$emailArray[] = array("to" => $adminEmail
-													,"data" => array("account" => $account, "session" => $securityString)
-													);
-						}
-						$this->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+						$securityString = $dmsService-> usageOps->insertDirectStartRecord($account);
 					} else {
-						if ($accountEmail != $adminEmail && $accountEmail && $accountEmail!= '') {
-							echo "<b>Email: ".$adminEmail.", cc: ".$accountEmail."</b> $account->name, $account->id<br/><br/>";
+						$securityString = '123456789';
+					}
+					$accountEmails = $dmsService->accountOps->getEmailsForMessageType($account->id, $trigger->messageType);
+					// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
+					$adminEmail = array_shift($accountEmails);
+					$ccEmails = $accountEmails;
+					$emailData = array("account" => $account, "session" => $securityString);
+					$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
+					$emailArray[] = $thisEmail;
+					echo $account->name.', '.$adminEmail.$newLine;
+				}
+				// This is to prevent accidental sends when testing!
+				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+					// Send the emails
+					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+				} else {
+					// Or print on screen
+					foreach($emailArray as $email) {
+						if ($email["cc"]) {
+							echo "<b>Email: ".$email["to"].", cc: ".implode(',',$email["cc"])."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
 						} else {
-							echo "<b>Email: ".$adminEmail."</b> $account->name, $account->id<br/><br/>";
+							echo "<b>Email: ".$email["to"]."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
 						}
-						//echo $this->emailOps->fetchEmail($templateID, array("account" => $account, "session" => $securityString))."<hr/>";
 					}
 				}
 				break;
@@ -159,80 +217,93 @@ function runTriggers($triggerIDArray = null, $triggerDate = null, $frequency = n
 
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-//$testingTriggers .= "subscription reminders";
-//$testingTriggers .= "trial reminders";
+$testingTriggers .= "subscription reminders";
+$testingTriggers .= "usage stats";
+$testingTriggers .= "support";
+$testingTriggers .= "quotations";
+$testingTriggers .= "trial reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers = "justThese";
 
 // The use of F_Frequency doesn't make any sense at the moment. Everything is simply running on a daily basis.
 // This is where I can elect to run weekly or monthly triggers
 // Is today the first of the month?
+// Currently nothing is sent out like this as usage stats moved to a daily check on each account
 if (date("j")==1) {
 	$testingTriggers .= "monthlyActions";
 }
+// Used for Early Warning system emails to Clarity team
 // Is today Monday (considered first day of the week by Clarity for everyone - apologies to UAE)
 if (date("w")==1) {
 	$testingTriggers .= "weeklyActions";
 }
-
-if (stristr($testingTriggers, "monthlyActions")) {
+if (stripos($testingTriggers, "weeklyActions")!==false) {
+	$triggerList = null; // find all weekly ones
+	$msgType = null; // Nothing useful to send
+	runTriggers($msgType, $triggerList, null, "weekly");
+}
+if (stripos($testingTriggers, "monthlyActions")!==false) {
 	$triggerList = null; // find all monthly ones
-	runTriggers($triggerList, null, "monthly");
+	$msgType = null; // Nothing useful to send
+	runTriggers($msgType, $triggerList, null, "monthly");
 }
-if (stristr($testingTriggers, "terms and conditions")) {
+// This is a test of data in the database, and what you do if it changes
+if (stripos($testingTriggers, "terms and conditions")!==false) {
 	$tandcTriggers = array(10); // terms and conditions
-	runTriggers($tandcTriggers, null); // today
+	$msgType = 0; // Internal action
+	runTriggers($msgType, $tandcTriggers, null); // today
 }
-if (stristr($testingTriggers, "subscription reminders")) {
-	$subscriptionTriggers = array(1, 6, 7, 8); // account subscription reminders
+// This is the main use of triggers, to send out emails to each account
+if (stripos($testingTriggers, "subscription reminders") !== false) {
+	// Now this information is in the trigger table
+	//$subscriptionTriggers = array(1, 6, 7, 8, 32, 33, 34, 36, 38, 39, 40, 41, 42); // account subscription reminders
+	$subscriptionTriggers = null;
+	$msgType = 1; // subscription reminders
 	if (isset($_REQUEST['date'])) {
-		runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
 	}
 }
-if (stristr($testingTriggers, "trial reminders")) {
-	$trialTriggers = array(11, 12); // trial notices
+if (stripos($testingTriggers, "usage stats") !== false) {
+	$subscriptionTriggers = null;
+	$msgType = 2; // usage stats
 	if (isset($_REQUEST['date'])) {
-		runTriggers($trialTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($trialTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
 	}
 }
-if (stristr($testingTriggers, "justThese")) {
+if (stripos($testingTriggers, "support") !== false) {
+	$subscriptionTriggers = null;
+	$msgType = 4; // Support
+	if (isset($_REQUEST['date'])) {
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
+	} else {
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+	}
+}
+// This sends emails about an account to Clarity or the reseller
+if (stripos($testingTriggers, "quotations")!==false) {
+	//$internalTriggers = array(37); // internal reminder to create a quotation ready for renewal
+	$internalTriggers = null; // internal reminder to create a quotation ready for renewal
+	$msgType = 0; // subscription reminders
+	if (isset($_REQUEST['date'])) {
+		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
+	} else {
+		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), 0)); // today
+	}
+}
+if (stripos($testingTriggers, "justThese")!==false) {
 	$subscriptionTriggers = array(1); // account subscription reminders
+	$msgType = null; // all
 	if (isset($_REQUEST['date'])) {
-		runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
 	}
 }
 
-/*
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), 0)); // for Friday
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), 1)); // Saturday
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), 2)); // and Sunday
 
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -1)); // yesterday
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -2));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -3));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -4));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -5));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -6));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -7));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -8));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -9));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -10));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -11));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -12));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -13));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -14));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -15));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -16));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -17));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -18));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -19));
-runTriggers($subscriptionTriggers, addDaysToTimestamp(time(), -20));
-*/
 exit(0)
 ?>

@@ -18,14 +18,16 @@ function jukeBox(interface, initObj) {
 }
 
 var showOutside = function() {
-	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		this.outside._alpha = 100;	
 	} else {
 		this.outside._alpha = 100;	
 	}
 }
 var hideOutside = function() {
-	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		this.outside._alpha = 0;	
 	} else {
 		this.outside._alpha = 0;	
@@ -963,9 +965,10 @@ jukeBox.prototype.setColour = function(myColour) {
 		myTarget._alpha = thisButtonAlpha;
 		return;
 	// v6.4.2.4 Or skin the buttons for each interface
-	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
+	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 	
-		myTrace("skinning sss jukebox"); 
+		myTrace("skinning sss/cp2 jukebox"); 
 		// You can't do this in init as you don't know branding then
 		// override the default positions
 		var leftNudge=20;

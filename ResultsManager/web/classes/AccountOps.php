@@ -75,7 +75,7 @@ class AccountOps {
 		//} else {
 		//	$selectBuilder->addWhere('F_Prefix LIKE \'%[^0-9]%\'');
 		//}
-		
+		//$accountIDArray = array(13292, 13293, 13294);
 		if ($accountIDArray)
 			//$where[] = "F_RootID IN (".join($accountIDArray, ",").")";
 			$selectBuilder->addWhere("a.F_RootID IN (".join($accountIDArray, ",").")");
@@ -83,6 +83,7 @@ class AccountOps {
 		if (sizeof($conditions) > 0) {
 			foreach ($conditions as $condition => $value) {
 				//NetDebug::trace("condition=$condition=$value");
+				//echo "condition=$condition=$value<br/>";
 				switch ($condition) {
 					case 'individuals':
 						if ($value == 'true') {
@@ -92,6 +93,7 @@ class AccountOps {
 						}
 						break;
 					case 'expiryDate':
+						//echo "expiryDate set to $value";
 						//$where[] = "t.F_ExpiryDate = '".$onExpiryDate."'";
 						// v3.3 Problem here in that expiry date in the db contains a time, whereas the value I am passing doesn't
 						// I can either add '23:59:59' to the end on teh grounds that this is when all accounts should end
@@ -121,6 +123,7 @@ class AccountOps {
 						$selectBuilder->addWhere("a.F_AccountStatus = '".$value."'");
 						break;
 					case 'productCode':
+						// Note that this doesn't just find accounts that have this product, it ONLY returns this product in the accounts
 						$selectBuilder->addWhere("t.F_ProductCode = '".$value."'");
 						$needsAccountsTable = true;
 						break;
@@ -139,10 +142,38 @@ class AccountOps {
 							$needsAccountsTable = true;
 						}
 						break;
-					// v3.5 Flexibility of email triggers. Ignore accounts that have opted out.
+					// v3.5 Flexibility of email triggers. Ignore accounts that have opted out, for a while.
 					case 'optOutEmails':
-						$selectBuilder->addWhere("a.F_OptOutEmails = 0");
+						$now = date('Y-m-d');
+						$selectBuilder->addWhere("a.F_OptOutEmails = 0", true);
+						$selectBuilder->addWhere("(a.F_OptOutEmails = 1 AND a.F_OptOutEmailDate < '$now 00:00:00')", true);
 						$needsAccountsTable = true;
+						break;
+					// v3.6 Early Warning System
+					case 'reseller':
+						$selectBuilder->addWhere("a.F_ResellerCode IN (".join($value, ",").")");
+						break;
+					// v3.5 Subscription reminders need start date for first few emails - and they are only based on RM
+					case 'startDate':
+						//echo "startDate set to $value";
+						if ($value != null) {
+							$selectBuilder->addWhere("t.F_LicenceStartDate >= '".substr($value,0,10)." 00:00:00'");
+							$selectBuilder->addWhere("t.F_LicenceStartDate <= '".substr($value,0,10)." 23:59:59'");
+							$selectBuilder->addWhere("t.F_ProductCode=2");
+							$needsAccountsTable = true;
+						}
+						break;
+					// When you have a recurring day part of the date - also only applies to RM
+					case 'startDay':
+						//echo "startDay set to $value ";
+						if ($value != null) {
+							// Tested with MySQL, but not with SQLServer, though it should work
+							//$selectBuilder->addWhere("DAYOFMONTH(t.F_LicenceStartDate) = $value");
+							$buildDateString = $this->db->SQLDate('d','t.F_LicenceStartDate');
+							$selectBuilder->addWhere("$buildDateString = $value");
+							$selectBuilder->addWhere("t.F_ProductCode=2");
+							$needsAccountsTable = true;
+						}
 						break;
 				}
 			}
@@ -199,7 +230,10 @@ class AccountOps {
 		//NetDebug::trace("sql=".$selectBuilder->toSQL());
 
 		//throw new Exception($selectBuilder->toSQL());
-		$accountsRS = $this->db->Execute($selectBuilder->toSQL());
+		$sql = $selectBuilder->toSQL();
+		//echo $sql;
+		//$accountsRS = $this->db->Execute($selectBuilder->toSQL($sql)); 
+		$accountsRS = $this->db->Execute($sql); 
 		//NetDebug::trace("accounts=".$accountsRS->RecordCount());
 		//echo "accounts=".$accountsRS->RecordCount();
 		$result = array();
@@ -286,11 +320,11 @@ class AccountOps {
 			//case "languageCode":
 			//	return $this->db->GetArray("SELECT F_LanguageCode data, F_Description label FROM T_Language");
 			case "languageCode":
-			$sql = <<< EOD
-				SELECT P.F_LanguageCode data, L.F_Description label, P.F_ProductCode productCode
-				FROM T_Language L, T_ProductLanguage P
-				WHERE P.F_LanguageCode = L.F_LanguageCode
-				ORDER BY P.F_ProductCode
+				$sql = <<< EOD
+					SELECT P.F_LanguageCode data, L.F_Description label, P.F_ProductCode productCode
+					FROM T_Language L, T_ProductLanguage P
+					WHERE P.F_LanguageCode = L.F_LanguageCode
+					ORDER BY P.F_ProductCode
 EOD;
 				return $this->db->GetArray($sql);
 			default:
@@ -298,12 +332,23 @@ EOD;
 		}
 		
 		// as mysql result return only string no matter what the types defined in the database
-		// manual convention is done here
+		// manual conversion is done here
 		for($i=0;$i<count($result);++$i) {
 			$result[$i]['data'] = intval($result[$i]['data']);
 		}
 		return $result;
 		
+	}
+	// Similarly to the dictionary, I want to be able to get the reseller email based on their ID
+	function getResellerEmail($id) {
+		$sql = <<< EOD
+				SELECT *
+				FROM T_Reseller
+				WHERE F_ResellerID = $id
+EOD;
+		$rs = $this->db->Execute($sql);	
+		if ($rs)
+			return $rs->FetchNextObj()->F_Email;
 	}
 	
 	function addAccount($account) {
@@ -321,7 +366,10 @@ EOD;
 		//echo "new root=$account->id"."<br/>";
 		
 		// Now update the titles within the account
-		$this->updateAccountTitles($account);
+		// vCLS It is possible you are adding an account with no titles (because you will add the titles later)
+		if (count($account->titles)>0) {
+			$this->updateAccountTitles($account);
+		}
 		
 		// If an admin user is specified (as it always will be except with self-hosted accounts) then create a group and user
 		if ($account->adminUser) {
@@ -459,7 +507,7 @@ EOD;
 		// Then add in the new/updated titles
 		foreach ($account->titles as $title) {
 			if (!$this->isTitleValid($title))
-				throw new Exception($this->copyOps->getCopyForId("mismatchedLanguageCode"));
+				throw new Exception($this->copyOps->getCopyForId("mismatchedLanguageCode", array("productCode" => $title->productCode, "languageCode" => $title->languageCode)));
 		}		
 		// First delete any titles currently associated with this account
 		//echo "updateAccountTitles for $account->id"."<br/>";
@@ -479,13 +527,16 @@ EOD;
 			$this->db->AutoExecute("T_Accounts", $titleArray, "INSERT");
 			
 			// v3.0.6 We need to create an Author Plus folder, if they are adding AP for the first time, and this is not self-hosted
-			if ($title-> productCode == 1 && !$account->selfHost) {
+			if ($title->productCode == 1 && !$account->selfHost) {
 				// v3.5 Now dbContentLocation is tied to the field in DMS and is the direct database link
 				//$thisContentLocation = $this->contentOps->getContentFolder($title->contentLocation, $title->productCode);
 				$thisContentLocation = $this->contentOps->getContentFolder($title->dbContentLocation, $title->productCode);
 				//NetDebug::trace('AccountOps.addAccount AuthorPlus folder='.$thisContentLocation);
 				if (!is_dir($thisContentLocation)) {
-					$emptyTemplate = $this->contentOps->getContentFolder("../ap/templates_empty", $title->productCode);
+					// v4.3 I sometimes get error suggesting that copy(../../../../../ap/../ap/templates_empty/course.xml) doesn't exist.
+					// Is this path wrong here, or some strange data thing? I only see it on claritymain. I think it is wrong.
+					//$emptyTemplate = $this->contentOps->getContentFolder("../ap/templates_empty", $title->productCode);
+					$emptyTemplate = $this->contentOps->getContentFolder("templates_empty", $title->productCode);
 					//NetDebug::trace('AccountOps.addAccount need to create the folder');
 					// it doesn't exist, so create it
 					mkdir($thisContentLocation, 0777);
@@ -574,6 +625,41 @@ EOD;
 		return $c;
 	}
 	/*
+	 * This reads all the email addresses for this account who are registered to receive this type of message
+	 */
+	public function getEmailsForMessageType($rootID, $msgType = null) {
+		// If you don't pass a msgType, return all emails
+		$bindingParams = array($rootID);
+		// Remember that the admin email is NOT stored here, you have to get that from T_User
+		$sql = "SELECT u.F_Email FROM T_User u, T_AccountRoot a WHERE a.F_RootID=? AND u.F_UserID = a.F_AdminUserID";
+		$rs = $this->db->Execute($sql, $bindingParams); 
+		if ($rs)
+			$adminUserEmail = $rs->FetchNextObj()->F_Email;
+			
+		// msgType from the table is sequential, but used as a binary flag in RM
+		if (!is_null($msgType) && is_numeric(intval($msgType))) {
+			$msgTypeFlag = pow(2,$msgType-1);
+		}
+		$sql = "SELECT F_Email, F_AdminUser FROM T_AccountEmails WHERE F_RootID=?";
+		if (!is_null($msgType) && is_numeric(intval($msgType))) {
+			$sql .= " AND F_MessageType&?";
+			$bindingParams[] = intval($msgTypeFlag);
+		}
+		$accountsRS = $this->db->Execute($sql, $bindingParams); 
+		$result = array();
+		if ($accountsRS->RecordCount() > 0) {
+			while ($emailObj = $accountsRS->FetchNextObj()) {
+				if ($emailObj->F_AdminUser) {
+					$result[] = $adminUserEmail;
+				} else {
+					$result[] = $emailObj->F_Email;
+				}
+			}
+		}
+		return $result;
+	}
+	
+	/*
 	 * This is a simple version of ActionScript escape function
 	 */
 	private function actionscriptEscape($text) {
@@ -581,7 +667,6 @@ EOD;
 		$replaces = array('%5F','%2D','%2E');
 		return str_replace($needles,$replaces,rawurlencode($text));
 	}
-
 	
 	/*
 	 * This method creates a new Account from an AdoDB object returned by FetchNextObject()
@@ -647,7 +732,40 @@ EOD;
 			
 		return true;
 	}
+
+	/* 
+	 * Functions to find an account based on key information
+	 */
+	// This one is for CLS accounts which have unique emails for the admin user
+	public function getAccountFromEmail($email) {
 	
+		$sql = 	<<<EOD
+				SELECT r.F_RootID rootID
+				FROM T_AccountRoot r, T_User u
+				WHERE r.F_AdminUserID = u.F_UserID
+			AND u.F_Email = ?
+EOD;
+		$sql .= ' AND ('.NEG_MYPOSTFIX.')';
+		//echo $sql;
+		$rs = $this->db->Execute($sql, array($email));
+		
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There is no matching pair, raise an error
+				return false;
+				break;
+			case 1:
+				// One record, good. Send back the root
+				$rootID = $rs->FetchNextObj()->rootID;
+				break;
+			default:
+				return false;
+		}
+		
+		// now get the account (just one)
+		$accounts = $this->getAccounts(array($rootID));
+		return array_shift($accounts);
+	}
 	/*
 	 * Utility function to return the next sequential number for prefixes, (and obfuscate it)
 	 */
@@ -660,6 +778,5 @@ EOD;
 		$rs = $this->db->Execute($sql);
 		return ((string)((int)($rs->FetchNextObj()->MAXPREFIX) + 1));
 	}
-	
 }
 ?>

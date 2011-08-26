@@ -64,7 +64,7 @@ div.titleDetails {float: left;}
 			{/if}
 		{/foreach}
 		*}
-		Not currently active
+		Licence full is reported with LT or AA report
 	</div>
     <div id="fragment-3">
 		{* Build this data into a table that you can sort *}
@@ -74,9 +74,12 @@ div.titleDetails {float: left;}
 				<th>Institution</th>
 				<th>Prefix</th>
 				<th>Root</th>
-				<th>Licences used</th>
+				<th>Licences %</th>
+				<th>Licences</th>
 				<th>Satisfaction*</th>
+				<th>Sessions</th>
 				<th>Licence full</th>
+				<th>Start date</th>
 				<th>Expiry date</th>
 			</tr>
 		</thead>
@@ -102,7 +105,9 @@ div.titleDetails {float: left;}
 				<th>Root</th>
 				<th>Licences</th>
 				<th>Satisfaction*</th>
+				<th>Sessions</th>
 				<th>Licence full</th>
+				<th>Start date</th>
 				<th>Expiry date</th>
 			</tr>
 		</thead>

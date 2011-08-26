@@ -25,6 +25,7 @@ class Account extends Reportable {
 	var $selfHostDomain;
 	// v3.5 To allow flexibility of email system
 	var $optOutEmails;
+	var $optOutEmailDate;
 	
 	/**
 	 * This is private since we get the real user object from the db in AccountOps for DMS (this is filled into $adminUser) and
@@ -42,6 +43,18 @@ class Account extends Reportable {
 	 */
 	function addTitles($t) {
 		$this->titles = array_merge($t, $this->titles);
+	}
+	/*
+	 * Need a function that will remove an array of titles from this account
+	 * http://stackoverflow.com/questions/3573313/php-remove-object-from-array
+	 */
+	function removeTitles($tarray) {
+		foreach($tarray as $t) {
+			if (($key = array_search($t, $this->titles, true)) !== FALSE) {
+				//echo "found and removed ".$t->productCode;
+				unset($this->titles[$key]);
+			}
+		}
 	}
 	
 	/**
@@ -71,7 +84,8 @@ class Account extends Reportable {
 		$this->id = $obj->F_RootID;
 		$this->name = $obj->F_Name;
 		$this->prefix = $obj->F_Prefix;
-		$this->email = $obj->F_Email;
+		// v3.6 Drop F_Email from AccountRoot
+		//$this->email = $obj->F_Email;
 		$this->tacStatus = $obj->F_TermsConditions;
 		$this->accountStatus = $obj->F_AccountStatus;
 		// v3.0.5 Change status handling
@@ -82,7 +96,9 @@ class Account extends Reportable {
 		$this->logo = $obj->F_Logo;
 		$this->accountType = $obj->F_AccountType;
 		// v3.0.6 Self-hosting
-		$this->selfHost = $obj->F_SelfHost;
+		// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
+		//$this->selfHost = $obj->F_SelfHost;
+		$this->selfHost = ($obj->F_SelfHost==0) ? false : true;
 		// v3.0.6 Anonymous Access login through CE.com/shared
 		$this->loginOption = $obj->F_LoginOption;
 		// v3.3 Security of self-hosting
@@ -90,7 +106,9 @@ class Account extends Reportable {
 		$this->adminUserID = $obj->F_AdminUserID;
 		//NetDebug::trace("fromDatabaseObj with ".$obj->F_SelfHostDomain);
 		// v3.5 To allow flexibility of email system
-		$this->optOutEmails = $obj->F_OptOutEmails;
+		// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
+		$this->optOutEmails = ($obj->F_OptOutEmails==0) ? false : true;
+		$this->optOutEmailDate = ($this->optOutEmails) ? $obj->F_OptOutEmailDate : null;
 	}
 	
 	/**
@@ -101,7 +119,8 @@ class Account extends Reportable {
 		
 		$array['F_Name'] = $this->name;
 		$array['F_Prefix'] = $this->prefix;
-		$array['F_Email'] = $this->email;
+		// v3.6 Drop F_Email from AccountRoot
+		//$array['F_Email'] = $this->email;
 		$array['F_TermsConditions'] = $this->tacStatus;
 		$array['F_AccountStatus'] = $this->accountStatus;
 		// v3.0.5 Change status handling
@@ -112,7 +131,7 @@ class Account extends Reportable {
 		$array['F_Logo'] = $this->logo;
 		$array['F_AccountType'] = $this->accountType;
 		// v3.0.6 Self-hosting
-		$array['F_SelfHost'] = $this->selfHost;
+		$array['F_SelfHost'] = ($this->selfHost) ? 1 : 0;
 		// v3.0.6 Anonymous Access login through CE.com/shared
 		$array['F_LoginOption'] = $this->loginOption;
 		// v3.3 Security of self-hosting
@@ -122,7 +141,10 @@ class Account extends Reportable {
 		if ($this->adminUser) $array['F_AdminUserID'] = $this->adminUser->userID;
 		//NetDebug::trace("toAssocArray with ".$array['F_SelfHostDomain']);
 		// v3.5 To allow flexibility of email system
-		if ($this->optOutEmails) $array['F_OptOutEmails'] = $this->optOutEmails;
+		// But of course this code ignores false!
+		//if ($this->optOutEmails) $array['F_OptOutEmails'] = $this->optOutEmails;
+		if (isset($this->optOutEmails)) $array['F_OptOutEmails'] = ($this->optOutEmails) ? 1 : 0;
+		if (isset($this->optOutEmails)) $array['F_OptOutEmailDate'] = $this->optOutEmailDate;
 		
 		return $array;
 	}
@@ -131,7 +153,8 @@ class Account extends Reportable {
 		$fields = array("$prefix.F_RootID",
 						"$prefix.F_Name",
 						"$prefix.F_Prefix",
-						"$prefix.F_Email",
+		// v3.6 Drop F_Email from AccountRoot
+						//"$prefix.F_Email",
 						"$prefix.F_TermsConditions",
 						"$prefix.F_AccountStatus",
 		// v3.0.5 Change status handling
@@ -150,6 +173,7 @@ class Account extends Reportable {
 						"$prefix.F_SelfHostDomain",
 		// v3.5 To allow flexibility of email system
 						"$prefix.F_OptOutEmails",
+						"$prefix.F_OptOutEmailDate",
 						"$prefix.F_Logo");
 		
 		return implode(",", $fields);

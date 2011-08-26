@@ -198,9 +198,10 @@ function addAccountFromPaymentGateway($accountInformation) {
 	// Triggers are not used to send emails as they are daily or hourly. We need immediate.
 	// So just send the email from here.
 	//echo "say that these are hidden ".var_dump($licencedProductCodes)."<br/>";
+	$emailArray = array();
 	$emailArray[] = array("to" => $account->email
 							,"data" => array("account" => $account, "hiddenProducts" => $licencedProductCodes)
-							,"cc" => array("adrian.raper@clarityenglish.com")
+							,"bcc" => array("adrian.raper@clarityenglish.com")
 						);
 						
 	// Send the emails
@@ -210,7 +211,7 @@ function addAccountFromPaymentGateway($accountInformation) {
 	} else {
 		$templateID = 'CLS_welcome';
 	}
-	$dmsService-> emailOps->sendEmails("", $templateID, $emailArray);
+	$dmsService->emailOps->sendEmails("", $templateID, $emailArray);
 	// If you are just testing, display the email template on screen.
 	if ($justForTesting) {
 		echo "<b>Email: ".$account->email."</b><br/><br/>".$dmsService->emailOps->fetchEmail($templateID, array("account" => $account, 

@@ -14,7 +14,10 @@ class AP_Progress.CustomizeDevice
 	// v6.5.5.5
 	static private var CP_PRODUCT_NAME:String = "clarity/pro";
 	// v6.5.5.5
+	static private var CP2_PRODUCT_NAME:String = "clarity/cp2";
+	// v6.5.5.5
 	static private var EFHS_PRODUCT_NAME:String = "sky/efhs";
+	static private var AUK_PRODUCT_NAME:String = "york/auk";
 	// v6.5.6.4
 	static private var SSS_PRODUCT_NAME:String = "clarity/sss";
 	static private var SSSV9_PRODUCT_NAME:String = "clarity/sssv9";
@@ -111,6 +114,7 @@ class AP_Progress.CustomizeDevice
 						break;
 					// v6.5.6.4 New SSS
 					case SSSV9_PRODUCT_NAME:		
+					case CP2_PRODUCT_NAME:		// Clear Pronunciation 2
 						switch(strRequestType)
 						{ 
 							case "color": // This means font colour
@@ -155,6 +159,31 @@ class AP_Progress.CustomizeDevice
 							case "headerColor": // just for the grid
 								//_global.myTrace("setting AR headerColor");
 								return 0x5F5F5F;
+								break;
+						}
+						break;
+					// v6.5.6.6
+					case AUK_PRODUCT_NAME:		// AccessUK
+						switch(strRequestType)
+						{ 
+							case "color": // This means font colour
+								return 0x000000;
+								break;
+							case "backgroundColor": // behind the grid, hardly shows
+								return 0xFFFFFF;
+								break; 
+							case "themeColor": // means mouse over rows colour
+								return 0xD1D6B4;
+								break;
+							case "alternatingRowColors":
+								return [0xFFFFFF, 0xE6E6E6];
+								break;
+							case "selectionColor": // means when you select a row - not really used
+								return 0xD1D6B4;
+								break;
+							case "headerColor": // just for the grid
+								//_global.myTrace("setting AR headerColor");
+								return 0xD1D6B4;
 								break;
 						}
 						break;
@@ -221,6 +250,7 @@ class AP_Progress.CustomizeDevice
 						break;
 					// v6.5.6.4 New SSS
 					case SSSV9_PRODUCT_NAME:
+					case CP2_PRODUCT_NAME:		// Clear Pronunciation 2
 						switch(strRequestType)
 						{
 							case "grBtnBg_colors": // These are the colours used in the alternating gradient of the header behind the main buttons
@@ -234,6 +264,15 @@ class AP_Progress.CustomizeDevice
 						{
 							case "grBtnBg_colors": // These are the colours used in the alternating gradient of the header behind the main buttons
 								return [0xAD002C, 0xAD002C];
+								break;
+						}
+						break;
+					// v6.5.6.6
+					case AUK_PRODUCT_NAME:		// Access UK
+						switch(strRequestType)
+						{
+							case "grBtnBg_colors": // These are the colours used in the alternating gradient of the header behind the main buttons
+								return [0x383838, 0x383838];
 								break;
 						}
 						break;
@@ -288,6 +327,11 @@ class AP_Progress.CustomizeDevice
 					case SSSV9_PRODUCT_NAME:	
 						var compareYourChartColour = "#F5A719"; // colours for the bars on the compare chart
 						var compareOthersChartColour = "#7074D6";
+						break;
+					// v6.5.6.4 CP2
+					case CP2_PRODUCT_NAME:	// Clear Pronunciation 2
+						var compareYourChartColour = "#535DB8"; // colours for the bars on the compare chart
+						var compareOthersChartColour = "#B4C443";
 						break;
 					case AP_PRODUCT_NAME:
 					//case APP_PRODUCT_NAME:		// APP
