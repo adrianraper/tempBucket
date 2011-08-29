@@ -27,6 +27,7 @@
   </compiler>
   <applications>
     <application path="IELTS.mxml"/>
+    <application path="ExerciseTester.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles>
