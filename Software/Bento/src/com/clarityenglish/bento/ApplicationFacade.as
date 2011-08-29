@@ -1,8 +1,8 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.common.controller.*;
-	import com.clarityenglish.resultsmanager.controller.*;
-	import com.clarityenglish.resultsmanager.model.*;
-	import com.clarityenglish.resultsmanager.view.*;
+	import com.clarityenglish.bento.controller.*;
+	//import com.clarityenglish.bento.model.*;
+	import com.clarityenglish.bento.view.*;
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.patterns.facade.Facade;
@@ -23,8 +23,9 @@
 		override protected function initializeController():void {
 			super.initializeController();
 			
-			/*registerCommand(RMNotifications.STARTUP, StartupCommand);
-			registerCommand(CommonNotifications.LOGIN, LoginCommand);
+			registerCommand(BBNotifications.STARTUP, StartupCommand);
+			
+			/*registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 			registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);*/

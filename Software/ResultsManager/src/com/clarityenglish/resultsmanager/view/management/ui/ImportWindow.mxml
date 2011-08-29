@@ -100,7 +100,10 @@
 			PopUpManager.removePopUp(this);
 		}
 		
-		private function creationComplete():void { }
+		private function creationComplete():void {
+			// For Flex 4 compatibility these properties can't be set in MXML
+			helpTextArea.setStyle("backgroundColor", "#F9FFA7");
+		}
 		
 		private function browse():void {
 			var fileFilter:FileFilter = new FileFilter("XML files", "*.xml");
@@ -264,7 +267,7 @@
 		</mx:VBox>
 		<mx:VBox width="100%">
 			<mx:Label id="helpTextLabel" styleName="subHeadingLabelBlack" />
-			<mx:TextArea id="helpTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="100%" backgroundColor="0xF9FFA7"/>
+			<mx:TextArea id="helpTextArea" condenseWhite="true" selectable="true" editable="false" width="100%" height="100%" />
 		</mx:VBox>
 	</mx:VDividedBox>
 	<!--  Try a rather new layout

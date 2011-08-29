@@ -90,9 +90,29 @@ www.brightpointinc.com
 				origin.y - Math.sin(startAngle + angle) * outerRadius);
 	
 			g.moveTo(endPt.x, endPt.y);
-	
-			fill.begin(g,rc);
 			
+			/**
+			 * In order to get compilation to work with both Flex 3 and Flex 4 we need some conditional compilation block in here.  These are set with compiler command line
+			 * arguments.
+			 * 
+			 * For Flex 3 (e.g. Results Manager, DMS):
+			 * 
+			 * -define=CONFIG::flex3,false
+			 * -define=CONFIG::flex4,true
+ 			 * 
+			 * For Flex 4 (e.g. Baker, Bento):
+			 * 
+			 * -define=CONFIG::flex3,true
+			 * -define=CONFIG::flex4,false
+			 */
+			
+			CONFIG::flex3 {
+				fill.begin(g,rc);
+			}
+			
+			CONFIG::flex4 {
+				fill.begin(g, rc, new Point());
+			}
 	
 			//GraphicsUtilities.setLineStyle(g, stroke);
 	

@@ -3,8 +3,22 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:util="com.clarityenglish.textLayout.util.*"
+			   creationComplete="creationComplete(event)"
 			   minWidth="955"
 			   minHeight="600">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			
+			protected function creationComplete(event:FlexEvent):void {
+				// Start the PureMVC framework
+				facade.sendNotification(BBNotifications.STARTUP, this);
+			}
+			
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		
 	</fx:Declarations>
