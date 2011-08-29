@@ -314,6 +314,9 @@ package com.clarityenglish.textLayout.conversion {
 		public override function createInlineGraphicFromXML(xmlToParse:XML):InlineGraphicElement {
 			var inlineGraphicElement:InlineGraphicElement = super.createInlineGraphicFromXML(xmlToParse);
 			
+			// TLF uses 'source' for the attribute, but allow 'src' too to match HTML better
+			if (xmlToParse.hasOwnProperty("@src")) inlineGraphicElement.source = xmlToParse.@src.toString();
+			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
 			if (style.width) inlineGraphicElement.width = style.width;

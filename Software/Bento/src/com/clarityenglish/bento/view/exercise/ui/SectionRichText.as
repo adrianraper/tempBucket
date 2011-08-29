@@ -152,7 +152,7 @@ package com.clarityenglish.bento.view.exercise.ui {
 				renderBlockHolder.percentWidth = 100;
 				
 				var flowLayout:FlowLayout = new FlowLayout();
-				renderBlockHolder.layout = flowLayout;
+				//renderBlockHolder.layout = flowLayout;
 				
 				addElement(renderBlockHolder);
 			}
