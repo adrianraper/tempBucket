@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="exercises/css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[
+			#questionList {
+				list-style-type: decimal;
+			}
+			
+			#questionList li {
+				padding-bottom: 20;
+			}
+		]]>
+		</style>
+		<script id="model" type="application/xml">
+			<questions>
+				<DropDownQuestion source="q1Select" block="q1Block">
+					<answer correct="true" value="always" />
+					<answer correct="false" value="sometimes" />
+					<answer correct="false" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q2Select" block="q2Block">
+					<answer correct="false" value="always" />
+					<answer correct="true" value="sometimes" />
+					<answer correct="false" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q3Select" block="q3Block">
+					<answer correct="false" value="always" />
+					<answer correct="false" value="sometimes" />
+					<answer correct="true" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q4Select" block="q4Block">
+					<answer correct="false" value="always" />
+					<answer correct="true" value="sometimes" />
+					<answer correct="false" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q5Select" block="q5Block">
+					<answer correct="false" value="always" />
+					<answer correct="true" value="sometimes" />
+					<answer correct="false" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q6Select" block="q6Block">
+					<answer correct="true" value="always" />
+					<answer correct="false" value="sometimes" />
+					<answer correct="false" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q7Select" block="q7Block">
+					<answer correct="false" value="always" />
+					<answer correct="true" value="sometimes" />
+					<answer correct="false" value="never" />
+				</DropDownQuestion>
+				
+				<DropDownQuestion source="q8Select" block="q8Block">
+					<answer correct="false" value="always" />
+					<answer correct="false" value="sometimes" />
+					<answer correct="true" value="never" />
+				</DropDownQuestion>
+			</questions>
+		</script>
+	</head>
+	
+	<body>
+		<header>
+			How often?  Look at Fabio's interview with Tiger Tyson and choose the correct answers.
+		</header>
+		
+		<section id="body">
+			<img class="rightFloat" source="exercises/media/eggs.png" />
+			
+			<list id="questionList">
+				<li id="q1Block">
+					'Every day I have four eggs for breakfast.'<br/>
+					He <select id="q1Select" /> has four eggs for breakfast.
+				</li>
+				
+				<li id="q2Block">
+					'I go swimming 5 times a week.'<br/>
+					He <select id="q2Select" /> goes swimming.
+				</li>
+				
+				<li id="q3Block">
+					'How many cakes do you eat every day?' 'None!'<br/>
+					He <select id="q3Select" /> eats cakes.
+				</li>
+				
+				<li id="q4Block">
+					'I study the book "Great Boxers" 5 times a week'<br/>
+					He <select id="q4Select" /> studies 'Great Boxers'.
+				</li>
+				
+				<li id="q5Block">
+					'I watch television twice a week'<br/>
+					He <select id="q5Select" /> watches television.
+				</li>
+				
+				<li id="q6Block">
+					'I go to bed a 10 o'clock every night.'<br/>
+					He <select id="q6Select" /> goes to bed at 10 o'clock.
+				</li>
+				
+				<li id="q7Block">
+					'I work out at the Iceman Gym on Mondays and Wednesdays.'<br/>
+					He <select id="q7Select" /> works out at the Iceman Gym.
+				</li>
+				
+				<li id="q8Block">
+					'I don't drink beer.'<br/>
+					He <select id="q8Select" /> drinks beer.
+				</li>
+			</list>
+		</section>
+	</body>
+	
+</html>
