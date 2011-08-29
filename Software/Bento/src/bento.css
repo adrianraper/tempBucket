@@ -1,4 +1,7 @@
-/* CSS file */
+/* 
+ * This css file is embedded into the Bento framework and shared by all titles.  It will be usual for a title to also
+ * define other css files in the 
+ */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace exercise "com.clarityenglish.bento.view.exercise.components.*";
