@@ -2,7 +2,7 @@
 <actionScriptProperties analytics="false" mainApplicationPath="Bento.as" projectUUID="b7401b94-b484-4d0c-82cc-df018e7e44d6" version="10">
   <compiler additionalCompilerArguments="-locale en_US&#13;&#10;-define=CONFIG::flex3,false&#13;&#10;-define=CONFIG::flex4,true" autoRSLOrdering="true" copyDependentFiles="false" flex3CompatMode="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
-      <compilerSourcePathEntry kind="1" linkType="1" path="D:/Projects/Clarity/software/Software/ResultsManager/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="src-common"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -13,7 +13,6 @@
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/csslib/bin/csslib.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/textLayout/bin/textLayout.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="1" linkType="1" path="/ResultsManager/libs"/>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
     </libraryPath>
     <sourceAttachmentPath/>
