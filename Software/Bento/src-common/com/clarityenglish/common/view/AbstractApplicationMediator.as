@@ -10,7 +10,10 @@ package com.clarityenglish.common.view {
 	import flash.display.Sprite;
 	
 	import mx.controls.Alert;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
 	
+	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -20,6 +23,11 @@ package com.clarityenglish.common.view {
 	 */
 	public class AbstractApplicationMediator extends Mediator implements IMediator {
 	
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
 		// Cannonical name of the Mediator
 		public static const NAME:String = "ApplicationMediator";
 		
@@ -97,13 +105,13 @@ package com.clarityenglish.common.view {
 		override public function handleNotification(note:INotification):void {
 			switch (note.getName()) {
 				case CommonNotifications.TRACE_NOTICE:
-					trace("[Notice] " + note.getBody() as String);
+					log.info(note.getBody().toString());
 					break;
 				case CommonNotifications.TRACE_WARNING:
-					trace("[Warning] " + note.getBody() as String);
+					log.warn(note.getBody().toString());
 					break;
 				case CommonNotifications.TRACE_ERROR:
-					trace("[Error] " + note.getBody() as String);
+					log.error(note.getBody().toString());
 					Alert.show(note.getBody() as String, "Error", Alert.OK, application as Sprite);
 					break;
 				case CommonNotifications.COPY_LOADED:

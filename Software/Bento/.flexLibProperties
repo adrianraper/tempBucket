@@ -2,6 +2,8 @@
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
+    <classEntry path="com.clarityenglish.bento.view.BentoMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

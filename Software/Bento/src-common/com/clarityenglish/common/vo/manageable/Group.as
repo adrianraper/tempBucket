@@ -1,5 +1,5 @@
 ﻿package com.clarityenglish.common.vo.manageable {
-	import com.clarityenglish.bento.ApplicationFacade;
+	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.vo.content.Title;
 	
 	import mx.core.IUID;

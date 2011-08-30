@@ -8,6 +8,8 @@ package com.clarityenglish.bento.view.exercise {
 	 * This will be implemented by allowing a special attribute to <section> which gives it an swf files as its source, and ExerciseView will take care of loading
 	 * it.
 	 * 
+	 * TODO: This might actually no longer be necessary
+	 * 
 	 * @author Dave Keen
 	 */
 	public interface IExerciseSection extends IEventDispatcher {

@@ -3,7 +3,8 @@
 					    xmlns:s="library://ns.adobe.com/flex/spark" 
 					    xmlns:mx="library://ns.adobe.com/flex/mx"
 					    xmlns:bento="com.clarityenglish.bento.*"
-					    minWidth="955" minHeight="600">
+					    minWidth="955"
+						minHeight="600" xmlns:components="com.clarityenglish.bento.view.exercise.components.*">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -12,7 +13,14 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.bento.BentoFacade;
 			
+			override protected function get facade():BentoFacade {
+				return ApplicationFacade.getInstance();
+			}
 		]]>
 	</fx:Script>
+	
+	<components:ExerciseView />
+	
 </bento:BentoApplication>

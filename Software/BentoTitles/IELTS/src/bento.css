@@ -1,6 +1,6 @@
 /* 
- * This css file is embedded into the Bento framework and shared by all titles.  It will be usual for a title to also
- * define other css files in the 
+ * This css file is embedded into the Bento framework and shared by all titles.
+ * TODO: In fact, for now this is embedded in IELTS and should be moved into Bento at some point.
  */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
