@@ -4,18 +4,21 @@
 					    xmlns:mx="library://ns.adobe.com/flex/mx"
 					    xmlns:bento="com.clarityenglish.bento.*"
 						xmlns:components="com.clarityenglish.bento.view.exercise.components.*"
+						xmlns:login="com.clarityenglish.ielts.view.login.*"
 					    minWidth="955"
-						minHeight="600" >
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+						minHeight="600"
+						currentState="login">
+	<fx:Declarations />
 	
 	<bento:states>
-		<s:State name="normal" />
-		<s:State name="state1" />
+		<s:State name="login" />
+		<s:State name="modules" />
+		<s:State name="progress" />
+		<s:State name="exercise" />
 	</bento:states>
 	
 	<fx:Style source="bento.css" />
+	<fx:Style source="ielts.css" />
 	
 	<fx:Script>
 		<![CDATA[
@@ -29,11 +32,6 @@
 		]]>
 	</fx:Script>
 	
-	<s:VGroup>
-		<s:Button click="currentState='state1'" />
-		<s:Button click="currentState='normal'" />
-		
-		<components:ExerciseView includeIn="normal" />
-	</s:VGroup>
+	<login:LoginView includeIn="login" />
 	
 </bento:BentoApplication>

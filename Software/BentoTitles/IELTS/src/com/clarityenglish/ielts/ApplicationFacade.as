@@ -1,5 +1,7 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.ielts.view.login.LoginView;
 	
 	/**
 	* ...
@@ -14,6 +16,8 @@
 		
 		override protected function initializeController():void {
 			super.initializeController();
+			
+			mapView(LoginView, LoginMediator);
 		}
 		
 	}

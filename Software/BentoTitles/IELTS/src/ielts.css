@@ -1,0 +1,8 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace login "com.clarityenglish.ielts.view.login.*";
+
+login|LoginView {
+	skinClass: ClassReference("skins.ielts.login.LoginSkin");
+}

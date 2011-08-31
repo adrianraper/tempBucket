@@ -1,9 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
   <includeClasses>
+    <classEntry path="com.clarityenglish.bento.BBNotifications"/>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
+    <classEntry path="com.clarityenglish.bento.BentoFacade"/>
+    <classEntry path="com.clarityenglish.bento.controller.StartupCommand"/>
+    <classEntry path="com.clarityenglish.bento.css.ExerciseCSS"/>
+    <classEntry path="com.clarityenglish.bento.css.ExerciseCSSContext"/>
+    <classEntry path="com.clarityenglish.bento.css.properties.TabManager"/>
+    <classEntry path="com.clarityenglish.bento.css.views.StyledXMLView"/>
+    <classEntry path="com.clarityenglish.bento.events.ExerciseEvent"/>
+    <classEntry path="com.clarityenglish.bento.view.ApplicationMediator"/>
     <classEntry path="com.clarityenglish.bento.view.BentoMediator"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.IExerciseSection"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.components.ExerciseView"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.events.SectionEvent"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.SectionRichText"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.AbstractSectionBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.AnswerableBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.DraggableBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.ISectionBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.OverlayBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.Exercise"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.Answer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.Model"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.Question"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.ExerciseBlockImporter"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.ExerciseImporter"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.rendering.RenderBlock"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.rendering.RenderBlocks"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.IComponentElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.ImageComponentElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.InputElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.SelectElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.TextComponentElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.VideoElement"/>
+    <classEntry path="com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver"/>
+    <classEntry path="com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator"/>
+    <classEntry path="com.clarityenglish.textLayout.util.TLF2Application"/>
+    <classEntry path="com.clarityenglish.textLayout.util.TLF2SystemManager"/>
+    <classEntry path="com.clarityenglish.textLayout.util.TLFUtil"/>
+    <classEntry path="net.digitalprimates.collections.VectorList"/>
+    <classEntry path="net.digitalprimates.collections.VectorListCollection"/>
+    <classEntry path="org.davekeen.delegates.IDelegate"/>
+    <classEntry path="org.davekeen.delegates.IDelegateResponder"/>
+    <classEntry path="org.davekeen.delegates.RemoteDelegate"/>
+    <classEntry path="org.davekeen.util.ClassUtil"/>
+    <classEntry path="org.davekeen.util.Closure"/>
+    <classEntry path="org.davekeen.util.DateUtil"/>
+    <classEntry path="org.davekeen.util.StateUtil"/>
+    <classEntry path="org.flexlayouts.layouts.FlowLayout"/>
+    <classEntry path="skins.bento.exercise.ExerciseDropDownListSkin"/>
+    <classEntry path="skins.bento.exercise.ExerciseTextInputSkin"/>
+    <classEntry path="skins.bento.exercise.ExerciseViewSkin"/>
+    <classEntry path="com.clarityenglish.common.CommonNotifications"/>
+    <classEntry path="com.clarityenglish.common.controller.LoginCommand"/>
+    <classEntry path="com.clarityenglish.common.controller.LogoutCommand"/>
+    <classEntry path="com.clarityenglish.common.events.LoginEvent"/>
+    <classEntry path="com.clarityenglish.common.events.SearchEvent"/>
+    <classEntry path="com.clarityenglish.common.model.CopyProxy"/>
+    <classEntry path="com.clarityenglish.common.model.DictionaryProxy"/>
+    <classEntry path="com.clarityenglish.common.model.LoginProxy"/>
+    <classEntry path="com.clarityenglish.common.model.interfaces.CopyProvider"/>
+    <classEntry path="com.clarityenglish.common.view.AbstractApplicationMediator"/>
+    <classEntry path="com.clarityenglish.common.view.interfaces.CopyReceiver"/>
+    <classEntry path="com.clarityenglish.common.view.login.LoginMediator"/>
+    <classEntry path="com.clarityenglish.common.view.login.interfaces.LoginComponent"/>
+    <classEntry path="com.clarityenglish.common.vo.Reportable"/>
+    <classEntry path="com.clarityenglish.common.vo.content.Content"/>
+    <classEntry path="com.clarityenglish.common.vo.content.Course"/>
+    <classEntry path="com.clarityenglish.common.vo.content.Exercise"/>
+    <classEntry path="com.clarityenglish.common.vo.content.Title"/>
+    <classEntry path="com.clarityenglish.common.vo.content.Unit"/>
+    <classEntry path="com.clarityenglish.common.vo.dictionary.DictionarySingleton"/>
+    <classEntry path="com.clarityenglish.common.vo.email.TemplateDefinition"/>
+    <classEntry path="com.clarityenglish.common.vo.manageable.Group"/>
+    <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
+    <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

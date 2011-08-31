@@ -49,7 +49,7 @@
 			registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);*/
 		}
 		
-		private function mapView(viewClass:Class, mediatorClass:Class):void {
+		protected function mapView(viewClass:Class, mediatorClass:Class):void {
 			mediatorClassByViewClass[viewClass] = mediatorClass;
 		}
 		
@@ -59,7 +59,7 @@
 			
 			var mediatorClass:Class = mediatorClassByViewClass[ClassUtil.getClass(viewComponent)];
 			
-			if (mediatorClass) {
+			if (mediatorClass && mediatorInstanceByView[viewComponent] == null) {
 				var uniqueMediatorName:String = ClassUtil.getClassAsString(mediatorClass) + new Date().getTime().toString();
 				var mediator:IMediator = new mediatorClass(uniqueMediatorName, viewComponent);
 				

@@ -3,6 +3,7 @@
 	<name>Bento</name>
 	<comment></comment>
 	<projects>
+		<project>csslib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

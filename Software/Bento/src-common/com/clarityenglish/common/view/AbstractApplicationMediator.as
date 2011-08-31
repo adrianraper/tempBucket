@@ -28,9 +28,6 @@ package com.clarityenglish.common.view {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		// Cannonical name of the Mediator
-		public static const NAME:String = "ApplicationMediator";
-		
 		public function AbstractApplicationMediator(NAME:String, viewComponent:Object) {
 			// pass the viewComponent to the superclass where 
 			// it will be stored in the inherited viewComponent property
@@ -50,28 +47,6 @@ package com.clarityenglish.common.view {
 		 */
 		override public function onRegister():void {
 			super.onRegister();
-			
-			// Since Application is a parent class we need to reference loginView (which should exist) dynamically
-			if (application.hasOwnProperty("loginView")) {
-				facade.registerMediator(new LoginMediator(application["loginView"]));
-			} else {
-				log.warn("The main application should have a view named 'loginView'");
-			}
-		}
-
-		/**
-		 * Get the Mediator name.
-		 * <P>
-		 * Called by the framework to get the name of this
-		 * mediator. If there is only one instance, we may
-		 * define it in a constant and return it here. If
-		 * there are multiple instances, this method must
-		 * return the unique name of this instance.</P>
-		 * 
-		 * @return String the Mediator name
-		 */
-		override public function getMediatorName():String {
-			return AbstractApplicationMediator.NAME;
 		}
         
 		/**
@@ -84,11 +59,9 @@ package com.clarityenglish.common.view {
 		 */
 		override public function listNotificationInterests():Array {
 			return [
-					CommonNotifications.LOGGED_OUT,
 					CommonNotifications.TRACE_NOTICE,
 					CommonNotifications.TRACE_WARNING,
 					CommonNotifications.TRACE_ERROR,
-					CommonNotifications.LOGGED_IN,
 					CommonNotifications.COPY_LOADED,
 				];
 		}
@@ -124,6 +97,6 @@ package com.clarityenglish.common.view {
 					break;		
 			}
 		}
-
+		
 	}
 }

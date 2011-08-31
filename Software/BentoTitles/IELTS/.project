@@ -3,6 +3,8 @@
 	<name>IELTS</name>
 	<comment></comment>
 	<projects>
+		<project>Bento</project>
+		<project>textLayout</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
