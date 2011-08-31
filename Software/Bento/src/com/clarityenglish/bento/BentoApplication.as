@@ -6,6 +6,8 @@ package com.clarityenglish.bento {
 	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.logging.LogEventLevel;
+	import mx.logging.targets.TraceTarget;
 	
 	import org.davekeen.util.ClassUtil;
 
@@ -17,35 +19,52 @@ package com.clarityenglish.bento {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public function BentoApplication() {
-			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			// Configure logging
+			var logTarget:TraceTarget = new TraceTarget();
+			logTarget.filters = [ "*" ];
+			logTarget.level = LogEventLevel.ALL;
+			logTarget.includeDate = false;
+			logTarget.includeTime = false;
+			logTarget.includeCategory = true;
+			logTarget.includeLevel = true;
+			Log.addTarget(logTarget);
+			
+			creationPolicy = "none";
+			
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
 		protected function get facade():BentoFacade {
 			throw new Error("This must be overriden by the child BentoApplication");
 		}
 		
-		private function onAddedToStage(event:Event):void {
-			trace(stage);
-			
-			//stage.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			//stage.addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			
-			//log.info("Added to stage: {0}", event.target);
-			//facade.onViewAdded(event.target);
-		}
-		
-		private function onRemovedFromStage(event:Event):void {
-			//log.info("Removed from stage: {0}", event.target);
-			//facade.onViewRemoved(event.target);
-		}
-		
 		private function onCreationComplete(event:FlexEvent):void {
-			trace("creation complete");
+			log.info("Creation complete");
+			
 			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			
 			// Start the PureMVC framework
 			facade.sendNotification(BBNotifications.STARTUP, this);
+		}
+		
+		private function onAddedToStage(event:Event):void {
+			log.info("Added to stage");
+			
+			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
+			stage.addEventListener(Event.ADDED_TO_STAGE, onViewAddedToStage, true);
+			stage.addEventListener(Event.REMOVED_FROM_STAGE, onViewRemovedFromStage, true);
+			
+			createDeferredContent();
+		}
+		
+		private function onViewAddedToStage(event:Event):void {
+			facade.onViewAdded(event.target);
+		}
+		
+		private function onViewRemovedFromStage(event:Event):void {
+			facade.onViewRemoved(event.target);
 		}
 		
 	}

@@ -55,7 +55,7 @@ package com.clarityenglish.common.view {
 			if (application.hasOwnProperty("loginView")) {
 				facade.registerMediator(new LoginMediator(application["loginView"]));
 			} else {
-				trace("WARNING: The main application should have a view named 'loginView'");
+				log.warn("The main application should have a view named 'loginView'");
 			}
 		}
 

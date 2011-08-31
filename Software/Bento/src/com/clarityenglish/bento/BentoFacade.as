@@ -5,8 +5,10 @@
 	import com.clarityenglish.bento.view.exercise.components.ExerciseView;
 	import com.clarityenglish.common.controller.*;
 	
-	import flash.display.DisplayObject;
 	import flash.utils.Dictionary;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IFacade;
@@ -19,6 +21,11 @@
 	*/
 	public class BentoFacade extends Facade implements IFacade {
 		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
 		private var mediatorClassByViewClass:Dictionary = new Dictionary();
 		
 		private var mediatorInstanceByView:Dictionary = new Dictionary();
@@ -27,10 +34,6 @@
 		
 		public function BentoFacade():void {
 			super();
-			
-			//mediatorClassByViewClass = new Dictionary();;
-			//mediatorInstanceByView = new Dictionary();
-			//mediatorNameByInstance = new Dictionary();
 		}
 		
 		override protected function initializeController():void {
@@ -51,7 +54,6 @@
 		}
 		
 		public function onViewAdded(viewComponent:Object):void {
-			trace("added " + viewComponent);
 			if (!viewComponent)
 				return;
 			
@@ -59,11 +61,14 @@
 			
 			if (mediatorClass) {
 				var uniqueMediatorName:String = ClassUtil.getClassAsString(mediatorClass) + new Date().getTime().toString();
-				trace(uniqueMediatorName);
 				var mediator:IMediator = new mediatorClass(uniqueMediatorName, viewComponent);
+				
 				registerMediator(mediator);
+				
 				mediatorInstanceByView[viewComponent] = mediator;
 				mediatorNameByInstance[mediator] = uniqueMediatorName;
+				
+				log.info("View auto-mediated with mediator {0} (unique mediator name={1})", mediator, uniqueMediatorName);
 			}
 		}
 		
@@ -74,6 +79,8 @@
 			var mediator:IMediator = mediatorInstanceByView[viewComponent];
 			if (mediator) {
 				removeMediator(mediatorNameByInstance[mediator]);
+				
+				log.info("Mediator {0} removed", mediatorNameByInstance[mediator]);
 				
 				// This should free the view component and mediator for garbage collection
 				delete mediatorNameByInstance[mediator];

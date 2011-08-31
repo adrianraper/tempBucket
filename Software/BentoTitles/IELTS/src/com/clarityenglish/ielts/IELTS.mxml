@@ -3,11 +3,17 @@
 					    xmlns:s="library://ns.adobe.com/flex/spark" 
 					    xmlns:mx="library://ns.adobe.com/flex/mx"
 					    xmlns:bento="com.clarityenglish.bento.*"
+						xmlns:components="com.clarityenglish.bento.view.exercise.components.*"
 					    minWidth="955"
-						minHeight="600" xmlns:components="com.clarityenglish.bento.view.exercise.components.*">
+						minHeight="600" >
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+	
+	<bento:states>
+		<s:State name="normal" />
+		<s:State name="state1" />
+	</bento:states>
 	
 	<fx:Style source="bento.css" />
 	
@@ -15,12 +21,19 @@
 		<![CDATA[
 			import com.clarityenglish.bento.BentoFacade;
 			
+			import spark.components.Label;
+			
 			override protected function get facade():BentoFacade {
 				return ApplicationFacade.getInstance();
 			}
 		]]>
 	</fx:Script>
 	
-	<components:ExerciseView />
+	<s:VGroup>
+		<s:Button click="currentState='state1'" />
+		<s:Button click="currentState='normal'" />
+		
+		<components:ExerciseView includeIn="normal" />
+	</s:VGroup>
 	
 </bento:BentoApplication>
