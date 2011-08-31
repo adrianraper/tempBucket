@@ -7,7 +7,8 @@
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 					    minWidth="955"
 						minHeight="600"
-						currentState="login">
+						currentState="login"
+						creationComplete="creationComplete(event)">
 	<fx:Declarations />
 	
 	<bento:states>
@@ -22,13 +23,23 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
+			import com.clarityenglish.ielts.controller.StartupCommand;
+			
+			import mx.events.FlexEvent;
 			
 			import spark.components.Label;
 			
 			override protected function get facade():BentoFacade {
 				return ApplicationFacade.getInstance();
 			}
+			
+			protected function creationComplete(event:FlexEvent):void {
+				// Kick off the PureMVC framework with a STARTUP notification
+				facade.sendNotification(BBNotifications.STARTUP, this);
+			}
+			
 		]]>
 	</fx:Script>
 	

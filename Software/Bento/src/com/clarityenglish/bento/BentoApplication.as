@@ -31,21 +31,11 @@ package com.clarityenglish.bento {
 			
 			creationPolicy = "none";
 			
-			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
 		protected function get facade():BentoFacade {
 			throw new Error("This must be overriden by the child BentoApplication");
-		}
-		
-		private function onCreationComplete(event:FlexEvent):void {
-			log.info("Creation complete");
-			
-			removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
-			
-			// Start the PureMVC framework
-			facade.sendNotification(BBNotifications.STARTUP, this);
 		}
 		
 		private function onAddedToStage(event:Event):void {

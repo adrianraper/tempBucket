@@ -41,8 +41,6 @@
 			
 			mapView(ExerciseView, ExerciseMediator);
 			
-			registerCommand(BBNotifications.STARTUP, StartupCommand);
-			
 			/*registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);

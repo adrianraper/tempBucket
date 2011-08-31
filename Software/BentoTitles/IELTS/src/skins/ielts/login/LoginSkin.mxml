@@ -6,5 +6,4 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
-	
 </s:Skin>

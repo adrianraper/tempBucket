@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.ielts {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.login.LoginView;
 	
 	/**
@@ -18,6 +20,8 @@
 			super.initializeController();
 			
 			mapView(LoginView, LoginMediator);
+			
+			registerCommand(BBNotifications.STARTUP, StartupCommand);
 		}
 		
 	}
