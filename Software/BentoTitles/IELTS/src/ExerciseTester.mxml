@@ -65,10 +65,11 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="1" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="0" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>
+			<fx:String>Grid3</fx:String>
 			<fx:String>SpaceBug</fx:String>
 			<fx:String>GapFill1</fx:String>
 			<fx:String>GapFill2</fx:String>

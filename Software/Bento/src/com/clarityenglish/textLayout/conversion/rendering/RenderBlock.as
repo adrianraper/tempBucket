@@ -1,23 +1,14 @@
 package com.clarityenglish.textLayout.conversion.rendering {
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	
 	import flashx.textLayout.elements.TextFlow;
+	
+	import mx.core.IVisualElement;
+	import mx.core.IVisualElementContainer;
 	
 	import spark.core.SpriteVisualElement;
 	
 	public class RenderBlock {
-		
-		public static const FLOAT_NONE:String = "float_none";
-		public static const FLOAT_LEFT:String = "float_left";
-		public static const FLOAT_RIGHT:String = "float_right";
-		
-		/**
-		 * 
-		 */
-		public var float:String;
-		
-		/**
-		 * 
-		 */
-		public var width:*;
 		
 		/**
 		 * The HTML node before parsing 
@@ -27,10 +18,10 @@ package com.clarityenglish.textLayout.conversion.rendering {
 		/**
 		 * The imported text flow (once parsed)
 		 */
-		public var textFlow:TextFlow;
+		public var textFlow:FloatableTextFlow;
 		
 		/**
-		 * The visual component once rendered
+		 * The visual component (once rendered)
 		 */
 		public var textFlowContainer:SpriteVisualElement;
 		

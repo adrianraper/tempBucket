@@ -10,11 +10,9 @@ package com.clarityenglish.textLayout.conversion.rendering {
 			renderBlocks = new Vector.<RenderBlock>();
 		}
 		
-		public function addBlock(node:XML, float:String = null, width:* = null):void {
+		public function addBlock(node:XML):void {
 			var renderBlock:RenderBlock = new RenderBlock();
 			renderBlock.html = node;
-			renderBlock.float = float || RenderBlock.FLOAT_NONE;
-			renderBlock.width = width;
 			
 			renderBlocks.push(renderBlock);
 		}

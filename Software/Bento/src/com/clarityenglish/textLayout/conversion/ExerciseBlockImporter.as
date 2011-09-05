@@ -1,8 +1,8 @@
 package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Answer;
-	import com.clarityenglish.textLayout.elements.RenderableTextFlow;
 	import com.clarityenglish.textLayout.elements.InputElement;
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.newgonzo.web.css.CSS;
@@ -259,14 +259,13 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		public override function createTextFlowFromXML(xmlToParse:XML, textFlow:TextFlow = null):TextFlow {
-			textFlow = new RenderableTextFlow(_textFlowConfiguration);
-			
-			var element:FlowElement = super.createTextFlowFromXML(xmlToParse, textFlow);
+			// Create a text flow using our subclass as a template in order to get some extra attributes in there
+			var element:FloatableTextFlow = super.createTextFlowFromXML(xmlToParse, new FloatableTextFlow(_textFlowConfiguration)) as FloatableTextFlow;
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
-			if (style.width) trace(style.width);
-			if (style.float) trace(style.height);
+			if (style.width) element.width = style.width;
+			if (style.float) element.float = style.float;
 			
 			addToFlowElementXmlMap(xmlToParse, element);
 			return element as TextFlow;

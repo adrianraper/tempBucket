@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.conversion.rendering.RenderBlock;
 	import com.clarityenglish.textLayout.conversion.rendering.RenderBlocks;
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSSelector;
@@ -30,6 +31,9 @@ package com.clarityenglish.textLayout.conversion {
 		 */
 		private static const EXERCISE_BOX_FORMAT:String = "exercise_box_format";
 		
+		/**
+		 * This maintains a bidirectional map between parsed FlowElements and their original XHTML source nodes. 
+		 */
 		private var flowElementXmlBiMap:FlowElementXmlBiMap;
 		
 		/**
@@ -39,6 +43,9 @@ package com.clarityenglish.textLayout.conversion {
 		[Embed(source="/com/clarityenglish/bento/view/exercise/ui/defaults.css", mimeType="application/octet-stream")]
 		private var defaultCss:Class;
 
+		/**
+		 * as3csslib 
+		 */
 		private var css:CSS;
 		
 		public function ExerciseImporter() {
@@ -47,11 +54,22 @@ package com.clarityenglish.textLayout.conversion {
 				TextConverter.addFormat(EXERCISE_BOX_FORMAT, ExerciseBlockImporter, null, null);
 		}
 		
+		/**
+		 * Get the bidirectional map between FlowElements and their original XHTML source nodes
+		 * 
+		 * @return 
+		 */
 		public function getFlowElementXmlBiMap():FlowElementXmlBiMap {
 			return flowElementXmlBiMap;
 		}
 		
-		// TODO: This will probably return a Vector of RenderBoxes instead of TextFlow
+		/**
+		 * Parse XHTML into a RenderBlocks object, which contains everything the component needs in order to render
+		 * 
+		 * @param exercise
+		 * @param section
+		 * @return 
+		 */
 		public function importToRenderBlocks(exercise:Exercise, section:String):RenderBlocks {
 			var textFlows:Vector.<TextFlow> = new Vector.<TextFlow>();
 			var renderBlocks:RenderBlocks = new RenderBlocks();
@@ -62,6 +80,7 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// Get the left floaters
 			// TODO: This needs to select everything apart from <img>, which floats differently
+			// TODO: This needs to deal with float right too
 			var leftFloatSelector:CSSSelector = new CSSSelector("[float=left]", new StyledCSSView(new XMLCSSView(), css));
 			
 			// Add the top level html node
@@ -69,7 +88,7 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// Add the left floating html nodes
 			for each (var node:XML in leftFloatSelector.query(html))
-				renderBlocks.addBlock(node, RenderBlock.FLOAT_LEFT);
+				renderBlocks.addBlock(node);
 			
 			var exerciseBlockImporter:ExerciseBlockImporter;
 			var importedFlow:TextFlow;
@@ -82,7 +101,7 @@ package com.clarityenglish.textLayout.conversion {
 				exerciseBlockImporter.css = css;
 				exerciseBlockImporter.ignoreNodes = renderBlocks.getIgnoreNodes();
 				
-				renderBlock.textFlow = exerciseBlockImporter.importToFlow(renderBlock.html);
+				renderBlock.textFlow = exerciseBlockImporter.importToFlow(renderBlock.html) as FloatableTextFlow;
 				if (renderBlock.textFlow) {
 					// Create the format resolver
 					var formatResolver:CssLibFormatResolver = new CssLibFormatResolver(css, flowElementXmlBiMap);
@@ -93,6 +112,12 @@ package com.clarityenglish.textLayout.conversion {
 			return renderBlocks;
 		}
 		
+		/**
+		 * Parse all the CSS into an as3csslib object
+		 * 
+		 * @param exercise
+		 * @return 
+		 */
 		private function parseCss(exercise:Exercise):CSS {
 			// Parse the CSS
 			var css:CSS = new ExerciseCSS();

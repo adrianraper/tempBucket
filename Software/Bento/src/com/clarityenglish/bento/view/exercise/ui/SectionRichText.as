@@ -21,6 +21,7 @@ package com.clarityenglish.bento.view.exercise.ui {
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
+	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -152,7 +153,7 @@ package com.clarityenglish.bento.view.exercise.ui {
 				renderBlockHolder.percentWidth = 100;
 				
 				var flowLayout:FlowLayout = new FlowLayout();
-				//renderBlockHolder.layout = flowLayout;
+				renderBlockHolder.layout = flowLayout;
 				
 				addElement(renderBlockHolder);
 			}
@@ -207,11 +208,17 @@ package com.clarityenglish.bento.view.exercise.ui {
 								renderBlock.textFlowContainer = new SpriteVisualElement();
 								renderBlock.textFlowContainer.alpha = 0.5; // just for the moment...
 								
-								//if (renderBlock.width) {
-									// TODO: Also needs to deal with percentage widths
-								//	renderBlock.textFlowContainer.width = renderBlock.width;
-								//}
-								renderBlock.textFlowContainer.percentWidth = 100;
+								if (renderBlock.textFlow.width) {
+									if (renderBlock.textFlow.isPercentWidth()) {
+										renderBlock.textFlowContainer.percentWidth = renderBlock.textFlow.percentWidth;
+									} else {
+										renderBlock.textFlowContainer.width = renderBlock.textFlow.width;
+									}
+								} else {
+									// TODO: This is no good!  This means that the 'main' XHTML block always fills the entire width.
+									// But it actually could be that this is sort of what normal HTML does too...
+									renderBlock.textFlowContainer.percentWidth = 100;
+								}
 								
 								renderBlockHolder.addElement(renderBlock.textFlowContainer);
 							}
@@ -250,11 +257,15 @@ package com.clarityenglish.bento.view.exercise.ui {
 		protected override function measure():void {
 			super.measure();
 			
+			var maximumHeight:Number = 0;
 			for each (var renderBlock:RenderBlock in _renderBlocks) {
 				if (renderBlock.textFlow) {
 					var textHeight:int = Math.ceil(renderBlock.textFlow.flowComposer.getControllerAt(0).getContentBounds().height);
-					measuredHeight = textHeight;
+					renderBlock.textFlowContainer.height = textHeight;
+					maximumHeight = Math.max(maximumHeight, renderBlock.textFlowContainer.y + textHeight);
 				}
+				
+				measuredHeight = maximumHeight;
 			}
 		}
 		
@@ -263,8 +274,19 @@ package com.clarityenglish.bento.view.exercise.ui {
 			
 			for each (var renderBlock:RenderBlock in _renderBlocks) {
 				if (renderBlock.textFlow && renderBlock.textFlow.flowComposer.getControllerAt(0)) {
+					// Work out the width
+					var renderBlockWidth:int;
+					if (isNaN(renderBlock.textFlowContainer.percentWidth)) {
+						renderBlockWidth = renderBlock.textFlowContainer.width || unscaledWidth; 
+					} else {
+						renderBlockWidth = unscaledWidth * renderBlock.textFlowContainer.percentWidth / 100; 
+					}
+					
 					// Use NaN for the height to try and get scrollbars to work and update the controllers
-					renderBlock.textFlow.flowComposer.getControllerAt(0).setCompositionSize(renderBlock.textFlowContainer.width, NaN);
+					renderBlock.textFlowContainer.width = renderBlockWidth;
+					renderBlock.textFlow.flowComposer.getControllerAt(0).setCompositionSize(renderBlockWidth, NaN);
+					
+					// TODO: This causes updateDisplayList to get called on every frame
 					renderBlock.textFlow.flowComposer.updateAllControllers();
 					
 					// The TextFlow height doesn't affect the content height, meaning that we need to explicitly set it

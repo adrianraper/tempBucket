@@ -87,6 +87,7 @@ package org.flexlayouts.layouts {
 						rowMaxHeight = 0;
 					}
 				}
+
 				//position the element
 				element.setLayoutBoundsPosition(x, y);
 
