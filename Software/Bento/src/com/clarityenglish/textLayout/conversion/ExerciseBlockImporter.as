@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Answer;
+	import com.clarityenglish.textLayout.elements.RenderableTextFlow;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
@@ -256,9 +257,17 @@ package com.clarityenglish.textLayout.conversion {
 		protected override function checkNamespace(xmlToParse:XML):Boolean {
 			return true;
 		}
-
-		public override function createTextFlowFromXML(xmlToParse:XML, textFlow:TextFlow=null):TextFlow {
+		
+		public override function createTextFlowFromXML(xmlToParse:XML, textFlow:TextFlow = null):TextFlow {
+			textFlow = new RenderableTextFlow(_textFlowConfiguration);
+			
 			var element:FlowElement = super.createTextFlowFromXML(xmlToParse, textFlow);
+			
+			// Inject any CSS properties into the element
+			var style:CSSComputedStyle = _css.style(xmlToParse);
+			if (style.width) trace(style.width);
+			if (style.float) trace(style.height);
+			
 			addToFlowElementXmlMap(xmlToParse, element);
 			return element as TextFlow;
 		}

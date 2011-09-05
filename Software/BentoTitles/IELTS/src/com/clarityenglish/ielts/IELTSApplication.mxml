@@ -39,7 +39,6 @@
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);
 			}
-			
 		]]>
 	</fx:Script>
 	

@@ -22,7 +22,7 @@ package com.clarityenglish.textLayout.conversion.rendering {
 		public function getIgnoreNodes():Array {
 			var ignoreNodes:Array = [];
 			for each (var renderBlock:RenderBlock in renderBlocks)
-			ignoreNodes.push(renderBlock.html);
+				ignoreNodes.push(renderBlock.html);
 			
 			return ignoreNodes;
 		}

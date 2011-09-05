@@ -38,10 +38,8 @@ package com.clarityenglish.textLayout.stylesheets.applicators {
 				if (textLayoutFormat.hasOwnProperty(prop)) {
 					textLayoutFormat[prop] = filterStyleValue(style, prop);
 				} else {
-					if (element.hasOwnProperty(prop)) {
-						//element[prop] = filterStyleValue(style, prop);
-					} else { 
-						log.error("Property not found - {0} (appying to {1})", prop, element);
+					if (!element.hasOwnProperty(prop)) {
+						log.warn("Property not found - {0} (appying to {1})", prop, element);
 					}
 				}
 			}

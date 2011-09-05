@@ -183,7 +183,7 @@ package com.clarityenglish.bento.view.exercise.ui {
 							while (renderBlock.textFlowContainer && renderBlock.textFlowContainer.numChildren > 0)
 								renderBlock.textFlowContainer.removeChildAt(0);
 							
-							// Finally remove the text flow container alltogether
+							// Finally remove the text flow container altogether
 							renderBlockHolder.removeElement(renderBlock.textFlowContainer);
 						}
 					}
@@ -205,8 +205,14 @@ package com.clarityenglish.bento.view.exercise.ui {
 							// If there isn't a text flow container yet then we need to create one
 							if (!renderBlock.textFlowContainer) {
 								renderBlock.textFlowContainer = new SpriteVisualElement();
-								renderBlock.textFlowContainer.percentWidth = 100;
 								renderBlock.textFlowContainer.alpha = 0.5; // just for the moment...
+								
+								//if (renderBlock.width) {
+									// TODO: Also needs to deal with percentage widths
+								//	renderBlock.textFlowContainer.width = renderBlock.width;
+								//}
+								renderBlock.textFlowContainer.percentWidth = 100;
+								
 								renderBlockHolder.addElement(renderBlock.textFlowContainer);
 							}
 							
