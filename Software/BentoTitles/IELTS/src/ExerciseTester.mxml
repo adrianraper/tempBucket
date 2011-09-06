@@ -81,7 +81,7 @@
 			<fx:String>DragAndDrop2</fx:String>
 			<fx:String>DragAndDrop3</fx:String>
 			<fx:String>TargetSpotting1</fx:String>
-			<fx:String>TargetSpotting2</fx:String>
+			<fx:String>R2I1</fx:String>
 		</mx:ArrayCollection>
 	</s:DropDownList>
 	

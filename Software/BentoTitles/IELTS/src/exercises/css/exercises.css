@@ -12,6 +12,7 @@ body > header {
 	float: right;
 	padding-top: 25;
 	padding-right: 25;
+	padding-left: 25;
 }
 
 /* Links and draggable spans should be blue and not underlined */
@@ -33,4 +34,11 @@ input[type="droptarget"] {
 /* Color classes */
 .blue {
 	color: #3A00FF;
+}
+
+/* Some standard formatting for R2I */
+h1 {
+	color: #3A00FF;
+	font-weight: bold;
+	font-size: 20;
 }
