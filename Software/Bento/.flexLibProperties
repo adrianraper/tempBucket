@@ -79,6 +79,9 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.textLayout.elements.FloatableTextFlow"/>
+    <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
+    <classEntry path="com.clarityenglish.textLayout.vo.XHTML"/>
+    <classEntry path="com.clarityenglish.textLayout.events.XHTMLEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>
