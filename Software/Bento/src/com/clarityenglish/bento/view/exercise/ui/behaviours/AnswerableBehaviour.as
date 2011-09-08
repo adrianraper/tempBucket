@@ -4,7 +4,6 @@ package com.clarityenglish.bento.view.exercise.ui.behaviours {
 	import com.clarityenglish.bento.vo.content.model.Answer;
 	import com.clarityenglish.bento.vo.content.model.Model;
 	import com.clarityenglish.bento.vo.content.model.Question;
-	import com.clarityenglish.textLayout.conversion.ExerciseBlockImporter;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	
 	import flash.events.IEventDispatcher;

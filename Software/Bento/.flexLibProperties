@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.clarityenglish.bento.BBNotifications"/>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
@@ -25,22 +25,22 @@
     <classEntry path="com.clarityenglish.bento.vo.content.model.Answer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Model"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Question"/>
-    <classEntry path="com.clarityenglish.textLayout.conversion.ExerciseBlockImporter"/>
-    <classEntry path="com.clarityenglish.textLayout.conversion.ExerciseImporter"/>
+    <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
     <classEntry path="com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap"/>
-    <classEntry path="com.clarityenglish.textLayout.conversion.rendering.RenderBlock"/>
-    <classEntry path="com.clarityenglish.textLayout.conversion.rendering.RenderBlocks"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.FloatableTextFlow"/>
     <classEntry path="com.clarityenglish.textLayout.elements.IComponentElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.ImageComponentElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.InputElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.SelectElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.TextComponentElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.VideoElement"/>
+    <classEntry path="com.clarityenglish.textLayout.events.XHTMLEvent"/>
     <classEntry path="com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver"/>
     <classEntry path="com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator"/>
     <classEntry path="com.clarityenglish.textLayout.util.TLF2Application"/>
     <classEntry path="com.clarityenglish.textLayout.util.TLF2SystemManager"/>
     <classEntry path="com.clarityenglish.textLayout.util.TLFUtil"/>
+    <classEntry path="com.clarityenglish.textLayout.vo.XHTML"/>
     <classEntry path="net.digitalprimates.collections.VectorList"/>
     <classEntry path="net.digitalprimates.collections.VectorListCollection"/>
     <classEntry path="org.davekeen.delegates.IDelegate"/>
@@ -78,10 +78,6 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Group"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
-    <classEntry path="com.clarityenglish.textLayout.elements.FloatableTextFlow"/>
-    <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
-    <classEntry path="com.clarityenglish.textLayout.vo.XHTML"/>
-    <classEntry path="com.clarityenglish.textLayout.events.XHTMLEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

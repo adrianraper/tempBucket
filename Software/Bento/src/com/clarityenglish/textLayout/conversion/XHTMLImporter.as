@@ -1,10 +1,10 @@
 package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.bento.css.ExerciseCSS;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.textLayout.conversion.rendering.RenderBlock;
-	import com.clarityenglish.textLayout.conversion.rendering.RenderBlocks;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSSelector;
 	import com.newgonzo.web.css.views.StyledCSSView;
@@ -19,7 +19,7 @@ package com.clarityenglish.textLayout.conversion {
 	import org.davekeen.util.ClassUtil;
 	import org.w3c.css.sac.CSSParseError;
 	
-	public class ExerciseImporter {
+	public class XHTMLImporter {
 		
 		/**
 		 * Standard flex logger
@@ -27,9 +27,9 @@ package com.clarityenglish.textLayout.conversion {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		/**
-		 * This identifier for the custom exercise XML importer
+		 * This identifier for the custom xhtml block importer
 		 */
-		private static const EXERCISE_BOX_FORMAT:String = "exercise_box_format";
+		private static const XHTML_BLOCK_FORMAT:String = "xhtml_block_format";
 		
 		/**
 		 * This maintains a bidirectional map between parsed FlowElements and their original XHTML source nodes. 
@@ -37,8 +37,7 @@ package com.clarityenglish.textLayout.conversion {
 		private var flowElementXmlBiMap:FlowElementXmlBiMap;
 		
 		/**
-		 * There is a default stylesheet that all ExerciseRichText components use (I envision this mainly being used to implement convenience tags that don't exist in
-		 * TextFormatLayout format such as b, i, u, etc)
+		 * The default stylesheet implemented by browsers
 		 */ 
 		[Embed(source="/com/clarityenglish/bento/view/exercise/ui/defaults.css", mimeType="application/octet-stream")]
 		private var defaultCss:Class;
@@ -48,10 +47,10 @@ package com.clarityenglish.textLayout.conversion {
 		 */
 		private var css:CSS;
 		
-		public function ExerciseImporter() {
+		public function XHTMLImporter() {
 			// Add the custom importer to the TextConverter format list
-			if (!TextConverter.getImporter(EXERCISE_BOX_FORMAT))
-				TextConverter.addFormat(EXERCISE_BOX_FORMAT, ExerciseBlockImporter, null, null);
+			if (!TextConverter.getImporter(XHTML_BLOCK_FORMAT))
+				TextConverter.addFormat(XHTML_BLOCK_FORMAT, XHTMLBlockImporter, null, null);
 		}
 		
 		/**
@@ -70,7 +69,7 @@ package com.clarityenglish.textLayout.conversion {
 		 * @param section
 		 * @return 
 		 */
-		public function importToRenderBlocks(exercise:Exercise, section:String):RenderBlocks {
+		/*public function importToRenderBlocks(exercise:Exercise, section:String):RenderBlocks {
 			var textFlows:Vector.<TextFlow> = new Vector.<TextFlow>();
 			var renderBlocks:RenderBlocks = new RenderBlocks();
 			var html:XML = (section == "header") ? exercise.getHeader() : exercise.getSection(section);
@@ -110,7 +109,70 @@ package com.clarityenglish.textLayout.conversion {
 			}
 			
 			return renderBlocks;
+		}*/
+		
+		public function importToRenderFlow(xhtml:XHTML, node:XML):RenderFlow {
+			var renderFlow:RenderFlow = new RenderFlow();
+			flowElementXmlBiMap = new FlowElementXmlBiMap();
+			css = parseCss(xhtml);
+			
+			// I need to work out what not to parse, which is fine (search for floating divs), but I have absolutely no idea
+			// how to build up my render tree.  Maybe this needs to be in the importer??  Surely not...
+			var blockImporter:XHTMLBlockImporter;
+			blockImporter = TextConverter.getImporter(XHTML_BLOCK_FORMAT) as XHTMLBlockImporter;
+			blockImporter.flowElementXmlBiMap = flowElementXmlBiMap;
+			blockImporter.css = css;
+			
+			//blockImporter.exercise = exercise;
+			//blockImporter.ignoreNodes = renderBlocks.getIgnoreNodes();
+			
+			renderFlow.textFlow = blockImporter.importToFlow(xhtml) as FloatableTextFlow;
+			
+			return null;
 		}
+			
+		/*
+			var textFlows:Vector.<TextFlow> = new Vector.<TextFlow>();
+			var renderBlocks:RenderBlocks = new RenderBlocks();
+			var html:XML = (section == "header") ? exercise.getHeader() : exercise.getSection(section);
+			
+			flowElementXmlBiMap = new FlowElementXmlBiMap();
+			css = parseCss(exercise);
+			
+			// Get the left floaters
+			// TODO: This needs to select everything apart from <img>, which floats differently
+			// TODO: This needs to deal with float right too
+			var leftFloatSelector:CSSSelector = new CSSSelector("[float=left]", new StyledCSSView(new XMLCSSView(), css));
+			
+			// Add the top level html node
+			renderBlocks.addBlock(html);
+			
+			// Add the left floating html nodes
+			for each (var node:XML in leftFloatSelector.query(html))
+			renderBlocks.addBlock(node);
+			
+			var exerciseBlockImporter:ExerciseBlockImporter;
+			var importedFlow:TextFlow;
+			
+			for each (var renderBlock:RenderBlock in renderBlocks) {
+				// Create a block importer for each floating node.  Provide the floating nodes to 'ignoreNodes' so they don't get parsed.
+				exerciseBlockImporter = TextConverter.getImporter(EXERCISE_BOX_FORMAT) as ExerciseBlockImporter;
+				exerciseBlockImporter.flowElementXmlBiMap = flowElementXmlBiMap;
+				exerciseBlockImporter.exercise = exercise;
+				exerciseBlockImporter.css = css;
+				exerciseBlockImporter.ignoreNodes = renderBlocks.getIgnoreNodes();
+				
+				renderBlock.textFlow = exerciseBlockImporter.importToFlow(renderBlock.html) as FloatableTextFlow;
+				if (renderBlock.textFlow) {
+					// Create the format resolver
+					var formatResolver:CssLibFormatResolver = new CssLibFormatResolver(css, flowElementXmlBiMap);
+					renderBlock.textFlow.formatResolver = formatResolver;
+				}
+			}
+			
+			return renderBlocks;
+		}
+		*/
 		
 		/**
 		 * Parse all the CSS into an as3csslib object
@@ -118,12 +180,11 @@ package com.clarityenglish.textLayout.conversion {
 		 * @param exercise
 		 * @return 
 		 */
-		private function parseCss(exercise:Exercise):CSS {
-			// Parse the CSS
+		private function parseCss(xhtml:XHTML):CSS {
 			var css:CSS = new ExerciseCSS();
 			
 			// Get the stylesheet - this is default.css stylesheet (embedded) plus any stylesheets specified in the exercise
-			var styleStrings:Array = exercise.styleStrings; // Get the stylesheets in the exercise
+			var styleStrings:Array = xhtml.styleStrings; // Get the stylesheets in the exercise
 			styleStrings.unshift(new defaultCss()); // Make sure default.css is always the first stylesheet
 			
 			for each (var cssString:String in styleStrings)

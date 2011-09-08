@@ -1,8 +1,6 @@
 package com.clarityenglish.textLayout.conversion {
-	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.bento.vo.content.model.Answer;
-	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.newgonzo.web.css.CSS;
@@ -13,7 +11,6 @@ package com.clarityenglish.textLayout.conversion {
 	import flashx.textLayout.elements.DivElement;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowGroupElement;
-	import flashx.textLayout.elements.GlobalSettings;
 	import flashx.textLayout.elements.InlineGraphicElement;
 	import flashx.textLayout.elements.LinkElement;
 	import flashx.textLayout.elements.ListElement;
@@ -34,7 +31,7 @@ package com.clarityenglish.textLayout.conversion {
 	
 	use namespace tlf_internal;
 	
-	public class ExerciseBlockImporter extends TextLayoutImporter {
+	public class XHTMLBlockImporter extends TextLayoutImporter {
 		
 		/**
 		 * Standard flex logger
@@ -47,14 +44,14 @@ package com.clarityenglish.textLayout.conversion {
 		private var _flowElementXmlBiMap:FlowElementXmlBiMap;
 		
 		// TODO: This too
-		private var _exercise:Exercise;
+		//private var _exercise:Exercise;
 		
 		// TODO: And this!
 		private var _css:CSS;
 		
 		private var _ignoreNodes:Vector.<XML>;
 		
-		public function ExerciseBlockImporter() {
+		public function XHTMLBlockImporter() {
 			super();
 			
 			addIEInfo("input", InputElement, parseInput, null);
@@ -66,9 +63,10 @@ package com.clarityenglish.textLayout.conversion {
 			this._flowElementXmlBiMap = value;
 		}
 		
-		public function set exercise(value:Exercise):void {
+		// TODO: TAKEN OUT FOR NOW
+		/*public function set exercise(value:Exercise):void {
 			this._exercise = value;
-		}
+		}*/
 		
 		public function set css(value:CSS):void {
 			this._css = value;
@@ -113,7 +111,7 @@ package com.clarityenglish.textLayout.conversion {
 		 * @param xmlToParse
 		 * @param parent
 		 */
-		public static function parseInput(importFilter:ExerciseBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
+		public static function parseInput(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var inputElement:InputElement = importFilter.createInputFromXml(xmlToParse);
 			importFilter.addChild(parent, inputElement);
 		}
@@ -125,7 +123,7 @@ package com.clarityenglish.textLayout.conversion {
 		 * @param xmlToParse
 		 * @param parent
 		 */
-		public static function parseSelect(importFilter:ExerciseBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
+		public static function parseSelect(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var selectElement:SelectElement = importFilter.createSelectFromXml(xmlToParse);
 			importFilter.addChild(parent, selectElement);
 		}
@@ -137,7 +135,7 @@ package com.clarityenglish.textLayout.conversion {
 		 * @param xmlToParse
 		 * @param parent
 		 */
-		public static function parseVideo(importFilter:ExerciseBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
+		public static function parseVideo(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var videoElement:VideoElement = importFilter.createVideoFromXml(xmlToParse);
 			importFilter.addChild(parent, videoElement);
 		}
@@ -353,8 +351,9 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.gapAfterPadding) inputElement.gapAfterPadding = style.gapAfterPadding;
 			if (style.gapText) inputElement.gapText = style.gapText;
 			
+			// TODO: TAKEN OUT FOR NOW
 			// Get the longest possible answer and make that the underlying text of the input
-			inputElement.text = getLongestAnswerValue(_exercise.model.getPossibleAnswersForNode(xmlToParse));
+			//inputElement.text = getLongestAnswerValue(_exercise.model.getPossibleAnswersForNode(xmlToParse));
 			
 			addToFlowElementXmlMap(xmlToParse, inputElement);
 			
@@ -370,14 +369,15 @@ package com.clarityenglish.textLayout.conversion {
 		public function createSelectFromXml(xmlToParse:XML):SelectElement {
 			var selectElement:SelectElement = new SelectElement();
 			
-			var answers:Vector.<Answer> = _exercise.model.getPossibleAnswersForNode(xmlToParse);
+			// TODO: TAKEN OUT FOR NOW
+			/*var answers:Vector.<Answer> = _exercise.model.getPossibleAnswersForNode(xmlToParse);
 			
 			selectElement.answers = answers;
 			
 			// Get the longest possible answer and make that the underlying text of the select.  Add some spacers to accomodate the chrome too.
 			selectElement.text = getLongestAnswerValue(answers) + "____.";
 			
-			addToFlowElementXmlMap(xmlToParse, selectElement);
+			addToFlowElementXmlMap(xmlToParse, selectElement);*/
 			
 			return selectElement;
 		}
@@ -402,28 +402,29 @@ package com.clarityenglish.textLayout.conversion {
 			return videoElement;
 		}
 		
+		private function isIgnoreNode(node:XML):Boolean {
+			for each (var ignoreNode:XML in _ignoreNodes)
+			if (ignoreNode === node)
+				return true;
+			
+			return false;
+		}
+		
 		/**
 		 * Helper method to determine the longest textual answer in a vector of Answers
 		 * 
 		 * @param answers
 		 * @return 
 		 */
-		private static function getLongestAnswerValue(answers:Vector.<Answer>):String {
+		// TODO: TAKEN OUT FOR NOW
+		/*private static function getLongestAnswerValue(answers:Vector.<Answer>):String {
 			var longestAnswer:String = "";
 			for each (var answer:Answer in answers)
 			if (answer.value.length > longestAnswer.length)
 				longestAnswer = answer.value;
 			
 			return longestAnswer;
-		}
-		
-		private function isIgnoreNode(node:XML):Boolean {
-			for each (var ignoreNode:XML in _ignoreNodes)
-				if (ignoreNode === node)
-					return true;
-			
-			return false;
-		}
+		}*/
 		
 	}
 }

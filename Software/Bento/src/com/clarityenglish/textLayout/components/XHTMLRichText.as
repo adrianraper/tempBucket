@@ -89,7 +89,7 @@ package com.clarityenglish.textLayout.components {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			// If something has changed and we are ready then start the parse
+			// If something has changed and we are ready then start parsing
 			if ((_xhtmlChanged || _nodeIdChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
 				
 			}

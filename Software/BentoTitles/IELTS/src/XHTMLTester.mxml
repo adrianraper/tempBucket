@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<util:TLF2Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:components="com.clarityenglish.bento.components.*"
+			   xmlns:elements="com.clarityenglish.textLayout.elements.*"
+			   xmlns:ui="com.clarityenglish.bento.view.exercise.ui.*"
+			   xmlns:util="com.clarityenglish.textLayout.util.*"
+			   xmlns:components="com.clarityenglish.textLayout.components.*"
+			   creationComplete="creationComplete()">
+	<fx:Metadata>
+		[SWF(width=800, height=400)]
+	</fx:Metadata>
+	
+	<fx:Declarations />
+	
+	<fx:Style source="bento.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.vo.content.Exercise;
+			import com.clarityenglish.textLayout.vo.XHTML;
+			
+			import mx.logging.Log;
+			import mx.logging.LogEventLevel;
+			import mx.logging.targets.TraceTarget;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private var urlLoader:URLLoader;
+			
+			private function creationComplete():void {
+				// Configure logging
+				var logTarget:TraceTarget = new TraceTarget();
+				logTarget.filters = ["com.clarityenglish.*"];
+				logTarget.level = LogEventLevel.ALL;
+				logTarget.includeDate = false;
+				logTarget.includeTime = false;
+				logTarget.includeCategory = true;
+				logTarget.includeLevel = true;
+				Log.addTarget(logTarget);
+				
+				buttonBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+			}
+			
+			protected function onButtonBarChange(event:IndexChangeEvent):void {
+				var selectedExercise:String = event.target.selectedItem;
+				
+				// Load the configuration file
+				urlLoader = new URLLoader();
+				urlLoader.addEventListener(Event.COMPLETE, onExerciseLoadComplete);
+				urlLoader.load(new URLRequest("exercises/" + selectedExercise + ".html"));
+			}
+			
+			protected function onExerciseLoadComplete(event:Event):void {
+				/*var exercise:Exercise = new Exercise();
+				exercise.xml = new XML(urlLoader.data);
+				
+				exerciseView.exercise = exercise;*/
+				
+				var xhtml:XHTML = new XHTML(new XML(urlLoader.data));
+				
+				xhtmlRichText.xhtml = xhtml;
+				xhtmlRichText.nodeId = "body";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<util:layout>
+		<s:VerticalLayout />
+	</util:layout>
+	
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="0" change="onButtonBarChange(event)">
+		<mx:ArrayCollection>
+			<fx:String>Grid1</fx:String>
+			<fx:String>Grid2</fx:String>
+			<fx:String>Grid3</fx:String>
+			<fx:String>SpaceBug</fx:String>
+			<fx:String>GapFill1</fx:String>
+			<fx:String>GapFill2</fx:String>
+			<fx:String>TrueFalse1</fx:String>
+			<fx:String>TrueFalse2</fx:String>
+			<fx:String>TrueFalse3</fx:String>
+			<fx:String>DropDown1</fx:String>
+			<fx:String>DragAndDrop1</fx:String>
+			<fx:String>DragAndDrop2</fx:String>
+			<fx:String>DragAndDrop3</fx:String>
+			<fx:String>TargetSpotting1</fx:String>
+			<fx:String>R2I1</fx:String>
+		</mx:ArrayCollection>
+	</s:DropDownList>
+	
+	<!--<exercise:ExerciseView id="exerciseView" width="100%" height="100%" />-->
+	
+	<components:XHTMLRichText id="xhtmlRichText" width="100%" height="100%" />
+	
+</util:TLF2Application>

@@ -27,8 +27,9 @@ package com.clarityenglish.textLayout.vo {
 		private var isLoadingStyleLinks:Boolean
 		private var externalStyleSheetsLoaded:Boolean;
 		
-		public function XHTML() {
-			
+		public function XHTML(value:XML = null) {
+			if (value)
+				xml = value;
 		}
 		
 		public function set xml(value:XML):void {
