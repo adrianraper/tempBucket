@@ -67,6 +67,8 @@
 	
 	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="0" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
+			<fx:String>R2I1</fx:String>
+			<fx:String>R2I2</fx:String>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>
 			<fx:String>Grid3</fx:String>
@@ -81,7 +83,6 @@
 			<fx:String>DragAndDrop2</fx:String>
 			<fx:String>DragAndDrop3</fx:String>
 			<fx:String>TargetSpotting1</fx:String>
-			<fx:String>R2I1</fx:String>
 		</mx:ArrayCollection>
 	</s:DropDownList>
 	
