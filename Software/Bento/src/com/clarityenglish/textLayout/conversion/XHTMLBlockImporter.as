@@ -11,6 +11,7 @@ package com.clarityenglish.textLayout.conversion {
 	import flashx.textLayout.elements.DivElement;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowGroupElement;
+	import flashx.textLayout.elements.IFormatResolver;
 	import flashx.textLayout.elements.InlineGraphicElement;
 	import flashx.textLayout.elements.LinkElement;
 	import flashx.textLayout.elements.ListElement;
@@ -50,6 +51,8 @@ package com.clarityenglish.textLayout.conversion {
 		private var _css:CSS;
 		
 		private var _ignoreNodes:Vector.<XML>;
+		
+		public var formatResolver:IFormatResolver;
 		
 		public function XHTMLBlockImporter() {
 			super();
@@ -259,6 +262,9 @@ package com.clarityenglish.textLayout.conversion {
 		public override function createTextFlowFromXML(xmlToParse:XML, textFlow:TextFlow = null):TextFlow {
 			// Create a text flow using our subclass as a template in order to get some extra attributes in there
 			var element:FloatableTextFlow = super.createTextFlowFromXML(xmlToParse, new FloatableTextFlow(_textFlowConfiguration)) as FloatableTextFlow;
+			
+			// Set the format resolver
+			element.formatResolver = formatResolver;
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);

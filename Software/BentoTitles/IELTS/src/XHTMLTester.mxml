@@ -2,7 +2,6 @@
 <util:TLF2Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
-			   xmlns:components="com.clarityenglish.bento.components.*"
 			   xmlns:elements="com.clarityenglish.textLayout.elements.*"
 			   xmlns:ui="com.clarityenglish.bento.view.exercise.ui.*"
 			   xmlns:util="com.clarityenglish.textLayout.util.*"
@@ -71,7 +70,7 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="0" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="13" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>

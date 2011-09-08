@@ -112,23 +112,26 @@ package com.clarityenglish.textLayout.conversion {
 		}*/
 		
 		public function importToRenderFlow(xhtml:XHTML, node:XML):RenderFlow {
-			var renderFlow:RenderFlow = new RenderFlow();
 			flowElementXmlBiMap = new FlowElementXmlBiMap();
 			css = parseCss(xhtml);
 			
 			// I need to work out what not to parse, which is fine (search for floating divs), but I have absolutely no idea
 			// how to build up my render tree.  Maybe this needs to be in the importer??  Surely not...
-			var blockImporter:XHTMLBlockImporter;
-			blockImporter = TextConverter.getImporter(XHTML_BLOCK_FORMAT) as XHTMLBlockImporter;
+			var blockImporter:XHTMLBlockImporter = TextConverter.getImporter(XHTML_BLOCK_FORMAT) as XHTMLBlockImporter;;
+			var formatResolver:CssLibFormatResolver = new CssLibFormatResolver(css, flowElementXmlBiMap);
+			
+			blockImporter.formatResolver = formatResolver;
 			blockImporter.flowElementXmlBiMap = flowElementXmlBiMap;
 			blockImporter.css = css;
-			
+			 
 			//blockImporter.exercise = exercise;
 			//blockImporter.ignoreNodes = renderBlocks.getIgnoreNodes();
 			
-			renderFlow.textFlow = blockImporter.importToFlow(xhtml) as FloatableTextFlow;
+			var textFlow:FloatableTextFlow = blockImporter.importToFlow(node) as FloatableTextFlow;
 			
-			return null;
+			var renderFlow:RenderFlow = new RenderFlow(textFlow);
+			
+			return renderFlow;
 		}
 			
 		/*
@@ -172,6 +175,7 @@ package com.clarityenglish.textLayout.conversion {
 			
 			return renderBlocks;
 		}
+		
 		*/
 		
 		/**

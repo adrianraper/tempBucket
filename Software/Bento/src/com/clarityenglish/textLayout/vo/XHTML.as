@@ -118,6 +118,8 @@ package com.clarityenglish.textLayout.vo {
 			externalStyleSheetsLoaded = true;
 			isLoadingStyleLinks = false;
 			
+			log.info("External stylesheet loaded");
+			
 			dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED));
 		}
 		
@@ -202,7 +204,7 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		[Bindable(event="xmlChange")]
 		public function getElementById(id:String):XML {
-			var nodes:XMLList = _xml.body..*.(@id == id);
+			var nodes:XMLList = _xml.body..*.(hasOwnProperty("@id") && @id == id);
 			return (nodes.length() > 0) ? nodes[0] : null;
 		}
 		

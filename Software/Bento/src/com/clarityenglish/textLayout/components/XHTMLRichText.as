@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.components {
-	import com.clarityenglish.textLayout.rendering.RenderFlow;
+	import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -25,9 +26,9 @@ package com.clarityenglish.textLayout.components {
 		private var _nodeIdChanged:Boolean;
 		
 		/**
-		 * The top level containing block
+		 * The inital containing block
 		 */
-		private var renderBlock:RenderFlow;
+		private var renderFlow:RenderFlow;
 		
 		public function XHTMLRichText() {
 			super();
@@ -79,11 +80,6 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function createChildren():void {
 			super.createChildren();
-			
-			// Create the main render block and make it fill the width of the component
-			renderBlock = new RenderFlow();
-			renderBlock.percentWidth = 100;
-			addElement(renderBlock);
 		}
 		
 		protected override function commitProperties():void {
@@ -91,7 +87,20 @@ package com.clarityenglish.textLayout.components {
 			
 			// If something has changed and we are ready then start parsing
 			if ((_xhtmlChanged || _nodeIdChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
+				// If there was a previously existing RenderFlow clean it up
+				if (renderFlow) {
+					removeElement(renderFlow);
+				}
 				
+				// Import the new renderflow
+				var importer:XHTMLImporter = new XHTMLImporter();
+				renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.getElementById("body"));
+				
+				renderFlow.percentWidth = 100;
+				
+				addElement(renderFlow);
+				
+				_xhtmlChanged = _nodeIdChanged = false;
 			}
 		}
 		
