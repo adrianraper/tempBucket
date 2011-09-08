@@ -51,12 +51,16 @@ package com.clarityenglish.textLayout.conversion {
 		// TODO: And this!
 		private var _css:CSS;
 		
+		private var _importQueueJobs:Vector.<ImportQueueJob>;
+		
 		private var _ignoreNodes:Vector.<XML>;
 		
 		public var formatResolver:IFormatResolver;
 		
 		public function XHTMLBlockImporter() {
 			super();
+			
+			_importQueueJobs = new Vector.<ImportQueueJob>();
 			
 			addIEInfo("input", InputElement, parseInput, null);
 			addIEInfo("select", SelectElement, parseSelect, null);
@@ -101,7 +105,47 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		public function importToRenderFlow(xmlToParse:XML):RenderFlow {
-			return new RenderFlow(importToFlow(xmlToParse) as FloatableTextFlow);
+			// Import the initial render flow
+			var textFlow:FloatableTextFlow = importToFlow(xmlToParse) as FloatableTextFlow;
+			var renderFlow:RenderFlow = new RenderFlow(textFlow);
+			
+			while (_importQueueJobs.length > 0) {
+				var importQueueJob:ImportQueueJob = _importQueueJobs.shift();
+				executeImportQueueJob(importQueueJob);
+			}
+			
+			return renderFlow;
+		}
+		
+		private function executeImportQueueJob(importQueueJob:ImportQueueJob):void {
+			// Parse the xml
+			var textFlow:FloatableTextFlow = importToFlow(importQueueJob.xmlToParse) as FloatableTextFlow;
+			
+			// Wrap it in a RenderFlow
+			var renderFlow:RenderFlow = new RenderFlow(textFlow);
+			
+			// If there is a containing block then set the IGE placeholder and add as a child
+			if (importQueueJob.containingBlock) {
+				renderFlow.inlineGraphicElementPlaceholder = importQueueJob.inlineGraphicElementPlaceholder;
+				renderFlow.containingBlock = importQueueJob.containingBlock;
+				
+				renderFlow.containingBlock.addChild(renderFlow);
+			}
+		}
+		
+		tlf_internal override function parseObject(name:String, xmlToParse:XML, parent:FlowGroupElement, exceptionElements:Object = null):void {
+			// Determine if this is a floating RenderFlow
+			if (isSeperateRenderFlow(xmlToParse)) {
+				var importQueueJob:ImportQueueJob = new ImportQueueJob();
+				importQueueJob.xmlToParse = xmlToParse;
+				//importQueueJob.inlineGraphicElementPlaceholder;
+				
+				// TODO: Can't quite figure out how to get the render view into the job
+				
+				_importQueueJobs.push(importQueueJob);
+			} else {
+				super.parseObject(name, xmlToParse, parent, exceptionElements);
+			}
 		}
 		
 		/** create an implied span with specified text */
@@ -185,11 +229,7 @@ package com.clarityenglish.textLayout.conversion {
 		override public function parseFlowGroupElementChildren(xmlToParse:XML, parent:FlowGroupElement, exceptionElements:Object = null, chainedParent:Boolean = false):void {
 			for each (var child:XML in xmlToParse.children()) {
 				if (child.nodeKind() == "element") {
-					if (!isIgnoreNode(child)) {
-						parseObject(child.name().localName, child, parent, exceptionElements);
-					} else {
-						log.info("Ignoring " + child.name().localName);
-					}
+					parseObject(child.name().localName, child, parent, exceptionElements);
 				}
 				// look for mixed content here
 				else if (child.nodeKind() == "text") {
@@ -253,7 +293,15 @@ package com.clarityenglish.textLayout.conversion {
 			
 			return parseTextFlow(this, textFlowElement);
 		}
-
+		
+		private function isSeperateRenderFlow(xmlToParse:XML):Boolean {
+			// Get the CSS style of the node
+			var style:CSSComputedStyle = _css.style(xmlToParse);
+			
+			// For now seperate flows are left or right floated elements (apart from images)
+			return (xmlToParse.name() != "img" && (style.float == "left" || style.float == "right")); 
+		}
+		
 		/**
 		 * We want to bypass the check to ensure that we are in the TextFlow namespace.
 		 * 
@@ -438,4 +486,17 @@ package com.clarityenglish.textLayout.conversion {
 		}*/
 		
 	}
+}
+import com.clarityenglish.textLayout.rendering.RenderFlow;
+
+import flashx.textLayout.elements.InlineGraphicElement;
+
+class ImportQueueJob {
+	
+	public var xmlToParse:XML;
+	
+	public var containingBlock:RenderFlow;
+	
+	public var inlineGraphicElementPlaceholder:InlineGraphicElement;
+	
 }
