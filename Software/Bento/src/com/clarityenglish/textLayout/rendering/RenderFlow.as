@@ -37,11 +37,13 @@ package com.clarityenglish.textLayout.rendering {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
+			// Don't allow a null textFlow - this means that code in RenderFlow can rely on there being a _textFlow attribute
 			if (!textFlow)
 				log.error("A null TextFlow was passed to the RenderFlow");
 			
 			_textFlow = textFlow;
 			
+			// Add TextFlow listeners and make this DisplayObject the container
 			_textFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete, false, 0, true);
 			_textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange, false, 0, true);
 			_textFlow.flowComposer.addController(new ContainerController(this, width, NaN));
@@ -51,7 +53,11 @@ package com.clarityenglish.textLayout.rendering {
 			
 		}
 		
-		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean=true):void {
+		public override function get height():Number {
+			return (_textFlow) ? _textFlow.flowComposer.getControllerAt(0).getContentBounds().height : 0;
+		}
+		
+		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
 			super.setLayoutBoundsSize(width,height,postLayoutTransform);
 			
 			_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
@@ -73,6 +79,11 @@ package com.clarityenglish.textLayout.rendering {
 			
 		}
 		
+		/**
+		 * When the RenderFlow is removed from the stage remove all listeners and nullify everything so that it can be garbage collected
+		 * 
+		 * @param event
+		 */
 		private function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);

@@ -127,11 +127,11 @@ package com.clarityenglish.textLayout.conversion {
 			//blockImporter.exercise = exercise;
 			//blockImporter.ignoreNodes = renderBlocks.getIgnoreNodes();
 			
-			var textFlow:FloatableTextFlow = blockImporter.importToFlow(node) as FloatableTextFlow;
+			//var textFlow:FloatableTextFlow = blockImporter.importToFlow(node) as FloatableTextFlow;
 			
-			var renderFlow:RenderFlow = new RenderFlow(textFlow);
+			//var renderFlow:RenderFlow = new RenderFlow(textFlow);
 			
-			return renderFlow;
+			return blockImporter.importToRenderFlow(node);
 		}
 			
 		/*

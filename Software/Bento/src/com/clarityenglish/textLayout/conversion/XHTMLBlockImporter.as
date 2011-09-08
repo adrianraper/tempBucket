@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
@@ -97,6 +98,10 @@ package com.clarityenglish.textLayout.conversion {
 		private function addIEInfo(name:String, flowClass:Class, parser:Function, exporter:Function):void {
 			if (!_config.lookup(name))
 				_config.addIEInfo(name, flowClass, parser, exporter);
+		}
+		
+		public function importToRenderFlow(xmlToParse:XML):RenderFlow {
+			return new RenderFlow(importToFlow(xmlToParse) as FloatableTextFlow);
 		}
 		
 		/** create an implied span with specified text */

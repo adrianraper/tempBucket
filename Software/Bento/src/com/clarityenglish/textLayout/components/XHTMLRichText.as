@@ -110,6 +110,12 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			// Really this needs to pick up the height automatically
+			//var textHeight:int = Math.ceil(renderBlock.textFlow.flowComposer.getControllerAt(0).getContentBounds().height);
+			//setContentSize(unscaledWidth, Math.max(textHeight, unscaledHeight));
+			if (renderFlow)
+				trace(renderFlow.height);
 		}
 		
 	}

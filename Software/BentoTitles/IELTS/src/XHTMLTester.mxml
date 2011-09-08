@@ -92,6 +92,8 @@
 	
 	<!--<exercise:ExerciseView id="exerciseView" width="100%" height="100%" />-->
 	
-	<components:XHTMLRichText id="xhtmlRichText" width="100%" height="100%" />
+	<s:Scroller width="100%" height="100%">
+		<components:XHTMLRichText id="xhtmlRichText" width="100%" height="100%" />
+	</s:Scroller>
 	
 </util:TLF2Application>
