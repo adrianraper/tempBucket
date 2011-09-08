@@ -3,11 +3,13 @@ package com.clarityenglish.textLayout.rendering {
 	
 	import flash.events.Event;
 	
+	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.container.ContainerController;
 	import flashx.textLayout.elements.InlineGraphicElement;
+	import flashx.textLayout.elements.InlineGraphicElementStatus;
+	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
-	import flashx.textLayout.formats.Float;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -52,17 +54,22 @@ package com.clarityenglish.textLayout.rendering {
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean=true):void {
 			super.setLayoutBoundsSize(width,height,postLayoutTransform);
 			
-			if (_textFlow) {
-				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
+			_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
+			_textFlow.flowComposer.updateAllControllers();
+		}
+		
+		protected function onInlineGraphicStatusChange(event:StatusChangeEvent):void {
+			if (event.status == InlineGraphicElementStatus.READY || event.status == InlineGraphicElementStatus.SIZE_PENDING) {
+				// When the graphic is loaded damage the text flow and lay out its geometry again
+				// TODO: Right now this damages the whole document; it would be better to just damage the InlineGraphicElement, but I'm not quite sure how
+				// to work out where it is (or its TextFlowLine would be fine too in which case we could use line.damage).
+				var textFlow:TextFlow = event.target as TextFlow;
+				_textFlow.flowComposer.damage(0, _textFlow.textLength, FlowDamageType.GEOMETRY);
 				_textFlow.flowComposer.updateAllControllers();
 			}
 		}
 		
 		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
-			
-		}
-		
-		protected function onInlineGraphicStatusChange(event:Event):void {
 			
 		}
 		
@@ -72,15 +79,12 @@ package com.clarityenglish.textLayout.rendering {
 			
 			containingBlock = null;
 			
-			if (_textFlow) {
-				_textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
-				_textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
-				
-				_textFlow.flowComposer.removeAllControllers();
-				_textFlow.formatResolver = null;
-				_textFlow = null;
-				
-			}
+			_textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+			_textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
+			
+			_textFlow.flowComposer.removeAllControllers();
+			_textFlow.formatResolver = null;
+			_textFlow = null;
 		}
 		
 	}
