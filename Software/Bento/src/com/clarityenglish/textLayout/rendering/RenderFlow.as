@@ -20,7 +20,7 @@ package com.clarityenglish.textLayout.rendering {
 	import org.davekeen.util.ClassUtil;
 	
 	import spark.core.SpriteVisualElement;
-
+	
 	use namespace mx_internal;
 	
 	public class RenderFlow extends SpriteVisualElement {
@@ -34,6 +34,8 @@ package com.clarityenglish.textLayout.rendering {
 		
 		private var _textFlow:FloatableTextFlow;
 		
+		private var childRenderFlows:Vector.<RenderFlow>;
+		
 		public var containingBlock:RenderFlow;
 		
 		public var inlineGraphicElementPlaceholder:InlineGraphicElement;
@@ -41,6 +43,8 @@ package com.clarityenglish.textLayout.rendering {
 		public function RenderFlow(textFlow:FloatableTextFlow = null) {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			childRenderFlows = new Vector.<RenderFlow>();
 			
 			this.textFlow = textFlow;
 		}
@@ -56,8 +60,26 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
-		private function onAddedToStage(event:Event):void {
+		public function addChildRenderFlow(childRenderFlow:RenderFlow):void {
+			// Maintain bi-directional relationship
+			childRenderFlow.containingBlock = this;
 			
+			// Add the child render flow to the list (used so we know what the children are without having to go through the whole display list)
+			childRenderFlows.push(childRenderFlow);
+			
+			// Finally actually add it to the display list
+			addChild(childRenderFlow);
+		}
+		
+		private function onAddedToStage(event:Event):void {
+			// Set the width based on the TextFlow properties
+			if (_textFlow.width) {
+				if (_textFlow.isPercentWidth()) {
+					throw new Error("Percent width not supported yet");
+				} else {
+					_textFlow.flowComposer.getControllerAt(0).setCompositionSize(_textFlow.width, NaN);
+				}
+			}
 		}
 		
 		public override function get height():Number {
@@ -65,38 +87,69 @@ package com.clarityenglish.textLayout.rendering {
 		}
 		
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
-			super.setLayoutBoundsSize(width,height,postLayoutTransform);
+			super.setLayoutBoundsSize(width, height, postLayoutTransform);
 			
 			if (_textFlow) {
 				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
-				_textFlow.flowComposer.updateAllControllers();
+				updateRenderFlowTree();
 			}
 		}
 		
+		/**
+		 * This simple looking method is the real workhorse, going through the RenderFlow tree heirarchy and rendering all the TextFlows
+		 */
+		internal function updateRenderFlowTree():void {
+			// Walk the tree before doing anything; this ensures that things happen from the deepest node first up to the root last
+			for each (var childRenderFlow:RenderFlow in childRenderFlows)
+				childRenderFlow.updateRenderFlowTree();
+			
+			// Compose and render the text flow
+			_textFlow.flowComposer.updateAllControllers();
+			
+			// At this point the width and height of the rendered flow is known, so if there is an IGE placeholder on the containing block set the size on that
+			if (containingBlock && inlineGraphicElementPlaceholder) {
+				inlineGraphicElementPlaceholder.width = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
+				inlineGraphicElementPlaceholder.height = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
+			}
+		}
+		
+		/**
+		 * Go through the child RenderFlows ensuring that they are positioned over their placeholder IGEs
+		 * 
+		 * @param event
+		 */
+		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
+			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
+				if (childRenderFlow.inlineGraphicElementPlaceholder) {
+					childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
+					childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
+				}
+			}
+		}
+		
+		/**
+		 * When a graphic resource (i.e. an img tag) is loaded we need to layout the textflow again as the geometry will have changed
+		 * 
+		 * @param event
+		 */
 		protected function onInlineGraphicStatusChange(event:StatusChangeEvent):void {
 			if (event.status == InlineGraphicElementStatus.READY || event.status == InlineGraphicElementStatus.SIZE_PENDING) {
-				// When the graphic is loaded damage the text flow and lay out its geometry again
-				// TODO: Right now this damages the whole document; it would be better to just damage the InlineGraphicElement, but I'm not quite sure how
-				// to work out where it is (or its TextFlowLine would be fine too in which case we could use line.damage).
 				var textFlow:TextFlow = event.target as TextFlow;
 				_textFlow.flowComposer.damage(0, _textFlow.textLength, FlowDamageType.GEOMETRY);
 				_textFlow.flowComposer.updateAllControllers();
 			}
 		}
 		
-		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
-			
-		}
-		
 		/**
 		 * When the RenderFlow is removed from the stage remove all listeners and nullify everything so that it can be garbage collected
-		 * 
+		 *
 		 * @param event
 		 */
 		private function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
+			childRenderFlows = null;
 			containingBlock = null;
 			
 			if (_textFlow) {
@@ -109,17 +162,9 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
-		private var debugChildren:Array = new Array();
-		
-		mx_internal override function childAdded(child:DisplayObject):void {
-			super.childAdded(child);
-			
-			debugChildren.push(child);
-		}
-		
 		public override function toString():String {
 			return (TLFUtil.dumpTextFlow(_textFlow));
 		}
-		
+	
 	}
 }

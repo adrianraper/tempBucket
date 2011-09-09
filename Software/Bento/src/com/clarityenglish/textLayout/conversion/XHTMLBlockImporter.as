@@ -152,8 +152,7 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// If there is a containing block set it on the render flow and add this to the containing block's display list
 			if (importQueueJob.containingBlock) {
-				renderFlow.containingBlock = importQueueJob.containingBlock;
-				renderFlow.containingBlock.addChild(renderFlow);
+				importQueueJob.containingBlock.addChildRenderFlow(renderFlow);
 			}
 		}
 		
@@ -352,6 +351,12 @@ package com.clarityenglish.textLayout.conversion {
 			var style:CSSComputedStyle = _css.style(xmlToParse);
 			if (style.width) element.width = style.width;
 			if (style.float) element.float = style.float;
+			
+			// I'm not sure why, but the TextFlow doesn't render some styles in the CssFormatResolver, so add them manually here
+			if (style.paddingLeft) element.paddingLeft = style.paddingLeft;
+			if (style.paddingRight) element.paddingRight = style.paddingRight;
+			if (style.paddingTop) element.paddingTop = style.paddingTop;
+			if (style.paddingBottom) element.paddingBottom = style.paddingBottom;
 			
 			addToFlowElementXmlMap(xmlToParse, element);
 			return element as TextFlow;
