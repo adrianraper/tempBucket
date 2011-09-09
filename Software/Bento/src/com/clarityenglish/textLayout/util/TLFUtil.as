@@ -55,7 +55,7 @@ package com.clarityenglish.textLayout.util {
 		}
 		
 		public static function dumpTextFlow(textFlow:TextFlow):String {
-			return flowElementToXML(textFlow).toXMLString();
+			return (textFlow) ? flowElementToXML(textFlow).toXMLString() : "";
 		}
 		
 		private static function flowElementToXML(flowElement:FlowElement):XML {

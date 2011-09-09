@@ -8,6 +8,7 @@ package com.clarityenglish.textLayout.components {
 	import flash.events.MouseEvent;
 	
 	import mx.events.FlexEvent;
+	import mx.events.ResizeEvent;
 	
 	import spark.components.Group;
 	
@@ -20,10 +21,11 @@ package com.clarityenglish.textLayout.components {
 		private var _xhtmlChanged:Boolean;
 		
 		/**
-		 * The id of the node (probably a section) that this XHTMLRichText is supposed to render. 
+		 * The selector of the node that this XHTMLRichText is supposed to render.  This is a CSS style selector; for example #someid, header, body, etc.
+		 * If the selector returns more than one node an error message will be logged and only the first node will be used.  
 		 */
-		private var _nodeId:String;
-		private var _nodeIdChanged:Boolean;
+		private var _selector:String;
+		private var _selectorChanged:Boolean;
 		
 		/**
 		 * The inital containing block
@@ -59,9 +61,9 @@ package com.clarityenglish.textLayout.components {
 		}
 		
 		public function set nodeId(value:String):void {
-			if (_nodeId != value) {
-				_nodeId = value;
-				_nodeIdChanged = true;
+			if (_selector != value) {
+				_selector = value;
+				_selectorChanged = true;
 				invalidateProperties();
 			}
 		}
@@ -86,7 +88,7 @@ package com.clarityenglish.textLayout.components {
 			super.commitProperties();
 			
 			// If something has changed and we are ready then start parsing
-			if ((_xhtmlChanged || _nodeIdChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
+			if ((_xhtmlChanged || _selectorChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
 				// If there was a previously existing RenderFlow clean it up
 				if (renderFlow) {
 					removeElement(renderFlow);
@@ -94,14 +96,15 @@ package com.clarityenglish.textLayout.components {
 				
 				// Import the new renderflow
 				var importer:XHTMLImporter = new XHTMLImporter();
-				//renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.getElementById(_nodeId));
-				renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.selectOne(_nodeId));
+				renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.selectOne(_selector));
 				
+				// The main RenderFlow should fill the viewport horizontally
+				// TODO: This is causing some confusion with resizing RenderFlows and invalidateSize
 				renderFlow.percentWidth = 100;
 				
 				addElement(renderFlow);
 				
-				_xhtmlChanged = _nodeIdChanged = false;
+				_xhtmlChanged = _selectorChanged = false;
 			}
 		}
 		
@@ -115,8 +118,6 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
-			invalidateSize();
 		}
 		
 	}

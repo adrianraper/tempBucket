@@ -2,7 +2,6 @@ package com.clarityenglish.textLayout.rendering {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
 	import flashx.textLayout.compose.FlowDamageType;
@@ -14,6 +13,7 @@ package com.clarityenglish.textLayout.rendering {
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
 	import mx.core.mx_internal;
+	import mx.events.ResizeEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -111,9 +111,17 @@ package com.clarityenglish.textLayout.rendering {
 			// Compose and render the text flow
 			_textFlow.flowComposer.updateAllControllers();
 			
-			// At this point the width and height of the rendered flow is known, so if there is an IGE placeholder on the containing block set the size on that
+			// At this point the width and height of the rendered flow is known, so if there is an IGE placeholder on the containing block set its size
 			if (containingBlock && inlineGraphicElementPlaceholder) {
-				inlineGraphicElementPlaceholder.width = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
+				// If the width is set in the TextFlow then this is fixed width otherwise calculate it dynamically from the content width.
+				// TODO: percentage widths
+				if (_textFlow.width) {
+					inlineGraphicElementPlaceholder.width = _textFlow.width;
+				} else {
+					inlineGraphicElementPlaceholder.width = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
+				}
+				
+				// TODO: css defined heights
 				inlineGraphicElementPlaceholder.height = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
 			}
 		}
@@ -130,10 +138,16 @@ package com.clarityenglish.textLayout.rendering {
 						childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
 						childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
 					} else {
-						log.info("No parent on the placeholder graphic.  Weird???");
+						// I'm not sure why the graphic sometimes has no parent; it seems to work anyway
+						//log.info("Unable to place render flow as the graphic has no parent");
 					}
 				}
 			}
+			
+			// If this is the top-level RenderFlow (this will be the only one with no containingBlock) then tell the parent that it may
+			// need to lay this out.  Specifically this will make scrollbars work properly.
+			if (!containingBlock)
+				invalidateParentSizeAndDisplayList();
 		}
 		
 		/**
@@ -146,6 +160,9 @@ package com.clarityenglish.textLayout.rendering {
 				var textFlow:TextFlow = event.target as TextFlow;
 				_textFlow.flowComposer.damage(0, _textFlow.textLength, FlowDamageType.GEOMETRY);
 				_textFlow.flowComposer.updateAllControllers();
+				
+				// Invalidate the size of this component so any higher level chrome can resize itself accordingly
+				invalidateSize();
 			}
 		}
 		
