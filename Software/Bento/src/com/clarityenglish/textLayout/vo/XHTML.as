@@ -1,5 +1,5 @@
 package com.clarityenglish.textLayout.vo {
-	import com.clarityenglish.bento.events.ExerciseEvent;
+	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -86,7 +86,7 @@ package com.clarityenglish.textLayout.vo {
 			
 			if (linkNodes.length() == 0) {
 				externalStyleSheetsLoaded = true;
-				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED))
+				dispatchEvent(new XHTMLEvent(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED))
 			} else {
 				
 				// Note to self
@@ -120,7 +120,7 @@ package com.clarityenglish.textLayout.vo {
 			
 			log.info("External stylesheet loaded");
 			
-			dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED));
+			dispatchEvent(new XHTMLEvent(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED));
 		}
 		
 		protected function onStyleSheetIOError(event:IOErrorEvent):void {

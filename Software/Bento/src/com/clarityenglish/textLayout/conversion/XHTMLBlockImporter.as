@@ -171,8 +171,8 @@ package com.clarityenglish.textLayout.conversion {
 				inlineGraphicElement.float = style.float;
 				if (style.width) inlineGraphicElement.width = style.width;
 				if (style.height) inlineGraphicElement.height = style.height;
+				inlineGraphicElement.source = null;
 				addChild(parent, inlineGraphicElement);
-				//parent.addChild(inlineGraphicElement);
 				
 				var importQueueJob:ImportQueueJob = new ImportQueueJob();
 				importQueueJob.xmlToParse = xmlToParse;

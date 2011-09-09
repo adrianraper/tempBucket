@@ -1,5 +1,5 @@
 package com.clarityenglish.textLayout.css {
-	import com.clarityenglish.bento.css.properties.TabManager;
+	import com.clarityenglish.textLayout.css.properties.TabManager;
 	import com.newgonzo.web.css.CSSContext;
 	import com.newgonzo.web.css.ICSSFactory;
 	import com.newgonzo.web.css.views.ICSSView;

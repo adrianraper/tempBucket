@@ -1,5 +1,4 @@
 package com.clarityenglish.bento.view.exercise.ui {
-	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.exercise.IExerciseSection;
 	import com.clarityenglish.bento.view.exercise.ui.behaviours.AnswerableBehaviour;
 	import com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour;
@@ -12,13 +11,11 @@ package com.clarityenglish.bento.view.exercise.ui {
 	import flash.events.MouseEvent;
 	
 	import flashx.textLayout.compose.FlowDamageType;
-	import flashx.textLayout.container.ContainerController;
 	import flashx.textLayout.elements.InlineGraphicElementStatus;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
-	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -27,8 +24,6 @@ package com.clarityenglish.bento.view.exercise.ui {
 	import org.flexlayouts.layouts.FlowLayout;
 	
 	import spark.components.Group;
-	import spark.core.SpriteVisualElement;
-	import spark.layouts.HorizontalLayout;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.exercise.events.SectionEvent")]
 	public class SectionRichText extends Group implements IExerciseSection {
@@ -112,14 +107,14 @@ package com.clarityenglish.bento.view.exercise.ui {
 		public function set exercise(value:Exercise):void {
 			if (_exercise !== value) {
 				// Clean up if there was a previous exercise
-				if (_exercise)
-					_exercise.removeEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
+				//if (_exercise)
+				//	_exercise.removeEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
 				
 				_exercise = value;
 				_exerciseChanged = true;
 				
 				// Add an event listener for the styles changed (because a <link> node loaded)
-				_exercise.addEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded)
+				//_exercise.addEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded)
 				
 				// Load any external stylesheets
 				_exercise.loadStyleLinks();

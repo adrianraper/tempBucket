@@ -1,17 +1,11 @@
 package com.clarityenglish.textLayout.conversion {
-	import com.clarityenglish.bento.css.ExerciseCSS;
-	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.css.XHTMLCSS;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.newgonzo.web.css.CSS;
-	import com.newgonzo.web.css.CSSSelector;
-	import com.newgonzo.web.css.views.StyledCSSView;
-	import com.newgonzo.web.css.views.XMLCSSView;
 	
 	import flashx.textLayout.conversion.TextConverter;
-	import flashx.textLayout.elements.TextFlow;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -85,7 +79,7 @@ package com.clarityenglish.textLayout.conversion {
 		 * @return 
 		 */
 		private function parseCss(xhtml:XHTML):CSS {
-			var css:CSS = new ExerciseCSS();
+			var css:CSS = new XHTMLCSS();
 			
 			// Get the stylesheet - this is default.css stylesheet (embedded) plus any stylesheets specified in the exercise
 			var styleStrings:Array = xhtml.styleStrings; // Get the stylesheets in the exercise

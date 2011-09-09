@@ -1,5 +1,4 @@
 package com.clarityenglish.bento.vo.content {
-	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.vo.content.model.Model;
 	
 	import flash.events.Event;
@@ -7,7 +6,6 @@ package com.clarityenglish.bento.vo.content {
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -76,7 +74,7 @@ package com.clarityenglish.bento.vo.content {
 			
 			if (linkNodes.length() == 0) {
 				externalStyleSheetsLoaded = true;
-				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED))
+				//dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED))
 			} else {
 				
 				// Note to self
@@ -108,7 +106,7 @@ package com.clarityenglish.bento.vo.content {
 			externalStyleSheetsLoaded = true;
 			isLoadingStyleLinks = false;
 			
-			dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED));
+			//dispatchEvent(new ExerciseEvent(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED));
 		}
 		
 		protected function onStyleSheetIOError(event:IOErrorEvent):void {
