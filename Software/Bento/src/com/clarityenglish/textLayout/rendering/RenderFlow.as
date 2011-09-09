@@ -17,6 +17,10 @@ package com.clarityenglish.textLayout.rendering {
 	import org.davekeen.util.ClassUtil;
 	
 	import spark.core.SpriteVisualElement;
+	import flash.display.DisplayObject;
+	import mx.core.mx_internal;
+
+	use namespace mx_internal;
 	
 	public class RenderFlow extends SpriteVisualElement {
 		
@@ -33,20 +37,22 @@ package com.clarityenglish.textLayout.rendering {
 		
 		public var inlineGraphicElementPlaceholder:InlineGraphicElement;
 		
-		public function RenderFlow(textFlow:FloatableTextFlow) {
+		public function RenderFlow(textFlow:FloatableTextFlow = null) {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
-			// Don't allow a null textFlow - this means that code in RenderFlow can rely on there being a _textFlow attribute
-			if (!textFlow)
-				log.error("A null TextFlow was passed to the RenderFlow");
-			
-			_textFlow = textFlow;
-			
-			// Add TextFlow listeners and make this DisplayObject the container
-			_textFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete, false, 0, true);
-			_textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange, false, 0, true);
-			_textFlow.flowComposer.addController(new ContainerController(this, width, NaN));
+			this.textFlow = textFlow;
+		}
+		
+		public function set textFlow(value:FloatableTextFlow):void {
+			if (value) {
+				_textFlow = value;
+				
+				// Add TextFlow listeners and make this DisplayObject the container
+				_textFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete, false, 0, true);
+				_textFlow.addEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange, false, 0, true);
+				_textFlow.flowComposer.addController(new ContainerController(this, width, NaN));
+			}
 		}
 		
 		private function onAddedToStage(event:Event):void {
@@ -60,8 +66,10 @@ package com.clarityenglish.textLayout.rendering {
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
 			super.setLayoutBoundsSize(width,height,postLayoutTransform);
 			
-			_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
-			_textFlow.flowComposer.updateAllControllers();
+			if (_textFlow) {
+				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
+				_textFlow.flowComposer.updateAllControllers();
+			}
 		}
 		
 		protected function onInlineGraphicStatusChange(event:StatusChangeEvent):void {
@@ -90,12 +98,22 @@ package com.clarityenglish.textLayout.rendering {
 			
 			containingBlock = null;
 			
-			_textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
-			_textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
+			if (_textFlow) {
+				_textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+				_textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
+				
+				_textFlow.flowComposer.removeAllControllers();
+				_textFlow.formatResolver = null;
+				_textFlow = null;
+			}
+		}
+		
+		private var debugChildren:Array = new Array();
+		
+		mx_internal override function childAdded(child:DisplayObject):void {
+			super.childAdded(child);
 			
-			_textFlow.flowComposer.removeAllControllers();
-			_textFlow.formatResolver = null;
-			_textFlow = null;
+			debugChildren.push(child);
 		}
 		
 	}

@@ -70,7 +70,7 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="13" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="2" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>
@@ -87,6 +87,7 @@
 			<fx:String>DragAndDrop3</fx:String>
 			<fx:String>TargetSpotting1</fx:String>
 			<fx:String>R2I1</fx:String>
+			<fx:String>R2I2</fx:String>
 		</mx:ArrayCollection>
 	</s:DropDownList>
 	

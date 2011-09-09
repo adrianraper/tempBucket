@@ -24,13 +24,6 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		public function add(flowElement:FlowElement, xml:XML):void {
-			if (flowElementToXmlMap[flowElement])
-				throw new Error("There is already a mapping for FlowElement " + flowElement);
-			
-			// Removed this check for performance reasons
-			/*if (xmlToFlowElementMap[xml])
-				throw new Error("There is already a mapping for XML node " + xml.toXMLString());*/
-			
 			flowElementToXmlMap[flowElement] = xml;
 			
 			xmlToFlowElementXmlVector.push(xml);

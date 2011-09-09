@@ -53,9 +53,9 @@ package com.clarityenglish.textLayout.conversion {
 		
 		private var _importQueueJobs:Vector.<ImportQueueJob>;
 		
-		private var _ignoreNodes:Vector.<XML>;
+		private var _currentContainingBlock:RenderFlow;
 		
-		public var formatResolver:IFormatResolver;
+		private var _formatResolver:IFormatResolver;
 		
 		public function XHTMLBlockImporter() {
 			super();
@@ -71,6 +71,10 @@ package com.clarityenglish.textLayout.conversion {
 			this._flowElementXmlBiMap = value;
 		}
 		
+		public function set formatResolver(value:IFormatResolver):void {
+			this._formatResolver = value;
+		}
+		
 		// TODO: TAKEN OUT FOR NOW
 		/*public function set exercise(value:Exercise):void {
 			this._exercise = value;
@@ -78,10 +82,6 @@ package com.clarityenglish.textLayout.conversion {
 		
 		public function set css(value:CSS):void {
 			this._css = value;
-		}
-		
-		public function set ignoreNodes(value:Array):void {
-			this._ignoreNodes = Vector.<XML>(value);
 		}
 		
 		/**
@@ -106,41 +106,65 @@ package com.clarityenglish.textLayout.conversion {
 		
 		public function importToRenderFlow(xmlToParse:XML):RenderFlow {
 			// Import the initial render flow
-			var textFlow:FloatableTextFlow = importToFlow(xmlToParse) as FloatableTextFlow;
-			var renderFlow:RenderFlow = new RenderFlow(textFlow);
+			var initialRenderFlow:RenderFlow = new RenderFlow();
+			
+			var initialImportQueueJob:ImportQueueJob = new ImportQueueJob();
+			initialImportQueueJob.xmlToParse = xmlToParse;
+			_importQueueJobs.push(initialImportQueueJob);
+			
+			var firstPass:Boolean = true;
 			
 			while (_importQueueJobs.length > 0) {
 				var importQueueJob:ImportQueueJob = _importQueueJobs.shift();
-				executeImportQueueJob(importQueueJob);
+				executeImportQueueJob(importQueueJob, (firstPass) ? initialRenderFlow : null);
+				firstPass = false;
 			}
 			
-			return renderFlow;
+			_formatResolver = null;
+			_importQueueJobs = null;
+			_currentContainingBlock = null;
+			
+			return initialRenderFlow;
 		}
 		
-		private function executeImportQueueJob(importQueueJob:ImportQueueJob):void {
-			// Parse the xml
-			var textFlow:FloatableTextFlow = importToFlow(importQueueJob.xmlToParse) as FloatableTextFlow;
+		private function executeImportQueueJob(importQueueJob:ImportQueueJob, renderFlow:RenderFlow = null):void {
+			if (!renderFlow)
+				renderFlow = new RenderFlow();
 			
-			// Wrap it in a RenderFlow
-			var renderFlow:RenderFlow = new RenderFlow(textFlow);
+			_currentContainingBlock = renderFlow;
 			
-			// If there is a containing block then set the IGE placeholder and add as a child
-			if (importQueueJob.containingBlock) {
+			// Parse the xml and put it into the RenderFlow
+			renderFlow.textFlow = importToFlow(importQueueJob.xmlToParse) as FloatableTextFlow;
+			
+			if (errors && errors.length > 0)
+				for each (var error:String in errors)
+					log.error(error);
+			
+			// If there is an IGE placeholder set it on the render flow
+			if (importQueueJob.inlineGraphicElementPlaceholder) {
 				renderFlow.inlineGraphicElementPlaceholder = importQueueJob.inlineGraphicElementPlaceholder;
+			}
+			
+			// If there is a containing block set it on the render flow and add this to the containing block's display list
+			if (importQueueJob.containingBlock) {
 				renderFlow.containingBlock = importQueueJob.containingBlock;
-				
 				renderFlow.containingBlock.addChild(renderFlow);
 			}
 		}
 		
 		tlf_internal override function parseObject(name:String, xmlToParse:XML, parent:FlowGroupElement, exceptionElements:Object = null):void {
 			// Determine if this is a floating RenderFlow
-			if (isSeperateRenderFlow(xmlToParse)) {
+			if (isRenderFlowFloat(xmlToParse)) {
+				// Create an inline graphic element to act as a placeholder for the render flow
+				var inlineGraphicElement:InlineGraphicElement = new InlineGraphicElement();
+				inlineGraphicElement.float = "left";
+				//addChild(parent, inlineGraphicElement);
+				//parent.addChild(inlineGraphicElement);
+				
 				var importQueueJob:ImportQueueJob = new ImportQueueJob();
 				importQueueJob.xmlToParse = xmlToParse;
-				//importQueueJob.inlineGraphicElementPlaceholder;
-				
-				// TODO: Can't quite figure out how to get the render view into the job
+				importQueueJob.containingBlock = _currentContainingBlock;
+				importQueueJob.inlineGraphicElementPlaceholder = inlineGraphicElement;
 				
 				_importQueueJobs.push(importQueueJob);
 			} else {
@@ -294,7 +318,7 @@ package com.clarityenglish.textLayout.conversion {
 			return parseTextFlow(this, textFlowElement);
 		}
 		
-		private function isSeperateRenderFlow(xmlToParse:XML):Boolean {
+		private function isRenderFlowFloat(xmlToParse:XML):Boolean {
 			// Get the CSS style of the node
 			var style:CSSComputedStyle = _css.style(xmlToParse);
 			
@@ -317,7 +341,7 @@ package com.clarityenglish.textLayout.conversion {
 			var element:FloatableTextFlow = super.createTextFlowFromXML(xmlToParse, new FloatableTextFlow(_textFlowConfiguration)) as FloatableTextFlow;
 			
 			// Set the format resolver
-			element.formatResolver = formatResolver;
+			element.formatResolver = _formatResolver;
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
@@ -459,14 +483,6 @@ package com.clarityenglish.textLayout.conversion {
 			addToFlowElementXmlMap(xmlToParse, videoElement);
 			
 			return videoElement;
-		}
-		
-		private function isIgnoreNode(node:XML):Boolean {
-			for each (var ignoreNode:XML in _ignoreNodes)
-			if (ignoreNode === node)
-				return true;
-			
-			return false;
 		}
 		
 		/**
