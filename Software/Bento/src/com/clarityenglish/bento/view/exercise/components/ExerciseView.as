@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view.exercise.components {
 	import com.clarityenglish.bento.view.exercise.events.SectionEvent;
 	import com.clarityenglish.bento.view.exercise.ui.SectionRichText;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	
 	import spark.components.Group;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -24,14 +25,14 @@ package com.clarityenglish.bento.view.exercise.components {
 		[SkinPart(type="spark.components.Group", required="true")]
 		public var headerGroup:Group;
 		
-		[SkinPart(type="com.clarityenglish.bento.view.exercise.ui.ExerciseRichText", required="true")]
-		public var headerRichText:SectionRichText;
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="true")]
+		public var headerRichText:XHTMLRichText;
 		
 		[SkinPart(type="spark.components.Group", required="true")]
 		public var bodyGroup:Group;
 		
-		[SkinPart(type="com.clarityenglish.bento.view.exercise.ui.ExerciseRichText", required="true")]
-		public var bodyRichText:SectionRichText;
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="true")]
+		public var bodyRichText:XHTMLRichText;
 		
 		/**
 		 * These sections are optional and don't have to be in every skin 
@@ -39,8 +40,8 @@ package com.clarityenglish.bento.view.exercise.components {
 		[SkinPart(type="spark.components.Group", required="false")]
 		public var noscrollGroup:Group;
 		
-		[SkinPart(type="com.clarityenglish.bento.view.exercise.ui.SectionRichText", required="false")]
-		public var noscrollRichText:SectionRichText;
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
+		public var noscrollRichText:XHTMLRichText;
 		
 		private var _exercise:Exercise;
 		private var _exerciseChanged:Boolean;
@@ -79,12 +80,12 @@ package com.clarityenglish.bento.view.exercise.components {
 				// Go through the sections supported by this exercise setting the visibility and contents of each section in the skin
 				for each (var sectionName:String in SUPPORTED_SECTIONS) {
 					var group:Group = this[sectionName + "Group"];
-					var exerciseRichText:SectionRichText = this[sectionName + "RichText"];
+					var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
 					
-					if (group && exerciseRichText) {
+					if (group && xhtmlRichText) {
 						group.visible = group.includeInLayout = (sectionName == "header") ? exercise.hasHeader() : exercise.hasSection(sectionName);
-						exerciseRichText.section = sectionName;
-						exerciseRichText.exercise = exercise;
+						xhtmlRichText.xhtml = exercise;
+						xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
 					}
 				}
 				

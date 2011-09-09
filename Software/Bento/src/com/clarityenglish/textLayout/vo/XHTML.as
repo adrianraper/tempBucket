@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.vo {
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.newgonzo.web.css.CSS;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -20,9 +21,7 @@ package com.clarityenglish.textLayout.vo {
 		
 		public static const XML_CHANGE_EVENT:String = "xmlChange";
 		
-		private var _xml:XML;
-		
-		/*private var _model:Model;*/
+		protected var _xml:XML;
 		
 		private var isLoadingStyleLinks:Boolean
 		private var externalStyleSheetsLoaded:Boolean;
@@ -35,32 +34,9 @@ package com.clarityenglish.textLayout.vo {
 		public function set xml(value:XML):void {
 			if (_xml !== value) {
 				_xml = value;
-				
-				/*var modelNodes:XMLList = _xml.head.script.(hasOwnProperty("@id") && @id == "model" && hasOwnProperty("@type") && @type == "application/xml");
-				if (modelNodes.length() > 0)
-					_model = new Model(this, modelNodes[0]);*/
-				
 				dispatchEvent(new Event(XML_CHANGE_EVENT));
 			}
 		}
-		
-		/**
-		 * Determine if the model exists in this exercise
-		 * 
-		 * @return 
-		 */
-		/*[Bindable(event="xmlChange")]
-		public function hasModel():Boolean {
-		return _model !== null;
-		}*/
-		
-		/**
-		 * Return the model
-		 */
-		/*[Bindable(event="xmlChange")]
-		public function get model():Model {
-		return _model;
-		}*/
 		
 		[Bindable(event="xmlChange")]
 		public function get xml():XML {
@@ -177,27 +153,6 @@ package com.clarityenglish.textLayout.vo {
 		}
 		
 		/**
-		 * Determine if the given section exists in this exercise
-		 * 
-		 * @param section
-		 * @return 
-		 */
-		/*[Bindable(event="xmlChange")]
-		public function hasSection(section:String):Boolean {
-			return _xml.body.section.(@id == section).length() > 0;
-		}*/
-		
-		/**
-		 * Return the section
-		 * 
-		 * @return 
-		 */
-		/*[Bindable(event="xmlChange")]
-		public function getSection(sectionId:String):XML {
-			return (hasSection(sectionId)) ? _xml.body.section.(@id == sectionId)[0] : null;
-		}*/
-		
-		/**
 		 * Return the node (in the body) with the given id.  If more than one node exists with the same id the first one is returned.
 		 * 
 		 * @return 
@@ -206,6 +161,21 @@ package com.clarityenglish.textLayout.vo {
 		public function getElementById(id:String):XML {
 			var nodes:XMLList = _xml.body..*.(hasOwnProperty("@id") && @id == id);
 			return (nodes.length() > 0) ? nodes[0] : null;
+		}
+		
+		[Bindable(event="xmlChange")]
+		public function select(expression:String):Array {
+			var cssSelector:CSS = new CSS(expression + " {}");
+			return cssSelector.select(_xml);
+		}
+		
+		[Bindable(event="xmlChange")]
+		public function selectOne(expression:String):XML {
+			var results:Array =  select(expression);
+			if (results.length > 1)
+				log.error("selectOne(" + expression + ") returned more than 1 result.  Returning the first result");
+			
+			return (results.length == 0) ? null : results[0];
 		}
 		
 	}

@@ -94,7 +94,8 @@ package com.clarityenglish.textLayout.components {
 				
 				// Import the new renderflow
 				var importer:XHTMLImporter = new XHTMLImporter();
-				renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.getElementById("body"));
+				//renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.getElementById(_nodeId));
+				renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.selectOne(_nodeId));
 				
 				renderFlow.percentWidth = 100;
 				
@@ -106,10 +107,16 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function measure():void {
 			super.measure();
+			
+			if (renderFlow) {
+				measuredHeight = renderFlow.height;
+			}
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			invalidateSize();
 		}
 		
 	}

@@ -72,10 +72,15 @@ package com.clarityenglish.textLayout.rendering {
 		}
 		
 		private function onAddedToStage(event:Event):void {
+			if (!_textFlow) {
+				log.error("No TextFlow in RenderFlow onAddedToStage");
+				return;
+			}
+			
 			// Set the width based on the TextFlow properties
 			if (_textFlow.width) {
 				if (_textFlow.isPercentWidth()) {
-					throw new Error("Percent width not supported yet");
+					log.error("Percent widths not yet supported");
 				} else {
 					_textFlow.flowComposer.getControllerAt(0).setCompositionSize(_textFlow.width, NaN);
 				}
@@ -121,8 +126,12 @@ package com.clarityenglish.textLayout.rendering {
 		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				if (childRenderFlow.inlineGraphicElementPlaceholder) {
-					childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
-					childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
+					if (childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent) {
+						childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
+						childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
+					} else {
+						log.info("No parent on the placeholder graphic.  Weird???");
+					}
 				}
 			}
 		}

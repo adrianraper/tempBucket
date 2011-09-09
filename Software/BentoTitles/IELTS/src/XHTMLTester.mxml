@@ -6,6 +6,7 @@
 			   xmlns:ui="com.clarityenglish.bento.view.exercise.ui.*"
 			   xmlns:util="com.clarityenglish.textLayout.util.*"
 			   xmlns:components="com.clarityenglish.textLayout.components.*"
+			   xmlns:exercise="com.clarityenglish.bento.view.exercise.components.*"
 			   creationComplete="creationComplete()">
 	<fx:Metadata>
 		[SWF(width=800, height=400)]
@@ -18,7 +19,6 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.vo.content.Exercise;
-			import com.clarityenglish.textLayout.vo.XHTML;
 			
 			import mx.logging.Log;
 			import mx.logging.LogEventLevel;
@@ -52,15 +52,15 @@
 			}
 			
 			protected function onExerciseLoadComplete(event:Event):void {
-				/*var exercise:Exercise = new Exercise();
+				var exercise:Exercise = new Exercise();
 				exercise.xml = new XML(urlLoader.data);
 				
-				exerciseView.exercise = exercise;*/
+				exerciseView.exercise = exercise;
 				
-				var xhtml:XHTML = new XHTML(new XML(urlLoader.data));
+				/*var xhtml:XHTML = new XHTML(new XML(urlLoader.data));
 				
 				xhtmlRichText.xhtml = xhtml;
-				xhtmlRichText.nodeId = "body";
+				xhtmlRichText.nodeId = "header";*/
 			}
 			
 		]]>
@@ -70,7 +70,7 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="2" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="4" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>
@@ -91,10 +91,10 @@
 		</mx:ArrayCollection>
 	</s:DropDownList>
 	
-	<!--<exercise:ExerciseView id="exerciseView" width="100%" height="100%" />-->
+	<exercise:ExerciseView id="exerciseView" width="100%" height="100%" />
 	
-	<s:Scroller width="100%" height="100%">
-		<components:XHTMLRichText id="xhtmlRichText" width="100%" height="100%" />
-	</s:Scroller>
+	<!--<s:Scroller width="100%" height="100%">
+		<components:XHTMLRichText id="xhtmlRichText" nodeId="body" width="100%" height="100%" />
+	</s:Scroller>-->
 	
 </util:TLF2Application>
