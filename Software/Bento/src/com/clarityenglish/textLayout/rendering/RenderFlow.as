@@ -1,6 +1,8 @@
 package com.clarityenglish.textLayout.rendering {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.util.TLFUtil;
 	
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
 	import flashx.textLayout.compose.FlowDamageType;
@@ -11,14 +13,13 @@ package com.clarityenglish.textLayout.rendering {
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
+	import mx.core.mx_internal;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
 	
 	import spark.core.SpriteVisualElement;
-	import flash.display.DisplayObject;
-	import mx.core.mx_internal;
 
 	use namespace mx_internal;
 	
@@ -114,6 +115,10 @@ package com.clarityenglish.textLayout.rendering {
 			super.childAdded(child);
 			
 			debugChildren.push(child);
+		}
+		
+		public override function toString():String {
+			return (TLFUtil.dumpTextFlow(_textFlow));
 		}
 		
 	}

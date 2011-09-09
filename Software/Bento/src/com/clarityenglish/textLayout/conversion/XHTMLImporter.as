@@ -66,8 +66,6 @@ package com.clarityenglish.textLayout.conversion {
 			flowElementXmlBiMap = new FlowElementXmlBiMap();
 			css = parseCss(xhtml);
 			
-			// I need to work out what not to parse, which is fine (search for floating divs), but I have absolutely no idea
-			// how to build up my render tree.  Maybe this needs to be in the importer??  Surely not...
 			var blockImporter:XHTMLBlockImporter = TextConverter.getImporter(XHTML_BLOCK_FORMAT) as XHTMLBlockImporter;
 			var formatResolver:CssLibFormatResolver = new CssLibFormatResolver(css, flowElementXmlBiMap);
 			

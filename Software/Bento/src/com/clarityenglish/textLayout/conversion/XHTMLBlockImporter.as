@@ -4,6 +4,7 @@ package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
+	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
@@ -105,21 +106,23 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		public function importToRenderFlow(xmlToParse:XML):RenderFlow {
-			// Import the initial render flow
+			// Create the main RenderFlow, and create the main import job and add it to the queue
 			var initialRenderFlow:RenderFlow = new RenderFlow();
-			
 			var initialImportQueueJob:ImportQueueJob = new ImportQueueJob();
 			initialImportQueueJob.xmlToParse = xmlToParse;
 			_importQueueJobs.push(initialImportQueueJob);
 			
+			// Use a flag so we can actually return the first RenderView (i.e. the main one)
 			var firstPass:Boolean = true;
 			
+			// Execute the import queue until there is nothing left
 			while (_importQueueJobs.length > 0) {
 				var importQueueJob:ImportQueueJob = _importQueueJobs.shift();
 				executeImportQueueJob(importQueueJob, (firstPass) ? initialRenderFlow : null);
 				firstPass = false;
 			}
 			
+			// Nullify to allow garbage collection
 			_formatResolver = null;
 			_importQueueJobs = null;
 			_currentContainingBlock = null;
@@ -131,11 +134,13 @@ package com.clarityenglish.textLayout.conversion {
 			if (!renderFlow)
 				renderFlow = new RenderFlow();
 			
+			// In order to fake recursion (which the design of the importer doesn't support) maintain the current render flow during import
 			_currentContainingBlock = renderFlow;
 			
 			// Parse the xml and put it into the RenderFlow
 			renderFlow.textFlow = importToFlow(importQueueJob.xmlToParse) as FloatableTextFlow;
 			
+			// Send any import errors to the log
 			if (errors && errors.length > 0)
 				for each (var error:String in errors)
 					log.error(error);
@@ -153,12 +158,20 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		tlf_internal override function parseObject(name:String, xmlToParse:XML, parent:FlowGroupElement, exceptionElements:Object = null):void {
-			// Determine if this is a floating RenderFlow
-			if (isRenderFlowFloat(xmlToParse)) {
+			// Get the CSS style of the node
+			var style:CSSComputedStyle = _css.style(xmlToParse);
+				
+			// For now seperate flows are left or right floated elements (apart from images)
+			if (xmlToParse.name() != "img" && (style.float == "left" || style.float == "right")) {
+				if (!style.width)
+					log.error("Non image floats should have a fixed width otherwise unpredicable behaviour can occur.");
+				
 				// Create an inline graphic element to act as a placeholder for the render flow
 				var inlineGraphicElement:InlineGraphicElement = new InlineGraphicElement();
-				inlineGraphicElement.float = "left";
-				//addChild(parent, inlineGraphicElement);
+				inlineGraphicElement.float = style.float;
+				if (style.width) inlineGraphicElement.width = style.width;
+				if (style.height) inlineGraphicElement.height = style.height;
+				addChild(parent, inlineGraphicElement);
 				//parent.addChild(inlineGraphicElement);
 				
 				var importQueueJob:ImportQueueJob = new ImportQueueJob();
@@ -316,14 +329,6 @@ package com.clarityenglish.textLayout.conversion {
 				return null;
 			
 			return parseTextFlow(this, textFlowElement);
-		}
-		
-		private function isRenderFlowFloat(xmlToParse:XML):Boolean {
-			// Get the CSS style of the node
-			var style:CSSComputedStyle = _css.style(xmlToParse);
-			
-			// For now seperate flows are left or right floated elements (apart from images)
-			return (xmlToParse.name() != "img" && (style.float == "left" || style.float == "right")); 
 		}
 		
 		/**
