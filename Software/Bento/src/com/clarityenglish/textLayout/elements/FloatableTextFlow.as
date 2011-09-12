@@ -15,6 +15,10 @@ package com.clarityenglish.textLayout.elements {
 		public static const FLOAT_LEFT:String = "float_left";
 		public static const FLOAT_RIGHT:String = "float_right";
 		
+		public static const SIZE_DYNAMIC:String = "size_dynamic";
+		public static const SIZE_FIXED:String = "size_fixed";
+		public static const SIZE_PERCENTAGE:String = "size_percentage";
+		
 		public var float:String = FLOAT_NONE;
 		
 		public var width:*;
