@@ -12,7 +12,7 @@ package com.clarityenglish.textLayout.conversion {
 	
 	import org.davekeen.util.ClassUtil;
 	import org.w3c.css.sac.CSSParseError;
-	
+
 	public class XHTMLImporter {
 		
 		/**

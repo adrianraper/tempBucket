@@ -51,7 +51,7 @@
 				// Load the configuration file
 				urlLoader = new URLLoader();
 				urlLoader.addEventListener(Event.COMPLETE, onExerciseLoadComplete);
-				urlLoader.load(new URLRequest("exercises/" + selectedExercise + ".html"));
+				urlLoader.load(new URLRequest("exercises/" + selectedExercise + ".xhtml"));
 			}
 			
 			protected function onExerciseLoadComplete(event:Event):void {
@@ -74,7 +74,7 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="17" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="18" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>
@@ -94,6 +94,7 @@
 			<fx:String>R2I2</fx:String>
 			<fx:String>TestTrueFalse3</fx:String>
 			<fx:String>PercentWidth</fx:String>
+			<fx:String>xhtmlfail</fx:String>
 		</mx:ArrayCollection>
 	</s:DropDownList>
 	

@@ -41,7 +41,11 @@ package com.clarityenglish.textLayout.vo {
 		
 		public function set xml(value:XML):void {
 			if (_xml !== value) {
-				_xml = value;
+				// This is a little bit of a hack, but use string functions to remove the namespace.
+				var xmlString:String = value.toXMLString();
+				xmlString = xmlString.replace(" xmlns=\"http://www.w3.org/1999/xhtml\"", "");
+				_xml = new XML(xmlString);
+				
 				dispatchEvent(new Event(XML_CHANGE_EVENT));
 			}
 		}
