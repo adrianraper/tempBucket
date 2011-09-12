@@ -19,6 +19,7 @@ package com.clarityenglish.textLayout.rendering {
 	
 	import org.davekeen.util.ClassUtil;
 	
+	import spark.components.ResizeMode;
 	import spark.core.SpriteVisualElement;
 	
 	use namespace mx_internal;
@@ -41,6 +42,8 @@ package com.clarityenglish.textLayout.rendering {
 		public var inlineGraphicElementPlaceholder:InlineGraphicElement;
 		
 		public function RenderFlow(textFlow:FloatableTextFlow = null) {
+			resizeMode = ResizeMode.NO_SCALE;
+			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
@@ -92,6 +95,8 @@ package com.clarityenglish.textLayout.rendering {
 		}
 		
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
+			// TODO: Having this in causes strange visual artifacts when resizing; however, not having it in will probably cause layout issues.
+			// Leave it commented for now, but it will probably have to go back in.
 			super.setLayoutBoundsSize(width, height, postLayoutTransform);
 			
 			if (_textFlow) {
@@ -143,6 +148,9 @@ package com.clarityenglish.textLayout.rendering {
 					}
 				}
 			}
+			
+			// Invalidate the size of the component in case it has changed
+			invalidateSize();
 			
 			// If this is the top-level RenderFlow (this will be the only one with no containingBlock) then tell the parent that it may
 			// need to lay this out.  Specifically this will make scrollbars work properly.
