@@ -26,6 +26,26 @@ package com.clarityenglish.textLayout.elements {
 		// TODO: Not yet implemented
 		public var height:*;
 		
+		public function get widthType():String {
+			if (isFixedWidth()) {
+				return SIZE_FIXED;
+			} else if (isPercentWidth()) {
+				return SIZE_PERCENTAGE;
+			} else {
+				return SIZE_DYNAMIC;
+			}
+		}
+		
+		public function get heightType():String {
+			if (isFixedHeight()) {
+				return SIZE_FIXED;
+			} else if (isPercentHeight()) {
+				return SIZE_PERCENTAGE;
+			} else {
+				return SIZE_DYNAMIC;
+			}
+		}
+		
 		/**
 		 * Parse the percentage width into an integer
 		 * 

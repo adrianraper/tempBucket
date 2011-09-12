@@ -21,10 +21,18 @@ package com.clarityenglish.textLayout.vo {
 		
 		public static const XML_CHANGE_EVENT:String = "xmlChange";
 		
+		/**
+		 * The XML document 
+		 */
 		protected var _xml:XML;
 		
 		private var isLoadingStyleLinks:Boolean
 		private var externalStyleSheetsLoaded:Boolean;
+		
+		/**
+		 * This is appended to any filenames so that paths can be relative to the xhtml document 
+		 */
+		public var rootPath:String;
 		
 		public function XHTML(value:XML = null) {
 			if (value)
@@ -74,7 +82,7 @@ package com.clarityenglish.textLayout.vo {
 					var linkLoader:LinkLoader = new LinkLoader(linkNode);
 					linkLoader.addEventListener(Event.COMPLETE, onStyleSheetLoaded);
 					linkLoader.addEventListener(IOErrorEvent.IO_ERROR, onStyleSheetIOError);
-					linkLoader.load(new URLRequest(linkNode.@href));
+					linkLoader.load(new URLRequest((rootPath ? rootPath + "/" : "") + linkNode.@href));
 				}
 			}
 		}
@@ -105,7 +113,7 @@ package com.clarityenglish.textLayout.vo {
 			
 			isLoadingStyleLinks = false;
 			
-			log.error("Error loading external stylesheet " + event.target.linkNode.@href);
+			log.error("Error loading external stylesheet " + ((rootPath ? rootPath + "/" : "")) + event.target.linkNode.@href);
 		}
 		
 		/**
@@ -117,7 +125,7 @@ package com.clarityenglish.textLayout.vo {
 		public function get styleStrings():Array {
 			var styleStrings:Array = [ ];
 			for each (var styleNode:XML in _xml.head.style)
-			styleStrings.push(styleNode.text().toString());
+				styleStrings.push(styleNode.text().toString());
 			
 			return styleStrings;
 		}

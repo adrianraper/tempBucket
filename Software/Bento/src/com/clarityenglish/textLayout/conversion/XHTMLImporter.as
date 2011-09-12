@@ -66,6 +66,7 @@ package com.clarityenglish.textLayout.conversion {
 			blockImporter.formatResolver = formatResolver;
 			blockImporter.flowElementXmlBiMap = flowElementXmlBiMap;
 			blockImporter.css = css;
+			blockImporter.rootPath = xhtml.rootPath;
 			
 			//blockImporter.exercise = exercise;
 			

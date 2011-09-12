@@ -86,59 +86,70 @@ package com.clarityenglish.textLayout.rendering {
 				log.error("No TextFlow in RenderFlow onAddedToStage");
 				return;
 			}
-			
-			if (_textFlow.isFixedWidth())
-				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(_textFlow.width, NaN);
 		}
-		
-		/*public override function set width(value:Number):void {
-			super.width = value;
-			
-			if (_textFlow)
-				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
-			}
-		}*/
 		
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
 			super.setLayoutBoundsSize(width, height, postLayoutTransform);
 			
+			// Go down the RenderFlow tree sizing the children where possible (i.e. when not dynamic)
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				var calculatedWidth:Number;
-				if (childRenderFlow._textFlow.isPercentWidth()) {
-					calculatedWidth = width * childRenderFlow._textFlow.percentWidth / 100;
-				} else if (childRenderFlow._textFlow.isFixedWidth()) {
-					calculatedWidth = childRenderFlow._textFlow.width;
+				switch (childRenderFlow._textFlow.widthType) {
+					case FloatableTextFlow.SIZE_FIXED:
+						calculatedWidth = childRenderFlow._textFlow.width;
+						break;
+					case FloatableTextFlow.SIZE_PERCENTAGE:
+						calculatedWidth = width * childRenderFlow._textFlow.percentWidth / 100;
+						break;
 				}
 				
+				// This recurses down the tree
 				childRenderFlow.setLayoutBoundsSize(calculatedWidth, height);
 			}
 			
 			if (_textFlow) {
+				// Set the size of the text flow container
 				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
 				
 				// Compose and render the text flow
 				_textFlow.flowComposer.updateAllControllers();
 				
 				// At this point the dimensions of the rendered flow are known, so if there is an IGE placeholder on the containing block set any dynamic dimensions
-				if (containingBlock && inlineGraphicElementPlaceholder) {
-					// If the width is fixed do nothing, if the width is a percentage set it to the width of the render flow (which will have been set to the correct
-					// proportion in setLayoutBoundsSize) and if the width is neither fixed nor a percentage then get it from the width of the TextFlow.
-					if (_textFlow.isFixedWidth()) {
+				matchPlaceholderToSize();
+			}
+		}
+		
+		/**
+		 * The sets the size of the placeholder for this component based on the sizing type and the dimensions, which allows the parent TextFlow to layout
+		 * the floats correctly.
+		 * 
+		 * @param width
+		 * @param height
+		 */
+		private function matchPlaceholderToSize():void {
+			if (containingBlock && inlineGraphicElementPlaceholder) {
+				switch (_textFlow.widthType) {
+					case FloatableTextFlow.SIZE_FIXED:
 						inlineGraphicElementPlaceholder.width = _textFlow.width;
-					} else if (_textFlow.isPercentWidth()) {
+						break;
+					case FloatableTextFlow.SIZE_PERCENTAGE:
 						inlineGraphicElementPlaceholder.width = width;
-					} else {
+						break;
+					case FloatableTextFlow.SIZE_DYNAMIC:
 						inlineGraphicElementPlaceholder.width = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
-					}
-					
-					// Similarly for the height (TODO: although only dynamic height is currently implemented)
-					if (_textFlow.isFixedHeight()) {
+						break;
+				}
+				
+				switch (_textFlow.heightType) {
+					case FloatableTextFlow.SIZE_FIXED:
 						inlineGraphicElementPlaceholder.height = _textFlow.height;
-					} else if (_textFlow.isPercentHeight()) {
+						break;
+					case FloatableTextFlow.SIZE_PERCENTAGE:
 						inlineGraphicElementPlaceholder.height = height;
-					} else {
+						break;
+					case FloatableTextFlow.SIZE_DYNAMIC:
 						inlineGraphicElementPlaceholder.height = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
-					}
+						break;
 				}
 			}
 		}

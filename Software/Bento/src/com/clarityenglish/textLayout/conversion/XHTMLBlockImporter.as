@@ -58,6 +58,8 @@ package com.clarityenglish.textLayout.conversion {
 		
 		private var _formatResolver:IFormatResolver;
 		
+		private var _rootPath:String;
+		
 		public function XHTMLBlockImporter() {
 			super();
 			
@@ -74,6 +76,10 @@ package com.clarityenglish.textLayout.conversion {
 		
 		public function set formatResolver(value:IFormatResolver):void {
 			this._formatResolver = value;
+		}
+		
+		public function set rootPath(value:String):void {
+			this._rootPath = value;
 		}
 		
 		// TODO: TAKEN OUT FOR NOW
@@ -415,6 +421,9 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// TLF uses 'source' for the attribute, but allow 'src' too to match HTML better
 			if (xmlToParse.hasOwnProperty("@src")) inlineGraphicElement.source = xmlToParse.@src.toString();
+			
+			// If rootPath is defined then prepend that to the image url
+			if (_rootPath) inlineGraphicElement.source = ((_rootPath) ? _rootPath + "/" : "") + inlineGraphicElement.source;
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
