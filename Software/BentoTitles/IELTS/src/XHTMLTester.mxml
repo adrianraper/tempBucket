@@ -7,12 +7,15 @@
 			   xmlns:util="com.clarityenglish.textLayout.util.*"
 			   xmlns:components="com.clarityenglish.textLayout.components.*"
 			   xmlns:exercise="com.clarityenglish.bento.view.exercise.components.*"
+			   xmlns:debugger="com.demonsters.debugger.*"
 			   creationComplete="creationComplete()">
 	<fx:Metadata>
 		[SWF(width=800, height=400)]
 	</fx:Metadata>
 	
-	<fx:Declarations />
+	<fx:Declarations>
+		
+	</fx:Declarations>
 	
 	<fx:Style source="bento.css" />
 	
@@ -70,7 +73,7 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="0" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="17" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>
@@ -89,13 +92,12 @@
 			<fx:String>R2I1</fx:String>
 			<fx:String>R2I2</fx:String>
 			<fx:String>TestTrueFalse3</fx:String>
+			<fx:String>PercentWidth</fx:String>
 		</mx:ArrayCollection>
 	</s:DropDownList>
 	
 	<exercise:ExerciseView id="exerciseView" width="100%" height="100%" />
 	
-	<!--<s:Scroller width="100%" height="100%">
-		<components:XHTMLRichText id="xhtmlRichText" nodeId="body" width="100%" height="100%" />
-	</s:Scroller>-->
+	<debugger:MonsterDebuggerFlex id="monsterDebugger"/>
 	
 </util:TLF2Application>

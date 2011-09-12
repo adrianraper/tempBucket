@@ -19,6 +19,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		public var width:*;
 		
+		// TODO: Not yet implemented
+		public var height:*;
+		
 		/**
 		 * Parse the percentage width into an integer
 		 * 
@@ -35,6 +38,35 @@ package com.clarityenglish.textLayout.elements {
 		 */
 		public function isPercentWidth():Boolean {
 			return (width is String) && width.charAt(width.length - 1) == "%";
+		}
+		
+		/**
+		 * Determine whether the width is fixed or dynamic
+		 * 
+		 * @return 
+		 */
+		public function isFixedWidth():Boolean {
+			return width != null && !isPercentWidth();
+		}
+		
+		/**
+		 * Determine whether height is a pixel amount (e.g. 50) or a percentage (e.g. 50%).  At present fixed heights are not implemented and this will
+		 * always return false.
+		 *  
+		 * @return 
+		 */
+		public function isPercentHeight():Boolean {
+			return false;
+		}
+		
+		/**
+		 * Determine whether the height is fixed or dynamic.  At present fixed heights are not implemented and this will
+		 * always return false.
+		 *  
+		 * @return 
+		 */
+		public function isFixedHeight():Boolean {
+			return false;
 		}
 		
 		public function FloatableTextFlow(config:IConfiguration = null) {

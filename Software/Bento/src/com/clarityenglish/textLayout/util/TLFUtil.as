@@ -6,6 +6,7 @@ package com.clarityenglish.textLayout.util {
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowGroupElement;
 	import flashx.textLayout.elements.FlowLeafElement;
+	import flashx.textLayout.elements.InlineGraphicElement;
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
 	
@@ -63,6 +64,12 @@ package com.clarityenglish.textLayout.util {
 			
 			if (flowElement is SpanElement) {
 				node.appendChild((flowElement as SpanElement).text);
+			}
+			
+			if (flowElement is InlineGraphicElement) {
+				if ((flowElement as InlineGraphicElement).width) node.@width = (flowElement as InlineGraphicElement).width;
+				if ((flowElement as InlineGraphicElement).height) node.@height = (flowElement as InlineGraphicElement).height;
+				if ((flowElement as InlineGraphicElement).float) node.@float = (flowElement as InlineGraphicElement).float;
 			}
 			
 			if (flowElement is FlowGroupElement) {

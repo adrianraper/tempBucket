@@ -2,7 +2,9 @@ package com.clarityenglish.textLayout.rendering {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
+	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.container.ContainerController;
@@ -12,6 +14,7 @@ package com.clarityenglish.textLayout.rendering {
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
+	import mx.core.UIComponent;
 	import mx.core.mx_internal;
 	import mx.events.ResizeEvent;
 	import mx.logging.ILogger;
@@ -19,6 +22,7 @@ package com.clarityenglish.textLayout.rendering {
 	
 	import org.davekeen.util.ClassUtil;
 	
+	import spark.components.Group;
 	import spark.components.ResizeMode;
 	import spark.core.SpriteVisualElement;
 	
@@ -54,6 +58,9 @@ package com.clarityenglish.textLayout.rendering {
 		
 		public function set textFlow(value:FloatableTextFlow):void {
 			if (value) {
+				if (_textFlow)
+					throw new Error("Changing the TextFlow of an existing RenderFlow is not permitted");
+				
 				_textFlow = value;
 				
 				// Add TextFlow listeners and make this DisplayObject the container
@@ -80,24 +87,28 @@ package com.clarityenglish.textLayout.rendering {
 				return;
 			}
 			
-			// Set the width based on the TextFlow properties
-			if (_textFlow.width) {
-				if (_textFlow.isPercentWidth()) {
-					log.error("Percent widths not yet supported");
-				} else {
-					_textFlow.flowComposer.getControllerAt(0).setCompositionSize(_textFlow.width, NaN);
-				}
-			}
+			if (_textFlow.isFixedWidth())
+				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(_textFlow.width, NaN);
 		}
 		
-		public override function get height():Number {
-			return (_textFlow) ? _textFlow.flowComposer.getControllerAt(0).getContentBounds().height : 0;
+		public override function set width(value:Number):void {
+			super.width = value;
+			
+			/*if (_textFlow) {
+				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
+				//_textFlow.flowComposer.updateAllControllers();
+			}*/
 		}
 		
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
-			// TODO: Having this in causes strange visual artifacts when resizing; however, not having it in will probably cause layout issues.
-			// Leave it commented for now, but it will probably have to go back in.
 			super.setLayoutBoundsSize(width, height, postLayoutTransform);
+			
+			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
+				if (childRenderFlow._textFlow.isPercentWidth()) {
+					var calculatedWidth:Number = width * childRenderFlow._textFlow.percentWidth / 100;
+					childRenderFlow.setLayoutBoundsSize(calculatedWidth, height);
+				}
+			}
 			
 			if (_textFlow) {
 				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
@@ -116,18 +127,26 @@ package com.clarityenglish.textLayout.rendering {
 			// Compose and render the text flow
 			_textFlow.flowComposer.updateAllControllers();
 			
-			// At this point the width and height of the rendered flow is known, so if there is an IGE placeholder on the containing block set its size
+			// At this point the dimensions of the rendered flow are known, so if there is an IGE placeholder on the containing block set any dynamic dimensions
 			if (containingBlock && inlineGraphicElementPlaceholder) {
-				// If the width is set in the TextFlow then this is fixed width otherwise calculate it dynamically from the content width.
-				// TODO: percentage widths
-				if (_textFlow.width) {
+				// If the width is fixed do nothing, if the width is a percentage set it to the width of the render flow (which will have been set to the correct
+				// proportion in setLayoutBoundsSize) and if the width is neither fixed nor a percentage then get it from the width of the TextFlow.
+				if (_textFlow.isFixedWidth()) {
 					inlineGraphicElementPlaceholder.width = _textFlow.width;
+				} else if (_textFlow.isPercentWidth()) {
+					inlineGraphicElementPlaceholder.width = width;
 				} else {
 					inlineGraphicElementPlaceholder.width = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
 				}
 				
-				// TODO: css defined heights
-				inlineGraphicElementPlaceholder.height = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
+				// Similarly for the height (TODO: although only dynamic height is currently implemented)
+				if (_textFlow.isFixedHeight()) {
+					inlineGraphicElementPlaceholder.height = _textFlow.height;
+				} else if (_textFlow.isPercentHeight()) {
+					inlineGraphicElementPlaceholder.height = height;
+				} else {
+					inlineGraphicElementPlaceholder.height = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
+				}
 			}
 		}
 		
@@ -142,9 +161,6 @@ package com.clarityenglish.textLayout.rendering {
 					if (childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent) {
 						childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
 						childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
-					} else {
-						// I'm not sure why the graphic sometimes has no parent; it seems to work anyway
-						//log.info("Unable to place render flow as the graphic has no parent");
 					}
 				}
 			}
@@ -196,6 +212,11 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
+		/**
+		 * Format the contents of the RenderFlow in a human-readable string for debugging
+		 * 
+		 * @return 
+		 */
 		public override function toString():String {
 			return (TLFUtil.dumpTextFlow(_textFlow));
 		}

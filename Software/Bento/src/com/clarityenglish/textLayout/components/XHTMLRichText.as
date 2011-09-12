@@ -118,6 +118,10 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			/*if (renderFlow) {
+				renderFlow.width = unscaledWidth;
+			}*/
 		}
 		
 	}
