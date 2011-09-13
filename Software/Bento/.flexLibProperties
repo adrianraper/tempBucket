@@ -76,6 +76,8 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Group"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.OrderedListElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.UnorderedListElement"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

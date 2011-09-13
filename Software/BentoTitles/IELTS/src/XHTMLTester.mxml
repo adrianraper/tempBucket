@@ -74,7 +74,7 @@
 		<s:VerticalLayout />
 	</util:layout>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="18" change="onButtonBarChange(event)">
+	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="16" change="onButtonBarChange(event)">
 		<mx:ArrayCollection>
 			<fx:String>Grid1</fx:String>
 			<fx:String>Grid2</fx:String>

@@ -1,13 +1,16 @@
 package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.elements.InputElement;
+	import com.clarityenglish.textLayout.elements.OrderedListElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
+	import com.clarityenglish.textLayout.elements.UnorderedListElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
+	import flashx.textLayout.conversion.BaseTextLayoutImporter;
 	import flashx.textLayout.conversion.TextLayoutImporter;
 	import flashx.textLayout.elements.ContainerFormattedElement;
 	import flashx.textLayout.elements.DivElement;
@@ -68,6 +71,9 @@ package com.clarityenglish.textLayout.conversion {
 			addIEInfo("input", InputElement, parseInput, null);
 			addIEInfo("select", SelectElement, parseSelect, null);
 			addIEInfo("video", VideoElement, parseVideo, null);
+			
+			addIEInfo("ul", UnorderedListElement, parseUnorderedList, null);
+			addIEInfo("ol", OrderedListElement, parseOrderedList, null);
 		}
 		
 		public function set flowElementXmlBiMap(value:FlowElementXmlBiMap):void {
@@ -232,6 +238,18 @@ package com.clarityenglish.textLayout.conversion {
 		public static function parseVideo(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var videoElement:VideoElement = importFilter.createVideoFromXml(xmlToParse);
 			importFilter.addChild(parent, videoElement);
+		}
+		
+		private static function parseUnorderedList(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
+			var listElem:ListElement = importFilter.createListFromXML(xmlToParse);
+			if (importFilter.addChild(parent, listElem))
+				importFilter.parseFlowGroupElementChildren(xmlToParse, listElem);
+		}
+		
+		private static function parseOrderedList(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
+			var listElem:ListElement = importFilter.createListFromXML(xmlToParse);
+			if (importFilter.addChild(parent, listElem))
+				importFilter.parseFlowGroupElementChildren(xmlToParse, listElem);
 		}
 		
 		/** @private */
