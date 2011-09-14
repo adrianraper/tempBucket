@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml"
+				xmlns:controls = "org.davekeen.controls.*"
+				xmlns:fxc="com.fxcomps.vacombobox.*"
+				creationComplete="creationComplete()"
+				width="760"
+				height="600"
+				borderAlpha="0.9" borderColor="{Constants.popupBackgroundColour}"
+				implements="com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider, com.clarityenglish.common.view.interfaces.CopyReceiver">
+	<mx:Script>
+		<![CDATA[
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
+		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
+		import com.clarityenglish.common.vo.content.Content;
+		import com.clarityenglish.common.vo.content.Course;
+		import com.clarityenglish.common.vo.content.Exercise;
+		import com.clarityenglish.common.vo.content.Title;
+		import com.clarityenglish.common.vo.content.Unit;
+		import com.clarityenglish.common.vo.manageable.Group;
+		import com.clarityenglish.common.vo.manageable.Manageable;
+		import com.clarityenglish.common.vo.manageable.User;
+		import com.clarityenglish.common.vo.Reportable;
+		import flash.events.Event;
+		import mx.collections.ArrayCollection;
+		import mx.core.ClassFactory;
+		import mx.core.IFlexDisplayObject;
+		import mx.managers.PopUpManager;
+		import org.davekeen.utils.ClassUtils;
+		import com.clarityenglish.utils.TraceUtils;
+		
+		public var parentView:IFlexDisplayObject;
+		
+		[Bindable]
+		private var forReportables:ArrayCollection = new ArrayCollection();
+		
+		private var _onReportables:Array;
+		
+		[Bindable]
+		private var selectAllDataProvider:Array;
+		
+		[Bindable]
+		private var reportTypeDataProvider:Array;
+		
+		private var lastReportType:Class;
+		
+		private var copyProvider:CopyProvider;
+		
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+			
+			title = copyProvider.getCopyForId("generateReportWindowTitle");
+			closeWindowButton.label = copyProvider.getCopyForId("close");
+			//resetTreeButton.label = copyProvider.getCopyForId("reset");
+			generateReportButton.label = copyProvider.getCopyForId("generateReport");
+			//selectAllLabel.text = copyProvider.getCopyForId("selectAll");
+			toDateCheckBox.label = copyProvider.getCopyForId("toDate");
+			fromDateCheckBox.label = copyProvider.getCopyForId("fromDate");
+			showAttempts.text = copyProvider.getCopyForId("showAttempts");
+			allAttempts.label = copyProvider.getCopyForId("allAttempts");
+			firstAttempt.label = copyProvider.getCopyForId("firstAttempts");
+			lastAttempt.label = copyProvider.getCopyForId("lastAttempts");
+			percentageLabel1.text = percentageLabel2.text = copyProvider.getCopyForId("percentage");
+			minsLabel1.text = minsLabel2.text = copyProvider.getCopyForId("mins");
+			scoreMoreThanLabel.text = copyProvider.getCopyForId("scoreMoreThan");
+			scoreLessThanLabel.text = copyProvider.getCopyForId("scoreLessThan");
+			durationMoreThanLabel.text = copyProvider.getCopyForId("durationMoreThan");
+			durationLessThanLabel.text = copyProvider.getCopyForId("durationLessThan");
+			includeLabel.text = copyProvider.getCopyForId("include");
+			scoreMoreThanCheckBox.label = scoreLessThanCheckBox.label = ""; // copyProvider.getCopyForId("scores");
+			durationMoreThanCheckBox.label = durationLessThanCheckBox.label = ""; // copyProvider.getCopyForId("duration");
+			levelOfDetailStep.text = copyProvider.getCopyForId("reportLevelOfDetail", {item:1});
+			//forReportablesStep.text = copyProvider.getCopyForId("reportOnManageables", {item:2});
+			filterStep.text = copyProvider.getCopyForId("reportFilterStep", {item:3});
+			detailedReport.label = copyProvider.getCopyForId("detailedReport");
+			
+			//dkTreeControlBar.setCopyProvider(copyProvider);
+		}
+		
+		private function creationComplete():void {
+			// AR This depends on the type of onClass so don't preset it
+			/*
+			reportTypeDataProvider = [ { label: copyProvider.getCopyForId("allTitles"), data: Title },
+											 { label: copyProvider.getCopyForId("allCourses"), data: Course },
+											 { label: copyProvider.getCopyForId("allUnits"), data: Unit },
+											 { label: copyProvider.getCopyForId("allExercises"), data: Exercise } ];
+			*/
+			// AR Remove this, can't be working
+			//lastReportType = Title;
+			TraceUtils.myTrace("creationComplete");
+		}
+		
+		// This function is called when we have data to put into the window
+		public function set onReportables(onReportables:Array):void {
+			TraceUtils.myTrace("in onReportables"); 
+			_onReportables = onReportables;
+			
+			var testOnClass:Object = new (ClassUtils.checkObjectClasses(onReportables))();
+			TraceUtils.myTrace("got testOnClass");
+
+			// Can I do this after I have set the reportTypeComboBox? Yes, but doesn't make the combobox any better.
+			// If there are leftover selections from when the window was last open then discard them if the content tree is
+			// of a different type (i.e. last time we were generating a report on Manageables and this time on Content and vv)
+			var testForClass:Class = ClassUtils.checkObjectClasses(forReportables.toArray());
+			if (onReportables.length > 0 && forReportables.length > 0 && ((onReportables[0] is Content && forReportables.getItemAt(0) is Content) || (onReportables[0] is Manageable && forReportables.getItemAt(0) is Manageable))) {
+				forReportables.removeAll();
+				// In this case, we can select the first report type to be the default. But it is not populated yet.
+				//lastReportType = testForClass;
+			} else {
+				// Otherwise the window is of the same type as last time it was opened so select the same value in reportTypeComboBox
+				// Or it is the first time, so nothing is preset
+				reportTypeComboBox.value = lastReportType;
+			}
+
+			// If you don't do this you can't do the test below
+			reportTypeComboBox.validateNow();
+			// It is not clear to me why I can't test the combobox.value or set the selectedIndex, but I really don't seem able to.
+			// This rather clumsy method seems to work.
+			TraceUtils.myTrace("got type of report for stuff");
+			TraceUtils.myTrace("1.selectedItem=" + reportTypeComboBox.selectedItem + " index=" + reportTypeComboBox.selectedIndex);
+			if (reportTypeComboBox.selectedIndex < 0) {
+				if (testOnClass is Content) {
+					reportTypeComboBox.value =  Group;
+					//forReportablesStep.text = copyProvider.getCopyForId("reportOnGroups", {item:2, type:"group"});
+				} else {
+					reportTypeComboBox.value = Title;
+					//forReportablesStep.text = copyProvider.getCopyForId("reportOnType", {item:2, type:"title"});
+				}
+			}
+			//TraceUtils.myTrace("final check, combo.value=" + reportTypeComboBox.value + " is content " + String(reportTypeComboBox.value is Content));
+			//TraceUtils.myTrace("no change, content is " + ClassUtils.getClassAsString(reportTypeComboBox.value));
+			// If you don't do this you can't see the results
+			reportTypeComboBox.validateNow();
+			forReportablesStep.text = copyProvider.getCopyForId("reportOnType", { item:2, type:ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data).toLowerCase() } );
+			TraceUtils.myTrace("2.selectedItem=" + reportTypeComboBox.selectedItem + " index=" + reportTypeComboBox.selectedIndex);
+			var checkBoxToolTips:Object = new Object();
+			checkBoxToolTips.disabledCheckBoxToolTip = "You can only select an item that matches the type of report.";
+			checkBoxToolTips.onCheckBoxToolTip = "This item will be included in the report.";
+			checkBoxToolTips.offCheckBoxToolTip = "Click to include this item in the report.";
+			forTree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, this, false, checkBoxToolTips);
+
+			// AR I want Groups and Users to behave the same as Content. Just too confusing if it doesn't
+			detailedReportSection.visible = false;
+			if (testOnClass is Manageable) {
+				// This is for a content tree (i.e. on manageables)
+				forTree.labelField = "caption";
+				reportForForm.visible = reportForForm.includeInLayout = true;
+				reportTypeDataProvider = [ { label: copyProvider.getCopyForId("allTitles"), data: Title },
+										  { label: copyProvider.getCopyForId("allCourses"), data: Course },
+										  { label: copyProvider.getCopyForId("allUnits"), data: Unit },
+										  { label: copyProvider.getCopyForId("allExercises"), data: Exercise } ];
+				// This is data dependent
+				//forReportablesStep.text = copyProvider.getCopyForId("reportOnTitles", {item:2});
+				filterStep.text = copyProvider.getCopyForId("reportFilterStep", { item:3 } );
+				// For user reports only I want to offer a detailed or summary report
+				if (testOnClass is User) {
+					detailedReportSection.visible = true;
+				}
+			} else if (testOnClass is Content) {
+				// This is for a manageables tree (i.e. on content)
+				forTree.labelField = "name";
+				reportForForm.visible = reportForForm.includeInLayout = true;
+				reportTypeDataProvider = [ { label: copyProvider.getCopyForId("allGroups"), data: Group },
+										  { label: copyProvider.getCopyForId("allUsers"), data: User } ];
+				//forReportablesStep.text = copyProvider.getCopyForId("reportOnGroups", { item:2 } );
+				filterStep.text = copyProvider.getCopyForId("reportFilterStep", {item:3});
+			} else {
+				throw new Error("Unknown reportable type when trying to create generate report window");
+			}
+			TraceUtils.myTrace("got reportTypeDP");
+				
+			// Fix for ticket #100
+			forTree.validateNow();
+		}
+		
+		public function setTreeDataProvider(dataProvider:Object):void {
+			TraceUtils.myTrace("setTreeDataProvider");
+			forTree.dataProvider = dataProvider;
+		}
+		
+		private function removePopup():void {
+			PopUpManager.removePopUp(this);
+		}
+
+		// You change the type of report
+		private function onReportForChange():void {
+	
+			forReportablesStep.text = copyProvider.getCopyForId("reportOnType", { item:2, type:ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data).toLowerCase() } );
+			// Clear out whatever had been selected before
+			forReportables.removeAll();
+			TraceUtils.myTrace("remove all");
+			
+			// Set the lastReportType variable (so we can remember this next time the window is opened)
+			lastReportType = reportTypeComboBox.selectedItem.data;
+			TraceUtils.myTrace("saved report type as " + ClassUtils.getClassAsString(lastReportType));
+			
+			// Build an array of all children of the dataprovider of the given type (selectedItem.data is Class)
+			var forArray:Array = new Array();
+			for each (var reportable:Reportable in forTree.dataProvider)
+				forArray = forArray.concat(reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data));
+			TraceUtils.myTrace("build array of children");
+				
+			// Make the tree open to show the selected items
+			var openItems:Array = new Array();
+			for each (reportable in forArray) {
+				do {
+					openItems.push(reportable.parent);
+					reportable = reportable.parent;
+				} while (reportable);
+			}			
+			forTree.openItems = openItems;
+			TraceUtils.myTrace("open tree");
+			
+			forTree.invalidateList();
+		}
+		
+		public function isCheckBoxSelected(data:Object):Boolean {
+			TraceUtils.myTrace("isCheckBoxSelected");
+
+			var reportable:Reportable = data as Reportable;
+			//TraceUtils.myTrace("isCheckBoxSelected on " + reportable.reportableLabel);
+			return (forReportables.contains(reportable));
+		}
+		
+		public function isCheckBoxEnabled(data:Object):Boolean {
+			TraceUtils.myTrace("isCheckBoxEnabled");
+			var testOnClass:Object = new (ClassUtils.checkObjectClasses(_onReportables))();
+			//if (testOnClass is Content) {
+			//	// AR This bit of code stops you selecting a user when a group is already selected and vice versa
+			//	//var reportable:Reportable = data as Reportable;
+			//	//return (forReportables.length == 0 || forReportables.getItemAt(0) is ClassUtils.getClass(data));
+			//	var reportable:Reportable = data as Reportable;
+			//	//TraceUtils.myTrace("call isCheckBoxEnabled on " + reportable.reportableLabel);
+			//	return true;
+			//} else {
+			// I would like to enable items that are above this type too
+			//	return (reportTypeComboBox.selectedItem && reportTypeComboBox.selectedItem.data && data is reportTypeComboBox.selectedItem.data);
+			var rightDataClass:Boolean 	
+			switch (ClassUtils.getClass(reportTypeComboBox.selectedItem.data)) {
+				case Title:
+					rightDataClass = (data is Title);
+					break;
+				case Course:
+					rightDataClass = ((data is Title) || (data is Course));
+					break;
+				case Unit:
+					rightDataClass = ((data is Title) || (data is Course) || (data is Unit));
+					break;
+				case Exercise:
+					rightDataClass = ((data is Title) || (data is Course) || (data is Unit) || (data is Exercise));
+					break;
+				case Group:
+					rightDataClass = (data is Group);
+					break;
+				case User:
+					rightDataClass = ((data is Group) || (data is User));
+					break;
+			}
+			return (reportTypeComboBox.selectedItem && reportTypeComboBox.selectedItem.data && rightDataClass);
+			//}
+		}
+		
+		public function onCheckBoxClick(data:Object, selected:Boolean):void {
+			TraceUtils.myTrace("isCheckBoxEnabled");
+			var reportable:Reportable = data as Reportable;
+			
+			// Only one Title can be selected at once due to SQL complications
+			//if (reportable is Title) forReportables.removeAll();
+
+			// Here we are building forReportables to contain everything that is clicked.
+			if (selected) {
+				if (!forReportables.contains(reportable)) {
+					forReportables.addItem(reportable);
+				}
+			} else {
+				if (forReportables.contains(reportable)) forReportables.removeItemAt(forReportables.getItemIndex(reportable));
+			}
+
+			// AR Now, if this is a branch that has children of the same type, can we select them?
+			// Applies mostly to groups of groups, but could apply to courses in My Canada.
+			// Nothing seems to go wrong if you are passing the parent and all its children, although it must
+			// be making the SQL bigger. In fact, it would let you drop that part of the SQL that finds the 
+			// children groups of any group you select. But probably best leave it for now.
+			var forArray:Array = new Array();
+			forArray = reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data);
+			//TraceUtils.myTrace("got " + forArray.length + " children " + reportTypeComboBox.selectedItem.data);
+			for each (var newReportable:Reportable in forArray) {
+				if (selected) {
+					if (!forReportables.contains(newReportable)) {
+						forReportables.addItem(newReportable);
+					}
+				} else {
+					if (forReportables.contains(newReportable)) forReportables.removeItemAt(forReportables.getItemIndex(newReportable));
+				}
+			}
+				
+			forTree.invalidateList();
+		}
+		
+		/**
+		 * This selects all items of a certain type
+		 */
+		private function onSelectAll():void {
+			// Build an array of all children of the dataprovider of the given type (selectedItem.data is Class)
+			var forArray:Array = new Array();
+			for each (var reportable:Reportable in forTree.dataProvider)
+				forArray = forArray.concat(reportable.getSubChildrenOfClass(selectAllComboBox.selectedItem.data));
+			
+			forReportables = new ArrayCollection(forArray);
+			
+			// Make the tree open to show the selected items
+			var openItems:Array = new Array();
+			for each (reportable in forArray) {
+				do {
+					openItems.push(reportable.parent);
+					reportable = reportable.parent;
+				} while (reportable);
+			}
+			
+			forTree.openItems = openItems;
+			
+			selectAllComboBox.selectedIndex = 0;
+			
+			forTree.invalidateList();
+		}
+		
+		/**
+		 * This unchecks all the selections and redraws the tree
+		 */
+		private function onResetTree():void {
+			forReportables.removeAll();
+			forTree.invalidateList();
+		}
+		
+		private function onGenerateReport():void {
+			// Create the event
+			//for each (var reportable:Reportable in forReportables) {
+			//	TraceUtils.myTrace("forReportable=" + reportable);
+			//}
+			// Before I do this, can I check the forReportables to remove anything that is selected, but doesn't match
+			// the report type? This would let me have a tri-state tree.
+			// I would not be able to select below the report type (so if a course report, unit boxes are disabled).
+			// But I could select above the report type. Then just ignore those items.
+			/*
+			var forArray:Array = new Array();
+			for each (var reportable:Reportable in forTree.dataProvider) {
+				if (reportable is lastReportType) {
+					TraceUtils.myTrace("include reportable " + reportable.reportableLabel + " is a " + reportable);
+					forArray = forArray.concat(reportable.getSubChildrenOfClass(selectAllComboBox.selectedItem.data));
+				} else {
+					TraceUtils.myTrace("exclude reportable " + reportable.reportableLabel + " which is a " + reportable);
+				}
+			};
+			*/
+			for each (var reportable:Reportable in forReportables) {
+				if (reportable is lastReportType) {
+					TraceUtils.myTrace("include reportable " + reportable.reportableLabel + " is a " + reportable);
+				} else {
+					TraceUtils.myTrace("exclude reportable " + reportable.reportableLabel + " which is a " + reportable);
+					forReportables.removeItemAt(forReportables.getItemIndex(reportable));
+				}
+			}
+			
+			var reportEvent:ReportEvent = new ReportEvent(ReportEvent.GENERATE, forReportables.toArray(), _onReportables, true);
+			//var reportEvent:ReportEvent = new ReportEvent(ReportEvent.GENERATE, forArray, _onReportables, true);
+			
+			// Add in the date options
+			if (fromDateCheckBox.selected) reportEvent.fromDate = fromDateChooser.selectedDate;
+			if (toDateCheckBox.selected) reportEvent.toDate = toDateChooser.selectedDate;
+			
+			// Add in the attempts option
+			reportEvent.attempts = attemptsRadioGroup.selection.data as String;
+			
+			// Add in the include options
+			if (scoreLessThanCheckBox.selected && scoreLessThanTextInput.text != "") reportEvent.scoreLessThan = new Number(scoreLessThanTextInput.text);
+			if (scoreMoreThanCheckBox.selected && scoreMoreThanTextInput.text != "") reportEvent.scoreMoreThan = new Number(scoreMoreThanTextInput.text);
+			if (durationLessThanCheckBox.selected && durationLessThanTextInput.text != "") reportEvent.durationLessThan = new Number(durationLessThanTextInput.text);
+			if (durationMoreThanCheckBox.selected && durationMoreThanTextInput.text != "") reportEvent.durationMoreThan = new Number(durationMoreThanTextInput.text);
+			
+			// And the summary/detail choice (for onClass=user)
+			reportEvent.detailedReport = detailedReport.selected;
+			
+			// Dispatch it in order to generate the report
+			parentView.dispatchEvent(reportEvent);
+		}
+		
+		]]>
+	</mx:Script>
+	
+	<mx:HBox width="100%" height="100%">
+		<mx:VBox width="50%" height="100%">
+			<mx:HBox id="reportForForm" width="100%">
+				<mx:Label id="levelOfDetailStep" paddingTop="3" styleName="subHeadingLabelBlack" />
+				<fxc:VAComboBox id="reportTypeComboBox" width="100%" dataField="data" dataProvider="{reportTypeDataProvider}" 
+							change="onReportForChange()" />
+			</mx:HBox>
+			<mx:HBox width="100%">
+				<mx:Label id="forReportablesStep" paddingTop="3" styleName="subHeadingLabelBlack" />
+			</mx:HBox>
+			<mx:VBox width="100%" height="100%" verticalGap="1">
+				<controls:DKTree id="forTree"
+								 width="100%"
+								 height="100%" 
+								 variableRowHeight="true"
+								 selectable="false" />
+				<!-- <controls:DKTreeControlBar id="dkTreeControlBar" width="100%" tree="{forTree}" 
+						includeInLayout="false" /> -->
+			</mx:VBox>
+			
+			<mx:HBox width="100%" visible="false" includeInLayout="false">
+				<mx:Label id="selectAllLabel" paddingTop="3" />
+				<mx:ComboBox id="selectAllComboBox" width="100%" dataProvider="{selectAllDataProvider}" change="onSelectAll()" />
+				<mx:Button id="resetTreeButton" click="onResetTree()" />
+			</mx:HBox>
+			
+		</mx:VBox>
+		
+		<mx:VBox width="50%" height="100%">
+			<mx:HBox width="100%">
+				<mx:Label id="filterStep" paddingTop="3" styleName="subHeadingLabelBlack" />
+			</mx:HBox>
+			<mx:VBox width="100%">
+				
+				<mx:HBox width="100%">
+					<mx:VBox>
+						<mx:CheckBox id="fromDateCheckBox" />
+						<mx:DateChooser id="fromDateChooser" enabled="{fromDateCheckBox.selected}" yearNavigationEnabled="true"
+								/>
+					</mx:VBox>
+					
+					<mx:VBox>
+						<mx:CheckBox id="toDateCheckBox" />
+						<mx:DateChooser id="toDateChooser" enabled="{toDateCheckBox.selected}" yearNavigationEnabled="true" />
+					</mx:VBox>
+				</mx:HBox>
+				
+				<mx:HRule width="100%" />
+				
+				<mx:Label id="includeLabel" />
+				<mx:HBox>
+					<mx:CheckBox id="scoreMoreThanCheckBox"  />
+					<!-- <mx:ComboBox width="60" enabled="{scoreMoreThanCheckBox.selected}">
+						<mx:dataProvider>
+							<mx:String>&gt;</mx:String>
+						</mx:dataProvider>
+					</mx:ComboBox>
+					-->
+					<mx:Label id="scoreMoreThanLabel" />
+					<mx:TextInput id="scoreMoreThanTextInput" enabled="{scoreMoreThanCheckBox.selected}" maxChars="2" restrict="0-9" />
+					<mx:Label id="percentageLabel1" />
+				</mx:HBox>
+				
+				<mx:HBox>
+					<mx:CheckBox id="scoreLessThanCheckBox"  />
+					<!-- <mx:ComboBox width="60" enabled="{scoreLessThanCheckBox.selected}">
+						<mx:dataProvider>
+							<mx:String>&lt;=</mx:String>
+						</mx:dataProvider>
+					</mx:ComboBox>
+					-->
+					<mx:Label id="scoreLessThanLabel" />
+					<mx:TextInput id="scoreLessThanTextInput" enabled="{scoreLessThanCheckBox.selected}" maxChars="2" restrict="0-9" />
+					<mx:Label id="percentageLabel2" />
+				</mx:HBox>
+				
+				<mx:HBox>
+					<mx:CheckBox id="durationMoreThanCheckBox"  />
+					<!-- <mx:ComboBox width="60" enabled="{durationMoreThanCheckBox.selected}">
+						<mx:dataProvider>
+							<mx:String>&gt;</mx:String>
+						</mx:dataProvider>
+					</mx:ComboBox>
+					 -->
+					<mx:Label id="durationMoreThanLabel" />
+					<mx:TextInput id="durationMoreThanTextInput" enabled="{durationMoreThanCheckBox.selected}" maxChars="5" restrict="0-9." />
+					<mx:Label id="minsLabel1" />
+				</mx:HBox>
+				
+				<mx:HBox>
+					<mx:CheckBox id="durationLessThanCheckBox"  />
+					<!-- <mx:ComboBox width="60" enabled="{durationLessThanCheckBox.selected}">
+						<mx:dataProvider>
+							<mx:String>&lt;=</mx:String>
+						</mx:dataProvider>
+					</mx:ComboBox>
+					-->
+					<mx:Label id="durationLessThanLabel" />
+					<mx:TextInput id="durationLessThanTextInput" enabled="{durationLessThanCheckBox.selected}" maxChars="5" restrict="0-9." />
+					<mx:Label id="minsLabel2" />
+				</mx:HBox>
+				
+				<mx:HRule width="100%" />
+				
+				<mx:Label id="showAttempts" />
+				<mx:HBox>
+					<mx:RadioButtonGroup id="attemptsRadioGroup" />
+					<mx:RadioButton id="allAttempts" data="{ReportEvent.ALL}" groupName="attemptsRadioGroup" selected="true" />
+					<mx:RadioButton id="firstAttempt" data="{ReportEvent.FIRST}" groupName="attemptsRadioGroup" />
+					<mx:RadioButton id="lastAttempt" data="{ReportEvent.LAST}" groupName="attemptsRadioGroup" />
+				</mx:HBox>
+				<mx:HRule width="100%" />
+				<mx:HBox id="detailedReportSection" >
+					<mx:CheckBox id="detailedReport"  />
+				</mx:HBox>
+				
+			</mx:VBox>
+		</mx:VBox>
+	</mx:HBox>
+	
+	<mx:ControlBar width="100%" horizontalAlign="right">
+		<mx:Button id="closeWindowButton" click="removePopup()" />
+		<mx:Button id="generateReportButton" click="onGenerateReport()" enabled="{forReportables.length > 0}" />
+	</mx:ControlBar>
+	
+</mx:TitleWindow>

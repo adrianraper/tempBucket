@@ -7,6 +7,7 @@
 	<mx:Script>
 		<![CDATA[
 		import com.clarityenglish.common.model.interfaces.CopyProvider;;
+		import flexunit.flexui.patterns.AssertNotNullPattern;
 		import mx.charts.chartClasses.IAxis;
 		import mx.charts.HitData;
 		import mx.charts.series.items.PieSeriesItem;

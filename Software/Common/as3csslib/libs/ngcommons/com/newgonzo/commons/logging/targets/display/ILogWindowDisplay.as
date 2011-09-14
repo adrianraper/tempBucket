@@ -1,1 +1,0 @@
-﻿package com.newgonzo.commons.logging.targets.display{	import com.newgonzo.commons.logging.LogEvent;		public interface ILogWindowDisplay	{		function onLog(logEvent:LogEvent):void	}}

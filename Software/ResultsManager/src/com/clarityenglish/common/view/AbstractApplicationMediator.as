@@ -6,11 +6,8 @@ package com.clarityenglish.common.view {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.LoginMediator;
-	
-	import flash.display.Sprite;
-	
 	import mx.controls.Alert;
-	
+	import mx.core.Application;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -29,12 +26,8 @@ package com.clarityenglish.common.view {
 			super(NAME, viewComponent);
 		}
 		
-		/**
-		 * In order for this to work with both Flex 3 and Flex 4 this needs to return Object instead of Application
-		 * since that could be an mx:Application or an s:Application
-		 */
-		private function get application():Object {
-			return viewComponent;
+		private function get application():Application {
+			return viewComponent as Application;
 		}
 		
 		/**
@@ -43,12 +36,11 @@ package com.clarityenglish.common.view {
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// Since Application is a parent class we need to reference loginView (which should exist) dynamically
-			if (application.hasOwnProperty("loginView")) {
-				facade.registerMediator(new LoginMediator(application["loginView"]));
-			} else {
-				trace("WARNING: The main application should have a view named 'loginView'");
-			}
+			// Since Application is a parent class we need to reference loginView (which must exist) dynamically
+			if (application["loginView"] == null)
+				throw new Error("The main application class must have an instance named 'loginView'");
+			
+			facade.registerMediator(new LoginMediator(application["loginView"]));
 		}
 
 		/**
@@ -104,7 +96,7 @@ package com.clarityenglish.common.view {
 					break;
 				case CommonNotifications.TRACE_ERROR:
 					trace("[Error] " + note.getBody() as String);
-					Alert.show(note.getBody() as String, "Error", Alert.OK, application as Sprite);
+					Alert.show(note.getBody() as String, "Error", Alert.OK, application);
 					break;
 				case CommonNotifications.COPY_LOADED:
 					// Set the alert box labels from the copy

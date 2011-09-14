@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+layout="absolute" 
+xmlns:controls="com.brightPoint.controls.*" 
+backgroundGradientColors="[0x222222,0x555555]" 
+xmlns:components="components.*" 
+viewSourceURL="srcview/index.html">
+    <mx:Script>
+    
+        <![CDATA[
+                
+/*
+Copyright (c) 2008, Thomas W. Gonzalez
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+www.brightpointinc.com
+
+*/
+
+            private function setGaugeAlerts():void {
+                gauge.setStyle("alertRatios",[a1.value,a2.value,a3.value]);
+                gauge.setStyle("alertColors",[cp1.selectedColor,cp2.selectedColor,cp3.selectedColor]);
+            }
+            
+        ]]>
+    </mx:Script>
+    
+    <mx:HBox width="100%" height="100%">
+        <mx:VBox color="0xFFFFFF">
+            <mx:Form>
+                <mx:FormItem label="Size">
+                    <mx:HSlider minimum="25" maximum="1000" id="gaugeSize" value="{gauge.diameter}" change="{gauge.diameter=gaugeSize.value;}" />
+                </mx:FormItem>
+                <mx:FormItem label="Value">
+                    <mx:HSlider minimum="{gauge.minValue}" snapInterval="1" maximum="{gauge.maxValue}" change="{gauge.value=event.target.value}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Targets" color="0xFFFFFF">
+                <!-- you can have any number of alert thresholds, this sample simply uses 3 -->
+                    <mx:HBox color="0">
+                        <mx:ColorPicker id="cp1" selectedColor="0xDD0000" change="setGaugeAlerts();"/><mx:NumericStepper minimum="{gauge.minValue}" maximum="{a2.value}" value="33" id="a1" change="setGaugeAlerts();"/>
+                    </mx:HBox>
+                    <mx:HBox color="0">
+                        <mx:ColorPicker id="cp2" selectedColor="0xFFFF00" change="setGaugeAlerts();"/><mx:NumericStepper minimum="{a1.value}" maximum="{a3.value}" value="66" id="a2" change="setGaugeAlerts();"/>
+                    </mx:HBox>
+                    <mx:HBox color="0">
+                        <mx:ColorPicker id="cp3" selectedColor="0x00FF00" change="setGaugeAlerts();"/><mx:NumericStepper minimum="{a2.value}" maximum="{gauge.maxValue}" value="100" id="a3" change="setGaugeAlerts();"/>
+                    </mx:HBox>
+                </mx:FormItem>
+                <mx:FormItem label="Face">
+                    <mx:ColorPicker selectedColor="0x327bc2" change="{gauge.setStyle('faceColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Face Shadow">
+                    <mx:ColorPicker selectedColor="0x777777" change="{gauge.setStyle('faceShadowColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Rim (Bezel)">
+                    <mx:ColorPicker selectedColor="0x999999" change="{gauge.setStyle('bezelColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Tick Marks">
+                    <mx:ColorPicker selectedColor="0xFFFFFF" change="{gauge.setStyle('ticksColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Pointer">
+                    <mx:ColorPicker selectedColor="0xffa449" change="{gauge.setStyle('pointerColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Center">
+                    <mx:ColorPicker selectedColor="0x777777" change="{gauge.setStyle('centerColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Value">
+                    <mx:ColorPicker selectedColor="0xFFFFFF" change="{gauge.setStyle('fontColor',event.target.selectedColor)}"/>
+                </mx:FormItem>
+                <mx:FormItem label="Value Size" >
+                    <mx:NumericStepper color="0" minimum="8" maximum="30" change="{gauge.setStyle('fontSize',event.target.value)}"/>
+                </mx:FormItem>
+            </mx:Form>
+        </mx:VBox>
+        <mx:Canvas width="100%" height="100%" backgroundColor="0xBB0000" id="can">
+            <controls:Gauge minValue="0"  maxValue="100" showValue="true"
+                diameter="300" id="gauge" verticalCenter="0" horizontalCenter="0"
+                alertAlphas="[.7,.9,.6]" alertColors="[0xDD0000,0xFFFF00,0x00FF00]" alertRatios="[33,66,100]"
+                faceColor="0x327bc2" 
+                  ticksColor="0xFFFFFF"
+                  fontColor="0xFFFFFF"
+                  pointerColor="0xffa449" 
+                  bezelColor="0x999999"
+                faceShadowColor="0x777777"
+                />
+        </mx:Canvas>
+    </mx:HBox>
+</mx:Application>
