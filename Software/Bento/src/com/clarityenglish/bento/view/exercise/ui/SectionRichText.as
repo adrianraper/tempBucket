@@ -1,27 +1,17 @@
 package com.clarityenglish.bento.view.exercise.ui {
-	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.view.exercise.IExerciseSection;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.AnswerableBehaviour;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.DraggableBehaviour;
 	import com.clarityenglish.bento.view.exercise.ui.behaviours.ISectionBehaviour;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.OverlayBehaviour;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.textLayout.conversion.ExerciseImporter;
-	import com.clarityenglish.textLayout.conversion.rendering.RenderBlock;
-	import com.clarityenglish.textLayout.conversion.rendering.RenderBlocks;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import flashx.textLayout.compose.FlowDamageType;
-	import flashx.textLayout.container.ContainerController;
 	import flashx.textLayout.elements.InlineGraphicElementStatus;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
-	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -30,8 +20,6 @@ package com.clarityenglish.bento.view.exercise.ui {
 	import org.flexlayouts.layouts.FlowLayout;
 	
 	import spark.components.Group;
-	import spark.core.SpriteVisualElement;
-	import spark.layouts.HorizontalLayout;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.exercise.events.SectionEvent")]
 	public class SectionRichText extends Group implements IExerciseSection {
@@ -56,7 +44,9 @@ package com.clarityenglish.bento.view.exercise.ui {
 		/**
 		 * This holds the imported RenderBlocks (these are calculated whenever the Exercise changes)
 		 */ 
+		/*
 		private var _renderBlocks:RenderBlocks;
+		*/
 		
 		private var renderBlockHolder:Group;
 		
@@ -67,15 +57,20 @@ package com.clarityenglish.bento.view.exercise.ui {
 		
 		public function SectionRichText() {
 			// Create an empty vector to hold the textflows that are created
+			
+			/*
+			
 			_renderBlocks = new RenderBlocks();
 			
+			*/
+			
 			// Mixin behaviours
-			behaviours = Vector.<ISectionBehaviour>([
+			/*behaviours = Vector.<ISectionBehaviour>([
 				new OverlayBehaviour(this),
 				new DictionaryBehaviour(this),
 				new DraggableBehaviour(this),
 				new AnswerableBehaviour(this),
-			]);
+			]);*/
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}
@@ -108,14 +103,14 @@ package com.clarityenglish.bento.view.exercise.ui {
 		public function set exercise(value:Exercise):void {
 			if (_exercise !== value) {
 				// Clean up if there was a previous exercise
-				if (_exercise)
-					_exercise.removeEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
+				//if (_exercise)
+				//	_exercise.removeEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
 				
 				_exercise = value;
 				_exerciseChanged = true;
 				
 				// Add an event listener for the styles changed (because a <link> node loaded)
-				_exercise.addEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded)
+				//_exercise.addEventListener(ExerciseEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded)
 				
 				// Load any external stylesheets
 				_exercise.loadStyleLinks();
@@ -165,6 +160,8 @@ package com.clarityenglish.bento.view.exercise.ui {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
+			/*
+			
 			var renderBlock:RenderBlock;
 			
 			if ((_exerciseChanged || _sectionChanged) && _exercise && _exercise.isExternalStylesheetsLoaded()) {
@@ -174,7 +171,7 @@ package com.clarityenglish.bento.view.exercise.ui {
 					for each (renderBlock in _renderBlocks) {
 						if (renderBlock.textFlow) {
 							applyToBehaviours(function(b:ISectionBehaviour):void { b.onTextFlowClear(renderBlock.textFlow); } );
-								
+							
 							renderBlock.textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
 							renderBlock.textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
 							renderBlock.textFlow.flowComposer.removeAllControllers();
@@ -241,6 +238,8 @@ package com.clarityenglish.bento.view.exercise.ui {
 					invalidateDisplayList();
 				}
 			}
+			
+			*/
 		}
 		
 		protected function onInlineGraphicStatusChange(event:StatusChangeEvent):void {
@@ -257,6 +256,8 @@ package com.clarityenglish.bento.view.exercise.ui {
 		protected override function measure():void {
 			super.measure();
 			
+			/*
+			
 			var maximumHeight:Number = 0;
 			for each (var renderBlock:RenderBlock in _renderBlocks) {
 				if (renderBlock.textFlow) {
@@ -267,10 +268,14 @@ package com.clarityenglish.bento.view.exercise.ui {
 				
 				measuredHeight = maximumHeight;
 			}
+			
+			*/
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			/*
 			
 			for each (var renderBlock:RenderBlock in _renderBlocks) {
 				if (renderBlock.textFlow && renderBlock.textFlow.flowComposer.getControllerAt(0)) {
@@ -296,6 +301,8 @@ package com.clarityenglish.bento.view.exercise.ui {
 					setContentSize(unscaledWidth, Math.max(textHeight, unscaledHeight));
 				}
 			}
+			
+			*/
 		}
 		
 		/**
@@ -325,9 +332,15 @@ package com.clarityenglish.bento.view.exercise.ui {
 		protected function onClick(event:MouseEvent):void {
 			// Apply to registered behaviours
 			//for each (var textFlow:TextFlow in _textFlows)
+			
+			
+			/*
+			
 			for each (var renderBlock:RenderBlock in _renderBlocks)
 				if (renderBlock.textFlow)
 					applyToBehaviours(function(b:ISectionBehaviour):void { b.onClick(event, renderBlock.textFlow); } );
+			
+			*/
 		}
 		
 	}

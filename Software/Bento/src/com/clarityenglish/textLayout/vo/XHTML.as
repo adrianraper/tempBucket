@@ -1,0 +1,212 @@
+package com.clarityenglish.textLayout.vo {
+	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.newgonzo.web.css.CSS;
+	
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.events.IOErrorEvent;
+	import flash.net.URLRequest;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
+	
+	public class XHTML extends EventDispatcher {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		public static const XML_CHANGE_EVENT:String = "xmlChange";
+		
+		/**
+		 * The XML document 
+		 */
+		protected var _xml:XML;
+		
+		private var isLoadingStyleLinks:Boolean
+		private var externalStyleSheetsLoaded:Boolean;
+		
+		/**
+		 * This is appended to any filenames so that paths can be relative to the xhtml document 
+		 */
+		public var rootPath:String;
+		
+		public function XHTML(value:XML = null) {
+			if (value)
+				xml = value;
+		}
+		
+		public function set xml(value:XML):void {
+			if (_xml !== value) {
+				// This is a little bit of a hack, but use string functions to remove the namespace.
+				var xmlString:String = value.toXMLString();
+				xmlString = xmlString.replace(" xmlns=\"http://www.w3.org/1999/xhtml\"", "");
+				_xml = new XML(xmlString);
+				
+				dispatchEvent(new Event(XML_CHANGE_EVENT));
+			}
+		}
+		
+		[Bindable(event="xmlChange")]
+		public function get xml():XML {
+			return _xml;
+		}
+		
+		public function isExternalStylesheetsLoaded():Boolean {
+			return externalStyleSheetsLoaded;
+		}
+		
+		/**
+		 * Exercise XML files can contain <link> nodes referencing external stylesheets.  We want to load those link nodes and replace them
+		 * with <style> nodes containing the contents of the link. 
+		 */
+		public function loadStyleLinks():void {
+			if (isLoadingStyleLinks)
+				return;
+			
+			isLoadingStyleLinks = true;
+			
+			// Get all the link elements referencing external stylesheets
+			var linkNodes:XMLList = _xml.head.link.(@rel == "stylesheet");
+			
+			if (linkNodes.length() == 0) {
+				externalStyleSheetsLoaded = true;
+				dispatchEvent(new XHTMLEvent(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED))
+			} else {
+				
+				// Note to self
+				if (linkNodes.length() > 1)
+					throw new Error("DAVE!  You haven't put support for multiple stylesheets in yet");
+				
+				// Otherwise load the links
+				for each (var linkNode:XML in linkNodes) {
+					var linkLoader:LinkLoader = new LinkLoader(linkNode);
+					linkLoader.addEventListener(Event.COMPLETE, onStyleSheetLoaded);
+					linkLoader.addEventListener(IOErrorEvent.IO_ERROR, onStyleSheetIOError);
+					linkLoader.load(new URLRequest((rootPath ? rootPath + "/" : "") + linkNode.@href));
+				}
+			}
+		}
+		
+		protected function onStyleSheetLoaded(event:Event):void {
+			event.target.removeEventListener(Event.COMPLETE, onStyleSheetLoaded);
+			event.target.removeEventListener(IOErrorEvent.IO_ERROR, onStyleSheetIOError);
+			
+			var linkLoader:LinkLoader = event.target as LinkLoader;
+			
+			// Replace the <link> node with a <style> node containing the contents
+			delete linkLoader.linkNode.@rel;
+			delete linkLoader.linkNode.@href;
+			linkLoader.linkNode.setName("style");
+			linkLoader.linkNode.appendChild(new XML("<![CDATA[" + linkLoader.data + "]]>"));
+			
+			externalStyleSheetsLoaded = true;
+			isLoadingStyleLinks = false;
+			
+			log.info("External stylesheet loaded");
+			
+			dispatchEvent(new XHTMLEvent(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED));
+		}
+		
+		protected function onStyleSheetIOError(event:IOErrorEvent):void {
+			event.target.removeEventListener(Event.COMPLETE, onStyleSheetLoaded);
+			event.target.removeEventListener(IOErrorEvent.IO_ERROR, onStyleSheetIOError);
+			
+			isLoadingStyleLinks = false;
+			
+			log.error("Error loading external stylesheet " + ((rootPath ? rootPath + "/" : "")) + event.target.linkNode.@href);
+		}
+		
+		/**
+		 * Get the style area
+		 * 
+		 * @return 
+		 */
+		[Bindable(event="xmlChange")]
+		public function get styleStrings():Array {
+			var styleStrings:Array = [ ];
+			for each (var styleNode:XML in _xml.head.style)
+				styleStrings.push(styleNode.text().toString());
+			
+			return styleStrings;
+		}
+		
+		/**
+		 * Return the body tag
+		 * 
+		 * @return 
+		 */
+		[Bindable(event="xmlChange")]
+		public function get body():XML {
+			return _xml.body[0];
+		}
+		
+		/**
+		 * Determine if the header exists in this exercise
+		 * 
+		 * @return 
+		 */
+		[Bindable(event="xmlChange")]
+		public function hasHeader():Boolean {
+			return _xml.body.header.length() > 0;
+		}
+		
+		/**
+		 * Return the header
+		 * 
+		 * @return 
+		 */
+		[Bindable(event="xmlChange")]
+		public function getHeader():XML {
+			return (hasHeader()) ? _xml.body.header[0] : null;
+		}
+		
+		/**
+		 * Return the node (in the body) with the given id.  If more than one node exists with the same id the first one is returned.
+		 * 
+		 * @return 
+		 */
+		[Bindable(event="xmlChange")]
+		public function getElementById(id:String):XML {
+			var nodes:XMLList = _xml.body..*.(hasOwnProperty("@id") && @id == id);
+			return (nodes.length() > 0) ? nodes[0] : null;
+		}
+		
+		[Bindable(event="xmlChange")]
+		public function select(expression:String):Array {
+			var cssSelector:CSS = new CSS(expression + " {}");
+			return cssSelector.select(_xml);
+		}
+		
+		[Bindable(event="xmlChange")]
+		public function selectOne(expression:String):XML {
+			var results:Array =  select(expression);
+			if (results.length > 1)
+				log.error("selectOne(" + expression + ") returned more than 1 result.  Returning the first result");
+			
+			return (results.length == 0) ? null : results[0];
+		}
+		
+	}
+}
+import flash.net.URLLoader;
+import flash.net.URLRequest;
+
+class LinkLoader extends URLLoader {
+	
+	private var _linkNode:XML;
+	
+	public function LinkLoader(linkNode:XML, request:URLRequest = null) {
+		super(request);
+		
+		this._linkNode = linkNode;
+	}
+	
+	public function get linkNode():XML {
+		return _linkNode;
+	}
+	
+}

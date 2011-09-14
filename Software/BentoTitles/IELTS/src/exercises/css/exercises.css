@@ -1,5 +1,5 @@
 * {
-	font-size: 12;
+	font-size: 12px;
 	font-family: Verdana;
 }
 
@@ -11,9 +11,9 @@ body > header {
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 25;
-	padding-right: 25;
-	padding-left: 25;
+	padding-top: 25px;
+	padding-right: 25px;
+	padding-left: 25px;
 }
 
 /* Links and draggable spans should be blue and not underlined */

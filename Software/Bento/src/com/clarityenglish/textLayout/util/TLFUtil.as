@@ -3,8 +3,14 @@ package com.clarityenglish.textLayout.util {
 	import flash.text.engine.TextLine;
 	
 	import flashx.textLayout.compose.TextFlowLine;
+	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.FlowGroupElement;
 	import flashx.textLayout.elements.FlowLeafElement;
+	import flashx.textLayout.elements.InlineGraphicElement;
+	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
+	
+	import mx.utils.ObjectUtil;
 	
 	public class TLFUtil {
 		
@@ -47,6 +53,32 @@ package com.clarityenglish.textLayout.util {
 			}
 			
 			return null;
+		}
+		
+		public static function dumpTextFlow(textFlow:TextFlow):String {
+			return (textFlow) ? flowElementToXML(textFlow).toXMLString() : "";
+		}
+		
+		private static function flowElementToXML(flowElement:FlowElement):XML {
+			var node:XML = new XML("<" + flowElement.typeName + " />");
+			
+			if (flowElement is SpanElement) {
+				node.appendChild((flowElement as SpanElement).text);
+			}
+			
+			if (flowElement is InlineGraphicElement) {
+				if ((flowElement as InlineGraphicElement).width) node.@width = (flowElement as InlineGraphicElement).width;
+				if ((flowElement as InlineGraphicElement).height) node.@height = (flowElement as InlineGraphicElement).height;
+				if ((flowElement as InlineGraphicElement).float) node.@float = (flowElement as InlineGraphicElement).float;
+			}
+			
+			if (flowElement is FlowGroupElement) {
+				for each (var childFlowElement:FlowElement in (flowElement as FlowGroupElement).mxmlChildren) {
+					node.appendChild(flowElementToXML(childFlowElement));
+				}
+			}
+			
+			return node;
 		}
 		
 	}

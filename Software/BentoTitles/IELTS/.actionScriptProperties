@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="com/clarityenglish/ielts/IELTSApplication.mxml" projectUUID="4c3f6f78-6d3d-4548-9122-f494240cb1c1" version="10">
+<actionScriptProperties analytics="false" mainApplicationPath="XHTMLTester.mxml" projectUUID="4c3f6f78-6d3d-4548-9122-f494240cb1c1" version="10">
   <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="true" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
@@ -30,6 +30,7 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
+    <application path="XHTMLTester.mxml"/>
     <application path="ExerciseTester.mxml"/>
     <application path="com/clarityenglish/ielts/IELTSApplication.mxml"/>
   </applications>
@@ -39,4 +40,3 @@
   </buildCSSFiles>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
-
