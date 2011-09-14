@@ -100,10 +100,9 @@ package com.clarityenglish.textLayout.components {
 				if (node) {
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
 					
-					// The main RenderFlow should fill the viewport horizontally
-					// TODO: This is causing some confusion with resizing RenderFlows and invalidateSize
+					// The main RenderFlow should always fill the viewport horizontally
 					renderFlow.percentWidth = 100;
-				
+					
 					addElement(renderFlow);
 				}
 				
@@ -122,9 +121,6 @@ package com.clarityenglish.textLayout.components {
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
-			/*if (renderFlow) {
-				renderFlow.width = unscaledWidth;
-			}*/
 		}
 		
 	}

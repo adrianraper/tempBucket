@@ -105,8 +105,6 @@ package com.clarityenglish.textLayout.rendering {
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						calculatedWidth = width * childRenderFlow._textFlow.percentWidth / 100;
 						break;
-					//default:
-					//	calculatedWidth = NaN;
 				}
 				
 				var calculatedHeight:Number;
@@ -117,8 +115,6 @@ package com.clarityenglish.textLayout.rendering {
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						calculatedHeight = height * childRenderFlow._textFlow.percentHeight / 100;
 						break;
-					//default:
-					//	calculatedHeight = NaN;
 				}
 				
 				// This recurses down the tree
@@ -182,6 +178,7 @@ package com.clarityenglish.textLayout.rendering {
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				if (childRenderFlow.inlineGraphicElementPlaceholder) {
 					if (childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent) {
+						// THIS IS THE PROBLEM WITH FIXED HEIGHTS!
 						childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
 						childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
 					}
