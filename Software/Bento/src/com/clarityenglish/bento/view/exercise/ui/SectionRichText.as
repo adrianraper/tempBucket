@@ -1,10 +1,6 @@
 package com.clarityenglish.bento.view.exercise.ui {
 	import com.clarityenglish.bento.view.exercise.IExerciseSection;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.AnswerableBehaviour;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.DraggableBehaviour;
 	import com.clarityenglish.bento.view.exercise.ui.behaviours.ISectionBehaviour;
-	import com.clarityenglish.bento.view.exercise.ui.behaviours.OverlayBehaviour;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	import flash.events.Event;
@@ -69,12 +65,12 @@ package com.clarityenglish.bento.view.exercise.ui {
 			*/
 			
 			// Mixin behaviours
-			behaviours = Vector.<ISectionBehaviour>([
+			/*behaviours = Vector.<ISectionBehaviour>([
 				new OverlayBehaviour(this),
 				new DictionaryBehaviour(this),
 				new DraggableBehaviour(this),
 				new AnswerableBehaviour(this),
-			]);
+			]);*/
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
 		}

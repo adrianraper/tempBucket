@@ -1,17 +1,17 @@
-package com.clarityenglish.bento.view.exercise.ui.behaviours {
-	import com.clarityenglish.bento.vo.content.Exercise;
+package com.clarityenglish.bento.view.exercise.components.behaviours {
+	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
+	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.util.TLFUtil;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.display.BitmapData;
-	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
-	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.FlowElementMouseEvent;
 	import flashx.textLayout.tlf_internal;
 	
@@ -23,7 +23,7 @@ package com.clarityenglish.bento.view.exercise.ui.behaviours {
 	import spark.components.Group;
 	import spark.components.Image;
 	
-	public class DraggableBehaviour extends AbstractSectionBehaviour implements ISectionBehaviour {
+	public class DraggableBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
 		private var dragImage:Image;
 		
@@ -45,15 +45,18 @@ package com.clarityenglish.bento.view.exercise.ui.behaviours {
 			}
 		}
 		
-		public function onTextFlowUpdate(textFlow:TextFlow):void { }
+		/*public function onTextFlowUpdate(textFlow:TextFlow):void { }
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
-		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }
+		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
 		
-		public function onImportComplete(html:XML, textFlow:TextFlow, exercise:Exercise, flowElementXmlBiMap:FlowElementXmlBiMap):void {
-			for each (var draggableNode:XML in html..*.(hasOwnProperty("@draggable") && @draggable == "true")) {
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+			for each (var draggableNode:XML in xhtml.xml..*.(hasOwnProperty("@draggable") && @draggable == "true")) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
+				
+				if (!draggableFlowElement)
+					continue;
 				
 				// draggable="true" is only allowed on FlowLeafElements
 				if (draggableFlowElement is FlowLeafElement) {
@@ -93,7 +96,7 @@ package com.clarityenglish.bento.view.exercise.ui.behaviours {
 						}
 					});
 				} else {
-					log.error("draggable='true' is only valid on leaf elements");
+					log.error("draggable='true' is only valid on leaf elements - " + draggableFlowElement);
 				}
 			}
 		}

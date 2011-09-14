@@ -31,12 +31,14 @@ package com.clarityenglish.bento.vo.content {
 		
 		override public function set xml(value:XML):void {
 			if (_xml !== value) {
-				var modelNodes:XMLList = value.head.script.(hasOwnProperty("@id") && @id == "model" && hasOwnProperty("@type") && @type == "application/xml");
-				if (modelNodes.length() > 0)
-					_model = new Model(this, modelNodes[0]);
+				super.xml = value;
+				
+				// If there is a model in this xhtml then wrap it in the Model class and cache it
+				var modelNode:XML = selectOne("script#model[type='application/xml']");
+				if (modelNode)
+					_model = new Model(this, modelNode);
+				
 			}
-			
-			super.xml = value;
 		}
 		
 		/**

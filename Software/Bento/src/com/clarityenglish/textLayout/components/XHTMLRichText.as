@@ -49,6 +49,16 @@ package com.clarityenglish.textLayout.components {
 		}
 		
 		/**
+		 * A nice functional-style utility function for applying lambdas to all registered behaviours 
+		 * 
+		 * @param func
+		 */
+		private function applyToBehaviours(func:Function):void {
+			for each (var behaviour:IXHTMLBehaviour in _behaviours)
+				func(behaviour);
+		}
+		
+		/**
 		 * Set the XHTML object that this component will render
 		 * 
 		 * @param value
@@ -82,7 +92,7 @@ package com.clarityenglish.textLayout.components {
 		
 		public function set behaviours(value:Array):void {
 			if (_behaviours)
-				throw new Error("It is not permitted to change the behaviours on an XHTMLRichText behaviours once they have been set");
+				return;
 			
 			_behaviours = new Vector.<IXHTMLBehaviour>();
 			
@@ -109,6 +119,9 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function createChildren():void {
 			super.createChildren();
+			
+			// Apply to registered behaviours
+			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onCreateChildren(); } );
 		}
 		
 		protected override function commitProperties():void {
@@ -131,6 +144,9 @@ package com.clarityenglish.textLayout.components {
 					renderFlow.percentWidth = 100;
 					
 					addElement(renderFlow);
+					
+					// Apply to registered behaviours
+					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, importer.getFlowElementXmlBiMap()); } );
 				}
 				
 				_xhtmlChanged = _selectorChanged = false;

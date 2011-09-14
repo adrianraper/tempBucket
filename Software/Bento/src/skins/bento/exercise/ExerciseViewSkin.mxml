@@ -8,6 +8,13 @@
 		[HostComponent("com.clarityenglish.bento.view.exercise.components.ExerciseView")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour;
+			import com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour;
+		]]>
+	</fx:Script>
+	
 	<s:states />
 	
 	<s:layout>
@@ -23,7 +30,7 @@
 				<s:SolidColor color="#CCCCCC" />
 			</s:fill>
 		</s:Rect>
-		<components:XHTMLRichText id="headerRichText" top="5" left="5" right="5" />
+		<components:XHTMLRichText id="headerRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour]}" />
 	</s:Group>
 	
 	<s:Group id="noscrollGroup" width="100%">
@@ -36,7 +43,7 @@
 			</s:fill>
 		</s:Rect>
 		
-		<components:XHTMLRichText id="noscrollRichText" top="5" left="5" right="5" />
+		<components:XHTMLRichText id="noscrollRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour]}" />
 	</s:Group>
 	
 	<s:Group id="bodyGroup" width="100%" height="100%">
@@ -46,7 +53,7 @@
 			</s:stroke>
 		</s:Rect>
 		<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5">
-			<components:XHTMLRichText id="bodyRichText" />
+			<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour]}" />
 		</s:Scroller>
 	</s:Group>
 	
