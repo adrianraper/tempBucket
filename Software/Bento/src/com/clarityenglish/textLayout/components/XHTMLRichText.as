@@ -99,7 +99,7 @@ package com.clarityenglish.textLayout.components {
 				var node:XML = _xhtml.selectOne(_selector);
 				if (node) {
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
-					
+					trace(renderFlow);
 					// The main RenderFlow should always fill the viewport horizontally
 					renderFlow.percentWidth = 100;
 					

@@ -180,12 +180,12 @@ package com.clarityenglish.textLayout.rendering {
 				if (childRenderFlow.inlineGraphicElementPlaceholder) {
 					if (childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent) {
 						// Convert the position of the placeholder to the coordinate space of the RenderFlow
-						var pos:Point = childRenderFlow.inlineGraphicElementPlaceholder.graphic.localToGlobal(new Point(0,0));
+						var pos:Point = childRenderFlow.inlineGraphicElementPlaceholder.graphic.localToGlobal(new Point(0, 0));
 						pos = globalToLocal(pos);
 						
 						// Apply the position to the child
 						childRenderFlow.x = pos.x;
-						childRenderFlow.y = pos.y;
+						childRenderFlow.y = pos.y; // TODO: This isn't quite working... perhaps I am thinking about this slightly wrongly...
 					}
 				}
 			}
