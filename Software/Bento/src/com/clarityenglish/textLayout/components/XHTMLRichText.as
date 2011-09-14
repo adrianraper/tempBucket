@@ -90,7 +90,7 @@ package com.clarityenglish.textLayout.components {
 			// If something has changed and we are ready then start parsing
 			if ((_xhtmlChanged || _selectorChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
 				// If there was a previously existing RenderFlow clean it up
-				if (renderFlow) {
+				if (renderFlow && renderFlow.parent) {
 					removeElement(renderFlow);
 				}
 				

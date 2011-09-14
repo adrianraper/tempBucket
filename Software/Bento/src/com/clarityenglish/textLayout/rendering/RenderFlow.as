@@ -105,6 +105,8 @@ package com.clarityenglish.textLayout.rendering {
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						calculatedWidth = width * childRenderFlow._textFlow.percentWidth / 100;
 						break;
+					//default:
+					//	calculatedWidth = NaN;
 				}
 				
 				var calculatedHeight:Number;
@@ -115,6 +117,8 @@ package com.clarityenglish.textLayout.rendering {
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						calculatedHeight = height * childRenderFlow._textFlow.percentHeight / 100;
 						break;
+					//default:
+					//	calculatedHeight = NaN;
 				}
 				
 				// This recurses down the tree
@@ -122,8 +126,9 @@ package com.clarityenglish.textLayout.rendering {
 			}
 			
 			if (_textFlow) {
+				//trace(height);
 				// Set the size of the text flow container
-				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, NaN);
+				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, height);
 				
 				// Compose and render the text flow
 				_textFlow.flowComposer.updateAllControllers();

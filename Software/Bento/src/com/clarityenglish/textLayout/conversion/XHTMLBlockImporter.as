@@ -199,12 +199,10 @@ package com.clarityenglish.textLayout.conversion {
 			// Get the CSS style of the node
 			var style:CSSComputedStyle = _css.style(xmlToParse);
 			
-			trace(xmlToParse.toXMLString());
-			
-			// For now seperate flows are left or right floated elements (apart from images)
+			// Create a seperate flow if necessary, otherwise continue parsing within this flow
 			if (isSeperateFlow(name, style)) {
-				if (!style.width)
-					log.error("Non image floats should have a fixed width otherwise unpredicable behaviour can occur.");
+				if (!style.width && !style.height)
+					log.error("Non image floats should have a fixed width or height otherwise unpredicable behaviour can occur.");
 				
 				// Create an inline graphic element to act as a placeholder for the render flow
 				var inlineGraphicElement:InlineGraphicElement = new InlineGraphicElement();
