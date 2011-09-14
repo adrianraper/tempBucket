@@ -1,0 +1,17 @@
+list {
+	list-style-type: decimal;
+	margin-left: 0; 
+	padding-left: 20px; 
+	padding-bottom: 12px; 
+}
+p {
+	padding-bottom: 12px; 
+}
+.no-padding {
+	padding-bottom: 0px; 
+}
+.h1 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #3A00FF;	
+}
