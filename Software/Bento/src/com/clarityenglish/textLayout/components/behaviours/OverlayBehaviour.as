@@ -1,16 +1,16 @@
-package com.clarityenglish.bento.view.exercise.ui.behaviours {
-	import com.clarityenglish.bento.vo.content.Exercise;
+package com.clarityenglish.textLayout.components.behaviours {
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.IComponentElement;
+	import com.clarityenglish.textLayout.util.TLFUtil;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.elements.TextFlow;
 	
 	import spark.components.Group;
 	
-	public class OverlayBehaviour extends AbstractSectionBehaviour implements ISectionBehaviour {
+	public class OverlayBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
 		private var overlayContainer:Group;
 		
@@ -35,6 +35,8 @@ package com.clarityenglish.bento.view.exercise.ui.behaviours {
 		}
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
+			trace(TLFUtil.dumpTextFlow(textFlow));
+			
 			for each (var componentElement:IComponentElement in getComponentElements(textFlow)) {
 				// If the component hasn't yet been created then create a new one
 				if (!componentElement.hasComponent()) {
@@ -66,10 +68,8 @@ package com.clarityenglish.bento.view.exercise.ui.behaviours {
 				if (componentElement.hasComponent())
 					componentElement.removeComponent();
 		}
-
-		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }
-
-		public function onImportComplete(html:XML, textFlow:TextFlow, exercise:Exercise, flowElementXmlBiMap:FlowElementXmlBiMap):void { }
+		
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { }
 		
 	}
 }

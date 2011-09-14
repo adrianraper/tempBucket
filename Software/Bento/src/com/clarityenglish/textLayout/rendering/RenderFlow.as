@@ -197,6 +197,9 @@ package com.clarityenglish.textLayout.rendering {
 			// need to lay this out.  Specifically this will make scrollbars work properly.
 			if (!containingBlock)
 				invalidateParentSizeAndDisplayList();
+			
+			// Dispatch a clone of the event in bubbling mode so that anything listening for it on the top level RenderFlow can respond
+			dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, event.textFlow, event.controller));
 		}
 		
 		/**

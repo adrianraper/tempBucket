@@ -12,6 +12,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 	import flash.events.IEventDispatcher;
 	
 	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.FlowElementMouseEvent;
 	import flashx.textLayout.tlf_internal;
 	
@@ -25,9 +26,9 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 			super(container);
 		}
 		
-		/*public function onTextFlowUpdate(textFlow:TextFlow):void { }
+		public function onTextFlowUpdate(textFlow:TextFlow):void { }
 		
-		public function onTextFlowClear(textFlow:TextFlow):void { }
+		/*public function onTextFlowClear(textFlow:TextFlow):void { }
 		
 		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
 		

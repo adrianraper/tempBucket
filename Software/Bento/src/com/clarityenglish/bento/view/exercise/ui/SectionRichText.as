@@ -171,7 +171,7 @@ package com.clarityenglish.bento.view.exercise.ui {
 					for each (renderBlock in _renderBlocks) {
 						if (renderBlock.textFlow) {
 							applyToBehaviours(function(b:ISectionBehaviour):void { b.onTextFlowClear(renderBlock.textFlow); } );
-								
+							
 							renderBlock.textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
 							renderBlock.textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
 							renderBlock.textFlow.flowComposer.removeAllControllers();

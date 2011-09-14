@@ -18,7 +18,7 @@
     <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.ISectionBehaviour"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.OverlayBehaviour"/>
+    <classEntry path="com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour"/>
     <classEntry path="com.clarityenglish.bento.vo.content.Exercise"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Answer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Model"/>

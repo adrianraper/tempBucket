@@ -12,6 +12,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 	
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
+	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.FlowElementMouseEvent;
 	import flashx.textLayout.tlf_internal;
 	
@@ -45,9 +46,9 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 			}
 		}
 		
-		/*public function onTextFlowUpdate(textFlow:TextFlow):void { }
+		public function onTextFlowUpdate(textFlow:TextFlow):void { }
 		
-		public function onTextFlowClear(textFlow:TextFlow):void { }
+		/*public function onTextFlowClear(textFlow:TextFlow):void { }
 		
 		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
 		
@@ -66,7 +67,8 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 							var dragInitiator:* = container; // This isn't really correct
 							var ds:DragSource = new DragSource();
 							ds.addData((e.flowElement as FlowLeafElement).text, "text");
-							// TODO: We'll probably want to use the bidirectional map to put the original XML node in the data as well               
+							
+							// TODO: We might want to use the bidirectional map to put the original XML node in the data as well               
 							
 							DragManager.doDrag(dragInitiator, ds, e.originalEvent, dragImage, 0, 0, 0.8);
 							

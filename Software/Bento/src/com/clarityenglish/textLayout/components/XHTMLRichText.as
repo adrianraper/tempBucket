@@ -7,6 +7,9 @@ package com.clarityenglish.textLayout.components {
 	
 	import flash.events.Event;
 	
+	import flashx.textLayout.elements.TextFlow;
+	import flashx.textLayout.events.UpdateCompleteEvent;
+	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -130,19 +133,27 @@ package com.clarityenglish.textLayout.components {
 			// If something has changed and we are ready then start parsing
 			if ((_xhtmlChanged || _selectorChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
 				// If there was a previously existing RenderFlow clean it up
-				if (renderFlow && renderFlow.parent) {
-					removeElement(renderFlow);
+				if (renderFlow) {
+					renderFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+					
+					if (renderFlow.parent)
+						removeElement(renderFlow);
 				}
 				
-				// Import the new renderflow
+				// Import the XHTML into the initial RenderFlow
 				var importer:XHTMLImporter = new XHTMLImporter();
 				var node:XML = _xhtml.selectOne(_selector);
 				if (node) {
+					// Parse the XHTML into a RenderFlow
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
+					
+					// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
+					renderFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
 					
 					// The main RenderFlow should always fill the viewport horizontally
 					renderFlow.percentWidth = 100;
 					
+					// Add the RenderFlow to the display list
 					addElement(renderFlow);
 					
 					// Apply to registered behaviours
@@ -163,7 +174,11 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
+		}
+		
+		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
+			// Apply to registered behaviours
+			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onTextFlowUpdate(event.textFlow); } );
 		}
 		
 	}
