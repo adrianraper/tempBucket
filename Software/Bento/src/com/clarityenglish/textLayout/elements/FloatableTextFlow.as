@@ -19,11 +19,16 @@ package com.clarityenglish.textLayout.elements {
 		public static const SIZE_FIXED:String = "size_fixed";
 		public static const SIZE_PERCENTAGE:String = "size_percentage";
 		
+		public static const POSITION_STATIC:String = "position_static";
+		public static const POSITION_RELATIVE:String = "position_relative";
+		public static const POSITION_ABSOLUTE:String = "position_absolute";
+		
+		public var position:String = POSITION_STATIC;
+		
 		public var float:String = FLOAT_NONE;
 		
 		public var width:*;
 		
-		// TODO: Not yet implemented
 		public var height:*;
 		
 		public function get widthType():String {
@@ -74,23 +79,30 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		/**
-		 * Determine whether height is a pixel amount (e.g. 50) or a percentage (e.g. 50%).  At present fixed heights are not implemented and this will
-		 * always return false.
+		 * Parse the percentage height into an integer
+		 * 
+		 * @return 
+		 */
+		public function get percentHeight():int {
+			return new Number(height.substr(0, height.length - 1));
+		}
+		
+		/**
+		 * Determine whether height is a pixel amount (e.g. 50) or a percentage (e.g. 50%).
 		 *  
 		 * @return 
 		 */
 		public function isPercentHeight():Boolean {
-			return false;
+			return (height is String) && height.charAt(height.length - 1) == "%";
 		}
 		
 		/**
-		 * Determine whether the height is fixed or dynamic.  At present fixed heights are not implemented and this will
-		 * always return false.
+		 * Determine whether the height is fixed or dynamic.
 		 *  
 		 * @return 
 		 */
 		public function isFixedHeight():Boolean {
-			return false;
+			return height != null && !isPercentHeight();
 		}
 		
 		public function FloatableTextFlow(config:IConfiguration = null) {

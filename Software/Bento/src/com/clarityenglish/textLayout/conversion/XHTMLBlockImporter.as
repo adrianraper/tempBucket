@@ -152,6 +152,10 @@ package com.clarityenglish.textLayout.conversion {
 			// Parse the xml and put it into the RenderFlow
 			renderFlow.textFlow = importToFlow(importQueueJob.xmlToParse) as FloatableTextFlow;
 			
+			if (!renderFlow.hasTextFlow()) {
+				log.error("Failed to parse some XHTML into a TextFlow: {0}", importQueueJob.xmlToParse.toXMLString());
+			}
+			
 			// Send any import errors to the log
 			if (errors && errors.length > 0)
 				for each (var error:String in errors)
@@ -168,18 +172,43 @@ package com.clarityenglish.textLayout.conversion {
 			}
 		}
 		
+		/**
+		 * Based on the tag name and its CSS style information this method determines whether or not this should be a seperate flow
+		 * 
+		 * @param name
+		 * @param style
+		 * @return 
+		 */
+		private static function isSeperateFlow(name:String, style:CSSComputedStyle):Boolean {
+			// Images are never seperate flows as TLF deals with them properly already
+			if (name == "img")
+				return false;
+			
+			// Floats are always seperate flows
+			if (style.float == "left" || style.float == "right")
+				return true;
+			
+			// Not sure about this yet...
+			if (style.height)
+				return true;
+			
+			return false;
+		}
+		
 		tlf_internal override function parseObject(name:String, xmlToParse:XML, parent:FlowGroupElement, exceptionElements:Object = null):void {
 			// Get the CSS style of the node
 			var style:CSSComputedStyle = _css.style(xmlToParse);
-				
+			
+			trace(xmlToParse.toXMLString());
+			
 			// For now seperate flows are left or right floated elements (apart from images)
-			if (xmlToParse.name() != "img" && (style.float == "left" || style.float == "right")) {
+			if (isSeperateFlow(name, style)) {
 				if (!style.width)
 					log.error("Non image floats should have a fixed width otherwise unpredicable behaviour can occur.");
 				
 				// Create an inline graphic element to act as a placeholder for the render flow
 				var inlineGraphicElement:InlineGraphicElement = new InlineGraphicElement();
-				inlineGraphicElement.float = style.float;
+				if (style.float) inlineGraphicElement.float = style.float;
 				if (style.width) inlineGraphicElement.width = style.width;
 				if (style.height) inlineGraphicElement.height = style.height;
 				inlineGraphicElement.source = null;
@@ -373,7 +402,9 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
+			if (style.position) element.position = style.position;
 			if (style.width) element.width = style.width;
+			if (style.height) element.height = style.height;
 			if (style.float) element.float = style.float;
 			
 			// I'm not sure why, but the TextFlow doesn't render some styles in the CssFormatResolver, so add them manually here

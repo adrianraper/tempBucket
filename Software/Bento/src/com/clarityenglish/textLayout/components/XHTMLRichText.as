@@ -96,13 +96,16 @@ package com.clarityenglish.textLayout.components {
 				
 				// Import the new renderflow
 				var importer:XHTMLImporter = new XHTMLImporter();
-				renderFlow = importer.importToRenderFlow(_xhtml, _xhtml.selectOne(_selector));
+				var node:XML = _xhtml.selectOne(_selector);
+				if (node) {
+					renderFlow = importer.importToRenderFlow(_xhtml, node);
+					
+					// The main RenderFlow should fill the viewport horizontally
+					// TODO: This is causing some confusion with resizing RenderFlows and invalidateSize
+					renderFlow.percentWidth = 100;
 				
-				// The main RenderFlow should fill the viewport horizontally
-				// TODO: This is causing some confusion with resizing RenderFlows and invalidateSize
-				renderFlow.percentWidth = 100;
-				
-				addElement(renderFlow);
+					addElement(renderFlow);
+				}
 				
 				_xhtmlChanged = _selectorChanged = false;
 			}

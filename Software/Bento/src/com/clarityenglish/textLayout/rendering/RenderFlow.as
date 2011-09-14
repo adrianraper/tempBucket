@@ -70,6 +70,10 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
+		public function hasTextFlow():Boolean {
+			return _textFlow != null;
+		}
+		
 		public function addChildRenderFlow(childRenderFlow:RenderFlow):void {
 			// Maintain bi-directional relationship
 			childRenderFlow.containingBlock = this;
@@ -103,8 +107,18 @@ package com.clarityenglish.textLayout.rendering {
 						break;
 				}
 				
+				var calculatedHeight:Number;
+				switch (childRenderFlow._textFlow.heightType) {
+					case FloatableTextFlow.SIZE_FIXED:
+						calculatedHeight = childRenderFlow._textFlow.height;
+						break;
+					case FloatableTextFlow.SIZE_PERCENTAGE:
+						calculatedHeight = height * childRenderFlow._textFlow.percentHeight / 100;
+						break;
+				}
+				
 				// This recurses down the tree
-				childRenderFlow.setLayoutBoundsSize(calculatedWidth, height);
+				childRenderFlow.setLayoutBoundsSize(calculatedWidth, calculatedHeight);
 			}
 			
 			if (_textFlow) {
