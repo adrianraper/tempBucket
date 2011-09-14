@@ -1,18 +1,25 @@
 package com.clarityenglish.textLayout.components {
+	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
-	import mx.events.FlexEvent;
-	import mx.events.ResizeEvent;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	
 	import spark.components.Group;
 	
 	public class XHTMLRichText extends Group {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		/**
 		 * The complete XHTML document 
@@ -31,6 +38,11 @@ package com.clarityenglish.textLayout.components {
 		 * The inital containing block
 		 */
 		private var renderFlow:RenderFlow;
+		
+		/**
+		 * The array of registered behaviours implemented by this component 
+		 */
+		private var _behaviours:Vector.<IXHTMLBehaviour>;
 		
 		public function XHTMLRichText() {
 			super();
@@ -68,6 +80,21 @@ package com.clarityenglish.textLayout.components {
 			}
 		}
 		
+		public function set behaviours(value:Array):void {
+			if (_behaviours)
+				throw new Error("It is not permitted to change the behaviours on an XHTMLRichText behaviours once they have been set");
+			
+			_behaviours = new Vector.<IXHTMLBehaviour>();
+			
+			for each (var behaviourClass:Class in value) {
+				if (behaviourClass) {
+					_behaviours.push(new behaviourClass(this));
+				} else {
+					log.error("Unable to instantiate behaviour " + behaviourClass);
+				}
+			}
+		}
+		
 		/**
 		 * When the external stylesheets are loaded mark the xhtml as changed and invalidate the properties, which will cause
 		 * commitProperties to run (as commitProperties takes no action unless _exercise.isExternalStylesheetsLoaded is true).
@@ -99,7 +126,7 @@ package com.clarityenglish.textLayout.components {
 				var node:XML = _xhtml.selectOne(_selector);
 				if (node) {
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
-					trace(renderFlow);
+					
 					// The main RenderFlow should always fill the viewport horizontally
 					renderFlow.percentWidth = 100;
 					

@@ -78,6 +78,8 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.textLayout.elements.OrderedListElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.UnorderedListElement"/>
+    <classEntry path="com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour"/>
+    <classEntry path="com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

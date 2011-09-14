@@ -33,7 +33,7 @@ package com.clarityenglish.textLayout.conversion {
 		/**
 		 * The default stylesheet implemented by browsers
 		 */ 
-		[Embed(source="/com/clarityenglish/bento/view/exercise/ui/defaults.css", mimeType="application/octet-stream")]
+		[Embed(source="/com/clarityenglish/textLayout/conversion/defaults.css", mimeType="application/octet-stream")]
 		private var defaultCss:Class;
 
 		/**

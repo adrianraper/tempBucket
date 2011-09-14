@@ -23,6 +23,7 @@ package com.clarityenglish.textLayout.elements {
 		public static const POSITION_RELATIVE:String = "position_relative";
 		public static const POSITION_ABSOLUTE:String = "position_absolute";
 		
+		// TODO: Not yet implemented
 		public var position:String = POSITION_STATIC;
 		
 		public var float:String = FLOAT_NONE;
