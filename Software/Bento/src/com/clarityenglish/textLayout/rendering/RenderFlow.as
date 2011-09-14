@@ -4,6 +4,7 @@ package com.clarityenglish.textLayout.rendering {
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.compose.FlowDamageType;
@@ -178,9 +179,13 @@ package com.clarityenglish.textLayout.rendering {
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				if (childRenderFlow.inlineGraphicElementPlaceholder) {
 					if (childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent) {
-						// THIS IS THE PROBLEM WITH FIXED HEIGHTS!
-						childRenderFlow.x = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.x;
-						childRenderFlow.y = childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent.y;
+						// Convert the position of the placeholder to the coordinate space of the RenderFlow
+						var pos:Point = childRenderFlow.inlineGraphicElementPlaceholder.graphic.localToGlobal(new Point(0,0));
+						pos = globalToLocal(pos);
+						
+						// Apply the position to the child
+						childRenderFlow.x = pos.x;
+						childRenderFlow.y = pos.y;
 					}
 				}
 			}
