@@ -4,9 +4,9 @@ Simple Command - PureMVC
 package com.clarityenglish.common.controller {
 	import com.clarityenglish.dms.model.AccountProxy;
 	import com.clarityenglish.dms.view.account.events.AccountEvent;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-	import org.puremvc.as3.patterns.observer.Notification;
     
 	/**
 	 * SimpleCommand

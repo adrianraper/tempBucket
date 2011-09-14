@@ -1,0 +1,26 @@
+[Clarity Language Consultants LTD licence]
+Product=Road to IELTS
+Branding=BC/IELTS/Academic
+Product type=DEMO
+Licence file version=3.0
+Serial number=6677-4301-7712
+Institution name=SCORM evaluation account
+Installation date=2008-05-29
+Registration date=2008-05-29
+Database=SQLServer
+Scripting=PHP
+Student expiry=2049-12-31
+Student permission=0000000
+Student language=English
+Maximum student=100
+Licencing=Total
+Encryption=1
+Access control=0
+Login options=8
+Central root=11726
+Central key=
+Registration server=www.AuthorPlus.com/register/register.asp
+Verification server=www.clarity.com.hk/verify/verify.asp
+Exit page=
+Host server=
+CheckSum=b812beab205848ebacc29552f71ae051

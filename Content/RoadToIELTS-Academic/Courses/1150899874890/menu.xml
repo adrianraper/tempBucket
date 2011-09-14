@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item version="6.4" caption="Unit 2: Language and communication" id="0">
+	<item caption-position="bc" x="68" y="140" unit="1" caption="Words" 
+	alt="Word Power - words and phrases to talk about language and varieties of language." 
+	id="1156165919744" picture="Words" enabledFlag="3">
+		<item unit="1" id="1156165919420" caption="Introduction" fileName="1156165919420.xml" action="1156165919420" exerciseID="1156165919420" enabledFlag="3"/>
+		<item unit="1" id="1156165919638" caption="Definitions" fileName="1156165919638.xml" action="1156165919638" exerciseID="1156165919638" enabledFlag="3"/>
+		<item unit="1" id="1156165919515" caption="%27Language%20words%27%20practice%20%281%29" fileName="1156165919515.xml" action="1156165919515" exerciseID="1156165919515" enabledFlag="3"/>
+		<item unit="1" id="1156165919732" caption="%27Language%20words%27%20practice%20%282%29" fileName="1156165919732.xml" action="1156165919732" exerciseID="1156165919732" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="140" unit="2" caption="Listening" 
+	alt="Listening - a talk about ways to improve your English and a conversation about endangered languages." 
+	id="1156165919199" picture="Listening" enabledFlag="3">
+		<item unit="2" id="1156165919224" caption="Introduction" fileName="1156165919224.xml" action="1156165919224" exerciseID="1156165919224" enabledFlag="3"/>
+		<item unit="2" id="1156165919258" caption="Sentence%20completion" fileName="1156165919258.xml" action="1156165919258" exerciseID="1156165919258" enabledFlag="3"/>
+		<item unit="2" id="1156165919813" caption="Matching" fileName="1156165919813.xml" action="1156165919813" exerciseID="1156165919813" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="68" y="218" unit="3" caption="Reading" 
+	alt="Academic Reading - a book extract comparing animal communication with human language and a book extract describing the role that the brain plays in human language." 
+	id="1156165919917" picture="Reading" enabledFlag="3">	
+		<item unit="3" id="1156165919613" caption="Introduction" fileName="1156165919613.xml" action="1156165919613" exerciseID="1156165919613" enabledFlag="3"/>
+		<item unit="3" id="1156165919506" caption="Matching%20%28Information%20to%20paragraphs%29" fileName="1156165919506.xml" action="1156165919506" exerciseID="1156165919506" enabledFlag="3"/>
+		<item unit="3" id="1156165919884" caption="Sentence%20completion" fileName="1156165919884.xml" action="1156165919884" exerciseID="1156165919884" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="277" y="140" unit="4" caption="Writing 1" 
+	alt="Academic Writing - practice exercises for reports on dynamic charts." 
+	id="1156165919204" picture="Writing1" enabledFlag="3">
+		<item unit="4" id="1156165919770" caption="Introduction" fileName="1156165919770.xml" action="1156165919770" exerciseID="1156165919770" enabledFlag="3"/>
+		<item unit="4" id="1156165919489" caption="Practice%20activity%20A" fileName="1156165919489.xml" action="1156165919489" exerciseID="1156165919489" enabledFlag="3"/>
+		<item unit="4" id="1156165919886" caption="Understanding%20dynamic%20charts%20&%20graphs" fileName="1156165919886.xml" action="1156165919886" exerciseID="1156165919886" enabledFlag="3"/>
+		<item unit="4" id="1156165919969" caption="Useful%20expressions" fileName="1156165919969.xml" action="1156165919969" exerciseID="1156165919969" enabledFlag="3"/>
+		<item unit="4" id="1156165919086" caption="Useful%20sentence%20patterns" fileName="1156165919086.xml" action="1156165919086" exerciseID="1156165919086" enabledFlag="3"/>
+		<item unit="4" id="1156165919072" caption="Practice" fileName="1156165919072.xml" action="1156165919072" exerciseID="1156165919072" enabledFlag="3"/>
+		<item unit="4" id="1156165919789" caption="Dealing%20with%20numbers%20" fileName="1156165919789.xml" action="1156165919789" exerciseID="1156165919789" enabledFlag="3"/>
+		<item unit="4" id="1156169479443" caption="Practice%20activity%20B" fileName="1156169479443.xml" action="1156169479443" exerciseID="1156169479443" enabledFlag="3"/>
+		<item unit="4" id="1156165919713" caption="Sample%20answer" fileName="1156165919713.xml" action="1156165919713" exerciseID="1156165919713" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="277" y="218" unit="5" caption="Writing 2" 
+	alt="Academic Writing - practice exercises for compositions discussing arguments for and against." 
+	id="1156165919955" picture="Writing2" enabledFlag="3">
+		<item unit="5" id="1156165919322" caption="Introduction" fileName="1156165919322.xml" action="1156165919322" exerciseID="1156165919322" enabledFlag="3"/>
+		<item unit="5" id="1156165919900" caption="Brainstorming%20ideas" fileName="1156165919900.xml" action="1156165919900" exerciseID="1156165919900" enabledFlag="3"/>
+		<item unit="5" id="1156165919891" caption="Selecting%20ideas%20%281%29" fileName="1156165919891.xml" action="1156165919891" exerciseID="1156165919891" enabledFlag="3"/>
+		<item unit="5" id="1156165919930" caption="Selecting%20ideas%20%282%29" fileName="1156165919930.xml" action="1156165919930" exerciseID="1156165919930" enabledFlag="3"/>
+		<item unit="5" id="1156165919210" caption="Reporting%20verbs%20in%20the%20passive%20%281%29" fileName="1156165919210.xml" action="1156165919210" exerciseID="1156165919210" enabledFlag="3"/>
+		<item unit="5" id="1156165919863" caption="Reporting%20verbs%20in%20the%20passive%20%282%29" fileName="1156165919863.xml" action="1156165919863" exerciseID="1156165919863" enabledFlag="3"/>
+		<item unit="5" id="1156165919363" caption="Conditional%20in%20hypothetical%20discussion" fileName="1156165919363.xml" action="1156165919363" exerciseID="1156165919363" enabledFlag="3"/>
+		<item unit="5" id="1156165919675" caption="Ideas%20for%20a%20writing%20task%20" fileName="1156165919675.xml" action="1156165919675" exerciseID="1156165919675" enabledFlag="3"/>
+		<item unit="5" id="1156165919738" caption="Practice%20activity%20C" fileName="1156165919738.xml" action="1156165919738" exerciseID="1156165919738" enabledFlag="3"/>
+		<item unit="5" id="1156165919240" caption="Sample%20answer" fileName="1156165919240.xml" action="1156165919240" exerciseID="1156165919240" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="218" unit="6" caption="Speaking" 
+	alt="Speaking - video clips and practice exercises for talking about a topic in Part 2." 
+	id="1156165919057" picture="Speaking" enabledFlag="3">
+		<item unit="6" id="1156165919598" caption="Introduction" fileName="1156165919598.xml" action="1156165919598" exerciseID="1156165919598" enabledFlag="3"/>
+		<item unit="6" id="1156165919121" caption="Briefing" fileName="1156165919121.xml" action="1156165919121" exerciseID="1156165919121" enabledFlag="3"/>
+		<item unit="6" id="1156165919200" caption="Watch%20a%20video" fileName="1156165919200.xml" action="1156165919200" exerciseID="1156165919200" enabledFlag="3"/>
+		<item unit="6" id="1156165919710" caption="Strategies%20" fileName="1156165919710.xml" action="1156165919710" exerciseID="1156165919710" enabledFlag="3"/>
+		<item unit="6" id="1156165919872" caption="The%20right%20order" fileName="1156165919872.xml" action="1156165919872" exerciseID="1156165919872" enabledFlag="3"/>
+		<item unit="6" id="1156165919503" caption="Zenia's answers" fileName="1156165919503.xml" action="1156165919503" exerciseID="1156165919503" enabledFlag="3"/>
+		<item unit="6" id="1156165919700" caption="Preparing%20a%20topic" fileName="1156165919700.xml" action="1156165919700" exerciseID="1156165919700" enabledFlag="3"/>
+		<item unit="6" id="1156165919523" caption="Multiple%20choices" fileName="1156165919523.xml" action="1156165919523" exerciseID="1156165919523" enabledFlag="3"/>
+	</item>
+</item>

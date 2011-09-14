@@ -7,33 +7,35 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.common.events.SearchEvent;
-		import com.clarityenglish.common.model.interfaces.CopyProvider;
-		import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
-		import com.clarityenglish.dms.view.account.events.AccountEvent;
-		import com.clarityenglish.dms.view.account.ui.AccountCMManager;
-		import com.clarityenglish.dms.view.account.ui.SearchWindow;
-		import com.clarityenglish.dms.view.account.ui.ReportWindow;
-		import com.clarityenglish.dms.vo.account.Account;
-		import flash.events.ContextMenuEvent;
-		import flash.events.Event;
-		import mx.collections.ArrayCollection;
-		import mx.controls.Alert;
-		import mx.controls.CheckBox;
-		import mx.controls.dataGridClasses.DataGridColumn;
-		import com.clarityenglish.dms.model.AccountProxy;
-		import com.clarityenglish.dms.view.account.AccountMediator;
-		import mx.core.UIComponent;
-		import mx.events.CloseEvent;
-		import mx.events.CollectionEvent;
-		import mx.events.CollectionEventKind;
-		import mx.events.ListEvent;
-		import mx.managers.PopUpManager;
-		import mx.utils.ObjectUtil;
-		import org.davekeen.utils.ArrayUtils;
-		import com.clarityenglish.utils.TraceUtils;
+			import com.clarityenglish.common.events.SearchEvent;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+			import com.clarityenglish.dms.model.AccountProxy;
+			import com.clarityenglish.dms.view.account.AccountMediator;
+			import com.clarityenglish.dms.view.account.events.AccountEvent;
+			import com.clarityenglish.dms.view.account.ui.AccountCMManager;
+			import com.clarityenglish.dms.view.account.ui.ReportWindow;
+			import com.clarityenglish.dms.view.account.ui.SearchWindow;
+			import com.clarityenglish.dms.vo.account.Account;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.events.ContextMenuEvent;
+			import flash.events.Event;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.CheckBox;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.core.UIComponent;
+			import mx.events.CloseEvent;
+			import mx.events.CollectionEvent;
+			import mx.events.CollectionEventKind;
+			import mx.events.ListEvent;
+			import mx.managers.PopUpManager;
+			import mx.utils.ObjectUtil;
+			
+			import org.davekeen.utils.ArrayUtils;
 		//import nl.demonsters.debugger.MonsterDebugger;
-		import mx.collections.Sort;
 		
 		private var accountCMManager:AccountCMManager;
 		
@@ -55,7 +57,8 @@
 		public var reportTemplateDefinitions:Array;
 		
 		// Used to keep the sorting on the datagrid when changing the dataProvider
-		private var currentSort:Sort;
+		// DK: In order to maintain compatability with Flex 4 and Flex 3, this needs to remain untyped
+		private var currentSort:*;
 		
 		[Bindable]
 		private var showIndividualAccounts:Boolean;

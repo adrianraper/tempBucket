@@ -1,0 +1,121 @@
+/*
+ * This is the default stylesheet that all ExerciseRichText components use for their TextFlows.  It is apparently the default styles that
+ * would normally be applied by a browser.
+ */
+h1 {
+	font-size: 120%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h2 {
+	font-size: 110%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h3 {
+	font-size: 105%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h4 {
+	font-weight: bold;
+	color: #172f47;
+}
+
+h5 {
+	font-size: 90%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+h6 {
+	font-size: 80%;
+	font-weight: bold;
+	color: #172f47;
+}
+
+b {
+	font-weight: bold;
+}
+
+strong {
+	font-weight: bold;
+}
+
+i {
+	font-style: italic;
+}
+
+cite {
+	font-style: italic;
+}
+
+em {
+	font-style: italic;
+}
+
+var {
+	font-style: italic;
+}
+
+dfn {
+	font-style: italic;
+}
+
+code {
+	font-family: monospace;
+	color: #4444CC;
+}
+
+pre {
+	font-family: monospace;
+}
+
+ins {
+	text-decoration: underline;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+a {
+	text-decoration: underline;
+	color: #3A00FF;
+}
+
+/*
+VERTICAL ALIGN NOT SUPPORTED BY TEXT LAYOUT FRAMEWORK
+
+sup {
+	font-size: 8pt;
+	vertical-align: super;
+}
+
+sup a {
+	text-decoration: none;
+}
+
+sub {
+	font-size: 8pt;
+	vertical-align: sub;
+}*/
+
+dt {
+	font-weight: bold;
+}
+
+blockquote {
+	color: rgb(38, 86, 145);
+}
+
+tt {
+	font-family: monospace;	
+}
+
+q {
+	color: rgb(38, 86, 145);
+}

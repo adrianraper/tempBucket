@@ -616,7 +616,7 @@
 				<mx:Button label="Print/PDF" enabled="{titleList.selectedItem != null}" click="buildPDF()" />
 			</mx:HBox>
 			<mx:VBox width="100%" height="100%" id="displays" minWidth="0" minHeight="0"
-					verticalAlign="center" horizontalAlign="left" 
+					horizontalAlign="left" 
 					verticalScrollPolicy="on"
 					visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" >
 					<!-- paddingLeft="20" paddingTop="20": this works nicely for getting a printed margin, but looks bad on screen, how to do it dynamically? -->
