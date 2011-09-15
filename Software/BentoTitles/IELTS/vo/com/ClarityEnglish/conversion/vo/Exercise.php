@@ -21,7 +21,7 @@ class Exercise {
 	const EXERCISE_SECTION_SETTINGS = 'settings';
 	const EXERCISE_SECTION_TEMPLATE = 'template';
 	
-	function Exercise($xmlObj=null) {
+	function __construct($xmlObj=null) {
 		if ($xmlObj) {
 			// Use the exercise attributes
 			$attr = $xmlObj->attributes();

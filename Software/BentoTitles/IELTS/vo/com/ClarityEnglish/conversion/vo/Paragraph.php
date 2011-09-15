@@ -11,6 +11,8 @@ class Paragraph {
 	var $height;
 	// for reference
 	var $id;
+	// Note that this is part of a tag outside than <p>
+	var $tagType;
 
 	const characters_to_keep = '[\s\w<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
 	
@@ -22,7 +24,7 @@ class Paragraph {
 		$this->parent = $object;
 	}
 	
-	function Paragraph($xmlObj=null, $parent=null) {
+	function __construct($xmlObj=null, $parent=null) {
 		// Keep a reference back to the section we are part of
 		$this->setParent($parent);
 		
@@ -147,7 +149,45 @@ class Paragraph {
 	function setText($text){
 		$this->text = $text;
 	}
-	
+	// Add tags round the paragraph based on its type
+	function toString($lastTagType,$thisTagType){
+		// You might want to add tags to the html
+		//echo "last=$lastTagType, this=$thisTagType ||";
+		$builtHtml='';
+		// Is this the start of a list?
+		if ($thisTagType=='ol' && $lastTagType!='ol') {
+			$builtHtml .='<ol>';
+		} else if ($thisTagType=='ul' && $lastTagType!='ul') {
+			$builtHtml .='<ul>';
+		}
+		if ($thisTagType=='ol' || $thisTagType=='ul') {
+			// Let's assume you will drop any formatting from within the list item
+			//$builtHtml .= '<li>'.$this->text.'</li>';
+			$builtHtml .= '<li>'.$this->getPureText().'</li>';
+		} else {
+			$builtHtml .= $this->text;
+		}
+		// Is this the end of a list?
+		if ($lastTagType=='ol' && $thisTagType!='ol') {
+			$builtHtml = '</ol>'.$builtHtml;
+		} else if ($lastTagType=='ul' && $thisTagType!='ul') {
+			$builtHtml = '</ul>'.$builtHtml;
+		}
+		return $builtHtml;
+	}
+	function setTagType($tag) {
+		if ($tag=='ol' || $tag=='ul') {
+			$this->tagType = $tag;
+		} else {
+			$this->tagType = '';
+		}
+	}
+	function getTagType() {
+		return $this->tagType;
+	}
+	function isOrderedList(){
+		return ($this->tagType=='ol');
+	}
 	// This function adds some html text into this paragraph 
 	function mergeText($htmlString) {
 		//$this->text.=$htmlString;

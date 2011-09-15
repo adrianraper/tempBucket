@@ -2,8 +2,8 @@
 
 class Rubric extends Content {
 	
-	function __construct() {
-		parent::__construct();
+	function __construct($xmlObj) {
+		parent::__construct($xmlObj);
 	}
    
 	function getClass() {
