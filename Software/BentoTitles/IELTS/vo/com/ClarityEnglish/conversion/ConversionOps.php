@@ -60,8 +60,8 @@ EOD;
 		
 		$build =<<< EOD
 		<head>
-			<link rel="stylesheet" href="exercises/css/exercises.css" type="text/css" />
-			<link rel="stylesheet" href="exercises/css/$exerciseType.css" type="text/css" />
+			<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+			<link rel="stylesheet" href="css/$exerciseType.css" type="text/css" />
 			<style type="text/css">
 			<![CDATA[			
 				list {
@@ -96,11 +96,13 @@ EOD;
 	function formatFullHtml($head, $rubric, $sections) {
 		$build =<<< EOD
 			<!DOCTYPE html>
+			<html xmlns="http://www.w3.org/1999/xhtml">
 			$head
 			<body>
 				$rubric
 				$sections
 			</body>
+			</html>
 EOD;
 		return $build;
 	}
