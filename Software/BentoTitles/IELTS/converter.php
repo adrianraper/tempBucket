@@ -3,8 +3,8 @@
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Settings.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Exercise.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Presentation.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Rubric.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Content.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Rubric.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Body.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/NoScroll.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Paragraph.php");
@@ -24,9 +24,10 @@ $courseFolder = '/1150976390861';
 $exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses'.$courseFolder.'/Exercises/';
 $exerciseURL = $contentFolder.$titleFolder.'/Courses'.$courseFolder.'/Exercises/';
 $exerciseID = '1156153794194';
+$exerciseID = '1156153794055';
 $infile = $exerciseFolder.$exerciseID.'.xml';
-$outfile = $exerciseFolder.$exerciseID.'.html';
-$outURL = $exerciseURL.$exerciseID.'.html';
+$outfile = $exerciseFolder.$exerciseID.'.xhtml';
+$outURL = $exerciseURL.$exerciseID.'.xhtml';
 
 // Load the contents into an XML structure
 $xml = simplexml_load_file($infile);

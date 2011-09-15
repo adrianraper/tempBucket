@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
   <includeClasses>
     <classEntry path="com.clarityenglish.bento.BBNotifications"/>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
     <classEntry path="com.clarityenglish.bento.BentoFacade"/>
-    <classEntry path="com.clarityenglish.bento.css.ExerciseCSSContext"/>
-    <classEntry path="com.clarityenglish.bento.css.properties.TabManager"/>
-    <classEntry path="com.clarityenglish.bento.css.views.StyledXMLView"/>
     <classEntry path="com.clarityenglish.bento.view.BentoMediator"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.IExerciseSection"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.ExerciseView"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.events.SectionEvent"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ui.SectionRichText"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.AbstractSectionBehaviour"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.ISectionBehaviour"/>
-    <classEntry path="com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour"/>
     <classEntry path="com.clarityenglish.bento.vo.content.Exercise"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Answer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Model"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Question"/>
     <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
+    <classEntry path="com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour"/>
+    <classEntry path="com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour"/>
+    <classEntry path="com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour"/>
     <classEntry path="com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.XHTMLBlockImporter"/>
+    <classEntry path="com.clarityenglish.textLayout.conversion.XHTMLImporter"/>
+    <classEntry path="com.clarityenglish.textLayout.css.XHTMLCSS"/>
+    <classEntry path="com.clarityenglish.textLayout.css.XHTMLCSSContext"/>
+    <classEntry path="com.clarityenglish.textLayout.css.properties.TabManager"/>
+    <classEntry path="com.clarityenglish.textLayout.css.views.StyledXMLView"/>
     <classEntry path="com.clarityenglish.textLayout.elements.FloatableTextFlow"/>
     <classEntry path="com.clarityenglish.textLayout.elements.IComponentElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.ImageComponentElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.InputElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.OrderedListElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.SelectElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.TextComponentElement"/>
+    <classEntry path="com.clarityenglish.textLayout.elements.UnorderedListElement"/>
     <classEntry path="com.clarityenglish.textLayout.elements.VideoElement"/>
     <classEntry path="com.clarityenglish.textLayout.events.XHTMLEvent"/>
+    <classEntry path="com.clarityenglish.textLayout.rendering.RenderFlow"/>
     <classEntry path="com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver"/>
     <classEntry path="com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator"/>
     <classEntry path="com.clarityenglish.textLayout.util.TLF2Application"/>
@@ -76,10 +84,6 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Group"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
-    <classEntry path="com.clarityenglish.textLayout.elements.OrderedListElement"/>
-    <classEntry path="com.clarityenglish.textLayout.elements.UnorderedListElement"/>
-    <classEntry path="com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour"/>
-    <classEntry path="com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

@@ -12,7 +12,7 @@ class Paragraph {
 	// for reference
 	var $id;
 
-	const characters_to_keep = '[\s\w\d<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
+	const characters_to_keep = '[\s\w<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
 	
 	protected $parent;
 	function getParent() {
@@ -61,9 +61,6 @@ class Paragraph {
 		//echo "section=".$section->getClass()."\n";
 		// General pattern use
 		//$charactersToKeep = '[\s\w\d<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
-		// Whatever happens there are some characters I want to replace
-		// non-breaking space special characters
-		$fullParagraphHtml = preg_replace('/\xc2\xa0/', '&#160;', $fullParagraphHtml);
 		
 		if ($section->getClass()==Exercise::EXERCISE_SECTION_RUBRIC) {
 			// This is what a standard rubric paragraph looks like
@@ -84,9 +81,15 @@ class Paragraph {
 			$replacement = '\1';
 			$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
 			// In terms of conversion - it is a question of what I want to keep 
-			// FONT - I don't care about any changes in face or size. I want to keep color changes. Ignore everything else.
+			// FONT - I don't care about any changes in face or size (because there are hardly any and they are bound to change). 
+			// I want to keep color changes. Ignore everything else.
 			$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>('.Paragraph::characters_to_keep.'+)<\/FONT>/is';
 			$replacement = '<font color="\1">\2</font>';
+			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
+			
+			// FONT. If the only thing is color=black then I would like to drop the whole font tag.
+			$pattern = '/<font color="#000000">('.Paragraph::characters_to_keep.'+)<\/font>/is';
+			$replacement = '\1';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 			
 			// For good xhtml keep all tags lowercase. It may be quicker to just do a strreplace for these!
@@ -111,7 +114,9 @@ class Paragraph {
 		return $builtHtml;
 	}
 	// For an html string, get rid of as many outside tags as are likely
-	function getPureText($htmlString) {
+	function getPureText($htmlString=null) {
+		if (!$htmlString)
+			$htmlString = $this->getText();
 		// get rid of b
 		// <B> Author Plus mistakenly puts <B> outside textformat - so drop that along with the textformat
 		$pattern = '/<B>('.Paragraph::characters_to_keep.'+)<\/B>/is';
@@ -143,13 +148,17 @@ class Paragraph {
 		$this->text = $text;
 	}
 	
-	// This function adds some html text to this paragraph 
+	// This function adds some html text into this paragraph 
 	function mergeText($htmlString) {
 		//$this->text.=$htmlString;
 		//$charactersToKeep = '[\s\w\d<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
 		$pattern = '/(<p [^>]+>)('.Paragraph::characters_to_keep.'+)(<\/p>)/is';
 		$replacement = '\1\2'.$htmlString.'\3';
 		$this->setText(preg_replace($pattern, $replacement, $this->getText()));
+	}
+	// This function simply adds to the end of the text 
+	function appendText($htmlString) {
+		$this->setText($this->getText().$htmlString);
 	}
 	function getID(){
 		return $this->id;
