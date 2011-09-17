@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.rendering {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.display.DisplayObject;
@@ -29,6 +30,8 @@ package com.clarityenglish.textLayout.rendering {
 	
 	use namespace mx_internal;
 	
+	[Event(name="updateComplete", type="flashx.textLayout.events.UpdateCompleteEvent")]
+	[Event(name="textFlowCleared", type="com.clarityenglish.textLayout.events.RenderFlowEvent")]
 	public class RenderFlow extends SpriteVisualElement {
 		
 		/**
@@ -123,7 +126,6 @@ package com.clarityenglish.textLayout.rendering {
 			}
 			
 			if (_textFlow) {
-				//trace(height);
 				// Set the size of the text flow container
 				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, height);
 				
@@ -233,6 +235,8 @@ package com.clarityenglish.textLayout.rendering {
 			if (_textFlow) {
 				_textFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
 				_textFlow.removeEventListener(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, onInlineGraphicStatusChange);
+				
+				dispatchEvent(new RenderFlowEvent(RenderFlowEvent.TEXT_FLOW_CLEARED, true, false, _textFlow));
 				
 				_textFlow.flowComposer.removeAllControllers();
 				_textFlow.formatResolver = null;

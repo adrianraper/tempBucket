@@ -28,9 +28,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void { }
 		
-		/*public function onTextFlowClear(textFlow:TextFlow):void { }
-		
-		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
+		/*public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
 		
 		public function onCreateChildren():void { }
 		
@@ -74,6 +72,8 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 				}
 			}
 		}
+		
+		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
 	}
 }

@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.components {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.XHTMLImporter;
+	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -134,10 +135,11 @@ package com.clarityenglish.textLayout.components {
 			if ((_xhtmlChanged || _selectorChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
 				// If there was a previously existing RenderFlow clean it up
 				if (renderFlow) {
-					renderFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
-					
 					if (renderFlow.parent)
 						removeElement(renderFlow);
+					
+					renderFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+					renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
 				}
 				
 				// Import the XHTML into the initial RenderFlow
@@ -149,6 +151,7 @@ package com.clarityenglish.textLayout.components {
 					
 					// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
 					renderFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+					renderFlow.addEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
 					
 					// The main RenderFlow should always fill the viewport horizontally
 					renderFlow.percentWidth = 100;
@@ -179,6 +182,11 @@ package com.clarityenglish.textLayout.components {
 		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
 			// Apply to registered behaviours
 			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onTextFlowUpdate(event.textFlow); } );
+		}
+		
+		protected function onTextFlowCleared(event:RenderFlowEvent):void {
+			// Apply to registered behaviours
+			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onTextFlowClear(event.textFlow); } );
 		}
 		
 	}

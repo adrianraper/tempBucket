@@ -48,9 +48,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void { }
 		
-		/*public function onTextFlowClear(textFlow:TextFlow):void { }
-		
-		public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
+		/*public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 			for each (var draggableNode:XML in xhtml.xml..*.(hasOwnProperty("@draggable") && @draggable == "true")) {
@@ -102,6 +100,8 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 				}
 			}
 		}
+		
+		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
 	}
 }

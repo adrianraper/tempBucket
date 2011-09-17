@@ -12,6 +12,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 		
 		function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void;
 		
+		function onTextFlowClear(textFlow:TextFlow):void;
+		
 	}
 	
 }

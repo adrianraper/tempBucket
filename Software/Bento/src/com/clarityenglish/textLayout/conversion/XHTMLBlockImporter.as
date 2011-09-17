@@ -503,6 +503,7 @@ package com.clarityenglish.textLayout.conversion {
 			// TODO: TAKEN OUT FOR NOW
 			// Get the longest possible answer and make that the underlying text of the input
 			//inputElement.text = getLongestAnswerValue(_exercise.model.getPossibleAnswersForNode(xmlToParse));
+			inputElement.text = "This is the text underneath";
 			
 			addToFlowElementXmlMap(xmlToParse, inputElement);
 			

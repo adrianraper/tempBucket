@@ -35,8 +35,6 @@ package com.clarityenglish.textLayout.components.behaviours {
 		}
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
-			trace(TLFUtil.dumpTextFlow(textFlow));
-			
 			for each (var componentElement:IComponentElement in getComponentElements(textFlow)) {
 				// If the component hasn't yet been created then create a new one
 				if (!componentElement.hasComponent()) {
@@ -62,14 +60,14 @@ package com.clarityenglish.textLayout.components.behaviours {
 				}
 			}
 		}
-
-		public function onTextFlowClear(textFlow:TextFlow):void {
-			for each (var componentElement:IComponentElement in getComponentElements(textFlow))
-				if (componentElement.hasComponent())
-					componentElement.removeComponent();
-		}
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { }
+		
+		public function onTextFlowClear(textFlow:TextFlow):void {
+			for each (var componentElement:IComponentElement in getComponentElements(textFlow))
+			if (componentElement.hasComponent())
+				componentElement.removeComponent();
+		}
 		
 	}
 }
