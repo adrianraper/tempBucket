@@ -6,16 +6,11 @@
     <classEntry path="com.clarityenglish.bento.BentoFacade"/>
     <classEntry path="com.clarityenglish.bento.view.BentoMediator"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.IExerciseSection"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.ExerciseView"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.events.SectionEvent"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ui.SectionRichText"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.AbstractSectionBehaviour"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.DictionaryBehaviour"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ui.behaviours.ISectionBehaviour"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.Exercise"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DictionaryBehaviour"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Answer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Model"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Question"/>

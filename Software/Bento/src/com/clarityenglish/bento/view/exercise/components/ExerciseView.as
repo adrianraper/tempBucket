@@ -1,9 +1,5 @@
 package com.clarityenglish.bento.view.exercise.components {
-	import com.clarityenglish.bento.view.exercise.IExerciseSection;
-	import com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour;
-	import com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour;
 	import com.clarityenglish.bento.view.exercise.events.SectionEvent;
-	import com.clarityenglish.bento.view.exercise.ui.SectionRichText;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	
@@ -63,18 +59,10 @@ package com.clarityenglish.bento.view.exercise.components {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName,instance);
-			
-			// TODO: IExerciseSection is probably going to go
-			if (instance is IExerciseSection)
-				(instance as IExerciseSection).addEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
 		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName,instance);
-			
-			// TODO: IExerciseSection is probably going to go
-			if (instance is IExerciseSection)
-				(instance as IExerciseSection).removeEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
 		}
 		
 		protected override function commitProperties():void {
@@ -98,6 +86,7 @@ package com.clarityenglish.bento.view.exercise.components {
 		}
 		
 		private function onQuestionAnswered(e:SectionEvent):void {
+			// TODO: Nothing calls this at present
 			trace("Question: " + e.question + " answered with " + e.answer + " -- score delta=" + + e.answer.score);
 		}
 		
