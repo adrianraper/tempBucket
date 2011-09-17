@@ -58,11 +58,11 @@ package com.clarityenglish.bento.view.exercise.components {
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName,instance);
+			super.partAdded(partName, instance);
 		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
-			super.partRemoved(partName,instance);
+			super.partRemoved(partName, instance);
 		}
 		
 		protected override function commitProperties():void {
