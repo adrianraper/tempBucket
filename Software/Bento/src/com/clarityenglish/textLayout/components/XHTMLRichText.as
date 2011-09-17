@@ -148,7 +148,7 @@ package com.clarityenglish.textLayout.components {
 				if (node) {
 					// Parse the XHTML into a RenderFlow
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
-					
+					trace(renderFlow);
 					// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
 					renderFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
 					renderFlow.addEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);

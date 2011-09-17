@@ -4,10 +4,13 @@ package com.clarityenglish.textLayout.elements {
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.elements.SpanElement;
+	import flashx.textLayout.tlf_internal;
 	
 	import mx.core.UIComponent;
 	
 	import spark.components.Group;
+	
+	use namespace tlf_internal;
 	
 	public class TextComponentElement extends SpanElement {
 		
@@ -36,6 +39,37 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function getElementBounds():Rectangle {
 			return TLFUtil.getFlowLeafElementBounds(this);
+		}
+		
+		/**
+		 * Override this method with a blank implementation so that TLF normalize() doesn't fiddle with our custom components.  Specifically this
+		 * stops custom text components getting merged together if they have the same styles.
+		 * 
+		 * @param normalizeStart
+		 * @param normalizeEnd
+		 */
+		tlf_internal override function normalizeRange(normalizeStart:uint, normalizeEnd:uint):void {
+			
+		}
+		
+		/**
+		 * Override this method with a blank implementation so that TLF normalize() doesn't fiddle with our custom components.  Specifically this
+		 * stops custom text components getting merged together if they have the same styles.
+		 * 
+		 * @return 
+		 */
+		tlf_internal override function mergeToPreviousIfPossible():Boolean {
+			return false;
+		}
+		
+		/**
+		 * Override this method with a blank implementation so that TLF normalize() doesn't fiddle with our custom components.  Specifically this
+		 * stops tags with no text content from being removed.
+		 * 
+		 * @return 
+		 */
+		tlf_internal override function get bindableElement():Boolean {
+			return true;
 		}
 		
 	}
