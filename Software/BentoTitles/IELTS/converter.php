@@ -15,7 +15,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.
 //header ('Content-Type: text/plain');
 
 // This script will read an XML file (or all files in a folder later on)
-// and create an html file that is a conversion to new Baker and Bento format.
+// and create an xhtml file that is a conversion to new Baker and Bento format.
 
 // Get the file
 $contentFolder = '/../../../Content';
@@ -23,34 +23,51 @@ $titleFolder = '/RoadToIELTS-Academic';
 $courseFolder = '/1150976390861';
 $exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses'.$courseFolder.'/Exercises/';
 $exerciseURL = $contentFolder.$titleFolder.'/Courses'.$courseFolder.'/Exercises/';
-$exerciseID = '1156153794194';
-$exerciseID = '1156153794055';
-$infile = $exerciseFolder.$exerciseID.'.xml';
-$outfile = $exerciseFolder.$exerciseID.'.xhtml';
-$outURL = $exerciseURL.$exerciseID.'.xhtml';
 
-// Load the contents into an XML structure
-$xml = simplexml_load_file($infile);
-
-// Confirm that this is an Author Plus file - and see what type
-if ($xml->getName()=='exercise') {
-	$attr = $xml->attributes();
-	$type = $attr['type'];
-	//echo 'type='.$attr['type']. "<br />";	
+// Read all the files in a folder
+if ($handle = opendir($exerciseFolder)) {
+	
+	while (false !== ($file = readdir($handle))) {
+		$exerciseID = stristr($file,'.xml');
+		echo "$exerciseID\n";
+	}
 }
-// Create an internal exercise to hold the data. 
-// Will we need different classes for different types?
-if ($type=='Presentation') {
-	$exercise = new Presentation($xml);
-	//echo $exercise->getRubric();
+exit();
+/*
+		$exerciseID = stristr($file,'.xml',true);
+		//$exerciseID = '1156153794194';
+		//$exerciseID = '1156153794055';
+		if ($exerciseID) {
+			echo "checking on $exerciseID <br/>";
+			$infile = $exerciseFolder.$exerciseID.'.xml';
+			$outfile = $exerciseFolder.$exerciseID.'.xhtml';
+			$outURL = $exerciseURL.$exerciseID.'.xhtml';
+			
+			// Load the contents into an XML structure
+			$xml = simplexml_load_file($infile);
+			
+			// Confirm that this is an Author Plus file - and see what type
+			if ($xml->getName()=='exercise') {
+				$attr = $xml->attributes();
+				$type = $attr['type'];
+				//echo 'type='.$attr['type']. "<br />";	
+			}
+			// Create an internal exercise to hold the data. 
+			// Will we need different classes for different types?
+			if ($type=='Presentation') {
+				$exercise = new Presentation($xml);
+				//echo $exercise->getRubric();
+			}
+			// Then create an output function
+			if ($type=='Presentation') {
+				$converter = New ConversionOps($exercise);
+				$converter->setOutputFile($outfile);
+				$rc = $converter->createOutput();
+			}
+		}
+	}
 }
-// Then create an output function
-if ($type=='Presentation') {
-	$converter = New ConversionOps($exercise);
-	$converter->setOutputFile($outfile);
-	$rc = $converter->createOutput();
-}
-// It might help to display the output file in the browser
+// It might help to display the output file in the browser (or the last of many)
 //echo $outURL;
 // This is fine, except that it means I lose my URL in the bar so replaying it is not so easy
 //header('Location: '.$outURL);
@@ -64,5 +81,5 @@ window.open('$outURL');
 <body />
 EOD;
 exit();
-
+*/
 ?>

@@ -8,13 +8,14 @@
 			   xmlns:components="com.clarityenglish.textLayout.components.*"
 			   xmlns:exercise="com.clarityenglish.bento.view.exercise.components.*"
 			   xmlns:debugger="com.demonsters.debugger.*"
+			   xmlns:sparkTree="com.sparkTree.*" 
 			   creationComplete="creationComplete()">
 	<fx:Metadata>
-		[SWF(width=800, height=400)]
+		[SWF(width=900, height=500)]
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		
+		<fx:XML id="nodes" source="exercises/menu.xml" />
 	</fx:Declarations>
 	
 	<fx:Style source="bento.css" />
@@ -22,7 +23,10 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.vo.content.Exercise;
+			import com.clarityenglish.common.model.ConfigProxy;
 			
+			import mx.collections.IList;
+			import mx.collections.XMLListCollection;
 			import mx.logging.Log;
 			import mx.logging.LogEventLevel;
 			import mx.logging.targets.TraceTarget;
@@ -30,6 +34,11 @@
 			import spark.events.IndexChangeEvent;
 			
 			private var urlLoader:URLLoader;
+			[Bindable]private var dataProvider:IList;
+
+			private var contentPath:String = "";
+			//private contentPath = new URLRequest("exercises/menu.xml");
+			private var configProxy:ConfigProxy = new ConfigProxy();
 			
 			private function creationComplete():void {
 				// Configure logging
@@ -43,6 +52,9 @@
 				Log.addTarget(logTarget);
 				
 				buttonBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				//menuTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				
+				setDataProvider(); 
 			}
 			
 			protected function onButtonBarChange(event:IndexChangeEvent):void {
@@ -53,6 +65,25 @@
 				urlLoader.addEventListener(Event.COMPLETE, onExerciseLoadComplete);
 				urlLoader.load(new URLRequest("exercises/" + selectedExercise + ".xhtml"));
 			}
+			// If you are reading from the tree
+			protected function onSelectItemChange(event:IndexChangeEvent):void {
+				var contentPath:String = configProxy.getContentPath();
+				if (event.target.selectedItem) {
+					var selectedExercise:String = event.target.selectedItem.@id;
+					// Load the configuration file
+					urlLoader = new URLLoader();
+					urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+					urlLoader.addEventListener(Event.COMPLETE, onExerciseLoadComplete);
+					try {
+						trace("open file:" + contentPath + "Exercises/" + selectedExercise + ".xhtml");
+						urlLoader.load(new URLRequest(contentPath + "Exercises/" + selectedExercise + ".xhtml"));
+					}
+					catch (error:SecurityError)
+					{
+						trace("A SecurityError has occurred.");
+					}
+				}
+			}
 			
 			protected function onExerciseLoadComplete(event:Event):void {
 				var exercise:Exercise = new Exercise();
@@ -61,40 +92,67 @@
 				
 				exerciseView.exercise = exercise;
 			}
+			private function errorHandler(e:IOErrorEvent):void {
+				trace("Had problem loading the XML File.");
+			}
+			private function setDataProvider():void {
+				/*
+				var xml:XML = <root>
+	                <title label="Road to IELTS" data="1">
+	                    <course label="Leisure and entertainment" data="2">
+	                        <unit label="Listening" data="3">
+								<exercise label="Exercise 1" data="4" />
+							</unit>
+	                    </course>
+	                </title>
+			    </root>;
+				*/
+				var collection:XMLListCollection = new XMLListCollection(nodes.children());
+				this.dataProvider = collection;
+			}
+			public function treeLabeller(item:Object):String {
+				return unescape(item.@caption);
+			}
 			
 		]]>
 	</fx:Script>
 	
 	<util:layout>
-		<s:VerticalLayout />
+		<s:HorizontalLayout />
 	</util:layout>
+
+	<s:VGroup width="300">
+		<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="4" change="onButtonBarChange(event)">
+			<mx:ArrayCollection>
+				<fx:String>Grid1</fx:String>
+				<fx:String>Grid2</fx:String>
+				<fx:String>Grid3</fx:String>
+				<fx:String>SpaceBug</fx:String>
+				<fx:String>GapFill1</fx:String>
+				<fx:String>GapFill2</fx:String>
+				<fx:String>TrueFalse1</fx:String>
+				<fx:String>TrueFalse2</fx:String>
+				<fx:String>TrueFalse3</fx:String>
+				<fx:String>DropDown1</fx:String>
+				<fx:String>DragAndDrop1</fx:String>
+				<fx:String>DragAndDrop2</fx:String>
+				<fx:String>DragAndDrop3</fx:String>
+				<fx:String>TargetSpotting1</fx:String>
+				<fx:String>R2I1</fx:String>
+				<fx:String>R2I2</fx:String>
+				<fx:String>TestTrueFalse3</fx:String>
+				<fx:String>PercentWidth</fx:String>
+				<fx:String>FixedHeight</fx:String>
+				<fx:String>xhtmlfail</fx:String>
+			</mx:ArrayCollection>
+		</s:DropDownList>
+		<sparkTree:Tree id="menuTree" labelFunction="treeLabeller"
+						width="100%" height="450" dataProvider="{dataProvider}"
+						change="onSelectItemChange(event)" >
+		</sparkTree:Tree>
+	</s:VGroup>
 	
-	<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="16" change="onButtonBarChange(event)">
-		<mx:ArrayCollection>
-			<fx:String>Grid1</fx:String>
-			<fx:String>Grid2</fx:String>
-			<fx:String>Grid3</fx:String>
-			<fx:String>SpaceBug</fx:String>
-			<fx:String>GapFill1</fx:String>
-			<fx:String>GapFill2</fx:String>
-			<fx:String>TrueFalse1</fx:String>
-			<fx:String>TrueFalse2</fx:String>
-			<fx:String>TrueFalse3</fx:String>
-			<fx:String>DropDown1</fx:String>
-			<fx:String>DragAndDrop1</fx:String>
-			<fx:String>DragAndDrop2</fx:String>
-			<fx:String>DragAndDrop3</fx:String>
-			<fx:String>TargetSpotting1</fx:String>
-			<fx:String>R2I1</fx:String>
-			<fx:String>R2I2</fx:String>
-			<fx:String>TestTrueFalse3</fx:String>
-			<fx:String>PercentWidth</fx:String>
-			<fx:String>FixedHeight</fx:String>
-			<fx:String>xhtmlfail</fx:String>
-		</mx:ArrayCollection>
-	</s:DropDownList>
-	
-	<exercise:ExerciseView id="exerciseView" width="100%" height="100%" />
+	<exercise:ExerciseView id="exerciseView" width="80%" height="100%" />
 	
 	<debugger:MonsterDebuggerFlex id="monsterDebugger"/>
 	
