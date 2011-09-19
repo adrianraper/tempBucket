@@ -57,11 +57,11 @@ EOD;
 		$settings = strtolower($this->exercise->getSettings());
 		
 		// Model (questions and answers)
-		
+		$now =date('Y-m-d');
 		$build =<<< EOD
 		<head>
+			<meta name="conversion" type="$exerciseType" date="$now" />
 			<link rel="stylesheet" href="css/exercises.css" type="text/css" />
-			<link rel="stylesheet" href="css/$exerciseType.css" type="text/css" />
 			<style type="text/css">
 			<![CDATA[			
 				list {

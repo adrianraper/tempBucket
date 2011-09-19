@@ -28,20 +28,13 @@ $exerciseURL = $contentFolder.$titleFolder.'/Courses'.$courseFolder.'/Exercises/
 if ($handle = opendir($exerciseFolder)) {
 	
 	while (false !== ($file = readdir($handle))) {
-		$exerciseID = stristr($file,'.xml');
-		echo "$exerciseID\n";
-	}
-}
-exit();
-/*
-		$exerciseID = stristr($file,'.xml',true);
 		//$exerciseID = '1156153794194';
 		//$exerciseID = '1156153794055';
+		$exerciseID = substr($file,0,strpos($file,'.xml'));
 		if ($exerciseID) {
 			echo "checking on $exerciseID <br/>";
 			$infile = $exerciseFolder.$exerciseID.'.xml';
 			$outfile = $exerciseFolder.$exerciseID.'.xhtml';
-			$outURL = $exerciseURL.$exerciseID.'.xhtml';
 			
 			// Load the contents into an XML structure
 			$xml = simplexml_load_file($infile);
@@ -63,6 +56,8 @@ exit();
 				$converter = New ConversionOps($exercise);
 				$converter->setOutputFile($outfile);
 				$rc = $converter->createOutput();
+				$outURL = $exerciseURL.$exerciseID.'.xhtml';
+				echo " and writing out $outfile <br/>";
 			}
 		}
 	}
@@ -81,5 +76,4 @@ window.open('$outURL');
 <body />
 EOD;
 exit();
-*/
 ?>
