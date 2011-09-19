@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="TargetSpotting" name="Target%20spotting%20with%20video%201" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="true" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Zafir mentions 7 aspects of his home town. Listen to him and click on the things he talks about.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>What does Zafir mention?</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[1]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[3]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[5]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[7]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[8]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[9]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[10]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[11]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="true">A.  markets</answer>
+		</field>
+		<field id="2" group="2" type="i:target" mode="0">
+			<answer correct="false">B.  culture</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="true">C.  age</answer>
+		</field>
+		<field id="4" group="4" type="i:target" mode="0">
+			<answer correct="true">D.  population</answer>
+		</field>
+		<field id="5" group="5" type="i:target" mode="0">
+			<answer correct="true">E.  size</answer>
+		</field>
+		<field id="6" group="6" type="i:target" mode="0">
+			<answer correct="true">F.  location</answer>
+		</field>
+		<field id="7" group="7" type="i:target" mode="0">
+			<answer correct="true">G.  castles or palaces</answer>
+		</field>
+		<field id="8" group="8" type="i:target" mode="0">
+			<answer correct="false">H.  friendly people</answer>
+		</field>
+		<field id="9" group="9" type="i:target" mode="0">
+			<answer correct="false">I.  parks and gardens</answer>
+		</field>
+		<field id="10" group="10" type="i:target" mode="0">
+			<answer correct="true">J.  industries</answer>
+		</field>
+		<field id="11" group="11" type="i:target" mode="0">
+			<answer correct="false">K.  interesting sites</answer>
+		</field>
+		<media filename="Unit01_e6a.flv" y="18" x="370" stretch="false" duration="60" mode="1" id="1003" type="m:video"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

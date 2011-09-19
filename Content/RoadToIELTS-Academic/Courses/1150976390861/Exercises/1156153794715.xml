@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragAndDrop" name="Drag%20and%20Drop" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">Fill the gaps by dragging down the appropriate words.</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="20,110,190,330,420,560" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[8]</FONT>
+		<tab><FONT COLOR="#0000FF">[11]</FONT>
+		<tab><FONT COLOR="#0000FF">[9]</FONT>
+		<tab><FONT COLOR="#0000FF">[10]</FONT>
+		<tab><FONT COLOR="#0000FF">[12]</FONT>
+		<tab><FONT COLOR="#0000FF">[7]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="7" group="1" type="i:drag" mode="0">
+			<answer correct="false">11 to 14</answer>
+		</field>
+		<field id="8" group="1" type="i:drag" mode="0">
+			<answer correct="false">3 parts</answer>
+		</field>
+		<field id="9" group="1" type="i:drag" mode="0">
+			<answer correct="false">communicate</answer>
+		</field>
+		<field id="10" group="1" type="i:drag" mode="0">
+			<answer correct="false">1 to 2</answer>
+		</field>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">Part 1</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">Parts 2 and 3</answer>
+		</field>
+	</noscroll>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The test is <FONT COLOR="#0000FF">[1]</FONT> minutes long.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="480" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There are <FONT COLOR="#0000FF">[2]</FONT> to the test.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The test assesses your ability to <FONT COLOR="#0000FF">[3]</FONT> in English.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">You talk on a particular topic for <FONT COLOR="#0000FF">[4]</FONT> minutes.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In <FONT COLOR="#0000FF">[5]</FONT> you answer general questions about yourself and your life.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[6]<FONT COLOR="#000000"> are linked by a common theme.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:drop" group="1" id="1">
+			<answer correct="true">11 to 14</answer>
+		</field>
+		<field mode="0" type="i:drop" group="2" id="2">
+			<answer correct="true">3 parts</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">communicate</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">1 to 2</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">Part 1</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">Parts 2 and 3</answer>
+		</field>
+		<media filename="LE_SP_002.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

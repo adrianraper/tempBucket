@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="TargetSpotting" name="Present%20Simple" id="0">
+	<settings>
+		<marking instant="true"/>
+		<feedback wrongOnly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise hiddenTargets="true"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="580" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">Read the report describing the information shown in the bar chart from the previous exercise again and click on all the verbs in the present simple. There are 18 examples. To see the IELTS Writing Task, click on the icon on the right.</FONT></P></TEXTFORMAT></B>]]></paragraph>
+		<media filename="LE_Task01.jpg" y="+4" x="608" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Writing Task 1</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The bar chart [1] the amount of time that 16 to 24-year-olds in England [2] per week on sport and exercise. It [3] clear from the chart that young women [4] less active in their leisure time than young men.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There [5] a striking difference between the percentages of men and women who [6] not to participate in sport in their free time. Almost half of young women [7] no time at all to active leisure pursuits while this [8] to only about a quarter of young men. There [9] a similar difference between the percentages of very active young people. Almost 1 in 5 men between the ages of 16 and 24 [10] sport for 7 or more hours a week. The figure for young women [11] only 5 per cent.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A closer examination of the figures for young people who actually [12] sport [13] that the greatest proportion [14] between 1 and 3 hours per week to these pastimes. This [15] true for just over a fifth of both men and women.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The fact that only two-fifths of young women [16] an hour or more a week on sport, compared to approximately two-thirds of young men, [17] questions about how fit young women [18] in comparison to young men.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="true">shows</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="2">
+			<answer correct="true">spend</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="3">
+			<answer correct="true">is</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="4">
+			<answer correct="true">are</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="5">
+			<answer correct="true">is</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="6">
+			<answer correct="true">prefer</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="7">
+			<answer correct="true">devote</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="8">
+			<answer correct="true">applies</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="9">
+			<answer correct="true">is</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="10">
+			<answer correct="true">play</answer>
+		</field>
+		<field mode="0" type="i:target" group="11" id="11">
+			<answer correct="true">is</answer>
+		</field>
+		<field mode="0" type="i:target" group="12" id="12">
+			<answer correct="true">play</answer>
+		</field>
+		<field mode="0" type="i:target" group="13" id="13">
+			<answer correct="true">reveals</answer>
+		</field>
+		<field mode="0" type="i:target" group="14" id="14">
+			<answer correct="true">dedicate</answer>
+		</field>
+		<field mode="0" type="i:target" group="15" id="15">
+			<answer correct="true">is</answer>
+		</field>
+		<field mode="0" type="i:target" group="16" id="16">
+			<answer correct="true">spend</answer>
+		</field>
+		<field mode="0" type="i:target" group="17" id="17">
+			<answer correct="true">raises</answer>
+		</field>
+		<field mode="0" type="i:target" group="18" id="18">
+			<answer correct="true">are</answer>
+		</field>
+		<media filename="LE_AW_1n4.jpg" y="28" x="380" mode="1" id="1003" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The bar chart in this exercise has no date so we can assume that the information relates to the present. It shows the situation at one point in time and does not show changes over time. This kind of chart is sometimes called a 'static' chart and simple tenses (rather than continuous or perfect tenses) are most appropriate when describing the information shown. In this case, we can use the present simple for most of the report.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>shows</B> - The present tense in the third person singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>spend</B> - The present tense in the third person plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>is</B> - The present tense of the verb 'be' in the singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>are</B> - The present tense of the verb 'be' in the plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>is</B> - The present tense of the verb 'be' in the singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>prefer</B> - The present tense in the third person singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>devote</B> - The present tense in the third person plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>applies</B> - The present tense in the third person singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="9">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>is</B> - The present tense of the verb 'be' in the singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>play</B> - The present tense in the third person plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="11">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>is</B> - The present tense of the verb 'be' in the singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>play</B> - This is present tense in the third person plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="13">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>reveals</B> - The present tense in the third person singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="14">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>dedicate</B> - The present tense in the third person plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="15">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This is present tense of the verb 'be' in the singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="16">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>spend</B> - This is present tense in the third person plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="17">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>raises</B> - This is present tense in the third person singular.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="18">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>are</B> - The present tense of the verb 'be' in the plural.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>
+

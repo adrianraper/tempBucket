@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="Complete%20an%20email%20%281%29" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Complete the e-mail by putting the correct word or phrase into each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,166,307,448" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[31]</FONT><tab><FONT COLOR="#0000FF">[39]</FONT><tab><FONT COLOR="#0000FF">[32]</FONT><tab><FONT COLOR="#0000FF">[28]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,166,307,448" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[40]</FONT><tab><FONT COLOR="#0000FF">[34]</FONT><tab><FONT COLOR="#0000FF">[24]</FONT><tab><FONT COLOR="#0000FF">[25]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,166,307,448" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[21]</FONT><tab><FONT COLOR="#0000FF">[30]</FONT><tab><FONT COLOR="#0000FF">[27]</FONT><tab><FONT COLOR="#0000FF">[22]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,166,307,448" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[38]</FONT><tab><FONT COLOR="#0000FF">[26]</FONT><tab><FONT COLOR="#0000FF">[36]</FONT><tab><FONT COLOR="#0000FF">[29]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,166,307,448" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[33]</FONT><tab><FONT COLOR="#0000FF">[23]</FONT><tab><FONT COLOR="#0000FF">[35]</FONT><tab><FONT COLOR="#0000FF">[37]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="21" group="1" type="i:drag" mode="0">
+			<answer correct="false">chess</answer>
+		</field>
+		<field id="22" group="1" type="i:drag" mode="0">
+			<answer correct="false">pieces</answer>
+		</field>
+		<field id="23" group="1" type="i:drag" mode="0">
+			<answer correct="false">moves</answer>
+		</field>
+		<field id="24" group="1" type="i:drag" mode="0">
+			<answer correct="false">channels</answer>
+		</field>
+		<field id="25" group="1" type="i:drag" mode="0">
+			<answer correct="false">documentaries</answer>
+		</field>
+		<field id="26" group="1" type="i:drag" mode="0">
+			<answer correct="false">soap operas</answer>
+		</field>
+		<field id="27" group="1" type="i:drag" mode="0">
+			<answer correct="false">fiction</answer>
+		</field>
+		<field id="28" group="1" type="i:drag" mode="0">
+			<answer correct="false">non-fiction</answer>
+		</field>
+		<field id="29" group="1" type="i:drag" mode="0">
+			<answer correct="false">paperbacks</answer>
+		</field>
+		<field id="30" group="1" type="i:drag" mode="0">
+			<answer correct="false">cuisine</answer>
+		</field>
+		<field id="31" group="1" type="i:drag" mode="0">
+			<answer correct="false">ingredients</answer>
+		</field>
+		<field id="32" group="1" type="i:drag" mode="0">
+			<answer correct="false">recipes</answer>
+		</field>
+		<field id="33" group="1" type="i:drag" mode="0">
+			<answer correct="false">DJ</answer>
+		</field>
+		<field id="34" group="1" type="i:drag" mode="0">
+			<answer correct="false">hits</answer>
+		</field>
+		<field id="35" group="1" type="i:drag" mode="0">
+			<answer correct="false">dance floor</answer>
+		</field>
+		<field id="36" group="1" type="i:drag" mode="0">
+			<answer correct="false">gyms</answer>
+		</field>
+		<field id="37" group="1" type="i:drag" mode="0">
+			<answer correct="false">treadmills</answer>
+		</field>
+		<field id="38" group="1" type="i:drag" mode="0">
+			<answer correct="false">aerobics</answer>
+		</field>
+		<field id="39" group="1" type="i:drag" mode="0">
+			<answer correct="false">bargains</answer>
+		</field>
+		<field id="40" group="1" type="i:drag" mode="0">
+			<answer correct="false">markets</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Dear Sally,</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I can't believe you're coming to live here in Hong Kong! Let us know when you're arriving and Josh and I will come and pick you up from the airport. </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Anyway, to answer your questions about what we do here in the evenings and at weekends. Well, most evenings we're both so tired when we get home that we just listen to music or read. We even play board games, would you believe! We actually play a lot of <FONT COLOR="#0000FF">[1]</FONT>! None of our games last long though as Josh usually has all my <FONT COLOR="#0000FF">[2]</FONT> within about 15 minutes. I don't really have the patience to work out the best <FONT COLOR="#0000FF">[3]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">To tell you the truth, one of the reasons we play a lot of games is that the TV isn't that good here. There are only two English-language <FONT COLOR="#0000FF">[4]</FONT>. One of them seems to show nothing but wildlife <FONT COLOR="#0000FF">[5]</FONT> and the other one mostly shows long-running sitcoms and <FONT COLOR="#0000FF">[6]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">English-language books are quite easy to find though. They've just opened an excellent new library near us with a great collection of modern British and American <FONT COLOR="#0000FF">[7]</FONT> which is brilliant for me as I read a lot of novels. It's a bit more difficult for Josh to find what he wants. He prefers <FONT COLOR="#0000FF">[8]</FONT>, especially popular science and natural history, and there isn't much of that. Actually, books are quite expensive here, so bring as many cheap <FONT COLOR="#0000FF">[9]</FONT> with you as you can for your weekend getaways to Thailand and the Philippines!</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I've just read what I've written so far - you must think we lead a very boring life! Actually, the weekends are when we go out and do things!</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">We eat out a lot. There are so many different types of <FONT COLOR="#0000FF">[10]</FONT> here and the food is simply delicious. We also have people over for dinner quite a bit. You can get the <FONT COLOR="#0000FF">[11]</FONT> for most dishes here without too much trouble and I've been working my way through the <FONT COLOR="#0000FF">[12]</FONT> in a new cookery book that Josh gave me for Christmas.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The nightlife's pretty good here too. There are loads of discos and nightclubs. Josh and I went to one last weekend and had a great time. The <FONT COLOR="#0000FF">[13]</FONT> was actually playing all our favorite <FONT COLOR="#0000FF">[14]</FONT> from the 80's and 90's so we spent most of the night on the <FONT COLOR="#0000FF">[15]</FONT>!</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">To make up for all the eating and late nights, we both do quite a lot to keep fit. There are some really good <FONT COLOR="#0000FF">[16]</FONT> in Hong Kong with all the equipment you could possibly want, from <FONT COLOR="#0000FF">[17]</FONT> to weight machines, as well as lots of <FONT COLOR="#0000FF">[18]</FONT> classes.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">What else? I must confess I'm a bit of a shopaholic! The shops here are fabulous - although some of them are on the expensive side. There are lots of <FONT COLOR="#0000FF">[19]</FONT> to be had though, especially in the <FONT COLOR="#0000FF">[20]</FONT>. I'll show you where they all are when you get here!</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Anyway, I have to get down to some work now.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Keep me posted about your dates!</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Love,</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Annabel </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:drop" group="1" id="1">
+			<answer correct="true">chess</answer>
+		</field>
+		<field mode="0" type="i:drop" group="2" id="2">
+			<answer correct="true">pieces</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">moves</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">channels</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">documentaries</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">soap operas</answer>
+		</field>
+		<field mode="0" type="i:drop" group="7" id="7">
+			<answer correct="true">fiction</answer>
+		</field>
+		<field mode="0" type="i:drop" group="8" id="8">
+			<answer correct="true">non-fiction</answer>
+		</field>
+		<field mode="0" type="i:drop" group="9" id="9">
+			<answer correct="true">paperbacks</answer>
+		</field>
+		<field mode="0" type="i:drop" group="10" id="10">
+			<answer correct="true">cuisine</answer>
+		</field>
+		<field mode="0" type="i:drop" group="11" id="11">
+			<answer correct="true">ingredients</answer>
+		</field>
+		<field mode="0" type="i:drop" group="12" id="12">
+			<answer correct="true">recipes</answer>
+		</field>
+		<field mode="0" type="i:drop" group="13" id="13">
+			<answer correct="true">DJ</answer>
+		</field>
+		<field mode="0" type="i:drop" group="14" id="14">
+			<answer correct="true">hits</answer>
+		</field>
+		<field mode="0" type="i:drop" group="15" id="15">
+			<answer correct="true">dance floor</answer>
+		</field>
+		<field mode="0" type="i:drop" group="16" id="16">
+			<answer correct="true">gyms</answer>
+		</field>
+		<field mode="0" type="i:drop" group="17" id="17">
+			<answer correct="true">treadmills</answer>
+		</field>
+		<field mode="0" type="i:drop" group="18" id="18">
+			<answer correct="true">aerobics</answer>
+		</field>
+		<field mode="0" type="i:drop" group="19" id="19">
+			<answer correct="true">bargains</answer>
+		</field>
+		<field mode="0" type="i:drop" group="20" id="20">
+			<answer correct="true">markets</answer>
+		</field>
+		<media filename="LE_TV_003.jpg" y="14" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

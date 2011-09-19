@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Table%20Completion" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="255"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Listen to the recording, which will play automatically, and follow the instructions. Complete the table below. Write NO MORE THAN THREE WORDS OR A NUMBER in each gap.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Males</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>1.  </B> [1]	57%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Snooker/pool/billiards	<B>2.  </B> [2] %</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>3.  </B> [3]	28%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>4.  </B> [4]	24%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Swimming	<B>5.  </B> [5] %</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Females</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Walking	43%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>6.  </B> [6]/yoga	28%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Swimming	<B>7.  </B> [7] %</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Snooker/pool/billiards	17%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="180" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Cycling	<B>8.  </B> [8]<FONT COLOR="#0000FF"> </FONT>%</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:gap" group="1" id="1">
+			<answer correct="true">walking </answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">45 </answer>			
+		</field>
+		<field mode="0" type="i:gap" group="3" id="3">
+			<answer correct="true">playing football </answer>
+			<answer correct="true">football</answer>
+			<answer correct="true">playing soccer</answer>
+			<answer correct="true">soccer</answer>
+		</field>
+		<field mode="0" type="i:gap" group="4" id="4">
+			<answer correct="true">cycling </answer>
+			<answer correct="true">bicycling</answer>
+			<answer correct="true">riding a bicycle</answer>
+			<answer correct="true">riding a bike</answer>
+			<answer correct="true">riding bicycle</answer>
+			<answer correct="true">riding bike</answer>
+			<answer correct="true">riding bicycles</answer>
+			<answer correct="true">riding bikes</answer>
+			<answer correct="true">bike ridng</answer>
+			<answer correct="true">bicycle riding</answer>
+		</field>
+		<field mode="0" type="i:gap" group="5" id="5">
+			<answer correct="true">17 </answer>			
+		</field>
+		<field mode="0" type="i:gap" group="6" id="6">
+			<answer correct="true">keep-fit </answer>
+			<answer correct="true">keep fit </answer>
+		</field>
+		<field mode="0" type="i:gap" group="7" id="7">
+			<answer correct="true">21 </answer>			
+		</field>
+		<field mode="0" type="i:gap" group="8" id="8">
+			<answer correct="true">11 </answer>			
+		</field>
+		<media filename="LE_LN_003.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<media filename="LE_LN2.mp3" mode="4" id="1002" type="m:streamingAudio" playTimes="1" />
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">1. Although you have to listen to a lot of information before you get this answer, it's given with the percentage.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">2. Simon says quite clearly that 45 percent of young men play these games and Brenda repeats the percentage too.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">3. Brenda asks Simon where football comes in the list of most popular activities and he says third and also gives the percentage. So you are helped twice here and they also continue to talk about football afterwards.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">4. We hear the words 'cycling', 'bicycle' and 'cycle' mentioned here, so there are lots of clues given.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">5. This was given very quickly but clearly – 'Swimming, at 17 per cent'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">6. When Simon said 'the second most popular activity' you would have been prepared for the answer to follow. However there should be a hyphen between keep and fit.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">7. Simon gives the answer in reply to Brenda's question 'What about swimming?' and the word swimming is repeated in case you missed this.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">8. You hear the word 'cycling' first and then you know you have to listen.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

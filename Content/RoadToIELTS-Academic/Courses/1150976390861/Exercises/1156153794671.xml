@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="Static%20Charts" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read the writing task and look carefully at the bar chart. Complete the report by putting the correct word, phrase or number into each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+		<media filename="LE_Task01.jpg" y="+4" x="608" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Writing Task 1</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="20,140,260,380,500,620" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[23]</FONT>
+		<tab><FONT COLOR="#0000FF">[17]</FONT>
+		<tab><FONT COLOR="#0000FF">[13]</FONT>
+		<tab><FONT COLOR="#0000FF">[15]</FONT>
+		<tab><FONT COLOR="#0000FF">[24]</FONT>
+		<tab><FONT COLOR="#0000FF">[19]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="20,140,260,380,500,620" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[21]</FONT>
+		<tab><FONT COLOR="#0000FF">[22]</FONT>
+		<tab><FONT COLOR="#0000FF">[14]</FONT>
+		<tab><FONT COLOR="#0000FF">[18]</FONT>
+		<tab><FONT COLOR="#0000FF">[20]</FONT>
+		<tab><FONT COLOR="#0000FF">[16]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="13" group="1" type="i:drag" mode="0">
+			<answer correct="false">16 to 24</answer>
+		</field>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">young women</answer>
+		</field>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">young men</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">half</answer>
+		</field>
+		<field id="17" group="1" type="i:drag" mode="0">
+			<answer correct="false">a quarter</answer>
+		</field>
+		<field id="18" group="1" type="i:drag" mode="0">
+			<answer correct="false">1 in 5</answer>
+		</field>
+		<field id="19" group="1" type="i:drag" mode="0">
+			<answer correct="false">7</answer>
+		</field>
+		<field id="20" group="1" type="i:drag" mode="0">
+			<answer correct="false">5 per cent</answer>
+		</field>
+		<field id="21" group="1" type="i:drag" mode="0">
+			<answer correct="false">1 and 3</answer>
+		</field>
+		<field id="22" group="1" type="i:drag" mode="0">
+			<answer correct="false">a fifth</answer>
+		</field>
+		<field id="23" group="1" type="i:drag" mode="0">
+			<answer correct="false">two-fifths</answer>
+		</field>
+		<field id="24" group="1" type="i:drag" mode="0">
+			<answer correct="false">two-thirds</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The bar chart shows the amount of time that <FONT COLOR="#0000FF">[1]</FONT>-year-olds in England spend per week on sport and exercise. It is clear from the chart that <FONT COLOR="#0000FF">[2]</FONT> are less active in their leisure time than <FONT COLOR="#0000FF">[3]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There is a striking difference between the percentages of men and women who prefer not to participate in sport in their free time. Almost <FONT COLOR="#0000FF">[4]</FONT> of young women devote no time at all to active leisure pursuits while this applies to only about <FONT COLOR="#0000FF">[5]</FONT> of young men. There is a similar difference between the percentages of very active young people. Almost <FONT COLOR="#0000FF">[6]</FONT> men between the ages of 16 and 24 play sport for <FONT COLOR="#0000FF">[7]</FONT> or more hours a week. The figure for young women is only <FONT COLOR="#0000FF">[8]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A closer examination of the figures for young people who actually play sport reveals that the greatest proportion dedicate between <FONT COLOR="#0000FF">[9]</FONT> hours per week to these pastimes. This is true for just over <FONT COLOR="#0000FF">[10]</FONT> of both men and women.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The fact that only <FONT COLOR="#0000FF">[11]</FONT> of young women spend an hour or more a week on sport, compared to approximately <FONT COLOR="#0000FF">[12]</FONT> of young men, raises questions about how fit young women are in comparison to young men.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:drop" mode="0">
+			<answer correct="true">16 to 24</answer>
+		</field>
+		<field id="2" group="2" type="i:drop" mode="0">
+			<answer correct="true">young women</answer>
+		</field>
+		<field id="3" group="3" type="i:drop" mode="0">
+			<answer correct="true">young men</answer>
+		</field>
+		<field id="4" group="4" type="i:drop" mode="0">
+			<answer correct="true">half</answer>
+		</field>
+		<field id="5" group="5" type="i:drop" mode="0">
+			<answer correct="true">a quarter</answer>
+		</field>
+		<field id="6" group="6" type="i:drop" mode="0">
+			<answer correct="true">1 in 5</answer>
+		</field>
+		<field id="7" group="7" type="i:drop" mode="0">
+			<answer correct="true">7</answer>
+		</field>
+		<field id="8" group="8" type="i:drop" mode="0">
+			<answer correct="true">5 per cent</answer>
+		</field>
+		<field id="9" group="9" type="i:drop" mode="0">
+			<answer correct="true">1 and 3</answer>
+		</field>
+		<field id="10" group="10" type="i:drop" mode="0">
+			<answer correct="true">a fifth</answer>
+		</field>
+		<field id="11" group="11" type="i:drop" mode="0">
+			<answer correct="true">two-fifths</answer>
+		</field>
+		<field id="12" group="12" type="i:drop" mode="0">
+			<answer correct="true">two-thirds</answer>
+		</field>
+
+		<media filename="LE_AW_1n4.jpg" y="28" x="380" mode="1" id="1003" type="m:picture"/>
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">1. The ages are given in the title.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">2. The figures for 'no time' and from three to seven or more hours show this is true. </FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">3. The figures for 'no time' and from three to seven or more hours show this is true. </FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">4. The figure is just under 45 per cent, which is approximately half.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">5. The percentage for men is just under 25 per cent which is nearly a quarter.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">6. 'Very active' means spending 7 or more hours on sport and exercise per week. 18% of young men spend 7 or more hours a week on these activities. What's another way of saying 18 per cent?</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">7. The report says 'very active', which must mean 7 hours or more per week.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">8. Only 5 per cent of young women spend 7 or more hours on these activities.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="9">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">9. 22 per cent of young men and women spend 1 to 3 hours on these activities.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">10. The percentage is 22 per cent, which is just over 1 in 5.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="11">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">11. Adding the percentages for women in the last four columns gives a total of 40 per cent, which is two-fifths. </FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">12. Add up the last four columns for men. What total percentage does this give? How can this be expressed as a fraction?</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

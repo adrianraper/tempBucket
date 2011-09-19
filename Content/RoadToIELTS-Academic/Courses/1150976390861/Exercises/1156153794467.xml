@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Past%20Simple" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Look at the pie chart and complete the report by filling each gap with the past simple of the verb given in brackets.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="100" y="+176" width="500" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In 1961 people in the UK mostly [1] (watch) television or [2] (listen) to the radio in their leisure time. On average they [3] (spend) almost half of their free time on these activities. After that [4](come) other unspecified pastimes, which [5] (take up) about an hour and a quarter a day. People [6] (not seem) to socialise a great deal, as this [7] (account) for only 35 minutes in a typical day. People [8] (eat) out, [9] (go) to the cinema or [10] (entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people [11] (play) sports or [12] (walk) for an average of only 9 minutes a day.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:gap" mode="0">
+			<answer correct="true">watched </answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">listened </answer>
+		</field>
+		<field id="3" group="3" type="i:gap" mode="0">
+			<answer correct="true">spent </answer>
+		</field>
+		<field id="4" group="4" type="i:gap" mode="0">
+			<answer correct="true">came </answer>
+		</field>
+		<field id="5" group="5" type="i:gap" mode="0">
+			<answer correct="true">took up </answer>
+		</field>
+		<field id="6" group="6" type="i:gap" mode="0">
+			<answer correct="true">did not seem </answer>
+			<answer correct="true">didn't seem</answer>
+			<answer correct="true">seemed not</answer>
+		</field>
+		<field id="7" group="7" type="i:gap" mode="0">
+			<answer correct="true">accounted </answer>
+		</field>
+		<field id="8" group="8" type="i:gap" mode="0">
+			<answer correct="true">ate </answer>
+		</field>
+		<field id="9" group="9" type="i:gap" mode="0">
+			<answer correct="true">went </answer>
+		</field>
+		<field id="10" group="10" type="i:gap" mode="0">
+			<answer correct="true">entertained </answer>
+		</field>
+		<field id="11" group="11" type="i:gap" mode="0">
+			<answer correct="true">played </answer>
+		</field>
+		<field id="12" group="12" type="i:gap" mode="0">
+			<answer correct="true">walked </answer>
+		</field>
+		<media filename="Unit01_Write_e5.jpg" y="2" x="100" stretch="false" duration="60" mode="1" id="1003" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">When a bar chart or pie chart has information relating to a single point in time in the past and does not show changes, we can mostly use the past simple to describe it.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

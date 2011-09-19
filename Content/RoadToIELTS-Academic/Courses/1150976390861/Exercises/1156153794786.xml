@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Quiz" name="Understanding%20Static%20Charts" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="false" wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">Beside each chart there are two icons. Click on each of these and decide which displays the same information as the main chart. When you have decided, click on Chart A or Chart B as appropriate.</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Chart 01</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,95" style="normal" height="0" width="319" y="80" x="490"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[1]<tab>[2]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+140" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Chart 02</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,95" style="normal" height="0" width="319" y="320" x="490"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[3]<tab>[4]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+125" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Chart 03</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,95" style="normal" height="0" width="319" y="560" x="490"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[5]<tab>[6]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+110" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Chart 04</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,95" style="normal" height="0" width="319" y="760" x="490"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[7]<tab>[8]</B></FONT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="true">Chart A</answer>
+		</field>
+		<field id="2" group="1" type="i:target" mode="0">
+			<answer correct="false">Chart B</answer>
+		</field>
+		<field id="3" group="2" type="i:target" mode="0">
+			<answer correct="false">Chart A</answer>
+		</field>
+		<field id="4" group="2" type="i:target" mode="0">
+			<answer correct="true">Chart B</answer>
+		</field>
+		<field id="5" group="3" type="i:target" mode="0">
+			<answer correct="false">Chart A</answer>
+		</field>
+		<field id="6" group="3" type="i:target" mode="0">
+			<answer correct="true">Chart B</answer>
+		</field>
+		<field id="7" group="4" type="i:target" mode="0">
+			<answer correct="true">Chart A</answer>
+		</field>
+		<field id="8" group="4" type="i:target" mode="0">
+			<answer correct="false">Chart B</answer>
+		</field>
+		<media filename="Unit01_Write_e2.1q.jpg" y="6" x="40" stretch="false" duration="60" mode="1" id="1003" type="m:picture"/>
+		<media filename="Unit01_Write_e2.1a.jpg" y="78" x="555" stretch="false" duration="60" mode="16" id="1004" type="m:picture"/>
+		<media filename="Unit01_Write_e2.1b.jpg" y="78" x="650" stretch="false" duration="60" mode="16" id="1005" type="m:picture"/>
+		<media filename="Unit01_Write_e2.2q.jpg" y="230" x="40" stretch="false" duration="60" mode="1" id="1006" type="m:picture"/>
+		<media filename="Unit01_Write_e2.2a.jpg" y="318" x="555" stretch="false" duration="60" mode="16" id="1007" type="m:picture"/>
+		<media filename="Unit01_Write_e2.2b.jpg" y="318" x="650" stretch="false" duration="60" mode="16" id="1008" type="m:picture"/>
+		<media filename="Unit01_Write_e2.3q.jpg" y="460" x="40" stretch="false" duration="60" mode="1" id="1009" type="m:picture"/>
+		<media filename="Unit01_Write_e2.3a.jpg" y="558" x="555" stretch="false" duration="60" mode="16" id="1010" type="m:picture"/>
+		<media filename="Unit01_Write_e2.3b.jpg" y="558" x="650" stretch="false" duration="60" mode="16" id="1011" type="m:picture"/>
+		<media filename="Unit01_Write_e2.4q.jpg" y="690" x="40" stretch="false" duration="60" mode="1" id="1012" type="m:picture"/>
+		<media filename="Unit01_Write_e2.4a.jpg" y="758" x="555" stretch="false" duration="60" mode="16" id="1013" type="m:picture"/>
+		<media filename="Unit01_Write_e2.4b.jpg" y="758" x="650" stretch="false" duration="60" mode="16" id="1014" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The information for the writing task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart. </FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This standard bar chart has a separate bar for each place of interest such as the National Gallery or The British Museum, but the figures are exactly the same as for the proportional bar chart on the left.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The figures for the National Gallery, Alton Towers and Chester Zoo are much higher in this chart than in the proportional bar chart on the left. Be careful when reading values from proportional bar charts.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It isn't possible to add the percentage of one group to that of another to reach a total in this way. In a proportional bar chart, the whole bar refers to one group only, but shows how different smaller values make up that whole.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">These are the same figures as in the standard bar chart on the left, but presented as a proportional bar chart. The figures for each activity are built up, one on top of another, to reach a total percentage for the age group of 100 per cent.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Most of the values in this bar chart are much higher than the ones given in the proportional bar chart you saw first. For example, money spent by men on 'other leisure' in this chart is over £20 per week. In the original chart on the left, the figure is only about £5.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The figures in this standard bar chart are the same as the ones given in the proportional bar chart on the left. The difference is that the values are next to each other instead of on top of each other to form towers.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There are two pie charts here because in the bar chart on the left the percentages referred to two different age groups.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The percentage in the bar chart on the left referred to two different age groups, for example 31 per cent of 16 to 24 year olds. This pie chart has mixed the age groups together to form a whole, so now the percentages don't refer to anything.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>
