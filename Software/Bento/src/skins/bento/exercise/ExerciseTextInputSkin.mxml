@@ -52,8 +52,8 @@
         <s:State name="disabledWithPrompt" stateGroups="disabledStates"/>
     </s:states>
     
-	<!-- background (we need to go to -1 right in order to always cover the text) -->
-    <s:Rect id="background" left="0" right="-1" top="0" bottom="0">
+	<!-- background (we need to go to -1 on a few coordinates in order to always cover the text) -->
+    <s:Rect id="background" left="0" right="-1" top="-1" bottom="0">
         <s:fill>
             <!--- @private Defines the background fill color. -->
             <s:SolidColor id="bgFill" color="0xFFFFFF" />

@@ -59,14 +59,17 @@ package com.clarityenglish.textLayout.components.behaviours {
 					componentElement.getComponent().visible = false;
 				}
 			}
+			
+			// Make sure the overlay container is at the front
+			container.setElementIndex(overlayContainer, container.numChildren - 1); 
 		}
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { }
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
 			for each (var componentElement:IComponentElement in getComponentElements(textFlow))
-			if (componentElement.hasComponent())
-				componentElement.removeComponent();
+				if (componentElement.hasComponent())
+					componentElement.removeComponent();
 		}
 		
 	}

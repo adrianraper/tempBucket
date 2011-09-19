@@ -66,6 +66,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 						}
 						break;
 					case "DropDownQuestion":
+						// Set the answers for <select> questions
 						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
 							var selectElement:SelectElement = flowElementXmlBiMap.getFlowElement(source) as SelectElement;
 							if (selectElement) {
@@ -75,6 +76,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 						break;
 					case "DragQuestion":
 					case "GapFillQuestion":
+						// Set the answers for <input> questions
 						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
 							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 							if (inputElement) {
