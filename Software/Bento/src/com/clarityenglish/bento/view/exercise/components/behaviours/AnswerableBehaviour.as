@@ -71,6 +71,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 							var selectElement:SelectElement = flowElementXmlBiMap.getFlowElement(source) as SelectElement;
 							if (selectElement) {
 								selectElement.answers = question.answers;
+								selectElement.text = getLongestAnswerValue(question.answers) + "____.";
 							}
 						}
 						break;
