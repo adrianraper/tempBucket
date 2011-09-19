@@ -49,9 +49,6 @@ package com.clarityenglish.textLayout.conversion {
 		// TODO: This may cause memory leaks
 		private var _flowElementXmlBiMap:FlowElementXmlBiMap;
 		
-		// TODO: This too
-		//private var _exercise:Exercise;
-		
 		// TODO: And this!
 		private var _css:CSS;
 		
@@ -87,11 +84,6 @@ package com.clarityenglish.textLayout.conversion {
 		public function set rootPath(value:String):void {
 			this._rootPath = value;
 		}
-		
-		// TODO: TAKEN OUT FOR NOW
-		/*public function set exercise(value:Exercise):void {
-			this._exercise = value;
-		}*/
 		
 		public function set css(value:CSS):void {
 			this._css = value;
@@ -500,11 +492,6 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.gapAfterPadding) inputElement.gapAfterPadding = style.gapAfterPadding;
 			if (style.gapText) inputElement.gapText = style.gapText;
 			
-			// TODO: TAKEN OUT FOR NOW
-			// Get the longest possible answer and make that the underlying text of the input
-			//inputElement.text = getLongestAnswerValue(_exercise.model.getPossibleAnswersForNode(xmlToParse));
-			//inputElement.text = "This is the text underneath";
-			
 			addToFlowElementXmlMap(xmlToParse, inputElement);
 			
 			return inputElement;
@@ -518,6 +505,8 @@ package com.clarityenglish.textLayout.conversion {
 		 */
 		public function createSelectFromXml(xmlToParse:XML):SelectElement {
 			var selectElement:SelectElement = new SelectElement();
+			
+			addToFlowElementXmlMap(xmlToParse, selectElement);
 			
 			// TODO: TAKEN OUT FOR NOW
 			/*var answers:Vector.<Answer> = _exercise.model.getPossibleAnswersForNode(xmlToParse);
@@ -551,22 +540,6 @@ package com.clarityenglish.textLayout.conversion {
 			
 			return videoElement;
 		}
-		
-		/**
-		 * Helper method to determine the longest textual answer in a vector of Answers
-		 * 
-		 * @param answers
-		 * @return 
-		 */
-		// TODO: TAKEN OUT FOR NOW
-		/*private static function getLongestAnswerValue(answers:Vector.<Answer>):String {
-			var longestAnswer:String = "";
-			for each (var answer:Answer in answers)
-			if (answer.value.length > longestAnswer.length)
-				longestAnswer = answer.value;
-			
-			return longestAnswer;
-		}*/
 		
 	}
 }

@@ -62,8 +62,9 @@ package com.clarityenglish.bento.vo.content.model {
 			var matches:Array = source.match(/\{([^}]*)\}$/);
 			if (matches !== null) {
 				// If the source is wrapped in curly braces then its a CSS selector.  as3csslib requires a fake style decleration for this to work, hence the {}
-				var cssSelector:CSS = new CSS(matches[1] + " {}");
-				return cssSelector.select(exercise.body);
+				/*var cssSelector:CSS = new CSS(matches[1] + " {}");
+				return cssSelector.select(exercise.body);*/
+				return exercise.select(matches[1]);
 			} else {
 				// Otherwise it is a straight id
 				var matchingNode:XMLList = exercise.body..*.(hasOwnProperty("@id") && @id == source);

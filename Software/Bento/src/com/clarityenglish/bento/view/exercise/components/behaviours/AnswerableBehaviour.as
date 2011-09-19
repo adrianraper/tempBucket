@@ -7,6 +7,8 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
+	import com.clarityenglish.textLayout.elements.InputElement;
+	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.IEventDispatcher;
@@ -63,9 +65,22 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 							}
 						}
 						break;
-					case "DragQuestion":
 					case "DropDownQuestion":
+						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+							var selectElement:SelectElement = flowElementXmlBiMap.getFlowElement(source) as SelectElement;
+							if (selectElement) {
+								selectElement.answers = question.answers;
+							}
+						}
+						break;
+					case "DragQuestion":
 					case "GapFillQuestion":
+						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
+							if (inputElement) {
+								inputElement.text = getLongestAnswerValue(question.answers);
+							}
+						}
 						break;
 					default:
 						log.error("Unknown question type: " + question.type);
@@ -74,6 +89,15 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }
+		
+		private static function getLongestAnswerValue(answers:Vector.<Answer>):String {
+			var longestAnswer:String = "";
+			for each (var answer:Answer in answers)
+			if (answer.value.length > longestAnswer.length)
+				longestAnswer = answer.value;
+			
+			return longestAnswer;
+		}
 		
 	}
 }

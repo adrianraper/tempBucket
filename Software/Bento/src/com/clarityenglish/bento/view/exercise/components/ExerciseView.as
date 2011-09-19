@@ -76,6 +76,7 @@ package com.clarityenglish.bento.view.exercise.components {
 					
 					if (group && xhtmlRichText) {
 						group.visible = group.includeInLayout = (sectionName == "header") ? exercise.hasHeader() : exercise.hasSection(sectionName);
+						
 						xhtmlRichText.xhtml = exercise;
 						xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
 					}
