@@ -50,7 +50,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 				
 				if (bounds) {
 					componentElement.getComponent().width = bounds.width;
-					componentElement.getComponent().height = bounds.height;
+					componentElement.getComponent().height = bounds.height; // TODO: This doesn't set the height correctly on the dropdownlist
 					componentElement.getComponent().x = bounds.x;
 					componentElement.getComponent().y = bounds.y + 1; // not sure if we want +1 - that should probably be in getElementBounds depending on the component
 					

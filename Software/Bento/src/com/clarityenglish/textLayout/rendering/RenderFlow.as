@@ -185,6 +185,13 @@ package com.clarityenglish.textLayout.rendering {
 						var pos:Point = childRenderFlow.inlineGraphicElementPlaceholder.graphic.localToGlobal(new Point(0, 0));
 						pos = globalToLocal(pos);
 						
+						// If we are using relative positioning apply the transform
+						if (childRenderFlow._textFlow.position == FloatableTextFlow.POSITION_RELATIVE) {
+							pos.offset(childRenderFlow._textFlow.left, childRenderFlow._textFlow.top);
+							trace(pos);
+							trace("-----");
+						}
+						
 						// Apply the position to the child
 						childRenderFlow.x = pos.x;
 						childRenderFlow.y = pos.y; // TODO: This isn't quite working... perhaps I am thinking about this slightly wrongly...

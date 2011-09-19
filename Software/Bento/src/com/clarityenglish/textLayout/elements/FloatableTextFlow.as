@@ -11,17 +11,17 @@ package com.clarityenglish.textLayout.elements {
 	 */
 	public class FloatableTextFlow extends TextFlow {
 		
-		public static const FLOAT_NONE:String = "float_none";
-		public static const FLOAT_LEFT:String = "float_left";
-		public static const FLOAT_RIGHT:String = "float_right";
-		
 		public static const SIZE_DYNAMIC:String = "size_dynamic";
 		public static const SIZE_FIXED:String = "size_fixed";
 		public static const SIZE_PERCENTAGE:String = "size_percentage";
 		
-		public static const POSITION_STATIC:String = "position_static";
-		public static const POSITION_RELATIVE:String = "position_relative";
-		public static const POSITION_ABSOLUTE:String = "position_absolute";
+		public static const FLOAT_NONE:String = "none";
+		public static const FLOAT_LEFT:String = "left";
+		public static const FLOAT_RIGHT:String = "right";
+		
+		public static const POSITION_STATIC:String = "static";
+		public static const POSITION_RELATIVE:String = "relative";
+		public static const POSITION_ABSOLUTE:String = "absolute";
 		
 		// TODO: Not yet implemented
 		public var position:String = POSITION_STATIC;
@@ -31,6 +31,14 @@ package com.clarityenglish.textLayout.elements {
 		public var width:*;
 		
 		public var height:*;
+		
+		public var left:Number;
+		
+		public var right:Number;
+		
+		public var top:Number;
+		
+		public var bottom:Number;
 		
 		public function get widthType():String {
 			if (isFixedWidth()) {

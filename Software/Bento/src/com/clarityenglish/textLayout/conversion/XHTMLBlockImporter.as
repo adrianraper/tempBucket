@@ -172,12 +172,15 @@ package com.clarityenglish.textLayout.conversion {
 		 * @return 
 		 */
 		private static function isSeperateFlow(name:String, style:CSSComputedStyle):Boolean {
-			// Images are never seperate flows as TLF deals with them properly already
+			// Images are never seperate flows as TLF deals with them already
 			if (name == "img")
 				return false;
 			
 			// Floats are always seperate flows
-			if (style.float == "left" || style.float == "right")
+			if (style.float == FloatableTextFlow.FLOAT_LEFT || style.float == FloatableTextFlow.FLOAT_RIGHT)
+				return true;
+			
+			if (style.position == FloatableTextFlow.POSITION_RELATIVE)
 				return true;
 			
 			// Not sure about this yet...
@@ -398,6 +401,11 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.float) element.float = style.float;
 			
 			// I'm not sure why, but the TextFlow doesn't render some styles in the CssFormatResolver, so add them manually here
+			if (style.left) element.left = style.left;
+			if (style.right) element.right = style.right;
+			if (style.top) element.top = style.top;
+			if (style.bottom) element.bottom = style.bottom;
+			
 			if (style.paddingLeft) element.paddingLeft = style.paddingLeft;
 			if (style.paddingRight) element.paddingRight = style.paddingRight;
 			if (style.paddingTop) element.paddingTop = style.paddingTop;
@@ -507,16 +515,6 @@ package com.clarityenglish.textLayout.conversion {
 			var selectElement:SelectElement = new SelectElement();
 			
 			addToFlowElementXmlMap(xmlToParse, selectElement);
-			
-			// TODO: TAKEN OUT FOR NOW
-			/*var answers:Vector.<Answer> = _exercise.model.getPossibleAnswersForNode(xmlToParse);
-			
-			selectElement.answers = answers;
-			
-			// Get the longest possible answer and make that the underlying text of the select.  Add some spacers to accomodate the chrome too.
-			selectElement.text = getLongestAnswerValue(answers) + "____.";
-			
-			addToFlowElementXmlMap(xmlToParse, selectElement);*/
 			
 			return selectElement;
 		}
