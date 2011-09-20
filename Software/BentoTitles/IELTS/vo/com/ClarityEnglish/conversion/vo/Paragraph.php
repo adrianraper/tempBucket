@@ -14,7 +14,7 @@ class Paragraph {
 	// Note that this is part of a tag outside than <p>
 	var $tagType;
 
-	const characters_to_keep = '[\s\w<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
+	const characters_to_keep = '[\s\w<>#=&;,\[\]\-\'"\/\? \.\t\h\xc2\xa0]';
 	
 	protected $parent;
 	function getParent() {
@@ -28,7 +28,9 @@ class Paragraph {
 		// Keep a reference back to the section we are part of
 		$this->setParent($parent);
 		
-		//echo $xmlObj;
+		//if (($this->getParent()->getClass()==Exercise::EXERCISE_SECTION_NOSCROLL)) {
+		//	echo $xmlObj;
+		//}
 		if ($xmlObj) {
 			// Dig out the text and settings from this xml
 			$attr = $xmlObj->attributes();
@@ -64,14 +66,17 @@ class Paragraph {
 		// General pattern use
 		//$charactersToKeep = '[\s\w\d<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
 		
-		if ($section->getClass()==Exercise::EXERCISE_SECTION_RUBRIC) {
+		//if ($section->getClass()==Exercise::EXERCISE_SECTION_RUBRIC) { 
+		if (($section->getClass()==Exercise::EXERCISE_SECTION_RUBRIC) || 
+			($section->getClass()==Exercise::EXERCISE_SECTION_NOSCROLL)) {
 			// This is what a standard rubric paragraph looks like
 			//<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0" id="1">
 			//	<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read the text below.</B></FONT></P></TEXTFORMAT></B>]]>
 			//</paragraph>
 			// Get rid of as many outside tags as you can.
 			$builtHtml = $this->getPureText($fullParagraphHtml);
-						
+			//echo $builtHtml;
+			
 		} else {
 
 			// In this function we will use regex to figure out which html tags we should keep and which
@@ -119,8 +124,10 @@ class Paragraph {
 	function getPureText($htmlString=null) {
 		if (!$htmlString)
 			$htmlString = $this->getText();
+		//return $htmlString;
 		// get rid of b
-		// <B> Author Plus mistakenly puts <B> outside textformat - so drop that along with the textformat
+		// <B> Author Plus mistakenly (sometimes) puts <B> outside textformat - so drop that along with the textformat
+		/*
 		$pattern = '/<B>('.Paragraph::characters_to_keep.'+)<\/B>/is';
 		$replacement = '\1';
 		$builtHtml = preg_replace($pattern, $replacement, $htmlString);
@@ -132,15 +139,29 @@ class Paragraph {
 		$pattern = '/<P [^>]+>('.Paragraph::characters_to_keep.'+)<\/P>/is';
 		$replacement = '\1';
 		$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
-		// then font
+		
+		// Then font. But this has to be match all since there might be many 
 		$pattern = '/<FONT [^>]+>('.Paragraph::characters_to_keep.'+)<\/FONT>/is';
 		$replacement = '\1';
 		$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
-		// then any other b
-		$pattern = '/<B>('.Paragraph::characters_to_keep.'+)<\/B>/is';
+		// then any other b. Likewise, match all
+		$pattern = '/<B>('.Paragraph::characters_to_keep.'+)<\/B>/isg';
 		$replacement = '\1';
 		$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
-		
+		*/
+		// Just simply get rid of the tags and their attributes
+		$patterns = Array();
+		$patterns[] = '/\<TEXTFORMAT [^\>]+\>/is';
+		$patterns[] = '/\<FONT [^\>]+\>/is';
+		//$patterns[] = '/\<P [^\>]+\>/is';
+		$patterns[] = '/\<B\>/is';
+		$patterns[] = '/\<\/TEXTFORMAT\>/is';
+		$patterns[] = '/\<\/FONT\>/is';
+		//$patterns[] = '/\<\/P\>/is';
+		$patterns[] = '/\<\/B\>/is';
+		$replacement = '';
+		$builtHtml = preg_replace($patterns, $replacement, $htmlString);
+		//echo $builtHtml;
 		return $builtHtml;
 	}
 	function getText(){
@@ -150,7 +171,7 @@ class Paragraph {
 		$this->text = $text;
 	}
 	// Add tags round the paragraph based on its type
-	function toString($lastTagType,$thisTagType){
+	function output($lastTagType,$thisTagType){
 		// You might want to add tags to the html
 		//echo "last=$lastTagType, this=$thisTagType ||";
 		$builtHtml='';
@@ -163,7 +184,10 @@ class Paragraph {
 		if ($thisTagType=='ol' || $thisTagType=='ul') {
 			// Let's assume you will drop any formatting from within the list item
 			//$builtHtml .= '<li>'.$this->text.'</li>';
-			$builtHtml .= '<li>'.$this->getPureText().'</li>';
+			$listText = $this->getPureText();
+			// Also drop any numbers or bullets
+			$listText = $this->textFormatDropListThings($listText);
+			$builtHtml .= '<li>'.$listText.'</li>';
 		} else {
 			$builtHtml .= $this->text;
 		}
@@ -192,16 +216,38 @@ class Paragraph {
 	function mergeText($htmlString) {
 		//$this->text.=$htmlString;
 		//$charactersToKeep = '[\s\w\d<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
+		// First see if there is a <p> tag surrounding everything?
+		$thisText = $this->getText();
 		$pattern = '/(<p [^>]+>)('.Paragraph::characters_to_keep.'+)(<\/p>)/is';
-		$replacement = '\1\2'.$htmlString.'\3';
-		$this->setText(preg_replace($pattern, $replacement, $this->getText()));
+		if (preg_match($pattern, $thisText)) {
+			$replacement = '\1\2'.$htmlString.'\3';
+			$this->setText(preg_replace($pattern, $replacement, $thisText));
+		} else {
+			// In which case just add to the end
+			$this->setText($thisText.$htmlString);
+		}
 	}
 	// This function simply adds to the end of the text 
 	function appendText($htmlString) {
 		$this->setText($this->getText().$htmlString);
 	}
+	// A set of functions that format text in particular ways
+	public function textFormatDropListThings($listText) {
+		$pattern = '/^[\d\.\s\x95\xb7\xe2]+(.*)/is';
+		if (preg_match($pattern, $listText, $matches)) {
+			$built=$matches[1];
+		} else {
+			$built=$matches[0];
+		}
+		return $built;
+	}
 	function getID(){
 		return $this->id;
+	}
+	// A utility function to describe the object
+	function toString() {
+		global $newline;
+		return $newline."<paragraph>".$this->getPureText()."</paragraph>";
 	}
 }
 ?>

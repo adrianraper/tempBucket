@@ -39,7 +39,7 @@ EOD;
 	function formatHtmlSections() {
 		$build = '';
 		foreach ($this->exercise->getSections() as $section) {
-			$sectionText = $section->getText();
+			$sectionText = $section->output();
 			$sectionType = $section->getClass();
 			$build .=<<< EOD
 			<section id="$sectionType">
@@ -94,15 +94,18 @@ EOD;
 		return $build;
 	}
 	function formatFullHtml($head, $rubric, $sections) {
+		// Switch from practically xhtml to xml with html characteristics
+		//	<!DOCTYPE html>
+		//	<html xmlns="http://www.w3.org/1999/xhtml">
 		$build =<<< EOD
-			<!DOCTYPE html>
-			<html xmlns="http://www.w3.org/1999/xhtml">
-			$head
-			<body>
-				$rubric
-				$sections
-			</body>
-			</html>
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+$head
+<body>
+	$rubric
+	$sections
+</body>
+</bento>
 EOD;
 		return $build;
 	}

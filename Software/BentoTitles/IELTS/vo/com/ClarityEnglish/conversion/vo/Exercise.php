@@ -2,8 +2,8 @@
 class Exercise {
 	
 	// The ID of the exercise
-	var $id;
-	var $type;
+	private $id;
+	private $type;
 	
 	// The components of an exercise (some are optional)
 	var $settings;
@@ -53,13 +53,29 @@ class Exercise {
 			  			break;
 			  	}
 			}
+			// Once you have all sections, you need to do some replacing of fields/answers
+			
 		}
 	}
+	function getID() {
+		return $this->id;
+	}
+	function getType() {
+		return $this->type;
+	}
+	
+	// Following functions are for the conversion
+	function formatRubric() {
+		//return $this->rubric->toString();
+		return $this->rubric->output();
+	}
 	function getRubric(){
-		return $this->rubric->getText();
+		//return $this->rubric->getText();
+		return $this->rubric->output();
 	}
 	function getSettings(){
-		return $this->settings->getText();
+		//return $this->settings->getText();
+		return $this->settings->output();
 	}
 	function getSections(){
 		$section = array();
@@ -71,16 +87,44 @@ class Exercise {
 			$sections[]=$this->example;
 		return $sections;
 	}
-	function getID() {
-		return $this->id;
-	}
-	function getType() {
-		return $this->type;
+	
+	// A utility function to describe the object
+	function toString() {
+		global $newline;
+		$build=$newline.'<exercise ';
+		// Loop through all (private and public) members of this class
+		
+		foreach (get_object_vars($this) as $a=>$b) {
+			switch ($a) {
+			  	case 'id':
+			  	case 'type':
+			  		// Simple attributes
+			  		$build.=$a."=".$b." ";
+			  		break;
+			}
+		}
+		$build.='>';
+		/*
+		foreach (get_object_vars($this) as $a=>$b) {
+			switch ($a) {
+				// Objects
+			  	case 'settings':
+			  	case 'rubric':
+			  	case 'body':
+			  	case 'noscroll':
+			  		$build.=$this->$a->toString();
+			  		break;
+			}
+		}
+		*/
+		$build.=$this->settings->toString();
+		$build.=$this->rubric->toString();
+		$build.=$this->noscroll->toString();
+		$build.=$this->body->toString();
+		
+		$build.=$newline.'</exercise>';	
+		return $build;
 	}
 	
-	// Following functions are for the conversion
-	function formatRubric() {
-		return $this->rubric->toString();
-	}
 }
 ?>

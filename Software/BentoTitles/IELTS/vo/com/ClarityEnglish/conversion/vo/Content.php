@@ -6,6 +6,7 @@ class Content{
 	
 	var $paragraphs = Array();
 	var $mediaNodes = Array();
+	var $fields = Array();
 	
 	function __construct($xmlObj=null) {
 		if ($xmlObj) {
@@ -14,7 +15,7 @@ class Content{
 			$groupPara = null;
 			foreach ($xmlObj->children() as $child) {
 				//echo $child->getName();
-				if ($child->getName()=='paragraph') {
+				if (strtolower($child->getName())=='paragraph') {
 					// Where is the best place to be smart about combining paragraphs?
 					// If there is an empty paragraph, that clearly separates two.
 					// Likewise if a paragraph has y=+x, then it is probably separating two.
@@ -63,12 +64,21 @@ class Content{
 				if ($child->getName()=='media') {
 					$this->addMediaNode($child);
 				}
+				if ($child->getName()=='field') {
+					$this->addField($child);
+				}
 			}
 			// Write out the final group
 			$this->addParagraph($groupPara);
 		}
 	}
 
+	function addField($xmlObj) {
+		$this->fields[] = new Field($xmlObj, $this);
+	}
+	function getFields() {
+		return $this->fields;
+	}
 	function addMediaNode($xmlObj) {
 		$this->mediaNodes[] = new MediaNode($xmlObj, $this);
 	}
@@ -90,18 +100,19 @@ class Content{
 		// This must always be overwritten in the specific section
 	//}
 	// Used in output
-	function getText() {
+	//function getText() {
+	function output() {
 		
 		$buildText='';
 		$lastTagType = null;
 		foreach ($this->getParagraphs() as $paragraph) {
 			// Keep track of any paragraph that is a different tag type than the previous one
 			$thisTagType = $paragraph->getTagType();
-			$buildText.=$paragraph->toString($lastTagType,$thisTagType);
+			$buildText.=$paragraph->output($lastTagType,$thisTagType);
 			$lastTagType = $thisTagType;
 		}		
 		foreach ($this->getMediaNodes() as $mediaNode) {
-			$buildText.=$mediaNode->toString();
+			$buildText.=$mediaNode->output();
 		}
 		// Whatever happens there are some characters I want to replace
 		// non-breaking space special characters
@@ -132,6 +143,25 @@ class Content{
 		}
 		return null;
 	}
+	// A utility function to describe the object
+	function toString() {
+		global $newline;
+		$build=$newline.'<'.$this->getClass().'>';
+		
+		foreach ($this->getParagraphs() as $para) {
+	  		$build.=$para->toString();
+		}
+		foreach ($this->getFields() as $field) {
+	  		$build.=$field->toString();
+		}
+		foreach ($this->getMediaNodes() as $mediaNode) {
+	  		$build.=$mediaNode->toString();
+		}
+		
+		$build.=$newline.'</'.$this->getClass().'>';	
+		return $build;
+	}
+	
 }
 /*
  					} elseif ($thisParaType=='ol') {

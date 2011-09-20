@@ -3,25 +3,25 @@ class MediaNode {
 	
 	// An Arthur media node has attributes, no value
 	// What type of media is it?
-	var $type;
-	var $qualifier;
+	private $type;
+	private $qualifier;
 	
 	// Where is it?
-	var $filename;
-	var $location;
+	private $filename;
+	private $location;
 
 	// mode controls behaviour (such as hidden until after marking, or autorun)
-	var $mode;
+	private $mode;
 	 
 	// w, y, width and height might be used as is unless this ruins floats
-	var $x;
-	var $y;
-	var $width;
-	var $height;
-	var $stretch;
+	private $x;
+	private $y;
+	private $width;
+	private $height;
+	private $stretch;
 	
 	// for reference
-	var $id;
+	private $id;
 
 	protected $parent;
 	
@@ -69,7 +69,36 @@ class MediaNode {
 	function getID(){
 		return $this->id;
 	}
+	// A utility function to describe the object
 	function toString() {
+		global $newline;
+		$build=$newline.'<media ';
+		// Loop through all (private and public) members of this class
+		
+		foreach (get_object_vars($this) as $a=>$b) {
+			switch ($a) {
+				case 'id':
+				case 'x':
+				case 'y':
+				case 'width':
+				case 'height':
+				case 'stretch':
+				case 'location':
+				case 'mode':
+				case 'filename':
+				case 'type':
+				case 'qualifier':
+			  		// Simple attributes
+			  		if ($b)
+			  			$build.="$a=$b ";
+			  		break;
+			}
+		}
+		$build.='/>';
+		return $build;
+	}
+	// This function turns the object into a string to go into the xhtml file.
+	function output() {
 		$build='';
 		switch ($this->type) {
 			case 'picture':
