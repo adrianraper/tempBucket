@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta name="conversion" type="dragon" date="2011-09-20" />
+			<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+			<style type="text/css">
+			<![CDATA[			
+				list {
+					list-style-type: decimal;
+					margin-left: 0; 
+					padding-left: 20px; 
+					padding-bottom: 12px; 
+				}
+				p {
+					padding-bottom: 12px; 
+				}
+				.no-padding {
+					padding-bottom: 0px; 
+				}
+				.h1 {
+					font-size: 12px;
+					font-weight: bold;
+					color: #3A00FF;	
+				}
+			]]>
+			</style>
+			<script id="settings" type="application/xml">
+				<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+			</script>
+			<script id="model" type="application/xml">
+			</script>
+		</head>
+<body>
+			<header>
+			Read the writing task and look carefully at the bar chart. Complete the report by putting the correct word, phrase or number into each gap.
+		
+		Writing Task 1<img class="rightFloat" src="../Media/LE_Task01.jpg" height="" width="" mode="16" id="1004"  />
+		</header>
+				<section id="body">
+				<p align="left">&#160;The bar chart shows the amount of time that [1]</font>-year-olds in England spend per week on sport and exercise. It is clear from the chart that <font color="#0000ff">[2]</font> are less active in their leisure time than <font color="#0000ff">[3].</p><p align="left">There is a striking difference between the percentages of men and women who prefer not to participate in sport in their free time. Almost <font color="#0000ff">[4]</font> of young women devote no time at all to active leisure pursuits while this applies to only about <font color="#0000ff">[5]</font> of young men. There is a similar difference between the percentages of very active young people. Almost <font color="#0000ff">[6]</font> men between the ages of 16 and 24 play sport for <font color="#0000ff">[7]</font> or more hours a week. The figure for young women is only <font color="#0000ff">[8]</font>.</p><p align="left">A closer examination of the figures for young people who actually play sport reveals that the greatest proportion dedicate between <font color="#0000ff">[9]</font> hours per week to these pastimes. This is true for just over <font color="#0000ff">[10]</font> of both men and women.</p><p align="left">The fact that only <font color="#0000ff">[11]</font> of young women spend an hour or more a week on sport, compared to approximately <font color="#0000ff">[12]</font> of young men, raises questions about how fit young women are in comparison to young men.</p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_1n4.jpg" height="" width="" mode="1" id="1003"  />
+			</section>			<section id="noscroll">
+				
+		
+		<tab><FONT COLOR="#0000FF">[23]</FONT>
+		<tab><FONT COLOR="#0000FF">[17]</FONT>
+		<tab><FONT COLOR="#0000FF">[13]</FONT>
+		<tab><FONT COLOR="#0000FF">[15]</FONT>
+		<tab><FONT COLOR="#0000FF">[24]</FONT>
+		<tab><FONT COLOR="#0000FF">[19]</FONT>
+		
+		
+		<tab>[21]</FONT>
+		<tab><FONT COLOR="#0000FF">[22]</FONT>
+		<tab><FONT COLOR="#0000FF">[14]</FONT>
+		<tab><FONT COLOR="#0000FF">[18]</FONT>
+		<tab><FONT COLOR="#0000FF">[20]</FONT>
+		<tab><FONT COLOR="#0000FF">[16]
+		<FONT SIZE="2"></FONT>
+			</section>
+</body>
+</bento>

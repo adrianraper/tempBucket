@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta name="conversion" type="dragon" date="2011-09-20" />
+			<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+			<style type="text/css">
+			<![CDATA[			
+				list {
+					list-style-type: decimal;
+					margin-left: 0; 
+					padding-left: 20px; 
+					padding-bottom: 12px; 
+				}
+				p {
+					padding-bottom: 12px; 
+				}
+				.no-padding {
+					padding-bottom: 0px; 
+				}
+				.h1 {
+					font-size: 12px;
+					font-weight: bold;
+					color: #3A00FF;	
+				}
+			]]>
+			</style>
+			<script id="settings" type="application/xml">
+				<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+			</script>
+			<script id="model" type="application/xml">
+			</script>
+		</head>
+<body>
+			<header>
+			<P ALIGN="LEFT">Complete the e-mail by putting the correct word or phrase into each gap.</P>
+		</header>
+				<section id="body">
+				<p align="left">Dear Sally,<p align="left">&#160;<p align="left">&#160;<p align="left">&#160;</p><p align="left">To tell you the truth, one of the reasons we play a lot of games is that the TV isn't that good here. There are only two English-language [4]. One of them seems to show nothing but wildlife [5] and the other one mostly shows long-running sitcoms and [6].</p><p align="left">&#160;<p align="left">&#160;<p align="left">&#160;</p><p align="left">We eat out a lot. There are so many different types of [10] here and the food is simply delicious. We also have people over for dinner quite a bit. You can get the [11] for most dishes here without too much trouble and I've been working my way through the [12] in a new cookery book that Josh gave me for Christmas.</p><p align="left">&#160;<p align="left">&#160;</p><p align="left">To make up for all the eating and late nights, we both do quite a lot to keep fit. There are some really good [16] in Hong Kong with all the equipment you could possibly want, from [17] to weight machines, as well as lots of [18] classes.</p><p align="left">&#160;<p align="left">&#160;</p><p align="left">Anyway, I have to get down to some work now.</p><p align="left">&#160;<p align="left">&#160;</p><p align="left">Love,</p><p align="left">&#160;</p><p align="left">Annabel </p></p><p align="left">Keep me posted about your dates!</p></p><p align="left">What else? I must confess I'm a bit of a shopaholic! The shops here are fabulous - although some of them are on the expensive side. There are lots of [19] to be had though, especially in the [20]. I'll show you where they all are when you get here!</p></p><p align="left">The nightlife's pretty good here too. There are loads of discos and nightclubs. Josh and I went to one last weekend and had a great time. The [13] was actually playing all our favorite [14] from the 80's and 90's so we spent most of the night on the [15]!</p></p><p align="left">I've just read what I've written so far - you must think we lead a very boring life! Actually, the weekends are when we go out and do things!</p></p><p align="left">English-language books are quite easy to find though. They've just opened an excellent new library near us with a great collection of modern British and American [7] which is brilliant for me as I read a lot of novels. It's a bit more difficult for Josh to find what he wants. He prefers [8], especially popular science and natural history, and there isn't much of that. Actually, books are quite expensive here, so bring as many cheap [9] with you as you can for your weekend getaways to Thailand and the Philippines!</p></p><p align="left">Anyway, to answer your questions about what we do here in the evenings and at weekends. Well, most evenings we're both so tired when we get home that we just listen to music or read. We even play board games, would you believe! We actually play a lot of [1]! None of our games last long though as Josh usually has all my [2] within about 15 minutes. I don't really have the patience to work out the best [3].</p></p><p align="left">I can't believe you're coming to live here in Hong Kong! Let us know when you're arriving and Josh and I will come and pick you up from the airport. </p></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_TV_003.jpg" height="250" width="165" mode="1" id="1001"  />
+			</section>			<section id="noscroll">
+				<P ALIGN="LEFT"><tab/><span id="31" draggable="true">ingredients</span><tab/><span id="39" draggable="true">bargains</span><tab/><span id="32" draggable="true">recipes</span><tab/><span id="28" draggable="true">non-fiction</span><P ALIGN="LEFT"><tab/><span id="40" draggable="true">markets</span><tab/><span id="34" draggable="true">hits</span><tab/><span id="24" draggable="true">channels</span><tab/><span id="25" draggable="true">documentaries</span></P><P ALIGN="LEFT"><tab/><span id="21" draggable="true">chess</span><tab/><span id="30" draggable="true">cuisine</span><tab/><span id="27" draggable="true">fiction</span><tab/><span id="22" draggable="true">pieces</span></P><P ALIGN="LEFT"><tab/><span id="38" draggable="true">aerobics</span><tab/><span id="26" draggable="true">soap operas</span><tab/><span id="36" draggable="true">gyms</span><tab/><span id="29" draggable="true">paperbacks</span></P><P ALIGN="LEFT"><tab/><span id="33" draggable="true">DJ</span><tab/><span id="23" draggable="true">moves</span><tab/><span id="35" draggable="true">dance floor</span><tab/><span id="37" draggable="true">treadmills</span>
+			</section>
+</body>
+</bento>
