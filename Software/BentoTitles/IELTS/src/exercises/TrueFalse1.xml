@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<bento xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
 		<style type="text/css">
@@ -132,4 +132,4 @@
 		</section>
 	</body>
 	
-</html>
+</bento>
