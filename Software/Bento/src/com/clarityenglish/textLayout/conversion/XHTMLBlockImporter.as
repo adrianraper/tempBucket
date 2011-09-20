@@ -28,6 +28,7 @@ package com.clarityenglish.textLayout.conversion {
 	import flashx.textLayout.elements.SubParagraphGroupElementBase;
 	import flashx.textLayout.elements.TCYElement;
 	import flashx.textLayout.elements.TextFlow;
+	import flashx.textLayout.formats.ListStyleType;
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.logging.ILogger;
@@ -264,12 +265,20 @@ package com.clarityenglish.textLayout.conversion {
 		
 		private static function parseUnorderedList(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var listElem:ListElement = importFilter.createListFromXML(xmlToParse);
+			
+			// By default an unordered list is of disc type
+			listElem.listStyleType = ListStyleType.DISC;
+			
 			if (importFilter.addChild(parent, listElem))
 				importFilter.parseFlowGroupElementChildren(xmlToParse, listElem);
 		}
 		
 		private static function parseOrderedList(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var listElem:ListElement = importFilter.createListFromXML(xmlToParse);
+			
+			// By default an ordered list of of decimal type
+			listElem.listStyleType = ListStyleType.DECIMAL;
+			
 			if (importFilter.addChild(parent, listElem))
 				importFilter.parseFlowGroupElementChildren(xmlToParse, listElem);
 		}
