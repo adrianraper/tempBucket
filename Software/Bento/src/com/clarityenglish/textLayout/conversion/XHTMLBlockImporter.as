@@ -163,6 +163,8 @@ package com.clarityenglish.textLayout.conversion {
 			if (importQueueJob.containingBlock) {
 				importQueueJob.containingBlock.addChildRenderFlow(renderFlow);
 			}
+			
+			trace(renderFlow);
 		}
 		
 		/**

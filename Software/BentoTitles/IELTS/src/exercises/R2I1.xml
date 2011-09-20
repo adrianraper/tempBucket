@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<link rel="stylesheet" href="exercises/css/exercises.css" type="text/css" />
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
 		<style type="text/css">
 		<![CDATA[			
 			list {
@@ -33,7 +33,7 @@
 		</header>
 		
 		<section id="body">
-			<img class="rightFloat" src="exercises/media/LE_TV_001.jpg" />
+			<img class="rightFloat" src="media/LE_TV_001.jpg" />
 			<p class="h1">Leisure activites</p>
 			<p class="no-padding">You will...</p>
 			<list>

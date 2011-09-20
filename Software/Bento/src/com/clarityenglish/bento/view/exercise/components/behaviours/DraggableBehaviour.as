@@ -78,7 +78,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 								// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
 								var containerPoint:Point = container.globalToContent(new Point(e.originalEvent.stageX, e.originalEvent.stageY));
 								dragImage.x = containerPoint.x - elementBounds.width / 2;
-								dragImage.y = containerPoint.y - elementBounds.height;
+								dragImage.y = containerPoint.y - elementBounds.height / 2;
 								
 								// Determine translation matrix and clip rectangle to capture the draggable element as bitmap data
 								var translationMatrix:Matrix = new Matrix();

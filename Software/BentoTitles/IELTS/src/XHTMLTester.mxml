@@ -63,7 +63,7 @@
 				// Load the configuration file
 				urlLoader = new URLLoader();
 				urlLoader.addEventListener(Event.COMPLETE, onExerciseLoadComplete);
-				urlLoader.load(new URLRequest("exercises/" + selectedExercise + ".xhtml"));
+				urlLoader.load(new URLRequest("exercises/" + selectedExercise + ".xml"));
 			}
 			// If you are reading from the tree
 			protected function onSelectItemChange(event:IndexChangeEvent):void {
@@ -122,7 +122,7 @@
 	</util:layout>
 
 	<s:VGroup width="300">
-		<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="4" change="onButtonBarChange(event)">
+		<s:DropDownList id="buttonBar" width="100%" requireSelection="true" selectedIndex="16" change="onButtonBarChange(event)">
 			<mx:ArrayCollection>
 				<fx:String>Grid1</fx:String>
 				<fx:String>Grid2</fx:String>
