@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.controller {
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.ielts.view.ApplicationMediator;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -7,6 +8,10 @@ package com.clarityenglish.ielts.controller {
 	public class StartupCommand extends SimpleCommand {
 
 		public override function execute(note:INotification):void {
+			// Register models
+			facade.registerProxy(new ConfigProxy());
+			
+			// Register mediators
 			facade.registerMediator(new ApplicationMediator(note.getBody()));
 		}
 

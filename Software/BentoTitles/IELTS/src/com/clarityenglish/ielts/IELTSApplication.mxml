@@ -5,17 +5,14 @@
 					    xmlns:bento="com.clarityenglish.bento.*"
 						xmlns:components="com.clarityenglish.bento.view.exercise.components.*"
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
-					    minWidth="955"
-						minHeight="600"
-						currentState="login"
+						xmlns:main="com.clarityenglish.ielts.view.main.*"
+						currentState="main"
 						creationComplete="creationComplete(event)">
 	<fx:Declarations />
 	
 	<bento:states>
 		<s:State name="login" />
-		<s:State name="modules" />
-		<s:State name="progress" />
-		<s:State name="exercise" />
+		<s:State name="main" />
 	</bento:states>
 	
 	<fx:Style source="bento.css" />
@@ -42,6 +39,7 @@
 		]]>
 	</fx:Script>
 	
-	<login:LoginView includeIn="login" />
+	<login:LoginView width="100%" height="100%" includeIn="login" />
+	<main:MainView width="100%" height="100%" includeIn="main" />
 	
 </bento:BentoApplication>

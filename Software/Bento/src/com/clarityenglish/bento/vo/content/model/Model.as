@@ -14,6 +14,7 @@ package com.clarityenglish.bento.vo.content.model {
 			this.exercise = exercise;
 			this.xml = xml;
 			
+			// Create any questions
 			_questions = new Vector.<Question>();
 			for each (var questionNode:XML in xml.questions.*)
 				_questions.push(Question.create(questionNode));
@@ -61,9 +62,7 @@ package com.clarityenglish.bento.vo.content.model {
 		public static function sourceToNodeArray(exercise:Exercise, source:String):Array {
 			var matches:Array = source.match(/\{([^}]*)\}$/);
 			if (matches !== null) {
-				// If the source is wrapped in curly braces then its a CSS selector.  as3csslib requires a fake style decleration for this to work, hence the {}
-				/*var cssSelector:CSS = new CSS(matches[1] + " {}");
-				return cssSelector.select(exercise.body);*/
+				// If the source is wrapped in curly braces then its a CSS selector
 				return exercise.select(matches[1]);
 			} else {
 				// Otherwise it is a straight id

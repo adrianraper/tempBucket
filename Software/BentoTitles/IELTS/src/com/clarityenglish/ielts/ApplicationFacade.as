@@ -4,6 +4,8 @@
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.login.LoginView;
+	import com.clarityenglish.ielts.view.main.MainMediator;
+	import com.clarityenglish.ielts.view.main.MainView;
 	
 	/**
 	* ...
@@ -20,6 +22,7 @@
 			super.initializeController();
 			
 			mapView(LoginView, LoginMediator);
+			mapView(MainView, MainMediator);
 			
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
 		}
