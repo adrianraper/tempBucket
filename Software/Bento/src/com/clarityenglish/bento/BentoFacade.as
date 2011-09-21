@@ -39,6 +39,7 @@
 		override protected function initializeController():void {
 			super.initializeController();
 			
+			// Map built in views to their mediators
 			mapView(ExerciseView, ExerciseMediator);
 			
 			/*registerCommand(CommonNotifications.LOGIN, LoginCommand);
@@ -61,12 +62,12 @@
 				var uniqueMediatorName:String = ClassUtil.getClassAsString(mediatorClass) + new Date().getTime().toString();
 				var mediator:IMediator = new mediatorClass(uniqueMediatorName, viewComponent);
 				
+				log.info("Auto-mediating with mediator {0} (unique mediator name={1})", mediator, uniqueMediatorName);
+				
 				registerMediator(mediator);
 				
 				mediatorInstanceByView[viewComponent] = mediator;
 				mediatorNameByInstance[mediator] = uniqueMediatorName;
-				
-				log.info("View auto-mediated with mediator {0} (unique mediator name={1})", mediator, uniqueMediatorName);
 			}
 		}
 		
@@ -76,9 +77,9 @@
 			
 			var mediator:IMediator = mediatorInstanceByView[viewComponent];
 			if (mediator) {
-				removeMediator(mediatorNameByInstance[mediator]);
+				log.info("Removing mediator {0}", mediatorNameByInstance[mediator]);
 				
-				log.info("Mediator {0} removed", mediatorNameByInstance[mediator]);
+				removeMediator(mediatorNameByInstance[mediator]);
 				
 				// This should free the view component and mediator for garbage collection
 				delete mediatorNameByInstance[mediator];

@@ -1,5 +1,6 @@
-﻿package com.clarityenglish.ielts.view.main {
-	import com.clarityenglish.bento.view.BentoMediator;
+﻿package com.clarityenglish.ielts.view.menu {
+	import com.clarityenglish.bento.view.base.BentoMediator;
+	import com.clarityenglish.bento.view.base.BentoView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -7,14 +8,14 @@
 	/**
 	 * A Mediator
 	 */
-	public class MainMediator extends BentoMediator implements IMediator {
+	public class MenuMediator extends BentoMediator implements IMediator {
 		
-		public function MainMediator(mediatorName:String, viewComponent:MainView) {
+		public function MenuMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():MainView {
-			return viewComponent as MainView;
+		private function get view():MenuView {
+			return viewComponent as MenuView;
 		}
 		
 		/**
@@ -22,7 +23,6 @@
 		 */
 		override public function onRegister():void {
 			super.onRegister();
-			
 		}
         
 		/**
@@ -34,7 +34,9 @@
 		 * @return Array the list of Nofitication names
 		 */
 		override public function listNotificationInterests():Array {
-			return [ ];
+			return super.listNotificationInterests().concat([
+				
+			]);
 		}
 
 		/**
@@ -47,6 +49,8 @@
 		 * @param INotification a notification 
 		 */
 		override public function handleNotification(note:INotification):void {
+			super.handleNotification(note);
+			
 			switch (note.getName()) {
 				
 			}

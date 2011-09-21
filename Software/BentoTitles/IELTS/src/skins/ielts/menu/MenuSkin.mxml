@@ -6,7 +6,7 @@
 		width="100%">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.main.MainView")]
+		[HostComponent("com.clarityenglish.ielts.view.menu.MenuView")]
 	</fx:Metadata>
 	
 	<s:layout>

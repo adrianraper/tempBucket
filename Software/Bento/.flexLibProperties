@@ -4,7 +4,7 @@
     <classEntry path="com.clarityenglish.bento.BBNotifications"/>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
     <classEntry path="com.clarityenglish.bento.BentoFacade"/>
-    <classEntry path="com.clarityenglish.bento.view.BentoMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.base.BentoMediator"/>
     <classEntry path="com.clarityenglish.bento.view.DynamicView"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.ExerciseView"/>
@@ -75,6 +75,10 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Group"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
+    <classEntry path="com.clarityenglish.bento.view.base.BentoView"/>
+    <classEntry path="com.clarityenglish.bento.model.XHTMLProxy"/>
+    <classEntry path="com.clarityenglish.bento.controller.XHTMLLoadCommand"/>
+    <classEntry path="com.clarityenglish.bento.vo.Href"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

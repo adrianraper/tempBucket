@@ -1,10 +1,9 @@
 package com.clarityenglish.ielts.view.login {
+	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	
-	import spark.components.supportClasses.SkinnableComponent;
-	
-	public class LoginView extends SkinnableComponent implements LoginComponent {
+	public class LoginView extends BentoView implements LoginComponent {
 		
 		public function LoginView() {
 			super();

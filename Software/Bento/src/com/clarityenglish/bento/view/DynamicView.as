@@ -6,6 +6,8 @@ package com.clarityenglish.bento.view {
 	
 	public class DynamicView extends UIComponent {
 		
+		// TODO: This will create a concrete view based on the XML properties
+		
 	}
 	
 }

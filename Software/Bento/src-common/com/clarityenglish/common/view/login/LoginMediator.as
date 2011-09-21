@@ -2,7 +2,8 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.common.view.login {
-	import com.clarityenglish.bento.view.BentoMediator;
+	import com.clarityenglish.bento.view.base.BentoMediator;
+	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.CopyProxy;
@@ -11,14 +12,13 @@ package com.clarityenglish.common.view.login {
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.patterns.mediator.Mediator;
 	
 	/**
 	 * A Mediator
 	 */
 	public class LoginMediator extends BentoMediator implements IMediator {
 		
-		public function LoginMediator(mediatorName:String, viewComponent:LoginComponent) {
+		public function LoginMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
@@ -44,10 +44,10 @@ package com.clarityenglish.common.view.login {
 		 * @return Array the list of Nofitication names
 		 */
 		override public function listNotificationInterests():Array {
-			return [
+			return super.listNotificationInterests().concat([
 					CommonNotifications.INVALID_LOGIN,
 					CommonNotifications.COPY_LOADED,
-				];
+			]);
 		}
 
 		/**
@@ -60,6 +60,8 @@ package com.clarityenglish.common.view.login {
 		 * @param INotification a notification 
 		 */
 		override public function handleNotification(note:INotification):void {
+			super.handleNotification(note);
+			
 			switch (note.getName()) {
 				case CommonNotifications.INVALID_LOGIN:
 					view.showInvalidLogin();

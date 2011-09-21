@@ -1,5 +1,5 @@
 package com.clarityenglish.ielts.view {
-	import com.clarityenglish.bento.BentoApplication;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
@@ -21,6 +21,8 @@ package com.clarityenglish.ielts.view {
 
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.menuView.href = new Href("nothing.xml");
 		}
 		
 		/**

@@ -1,11 +1,13 @@
 package com.clarityenglish.bento.view.exercise {
-	import com.clarityenglish.bento.view.BentoMediator;
+	import com.clarityenglish.bento.view.base.BentoMediator;
+	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.exercise.components.ExerciseView;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	
 	public class ExerciseMediator extends BentoMediator {
 		
-		public function ExerciseMediator(mediatorName:String, viewComponent:Object) {
+		public function ExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
