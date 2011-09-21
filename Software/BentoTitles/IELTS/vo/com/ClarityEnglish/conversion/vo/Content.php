@@ -8,9 +8,20 @@ class Content{
 	var $mediaNodes = Array();
 	var $fields = Array();
 	
-	function __construct($xmlObj=null) {
+	protected $parent;
+	function getParent() {
+		return $this->parent;
+	}
+	function setParent($object) {
+		//echo "set parent for ";
+		$this->parent = $object;
+	}
+	function __construct($xmlObj=null, $parent=null) {
+		if ($parent) 
+			$this->setParent($parent);
+			
 		if ($xmlObj) {
-			//echo 'create new content for '.$this->getClass();
+			//echo 'create new content for '.$this->getSection();
 			// Dig out the paragraphs from this xml object and create them
 			$groupPara = null;
 			foreach ($xmlObj->children() as $child) {
@@ -96,23 +107,30 @@ class Content{
 	function getParagraphs() {
 		return $this->paragraphs;
 	}
-	//function getClass() {
+	//function getSection() {
 		// This must always be overwritten in the specific section
 	//}
-	// Used in output
-	//function getText() {
+	// Used in output of the converted XML
 	function output() {
 		
-		$buildText='';
-		$lastTagType = null;
-		foreach ($this->getParagraphs() as $paragraph) {
-			// Keep track of any paragraph that is a different tag type than the previous one
-			$thisTagType = $paragraph->getTagType();
-			$buildText.=$paragraph->output($lastTagType,$thisTagType);
-			$lastTagType = $thisTagType;
-		}		
-		foreach ($this->getMediaNodes() as $mediaNode) {
-			$buildText.=$mediaNode->output();
+		// First see if this exercise outputs content in a special way 
+		if (($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DRAGANDDROP) &&
+			$this->getSection()==Exercise::EXERCISE_SECTION_BODY) {
+			// Output for drag and drop body
+			$buildText = $this->bodyOutput(Exercise::EXERCISE_TYPE_DRAGANDDROP);
+			
+		} else {
+			$buildText='';
+			$lastTagType = null;
+			foreach ($this->getParagraphs() as $paragraph) {
+				// Keep track of any paragraph that is a different tag type than the previous one
+				$thisTagType = $paragraph->getTagType();
+				$buildText.=$paragraph->output($lastTagType,$thisTagType);
+				$lastTagType = $thisTagType;
+			}		
+			foreach ($this->getMediaNodes() as $mediaNode) {
+				$buildText.=$mediaNode->output();
+			}
 		}
 		// Whatever happens there are some characters I want to replace
 		// non-breaking space special characters
@@ -120,7 +138,54 @@ class Content{
 		
 		return $buildText;
 	}
-	
+	// Special output functions
+	// Should this be somewhere else?
+	function bodyOutput($exerciseType) {
+		$builder='';
+		if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
+			// You need to output all the paragraphs. 
+			$lastTagType = null;
+			foreach ($this->getParagraphs() as $paragraph) {
+				// Keep track of any paragraph that is a different tag type than the previous one
+				$thisTagType = $paragraph->getTagType();
+				$builder.=$paragraph->output($lastTagType,$thisTagType);
+				$lastTagType = $thisTagType;
+			}		
+			// TODO. But the problem is that we have already written out the model!
+			// Get the model ready
+			$model = $this->getParent()->model;
+			$model->prepareQuestions();
+			
+			// As you do it, you want to find any drops and replace them with an input field
+			// You will also write out a question node in the script node
+			$pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
+			$buildText='';
+			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
+				foreach ($matches as $m) {
+					// read the fields to find the matching answer
+					$answer='';
+					foreach ($this->getFields() as $field) {
+						if ($field->getID()==$m[2]) {
+							$fieldType = $field->getType();
+							$answers = $field->getAnswers();
+							$answer = $answers[0]->getAnswer();
+							continue;
+							// TODO: What if we didn't find this field id?
+						}
+					}
+					if ($fieldType==Field::FIELD_TYPE_DROP) {
+						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />';
+					}
+					// Write out the question in the model
+				}
+			}
+			
+			foreach ($this->getMediaNodes() as $mediaNode) {
+				$buildText.=$mediaNode->output();
+			}
+		}
+		return $buildText;
+	}
 	// Check each paragraph to see if it can be merged into the previous one
 	function getParaGrouping($thisPara) {
 		// Check various conditions to see if this para should merge with the previous one(s)
@@ -146,10 +211,11 @@ class Content{
 	// A utility function to describe the object
 	function toString() {
 		global $newline;
-		$build=$newline.'<'.$this->getClass().'>';
+		$build=$newline.'<'.$this->getSection().'>';
 		
 		foreach ($this->getParagraphs() as $para) {
-	  		$build.=$para->toString();
+			if ($para)
+	  			$build.=$para->toString();
 		}
 		foreach ($this->getFields() as $field) {
 	  		$build.=$field->toString();
@@ -158,7 +224,7 @@ class Content{
 	  		$build.=$mediaNode->toString();
 		}
 		
-		$build.=$newline.'</'.$this->getClass().'>';	
+		$build.=$newline.'</'.$this->getSection().'>';	
 		return $build;
 	}
 	

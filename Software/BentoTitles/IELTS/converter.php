@@ -1,5 +1,6 @@
 <?php
 
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Model.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Settings.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Exercise.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Presentation.php");
@@ -65,7 +66,7 @@ function convertExercise($exerciseID) {
 			//echo $exercise->getRubric();
 	}
 	// At the end of construction, you can check the object if you want
-	echo $exercise->toString();
+	//echo $exercise->toString();
 	
 	// Then create an output function
 	switch (strtolower($type)) {

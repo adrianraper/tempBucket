@@ -2,11 +2,12 @@
 
 class NoScroll extends Content{
 	
-	function __construct($xmlObj) {
-		parent::__construct($xmlObj);
-	}
+	// If I don't define this it automatically use the parent's
+	//function __construct($xmlObj, $parent) {
+	//	parent::__construct($xmlObj, $parent);
+	//}
 
-	function getClass() {
+	function getSection() {
 		return Exercise::EXERCISE_SECTION_NOSCROLL;
 	}
 	
@@ -19,7 +20,8 @@ class NoScroll extends Content{
 		$builder='';
 		// So drop everything (except tabs) from the paragraphs, and first write out the spans
 		foreach ($this->getParagraphs() as $paragraph) {
-			$builder.=$paragraph->getPureText();
+			if ($paragraph)
+				$builder.=$paragraph->getPureText();
 		}
 		// <tab>[21]<tab>[30]<tab>[27]<tab>[22]
 		// change <tab> to correct <tab/>

@@ -14,7 +14,8 @@ class Paragraph {
 	// Note that this is part of a tag outside than <p>
 	var $tagType;
 
-	const characters_to_keep = '[\s\w<>#=&;,\[\]\-\'"\/\? \.\t\h\xc2\xa0]';
+	// What about Chinese characters? Or French for that matter.
+	const characters_to_keep = '[\s\w\<\>#=&;,\[\]\-\'"\/\? \.\t\h\xc2\xa0]';
 	
 	protected $parent;
 	function getParent() {
@@ -26,9 +27,10 @@ class Paragraph {
 	
 	function __construct($xmlObj=null, $parent=null) {
 		// Keep a reference back to the section we are part of
-		$this->setParent($parent);
+		if ($parent)
+			$this->setParent($parent);
 		
-		//if (($this->getParent()->getClass()==Exercise::EXERCISE_SECTION_NOSCROLL)) {
+		//if (($this->getParent()->getSection()==Exercise::EXERCISE_SECTION_NOSCROLL)) {
 		//	echo $xmlObj;
 		//}
 		if ($xmlObj) {
@@ -62,13 +64,13 @@ class Paragraph {
 		// It might be useful to know what section this paragraph is in...
 		// And, if we are in a rubric - I think I should simply get rid of ALL html tags to leave pure text.
 		$section = $this->getParent();
-		//echo "section=".$section->getClass()."\n";
+		//echo "section=".$section->getSection()."\n";
 		// General pattern use
 		//$charactersToKeep = '[\s\w\d<>#=&;,\'"\/\? \.\t\h\xc2\xa0]';
 		
-		//if ($section->getClass()==Exercise::EXERCISE_SECTION_RUBRIC) { 
-		if (($section->getClass()==Exercise::EXERCISE_SECTION_RUBRIC) || 
-			($section->getClass()==Exercise::EXERCISE_SECTION_NOSCROLL)) {
+		//if ($section->getSection()==Exercise::EXERCISE_SECTION_RUBRIC) { 
+		if (($section->getSection()==Exercise::EXERCISE_SECTION_RUBRIC) || 
+			($section->getSection()==Exercise::EXERCISE_SECTION_NOSCROLL)) {
 			// This is what a standard rubric paragraph looks like
 			//<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0" id="1">
 			//	<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read the text below.</B></FONT></P></TEXTFORMAT></B>]]>
@@ -84,14 +86,24 @@ class Paragraph {
 			// First, see if there is a standard textformat tag to remove
 			// Stuff that looks the same doesn't match the same...
 			// Need to cope with extra characters, including tabs and non-breaking spaces. \h?
-			$pattern = '/<TEXTFORMAT [^>]+>('.Paragraph::characters_to_keep.'+)<\/TEXTFORMAT>/is';
-			$replacement = '\1';
-			$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
+			// TextFormat has no information that we want to keep.
+			//$pattern = '/<TEXTFORMAT [^>]+>('.Paragraph::characters_to_keep.'+)<\/TEXTFORMAT>/is';
+			//$replacement = '\1';
+			//$builtHtml = preg_replace($pattern, $replacement, $fullParagraphHtml);
+			$patterns = Array();
+			$patterns[] = '/\<TEXTFORMAT [^\>]+\>/is';
+			$patterns[] = '/\<\/TEXTFORMAT\>/is';
+			$replacement = '';
+			$builtHtml = preg_replace($patterns, $replacement, $fullParagraphHtml);
+			//$builtHtml = $fullParagraphHtml;
+			
 			// In terms of conversion - it is a question of what I want to keep 
 			// FONT - I don't care about any changes in face or size (because there are hardly any and they are bound to change). 
 			// I want to keep color changes. Ignore everything else.
-			$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>('.Paragraph::characters_to_keep.'+)<\/FONT>/is';
-			$replacement = '<font color="\1">\2</font>';
+			//$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>('.Paragraph::characters_to_keep.'+)<\/FONT>/is';
+			//$replacement = '<font color="\1">\2</font>';
+			$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>/is';
+			$replacement = '<font color="\1">';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 			
 			// FONT. If the only thing is color=black then I would like to drop the whole font tag.
@@ -153,11 +165,11 @@ class Paragraph {
 		$patterns = Array();
 		$patterns[] = '/\<TEXTFORMAT [^\>]+\>/is';
 		$patterns[] = '/\<FONT [^\>]+\>/is';
-		//$patterns[] = '/\<P [^\>]+\>/is';
+		$patterns[] = '/\<P [^\>]+\>/is';
 		$patterns[] = '/\<B\>/is';
 		$patterns[] = '/\<\/TEXTFORMAT\>/is';
 		$patterns[] = '/\<\/FONT\>/is';
-		//$patterns[] = '/\<\/P\>/is';
+		$patterns[] = '/\<\/P\>/is';
 		$patterns[] = '/\<\/B\>/is';
 		$replacement = '';
 		$builtHtml = preg_replace($patterns, $replacement, $htmlString);

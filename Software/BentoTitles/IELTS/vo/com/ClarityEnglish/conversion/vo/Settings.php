@@ -4,13 +4,13 @@ class Settings {
 	
 	protected $settings;
 	
-	function Settings($xmlObj=null) {
+	function __construct($xmlObj=null) {
 		// For now, just save the xml
 		if ($xmlObj) {
 			$this->settings = $xmlObj;
 		}
 	}
-	function getClass() {
+	function getSection() {
 		return Exercise::EXERCISE_SECTION_SECTIONS;
 	}
 	// For output to xhtml

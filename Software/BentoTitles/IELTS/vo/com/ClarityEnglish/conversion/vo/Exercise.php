@@ -12,6 +12,7 @@ class Exercise {
 	var $noscroll;
 	var $example;
 	var $readingText;
+	var $model;
 	
 	const EXERCISE_SECTION_RUBRIC = 'rubric';
 	const EXERCISE_SECTION_TITLE = 'title';
@@ -20,6 +21,8 @@ class Exercise {
 	const EXERCISE_SECTION_EXAMPLE = 'example';
 	const EXERCISE_SECTION_SETTINGS = 'settings';
 	const EXERCISE_SECTION_TEMPLATE = 'template';
+	const EXERCISE_TYPE_DRAGANDDROP = 'draganddrop';
+	const EXERCISE_TYPE_PRESENTATION = 'presentation';
 	
 	function __construct($xmlObj=null) {
 		if ($xmlObj) {
@@ -37,16 +40,16 @@ class Exercise {
 			  			$this->settings = new Settings($child);
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_TITLE:
-			  			$this->rubric = new Rubric($child);
+			  			$this->rubric = new Rubric($child, $this);
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_BODY:
-			  			$this->body = new Body($child);
+			  			$this->body = new Body($child, $this);
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_NOSCROLL:
-			  			$this->noscroll = new NoScroll($child);
+			  			$this->noscroll = new NoScroll($child, $this);
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_EXAMPLE:
-			  			//$this->example = new Example($child);
+			  			//$this->example = new Example($child, $this);
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_TEMPLATE:
 			  			// I'm just going to drop template sections as of no value
@@ -54,6 +57,7 @@ class Exercise {
 			  	}
 			}
 			// Once you have all sections, you need to do some replacing of fields/answers
+			$this->model = new Model();
 			
 		}
 	}
@@ -77,14 +81,17 @@ class Exercise {
 		//return $this->settings->getText();
 		return $this->settings->output();
 	}
+	function getModel(){
+		return $this->model->output();
+	}
 	function getSections(){
-		$section = array();
-		if ($this->body)
-			$sections[]=$this->body;
+		$sections = array();
 		if ($this->noscroll)
 			$sections[]=$this->noscroll;
 		if ($this->example)
 			$sections[]=$this->example;
+		if ($this->body)
+			$sections[]=$this->body;
 		return $sections;
 	}
 	
@@ -118,6 +125,7 @@ class Exercise {
 		}
 		*/
 		$build.=$this->settings->toString();
+		$build.=$this->model->toString();
 		$build.=$this->rubric->toString();
 		$build.=$this->noscroll->toString();
 		$build.=$this->body->toString();

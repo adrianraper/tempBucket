@@ -75,8 +75,8 @@
 					urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
 					urlLoader.addEventListener(Event.COMPLETE, onExerciseLoadComplete);
 					try {
-						trace("open file:" + contentPath + "Exercises/" + selectedExercise + ".xhtml");
-						urlLoader.load(new URLRequest(contentPath + "Exercises/" + selectedExercise + ".xhtml"));
+						trace("open file:" + contentPath + "Exercises/" + selectedExercise + "-new.xml");
+						urlLoader.load(new URLRequest(contentPath + "Exercises/" + selectedExercise + "-new.xml"));
 					}
 					catch (error:SecurityError)
 					{

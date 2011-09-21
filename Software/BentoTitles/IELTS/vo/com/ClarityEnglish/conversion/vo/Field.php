@@ -15,6 +15,9 @@ class Field {
 	// for reference
 	var $id;
 
+	const FIELD_TYPE_DROP = 'drop';
+	const FIELD_TYPE_DRAG = 'drag';
+	
 	protected $parent;
 	
 	function getParent() {
@@ -26,7 +29,8 @@ class Field {
 	
 	function Field($xmlObj=null, $parent=null) {
 		// Keep a reference back to the paragraph/section we are part of
-		$this->setParent($parent);
+		if ($parent)
+			$this->setParent($parent);
 		
 		//echo $xmlObj;
 		if ($xmlObj) {
@@ -66,6 +70,9 @@ class Field {
 	}
 	function getID(){
 		return $this->id;
+	}
+	function getType(){
+		return $this->type;
 	}
 	// Fields are not really output directly, they end up being merged into other sections
 	// A utility function to describe the object

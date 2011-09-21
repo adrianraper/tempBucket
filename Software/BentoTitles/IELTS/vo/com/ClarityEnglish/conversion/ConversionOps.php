@@ -30,21 +30,22 @@ class ConversionOps {
 	function formatHtmlRubric() {
 		$rubricText = $this->exercise->getRubric();
 		$build =<<< EOD
-		<header>
-			$rubricText
-		</header>
+\n<header>
+	$rubricText
+</header>
 EOD;
 		return $build;
 	}
 	function formatHtmlSections() {
 		$build = '';
+		// Better to write out the sections in a specific order
 		foreach ($this->exercise->getSections() as $section) {
 			$sectionText = $section->output();
-			$sectionType = $section->getClass();
+			$sectionType = $section->getSection();
 			$build .=<<< EOD
-			<section id="$sectionType">
-				$sectionText
-			</section>
+\n<section id="$sectionType">
+	$sectionText
+</section>
 EOD;
 		}
 		return $build;
@@ -57,38 +58,39 @@ EOD;
 		$settings = strtolower($this->exercise->getSettings());
 		
 		// Model (questions and answers)
+		$model = $this->exercise->model->toString();
+		
 		$now =date('Y-m-d');
 		$build =<<< EOD
-		<head>
-			<meta name="conversion" type="$exerciseType" date="$now" />
-			<link rel="stylesheet" href="css/exercises.css" type="text/css" />
-			<style type="text/css">
-			<![CDATA[			
-				list {
-					list-style-type: decimal;
-					margin-left: 0; 
-					padding-left: 20px; 
-					padding-bottom: 12px; 
-				}
-				p {
-					padding-bottom: 12px; 
-				}
-				.no-padding {
-					padding-bottom: 0px; 
-				}
-				.h1 {
-					font-size: 12px;
-					font-weight: bold;
-					color: #3A00FF;	
-				}
-			]]>
-			</style>
-			<script id="settings" type="application/xml">
-				$settings
-			</script>
-			<script id="model" type="application/xml">
-			</script>
-		</head>
+<head>
+	<meta name="conversion" type="$exerciseType" date="$now" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		$settings
+	</script>
+	$model
+</head>
 EOD;
 
 		return $build;
