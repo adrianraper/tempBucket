@@ -30,12 +30,14 @@
 	<s:TabBar id="tabBar" />
 	
 	<s:HGroup width="100%">
-		<s:VGroup>
+		<!--<s:VGroup>
 			<s:Button id="course1Button" visible="false" />
 			<s:Button id="course2Button" visible="false" />
 			<s:Button id="course3Button" visible="false" />
 			<s:Button id="course4Button" visible="false" />
-		</s:VGroup>
+		</s:VGroup>-->
+		
+		<s:TabBar id="courseTabBar" skinClass="skins.ielts.module.CourseTabBarSkin" />
 		
 		<module:ModuleView id="moduleView" width="100%" height="100%" includeIn="module" />
 		<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />

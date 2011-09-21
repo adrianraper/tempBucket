@@ -7,6 +7,7 @@ package com.clarityenglish.ielts.view.menu {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.XMLListCollection;
 	
 	import org.osflash.signals.Signal;
 	
@@ -19,19 +20,10 @@ package com.clarityenglish.ielts.view.menu {
 	public class MenuView extends BentoView {
 		
 		[SkinPart]
-		public var course1Button:Button;
+		public var mainTabBar:TabBar;
 		
 		[SkinPart]
-		public var course2Button:Button;
-		
-		[SkinPart]
-		public var course3Button:Button;
-		
-		[SkinPart]
-		public var course4Button:Button;
-		
-		[SkinPart]
-		public var tabBar:TabBar;
+		public var courseTabBar:TabBar;
 		
 		[SkinPart]
 		public var moduleView:ModuleView;
@@ -45,17 +37,10 @@ package com.clarityenglish.ielts.view.menu {
 			super.commitProperties();
 			
 			if (_xhtml) {
-				// Label the course selection buttons from the XML
-				var n:uint = 1;
-				for each (var course:XML in menu..course) {
-					var courseButton:Button = this["course" + n + "Button"];
-					courseButton.label = course.@caption;
-					courseButton.visible = true;
-					n++;
-				}
+				// Provide the courses as a data provider to the courseTabBar
+				courseTabBar.dataProvider = new XMLListCollection(menu..course);
 				
 				// Set the first course by default
-				//moduleView.course = menu..course[0];
 				moduleView.courseName = menu..course[0].@caption;
 			}
 		}
@@ -64,21 +49,18 @@ package com.clarityenglish.ielts.view.menu {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case course1Button:
-				case course2Button:
-				case course3Button:
-				case course4Button:
-					// TODO: This should maybe send something other than the label (i.e. the course xml?? but can deal with that later)
-					instance.addEventListener(MouseEvent.CLICK, onCourseSelected);
-					break;
-				case tabBar:
-					tabBar.dataProvider = new ArrayCollection( [
+				case mainTabBar:
+					mainTabBar.dataProvider = new ArrayCollection( [
 						{ label: "Academic module", data: "module" },
 						{ label: "My Progress", data: "progress" },
 						{ label: "My Account", data: "account" },
 					] );
-					tabBar.requireSelection = true;
-					tabBar.addEventListener(Event.CHANGE, onTabIndexChange);
+					mainTabBar.requireSelection = true;
+					mainTabBar.addEventListener(Event.CHANGE, onMainTabBarIndexChange);
+					break;
+				case courseTabBar:
+					courseTabBar.requireSelection = true;
+					courseTabBar.addEventListener(Event.CHANGE, onCourseTabBarIndexChange);
 					break;
 				case moduleView:
 					// Pass on the same href to the module view
@@ -93,7 +75,7 @@ package com.clarityenglish.ielts.view.menu {
 		 * @return 
 		 */
 		protected override function getCurrentSkinState():String {
-			return (tabBar && tabBar.selectedItem) ? tabBar.selectedItem.data : null;
+			return (mainTabBar && mainTabBar.selectedItem) ? mainTabBar.selectedItem.data : null;
 		}
 		
 		/**
@@ -101,7 +83,7 @@ package com.clarityenglish.ielts.view.menu {
 		 * 
 		 * @param event
 		 */
-		protected function onTabIndexChange(event:Event):void {
+		protected function onMainTabBarIndexChange(event:Event):void {
 			invalidateSkinState();
 		}
 		
@@ -110,9 +92,8 @@ package com.clarityenglish.ielts.view.menu {
 		 * 
 		 * @param e
 		 */
-		protected function onCourseSelected(e:Event):void {
-			var caption:String = e.target.label;
-			//moduleView.course = _xhtml.selectOne("course[caption='" + caption + "']");
+		protected function onCourseTabBarIndexChange(event:Event):void {
+			var caption:String = event.target.selectedItem.@caption;
 			moduleView.courseName = caption;
 		}
 		
