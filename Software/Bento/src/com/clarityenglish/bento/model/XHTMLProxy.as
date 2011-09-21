@@ -9,6 +9,9 @@ package com.clarityenglish.bento.model {
 	import flash.net.URLRequest;
 	import flash.utils.Dictionary;
 	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -16,6 +19,11 @@ package com.clarityenglish.bento.model {
 	public class XHTMLProxy extends Proxy implements IProxy {
 		
 		public static const NAME:String = "XHTMLProxy";
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		/**
 		 * A cache of hrefs to loaded XHTML files 
@@ -48,8 +56,8 @@ package com.clarityenglish.bento.model {
 			urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onXHTMLSecurityError);
 			urlLoader.load(new URLRequest(href.url));
 			
-			// Maintain a strong reference during loading so the loader isn't garbage collected
-			urlLoaders[urlLoader] = true;
+			// Maintain a strong reference during loading so the loader isn't garbage collected, and so we have the original href
+			urlLoaders[urlLoader] = href;
 		}
 		
 		private function notifyXHTMLLoaded(href:Href):void {
@@ -58,23 +66,30 @@ package com.clarityenglish.bento.model {
 		
 		private function onXHTMLLoadComplete(event:Event):void {
 			var urlLoader:URLLoader = event.target as URLLoader;
+			var href:Href = urlLoaders[urlLoader];
 			delete urlLoaders[urlLoader];
 			
-			trace("load complete");
+			log.info("Successfully loaded XHTML from href {0}", href);
+			
+			loadedResources[href] = urlLoader.data;
+			
+			notifyXHTMLLoaded(href);
 		}
 		
 		private function onXHTMLLoadError(event:IOErrorEvent):void {
 			var urlLoader:URLLoader = event.target as URLLoader;
+			var href:Href = urlLoaders[urlLoader];
 			delete urlLoaders[urlLoader];
 			
-			trace("io error " + event.text);
+			log.info("IO error loading from href {0} - {1}", href, event.text);
 		}
 		
 		private function onXHTMLSecurityError(event:SecurityErrorEvent):void {
 			var urlLoader:URLLoader = event.target as URLLoader;
+			var href:Href = urlLoaders[urlLoader];
 			delete urlLoaders[urlLoader];
 			
-			trace("security error");
+			log.info("Security error loading from href {0} - {1}", href, event.text);
 		}
 		
 	}

@@ -22,7 +22,8 @@ package com.clarityenglish.ielts.view {
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.menuView.href = new Href("nothing.xml");
+			// For now hardcode the menu file and the path
+			view.menuView.href = new Href("menu.xml", "../../../../Content/IELTS-Dave");
 		}
 		
 		/**

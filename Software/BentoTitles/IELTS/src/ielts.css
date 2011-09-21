@@ -4,11 +4,21 @@
 @namespace login "com.clarityenglish.ielts.view.login.*";
 @namespace main "com.clarityenglish.ielts.view.main.*";
 @namespace menu "com.clarityenglish.ielts.view.menu.*";
+@namespace module "com.clarityenglish.ielts.view.module.*";
+@namespace progress "com.clarityenglish.ielts.view.progress.*";
 
 login|LoginView {
-	skinClass: ClassReference("skins.ielts.login.LoginSkin");
+	skinClass: ClassReference("skins.ielts.LoginSkin");
 }
 
 menu|MenuView {
-	skinClass: ClassReference("skins.ielts.menu.MenuSkin");
+	skinClass: ClassReference("skins.ielts.MenuSkin");
+}
+
+module|ModuleView {
+	skinClass: ClassReference("skins.ielts.ModuleSkin");
+}
+
+progress|ProgressView {
+	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }

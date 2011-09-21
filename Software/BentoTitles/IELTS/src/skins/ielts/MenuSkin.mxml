@@ -3,11 +3,16 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
-		width="100%">
+		width="100%" xmlns:module="com.clarityenglish.ielts.view.module.*" xmlns:progress="com.clarityenglish.ielts.view.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.menu.MenuView")]
 	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="module" />
+		<s:State name="progress" />
+	</s:states>
 	
 	<s:layout>
 		<s:VerticalLayout />
@@ -28,7 +33,8 @@
 			<s:Button label="Listening" />
 		</s:VGroup>
 		
-		<controls:DynamicView width="100%" height="100%" />
+		<module:ModuleView width="100%" height="100%" includeIn="module" />
+		<progress:ProgressView width="100%" height="100%" includeIn="progress" />
 		
 	</s:HGroup>
 </s:Skin>

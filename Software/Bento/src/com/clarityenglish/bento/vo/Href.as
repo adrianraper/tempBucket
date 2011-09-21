@@ -15,6 +15,10 @@ package com.clarityenglish.bento.vo {
 			return ((currentDir) ? currentDir + "/" : "") + filename;
 		}
 		
+		public function toString():String {
+			return "[Href filename=" + filename + " currentDir=" + currentDir + "]";
+		}
+		
 	}
 	
 }

@@ -1,7 +1,13 @@
 package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.model.XHTMLProxy;
+	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	
+	import flash.events.Event;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -14,6 +20,11 @@ package com.clarityenglish.bento.view.base {
 	 */
 	public class BentoMediator extends Mediator implements IMediator  {
 		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
 		public function BentoMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
@@ -25,9 +36,15 @@ package com.clarityenglish.bento.view.base {
 		public override function onRegister():void {
 			super.onRegister();
 			
-			if (view.href) {
-				sendNotification(BBNotifications.XHTML_LOAD, view.href);
-			}
+			// Add event listeners to the view
+			view.addEventListener(BentoEvent.HREF_CHANGED, onHrefChanged);
+		}
+		
+		public override function onRemove():void {
+			super.onRemove();
+			
+			// Remove event listeners from the view
+			view.removeEventListener(BentoEvent.HREF_CHANGED, onHrefChanged);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -41,8 +58,18 @@ package com.clarityenglish.bento.view.base {
 			
 			switch (note.getName()) {
 				case BBNotifications.XHTML_LOADED:
+					trace("xhtml loaded");
 					break;
 			}
+		}
+		
+		/**
+		 * When the href of this view is changed we need to refetch (or fetch for the first time) the XHTML that drives it
+		 * 
+		 * @param event
+		 */
+		protected function onHrefChanged(event:Event):void {
+			sendNotification(BBNotifications.XHTML_LOAD, view.href);
 		}
 		
 	}

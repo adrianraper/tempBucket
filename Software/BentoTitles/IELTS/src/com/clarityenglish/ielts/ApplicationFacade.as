@@ -7,6 +7,10 @@
 	import com.clarityenglish.ielts.view.login.LoginView;
 	import com.clarityenglish.ielts.view.menu.MenuMediator;
 	import com.clarityenglish.ielts.view.menu.MenuView;
+	import com.clarityenglish.ielts.view.module.ModuleMediator;
+	import com.clarityenglish.ielts.view.module.ModuleView;
+	import com.clarityenglish.ielts.view.progress.ProgressMediator;
+	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	/**
 	* ...
@@ -24,6 +28,8 @@
 			
 			mapView(LoginView, LoginMediator);
 			mapView(MenuView, MenuMediator);
+			mapView(ModuleView, ModuleMediator);
+			mapView(ProgressView, ProgressMediator);
 			
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
