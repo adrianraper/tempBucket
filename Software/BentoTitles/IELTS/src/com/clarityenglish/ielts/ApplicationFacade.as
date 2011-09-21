@@ -4,6 +4,8 @@
 	import com.clarityenglish.bento.controller.XHTMLLoadCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.StartupCommand;
+	import com.clarityenglish.ielts.view.account.AccountMediator;
+	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.login.LoginView;
 	import com.clarityenglish.ielts.view.menu.MenuMediator;
 	import com.clarityenglish.ielts.view.menu.MenuView;
@@ -30,6 +32,7 @@
 			mapView(MenuView, MenuMediator);
 			mapView(ModuleView, ModuleMediator);
 			mapView(ProgressView, ProgressMediator);
+			mapView(AccountView, AccountMediator);
 			
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);

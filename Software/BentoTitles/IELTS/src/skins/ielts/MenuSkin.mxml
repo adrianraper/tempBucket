@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:module="com.clarityenglish.ielts.view.module.*"
-		xmlns:progress="com.clarityenglish.ielts.view.progress.*">
+		xmlns:progress="com.clarityenglish.ielts.view.progress.*" xmlns:account="com.clarityenglish.ielts.view.account.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.menu.MenuView")]
@@ -13,18 +13,21 @@
 	<s:states>
 		<s:State name="module" />
 		<s:State name="progress" />
+		<s:State name="account" />
 	</s:states>
 	
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:HGroup width="100%">
-		<s:Label text="Road to IELTS" />
+	<s:HGroup width="100%" paddingBottom="20">
+		<s:Label text="Road to IELTS" fontSize="20" fontWeight="bold" />
 		<s:Spacer width="100%" />
 		<s:Button label="Logout" />
 		<s:Button label="Contact us" />
 	</s:HGroup>
+	
+	<s:TabBar id="tabBar" />
 	
 	<s:HGroup width="100%">
 		<s:VGroup>
@@ -36,6 +39,7 @@
 		
 		<module:ModuleView id="moduleView" width="100%" height="100%" includeIn="module" />
 		<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />
+		<account:AccountView id="accountView" width="100%" height="100%" includeIn="account" />
 		
 	</s:HGroup>
 </s:Skin>

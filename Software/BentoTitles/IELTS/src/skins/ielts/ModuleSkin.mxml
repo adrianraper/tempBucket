@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ui="com.clarityenglish.ielts.view.module.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.module.ModuleView")]
@@ -48,8 +48,10 @@
 		<s:VGroup width="60%">
 			<s:Label text="Exam practice" fontWeight="bold" />
 			<s:Label width="100%" text="Practice paper to get you geared up for the real exam." />
-			<s:Button id="examPracticeButton1" />
-			<s:Button id="examPracticeButton2" />
+			<s:Button id="examPractice1Button" />
+			<ui:DifficultyRenderer id="examPractice1Difficulty" />
+			<s:Button id="examPractice2Button" />
+			<ui:DifficultyRenderer id="examPractice2Difficulty" />
 		</s:VGroup>
 		
 		<s:Line height="100%">

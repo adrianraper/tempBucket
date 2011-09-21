@@ -4,15 +4,20 @@ package com.clarityenglish.textLayout.vo {
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLRequest;
+	import flash.utils.Proxy;
+	import flash.utils.flash_proxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+
+	use namespace flash_proxy;
 	
-	public class XHTML extends EventDispatcher {
+	public dynamic class XHTML extends Proxy implements IEventDispatcher {
 		
 		/**
 		 * Standard flex logger
@@ -20,6 +25,8 @@ package com.clarityenglish.textLayout.vo {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const XML_CHANGE_EVENT:String = "xmlChange";
+		
+		private var dispatcher:EventDispatcher;
 		
 		/**
 		 * The XML document 
@@ -35,6 +42,8 @@ package com.clarityenglish.textLayout.vo {
 		public var rootPath:String;
 		
 		public function XHTML(value:XML = null) {
+			dispatcher = new EventDispatcher(this);
+			
 			if (value)
 				xml = value;
 		}
@@ -53,6 +62,49 @@ package com.clarityenglish.textLayout.vo {
 		[Bindable(event="xmlChange")]
 		public function get xml():XML {
 			return _xml;
+		}
+		
+		/**
+		 * The Proxy allows us to use E4X syntax directly on the XHTML class
+		 * 
+		 * @param name
+		 * @param rest
+		 * @return 
+		 */
+		override flash_proxy function callProperty(name:*, ...rest):*  {
+			switch(String(name)) {
+				case "name": return _xml.name();
+				case "children": return _xml.children();
+				case "descendants": return _xml.descendants();
+				case "replace": return _xml.replace(rest[0], rest[1]);
+				case "attribute": return _xml.attribute(rest[0]);
+				case "attributes": return _xml.attributes();
+			}
+			
+			return null;
+		}
+		
+		/**
+		 * The Proxy allows us to use E4X syntax directly on the XHTML class
+		 * 
+		 * @param name
+		 * @return 
+		 */
+		override flash_proxy function getProperty(name:*):* {
+			if (flash_proxy::isAttribute(name))
+				return _xml.@[String(name)];
+				
+			return _xml[String(name)];
+		}
+		
+		/**
+		 * The Proxy allows us to use E4X syntax directly on the XHTML class
+		 * 
+		 * @param name
+		 * @return 
+		 */
+		flash_proxy override function getDescendants(name:*):* {
+			return _xml.descendants(String(name));
 		}
 		
 		public function isExternalStylesheetsLoaded():Boolean {
@@ -188,6 +240,26 @@ package com.clarityenglish.textLayout.vo {
 				log.error("selectOne(" + expression + ") returned more than 1 result.  Returning the first result");
 			
 			return (results.length == 0) ? null : results[0];
+		}
+		
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void{
+			dispatcher.addEventListener(type, listener, useCapture, priority);
+		}
+		
+		public function dispatchEvent(event:Event):Boolean{
+			return dispatcher.dispatchEvent(event);
+		}
+		
+		public function hasEventListener(type:String):Boolean{
+			return dispatcher.hasEventListener(type);
+		}
+		
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void{
+			dispatcher.removeEventListener(type, listener, useCapture);
+		}
+		
+		public function willTrigger(type:String):Boolean {
+			return dispatcher.willTrigger(type);
 		}
 		
 	}

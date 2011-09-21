@@ -6,9 +6,13 @@
 						xmlns:components="com.clarityenglish.bento.view.exercise.components.*"
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.menu.*"
-						currentState="menu"
-						creationComplete="creationComplete(event)">
+						creationComplete="creationComplete(event)"
+						currentState="menu">
 	<fx:Declarations />
+	
+	<fx:Metadata>
+		[SWF(width=800, height=600)]
+	</fx:Metadata>
 	
 	<bento:states>
 		<s:State name="login" />

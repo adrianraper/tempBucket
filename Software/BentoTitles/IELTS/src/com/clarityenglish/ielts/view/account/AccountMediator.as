@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.ielts.view.progress {
+﻿package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
@@ -8,14 +8,14 @@
 	/**
 	 * A Mediator
 	 */
-	public class ProgressMediator extends BentoMediator implements IMediator {
+	public class AccountMediator extends BentoMediator implements IMediator {
 		
-		public function ProgressMediator(mediatorName:String, viewComponent:BentoView) {
+		public function AccountMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():ProgressView {
-			return viewComponent as ProgressView;
+		private function get view():AccountView {
+			return viewComponent as AccountView;
 		}
 		
 		override public function onRegister():void {

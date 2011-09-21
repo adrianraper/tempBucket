@@ -56,7 +56,7 @@
 		}
 		
 		private function onCourseSelected(course:String):void {
-			log.info("Course selected: {0}", course);
+			log.info("Course selected: {0}", course); // TODO: This might not even be necessary
 		}
 		
 	}

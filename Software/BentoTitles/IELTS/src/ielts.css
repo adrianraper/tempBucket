@@ -6,6 +6,7 @@
 @namespace menu "com.clarityenglish.ielts.view.menu.*";
 @namespace module "com.clarityenglish.ielts.view.module.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
+@namespace account "com.clarityenglish.ielts.view.account.*";
 
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
@@ -21,4 +22,8 @@ module|ModuleView {
 
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
+}
+
+account|AccountView {
+	skinClass: ClassReference("skins.ielts.AccountSkin");
 }

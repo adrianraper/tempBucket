@@ -6,12 +6,16 @@ package com.clarityenglish.ielts.view.menu {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.collections.ArrayCollection;
+	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.TabBar;
 	
 	[SkinState("module")]
 	[SkinState("progress")]
+	[SkinState("account")]
 	public class MenuView extends BentoView {
 		
 		[SkinPart]
@@ -25,6 +29,9 @@ package com.clarityenglish.ielts.view.menu {
 		
 		[SkinPart]
 		public var course4Button:Button;
+		
+		[SkinPart]
+		public var tabBar:TabBar;
 		
 		[SkinPart]
 		public var moduleView:ModuleView;
@@ -45,6 +52,9 @@ package com.clarityenglish.ielts.view.menu {
 					courseButton.label = courses[n].@caption;
 					courseButton.visible = true;
 				}
+				
+				// Set the first course by default
+				moduleView.course = _xhtml..course[0];
 			}
 		}
 		
@@ -59,13 +69,41 @@ package com.clarityenglish.ielts.view.menu {
 					// TODO: This should maybe send something other than the label (i.e. the course xml?? but can deal with that later)
 					instance.addEventListener(MouseEvent.CLICK, onCourseSelected);
 					break;
+				case tabBar:
+					tabBar.dataProvider = new ArrayCollection( [
+						{ label: "Academic module", data: "module" },
+						{ label: "My Progress", data: "progress" },
+						{ label: "My Account", data: "account" },
+					] );
+					tabBar.requireSelection = true;
+					tabBar.addEventListener(Event.CHANGE, onTabIndexChange);
+					break;
 			}
 		}
 		
+		/**
+		 * The skin state is (for the moment) determined by the tab selection
+		 * 
+		 * @return 
+		 */
 		protected override function getCurrentSkinState():String {
-			return "module";
+			return (tabBar && tabBar.selectedItem) ? tabBar.selectedItem.data : null;
 		}
 		
+		/**
+		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
+		 * 
+		 * @param event
+		 */
+		protected function onTabIndexChange(event:Event):void {
+			invalidateSkinState();
+		}
+		
+		/**
+		 * The user has selected a course so update the module view
+		 * 
+		 * @param e
+		 */
 		protected function onCourseSelected(e:Event):void {
 			var caption:String = e.target.label;
 			moduleView.course = _xhtml.selectOne("course[caption='" + caption + "']");
