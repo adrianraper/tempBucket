@@ -45,16 +45,18 @@ package com.clarityenglish.ielts.view.menu {
 			super.commitProperties();
 			
 			if (_xhtml) {
-				// Set the course selection button labels from the XHTML
-				var courses:Array = _xhtml.select("course");
-				for (var n:uint = 0; n < courses.length; n++) {
-					var courseButton:Button = this["course" + (n + 1) + "Button"];
-					courseButton.label = courses[n].@caption;
+				// Label the course selection buttons from the XML
+				var n:uint = 1;
+				for each (var course:XML in menu..course) {
+					var courseButton:Button = this["course" + n + "Button"];
+					courseButton.label = course.@caption;
 					courseButton.visible = true;
+					n++;
 				}
 				
 				// Set the first course by default
-				moduleView.course = _xhtml..course[0];
+				//moduleView.course = menu..course[0];
+				moduleView.courseName = menu..course[0].@caption;
 			}
 		}
 		
@@ -77,6 +79,10 @@ package com.clarityenglish.ielts.view.menu {
 					] );
 					tabBar.requireSelection = true;
 					tabBar.addEventListener(Event.CHANGE, onTabIndexChange);
+					break;
+				case moduleView:
+					// Pass on the same href to the module view
+					instance.href = href;
 					break;
 			}
 		}
@@ -106,7 +112,8 @@ package com.clarityenglish.ielts.view.menu {
 		 */
 		protected function onCourseSelected(e:Event):void {
 			var caption:String = e.target.label;
-			moduleView.course = _xhtml.selectOne("course[caption='" + caption + "']");
+			//moduleView.course = _xhtml.selectOne("course[caption='" + caption + "']");
+			moduleView.courseName = caption;
 		}
 		
 	}

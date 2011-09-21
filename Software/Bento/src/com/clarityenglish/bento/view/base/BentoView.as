@@ -46,6 +46,15 @@ package com.clarityenglish.bento.view.base {
 			_hrefChanged = _xhtmlChanged = false;
 		}
 		
+		/**
+		 * Shorthand to access the menu node within the model
+		 * 
+		 * @return 
+		 */
+		protected function get menu():XML {
+			return (_xhtml) ? _xhtml.head.script.(@id == "model" && @type == "application/xml").menu[0] : null;
+		}
+		
 	}
 	
 }
