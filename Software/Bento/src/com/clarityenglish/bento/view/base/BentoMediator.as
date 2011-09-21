@@ -58,7 +58,9 @@ package com.clarityenglish.bento.view.base {
 			
 			switch (note.getName()) {
 				case BBNotifications.XHTML_LOADED:
-					trace("xhtml loaded");
+					if (note.getBody().href === view.href)
+						view.xhtml = note.getBody().xhtml;
+					
 					break;
 			}
 		}

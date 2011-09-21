@@ -2,6 +2,12 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
+	import flash.events.MouseEvent;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -9,6 +15,11 @@
 	 * A Mediator
 	 */
 	public class MenuMediator extends BentoMediator implements IMediator {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public function MenuMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
@@ -18,42 +29,34 @@
 			return viewComponent as MenuView;
 		}
 		
-		/**
-		 * Setup event listeners and register sub-mediators
-		 */
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.courseSelected.add(onCourseSelected);
+		}
+		
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.courseSelected.remove(onCourseSelected);
 		}
         
-		/**
-		 * List all notifications this Mediator is interested in.
-		 * <P>
-		 * Automatically called by the framework when the mediator
-		 * is registered with the view.</P>
-		 * 
-		 * @return Array the list of Nofitication names
-		 */
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				
 			]);
 		}
-
-		/**
-		 * Handle all notifications this Mediator is interested in.
-		 * <P>
-		 * Called by the framework when a notification is sent that
-		 * this mediator expressed an interest in when registered
-		 * (see <code>listNotificationInterests</code>.</P>
-		 * 
-		 * @param INotification a notification 
-		 */
+		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		private function onCourseSelected(course:String):void {
+			log.info("Course selected: {0}", course);
 		}
 		
 	}

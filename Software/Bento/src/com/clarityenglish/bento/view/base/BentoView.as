@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import spark.components.supportClasses.SkinnableComponent;
 	
@@ -12,9 +13,12 @@ package com.clarityenglish.bento.view.base {
 	[Event(name="hrefChanged", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
 	public class BentoView extends SkinnableComponent {
 		
-		private var _hrefChanged:Boolean = false;
 		private var _href:Href;
+		private var _hrefChanged:Boolean = false;
 		
+		protected var _xhtml:XHTML;
+		private var _xhtmlChanged:Boolean;
+
 		public function get href():Href {
 			return _href;
 		}
@@ -26,13 +30,20 @@ package com.clarityenglish.bento.view.base {
 			invalidateProperties();
 		}
 		
+		public function set xhtml(value:XHTML):void {
+			_xhtml = value;
+			_xhtmlChanged = true;
+			
+			invalidateProperties();
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_hrefChanged) {
+			if (_hrefChanged)
 				dispatchEvent(new BentoEvent(BentoEvent.HREF_CHANGED));
-				_hrefChanged = false;
-			}
+			
+			_hrefChanged = _xhtmlChanged = false;
 		}
 		
 	}

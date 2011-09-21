@@ -3,13 +3,13 @@
 	<head>
 		<script id="model" type="application/xml">
 			<menu>
-				<course caption="Reading">
+				<course caption="Reading" description="This session will be focussed on reading.  Reading units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
 					<unit class="question-zone">
 						<exercise href="reading/questionzone.xml" />
 					</unit>
 					<unit class="exam-practice">
-						<exercise href="reading/practice1.xml" caption="Writing practice paper Pt1" difficulty="1" />
-						<exercise href="reading/practice2.xml" caption="Writing practice paper Pt2" difficulty="2" />
+						<exercise href="reading/practice1.xml" caption="Reading practice paper Pt1" difficulty="1" />
+						<exercise href="reading/practice2.xml" caption="Reading practice paper Pt2" difficulty="2" />
 					</unit>
 					<unit class="advice-zone">
 						<exercise href="reading/advicezone.xml" caption="Watch the teacher giving advice" />
@@ -18,6 +18,24 @@
 						<exercise href="reading/exercise1.xml" caption="Understanding static charts" />
 						<exercise href="reading/exercise2.xml" caption="Linking words and phrases (1)" />
 						<exercise href="reading/exercise3.xml" caption="Linking words and phrases (2)" />
+					</unit>
+				</course>
+				
+				<course caption="Writing" description="This session will be focussed on writing.  Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+					<unit class="question-zone">
+						<exercise href="writing/questionzone.xml" />
+					</unit>
+					<unit class="exam-practice">
+						<exercise href="writing/practice1.xml" caption="Writing practice paper Pt1" difficulty="1" />
+						<exercise href="writing/practice2.xml" caption="Writing practice paper Pt2" difficulty="2" />
+					</unit>
+					<unit class="advice-zone">
+						<exercise href="writing/advicezone.xml" caption="Watch the teacher giving advice" />
+					</unit>
+					<unit class="practice-zone">
+						<exercise href="writing/exercise1.xml" caption="Understanding static charts" />
+						<exercise href="writing/exercise2.xml" caption="Linking words and phrases (1)" />
+						<exercise href="writing/exercise3.xml" caption="Linking words and phrases (2)" />
 					</unit>
 				</course>
 			</menu>

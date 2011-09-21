@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -49,6 +50,11 @@ package com.clarityenglish.bento.model {
 				return;
 			}
 			
+			// If the resource is already loading then do nothing
+			for each (var loadingHref:Href in urlLoaders)
+				if (href === loadingHref)
+					return;
+			
 			// Otherwise load it
 			var urlLoader:URLLoader = new URLLoader();
 			urlLoader.addEventListener(Event.COMPLETE, onXHTMLLoadComplete);
@@ -71,7 +77,7 @@ package com.clarityenglish.bento.model {
 			
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
-			loadedResources[href] = urlLoader.data;
+			loadedResources[href] = new XHTML(new XML(urlLoader.data));
 			
 			notifyXHTMLLoaded(href);
 		}

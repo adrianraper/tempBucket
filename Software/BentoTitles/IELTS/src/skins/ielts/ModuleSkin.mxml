@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		width="100%">
+		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.module.ModuleView")]
@@ -12,6 +11,56 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:Label text="module" />
+	<s:Label id="courseTitleLabel" fontSize="14" fontWeight="bold" />
+	<s:Label id="courseDescriptionLabel" width="70%" />
+	
+	<s:Line width="100%">
+		<s:stroke>
+			<s:SolidColorStroke color="0x000000" />
+		</s:stroke>
+	</s:Line>
+	
+	<s:HGroup width="100%">
+		<s:VGroup width="40%">
+			<s:Label text="Question zone" fontWeight="bold" />
+			<s:Label width="100%" text="Read about the possible questions that will arise in the IELTS exam." />
+			<s:Button label="Click to read" />
+		</s:VGroup>
+		
+		<s:Line height="100%">
+			<s:stroke>
+				<s:SolidColorStroke color="0x000000" />
+			</s:stroke>
+		</s:Line>
+		
+		<s:VGroup width="60%">
+			<s:Label text="Practice zone" fontWeight="bold" />
+		</s:VGroup>
+	</s:HGroup>
+	
+	<s:Line width="100%">
+		<s:stroke>
+			<s:SolidColorStroke color="0x000000" />
+		</s:stroke>
+	</s:Line>
+	
+	<s:HGroup width="100%">
+		<s:VGroup width="60%">
+			<s:Label text="Exam practice" fontWeight="bold" />
+			<s:Label width="100%" text="Practice paper to get you geared up for the real exam." />
+			<s:Button id="examPracticeButton1" />
+			<s:Button id="examPracticeButton2" />
+		</s:VGroup>
+		
+		<s:Line height="100%">
+			<s:stroke>
+				<s:SolidColorStroke color="0x000000" />
+			</s:stroke>
+		</s:Line>
+		
+		<s:VGroup width="40%">
+			
+		</s:VGroup>
+	</s:HGroup>
 	
 </s:Skin>
