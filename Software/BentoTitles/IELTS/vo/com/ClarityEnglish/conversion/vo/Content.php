@@ -151,14 +151,11 @@ class Content{
 				$builder.=$paragraph->output($lastTagType,$thisTagType);
 				$lastTagType = $thisTagType;
 			}		
-			// TODO. But the problem is that we have already written out the model!
-			// Get the model ready
-			$model = $this->getParent()->model;
-			$model->prepareQuestions();
+			//echo $builder;
 			
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node
-			$pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
+			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
 			$buildText='';
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
@@ -174,9 +171,11 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />';
+						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
 					}
-					// Write out the question in the model
+					// And then the final bit after the last match...
+					
+					// We have already written the questions to the model
 				}
 			}
 			

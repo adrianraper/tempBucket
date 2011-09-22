@@ -39,6 +39,7 @@ EOD;
 	function formatHtmlSections() {
 		$build = '';
 		// Better to write out the sections in a specific order
+		// Mind you we build them in a specific order so shoud be fine
 		foreach ($this->exercise->getSections() as $section) {
 			$sectionText = $section->output();
 			$sectionType = $section->getSection();
@@ -92,7 +93,6 @@ EOD;
 	$model
 </head>
 EOD;
-
 		return $build;
 	}
 	function formatFullHtml($head, $rubric, $sections) {

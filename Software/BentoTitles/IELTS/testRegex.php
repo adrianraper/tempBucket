@@ -129,23 +129,24 @@ echo 'ascii='.ord(substr($thisText,0,1));
 			echo 'not matched '.$matches[0];;
 		}
 */
-/*
+
 $htmlString = <<<EOD
-<tab>[21]<tab>[30]<tab>[27]<tab>[22]
+<p><font color="#000000>Some stuff here[21]<tab>[22]then lots of stuff here</font></p>
 EOD;
 		// change <tab> to correct <tab/>
 		$htmlString = str_replace('<tab>', '<tab/>', $htmlString);
 		// change [xx] to <span>
-		$pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
+		//$pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
+		$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
 		$built='';
 		if (preg_match_all($pattern, $htmlString, $matches, PREG_SET_ORDER)) {
 			foreach ($matches as $m) {
 				// read the fields to find the matching answer
-				$built.=$m[1].'<span id="'.$m[2].'" draggable="true"></span>';
+				$built.=$m[1].'<span id="'.$m[2].'" draggable="true"></span>'.$m[3];
 			}
 		}
-		//echo $built;
-*/
+		echo $built;
+
 /*
 $builtHtml = <<<EOD
 <TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Dear Sally,</FONT></P></TEXTFORMAT>
@@ -160,13 +161,7 @@ EOD;
 	$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 	echo $builtHtml;
 */
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Model.php");
-$model = new Model();
 
-$model->prepareQuestions();
-
-echo $model->toString();
-	
 exit();
 
 ?>

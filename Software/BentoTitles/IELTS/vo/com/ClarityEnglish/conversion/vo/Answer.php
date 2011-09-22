@@ -4,9 +4,20 @@ class Answer {
 	// An Arthur answer node has attribute and value.
 	var $correct;
 	var $feedbackID;
-	var $value;
+	private $value;
 	
-	function Answer($xmlObj=null) {
+	protected $parent;
+	function getParent() {
+		return $this->parent;
+	}
+	function setParent($object) {
+		$this->parent = $object;
+	}
+		
+	function Answer($xmlObj=null, $parent=null) {
+		// Keep a reference back to the field we are part of
+		if ($parent)
+			$this->setParent($parent);
 		
 		//echo $xmlObj;
 		if ($xmlObj) {
@@ -30,7 +41,7 @@ class Answer {
 				}
 			}
 			// Then set the actual answer
-			$this->value = $xmlObj;
+			$this->value = (string) $xmlObj;
 		}
 	}
 	function getAnswer(){

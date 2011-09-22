@@ -16,7 +16,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see good echo stmts, then use this
-$plainView=true;
+$plainView=false;
 $batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');

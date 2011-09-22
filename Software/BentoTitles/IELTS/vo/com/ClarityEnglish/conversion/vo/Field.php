@@ -19,7 +19,6 @@ class Field {
 	const FIELD_TYPE_DRAG = 'drag';
 	
 	protected $parent;
-	
 	function getParent() {
 		return $this->parent;
 	}
@@ -27,7 +26,7 @@ class Field {
 		$this->parent = $object;
 	}
 	
-	function Field($xmlObj=null, $parent=null) {
+	function __construct($xmlObj=null, $parent=null) {
 		// Keep a reference back to the paragraph/section we are part of
 		if ($parent)
 			$this->setParent($parent);
@@ -63,7 +62,7 @@ class Field {
 		}
 	}
 	function addAnswer($xmlObj) {
-		$this->answers[] = new Answer($xmlObj);
+		$this->answers[] = new Answer($xmlObj, $this);
 	}
 	function getAnswers() {
 		return $this->answers;

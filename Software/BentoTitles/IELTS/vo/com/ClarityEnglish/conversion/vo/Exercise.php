@@ -28,7 +28,14 @@ class Exercise {
 		if ($xmlObj) {
 			// Use the exercise attributes
 			$attr = $xmlObj->attributes();
-			$this->type = $attr['type'];
+			// Convert some of the Arthur names to Bento names
+			switch (strtolower($attr['type'])) {
+				case 'dragon':
+					$this->type = Exercise::EXERCISE_TYPE_DRAGANDDROP;
+					break;
+						$this->type = strtolower($attr['type']);
+				default;
+			}
 			$this->id = $attr['id'];
 
 			// Dig out the sections and create them
@@ -57,7 +64,9 @@ class Exercise {
 			  	}
 			}
 			// Once you have all sections, you need to do some replacing of fields/answers
-			$this->model = new Model();
+			$this->model = new Model($this);
+			// Get the model ready
+			$this->model->prepareQuestions();
 			
 		}
 	}
