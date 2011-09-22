@@ -17,6 +17,7 @@ class Field {
 
 	const FIELD_TYPE_DROP = 'drop';
 	const FIELD_TYPE_DRAG = 'drag';
+	const FIELD_TYPE_GAP = 'gap';
 	
 	protected $parent;
 	function getParent() {

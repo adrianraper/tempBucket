@@ -5,6 +5,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Settings.ph
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Exercise.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Presentation.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/DragAndDrop.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Gapfill.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Content.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Rubric.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Body.php");
@@ -63,7 +64,10 @@ function convertExercise($exerciseID) {
 		case 'dragon':
 			$exercise = new DragAndDrop($xml);
 			break;
-			//echo $exercise->getRubric();
+		case 'cloze':
+			$exercise = new DragAndDrop($xml);
+			break;
+		default;
 	}
 	// At the end of construction, you can check the object if you want
 	//echo $exercise->toString();
@@ -72,6 +76,7 @@ function convertExercise($exerciseID) {
 	switch (strtolower($type)) {
 		case 'presentation':
 		case 'dragon':
+		case 'cloze':
 			$converter = New ConversionOps($exercise);
 			$converter->setOutputFile($outfile);
 			$rc = $converter->createOutput();
@@ -95,7 +100,8 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	// or just a specific one
 	//$exerciseID = '1156153794194';
 	//$exerciseID = '1156153794055';
-	$exerciseID = '1156153794170';
+	//$exerciseID = '1156153794170';
+	$exerciseID = '1156155508240';
 	convertExercise($exerciseID);
 }
 

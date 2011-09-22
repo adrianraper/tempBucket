@@ -32,13 +32,13 @@ XML;
 		if (!$this->model->questions) {
 			$stuff = $this->model->addChild('questions');
 		}
-		// For a drag and drop, the base of all the questions is the fields in the body
+		// For a drag and drop, the questions have their source as the drops and their answer source as the drags
 		if ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:drop" group="1" id="1">
 			//		<answer correct="true">chess</answer>
 			//	</field>
-			//	<DragQuestion source="q1Input">
+			//	<DragQuestion source="1">
 			//		<answer correct="true" source="a5" />
 			//		<answer correct="true" source="a7" />
 			//	</DragQuestion>
@@ -69,9 +69,31 @@ XML;
 					$newA->addAttribute('source',$matchingID);
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
-				echo $newQ;
+				//echo $newQ;
+			}
+		// For a gapfil, the questions have their source as the gaps
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL) {
+			foreach ($this->getParent()->body->getFields() as $field) {
+			//	<field mode="0" type="i:gap" group="1" id="1">
+			//		<answer correct="true">chess</answer>
+			//	</field>
+			//	<GapQuestion source="1" group="1">
+			//		<answer correct="true" value="xxxxx" />
+			//		<answer correct="true" source="yyyyy" />
+			//	</GapQuestion>
+				
+				$newQ = $this->model->questions->addChild("GapQuestion");
+				$newQ->addAttribute('source',$field->getID());
+				$newQ->addAttribute('group',$field->group);
+				foreach ($field->getAnswers() as $answer) {
+					$newA = $newQ->addChild('answer');
+					$newA->addAttribute('value',$answer->getAnswer());
+					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+				}
+				//echo $newQ;
 			}
 		} 
+		
 	}
 	// Adding a new node
 	function addQuestion($xml) {

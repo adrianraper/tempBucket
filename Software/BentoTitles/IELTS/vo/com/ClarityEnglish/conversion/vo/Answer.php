@@ -2,8 +2,8 @@
 class Answer {
 	
 	// An Arthur answer node has attribute and value.
-	var $correct;
-	var $feedbackID;
+	private $correct;
+	private $feedbackID;
 	private $value;
 	
 	protected $parent;

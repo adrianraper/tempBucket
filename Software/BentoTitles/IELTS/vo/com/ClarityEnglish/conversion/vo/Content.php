@@ -114,10 +114,11 @@ class Content{
 	function output() {
 		
 		// First see if this exercise outputs content in a special way 
-		if (($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DRAGANDDROP) &&
+		if ((	($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DRAGANDDROP) || 
+				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_GAPFILL)) &&
 			$this->getSection()==Exercise::EXERCISE_SECTION_BODY) {
-			// Output for drag and drop body
-			$buildText = $this->bodyOutput(Exercise::EXERCISE_TYPE_DRAGANDDROP);
+			// Output for drag and drop|gapfill body
+			$buildText = $this->bodyOutput($this->getParent()->getExerciseType());
 			
 		} else {
 			$buildText='';
@@ -142,7 +143,8 @@ class Content{
 	// Should this be somewhere else?
 	function bodyOutput($exerciseType) {
 		$builder='';
-		if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
+		if (($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP) ||
+			($exerciseType==Exercise::EXERCISE_TYPE_GAPFILL)) {
 			// You need to output all the paragraphs. 
 			$lastTagType = null;
 			foreach ($this->getParagraphs() as $paragraph) {
@@ -154,12 +156,15 @@ class Content{
 			//echo $builder;
 			
 			// As you do it, you want to find any drops and replace them with an input field
-			// You will also write out a question node in the script node
+			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
 			$buildText='';
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// read the fields to find the matching answer
+					// Actually we don't really need to read the fields at all since we never mix up field types
+					// and the answer has already been put in model section. 
+					// TODO: Ah, but the answers will help us work out the width for gaps.
 					$answer='';
 					foreach ($this->getFields() as $field) {
 						if ($field->getID()==$m[2]) {
@@ -172,10 +177,9 @@ class Content{
 					}
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
+					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
+						$buildText.=$m[1].'<input id="'.$m[2].'" type="gap" width="100" />'.$m[3];
 					}
-					// And then the final bit after the last match...
-					
-					// We have already written the questions to the model
 				}
 			}
 			

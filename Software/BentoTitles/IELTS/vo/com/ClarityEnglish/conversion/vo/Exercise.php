@@ -23,6 +23,7 @@ class Exercise {
 	const EXERCISE_SECTION_TEMPLATE = 'template';
 	const EXERCISE_TYPE_DRAGANDDROP = 'draganddrop';
 	const EXERCISE_TYPE_PRESENTATION = 'presentation';
+	const EXERCISE_TYPE_GAPFILL = 'gapfill';
 	
 	function __construct($xmlObj=null) {
 		if ($xmlObj) {
@@ -33,8 +34,11 @@ class Exercise {
 				case 'dragon':
 					$this->type = Exercise::EXERCISE_TYPE_DRAGANDDROP;
 					break;
-						$this->type = strtolower($attr['type']);
+				case 'cloze':
+					$this->type = Exercise::EXERCISE_TYPE_GAPFILL;
+					break;
 				default;
+					$this->type = strtolower($attr['type']);
 			}
 			$this->id = $attr['id'];
 
