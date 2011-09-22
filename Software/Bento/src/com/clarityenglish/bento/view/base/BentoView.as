@@ -43,7 +43,14 @@ package com.clarityenglish.bento.view.base {
 			if (_hrefChanged)
 				dispatchEvent(new BentoEvent(BentoEvent.HREF_CHANGED));
 			
+			if (_xhtmlChanged)
+				updateViewFromXHTML(_xhtml);
+			
 			_hrefChanged = _xhtmlChanged = false;
+		}
+		
+		protected function updateViewFromXHTML(xhtml:XHTML):void {
+			
 		}
 		
 		/**

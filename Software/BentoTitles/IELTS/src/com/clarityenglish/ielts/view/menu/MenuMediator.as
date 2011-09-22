@@ -2,8 +2,6 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
-	import flash.events.MouseEvent;
-	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -31,14 +29,10 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
-			
-			view.courseSelected.add(onCourseSelected);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
-			
-			view.courseSelected.remove(onCourseSelected);
 		}
         
 		override public function listNotificationInterests():Array {
@@ -53,10 +47,6 @@
 			switch (note.getName()) {
 				
 			}
-		}
-		
-		private function onCourseSelected(course:String):void {
-			log.info("Course selected: {0}", course); // TODO: This might not even be necessary
 		}
 		
 	}

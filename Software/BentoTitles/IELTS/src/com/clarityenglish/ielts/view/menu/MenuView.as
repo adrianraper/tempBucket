@@ -4,14 +4,9 @@ package com.clarityenglish.ielts.view.menu {
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
-	import mx.collections.XMLListCollection;
 	
-	import org.osflash.signals.Signal;
-	
-	import spark.components.Button;
 	import spark.components.TabBar;
 	
 	[SkinState("module")]
@@ -32,20 +27,6 @@ package com.clarityenglish.ielts.view.menu {
 		[SkinPart]
 		public var progressView:ProgressView;
 		
-		public var courseSelected:Signal = new Signal(String);
-		
-		protected override function commitProperties():void {
-			super.commitProperties();
-			
-			if (_xhtml) {
-				// Provide the courses as a data provider to the courseTabBar
-				courseTabBar.dataProvider = new XMLListCollection(menu..course);
-				
-				// Set the first course by default
-				moduleView.courseName = menu..course[0].@caption;
-			}
-		}
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -58,10 +39,6 @@ package com.clarityenglish.ielts.view.menu {
 					] );
 					mainTabBar.requireSelection = true;
 					mainTabBar.addEventListener(Event.CHANGE, onMainTabBarIndexChange);
-					break;
-				case courseTabBar:
-					courseTabBar.requireSelection = true;
-					courseTabBar.addEventListener(Event.CHANGE, onCourseTabBarIndexChange);
 					break;
 				case moduleView:
 					// Pass on the same href to the module view
@@ -86,16 +63,6 @@ package com.clarityenglish.ielts.view.menu {
 		 */
 		protected function onMainTabBarIndexChange(event:Event):void {
 			invalidateSkinState();
-		}
-		
-		/**
-		 * The user has selected a course so update the module view
-		 * 
-		 * @param e
-		 */
-		protected function onCourseTabBarIndexChange(event:Event):void {
-			var caption:String = event.target.selectedItem.@caption;
-			moduleView.courseName = caption;
 		}
 		
 	}
