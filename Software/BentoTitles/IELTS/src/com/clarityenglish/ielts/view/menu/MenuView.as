@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.menu {
 	[SkinState("module")]
 	[SkinState("progress")]
 	[SkinState("account")]
+	[SkinState("exercise")]
 	public class MenuView extends BentoView {
 		
 		[SkinPart]

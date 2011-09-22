@@ -73,8 +73,15 @@ created by the TabBarSkin use the TabBarButtonSkin class.
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer>
-					<!--<s:ButtonBarButton skinClass="spark.skins.spark.ButtonBarMiddleButtonSkin" />-->
-					<s:Button label="{data.@caption}" />
+					<fx:Script>
+						<![CDATA[
+							override public function set data(value:Object):void {
+								super.data = value;
+								button.label = data.@caption;
+							}
+						]]>
+					</fx:Script>
+					<s:Button id="button" />
 				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>

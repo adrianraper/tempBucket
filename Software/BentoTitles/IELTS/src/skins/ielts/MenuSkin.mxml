@@ -4,7 +4,8 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:module="com.clarityenglish.ielts.view.module.*"
-		xmlns:progress="com.clarityenglish.ielts.view.progress.*" xmlns:account="com.clarityenglish.ielts.view.account.*">
+		xmlns:progress="com.clarityenglish.ielts.view.progress.*"
+		xmlns:account="com.clarityenglish.ielts.view.account.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.menu.MenuView")]
@@ -14,11 +15,19 @@
 		<s:State name="module" />
 		<s:State name="progress" />
 		<s:State name="account" />
+		<s:State name="exercise" />
 	</s:states>
 	
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
+	
+	<!-- This is just a (rubbish) example of using transitions for visual effect -->
+	<s:transitions>
+		<s:Transition fromState="*" toState="*" autoReverse="true">
+			<s:Rotate3D targets="{[moduleView, progressView, accountView]}" angleYFrom="0" angleYTo="360"  autoCenterTransform="true" />
+		</s:Transition>
+	</s:transitions>
 	
 	<s:HGroup width="100%" paddingBottom="20">
 		<s:Label text="Road to IELTS" fontSize="20" fontWeight="bold" />
