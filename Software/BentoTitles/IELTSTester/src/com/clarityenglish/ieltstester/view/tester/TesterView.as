@@ -27,7 +27,7 @@ package com.clarityenglish.ieltstester.view.tester {
 			
 			var startingExercise:XML = menu.course[0].unit[0].exercise[0];
 			
-			// For testing start the tree off with an exercise selected
+			// For testing purposes start the tree off with an exercise selected
 			menuTree.expandItem(menuTree.dataProvider.getItemAt(0));
 			menuTree.selectedItem = menu..exercise[0];
 			menuTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
@@ -47,9 +47,9 @@ package com.clarityenglish.ieltstester.view.tester {
 		protected function onMenuTreeChange(event:IndexChangeEvent):void {
 			var selectedNode:XML = event.target.selectedItem;
 			
-			if (selectedNode.name() == "exercise") {
-				exerciseView.href = new Href(Href.EXERCISE, selectedNode.@href, "../../../../Content/IELTSTester-Dave"); // TODO: from config
-			}
+			if (selectedNode.name() == "exercise")
+				exerciseView.href = new Href(Href.EXERCISE, selectedNode.@href, href.rootPath);
+			
 		}
 		
 	}

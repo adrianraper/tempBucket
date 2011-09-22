@@ -17,7 +17,6 @@ package com.clarityenglish.ieltstester.view {
 			return viewComponent as IELTSTesterApplication;
 		}
 		
-
 		override public function onRegister():void {
 			super.onRegister();
 		}
