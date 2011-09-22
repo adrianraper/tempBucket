@@ -41,8 +41,10 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		public var rootPath:String;
 		
-		public function XHTML(value:XML = null) {
+		public function XHTML(value:XML = null, rootPath:String = null) {
 			dispatcher = new EventDispatcher(this);
+			
+			this.rootPath = rootPath;
 			
 			if (value)
 				xml = value;

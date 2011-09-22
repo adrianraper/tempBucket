@@ -16,7 +16,7 @@ package com.clarityenglish.bento {
 		/**
 		 * Standard flex logger
 		 */
-		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public function BentoApplication() {
 			// Configure logging
@@ -31,7 +31,8 @@ package com.clarityenglish.bento {
 			
 			creationPolicy = "none";
 			
-			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			// Create deferred content with maximum priority so that this happens before any other ADDED_TO_STAGE listeners fire
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, int.MAX_VALUE);
 		}
 		
 		protected function get facade():BentoFacade {

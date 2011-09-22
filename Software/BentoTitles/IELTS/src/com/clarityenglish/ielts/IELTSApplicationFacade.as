@@ -1,7 +1,6 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
-	import com.clarityenglish.bento.controller.XHTMLLoadCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
@@ -18,10 +17,10 @@
 	* ...
 	* @author Dave Keen
 	*/
-	public class ApplicationFacade extends BentoFacade {
+	public class IELTSApplicationFacade extends BentoFacade {
 		
 		public static function getInstance():BentoFacade {
-			if (instance == null) instance = new ApplicationFacade();
+			if (instance == null) instance = new IELTSApplicationFacade();
 			return instance as BentoFacade;
 		}
 		
@@ -35,7 +34,6 @@
 			mapView(AccountView, AccountMediator);
 			
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
-			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 		}
 		
 	}

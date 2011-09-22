@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<course version="6.4" caption="Unit 1: Leisure%20and%20entertainment" id="0">
+	<unit caption-position="bc" x="68" y="140" unit="1" caption="Words" 
+	alt="Word Power - words and phrases to talk about leisure activities, sports, games and equipment." 
+	id="1156153794621" picture="Words" enabledFlag="3">	
+		<exercise unit="1" id="1156153794194" caption="Introduction" fileName="1156153794194.xml" action="1156153794194" exerciseID="1156153794194" enabledFlag="3"/>
+		<exercise unit="1" id="1156153794534" caption="Leisure%20activities" fileName="1156153794534.xml" action="1156153794534" exerciseID="1156153794534" enabledFlag="3"/>
+		<exercise unit="1" id="1156153794170" caption="Complete%20an%20email%20%281%29" fileName="1156153794170.xml" action="1156153794170" exerciseID="1156153794170" enabledFlag="3"/>
+		<exercise unit="1" id="1156155508240" caption="Complete%20an%20email%20%282%29" fileName="1156155508240.xml" action="1156155508240" exerciseID="1156155508240" enabledFlag="3"/>
+		<exercise unit="1" id="1156153794304" caption="Sports%20vocabulary" fileName="1156153794304.xml" action="1156153794304" exerciseID="1156153794304" enabledFlag="3"/>
+		<exercise unit="1" id="1156153794736" caption="Sports%20and%20equipment%20%281%29" fileName="1156153794736.xml" action="1156153794736" exerciseID="1156153794736" enabledFlag="3"/>
+		<exercise unit="1" id="1156153794223" caption="Sports%20and%20equipment%20%282%29" fileName="1156153794223.xml" action="1156153794223" exerciseID="1156153794223" enabledFlag="3"/>
+	</unit>
+	<unit caption-position="bc" x="172" y="140" unit="2" caption="Listening" 
+	alt="Listening - a talk about places to eat out in a town and a conversation about a survey on popular forms of physical activity." 
+	id="1156153794121" picture="Listening" enabledFlag="3">
+		<exercise unit="2" id="1156153794851" caption="Introduction" fileName="1156153794851.xml" action="1156153794851" exerciseID="1156153794851" enabledFlag="3"/>
+		<exercise unit="2" id="1156153794384" caption="Short%20answer%20questions" fileName="1156153794384.xml" action="1156153794384" exerciseID="1156153794384" enabledFlag="3"/>
+		<exercise unit="2" id="1156153794466" caption="Table%20completion" fileName="1156153794466.xml" action="1156153794466" exerciseID="1156153794466" enabledFlag="3"/>
+	</unit>
+	<unit caption-position="bc" x="68" y="218" unit="3" caption="Reading" 
+	alt="Academic Reading - an article about the history of board games and an article about games played by indigenous people in various parts of the world." 
+	id="1156153794188" picture="Reading" enabledFlag="3">
+		<exercise unit="3" id="1156153794365" caption="Introduction" fileName="1156153794365.xml" action="1156153794365" exerciseID="1156153794365" enabledFlag="3"/>
+		<exercise unit="3" id="1156153794672" caption="Academic%20reading%20passage%20%281%29" fileName="1156153794672.xml" action="1156153794672" exerciseID="1156153794672" enabledFlag="3"/>
+		<exercise unit="3" id="1156153794430" caption="Academic%20reading%20passage%20%282%29" fileName="1156153794430.xml" action="1156153794430" exerciseID="1156153794430" enabledFlag="3"/>
+	</unit>
+	<unit caption-position="bc" x="277" y="140" unit="4" caption="Writing 1" 
+	alt="Academic Writing - practice exercises for reports on static charts." 
+	id="1156153794222" picture="Writing1" enabledFlag="3">
+		<exercise unit="4" id="1156153794055" caption="Introduction" fileName="1156153794055.xml" action="1156153794055" exerciseID="1156153794055" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794671" caption="Static%20charts" fileName="1156153794671.xml" action="1156153794671" exerciseID="1156153794671" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794786" caption="Understanding%20static%20charts" fileName="1156153794786.xml" action="1156153794786" exerciseID="1156153794786" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794241" caption="Dealing%20with%20numbers" fileName="1156153794241.xml" action="1156153794241" exerciseID="1156153794241" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794414" caption="Present%20simple" fileName="1156153794414.xml" action="1156153794414" exerciseID="1156153794414" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794467" caption="Past%20simple" fileName="1156153794467.xml" action="1156153794467" exerciseID="1156153794467" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794027" caption="Organising%20your%20report" fileName="1156153794027.xml" action="1156153794027" exerciseID="1156153794027" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794876" caption="Practice%20activity%20A" fileName="1156153794876.xml" action="1156153794876" exerciseID="1156153794876" enabledFlag="3"/>
+		<exercise unit="4" id="1156153794679" caption="Sample%20answer" fileName="1156153794679.xml" action="1156153794679" exerciseID="1156153794679" enabledFlag="3"/>
+	</unit>
+	<unit caption-position="bc" x="277" y="218" unit="5" caption="Writing 2" 
+	alt="Academic Writing - practice exercises for compositions discussing advantages and disadvantages." 
+	id="1156153794601" picture="Writing2" enabledFlag="3">
+		<exercise unit="5" id="1156153794409" caption="Introduction" fileName="1156153794409.xml" action="1156153794409" exerciseID="1156153794409" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794244" caption="IELTS%20Writing%20Task%202" fileName="1156153794244.xml" action="1156153794244" exerciseID="1156153794244" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794357" caption="Organising%20ideas%20into%20paragraphs" fileName="1156153794357.xml" action="1156153794357" exerciseID="1156153794357" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794100" caption="Linking%20words%20and%20phrases%20%281%29" fileName="1156153794100.xml" action="1156153794100" exerciseID="1156153794100" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794807" caption="Linking%20words%20and%20phrases%20%282%29" fileName="1156153794807.xml" action="1156153794807" exerciseID="1156153794807" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794310" caption="Comparative%20adjectives" fileName="1156153794310.xml" action="1156153794310" exerciseID="1156153794310" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794618" caption="Comparative%20structures" fileName="1156153794618.xml" action="1156153794618" exerciseID="1156153794618" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794183" caption="Practice%20activity%20B" fileName="1156153794183.xml" action="1156153794183" exerciseID="1156153794183" enabledFlag="3"/>
+		<exercise unit="5" id="1156153794211" caption="Sample%20answer" fileName="1156153794211.xml" action="1156153794211" exerciseID="1156153794211" enabledFlag="3"/>
+	</unit>
+	<unit caption-position="bc" x="172" y="218" unit="6" caption="Speaking" 
+	alt="Speaking - video clips and practice exercises for answering general questions about yourself in Part 1." 
+	id="1156153794457" picture="Speaking" enabledFlag="3">
+		<exercise unit="6" id="1156153794397" caption="Introduction" fileName="1156153794397.xml" action="1156153794397" exerciseID="1156153794397" enabledFlag="3"/>
+		<exercise unit="6" id="1156153794715" caption="The%20speaking%20test%20%281%29" fileName="1156153794715.xml" action="1156153794715" exerciseID="1156153794715" enabledFlag="3"/>
+		<exercise unit="6" id="1156153794077" caption="The%20speaking%20test%20%282%29" fileName="1156153794077.xml" action="1156153794077" exerciseID="1156153794077" enabledFlag="3"/>
+		<exercise unit="6" id="1156153794231" caption="Watch%20a%20video%20%281%29" fileName="1156153794231.xml" action="1156153794231" exerciseID="1156153794231" enabledFlag="3"/>
+		<exercise unit="6" id="1156153794482" caption="Watch%20a%20video%20%282%29" fileName="1156153794482.xml" action="1156153794482" exerciseID="1156153794482" enabledFlag="3"/>
+		<exercise unit="6" id="1156153794271" caption="Watch%20a%20video%20%283%29" fileName="1156153794271.xml" action="1156153794271" exerciseID="1156153794271" enabledFlag="3"/>
+		<exercise unit="6" id="1156153794218" caption="Watch%20a%20video%20%284%29" fileName="1156153794218.xml" action="1156153794218" exerciseID="1156153794218" enabledFlag="3"/>
+	</unit>
+</course>

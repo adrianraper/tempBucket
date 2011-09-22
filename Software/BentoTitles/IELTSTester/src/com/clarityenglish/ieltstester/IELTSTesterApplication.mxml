@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bento:BentoApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   			xmlns:s="library://ns.adobe.com/flex/spark" 
+			   			xmlns:mx="library://ns.adobe.com/flex/mx"
+			  			xmlns:bento="com.clarityenglish.bento.*"
+						xmlns:tester="com.clarityenglish.ieltstester.view.tester.*"
+						creationComplete="creationComplete(event)"
+						addedToStage="addedToStage(event)">
+	
+	<fx:Metadata>
+		[SWF(width=800, height=600)]
+	</fx:Metadata>
+	
+	<fx:Style source="ieltstester.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.BBNotifications;
+			import com.clarityenglish.bento.BentoFacade;
+			import com.clarityenglish.bento.vo.Href;
+			
+			import mx.events.FlexEvent;
+			
+			override protected function get facade():BentoFacade {
+				return IELTSTesterApplicationFacade.getInstance();
+			}
+			
+			protected function creationComplete(event:FlexEvent):void {
+				// Kick off the PureMVC framework with a STARTUP notification
+				facade.sendNotification(BBNotifications.STARTUP, this);
+			}
+			
+			protected function addedToStage(event:Event):void {
+				testerView.href = new Href(Href.XHTML, "menu.xml", "../../../../Content/IELTSTester-Dave");
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<tester:TesterView id="testerView" width="100%" height="100%" />
+	
+</bento:BentoApplication>

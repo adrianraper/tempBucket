@@ -1,12 +1,14 @@
 package com.clarityenglish.bento.view.exercise.components {
+	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.exercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import spark.components.Group;
 	import spark.components.supportClasses.SkinnableComponent;
 	
-	public class ExerciseView extends SkinnableComponent {
+	public class ExerciseView extends BentoView {
 		
 		/**
 		 * All the supported sections should be listed here.  They must also be defined below as required or optional skin parts.  The naming
@@ -57,18 +59,30 @@ package com.clarityenglish.bento.view.exercise.components {
 			}
 		}
 		
-		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName, instance);
-		}
-		
-		protected override function partRemoved(partName:String, instance:Object):void {
-			super.partRemoved(partName, instance);
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
+			
+			// If some XHTML makes it this far, its actually an Exercise (at least, it should be)
+			var exercise:Exercise = xhtml as Exercise;
+			
+			// Go through the sections supported by this exercise setting the visibility and contents of each section in the skin
+			for each (var sectionName:String in SUPPORTED_SECTIONS) {
+				var group:Group = this[sectionName + "Group"];
+				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
+				
+				if (group && xhtmlRichText) {
+					group.visible = group.includeInLayout = (sectionName == "header") ? exercise.hasHeader() : exercise.hasSection(sectionName);
+					
+					xhtmlRichText.xhtml = exercise;
+					xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
+				}
+			}
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_exerciseChanged) {
+			/*if (_exerciseChanged) {
 				// Go through the sections supported by this exercise setting the visibility and contents of each section in the skin
 				for each (var sectionName:String in SUPPORTED_SECTIONS) {
 					var group:Group = this[sectionName + "Group"];
@@ -83,7 +97,7 @@ package com.clarityenglish.bento.view.exercise.components {
 				}
 				
 				_exerciseChanged = false;
-			}
+			}*/
 		}
 		
 		private function onQuestionAnswered(e:SectionEvent):void {

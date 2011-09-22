@@ -30,9 +30,8 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="XHTMLTester.mxml"/>
-    <application path="ExerciseTester.mxml"/>
     <application path="com/clarityenglish/ielts/IELTSApplication.mxml"/>
+    <application path="XHTMLTester.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[			
+			#questionList {
+				list-style-type: decimal;
+			}
+			
+			p, #questionList li {
+				padding-bottom: 20;
+			}
+			
+			.padLeft {
+				padding-left: 15;
+			}
+			
+			input {
+				gap-text: "__.__.__.";
+			}
+			
+		]]>
+		</style>
+		<script id="model" type="application/xml">
+			<questions>
+				<GapFillQuestion source="q1Input" block="q1Block">
+					<answer correct="true" value="There is" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q2Input" block="q2Block">
+					<answer correct="true" value="There is" />
+				</GapFillQuestion>
+			
+				<GapFillQuestion source="q3Input" block="q3Block">
+					<answer correct="true" value="There are" />
+				</GapFillQuestion>
+			
+				<GapFillQuestion source="q4Input" block="q4Block">
+					<answer correct="true" value="There is" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q5Input" block="q5Block">
+					<answer correct="true" value="There are" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q6Input" block="q6Block">
+					<answer correct="true" value="There is" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q7Input" block="q7Block">
+					<answer correct="true" value="There is" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q8Input" block="q8Block">
+					<answer correct="true" value="There are" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q9Input" block="q9Block">
+					<answer correct="true" value="There are" />
+				</GapFillQuestion>
+				
+				<GapFillQuestion source="q10Input" block="q10Block">
+					<answer correct="true" value="There is" />
+				</GapFillQuestion>
+			</questions>
+		</script>
+	</head>
+	
+	<body>
+		<header>
+			'There is' or 'there are'?  Look at the picture and fill the gaps.
+		</header>
+		
+		<section id="body">
+			<img class="rightFloat" src="media/fishnchips.png" />
+			
+			<p class="padLeft">
+				<b>'There is' or 'There are'?</b>
+			</p>
+			
+			<p class="padLeft">
+				We use <g class="blue">There is...</g> with uncountable nouns and countable singular nouns.  We use <g class="blue">There are...</g> with countable
+				plural nouns.  For example:<br/>
+				<g class="blue">There is a cat on the table!</g><br/>
+				<g class="blue">There is some ice in this drink.</g><br/>
+				<g class="blue">There are two cats on the table!</g><br/>
+			</p>
+			
+			<list id="questionList">
+				<listMarkerFormat>
+					<ListMarkerFormat fontWeight="bold" paragraphEndIndent="10" />
+				</listMarkerFormat>
+			
+				<li id="q1Block">
+					<input id="q1Input" /> some water.
+				</li>
+				
+				<li id="q2Block">
+					<input id="q2Input" /> a glass of water.
+				</li>
+				
+				<li id="q3Block">
+					<input id="q3Input" /> some chips.
+				</li>
+				
+				<li id="q4Block">
+					<input id="q4Input" /> some fish.
+				</li>
+				
+				<li id="q5Block">
+					<input id="q5Input" /> three pieces of fish.
+				</li>
+				
+				<li id="q6Block">
+					<input id="q6Input" /> some tomato ketchup.
+				</li>
+				
+				<li id="q7Block">
+					<input id="q7Input" /> some salad.
+				</li>
+				
+				<li id="q8Block">
+					<input id="q8Input" /> some cubes of ice in the water.
+				</li>
+				
+				<li id="q9Block">
+					<input id="q9Input" /> two white pots.  One has salad in it.
+				</li>
+				
+				<li id="q10Block">
+					<input id="q10Input" /> a red plate.
+				</li>
+				
+			</list>
+		</section>
+	</body>
+	
+</bento>

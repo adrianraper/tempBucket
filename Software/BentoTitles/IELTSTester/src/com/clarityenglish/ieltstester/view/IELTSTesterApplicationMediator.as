@@ -1,29 +1,25 @@
-package com.clarityenglish.ielts.view {
-	import com.clarityenglish.bento.vo.Href;
+package com.clarityenglish.ieltstester.view {
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
-	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.ieltstester.IELTSTesterApplication;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 
-	public class ApplicationMediator extends AbstractApplicationMediator implements IMediator {
+	public class IELTSTesterApplicationMediator extends AbstractApplicationMediator implements IMediator {
 		
-		public static const NAME:String = "ApplicationMediator";
+		public static const NAME:String = "IELTSTesterApplicationMediator";
 		
-		public function ApplicationMediator(viewComponent:Object) {
+		public function IELTSTesterApplicationMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 		
-		private function get view():IELTSApplication {
-			return viewComponent as IELTSApplication;
+		private function get view():IELTSTesterApplication {
+			return viewComponent as IELTSTesterApplication;
 		}
 		
 
 		override public function onRegister():void {
 			super.onRegister();
-			
-			// For now hardcode the menu file and the path
-			view.menuView.href = new Href("menu.xml", "../../../../Content/IELTS-Dave");
 		}
 		
 		/**

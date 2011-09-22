@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -77,7 +78,16 @@ package com.clarityenglish.bento.model {
 			
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
-			loadedResources[href] = new XHTML(new XML(urlLoader.data));
+			trace(href.rootPath);
+			
+			switch (href.type) {
+				case Href.XHTML:
+					loadedResources[href] = new XHTML(new XML(urlLoader.data), href.rootPath);
+					break;
+				case Href.EXERCISE:
+					loadedResources[href] = new Exercise(new XML(urlLoader.data), href.rootPath);
+					break;
+			}
 			
 			notifyXHTMLLoaded(href);
 		}

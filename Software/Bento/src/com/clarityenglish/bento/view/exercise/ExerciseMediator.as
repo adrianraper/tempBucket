@@ -17,8 +17,6 @@ package com.clarityenglish.bento.view.exercise {
 		
 		public override function onRegister():void {
 			super.onRegister();
-			
-			trace("Created exercise mediator!");
 		}
 		
 		public override function onRemove():void {

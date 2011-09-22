@@ -25,8 +25,8 @@ package com.clarityenglish.bento.vo.content {
 		
 		private var _model:Model;
 		
-		public function Exercise(value:XML = null) {
-			super(value);
+		public function Exercise(value:XML = null, rootPath:String = null) {
+			super(value, rootPath);
 		}
 		
 		override public function set xml(value:XML):void {

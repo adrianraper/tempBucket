@@ -79,7 +79,10 @@
     <classEntry path="com.clarityenglish.bento.model.XHTMLProxy"/>
     <classEntry path="com.clarityenglish.bento.controller.XHTMLLoadCommand"/>
     <classEntry path="com.clarityenglish.bento.vo.Href"/>
+    <classEntry path="com.clarityenglish.bento.controller.BentoStartupCommand"/>
   </includeClasses>
-  <includeResources/>
+  <includeResources>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+  </includeResources>
   <namespaceManifests/>
 </flexLibProperties>

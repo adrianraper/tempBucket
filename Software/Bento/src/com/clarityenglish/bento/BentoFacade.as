@@ -42,6 +42,9 @@
 			// Map built in views to their mediators
 			mapView(ExerciseView, ExerciseMediator);
 			
+			// Map built in commands
+			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
+			
 			/*registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);

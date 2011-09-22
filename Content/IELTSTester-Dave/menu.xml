@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script id="model" type="application/xml">
+			<menu>
+				<course caption="XHTML test exercises" id="0">
+					<unit caption="Tests" id="0">
+						<exercise id="100" caption="Grid1" href="tests/Grid1.xml" />
+						<exercise id="101" caption="Grid2" href="tests/Grid2.xml" />
+						<exercise id="102" caption="Grid3" href="tests/Grid3.xml" />
+						<exercise id="103" caption="SpaceBug" href="tests/SpaceBug.xml" />
+						<exercise id="104" caption="GapFill1" href="tests/GapFill1.xml" />
+						<exercise id="105" caption="GapFill2" href="tests/GapFill2.xml" />
+						<exercise id="106" caption="TrueFalse1" href="tests/TrueFalse1.xml" />
+						<exercise id="107" caption="TrueFalse2" href="tests/TrueFalse2.xml" />
+						<exercise id="108" caption="TrueFalse3" href="tests/TrueFalse3.xml" />
+						<exercise id="109" caption="DropDown1" href="tests/DropDown1.xml" />
+						<exercise id="110" caption="DragAndDrop1" href="tests/DragAndDrop1.xml" />
+						<exercise id="111" caption="DragAndDrop2" href="tests/DragAndDrop2.xml" />
+						<exercise id="112" caption="DragAndDrop3" href="tests/DragAndDrop3.xml" />
+						<exercise id="113" caption="TargetSpotting1" href="tests/TargetSpotting1.xml" />
+						<exercise id="114" caption="R2I1" href="tests/R2I1.xml" />
+						<exercise id="115" caption="R2I2" href="tests/R2I2.xml" />
+						<exercise id="116" caption="TestTrueFalse3" href="tests/TestTrueFalse3.xml" />
+						<exercise id="117" caption="PercentWidth" href="tests/PercentWidth.xml" />
+						<exercise id="118" caption="FixedHeight" href="tests/FixedHeight.xml" />
+						<exercise id="119" caption="xhtmlfail" href="tests/xhtmlfail.xml" />
+					</unit>
+				</course>
+			</menu>
+		</script>
+	</head>
+</bento>

@@ -1,0 +1,8 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace tester "com.clarityenglish.ieltstester.view.tester.*";
+
+tester|TesterView {
+	skinClass: ClassReference("com.clarityenglish.ieltstester.view.tester.TesterSkin");
+}
