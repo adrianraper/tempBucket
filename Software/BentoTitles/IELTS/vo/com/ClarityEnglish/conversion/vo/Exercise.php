@@ -6,17 +6,22 @@ class Exercise {
 	private $type;
 	
 	// The components of an exercise (some are optional)
-	var $settings;
-	var $rubric;
-	var $body;
-	var $noscroll;
-	var $example;
-	var $readingText;
-	var $model;
+	public $settings;
+	public $rubric;
+	public $body;
+	public $noscroll;
+	public $example;
+	public $readingText;
+	public $model;
+	
+	// Maybe key for layout
+	private $questionBased;
 	
 	const EXERCISE_SECTION_RUBRIC = 'rubric';
 	const EXERCISE_SECTION_TITLE = 'title';
 	const EXERCISE_SECTION_BODY = 'body';
+	// Is question really a section?
+	const EXERCISE_SECTION_QUESTION = 'question';
 	const EXERCISE_SECTION_NOSCROLL = 'noscroll';
 	const EXERCISE_SECTION_EXAMPLE = 'example';
 	const EXERCISE_SECTION_SETTINGS = 'settings';
@@ -24,6 +29,8 @@ class Exercise {
 	const EXERCISE_TYPE_DRAGANDDROP = 'draganddrop';
 	const EXERCISE_TYPE_PRESENTATION = 'presentation';
 	const EXERCISE_TYPE_GAPFILL = 'gapfill';
+	const EXERCISE_TYPE_DROPDOWN = 'dropdown';
+	const EXERCISE_TYPE_MULTIPLECHOICE = 'multiplechoice';
 	
 	function __construct($xmlObj=null) {
 		if ($xmlObj) {
@@ -33,12 +40,23 @@ class Exercise {
 			switch (strtolower($attr['type'])) {
 				case 'dragon':
 					$this->type = Exercise::EXERCISE_TYPE_DRAGANDDROP;
+					$this->questionBased = false;
 					break;
 				case 'cloze':
 					$this->type = Exercise::EXERCISE_TYPE_GAPFILL;
+					$this->questionBased = false;
 					break;
+				// Then text based versions with standard names
+				case 'dropdown':
+				case 'presentation':
+					$this->type = strtolower($attr['type']);
+					$this->questionBased = false;
+					break;
+				// Then question based versions with standard names
+				case 'multiplechoice':
 				default;
 					$this->type = strtolower($attr['type']);
+					$this->questionBased = true;
 			}
 			$this->id = $attr['id'];
 
@@ -54,7 +72,11 @@ class Exercise {
 			  			$this->rubric = new Rubric($child, $this);
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_BODY:
-			  			$this->body = new Body($child, $this);
+			  			if ($this->questionBased) {
+			  				$this->body = new QbBody($child, $this);
+			  			} else {
+			  				$this->body = new Body($child, $this);
+			  			}
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_NOSCROLL:
 			  			$this->noscroll = new NoScroll($child, $this);
@@ -79,6 +101,9 @@ class Exercise {
 	}
 	function getType() {
 		return $this->type;
+	}
+	function isQuestionBased() {
+		return $this->questionBased;
 	}
 	
 	// Following functions are for the conversion
@@ -140,7 +165,8 @@ class Exercise {
 		$build.=$this->settings->toString();
 		$build.=$this->model->toString();
 		$build.=$this->rubric->toString();
-		$build.=$this->noscroll->toString();
+		if ($this->noscroll)
+			$build.=$this->noscroll->toString();
 		$build.=$this->body->toString();
 		
 		$build.=$newline.'</exercise>';	

@@ -92,8 +92,59 @@ XML;
 				}
 				//echo $newQ;
 			}
+		// For a dropdown, the questions have their source as the gaps
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN) {
+			foreach ($this->getParent()->body->getFields() as $field) {
+			//	<field mode="0" type="i:dropdown" id="1">
+			//		<answer correct="true">xxxxx</answer>
+			//		<answer correct="false">yyyyy</answer>
+			//		<answer correct="false">zzzzz</answer>
+			//	</field>
+			//	<DropdownQuestion source="1">
+			//		<answer correct="true" value="xxxxx" />
+			//		<answer correct="false" source="yyyyy" />
+			//		<answer correct="false" source="zzzzz" />
+			//	</DropdownQuestion>
+				
+				$newQ = $this->model->questions->addChild("DropdownQuestion");
+				$newQ->addAttribute('source',$field->getID());
+				$newQ->addAttribute('group',$field->group);
+				foreach ($field->getAnswers() as $answer) {
+					$newA = $newQ->addChild('answer');
+					$newA->addAttribute('value',$answer->getAnswer());
+					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+				}
+				//echo $newQ;
+			}
+		// For a multiple choice, the questions have their source as the gaps and blocks
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) {
+			// Each question has its own fields
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("MultipleChoiceQuestion");
+				//$newQ->addAttribute('source',$field->getID());
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				//$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('group','q'.$question->getID());
+				foreach ($question->getFields() as $field) {
+				
+			//	<field mode="0" type="i:target" group="1" id="1">
+			//		<answer correct="false">golf</answer>
+			//	</field>
+			//	<MultipleChoiceQuestion block="q1">
+			//		<answer correct="true" source="1" />
+			//		<answer correct="false" source="2" />
+			//	</MultipleChoiceQuestion>
+					// Only ever 1 answer per field
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						$newA->addAttribute('source',$field->getID());
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+				}
+			}
 		} 
-		
 	}
 	// Adding a new node
 	function addQuestion($xml) {

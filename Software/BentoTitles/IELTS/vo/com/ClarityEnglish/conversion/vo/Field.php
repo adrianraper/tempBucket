@@ -18,6 +18,8 @@ class Field {
 	const FIELD_TYPE_DROP = 'drop';
 	const FIELD_TYPE_DRAG = 'drag';
 	const FIELD_TYPE_GAP = 'gap';
+	const FIELD_TYPE_DROPDOWN = 'dropdown';
+	const FIELD_TYPE_TARGET = 'target';
 	
 	protected $parent;
 	function getParent() {

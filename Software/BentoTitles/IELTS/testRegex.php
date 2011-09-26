@@ -129,7 +129,7 @@ echo 'ascii='.ord(substr($thisText,0,1));
 			echo 'not matched '.$matches[0];;
 		}
 */
-
+/*
 $htmlString = <<<EOD
 <p><font color="#000000>Some stuff here[21]<tab>[22]then lots of stuff here</font></p>
 EOD;
@@ -146,7 +146,7 @@ EOD;
 			}
 		}
 		echo $built;
-
+*/
 /*
 $builtHtml = <<<EOD
 <TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Dear Sally,</FONT></P></TEXTFORMAT>
@@ -161,7 +161,36 @@ EOD;
 	$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 	echo $builtHtml;
 */
-
+$subBuilder = <<<EOD
+<tab><b>#q</b>In which sport do players hit the ball with a bat?a.<a id="1" >golf</a>b.<a id="2" >snooker</a>c.<a id="3" >squash</a>d.<a id="4" >baseball</a>
+EOD;
+$builder='';
+						// Get rid of <tab><b>#q</b>
+						$patterns = Array();
+						$patterns[] = '/\<tab\>/is';
+						$patterns[] = '/<b\>#q\<\/b\>/is';
+						$replacement = '';
+						$subBuilder = preg_replace($patterns, $replacement, $subBuilder);
+						//echo $subBuilder."\n\n";
+						
+						// Grab the text (everything up to first option)
+						$pattern = '/(.*?)[abcde]{1}\.\<(.*)/is';
+						$replacement = '\1';
+						$builder.= preg_replace($pattern, $replacement, $subBuilder);
+						//echo $builder;
+						
+						// Split on the patterns a.< b.<
+						$pattern = '/[abcde]{1}\.\</is';
+						$options = preg_split($pattern, $subBuilder);
+						
+						// Then output the options as another list
+						$builder.='<ol class="answerList">';
+							for ($i=1; $i<count($options); $i++) {
+								// As the first character has been eaten by the regex
+								$builder.='<li>'.'<'.$options[$i].'</li>';
+							} 
+						$builder.='</ol>';
+echo $builder;
 exit();
 
 ?>

@@ -5,10 +5,14 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Settings.ph
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Exercise.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Presentation.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/DragAndDrop.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Dropdown.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Gapfill.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/MultipleChoice.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Content.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Question.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Rubric.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Body.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/QbBody.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/NoScroll.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Paragraph.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/MediaNode.php");
@@ -16,9 +20,9 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Field.php")
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
-// If you want to see good echo stmts, then use this
+// If you want to see echo stmts, then use plainView
 $plainView=false;
-$batch=false;
+$batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -26,7 +30,7 @@ if ($plainView) {
 	$newline = "<br/>";
 }
 
-// This script will read an XML file (or all files in a folder later on)
+// This script will read an XML file (or all files in a folder)
 // and create an xhtml file that is a conversion to new Baker and Bento format.
 
 // Get the file
@@ -65,9 +69,18 @@ function convertExercise($exerciseID) {
 			$exercise = new DragAndDrop($xml);
 			break;
 		case 'cloze':
-			$exercise = new DragAndDrop($xml);
+			$exercise = new Gapfill($xml);
+			break;
+		case 'dropdown':
+			$exercise = new Dropdown($xml);
+			break;
+		case 'multiplechoice':
+			$exercise = new MultipleChoice($xml);
 			break;
 		default;
+			//throw new Exception("unknown exercise type $type");
+			echo "unknown exercise type $type";
+			exit;
 	}
 	// At the end of construction, you can check the object if you want
 	//echo $exercise->toString();
@@ -77,6 +90,8 @@ function convertExercise($exerciseID) {
 		case 'presentation':
 		case 'dragon':
 		case 'cloze':
+		case 'dropdown':
+		default:
 			$converter = New ConversionOps($exercise);
 			$converter->setOutputFile($outfile);
 			$rc = $converter->createOutput();
@@ -99,9 +114,11 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 } else {
 	// or just a specific one
 	//$exerciseID = '1156153794194';
-	//$exerciseID = '1156153794055';
-	//$exerciseID = '1156153794170';
-	$exerciseID = '1156155508240';
+	//$exerciseID = '1156153794055'; // presentation
+	//$exerciseID = '1156153794170'; // drag and drop
+	//$exerciseID = '1156155508240'; // gapfill
+	//$exerciseID = '1156153794807'; // dropdown
+	$exerciseID = '1156153794223'; // multiple choice
 	convertExercise($exerciseID);
 }
 
