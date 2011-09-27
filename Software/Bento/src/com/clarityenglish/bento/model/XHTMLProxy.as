@@ -78,8 +78,6 @@ package com.clarityenglish.bento.model {
 			
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
-			trace(href.rootPath);
-			
 			switch (href.type) {
 				case Href.XHTML:
 					loadedResources[href] = new XHTML(new XML(urlLoader.data), href.rootPath);

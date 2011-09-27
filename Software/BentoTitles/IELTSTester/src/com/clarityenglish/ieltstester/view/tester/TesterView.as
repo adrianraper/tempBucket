@@ -13,6 +13,8 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
+		private static const STARTING_IDX:uint = 0; // 9
+		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;
 		
@@ -29,7 +31,7 @@ package com.clarityenglish.ieltstester.view.tester {
 			
 			// For testing purposes start the tree off with an exercise selected
 			menuTree.expandItem(menuTree.dataProvider.getItemAt(0));
-			menuTree.selectedItem = menu..exercise[0];
+			menuTree.selectedItem = menu..exercise[STARTING_IDX];
 			menuTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 		}
 		

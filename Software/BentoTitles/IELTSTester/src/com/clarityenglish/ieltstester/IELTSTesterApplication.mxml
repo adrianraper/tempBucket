@@ -33,7 +33,7 @@
 			}
 			
 			protected function addedToStage(event:Event):void {
-				//testerView.href = new Href(Href.XHTML, "menu.xml", "../../../../Content/IELTSTester-Dave");
+				// Select the first entry by default
 				buttonBar.selectedIndex = 0;
 				buttonBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 			}

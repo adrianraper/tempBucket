@@ -3,6 +3,8 @@ package com.clarityenglish.textLayout.elements {
 	
 	import flashx.textLayout.tlf_internal;
 	
+	import mx.collections.XMLListCollection;
+	
 	import net.digitalprimates.collections.VectorListCollection;
 	
 	import spark.components.DropDownList;
@@ -11,8 +13,10 @@ package com.clarityenglish.textLayout.elements {
 	
 	public class SelectElement extends TextComponentElement implements IComponentElement {
 		
-		// TODO: Check for memory leaks
-		private var _answers:Vector.<Answer>;
+		/**
+		 * For simplicity this component receives any child option tags as an XMLList so we keep any attributes
+		 */
+		private var _options:XMLList;
 		
 		public function SelectElement() {
 			super();
@@ -22,8 +26,8 @@ package com.clarityenglish.textLayout.elements {
 			return false;
 		}
 		
-		public function set answers(value:Vector.<Answer>):void {
-			_answers = value;
+		public function set options(value:XMLList):void {
+			_options = value;
 		}
 		
 		/** @private */
@@ -31,11 +35,21 @@ package com.clarityenglish.textLayout.elements {
 		{ return "select"; }
 		
 		public function createComponent():void {
+			text = getLongestOption() + "____.";
+			
 			var dropDownList:DropDownList = new DropDownList();
-			dropDownList.labelField = "value";
-			dropDownList.dataProvider = new VectorListCollection(_answers);
+			dropDownList.dataProvider = new XMLListCollection(_options);
 			
 			component = dropDownList;
+		}
+		
+		private function getLongestOption():String {
+			var longestOption:String = "";
+			for each (var option:XML in _options)
+				if (option.toString().length > longestOption.length)
+					longestOption = option.toString();
+			
+			return longestOption;
 		}
 		
 	}

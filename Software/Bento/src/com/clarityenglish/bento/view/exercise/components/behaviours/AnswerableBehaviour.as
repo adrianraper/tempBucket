@@ -65,25 +65,17 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 							}
 						}
 						break;
-					case "DropDownQuestion":
-						// Set the answers for <select> questions
-						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
-							var selectElement:SelectElement = flowElementXmlBiMap.getFlowElement(source) as SelectElement;
-							if (selectElement) {
-								selectElement.answers = question.answers;
-								selectElement.text = getLongestAnswerValue(question.answers) + "____.";
-							}
-						}
-						break;
 					case "DragQuestion":
 					case "GapFillQuestion":
-						// Set the answers for <input> questions
+						// The answers for these questions is defined in the model so we need to set the underlying text here
 						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
 							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 							if (inputElement) {
 								inputElement.text = getLongestAnswerValue(question.answers);
 							}
 						}
+						break;
+					case "DropDownQuestion":
 						break;
 					default:
 						log.error("Unknown question type: " + question.type);

@@ -523,6 +523,9 @@ package com.clarityenglish.textLayout.conversion {
 		public function createSelectFromXml(xmlToParse:XML):SelectElement {
 			var selectElement:SelectElement = new SelectElement();
 			
+			// Add the answers by any child option tags
+			selectElement.options = xmlToParse.option;
+			
 			addToFlowElementXmlMap(xmlToParse, selectElement);
 			
 			return selectElement;

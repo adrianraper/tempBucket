@@ -13,54 +13,55 @@
 			}
 		]]>
 		</style>
+
 		<script id="model" type="application/xml">
 			<questions>
 				<DropDownQuestion source="q1Select" block="q1Block">
-					<answer correct="true" value="always" />
-					<answer correct="false" value="sometimes" />
-					<answer correct="false" value="never" />
+					<answer correct="true" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q2Select" block="q2Block">
-					<answer correct="false" value="always" />
-					<answer correct="true" value="sometimes" />
-					<answer correct="false" value="never" />
+					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q3Select" block="q3Block">
-					<answer correct="false" value="always" />
-					<answer correct="false" value="sometimes" />
-					<answer correct="true" value="never" />
+					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="true" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q4Select" block="q4Block">
-					<answer correct="false" value="always" />
-					<answer correct="true" value="sometimes" />
-					<answer correct="false" value="never" />
+					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q5Select" block="q5Block">
-					<answer correct="false" value="always" />
-					<answer correct="true" value="sometimes" />
-					<answer correct="false" value="never" />
+					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q6Select" block="q6Block">
-					<answer correct="true" value="always" />
-					<answer correct="false" value="sometimes" />
-					<answer correct="false" value="never" />
+					<answer correct="true" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q7Select" block="q7Block">
-					<answer correct="false" value="always" />
-					<answer correct="true" value="sometimes" />
-					<answer correct="false" value="never" />
+					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q8Select" block="q8Block">
-					<answer correct="false" value="always" />
-					<answer correct="false" value="sometimes" />
-					<answer correct="true" value="never" />
+					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
+					<answer correct="true" source="${#q1Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 			</questions>
 		</script>
@@ -77,42 +78,90 @@
 			<list id="questionList">
 				<li id="q1Block">
 					'Every day I have four eggs for breakfast.'<br/>
-					He <select id="q1Select" /> has four eggs for breakfast.
+					He
+					<select id="q1Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					has four eggs for breakfast.
 				</li>
 				
 				<li id="q2Block">
 					'I go swimming 5 times a week.'<br/>
-					He <select id="q2Select" /> goes swimming.
+					He
+					<select id="q2Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					goes swimming.
 				</li>
 				
 				<li id="q3Block">
 					'How many cakes do you eat every day?' 'None!'<br/>
-					He <select id="q3Select" /> eats cakes.
+					He
+					<select id="q3Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					eats cakes.
 				</li>
 				
 				<li id="q4Block">
 					'I study the book "Great Boxers" 5 times a week'<br/>
-					He <select id="q4Select" /> studies 'Great Boxers'.
+					He
+					<select id="q4Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					studies 'Great Boxers'.
 				</li>
 				
 				<li id="q5Block">
 					'I watch television twice a week'<br/>
-					He <select id="q5Select" /> watches television.
+					He
+					<select id="q5Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					watches television.
 				</li>
 				
 				<li id="q6Block">
 					'I go to bed a 10 o'clock every night.'<br/>
-					He <select id="q6Select" /> goes to bed at 10 o'clock.
+					He
+					<select id="q6Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					goes to bed at 10 o'clock.
 				</li>
 				
 				<li id="q7Block">
 					'I work out at the Iceman Gym on Mondays and Wednesdays.'<br/>
-					He <select id="q7Select" /> works out at the Iceman Gym.
+					He
+					<select id="q7Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					works out at the Iceman Gym.
 				</li>
 				
 				<li id="q8Block">
 					'I don't drink beer.'<br/>
-					He <select id="q8Select" /> drinks beer.
+					He
+					<select id="q8Select">
+						<option>always</option>
+						<option>sometimes</option>
+						<option>never</option>
+					</select>
+					drinks beer.
 				</li>
 			</list>
 		</section>
