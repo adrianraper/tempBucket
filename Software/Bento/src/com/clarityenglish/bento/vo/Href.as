@@ -28,7 +28,7 @@ package com.clarityenglish.bento.vo {
 		 * @return 
 		 */
 		public function get rootPath():String {
-			return url.replace(/\/(\w|\d|\.)*$/, "");
+			return url.replace(/\/(\w|\d|\.|-)*$/, "");
 		}
 		
 		public function toString():String {
