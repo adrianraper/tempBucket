@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-09-23" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="1"><answer source="18" correct="true"/><answer source="27" correct="true"/><answer source="20" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="27" correct="true"/><answer source="18" correct="true"/><answer source="20" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="20" correct="true"/><answer source="18" correct="true"/><answer source="27" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="19" correct="true"/><answer source="28" correct="true"/><answer source="23" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="28" correct="true"/><answer source="19" correct="true"/><answer source="23" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="23" correct="true"/><answer source="19" correct="true"/><answer source="28" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="22" correct="true"/><answer source="24" correct="true"/><answer source="29" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="24" correct="true"/><answer source="22" correct="true"/><answer source="29" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="29" correct="true"/><answer source="24" correct="true"/><answer source="22" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="21" correct="true"/><answer source="17" correct="true"/><answer source="26" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="17" correct="true"/><answer source="21" correct="true"/><answer source="26" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="26" correct="true"/><answer source="17" correct="true"/><answer source="21" correct="true"/></DragQuestion><DragQuestion source="13"><answer source="16" correct="true"/><answer source="25" correct="true"/><answer source="30" correct="true"/></DragQuestion><DragQuestion source="14"><answer source="25" correct="true"/><answer source="16" correct="true"/><answer source="30" correct="true"/></DragQuestion><DragQuestion source="15"><answer source="30" correct="true"/><answer source="25" correct="true"/><answer source="16" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Listen to these facts about leisure time in Britain and match the information to the appropriate chart by dragging down the letter.
+</header>
+	
+<section id="noscroll">
+	
+		
+		<tab/><span id="18" draggable="true">A</span>
+		<tab/><span id="21" draggable="true">B</span>
+		<tab/><span id="19" draggable="true">C</span>
+		<tab/><span id="27" draggable="true">D</span>
+		<tab/><span id="16" draggable="true">E</span>
+		<tab/><span id="22" draggable="true">F</span>
+		<tab/><span id="28" draggable="true">G</span>
+		<tab/><span id="24" draggable="true">H</span>
+		<tab/><span id="20" draggable="true">I</span>
+		<tab/><span id="17" draggable="true">J</span>
+		
+		<tab/><span id="25" draggable="true">K</span>
+		<tab/><span id="26" draggable="true">L</span>
+		<tab/><span id="23" draggable="true">M</span>
+		<tab/><span id="29" draggable="true">N</span>
+		<tab/><span id="30" draggable="true">O</span><media class="leftFloat" src="../Media/LE_AW1aa.mp3" height="" width="" mode="1" id="1003"  /><media class="leftFloat" src="../Media/LE_AW1ab.mp3" height="" width="" mode="1" id="1004"  /><media class="leftFloat" src="../Media/LE_AW1ac.mp3" height="" width="" mode="1" id="1005"  /><media class="leftFloat" src="../Media/LE_AW1ad.mp3" height="" width="" mode="1" id="1006"  /><media class="leftFloat" src="../Media/LE_AW1ae.mp3" height="" width="" mode="1" id="1007"  /><media class="leftFloat" src="../Media/LE_AW1af.mp3" height="" width="" mode="1" id="1008"  /><media class="leftFloat" src="../Media/LE_AW1ag.mp3" height="" width="" mode="1" id="1009"  /><media class="leftFloat" src="../Media/LE_AW1ah.mp3" height="" width="" mode="1" id="1010"  /><media class="leftFloat" src="../Media/LE_AW1ai.mp3" height="" width="" mode="1" id="1011"  /><media class="rightFloat" src="../Media/LE_AW1aj.mp3" height="" width="" mode="1" id="1012"  /><media class="leftFloat" src="../Media/LE_AW1ak.mp3" height="" width="" mode="1" id="1013"  /><media class="leftFloat" src="../Media/LE_AW1al.mp3" height="" width="" mode="1" id="1014"  /><media class="leftFloat" src="../Media/LE_AW1am.mp3" height="" width="" mode="1" id="1015"  /><media class="leftFloat" src="../Media/LE_AW1an.mp3" height="" width="" mode="1" id="1016"  /><media class="leftFloat" src="../Media/LE_AW1ao.mp3" height="" width="" mode="1" id="1017"  />
+</section>
+<section id="body">
+	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" /></font>, <font color="#0000ff"><input id="2" type="droptarget" /></font>, <font color="#0000ff"><input id="3" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" /></font>, <font color="#0000ff"><input id="5" type="droptarget" /></font>, <font color="#0000ff"><input id="6" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" /></font>, <font color="#0000ff"><input id="8" type="droptarget" /></font>, <font color="#0000ff"><input id="9" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" /></font>, <font color="#0000ff"><input id="11" type="droptarget" /></font>, <font color="#0000ff"><input id="12" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" /></font>, <font color="#0000ff"><input id="14" type="droptarget" /></font>, <font color="#0000ff"><input id="15" type="droptarget" /></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_3a.jpg" height="" width="" mode="1" id="1003"  /><img class="leftFloat" src="../Media/LE_AW_3b.jpg" height="" width="" mode="1" id="1004"  /><img class="rightFloat" src="../Media/LE_AW_3c.jpg" height="" width="" mode="1" id="1005"  /><img class="leftFloat" src="../Media/LE_AW_3d.jpg" height="" width="" mode="1" id="1006"  /><img class="leftFloat" src="../Media/LE_AW_3e.jpg" height="" width="" mode="1" id="1007"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

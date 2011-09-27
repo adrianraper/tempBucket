@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-09-23" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="1"><answer source="13" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="14" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="15" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="16" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="17" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="18" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="19" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="20" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="23" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="24" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and look carefully at the bar chart. Complete the report by putting the correct word, phrase or number into each gap.
+		
+		Writing Task 1<img class="rightFloat" src="../Media/LE_Task01.jpg" height="" width="" mode="16" id="1004"  />
+</header>
+	
+<section id="noscroll">
+	
+		
+		<tab/><span id="23" draggable="true">two-fifths</span>
+		<tab/><span id="17" draggable="true">a quarter</span>
+		<tab/><span id="13" draggable="true">16 to 24</span>
+		<tab/><span id="15" draggable="true">young men</span>
+		<tab/><span id="24" draggable="true">two-thirds</span>
+		<tab/><span id="19" draggable="true">7</span>
+		
+		
+		<tab/><span id="21" draggable="true">1 and 3</span>
+		<tab/><span id="22" draggable="true">a fifth</span>
+		<tab/><span id="14" draggable="true">young women</span>
+		<tab/><span id="18" draggable="true">1 in 5</span>
+		<tab/><span id="20" draggable="true">5 per cent</span>
+		<tab/><span id="16" draggable="true">half</span>
+</section>
+<section id="body">
+	<p align="left">&#160;The bar chart shows the amount of time that <input id="1" type="droptarget" />-year-olds in England spend per week on sport and exercise. It is clear from the chart that <input id="2" type="droptarget" /> are less active in their leisure time than <input id="3" type="droptarget" />.</p><p align="left">There is a striking difference between the percentages of men and women who prefer not to participate in sport in their free time. Almost <font color="#0000ff"><input id="4" type="droptarget" /></font> of young women devote no time at all to active leisure pursuits while this applies to only about <font color="#0000ff"><input id="5" type="droptarget" /></font> of young men. There is a similar difference between the percentages of very active young people. Almost <font color="#0000ff"><input id="6" type="droptarget" /></font> men between the ages of 16 and 24 play sport for <font color="#0000ff"><input id="7" type="droptarget" /></font> or more hours a week. The figure for young women is only <font color="#0000ff"><input id="8" type="droptarget" /></font>.</p><p align="left">A closer examination of the figures for young people who actually play sport reveals that the greatest proportion dedicate between <font color="#0000ff"><input id="9" type="droptarget" /></font> hours per week to these pastimes. This is true for just over <font color="#0000ff"><input id="10" type="droptarget" /></font> of both men and women.</p><p align="left">The fact that only <font color="#0000ff"><input id="11" type="droptarget" /></font> of young women spend an hour or more a week on sport, compared to approximately <font color="#0000ff"><input id="12" type="droptarget" /></font> of young men, raises questions about how fit young women are in comparison to young men.</p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_1n4.jpg" height="" width="" mode="1" id="1003"  />
+</section>
+</body>
+</bento>

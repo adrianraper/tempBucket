@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-09-27" />
+	<meta name="conversion" type="presentation" date="2011-09-23" />
 	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -41,11 +41,11 @@
 <body>
 	
 <header>
-	What will I learn in this unit?
+	IELTS Writing Task 2You should spend about 40 minutes on this task. You should write at least 250 words.
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#0000ff"><b>Static charts 1</b></font></p><p align="left">You will ...</p><ol><li>read a report and complete it with the missing	information.</li><li>match different kinds of charts that show the same	information.</li><li>listen and match percentages, fractions and ratios	to charts.</li><li>identify verbs in the present simple in a report.</li><li>complete a report with verbs in the past simple. </li><li>write a report based on a static chart.</li><li>correct mistakes in a sample report.</li></ol><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_001.jpg" height="250" width="165" mode="1" id="1001"  />
+	<p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>Television has brought great changes to the way many children spend their leisure time.  While some of these changes have been beneficial, others have had a harmful effect.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_011.jpg" height="250" width="165" mode="1" id="1001"  />
 </section>
 </body>
 </bento>

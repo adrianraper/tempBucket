@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="dropdown" date="2011-09-26" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DropdownQuestion source="1" group="1"><answer value="Although" correct="true"/><answer value="However" correct="false"/><answer value="Despite" correct="false"/></DropdownQuestion><DropdownQuestion source="2" group="2"><answer value="Firstly" correct="true"/><answer value="Furthermore" correct="false"/><answer value="Moreover" correct="false"/></DropdownQuestion><DropdownQuestion source="3" group="3"><answer value="for instance" correct="true"/><answer value="like" correct="false"/><answer value="such as" correct="false"/></DropdownQuestion><DropdownQuestion source="4" group="4"><answer value="Secondly" correct="true"/><answer value="Consequently" correct="false"/><answer value="For example" correct="false"/></DropdownQuestion><DropdownQuestion source="5" group="5"><answer value="like" correct="true"/><answer value="in addition" correct="false"/><answer value="even though" correct="false"/></DropdownQuestion><DropdownQuestion source="6" group="6"><answer value="Moreover" correct="true"/><answer value="In contrast" correct="false"/><answer value="Including" correct="false"/></DropdownQuestion><DropdownQuestion source="7" group="7"><answer value="Lastly" correct="true"/><answer value="To sum up" correct="false"/><answer value="In conclusion" correct="false"/></DropdownQuestion><DropdownQuestion source="8" group="8"><answer value="In consequence" correct="true"/><answer value="For example" correct="false"/><answer value="Despite this" correct="false"/></DropdownQuestion><DropdownQuestion source="9" group="9"><answer value="However" correct="true"/><answer value="Although" correct="false"/><answer value="Whereas" correct="false"/></DropdownQuestion><DropdownQuestion source="10" group="10"><answer value="As a result" correct="true"/><answer value="However" correct="false"/><answer value="Furthermore" correct="false"/></DropdownQuestion><DropdownQuestion source="11" group="11"><answer value="In addition" correct="true"/><answer value="In contrast" correct="false"/><answer value="In consequence" correct="false"/></DropdownQuestion><DropdownQuestion source="12" group="12"><answer value="Finally" correct="true"/><answer value="However" correct="false"/><answer value="As a result" correct="false"/></DropdownQuestion><DropdownQuestion source="13" group="13"><answer value="therefore" correct="true"/><answer value="for instance" correct="false"/><answer value="in conclusion" correct="false"/></DropdownQuestion><DropdownQuestion source="14" group="14"><answer value="To sum up" correct="true"/><answer value="Finally" correct="false"/><answer value="Therefore" correct="false"/></DropdownQuestion><DropdownQuestion source="15" group="15"><answer value="However" correct="true"/><answer value="Although" correct="false"/><answer value="Lastly" correct="false"/></DropdownQuestion><DropdownQuestion source="16" group="16"><answer value="such as" correct="true"/><answer value="moreover" correct="false"/><answer value="as a result" correct="false"/></DropdownQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	The composition you read earlier in this unit did not have any linking words or phrases. Read the composition again and complete it by choosing the linking word or phrase which best fits each gap.
+</header>
+	
+<section id="body">
+	<p align="left">In the past fifty years, television has become more popular among children than any other form of home entertainment and many children spend several hours a day watching it. <select id="1" type="dropdown" /> parents and teachers often disapprove of it, few would prevent their children from watching it altogether.</p><p align="left">As a leisure activity, television has several advantages for children. <select id="2" type="dropdown" />, it is an easier and safer way for them to relax than, <select id="3" type="dropdown" />, playing in the street or in a park.  <select id="4" type="dropdown" />, television can be highly educational because children can learn about subjects, <select id="5" type="dropdown" /> music or sport, that they might not read about in books. <select id="6" type="dropdown" />, they acquire a wider vocabulary and improve their general knowledge. <select id="7" type="dropdown" />, television fosters children's interest in subjects and gives them interests in common. <select id="8" type="dropdown" />, they are better-informed about the world than children were in the past and they form attitudes and opinions about things outside their direct experience.</p><p align="left"><select id="9" type="dropdown" />, any invention as pervasive as television is bound to have some harmful effects. Nowadays perhaps, children in general are not as sociable as previous generations of children, who used to spend more time playing with friends. <select id="10" type="dropdown" />, some children may feel lonelier and more isolated. <select id="11" type="dropdown" />, they may be less imaginative than children in the past because they do not have to invent their own games and because they spend less time reading books. <select id="12" type="dropdown" />, since they spend so much time in front of the television, they may have fewer hobbies, and, <select id="13" type="dropdown" />, their range of leisure activities may be more limited than previous generations.</p><p align="left"><select id="14" type="dropdown" />, it is clear that television has had both positive and negative effects on the way children spend their leisure time. I believe that parents should monitor both how much time their children spend watching television and the type of programmes they watch, and encourage them to watch those which are either entertaining or educational. <select id="15" type="dropdown" />, children should also be encouraged to find time for other activities, <select id="16" type="dropdown" /> playing with friends or pursuing hobbies.</p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_013.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

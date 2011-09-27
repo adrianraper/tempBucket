@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-09-23" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="1"><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="30" correct="true"/><answer source="29" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="31" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="32" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="33" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="34" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="35" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="36" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="36" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="37" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="37" correct="true"/><answer source="29" correct="true"/><answer source="30" correct="true"/><answer source="31" correct="true"/><answer source="32" correct="true"/><answer source="33" correct="true"/><answer source="34" correct="true"/><answer source="35" correct="true"/><answer source="36" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="38" correct="true"/><answer source="39" correct="true"/><answer source="40" correct="true"/><answer source="41" correct="true"/><answer source="42" correct="true"/><answer source="43" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="39" correct="true"/><answer source="38" correct="true"/><answer source="40" correct="true"/><answer source="41" correct="true"/><answer source="42" correct="true"/><answer source="43" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="40" correct="true"/><answer source="38" correct="true"/><answer source="39" correct="true"/><answer source="41" correct="true"/><answer source="42" correct="true"/><answer source="43" correct="true"/></DragQuestion><DragQuestion source="13"><answer source="41" correct="true"/><answer source="38" correct="true"/><answer source="39" correct="true"/><answer source="40" correct="true"/><answer source="42" correct="true"/><answer source="43" correct="true"/></DragQuestion><DragQuestion source="14"><answer source="42" correct="true"/><answer source="38" correct="true"/><answer source="39" correct="true"/><answer source="40" correct="true"/><answer source="41" correct="true"/><answer source="43" correct="true"/></DragQuestion><DragQuestion source="15"><answer source="43" correct="true"/><answer source="38" correct="true"/><answer source="39" correct="true"/><answer source="40" correct="true"/><answer source="41" correct="true"/><answer source="42" correct="true"/></DragQuestion><DragQuestion source="16"><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="46" correct="true"/><answer source="47" correct="true"/><answer source="48" correct="true"/><answer source="49" correct="true"/><answer source="50" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="17"><answer source="45" correct="true"/><answer source="44" correct="true"/><answer source="46" correct="true"/><answer source="47" correct="true"/><answer source="48" correct="true"/><answer source="49" correct="true"/><answer source="50" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="18"><answer source="46" correct="true"/><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="47" correct="true"/><answer source="48" correct="true"/><answer source="49" correct="true"/><answer source="50" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="19"><answer source="47" correct="true"/><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="46" correct="true"/><answer source="48" correct="true"/><answer source="49" correct="true"/><answer source="50" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="20"><answer source="48" correct="true"/><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="46" correct="true"/><answer source="47" correct="true"/><answer source="49" correct="true"/><answer source="50" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="21"><answer source="49" correct="true"/><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="46" correct="true"/><answer source="47" correct="true"/><answer source="48" correct="true"/><answer source="50" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="22"><answer source="50" correct="true"/><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="46" correct="true"/><answer source="47" correct="true"/><answer source="48" correct="true"/><answer source="49" correct="true"/><answer source="51" correct="true"/></DragQuestion><DragQuestion source="23"><answer source="51" correct="true"/><answer source="44" correct="true"/><answer source="45" correct="true"/><answer source="46" correct="true"/><answer source="47" correct="true"/><answer source="48" correct="true"/><answer source="49" correct="true"/><answer source="50" correct="true"/></DragQuestion><DragQuestion source="24"><answer source="52" correct="true"/><answer source="53" correct="true"/><answer source="54" correct="true"/><answer source="55" correct="true"/></DragQuestion><DragQuestion source="25"><answer source="53" correct="true"/><answer source="52" correct="true"/><answer source="54" correct="true"/><answer source="55" correct="true"/></DragQuestion><DragQuestion source="26"><answer source="54" correct="true"/><answer source="52" correct="true"/><answer source="53" correct="true"/><answer source="55" correct="true"/></DragQuestion><DragQuestion source="27"><answer source="55" correct="true"/><answer source="52" correct="true"/><answer source="53" correct="true"/><answer source="54" correct="true"/></DragQuestion><DragQuestion source="28"><answer source="56" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Linking words and phrases can be used for a variety of purposes. Drag each expression below into the correct group according to how it is used. One example has been done for you in each category.
+</header>
+	
+<section id="noscroll">
+	
+			<tab/><span id="44" draggable="true">despite</span><tab/><span id="36" draggable="true">thirdly</span>
+			<tab/><span id="43" draggable="true">therefore</span><tab/><span id="38" draggable="true">as a result of this</span>
+			<tab/><span id="46" draggable="true">however</span>
+			
+			<tab/><span id="31" draggable="true">furthermore</span><tab/><span id="47" draggable="true">in contrast</span>
+			<tab/><span id="32" draggable="true">in addition</span><tab/><span id="40" draggable="true">for this reason</span>
+			<tab/><span id="53" draggable="true">including</span>
+			
+			<tab/><span id="30" draggable="true">firstly</span><tab/><span id="50" draggable="true">whereas</span>
+			<tab/><span id="29" draggable="true">finally</span><tab/><span id="41" draggable="true">in consequence</span>
+			<tab/><span id="39" draggable="true">consequently</span>
+			
+			<tab/><span id="51" draggable="true">while</span><tab/><span id="54" draggable="true">like</span>
+			<tab/><span id="37" draggable="true">what is more</span><tab/><span id="49" draggable="true">on the other hand</span>
+			<tab/><span id="52" draggable="true">for instance</span>
+			
+			<tab/><span id="35" draggable="true">secondly</span><tab/><span id="42" draggable="true">so</span>
+			<tab/><span id="48" draggable="true">in spite of</span><tab/><span id="45" draggable="true">even though</span>
+			<tab/><span id="34" draggable="true">moreover</span>
+			
+			<tab/><span id="56" draggable="true">to sum up</span><tab/><span id="55" draggable="true">such as</span>
+			<tab/><span id="33" draggable="true">lastly</span>
+</section>
+<section id="body">
+	<p align="left"><b>Listing Points</b>first of all, <input id="1" type="droptarget" />, <input id="2" type="droptarget" />, <input id="3" type="droptarget" />,&#160;<input id="4" type="droptarget" />, <input id="5" type="droptarget" />, <input id="6" type="droptarget" />,&#160;<input id="7" type="droptarget" />,&#160;<input id="8" type="droptarget" />, <input id="9" type="droptarget" /></p><p align="left"><b>Expressing Result</b>as a result, <input id="10" type="droptarget" />, <input id="11" type="droptarget" />, <input id="12" type="droptarget" />, <input id="13" type="droptarget" />, <input id="14" type="droptarget" />, <input id="15" type="droptarget" /></p><p align="left"><b>Expressing Contrast</b>although, <input id="16" type="droptarget" />, <input id="17" type="droptarget" />, <input id="18" type="droptarget" />, <input id="19" type="droptarget" />, <input id="20" type="droptarget" />, <input id="21" type="droptarget" />, <input id="22" type="droptarget" />, <input id="23" type="droptarget" /></p><p align="left"><b>Giving Examples</b>for example, <input id="24" type="droptarget" />, <input id="25" type="droptarget" />, <input id="26" type="droptarget" />, <input id="27" type="droptarget" /></p><p align="left"><b>Drawing Conclusions</b>in conclusion, <input id="28" type="droptarget" /></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_013.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

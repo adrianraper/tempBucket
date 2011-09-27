@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	Listen to these people talking about how they spend their free time. Match what they say to the leisure activities.
+</header>
+	
+<section id="noscroll">
+	
+			
+			<tab/><span id="17" draggable="true">eating out</span>
+			<tab/><span id="13" draggable="true">shopping</span>
+			<tab/><span id="23" draggable="true">going to amusement parks</span>
+			
+			
+			<tab/><span id="21" draggable="true">photography</span>
+			<tab/><span id="16" draggable="true">going to the cinema</span>
+			<tab/><span id="14" draggable="true">playing board games</span>
+			
+			
+			<tab/><span id="22" draggable="true">keep-fit</span>
+			<tab/><span id="24" draggable="true">dancing</span>
+			<tab/><span id="15" draggable="true">listening to music</span>
+			
+			
+			<tab/><span id="20" draggable="true">reading</span>
+			<tab/><span id="18" draggable="true">cooking</span>
+			<tab/><span id="19" draggable="true">watching television</span>
+</section>
+<section id="body">
+	
+<ol id="questionList"></ol>
+</section>
+</body>
+</bento>

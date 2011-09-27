@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-09-23" />
+	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="245"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapQuestion source="1" group="1"><answer value="Italian" correct="true"/><answer value="an Italian" correct="true"/><answer value="an Italian restaurant " correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Indian restaurant" correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="a French restaurant" correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Indian" correct="true"/><answer value="Indian" correct="true"/><answer value="a French" correct="true"/><answer value="French" correct="true"/></GapQuestion><GapQuestion source="2" group="2"><answer value="Indian" correct="true"/><answer value="an Indian" correct="true"/><answer value="an Indian restaurant " correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="a French restaurant" correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Italian restaurant" correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Italian" correct="true"/><answer value="Italian" correct="true"/><answer value="a French" correct="true"/><answer value="French" correct="true"/></GapQuestion><GapQuestion source="3" group="3"><answer value="French" correct="true"/><answer value="a French" correct="true"/><answer value="a French restaurant " correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Italian restaurant" correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Indian restaurant" correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="an Italian" correct="true"/><answer value="Italian" correct="true"/><answer value="an Indian" correct="true"/><answer value="Indian" correct="true"/></GapQuestion><GapQuestion source="4" group="4"><answer value="Food Express " correct="true"/><answer value="Burger Bar" correct="true"/><answer value="The Burger Bar " correct="true"/></GapQuestion><GapQuestion source="5" group="5"><answer value="Burger Bar" correct="true"/><answer value="The Burger Bar " correct="true"/><answer value="Food Express" correct="true"/></GapQuestion><GapQuestion source="6" group="6"><answer value="a fire" correct="true"/><answer value="a log fire" correct="true"/><answer value="a fire inside " correct="true"/></GapQuestion><GapQuestion source="7" group="7"><answer value="a live band" correct="true"/><answer value="a live group " correct="true"/></GapQuestion><GapQuestion source="8" group="8"><answer value="in Park Road " correct="true"/></GapQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Write NO MORE THAN THREE WORDS for each answer in the gaps below.
+		
+</header>
+	
+<section id="body">
+	<p align="left">Which <b>THREE</b> types of restaurant does the speaker recommend?</p><p align="left"><b>1.	</b><input id="1" type="gap" width="100" /></p><p align="left"><b>2.	</b><input id="2" type="gap" width="100" /></p><p align="left"><b>3.	</b><input id="3" type="gap" width="100" /></p><p align="left">Which <b>TWO</b> places in the High Street sell vegetarian takeaway food?</p><p align="left"><b>4.	</b><input id="4" type="gap" width="100" /></p><p align="left"><b>5.	</b><input id="5" type="gap" width="100" /></p><p align="left">What does 'The White Swan' have in winter?</p><p align="left"><b>6.	</b><input id="6" type="gap" width="100" /></p><p align="left">What can you see in 'The George' on a Saturday?</p><p align="left"><b>7.	</b><input id="7" type="gap" width="100" /></p><p align="left">Where is the 'The Cellar'?</p><p align="left"><b>8.	</b><input id="8" type="gap" width="100" /></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_LN_002.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/LE_LN1.mp3" height="" width="" mode="4" id="1002"  />
+</section>
+</body>
+</bento>
