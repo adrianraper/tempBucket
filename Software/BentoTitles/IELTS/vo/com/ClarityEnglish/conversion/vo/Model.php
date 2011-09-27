@@ -33,7 +33,7 @@ XML;
 			$stuff = $this->model->addChild('questions');
 		}
 		// For a drag and drop, the questions have their source as the drops and their answer source as the drags
-		echo "Model qbased=".$this->getParent()->isQuestionBased();
+		//echo "Model qbased=".$this->getParent()->isQuestionBased();
 		if ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:drop" group="1" id="1">
@@ -144,7 +144,25 @@ XML;
 				}
 				//echo $newQ;
 			}
-		// For a multiple choice, the questions have their source as the gaps and blocks
+		// For a targetspotting, the questions have their source as the gaps
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_TARGETSPOTTING) {
+			foreach ($this->getParent()->body->getFields() as $field) {
+			//	<field mode="0" type="i:target" id="1">
+			//		<answer correct="true">xxxxx</answer>
+			//	</field>
+			//	<TargetSpottingQuestion>
+			//		<answer correct="true" source="1" />
+			//	</TargetSpottingQuestion>
+				
+				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
+				foreach ($field->getAnswers() as $answer) {
+					$newA = $newQ->addChild('answer');
+					$newA->addAttribute('source',$field->getID());
+					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+				}
+				//echo $newQ;
+			}
+			// For a multiple choice, the questions have their source as the gaps and blocks
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) {
 			// Each question has its own fields
 			foreach ($this->getParent()->body->getQuestions() as $question) {

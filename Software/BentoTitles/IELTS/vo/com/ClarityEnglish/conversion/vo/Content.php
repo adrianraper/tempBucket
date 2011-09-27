@@ -155,6 +155,7 @@ class Content{
 		//echo $exerciseType;
 		if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP ||
 			$exerciseType==Exercise::EXERCISE_TYPE_GAPFILL ||
+			$exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING ||
 			$exerciseType==Exercise::EXERCISE_TYPE_DROPDOWN) {
 			// You need to output all the paragraphs. 
 			$lastTagType = null;
@@ -190,6 +191,8 @@ class Content{
 						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" type="gap" width="100" />'.$m[3];
+					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
+						$buildText.=$m[1].'<g id="'.$m[2].'>'.$m[3].'</g>';
 					} else if ($fieldType==Field::FIELD_TYPE_DROPDOWN) {
 						$buildText.=$m[1].'<select id="'.$m[2].'" type="dropdown" />'.$m[3];
 					}
@@ -287,8 +290,30 @@ class Content{
 			// need to break that down into lists
 			foreach ($this->getParagraphs() as $paragraph) {
 				// This will be quite simple
+				// Just in case there is some other paragraph too
 				$thisTagType = $paragraph->getTagType();
-				$builder.=$paragraph->output($lastTagType,$thisTagType);
+				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
+					$builder.='<li id="q'.$this->getID().'">';
+					// Grab the whole paragraph text, need to mangle it to get question and options.
+					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
+					//echo $subBuilder;
+					// Get rid of <tab><b>#q</b>
+					$patterns = Array();
+					$patterns[] = '/\<tab\>/is';
+					$patterns[] = '/<b\>#q\<\/b\>/is';
+					$replacement = '';
+					$subBuilder = preg_replace($patterns, $replacement, $subBuilder);
+
+					// If there are any media nodes in the question, then we need to output them here
+					foreach ($this->getMediaNodes() as $mediaNode) {
+						$subBuilder.=$mediaNode->output();
+					}
+					
+					// Close the list
+					$builder.=$subBuilder.'</li>';
+				} else {
+					$builder.=$paragraph->output($lastTagType,$thisTagType);
+				}
 				$lastTagType = $thisTagType;
 			}		
 			//echo $builder;
@@ -315,9 +340,6 @@ class Content{
 					}
 				}
 			}			
-			foreach ($this->getMediaNodes() as $mediaNode) {
-				$buildText.=$mediaNode->output();
-			}
 		}
 		return $buildText;
 	}

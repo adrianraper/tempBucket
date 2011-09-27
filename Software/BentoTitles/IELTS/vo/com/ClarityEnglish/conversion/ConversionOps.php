@@ -65,7 +65,7 @@ EOD;
 		$build =<<< EOD
 <head>
 	<meta name="conversion" type="$exerciseType" date="$now" />
-	<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
 		list {

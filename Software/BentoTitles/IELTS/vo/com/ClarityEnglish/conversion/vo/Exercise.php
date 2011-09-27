@@ -31,6 +31,7 @@ class Exercise {
 	const EXERCISE_TYPE_GAPFILL = 'gapfill';
 	const EXERCISE_TYPE_DROPDOWN = 'dropdown';
 	const EXERCISE_TYPE_MULTIPLECHOICE = 'multiplechoice';
+	const EXERCISE_TYPE_TARGETSPOTTING = 'targetspotting';
 	
 	function __construct($xmlObj=null) {
 		if ($xmlObj) {
@@ -54,6 +55,7 @@ class Exercise {
 				// Then text based versions with standard names
 				case 'dropdown':
 				case 'presentation':
+				case 'targetspotting':
 					$this->type = strtolower($attr['type']);
 					$this->questionBased = false;
 					break;

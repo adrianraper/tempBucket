@@ -105,6 +105,9 @@ class MediaNode {
 			case 'image':
 				$build.= '<img '; 
 				break;
+			case 'audio':
+				$build.= '<audio '; 
+				break;
 			default:
 				$build.= '<media ';
 		}
@@ -120,7 +123,10 @@ class MediaNode {
 			$build.="src=\"../Media/$this->filename\" ";
 		//}
 		// Other attributes that just get copied
-		$build.="height=\"$this->height\" width=\"$this->width\" mode=\"$this->mode\" id=\"$this->id\" ";
+		$build.="mode=\"$this->mode\" id=\"$this->id\" ";
+		// Let it be a natual width and height unless stretched
+		if ($this->stretch=='true')
+			$build.="height=\"$this->height\" width=\"$this->width\" "; 
 		
 		$build.=' />';
 		return $build;

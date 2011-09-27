@@ -43,7 +43,7 @@ class QbBody {
 						$qID = $child['id'];
 						$this->addQbMediaNode($qID, $child);
 					} else {
-					// Those that are common to the exercise can stay in here.
+						// Those that are common to the exercise can stay in here.
 						$this->addMediaNode($child);
 					}
 				}
@@ -99,6 +99,9 @@ class QbBody {
 		}
 		$buildText .= '</ol>';
 		// Also output the common mediaNodes
+		foreach($this->mediaNodes as $mediaNode) {
+			$buildText.=$mediaNode->output();
+		}
 		return $buildText;
 	}
 	function toString() {
@@ -107,6 +110,9 @@ class QbBody {
 			$buildText.= $question->toString();
 		}
 		// Also write the common mediaNodes
+		foreach($this->mediaNodes as $mediaNode) {
+			$buildText.=$mediaNode->toString();
+		}
 		return $buildText;
 	}
 }
