@@ -280,6 +280,44 @@ class Content{
 			foreach ($this->getMediaNodes() as $mediaNode) {
 				$buildText.=$mediaNode->output();
 			}
+		} elseif ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
+			// You need to output all the paragraphs.
+			$lastTagType = null;
+			// QBased are very specific format from Arthur. There will only be one paragraph, but
+			// need to break that down into lists
+			foreach ($this->getParagraphs() as $paragraph) {
+				// This will be quite simple
+				$thisTagType = $paragraph->getTagType();
+				$builder.=$paragraph->output($lastTagType,$thisTagType);
+				$lastTagType = $thisTagType;
+			}		
+			//echo $builder;
+			
+			// As you do it, you want to find any drops and replace them with an input field
+			// You will also write out a question node in the script node. NO, that is done already.
+			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
+			$buildText='';
+			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
+				foreach ($matches as $m) {
+					// Read the fields to find the matching answer
+					$answer='';
+					foreach ($this->getFields() as $field) {
+						if ($field->getID()==$m[2]) {
+							$fieldType = $field->getType();
+							$answers = $field->getAnswers();
+							$answer = $answers[0]->getAnswer();
+							continue;
+							// TODO: What if we didn't find this field id?
+						}
+					}
+					if ($fieldType==Field::FIELD_TYPE_DROP) {
+						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
+					}
+				}
+			}			
+			foreach ($this->getMediaNodes() as $mediaNode) {
+				$buildText.=$mediaNode->output();
+			}
 		}
 		return $buildText;
 	}

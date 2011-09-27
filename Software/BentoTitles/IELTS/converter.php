@@ -22,7 +22,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.
 
 // If you want to see echo stmts, then use plainView
 $plainView=false;
-$batch=true;
+$batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -66,6 +66,7 @@ function convertExercise($exerciseID) {
 			$exercise = new Presentation($xml);
 			break;
 		case 'dragon':
+		case 'draganddrop':
 			$exercise = new DragAndDrop($xml);
 			break;
 		case 'cloze':
@@ -89,6 +90,7 @@ function convertExercise($exerciseID) {
 	switch (strtolower($type)) {
 		case 'presentation':
 		case 'dragon':
+		case 'draganddrop':
 		case 'cloze':
 		case 'dropdown':
 		default:
@@ -118,7 +120,8 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	//$exerciseID = '1156153794170'; // drag and drop
 	//$exerciseID = '1156155508240'; // gapfill
 	//$exerciseID = '1156153794807'; // dropdown
-	$exerciseID = '1156153794223'; // multiple choice
+	//$exerciseID = '1156153794223'; // multiple choice
+	$exerciseID = '1156153794534'; // q based drag and drop
 	convertExercise($exerciseID);
 }
 

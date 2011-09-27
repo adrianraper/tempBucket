@@ -42,6 +42,11 @@ class Exercise {
 					$this->type = Exercise::EXERCISE_TYPE_DRAGANDDROP;
 					$this->questionBased = false;
 					break;
+				// Can you use one exercise type for question and text based exercises?
+				case 'draganddrop':
+					$this->type = Exercise::EXERCISE_TYPE_DRAGANDDROP;
+					$this->questionBased = true;
+					break;
 				case 'cloze':
 					$this->type = Exercise::EXERCISE_TYPE_GAPFILL;
 					$this->questionBased = false;
@@ -103,7 +108,7 @@ class Exercise {
 		return $this->type;
 	}
 	function isQuestionBased() {
-		return $this->questionBased;
+		return (boolean) $this->questionBased;
 	}
 	
 	// Following functions are for the conversion

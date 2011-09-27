@@ -33,7 +33,8 @@ XML;
 			$stuff = $this->model->addChild('questions');
 		}
 		// For a drag and drop, the questions have their source as the drops and their answer source as the drags
-		if ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
+		echo "Model qbased=".$this->getParent()->isQuestionBased();
+		if ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:drop" group="1" id="1">
 			//		<answer correct="true">chess</answer>
@@ -70,6 +71,33 @@ XML;
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
+			}
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP && $this->getParent()->isQuestionBased()) {
+			// Each question has its own fields
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("DragQuestion");
+				//$newQ->addAttribute('source',$field->getID());
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				//$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('group','q'.$question->getID());
+				foreach ($question->getFields() as $field) {
+				
+			//	<field mode="0" type="i:target" group="1" id="1">
+			//		<answer correct="false">golf</answer>
+			//	</field>
+			//	<MultipleChoiceQuestion block="q1">
+			//		<answer correct="true" source="1" />
+			//		<answer correct="false" source="2" />
+			//	</MultipleChoiceQuestion>
+					// Only ever 1 answer per field
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						$newA->addAttribute('source',$field->getID());
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+				}
 			}
 		// For a gapfil, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL) {

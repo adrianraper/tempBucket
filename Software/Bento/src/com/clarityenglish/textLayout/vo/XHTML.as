@@ -160,7 +160,7 @@ package com.clarityenglish.textLayout.vo {
 			externalStyleSheetsLoaded = true;
 			isLoadingStyleLinks = false;
 			
-			log.info("External stylesheet loaded");
+			log.info("External stylesheet loaded from "+(rootPath ? rootPath + "/" : "") + linkLoader.linkNode.@href);
 			
 			dispatchEvent(new XHTMLEvent(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED));
 		}

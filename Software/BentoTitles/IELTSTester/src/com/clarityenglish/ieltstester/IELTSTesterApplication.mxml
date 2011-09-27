@@ -54,7 +54,7 @@
 		<s:dataProvider>
 			<s:ArrayCollection>
 				<fx:Object label="IELTSTester-Dave" filename="menu.xml" currentDir="../../../../Content/IELTSTester-Dave" />
-				<fx:Object label="IELTSTester-Adrian" filename="menu.xml" currentDir="../../../../Content/IELTSTester-Adrian" />
+				<fx:Object label="IELTSTester-Adrian" filename="menu.xml" currentDir="../../../../Content/RoadToIELTS-Academic" />
 			</s:ArrayCollection>
 		</s:dataProvider>
 	</s:ButtonBar>
