@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-09-28" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="10" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	These comments about the advantages and disadvantages of having a computer at home have been rewritten in a more formal style. Fill each gap with an appropriate comparative structure using one of the adjectives provided.
+</header>
+	
+<section id="noscroll">
+	
+</section>
+<section id="body">
+	
+<ol id="questionList"><li id="q1">By using chat and e-mail, it's easier to come into contact with people from all over the world – something we couldn't do in the past.Computers allow people to have a <input id="1" width="100" /> social circle than in the past.</li><li id="q2">Computer games can be addictive and people who get hooked often stop doing things that are really essential.Some people become addicted to computers and, as a result, they are distracted from doing other, <input id="2" width="100" /> things.</li><li id="q3">I've noticed that since I bought my computer I spend far more time sitting down than I used to.Computers have resulted in many people leading a <input id="3" width="100" /> lifestyle.</li><li id="q4">My reactions have definitely speeded up since I started playing computer games at home.Computer games give people <input id="4" width="100" /> reactions.</li><li id="q5">People spend more time indoors as a result of computers so they don't speak to their neighbours as much.People are <input id="5" width="100" /> as they were in the past.</li><li id="q6">I think some computer games are very educational. I'm sure they've improved my son's ability to think logically.Computer games may help people to think in a <input id="6" width="100" /> way.</li><li id="q7">I know that some doctors worry that all this sitting in front of computers all day, even in one's free time, is having a really bad effect on people's health.People are <input id="7" width="100" /> as they were in the past as a result of using computers.</li><li id="q8">One of the wonderful things about computers and the Internet is that I can exchange information with people all over the world who have the same hobby as me – I collect dolls.Having a home computer makes it <input id="8" width="100" /> to exchange information with people all over the world.</li><li id="q9">These days you can find information about almost anything on the Web. I think I've really broadened my knowledge about all sorts of things since I've had Internet access from home.For some people, Internet access at home has helped them become <input id="9" width="100" />.</li><li id="q10">Before computer games arrived, children used to spend more of their time building models or painting or inventing stories. They just don't do those things anymore.Children are <input id="10" width="100" /> in their free time than they used to be.</li></ol><img class="rightFloat" src="../Media/LE_AW_015.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

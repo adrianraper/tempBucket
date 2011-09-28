@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-09-28" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="1" correct="true"/><answer source="1" correct="true"/><answer source="1" correct="true"/><answer source="1" correct="true"/><answer source="1" correct="true"/><answer source="1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="3" correct="true"/><answer source="3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="4" correct="true"/><answer source="4" correct="true"/><answer source="4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="5" correct="true"/><answer source="5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="6" correct="true"/><answer source="6" correct="true"/><answer source="6" correct="true"/><answer source="6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="7" correct="true"/><answer source="7" correct="true"/><answer source="7" correct="true"/><answer source="7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="8" correct="true"/><answer source="8" correct="true"/><answer source="8" correct="true"/><answer source="8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="9" correct="true"/><answer source="9" correct="true"/><answer source="9" correct="true"/><answer source="9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="10" correct="true"/><answer source="10" correct="true"/><answer source="10" correct="true"/><answer source="10" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the passage on the left. Using NO MORE THAN THREE WORDS from the passage, answer the questions on the right.
+</header>
+	
+<section id="body">
+	
+<ol id="questionList"><li id="q1">Which game company was established in 1858?<input id="1" width="100" /></li><li id="q2">What game pieces were regarded as extremely immoral before the end of the 19th century?<input id="2" width="100" /></li><li id="q3">Who did Milton Bradley produce miniaturised games for?<input id="3" width="100" /></li><li id="q4">What production technique was dropped at the turn of the last century to make games more affordable?<input id="4" width="100" /></li><li id="q5">What aspect of the late 1940s lifestyle was reflected in the games of that period?<input id="5" width="100" /></li><li id="q6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.<input id="6" width="100" /></li><p align="left">List <b>FOUR</b> materials which have been used to make game pieces.</p><li id="q7"><input id="7" width="100" /></li><li id="q8"><input id="8" width="100" /></li><li id="q9"><input id="9" width="100" /></li><li id="q10"><input id="10" width="100" /></li></ol><img class="leftFloat" src="../Media/LE_AR_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+</section>
+</body>
+</bento>
