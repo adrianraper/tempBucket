@@ -1,12 +1,14 @@
 package com.clarityenglish.textLayout.components.behaviours {
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.IComponentElement;
-	import com.clarityenglish.textLayout.util.TLFUtil;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.elements.TextFlow;
+	
+	import org.davekeen.util.PointUtil;
 	
 	import spark.components.Group;
 	
@@ -49,7 +51,11 @@ package com.clarityenglish.textLayout.components.behaviours {
 				var bounds:Rectangle = componentElement.getElementBounds();
 				
 				if (bounds) {
-					// TODO: This is totally wrong; there needs to be transformations between coordinate spaces for child RenderFlows
+					// Convert the bounds from their original coordinate space to the coordinate space of the container
+					// TODO: This doesn't quite work properly in Grid1.xml, although it is very close
+					var containingBlock:RenderFlow = textFlow.flowComposer.getControllerAt(0).container as RenderFlow;
+					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
+					
 					componentElement.getComponent().width = bounds.width;
 					componentElement.getComponent().height = bounds.height; // TODO: This doesn't set the height correctly on the dropdownlist
 					componentElement.getComponent().x = bounds.x;
