@@ -1,18 +1,18 @@
 package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.exercise.components.ExerciseView;
+	import com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class ExerciseMediator extends BentoMediator {
+	public class XHTMLExerciseMediator extends BentoMediator {
 		
-		public function ExerciseMediator(mediatorName:String, viewComponent:BentoView) {
+		public function XHTMLExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		public function get view():ExerciseView {
-			return viewComponent as ExerciseView;
+		public function get view():XHTMLExerciseView {
+			return viewComponent as XHTMLExerciseView;
 		}
 		
 		public override function onRegister():void {

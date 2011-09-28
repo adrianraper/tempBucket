@@ -6,8 +6,8 @@
     <classEntry path="com.clarityenglish.bento.BentoFacade"/>
     <classEntry path="com.clarityenglish.bento.view.base.BentoMediator"/>
     <classEntry path="com.clarityenglish.bento.view.DynamicView"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.components.ExerciseView"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.XHTMLExerciseMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DictionaryBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour"/>
@@ -55,7 +55,7 @@
     <classEntry path="org.flexlayouts.layouts.FlowLayout"/>
     <classEntry path="skins.bento.exercise.ExerciseDropDownListSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseTextInputSkin"/>
-    <classEntry path="skins.bento.exercise.ExerciseViewSkin"/>
+    <classEntry path="skins.bento.exercise.XHTMLExerciseViewSkin"/>
     <classEntry path="com.clarityenglish.common.events.LoginEvent"/>
     <classEntry path="com.clarityenglish.common.events.SearchEvent"/>
     <classEntry path="com.clarityenglish.common.model.CopyProxy"/>

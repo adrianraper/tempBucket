@@ -6,8 +6,8 @@
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace exercise "com.clarityenglish.bento.view.exercise.components.*";
 
-exercise|ExerciseView {
-	skinClass: ClassReference("skins.bento.exercise.ExerciseViewSkin");
+exercise|XHTMLExerciseView {
+	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseViewSkin");
 }
 
 /* This applied to all TextInputs for now, but really its only for those in exercises */

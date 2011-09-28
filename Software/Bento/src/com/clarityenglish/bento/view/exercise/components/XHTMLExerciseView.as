@@ -8,7 +8,7 @@ package com.clarityenglish.bento.view.exercise.components {
 	import spark.components.Group;
 	import spark.components.supportClasses.SkinnableComponent;
 	
-	public class ExerciseView extends BentoView {
+	public class XHTMLExerciseView extends BentoView {
 		
 		/**
 		 * All the supported sections should be listed here.  They must also be defined below as required or optional skin parts.  The naming
