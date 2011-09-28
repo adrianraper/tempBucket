@@ -28,6 +28,7 @@
 					</unit>
 					<unit caption="Problems" id="1">
 						<exercise id="1001" caption="trac7" href="trac7/1156153794715.xml" />
+						<exercise id="1002" caption="trac5" href="trac5/1156153794170.xml" />
 					</unit>
 				</course>
 			</menu>
