@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false" scorebased="true"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="1"><answer source="25" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="26" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="20" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="25" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="26" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="20" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="25" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="26" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="26" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="25" correct="true"/></DragQuestion><DragQuestion source="13"><answer source="26" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Here are the notes a group of students made for the writing task. Put each point under the correct paragraph heading to make a plan. Check your answers by reading the completed composition. Do not worry about the gaps for the moment.
+		
+		Writing Task 2<img class="rightFloat" src="../Media/LE_Task02.jpg" height="" width="" mode="16" id="1004"  />
+</header>
+	
+<section id="noscroll">
+	
+		
+		<tab/><span id="16" draggable="true">Introduction</span>
+		<tab/><span id="25" draggable="true">Advantages</span>
+		<tab/><span id="15" draggable="true">Disadvantages</span>
+		<tab/><span id="17" draggable="true">Conclusion</span><img class="rightFloat" src="../Media/LE_Sample001.jpg" height="" width="" mode="16" id="1005"  />
+</section>
+<section id="body">
+	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" /><font color="#000000">: TV stimulates children's interests.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="2" type="droptarget" /><font color="#000000">: Children have fewer hobbies.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="3" type="droptarget" /><font color="#000000">: Adults often disapprove of children watching TV.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" /><font color="#000000">: Parents should check on children's viewing.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="5" type="droptarget" /><font color="#000000">: Children learn more about the world.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="6" type="droptarget" /><font color="#000000">: Children are lonelier.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" /><font color="#000000">: Children should do other activities as well.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="8" type="droptarget" /><font color="#000000">: TV helps educate children in a variety of ways.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="9" type="droptarget" /><font color="#000000">: TV – most popular form of entertainment for children.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" /><font color="#000000">: Children are less sociable.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="11" type="droptarget" /><font color="#000000">: Children read less.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="12" type="droptarget" /><font color="#000000">: TV is easier and safer than other forms of relaxation.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" /><font color="#000000">: TV makes children less imaginative/inventive.<font color="#0000ff"></font></font></font></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_012.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

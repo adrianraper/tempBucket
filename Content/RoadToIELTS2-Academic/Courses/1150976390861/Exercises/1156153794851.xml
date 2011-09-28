@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback neutral="true"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="1" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="2" correct="false"/></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<p align="left"><font color="#0000ff"><b>Monologue (social context)</b></font></p>You will listen to a talk about places to eat out in a town.<p align="left"><font color="#0000ff"><b>Conversation (educational context)</b></font></p>You will listen to two students talking about a survey on popular forms of physical activity.<p align="left"><b>Question types</b>You will attempt two question types.<u>[1]</u><u>[2]</u></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_LN_001.jpg" mode="1" id="1001"  />
+</section>
+</body>
+</bento>

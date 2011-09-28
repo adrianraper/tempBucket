@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapQuestion source="1" group="1"><answer value="Aboriginal " correct="true"/></GapQuestion><GapQuestion source="2" group="2"><answer value="Buka women " correct="true"/></GapQuestion><GapQuestion source="3" group="3"><answer value="coconut shells " correct="true"/><answer value="two coconut shells" correct="true"/><answer value="2 coconut shells" correct="true"/></GapQuestion><GapQuestion source="4" group="4"><answer value="Guatemala " correct="true"/></GapQuestion><GapQuestion source="5" group="5"><answer value="pin and balls " correct="true"/><answer value="a pin and balls" correct="true"/><answer value="a wooden pin and balls" correct="true"/></GapQuestion><GapQuestion source="6" group="6"><answer value="T   " correct="true"/></GapQuestion><GapQuestion source="7" group="7"><answer value="Inuit   " correct="true"/></GapQuestion><GapQuestion source="8" group="8"><answer value="G   " correct="true"/></GapQuestion><GapQuestion source="9" group="9"><answer value="farmers " correct="true"/><answer value="Kelantanese farmers" correct="true"/></GapQuestion><GapQuestion source="10" group="10"><answer value="paper " correct="true"/><answer value="glazed paper" correct="true"/><answer value="glazed colored paper" correct="true"/><answer value="glazed coloured paper" correct="true"/><answer value="colored paper" correct="true"/><answer value="coloured paper" correct="true"/></GapQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the passage on the left and complete the table on the right. Write NO MORE THAN THREE WORDS from the passage or in the Format section, the letters (I) - Individuals, (T) - Team or (G) - Whole Group.
+		
+</header>
+	
+<section id="body">
+	<p align="left"><font color="#0000ff"><b>Infinity Marbles</b></font>Country: Australia</p>Players: 1. <input id="1" type="gap" width="100" /> childrenEquipment: marblesFormat: I<p align="left"><font color="#0000ff"><b>Salan Lanai </b></font>Country: New Guinea </p>Players: 2. <input id="2" type="gap" width="100" />Equipment: 3. <input id="3" type="gap" width="100" />Format: G<p align="left"><font color="#0000ff"><b>Pin</b></font>Country: 4. <input id="4" type="gap" width="100" /></p>Players: Indian childrenEquipment: 5. <input id="5" type="gap" width="100" />Format: 6. <input id="6" type="gap" width="100" /><p align="left"><font color="#0000ff"><b>Muk</b></font>Country: Canada </p>Players: 7. <input id="7" type="gap" width="100" /> children and their familiesEquipment: noneFormat: 8. <input id="8" type="gap" width="100" /><p align="left"><font color="#0000ff"><b>Kite-flying</b></font>Country: Malaysia</p>Players: 9. <input id="9" type="gap" width="100" />Equipment:&#160;10. <input id="10" type="gap" width="100" />&#160;kites with bamboo framesFormat: I<p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AR_003.jpg" height="165" width="250" mode="1" id="1002"  /><img class="leftFloat" src="../Media/Decorative_004.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

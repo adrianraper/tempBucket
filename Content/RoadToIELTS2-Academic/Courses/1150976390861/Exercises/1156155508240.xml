@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapQuestion source="1" group="1"><answer value="chess " correct="true"/></GapQuestion><GapQuestion source="2" group="2"><answer value="pieces " correct="true"/></GapQuestion><GapQuestion source="3" group="3"><answer value="moves " correct="true"/></GapQuestion><GapQuestion source="4" group="4"><answer value="channels " correct="true"/></GapQuestion><GapQuestion source="5" group="5"><answer value="documentaries " correct="true"/></GapQuestion><GapQuestion source="6" group="6"><answer value="soap operas " correct="true"/></GapQuestion><GapQuestion source="7" group="7"><answer value="fiction " correct="true"/></GapQuestion><GapQuestion source="8" group="8"><answer value="non-fiction " correct="true"/></GapQuestion><GapQuestion source="9" group="9"><answer value="paperbacks " correct="true"/></GapQuestion><GapQuestion source="10" group="10"><answer value="cuisine " correct="true"/></GapQuestion><GapQuestion source="11" group="11"><answer value="ingredients " correct="true"/></GapQuestion><GapQuestion source="12" group="12"><answer value="recipes " correct="true"/></GapQuestion><GapQuestion source="13" group="13"><answer value="DJ " correct="true"/></GapQuestion><GapQuestion source="14" group="14"><answer value="hits " correct="true"/></GapQuestion><GapQuestion source="15" group="15"><answer value="dance floor " correct="true"/></GapQuestion><GapQuestion source="16" group="16"><answer value="gyms " correct="true"/></GapQuestion><GapQuestion source="17" group="17"><answer value="treadmills " correct="true"/></GapQuestion><GapQuestion source="18" group="18"><answer value="aerobics " correct="true"/></GapQuestion><GapQuestion source="19" group="19"><answer value="bargains " correct="true"/></GapQuestion><GapQuestion source="20" group="20"><answer value="markets " correct="true"/></GapQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete the e-mail by filling each gap with the correct word or phrase.
+</header>
+	
+<section id="body">
+	<p align="left">Dear Sally,</p><p align="left"><font color="#000000">I can't believe you're coming to live here in Hong Kong! Let us know when you're arriving and Josh and I will come and pick you up from the airport. </font></p><p align="left"><font color="#000000">Anyway, to answer your questions about what we do here in the evenings and at weekends. Well, most evenings we're both so tired when we get home that we just listen to music or read. We even play board games, would you believe! We actually play a lot of <input id="1" type="gap" width="100" />! None of our games last long though as Josh usually has all my <input id="2" type="gap" width="100" /> within about 15 minutes. I don't really have the patience to work out the best <input id="3" type="gap" width="100" />.</font></p><p align="left">To tell you the truth, one of the reasons we play a lot of games is that the TV isn't that good here. There are only two English-language <input id="4" type="gap" width="100" />. One of them seems to show nothing but wildlife <input id="5" type="gap" width="100" /> and the other one mostly shows long-running sitcoms and <input id="6" type="gap" width="100" />.</p><p align="left"><font color="#000000">English-language books are quite easy to find though. They've just opened an excellent new library near us with a great collection of modern British and American <input id="7" type="gap" width="100" /> which is brilliant for me as I read a lot of novels. It's a bit more difficult for Josh to find what he wants. He prefers <input id="8" type="gap" width="100" />, especially popular science and natural history, and there isn't much of that. Actually, books are quite expensive here, so bring as many cheap <input id="9" type="gap" width="100" /> with you as you can for your weekend getaways to Thailand and the Philippines!</font></p><p align="left"><font color="#000000">I've just read what I've written so far - you must think we lead a very boring life! Actually, the weekends are when we go out and do things!</font></p><p align="left">We eat out a lot. There are so many different types of <input id="10" type="gap" width="100" /> here and the food is simply delicious. We also have people over for dinner quite a bit. You can get the <input id="11" type="gap" width="100" /> for most dishes here without too much trouble and I've been working my way through the <input id="12" type="gap" width="100" /> in a new cookery book that Josh gave me for Christmas.</p><p align="left"><font color="#000000">The nightlife's pretty good here too. There are loads of discos and nightclubs. Josh and I went to one last weekend and had a great time. The <input id="13" type="gap" width="100" /> was actually playing all our favorite <input id="14" type="gap" width="100" /> from the 80's and 90's so we spent most of the night on the <input id="15" type="gap" width="100" />!</font></p><p align="left">To make up for all the eating and late nights, we both do quite a lot to keep fit. There are some really good <input id="16" type="gap" width="100" /> in Hong Kong with all the equipment you could possibly want, from <input id="17" type="gap" width="100" /> to weight machines, as well as lots of <input id="18" type="gap" width="100" /> classes.</p><p align="left"><font color="#000000">What else? I must confess I'm a bit of a shopaholic! The shops here are fabulous - although some of them are on the expensive side. There are lots of <input id="19" type="gap" width="100" /> to be had though, especially in the <input id="20" type="gap" width="100" />. I'll show you where they all are when you get here!</font></p><p align="left">Anyway, I have to get down to some work now.</p><p align="left"><font color="#000000">Keep me posted about your dates!</font></p><p align="left">Love,</p><p align="left">Annabel </p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_TV_004.jpg" height="250" width="165" mode="1" id="1001"  />
+</section>
+</body>
+</bento>

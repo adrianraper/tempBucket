@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<p align="left"><font color="#0000ff"><b>Static charts 1</b></font></p><p align="left">You will ...</p><ol><li>read a report and complete it with the missing	information.</li><li>match different kinds of charts that show the same	information.</li><li>listen and match percentages, fractions and ratios	to charts.</li><li>identify verbs in the present simple in a report.</li><li>complete a report with verbs in the past simple. </li><li>write a report based on a static chart.</li><li>correct mistakes in a sample report.</li></ol><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_001.jpg" height="250" width="165" mode="1" id="1001"  />
+</section>
+</body>
+</bento>

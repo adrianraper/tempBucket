@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false" scorebased="true"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="1"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="24" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="24" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	The report on this bar chart is jumbled up. Look carefully at the chart and drag down the paragraph descriptions (Introduction, Development, Conclusion) to the appropriate sentences.
+</header>
+	
+<section id="noscroll">
+	
+
+<tab/>
+<tab/>
+<span id="22" draggable="true">Introduction</span><tab/>
+<span id="15" draggable="true">Development</span><tab/>
+<span id="23" draggable="true">Conclusion</span>
+</section>
+<section id="body">
+	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" /><font color="#000000">: This pattern is true for almost all other equipment.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="2" type="droptarget" /><font color="#000000">: For example, the percentage of boys with computers in their bedroom is almost twice the percentage for girls.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="3" type="droptarget" /><font color="#000000">: Almost 1 in 2 children have one.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" /><font color="#000000">: It is clear that a large proportion of all children, just over 50 per cent, have some kind of equipment in their bedroom and that the percentage is considerably higher for boys.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="5" type="droptarget" /><font color="#000000">: The television is closely followed by games consoles in popularity.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="6" type="droptarget" /><font color="#000000">: The only exception is video cassette recorders, which are slightly more common in girls' bedrooms.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" /><font color="#000000">: A third of boys own such consoles compared to only a fifth of girls.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="8" type="droptarget" /><font color="#000000">: A closer look at the figures shows that the most common appliance found in children's bedrooms is the television set.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="9" type="droptarget" /><font color="#000000">: However, these are far more popular with boys than with girls.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" />: The bar chart shows the percentages of girls and boys with home entertainment equipment in their bedrooms.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><input id="11" type="droptarget" /><font color="#000000">: We might also wonder what effect this has on their social development.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="12" type="droptarget" />: We could infer from these figures that children today spend a lot of their free time in their bedrooms.<font color="#0000ff"></font></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Unit01_Write_e6.jpg" height="" width="" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

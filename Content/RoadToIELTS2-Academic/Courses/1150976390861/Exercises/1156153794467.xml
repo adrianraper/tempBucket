@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapQuestion source="1" group="1"><answer value="watched " correct="true"/></GapQuestion><GapQuestion source="2" group="2"><answer value="listened " correct="true"/></GapQuestion><GapQuestion source="3" group="3"><answer value="spent " correct="true"/></GapQuestion><GapQuestion source="4" group="4"><answer value="came " correct="true"/></GapQuestion><GapQuestion source="5" group="5"><answer value="took up " correct="true"/></GapQuestion><GapQuestion source="6" group="6"><answer value="did not seem " correct="true"/><answer value="didn't seem" correct="true"/><answer value="seemed not" correct="true"/></GapQuestion><GapQuestion source="7" group="7"><answer value="accounted " correct="true"/></GapQuestion><GapQuestion source="8" group="8"><answer value="ate " correct="true"/></GapQuestion><GapQuestion source="9" group="9"><answer value="went " correct="true"/></GapQuestion><GapQuestion source="10" group="10"><answer value="entertained " correct="true"/></GapQuestion><GapQuestion source="11" group="11"><answer value="played " correct="true"/></GapQuestion><GapQuestion source="12" group="12"><answer value="walked " correct="true"/></GapQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look at the pie chart and complete the report by filling each gap with the past simple of the verb given in brackets.
+</header>
+	
+<section id="body">
+	<p align="left"><font color="#000000">In 1961 people in the UK mostly <input id="1" type="gap" width="100" /> (watch) television or <input id="2" type="gap" width="100" /> (listen) to the radio in their leisure time. On average they <input id="3" type="gap" width="100" /> (spend) almost half of their free time on these activities. After that <input id="4" type="gap" width="100" />(come) other unspecified pastimes, which <input id="5" type="gap" width="100" /> (take up) about an hour and a quarter a day. People <input id="6" type="gap" width="100" /> (not seem) to socialise a great deal, as this <input id="7" type="gap" width="100" /> (account) for only 35 minutes in a typical day. People <input id="8" type="gap" width="100" /> (eat) out, <input id="9" type="gap" width="100" /> (go) to the cinema or <input id="10" type="gap" width="100" /> (entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="11" type="gap" width="100" /> (play) sports or <input id="12" type="gap" width="100" /> (walk) for an average of only 9 minutes a day.</font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Unit01_Write_e5.jpg" height="" width="" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

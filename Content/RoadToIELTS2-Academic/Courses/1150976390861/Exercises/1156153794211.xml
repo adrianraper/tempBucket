@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="dropdown" date="2011-09-27" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DropdownQuestion source="1" group="1"><answer value="Firstly" correct="true"/><answer value="As a result" correct="false"/><answer value="In addition" correct="false"/><answer value="However" correct="false"/></DropdownQuestion><DropdownQuestion source="2" group="2"><answer value="than" correct="true"/><answer value="who" correct="false"/><answer value="that" correct="false"/><answer value="as" correct="false"/></DropdownQuestion><DropdownQuestion source="3" group="3"><answer value="Moreover" correct="true"/><answer value="Despite this" correct="false"/><answer value="For instance" correct="false"/><answer value="Therefore" correct="false"/></DropdownQuestion><DropdownQuestion source="4" group="4"><answer value="Finally" correct="true"/><answer value="Consequently" correct="false"/><answer value="In contrast" correct="false"/><answer value="To sum up" correct="false"/></DropdownQuestion><DropdownQuestion source="5" group="5"><answer value="more stimulating" correct="true"/><answer value="stimulating" correct="false"/><answer value="very stimulating" correct="false"/><answer value="as stimulating" correct="false"/></DropdownQuestion><DropdownQuestion source="6" group="6"><answer value="for instance" correct="true"/><answer value="such as" correct="false"/><answer value="therefore" correct="false"/><answer value="however" correct="false"/></DropdownQuestion><DropdownQuestion source="7" group="7"><answer value="On the other hand" correct="true"/><answer value="What is more" correct="false"/><answer value="In addition" correct="false"/><answer value="Therefore" correct="false"/></DropdownQuestion><DropdownQuestion source="8" group="8"><answer value="less" correct="true"/><answer value="more" correct="false"/><answer value="fewer" correct="false"/><answer value="little" correct="false"/></DropdownQuestion><DropdownQuestion source="9" group="9"><answer value="What is more" correct="true"/><answer value="In consequence" correct="false"/><answer value="Lastly" correct="false"/><answer value="As a result of this" correct="false"/></DropdownQuestion><DropdownQuestion source="10" group="10"><answer value="healthy" correct="true"/><answer value="health" correct="false"/><answer value="healthier" correct="false"/><answer value="healthiest" correct="false"/></DropdownQuestion><DropdownQuestion source="11" group="11"><answer value="such as" correct="true"/><answer value="as" correct="false"/><answer value="whereas" correct="false"/><answer value="as well as" correct="false"/></DropdownQuestion><DropdownQuestion source="12" group="12"><answer value="In conclusion" correct="true"/><answer value="Firstly" correct="false"/><answer value="Consequently" correct="false"/><answer value="Lastly" correct="false"/></DropdownQuestion><DropdownQuestion source="13" group="13"><answer value="for example" correct="true"/><answer value="including" correct="false"/><answer value="such as" correct="false"/><answer value="as well as" correct="false"/></DropdownQuestion><DropdownQuestion source="14" group="14"><answer value="However" correct="true"/><answer value="Although" correct="false"/><answer value="Consequently" correct="false"/><answer value="Moreover" correct="false"/></DropdownQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read this sample answer to the writing task in the previous exercise. Complete the composition by choosing the word or phrase which best fits each gap.
+</header>
+	
+<section id="body">
+	<p align="left">The growing popularity of home computers has brought about the biggest single change in the way we spend our free time since the invention of television. This development is viewed by many people as a mixed blessing.</p><p align="left"><font color="#000000">Having a computer at home has undoubted advantages. <select id="1" type="dropdown" />, through the Internet we can make contact with many more people <select id="2" type="dropdown" /> we would normally meet in our everyday lives: people from other parts of the world and people with similar interests to our own. <select id="3" type="dropdown" />, it gives us the possibility of sharing information and interests with others more easily than in the past through the use of e-mail and chat programs. <select id="4" type="dropdown" />, some people believe that computer games are <select id="5" type="dropdown" /> for our brains than, <select id="6" type="dropdown" />, watching television because they improve our reactions and our ability to think logically.</font></p><p align="left"><select id="7" type="dropdown" />, like television, personal computers tend to isolate us from the world just outside our front door. We may speak to friends and neighbours <select id="8" type="dropdown" /> because we are busy playing computer games indoors. <select id="9" type="dropdown" />, there is evidence that we are not as <select id="10" type="dropdown" /> as we used to be due to the sedentary lifestyle that computers encourage us to lead. Lastly, some psychologists argue that computer games are addictive, which means that some people may be distracted from doing more important things, <select id="11" type="dropdown" /> spending time on their studies or with their family.</p><p align="left"><select id="12" type="dropdown" />, I believe that computers are useful in the home, as long as we use them as a tool, <select id="13" type="dropdown" />, to communicate with friends or find information. <select id="14" type="dropdown" />, they may be harmful when they become our main source of entertainment.</p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_017.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+</section>
+</body>
+</bento>

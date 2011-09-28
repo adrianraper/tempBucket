@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item version="6.4" caption="Unit%207:%20Health%20and%20fitness" id="0">
+	<item caption-position="bc" x="68" y="140" unit="1" caption="Words" 
+	alt="Word Power - words and phrases to talk about medical conditions and symptoms, food-related vocabulary, and words to talk about the causes, prevention and treatment of infectious diseases." 
+	id="1148866987640" picture="Words" enabledFlag="3">
+		<item unit="1" id="1151344151047" caption="Introduction" fileName="1151344151047.xml" action="1151344151047" exerciseID="1151344151047" enabledFlag="3"/>
+		<item unit="1" id="1151344151012" caption="Match%20the%20disease" fileName="1151344151012.xml" action="1151344151012" exerciseID="1151344151012" enabledFlag="3"/>
+		<item unit="1" id="1151344151491" caption="A%20lecture%20on%20food%20science" fileName="1151344151491.xml" action="1151344151491" exerciseID="1151344151491" enabledFlag="3"/>
+		<item unit="1" id="1151344151127" caption="Infectious%20diseases" fileName="1151344151127.xml" action="1151344151127" exerciseID="1151344151127" enabledFlag="3"/>
+		<item unit="1" id="1151344151189" caption="Health%20vocabulary%20%281%29" fileName="1151344151189.xml" action="1151344151189" exerciseID="1151344151189" enabledFlag="3"/>
+		<item unit="1" id="1151344151531" caption="Health%20vocabulary%20%282%29" fileName="1151344151531.xml" action="1151344151531" exerciseID="1151344151531" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="140" unit="2" caption="Listening" 
+	alt="Listening - a talk about keeping healthy in winter and a conversation about insects and human diseases." 
+	id="1148872316219" picture="Listening" enabledFlag="3">
+		<item unit="2" id="1151344151611" caption="Introduction" fileName="1151344151611.xml" action="1151344151611" exerciseID="1151344151611" enabledFlag="3"/>
+		<item unit="2" id="1151344151990" caption="Fill%20in%20the%20table%20%281%29" fileName="1151344151990.xml" action="1151344151990" exerciseID="1151344151990" enabledFlag="3"/>
+		<item unit="2" id="1154102099587" caption="Some%20more%20advice" fileName="1154102099587.xml" action="1154102099587" exerciseID="1154102099587" enabledFlag="3"/>
+		<item unit="2" id="1151344151185" caption="Fill%20in%20the%20table%20%282%29" fileName="1151344151185.xml" action="1151344151185" exerciseID="1151344151185" enabledFlag="3"/>
+		<item unit="2" id="1154102879147" caption="Label%20the%20diagram" fileName="1154102879147.xml" action="1154102879147" exerciseID="1154102879147" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="68" y="218" unit="3" caption="Reading" 
+	alt="Academic Reading - an article describing how viruses trapped in the polar ice caps may be released into the atmosphere and an article discussing the sun protection factor in sunscreen products." 
+	id="1148876836791" picture="Reading" enabledFlag="3">
+		<item unit="3" id="1151344151041" caption="Introduction" fileName="1151344151041.xml" action="1151344151041" exerciseID="1151344151041" enabledFlag="3"/>
+		<item unit="3" id="1151344151840" caption="Back%20from%20the%20dead" fileName="1151344151840.xml" action="1151344151840" exerciseID="1151344151840" enabledFlag="3"/>
+		<item unit="3" id="1151344151277" caption="Summary%20completion" fileName="1151344151277.xml" action="1151344151277" exerciseID="1151344151277" enabledFlag="3"/>
+		<item unit="3" id="1151344151646" caption="The%20sun%20protection%20factor" fileName="1151344151646.xml" action="1151344151646" exerciseID="1151344151646" enabledFlag="3"/>
+		<item unit="3" id="1154106132066" caption="True%2FFalse%2FNot%20Given" fileName="1154106132066.xml" action="1154106132066" exerciseID="1154106132066" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="277" y="140" unit="4" caption="Writing 1" 
+	alt="Academic Writing - practice exercises for reports on tables." 
+	id="1148889542670" picture="Writing1" enabledFlag="3">
+		<item unit="4" id="1151344151542" caption="Introduction" fileName="1151344151542.xml" action="1151344151542" exerciseID="1151344151542" enabledFlag="3"/>
+		<item unit="4" id="1151344151960" caption="Identifying%20trends" fileName="1151344151960.xml" action="1151344151960" exerciseID="1151344151960" enabledFlag="3"/>
+		<item unit="4" id="1151344151879" caption="Making%20approximations%20%281%29" fileName="1151344151879.xml" action="1151344151879" exerciseID="1151344151879" enabledFlag="3"/>
+		<item unit="4" id="1151344151338" caption="Making%20approximations%20%282%29" fileName="1151344151338.xml" action="1151344151338" exerciseID="1151344151338" enabledFlag="3"/>
+		<item unit="4" id="1151344151248" caption="Adverbs" fileName="1151344151248.xml" action="1151344151248" exerciseID="1151344151248" enabledFlag="3"/>
+		<item unit="4" id="1151344151845" caption="%27Signpost%27%20expressions" fileName="1151344151845.xml" action="1151344151845" exerciseID="1151344151845" enabledFlag="3"/>
+		<item unit="4" id="1151344151514" caption="Practice%20activity%20A" fileName="1151344151514.xml" action="1151344151514" exerciseID="1151344151514" enabledFlag="3"/>
+		<item unit="4" id="1151344151811" caption="Sample%20answer" fileName="1151344151811.xml" action="1151344151811" exerciseID="1151344151811" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="277" y="218" unit="5" caption="Writing 2" 
+	alt="Academic Writing - practice exercises for compositions giving an opinion." 
+	id="1148953490358" picture="Writing2" enabledFlag="3">
+		<item unit="5" id="1154106427713" caption="Introduction" fileName="1154106427713.xml" action="1154106427713" exerciseID="1154106427713" enabledFlag="3"/>
+		<item unit="5" id="1151344151941" caption="Ideas%20for%20a%20writing%20task" fileName="1151344151941.xml" action="1151344151941" exerciseID="1151344151941" enabledFlag="3"/>
+		<item unit="5" id="1155192197437" caption="Arguments" fileName="1155192197437.xml" action="1155192197437" exerciseID="1155192197437" enabledFlag="3"/>
+		<item unit="5" id="1151344151535" caption="Learning%20to%20refute%20arguments" fileName="1151344151535.xml" action="1151344151535" exerciseID="1151344151535" enabledFlag="3"/>
+		<item unit="5" id="1151344151459" caption="Expressing%20probability%20%281%29" fileName="1151344151459.xml" action="1151344151459" exerciseID="1151344151459" enabledFlag="3"/>
+		<item unit="5" id="1151344151113" caption="Expressing%20probability%20%282%29" fileName="1151344151113.xml" action="1151344151113" exerciseID="1151344151113" enabledFlag="3"/>
+		<item unit="5" id="1151344151924" caption="For%20or%20against%3F" fileName="1151344151924.xml" action="1151344151924" exerciseID="1151344151924" enabledFlag="3"/>
+		<item unit="5" id="1151344151900" caption="Practice%20activity%20B" fileName="1151344151900.xml" action="1151344151900" exerciseID="1151344151900" enabledFlag="3"/>
+		<item unit="5" id="1151344151225" caption="Sample%20answer" fileName="1151344151225.xml" action="1151344151225" exerciseID="1151344151225" enabledFlag="3"/>
+	</item>
+	<item caption-position="bc" x="172" y="218" unit="6" caption="Speaking" 
+	alt="Speaking - video clips and practice exercises for answering general questions about yourself in Part 3." 
+	id="1148959281858" picture="Speaking" enabledFlag="3">
+		<item unit="6" id="1151344151678" caption="Introduction" fileName="1151344151678.xml" action="1151344151678" exerciseID="1151344151678" enabledFlag="3"/>
+		<item unit="6" id="1151344151471" caption="Assessment%20of%20the%20Speaking%20Test" fileName="1151344151471.xml" action="1151344151471" exerciseID="1151344151471" enabledFlag="3"/>
+		<item unit="6" id="1151344151320" caption="What%20can%20you%20ask%3F" fileName="1151344151320.xml" action="1151344151320" exerciseID="1151344151320" enabledFlag="3"/>
+		<item unit="6" id="1151344151026" caption="Watch%20a%20candidate%20%281%29" fileName="1151344151026.xml" action="1151344151026" exerciseID="1151344151026" enabledFlag="3"/>
+		<item unit="6" id="1151344151339" caption="Watch%20a%20candidate%20%282%29" fileName="1151344151339.xml" action="1151344151339" exerciseID="1151344151339" enabledFlag="3"/>
+		<item unit="6" id="1151344151544" caption="Two%20more%20candidates" fileName="1151344151544.xml" action="1151344151544" exerciseID="1151344151544" enabledFlag="3"/>
+		<item unit="6" id="1151344151182" caption="Summary%20of%20the%20Speaking%20Test" fileName="1151344151182.xml" action="1151344151182" exerciseID="1151344151182" enabledFlag="3"/>
+	</item>
+</item>
