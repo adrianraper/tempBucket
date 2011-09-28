@@ -34,9 +34,10 @@ class Feedback extends Content{
 	function getID() {
 		return $this->id;
 	}
-	
+	// Each feedback is its own section
 	function getSection() {
-		return Exercise::EXERCISE_SECTION_FEEDBACK;
+		//return Exercise::EXERCISE_SECTION_FEEDBACK;
+		return 'fb'.$this->getID();
 	}
 }
 ?>

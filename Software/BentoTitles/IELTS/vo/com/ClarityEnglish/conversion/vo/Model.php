@@ -105,12 +105,12 @@ XML;
 			//	<field mode="0" type="i:gap" group="1" id="1">
 			//		<answer correct="true">chess</answer>
 			//	</field>
-			//	<GapQuestion source="1" group="1">
+			//	<GapFillQuestion source="1" group="1">
 			//		<answer correct="true" value="xxxxx" />
 			//		<answer correct="true" source="yyyyy" />
 			//	</GapQuestion>
 				
-				$newQ = $this->model->questions->addChild("GapQuestion");
+				$newQ = $this->model->questions->addChild("GapFillQuestion");
 				$newQ->addAttribute('source',$field->getID());
 				$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {
@@ -184,8 +184,10 @@ XML;
 					$newA->addAttribute('source',$field->getID());
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					// Is there any feedback to be added to the model related to this answer?
-					// NOTE: This code assumes that each answer has an ID that relates to a feedback ID 
+					// NOTE: This code assumes that each answer has an ID that relates to a feedback ID
+					/* 
 					if ($answer->getID() && $this->getParent()->feedbacks) {
+					if (method_exists($answer,'getID') && $this->getParent()->feedbacks) {
 						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
 							// Is this feedback for this field?
 							if ($feedback->getID()==$field->getID()) {
@@ -195,6 +197,7 @@ XML;
 							}
 						}
 					}
+					*/
 				}
 				//echo $newQ;
 				// Is there any feedback to be added to the model related to this field?

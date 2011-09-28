@@ -25,7 +25,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.
 
 // If you want to see echo stmts, then use plainView
 $plainView=true;
-$batch=false;
+$batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -66,7 +66,7 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	//$exerciseID = '1156153794807'; // dropdown
 	//$exerciseID = '1156153794223'; // multiple choice
 	//$exerciseID = '1156153794534'; // q based drag and drop
-	$exerciseID = '1156153794851'; // target spotting
+	$exerciseID = '1156153794851'; // target spotting with feedback
 	convertExercise($exerciseID);
 }
 
@@ -117,7 +117,7 @@ function convertExercise($exerciseID) {
 			return;
 	}
 	// At the end of construction, you can check the object if you want
-	echo $exercise->toString();
+	//echo $exercise->toString();
 	
 	// Then create an output function
 	switch (strtolower($type)) {

@@ -22,6 +22,9 @@ class Feedbacks {
 	function getFeedbacks() {
 		return $this->feedbacks;
 	}
+	function hasFeedback() {
+		return (count($this->getFeedbacks())>0);
+	}
 	// Feedbacks has to implement the same interface as Content
 	function getSection() {
 		return Exercise::EXERCISE_SECTION_FEEDBACK;

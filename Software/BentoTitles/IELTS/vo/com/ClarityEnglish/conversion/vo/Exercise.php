@@ -99,6 +99,7 @@ class Exercise {
 			  			//$this->feedback = new Feedback($child, $this);
 			  			if (!$this->feedbacks) {
 			  				$this->feedbacks = new Feedbacks($this);
+			  				//echo "made new feedbacks ";
 			  			}
 			  			$this->feedbacks->addFeedback(new Feedback($child, $this));
 						//echo $child->getName() . " = " . $child->asXML() . "<br />";
@@ -149,8 +150,13 @@ class Exercise {
 			$sections[]=$this->example;
 		if ($this->body)
 			$sections[]=$this->body;
-		if ($this->feedbacks)
-			$sections[]=$this->feedbacks;
+		if ($this->feedbacks) {
+			// Each feedback is a separate section
+			foreach ($this->feedbacks->getFeedbacks() as $feedback) {
+				//echo 'add fb to sections ';
+				$sections[]=$feedback;
+			}
+		}
 		return $sections;
 	}
 	
@@ -191,7 +197,8 @@ class Exercise {
 		if ($this->example)
 			$build.=$this->example->toString();
 		$build.=$this->body->toString();
-		$build.=$this->feedbacks->toString();
+		if ($this->feedbacks)
+			$build.=$this->feedbacks->toString();
 		
 		$build.=$newline.'</exercise>';	
 		return $build;

@@ -102,12 +102,12 @@ class Paragraph {
 			// I want to keep color changes. Ignore everything else.
 			//$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>('.Paragraph::characters_to_keep.'+)<\/FONT>/is';
 			//$replacement = '<font color="\1">\2</font>';
-			$pattern = '/<FONT [^>]+ COLOR="([#a-fA-F0-9x]+)" [^>]+>/is';
+			$pattern = '/\<FONT [^\>]+ COLOR="([#a-fA-F0-9x]+)" [^\>]+\>/is';
 			$replacement = '<font color="\1">';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 			
 			// FONT. If the only thing is color=black then I would like to drop the whole font tag.
-			$pattern = '/<font color="#000000">('.Paragraph::characters_to_keep.'+)<\/font>/is';
+			$pattern = '/\<font color="#000000"\>('.Paragraph::characters_to_keep.'*?)\<\/font\>/is';
 			$replacement = '\1';
 			$builtHtml = preg_replace($pattern, $replacement, $builtHtml);
 			
