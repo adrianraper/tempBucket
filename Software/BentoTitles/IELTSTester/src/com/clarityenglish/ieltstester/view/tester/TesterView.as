@@ -1,6 +1,6 @@
 package com.clarityenglish.ieltstester.view.tester {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;

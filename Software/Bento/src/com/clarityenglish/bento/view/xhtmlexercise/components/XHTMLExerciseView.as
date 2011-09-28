@@ -1,6 +1,6 @@
-package com.clarityenglish.bento.view.exercise.components {
+package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.exercise.events.SectionEvent;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.vo.XHTML;

@@ -5,13 +5,13 @@
 		xmlns:components="com.clarityenglish.textLayout.components.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView")]
+		[HostComponent("com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView")]
 	</fx:Metadata>
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.view.exercise.components.behaviours.AnswerableBehaviour;
-			import com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AnswerableBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
 			import com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour;
 		]]>
 	</fx:Script>

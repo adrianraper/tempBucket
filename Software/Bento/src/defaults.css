@@ -1,12 +1,12 @@
 /* 
  * This css file is embedded into the Bento framework and shared by all titles.
- * TODO: In fact, for now this is embedded in IELTS and should be moved into Bento at some point.
  */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace exercise "com.clarityenglish.bento.view.exercise.components.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
-exercise|XHTMLExerciseView {
+components|XHTMLExerciseView {
 	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseViewSkin");
 }
 

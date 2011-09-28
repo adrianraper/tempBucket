@@ -1,8 +1,8 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.bento.controller.*;
 	import com.clarityenglish.bento.view.*;
-	import com.clarityenglish.bento.view.exercise.XHTMLExerciseMediator;
-	import com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.common.controller.*;
 	
 	import flash.utils.Dictionary;

@@ -1,4 +1,4 @@
-package com.clarityenglish.bento.view.exercise.events {
+package com.clarityenglish.bento.view.xhtmlexercise.events {
 	import com.clarityenglish.bento.vo.content.model.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	

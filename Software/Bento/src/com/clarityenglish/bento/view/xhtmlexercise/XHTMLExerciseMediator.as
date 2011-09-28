@@ -1,7 +1,7 @@
-package com.clarityenglish.bento.view.exercise {
+package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	

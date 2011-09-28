@@ -1,5 +1,5 @@
-package com.clarityenglish.bento.view.exercise.components.behaviours {
-	import com.clarityenglish.bento.view.exercise.events.SectionEvent;
+package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
+	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Answer;
 	import com.clarityenglish.bento.vo.content.model.Model;

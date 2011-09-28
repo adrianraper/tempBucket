@@ -3,7 +3,7 @@
 					    xmlns:s="library://ns.adobe.com/flex/spark" 
 					    xmlns:mx="library://ns.adobe.com/flex/mx"
 					    xmlns:bento="com.clarityenglish.bento.*"
-						xmlns:components="com.clarityenglish.bento.view.exercise.components.*"
+						xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*"
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.menu.*"
 						creationComplete="creationComplete(event)"

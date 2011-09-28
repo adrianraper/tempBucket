@@ -1,4 +1,4 @@
-package com.clarityenglish.bento.view.exercise.components.behaviours {
+package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;

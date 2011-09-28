@@ -1,7 +1,7 @@
 package com.clarityenglish.bento.view {
 	
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.exercise.components.XHTMLExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.core.UIComponent;
