@@ -40,13 +40,15 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 			if (!exercise.hasModel())
 				return;
 			
+			var source:XML;
+			
 			for each (var question:Question in exercise.model.questions) {
 				switch (question.type) {
 					case "MultipleChoiceQuestion":
 					case "TargetSpottingQuestion":
 						// Work out the source flow element(s) and attach click listeners to its event mirror
 						for each (var answer:Answer in question.answers) {
-							for each (var source:XML in Model.sourceToNodeArray(exercise, answer.source)) {
+							for each (source in Model.sourceToNodeArray(exercise, answer.source)) {
 								var flowElement:FlowElement = flowElementXmlBiMap.getFlowElement(source);
 								if (flowElement) {
 									var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
@@ -68,7 +70,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 					case "DragQuestion":
 					case "GapFillQuestion":
 						// The answers for these questions is defined in the model so we need to set the underlying text here
-						for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+						for each (source in Model.sourceToNodeArray(exercise, question.source)) {
 							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 							if (inputElement) {
 								inputElement.text = getLongestAnswerValue(question.answers);

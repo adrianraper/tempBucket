@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -21,6 +22,9 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 	import mx.core.UIComponent;
 	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
+	
+	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.PointUtil;
 	
 	import spark.components.Group;
 	import spark.components.Image;
@@ -80,6 +84,10 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 							if (DragManager.isDragging) {
 								// First get the bounds of the draggable flow leaf element
 								var elementBounds:Rectangle = TLFUtil.getFlowLeafElementBounds(e.flowElement as FlowLeafElement);
+								
+								// Convert the element bounds from their original coordinate space to the container coordinate space
+								var containingBlock:RenderFlow = e.flowElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+								elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, container);
 								
 								// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
 								var containerPoint:Point = container.globalToContent(new Point(e.originalEvent.stageX, e.originalEvent.stageY));
