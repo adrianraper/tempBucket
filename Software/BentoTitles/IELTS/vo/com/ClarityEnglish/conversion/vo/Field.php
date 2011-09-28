@@ -13,7 +13,7 @@ class Field {
 	var $group;
 	
 	// for reference
-	var $id;
+	protected $id;
 
 	const FIELD_TYPE_DROP = 'drop';
 	const FIELD_TYPE_DRAG = 'drag';
@@ -44,7 +44,7 @@ class Field {
 						case 'id':
 						case 'mode':
 						case 'group':
-							$this->$a = $b;
+							$this->$a = (string)$b;
 							break;
 						case 'type':
 							// First character is a subtype

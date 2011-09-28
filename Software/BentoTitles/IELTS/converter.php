@@ -14,6 +14,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Question.ph
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Rubric.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Body.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/QbBody.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Feedbacks.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Feedback.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/NoScroll.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Paragraph.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/MediaNode.php");
@@ -22,7 +24,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=false;
+$plainView=true;
 $batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');
@@ -43,6 +45,30 @@ $exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses'.$cour
 $exerciseFolderOut = dirname(__FILE__).$contentFolder.$titleFolderOut.'/Courses'.$courseFolder.'/Exercises/';
 $exerciseURL = $contentFolder.$titleFolderOut.'/Courses'.$courseFolder.'/Exercises/';
 $outURL='';
+
+// Either read all the files in a folder
+if ($batch && $handle = opendir($exerciseFolder)) {
+	
+	while (false !== ($file = readdir($handle))) {
+		//$exerciseID = substr($file,0,strpos($file,'.xml'));
+		// Only pick up files with just numbers, especially ignore *-new.xml
+		$pattern = '/^([\d]+).xml/is';
+		if (preg_match($pattern, $file, $matches)) {
+			convertExercise($matches[1]);
+		}
+	}
+} else {
+	// or just a specific one
+	//$exerciseID = '1156153794194';
+	//$exerciseID = '1156153794055'; // presentation
+	//$exerciseID = '1156153794170'; // drag and drop
+	//$exerciseID = '1156155508240'; // gapfill
+	//$exerciseID = '1156153794807'; // dropdown
+	//$exerciseID = '1156153794223'; // multiple choice
+	//$exerciseID = '1156153794534'; // q based drag and drop
+	$exerciseID = '1156153794851'; // target spotting
+	convertExercise($exerciseID);
+}
 
 function convertExercise($exerciseID) {
 	global $exerciseFolder;
@@ -109,29 +135,6 @@ function convertExercise($exerciseID) {
 			//echo " and writing out $outfile <br/>";
 			break;
 	}
-}
-// Either read all the files in a folder
-if ($batch && $handle = opendir($exerciseFolder)) {
-	
-	while (false !== ($file = readdir($handle))) {
-		//$exerciseID = substr($file,0,strpos($file,'.xml'));
-		// Only pick up files with just numbers, especially ignore *-new.xml
-		$pattern = '/^([\d]+).xml/is';
-		if (preg_match($pattern, $file, $matches)) {
-			convertExercise($matches[1]);
-		}
-	}
-} else {
-	// or just a specific one
-	//$exerciseID = '1156153794194';
-	//$exerciseID = '1156153794055'; // presentation
-	//$exerciseID = '1156153794170'; // drag and drop
-	//$exerciseID = '1156155508240'; // gapfill
-	//$exerciseID = '1156153794807'; // dropdown
-	//$exerciseID = '1156153794223'; // multiple choice
-	//$exerciseID = '1156153794534'; // q based drag and drop
-	$exerciseID = '1156153794851'; // target spotting
-	convertExercise($exerciseID);
 }
 
 // It might help to display the output file in the browser (or the last of many)

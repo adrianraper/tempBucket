@@ -12,6 +12,8 @@ class Exercise {
 	public $noscroll;
 	public $example;
 	public $readingText;
+	// Keep one item that holds all the feedback items. Use invented plural.
+	public $feedbacks;
 	public $model;
 	
 	// Maybe key for layout
@@ -20,6 +22,7 @@ class Exercise {
 	const EXERCISE_SECTION_RUBRIC = 'rubric';
 	const EXERCISE_SECTION_TITLE = 'title';
 	const EXERCISE_SECTION_BODY = 'body';
+	const EXERCISE_SECTION_FEEDBACK = 'feedback';
 	// Is question really a section?
 	const EXERCISE_SECTION_QUESTION = 'question';
 	const EXERCISE_SECTION_NOSCROLL = 'noscroll';
@@ -69,7 +72,7 @@ class Exercise {
 
 			// Dig out the sections and create them
 			foreach ($xmlObj->children() as $child) {
-				//echo $child->getName() . " = " . $child->asXML() . "<br />";
+				//echo 'Exercise+'.$child->getName() . "<br />";
 			  	switch (strtolower($child->getName())) {
 			  		case Exercise::EXERCISE_SECTION_SETTINGS:
 			  			// Just copy the settings for now
@@ -90,6 +93,15 @@ class Exercise {
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_EXAMPLE:
 			  			//$this->example = new Example($child, $this);
+			  			break;
+			  		// We are expecting many feedback sections from Arthur, but we actually want to merge them for Bento
+			  		case Exercise::EXERCISE_SECTION_FEEDBACK:
+			  			//$this->feedback = new Feedback($child, $this);
+			  			if (!$this->feedbacks) {
+			  				$this->feedbacks = new Feedbacks($this);
+			  			}
+			  			$this->feedbacks->addFeedback(new Feedback($child, $this));
+						//echo $child->getName() . " = " . $child->asXML() . "<br />";
 			  			break;
 			  		case Exercise::EXERCISE_SECTION_TEMPLATE:
 			  			// I'm just going to drop template sections as of no value
@@ -137,6 +149,8 @@ class Exercise {
 			$sections[]=$this->example;
 		if ($this->body)
 			$sections[]=$this->body;
+		if ($this->feedbacks)
+			$sections[]=$this->feedbacks;
 		return $sections;
 	}
 	
@@ -174,7 +188,10 @@ class Exercise {
 		$build.=$this->rubric->toString();
 		if ($this->noscroll)
 			$build.=$this->noscroll->toString();
+		if ($this->example)
+			$build.=$this->example->toString();
 		$build.=$this->body->toString();
+		$build.=$this->feedbacks->toString();
 		
 		$build.=$newline.'</exercise>';	
 		return $build;

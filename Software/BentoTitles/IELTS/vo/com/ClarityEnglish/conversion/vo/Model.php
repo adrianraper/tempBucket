@@ -122,16 +122,17 @@ XML;
 			}
 		// For a dropdown, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN) {
+			$generateID=1;
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:dropdown" id="1">
 			//		<answer correct="true">xxxxx</answer>
 			//		<answer correct="false">yyyyy</answer>
 			//		<answer correct="false">zzzzz</answer>
 			//	</field>
-			//	<DropdownQuestion source="1">
-			//		<answer correct="true" value="xxxxx" />
-			//		<answer correct="false" source="yyyyy" />
-			//		<answer correct="false" source="zzzzz" />
+			//	<DropdownQuestion source="1" group="1">
+			//		<answer correct="true" source="2" />
+			//		<answer correct="false" source="3" />
+			//		<answer correct="false" source="4" />
 			//	</DropdownQuestion>
 				
 				$newQ = $this->model->questions->addChild("DropdownQuestion");
@@ -139,7 +140,8 @@ XML;
 				$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
-					$newA->addAttribute('value',$answer->getAnswer());
+					//$newA->addAttribute('value',$answer->getAnswer());
+					$newA->addAttribute('source','o'.$generateID++);
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
@@ -150,17 +152,63 @@ XML;
 			//	<field mode="0" type="i:target" id="1">
 			//		<answer correct="true">xxxxx</answer>
 			//	</field>
+			//	<feedback id="1" mode="101">
+			//		<paragraph ...>xxx</paragraph>
+			//		<paragraph ...>xxx</paragraph>
+			//	</feedback>
 			//	<TargetSpottingQuestion>
-			//		<answer correct="true" source="1" />
+			//		<answer correct="true" source="1" >
+			//			<feedback id="fb1">
+			//				<p ...>xxx</p>
+			//				<p ...>xxx</p>
+			//			</feedback>
+			//		</answer>
 			//	</TargetSpottingQuestion>
+			// OR you could have the feedback as a section in the html body
+			// I think the second option is better - keep text in the html body and references in the model.
+			//	<TargetSpottingQuestion>
+			//		<answer correct="true" source="1" >
+			//			<feedback id="fb1" source="fb1" />
+			//		</answer>
+			//	</TargetSpottingQuestion>
+			//	<section id="feedback">
+			//		<feedback id="fb1">
+			//			<p ...>xxx</p>
+			//			<p ...>xxx</p>
+			//		</feedback>
+			//	</section>
 				
 				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('source',$field->getID());
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					// Is there any feedback to be added to the model related to this answer?
+					// NOTE: This code assumes that each answer has an ID that relates to a feedback ID 
+					if ($answer->getID() && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source',$field->getID());
+								break;
+							}
+						}
+					}
 				}
 				//echo $newQ;
+				// Is there any feedback to be added to the model related to this field?
+				// NOTE: This code assumes that there is only one answer in the field 
+				if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+					foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+						// Is this feedback for this field?
+						if ($feedback->getID()==$field->getID()) {
+							$newFB = $newA->addChild('feedback');	
+							$newFB->addAttribute('source',$field->getID());
+							break;
+						}
+					}
+				}
 			}
 			// For a multiple choice, the questions have their source as the gaps and blocks
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) {

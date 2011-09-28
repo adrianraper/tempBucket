@@ -119,6 +119,7 @@ class Content{
 		if ((	($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DRAGANDDROP) || 
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_GAPFILL) ||
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
+				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_TARGETSPOTTING) ||
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DROPDOWN)) &&
 			$this->getSection()==Exercise::EXERCISE_SECTION_BODY) {
 			// Split by question or text based
@@ -152,7 +153,6 @@ class Content{
 	// Should this be somewhere else?
 	function bodyOutput($exerciseType) {
 		$builder='';
-		//echo $exerciseType;
 		if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP ||
 			$exerciseType==Exercise::EXERCISE_TYPE_GAPFILL ||
 			$exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING ||
@@ -171,6 +171,7 @@ class Content{
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
 			$buildText='';
+			$generatedID=1;
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// read the fields to find the matching answer
@@ -192,9 +193,13 @@ class Content{
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" type="gap" width="100" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<g id="'.$m[2].'>'.$m[3].'</g>';
+						$buildText.=$m[1].'<g id="'.$m[2].'">'.$answer.'</g>'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_DROPDOWN) {
-						$buildText.=$m[1].'<select id="'.$m[2].'" type="dropdown" />'.$m[3];
+						$buildText.=$m[1].'<select id="'.$m[2].'" type="dropdown" >';
+						foreach ($answers as $answer) {
+							$buildText.= '<option id="o'.$generatedID++.'">'.$answer->getAnswer().'"</option>"';
+						}
+						$buildText.='</select>'.$m[3];
 					}
 				}
 			}
@@ -368,7 +373,12 @@ class Content{
 	// A utility function to describe the object
 	function toString() {
 		global $newline;
-		$build=$newline.'<'.$this->getSection().'>';
+		// Some content blocks (perhaps only feedback) have IDs
+		if (method_exists($this,'getID')) {
+			$build=$newline.'<'.$this->getSection().' id="'.$this->getID().'">';
+		} else {
+			$build=$newline.'<'.$this->getSection().'>';
+		}
 		
 		foreach ($this->getParagraphs() as $para) {
 			if ($para)
