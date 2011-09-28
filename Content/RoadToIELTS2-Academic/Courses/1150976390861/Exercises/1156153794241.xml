@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<meta name="conversion" type="draganddrop" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,7 +33,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions><DragQuestion source="1"><answer source="18" correct="true"/><answer source="27" correct="true"/><answer source="20" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="27" correct="true"/><answer source="18" correct="true"/><answer source="20" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="20" correct="true"/><answer source="18" correct="true"/><answer source="27" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="19" correct="true"/><answer source="28" correct="true"/><answer source="23" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="28" correct="true"/><answer source="19" correct="true"/><answer source="23" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="23" correct="true"/><answer source="19" correct="true"/><answer source="28" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="22" correct="true"/><answer source="24" correct="true"/><answer source="29" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="24" correct="true"/><answer source="22" correct="true"/><answer source="29" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="29" correct="true"/><answer source="24" correct="true"/><answer source="22" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="21" correct="true"/><answer source="17" correct="true"/><answer source="26" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="17" correct="true"/><answer source="21" correct="true"/><answer source="26" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="26" correct="true"/><answer source="17" correct="true"/><answer source="21" correct="true"/></DragQuestion><DragQuestion source="13"><answer source="16" correct="true"/><answer source="25" correct="true"/><answer source="30" correct="true"/></DragQuestion><DragQuestion source="14"><answer source="25" correct="true"/><answer source="16" correct="true"/><answer source="30" correct="true"/></DragQuestion><DragQuestion source="15"><answer source="30" correct="true"/><answer source="25" correct="true"/><answer source="16" correct="true"/></DragQuestion></questions></script>
 
@@ -62,10 +63,55 @@
 		<tab/><span id="26" draggable="true">L</span>
 		<tab/><span id="23" draggable="true">M</span>
 		<tab/><span id="29" draggable="true">N</span>
-		<tab/><span id="30" draggable="true">O</span><media class="leftFloat" src="../Media/LE_AW1aa.mp3" height="" width="" mode="1" id="1003"  /><media class="leftFloat" src="../Media/LE_AW1ab.mp3" height="" width="" mode="1" id="1004"  /><media class="leftFloat" src="../Media/LE_AW1ac.mp3" height="" width="" mode="1" id="1005"  /><media class="leftFloat" src="../Media/LE_AW1ad.mp3" height="" width="" mode="1" id="1006"  /><media class="leftFloat" src="../Media/LE_AW1ae.mp3" height="" width="" mode="1" id="1007"  /><media class="leftFloat" src="../Media/LE_AW1af.mp3" height="" width="" mode="1" id="1008"  /><media class="leftFloat" src="../Media/LE_AW1ag.mp3" height="" width="" mode="1" id="1009"  /><media class="leftFloat" src="../Media/LE_AW1ah.mp3" height="" width="" mode="1" id="1010"  /><media class="leftFloat" src="../Media/LE_AW1ai.mp3" height="" width="" mode="1" id="1011"  /><media class="rightFloat" src="../Media/LE_AW1aj.mp3" height="" width="" mode="1" id="1012"  /><media class="leftFloat" src="../Media/LE_AW1ak.mp3" height="" width="" mode="1" id="1013"  /><media class="leftFloat" src="../Media/LE_AW1al.mp3" height="" width="" mode="1" id="1014"  /><media class="leftFloat" src="../Media/LE_AW1am.mp3" height="" width="" mode="1" id="1015"  /><media class="leftFloat" src="../Media/LE_AW1an.mp3" height="" width="" mode="1" id="1016"  /><media class="leftFloat" src="../Media/LE_AW1ao.mp3" height="" width="" mode="1" id="1017"  />
+		<tab/><span id="30" draggable="true">O</span><audio class="leftFloat" src="../Media/LE_AW1aa.mp3" mode="1" id="1003"  /><audio class="leftFloat" src="../Media/LE_AW1ab.mp3" mode="1" id="1004"  /><audio class="leftFloat" src="../Media/LE_AW1ac.mp3" mode="1" id="1005"  /><audio class="leftFloat" src="../Media/LE_AW1ad.mp3" mode="1" id="1006"  /><audio class="leftFloat" src="../Media/LE_AW1ae.mp3" mode="1" id="1007"  /><audio class="leftFloat" src="../Media/LE_AW1af.mp3" mode="1" id="1008"  /><audio class="leftFloat" src="../Media/LE_AW1ag.mp3" mode="1" id="1009"  /><audio class="leftFloat" src="../Media/LE_AW1ah.mp3" mode="1" id="1010"  /><audio class="leftFloat" src="../Media/LE_AW1ai.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../Media/LE_AW1aj.mp3" mode="1" id="1012"  /><audio class="leftFloat" src="../Media/LE_AW1ak.mp3" mode="1" id="1013"  /><audio class="leftFloat" src="../Media/LE_AW1al.mp3" mode="1" id="1014"  /><audio class="leftFloat" src="../Media/LE_AW1am.mp3" mode="1" id="1015"  /><audio class="leftFloat" src="../Media/LE_AW1an.mp3" mode="1" id="1016"  /><audio class="leftFloat" src="../Media/LE_AW1ao.mp3" mode="1" id="1017"  />
 </section>
 <section id="body">
-	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" /></font>, <font color="#0000ff"><input id="2" type="droptarget" /></font>, <font color="#0000ff"><input id="3" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" /></font>, <font color="#0000ff"><input id="5" type="droptarget" /></font>, <font color="#0000ff"><input id="6" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" /></font>, <font color="#0000ff"><input id="8" type="droptarget" /></font>, <font color="#0000ff"><input id="9" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" /></font>, <font color="#0000ff"><input id="11" type="droptarget" /></font>, <font color="#0000ff"><input id="12" type="droptarget" /></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" /></font>, <font color="#0000ff"><input id="14" type="droptarget" /></font>, <font color="#0000ff"><input id="15" type="droptarget" /></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_3a.jpg" height="" width="" mode="1" id="1003"  /><img class="leftFloat" src="../Media/LE_AW_3b.jpg" height="" width="" mode="1" id="1004"  /><img class="rightFloat" src="../Media/LE_AW_3c.jpg" height="" width="" mode="1" id="1005"  /><img class="leftFloat" src="../Media/LE_AW_3d.jpg" height="" width="" mode="1" id="1006"  /><img class="leftFloat" src="../Media/LE_AW_3e.jpg" height="" width="" mode="1" id="1007"  /><media class="leftFloat" src="../Media/" height="" width="" mode="1" id="2001"  />
+	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" />, <font color="#0000ff"><input id="2" type="droptarget" /></font>, <font color="#0000ff"><input id="3" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" />, <font color="#0000ff"><input id="5" type="droptarget" /></font>, <font color="#0000ff"><input id="6" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" />, <font color="#0000ff"><input id="8" type="droptarget" /></font>, <font color="#0000ff"><input id="9" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" />, <font color="#0000ff"><input id="11" type="droptarget" /></font>, <font color="#0000ff"><input id="12" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" />, <font color="#0000ff"><input id="14" type="droptarget" /></font>, <font color="#0000ff"><input id="15" type="droptarget" /></font></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_3a.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/LE_AW_3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/LE_AW_3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/LE_AW_3d.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/LE_AW_3e.jpg" mode="1" id="1007"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+</section>
+<section id="fb1">
+	<p align="left"><font color="#000000">Audio A: 1 in 5</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font color="#000000">Audio D: 20 per cent</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font color="#000000">Audio I: a fifth</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font color="#000000">Audio C: a quarter</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font color="#000000">Audio G: 25 per cent</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000">Audio M: 1 in 4</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font color="#000000">Audio F: a third</font></p>
+</section>
+<section id="fb8">
+	<p align="left"><font color="#000000">Audio H: 30 per cent</font></p>
+</section>
+<section id="fb9">
+	<p align="left"><font color="#000000">Audio N: 1 in every 3</font></p>
+</section>
+<section id="fb10">
+	<p align="left"><font color="#000000">Audio B: 50 per cent</font></p>
+</section>
+<section id="fb11">
+	<p align="left"><font color="#000000">Audio J: half</font></p>
+</section>
+<section id="fb12">
+	<p align="left"><font color="#000000">Audio L: 1 in every 2</font></p>
+</section>
+<section id="fb13">
+	<p align="left"><font color="#000000">Audio E: 3 in 4</font></p>
+</section>
+<section id="fb14">
+	<p align="left"><font color="#000000">Audio K: 75 per cent</font></p>
+</section>
+<section id="fb15">
+	<p align="left"><font color="#000000">Audio O: three-quarters</font></p>
 </section>
 </body>
 </bento>

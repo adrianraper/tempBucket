@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<meta name="conversion" type="draganddrop" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,7 +33,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions><DragQuestion group="q1"><answer source="1" correct="true"/></DragQuestion><DragQuestion group="q2"><answer source="2" correct="true"/></DragQuestion><DragQuestion group="q3"><answer source="3" correct="true"/></DragQuestion><DragQuestion group="q4"><answer source="4" correct="true"/></DragQuestion><DragQuestion group="q5"><answer source="5" correct="true"/></DragQuestion><DragQuestion group="q6"><answer source="6" correct="true"/></DragQuestion><DragQuestion group="q7"><answer source="7" correct="true"/></DragQuestion><DragQuestion group="q8"><answer source="8" correct="true"/></DragQuestion><DragQuestion group="q9"><answer source="9" correct="true"/></DragQuestion><DragQuestion group="q10"><answer source="10" correct="true"/></DragQuestion><DragQuestion group="q11"><answer source="11" correct="true"/></DragQuestion><DragQuestion group="q12"><answer source="12" correct="true"/></DragQuestion><DragQuestion group="q13"><answer source="13" correct="true"/></DragQuestion><DragQuestion group="q14"><answer source="14" correct="true"/></DragQuestion><DragQuestion group="q15"><answer source="15" correct="true"/></DragQuestion><DragQuestion group="q16"><answer source="16" correct="true"/></DragQuestion></questions></script>
 
@@ -48,7 +49,8 @@
 	<tab/><span id="18" draggable="true">hiking</span><tab/><span id="29" draggable="true">golf</span><tab/><span id="23" draggable="true">snooker</span><tab/><span id="22" draggable="true">cycling</span><tab/><span id="26" draggable="true">snorkelling</span><tab/><span id="28" draggable="true">table tennis</span><tab/><span id="25" draggable="true">horse riding</span><tab/><span id="27" draggable="true">squash</span><tab/><span id="31" draggable="true">rock climbing</span><tab/><span id="19" draggable="true">baseball</span><tab/><span id="17" draggable="true">scuba diving</span><tab/><span id="30" draggable="true">tennis</span><tab/><span id="20" draggable="true">a board game</span><tab/><span id="32" draggable="true">ice hockey</span><tab/><span id="21" draggable="true">skiing</span><tab/><span id="24" draggable="true">football</span>
 </section>
 <section id="body">
-	<br/><ol id="questionList"><li id="q1"><input id="1" type="droptarget" /></li><li id="q2"><input id="2" type="droptarget" /></li><li id="q3"><input id="3" type="droptarget" /></li><li id="q4"><input id="4" type="droptarget" /></li><li id="q5"><input id="5" type="droptarget" /></li><li id="q6"><input id="6" type="droptarget" /></li><li id="q7"><input id="7" type="droptarget" /></li><li id="q8"><input id="8" type="droptarget" /></li><li id="q9"><input id="9" type="droptarget" /></li><li id="q10"><input id="10" type="droptarget" /></li><li id="q11"><input id="11" type="droptarget" /></li><li id="q12"><input id="12" type="droptarget" /></li><li id="q13"><input id="13" type="droptarget" /></li><li id="q14"><input id="14" type="droptarget" /></li><li id="q15"><input id="15" type="droptarget" /></li><li id="q16"><input id="16" type="droptarget" /></li></ol>
+	
+<ol id="questionList"><li id="q1"><input id="1" type="droptarget" /></li><li id="q2"><input id="2" type="droptarget" /></li><li id="q3"><input id="3" type="droptarget" /></li><li id="q4"><input id="4" type="droptarget" /></li><li id="q5"><input id="5" type="droptarget" /></li><li id="q6"><input id="6" type="droptarget" /></li><li id="q7"><input id="7" type="droptarget" /></li><li id="q8"><input id="8" type="droptarget" /></li><li id="q9"><input id="9" type="droptarget" /></li><li id="q10"><input id="10" type="droptarget" /></li><li id="q11"><input id="11" type="droptarget" /></li><li id="q12"><input id="12" type="droptarget" /></li><li id="q13"><input id="13" type="droptarget" /></li><li id="q14"><input id="14" type="droptarget" /></li><li id="q15"><input id="15" type="droptarget" /></li><li id="q16"><input id="16" type="droptarget" /></li></ol><img class="leftFloat" src="../Media/Unit01_Words2_ex1h.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1k.jpg" mode="1" id="1004"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1n.jpg" mode="1" id="1005"  /><img class="rightFloat" src="../Media/Unit01_Words2_ex1b.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1e.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1p.jpg" mode="1" id="1008"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1g.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1f.jpg" mode="1" id="1010"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1j.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1a.jpg" mode="1" id="1012"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1c.jpg" mode="1" id="1013"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1l.jpg" mode="1" id="1014"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1o.jpg" mode="1" id="1015"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1i.jpg" mode="1" id="1016"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1m.jpg" mode="1" id="1017"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1d.jpg" mode="1" id="1018"  />
 </section>
 </body>
 </bento>

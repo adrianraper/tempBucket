@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-09-27" />
+	<meta name="conversion" type="gapfill" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,9 +33,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
-<questions><GapQuestion source="1" group="1"><answer value="buildings " correct="true"/></GapQuestion><GapQuestion source="2" group="2"><answer value="roads " correct="true"/></GapQuestion></questions></script>
+<questions><GapFillQuestion source="1" group="1"><answer value="buildings " correct="true"/></GapFillQuestion><GapFillQuestion source="2" group="2"><answer value="roads " correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -45,7 +46,10 @@
 </header>
 	
 <section id="body">
-	<p align="left">When Dimitris is talking about Athens, his home town, he mentions a lot of <input id="1" type="gap" width="100" /> and lots of <input id="2" type="gap" width="100" />.</p><p align="left"><font size="2"></font></p><media class="leftFloat" src="../Media/Unit01_e5.flv" height="" width="" mode="1" id="1003"  />
+	<p align="left">When Dimitris is talking about Athens, his home town, he mentions a lot of <input id="1" width="100" /> and lots of <input id="2" width="100" />.</p><p align="left"><font size="2"></font></p><media class="leftFloat" src="../Media/Unit01_e5.flv" mode="1" id="1003"  />
+</section>
+<section id="fb1">
+	<p align="left">He isn't talking about construction he is taking about homes and offices.</p>
 </section>
 </body>
 </bento>

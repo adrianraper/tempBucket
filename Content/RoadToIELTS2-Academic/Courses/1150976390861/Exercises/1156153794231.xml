@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-09-28" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="true" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="1" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="7" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="8" correct="false"/></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Listen to Zenia describing her home town and click on the things that she mentions.
+</header>
+	
+<section id="body">
+	<p align="left"><b>Which of the following does she mention?</b><g id="1">A.  size</g><g id="2">B.  location</g><g id="3">C.  tourist value</g><g id="4">D.  historical interest</g><g id="5">E.  building</g><g id="6">F.  nature</g><g id="7">G.  job opportunities</g><g id="8">H.  sports facilities</g></p><p align="left"><font size="2"></font></p><media class="leftFloat" src="../Media/Unit01_e4.flv" mode="1" id="1003"  />
+</section>
+</body>
+</bento>

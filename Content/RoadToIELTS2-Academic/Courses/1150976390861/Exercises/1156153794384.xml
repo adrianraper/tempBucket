@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-09-27" />
+	<meta name="conversion" type="gapfill" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,9 +33,10 @@
 		<misc timed="245"/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
-<questions><GapQuestion source="1" group="1"><answer value="Italian" correct="true"/><answer value="an Italian" correct="true"/><answer value="an Italian restaurant " correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Indian restaurant" correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="a French restaurant" correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Indian" correct="true"/><answer value="Indian" correct="true"/><answer value="a French" correct="true"/><answer value="French" correct="true"/></GapQuestion><GapQuestion source="2" group="2"><answer value="Indian" correct="true"/><answer value="an Indian" correct="true"/><answer value="an Indian restaurant " correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="a French restaurant" correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Italian restaurant" correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Italian" correct="true"/><answer value="Italian" correct="true"/><answer value="a French" correct="true"/><answer value="French" correct="true"/></GapQuestion><GapQuestion source="3" group="3"><answer value="French" correct="true"/><answer value="a French" correct="true"/><answer value="a French restaurant " correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Italian restaurant" correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Indian restaurant" correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="an Italian" correct="true"/><answer value="Italian" correct="true"/><answer value="an Indian" correct="true"/><answer value="Indian" correct="true"/></GapQuestion><GapQuestion source="4" group="4"><answer value="Food Express " correct="true"/><answer value="Burger Bar" correct="true"/><answer value="The Burger Bar " correct="true"/></GapQuestion><GapQuestion source="5" group="5"><answer value="Burger Bar" correct="true"/><answer value="The Burger Bar " correct="true"/><answer value="Food Express" correct="true"/></GapQuestion><GapQuestion source="6" group="6"><answer value="a fire" correct="true"/><answer value="a log fire" correct="true"/><answer value="a fire inside " correct="true"/></GapQuestion><GapQuestion source="7" group="7"><answer value="a live band" correct="true"/><answer value="a live group " correct="true"/></GapQuestion><GapQuestion source="8" group="8"><answer value="in Park Road " correct="true"/></GapQuestion></questions></script>
+<questions><GapFillQuestion source="1" group="1"><answer value="Italian" correct="true"/><answer value="an Italian" correct="true"/><answer value="an Italian restaurant " correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Indian restaurant" correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="a French restaurant" correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Indian" correct="true"/><answer value="Indian" correct="true"/><answer value="a French" correct="true"/><answer value="French" correct="true"/></GapFillQuestion><GapFillQuestion source="2" group="2"><answer value="Indian" correct="true"/><answer value="an Indian" correct="true"/><answer value="an Indian restaurant " correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="a French restaurant" correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Italian restaurant" correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Italian" correct="true"/><answer value="Italian" correct="true"/><answer value="a French" correct="true"/><answer value="French" correct="true"/></GapFillQuestion><GapFillQuestion source="3" group="3"><answer value="French" correct="true"/><answer value="a French" correct="true"/><answer value="a French restaurant " correct="true"/><answer value="French restaurant" correct="true"/><answer value="an Italian restaurant" correct="true"/><answer value="Italian restaurant" correct="true"/><answer value="an Indian restaurant" correct="true"/><answer value="Indian restaurant" correct="true"/><answer value="an Italian" correct="true"/><answer value="Italian" correct="true"/><answer value="an Indian" correct="true"/><answer value="Indian" correct="true"/></GapFillQuestion><GapFillQuestion source="4" group="4"><answer value="Food Express " correct="true"/><answer value="Burger Bar" correct="true"/><answer value="The Burger Bar " correct="true"/></GapFillQuestion><GapFillQuestion source="5" group="5"><answer value="Burger Bar" correct="true"/><answer value="The Burger Bar " correct="true"/><answer value="Food Express" correct="true"/></GapFillQuestion><GapFillQuestion source="6" group="6"><answer value="a fire" correct="true"/><answer value="a log fire" correct="true"/><answer value="a fire inside " correct="true"/></GapFillQuestion><GapFillQuestion source="7" group="7"><answer value="a live band" correct="true"/><answer value="a live group " correct="true"/></GapFillQuestion><GapFillQuestion source="8" group="8"><answer value="in Park Road " correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -48,7 +49,31 @@
 </header>
 	
 <section id="body">
-	<p align="left">Which <b>THREE</b> types of restaurant does the speaker recommend?</p><p align="left"><b>1.	</b><input id="1" type="gap" width="100" /></p><p align="left"><b>2.	</b><input id="2" type="gap" width="100" /></p><p align="left"><b>3.	</b><input id="3" type="gap" width="100" /></p><p align="left">Which <b>TWO</b> places in the High Street sell vegetarian takeaway food?</p><p align="left"><b>4.	</b><input id="4" type="gap" width="100" /></p><p align="left"><b>5.	</b><input id="5" type="gap" width="100" /></p><p align="left">What does 'The White Swan' have in winter?</p><p align="left"><b>6.	</b><input id="6" type="gap" width="100" /></p><p align="left">What can you see in 'The George' on a Saturday?</p><p align="left"><b>7.	</b><input id="7" type="gap" width="100" /></p><p align="left">Where is the 'The Cellar'?</p><p align="left"><b>8.	</b><input id="8" type="gap" width="100" /></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_LN_002.jpg" height="250" width="165" mode="1" id="1001"  /><media class="leftFloat" src="../Media/LE_LN1.mp3" height="" width="" mode="4" id="1002"  />
+	<p align="left">Which <b>THREE</b> types of restaurant does the speaker recommend?</p><p align="left"><b>1.	</b><input id="1" width="100" /></p><p align="left"><b>2.	</b><input id="2" width="100" /></p><p align="left"><b>3.	</b><input id="3" width="100" /></p><p align="left">Which <b>TWO</b> places in the High Street sell vegetarian takeaway food?</p><p align="left"><b>4.	</b><input id="4" width="100" /></p><p align="left"><b>5.	</b><input id="5" width="100" /></p><p align="left">What does 'The White Swan' have in winter?</p><p align="left"><b>6.	</b><input id="6" width="100" /></p><p align="left">What can you see in 'The George' on a Saturday?</p><p align="left"><b>7.	</b><input id="7" width="100" /></p><p align="left">Where is the 'The Cellar'?</p><p align="left"><b>8.	</b><input id="8" width="100" /></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/LE_LN1.mp3" mode="4" id="1002"  />
+</section>
+<section id="fb1">
+	<p align="left">1. The speaker says the Italian restaurant is a popular place and that their prices are reasonable and their pasta sauces are good.</p>
+</section>
+<section id="fb2">
+	<p align="left">2. The speaker says they do the 'best food for miles' and that she really recommends one of their dishes, their chicken tikka.</p>
+</section>
+<section id="fb3">
+	<p align="left">3. The speaker says the French restaurant is very good despite being expensive.</p>
+</section>
+<section id="fb4">
+	<p align="left">4. The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
+</section>
+<section id="fb5">
+	<p align="left">5. The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
+</section>
+<section id="fb6">
+	<p align="left">6. The speaker says they light a fire in winter.</p>
+</section>
+<section id="fb7">
+	<p align="left">7. The speaker says that on Saturday nights 'The George' has a live band.</p>
+</section>
+<section id="fb8">
+	<p align="left">8. The speaker says it's in Park Road.</p>
 </section>
 </body>
 </bento>

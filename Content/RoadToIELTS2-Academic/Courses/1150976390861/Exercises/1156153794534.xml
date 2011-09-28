@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<meta name="conversion" type="draganddrop" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -70,6 +70,42 @@
 <section id="body">
 	
 <ol id="questionList"><li id="q1"><input id="1" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ab.mp3" mode="1" id="1"  /></li><li id="q2"><input id="2" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1af.mp3" mode="1" id="2"  /></li><li id="q3"><input id="3" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1aa.mp3" mode="1" id="3"  /></li><li id="q4"><input id="4" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ak.mp3" mode="1" id="4"  /></li><li id="q5"><input id="5" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1al.mp3" mode="1" id="5"  /></li><li id="q6"><input id="6" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ae.mp3" mode="1" id="6"  /></li><li id="q7"><input id="7" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ag.mp3" mode="1" id="7"  /></li><li id="q8"><input id="8" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ad.mp3" mode="1" id="8"  /></li><li id="q9"><input id="9" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ai.mp3" mode="1" id="9"  /></li><li id="q10"><input id="10" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ac.mp3" mode="1" id="10"  /></li><li id="q11"><input id="11" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1aj.mp3" mode="1" id="11"  /></li><li id="q12"><input id="12" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ah.mp3" mode="1" id="12"  /></li></ol><img class="rightFloat" src="../Media/LE_TV_002.jpg" mode="1" id="1001"  />
+</section>
+<section id="fb1">
+	<p align="left">1.<font color="#0000ff">&#32;<b>shopping</b>: credit card, to spend money, to try things on, a price, to buy</font></p>
+</section>
+<section id="fb2">
+	<p align="left">2. <font color="#0000ff"><b>playing board games</b>: to cheat, to lose, to win, to beat, backgammon, chess, draughts</font></p>
+</section>
+<section id="fb3">
+	<p align="left">3. <font color="#0000ff"><b>listening to music</b>: CDs, tapes, a Walkman, headphones, pop, jazz</font></p>
+</section>
+<section id="fb4">
+	<p align="left">4. <font color="#0000ff"><b>going to the cinema</b>: a science fiction film, the big screen, special effects, horror films</font></p>
+</section>
+<section id="fb5">
+	<p align="left">5. <font color="#0000ff"><b>eating out</b>: cuisine, a restaurant, a starter, a main course, desserts, a three-course meal</font></p>
+</section>
+<section id="fb6">
+	<p align="left">6. <font color="#0000ff"><b>cooking</b>: ingredients, recipes, dinner parties, the washing-up</font></p>
+</section>
+<section id="fb7">
+	<p align="left">7. <font color="#0000ff"><b>watching television</b>: the box, soap operas, sitcoms, game shows, chat shows, commercials</font></p>
+</section>
+<section id="fb8">
+	<p align="left">8. <font color="#0000ff"><b>reading</b>: a paperback, romantic fiction, a detective story</font></p>
+</section>
+<section id="fb9">
+	<p align="left">9. <font color="#0000ff"><b>photography</b>: a darkroom, to develop, films, to print, pictures, black and white, colour</font></p>
+</section>
+<section id="fb10">
+	<p align="left">10. <font color="#0000ff"><b>keep-fit</b>: health and fitness, a gym, weight training, stretching, a step machine, a treadmill, aerobics classes</font></p>
+</section>
+<section id="fb11">
+	<p align="left">11. <font color="#0000ff"><b>going to amusement parks</b>: a ride, the Big Dipper, attractions, a ghost train, a hall of mirrors</font></p>
+</section>
+<section id="fb12">
+	<p align="left">12. <font color="#0000ff"><b>dancing</b>: a bouncer, a club, a DJ, disco music</font></p>
 </section>
 </body>
 </bento>

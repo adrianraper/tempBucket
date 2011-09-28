@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-09-27" />
+	<meta name="conversion" type="presentation" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,7 +33,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions/></script>
 
@@ -45,7 +46,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#0000ff"><b>Leisure activities</b></font></p><p align="left">You will ...</p><ol><li>listen to people talking about how they spend their free	time and decide what their leisure activities are.</li><li>read an email describing how someone spends their free	time and complete it with appropriate words and phrases.</li></ol><p align="left"><font color="#0000ff"><b>Sports, games and equipment</b></font></p><p align="left">You will ...</p><ol><li>match the names of sports and games to pictures.</li><li>match equipment to sports and games.</li><li>do a quiz about sports and games.</li></ol><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_TV_001.jpg" height="250" width="165" mode="1" id="1001"  />
+	<p align="left"><font color="#0000ff"><b>Leisure activities</b></font></p><p align="left">You will ...</p><ol><li>listen to people talking about how they spend their free	time and decide what their leisure activities are.</li><li>read an email describing how someone spends their free	time and complete it with appropriate words and phrases.</li></ol><p align="left"><font color="#0000ff"><b>Sports, games and equipment</b></font></p><p align="left">You will ...</p><ol><li>match the names of sports and games to pictures.</li><li>match equipment to sports and games.</li><li>do a quiz about sports and games.</li></ol><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_TV_001.jpg" mode="1" id="1001"  />
 </section>
 </body>
 </bento>

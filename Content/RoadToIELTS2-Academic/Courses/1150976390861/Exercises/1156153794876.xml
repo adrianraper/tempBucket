@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-09-27" />
+	<meta name="conversion" type="presentation" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,7 +33,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions/></script>
 
@@ -45,7 +46,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><b>The chart below shows participation in certain leisure activities by children in Australia. Write a report for a university lecturer describing the information shown below.</b></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Unit01_Write_e7.jpg" height="" width="" mode="1" id="1003"  />
+	<p align="left"><b>The chart below shows participation in certain leisure activities by children in Australia. Write a report for a university lecturer describing the information shown below.</b></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Unit01_Write_e7.jpg" mode="1" id="1003"  />
 </section>
 </body>
 </bento>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-27" />
+	<meta name="conversion" type="draganddrop" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,7 +33,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions><DragQuestion source="1"><answer source="13" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="14" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="15" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="16" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="17" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="18" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="19" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="20" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="23" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="24" correct="true"/></DragQuestion></questions></script>
 
@@ -43,7 +44,7 @@
 <header>
 	Read the writing task and look carefully at the bar chart. Complete the report by putting the correct word, phrase or number into each gap.
 		
-		Writing Task 1<img class="rightFloat" src="../Media/LE_Task01.jpg" height="" width="" mode="16" id="1004"  />
+		Writing Task 1<img class="rightFloat" src="../Media/LE_Task01.jpg" mode="16" id="1004"  />
 </header>
 	
 <section id="noscroll">
@@ -65,7 +66,43 @@
 		<tab/><span id="16" draggable="true">half</span>
 </section>
 <section id="body">
-	<p align="left">&#160;The bar chart shows the amount of time that <input id="1" type="droptarget" />-year-olds in England spend per week on sport and exercise. It is clear from the chart that <input id="2" type="droptarget" /> are less active in their leisure time than <input id="3" type="droptarget" />.</p><p align="left">There is a striking difference between the percentages of men and women who prefer not to participate in sport in their free time. Almost <font color="#0000ff"><input id="4" type="droptarget" /></font> of young women devote no time at all to active leisure pursuits while this applies to only about <font color="#0000ff"><input id="5" type="droptarget" /></font> of young men. There is a similar difference between the percentages of very active young people. Almost <font color="#0000ff"><input id="6" type="droptarget" /></font> men between the ages of 16 and 24 play sport for <font color="#0000ff"><input id="7" type="droptarget" /></font> or more hours a week. The figure for young women is only <font color="#0000ff"><input id="8" type="droptarget" /></font>.</p><p align="left">A closer examination of the figures for young people who actually play sport reveals that the greatest proportion dedicate between <font color="#0000ff"><input id="9" type="droptarget" /></font> hours per week to these pastimes. This is true for just over <font color="#0000ff"><input id="10" type="droptarget" /></font> of both men and women.</p><p align="left">The fact that only <font color="#0000ff"><input id="11" type="droptarget" /></font> of young women spend an hour or more a week on sport, compared to approximately <font color="#0000ff"><input id="12" type="droptarget" /></font> of young men, raises questions about how fit young women are in comparison to young men.</p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_1n4.jpg" height="" width="" mode="1" id="1003"  />
+	<p align="left">&#160;The bar chart shows the amount of time that <input id="1" type="droptarget" />-year-olds in England spend per week on sport and exercise. It is clear from the chart that <input id="2" type="droptarget" /> are less active in their leisure time than <input id="3" type="droptarget" />.</p><p align="left">There is a striking difference between the percentages of men and women who prefer not to participate in sport in their free time. Almost <font color="#0000ff"><input id="4" type="droptarget" /> of young women devote no time at all to active leisure pursuits while this applies to only about <font color="#0000ff"><input id="5" type="droptarget" /></font> of young men. There is a similar difference between the percentages of very active young people. Almost <font color="#0000ff"><input id="6" type="droptarget" /></font> men between the ages of 16 and 24 play sport for <font color="#0000ff"><input id="7" type="droptarget" /></font> or more hours a week. The figure for young women is only <font color="#0000ff"><input id="8" type="droptarget" /></font>.</font></p><p align="left">A closer examination of the figures for young people who actually play sport reveals that the greatest proportion dedicate between <font color="#0000ff"><input id="9" type="droptarget" /> hours per week to these pastimes. This is true for just over <font color="#0000ff"><input id="10" type="droptarget" /></font> of both men and women.</font></p><p align="left">The fact that only <font color="#0000ff"><input id="11" type="droptarget" /> of young women spend an hour or more a week on sport, compared to approximately <font color="#0000ff"><input id="12" type="droptarget" /></font> of young men, raises questions about how fit young women are in comparison to young men.</font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_1n4.jpg" mode="1" id="1003"  />
+</section>
+<section id="fb1">
+	<p align="left">1. The ages are given in the title.</p>
+</section>
+<section id="fb2">
+	<p align="left">2. The figures for 'no time' and from three to seven or more hours show this is true. </p>
+</section>
+<section id="fb3">
+	<p align="left">3. The figures for 'no time' and from three to seven or more hours show this is true. </p>
+</section>
+<section id="fb4">
+	<p align="left">4. The figure is just under 45 per cent, which is approximately half.</p>
+</section>
+<section id="fb5">
+	<p align="left">5. The percentage for men is just under 25 per cent which is nearly a quarter.</p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000">6. 'Very active' means spending 7 or more hours on sport and exercise per week. 18% of young men spend 7 or more hours a week on these activities. What's another way of saying 18 per cent?</font></p>
+</section>
+<section id="fb7">
+	<p align="left">7. The report says 'very active', which must mean 7 hours or more per week.</p>
+</section>
+<section id="fb8">
+	<p align="left">8. Only 5 per cent of young women spend 7 or more hours on these activities.</p>
+</section>
+<section id="fb9">
+	<p align="left">9. 22 per cent of young men and women spend 1 to 3 hours on these activities.</p>
+</section>
+<section id="fb10">
+	<p align="left">10. The percentage is 22 per cent, which is just over 1 in 5.</p>
+</section>
+<section id="fb11">
+	<p align="left">11. Adding the percentages for women in the last four columns gives a total of 40 per cent, which is two-fifths. </p>
+</section>
+<section id="fb12">
+	<p align="left">12. Add up the last four columns for men. What total percentage does this give? How can this be expressed as a fraction?</p>
 </section>
 </body>
 </bento>

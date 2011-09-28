@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-09-27" />
+	<meta name="conversion" type="multiplechoice" date="2011-09-28" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,7 +33,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions><MultipleChoiceQuestion group="q1"><answer source="1" correct="false"/><answer source="2" correct="false"/><answer source="3" correct="false"/><answer source="4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="5" correct="false"/><answer source="6" correct="true"/><answer source="7" correct="false"/><answer source="8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="9" correct="false"/><answer source="10" correct="true"/><answer source="11" correct="false"/><answer source="12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="13" correct="true"/><answer source="14" correct="false"/><answer source="15" correct="false"/><answer source="16" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="17" correct="false"/><answer source="18" correct="false"/><answer source="19" correct="true"/><answer source="20" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="21" correct="false"/><answer source="22" correct="true"/><answer source="23" correct="false"/><answer source="24" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="25" correct="false"/><answer source="26" correct="false"/><answer source="27" correct="true"/><answer source="28" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="29" correct="false"/><answer source="30" correct="false"/><answer source="31" correct="false"/><answer source="32" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="33" correct="false"/><answer source="34" correct="true"/><answer source="35" correct="false"/><answer source="36" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="37" correct="true"/><answer source="38" correct="false"/><answer source="39" correct="false"/><answer source="40" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="41" correct="false"/><answer source="42" correct="true"/><answer source="43" correct="false"/><answer source="44" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="45" correct="false"/><answer source="46" correct="false"/><answer source="47" correct="false"/><answer source="48" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q13"><answer source="49" correct="false"/><answer source="50" correct="true"/><answer source="51" correct="false"/><answer source="52" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q14"><answer source="53" correct="false"/><answer source="54" correct="false"/><answer source="55" correct="true"/><answer source="56" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q15"><answer source="57" correct="false"/><answer source="58" correct="false"/><answer source="59" correct="true"/><answer source="60" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q16"><answer source="61" correct="false"/><answer source="62" correct="false"/><answer source="63" correct="false"/><answer source="64" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q17"><answer source="65" correct="true"/><answer source="66" correct="false"/><answer source="67" correct="false"/><answer source="68" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q18"><answer source="69" correct="false"/><answer source="70" correct="false"/><answer source="71" correct="true"/><answer source="72" correct="false"/></MultipleChoiceQuestion></questions></script>
 
@@ -45,7 +46,44 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><br/><li id="q1">In which sport do players hit the ball with a bat?<ol class="answerList"><li><a id="1" >golf</a></li><li><a id="2" >snooker</a></li><li><a id="3" >squash</a></li><li><a id="4" >baseball</a></li></ol><br/></li><br/><li id="q2">In which sport do players have to hit balls into pockets?<ol class="answerList"><li><a id="5" >basketball</a></li><li><a id="6" >snooker</a></li><li><a id="7" >tennis</a></li><li><a id="8" >golf</a></li></ol><br/></li><br/><li id="q3">What do ice hockey players wear on their feet?<ol class="answerList"><li><a id="9" >skis</a></li><li><a id="10" >skates</a></li><li><a id="11" >flippers</a></li><li><a id="12" >pucks</a></li></ol><br/></li><br/><li id="q4">What do scuba divers wear to keep warm in the water?<ol class="answerList"><li><a id="13" >wetsuit</a></li><li><a id="14" >helmet</a></li><li><a id="15" >flippers</a></li><li><a id="16" >mask</a></li></ol><br/></li><br/><li id="q5">Which sport is played on a court?<ol class="answerList"><li><a id="17" >football</a></li><li><a id="18" >baseball</a></li><li><a id="19" >tennis</a></li><li><a id="20" >table tennis</a></li></ol><br/></li><br/><li id="q6">What do you score in a baseball game?  <ol class="answerList"><li><a id="21" >a goal</a></li><li><a id="22" >a run</a></li><li><a id="23" >a point</a></li><li><a id="24" >a set</a></li></ol><br/></li><br/><li id="q7">What do skiers use to protect their eyes?<ol class="answerList"><li><a id="25" >flippers</a></li><li><a id="26" >pedals</a></li><li><a id="27" >goggles</a></li><li><a id="28" >stirrups</a></li></ol><br/></li><br/><li id="q8">Which activity usually requires some dice?<ol class="answerList"><li><a id="29" >a track and field event</a></li><li><a id="30" >a team sport</a></li><li><a id="31" >a card game</a></li><li><a id="32" >a board game</a></li></ol><br/></li><br/><li id="q9">In which sport should you wear a helmet to protect your head?<ol class="answerList"><li><a id="33" >tennis</a></li><li><a id="34" >cycling</a></li><li><a id="35" >squash</a></li><li><a id="36" >snorkelling</a></li></ol><br/></li><br/><li id="q10">In which activity do you sit on a saddle?<ol class="answerList"><li><a id="37" >horse riding</a></li><li><a id="38" >rock climbing</a></li><li><a id="39" >playing board games</a></li><li><a id="40" >skiing</a></li></ol><br/></li><br/><li id="q11">What do golfers try to get the ball into?<ol class="answerList"><li><a id="41" >a pocket</a></li><li><a id="42" >a hole</a></li><li><a id="43" >a green</a></li><li><a id="44" >a tee</a></li></ol><br/></li><br/><li id="q12">What do skiers use to help them balance and turn?<ol class="answerList"><li><a id="45" >bats</a></li><li><a id="46" >clubs</a></li><li><a id="47" >cues</a></li><li><a id="48" >poles</a></li></ol><br/></li><br/><li id="q13">Where is ice hockey played?<ol class="answerList"><li><a id="49" >on a court</a></li><li><a id="50" >on a rink</a></li><li><a id="51" >on a course</a></li><li><a id="52" >on a pitch</a></li></ol><br/></li><br/><li id="q14">What do cyclists put their feet on?<ol class="answerList"><li><a id="53" >saddle</a></li><li><a id="54" >handlebars</a></li><li><a id="55" >pedals</a></li><li><a id="56" >frame</a></li></ol><br/></li><br/><li id="q15">In which sport is there a net between the players?<ol class="answerList"><li><a id="57" >squash</a></li><li><a id="58" >football</a></li><li><a id="59" >tennis</a></li><li><a id="60" >ice hockey</a></li></ol><br/></li><br/><li id="q16">In which sport do you wear flippers?<ol class="answerList"><li><a id="61" >horse riding</a></li><li><a id="62" >skiing</a></li><li><a id="63" >rock climbing</a></li><li><a id="64" >snorkelling </a></li></ol><br/></li><br/><li id="q17">In which sport do you need to wear a weight belt?<ol class="answerList"><li><a id="65" >scuba diving</a></li><li><a id="66" >rock climbing</a></li><li><a id="67" >snorkelling</a></li><li><a id="68" >snooker</a></li></ol><br/></li><br/><li id="q18">What do golfers hit the ball with?<ol class="answerList"><li><a id="69" >a stick</a></li><li><a id="70" >a pole</a></li><li><a id="71" >a club</a></li><li><a id="72" >a racket</a></li></ol><br/></li></ol>
+	
+<ol id="questionList">
+<li id="q1">In which sport do players hit the ball with a bat?<ol class="answerList"><li><a id="1" >golf</a></li><li><a id="2" >snooker</a></li><li><a id="3" >squash</a></li><li><a id="4" >baseball</a></li></ol>
+</li>
+<li id="q2">In which sport do players have to hit balls into pockets?<ol class="answerList"><li><a id="5" >basketball</a></li><li><a id="6" >snooker</a></li><li><a id="7" >tennis</a></li><li><a id="8" >golf</a></li></ol>
+</li>
+<li id="q3">What do ice hockey players wear on their feet?<ol class="answerList"><li><a id="9" >skis</a></li><li><a id="10" >skates</a></li><li><a id="11" >flippers</a></li><li><a id="12" >pucks</a></li></ol>
+</li>
+<li id="q4">What do scuba divers wear to keep warm in the water?<ol class="answerList"><li><a id="13" >wetsuit</a></li><li><a id="14" >helmet</a></li><li><a id="15" >flippers</a></li><li><a id="16" >mask</a></li></ol>
+</li>
+<li id="q5">Which sport is played on a court?<ol class="answerList"><li><a id="17" >football</a></li><li><a id="18" >baseball</a></li><li><a id="19" >tennis</a></li><li><a id="20" >table tennis</a></li></ol>
+</li>
+<li id="q6">What do you score in a baseball game?  <ol class="answerList"><li><a id="21" >a goal</a></li><li><a id="22" >a run</a></li><li><a id="23" >a point</a></li><li><a id="24" >a set</a></li></ol>
+</li>
+<li id="q7">What do skiers use to protect their eyes?<ol class="answerList"><li><a id="25" >flippers</a></li><li><a id="26" >pedals</a></li><li><a id="27" >goggles</a></li><li><a id="28" >stirrups</a></li></ol>
+</li>
+<li id="q8">Which activity usually requires some dice?<ol class="answerList"><li><a id="29" >a track and field event</a></li><li><a id="30" >a team sport</a></li><li><a id="31" >a card game</a></li><li><a id="32" >a board game</a></li></ol>
+</li>
+<li id="q9">In which sport should you wear a helmet to protect your head?<ol class="answerList"><li><a id="33" >tennis</a></li><li><a id="34" >cycling</a></li><li><a id="35" >squash</a></li><li><a id="36" >snorkelling</a></li></ol>
+</li>
+<li id="q10">In which activity do you sit on a saddle?<ol class="answerList"><li><a id="37" >horse riding</a></li><li><a id="38" >rock climbing</a></li><li><a id="39" >playing board games</a></li><li><a id="40" >skiing</a></li></ol>
+</li>
+<li id="q11">What do golfers try to get the ball into?<ol class="answerList"><li><a id="41" >a pocket</a></li><li><a id="42" >a hole</a></li><li><a id="43" >a green</a></li><li><a id="44" >a tee</a></li></ol>
+</li>
+<li id="q12">What do skiers use to help them balance and turn?<ol class="answerList"><li><a id="45" >bats</a></li><li><a id="46" >clubs</a></li><li><a id="47" >cues</a></li><li><a id="48" >poles</a></li></ol>
+</li>
+<li id="q13">Where is ice hockey played?<ol class="answerList"><li><a id="49" >on a court</a></li><li><a id="50" >on a rink</a></li><li><a id="51" >on a course</a></li><li><a id="52" >on a pitch</a></li></ol>
+</li>
+<li id="q14">What do cyclists put their feet on?<ol class="answerList"><li><a id="53" >saddle</a></li><li><a id="54" >handlebars</a></li><li><a id="55" >pedals</a></li><li><a id="56" >frame</a></li></ol>
+</li>
+<li id="q15">In which sport is there a net between the players?<ol class="answerList"><li><a id="57" >squash</a></li><li><a id="58" >football</a></li><li><a id="59" >tennis</a></li><li><a id="60" >ice hockey</a></li></ol>
+</li>
+<li id="q16">In which sport do you wear flippers?<ol class="answerList"><li><a id="61" >horse riding</a></li><li><a id="62" >skiing</a></li><li><a id="63" >rock climbing</a></li><li><a id="64" >snorkelling </a></li></ol>
+</li>
+<li id="q17">In which sport do you need to wear a weight belt?<ol class="answerList"><li><a id="65" >scuba diving</a></li><li><a id="66" >rock climbing</a></li><li><a id="67" >snorkelling</a></li><li><a id="68" >snooker</a></li></ol>
+</li>
+<li id="q18">What do golfers hit the ball with?<ol class="answerList"><li><a id="69" >a stick</a></li><li><a id="70" >a pole</a></li><li><a id="71" >a club</a></li><li><a id="72" >a racket</a></li></ol>
+</li></ol><img class="rightFloat" src="../Media/LE_TV_006.jpg" mode="1" id="1001"  />
 </section>
 </body>
 </bento>
