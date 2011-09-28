@@ -66,7 +66,8 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	//$exerciseID = '1156153794807'; // dropdown
 	//$exerciseID = '1156153794223'; // multiple choice
 	//$exerciseID = '1156153794534'; // q based drag and drop
-	$exerciseID = '1156153794851'; // target spotting with feedback
+	//$exerciseID = '1156153794851'; // target spotting with feedback
+	$exerciseID = '1156153794618'; // stopgap (q based gapfill)
 	convertExercise($exerciseID);
 }
 
@@ -100,6 +101,7 @@ function convertExercise($exerciseID) {
 			$exercise = new DragAndDrop($xml);
 			break;
 		case 'cloze':
+		case 'stopgap':
 			$exercise = new Gapfill($xml);
 			break;
 		case 'dropdown':
@@ -113,7 +115,7 @@ function convertExercise($exerciseID) {
 			break;
 		default;
 			//throw new Exception("unknown exercise type $type");
-			echo "unknown exercise type $type";
+			echo "unknown exercise type $type for $exerciseID ";
 			return;
 	}
 	// At the end of construction, you can check the object if you want
