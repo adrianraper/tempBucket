@@ -19,7 +19,7 @@ package com.clarityenglish.ieltstester.view.tester {
 		public var menuTree:Tree;
 		
 		[SkinPart(required="true")]
-		public var exerciseView:ExerciseView; // TODO: This is going to be a DynamicView...
+		public var dynamicView:BentoView; // TODO: This is going to be a DynamicView...
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -49,8 +49,9 @@ package com.clarityenglish.ieltstester.view.tester {
 		protected function onMenuTreeChange(event:IndexChangeEvent):void {
 			var selectedNode:XML = event.target.selectedItem;
 			
-			if (selectedNode.name() == "exercise")
-				exerciseView.href = new Href(Href.EXERCISE, selectedNode.@href, href.rootPath);
+			if (selectedNode.name() == "exercise") {
+				dynamicView.href = new Href(Href.EXERCISE, selectedNode.@href, href.rootPath);
+			}
 			
 		}
 		

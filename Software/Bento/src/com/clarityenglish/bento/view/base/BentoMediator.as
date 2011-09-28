@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
+	import com.clarityenglish.bento.vo.Href;
 	
 	import flash.events.Event;
 	
@@ -24,6 +25,11 @@ package com.clarityenglish.bento.view.base {
 		 * Standard flex logger
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		/**
+		 * This is used to make sure that BBNotifications.XHTML_LOADED doesn't do anything if the Href is already loaded in this mediator
+		 */
+		private var currentlyLoadedHref:Href;
 		
 		public function BentoMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
@@ -58,8 +64,11 @@ package com.clarityenglish.bento.view.base {
 			
 			switch (note.getName()) {
 				case BBNotifications.XHTML_LOADED:
-					if (note.getBody().href === view.href)
+					// If the XHTML Href is the one in the view, and its not already loaded then set the xhtml in the view
+					if (note.getBody().href === view.href && note.getBody().href !== currentlyLoadedHref) {
 						view.xhtml = note.getBody().xhtml;
+						currentlyLoadedHref = note.getBody().href;
+					}
 					
 					break;
 			}

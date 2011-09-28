@@ -40,6 +40,7 @@
 			super.initializeController();
 			
 			// Map built in views to their mediators
+			mapView(DynamicView, DynamicMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			
 			// Map built in commands

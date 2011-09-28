@@ -49,6 +49,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 				var bounds:Rectangle = componentElement.getElementBounds();
 				
 				if (bounds) {
+					// TODO: This is totally wrong; there needs to be transformations between coordinate spaces for child RenderFlows
 					componentElement.getComponent().width = bounds.width;
 					componentElement.getComponent().height = bounds.height; // TODO: This doesn't set the height correctly on the dropdownlist
 					componentElement.getComponent().x = bounds.x;

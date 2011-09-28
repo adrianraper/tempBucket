@@ -80,6 +80,7 @@
     <classEntry path="com.clarityenglish.bento.controller.XHTMLLoadCommand"/>
     <classEntry path="com.clarityenglish.bento.vo.Href"/>
     <classEntry path="com.clarityenglish.bento.controller.BentoStartupCommand"/>
+    <classEntry path="skins.bento.DynamicViewSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
