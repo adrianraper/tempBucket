@@ -26,6 +26,9 @@
 						<exercise id="118" caption="FixedHeight" href="tests/FixedHeight.xml" />
 						<exercise id="119" caption="xhtmlfail" href="tests/xhtmlfail.xml" />
 					</unit>
+					<unit caption="Problems" id="1">
+						<exercise id="1001" caption="trac7" href="trac7/1156153794715.xml" />
+					</unit>
 				</course>
 			</menu>
 		</script>
