@@ -13,7 +13,7 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_IDX:uint = 0; // 9
+		private static const STARTING_IDX:uint = 10;
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;

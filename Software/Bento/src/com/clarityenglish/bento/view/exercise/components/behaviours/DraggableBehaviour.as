@@ -2,6 +2,7 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -53,6 +54,11 @@ package com.clarityenglish.bento.view.exercise.components.behaviours {
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 			for each (var draggableNode:XML in xhtml.xml..*.(hasOwnProperty("@draggable") && @draggable == "true")) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
+				
+				// This is kind of a hack, but it might be alright just for the moment; if the node is mapped to a FloatableTextFlow
+				// then just find the first leaf and use that
+				if (draggableFlowElement is FloatableTextFlow)
+					draggableFlowElement = (draggableFlowElement as FloatableTextFlow).getFirstLeaf();
 				
 				if (!draggableFlowElement)
 					continue;

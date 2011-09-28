@@ -16,8 +16,10 @@
 				padding-left: 60;
 			}
 			
-			#noscroll {
-				tab-stops: 200, 400, 600;
+			#noscroll span[draggable=true] {
+				/*tab-stops: 200, 400, 600;*/
+				float: left;
+				width: 140px;
 			}
 			
 			a, span[draggable="true"] {
