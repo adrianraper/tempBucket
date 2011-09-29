@@ -155,6 +155,7 @@ package com.clarityenglish.textLayout.components {
 					
 					// The main RenderFlow should always fill the viewport horizontally
 					renderFlow.percentWidth = 100;
+					renderFlow.y = 1;
 					
 					// Add the RenderFlow to the display list
 					addElement(renderFlow);
@@ -171,7 +172,7 @@ package com.clarityenglish.textLayout.components {
 			super.measure();
 			
 			if (renderFlow) {
-				measuredHeight = renderFlow.height;
+				measuredHeight = renderFlow.height + 3;
 			}
 		}
 		
