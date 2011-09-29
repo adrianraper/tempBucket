@@ -12,6 +12,8 @@ package com.clarityenglish.textLayout.util {
 	
 	import mx.utils.ObjectUtil;
 	
+	import org.davekeen.util.ClassUtil;
+	
 	public class TLFUtil {
 		
 		public static function getFlowLeafElementBounds(flowLeafElement:FlowLeafElement):Rectangle {
@@ -61,6 +63,8 @@ package com.clarityenglish.textLayout.util {
 		
 		private static function flowElementToXML(flowElement:FlowElement):XML {
 			var node:XML = new XML("<" + flowElement.typeName + " />");
+			
+			node.@tlfClass = ClassUtil.getClassAsString(flowElement);
 			
 			if (flowElement is SpanElement) {
 				node.appendChild((flowElement as SpanElement).text);

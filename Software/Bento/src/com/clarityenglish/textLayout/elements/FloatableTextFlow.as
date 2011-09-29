@@ -1,8 +1,10 @@
 package com.clarityenglish.textLayout.elements {
+	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.IConfiguration;
 	import flashx.textLayout.elements.TextFlow;
-	
-	import spark.core.SpriteVisualElement;
+	import flashx.textLayout.tlf_internal;
+
+	use namespace tlf_internal;
 	
 	/**
 	 * This extends TextFlow to add properties allowing it to float.  This is used by Bento's custom importers.
@@ -112,6 +114,20 @@ package com.clarityenglish.textLayout.elements {
 		 */
 		public function isFixedHeight():Boolean {
 			return height != null && !isPercentHeight();
+		}
+		
+		/** 
+		 * Returns all elements of class <code>klass</code>.
+		 *
+		 * @param klass The class of which to find elements.
+		 *
+		 * @return An array of the elements whose class is <code>klass</code>. For example,
+		 * all elements that are of class InputElement.
+		 */
+		public function getElementsByClass(klass:Class):Array {
+			var a:Array = [ ];
+			applyFunctionToElements(function (elem:FlowElement):Boolean{ if (elem is klass) a.push(elem); return false; });
+			return a;
 		}
 		
 		public function FloatableTextFlow(config:IConfiguration = null) {

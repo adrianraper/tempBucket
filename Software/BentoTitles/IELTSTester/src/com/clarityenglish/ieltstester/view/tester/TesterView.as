@@ -13,7 +13,7 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_IDX:uint = 10;
+		private static const STARTING_CAPTION:String = "trac5";
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;
@@ -29,9 +29,11 @@ package com.clarityenglish.ieltstester.view.tester {
 			
 			var startingExercise:XML = menu.course[0].unit[0].exercise[0];
 			
-			// For testing purposes start the tree off with an exercise selected
-			menuTree.expandItem(menuTree.dataProvider.getItemAt(0));
-			menuTree.selectedItem = menu..exercise[STARTING_IDX];
+			// For testing purposes start the tree off with everything expanded and an exercise selected
+			for (var n:uint = 0; n < menuTree.dataProvider.length; n++)
+				menuTree.expandItem(menuTree.dataProvider.getItemAt(n));
+			
+			menuTree.selectedItem = menu..exercise.(@caption == STARTING_CAPTION)[0];
 			menuTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 		}
 		
@@ -49,7 +51,7 @@ package com.clarityenglish.ieltstester.view.tester {
 		protected function onMenuTreeChange(event:IndexChangeEvent):void {
 			var selectedNode:XML = event.target.selectedItem;
 			
-			if (selectedNode.name() == "exercise") {
+			if (selectedNode && selectedNode.name() == "exercise") {
 				dynamicView.href = new Href(Href.EXERCISE, selectedNode.@href, href.rootPath);
 			}
 			

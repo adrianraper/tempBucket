@@ -1,6 +1,10 @@
 package com.clarityenglish.textLayout.components.behaviours {
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.elements.IComponentElement;
+	import com.clarityenglish.textLayout.elements.InputElement;
+	import com.clarityenglish.textLayout.elements.SelectElement;
+	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -21,9 +25,14 @@ package com.clarityenglish.textLayout.components.behaviours {
 		}
 		
 		private function getComponentElements(textFlow:TextFlow):Array {
+			var floatableTextFlow:FloatableTextFlow = textFlow as FloatableTextFlow;
+		
 			// This is just temporary; make this nicer once we have a better idea of how the Spark overlays are going to work
-			if (textFlow)
-				return textFlow.getElementsByTypeName("input").concat(textFlow.getElementsByTypeName("select"), textFlow.getElementsByTypeName("video"));
+			if (floatableTextFlow) {
+				return floatableTextFlow.getElementsByClass(InputElement).concat(
+					   floatableTextFlow.getElementsByClass(SelectElement),
+					   floatableTextFlow.getElementsByClass(VideoElement));
+			}
 			
 			return null;
 		}
