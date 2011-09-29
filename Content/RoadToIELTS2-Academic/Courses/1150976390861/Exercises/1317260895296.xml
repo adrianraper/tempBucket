@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="errorcorrection" date="2011-09-29" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings><marking test="false"/><feedback wrongonly="true"/><buttons hints="true" print="true" progress="true" scratchpad="true"/><exercise correctmistakes="true" hiddentargets="true"/><misc soundeffects="false"/></settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><ErrorCorrectionQuestion source="1" group="1"><answer value="poorly" correct="false"/><answer value="low-income" correct="true"/><answer value="low income" correct="true"/></ErrorCorrectionQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	There are a number of errors in the exercise below. Correct the error.
+</header>
+	
+<section id="body">
+	<p align="left"><font color="#000000">More than one million students from <input id="1" width="100" value="poorly" enabled="false" /> families in the US will receive computers, internet access, software and job skills training through a software giant’s digital inclusion initiative.</font></p><p align="left"><font color="#000000">Microsoft Corp. has announced a three-year programme earlier this month that will provide students software, hardware and discounted broadband internet service aimed at preparing the students compete in the global market and increasing the youth’s employment opportunities.</font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Education_010.jpg" mode="1" id="1001"  /><audio class="leftFloat" src="../Media/ErrorCorrection-CorrectMistakes.mp3" mode="4" id="1002"  />
+</section>
+</body>
+</bento>

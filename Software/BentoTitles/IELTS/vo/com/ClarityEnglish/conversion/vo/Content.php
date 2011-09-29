@@ -119,7 +119,9 @@ class Content{
 		if ((	($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DRAGANDDROP) || 
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_GAPFILL) ||
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
+				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_QUIZ) ||
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_TARGETSPOTTING) ||
+				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_ERRORCORRECTION) ||
 				($this->getParent()->getExerciseType()==Exercise::EXERCISE_TYPE_DROPDOWN)) &&
 			$this->getSection()==Exercise::EXERCISE_SECTION_BODY) {
 			// Split by question or text based
@@ -145,7 +147,14 @@ class Content{
 		}
 		// Whatever happens there are some characters I want to replace
 		// non-breaking space special characters
-		$buildText = preg_replace('/\xc2\xa0/', '&#160;', $buildText);
+		//$buildText = preg_replace('/\xc2\xa0/', '&#160;', $buildText);
+		$patterns = Array();
+		$replacements = Array();
+		$patterns[] = '/\xc2\xa0/is';
+		$replacements[] = '&#160;';
+		$patterns[] = '/\<tab\>/is';
+		$replacements[] = '<tab/>';
+		$buildText = preg_replace($patterns, $replacements, $buildText);
 		
 		return $buildText;
 	}
@@ -156,6 +165,7 @@ class Content{
 		if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP ||
 			$exerciseType==Exercise::EXERCISE_TYPE_GAPFILL ||
 			$exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING ||
+			$exerciseType==Exercise::EXERCISE_TYPE_ERRORCORRECTION ||
 			$exerciseType==Exercise::EXERCISE_TYPE_DROPDOWN) {
 			// You need to output all the paragraphs. 
 			$lastTagType = null;
@@ -188,12 +198,15 @@ class Content{
 							// TODO: What if we didn't find this field id?
 						}
 					}
+					echo $fieldType;
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
 						$buildText.=$m[1].'<g id="'.$m[2].'">'.$answer.'</g>'.$m[3];
+					} else if ($fieldType==Field::FIELD_TYPE_TARGETGAP) {
+						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" value="'.$answer.'" enabled="false" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_DROPDOWN) {
 						$buildText.=$m[1].'<select id="'.$m[2].'" type="dropdown" >';
 						foreach ($answers as $answer) {
@@ -288,6 +301,60 @@ class Content{
 			foreach ($this->getMediaNodes() as $mediaNode) {
 				$buildText.=$mediaNode->output();
 			}
+		} elseif ($exerciseType==Exercise::EXERCISE_TYPE_QUIZ) {
+			// You need to output all the paragraphs.
+			$lastTagType = null;
+			// MC are very specific format from Arthur. There will only be one paragraph, but
+			// need to break that down into lists
+			foreach ($this->getParagraphs() as $paragraph) {
+				//echo '**********'.$paragraph->getPureText();
+				$thisTagType = $paragraph->getTagType();
+				// Just in case there is some other paragraph too
+				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
+					$builder.=$newline.'<li id="q'.$this->getID().'">';
+					// Grab the whole paragraph text, need to mangle it to get question and options.
+					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
+					//echo $subBuilder;
+					// Get rid of <tab><b>#q</b>
+					$patterns = Array();
+					$patterns[] = '/\<tab\><b\>#q\<\/b\>/is';
+					$replacement = '';
+					$builder.= preg_replace($patterns, $replacement, $subBuilder);
+					//echo $subBuilder."\n\n";
+					
+					$builder.="$newline</li>";
+				} else {
+					$builder.=$paragraph->output($lastTagType,$thisTagType);
+				}
+				$lastTagType = $thisTagType;
+			}		
+			//echo $builder;
+			
+			// As you do it, you want to find any drops and replace them with an input field
+			// You will also write out a question node in the script node. NO, that is done already.
+			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
+			$buildText='';
+			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
+				foreach ($matches as $m) {
+					// Read the fields to find the matching answer
+					$answer='';
+					foreach ($this->getFields() as $field) {
+						if ($field->getID()==$m[2]) {
+							$fieldType = $field->getType();
+							$answers = $field->getAnswers();
+							$answer = $answers[0]->getAnswer();
+							continue;
+							// TODO: What if we didn't find this field id?
+						}
+					}
+					if ($fieldType==Field::FIELD_TYPE_TARGET) {
+						$buildText.=$m[1].'<a id="'.$m[2].'" >'.$answer.'</a>'.$m[3];
+					}
+				}
+			}			
+			foreach ($this->getMediaNodes() as $mediaNode) {
+				$buildText.=$mediaNode->output();
+			}
 		} elseif ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP) {
 			// You need to output all the paragraphs.
 			$lastTagType = null;
@@ -303,6 +370,7 @@ class Content{
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
 					// Get rid of <tab><b>#q</b>
+					// Note that this gets rid of ALL tabs.
 					$patterns = Array();
 					$patterns[] = '/\<tab\>/is';
 					$patterns[] = '/<b\>#q\<\/b\>/is';
@@ -342,6 +410,62 @@ class Content{
 					}
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
+					}
+				}
+			}			
+		} elseif ($exerciseType==Exercise::EXERCISE_TYPE_GAPFILL) {
+			// You need to output all the paragraphs.
+			$lastTagType = null;
+			// QBased are very specific format from Arthur. There will only be one paragraph, but
+			// need to break that down into lists
+			foreach ($this->getParagraphs() as $paragraph) {
+				// This will be quite simple
+				// Just in case there is some other paragraph too
+				$thisTagType = $paragraph->getTagType();
+				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
+					$builder.='<li id="q'.$this->getID().'">';
+					// Grab the whole paragraph text, need to mangle it to get question and options.
+					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
+					//echo $subBuilder;
+					// Get rid of <tab><b>#q</b>
+					$patterns = Array();
+					$patterns[] = '/\<tab\>/is';
+					$patterns[] = '/<b\>#q\<\/b\>/is';
+					$replacement = '';
+					$subBuilder = preg_replace($patterns, $replacement, $subBuilder);
+
+					// If there are any media nodes in the question, then we need to output them here
+					foreach ($this->getMediaNodes() as $mediaNode) {
+						$subBuilder.=$mediaNode->output();
+					}
+					
+					// Close the list
+					$builder.=$subBuilder.'</li>';
+				} else {
+					$builder.=$paragraph->output($lastTagType,$thisTagType);
+				}
+				$lastTagType = $thisTagType;
+			}		
+			
+			// As you do it, you want to find any drops and replace them with an input field
+			// You will also write out a question node in the script node. NO, that is done already.
+			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
+			$buildText='';
+			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
+				foreach ($matches as $m) {
+					// Read the fields to find the matching answer
+					$answer='';
+					foreach ($this->getFields() as $field) {
+						if ($field->getID()==$m[2]) {
+							$fieldType = $field->getType();
+							$answers = $field->getAnswers();
+							$answer = $answers[0]->getAnswer();
+							continue;
+							// TODO: What if we didn't find this field id?
+						}
+					}
+					if ($fieldType==Field::FIELD_TYPE_GAP) {
+						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" />'.$m[3];
 					}
 				}
 			}			

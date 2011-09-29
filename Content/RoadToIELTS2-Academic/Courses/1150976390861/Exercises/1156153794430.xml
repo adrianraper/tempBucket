@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-09-28" />
+	<meta name="conversion" type="gapfill" date="2011-09-29" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,8 +33,7 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	
-
+	<br/>
 <script id="model" type="application/xml">
 <questions><GapFillQuestion source="1" group="1"><answer value="Aboriginal " correct="true"/></GapFillQuestion><GapFillQuestion source="2" group="2"><answer value="Buka women " correct="true"/></GapFillQuestion><GapFillQuestion source="3" group="3"><answer value="coconut shells " correct="true"/><answer value="two coconut shells" correct="true"/><answer value="2 coconut shells" correct="true"/></GapFillQuestion><GapFillQuestion source="4" group="4"><answer value="Guatemala " correct="true"/></GapFillQuestion><GapFillQuestion source="5" group="5"><answer value="pin and balls " correct="true"/><answer value="a pin and balls" correct="true"/><answer value="a wooden pin and balls" correct="true"/></GapFillQuestion><GapFillQuestion source="6" group="6"><answer value="T   " correct="true"/></GapFillQuestion><GapFillQuestion source="7" group="7"><answer value="Inuit   " correct="true"/></GapFillQuestion><GapFillQuestion source="8" group="8"><answer value="G   " correct="true"/></GapFillQuestion><GapFillQuestion source="9" group="9"><answer value="farmers " correct="true"/><answer value="Kelantanese farmers" correct="true"/></GapFillQuestion><GapFillQuestion source="10" group="10"><answer value="paper " correct="true"/><answer value="glazed paper" correct="true"/><answer value="glazed colored paper" correct="true"/><answer value="glazed coloured paper" correct="true"/><answer value="colored paper" correct="true"/><answer value="coloured paper" correct="true"/></GapFillQuestion></questions></script>
 

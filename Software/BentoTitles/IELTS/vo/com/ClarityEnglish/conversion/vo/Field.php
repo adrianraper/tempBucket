@@ -20,6 +20,7 @@ class Field {
 	const FIELD_TYPE_GAP = 'gap';
 	const FIELD_TYPE_DROPDOWN = 'dropdown';
 	const FIELD_TYPE_TARGET = 'target';
+	const FIELD_TYPE_TARGETGAP = 'targetgap';
 	
 	protected $parent;
 	function getParent() {
@@ -50,7 +51,7 @@ class Field {
 							// First character is a subtype
 							$this->qualifier = substr($b,0,1);
 							// Then third onwards is the real type
-							$this->type = substr($b,2);
+							$this->type = strtolower(substr($b,2));
 						default:
 					}
 				}

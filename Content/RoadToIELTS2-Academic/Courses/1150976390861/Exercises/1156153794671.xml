@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-28" />
+	<meta name="conversion" type="draganddrop" date="2011-09-29" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -33,8 +33,7 @@
 		<misc/>
 	</settings>
 	</script>
-	
-
+	<br/>
 <script id="model" type="application/xml">
 <questions><DragQuestion source="1"><answer source="13" correct="true"/></DragQuestion><DragQuestion source="2"><answer source="14" correct="true"/></DragQuestion><DragQuestion source="3"><answer source="15" correct="true"/></DragQuestion><DragQuestion source="4"><answer source="16" correct="true"/></DragQuestion><DragQuestion source="5"><answer source="17" correct="true"/></DragQuestion><DragQuestion source="6"><answer source="18" correct="true"/></DragQuestion><DragQuestion source="7"><answer source="19" correct="true"/></DragQuestion><DragQuestion source="8"><answer source="20" correct="true"/></DragQuestion><DragQuestion source="9"><answer source="21" correct="true"/></DragQuestion><DragQuestion source="10"><answer source="22" correct="true"/></DragQuestion><DragQuestion source="11"><answer source="23" correct="true"/></DragQuestion><DragQuestion source="12"><answer source="24" correct="true"/></DragQuestion></questions></script>
 

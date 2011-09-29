@@ -29,7 +29,7 @@ input {
 
 /* Drag and drop targets always have the same gap text underneath them */
 input[type="droptarget"] {
-	gap-text: "_____";
+	gap-text: "__.__.__";
 }
 
 /* Color classes */

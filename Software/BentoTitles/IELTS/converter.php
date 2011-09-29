@@ -8,7 +8,9 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/DragAndDrop
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Dropdown.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Gapfill.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/MultipleChoice.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Quiz.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/TargetSpotting.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/ErrorCorrection.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Content.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Question.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Rubric.php");
@@ -24,8 +26,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=true;
-$batch=true;
+$plainView=false;
+$batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -67,7 +69,9 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	//$exerciseID = '1156153794223'; // multiple choice
 	//$exerciseID = '1156153794534'; // q based drag and drop
 	//$exerciseID = '1156153794851'; // target spotting with feedback
-	$exerciseID = '1156153794618'; // stopgap (q based gapfill)
+	//$exerciseID = '1156153794618'; // stopgap (q based gapfill)
+	//$exerciseID = '1156153794077'; // quiz
+	$exerciseID = '1317260895296'; // correct mistakes (not R2I)
 	convertExercise($exerciseID);
 }
 
@@ -110,8 +114,15 @@ function convertExercise($exerciseID) {
 		case 'multiplechoice':
 			$exercise = new MultipleChoice($xml);
 			break;
+		case 'quiz':
+			$exercise = new Quiz($xml);
+			break;
 		case 'targetspotting':
+		case 'proofreading':
 			$exercise = new TargetSpotting($xml);
+			break;
+		case 'errorcorrection':
+			$exercise = new ErrorCorrection($xml);
 			break;
 		default;
 			//throw new Exception("unknown exercise type $type");
@@ -119,7 +130,7 @@ function convertExercise($exerciseID) {
 			return;
 	}
 	// At the end of construction, you can check the object if you want
-	//echo $exercise->toString();
+	echo $exercise->toString();
 	
 	// Then create an output function
 	switch (strtolower($type)) {

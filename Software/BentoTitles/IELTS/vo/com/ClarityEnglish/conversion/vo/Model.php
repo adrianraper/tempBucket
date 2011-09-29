@@ -100,7 +100,7 @@ XML;
 				}
 			}
 		// For a gapfil, the questions have their source as the gaps
-		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL) {
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:gap" group="1" id="1">
 			//		<answer correct="true">chess</answer>
@@ -120,6 +120,26 @@ XML;
 				}
 				//echo $newQ;
 			}
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && $this->getParent()->isQuestionBased()) {
+			// Each question has its own fields
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("GapFillQuestion");
+				//$newQ->addAttribute('source',$field->getID());
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				//$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('group','q'.$question->getID());
+				foreach ($question->getFields() as $field) {
+					// You can have multiple answers per field
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						$newA->addAttribute('source',$field->getID());
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+				}
+			}
+			
 		// For a dropdown, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN) {
 			$generateID=1;
@@ -147,6 +167,43 @@ XML;
 				//echo $newQ;
 			}
 		// For a targetspotting, the questions have their source as the gaps
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_ERRORCORRECTION) {
+			foreach ($this->getParent()->body->getFields() as $field) {
+			//	<field gapLength="1" group="1" id="1" mode="0" type="i:targetGap">
+			//		<answer correct="false">poorly</answer>
+			//		<answer correct="true">low-income</answer>
+			//		<answer correct="true">low income</answer>
+			//	</field>
+			//	<ErrorCorrectionQuestion >
+			//		<answer correct="true" source="1" >
+			//			<feedback id="fb1" source="fb1" />
+			//		</answer>
+			//	</ErrorCorrectionQuestion>
+				
+				$newQ = $this->model->questions->addChild("ErrorCorrectionQuestion");
+				$newQ->addAttribute('source',$field->getID());
+				$newQ->addAttribute('group',$field->group);
+				foreach ($field->getAnswers() as $answer) {
+					$newA = $newQ->addChild('answer');
+					$newA->addAttribute('value',$answer->getAnswer());
+					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					// Is there any feedback to be added to the model related to this answer?
+				}
+				//echo $newQ;
+				// Is there any feedback to be added to the model related to this field?
+				// NOTE: This code assumes that there is only one answer in the field 
+				if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+					foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+						// Is this feedback for this field?
+						if ($feedback->getID()==$field->getID()) {
+							$newFB = $newA->addChild('feedback');	
+							$newFB->addAttribute('source',$field->getID());
+							break;
+						}
+					}
+				}
+			}
+    	// For a targetspotting, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_TARGETSPOTTING) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:target" id="1">
@@ -214,7 +271,8 @@ XML;
 				}
 			}
 			// For a multiple choice, the questions have their source as the gaps and blocks
-		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) {
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE ||
+					$this->type==Exercise::EXERCISE_TYPE_QUIZ) {
 			// Each question has its own fields
 			foreach ($this->getParent()->body->getQuestions() as $question) {
 				$newQ = $this->model->questions->addChild("MultipleChoiceQuestion");

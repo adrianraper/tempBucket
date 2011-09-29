@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="quiz" date="2011-09-29" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="1" correct="true"/><answer source="2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="3" correct="true"/><answer source="4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="5" correct="false"/><answer source="6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="7" correct="false"/><answer source="8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="9" correct="true"/><answer source="10" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="11" correct="false"/><answer source="12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="13" correct="true"/><answer source="14" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="15" correct="false"/><answer source="16" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="17" correct="false"/><answer source="18" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="19" correct="false"/><answer source="20" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Listen to Part One of an interview with Zenia. Are the following statements true or false?
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><br/><li id="q1">The Examiner introduces herself to the candidate.<a id="1" >True</a><tab/><a id="2" >False</a><br/></li><br/><li id="q2">Zenia has to give the Examiner her full name.<a id="3" >True</a><tab/><a id="4" >False</a><br/></li><br/><li id="q3">Zenia does not need to produce identification.<a id="5" >True</a><tab/><a id="6" >False</a><br/></li><br/><li id="q4">The candidate has a turn to ask questions.<a id="7" >True</a><tab/><a id="8" >False</a><br/></li><br/><li id="q5">The candidate is asked where she comes from.<a id="9" >True</a><tab/><a id="10" >False</a><br/></li><br/><li id="q6">The candidate asks the Examiner her name.<a id="11" >True</a><tab/><a id="12" >False</a><br/></li><br/><li id="q7">Zenia is asked to describe her home town.<a id="13" >True</a><tab/><a id="14" >False</a><br/></li><br/><li id="q8">The Examiner asks Zenia about her family.<a id="15" >True</a><tab/><a id="16" >False</a><br/></li><br/><li id="q9">The candidate is asked where she was born.<a id="17" >True</a><tab/><a id="18" >False</a><br/></li><br/><li id="q10">The Examiner asks Zenia to talk about her life.<a id="19" >True</a><tab/><a id="20" >False</a><br/></li></ol><media class="leftFloat" src="../Media/Unit01_e3.flv" mode="1" id="1003"  />
+</section>
+<section id="fb1">
+	<p align="left">1. When you give your name to someone this is an introduction.</p>
+</section>
+<section id="fb2">
+	<p align="left">2. This is important so that the Examiner can check the candidate's identity.</p>
+</section>
+<section id="fb3">
+	<p align="left">3. Identification is essential, you can't take the exam without it.</p>
+</section>
+<section id="fb4">
+	<p align="left">4. The Examiner asks all the questions.</p>
+</section>
+<section id="fb5">
+	<p align="left">5. This is one of the first questions the Examiner will ask.</p>
+</section>
+<section id="fb6">
+	<p align="left">6. The Examiner gives her name without the candidate having to ask. </p>
+</section>
+<section id="fb7">
+	<p align="left">7. She doesn't have to go into lots of detail but gives a short description.</p>
+</section>
+</body>
+</bento>

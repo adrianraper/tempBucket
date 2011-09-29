@@ -64,6 +64,9 @@
 						<exercise unit="6" id="1156153794271" caption="Watch%20a%20video%20%283%29" href="Courses/1150976390861/Exercises/1156153794271.xml" action="1156153794271" exerciseID="1156153794271" enabledFlag="3"/>
 						<exercise unit="6" id="1156153794218" caption="Watch%20a%20video%20%284%29" href="Courses/1150976390861/Exercises/1156153794218.xml" action="1156153794218" exerciseID="1156153794218" enabledFlag="3"/>
 					</unit>
+					<unit caption="Others" unit="7" id="1156153794458">
+						<exercise unit="7" id="1317260895296" caption="Correct mistakes" href="Courses/1150976390861/Exercises/1317260895296.xml" enabledFlag="3"/>
+					</unit>
 				</course>
 			</menu>
 		</script>
