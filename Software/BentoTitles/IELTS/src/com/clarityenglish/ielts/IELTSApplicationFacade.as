@@ -5,6 +5,8 @@
 	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
+	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.login.LoginView;
 	import com.clarityenglish.ielts.view.menu.MenuMediator;
 	import com.clarityenglish.ielts.view.menu.MenuView;
@@ -27,12 +29,15 @@
 		override protected function initializeController():void {
 			super.initializeController();
 			
+			// Map IELTS specific views to their mediators
 			mapView(LoginView, LoginMediator);
 			mapView(MenuView, MenuMediator);
 			mapView(ModuleView, ModuleMediator);
+			mapView(ExerciseView, ExerciseMediator);
 			mapView(ProgressView, ProgressMediator);
 			mapView(AccountView, AccountMediator);
 			
+			// Register IELTS specific commands
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
 		}
 		

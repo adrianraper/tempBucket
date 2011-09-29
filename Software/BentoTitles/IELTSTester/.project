@@ -3,6 +3,10 @@
 	<name>IELTSTester</name>
 	<comment></comment>
 	<projects>
+		<project>Bento</project>
+		<project>Bento-Content</project>
+		<project>csslib</project>
+		<project>textLayout</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

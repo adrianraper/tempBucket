@@ -15,9 +15,9 @@
 						<exercise href="reading/advicezone.xml" caption="Watch the teacher giving advice" />
 					</unit>
 					<unit class="practice-zone">
-						<exercise href="reading/exercise1.xml" caption="Understanding static charts" />
-						<exercise href="reading/exercise2.xml" caption="Linking words and phrases (1)" />
-						<exercise href="reading/exercise3.xml" caption="Linking words and phrases (2)" />
+						<exercise href="reading/exercises/exercise1.xml" caption="Understanding static charts" />
+						<exercise href="reading/exercises/exercise2.xml" caption="Linking words and phrases (1)" />
+						<exercise href="reading/exercises/exercise3.xml" caption="Linking words and phrases (2)" />
 					</unit>
 				</course>
 				

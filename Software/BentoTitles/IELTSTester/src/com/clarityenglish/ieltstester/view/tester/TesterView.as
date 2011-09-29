@@ -13,7 +13,7 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_CAPTION:String = "trac5";
+		private static const STARTING_CAPTION:String = "trac7";
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;
@@ -51,9 +51,8 @@ package com.clarityenglish.ieltstester.view.tester {
 		protected function onMenuTreeChange(event:IndexChangeEvent):void {
 			var selectedNode:XML = event.target.selectedItem;
 			
-			if (selectedNode && selectedNode.name() == "exercise") {
-				dynamicView.href = new Href(Href.EXERCISE, selectedNode.@href, href.rootPath);
-			}
+			if (selectedNode && selectedNode.name() == "exercise")
+				dynamicView.href = href.createRelativeHref(Href.EXERCISE, selectedNode.@href);
 			
 		}
 		

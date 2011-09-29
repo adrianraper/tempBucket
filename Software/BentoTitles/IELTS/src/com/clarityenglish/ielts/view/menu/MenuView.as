@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.menu {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.module.ModuleView;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
@@ -25,7 +27,17 @@ package com.clarityenglish.ielts.view.menu {
 		public var moduleView:ModuleView;
 		
 		[SkinPart]
+		public var exerciseView:ExerciseView;
+		
+		[SkinPart]
 		public var progressView:ProgressView;
+		
+		private var currentExerciseHref:Href;
+		
+		public function showExercise(exerciseHref:Href):void {
+			currentExerciseHref = exerciseHref;
+			invalidateSkinState();
+		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
@@ -41,8 +53,11 @@ package com.clarityenglish.ielts.view.menu {
 					mainTabBar.addEventListener(Event.CHANGE, onMainTabBarIndexChange);
 					break;
 				case moduleView:
-					// Pass on the same href to the module view
+					// The module view runs off the same href as the menu view, so directly inject it 
 					instance.href = href;
+					break;
+				case exerciseView:
+					exerciseView.href = currentExerciseHref;
 					break;
 			}
 		}
@@ -53,6 +68,9 @@ package com.clarityenglish.ielts.view.menu {
 		 * @return 
 		 */
 		protected override function getCurrentSkinState():String {
+			if (currentExerciseHref)
+				return "exercise";
+			
 			return (mainTabBar && mainTabBar.selectedItem) ? mainTabBar.selectedItem.data : null;
 		}
 		

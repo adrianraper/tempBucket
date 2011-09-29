@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.ielts.view.menu {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -37,7 +39,7 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				IELTSNotifications.EXERCISE_SELECT,
 			]);
 		}
 		
@@ -45,7 +47,10 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case IELTSNotifications.EXERCISE_SELECT:
+					var href:Href = note.getBody() as Href;
+					view.showExercise(href);
+					break;
 			}
 		}
 		

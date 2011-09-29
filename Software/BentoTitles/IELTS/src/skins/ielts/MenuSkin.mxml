@@ -5,7 +5,7 @@
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:module="com.clarityenglish.ielts.view.module.*"
 		xmlns:progress="com.clarityenglish.ielts.view.progress.*"
-		xmlns:account="com.clarityenglish.ielts.view.account.*">
+		xmlns:account="com.clarityenglish.ielts.view.account.*" xmlns:exercise="com.clarityenglish.ielts.view.exercise.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.menu.MenuView")]
@@ -43,6 +43,7 @@
 			<module:ModuleView id="moduleView" width="100%" height="100%" includeIn="module" />
 			<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />
 			<account:AccountView id="accountView" width="100%" height="100%" includeIn="account" />
+			<exercise:ExerciseView id="exerciseView" width="100%" height="100%" includeIn="exercise" />
 		</s:Group>
 		
 		<s:VGroup>

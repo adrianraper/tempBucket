@@ -1,18 +1,22 @@
 package com.clarityenglish.ielts.view.module {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.module.ui.ButtonItemRenderer;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
+	
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
 	import spark.components.DataRenderer;
 	import spark.components.Label;
 	import spark.components.TabBar;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	public class ModuleView extends BentoView {
 		
@@ -24,6 +28,9 @@ package com.clarityenglish.ielts.view.module {
 		
 		[SkinPart(required="true")]
 		public var courseDescriptionLabel:Label;
+		
+		[SkinPart(required="true")]
+		public var questionZoneButton:Button;
 		
 		[SkinPart(required="true")]
 		public var examPractice1Button:Button;
@@ -40,8 +47,13 @@ package com.clarityenglish.ielts.view.module {
 		[SkinPart(required="true")]
 		public var practiceZoneDataGroup:DataGroup;
 		
+		[SkinPart(required="true")]
+		public var adviceZoneButton:Button;
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
+		
+		public var exerciseSelect:Signal = new Signal(Href);
 		
 		public function set course(value:XML):void {
 			_course = value;
@@ -79,7 +91,7 @@ package com.clarityenglish.ielts.view.module {
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName,instance);
+			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case courseTabBar:
@@ -87,7 +99,22 @@ package com.clarityenglish.ielts.view.module {
 					courseTabBar.addEventListener(Event.CHANGE, onCourseTabBarIndexChange);
 					break;
 				case practiceZoneDataGroup:
+					// Create a signal and listener for the button item renderer
+					var exerciseClick:Signal = new Signal(XML);
+					exerciseClick.add(function(xml:XML):void {
+						// Fire the exerciseSelect signal
+						exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, xml.@href));
+					} );
+					
+					// Create the item renderer and inject the signal into it
 					practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
+					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };
+					break;
+				case questionZoneButton:
+				case examPractice1Button:
+				case examPractice2Button:
+				case adviceZoneButton:
+					instance.addEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
 			}
 		}
@@ -99,6 +126,33 @@ package com.clarityenglish.ielts.view.module {
 		 */
 		protected function onCourseTabBarIndexChange(event:Event):void {
 			course = event.target.selectedItem;
+		}
+				
+		/**
+		 * The user has selected an exercise
+		 * 
+		 * @param event
+		 */
+		protected function onExerciseClick(event:MouseEvent):void {
+			// Get the appropriate href based on which button was pressed
+			var hrefFilename:String;
+			switch (event.target) {
+				case questionZoneButton:
+					hrefFilename = _course.unit.(attribute("class") == "question-zone").exercise[0].@href;
+					break;
+				case examPractice1Button:
+					hrefFilename = _course.unit.(attribute("class") == "exam-practice").exercise[0].@href;
+					break;
+				case examPractice2Button:
+					hrefFilename = _course.unit.(attribute("class") == "exam-practice").exercise[1].@href;
+					break;
+				case adviceZoneButton:
+					hrefFilename = _course.unit.(attribute("class") == "advice-zone").exercise[0].@href;
+					break;
+			}
+			
+			// Fire the exerciseSelect signal
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, hrefFilename));
 		}
 		
 	}

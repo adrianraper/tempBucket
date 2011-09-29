@@ -31,8 +31,19 @@ package com.clarityenglish.bento.vo {
 			return url.replace(/\/(\w|\d|\.|-)*$/, "");
 		}
 		
+		/**
+		 * Create a new Href relative to this href (this simply means that currentDir is set to this Href's currentDir)
+		 * 
+		 * @param type
+		 * @param filename
+		 * @return 
+		 */
+		public function createRelativeHref(type:String, filename:String):Href {
+			return new Href(type, filename, rootPath);
+		}
+		
 		public function toString():String {
-			return "[Href filename=" + filename + " currentDir=" + currentDir + "]";
+			return "[Href type=" + type + " filename=" + filename + " currentDir=" + currentDir + "]";
 		}
 		
 	}

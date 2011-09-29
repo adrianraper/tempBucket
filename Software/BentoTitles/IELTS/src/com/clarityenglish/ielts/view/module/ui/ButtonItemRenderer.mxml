@@ -6,6 +6,9 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import org.osflash.signals.Signal;
+			
+			public var exerciseClick:Signal;
 			
 			public override function set data(value:Object):void {
 				super.data = value;
@@ -13,9 +16,13 @@
 				button.label = data.@caption;
 			}
 			
+			protected function onClick(event:MouseEvent):void {
+				exerciseClick.dispatch(data);
+			}
+			
 		]]>
 	</fx:Script>
 	
-	<s:Button id="button" />
+	<s:Button id="button" click="onClick(event)" />
 	
 </s:ItemRenderer>

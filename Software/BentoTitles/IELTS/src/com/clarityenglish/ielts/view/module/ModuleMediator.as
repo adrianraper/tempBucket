@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.ielts.view.module {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -18,42 +20,39 @@
 			return viewComponent as ModuleView;
 		}
 		
-		/**
-		 * Setup event listeners and register sub-mediators
-		 */
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.exerciseSelect.add(onExerciseSelect);
+		}
+		
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.exerciseSelect.removeAll();
 		}
         
-		/**
-		 * List all notifications this Mediator is interested in.
-		 * <P>
-		 * Automatically called by the framework when the mediator
-		 * is registered with the view.</P>
-		 * 
-		 * @return Array the list of Nofitication names
-		 */
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				
 			]);
 		}
-
-		/**
-		 * Handle all notifications this Mediator is interested in.
-		 * <P>
-		 * Called by the framework when a notification is sent that
-		 * this mediator expressed an interest in when registered
-		 * (see <code>listNotificationInterests</code>.</P>
-		 * 
-		 * @param INotification a notification 
-		 */
+		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		/**
+		 * An exercise was selected
+		 * 
+		 * @param href
+		 */
+		private function onExerciseSelect(href:Href):void {
+			sendNotification(IELTSNotifications.EXERCISE_SELECT, href);
 		}
 		
 	}

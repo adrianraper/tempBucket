@@ -27,7 +27,7 @@
 			<s:VGroup width="40%">
 				<s:Label text="Question zone" fontWeight="bold" />
 				<s:Label width="100%" text="Read about the possible questions that will arise in the IELTS exam." />
-				<s:Button label="Click to read" />
+				<s:Button id="questionZoneButton" label="Click to read" />
 			</s:VGroup>
 			
 			<s:Line height="100%">
@@ -71,6 +71,7 @@
 			<s:VGroup width="40%">
 				<s:Label text="Advice zone" fontWeight="bold" />
 				<s:Label text="Watch the teacher giving advice..." />
+				<s:Button id="adviceZoneButton" label="Click to play" />
 			</s:VGroup>
 		</s:HGroup>
 	</s:VGroup>
