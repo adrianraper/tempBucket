@@ -12,6 +12,7 @@ package com.clarityenglish.textLayout.rendering {
 	import flashx.textLayout.container.ContainerController;
 	import flashx.textLayout.elements.InlineGraphicElement;
 	import flashx.textLayout.elements.InlineGraphicElementStatus;
+	import flashx.textLayout.elements.OverflowPolicy;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
@@ -109,6 +110,10 @@ package com.clarityenglish.textLayout.rendering {
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						calculatedWidth = width * childRenderFlow._textFlow.percentWidth / 100;
 						break;
+				}
+				
+				if (childRenderFlow._textFlow.overflow == FloatableTextFlow.OVERFLOW_HIDDEN) {
+					calculatedWidth = width - 200;
 				}
 				
 				var calculatedHeight:Number;

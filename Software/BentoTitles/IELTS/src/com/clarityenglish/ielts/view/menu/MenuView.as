@@ -6,9 +6,11 @@ package com.clarityenglish.ielts.view.menu {
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
 	
+	import spark.components.Button;
 	import spark.components.TabBar;
 	
 	[SkinState("module")]
@@ -22,6 +24,9 @@ package com.clarityenglish.ielts.view.menu {
 		
 		[SkinPart]
 		public var courseTabBar:TabBar;
+		
+		[SkinPart]
+		public var backButton:Button;
 		
 		[SkinPart]
 		public var moduleView:ModuleView;
@@ -52,12 +57,29 @@ package com.clarityenglish.ielts.view.menu {
 					mainTabBar.requireSelection = true;
 					mainTabBar.addEventListener(Event.CHANGE, onMainTabBarIndexChange);
 					break;
+				case backButton:
+					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
+					break;
 				case moduleView:
 					// The module view runs off the same href as the menu view, so directly inject it 
 					instance.href = href;
 					break;
 				case exerciseView:
+					log.info("added exercise view");
 					exerciseView.href = currentExerciseHref;
+					break;
+			}
+		}
+		
+		protected override function partRemoved(partName:String, instance:Object):void {
+			super.partRemoved(partName, instance);
+			
+			switch (instance) {
+				case mainTabBar:
+					mainTabBar.removeEventListener(Event.CHANGE, onMainTabBarIndexChange);
+					break;
+				case backButton:
+					backButton.removeEventListener(MouseEvent.CLICK, onBackButtonClick);
 					break;
 			}
 		}
@@ -81,6 +103,15 @@ package com.clarityenglish.ielts.view.menu {
 		 */
 		protected function onMainTabBarIndexChange(event:Event):void {
 			invalidateSkinState();
+		}
+		
+		/**
+		 * The user has clicked the back button to get out of an exercise, so clear the current exercise
+		 * 
+		 * @param event
+		 */
+		protected function onBackButtonClick(event:MouseEvent):void {
+			showExercise(null);
 		}
 		
 	}

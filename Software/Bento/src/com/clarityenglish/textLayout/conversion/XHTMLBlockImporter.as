@@ -176,12 +176,15 @@ package com.clarityenglish.textLayout.conversion {
 			// Images are never seperate flows as TLF deals with them already
 			if (name == "img")
 				return false;
-			
+				
 			// Floats are always seperate flows
 			if (style.float == FloatableTextFlow.FLOAT_LEFT || style.float == FloatableTextFlow.FLOAT_RIGHT)
 				return true;
 			
 			if (style.position == FloatableTextFlow.POSITION_RELATIVE)
+				return true;
+			
+			if (style.overflow == FloatableTextFlow.OVERFLOW_HIDDEN)
 				return true;
 			
 			// Not sure about this yet...
@@ -405,6 +408,8 @@ package com.clarityenglish.textLayout.conversion {
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
 			if (style.position) element.position = style.position;
+			if (style.display) element.display = style.display;
+			if (style.overflow) element.overflow = style.overflow;
 			if (style.width) element.width = style.width;
 			if (style.height) element.height = style.height;
 			if (style.float) element.float = style.float;

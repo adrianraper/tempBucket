@@ -3,6 +3,11 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
+	
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	/**
@@ -12,6 +17,11 @@ package com.clarityenglish.bento.view.base {
 	 */
 	[Event(name="hrefChanged", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
 	public class BentoView extends SkinnableComponent {
+		
+		/**
+		 * Standard flex logger
+		 */
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var _href:Href;
 		private var _hrefChanged:Boolean = false;

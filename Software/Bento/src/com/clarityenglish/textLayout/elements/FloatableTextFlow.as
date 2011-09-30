@@ -23,10 +23,18 @@ package com.clarityenglish.textLayout.elements {
 		
 		public static const POSITION_STATIC:String = "static";
 		public static const POSITION_RELATIVE:String = "relative";
-		public static const POSITION_ABSOLUTE:String = "absolute";
+		public static const POSITION_ABSOLUTE:String = "absolute"; // TODO: not yet implemented
 		
-		// TODO: Not yet implemented
+		public static const DISPLAY_INLINE:String = "inline";
+		
+		public static const OVERFLOW_VISIBLE:String = "visible";
+		public static const OVERFLOW_HIDDEN:String = "hidden";
+		
 		public var position:String = POSITION_STATIC;
+		
+		public var display:String = DISPLAY_INLINE;
+		
+		public var overflow:String = OVERFLOW_VISIBLE;
 		
 		public var float:String = FLOAT_NONE;
 		

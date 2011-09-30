@@ -23,7 +23,7 @@ package com.clarityenglish.ielts.view {
 			super.onRegister();
 			
 			// For now hardcode the menu file and the path
-			view.menuView.href = new Href(Href.XHTML, "menu.xml", "../../../../Content/IELTS-Dave");
+			view.menuView.href = new Href(Href.XHTML, "menu.xml", "http://dock.projectbench/Content/IELTS-Dave");
 		}
 		
 		/**

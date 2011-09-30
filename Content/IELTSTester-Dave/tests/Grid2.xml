@@ -5,12 +5,46 @@
 		<style type="text/css" >
 		<![CDATA[
 			body {
-				display: inline;
+				
+			}
+			
+			/*#questionList {
+				float: left;
+
+				min-width: 200px;
+			}
+			
+			#imageGrid {
+				float: right;
+				width: 70%;
+			}*/
+			
+			/*#questionList {
+				float: left;
+				width: 200px;
+			}
+			
+			#imageGrid {
+				overflow: hidden;
+			}*/
+			
+			/*#body {
+				
 			}
 			
 			#questionList {
-				float: left;
-				width: 200px;	
+				display: table-cell;
+				vertical-align: top;
+				width: 200px;
+			}
+			
+			#imageGrid {
+				display: table-cell;
+			}*/
+			
+			#body {
+				display: box;
+				flex-orient: horizontal;
 			}
 		]]>
 		</style>
@@ -22,7 +56,7 @@
 		
 		<section id="body">
 			<div id="questionList">
-				<list>
+				<ol>
 					<li><input /></li>
 					<li><input /></li>
 					<li><input /></li>
@@ -31,7 +65,7 @@
 					<li><input /></li>
 					<li><input /></li>
 					<li><input /></li>
-				</list>
+				</ol>
 			</div>
 			
 			<div id="imageGrid">
@@ -47,7 +81,20 @@
 				<img src="media/cell10.png" />
 				<img src="media/cell11.png" />
 				<img src="media/cell12.png" />
+				<img src="media/cell1.png" />
+				<img src="media/cell2.png" />
+				<img src="media/cell3.png" />
+				<img src="media/cell4.png" />
+				<img src="media/cell5.png" />
+				<img src="media/cell6.png" />
+				<img src="media/cell7.png" />
+				<img src="media/cell8.png" />
+				<img src="media/cell9.png" />
+				<img src="media/cell10.png" />
+				<img src="media/cell11.png" />
+				<img src="media/cell12.png" />
 			</div>
+			
 		</section>
 	</body>
 	
