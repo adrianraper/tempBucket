@@ -12,6 +12,7 @@ package com.clarityenglish.ielts.view.menu {
 	
 	import spark.components.Button;
 	import spark.components.TabBar;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	[SkinState("module")]
 	[SkinState("progress")]
@@ -41,6 +42,7 @@ package com.clarityenglish.ielts.view.menu {
 		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
+			if (exerciseView) exerciseView.href = currentExerciseHref;
 			invalidateSkinState();
 		}
 		
@@ -65,7 +67,6 @@ package com.clarityenglish.ielts.view.menu {
 					instance.href = href;
 					break;
 				case exerciseView:
-					log.info("added exercise view");
 					exerciseView.href = currentExerciseHref;
 					break;
 			}

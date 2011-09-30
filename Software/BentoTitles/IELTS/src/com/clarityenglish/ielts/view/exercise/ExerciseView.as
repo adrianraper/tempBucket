@@ -8,14 +8,10 @@ package com.clarityenglish.ielts.view.exercise {
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
 		
-		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName,instance);
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
 			
-			switch (instance) {
-				case dynamicView:
-					dynamicView.href = href;
-					break;
-			}
+			dynamicView.href = href;
 		}
 		
 	}
