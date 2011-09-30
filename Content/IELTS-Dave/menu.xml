@@ -8,8 +8,8 @@
 						<exercise href="reading/questionzone.xml" />
 					</unit>
 					<unit class="exam-practice">
-						<exercise href="reading/practice1.xml" caption="Reading practice paper Pt1" difficulty="1" />
-						<exercise href="reading/practice2.xml" caption="Reading practice paper Pt2" difficulty="2" />
+						<exercise href="reading/practice1.pdf" caption="Reading practice paper Pt1" difficulty="1" />
+						<exercise href="reading/practice2.pdf" caption="Reading practice paper Pt2" difficulty="2" />
 					</unit>
 					<unit class="advice-zone">
 						<exercise href="reading/advicezone.xml" caption="Watch the teacher giving advice" />

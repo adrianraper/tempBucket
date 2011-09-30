@@ -17,6 +17,11 @@ package com.clarityenglish.bento.vo {
 			this.currentDir = currentDir;
 		}
 		
+		/**
+		 * Get the full url including the current dir and filename
+		 * 
+		 * @return 
+		 */
 		public function get url():String {
 			return ((currentDir) ? currentDir + "/" : "") + filename;
 		}
@@ -29,6 +34,16 @@ package com.clarityenglish.bento.vo {
 		 */
 		public function get rootPath():String {
 			return url.replace(/\/(\w|\d|\.|-)*$/, "");
+		}
+		
+		/**
+		 * Get the extension of the filename
+		 * 
+		 * @return  
+		 */
+		public function get extension():String {
+			var matches:Array = filename.match(/\.([^\.]+)$/);
+			return (matches.length == 2) ? matches[1].toLowerCase() : null;
 		}
 		
 		/**

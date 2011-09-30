@@ -39,7 +39,7 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				IELTSNotifications.EXERCISE_SELECT,
+				IELTSNotifications.EXERCISE_SHOW,
 			]);
 		}
 		
@@ -47,7 +47,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case IELTSNotifications.EXERCISE_SELECT:
+				case IELTSNotifications.EXERCISE_SHOW:
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
 					break;

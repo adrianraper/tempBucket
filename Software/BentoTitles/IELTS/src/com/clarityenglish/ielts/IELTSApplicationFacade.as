@@ -2,6 +2,8 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
+	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
@@ -38,6 +40,8 @@
 			mapView(AccountView, AccountMediator);
 			
 			// Register IELTS specific commands
+			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
+			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
 		}
 		

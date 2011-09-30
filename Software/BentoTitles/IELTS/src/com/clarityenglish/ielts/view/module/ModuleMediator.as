@@ -47,12 +47,12 @@
 		}
 		
 		/**
-		 * An exercise was selected
+		 * An exercise was selected.  Based on the extension of the Href we either want to open an exercise or open a pdf.
 		 * 
 		 * @param href
 		 */
 		private function onExerciseSelect(href:Href):void {
-			sendNotification(IELTSNotifications.EXERCISE_SELECT, href);
+			sendNotification(IELTSNotifications.HREF_SELECTED, href);
 		}
 		
 	}
