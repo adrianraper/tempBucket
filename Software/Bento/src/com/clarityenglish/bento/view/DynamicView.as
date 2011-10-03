@@ -35,8 +35,15 @@ package com.clarityenglish.bento.view {
 				contentGroup.removeElementAt(0);
 			
 			// Determine the dynamic view .  If no view is defined then use the default XHTMLExerciseView.
-			var viewName:String = exercise.model.view || "com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView";
-			var classReference:Class = getDefinitionByName(viewName) as Class;
+			var viewName:String = (exercise.model && exercise.model.view) || "com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView";
+			
+			try {
+				var classReference:Class = getDefinitionByName(viewName) as Class;
+			} catch (e:ReferenceError) {
+				log.error("Unable to get a reference to the dynamic view; perhaps the name is wrong? {0}", viewName);
+				return;
+			}
+			
 			var view:Object = new classReference();
 			
 			if (view is BentoView) {
@@ -45,8 +52,8 @@ package com.clarityenglish.bento.view {
 				bentoView.percentWidth = bentoView.percentHeight = 100;
 				bentoView.href = href;
 				contentGroup.addElement(bentoView);
-			} if (!view) {
-				log.error("Instantiating the dynamic view produced null. Either the dynamic view wasn't embedded in the swf or the name was wrong? {0}", viewName);
+			} else if (!view) {
+				log.error("Instantiating the dynamic view produced null. Perhaps the dynamic view wasn't embedded in the swf? {0}", viewName);
 			} else {
 				log.error("The passed in view was not a BentoView - {0}", viewName);
 			}

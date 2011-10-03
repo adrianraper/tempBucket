@@ -28,8 +28,8 @@ package com.clarityenglish.bento.vo.content.model {
 			return xml.view.name.toString();
 		}
 		
-		public function get viewParams():XMLList {
-			return xml.view.params;
+		public function getViewParam(paramName:String):String {
+			return xml.view.param.(@name == paramName).@value.toString();
 		}
 		
 		/**

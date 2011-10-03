@@ -4,9 +4,7 @@
 		<script id="model" type="application/xml">
 			<view>
 				<name>com.clarityenglish.bento.view.swfplayer.SWFPlayerView</name>
-				<params>
-					<href>reading/u1_ebook.swf</href>
-				</params>
+				<param name="src" value="reading/u1_ebook.swf" />
 			</view>
 		</script>
 	</head>
