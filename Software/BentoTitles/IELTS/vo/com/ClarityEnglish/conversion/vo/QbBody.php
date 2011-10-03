@@ -91,6 +91,10 @@ class QbBody {
 		global $newline;
 		//echo "output qbBody";
 		$buildText = '';
+		// Also output the common mediaNodes. These are likely to be first.
+		foreach($this->mediaNodes as $mediaNode) {
+			$buildText.=$mediaNode->output();
+		}
 		// Here we output the common stuff
 		$buildText .= $newline.'<ol id="questionList">';
 		// Then for each question
@@ -98,10 +102,6 @@ class QbBody {
 			$buildText.= $question->output();
 		}
 		$buildText .= '</ol>';
-		// Also output the common mediaNodes
-		foreach($this->mediaNodes as $mediaNode) {
-			$buildText.=$mediaNode->output();
-		}
 		return $buildText;
 	}
 	function toString() {

@@ -9,11 +9,15 @@
 		[HostComponent("com.clarityenglish.ieltstester.view.tester.TesterView")]
 	</fx:Metadata>
 	
+	<!-- to see effect of resizing, use a divided box -->
+	<!--
 	<s:layout>
 		<s:HorizontalLayout />
 	</s:layout>
-	
-	<sparkTree:Tree id="menuTree" width="300" height="100%" />
-	<view:DynamicView id="dynamicView" width="100%" height="100%" />
+	-->
+	<mx:HDividedBox width="100%" height="100%" >
+		<sparkTree:Tree id="menuTree" width="30%" height="100%" />
+		<view:DynamicView id="dynamicView" width="70%" height="100%" />
+	</mx:HDividedBox>
 	
 </s:Skin>

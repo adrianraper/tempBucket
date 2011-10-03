@@ -18,6 +18,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Body.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/QbBody.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Feedbacks.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Feedback.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Text.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/NoScroll.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Paragraph.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/MediaNode.php");
@@ -71,7 +72,8 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	//$exerciseID = '1156153794851'; // target spotting with feedback
 	//$exerciseID = '1156153794618'; // stopgap (q based gapfill)
 	//$exerciseID = '1156153794077'; // quiz
-	$exerciseID = '1317260895296'; // correct mistakes (not R2I)
+	//$exerciseID = '1317260895296'; // correct mistakes (not R2I)
+	$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
 	convertExercise($exerciseID);
 }
 
@@ -81,6 +83,7 @@ function convertExercise($exerciseID) {
 	global $exerciseURL;
 	global $outURL;
 	global $newline;
+	global $plainView;
 	//echo "checking on $exerciseID $newline";
 	$infile = $exerciseFolder.$exerciseID.'.xml';
 	$outfile = $exerciseFolderOut.$exerciseID.'.xml';
@@ -130,7 +133,7 @@ function convertExercise($exerciseID) {
 			return;
 	}
 	// At the end of construction, you can check the object if you want
-	echo $exercise->toString();
+	if ($plainView) echo $exercise->toString();
 	
 	// Then create an output function
 	switch (strtolower($type)) {

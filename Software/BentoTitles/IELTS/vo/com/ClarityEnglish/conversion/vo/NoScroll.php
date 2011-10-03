@@ -25,7 +25,9 @@ class NoScroll extends Content{
 		}
 		// <tab>[21]<tab>[30]<tab>[27]<tab>[22]
 		// change <tab> to correct <tab/>
-		$builder = str_replace('<tab>', '<tab/>', $builder);
+		// Or should we drop all tabs altogether and just use span floats?
+		//$builder = str_replace('<tab>', '<tab/>', $builder);
+		$builder = str_replace('<tab>', '', $builder);
 		
 		$pattern = '/([^\[]*)[\[]([\d]+)[\]]/is';
 		$buildText='';

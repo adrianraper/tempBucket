@@ -108,11 +108,18 @@ class MediaNode {
 			case 'audio':
 				$build.= '<audio '; 
 				break;
+			case 'video':
+				$build.= '<video '; 
+				break;
+			// Possibly other media nodes will be blocked as they were hacks
+			case 'text':
+				return '';
+				break;
 			default:
 				$build.= '<media ';
 		}
 		// Then based on the x and y we will position it somehow
-		if ($this->x>=500 && $this->y<=100) {
+		if ($this->x>=100 && $this->y<=100) {
 			$build.= 'class="rightFloat" ';
 		} else {	
 			$build.= 'class="leftFloat" ';

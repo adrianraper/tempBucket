@@ -8,7 +8,7 @@
 						addedToStage="addedToStage(event)">
 	
 	<fx:Metadata>
-		[SWF(width=800, height=600)]
+		[SWF(width=900, height=600)]
 	</fx:Metadata>
 	
 	<fx:Style source="ieltstester.css" />
@@ -53,8 +53,8 @@
 	<s:ButtonBar id="buttonBar" requireSelection="true" change="onButtonBarChange(event)">
 		<s:dataProvider>
 			<s:ArrayCollection>
-				<fx:Object label="IELTSTester-Dave" filename="menu.xml" currentDir="http://dock.projectbench/Content/IELTSTester-Dave" />
-				<fx:Object label="IELTSTester-Adrian" filename="menu.xml" currentDir="http://dock.projectbench/Content/RoadToIELTS2-Academic" />
+				<fx:Object label="Test cases" filename="menu.xml" currentDir="http://dock.projectbench/Content/IELTSTester-Dave" />
+				<fx:Object label="Road to IELTS" filename="menu.xml" currentDir="http://dock.projectbench/Content/RoadToIELTS2-Academic" />
 			</s:ArrayCollection>
 		</s:dataProvider>
 	</s:ButtonBar>

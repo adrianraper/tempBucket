@@ -135,15 +135,17 @@ class Content{
 		} else {
 			$buildText='';
 			$lastTagType = null;
+			// Images that are going to float top-right need to be output first.
+			// This is most of them.
+			foreach ($this->getMediaNodes() as $mediaNode) {
+				$buildText.=$mediaNode->output();
+			}
 			foreach ($this->getParagraphs() as $paragraph) {
 				// Keep track of any paragraph that is a different tag type than the previous one
 				$thisTagType = $paragraph->getTagType();
 				$buildText.=$paragraph->output($lastTagType,$thisTagType);
 				$lastTagType = $thisTagType;
 			}		
-			foreach ($this->getMediaNodes() as $mediaNode) {
-				$buildText.=$mediaNode->output();
-			}
 		}
 		// Whatever happens there are some characters I want to replace
 		// non-breaking space special characters
@@ -161,13 +163,20 @@ class Content{
 	// Special output functions
 	// Should this be somewhere else?
 	function bodyOutput($exerciseType) {
-		$builder='';
-		if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP ||
-			$exerciseType==Exercise::EXERCISE_TYPE_GAPFILL ||
-			$exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING ||
-			$exerciseType==Exercise::EXERCISE_TYPE_ERRORCORRECTION ||
-			$exerciseType==Exercise::EXERCISE_TYPE_DROPDOWN) {
+		$buildText='';
+		// Images that are going to float top-right need to be output first.
+		// This is most of them.
+		foreach ($this->getMediaNodes() as $mediaNode) {
+			$buildText.=$mediaNode->output();
+		}
+		// Doesn't seem a need for a condition here	
+		//if ($exerciseType==Exercise::EXERCISE_TYPE_DRAGANDDROP ||
+		//	$exerciseType==Exercise::EXERCISE_TYPE_GAPFILL ||
+		//	$exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING ||
+		//	$exerciseType==Exercise::EXERCISE_TYPE_ERRORCORRECTION ||
+		//	$exerciseType==Exercise::EXERCISE_TYPE_DROPDOWN) {
 			// You need to output all the paragraphs. 
+			$builder='';
 			$lastTagType = null;
 			foreach ($this->getParagraphs() as $paragraph) {
 				// Keep track of any paragraph that is a different tag type than the previous one
@@ -180,7 +189,7 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			$buildText='';
+			//$buildText='';
 			$generatedID=1;
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
@@ -216,11 +225,7 @@ class Content{
 					}
 				}
 			}
-			
-			foreach ($this->getMediaNodes() as $mediaNode) {
-				$buildText.=$mediaNode->output();
-			}
-		}
+		//}
 		return $buildText;
 	}
 	// Remember that you come here once for each question

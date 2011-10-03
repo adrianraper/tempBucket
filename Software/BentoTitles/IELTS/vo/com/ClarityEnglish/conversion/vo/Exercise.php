@@ -14,6 +14,7 @@ class Exercise {
 	public $readingText;
 	// Keep one item that holds all the feedback items. Use invented plural.
 	public $feedbacks;
+	public $texts;
 	public $model;
 	
 	// Maybe key for layout
@@ -27,6 +28,7 @@ class Exercise {
 	const EXERCISE_SECTION_QUESTION = 'question';
 	const EXERCISE_SECTION_NOSCROLL = 'noscroll';
 	const EXERCISE_SECTION_EXAMPLE = 'example';
+	const EXERCISE_SECTION_RELATEDTEXT = 'texts';
 	const EXERCISE_SECTION_SETTINGS = 'settings';
 	const EXERCISE_SECTION_TEMPLATE = 'template';
 	const EXERCISE_TYPE_DRAGANDDROP = 'draganddrop';
@@ -102,12 +104,18 @@ class Exercise {
 			  		case Exercise::EXERCISE_SECTION_EXAMPLE:
 			  			//$this->example = new Example($child, $this);
 			  			break;
-			  		// We are expecting many feedback sections from Arthur, but we actually want to merge them for Bento
+			  		// Rarely there will be more than one related text (a reading text and a tip for instance)
+			  		case Exercise::EXERCISE_SECTION_RELATEDTEXT:
+			  			if (!$this->texts)
+			  				$this->texts = array();
+			  			$this->texts[] = new Text($child, $this);
+			  			//echo "made new text ";
+			  			break;
+		  			// We are expecting many feedback sections from Arthur, but we actually want to merge them for Bento. No we don't, keep separate.
 			  		case Exercise::EXERCISE_SECTION_FEEDBACK:
 			  			//$this->feedback = new Feedback($child, $this);
 			  			if (!$this->feedbacks) {
 			  				$this->feedbacks = new Feedbacks($this);
-			  				//echo "made new feedbacks ";
 			  			}
 			  			$this->feedbacks->addFeedback(new Feedback($child, $this));
 						//echo $child->getName() . " = " . $child->asXML() . "<br />";
@@ -165,6 +173,12 @@ class Exercise {
 				$sections[]=$feedback;
 			}
 		}
+		if ($this->texts) {
+			// Each text is a separate section
+			foreach ($this->texts as $text) {
+				$sections[]=$text;
+			}
+		}
 		return $sections;
 	}
 	
@@ -207,7 +221,12 @@ class Exercise {
 		$build.=$this->body->toString();
 		if ($this->feedbacks)
 			$build.=$this->feedbacks->toString();
-		
+		if ($this->texts) {
+			foreach ($this->texts as $text) {
+				$build.=$text->toString();
+			}
+		}
+			
 		$build.=$newline.'</exercise>';	
 		return $build;
 	}
