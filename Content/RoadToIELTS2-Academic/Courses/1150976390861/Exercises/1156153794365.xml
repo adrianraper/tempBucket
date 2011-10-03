@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-09-29" />
+	<meta name="conversion" type="targetspotting" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +49,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#0000ff"><b>Board games</b></font>You will read an article about the history of board games.</p><p align="left"><font color="#0000ff"><b>Pastimes and games of native peoples</b></font>You will read an article about games played by indigenous people in various parts of the world.</p><p align="left"><b>Question types</b>You will attempt two question types.<u><g id="1">Short answer questions</g></u><u><g id="2">Table completion</g></u></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AR_001.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../Media/LE_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Board games</b></font>You will read an article about the history of board games.</p><p align="left"><font color="#0000ff"><b>Pastimes and games of native peoples</b></font>You will read an article about games played by indigenous people in various parts of the world.</p><p align="left"><b>Question types</b>You will attempt two question types.<u><g id="1">Short answer questions</g></u><u><g id="2">Table completion</g></u></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><b>Short Answer Questions</b></p><p align="left"><font color="#000000">(Discrete questions and 'listing' questions)</font></p><p align="left"></p><p align="left">These questions test how well you can find specific pieces of information in the text. Question words such as 'who', 'where' and 'when' will help you understand what kind of information you are looking for. If you have already skimmed over the text, you should know which part of the text will give you your answer, so you can go directly to the relevant section.</p><p align="left"></p><p align="left">Make sure you read the instructions very carefully, because you will usually be asked to take a certain number of words directly from the text. If this is the case, make sure you don't go over the word limit, which is usually three words, and don't change the words from the text in any way. You shouldn't have to use contractions in your answer, so if your answer includes them, it's probably wrong. Also, watch your spelling. Candidates often lose marks because they are careless when they copy words from the text.</p><p align="left"></p><p align="left">Sometimes you will be asked to list a number of items or examples mentioned in the text. Usually you can list them in any order, but read the instructions carefully to make sure this is the case.</p>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-09-29" />
+	<meta name="conversion" type="targetspotting" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -41,13 +45,13 @@
 <body>
 	
 <header>
-	Read the report describing the information shown in the bar chart from the previous exercise again and click on all the verbs in the present simple. There are 18 examples. To see the IELTS Writing Task, click on the icon on the right.
+	<img class="rightFloat" src="../Media/LE_Task01.jpg" mode="16" id="1004"  />Read the report describing the information shown in the bar chart from the previous exercise again and click on all the verbs in the present simple. There are 18 examples. To see the IELTS Writing Task, click on the icon on the right.
 		
-		Writing Task 1<img class="rightFloat" src="../Media/LE_Task01.jpg" mode="16" id="1004"  />
+		Writing Task 1
 </header>
 	
 <section id="body">
-	<p align="left">The bar chart <g id="1">shows</g> the amount of time that 16 to 24-year-olds in England <g id="2">spend</g> per week on sport and exercise. It <g id="3">is</g> clear from the chart that young women <g id="4">are</g> less active in their leisure time than young men.</p><p align="left">There <g id="5">is</g> a striking difference between the percentages of men and women who <g id="6">prefer</g> not to participate in sport in their free time. Almost half of young women <g id="7">devote</g> no time at all to active leisure pursuits while this <g id="8">applies</g> to only about a quarter of young men. There <g id="9">is</g> a similar difference between the percentages of very active young people. Almost 1 in 5 men between the ages of 16 and 24 <g id="10">play</g> sport for 7 or more hours a week. The figure for young women <g id="11">is</g> only 5 per cent.</p><p align="left">A closer examination of the figures for young people who actually <g id="12">play</g> sport <g id="13">reveals</g> that the greatest proportion <g id="14">dedicate</g> between 1 and 3 hours per week to these pastimes. This <g id="15">is</g> true for just over a fifth of both men and women.</p><p align="left">The fact that only two-fifths of young women <g id="16">spend</g> an hour or more a week on sport, compared to approximately two-thirds of young men, <g id="17">raises</g> questions about how fit young women <g id="18">are</g> in comparison to young men.</p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_1n4.jpg" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+	<img class="rightFloat" src="../Media/LE_AW_1n4.jpg" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  /><p align="left">The bar chart <g id="1">shows</g> the amount of time that 16 to 24-year-olds in England <g id="2">spend</g> per week on sport and exercise. It <g id="3">is</g> clear from the chart that young women <g id="4">are</g> less active in their leisure time than young men.</p><p align="left">There <g id="5">is</g> a striking difference between the percentages of men and women who <g id="6">prefer</g> not to participate in sport in their free time. Almost half of young women <g id="7">devote</g> no time at all to active leisure pursuits while this <g id="8">applies</g> to only about a quarter of young men. There <g id="9">is</g> a similar difference between the percentages of very active young people. Almost 1 in 5 men between the ages of 16 and 24 <g id="10">play</g> sport for 7 or more hours a week. The figure for young women <g id="11">is</g> only 5 per cent.</p><p align="left">A closer examination of the figures for young people who actually <g id="12">play</g> sport <g id="13">reveals</g> that the greatest proportion <g id="14">dedicate</g> between 1 and 3 hours per week to these pastimes. This <g id="15">is</g> true for just over a fifth of both men and women.</p><p align="left">The fact that only two-fifths of young women <g id="16">spend</g> an hour or more a week on sport, compared to approximately two-thirds of young men, <g id="17">raises</g> questions about how fit young women <g id="18">are</g> in comparison to young men.</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><b>shows</b> - The present tense in the third person singular.</p>

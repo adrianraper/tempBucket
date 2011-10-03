@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-09-29" />
+	<meta name="conversion" type="targetspotting" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +49,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><b>What does Zafir mention?</b><g id="1">A.  markets</g><g id="2">B.  culture</g><g id="3">C.  age</g><g id="4">D.  population</g><g id="5">E.  size</g><g id="6">F.  location</g><g id="7">G.  castles or palaces</g><g id="8">H.  friendly people</g><g id="9">I.  parks and gardens</g><g id="10">J.  industries</g><g id="11">K.  interesting sites</g></p><p align="left"><font size="2"></font></p><media class="leftFloat" src="../Media/Unit01_e6a.flv" mode="1" id="1003"  />
+	<media class="rightFloat" src="../Media/Unit01_e6a.flv" mode="1" id="1003"  /><p align="left"><b>What does Zafir mention?</b><g id="1">A.  markets</g><g id="2">B.  culture</g><g id="3">C.  age</g><g id="4">D.  population</g><g id="5">E.  size</g><g id="6">F.  location</g><g id="7">G.  castles or palaces</g><g id="8">H.  friendly people</g><g id="9">I.  parks and gardens</g><g id="10">J.  industries</g><g id="11">K.  interesting sites</g></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

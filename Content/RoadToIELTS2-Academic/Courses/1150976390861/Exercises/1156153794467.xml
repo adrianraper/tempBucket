@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-09-29" />
+	<meta name="conversion" type="gapfill" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +49,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#000000">In 1961 people in the UK mostly <input id="1" width="100" /> (watch) television or <input id="2" width="100" /> (listen) to the radio in their leisure time. On average they <input id="3" width="100" /> (spend) almost half of their free time on these activities. After that <input id="4" width="100" />(come) other unspecified pastimes, which <input id="5" width="100" /> (take up) about an hour and a quarter a day. People <input id="6" width="100" /> (not seem) to socialise a great deal, as this <input id="7" width="100" /> (account) for only 35 minutes in a typical day. People <input id="8" width="100" /> (eat) out, <input id="9" width="100" /> (go) to the cinema or <input id="10" width="100" /> (entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="11" width="100" /> (play) sports or <input id="12" width="100" /> (walk) for an average of only 9 minutes a day.</font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Unit01_Write_e5.jpg" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+	<img class="rightFloat" src="../Media/Unit01_Write_e5.jpg" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  /><p align="left"><font color="#000000">In 1961 people in the UK mostly <input id="1" width="100" /> (watch) television or <input id="2" width="100" /> (listen) to the radio in their leisure time. On average they <input id="3" width="100" /> (spend) almost half of their free time on these activities. After that <input id="4" width="100" />(come) other unspecified pastimes, which <input id="5" width="100" /> (take up) about an hour and a quarter a day. People <input id="6" width="100" /> (not seem) to socialise a great deal, as this <input id="7" width="100" /> (account) for only 35 minutes in a typical day. People <input id="8" width="100" /> (eat) out, <input id="9" width="100" /> (go) to the cinema or <input id="10" width="100" /> (entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="11" width="100" /> (play) sports or <input id="12" width="100" /> (walk) for an average of only 9 minutes a day.</font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

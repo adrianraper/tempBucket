@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-09-29" />
+	<meta name="conversion" type="gapfill" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -48,7 +52,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#0000ff"><b>Infinity Marbles</b></font>Country: Australia</p>Players: 1. <input id="1" width="100" /> childrenEquipment: marblesFormat: I<p align="left"><font color="#0000ff"><b>Salan Lanai </b></font>Country: New Guinea </p>Players: 2. <input id="2" width="100" />Equipment: 3. <input id="3" width="100" />Format: G<p align="left"><font color="#0000ff"><b>Pin</b></font>Country: 4. <input id="4" width="100" /></p>Players: Indian childrenEquipment: 5. <input id="5" width="100" />Format: 6. <input id="6" width="100" /><p align="left"><font color="#0000ff"><b>Muk</b></font>Country: Canada </p>Players: 7. <input id="7" width="100" /> children and their familiesEquipment: noneFormat: 8. <input id="8" width="100" /><p align="left"><font color="#0000ff"><b>Kite-flying</b></font>Country: Malaysia</p>Players: 9. <input id="9" width="100" />Equipment:&#160;10. <input id="10" width="100" />&#160;kites with bamboo framesFormat: I<p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AR_003.jpg" mode="1" id="1002"  /><img class="leftFloat" src="../Media/Decorative_004.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+	<img class="leftFloat" src="../Media/LE_AR_003.jpg" mode="1" id="1002"  /><img class="rightFloat" src="../Media/Decorative_004.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  /><p align="left"><font color="#0000ff"><b>Infinity Marbles</b></font>Country: Australia</p>Players: 1. <input id="1" width="100" /> childrenEquipment: marblesFormat: I<p align="left"><font color="#0000ff"><b>Salan Lanai </b></font>Country: New Guinea </p>Players: 2. <input id="2" width="100" />Equipment: 3. <input id="3" width="100" />Format: G<p align="left"><font color="#0000ff"><b>Pin</b></font>Country: 4. <input id="4" width="100" /></p>Players: Indian childrenEquipment: 5. <input id="5" width="100" />Format: 6. <input id="6" width="100" /><p align="left"><font color="#0000ff"><b>Muk</b></font>Country: Canada </p>Players: 7. <input id="7" width="100" /> children and their familiesEquipment: noneFormat: 8. <input id="8" width="100" /><p align="left"><font color="#0000ff"><b>Kite-flying</b></font>Country: Malaysia</p>Players: 9. <input id="9" width="100" />Equipment:&#160;10. <input id="10" width="100" />&#160;kites with bamboo framesFormat: I<p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

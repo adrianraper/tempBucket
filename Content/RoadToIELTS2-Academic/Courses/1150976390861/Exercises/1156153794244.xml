@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-09-29" />
+	<meta name="conversion" type="presentation" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +49,7 @@
 </header>
 	
 <section id="body">
-	<p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>Television has brought great changes to the way many children spend their leisure time.  While some of these changes have been beneficial, others have had a harmful effect.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_011.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../Media/LE_AW_011.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>Television has brought great changes to the way many children spend their leisure time.  While some of these changes have been beneficial, others have had a harmful effect.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

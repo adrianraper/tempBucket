@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-29" />
+	<meta name="conversion" type="draganddrop" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -41,21 +45,21 @@
 <body>
 	
 <header>
-	Here are the notes a group of students made for the writing task. Put each point under the correct paragraph heading to make a plan. Check your answers by reading the completed composition. Do not worry about the gaps for the moment.
+	<img class="rightFloat" src="../Media/LE_Task02.jpg" mode="16" id="1004"  />Here are the notes a group of students made for the writing task. Put each point under the correct paragraph heading to make a plan. Check your answers by reading the completed composition. Do not worry about the gaps for the moment.
 		
-		Writing Task 2<img class="rightFloat" src="../Media/LE_Task02.jpg" mode="16" id="1004"  />
+		Writing Task 2
 </header>
 	
 <section id="noscroll">
 	
 		
-		<tab/><span id="16" draggable="true">Introduction</span>
-		<tab/><span id="25" draggable="true">Advantages</span>
-		<tab/><span id="15" draggable="true">Disadvantages</span>
-		<tab/><span id="17" draggable="true">Conclusion</span><img class="rightFloat" src="../Media/LE_Sample001.jpg" mode="16" id="1005"  />
+		<span id="16" draggable="true">Introduction</span>
+		<span id="25" draggable="true">Advantages</span>
+		<span id="15" draggable="true">Disadvantages</span>
+		<span id="17" draggable="true">Conclusion</span><img class="rightFloat" src="../Media/LE_Sample001.jpg" mode="16" id="1005"  />
 </section>
 <section id="body">
-	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" /><font color="#000000">: TV stimulates children's interests.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="2" type="droptarget" /><font color="#000000">: Children have fewer hobbies.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="3" type="droptarget" /><font color="#000000">: Adults often disapprove of children watching TV.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" /><font color="#000000">: Parents should check on children's viewing.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="5" type="droptarget" /><font color="#000000">: Children learn more about the world.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="6" type="droptarget" /><font color="#000000">: Children are lonelier.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" /><font color="#000000">: Children should do other activities as well.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="8" type="droptarget" /><font color="#000000">: TV helps educate children in a variety of ways.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="9" type="droptarget" /><font color="#000000">: TV – most popular form of entertainment for children.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" /><font color="#000000">: Children are less sociable.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="11" type="droptarget" /><font color="#000000">: Children read less.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="12" type="droptarget" /><font color="#000000">: TV is easier and safer than other forms of relaxation.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" /><font color="#000000">: TV makes children less imaginative/inventive.<font color="#0000ff"></font></font></font></p><p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_AW_012.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+	<img class="rightFloat" src="../Media/LE_AW_012.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  /><p align="left"><font color="#0000ff"><input id="1" type="droptarget" /><font color="#000000">: TV stimulates children's interests.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="2" type="droptarget" /><font color="#000000">: Children have fewer hobbies.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="3" type="droptarget" /><font color="#000000">: Adults often disapprove of children watching TV.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" /><font color="#000000">: Parents should check on children's viewing.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="5" type="droptarget" /><font color="#000000">: Children learn more about the world.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="6" type="droptarget" /><font color="#000000">: Children are lonelier.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" /><font color="#000000">: Children should do other activities as well.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="8" type="droptarget" /><font color="#000000">: TV helps educate children in a variety of ways.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="9" type="droptarget" /><font color="#000000">: TV – most popular form of entertainment for children.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" /><font color="#000000">: Children are less sociable.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="11" type="droptarget" /><font color="#000000">: Children read less.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="12" type="droptarget" /><font color="#000000">: TV is easier and safer than other forms of relaxation.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" /><font color="#000000">: TV makes children less imaginative/inventive.<font color="#0000ff"></font></font></font></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb0">
 	<p align="left"><font face="verdana" size="13" color="#000000"><b>Paragraph 1 – Introduction</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">1. Adults often disapprove of children watching TV</font></p><p align="left"><font face="verdana" size="13" color="#000000">2. TV – most popular form of entertainment for children</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Paragraph 2 – Advantages</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">1. Children learn more about the world</font></p><p align="left"><font face="verdana" size="13" color="#000000">2. TV helps educate children in a variety of ways</font></p><p align="left"><font face="verdana" size="13" color="#000000">3. TV is easier and safer than other forms of relaxation</font></p><p align="left"><font face="verdana" size="13" color="#000000">4. TV stimulates children’s interests</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Paragraph 3 – Disadvantages</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">1. Children are less sociable</font></p><p align="left"><font face="verdana" size="13" color="#000000">2. Children are lonelier</font></p><p align="left"><font face="verdana" size="13" color="#000000">3. Children have fewer hobbies</font></p><p align="left"><font face="verdana" size="13" color="#000000">4. Children read less</font></p><p align="left"><font face="verdana" size="13" color="#000000">5. TV makes children less imaginative/inventive</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Paragraph 4 – Conclusion</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">1. Children should do other activities as well</font></p><p align="left"><font face="verdana" size="13" color="#000000">2. Parents should check on children’s viewing</font></p>

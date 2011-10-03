@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-09-29" />
+	<meta name="conversion" type="draganddrop" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -47,25 +51,25 @@
 <section id="noscroll">
 	
 		
-		<tab/><span id="18" draggable="true">A</span>
-		<tab/><span id="21" draggable="true">B</span>
-		<tab/><span id="19" draggable="true">C</span>
-		<tab/><span id="27" draggable="true">D</span>
-		<tab/><span id="16" draggable="true">E</span>
-		<tab/><span id="22" draggable="true">F</span>
-		<tab/><span id="28" draggable="true">G</span>
-		<tab/><span id="24" draggable="true">H</span>
-		<tab/><span id="20" draggable="true">I</span>
-		<tab/><span id="17" draggable="true">J</span>
+		<span id="18" draggable="true">A</span>
+		<span id="21" draggable="true">B</span>
+		<span id="19" draggable="true">C</span>
+		<span id="27" draggable="true">D</span>
+		<span id="16" draggable="true">E</span>
+		<span id="22" draggable="true">F</span>
+		<span id="28" draggable="true">G</span>
+		<span id="24" draggable="true">H</span>
+		<span id="20" draggable="true">I</span>
+		<span id="17" draggable="true">J</span>
 		
-		<tab/><span id="25" draggable="true">K</span>
-		<tab/><span id="26" draggable="true">L</span>
-		<tab/><span id="23" draggable="true">M</span>
-		<tab/><span id="29" draggable="true">N</span>
-		<tab/><span id="30" draggable="true">O</span><audio class="leftFloat" src="../Media/LE_AW1aa.mp3" mode="1" id="1003"  /><audio class="leftFloat" src="../Media/LE_AW1ab.mp3" mode="1" id="1004"  /><audio class="leftFloat" src="../Media/LE_AW1ac.mp3" mode="1" id="1005"  /><audio class="leftFloat" src="../Media/LE_AW1ad.mp3" mode="1" id="1006"  /><audio class="leftFloat" src="../Media/LE_AW1ae.mp3" mode="1" id="1007"  /><audio class="leftFloat" src="../Media/LE_AW1af.mp3" mode="1" id="1008"  /><audio class="leftFloat" src="../Media/LE_AW1ag.mp3" mode="1" id="1009"  /><audio class="leftFloat" src="../Media/LE_AW1ah.mp3" mode="1" id="1010"  /><audio class="leftFloat" src="../Media/LE_AW1ai.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../Media/LE_AW1aj.mp3" mode="1" id="1012"  /><audio class="leftFloat" src="../Media/LE_AW1ak.mp3" mode="1" id="1013"  /><audio class="leftFloat" src="../Media/LE_AW1al.mp3" mode="1" id="1014"  /><audio class="leftFloat" src="../Media/LE_AW1am.mp3" mode="1" id="1015"  /><audio class="leftFloat" src="../Media/LE_AW1an.mp3" mode="1" id="1016"  /><audio class="leftFloat" src="../Media/LE_AW1ao.mp3" mode="1" id="1017"  />
+		<span id="25" draggable="true">K</span>
+		<span id="26" draggable="true">L</span>
+		<span id="23" draggable="true">M</span>
+		<span id="29" draggable="true">N</span>
+		<span id="30" draggable="true">O</span><audio class="leftFloat" src="../Media/LE_AW1aa.mp3" mode="1" id="1003"  /><audio class="leftFloat" src="../Media/LE_AW1ab.mp3" mode="1" id="1004"  /><audio class="rightFloat" src="../Media/LE_AW1ac.mp3" mode="1" id="1005"  /><audio class="rightFloat" src="../Media/LE_AW1ad.mp3" mode="1" id="1006"  /><audio class="rightFloat" src="../Media/LE_AW1ae.mp3" mode="1" id="1007"  /><audio class="rightFloat" src="../Media/LE_AW1af.mp3" mode="1" id="1008"  /><audio class="rightFloat" src="../Media/LE_AW1ag.mp3" mode="1" id="1009"  /><audio class="rightFloat" src="../Media/LE_AW1ah.mp3" mode="1" id="1010"  /><audio class="rightFloat" src="../Media/LE_AW1ai.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../Media/LE_AW1aj.mp3" mode="1" id="1012"  /><audio class="leftFloat" src="../Media/LE_AW1ak.mp3" mode="1" id="1013"  /><audio class="leftFloat" src="../Media/LE_AW1al.mp3" mode="1" id="1014"  /><audio class="rightFloat" src="../Media/LE_AW1am.mp3" mode="1" id="1015"  /><audio class="rightFloat" src="../Media/LE_AW1an.mp3" mode="1" id="1016"  /><audio class="rightFloat" src="../Media/LE_AW1ao.mp3" mode="1" id="1017"  />
 </section>
 <section id="body">
-	<p align="left"><font color="#0000ff"><input id="1" type="droptarget" />, <font color="#0000ff"><input id="2" type="droptarget" /></font>, <font color="#0000ff"><input id="3" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" />, <font color="#0000ff"><input id="5" type="droptarget" /></font>, <font color="#0000ff"><input id="6" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" />, <font color="#0000ff"><input id="8" type="droptarget" /></font>, <font color="#0000ff"><input id="9" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" />, <font color="#0000ff"><input id="11" type="droptarget" /></font>, <font color="#0000ff"><input id="12" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" />, <font color="#0000ff"><input id="14" type="droptarget" /></font>, <font color="#0000ff"><input id="15" type="droptarget" /></font></font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/LE_AW_3a.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/LE_AW_3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/LE_AW_3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/LE_AW_3d.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/LE_AW_3e.jpg" mode="1" id="1007"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+	<img class="leftFloat" src="../Media/LE_AW_3a.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/LE_AW_3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/LE_AW_3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/LE_AW_3d.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/LE_AW_3e.jpg" mode="1" id="1007"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  /><p align="left"><font color="#0000ff"><input id="1" type="droptarget" />, <font color="#0000ff"><input id="2" type="droptarget" /></font>, <font color="#0000ff"><input id="3" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="4" type="droptarget" />, <font color="#0000ff"><input id="5" type="droptarget" /></font>, <font color="#0000ff"><input id="6" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="7" type="droptarget" />, <font color="#0000ff"><input id="8" type="droptarget" /></font>, <font color="#0000ff"><input id="9" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="10" type="droptarget" />, <font color="#0000ff"><input id="11" type="droptarget" /></font>, <font color="#0000ff"><input id="12" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="13" type="droptarget" />, <font color="#0000ff"><input id="14" type="droptarget" /></font>, <font color="#0000ff"><input id="15" type="droptarget" /></font></font></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><font color="#000000">Audio A: 1 in 5</font></p>

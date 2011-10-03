@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="errorcorrection" date="2011-09-29" />
+	<meta name="conversion" type="errorcorrection" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +43,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#000000">More than one million students from <input id="1" width="100" value="poorly" enabled="false" /> families in the US will receive computers, internet access, software and job skills training through a software giant’s digital inclusion initiative.</font></p><p align="left"><font color="#000000">Microsoft Corp. has announced a three-year programme earlier this month that will provide students software, hardware and discounted broadband internet service aimed at preparing the students compete in the global market and increasing the youth’s employment opportunities.</font></p><p align="left"><font size="2"></font></p><img class="leftFloat" src="../Media/Education_010.jpg" mode="1" id="1001"  /><audio class="leftFloat" src="../Media/ErrorCorrection-CorrectMistakes.mp3" mode="4" id="1002"  />
+	<img class="rightFloat" src="../Media/Education_010.jpg" mode="1" id="1001"  /><audio class="leftFloat" src="../Media/ErrorCorrection-CorrectMistakes.mp3" mode="4" id="1002"  /><p align="left"><font color="#000000">More than one million students from <input id="1" width="100" value="poorly" enabled="false" /> families in the US will receive computers, internet access, software and job skills training through a software giant’s digital inclusion initiative.</font></p><p align="left"><font color="#000000">Microsoft Corp. has announced a three-year programme earlier this month that will provide students software, hardware and discounted broadband internet service aimed at preparing the students compete in the global market and increasing the youth’s employment opportunities.</font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

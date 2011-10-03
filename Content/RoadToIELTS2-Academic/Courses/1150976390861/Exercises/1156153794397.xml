@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-09-29" />
+	<meta name="conversion" type="presentation" date="2011-10-03" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -22,6 +22,10 @@
 			font-weight: bold;
 			color: #3A00FF;	
 		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +49,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#0000ff"><b>General introduction to the speaking test.</b></font></p><p align="left">You will ...</p><ol><li>refresh key points and timing for the speaking test.</li><li>watch video clips of a candidate and the examiner	starting the speaking test.</li><li>watch candidates describing their home towns.</li></ol><p align="left">The speaking test is a one-to-one interview which assesses how well you can communicate in English.</p><p align="left">The interview lasts for 11-14 minutes and has three parts.</p><p align="left"><font color="#000000"><b>Part 1:</b> You answer general questions about yourself, your life and interests.</font></p>Part 2: You give a short talk on a particular topic.Part 3: You discuss with the examiner some issues related to your talk.<p align="left"><font color="#000000">Now look at a more detailed description of the three parts of the test:</font></p><p align="left"><font color="#000000"><b>Part 1: Introduction and interview</b></font></p>Examiner introduces him/herself and confirms candidate's identity.Examiner interviews candidate using verbal questions based on familiar topic frames.Timing: 4-5 minutes<p align="left"><font color="#000000"><b>Part 2: Individual long turn</b></font></p>Examiner asks candidate to speak for 1-2 minutes on a particular topic based on written input in the form of a general instruction and content-focused prompts. Examiner asks one or two questions at the end of the long turn.Timing: 3-4 minutes (including 1 minute preparation time)<p align="left"><font color="#000000"><b>Part 3: Two-way discussion</b></font></p>Examiner invites candidate to participate in discussion of more abstract nature, based on verbal questions thematically linked to Part 2 prompt.Timing: 4-5 minutes<p align="left"><font size="2"></font></p><img class="rightFloat" src="../Media/LE_SP_001.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../Media/LE_SP_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>General introduction to the speaking test.</b></font></p><p align="left">You will ...</p><ol><li>refresh key points and timing for the speaking test.</li><li>watch video clips of a candidate and the examiner	starting the speaking test.</li><li>watch candidates describing their home towns.</li></ol><p align="left">The speaking test is a one-to-one interview which assesses how well you can communicate in English.</p><p align="left">The interview lasts for 11-14 minutes and has three parts.</p><p align="left"><font color="#000000"><b>Part 1:</b> You answer general questions about yourself, your life and interests.</font></p>Part 2: You give a short talk on a particular topic.Part 3: You discuss with the examiner some issues related to your talk.<p align="left"><font color="#000000">Now look at a more detailed description of the three parts of the test:</font></p><p align="left"><font color="#000000"><b>Part 1: Introduction and interview</b></font></p>Examiner introduces him/herself and confirms candidate's identity.Examiner interviews candidate using verbal questions based on familiar topic frames.Timing: 4-5 minutes<p align="left"><font color="#000000"><b>Part 2: Individual long turn</b></font></p>Examiner asks candidate to speak for 1-2 minutes on a particular topic based on written input in the form of a general instruction and content-focused prompts. Examiner asks one or two questions at the end of the long turn.Timing: 3-4 minutes (including 1 minute preparation time)<p align="left"><font color="#000000"><b>Part 3: Two-way discussion</b></font></p>Examiner invites candidate to participate in discussion of more abstract nature, based on verbal questions thematically linked to Part 2 prompt.Timing: 4-5 minutes<p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>
