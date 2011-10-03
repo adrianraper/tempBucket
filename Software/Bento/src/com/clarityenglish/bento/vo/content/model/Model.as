@@ -24,6 +24,14 @@ package com.clarityenglish.bento.vo.content.model {
 			return _questions;
 		}
 		
+		public function get view():String {
+			return xml.view.name.toString();
+		}
+		
+		public function get viewParams():XMLList {
+			return xml.view.params;
+		}
+		
 		/**
 		 * Given a node in the body of the exercise, this returns all the possible Answer nodes that could match it.  This only really applies for
 		 * <input> and <select> nodes, and returns all the Answers in a matching Question.

@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.bento.controller.*;
 	import com.clarityenglish.bento.view.*;
+	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
+	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
 	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.common.controller.*;
@@ -42,6 +44,7 @@
 			// Map built in views to their mediators
 			mapView(DynamicView, DynamicMediator);
 			mapView(XHTMLExerciseView, XHTMLExerciseMediator);
+			mapView(SWFPlayerView, SWFPlayerMediator);
 			
 			// Map built in commands
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);

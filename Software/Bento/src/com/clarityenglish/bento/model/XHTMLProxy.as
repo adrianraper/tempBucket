@@ -23,6 +23,12 @@ package com.clarityenglish.bento.model {
 		public static const NAME:String = "XHTMLProxy";
 		
 		/**
+		 * If this is true then use a cachebuster (a randomly generated string) on the end of XML files so they don't get cached.
+		 * TODO: This should be configurable in config.xml 
+		 */
+		private static const useCacheBuster:Boolean = true;
+		
+		/**
 		 * Standard flex logger
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
@@ -61,7 +67,7 @@ package com.clarityenglish.bento.model {
 			urlLoader.addEventListener(Event.COMPLETE, onXHTMLLoadComplete);
 			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onXHTMLLoadError);
 			urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onXHTMLSecurityError);
-			urlLoader.load(new URLRequest(href.url));
+			urlLoader.load(new URLRequest(href.url + ((useCacheBuster) ? "?" + new Date().time : "")));
 			
 			// Maintain a strong reference during loading so the loader isn't garbage collected, and so we have the original href
 			urlLoaders[urlLoader] = href;
