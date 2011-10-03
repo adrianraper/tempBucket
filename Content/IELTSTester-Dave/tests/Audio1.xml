@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[
+			
+		]]>
+		</style>
+
+		<script id="model" type="application/xml">
+			<bindings>
+				<bind source="playButton" type="click" handler="audio1.play()" />
+				<audio source="audio1">
+					<play source="playButton" />
+					<pause source="pauseButton" />
+				</audio>
+				<!--
+				NEED TO DISCUSS WITH ADRIAN
+				
+				There are two possibilities:
+				
+				1. Use the model to define clickable and togglable properties which change the innerHTML and damages and updates the TextFlow.  This
+				   is quite htmly, but is kind of complicated and may be a hassle to work with.
+				2. Have a overlaid audio component in Bento, skinnable in a title's CSS.  This will be neater and will give more animation possibilities
+				   (e.g. sliding out controls).  However, this means that almost certainly all audio players in a title will have the look the same.  This
+				   might well be what Adrian wants anyway, so halt development on this until we have had a chat.
+				 -->
+			</bindings>
+		</script>
+		
+	</head>
+	
+	<body>
+		<header>
+			Testing out audio
+		</header>
+		
+		<section id="body">
+			<audio id="audio1" src="media/audio1.mp3" />
+			<a id="playButton">Click to play</a>
+		</section>
+	</body>
+	
+</bento>

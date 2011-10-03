@@ -13,13 +13,13 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_CAPTION:String = "Grid2";
+		private static const STARTING_CAPTION:String = "Audio1";
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;
 		
 		[SkinPart(required="true")]
-		public var dynamicView:BentoView; // TODO: This is going to be a DynamicView...
+		public var dynamicView:BentoView;
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

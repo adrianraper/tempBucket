@@ -12,7 +12,7 @@
 						<exercise href="reading/practice2.pdf" caption="Reading practice paper Pt2" difficulty="2" />
 					</unit>
 					<unit class="advice-zone">
-						<exercise href="reading/advicezone.xml" caption="Watch the teacher giving advice" />
+						<exercise href="reading/advicezone.flv" caption="Watch the teacher giving advice" />
 					</unit>
 					<unit class="practice-zone">
 						<exercise href="reading/exercises/exercise1.xml" caption="Understanding static charts" />
@@ -26,11 +26,11 @@
 						<exercise href="writing/questionzone.xml" />
 					</unit>
 					<unit class="exam-practice">
-						<exercise href="writing/practice1.xml" caption="Writing practice paper Pt1" difficulty="1" />
-						<exercise href="writing/practice2.xml" caption="Writing practice paper Pt2" difficulty="2" />
+						<exercise href="writing/practice1.xml" caption="Writing practice paper Pt1" difficulty="3" />
+						<exercise href="writing/practice2.xml" caption="Writing practice paper Pt2" difficulty="4" />
 					</unit>
 					<unit class="advice-zone">
-						<exercise href="writing/advicezone.xml" caption="Watch the teacher giving advice" />
+						<exercise href="writing/advicezone.flv" caption="Watch the teacher giving advice" />
 					</unit>
 					<unit class="practice-zone">
 						<exercise href="writing/exercise1.xml" caption="Understanding static charts" />

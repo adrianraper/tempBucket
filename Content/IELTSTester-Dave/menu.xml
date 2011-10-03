@@ -5,6 +5,7 @@
 			<menu>
 				<course caption="XHTML test exercises" id="0">
 					<unit caption="Tests" id="0">
+						<exercise id="120" caption="Audio1" href="tests/Audio1.xml" />
 						<exercise id="100" caption="Grid1" href="tests/Grid1.xml" />
 						<exercise id="101" caption="Grid2" href="tests/Grid2.xml" />
 						<exercise id="102" caption="Grid3" href="tests/Grid3.xml" />

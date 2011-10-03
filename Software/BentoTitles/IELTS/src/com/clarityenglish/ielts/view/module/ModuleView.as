@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.module {
 	import spark.components.DataRenderer;
 	import spark.components.Label;
 	import spark.components.TabBar;
+	import spark.components.VideoPlayer;
 	
 	public class ModuleView extends BentoView {
 		
@@ -48,7 +49,7 @@ package com.clarityenglish.ielts.view.module {
 		public var practiceZoneDataGroup:DataGroup;
 		
 		[SkinPart(required="true")]
-		public var adviceZoneButton:Button;
+		public var adviceZoneVideoPlayer:VideoPlayer;
 		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
@@ -86,6 +87,10 @@ package com.clarityenglish.ielts.view.module {
 				
 				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(attribute("class") == "practice-zone").exercise);
 				
+				var adviceZoneVideoUrl:String = _course.unit.(attribute("class") == "advice-zone").exercise[0].@href;
+				if (adviceZoneVideoUrl)
+					adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
+								
 				_courseChanged = false;
 			}
 		}
@@ -113,7 +118,6 @@ package com.clarityenglish.ielts.view.module {
 				case questionZoneButton:
 				case examPractice1Button:
 				case examPractice2Button:
-				case adviceZoneButton:
 					instance.addEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
 			}
@@ -145,9 +149,6 @@ package com.clarityenglish.ielts.view.module {
 					break;
 				case examPractice2Button:
 					hrefFilename = _course.unit.(attribute("class") == "exam-practice").exercise[1].@href;
-					break;
-				case adviceZoneButton:
-					hrefFilename = _course.unit.(attribute("class") == "advice-zone").exercise[0].@href;
 					break;
 			}
 			

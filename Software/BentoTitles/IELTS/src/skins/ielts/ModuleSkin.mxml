@@ -70,8 +70,8 @@
 			
 			<s:VGroup width="40%">
 				<s:Label text="Advice zone" fontWeight="bold" />
+				<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" width="300" height="200" />
 				<s:Label text="Watch the teacher giving advice..." />
-				<s:Button id="adviceZoneButton" label="Click to play" />
 			</s:VGroup>
 		</s:HGroup>
 	</s:VGroup>

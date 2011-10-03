@@ -8,7 +8,7 @@
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
 
 components|XHTMLExerciseView {
-	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseViewSkin");
+	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseSkin");
 }
 
 swfplayer|SWFPlayerView {

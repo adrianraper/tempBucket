@@ -10,7 +10,7 @@ package com.clarityenglish.bento.view {
 	import mx.core.UIComponent;
 	
 	import skins.bento.DynamicViewSkin;
-	import skins.bento.exercise.XHTMLExerciseViewSkin;
+	import skins.bento.exercise.XHTMLExerciseSkin;
 	
 	import spark.components.Group;
 	import spark.components.supportClasses.Skin;
