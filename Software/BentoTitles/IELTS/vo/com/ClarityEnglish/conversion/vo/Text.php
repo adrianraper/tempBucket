@@ -12,10 +12,9 @@ class Text extends Content{
 			if (count($attr)>0) {
 				foreach($attr as $a => $b) {
 					switch ($a) {
+						// The reading text doesn't have an id. But that might be best as we
+						// want to treat it differently from other related texts
 						case 'id':
-							//$this->setID($b);
-							//break;
-							self::$nextID=intval($b)+1;
 						default:
 							$this->$a = (string)$b;
 					}
@@ -23,8 +22,9 @@ class Text extends Content{
 			}			
 		}
 		// Some related texts will not have an id
-		if (!$this->id)
-			$this->id = (string)self::$nextID;
+		if (!$this->id) {
+			$this->id = (string)self::$nextID++;
+		}			
 			
 		parent::__construct($xmlObj, $parent);
 	}
@@ -39,7 +39,11 @@ class Text extends Content{
 	// Each feedback is its own section
 	function getSection() {
 		//return Exercise::EXERCISE_SECTION_RELATEDTEXT;
-		return 'rt'.$this->getID();
+		if ($this->getID()==1) {
+			return 'readingText';
+		} else {
+			return 'rt'.$this->getID();
+		}
 	}
 }
 ?>

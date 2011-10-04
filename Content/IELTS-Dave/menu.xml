@@ -12,12 +12,12 @@
 						<exercise href="reading/practice2.pdf" caption="Reading practice paper Pt2" difficulty="2" />
 					</unit>
 					<unit class="advice-zone">
-						<exercise href="reading/advicezone.flv" caption="Watch the teacher giving advice" />
+						<exercise href="reading/CriticalThinking_intro.flv" caption="Watch the teacher giving advice" />
 					</unit>
 					<unit class="practice-zone">
-						<exercise href="reading/exercises/exercise1.xml" caption="Understanding static charts" />
-						<exercise href="reading/exercises/exercise2.xml" caption="Linking words and phrases (1)" />
-						<exercise href="reading/exercises/exercise3.xml" caption="Linking words and phrases (2)" />
+						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794365.xml" caption="Introduction" />
+						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794672.xml" caption="Short answer questions" />
+						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794430.xml" caption="Table completion" />
 					</unit>
 				</course>
 				
@@ -30,12 +30,12 @@
 						<exercise href="writing/practice2.xml" caption="Writing practice paper Pt2" difficulty="4" />
 					</unit>
 					<unit class="advice-zone">
-						<exercise href="writing/advicezone.flv" caption="Watch the teacher giving advice" />
+						<exercise href="writing/Writing_intro.flv" caption="Watch the teacher giving advice" />
 					</unit>
 					<unit class="practice-zone">
-						<exercise href="writing/exercise1.xml" caption="Understanding static charts" />
-						<exercise href="writing/exercise2.xml" caption="Linking words and phrases (1)" />
-						<exercise href="writing/exercise3.xml" caption="Linking words and phrases (2)" />
+						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794055.xml" caption="Introduction" />
+						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794671.xml" caption="Static charts" />
+						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794467.xml" caption="Past simple" />
 					</unit>
 				</course>
 			</menu>

@@ -149,6 +149,8 @@ class Content{
 		}
 		// Whatever happens there are some characters I want to replace
 		// non-breaking space special characters
+		// incorrect tab tags
+		// & characters (followed by a space)
 		//$buildText = preg_replace('/\xc2\xa0/', '&#160;', $buildText);
 		$patterns = Array();
 		$replacements = Array();
@@ -156,6 +158,8 @@ class Content{
 		$replacements[] = '&#160;';
 		$patterns[] = '/\<tab\>/is';
 		$replacements[] = '<tab/>';
+		$patterns[] = '/\& /is';
+		$replacements[] = '&amp; ';
 		$buildText = preg_replace($patterns, $replacements, $buildText);
 		
 		return $buildText;

@@ -47,15 +47,36 @@
 		<components:XHTMLRichText id="noscrollRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
 	</s:Group>
 	
-	<s:Group id="bodyGroup" width="100%" height="100%">
-		<s:Rect width="100%" height="100%">
-			<s:stroke>
-				<s:SolidColorStroke color="#666666" />
-			</s:stroke>
-		</s:Rect>
-		<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5">
-			<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
-		</s:Scroller>
-	</s:Group>
+	<s:BorderContainer width="100%" height="100%">
+		<s:layout>
+			<s:HorizontalLayout />
+		</s:layout>
+		<s:Group id="readingTextGroup" width="100%">
+			<s:Rect width="100%" height="100%">
+				<s:stroke>
+					<s:SolidColorStroke color="#666666" />
+				</s:stroke>
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" />
+				</s:fill>
+			</s:Rect>
+			
+			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5">
+				<components:XHTMLRichText id="readingTextRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
+			</s:Scroller>
+		</s:Group>
+		
+		<s:Group id="bodyGroup" width="100%" height="100%">
+			<s:Rect width="100%" height="100%">
+				<s:stroke>
+					<s:SolidColorStroke color="#666666" />
+				</s:stroke>
+			</s:Rect>
+			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5">
+				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
+			</s:Scroller>
+		</s:Group>
+	
+	</s:BorderContainer>
 	
 </s:Skin>
