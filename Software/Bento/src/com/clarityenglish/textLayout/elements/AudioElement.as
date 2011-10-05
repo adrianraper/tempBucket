@@ -43,6 +43,8 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function createComponent():void {
 			component = new AudioPlayer();
+			(component as AudioPlayer).src = _src;
+			(component as AudioPlayer).controls = _controls;
 			
 			component.addEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 		}

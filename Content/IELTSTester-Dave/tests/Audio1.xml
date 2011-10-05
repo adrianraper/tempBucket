@@ -22,7 +22,7 @@
 		</header>
 		
 		<section id="body">
-			Here is some audio "<audio src="media/audio1.mp3" controls="short" />"; what did you think of that?
+			Here is some audio "<audio src="media/audio1.mp3" controls="compact" />"; what did you think of that?
 			
 			<br/>
 			<br/>
@@ -31,17 +31,17 @@
 			
 			Trying to work out the alignment issues with overlaid graphics.<br/>
 			<br/>
-			<p>This is a paragraph with some audio '<audio src="media/audio1.mp3" controls="short" />' in it.</p>
-			<p>And another '<audio src="media/audio1.mp3" controls="short" />' audio player.</p>
+			<p>This is a paragraph with some audio '<audio src="media/audio1.mp3" controls="compact" />' in it.</p>
+			<p>And another '<audio src="media/audio1.mp3" controls="compact" />' audio player.</p>
 			
 			<p>
 			This paragraph has lots of text "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-			velit esse cillum dolor '<audio src="media/audio1.mp3" controls="short" />'
+			velit esse cillum dolor '<audio src="media/audio1.mp3" controls="compact" />'
 			
 				<div class="floater">
 					This also contains a floating thingymajig This also contains a floating thingymajig This also contains a floating thingymajig This also contains a floating thingymajig
-					'<audio src="media/audio1.mp3" controls="short" />'
+					'<audio src="media/audio1.mp3" controls="compact" />'
 				</div>
 			</p>
 		</section>

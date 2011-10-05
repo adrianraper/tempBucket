@@ -3,29 +3,24 @@ package com.clarityenglish.textLayout.components {
 	
 	import spark.components.supportClasses.SkinnableComponent;
 	
-	[SkinState("stopped")]
-	[SkinState("playing")]
-	[SkinState("played")]
+	[SkinState("hidden")]
+	[SkinState("stopped_compact")]
+	[SkinState("playing_compact")]
+	[SkinState("played_compact")]
 	public class AudioPlayer extends SkinnableComponent {
 		
+		public var src:String;
+		
+		public var controls:String;
+		
 		public function AudioPlayer() {
-			addEventListener(FlexEvent.PREINITIALIZE, onPreInitialize);
-		}
-		
-		protected function onPreInitialize(event:FlexEvent):void {
-			removeEventListener(FlexEvent.PREINITIALIZE, onPreInitialize);
 			
-			setStyle("skinClass", getStyle("compactSkinClass"));
-		}
-		
-		protected override function measure():void {
-			super.measure();
-			
-			trace("Measuring audio");
 		}
 		
 		protected override function getCurrentSkinState():String {
-			return "stopped";
+			var mainState:String = (controls) ? controls : "hidden";
+			
+			return "stopped_" + mainState;
 		}
 		
 	}

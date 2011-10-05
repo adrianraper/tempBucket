@@ -13,8 +13,7 @@ components|XHTMLExerciseView {
 }
 
 components1|AudioPlayer {
-	compactSkinClass: ClassReference("skins.bento.components.AudioPlayerCompactSkin");
-	fullSkinClass: ClassReference("skins.bento.components.AudioPlayerFullSkin");
+	skinClass: ClassReference("skins.bento.components.AudioPlayerSkin");
 }
 
 swfplayer|SWFPlayerView {
