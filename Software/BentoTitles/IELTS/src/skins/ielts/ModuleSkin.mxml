@@ -40,7 +40,7 @@
 				<s:Label text="Practice zone" fontWeight="bold" />
 				<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
 					<s:layout>
-						<s:VerticalLayout />
+						<s:HorizontalLayout />
 					</s:layout>
 				</s:DataGroup>
 			</s:VGroup>

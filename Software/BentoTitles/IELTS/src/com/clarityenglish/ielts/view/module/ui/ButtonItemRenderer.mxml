@@ -22,7 +22,10 @@
 			
 		]]>
 	</fx:Script>
-	
+	<!-- AR experiment with other item renderers -->
 	<s:Button id="button" click="onClick(event)" />
-	
+	<!-- AR experiment with other item renderers
+	<s:BitmapImage id="embimg" source="@Embed(source='RD15.jpg')"
+				   height="25" width="25" />
+	-->
 </s:ItemRenderer>
