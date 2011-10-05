@@ -30,7 +30,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 		
 			// This is just temporary; make this nicer once we have a better idea of how the Spark overlays are going to work
 			if (floatableTextFlow) {
-				return floatableTextFlow.getElementsByClass(InputElement).concat(
+				return [ ].concat(
+					   floatableTextFlow.getElementsByClass(InputElement),
 					   floatableTextFlow.getElementsByClass(SelectElement),
 					   floatableTextFlow.getElementsByClass(VideoElement),
 					   floatableTextFlow.getElementsByClass(AudioElement));
@@ -56,8 +57,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 				}
 				
 				// Position and size the component
-				var fontSize:int = componentElement.computedFormat.fontSize;
-				componentElement.getComponent().setStyle("fontSize", fontSize); // Not sure about this - should probably be in the element itself
+				componentElement.getComponent().setStyle("fontFamily", componentElement.computedFormat.fontFamily);
+				componentElement.getComponent().setStyle("fontSize", componentElement.computedFormat.fontSize);
 				
 				var bounds:Rectangle = componentElement.getElementBounds();
 				
@@ -72,7 +73,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 					componentElement.getComponent().x = bounds.x;
 					componentElement.getComponent().y = bounds.y + 1; // not sure if we want +1 - that should probably be in getElementBounds depending on the component
 					
-					componentElement.getComponent().visible = true;
+					componentElement.getComponent().visible = !componentElement.hideChrome;
 				} else {
 					componentElement.getComponent().visible = false;
 				}

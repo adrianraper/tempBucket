@@ -78,6 +78,12 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 						}
 						break;
 					case "ErrorCorrectionQuestion":
+						for each (source in Model.sourceToNodeArray(exercise, question.source)) {
+							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
+							if (inputElement) {
+								inputElement.hideChrome = true;
+							}
+					}
 						break;
 					case "DropDownQuestion":
 						break;

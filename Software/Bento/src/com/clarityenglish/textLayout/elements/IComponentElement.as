@@ -7,6 +7,8 @@ package com.clarityenglish.textLayout.elements {
 	
 	public interface IComponentElement {
 		
+		function get hideChrome():Boolean;
+		
 		function hasComponent():Boolean;
 		
 		function createComponent():void;

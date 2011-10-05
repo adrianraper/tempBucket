@@ -71,8 +71,7 @@ package com.clarityenglish.textLayout.components {
 		
 		protected override function getCurrentSkinState():String {
 			var mainState:String = (controls) ? controls : "hidden";
-			
-			return soundStatus + "_" + mainState;
+			return (mainState == "hidden") ? "hidden" : soundStatus + "_" + mainState;
 		}
 		
 		/**

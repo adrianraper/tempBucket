@@ -30,6 +30,10 @@ package com.clarityenglish.textLayout.elements {
 			getTextFlow().dispatchEvent(new StatusChangeEvent(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, true, false, this, InlineGraphicElementStatus.SIZE_PENDING));
 		}
 		
+		public function get hideChrome():Boolean {
+			return false;
+		}
+		
 		public function hasComponent():Boolean {
 			return (component !== null);
 		}

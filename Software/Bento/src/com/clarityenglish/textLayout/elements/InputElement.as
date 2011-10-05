@@ -90,8 +90,14 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public override function set text(textValue:String):void {
-			// Pad the hidden text with _ characters (this is set using the after-pad CSS property).  If widthText is set, then we just use that.
-			super.text = (_gapText) ? _gapText : textValue + StringUtil.repeat("_", _gapAfterPadding);
+			if (_hideChrome && value) {
+				// If a value has been provided and hideChrome is true, this means that we want the user to see the text underneath the input so
+				// disable gapText and gapAfterPadding and just set the underlying text to the value.
+				super.text = value;
+			} else {
+				// Pad the hidden text with _ characters (this is set using the after-pad CSS property).  If widthText is set, then we just use that.
+				super.text = (_gapText) ? _gapText : textValue + StringUtil.repeat("_", _gapAfterPadding);
+			}
 		}
 		
 		[Inspectable(category="Common", enumeration="text,button,droptarget", defaultValue="text")]

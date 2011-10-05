@@ -16,12 +16,22 @@ package com.clarityenglish.textLayout.elements {
 		
 		protected var component:UIComponent;
 		
+		protected var _hideChrome:Boolean;
+		
 		public function TextComponentElement() {
 			super();
 		}
 		
 		protected override function get abstract():Boolean {
 			return true;
+		}
+		
+		public function set hideChrome(value:Boolean):void {
+			_hideChrome = value;
+		}
+		
+		public function get hideChrome():Boolean {
+			return _hideChrome;
 		}
 		
 		public function hasComponent():Boolean {
