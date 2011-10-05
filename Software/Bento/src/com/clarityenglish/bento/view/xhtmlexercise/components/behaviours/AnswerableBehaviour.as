@@ -17,6 +17,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.FlowElementMouseEvent;
+	import flashx.textLayout.events.UpdateCompleteEvent;
 	import flashx.textLayout.tlf_internal;
 	
 	import org.davekeen.util.Closure;
@@ -91,12 +92,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 								if (eventMirror) {
 									eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
 										Closure.create(this, function(e:FlowElementMouseEvent):void {
-											(e.flowElement as TextComponentElement).hideChrome = false;
+											log.info("Click detected on an error detection question");
 											
-											// Force the textflow to redraw (in fact all we care about is triggering OverlayBehaviour to redraw, but this seems to work)
-											// TODO: There might be a neater way to do this
-											e.flowElement.getTextFlow().flowComposer.damage(0, e.flowElement.getTextFlow().textLength, FlowDamageType.INVALID);
-											e.flowElement.getTextFlow().flowComposer.updateAllControllers();
+											if ((e.flowElement as TextComponentElement).hideChrome) {
+												// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
+												(e.flowElement as TextComponentElement).hideChrome = false;
+												
+												var tf:TextFlow = e.flowElement.getTextFlow();
+												tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
+											}
 										})
 									);
 								} else {
@@ -104,7 +108,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 								}
 								
 							}
-					}
+						}
 						break;
 					case "DropDownQuestion":
 						break;
