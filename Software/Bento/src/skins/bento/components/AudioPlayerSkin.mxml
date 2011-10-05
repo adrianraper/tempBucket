@@ -13,11 +13,16 @@
 		<s:State name="stopped_compact" stateGroups="stopped,compact" />
 		<s:State name="playing_compact" stateGroups="playing,compact" />
 		<s:State name="played_compact" stateGroups="played,compact" />
+		
+		<s:State name="stopped_full" stateGroups="stopped,full" />
+		<s:State name="playing_full" stateGroups="playing,full" />
+		<s:State name="played_full" stateGroups="played,full" />
 	</s:states>
 	
-	<s:Group includeIn="compact">
-		<s:Image source="@Embed('/assets/play.png')" width="24" includeIn="stopped" />
-		<s:Image source="@Embed('/assets/stop.png')" width="24" includeIn="playing" />
-	</s:Group>
+	<!-- All in one button with different states (compact mode) -->
+	<s:Image id="compactUIComponent" source.stopped="@Embed('/assets/play.png')" source.played="@Embed('/assets/play.png')" source.playing="@Embed('/assets/stop.png')" includeIn="compact" useHandCursor="true" buttonMode="true" />
+	
+	<!-- Full controller -->
+	<s:Image source="@Embed('/assets/play.png')" includeIn="stopped_full" />
 	
 </s:Skin>

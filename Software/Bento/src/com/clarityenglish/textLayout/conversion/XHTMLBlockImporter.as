@@ -8,6 +8,7 @@ package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
+	import com.newgonzo.commons.utils.StringUtil;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
@@ -34,6 +35,7 @@ package com.clarityenglish.textLayout.conversion {
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.utils.StringUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	
@@ -90,6 +92,20 @@ package com.clarityenglish.textLayout.conversion {
 		
 		public function set css(value:CSS):void {
 			this._css = value;
+		}
+		
+		/**
+		 * This is used to add a relative path to media referenced in the XHTML input
+		 * 
+		 * @param url
+		 * @return 
+		 */
+		private function updateWithRootPath(url:String):String {
+			// If rootPath is defined and the url isn't a web address then prepend the url with the root path
+			if (_rootPath && url.search(/^https?:\/\/.*/i) < 0)
+				url = ((_rootPath) ? _rootPath + "/" : "") + url;
+			
+			return url;
 		}
 		
 		/**
@@ -509,10 +525,7 @@ package com.clarityenglish.textLayout.conversion {
 			var inlineGraphicElement:InlineGraphicElement = super.createInlineGraphicFromXML(xmlToParse);
 			
 			// TLF uses 'source' for the attribute, but allow 'src' too to match HTML better
-			if (xmlToParse.hasOwnProperty("@src")) inlineGraphicElement.source = xmlToParse.@src.toString();
-			
-			// If rootPath is defined then prepend that to the image url
-			if (_rootPath) inlineGraphicElement.source = ((_rootPath) ? _rootPath + "/" : "") + inlineGraphicElement.source;
+			if (xmlToParse.hasOwnProperty("@src")) inlineGraphicElement.source = updateWithRootPath(xmlToParse.@src.toString());
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
@@ -568,13 +581,10 @@ package com.clarityenglish.textLayout.conversion {
 			var videoElement:VideoElement = new VideoElement();
 			
 			// Inject XML properties into the element
-			if (xmlToParse.hasOwnProperty("@src")) videoElement.src = xmlToParse.@src.toString();
+			if (xmlToParse.hasOwnProperty("@src")) videoElement.src = updateWithRootPath(xmlToParse.@src.toString());
 			if (xmlToParse.hasOwnProperty("@width")) videoElement.width = xmlToParse.@width.toString();
 			if (xmlToParse.hasOwnProperty("@height")) videoElement.height = xmlToParse.@height.toString();
 			if (xmlToParse.hasOwnProperty("@autoPlay")) videoElement.autoPlay = (xmlToParse.@autoPlay.toString().toLowerCase() == "true");
-			
-			// If rootPath is defined then prepend that to the image url
-			if (_rootPath) videoElement.src = ((_rootPath) ? _rootPath + "/" : "") + videoElement.src;
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
@@ -591,7 +601,7 @@ package com.clarityenglish.textLayout.conversion {
 			var audioElement:AudioElement = new AudioElement();
 			
 			// Inject XML properties into the element
-			if (xmlToParse.hasOwnProperty("@src")) audioElement.src = xmlToParse.@src.toString();
+			if (xmlToParse.hasOwnProperty("@src")) audioElement.src = updateWithRootPath(xmlToParse.@src.toString());
 			if (xmlToParse.hasOwnProperty("@controls")) audioElement.controls = xmlToParse.@controls.toString();
 			
 			addToFlowElementXmlMap(xmlToParse, audioElement);
