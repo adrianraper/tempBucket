@@ -104,7 +104,7 @@ package com.clarityenglish.textLayout.elements {
 						
 						_videoDimensionsCalculated = true;
 						
-						getTextFlow().dispatchEvent(new StatusChangeEvent(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, true, false, this, InlineGraphicElementStatus.SIZE_PENDING));
+						fireElementSizeChanged();
 					}
 					break;
 			}
@@ -124,13 +124,6 @@ package com.clarityenglish.textLayout.elements {
 			
 			elementWidth = component.width = youTubeWidth;
 			elementHeight = component.height = youTubeHeight;
-		}
-		
-		public override function getElementBounds():Rectangle {
-			if (component && graphic && graphic.parent)
-				return new Rectangle(graphic.parent.x, graphic.parent.y, component.width, component.height);
-			
-			return null;
 		}
 		
 		/**
@@ -158,6 +151,13 @@ package com.clarityenglish.textLayout.elements {
 		 */
 		private function getVideoType():String {
 			return (_src.search(/www\.youtube\.com/) >= 0) ? YOU_TUBE : NORMAL;
+		}
+		
+		public override function getElementBounds():Rectangle {
+			if (component && graphic && graphic.parent)
+				return new Rectangle(graphic.parent.x, -graphic.parent.y, component.width, component.height);
+			
+			return null;
 		}
 		
 	}

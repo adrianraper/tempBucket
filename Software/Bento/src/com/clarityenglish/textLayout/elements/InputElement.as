@@ -158,13 +158,13 @@ package com.clarityenglish.textLayout.elements {
 			if (value && component) {
 				switch (type) {
 					case TYPE_TEXT:
-						(component as TextInput).text = value;
+						(component as TextInput).text = text = value;
 						break;
 					case TYPE_BUTTON:
-						(component as Button).label = value;
+						(component as Button).label = text = value;
 						break;
 					case TYPE_DROPTARGET:
-						(component as TextInput).text = value;
+						(component as TextInput).text = text = value;
 						break;
 				}
 			}

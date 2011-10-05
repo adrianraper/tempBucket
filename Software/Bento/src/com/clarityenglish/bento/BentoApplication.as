@@ -10,6 +10,9 @@ package com.clarityenglish.bento {
 	import mx.logging.targets.TraceTarget;
 	
 	import org.davekeen.util.ClassUtil;
+	
+	import spark.components.VideoPlayer;
+	import spark.skins.spark.VideoPlayerSkin;
 
 	public class BentoApplication extends TLF2Application {
 		

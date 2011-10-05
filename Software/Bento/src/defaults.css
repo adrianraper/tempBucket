@@ -6,22 +6,32 @@
 @namespace exercise "com.clarityenglish.bento.view.exercise.components.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
+@namespace components1 "com.clarityenglish.textLayout.components.*";
 
 components|XHTMLExerciseView {
 	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseSkin");
+}
+
+components1|AudioPlayer {
+	compactSkinClass: ClassReference("skins.bento.components.AudioPlayerCompactSkin");
+	fullSkinClass: ClassReference("skins.bento.components.AudioPlayerFullSkin");
 }
 
 swfplayer|SWFPlayerView {
 	skinClass: ClassReference("skins.bento.swfplayer.SWFPlayerSkin");
 }
 
-/* This applied to all TextInputs for now, but really its only for those in exercises */
+/* This applied to all TextInputs for now, but really it should be only for those in exercises */
 s|TextInput {
 	focusAlpha: 0;
 	skinClass: ClassReference("skins.bento.exercise.ExerciseTextInputSkin");
 }
 
-/* This applied to all DropDownLists for now, but really its only for those in exercises */
+/* This applied to all DropDownLists for now, but really it should be only for those in exercises */
 s|DropDownList {
 	skinClass: ClassReference("skins.bento.exercise.ExerciseDropDownListSkin");
+}
+
+s|VideoPlayer {
+	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
 }

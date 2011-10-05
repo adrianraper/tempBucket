@@ -219,6 +219,7 @@ package com.clarityenglish.textLayout.rendering {
 		 * @param event
 		 */
 		protected function onInlineGraphicStatusChange(event:StatusChangeEvent):void {
+			trace("GOT HERE!!!!");
 			if (event.status == InlineGraphicElementStatus.READY || event.status == InlineGraphicElementStatus.SIZE_PENDING) {
 				var textFlow:TextFlow = event.target as TextFlow;
 				_textFlow.flowComposer.damage(0, _textFlow.textLength, FlowDamageType.GEOMETRY);

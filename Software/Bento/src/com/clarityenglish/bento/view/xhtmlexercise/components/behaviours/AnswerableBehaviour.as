@@ -77,6 +77,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 							}
 						}
 						break;
+					case "ErrorCorrectionQuestion":
+						break;
 					case "DropDownQuestion":
 						break;
 					default:

@@ -1,4 +1,5 @@
 package com.clarityenglish.textLayout.conversion {
+	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.OrderedListElement;
@@ -69,6 +70,7 @@ package com.clarityenglish.textLayout.conversion {
 			addIEInfo("input", InputElement, parseInput, null);
 			addIEInfo("select", SelectElement, parseSelect, null);
 			addIEInfo("video", VideoElement, parseVideo, null);
+			addIEInfo("audio", AudioElement, parseAudio, null);
 			
 			addIEInfo("ul", UnorderedListElement, parseUnorderedList, null);
 			addIEInfo("ol", OrderedListElement, parseOrderedList, null);
@@ -266,6 +268,25 @@ package com.clarityenglish.textLayout.conversion {
 			importFilter.addChild(parent, videoElement);
 		}
 		
+		/**
+		 * Parser for the custom <audio> element
+		 * 
+		 * @param importFilter
+		 * @param xmlToParse
+		 * @param parent
+		 */
+		public static function parseAudio(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
+			var audioElement:AudioElement = importFilter.createAudioFromXml(xmlToParse);
+			importFilter.addChild(parent, audioElement);
+		}
+		
+		/**
+		 * This is equivalent to <list> with listStyleType == ListStyleType.DISC
+		 * 
+		 * @param importFilter
+		 * @param xmlToParse
+		 * @param parent
+		 */
 		private static function parseUnorderedList(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var listElem:ListElement = importFilter.createListFromXML(xmlToParse);
 			
@@ -276,6 +297,13 @@ package com.clarityenglish.textLayout.conversion {
 				importFilter.parseFlowGroupElementChildren(xmlToParse, listElem);
 		}
 		
+		/**
+		 * This is equivalent to <list> with listStyleType == ListStyleType.DECIMAL
+		 * 
+		 * @param importFilter
+		 * @param xmlToParse
+		 * @param parent
+		 */
 		private static function parseOrderedList(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var listElem:ListElement = importFilter.createListFromXML(xmlToParse);
 			
@@ -554,6 +582,18 @@ package com.clarityenglish.textLayout.conversion {
 			addToFlowElementXmlMap(xmlToParse, videoElement);
 			
 			return videoElement;
+		}
+		
+		public function createAudioFromXml(xmlToParse:XML):AudioElement {
+			var audioElement:AudioElement = new AudioElement();
+			
+			// Inject XML properties into the element
+			if (xmlToParse.hasOwnProperty("@src")) audioElement.src = xmlToParse.@src.toString();
+			if (xmlToParse.hasOwnProperty("@controls")) audioElement.controls = xmlToParse.@controls.toString();
+			
+			addToFlowElementXmlMap(xmlToParse, audioElement);
+			
+			return audioElement;
 		}
 		
 	}

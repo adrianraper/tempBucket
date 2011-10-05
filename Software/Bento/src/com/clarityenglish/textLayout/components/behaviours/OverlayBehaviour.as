@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.components.behaviours {
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
+	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.elements.IComponentElement;
 	import com.clarityenglish.textLayout.elements.InputElement;
@@ -31,7 +32,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 			if (floatableTextFlow) {
 				return floatableTextFlow.getElementsByClass(InputElement).concat(
 					   floatableTextFlow.getElementsByClass(SelectElement),
-					   floatableTextFlow.getElementsByClass(VideoElement));
+					   floatableTextFlow.getElementsByClass(VideoElement),
+					   floatableTextFlow.getElementsByClass(AudioElement));
 			}
 			
 			return null;
@@ -59,14 +61,16 @@ package com.clarityenglish.textLayout.components.behaviours {
 				
 				var bounds:Rectangle = componentElement.getElementBounds();
 				
+				trace("update! " + bounds);
+				
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container
 					// TODO: This doesn't quite work properly in Grid1.xml, although it is very close
 					var containingBlock:RenderFlow = textFlow.flowComposer.getControllerAt(0).container as RenderFlow;
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					
-					componentElement.getComponent().width = bounds.width;
-					componentElement.getComponent().height = bounds.height; // TODO: This doesn't set the height correctly on the dropdownlist
+					if (!isNaN(bounds.width)) componentElement.getComponent().width = bounds.width;
+					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height; // TODO: This doesn't set the height correctly on the dropdownlist
 					componentElement.getComponent().x = bounds.x;
 					componentElement.getComponent().y = bounds.y + 1; // not sure if we want +1 - that should probably be in getElementBounds depending on the component
 					

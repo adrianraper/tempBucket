@@ -79,7 +79,7 @@ package com.clarityenglish.ielts.view.module {
 				courseTitleLabel.text = _course.@caption;
 				courseDescriptionLabel.text = _course.@description;
 				
-				// Class is a reserved word so have to use attribute(name)
+				// class is a reserved keyword so have to use attribute("class") instead of @class
 				examPractice1Button.label = _course.unit.(attribute("class") == "exam-practice").exercise[0].@caption;
 				examPractice1Difficulty.data = _course.unit.(attribute("class") == "exam-practice").exercise[0].@difficulty;
 				examPractice2Button.label = _course.unit.(attribute("class") == "exam-practice").exercise[1].@caption;
@@ -88,8 +88,7 @@ package com.clarityenglish.ielts.view.module {
 				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(attribute("class") == "practice-zone").exercise);
 				
 				var adviceZoneVideoUrl:String = _course.unit.(attribute("class") == "advice-zone").exercise[0].@href;
-				if (adviceZoneVideoUrl)
-					adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
+				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
 								
 				_courseChanged = false;
 			}

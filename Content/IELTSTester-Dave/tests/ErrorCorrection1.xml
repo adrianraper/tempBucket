@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[
+			#body p {
+				padding-bottom: 25;
+			}
+		]]>
+		</style>
+		<script id="model" type="application/xml">
+			<questions>
+				<ErrorCorrectionQuestion source="error1">
+					<answer correct="true" value="songs" />
+				</ErrorCorrectionQuestion>
+				
+				<ErrorCorrectionQuestion source="error2">
+					<answer correct="true" value="passengers" />
+				</ErrorCorrectionQuestion>
+				
+				<ErrorCorrectionQuestion source="error3">
+					<answer correct="true" value="hair" />
+				</ErrorCorrectionQuestion>
+				
+				<ErrorCorrectionQuestion source="error4">
+					<answer correct="true" value="to" />
+				</ErrorCorrectionQuestion>
+				
+				<ErrorCorrectionQuestion source="error5">
+					<answer correct="true" value="danced" />
+				</ErrorCorrectionQuestion>
+				
+				<ErrorCorrectionQuestion source="error6">
+					<answer correct="true" value="tell" />
+				</ErrorCorrectionQuestion>
+			</questions>
+		</script>
+	</head>
+	
+	<body>
+		<header>
+			(Error correction) Read this essay about Blackbeard, the famous pirate.  There are six mistakes in the essay.  Find them, and click on them.
+			When you have finished, click forward to read some ideas about proof reading.
+		</header>
+		
+		<section id="body">
+			<img class="rightFloat" src="media/pirate.png" />
+			
+			<p><b>Blackbeard's Treasure.</b></p>
+			
+			<p>When we hear of pirates these days, we think of people who copy DVDs or steal <input id="error1" value="song" /> from the Internet. 
+			This may be bad, but at least nobody dies.</p>
+
+			<p>It was different 300 years ago.  The most famous pirate of them all was Blackbeard.  From 1716 to 1718, he and
+			his men attacked ships in the Atlantic and the Caribbean.  They killed the crews and the <input id="error2" value="pasengers" />
+			and stole gold, silver, jewels - and even sugar, cocoa and cotton, which were being taken to Europe.</p>
+
+			<p>Backbeard was quite young - under 30 years old - and he had long black <input id="error3" value="hairs" /> and a bushy black
+			beard.  He put burning rope into his hair to make himself look even more frightening.  He was captain of his ship
+			and a hero <input id="error4" value="with" /> other pirates.</p>
+
+			<p>This is how he was caught.  In 1718 he went to his favourite hiding place on Ocracoke Island off North Carolina.
+			He decided to have a party with all the other pirates.  They <input id="error5" value="dance" />, drank and lit a huge fire.</p>
+
+			<p>Somebody saw the light from the fire and <input id="error6" value="tells" /> the navy.  The navy sent two ships to catch the
+			pirates, and at dawn they attacked.  Blackbeard sank one of the ships, and ran his ship up against the other.</p>
+		</section>
+	</body>
+	
+</bento>

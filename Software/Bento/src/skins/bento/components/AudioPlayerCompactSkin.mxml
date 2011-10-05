@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.textLayout.components.AudioPlayer")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="stopped" />
+		<s:State name="playing" />
+		<s:State name="played" />
+	</s:states>
+	
+	<s:Image source="@Embed('/assets/play.png')" width="24" includeIn="stopped, played" />
+	<s:Image source="@Embed('/assets/stop.png')" width="24" includeIn="playing" />
+	
+</s:Skin>

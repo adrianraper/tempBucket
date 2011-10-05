@@ -82,6 +82,9 @@
     <classEntry path="skins.bento.DynamicViewSkin"/>
     <classEntry path="com.clarityenglish.bento.view.swfplayer.SWFPlayerView"/>
     <classEntry path="skins.bento.swfplayer.SWFPlayerSkin"/>
+    <classEntry path="com.clarityenglish.textLayout.components.AudioPlayer"/>
+    <classEntry path="skins.bento.components.AudioPlayerCompactSkin"/>
+    <classEntry path="skins.bento.VideoPlayerSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

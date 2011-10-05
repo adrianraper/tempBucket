@@ -2,10 +2,15 @@ package com.clarityenglish.textLayout.elements {
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.elements.InlineGraphicElement;
+	import flashx.textLayout.elements.InlineGraphicElementStatus;
+	import flashx.textLayout.events.StatusChangeEvent;
+	import flashx.textLayout.tlf_internal;
 	
 	import mx.core.UIComponent;
 	
 	import spark.components.Group;
+	
+	use namespace tlf_internal;
 	
 	public class ImageComponentElement extends InlineGraphicElement {
 		
@@ -17,6 +22,10 @@ package com.clarityenglish.textLayout.elements {
 		
 		protected override function get abstract():Boolean {
 			return true;
+		}
+		
+		protected function fireElementSizeChanged():void {
+			getTextFlow().dispatchEvent(new StatusChangeEvent(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, true, false, this, InlineGraphicElementStatus.SIZE_PENDING));
 		}
 		
 		public function hasComponent():Boolean {

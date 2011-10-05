@@ -24,6 +24,12 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		/**
+		 * If this is true then use a cachebuster (a randomly generated string) on the end of CSS files so they don't get cached.
+		 * TODO: This should be configurable in config.xml 
+		 */
+		private static const useCacheBuster:Boolean = true;
+		
 		public static const XML_CHANGE_EVENT:String = "xmlChange";
 		
 		private var dispatcher:EventDispatcher;
@@ -140,7 +146,7 @@ package com.clarityenglish.textLayout.vo {
 					var linkLoader:LinkLoader = new LinkLoader(linkNode);
 					linkLoader.addEventListener(Event.COMPLETE, onStyleSheetLoaded);
 					linkLoader.addEventListener(IOErrorEvent.IO_ERROR, onStyleSheetIOError);
-					linkLoader.load(new URLRequest((rootPath ? rootPath + "/" : "") + linkNode.@href));
+					linkLoader.load(new URLRequest((rootPath ? rootPath + "/" : "") + linkNode.@href.toString() + (useCacheBuster ? "?" + new Date().time : "")));
 				}
 			}
 		}
@@ -151,6 +157,9 @@ package com.clarityenglish.textLayout.vo {
 			
 			var linkLoader:LinkLoader = event.target as LinkLoader;
 			
+			// Store the loaded url in a string as we are about to replace it and want to display it in the log message
+			var loadedUrl:String = ((rootPath) ? rootPath + "/" : "") + linkLoader.linkNode.@href.toString();
+			
 			// Replace the <link> node with a <style> node containing the contents
 			delete linkLoader.linkNode.@rel;
 			delete linkLoader.linkNode.@href;
@@ -160,7 +169,7 @@ package com.clarityenglish.textLayout.vo {
 			externalStyleSheetsLoaded = true;
 			isLoadingStyleLinks = false;
 			
-			log.info("External stylesheet loaded from "+(rootPath ? rootPath + "/" : "") + linkLoader.linkNode.@href);
+			log.info("External stylesheet loaded from {0}", loadedUrl);
 			
 			dispatchEvent(new XHTMLEvent(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED));
 		}
@@ -171,7 +180,7 @@ package com.clarityenglish.textLayout.vo {
 			
 			isLoadingStyleLinks = false;
 			
-			log.error("Error loading external stylesheet " + ((rootPath ? rootPath + "/" : "")) + event.target.linkNode.@href);
+			log.error("Error loading external stylesheet {0}", ((rootPath) ? rootPath + "/" : "") + event.target.linkNode.@href.toString());
 		}
 		
 		/**
