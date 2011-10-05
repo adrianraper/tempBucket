@@ -1,4 +1,5 @@
 package com.clarityenglish.textLayout.components {
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
@@ -74,11 +75,15 @@ package com.clarityenglish.textLayout.components {
 			return soundStatus + "_" + mainState;
 		}
 		
+		/**
+		 * Play the sound (stopping any previously playing sound) and set the appropriate state on the skin
+		 */
 		protected function play():void {
 			// Stop any previously playing sound and play the new one
 			stop();
 			var sound:Sound = new Sound(new URLRequest(src));
 			soundChannel = sound.play();
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, true);
 			played = true;
 			
 			// Change the status and invalidate the skin state
@@ -86,6 +91,9 @@ package com.clarityenglish.textLayout.components {
 			invalidateSkinState();
 		}
 		
+		/**
+		 * Stop the sound (stopping any previously playing sound) and set the appropriate state on the skin
+		 */
 		protected function stop():void {
 			if (soundChannel)
 				soundChannel.stop();
@@ -93,6 +101,11 @@ package com.clarityenglish.textLayout.components {
 			// Change the status and invalidate the skin state
 			soundStatus = (played) ? PLAYED : STOPPED;
 			invalidateSkinState();
+		}
+		
+		protected function onSoundComplete(event:Event):void {
+			// When a sound finishes playing just call stop anyway to set the skin (and stopping a finished sound does no harm)
+			stop();
 		}
 		
 	}
