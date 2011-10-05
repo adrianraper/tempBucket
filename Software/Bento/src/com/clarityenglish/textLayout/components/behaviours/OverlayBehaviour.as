@@ -56,7 +56,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 					overlayContainer.addElement(componentElement.getComponent());
 				}
 				
-				// Position and size the component
+				// Style the component in line with its underlying text
 				componentElement.getComponent().setStyle("fontFamily", componentElement.computedFormat.fontFamily);
 				componentElement.getComponent().setStyle("fontSize", componentElement.computedFormat.fontSize);
 				
@@ -64,7 +64,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 				
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container
-					// TODO: This doesn't quite work properly in Grid1.xml, although it is very close
+					// TODO: This doesn't quite work vertically in floats; horizontally it is correct
 					var containingBlock:RenderFlow = textFlow.flowComposer.getControllerAt(0).container as RenderFlow;
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					
@@ -73,6 +73,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 					componentElement.getComponent().x = bounds.x;
 					componentElement.getComponent().y = bounds.y + 1; // not sure if we want +1 - that should probably be in getElementBounds depending on the component
 					
+					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
 					componentElement.getComponent().visible = !componentElement.hideChrome;
 				} else {
 					componentElement.getComponent().visible = false;

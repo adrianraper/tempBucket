@@ -8,11 +8,12 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.InputElement;
-	import com.clarityenglish.textLayout.elements.SelectElement;
+	import com.clarityenglish.textLayout.elements.TextComponentElement;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.IEventDispatcher;
 	
+	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.FlowElementMouseEvent;
@@ -40,18 +41,18 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			if (!exercise.hasModel())
 				return;
 			
-			var source:XML;
+			var source:XML, answer:Answer, eventMirror:IEventDispatcher, inputElement:InputElement;
 			
 			for each (var question:Question in exercise.model.questions) {
 				switch (question.type) {
 					case "MultipleChoiceQuestion":
 					case "TargetSpottingQuestion":
 						// Work out the source flow element(s) and attach click listeners to its event mirror
-						for each (var answer:Answer in question.answers) {
+						for each (answer in question.answers) {
 							for each (source in Model.sourceToNodeArray(exercise, answer.source)) {
 								var flowElement:FlowElement = flowElementXmlBiMap.getFlowElement(source);
 								if (flowElement) {
-									var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
+									eventMirror = flowElement.tlf_internal::getEventMirror();
 									
 									if (eventMirror) {
 										eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
@@ -71,7 +72,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					case "GapFillQuestion":
 						// The answers for these questions is defined in the model so we need to set the underlying text here
 						for each (source in Model.sourceToNodeArray(exercise, question.source)) {
-							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
+							inputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 							if (inputElement) {
 								inputElement.text = getLongestAnswerValue(question.answers);
 							}
@@ -79,9 +80,29 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 						break;
 					case "ErrorCorrectionQuestion":
 						for each (source in Model.sourceToNodeArray(exercise, question.source)) {
-							var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
+							inputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 							if (inputElement) {
+								// Error correction questions start with their text input hidden
 								inputElement.hideChrome = true;
+								
+								// When the user clicks on the text show the component
+								eventMirror = inputElement.tlf_internal::getEventMirror();
+								
+								if (eventMirror) {
+									eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
+										Closure.create(this, function(e:FlowElementMouseEvent):void {
+											(e.flowElement as TextComponentElement).hideChrome = false;
+											
+											// Force the textflow to redraw (in fact all we care about is triggering OverlayBehaviour to redraw, but this seems to work)
+											// TODO: There might be a neater way to do this
+											e.flowElement.getTextFlow().flowComposer.damage(0, e.flowElement.getTextFlow().textLength, FlowDamageType.INVALID);
+											e.flowElement.getTextFlow().flowComposer.updateAllControllers();
+										})
+									);
+								} else {
+									log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}, answer {2}]", flowElement, question, answer);
+								}
+								
 							}
 					}
 						break;

@@ -26,6 +26,10 @@ package com.clarityenglish.textLayout.elements {
 			return true;
 		}
 		
+		/**
+		 * This can be called by the concrete child of this class in order to tell the parent text flow that the size of this element may have changed
+		 * and everything needs to be laid out again.  Typically called when the component has been added to the stage.
+		 */
 		protected function fireElementSizeChanged():void {
 			getTextFlow().dispatchEvent(new StatusChangeEvent(StatusChangeEvent.INLINE_GRAPHIC_STATUS_CHANGE, true, false, this, InlineGraphicElementStatus.SIZE_PENDING));
 		}
@@ -47,6 +51,12 @@ package com.clarityenglish.textLayout.elements {
 			return component;
 		}
 		
+		/**
+		 * Get the bounds of the element, but override the width and height (which will be the width and height of the underlying image).  If the component is not
+		 * yet initialized return NaN which tells overlay behaviour not to attempt to set a size on the component as it is not yet ready.
+		 * 
+		 * @return 
+		 */
 		public function getElementBounds():Rectangle {
 			var bounds:Rectangle = TLFUtil.getFlowLeafElementBounds(this);
 			bounds.width = (component.initialized) ? component.width : NaN;
