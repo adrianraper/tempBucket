@@ -61,8 +61,6 @@ package com.clarityenglish.textLayout.components.behaviours {
 				
 				var bounds:Rectangle = componentElement.getElementBounds();
 				
-				trace("update! " + bounds);
-				
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container
 					// TODO: This doesn't quite work properly in Grid1.xml, although it is very close

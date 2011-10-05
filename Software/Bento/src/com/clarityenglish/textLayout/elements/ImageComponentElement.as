@@ -1,4 +1,6 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.textLayout.util.TLFUtil;
+	
 	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.elements.InlineGraphicElement;
@@ -42,7 +44,11 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public function getElementBounds():Rectangle {
-			return null;
+			var bounds:Rectangle = TLFUtil.getFlowLeafElementBounds(this);
+			bounds.width = (component.initialized) ? component.width : NaN;
+			bounds.height = (component.initialized) ? component.height : NaN;
+			
+			return bounds;
 		}
 		
 	}

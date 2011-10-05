@@ -22,12 +22,12 @@
 		</header>
 		
 		<section id="body">
-			<!-- Here is some audio "<audio src="media/audio1.mp3" controls="short" />"; what did you think of that?
+			Here is some audio "<audio src="media/audio1.mp3" controls="short" />"; what did you think of that?
 			
 			<br/>
 			<br/>
 			
-			Here is a video "<video src="media/SPP-06.flv" autoPlay="false" />" -->
+			and here is a video "<video src="media/SPP-06.flv" autoPlay="false" />"
 			
 			Trying to work out the alignment issues with overlaid graphics.<br/>
 			<br/>

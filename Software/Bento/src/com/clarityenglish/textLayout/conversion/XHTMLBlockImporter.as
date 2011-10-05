@@ -573,6 +573,9 @@ package com.clarityenglish.textLayout.conversion {
 			if (xmlToParse.hasOwnProperty("@height")) videoElement.height = xmlToParse.@height.toString();
 			if (xmlToParse.hasOwnProperty("@autoPlay")) videoElement.autoPlay = (xmlToParse.@autoPlay.toString().toLowerCase() == "true");
 			
+			// If rootPath is defined then prepend that to the image url
+			if (_rootPath) videoElement.src = ((_rootPath) ? _rootPath + "/" : "") + videoElement.src;
+			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);
 			if (style.width) videoElement.width = style.width;

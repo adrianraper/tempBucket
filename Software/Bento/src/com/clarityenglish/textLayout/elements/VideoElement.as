@@ -1,4 +1,6 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.textLayout.util.TLFUtil;
+	
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
@@ -52,6 +54,10 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function set src(value:String):void {
 			_src = value;
+		}
+		
+		public function get src():String {
+			return _src;
 		}
 		
 		public function set autoPlay(value:Boolean):void {
@@ -151,13 +157,6 @@ package com.clarityenglish.textLayout.elements {
 		 */
 		private function getVideoType():String {
 			return (_src.search(/www\.youtube\.com/) >= 0) ? YOU_TUBE : NORMAL;
-		}
-		
-		public override function getElementBounds():Rectangle {
-			if (component && graphic && graphic.parent)
-				return new Rectangle(graphic.parent.x, -graphic.parent.y, component.width, component.height);
-			
-			return null;
 		}
 		
 	}

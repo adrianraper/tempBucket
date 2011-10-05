@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.textLayout.components.AudioPlayer;
+	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.geom.Rectangle;
 	import flash.utils.setInterval;
@@ -53,13 +54,6 @@ package com.clarityenglish.textLayout.elements {
 			elementHeight = component.height;
 			
 			fireElementSizeChanged();
-		}
-		
-		public override function getElementBounds():Rectangle {
-			if (component && graphic && graphic.parent)
-				return new Rectangle(graphic.parent.x, -graphic.parent.y, (component.initialized) ? component.width : NaN, (component.initialized) ? component.height : NaN);
-			
-			return null;
 		}
 		
 	}
