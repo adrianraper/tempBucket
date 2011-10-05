@@ -14,6 +14,9 @@ package com.clarityenglish.textLayout.components {
 	[SkinState("stopped_compact")]
 	[SkinState("playing_compact")]
 	[SkinState("played_compact")]
+	[SkinState("stopped_full")]
+	[SkinState("playing_full")]
+	[SkinState("played_full")]
 	public class AudioPlayer extends SkinnableComponent {
 		
 		private static const PLAYING:String = "playing";
@@ -94,8 +97,11 @@ package com.clarityenglish.textLayout.components {
 		 * Stop the sound (stopping any previously playing sound) and set the appropriate state on the skin
 		 */
 		protected function stop():void {
-			if (soundChannel)
+			if (soundChannel) {
+				// Stop any currently playing sound, and dispatch a SOUND_COMPLETE event so that the previous audio player changes from PLAYING to the appropriate state
 				soundChannel.stop();
+				soundChannel.dispatchEvent(new Event(Event.SOUND_COMPLETE));
+			}
 			
 			// Change the status and invalidate the skin state
 			soundStatus = (played) ? PLAYED : STOPPED;
@@ -103,8 +109,9 @@ package com.clarityenglish.textLayout.components {
 		}
 		
 		protected function onSoundComplete(event:Event):void {
-			// When a sound finishes playing just call stop anyway to set the skin (and stopping a finished sound does no harm)
-			stop();
+			// Change the status and invalidate the skin state
+			soundStatus = (played) ? PLAYED : STOPPED;
+			invalidateSkinState();
 		}
 		
 	}
