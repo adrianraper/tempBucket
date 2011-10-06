@@ -241,12 +241,12 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		/** create an implied span with specified text */
-		override public function createImpliedSpan(text:String):SpanElement {
+		/*override public function createImpliedSpan(text:String):SpanElement {
 			// This certainly helps the import spacing issue although its still not quite perfect
-			var span:SpanElement = new SpanElement();	// No PMD
-			span.text = text + " ";
+			var span:SpanElement = super.createImpliedSpan(text);
+			span.text += " ";
 			return span;
-		}
+		}*/
 		
 		/**
 		 * Parser for the custom <input> element
