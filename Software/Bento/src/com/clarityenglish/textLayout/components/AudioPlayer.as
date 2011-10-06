@@ -1,14 +1,15 @@
 package com.clarityenglish.textLayout.components {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.ProgressEvent;
+	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.net.URLRequest;
+	import flash.utils.Timer;
 	
 	import mx.core.UIComponent;
 	
-	import spark.components.Button;
-	import spark.components.Image;
 	import spark.components.mediaClasses.ScrubBar;
 	import spark.components.supportClasses.SkinnableComponent;
 	
@@ -46,6 +47,11 @@ package com.clarityenglish.textLayout.components {
 		public var controls:String;
 		
 		/**
+		 * A timer for updating the scrub bar as the sound plays 
+		 */
+		private var scrubBarTimer:Timer;
+		
+		/**
 		 * One of the 3 constants STOPPED, PLAYING or PLAYED defined above
 		 */
 		private var soundStatus:String = STOPPED;
@@ -56,6 +62,11 @@ package com.clarityenglish.textLayout.components {
 		private var played:Boolean;
 		
 		/**
+		 * The position that the audio should restart from if paused
+		 */
+		private var pausePosition:Number;
+		
+		/**
 		 * The sound for the player
 		 */
 		private var sound:Sound;
@@ -64,6 +75,11 @@ package com.clarityenglish.textLayout.components {
 		 * The sound channel used for playback is static and hence is shared between all AudioPlayer instances  
 		 */
 		private static var soundChannel:SoundChannel;
+		
+		public function AudioPlayer() {
+			scrubBarTimer = new Timer(500, 0);
+			scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
@@ -77,6 +93,9 @@ package com.clarityenglish.textLayout.components {
 					break;
 				case pauseComponent:
 					pauseComponent.addEventListener(MouseEvent.CLICK, function(e:Event):void { pause(); } );
+					break;
+				case scrubBar:
+					scrubBar.addEventListener(Event.CHANGE, function(e:Event):void { seek(scrubBar.value); } );
 					break;
 			}
 		}
@@ -103,6 +122,36 @@ package com.clarityenglish.textLayout.components {
 			return (mainState == "hidden") ? "hidden" : soundStatus + "_" + mainState;
 		}
 		
+		
+		protected function onScrubBarTimer(event:Event):void {
+			var scrubBarPos:Number = soundChannel.position / 1000;
+			if (scrubBar && scrubBarPos < scrubBar.maximum)
+				scrubBar.value = scrubBarPos;
+		}
+		
+		/**
+		 * Whilst the sound loads estimate the duration
+		 * 
+		 * @param event
+		 */
+		protected function onSoundLoadProgress(event:ProgressEvent):void {
+			if (scrubBar && sound && sound.length > 0) {
+				var duration:Number = (sound.bytesTotal / (sound.bytesLoaded / sound.length)) / 1000;
+				scrubBar.maximum = duration;
+			}
+		}
+		
+		
+		/**
+		 * When the sound has loaded we can get the actual duration 
+		 * 
+		 * @param event
+		 */
+		protected function onSoundLoadComplete(event:Event):void {
+			if (scrubBar && sound)
+				scrubBar.maximum = sound.length / 1000;
+		}
+		
 		/**
 		 * Play the sound (stopping any previously playing sound) and set the appropriate state on the skin
 		 */
@@ -113,20 +162,41 @@ package com.clarityenglish.textLayout.components {
 			// Stop any previously playing sound and play the new one
 			stop();
 			sound = new Sound(new URLRequest(src));
+			
+			// Attach listeners to update the scrub bar maximum as the sound loads
+			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+			
 			soundChannel = sound.play(startTime);
 			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, true);
 			played = true;
+			
+			scrubBarTimer.reset();
+			scrubBarTimer.start();
 			
 			// Change the status and invalidate the skin state
 			soundStatus = PLAYING;
 			invalidateSkinState();
 		}
 		
-		private var pausePosition:Number;
+		protected function seek(time:Number):void {
+			// Set the pause position to the seek time
+			pausePosition = time * 1000;
+			
+			// If we are currently playing then keep playing at the new position, otherwise
+			if (soundStatus == PLAYING) {
+				soundStatus = PAUSED;
+				play();
+			} else {
+				soundStatus = PAUSED;
+			}
+		}
 		
 		protected function pause():void {
 			pausePosition = soundChannel.position;
 			soundChannel.stop();
+			
+			scrubBarTimer.stop();
 			
 			// Change the status and invalidate the skin state
 			soundStatus = PAUSED;
@@ -142,6 +212,8 @@ package com.clarityenglish.textLayout.components {
 				soundChannel.stop();
 				soundChannel.dispatchEvent(new Event(Event.SOUND_COMPLETE));
 			}
+			
+			scrubBarTimer.stop();
 			
 			// Change the status and invalidate the skin state
 			soundStatus = (played) ? PLAYED : STOPPED;
