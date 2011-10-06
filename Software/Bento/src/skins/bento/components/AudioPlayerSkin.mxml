@@ -12,17 +12,30 @@
 		
 		<s:State name="stopped_compact" stateGroups="stopped,compact" />
 		<s:State name="playing_compact" stateGroups="playing,compact" />
+		<s:State name="paused_compact" stateGroups="paused,compact" />
 		<s:State name="played_compact" stateGroups="played,compact" />
 		
 		<s:State name="stopped_full" stateGroups="stopped,full" />
 		<s:State name="playing_full" stateGroups="playing,full" />
+		<s:State name="paused_full" stateGroups="paused,full" />
 		<s:State name="played_full" stateGroups="played,full" />
 	</s:states>
 	
 	<!-- All in one button with different states (compact mode) -->
-	<s:Image id="compactUIComponent" source.stopped="@Embed('/assets/play.png')" source.played="@Embed('/assets/play.png')" source.playing="@Embed('/assets/stop.png')" includeIn="compact" useHandCursor="true" buttonMode="true" />
+	<s:Image id="compactComponent"
+			 source.stopped="@Embed('/skins/assets/play.png')"
+			 source.played="@Embed('/skins/assets/play.png')"
+			 source.paused="@Embed('/skins/assets/play.png')"
+			 source.playing="@Embed('/skins/assets/stop.png')"
+			 includeIn="compact"
+			 useHandCursor="true"
+			 buttonMode="true" />
 	
-	<!-- Full controller -->
-	<s:Image source="@Embed('/assets/play.png')" includeIn="stopped_full" />
+	<!-- Proper control with a scrub bar and buttons (full mode) -->
+	<s:HGroup verticalAlign="middle">
+		<s:Image id="playComponent" source="@Embed('/skins/assets/play.png')" includeIn="stopped_full,paused_full,played_full" />
+		<s:Image id="pauseComponent" source="@Embed('/skins/assets/pause.png')" includeIn="playing_full" />
+		<s:ScrubBar id="scrubBar" width="90" includeIn="full" />
+	</s:HGroup>
 	
 </s:Skin>

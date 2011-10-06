@@ -22,7 +22,7 @@
 		</header>
 		
 		<section id="body">
-			Here is some audio "<audio src="media/audio1.mp3" controls="compact" />"; what did you think of that?
+			Here is some audio "<audio src="media/audio1.mp3" controls="full" />"; what did you think of that?
 			
 			<br/>
 			<br/>

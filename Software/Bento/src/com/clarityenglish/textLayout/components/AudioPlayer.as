@@ -7,24 +7,39 @@ package com.clarityenglish.textLayout.components {
 	
 	import mx.core.UIComponent;
 	
+	import spark.components.Button;
 	import spark.components.Image;
+	import spark.components.mediaClasses.ScrubBar;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	[SkinState("hidden")]
 	[SkinState("stopped_compact")]
 	[SkinState("playing_compact")]
+	[SkinState("paused_compact")]
 	[SkinState("played_compact")]
+	
 	[SkinState("stopped_full")]
 	[SkinState("playing_full")]
+	[SkinState("paused_full")]
 	[SkinState("played_full")]
 	public class AudioPlayer extends SkinnableComponent {
 		
-		private static const PLAYING:String = "playing";
 		private static const STOPPED:String = "stopped";
+		private static const PLAYING:String = "playing";
+		private static const PAUSED:String = "paused";
 		private static const PLAYED:String = "played";
 		
 		[SkinPart(required="true")]
-		public var compactUIComponent:UIComponent;
+		public var compactComponent:UIComponent;
+		
+		[SkinPart(required="true")]
+		public var playComponent:UIComponent;
+		
+		[SkinPart(required="true")]
+		public var pauseComponent:UIComponent;
+		
+		[SkinPart(required="true")]
+		public var scrubBar:ScrubBar;
 		
 		public var src:String;
 		
@@ -41,6 +56,11 @@ package com.clarityenglish.textLayout.components {
 		private var played:Boolean;
 		
 		/**
+		 * The sound for the player
+		 */
+		private var sound:Sound;
+		
+		/**
 		 * The sound channel used for playback is static and hence is shared between all AudioPlayer instances  
 		 */
 		private static var soundChannel:SoundChannel;
@@ -49,8 +69,14 @@ package com.clarityenglish.textLayout.components {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case compactUIComponent:
-					compactUIComponent.addEventListener(MouseEvent.CLICK, onCompactUIComponentClick);
+				case compactComponent:
+					compactComponent.addEventListener(MouseEvent.CLICK, onCompactUIComponentClick);
+					break;
+				case playComponent:
+					playComponent.addEventListener(MouseEvent.CLICK, function(e:Event):void { play(); } );
+					break;
+				case pauseComponent:
+					pauseComponent.addEventListener(MouseEvent.CLICK, function(e:Event):void { pause(); } );
 					break;
 			}
 		}
@@ -81,15 +107,29 @@ package com.clarityenglish.textLayout.components {
 		 * Play the sound (stopping any previously playing sound) and set the appropriate state on the skin
 		 */
 		protected function play():void {
+			// Work out the start position (based on whether we are paused or not)
+			var startTime:Number = (soundStatus == PAUSED) ? pausePosition : null;
+			
 			// Stop any previously playing sound and play the new one
 			stop();
-			var sound:Sound = new Sound(new URLRequest(src));
-			soundChannel = sound.play();
+			sound = new Sound(new URLRequest(src));
+			soundChannel = sound.play(startTime);
 			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, true);
 			played = true;
 			
 			// Change the status and invalidate the skin state
 			soundStatus = PLAYING;
+			invalidateSkinState();
+		}
+		
+		private var pausePosition:Number;
+		
+		protected function pause():void {
+			pausePosition = soundChannel.position;
+			soundChannel.stop();
+			
+			// Change the status and invalidate the skin state
+			soundStatus = PAUSED;
 			invalidateSkinState();
 		}
 		
