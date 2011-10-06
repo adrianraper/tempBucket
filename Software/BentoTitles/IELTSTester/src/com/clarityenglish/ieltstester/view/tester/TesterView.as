@@ -13,7 +13,7 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_CAPTION:String = "ErrorCorrection1";
+		private static const STARTING_CAPTION:String = "SpaceBug";
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;

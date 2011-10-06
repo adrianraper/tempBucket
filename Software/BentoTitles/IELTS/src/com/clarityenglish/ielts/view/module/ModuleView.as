@@ -9,12 +9,12 @@ package com.clarityenglish.ielts.view.module {
 	
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
+	import mx.core.IDataRenderer;
 	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
-	import spark.components.DataRenderer;
 	import spark.components.Label;
 	import spark.components.TabBar;
 	import spark.components.VideoPlayer;
@@ -37,13 +37,13 @@ package com.clarityenglish.ielts.view.module {
 		public var examPractice1Button:Button;
 		
 		[SkinPart(required="true")]
-		public var examPractice1Difficulty:DataRenderer;
+		public var examPractice1Difficulty:IDataRenderer;
 		
 		[SkinPart(required="true")]
 		public var examPractice2Button:Button;
 		
 		[SkinPart(required="true")]
-		public var examPractice2Difficulty:DataRenderer;
+		public var examPractice2Difficulty:IDataRenderer;
 		
 		[SkinPart(required="true")]
 		public var practiceZoneDataGroup:DataGroup;

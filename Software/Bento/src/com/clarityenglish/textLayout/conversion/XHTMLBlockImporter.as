@@ -149,7 +149,7 @@ package com.clarityenglish.textLayout.conversion {
 			_formatResolver = null;
 			_importQueueJobs = null;
 			_currentContainingBlock = null;
-			
+			trace(initialRenderFlow);
 			return initialRenderFlow;
 		}
 		
@@ -258,6 +258,7 @@ package com.clarityenglish.textLayout.conversion {
 		public static function parseInput(importFilter:XHTMLBlockImporter, xmlToParse:XML, parent:FlowGroupElement):void {
 			var inputElement:InputElement = importFilter.createInputFromXml(xmlToParse);
 			importFilter.addChild(parent, inputElement);
+			//importFilter.addChild(parent, importFilter.createImpliedSpan(" ")); // TODO: This sort of helps, but if there is punctuation it still puts a space in :(
 		}
 		
 		/**

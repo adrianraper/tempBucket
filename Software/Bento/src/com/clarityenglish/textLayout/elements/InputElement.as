@@ -100,6 +100,17 @@ package com.clarityenglish.textLayout.elements {
 			}
 		}
 		
+		/**
+		 * This is a little hacky, but if hideChrome is changed (e.g. when a hidden error correction input is clicked on) then set text again
+		 * from the value since the text may need to be updated depending on the value of hideChrome.
+		 * 
+		 * @param value
+		 */
+		public override function set hideChrome(value:Boolean):void {
+			super.hideChrome = value;
+			text = this.value;
+		}
+		
 		[Inspectable(category="Common", enumeration="text,button,droptarget", defaultValue="text")]
 		public function set type(value:String):void {
 			// Check this is an allowed type

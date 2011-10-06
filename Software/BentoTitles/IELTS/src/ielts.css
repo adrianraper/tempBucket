@@ -8,6 +8,7 @@
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace almer "almerblank.flex.spark.components.*";
 
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
@@ -19,6 +20,15 @@ menu|MenuView {
 
 module|ModuleView {
 	skinClass: ClassReference("skins.ielts.ModuleSkin");
+}
+
+module|ModuleView #practiceZoneDataGroup almer|SkinnableItemRenderer {
+	skinClass: ClassReference("skins.ielts.module.ButtonItemRendererSkin")
+}
+
+module|ModuleView #examPractice1Difficulty,
+module|ModuleView #examPractice2Difficulty {
+	skinClass: ClassReference("skins.ielts.module.DifficultyRendererSkin")
 }
 
 exercise|ExerciseView {
