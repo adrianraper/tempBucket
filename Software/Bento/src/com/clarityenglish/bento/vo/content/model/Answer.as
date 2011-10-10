@@ -2,6 +2,10 @@ package com.clarityenglish.bento.vo.content.model {
 	
 	public class Answer {
 		
+		public static const CORRECT:String = "correct";
+		public static const INCORRECT:String = "incorrect";
+		public static const NEUTRAL:String = "neutral";
+		
 		private var xml:XML;
 		
 		public function Answer(xml:XML) {
@@ -37,6 +41,22 @@ package com.clarityenglish.bento.vo.content.model {
 			
 			// Otherwise the question is neutral (note that this will pick up correct="neutral" too)
 			return 0;
+		}
+		
+		/**
+		 * As well as a numerical score we can use 'result' to return a constant CORRECT, INCORRECT or NEUTRAL.  This is more
+		 * convenient in some use cases.
+		 * 
+		 * @return 
+		 */
+		public function get result():String {
+			if (score > 0)
+				return CORRECT;
+			
+			if (score < 0)
+				return INCORRECT;
+			
+			return NEUTRAL;
 		}
 		
 		public static function create(answerNode:XML):Answer {

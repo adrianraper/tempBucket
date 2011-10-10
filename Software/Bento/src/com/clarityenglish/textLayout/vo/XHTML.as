@@ -253,22 +253,94 @@ package com.clarityenglish.textLayout.vo {
 			return (results.length == 0) ? null : results[0];
 		}
 		
+		public static function hasClass(node:XML, classString:String):Boolean {
+			if (classString.indexOf(" ") >= 0)
+				throw new Error("Only a single class can be manipulated at a time");
+			
+			var classes:Array = node.@["class"].toString().split(" ");
+			return (classes.indexOf(classString) >= 0);
+		}
+		
+		public static function addClass(node:XML, classString:String):void {
+			if (classString.indexOf(" ") >= 0)
+				throw new Error("Only a single class can be manipulated at a time");
+			
+			if (!hasClass(node, classString)) {
+				var classes:Array = node.@["class"].toString().split(" ");
+				classes.push(classString);
+				node.@["class"] = classes.join(" ");
+			}
+		}
+		
+		public static function removeClass(node:XML, classString:String):void {
+			if (classString.indexOf(" ") >= 0)
+				throw new Error("Only a single class can be manipulated at a time");
+			
+			if (hasClass(node, classString)) {
+				var classes:Array = node.@["class"].toString().split(" ");
+				classes = classes.filter(function(className:String, index:int, array:Array):Boolean {
+					return className != classString;
+				});
+				node.@["class"] = classes.join(" ");
+			}
+		}
+		
+		public static function toggleClass(node:XML, classString:String):void {
+			if (classString.indexOf(" ") >= 0)
+				throw new Error("Only a single class can be manipulated at a time");
+			
+		}
+		
+		/**
+		 * IEventDispatcher
+		 * 
+		 * @param type
+		 * @param listener
+		 * @param useCapture
+		 * @param priority
+		 * @param useWeakReference
+		 */
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void{
 			dispatcher.addEventListener(type, listener, useCapture, priority);
 		}
 		
+		/**
+		 * IEventDispatcher 
+		 * 
+		 * @param event
+		 * @return 
+		 */
 		public function dispatchEvent(event:Event):Boolean{
 			return dispatcher.dispatchEvent(event);
 		}
 		
+		/**
+		 * IEventDispatcher
+		 *  
+		 * @param type
+		 * @return 
+		 */
 		public function hasEventListener(type:String):Boolean{
 			return dispatcher.hasEventListener(type);
 		}
 		
+		/**
+		 * IEventDispatcher
+		 *  
+		 * @param type
+		 * @param listener
+		 * @param useCapture
+		 */
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void{
 			dispatcher.removeEventListener(type, listener, useCapture);
 		}
 		
+		/**
+		 * IEventDispatcher
+		 *  
+		 * @param type
+		 * @return 
+		 */
 		public function willTrigger(type:String):Boolean {
 			return dispatcher.willTrigger(type);
 		}

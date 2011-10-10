@@ -9,12 +9,25 @@ package com.clarityenglish.textLayout.util {
 	import flashx.textLayout.elements.InlineGraphicElement;
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
+	import flashx.textLayout.tlf_internal;
 	
 	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	
 	public class TLFUtil {
+		
+		/**
+		 * Call this when the format of a flow element has changed to update it on the screen
+		 * 
+		 * @param flowElement
+		 * @param updateAllControllers
+		 */
+		public static function refreshFlowElementFormat(flowElement:FlowElement, updateAllControllers:Boolean = true):void {
+			flowElement.getTextFlow().formatResolver.invalidate(flowElement);
+			flowElement.tlf_internal::formatChanged();
+			if (updateAllControllers) flowElement.getTextFlow().flowComposer.updateAllControllers();
+		}
 		
 		public static function getFlowLeafElementBounds(flowLeafElement:FlowLeafElement):Rectangle {
 			// First determine the absolute start and end locations within the TextFlow of this FlowLeafElement

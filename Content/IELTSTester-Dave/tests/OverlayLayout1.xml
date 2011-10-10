@@ -29,6 +29,8 @@
 			<p>This is the fourth paragraph</p>
 			<p>This is the fifth paragraph</p>
 			
+			<p><img class="leftfloat" src="media/eggs.png" /></p>
+			
 			<div class="leftfloat">
 				I am floating left '<audio controls="compact" />'
 			</div>

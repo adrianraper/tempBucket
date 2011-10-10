@@ -79,15 +79,15 @@ package com.clarityenglish.ielts.view.module {
 				courseTitleLabel.text = _course.@caption;
 				courseDescriptionLabel.text = _course.@description;
 				
-				// class is a reserved keyword so have to use attribute("class") instead of @class
-				examPractice1Button.label = _course.unit.(attribute("class") == "exam-practice").exercise[0].@caption;
-				examPractice1Difficulty.data = _course.unit.(attribute("class") == "exam-practice").exercise[0].@difficulty;
-				examPractice2Button.label = _course.unit.(attribute("class") == "exam-practice").exercise[1].@caption;
-				examPractice2Difficulty.data = _course.unit.(attribute("class") == "exam-practice").exercise[1].@difficulty;
+				// class is a reserved keyword so have to use @["class"] instead of @class
+				examPractice1Button.label = _course.unit.(@["class"] == "exam-practice").exercise[0].@caption;
+				examPractice1Difficulty.data = _course.unit.(@["class"] == "exam-practice").exercise[0].@difficulty;
+				examPractice2Button.label = _course.unit.(@["class"] == "exam-practice").exercise[1].@caption;
+				examPractice2Difficulty.data = _course.unit.(@["class"] == "exam-practice").exercise[1].@difficulty;
 				
-				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(attribute("class") == "practice-zone").exercise);
+				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
 				
-				var adviceZoneVideoUrl:String = _course.unit.(attribute("class") == "advice-zone").exercise[0].@href;
+				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
 				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
 								
 				_courseChanged = false;
@@ -141,13 +141,13 @@ package com.clarityenglish.ielts.view.module {
 			var hrefFilename:String;
 			switch (event.target) {
 				case questionZoneButton:
-					hrefFilename = _course.unit.(attribute("class") == "question-zone").exercise[0].@href;
+					hrefFilename = _course.unit.(@["class"] == "question-zone").exercise[0].@href;
 					break;
 				case examPractice1Button:
-					hrefFilename = _course.unit.(attribute("class") == "exam-practice").exercise[0].@href;
+					hrefFilename = _course.unit.(@["class"] == "exam-practice").exercise[0].@href;
 					break;
 				case examPractice2Button:
-					hrefFilename = _course.unit.(attribute("class") == "exam-practice").exercise[1].@href;
+					hrefFilename = _course.unit.(@["class"] == "exam-practice").exercise[1].@href;
 					break;
 			}
 			
