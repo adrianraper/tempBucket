@@ -2,12 +2,14 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import spark.components.Group;
 	import spark.components.supportClasses.SkinnableComponent;
 	
+	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
 	public class XHTMLExerciseView extends BentoView {
 		
 		/**
@@ -83,32 +85,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
 				}
 			}
-		}
-		
-		protected override function commitProperties():void {
-			super.commitProperties();
-			
-			/*if (_exerciseChanged) {
-				// Go through the sections supported by this exercise setting the visibility and contents of each section in the skin
-				for each (var sectionName:String in SUPPORTED_SECTIONS) {
-					var group:Group = this[sectionName + "Group"];
-					var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
-					
-					if (group && xhtmlRichText) {
-						group.visible = group.includeInLayout = (sectionName == "header") ? exercise.hasHeader() : exercise.hasSection(sectionName);
-						
-						xhtmlRichText.xhtml = exercise;
-						xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
-					}
-				}
-				
-				_exerciseChanged = false;
-			}*/
-		}
-		
-		private function onQuestionAnswered(e:SectionEvent):void {
-			// TODO: Nothing calls this at present
-			trace("Question: " + e.question + " answered with " + e.answer + " -- score delta=" + + e.answer.score);
 		}
 		
 	}

@@ -11,8 +11,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 		private var _question:Question;
 		private var _answer:Answer;
 		
-		public function SectionEvent(type:String, question:Question, answer:Answer) {
-			super(type);
+		public function SectionEvent(type:String, question:Question, answer:Answer, bubbles:Boolean = false) {
+			super(type, bubbles);
 			
 			this._question = question;
 			this._answer = answer;
@@ -27,11 +27,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 		}
 		
 		public override function clone():Event {
-			return new SectionEvent(type, question, answer);
+			return new SectionEvent(type, question, answer, bubbles);
 		}
 		
 		public override function toString():String {
-			return formatToString("SectionEvent", "bubbles", "question", "answer");
+			return formatToString("SectionEvent", "question", "answer", "bubbles");
 		}
 		
 	}

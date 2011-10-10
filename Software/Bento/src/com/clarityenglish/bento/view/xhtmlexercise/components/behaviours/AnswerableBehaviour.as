@@ -59,7 +59,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 										eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
 											Closure.create(this, function(e:FlowElementMouseEvent, question:Question, answer:Answer):void {
 												log.debug("Click detected on " + question.type);
-												container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answer));
+												container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answer, true));
 											}, question, answer)
 										);
 									} else {

@@ -2,6 +2,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
+	
+	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -17,10 +20,15 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		
 		public override function onRegister():void {
 			super.onRegister();
+			
+			// Note that AnswerableBehaviour dispatches this event directly on 'container' (XHTMLExerciseView), so there is no need to XHTMLExerciseView to listen for anything.
+			view.addEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
+			
+			view.removeEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -35,6 +43,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			switch (notification.getName()) {
 				
 			}
+		}
+		
+		protected function onQuestionAnswered(e:SectionEvent):void {
+			log.info("Question: " + e.question + " answered with " + e.answer + " -- score delta=" + e.answer.score);
 		}
 		
 	}

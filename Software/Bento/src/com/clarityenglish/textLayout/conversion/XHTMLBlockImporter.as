@@ -149,7 +149,7 @@ package com.clarityenglish.textLayout.conversion {
 			_formatResolver = null;
 			_importQueueJobs = null;
 			_currentContainingBlock = null;
-			trace(initialRenderFlow);
+			
 			return initialRenderFlow;
 		}
 		

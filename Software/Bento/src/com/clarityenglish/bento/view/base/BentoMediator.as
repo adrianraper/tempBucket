@@ -24,7 +24,7 @@ package com.clarityenglish.bento.view.base {
 		/**
 		 * Standard flex logger
 		 */
-		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		/**
 		 * This is used to make sure that BBNotifications.XHTML_LOADED doesn't do anything if the Href is already loaded in this mediator
