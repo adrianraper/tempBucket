@@ -16,11 +16,6 @@
 	 */
 	public class MenuMediator extends BentoMediator implements IMediator {
 		
-		/**
-		 * Standard flex logger
-		 */
-		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
-		
 		public function MenuMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
