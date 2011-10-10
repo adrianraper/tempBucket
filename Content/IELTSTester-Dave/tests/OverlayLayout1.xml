@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[
+			.leftfloat {
+				float: left;
+				width: 50%;
+			}
+			
+			.rightfloat {
+				float: right;
+				width: 50%;
+			}
+		]]>
+		</style>
+
+		<script id="model" type="application/xml">
+			
+		</script>
+	</head>
+	
+	<body>
+		<section id="body">
+			<p>This is the first paragraph</p>
+			<p>This is the second paragraph</p>
+			<p>This is the third paragraph</p>
+			<p>This is the fourth paragraph</p>
+			<p>This is the fifth paragraph</p>
+			
+			<div class="leftfloat">
+				I am floating left '<audio controls="compact" />'
+			</div>
+			
+			<div class="rightfloat">
+				I am floating right '<audio controls="compact" />'
+			</div>
+		</section>
+	</body>
+	
+</bento>

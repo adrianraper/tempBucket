@@ -33,8 +33,8 @@
 	
 	<!-- Proper control with a scrub bar and buttons (full mode) -->
 	<s:HGroup verticalAlign="middle">
-		<s:Image id="playComponent" source="@Embed('/skins/assets/play.png')" includeIn="stopped_full,paused_full,played_full" />
-		<s:Image id="pauseComponent" source="@Embed('/skins/assets/pause.png')" includeIn="playing_full" />
+		<s:Image id="playComponent" source="@Embed('/skins/assets/play.png')" includeIn="stopped_full,paused_full,played_full" useHandCursor="true" buttonMode="true" />
+		<s:Image id="pauseComponent" source="@Embed('/skins/assets/pause.png')" includeIn="playing_full" useHandCursor="true" buttonMode="true" />
 		<s:ScrubBar id="scrubBar" width="90" includeIn="full" />
 	</s:HGroup>
 	
