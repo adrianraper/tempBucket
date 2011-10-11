@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-03" />
+	<meta name="conversion" type="proofreading" date="2011-10-11" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -37,7 +37,8 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
 <questions/></script>
 
@@ -54,7 +55,8 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"></ol><img class="rightFloat" src="../Media/LE_AW_7.jpg" mode="1" id="1003"  /><media class="leftFloat" src="../Media/" mode="1" id="2001"  />
+	<img class="rightFloat" src="../Media/LE_AW_7.jpg" mode="1" id="1003"  />
+<ol id="questionList"></ol>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">shows: Present simple is the correct tense here.</font></p>
@@ -85,6 +87,9 @@
 </section>
 <section id="fb10">
 	<p align="left"><font face="verdana" size="13" color="#000000">seem: No time period is referred to in the graph, simple present is the appropriate tense.</font></p>
+</section>
+<section id="rt2001">
+	<p align="left">Remember - there is no 'correct' answer for Writing Task 1. There are many possible approaches to the task and the sample answer given here is just one way the information shown in the chart can be described.</p>
 </section>
 </body>
 </bento>

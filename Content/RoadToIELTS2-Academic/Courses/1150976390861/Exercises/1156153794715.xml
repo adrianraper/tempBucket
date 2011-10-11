@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-03" />
+	<meta name="conversion" type="draganddrop" date="2011-10-11" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -37,9 +37,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
-<questions><DragQuestion group="q1"><answer source="1" correct="true"/></DragQuestion><DragQuestion group="q2"><answer source="2" correct="true"/></DragQuestion><DragQuestion group="q3"><answer source="3" correct="true"/></DragQuestion><DragQuestion group="q4"><answer source="4" correct="true"/></DragQuestion><DragQuestion group="q5"><answer source="5" correct="true"/></DragQuestion><DragQuestion group="q6"><answer source="6" correct="true"/></DragQuestion></questions></script>
+<questions><DragQuestion source="q1"><answer source="a7" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a8" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a9" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a10" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a11" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a12" correct="true"/></DragQuestion></questions></script>
 
 </head>
 <body>
@@ -51,15 +52,16 @@
 <section id="noscroll">
 	
 		
-		<span id="8" draggable="true">3 parts</span>
-		<span id="11" draggable="true">Part 1</span>
-		<span id="9" draggable="true">communicate</span>
-		<span id="10" draggable="true">1 to 2</span>
-		<span id="12" draggable="true">Parts 2 and 3</span>
-		<span id="7" draggable="true">11 to 14</span>
+		<span id="a8" draggable="true">3 parts</span>
+		<span id="a11" draggable="true">Part 1</span>
+		<span id="a9" draggable="true">communicate</span>
+		<span id="a10" draggable="true">1 to 2</span>
+		<span id="a12" draggable="true">Parts 2 and 3</span>
+		<span id="a7" draggable="true">11 to 14</span>
 </section>
 <section id="body">
-	<br/><ol id="questionList"><li id="q1">The test is <input id="1" type="droptarget" /> minutes long.</li><li id="q2">There are <input id="2" type="droptarget" /> to the test.</li><li id="q3">The test assesses your ability to <input id="3" type="droptarget" /> in English.</li><li id="q4">You talk on a particular topic for <input id="4" type="droptarget" /> minutes.</li><li id="q5">In <input id="5" type="droptarget" /> you answer general questions about yourself and your life.</li><li id="q6"><input id="6" type="droptarget" /> are linked by a common theme.</li></ol><img class="rightFloat" src="../Media/LE_SP_002.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../Media/LE_SP_002.jpg" mode="1" id="1001"  />
+<ol id="questionList"><li id="1">The test is <input id="q1" type="droptarget" /> minutes long.</li><li id="2">There are <input id="q2" type="droptarget" /> to the test.</li><li id="3">The test assesses your ability to <input id="q3" type="droptarget" /> in English.</li><li id="4">You talk on a particular topic for <input id="q4" type="droptarget" /> minutes.</li><li id="5">In <input id="q5" type="droptarget" /> you answer general questions about yourself and your life.</li><li id="6"><input id="q6" type="droptarget" /> are linked by a common theme.</li></ol>
 </section>
 </body>
 </bento>

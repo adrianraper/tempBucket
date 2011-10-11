@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-03" />
+	<meta name="conversion" type="quiz" date="2011-10-11" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -37,9 +37,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
+
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="1" correct="true"/><answer source="2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="3" correct="true"/><answer source="4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="5" correct="false"/><answer source="6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="7" correct="false"/><answer source="8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="9" correct="true"/><answer source="10" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="11" correct="false"/><answer source="12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="13" correct="true"/><answer source="14" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="15" correct="false"/><answer source="16" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="17" correct="false"/><answer source="18" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="19" correct="false"/><answer source="20" correct="true"/></MultipleChoiceQuestion></questions></script>
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="false"/><answer source="a8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="true"/><answer source="a10" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="true"/><answer source="a14" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a15" correct="false"/><answer source="a16" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a17" correct="false"/><answer source="a18" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a19" correct="false"/><answer source="a20" correct="true"/></MultipleChoiceQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +50,28 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><br/><li id="q1">The Examiner introduces herself to the candidate.<a id="1" >True</a><tab/><a id="2" >False</a><br/></li><br/><li id="q2">Zenia has to give the Examiner her full name.<a id="3" >True</a><tab/><a id="4" >False</a><br/></li><br/><li id="q3">Zenia does not need to produce identification.<a id="5" >True</a><tab/><a id="6" >False</a><br/></li><br/><li id="q4">The candidate has a turn to ask questions.<a id="7" >True</a><tab/><a id="8" >False</a><br/></li><br/><li id="q5">The candidate is asked where she comes from.<a id="9" >True</a><tab/><a id="10" >False</a><br/></li><br/><li id="q6">The candidate asks the Examiner her name.<a id="11" >True</a><tab/><a id="12" >False</a><br/></li><br/><li id="q7">Zenia is asked to describe her home town.<a id="13" >True</a><tab/><a id="14" >False</a><br/></li><br/><li id="q8">The Examiner asks Zenia about her family.<a id="15" >True</a><tab/><a id="16" >False</a><br/></li><br/><li id="q9">The candidate is asked where she was born.<a id="17" >True</a><tab/><a id="18" >False</a><br/></li><br/><li id="q10">The Examiner asks Zenia to talk about her life.<a id="19" >True</a><tab/><a id="20" >False</a><br/></li></ol><media class="rightFloat" src="../Media/Unit01_e3.flv" mode="1" id="1003"  />
+	<video class="rightFloat" src="../Media/Unit01_e3.flv" mode="1" id="1003"  />
+<ol id="questionList">
+<li id="1">The Examiner introduces herself to the candidate.<a id="q1" >True</a><tab/><a id="q2" >False</a>
+</li>
+<li id="2">Zenia has to give the Examiner her full name.<a id="q3" >True</a><tab/><a id="q4" >False</a>
+</li>
+<li id="3">Zenia does not need to produce identification.<a id="q5" >True</a><tab/><a id="q6" >False</a>
+</li>
+<li id="4">The candidate has a turn to ask questions.<a id="q7" >True</a><tab/><a id="q8" >False</a>
+</li>
+<li id="5">The candidate is asked where she comes from.<a id="q9" >True</a><tab/><a id="q10" >False</a>
+</li>
+<li id="6">The candidate asks the Examiner her name.<a id="q11" >True</a><tab/><a id="q12" >False</a>
+</li>
+<li id="7">Zenia is asked to describe her home town.<a id="q13" >True</a><tab/><a id="q14" >False</a>
+</li>
+<li id="8">The Examiner asks Zenia about her family.<a id="q15" >True</a><tab/><a id="q16" >False</a>
+</li>
+<li id="9">The candidate is asked where she was born.<a id="q17" >True</a><tab/><a id="q18" >False</a>
+</li>
+<li id="10">The Examiner asks Zenia to talk about her life.<a id="q19" >True</a><tab/><a id="q20" >False</a>
+</li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. When you give your name to someone this is an introduction.</p>
