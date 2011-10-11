@@ -10,7 +10,6 @@
 		public static const QUESTION_ANSWER:String = "question_answer";
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
-		public static const QUESTION_MARK:String = "question_mark";
 	}
 	
 }
