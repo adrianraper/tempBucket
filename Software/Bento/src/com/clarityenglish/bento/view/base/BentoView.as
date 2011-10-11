@@ -3,6 +3,8 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
+	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -29,6 +31,19 @@ package com.clarityenglish.bento.view.base {
 		protected var _xhtml:XHTML;
 		private var _xhtmlChanged:Boolean;
 
+		public function BentoView() {
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+		}
+		
+		protected function onAddedToStage(event:Event):void {
+			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+		}
+		
+		protected function onRemovedFromStage(event:Event):void {
+			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+		}
+		
 		public function get href():Href {
 			return _href;
 		}

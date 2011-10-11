@@ -26,12 +26,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	public class AnswerableBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
-		private var clickableAnswerManager:ClickableAnswerManager;
+		private var clickableAnswerManager:IAnswerManager;
+		private var inputAnswerManager:IAnswerManager;
+		private var errorCorrectionAnswerManager:IAnswerManager;
 		
 		public function AnswerableBehaviour(container:Group) {
 			super(container);
 			
 			clickableAnswerManager = new ClickableAnswerManager(container);
+			inputAnswerManager = new InputAnswerManager(container);
+			errorCorrectionAnswerManager = new ErrorCorrectionAnswerManager(container);
 		}
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void { }
@@ -41,14 +45,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onCreateChildren():void { }
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
-			// TODO: This method is becoming a bit of a mess...
-			
 			var exercise:Exercise = xhtml as Exercise;
 			
 			if (!exercise.hasModel())
 				return;
-			
-			var source:XML, answer:Answer, eventMirror:IEventDispatcher, inputElement:InputElement, flowElement:FlowElement;
 			
 			for each (var question:Question in exercise.model.questions) {
 				switch (question.type) {
@@ -58,44 +58,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 						break;
 					case "DragQuestion":
 					case "GapFillQuestion":
-						// The answers for these questions is defined in the model so we need to set the underlying text here
-						for each (source in Model.sourceToNodeArray(exercise, question.source)) {
-							inputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
-							if (inputElement) {
-								inputElement.text = getLongestAnswerValue(question.answers);
-							}
-						}
+						inputAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
 					case "ErrorCorrectionQuestion":
-						for each (source in Model.sourceToNodeArray(exercise, question.source)) {
-							inputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
-							if (inputElement) {
-								// Error correction questions start with their text input hidden
-								inputElement.hideChrome = true;
-								
-								// When the user clicks on the text show the component
-								eventMirror = inputElement.tlf_internal::getEventMirror();
-								
-								if (eventMirror) {
-									eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
-										Closure.create(this, function(e:FlowElementMouseEvent):void {
-											log.info("Click detected on an error detection question");
-											
-											if ((e.flowElement as TextComponentElement).hideChrome) {
-												// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
-												(e.flowElement as TextComponentElement).hideChrome = false;
-												
-												var tf:TextFlow = e.flowElement.getTextFlow();
-												tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
-											}
-										})
-									);
-								} else {
-									log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}, answer {2}]", flowElement, question, answer);
-								}
-								
-							}
-						}
+						errorCorrectionAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
 					case "DropDownQuestion":
 						break;
@@ -107,15 +73,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
-		private static function getLongestAnswerValue(answers:Vector.<Answer>):String {
-			var longestAnswer:String = "";
-			for each (var answer:Answer in answers)
-			if (answer.value.length > longestAnswer.length)
-				longestAnswer = answer.value;
-			
-			return longestAnswer;
-		}
-		
 	}
 }
 
@@ -125,13 +82,17 @@ import com.clarityenglish.bento.vo.content.model.Answer;
 import com.clarityenglish.bento.vo.content.model.Model;
 import com.clarityenglish.bento.vo.content.model.Question;
 import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
+import com.clarityenglish.textLayout.elements.InputElement;
+import com.clarityenglish.textLayout.elements.TextComponentElement;
 import com.clarityenglish.textLayout.util.TLFUtil;
 import com.clarityenglish.textLayout.vo.XHTML;
 
 import flash.events.IEventDispatcher;
 
 import flashx.textLayout.elements.FlowElement;
+import flashx.textLayout.elements.TextFlow;
 import flashx.textLayout.events.FlowElementMouseEvent;
+import flashx.textLayout.events.UpdateCompleteEvent;
 import flashx.textLayout.tlf_internal;
 
 import mx.logging.ILogger;
@@ -143,6 +104,8 @@ import org.davekeen.util.Closure;
 import spark.components.Group;
 
 interface IAnswerManager {
+
+	function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void;
 	
 }
 
@@ -154,6 +117,15 @@ class AnswerManager {
 	
 	public function AnswerManager(container:Group) {
 		this.container = container;
+	}
+	
+	protected function getLongestAnswerValue(answers:Vector.<Answer>):String {
+		var longestAnswer:String = "";
+		for each (var answer:Answer in answers)
+		if (answer.value.length > longestAnswer.length)
+			longestAnswer = answer.value;
+		
+		return longestAnswer;
 	}
 	
 }
@@ -190,18 +162,89 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 		for each (var otherAnswer:Answer in question.answers) {
 			for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
 				XHTML.removeClass(otherSource, "selected");
-				TLFUtil.refreshFlowElementFormat(flowElementXmlBiMap.getFlowElement(otherSource), false);
+				TLFUtil.markFlowElementFormatChanged(flowElementXmlBiMap.getFlowElement(otherSource));
 			}
 		}
 		
 		// Then add selected to the chosen answer
 		XHTML.addClass(source, "selected");
 		
-		// Refresh the element
-		TLFUtil.refreshFlowElementFormat(e.flowElement);
+		// Refresh the element and update the controllers
+		TLFUtil.markFlowElementFormatChanged(e.flowElement);
+		
+		// Update the screen
+		e.flowElement.getTextFlow().flowComposer.updateAllControllers();
 		
 		log.debug("Click detected on " + question.type);
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answer, true));
+	}
+	
+}
+
+/**
+ * Manager for input questions like gapfills or drag and drop
+ * 
+ * @author Dave
+ */
+class InputAnswerManager extends AnswerManager implements IAnswerManager {
+	
+	public function InputAnswerManager(container:Group) {
+		super(container);
+	}
+	
+	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+		// The answers for these questions is defined in the model so we need to set the underlying text here
+		for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
+			if (inputElement) {
+				inputElement.text = getLongestAnswerValue(question.answers);
+			}
+		}
+	}
+	
+}
+
+/**
+ * Manager for error correction questions
+ * 
+ * @author Dave
+ */
+class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManager {
+	
+	public function ErrorCorrectionAnswerManager(container:Group) {
+		super(container);
+	}
+	
+	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+		for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
+			if (inputElement) {
+				// Error correction questions start with their text input hidden
+				inputElement.hideChrome = true;
+				
+				// When the user clicks on the text show the component
+				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
+				
+				if (eventMirror) {
+					eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
+						Closure.create(this, function(e:FlowElementMouseEvent):void {
+							log.info("Click detected on an error detection question");
+							
+							if ((e.flowElement as TextComponentElement).hideChrome) {
+								// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
+								(e.flowElement as TextComponentElement).hideChrome = false;
+								
+								var tf:TextFlow = e.flowElement.getTextFlow();
+								tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
+							}
+						})
+					);
+				} else {
+					log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}]", flowElementXmlBiMap.getFlowElement(source), question);
+				}
+				
+			}
+		}
 	}
 	
 }

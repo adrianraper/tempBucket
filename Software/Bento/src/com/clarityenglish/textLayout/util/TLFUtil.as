@@ -23,7 +23,7 @@ package com.clarityenglish.textLayout.util {
 		 * @param flowElement
 		 * @param updateAllControllers
 		 */
-		public static function refreshFlowElementFormat(flowElement:FlowElement, updateAllControllers:Boolean = true):void {
+		public static function markFlowElementFormatChanged(flowElement:FlowElement, updateAllControllers:Boolean = false):void {
 			flowElement.getTextFlow().formatResolver.invalidate(flowElement);
 			flowElement.tlf_internal::formatChanged();
 			if (updateAllControllers) flowElement.getTextFlow().flowComposer.updateAllControllers();

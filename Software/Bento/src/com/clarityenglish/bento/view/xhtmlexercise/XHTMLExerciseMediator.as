@@ -10,8 +10,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	
 	public class XHTMLExerciseMediator extends BentoMediator {
 		
+		private var answeredQuestions:Vector.<AnsweredQuestion>;
+		
 		public function XHTMLExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
+			
+			answeredQuestions = new Vector.<AnsweredQuestion>();
 		}
 		
 		public function get view():XHTMLExerciseView {
@@ -21,14 +25,13 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public override function onRegister():void {
 			super.onRegister();
 			
-			// Note that AnswerableBehaviour dispatches this event directly on 'container' (XHTMLExerciseView), so there is no need to XHTMLExerciseView to listen for anything.
 			view.addEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
 			
-			view.removeEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
+			view.addEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -45,10 +48,26 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			}
 		}
 		
-		protected function onQuestionAnswered(e:SectionEvent):void {
-			log.info("Question: " + e.question + " answered with " + e.answer + " -- score delta=" + e.answer.score);
+		protected function onQuestionAnswered(event:SectionEvent):void {
+			log.debug("Added to answered question list {0} - {1}", event.question, event.answer);
+			answeredQuestions.push(new AnsweredQuestion(event.question, event.answer));
 		}
 		
+	}
+	
+}
+import com.clarityenglish.bento.vo.content.model.Answer;
+import com.clarityenglish.bento.vo.content.model.Question;
+
+class AnsweredQuestion {
+	
+	public var question:Question;
+	
+	public var answer:Answer;
+	
+	public function AnsweredQuestion(question:Question, answer:Answer) {
+		this.question = question;
+		this.answer = answer;
 	}
 	
 }

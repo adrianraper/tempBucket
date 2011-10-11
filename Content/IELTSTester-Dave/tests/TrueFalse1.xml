@@ -17,21 +17,7 @@
 				font-weight: bold;
 			}
 			
-			a.selected {
-				text-decoration: underline !important;
-			}
 			
-			a.correct {
-				color: #00AA00 !important;
-			}
-			
-			a.incorrect {
-				color: #AA0000 !important;
-			}
-			
-			a.neutral {
-				color: #000000 !important;
-			}
 			
 		]]>
 		</style>

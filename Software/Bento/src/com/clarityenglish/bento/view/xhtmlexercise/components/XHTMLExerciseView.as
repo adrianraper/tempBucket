@@ -6,6 +6,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
+	
+	import mx.events.FlexEvent;
+	
 	import spark.components.Group;
 	import spark.components.supportClasses.SkinnableComponent;
 	
