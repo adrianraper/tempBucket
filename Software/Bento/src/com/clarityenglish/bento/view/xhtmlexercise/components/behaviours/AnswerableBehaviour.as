@@ -158,24 +158,6 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
-		// First remove selected from all the other answers
-		for each (var otherAnswer:Answer in question.answers) {
-			for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
-				XHTML.removeClass(otherSource, "selected");
-				TLFUtil.markFlowElementFormatChanged(flowElementXmlBiMap.getFlowElement(otherSource));
-			}
-		}
-		
-		// Then add selected to the chosen answer
-		XHTML.addClass(source, "selected");
-		
-		// Refresh the element and update the controllers
-		TLFUtil.markFlowElementFormatChanged(e.flowElement);
-		
-		// Update the screen
-		e.flowElement.getTextFlow().flowComposer.updateAllControllers();
-		
-		log.debug("Click detected on " + question.type);
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answer, true));
 	}
 	

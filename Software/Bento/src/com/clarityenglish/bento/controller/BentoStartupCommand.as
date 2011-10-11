@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.controller {
+	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.model.ConfigProxy;
 	
@@ -13,6 +14,7 @@ package com.clarityenglish.bento.controller {
 			// Register models
 			facade.registerProxy(new ConfigProxy());
 			facade.registerProxy(new XHTMLProxy());
+			facade.registerProxy(new ExerciseProxy());
 		}
 		
 	}

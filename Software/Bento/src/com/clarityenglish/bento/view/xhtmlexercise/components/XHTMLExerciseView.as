@@ -2,16 +2,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.model.Answer;
+	import com.clarityenglish.bento.vo.content.model.Model;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
+	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.events.Event;
-	
-	import mx.events.FlexEvent;
+	import flashx.textLayout.elements.FlowElement;
 	
 	import spark.components.Group;
-	import spark.components.supportClasses.SkinnableComponent;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
 	public class XHTMLExerciseView extends BentoView {
@@ -55,20 +55,27 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var readingTextRichText:XHTMLRichText;
 		
-		private var _exercise:Exercise;
-		private var _exerciseChanged:Boolean;
-		
-		public function get exercise():Exercise {
-			return _exercise;
+		/**
+		 * Since this view can only be driven by an Exercise provide a helper to typecast it
+		 * 
+		 * @return 
+		 */
+		private function get exercise():Exercise {
+			return _xhtml as Exercise;
 		}
-
-		public function set exercise(value:Exercise):void {
-			if (_exercise !== value) {
-				_exercise = value;
-				_exerciseChanged = true;
+		
+		private function getFlowElement(node:XML):FlowElement {
+			for each (var sectionName:String in SUPPORTED_SECTIONS) {
+				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
 				
-				invalidateProperties();
+				if (xhtmlRichText && xhtmlRichText.flowElementXmlBiMap) {
+					var flowElement:FlowElement = xhtmlRichText.flowElementXmlBiMap.getFlowElement(node);
+					if (flowElement)
+						return flowElement;
+				}
 			}
+			
+			return null;
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -89,6 +96,27 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
 				}
 			}
+		}
+		
+		public function questionAnswered(question:Question, answer:Answer):void {
+			// First deselect any other selected answers
+			for each (var otherAnswer:Answer in question.answers) {
+				for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
+					XHTML.removeClass(otherSource, "selected");
+					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
+				}
+			}
+			
+			// Get the node and FlowElement for the selected answer
+			var answerNode:XML = exercise.getElementById(answer.source);
+			var answerElement:FlowElement = getFlowElement(answerNode);
+			
+			// Add the selected class
+			XHTML.addClass(answerNode, "selected");
+			
+			// Refresh the element and update the screen
+			TLFUtil.markFlowElementFormatChanged(getFlowElement(answerNode));
+			answerElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
 	}

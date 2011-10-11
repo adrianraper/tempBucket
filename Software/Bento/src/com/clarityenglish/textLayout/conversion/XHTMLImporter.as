@@ -74,6 +74,15 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		/**
+		 * Aid garbage collection by nullifying attributes 
+		 * 
+		 */
+		public function clear():void {
+			flowElementXmlBiMap = null;
+			css = null;
+		}
+		
+		/**
 		 * Parse all the CSS into an as3csslib object
 		 * 
 		 * @param exercise

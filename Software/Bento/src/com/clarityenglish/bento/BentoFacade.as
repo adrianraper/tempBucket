@@ -48,6 +48,7 @@
 			
 			// Map built in commands
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
+			registerCommand(BBNotifications.QUESTION_ANSWER, QuestionAnswerCommand);
 			
 			/*registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);

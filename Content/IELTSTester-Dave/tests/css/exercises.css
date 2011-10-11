@@ -37,6 +37,7 @@ input[type="droptarget"] {
 	color: #3A00FF;
 }
 
+/* Classes for showing selections and results */
 a.selected {
 	text-decoration: underline;
 }

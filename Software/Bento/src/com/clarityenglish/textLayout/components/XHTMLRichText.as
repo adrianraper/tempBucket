@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.components {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
+	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
@@ -48,6 +49,8 @@ package com.clarityenglish.textLayout.components {
 		 */
 		private var _behaviours:Vector.<IXHTMLBehaviour>;
 		
+		private var _flowElementXmlBiMap:FlowElementXmlBiMap;
+		
 		public function XHTMLRichText() {
 			super();
 		}
@@ -72,6 +75,8 @@ package com.clarityenglish.textLayout.components {
 				// Clean up if there was a previous exercise
 				if (_xhtml)
 					_xhtml.removeEventListener(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
+				
+				_flowElementXmlBiMap = null;
 				
 				_xhtml = value;
 				_xhtmlChanged = true;
@@ -107,6 +112,10 @@ package com.clarityenglish.textLayout.components {
 					log.error("Unable to instantiate behaviour " + behaviourClass);
 				}
 			}
+		}
+		
+		public function get flowElementXmlBiMap():FlowElementXmlBiMap {
+			return _flowElementXmlBiMap;
 		}
 		
 		/**
@@ -148,6 +157,9 @@ package com.clarityenglish.textLayout.components {
 				if (node) {
 					// Parse the XHTML into a RenderFlow
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
+					_flowElementXmlBiMap = importer.getFlowElementXmlBiMap();
+					importer.clear();
+					importer = null;
 					
 					// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
 					renderFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
@@ -161,7 +173,7 @@ package com.clarityenglish.textLayout.components {
 					addElement(renderFlow);
 					
 					// Apply to registered behaviours
-					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, importer.getFlowElementXmlBiMap()); } );
+					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, _flowElementXmlBiMap); } );
 				}
 				
 				_xhtmlChanged = _selectorChanged = false;
