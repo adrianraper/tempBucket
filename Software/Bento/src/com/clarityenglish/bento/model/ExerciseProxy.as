@@ -22,20 +22,22 @@ package com.clarityenglish.bento.model {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		/**
-		 * This maintains a map of the currently selected answers
+		 * This maintains a map of the answers that will count towards the exercise score
 		 */
-		private var firstSelectedAnswers:Dictionary;
+		private var markableAnswers:Dictionary;
 		
 		/**
 		 * This maintains a map of the currently selected answers
 		 */
-		private var currentlySelectedAnswers:Dictionary;
+		private var selectedAnswers:Dictionary;
+		
+		private var delayedMarking:Boolean = false;
 		
 		public function ExerciseProxy() {
 			super(NAME);
 			
-			firstSelectedAnswers = new Dictionary(true);
-			currentlySelectedAnswers = new Dictionary(true);
+			markableAnswers = new Dictionary(true);
+			selectedAnswers = new Dictionary(true);
 		}
 		
 		/**
@@ -50,14 +52,14 @@ package com.clarityenglish.bento.model {
 		public function questionAnswer(question:Question, answer:Answer):void {
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.result, answer.score);
 			
-			// If this is the first answer for the question record this seperately
-			if (!firstSelectedAnswers[question]) firstSelectedAnswers[question] = answer;
+			// If delayed marking is off and this is the first answer for the question record this seperately
+			if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
 			
 			// Set the currently selected answer for this question
-			currentlySelectedAnswers[question] = answer;
+			selectedAnswers[question] = answer;
 			
 			// Send a notification to say the question has been answered
-			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, answer: answer } );
+			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, answer: answer, delayedMarking: delayedMarking } );
 		}
 		
 	}

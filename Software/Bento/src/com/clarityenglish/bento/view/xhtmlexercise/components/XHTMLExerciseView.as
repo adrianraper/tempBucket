@@ -64,6 +64,12 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			return _xhtml as Exercise;
 		}
 		
+		/**
+		 * Search through all the sections for the given node
+		 * 
+		 * @param node
+		 * @return 
+		 */
 		private function getFlowElement(node:XML):FlowElement {
 			for each (var sectionName:String in SUPPORTED_SECTIONS) {
 				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
@@ -98,6 +104,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 		}
 		
+		// TODO: Currently this only really makes sense for multiple choice answers
 		public function questionAnswered(question:Question, answer:Answer):void {
 			// First deselect any other selected answers
 			for each (var otherAnswer:Answer in question.answers) {
@@ -113,6 +120,29 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			
 			// Add the selected class
 			XHTML.addClass(answerNode, "selected");
+			
+			// Refresh the element and update the screen
+			TLFUtil.markFlowElementFormatChanged(getFlowElement(answerNode));
+			answerElement.getTextFlow().flowComposer.updateAllControllers();
+		}
+		
+		public function questionMark(question:Question, answer:Answer):void {
+			// First unmark any other marked answers
+			for each (var otherAnswer:Answer in question.answers) {
+				for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
+					XHTML.removeClass(otherSource, Answer.CORRECT);
+					XHTML.removeClass(otherSource, Answer.INCORRECT);
+					XHTML.removeClass(otherSource, Answer.NEUTRAL);
+					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
+				}
+			}
+			
+			// Get the node and FlowElement for the selected answer
+			var answerNode:XML = exercise.getElementById(answer.source);
+			var answerElement:FlowElement = getFlowElement(answerNode);
+			
+			// Add the selected class
+			XHTML.addClass(answerNode, answer.result);
 			
 			// Refresh the element and update the screen
 			TLFUtil.markFlowElementFormatChanged(getFlowElement(answerNode));

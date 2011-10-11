@@ -43,6 +43,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			switch (note.getName()) {
 				case BBNotifications.QUESTION_ANSWERED:
 					view.questionAnswered(note.getBody().question as Question, note.getBody().answer as Answer);
+					
+					if (!note.getBody().delayedMarking)
+						view.questionMark(note.getBody().question as Question, note.getBody().answer as Answer);
+					
 					break;
 			}
 		}

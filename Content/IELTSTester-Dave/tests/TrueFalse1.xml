@@ -4,7 +4,6 @@
 		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
 		<style type="text/css">
 		<![CDATA[
-			
 			#questionList p {
 				paragraph-start-indent: 30;
 				tab-stops: 220;
@@ -16,7 +15,6 @@
 				color: #3A00FF;
 				font-weight: bold;
 			}
-			
 		]]>
 		</style>
 		<script id="model" type="application/xml">

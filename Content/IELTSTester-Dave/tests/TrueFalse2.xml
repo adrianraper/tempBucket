@@ -5,14 +5,12 @@
 		<style type="text/css">
 		<![CDATA[
 			#questionList {
-				list-style-type: decimal;
 				list-style-position: inside;
 				padding-left: 15;
 			}
 			
 			#questionList li {
 				padding-right: 40;
-				padding-bottom: 20;
 			}
 			
 			#questionList g {
@@ -23,11 +21,10 @@
 				paragraph-start-indent: 30;
 				tab-stops: 220;
 				color: #0000AA;
+				padding-bottom: 20px;
 			}
 			
 			#questionList .playIcon {
-				width: 16;
-				height: 16;
 				float: left;
 				padding-top: 2;
 				padding-right: 5;
@@ -105,7 +102,7 @@
 		<section id="body">
 			<video class="rightFloat" src="media/SPP-06.flv" autoPlay="false" />
 			
-			<list id="questionList">
+			<ol id="questionList">
 				<listMarkerFormat>
 					<!-- 
 						This should place 30 pixels between the list marker and the content, but a bug in TLF means that this fails
@@ -173,7 +170,7 @@
 					Marco usually <span class="blue">listens</span> to the radio in the morning.
 					<p><a id="q10s">/s/</a><tab/><a id="q10z">/z/</a></p>
 				</li>
-			</list>
+			</ol>
 		</section>
 	</body>
 	
