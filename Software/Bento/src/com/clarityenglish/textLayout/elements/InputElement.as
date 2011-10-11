@@ -149,10 +149,6 @@ package com.clarityenglish.textLayout.elements {
 					throw new Error("Button type not yet implemented");
 					break;
 				case TYPE_DROPTARGET:
-					//throw new Error("Droptarget type not yet implemented");
-					
-					// TODO: This is a bit hacky, but good for proof of concept
-					
 					// This could also be a Label
 					component = new TextInput();
 					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
