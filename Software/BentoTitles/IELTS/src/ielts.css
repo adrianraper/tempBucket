@@ -23,12 +23,13 @@ module|ModuleView {
 }
 
 module|ModuleView #practiceZoneDataGroup almer|SkinnableItemRenderer {
-	skinClass: ClassReference("skins.ielts.module.ButtonItemRendererSkin")
+	/* skinClass: ClassReference("skins.ielts.module.ButtonItemRendererSkin"); */
+	skinClass: ClassReference("skins.ielts.module.ImageItemRendererSkin");
 }
 
 module|ModuleView #examPractice1Difficulty,
 module|ModuleView #examPractice2Difficulty {
-	skinClass: ClassReference("skins.ielts.module.DifficultyRendererSkin")
+	skinClass: ClassReference("skins.ielts.module.DifficultyRendererSkin");
 }
 
 exercise|ExerciseView {

@@ -27,8 +27,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=false;
-$batch=false;
+$plainView=true;
+$batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -68,12 +68,12 @@ if ($batch && $handle = opendir($exerciseFolder)) {
 	//$exerciseID = '1156155508240'; // gapfill
 	//$exerciseID = '1156153794807'; // dropdown
 	//$exerciseID = '1156153794223'; // multiple choice
-	//$exerciseID = '1156153794534'; // q based drag and drop
+	$exerciseID = '1156153794534'; // q based drag and drop
 	//$exerciseID = '1156153794851'; // target spotting with feedback
 	//$exerciseID = '1156153794618'; // stopgap (q based gapfill)
 	//$exerciseID = '1156153794077'; // quiz
 	//$exerciseID = '1317260895296'; // correct mistakes (not R2I)
-	$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
+	//$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
 	convertExercise($exerciseID);
 }
 

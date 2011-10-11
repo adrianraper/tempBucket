@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.module {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.module.ui.ButtonItemRenderer;
+	import com.clarityenglish.ielts.view.module.ui.ImageItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -85,8 +86,21 @@ package com.clarityenglish.ielts.view.module {
 				examPractice2Button.label = _course.unit.(@["class"] == "exam-practice").exercise[1].@caption;
 				examPractice2Difficulty.data = _course.unit.(@["class"] == "exam-practice").exercise[1].@difficulty;
 				
+				// Option to either have a button that chooses a category then provides a subset of the XML to the dataprovider
+				// or send the whole lot and use tags to display topics.
 				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
-				
+				// AR. At this point, could I change the dataGroup itemRendered based on how many exercises there are?
+				/*
+				if (practiceZoneDataGroup.dataProvider.length<=5) {
+					// Change the itemRenderer to one that works well with a small number of items
+					practiceZoneDataGroup.itemRenderer = new ClassFactory(ImageItemRenderer);
+					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
+				} else {
+					// Otherwise go back to the item renderer for many items
+					practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
+					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
+				}
+				*/
 				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
 				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
 								
@@ -96,7 +110,7 @@ package com.clarityenglish.ielts.view.module {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			
+			//trace("partAdded in ModuleView for " + partName);
 			switch (instance) {
 				case courseTabBar:
 					courseTabBar.requireSelection = true;
@@ -111,8 +125,9 @@ package com.clarityenglish.ielts.view.module {
 					} );
 					
 					// Create the item renderer and inject the signal into it
-					practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
-					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };
+					//practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
+					practiceZoneDataGroup.itemRenderer = new ClassFactory(ImageItemRenderer);
+					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
 					break;
 				case questionZoneButton:
 				case examPractice1Button:

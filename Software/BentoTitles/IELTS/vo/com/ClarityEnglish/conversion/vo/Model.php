@@ -39,13 +39,13 @@ XML;
 			//	<field mode="0" type="i:drop" group="1" id="1">
 			//		<answer correct="true">chess</answer>
 			//	</field>
-			//	<DragQuestion source="1">
+			//	<DragQuestion source="q1">
 			//		<answer correct="true" source="a5" />
 			//		<answer correct="true" source="a7" />
 			//	</DragQuestion>
 				
 				$newQ = $this->model->questions->addChild("DragQuestion");
-				$newQ->addAttribute('source',$field->getID());
+				$newQ->addAttribute('source','q'.$field->getID());
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$matchingID = 'unknown';
@@ -67,7 +67,7 @@ XML;
 						}
 					}
 					//echo 'and add to the answer';
-					$newA->addAttribute('source',$matchingID);
+					$newA->addAttribute('source','a'.$matchingID);
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
@@ -80,26 +80,41 @@ XML;
 				// Whilst you can get the group from the field, you can also get it from the question
 				// Ideally we would match to make sure they are the same
 				//$newQ->addAttribute('group',$field->group);
-				$newQ->addAttribute('group','q'.$question->getID());
+				$newQ->addAttribute('source','q'.$question->getID());
+				// Each field in the body lists the correct answer. You need to match these
+				// against the answers in the fields in noscroll to get the answer source id
 				foreach ($question->getFields() as $field) {
 				
 			//	<field mode="0" type="i:target" group="1" id="1">
 			//		<answer correct="false">golf</answer>
 			//	</field>
-			//	<MultipleChoiceQuestion block="q1">
-			//		<answer correct="true" source="1" />
-			//		<answer correct="false" source="2" />
+			//	<DragQuestion source="q1">
+			//		<answer correct="true" source="a1" />
+			//		<answer correct="false" source="a2" />
 			//	</MultipleChoiceQuestion>
 					// Only ever 1 answer per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
-						$newA->addAttribute('source',$field->getID());
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+						// Which drag does this match with?
+						//echo "check drop field answer ".$answer->getAnswer().' ';
+						foreach ($this->getParent()->noscroll->getFields() as $dragField) {
+							foreach ($dragField->getAnswers() as $dragAnswer) {
+								//echo "against ".$dragAnswer->getAnswer().' ';
+								if ($answer->getAnswer()==$dragAnswer->getAnswer()) {
+									$foundID=$dragField->getID();
+									break 2;
+								}
+							}
+						}
+						if ($foundID) {
+							$newA->addAttribute('source','a'.$foundID);
+							$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+						}
 					}
 					//echo $newQ;
 				}
 			}
-		// For a gapfil, the questions have their source as the gaps
+		// For a gapfill, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 			//	<field mode="0" type="i:gap" group="1" id="1">
@@ -111,8 +126,8 @@ XML;
 			//	</GapQuestion>
 				
 				$newQ = $this->model->questions->addChild("GapFillQuestion");
-				$newQ->addAttribute('source',$field->getID());
-				$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('source','q'.$field->getID());
+				//$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('value',$answer->getAnswer());
@@ -133,7 +148,7 @@ XML;
 					// You can have multiple answers per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
-						$newA->addAttribute('source',$field->getID());
+						$newA->addAttribute('source','a'.$field->getID());
 						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					}
 					//echo $newQ;
@@ -156,12 +171,12 @@ XML;
 			//	</DropdownQuestion>
 				
 				$newQ = $this->model->questions->addChild("DropdownQuestion");
-				$newQ->addAttribute('source',$field->getID());
+				$newQ->addAttribute('source','q'.$field->getID());
 				$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					//$newA->addAttribute('value',$answer->getAnswer());
-					$newA->addAttribute('source','o'.$generateID++);
+					$newA->addAttribute('source','a'.$generateID++);
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
@@ -181,8 +196,8 @@ XML;
 			//	</ErrorCorrectionQuestion>
 				
 				$newQ = $this->model->questions->addChild("ErrorCorrectionQuestion");
-				$newQ->addAttribute('source',$field->getID());
-				$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('source','q'.$field->getID());
+				//$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('value',$answer->getAnswer());
@@ -197,7 +212,7 @@ XML;
 						// Is this feedback for this field?
 						if ($feedback->getID()==$field->getID()) {
 							$newFB = $newA->addChild('feedback');	
-							$newFB->addAttribute('source',$field->getID());
+							$newFB->addAttribute('source','fb'.$field->getID());
 							break;
 						}
 					}
@@ -238,7 +253,7 @@ XML;
 				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
-					$newA->addAttribute('source',$field->getID());
+					$newA->addAttribute('source','q'.$field->getID());
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					// Is there any feedback to be added to the model related to this answer?
 					// NOTE: This code assumes that each answer has an ID that relates to a feedback ID
@@ -264,7 +279,7 @@ XML;
 						// Is this feedback for this field?
 						if ($feedback->getID()==$field->getID()) {
 							$newFB = $newA->addChild('feedback');	
-							$newFB->addAttribute('source',$field->getID());
+							$newFB->addAttribute('source','fb'.$field->getID());
 							break;
 						}
 					}
@@ -293,7 +308,7 @@ XML;
 					// Only ever 1 answer per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
-						$newA->addAttribute('source',$field->getID());
+						$newA->addAttribute('source','a'.$field->getID());
 						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					}
 					//echo $newQ;

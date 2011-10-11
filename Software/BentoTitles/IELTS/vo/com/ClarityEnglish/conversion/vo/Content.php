@@ -213,7 +213,7 @@ class Content{
 					}
 					echo $fieldType;
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
+						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
@@ -248,7 +248,7 @@ class Content{
 				$thisTagType = $paragraph->getTagType();
 				// Just in case there is some other paragraph too
 				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					$builder.=$newline.'<li id="q'.$this->getID().'">';
+					$builder.=$newline.'<li id="'.$this->getID().'">';
 					// Grab the whole paragraph text, need to mangle it to get question and options.
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
@@ -303,7 +303,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<a id="'.$m[2].'" >'.$answer.'</a>'.$m[3];
+						$buildText.=$m[1].'<a id="q'.$m[2].'" >'.$answer.'</a>'.$m[3];
 					}
 				}
 			}			
@@ -320,7 +320,7 @@ class Content{
 				$thisTagType = $paragraph->getTagType();
 				// Just in case there is some other paragraph too
 				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					$builder.=$newline.'<li id="q'.$this->getID().'">';
+					$builder.=$newline.'<li id="'.$this->getID().'">';
 					// Grab the whole paragraph text, need to mangle it to get question and options.
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
@@ -357,7 +357,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<a id="'.$m[2].'" >'.$answer.'</a>'.$m[3];
+						$buildText.=$m[1].'<a id="q'.$m[2].'" >'.$answer.'</a>'.$m[3];
 					}
 				}
 			}			
@@ -374,7 +374,7 @@ class Content{
 				// Just in case there is some other paragraph too
 				$thisTagType = $paragraph->getTagType();
 				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					$builder.='<li id="q'.$this->getID().'">';
+					$builder.='<li id="'.$this->getID().'">';
 					// Grab the whole paragraph text, need to mangle it to get question and options.
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
@@ -418,7 +418,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" type="droptarget" />'.$m[3];
+						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
 					}
 				}
 			}			
@@ -432,7 +432,7 @@ class Content{
 				// Just in case there is some other paragraph too
 				$thisTagType = $paragraph->getTagType();
 				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					$builder.='<li id="q'.$this->getID().'">';
+					$builder.='<li id="'.$this->getID().'">';
 					// Grab the whole paragraph text, need to mangle it to get question and options.
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
@@ -474,7 +474,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_GAP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" />'.$m[3];
+						$buildText.=$m[1].'<input id="q'.$m[2].'" width="100" />'.$m[3];
 					}
 				}
 			}			

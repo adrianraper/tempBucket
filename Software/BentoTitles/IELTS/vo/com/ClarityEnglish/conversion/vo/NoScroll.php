@@ -42,7 +42,7 @@ class NoScroll extends Content{
 						continue;
 					}
 				}
-				$buildText.=$m[1].'<span id="'.$m[2].'" draggable="true">'.$answer.'</span>';
+				$buildText.=$m[1].'<span id="a'.$m[2].'" draggable="true">'.$answer.'</span>';
 			}
 		}
 		
