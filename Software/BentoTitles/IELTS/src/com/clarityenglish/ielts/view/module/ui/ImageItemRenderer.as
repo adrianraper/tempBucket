@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.module.ui {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
+	import com.clarityenglish.bento.vo.Href;
 	import flash.events.MouseEvent;
 	import flash.events.IOErrorEvent;
 	import flash.events.Event;
@@ -15,6 +16,7 @@ package com.clarityenglish.ielts.view.module.ui {
 		public var image:Image;
 		
 		public var exerciseClick:Signal;
+		public var href:Href;
 		
 		/**
 		 * This is an example of using injection from the component to get data into the skin (see DifficultyRenderer for another method)
@@ -22,7 +24,8 @@ package com.clarityenglish.ielts.view.module.ui {
 		public override function set data(value:Object):void {
 			super.data = value;
 			trace("add imageItemRenderer for " + data.@thumbnail);
-			image.source = data.@thumbnail;
+			image.source = data.@thumbnail.toString();
+			image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;;
 			image.addEventListener(Event.COMPLETE, onComplete);
 			image.addEventListener(IOErrorEvent.IO_ERROR, onError);
 		}

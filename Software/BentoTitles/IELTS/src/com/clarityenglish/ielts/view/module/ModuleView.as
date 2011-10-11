@@ -127,7 +127,7 @@ package com.clarityenglish.ielts.view.module {
 					// Create the item renderer and inject the signal into it
 					//practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
 					practiceZoneDataGroup.itemRenderer = new ClassFactory(ImageItemRenderer);
-					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
+					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick, href:href };					
 					break;
 				case questionZoneButton:
 				case examPractice1Button:
