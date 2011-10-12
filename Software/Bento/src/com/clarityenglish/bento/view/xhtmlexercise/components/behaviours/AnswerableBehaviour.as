@@ -87,6 +87,7 @@ import com.clarityenglish.textLayout.elements.TextComponentElement;
 import com.clarityenglish.textLayout.util.TLFUtil;
 import com.clarityenglish.textLayout.vo.XHTML;
 
+import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 
 import flashx.textLayout.elements.FlowElement;
@@ -180,6 +181,15 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 			if (inputElement) {
 				inputElement.text = getLongestAnswerValue(question.answers);
+				
+				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
+				if (eventMirror) {
+					eventMirror.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void {
+						// Since the focus event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated FlowElement
+						var inputElement:FlowElement = e.target.tlf_internal::_element as InputElement;
+						trace(inputElement);
+					} );
+				}
 			}
 		}
 	}
@@ -208,24 +218,23 @@ class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManag
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				
 				if (eventMirror) {
-					eventMirror.addEventListener(FlowElementMouseEvent.CLICK,
-						Closure.create(this, function(e:FlowElementMouseEvent):void {
-							log.info("Click detected on an error detection question");
-							
-							if ((e.flowElement as TextComponentElement).hideChrome) {
-								// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
-								(e.flowElement as TextComponentElement).hideChrome = false;
-								
-								var tf:TextFlow = e.flowElement.getTextFlow();
-								tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
-							}
-						})
-					);
+					eventMirror.addEventListener(FlowElementMouseEvent.CLICK, onErrorCorrectionTextClick);
 				} else {
 					log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}]", flowElementXmlBiMap.getFlowElement(source), question);
 				}
-				
 			}
+		}
+	}
+	
+	private function onErrorCorrectionTextClick(e:FlowElementMouseEvent):void {
+		log.info("Click detected on an error detection question");
+		
+		if ((e.flowElement as TextComponentElement).hideChrome) {
+			// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
+			(e.flowElement as TextComponentElement).hideChrome = false;
+			
+			var tf:TextFlow = e.flowElement.getTextFlow();
+			tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
 		}
 	}
 	

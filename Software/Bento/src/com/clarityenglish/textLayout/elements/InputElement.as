@@ -1,7 +1,5 @@
 package com.clarityenglish.textLayout.elements {
-	import flash.events.KeyboardEvent;
-	import flash.ui.Keyboard;
-	import flash.utils.setTimeout;
+	import flash.events.FocusEvent;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.events.ModelChange;
@@ -9,8 +7,8 @@ package com.clarityenglish.textLayout.elements {
 	
 	import mx.core.IUIComponent;
 	import mx.events.DragEvent;
+	import mx.events.FlexEvent;
 	import mx.managers.DragManager;
-	import mx.managers.FocusManager;
 	import mx.managers.IFocusManagerComponent;
 	import mx.utils.StringUtil;
 	
@@ -138,12 +136,14 @@ package com.clarityenglish.textLayout.elements {
 					component = new TextInput();
 					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
-					component.addEventListener(KeyboardEvent.KEY_DOWN, function(e:KeyboardEvent):void {
-						if (e.keyCode == Keyboard.ENTER) {
-							var focusManagerComponent:IFocusManagerComponent = e.target.focusManager.getNextFocusManagerComponent();
-							e.target.focusManager.setFocus(focusManagerComponent);
-						}
-					}, false, 0, true);
+					component.addEventListener(FlexEvent.ENTER, function(e:FlexEvent):void {
+						var focusManagerComponent:IFocusManagerComponent = e.target.focusManager.getNextFocusManagerComponent();
+						e.target.focusManager.setFocus(focusManagerComponent);
+					});
+					
+					// Duplicate some events on the event mirror so other things can listen to the FlowElement
+					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void { getEventMirror().dispatchEvent(e.clone()); } );
+					
 					break;
 				case TYPE_BUTTON:
 					throw new Error("Button type not yet implemented");
