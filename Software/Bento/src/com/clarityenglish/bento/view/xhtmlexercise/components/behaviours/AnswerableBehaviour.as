@@ -9,7 +9,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.TextComponentElement;
-	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.IEventDispatcher;
@@ -52,18 +51,18 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			
 			for each (var question:Question in exercise.model.questions) {
 				switch (question.type) {
-					case "MultipleChoiceQuestion":
-					case "TargetSpottingQuestion":
+					case Question.MULTIPLE_CHOICE_QUESTION:
+					case Question.TARGET_SPOTTING_QUESTION:
 						clickableAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
-					case "DragQuestion":
-					case "GapFillQuestion":
+					case Question.DRAG_QUESTION:
+					case Question.GAP_FILL_QUESTION:
 						inputAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
-					case "ErrorCorrectionQuestion":
+					case Question.ERROR_CORRECTION_QUESTION:
 						errorCorrectionAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
-					case "DropDownQuestion":
+					case Question.DROP_DOWN_QUESTION:
 						break;
 					default:
 						log.error("Unknown question type: " + question.type);
@@ -84,9 +83,9 @@ import com.clarityenglish.bento.vo.content.model.Question;
 import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 import com.clarityenglish.textLayout.elements.InputElement;
 import com.clarityenglish.textLayout.elements.TextComponentElement;
-import com.clarityenglish.textLayout.util.TLFUtil;
 import com.clarityenglish.textLayout.vo.XHTML;
 
+import flash.events.Event;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 
@@ -184,14 +183,16 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
-					eventMirror.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void {
-						// Since the focus event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated FlowElement
-						var inputElement:FlowElement = e.target.tlf_internal::_element as InputElement;
-						trace(inputElement);
-					} );
+					eventMirror.addEventListener(FocusEvent.FOCUS_OUT, Closure.create(this, onAnswerSubmitted, question));
 				}
 			}
 		}
+	}
+	
+	private function onAnswerSubmitted(e:Event, question:Question):void {
+		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated FlowElement
+		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, inputElement.enteredValue, true));
 	}
 	
 }

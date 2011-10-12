@@ -6,6 +6,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.vo.content.model.Model;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
+	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -106,47 +107,69 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		// TODO: Currently this only really makes sense for multiple choice answers
 		public function questionAnswered(question:Question, answer:Answer):void {
-			// First deselect any other selected answers
-			for each (var otherAnswer:Answer in question.answers) {
-				for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
-					XHTML.removeClass(otherSource, "selected");
-					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
-				}
+			switch (question.type) {
+				case Question.MULTIPLE_CHOICE_QUESTION:
+				case Question.TARGET_SPOTTING_QUESTION:
+					// First deselect any other selected answers
+					for each (var otherAnswer:Answer in question.answers) {
+						for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
+							XHTML.removeClass(otherSource, "selected");
+							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
+						}
+					}
+					
+					// Get the node and FlowElement for the selected answer
+					var answerNode:XML = exercise.getElementById(answer.source);
+					var answerElement:FlowElement = getFlowElement(answerNode);
+					
+					// Add the selected class
+					XHTML.addClass(answerNode, "selected");
+					
+					// Refresh the element and update the screen
+					TLFUtil.markFlowElementFormatChanged(answerElement);
+					answerElement.getTextFlow().flowComposer.updateAllControllers();
+					break;
 			}
-			
-			// Get the node and FlowElement for the selected answer
-			var answerNode:XML = exercise.getElementById(answer.source);
-			var answerElement:FlowElement = getFlowElement(answerNode);
-			
-			// Add the selected class
-			XHTML.addClass(answerNode, "selected");
-			
-			// Refresh the element and update the screen
-			TLFUtil.markFlowElementFormatChanged(getFlowElement(answerNode));
-			answerElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
 		public function questionMark(question:Question, answer:Answer):void {
-			// First unmark any other marked answers
-			for each (var otherAnswer:Answer in question.answers) {
-				for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
-					XHTML.removeClass(otherSource, Answer.CORRECT);
-					XHTML.removeClass(otherSource, Answer.INCORRECT);
-					XHTML.removeClass(otherSource, Answer.NEUTRAL);
-					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
-				}
+			switch (question.type) {
+				case Question.MULTIPLE_CHOICE_QUESTION:
+				case Question.TARGET_SPOTTING_QUESTION:
+					// First unmark any other marked answers
+					for each (var otherAnswer:Answer in question.answers) {
+						for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
+							XHTML.removeClass(otherSource, Answer.CORRECT);
+							XHTML.removeClass(otherSource, Answer.INCORRECT);
+							XHTML.removeClass(otherSource, Answer.NEUTRAL);
+							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
+						}
+					}
+					
+					// Get the node and FlowElement for the selected answer
+					var answerNode:XML = exercise.getElementById(answer.source);
+					var answerElement:FlowElement = getFlowElement(answerNode);
+					
+					// Add the selected class
+					XHTML.addClass(answerNode, answer.result);
+					
+					// Refresh the element and update the screen
+					TLFUtil.markFlowElementFormatChanged(answerElement);
+					answerElement.getTextFlow().flowComposer.updateAllControllers();
+					break;
+				case Question.GAP_FILL_QUESTION:
+				case Question.DROP_DOWN_QUESTION:
+					var sourceNode:XML = exercise.getElementById(question.source);
+					var inputElement:InputElement = getFlowElement(sourceNode) as InputElement;
+					
+					// Add the selected class
+					XHTML.addClass(sourceNode, answer.result);
+					
+					// Refresh the element and update the screen
+					TLFUtil.markFlowElementFormatChanged(inputElement);
+					inputElement.getTextFlow().flowComposer.updateAllControllers();
+					break;
 			}
-			
-			// Get the node and FlowElement for the selected answer
-			var answerNode:XML = exercise.getElementById(answer.source);
-			var answerElement:FlowElement = getFlowElement(answerNode);
-			
-			// Add the selected class
-			XHTML.addClass(answerNode, answer.result);
-			
-			// Refresh the element and update the screen
-			TLFUtil.markFlowElementFormatChanged(getFlowElement(answerNode));
-			answerElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
 	}

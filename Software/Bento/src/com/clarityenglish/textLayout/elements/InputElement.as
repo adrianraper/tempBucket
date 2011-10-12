@@ -59,6 +59,16 @@ package com.clarityenglish.textLayout.elements {
 			return _value;
 		}
 		
+		public function get enteredValue():String {
+			switch (_type) {
+				case TYPE_TEXT:
+				case TYPE_DROPTARGET:
+					return (component) ? (component as TextInput).text : null;
+			}
+			
+			return null;
+		}
+		
 		/**
 		 * If value is set the input is prefilled with the given value
 		 * 

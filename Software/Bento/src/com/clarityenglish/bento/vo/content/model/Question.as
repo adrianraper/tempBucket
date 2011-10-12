@@ -2,6 +2,13 @@ package com.clarityenglish.bento.vo.content.model {
 	
 	public class Question {
 		
+		public static const MULTIPLE_CHOICE_QUESTION:String = "MultipleChoiceQuestion";
+		public static const TARGET_SPOTTING_QUESTION:String = "TargetSpottingQuestion";
+		public static const DRAG_QUESTION:String = "DragQuestion";
+		public static const GAP_FILL_QUESTION:String = "GapFillQuestion";
+		public static const ERROR_CORRECTION_QUESTION:String = "ErrorCorrectionQuestion";
+		public static const DROP_DOWN_QUESTION:String = "DropDownQuestion";
+		
 		private var xml:XML;
 		
 		private var _answers:Vector.<Answer>;

@@ -23,7 +23,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var question:Question = note.getBody().question as Question;
-			var answer:Answer = note.getBody().answer as Answer;
+			var answer:* = note.getBody().answer;
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
 			exerciseProxy.questionAnswer(question, answer);

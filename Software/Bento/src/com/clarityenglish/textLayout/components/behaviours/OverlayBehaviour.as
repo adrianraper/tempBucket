@@ -59,6 +59,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 				// Style the component in line with its underlying text
 				componentElement.getComponent().setStyle("fontFamily", componentElement.computedFormat.fontFamily);
 				componentElement.getComponent().setStyle("fontSize", componentElement.computedFormat.fontSize);
+				componentElement.getComponent().setStyle("color", componentElement.computedFormat.color);
 				
 				var bounds:Rectangle = componentElement.getElementBounds();
 				

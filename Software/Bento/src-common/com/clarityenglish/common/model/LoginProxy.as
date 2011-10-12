@@ -18,7 +18,7 @@ package com.clarityenglish.common.model {
 	public class LoginProxy extends Proxy implements IProxy, IDelegateResponder {
 		
 		public static const NAME:String = "LoginProxy";
-
+		
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
 			

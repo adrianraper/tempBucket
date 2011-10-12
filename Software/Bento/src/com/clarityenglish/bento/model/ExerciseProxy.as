@@ -49,7 +49,18 @@ package com.clarityenglish.bento.model {
 		 * @param question
 		 * @param answer
 		 */
-		public function questionAnswer(question:Question, answer:Answer):void {
+		public function questionAnswer(question:Question, answerOrString:*):void {
+			var answer:Answer;
+			if (answerOrString is String) {
+				// If the answer is a string then construct a fake answer with the correct score
+				answer = new Answer(<TextualAnswer value={answerOrString} score="1" />);
+				
+			} else if (answerOrString is Answer) {
+				answer = answerOrString;
+			} else {
+				throw new Error("questionAnswer received an answer that was neither an Answer nor a String");
+			}
+			
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.result, answer.score);
 			
 			// If delayed marking is off and this is the first answer for the question record this seperately
