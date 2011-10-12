@@ -147,22 +147,25 @@ package com.clarityenglish.textLayout.elements {
 					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, function(e:FlexEvent):void {
-						var focusManagerComponent:IFocusManagerComponent = e.target.focusManager.getNextFocusManagerComponent();
-						e.target.focusManager.setFocus(focusManagerComponent);
+						e.target.focusManager.setFocus(e.target.focusManager.getNextFocusManagerComponent());
 					});
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
 					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void { getEventMirror().dispatchEvent(e.clone()); } );
+					break;
+				case TYPE_DROPTARGET:
+					component = new TextInput();
 					
+					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
+					component.addEventListener(FlexEvent.ENTER, function(e:FlexEvent):void {
+						e.target.focusManager.setFocus(e.target.focusManager.getNextFocusManagerComponent());
+					});
+					
+					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
+					component.addEventListener(DragEvent.DRAG_DROP, onDropDrop);
 					break;
 				case TYPE_BUTTON:
 					throw new Error("Button type not yet implemented");
-					break;
-				case TYPE_DROPTARGET:
-					// This could also be a Label
-					component = new TextInput();
-					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
-					component.addEventListener(DragEvent.DRAG_DROP, onDropDrop);
 					break;
 			}
 			
@@ -186,6 +189,8 @@ package com.clarityenglish.textLayout.elements {
 				// TODO: This works, but basically we are forcing a complete update which isn't really necessary...
 				getTextFlow().flowComposer.damage(0, getTextFlow().textLength, FlowDamageType.GEOMETRY);
 				getTextFlow().flowComposer.updateAllControllers();
+				
+				getEventMirror().dispatchEvent(new DragEvent(DragEvent.DRAG_COMPLETE));
 			}
 		}
 		
@@ -195,11 +200,11 @@ package com.clarityenglish.textLayout.elements {
 					case TYPE_TEXT:
 						(component as TextInput).text = text = value;
 						break;
-					case TYPE_BUTTON:
-						(component as Button).label = text = value;
-						break;
 					case TYPE_DROPTARGET:
 						(component as TextInput).text = text = value;
+						break;
+					case TYPE_BUTTON:
+						(component as Button).label = text = value;
 						break;
 				}
 			}

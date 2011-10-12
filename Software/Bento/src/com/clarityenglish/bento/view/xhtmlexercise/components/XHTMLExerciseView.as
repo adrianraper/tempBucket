@@ -158,11 +158,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					answerElement.getTextFlow().flowComposer.updateAllControllers();
 					break;
 				case Question.GAP_FILL_QUESTION:
-				case Question.DROP_DOWN_QUESTION:
+				case Question.DRAG_QUESTION:
 					var sourceNode:XML = exercise.getElementById(question.source);
 					var inputElement:InputElement = getFlowElement(sourceNode) as InputElement;
 					
-					// Add the selected class
+					// Remove any existing classes and add the result class
+					XHTML.removeClass(sourceNode, Answer.CORRECT);
+					XHTML.removeClass(sourceNode, Answer.INCORRECT);
+					XHTML.removeClass(sourceNode, Answer.NEUTRAL);
+					
 					XHTML.addClass(sourceNode, answer.result);
 					
 					// Refresh the element and update the screen

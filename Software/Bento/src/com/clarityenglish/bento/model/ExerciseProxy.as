@@ -52,9 +52,11 @@ package com.clarityenglish.bento.model {
 		public function questionAnswer(question:Question, answerOrString:*):void {
 			var answer:Answer;
 			if (answerOrString is String) {
-				// If the answer is a string then construct a fake answer with the correct score
-				answer = new Answer(<TextualAnswer value={answerOrString} score="1" />);
+				var answerString:String = answerOrString;
+				var score:int = question.getScoreForTextAnswer(answerString);
 				
+				// If the answer is a string then construct a fake answer with the correct score
+				answer = new Answer(<TextualAnswer value={answerString} score={score} />);
 			} else if (answerOrString is Answer) {
 				answer = answerOrString;
 			} else {

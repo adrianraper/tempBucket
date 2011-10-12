@@ -34,6 +34,17 @@ package com.clarityenglish.bento.vo.content.model {
 			return _answers;
 		}
 		
+		public function getScoreForTextAnswer(textAnswer:String):int {
+			// Go through the answers looking for one with the correct value
+			for each (var answer:Answer in answers) {
+				if (textAnswer == answer.value) {
+					return answer.score;
+				}
+			}
+			
+			return -1;
+		}
+		
 		/**
 		 * Create a new Question from a question XML node
 		 * 
