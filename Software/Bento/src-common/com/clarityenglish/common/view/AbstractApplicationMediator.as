@@ -89,9 +89,9 @@ package com.clarityenglish.common.view {
 					break;
 				case CommonNotifications.COPY_LOADED:
 					// Set the alert box labels from the copy
-					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
-					Alert.yesLabel = copyProvider.getCopyForId("yes");
-					Alert.noLabel = copyProvider.getCopyForId("no");
+					//var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+					//Alert.yesLabel = copyProvider.getCopyForId("yes");
+					//Alert.noLabel = copyProvider.getCopyForId("no");
 					break;
 				default:
 					break;		

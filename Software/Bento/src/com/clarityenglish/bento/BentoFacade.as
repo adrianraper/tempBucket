@@ -58,7 +58,7 @@
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			//registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			// AR Or is LoggedInCommand done in IELTSFacade?
-			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 			//registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);
 		}
 		

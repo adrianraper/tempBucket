@@ -14,7 +14,11 @@
 	<s:TabBar id="courseTabBar" skinClass="skins.ielts.module.CourseTabBarSkin" />
 	
 	<s:VGroup width="100%">
-		<s:Label id="courseTitleLabel" fontSize="14" fontWeight="bold" />
+		<s:HGroup width="100%">
+			<s:Label id="courseTitleLabel" fontSize="14" fontWeight="bold" />
+			<s:Label id="xx" fontSize="14" fontWeight="bold" text="Welcome " />
+			<s:Label id="userNameLabel" fontSize="14" fontWeight="bold" text="{hostComponent._user.fullName}" />
+		</s:HGroup>
 		<s:Label id="courseDescriptionLabel" width="70%" />
 		
 		<s:Line width="100%">

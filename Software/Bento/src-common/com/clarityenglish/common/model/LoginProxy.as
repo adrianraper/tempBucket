@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.manageable.User;
 	
 	import mx.core.Application;
 	import mx.core.FlexGlobals;
@@ -19,6 +20,8 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "LoginProxy";
 		
+		public var _user:User;
+
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
 			
@@ -60,11 +63,12 @@ package com.clarityenglish.common.model {
 			// I think that for now I don't have RemoteDelegate working - so fake a return
 			//new RemoteDelegate("login", params, this).execute();
 			trace("In LoginProxy calling RemoteDelegate");
-			onDelegateResult("login", {status:"success", userID:"10189"});
+			onDelegateResult("login", {status:"success", user:{id:"10159", name:username}, languageCode:"EN"});
 		}
 		
 		public function logout():void {
-			new RemoteDelegate("logout", [ ], this).execute();
+			onDelegateResult("logout", {status:"success"});
+			//new RemoteDelegate("logout", [ ], this).execute();
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -75,6 +79,10 @@ package com.clarityenglish.common.model {
 					if (data) {
 						// Successful login
 						CopyProxy.languageCode = data.languageCode as String;
+						
+						// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
+						_user = new User();
+						_user.buildUser(data.user);
 						
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 					} else {
@@ -92,6 +100,14 @@ package com.clarityenglish.common.model {
 		
 		public function onDelegateFault(operation:String, data:Object):void{
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		}
+		
+		/**
+		 * If anyone wants the logged in user's details
+		 * 
+		 */
+		public function get user():User {
+			return _user;
 		}
 		
 	}

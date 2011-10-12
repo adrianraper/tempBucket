@@ -15,11 +15,11 @@
 		<s:VGroup left="10" top="10" right="10" bottom="10">
 			<s:HGroup>
 				<s:Label id="nameLabel" text="name" />			
-				<s:TextInput id="nameInput" widthInChars="32" />				
+				<s:TextInput id="nameInput" />				
 			</s:HGroup>
 			<s:HGroup>
 				<s:Label id="passwordLabel" text="password" />			
-				<s:TextInput id="passwordInput" widthInChars="32" displayAsPassword="true"/>				
+				<s:TextInput id="passwordInput" displayAsPassword="true"/>				
 			</s:HGroup>
 			<s:Button id="loginButton" label="Start" />
 		</s:VGroup>

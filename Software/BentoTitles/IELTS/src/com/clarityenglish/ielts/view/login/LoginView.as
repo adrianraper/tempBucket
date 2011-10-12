@@ -66,6 +66,7 @@ package com.clarityenglish.ielts.view.login {
 			
 			// The applicationMediator is registered to get success notification and changes the application state
 			// The applicationFacade also links LoggedInCommand to the success notification
+			// Should the LoggedInCommand be in common? I would think so.
 			
 			// The loggedInCommand gets all the data from the notification (it can trigger other notifications if necessary)
 			// It also loads registers all the proxies with the facade. This triggers all sorts of action...

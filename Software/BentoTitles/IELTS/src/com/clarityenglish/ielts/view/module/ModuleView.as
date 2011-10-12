@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.module {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.module.ui.ButtonItemRenderer;
 	import com.clarityenglish.ielts.view.module.ui.ImageItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -32,6 +33,9 @@ package com.clarityenglish.ielts.view.module {
 		public var courseDescriptionLabel:Label;
 		
 		[SkinPart(required="true")]
+		public var userNameLabel:Label;
+		
+		[SkinPart(required="true")]
 		public var questionZoneButton:Button;
 		
 		[SkinPart(required="true")]
@@ -55,6 +59,9 @@ package com.clarityenglish.ielts.view.module {
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
+		[Bindable]
+		public var _user:User;
+		
 		public var exerciseSelect:Signal = new Signal(Href);
 		
 		public function set course(value:XML):void {
@@ -62,7 +69,11 @@ package com.clarityenglish.ielts.view.module {
 			_courseChanged = true;
 			invalidateProperties();
 		}
-		
+		public function set user(value:User):void {
+			_user = value;
+			// Also put some parts of this information into the skin
+			//userNameLabel.text = _user.fullName;
+		}
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -116,6 +127,7 @@ package com.clarityenglish.ielts.view.module {
 					courseTabBar.requireSelection = true;
 					courseTabBar.addEventListener(Event.CHANGE, onCourseTabBarIndexChange);
 					break;
+				
 				case practiceZoneDataGroup:
 					// Create a signal and listener for the button item renderer
 					var exerciseClick:Signal = new Signal(XML);

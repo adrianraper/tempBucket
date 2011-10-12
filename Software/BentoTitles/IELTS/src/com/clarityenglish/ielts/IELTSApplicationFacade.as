@@ -6,7 +6,7 @@
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.StartupCommand;
-	import com.clarityenglish.ielts.controller.LoggedInCommand;
+	import com.clarityenglish.common.controller.LoggedInCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;

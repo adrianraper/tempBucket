@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.common.CommonNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -21,9 +22,7 @@ package com.clarityenglish.ielts.view {
 
 		override public function onRegister():void {
 			super.onRegister();
-			
-			// For now hardcode the menu file and the path
-			view.menuView.href = new Href(Href.XHTML, "menu.xml", "http://dock.projectbench/Content/IELTS-Dave");
+
 		}
 		
 		/**
@@ -35,6 +34,10 @@ package com.clarityenglish.ielts.view {
 			// Concatenate any extra notifications to the array returned by this function in the superclass
 			return super.listNotificationInterests().concat([
 				
+				// AR I think that I should register interest in LOGGED_IN here
+				// so that this mediator can change the state of the application from login to menu. Yes.
+				CommonNotifications.INVALID_LOGIN,
+				CommonNotifications.LOGGED_IN,
 			]);
 		}
 		
@@ -47,7 +50,15 @@ package com.clarityenglish.ielts.view {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case CommonNotifications.LOGGED_IN:
+					view.currentState="menu";
+					
+					// For now hardcode the menu file and the path
+					// To get the real path will be a combination of the config data (a base path)
+					// and the contentLocation that comes back from getRMSettings
+					view.menuView.href = new Href(Href.XHTML, "menu.xml", "http://dock.projectbench/Content/IELTS-Dave");
+					break;
+
 			}
 		}
 		

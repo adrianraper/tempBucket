@@ -70,6 +70,11 @@
 			
 		}
 		
+		// AR A temporary constructor
+		public function buildUser(data:Object):void {
+			this.id = data.id;
+			this.fullName = data.name;
+		}
 		/**
 		 * A single user always has a userCount of 1
 		 */
