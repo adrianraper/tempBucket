@@ -24,7 +24,8 @@ package com.clarityenglish.ielts.view.module.ui {
 		public override function set data(value:Object):void {
 			super.data = value;
 			trace("add imageItemRenderer for " + data.@thumbnail);
-			image.source = data.@thumbnail.toString();
+			// AR Remember that E4X sends things as strings in an XML wrapper
+			//image.source = data.@thumbnail.toString();
 			image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;;
 			image.addEventListener(Event.COMPLETE, onComplete);
 			image.addEventListener(IOErrorEvent.IO_ERROR, onError);

@@ -57,8 +57,10 @@ package com.clarityenglish.common.model {
 				params.push(null);
 			}
 			*/
-			
-			new RemoteDelegate("login", params, this).execute();
+			// I think that for now I don't have RemoteDelegate working - so fake a return
+			//new RemoteDelegate("login", params, this).execute();
+			trace("In LoginProxy calling RemoteDelegate");
+			onDelegateResult("login", {status:"success", userID:"10189"});
 		}
 		
 		public function logout():void {

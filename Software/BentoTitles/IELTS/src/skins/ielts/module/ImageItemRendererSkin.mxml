@@ -7,6 +7,6 @@
 		[HostComponent("com.clarityenglish.ielts.view.module.ui.ImageItemRenderer")]
 	</fx:Metadata>
 	
-	<s:Image id="image" width="50" height="50" />
+	<s:Image id="image" />
 	
 </s:Skin>

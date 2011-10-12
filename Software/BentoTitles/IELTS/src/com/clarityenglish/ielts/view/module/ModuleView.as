@@ -89,7 +89,7 @@ package com.clarityenglish.ielts.view.module {
 				// Option to either have a button that chooses a category then provides a subset of the XML to the dataprovider
 				// or send the whole lot and use tags to display topics.
 				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
-				// AR. At this point, could I change the dataGroup itemRendered based on how many exercises there are?
+				// AR. At this point, could I change the dataGroup itemRenderer based on how many exercises there are?
 				/*
 				if (practiceZoneDataGroup.dataProvider.length<=5) {
 					// Change the itemRenderer to one that works well with a small number of items

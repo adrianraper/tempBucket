@@ -7,7 +7,7 @@
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.menu.*"
 						creationComplete="creationComplete(event)"
-						currentState="menu">
+						currentState="login">
 	
 	<fx:Metadata>
 		[SWF(width=800, height=600)]

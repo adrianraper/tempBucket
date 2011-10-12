@@ -1,10 +1,12 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.StartupCommand;
+	import com.clarityenglish.ielts.controller.LoggedInCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
@@ -43,6 +45,10 @@
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
 			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
 			registerCommand(BBNotifications.STARTUP, StartupCommand);
+			
+			// Common ones are done in BentoFacade
+			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
+			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 		}
 		
 	}

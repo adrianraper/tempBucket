@@ -6,6 +6,10 @@
 	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.common.controller.*;
+	// AR I don't see where BBNotifications are being imported? 
+	import com.clarityenglish.common.CommonNotifications;
+	// How do I tell that the LoggedInCommand is back in IELTS package?
+	//import com.clarityenglish.ielts.controller.*;
 	
 	import flash.utils.Dictionary;
 	
@@ -50,10 +54,12 @@
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_ANSWER, QuestionAnswerCommand);
 			
-			/*registerCommand(CommonNotifications.LOGIN, LoginCommand);
-			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
-			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
-			registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);*/
+			// AR add in login and logout
+			registerCommand(CommonNotifications.LOGIN, LoginCommand);
+			//registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
+			// AR Or is LoggedInCommand done in IELTSFacade?
+			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			//registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

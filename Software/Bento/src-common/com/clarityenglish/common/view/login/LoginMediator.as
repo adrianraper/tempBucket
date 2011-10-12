@@ -78,10 +78,7 @@ package com.clarityenglish.common.view.login {
 		}
 		
 		private function onLogin(e:LoginEvent):void {
-			// AR Since this successful, clear out the name/password so that when/if you return to this
-			// screen they do not contain your details.
-			// Gives a manageables error!! So do it on copyloaded.
-			//loginView.clearData();
+			// Trigger a notification to react to this event
 			sendNotification(CommonNotifications.LOGIN, e);
 		}
 
