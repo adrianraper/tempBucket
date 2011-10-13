@@ -3,14 +3,21 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.config.Config;
+	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.core.Application;
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
+	import org.davekeen.delegates.IDelegateResponder;
+	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -27,17 +34,57 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "ConfigProxy";
 		
-		private var config:XML;
+		// TODO. Make a config class to hold all this info
+		//private var config:XML;
+		//private var parameters:Array;
+		//private var RMSettings:Object;
+		private var config:Config;
+		
+		/**
+		 * Configuration information comes from three sources
+		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products
+		 * 2) parameters passed from the start page or command line. This is specific to this account or this user or this session
+		 * 3) details from the database for this account. Specific to this account.
+		 * 
+		 * Get it in the above order as, in theory, each could override the previous, though in practice this doesn't happen
+		 */
 		
 		public function ConfigProxy(data:Object = null) {
 			super(NAME, data);
 			
-			//if (FlexGlobals.topLevelApplication.parameters.configFile) {
-			//	var configFile:String = FlexGlobals.topLevelApplication.parameters.configFile;
-			//} else {
-			var configFile:String = "config.xml";
-			//}
+			config = new Config();
+			// You might have passed a special config file as a paramter. If not, use a default name and path.
+			// The path should actually be the same folder as the start page, /area1/RoadToIELTS2
+			if (FlexGlobals.topLevelApplication.parameters.configFile) {
+				var configFile:String = FlexGlobals.topLevelApplication.parameters.configFile;
+			} else {
+				configFile = "config.xml";
+			}
 			getConfigFile(configFile);
+		}
+		
+		/**
+		 * Method to get details sent on the command line, or from the start page
+		 * 
+		 */
+		private function getApplicationParameters():void {
+			
+			/**
+			 *  Use what is passed from start page or command line
+			 */
+			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
+
+			// Trigger the database call
+			getRMSettings();
+		}
+		/**
+		 * Method to get details about the account from the database
+		 * 
+		 */
+		private function getRMSettings():void {
+			var params:Array = [ config ];
+			// new RemoteDelegate("getRMSettings", params, this).execute();
+			onDelegateResult("getRMSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true}});
 		}
 		
 		/**
@@ -60,7 +107,9 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onConfigLoadComplete(e:Event):void {
-			config = new XML(e.target.data);
+			//config = new XML(e.target.data);
+			config.mergeFileData(new XML(e.target.data));
+			getApplicationParameters();
 		}
 		
 		public function errorHandler(e:IOErrorEvent):void {
@@ -69,7 +118,30 @@ package com.clarityenglish.common.model {
 		
 		// Then methods to get the configuration data
 		public function getContentPath():String {
-			return config.contentPath;
+			return config.paths.content;
 		}
+		
+		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
+		public function onDelegateResult(operation:String, data:Object):void{
+			switch (operation) {
+				case "getRMSettings":
+					if (data) {
+						config.mergeAccountData(data);
+						sendNotification(CommonNotifications.CONFIG_LOADED, data);
+					} else {
+						// Can't successfully read from the database
+						sendNotification(CommonNotifications.DATABASE_ERROR);
+					}
+					break;
+				default:
+					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
+			}
+		}
+		
+		public function onDelegateFault(operation:String, data:Object):void{
+			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		}
+		
+
 	}
 }

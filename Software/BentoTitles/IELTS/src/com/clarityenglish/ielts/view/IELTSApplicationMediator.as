@@ -38,6 +38,7 @@ package com.clarityenglish.ielts.view {
 				// so that this mediator can change the state of the application from login to menu. Yes.
 				CommonNotifications.INVALID_LOGIN,
 				CommonNotifications.LOGGED_IN,
+				CommonNotifications.CONFIG_LOADED,
 			]);
 		}
 		
@@ -50,6 +51,10 @@ package com.clarityenglish.ielts.view {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
+				case CommonNotifications.CONFIG_LOADED:
+					view.currentState="login";
+					break;
+				
 				case CommonNotifications.LOGGED_IN:
 					view.currentState="menu";
 					

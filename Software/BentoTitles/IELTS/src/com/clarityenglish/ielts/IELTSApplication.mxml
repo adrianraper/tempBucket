@@ -7,13 +7,14 @@
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.menu.*"
 						creationComplete="creationComplete(event)"
-						currentState="login">
+						currentState="loading">
 	
 	<fx:Metadata>
 		[SWF(width=800, height=600)]
 	</fx:Metadata>
 	
 	<bento:states>
+		<s:State name="loading" />
 		<s:State name="login" />
 		<s:State name="menu" />
 	</bento:states>
@@ -38,7 +39,8 @@
 		]]>
 	</fx:Script>
 	
+	<s:Panel title="loading..." width="100" height="100" includeIn="loading"/>	
 	<login:LoginView width="100%" height="100%" includeIn="login" />
-	<menu:MenuView id="menuView" width="100%" height="100%" includeIn="menu" />
+	<menu:MenuView id="menuView" width="100%" height="100%" includeIn=" menu" />
 	
 </bento:BentoApplication>
