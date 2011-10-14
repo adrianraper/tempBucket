@@ -40,6 +40,10 @@ package com.clarityenglish.bento.model {
 			selectedAnswers = new Dictionary(true);
 		}
 		
+		public function getSelectedAnswerForQuestion(question:Question):Answer {
+			return selectedAnswers[question];
+		}
+		
 		/**
 		 * TODO: Need to figure out what to do for questions that have multiple answers (e.g. DragAndDrop3)
 		 * 
@@ -75,9 +79,9 @@ package com.clarityenglish.bento.model {
 			selectedAnswers[question] = answer;
 			
 			// Send a notification to say the question has been answered
-			// REMOVE THE ANSWER FROM THIS - THE MEDIATOR WILL RETRIEVE THE ANSWER ITSELF
-			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, answer: answer, delayedMarking: delayedMarking } );
+			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
 		}
 		
 	}
+	
 }

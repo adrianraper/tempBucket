@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.vo.content.model {
+	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	public class Answer {
 		
@@ -10,11 +11,6 @@ package com.clarityenglish.bento.vo.content.model {
 		
 		public function Answer(xml:XML) {
 			this.xml = xml;
-		}
-		
-		public function getSourceNodes(html:XML):XMLList {
-			// TODO: This should also accept {} for CSS selectors
-			return html.body..*.(hasOwnProperty("@id") && @id == xml.@source);
 		}
 		
 		public function get value():String {
@@ -57,6 +53,10 @@ package com.clarityenglish.bento.vo.content.model {
 				return INCORRECT;
 			
 			return NEUTRAL;
+		}
+		
+		public function getSourceNodes(exercise:Exercise):Array {
+			return Model.sourceToNodeArray(exercise, source);
 		}
 		
 		public function toXMLString():String {

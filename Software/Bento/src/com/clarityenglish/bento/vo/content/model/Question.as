@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.vo.content.model {
+	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	public class Question {
 		
@@ -43,6 +44,10 @@ package com.clarityenglish.bento.vo.content.model {
 			}
 			
 			return -1;
+		}
+		
+		public function getSourceNodes(exercise:Exercise):Array {
+			return Model.sourceToNodeArray(exercise, source);
 		}
 		
 		/**

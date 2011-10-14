@@ -111,7 +111,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				case Question.TARGET_SPOTTING_QUESTION:
 					// First deselect any other selected answers
 					for each (var otherAnswer:Answer in question.answers) {
-						for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
+						for each (var otherSource:XML in otherAnswer.getSourceNodes(exercise)) {
 							XHTML.removeClass(otherSource, "selected");
 							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
 						}
@@ -148,7 +148,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				case Question.TARGET_SPOTTING_QUESTION:
 					// First unmark any other marked answers
 					for each (var otherAnswer:Answer in question.answers) {
-						for each (var otherSource:XML in Model.sourceToNodeArray(exercise, otherAnswer.source)) {
+						for each (var otherSource:XML in otherAnswer.getSourceNodes(exercise)) {
 							XHTML.removeClass(otherSource, Answer.CORRECT);
 							XHTML.removeClass(otherSource, Answer.INCORRECT);
 							XHTML.removeClass(otherSource, Answer.NEUTRAL);

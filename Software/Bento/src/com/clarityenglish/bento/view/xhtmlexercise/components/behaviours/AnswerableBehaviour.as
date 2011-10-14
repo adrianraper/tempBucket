@@ -144,7 +144,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	
 	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 		for each (var answer:Answer in question.answers) {
-			for each (var source:XML in Model.sourceToNodeArray(exercise, answer.source)) {
+			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				var flowElement:FlowElement = flowElementXmlBiMap.getFlowElement(source);
 				if (flowElement) {
 					var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
@@ -177,7 +177,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 	
 	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 		// The answers for these questions is defined in the model so we need to set the underlying text here
-		for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+		for each (var source:XML in question.getSourceNodes(exercise)) {
 			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 			if (inputElement) {
 				inputElement.text = getLongestAnswerValue(question.answers);
@@ -194,7 +194,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated InputElement
 		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
 		
-		var answerOrString:*;
+		var answerOrString:* = null;
 		
 		// Ignore empty answers
 		if (inputElement.enteredValue != "" || inputElement.droppedNode) {
@@ -207,11 +207,12 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 						break;
 					}
 				}
-				
-				// If no real answer was found then put the string in
-				if (!answerOrString)
-					answerOrString = inputElement.enteredValue;
 			}
+			
+			// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
+			// use a String with the value the user has entered.
+			if (!answerOrString)
+				answerOrString = inputElement.enteredValue;
 			
 			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
 		}
@@ -231,7 +232,7 @@ class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManag
 	}
 	
 	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
-		for each (var source:XML in Model.sourceToNodeArray(exercise, question.source)) {
+		for each (var source:XML in question.getSourceNodes(exercise)) {
 			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 			if (inputElement) {
 				// Error correction questions start with their text input hidden
