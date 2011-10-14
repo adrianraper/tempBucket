@@ -42,6 +42,7 @@ package com.clarityenglish.bento.model {
 		
 		/**
 		 * TODO: Need to figure out what to do for questions that have multiple answers (e.g. DragAndDrop3)
+		 * 
 		 * Possibilities:
 		 * 1. Map question to array
 		 * 2. Composite pattern on answer (MultiAnswer)
@@ -74,6 +75,7 @@ package com.clarityenglish.bento.model {
 			selectedAnswers[question] = answer;
 			
 			// Send a notification to say the question has been answered
+			// REMOVE THE ANSWER FROM THIS - THE MEDIATOR WILL RETRIEVE THE ANSWER ITSELF
 			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, answer: answer, delayedMarking: delayedMarking } );
 		}
 		

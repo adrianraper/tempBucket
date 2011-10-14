@@ -6,7 +6,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 	
 	public class SectionEvent extends Event {
 		
-		public static const QUESTION_ANSWERED:String = "questionAnswered";
+		public static const QUESTION_ANSWER:String = "questionAnswer";
 		
 		private var _question:Question;
 		private var _answer:*;

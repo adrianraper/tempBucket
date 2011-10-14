@@ -189,7 +189,6 @@ package com.clarityenglish.textLayout.elements {
 		protected function onDropDrop(event:DragEvent):void {
 			if (event.dragSource.hasFormat("node")) {
 				_droppedNode = event.dragSource.dataForFormat("node") as XML;
-				trace("HERE:"+_droppedNode.toXMLString());
 			}
 			
 			if (event.dragSource.hasFormat("text")) {

@@ -159,7 +159,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answer, true));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, true));
 	}
 	
 }
@@ -213,7 +213,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 					answerOrString = inputElement.enteredValue;
 			}
 			
-			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answerOrString, true));
+			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
 		}
 	}
 	

@@ -22,13 +22,13 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public override function onRegister():void {
 			super.onRegister();
 			
-			view.addEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
+			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
 			
-			view.addEventListener(SectionEvent.QUESTION_ANSWERED, onQuestionAnswered);
+			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 		}
 		
 		public override function listNotificationInterests():Array {

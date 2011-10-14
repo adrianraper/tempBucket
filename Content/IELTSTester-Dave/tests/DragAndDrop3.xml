@@ -4,8 +4,9 @@
 		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
 		<style type="text/css">
 		<![CDATA[
-			#noscroll {
-				tab-stops: 200, 400, 600;
+			#noscroll span[draggable=true] {
+				float: left;
+				width: 170px;
 			}
 			
 			.titledBlock {
@@ -61,16 +62,16 @@
 		</header>
 		
 		<section id="noscroll">
-			<span id="nocount1" draggable="true">oil</span><tab/>
-			<span id="count1" draggable="true">tomatoes</span><tab/>
-			<span id="nocount2" draggable="true">a box of chocolates</span><br/>
-			<span id="nocount3" draggable="true">shampoo</span><tab/>
-			<span id="nocount4" draggable="true">a bottle of Coca-Cola</span><tab/>
-			<span id="nocount5" draggable="true">milk</span><br/>
-			<span id="nocount6" draggable="true">bread</span><tab/>
-			<span id="count2" draggable="true">lemons</span><tab/>
-			<span id="count3" draggable="true">apples</span><br/>
-			<span id="nocount7" draggable="true">sugar</span><tab/>
+			<span id="nocount1" draggable="true">oil</span>
+			<span id="count1" draggable="true">tomatoes</span>
+			<span id="nocount2" draggable="true">a box of chocolates</span>
+			<span id="nocount3" draggable="true">shampoo</span>
+			<span id="nocount4" draggable="true">a bottle of Coca-Cola</span>
+			<span id="nocount5" draggable="true">milk</span>
+			<span id="nocount6" draggable="true">bread</span>
+			<span id="count2" draggable="true">lemons</span>
+			<span id="count3" draggable="true">apples</span>
+			<span id="nocount7" draggable="true">sugar</span>
 		</section>
 		
 		<section id="body">

@@ -132,6 +132,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		}
 		
 		public function questionMark(question:Question, answer:Answer):void {
+			// At this point there is *no way* to work out which input an answer may have been dropped into if this is a group question.
+			// But it doesn't feel like good MVC to pass that very view-specific thing to the model and back.  I suppose an id could be
+			// passed back and forth, or perhaps the XML for that node.  Even then its not ideal though.
+			
+			// P.S. for a non group question it can be figured out using question.source
+			
+			// - One potential solution is to both submit and mark all the questions at once.
+			// - Another is to retrieve the answer here, from the view (or proxy??)
+			// - Another is to set the node in the <answer> (this is a bit rubbish too)
+			// - Another is to check for the last action in the view (totally rubbish, don't even consider this)
+			
 			switch (question.type) {
 				case Question.MULTIPLE_CHOICE_QUESTION:
 				case Question.TARGET_SPOTTING_QUESTION:
