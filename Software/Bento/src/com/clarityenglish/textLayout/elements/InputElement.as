@@ -1,5 +1,5 @@
 package com.clarityenglish.textLayout.elements {
-	import flash.events.FocusEvent;
+	import flash.events.Event;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.events.ModelChange;
@@ -9,7 +9,6 @@ package com.clarityenglish.textLayout.elements {
 	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
 	import mx.managers.DragManager;
-	import mx.managers.IFocusManagerComponent;
 	import mx.utils.StringUtil;
 	
 	import spark.components.Button;
@@ -43,6 +42,11 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _gapText:String;
 		
+		/**
+		 * If the input was populated by drag and drop, this is the node that was dropped 
+		 */
+		private var _droppedNode:XML;
+		
 		public function InputElement() {
 			super();
 		}
@@ -67,6 +71,10 @@ package com.clarityenglish.textLayout.elements {
 			}
 			
 			return null;
+		}
+		
+		public function get droppedNode():XML {
+			return _droppedNode;
 		}
 		
 		/**
@@ -151,7 +159,7 @@ package com.clarityenglish.textLayout.elements {
 					});
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
-					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void { getEventMirror().dispatchEvent(e.clone()); } );
+					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void { getEventMirror().dispatchEvent(e.clone()); } );
 					break;
 				case TYPE_DROPTARGET:
 					component = new TextInput();
@@ -179,6 +187,11 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		protected function onDropDrop(event:DragEvent):void {
+			if (event.dragSource.hasFormat("node")) {
+				_droppedNode = event.dragSource.dataForFormat("node") as XML;
+				trace("HERE:"+_droppedNode.toXMLString());
+			}
+			
 			if (event.dragSource.hasFormat("text")) {
 				value = event.dragSource.dataForFormat("text").toString();
 				updateComponentFromValue();
@@ -191,6 +204,9 @@ package com.clarityenglish.textLayout.elements {
 				getTextFlow().flowComposer.updateAllControllers();
 				
 				getEventMirror().dispatchEvent(new DragEvent(DragEvent.DRAG_COMPLETE));
+				
+				// Dispatch a value commit, so the question gets marked at this point
+				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 			}
 		}
 		

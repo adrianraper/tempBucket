@@ -59,6 +59,10 @@ package com.clarityenglish.bento.vo.content.model {
 			return NEUTRAL;
 		}
 		
+		public function toXMLString():String {
+			return xml.toXMLString();
+		}
+		
 		public static function create(answerNode:XML):Answer {
 			var answer:Answer = new Answer(answerNode);
 			return answer;

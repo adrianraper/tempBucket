@@ -46,6 +46,8 @@ package com.clarityenglish.bento.model {
 		 * 1. Map question to array
 		 * 2. Composite pattern on answer (MultiAnswer)
 		 * 
+		 * TODO: Need to figure out how this will work with dynamic views and custom exercises (i.e. whether they will have questions and answers)
+		 * 
 		 * @param question
 		 * @param answer
 		 */

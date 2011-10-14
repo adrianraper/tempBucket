@@ -95,6 +95,7 @@ import flashx.textLayout.events.FlowElementMouseEvent;
 import flashx.textLayout.events.UpdateCompleteEvent;
 import flashx.textLayout.tlf_internal;
 
+import mx.events.FlexEvent;
 import mx.logging.ILogger;
 import mx.logging.Log;
 
@@ -183,16 +184,37 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
-					eventMirror.addEventListener(FocusEvent.FOCUS_OUT, Closure.create(this, onAnswerSubmitted, question));
+					eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question));
 				}
 			}
 		}
 	}
 	
-	private function onAnswerSubmitted(e:Event, question:Question):void {
-		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated FlowElement
+	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question):void {
+		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated InputElement
 		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, inputElement.enteredValue, true));
+		
+		var answerOrString:*;
+		
+		// Ignore empty answers
+		if (inputElement.enteredValue != "" || inputElement.droppedNode) {
+			// If there is a dropped node then match it up to an answer if possible
+			if (inputElement.droppedNode) {
+				for each (var answer:Answer in question.answers) {
+					// TODO: group questions
+					if (answer.source == inputElement.droppedNode.@id) {
+						answerOrString = answer;
+						break;
+					}
+				}
+				
+				// If no real answer was found then put the string in
+				if (!answerOrString)
+					answerOrString = inputElement.enteredValue;
+			}
+			
+			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWERED, question, answerOrString, true));
+		}
 	}
 	
 }

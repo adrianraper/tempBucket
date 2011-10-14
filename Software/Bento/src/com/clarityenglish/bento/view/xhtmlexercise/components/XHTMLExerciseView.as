@@ -105,7 +105,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 		}
 		
-		// TODO: Currently this only really makes sense for multiple choice answers
 		public function questionAnswered(question:Question, answer:Answer):void {
 			switch (question.type) {
 				case Question.MULTIPLE_CHOICE_QUESTION:
