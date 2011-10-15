@@ -1,5 +1,5 @@
 package com.clarityenglish.bento.view.xhtmlexercise.events {
-	import com.clarityenglish.bento.vo.content.model.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	
 	import flash.events.Event;

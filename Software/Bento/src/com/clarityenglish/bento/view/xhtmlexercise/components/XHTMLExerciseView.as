@@ -2,8 +2,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.bento.vo.content.model.Answer;
-	import com.clarityenglish.bento.vo.content.model.NodeAnswer;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;

@@ -5,7 +5,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
-	import com.clarityenglish.bento.vo.content.model.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -65,7 +66,16 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		 * @param event
 		 */
 		protected function onQuestionAnswered(event:SectionEvent):void {
-			sendNotification(BBNotifications.QUESTION_ANSWER, { question: event.question, answerOrString: event.answerOrString } );
+			var answerOrString:* = event.answerOrString;
+			
+			// Dispatch the appropriate notitification depending on whether the answer is a NodeAnswer or a String
+			if (answerOrString is NodeAnswer) {
+				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { question: event.question, nodeAnswer: event.answerOrString } );
+			} else if (answerOrString is String) {
+				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { question: event.question, answerString: event.answerOrString } );
+			} else {
+				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
+			}
 		}
 		
 	}

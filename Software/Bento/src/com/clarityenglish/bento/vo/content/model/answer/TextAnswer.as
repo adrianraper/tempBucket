@@ -1,4 +1,4 @@
-package com.clarityenglish.bento.vo.content.model {
+package com.clarityenglish.bento.vo.content.model.answer {
 	
 	public class TextAnswer extends Answer {
 		

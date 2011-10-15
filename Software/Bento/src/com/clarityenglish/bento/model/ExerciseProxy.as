@@ -1,8 +1,8 @@
 package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.vo.content.model.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
-	import com.clarityenglish.bento.vo.content.model.TextAnswer;
+	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	import flash.utils.Dictionary;
 	
@@ -57,23 +57,7 @@ package com.clarityenglish.bento.model {
 		 * @param question
 		 * @param answer
 		 */
-		public function questionAnswer(question:Question, answerOrString:*):void {
-			var answer:Answer;
-			if (answerOrString is String) {
-				// When answerOrString is a String it means that the user has entered something (i.e. in a GapFill).  In this situation we need to construct
-				// a TextAnswer with the value they have entered, and a derived score.
-				var answerString:String = answerOrString;
-				
-				// TODO: This is badly in the wrong place
-				var score:int = question.getScoreForAnswerString(answerString);
-				
-				answer = new TextAnswer(<Answer value={answerString} score={score} />);
-			} else if (answerOrString is Answer) {
-				answer = answerOrString;
-			} else {
-				throw new Error("questionAnswer received an answer that was neither an Answer nor a String");
-			}
-			
+		public function questionAnswer(question:Question, answer:Answer):void {
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.result, answer.score);
 			
 			// If delayed marking is off and this is the first answer for the question record this seperately

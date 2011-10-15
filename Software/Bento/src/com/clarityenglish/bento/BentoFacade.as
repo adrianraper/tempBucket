@@ -5,11 +5,8 @@
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
 	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
-	import com.clarityenglish.common.controller.*;
-	// AR I don't see where BBNotifications are being imported? 
 	import com.clarityenglish.common.CommonNotifications;
-	// How do I tell that the LoggedInCommand is back in IELTS package?
-	//import com.clarityenglish.ielts.controller.*;
+	import com.clarityenglish.common.controller.*;
 	
 	import flash.utils.Dictionary;
 	
@@ -52,7 +49,8 @@
 			
 			// Map built in commands
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
-			registerCommand(BBNotifications.QUESTION_ANSWER, QuestionAnswerCommand);
+			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
+			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);

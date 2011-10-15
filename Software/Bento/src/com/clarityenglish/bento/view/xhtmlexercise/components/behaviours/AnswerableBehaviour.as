@@ -1,8 +1,8 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.bento.vo.content.model.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
@@ -76,10 +76,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 
 import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 import com.clarityenglish.bento.vo.content.Exercise;
-import com.clarityenglish.bento.vo.content.model.Answer;
-import com.clarityenglish.bento.vo.content.model.NodeAnswer;
 import com.clarityenglish.bento.vo.content.model.Question;
-import com.clarityenglish.bento.vo.content.model.TextAnswer;
+import com.clarityenglish.bento.vo.content.model.answer.Answer;
+import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
+import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 import com.clarityenglish.textLayout.elements.InputElement;
 import com.clarityenglish.textLayout.elements.TextComponentElement;
@@ -97,6 +97,7 @@ import flashx.textLayout.tlf_internal;
 import mx.events.FlexEvent;
 import mx.logging.ILogger;
 import mx.logging.Log;
+import mx.utils.UIDUtil;
 
 import org.davekeen.util.ClassUtil;
 import org.davekeen.util.Closure;
@@ -200,6 +201,45 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		
 		var answerOrString:* = null;
 		
+		// Ignore empty answers (where there is neither a typed value, nor a dropped node)
+		if (inputElement.enteredValue == "" && !inputElement.droppedNode)
+			return;
+		
+		// If there is a dropped node then match it up to an answer if possible
+		if (inputElement.droppedNode) {
+			for each (var nodeAnswer:NodeAnswer in question.answers) {
+				if (nodeAnswer.getSourceNodes(exercise).indexOf(inputElement.droppedNode) > -1) {
+					// If the dropped node matches any of the source nodes then this is the matching answer
+					answerOrString = nodeAnswer;
+					break;
+				} else {
+					// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
+					// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
+					if (!inputElement.droppedNode.hasOwnProperty("@id"))
+						inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
+					
+					// Create a NodeAnswer pointing to the dropped node with a score of 0
+					var source:String = inputElement.droppedNode.@id;
+					answerOrString = new NodeAnswer(<Answer score="0" source={source} />);
+				}
+			}
+		}
+		
+		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
+		// use a String with the value the user has entered.
+		if (!answerOrString)
+			answerOrString = inputElement.enteredValue;
+		
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
+	}
+	
+	// TODO: This is all quite poor and messy.  Do this better!
+	private function onAnswerSubmittedOLD(e:Event, exercise:Exercise, question:Question):void {
+		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated InputElement
+		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
+		
+		var answerOrString:* = null;
+		
 		// Ignore empty answers
 		if (inputElement.enteredValue != "" || inputElement.droppedNode) {
 			// If there is a dropped node then match it up to an answer if possible
@@ -218,8 +258,6 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			if (!answerOrString)
 				answerOrString = inputElement.enteredValue;
 			
-			// TODO: I am starting to think there should be 2 notifications; one for answering a question with a node and one for answering a question with text, and the command
-			// can create the textual answer.  This is almost certainly better, since then the proxy can only deal in answers not strings (which are stupid).
 			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
 		}
 	}

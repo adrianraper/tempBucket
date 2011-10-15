@@ -1,5 +1,6 @@
-package com.clarityenglish.bento.vo.content.model {
+package com.clarityenglish.bento.vo.content.model.answer {
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.model.Model;
 	
 	public class NodeAnswer extends Answer {
 		

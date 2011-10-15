@@ -1,5 +1,5 @@
 package com.clarityenglish.textLayout.elements {
-	import com.clarityenglish.bento.vo.content.model.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	
 	import flashx.textLayout.tlf_internal;
 	

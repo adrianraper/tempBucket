@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.vo.content.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.newgonzo.web.css.CSS;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 
 	public class Model {
 		
@@ -67,7 +68,7 @@ package com.clarityenglish.bento.vo.content.model {
 		 * @param source
 		 * @return 
 		 */
-		internal static function sourceToNodeArray(exercise:Exercise, source:String):Array {
+		public static function sourceToNodeArray(exercise:Exercise, source:String):Array {
 			var matches:Array = source.match(/\{([^}]*)\}$/);
 			if (matches !== null) {
 				// If the source is wrapped in curly braces then its a CSS selector

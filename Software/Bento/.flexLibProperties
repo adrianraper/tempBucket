@@ -11,7 +11,7 @@
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DictionaryBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.components.behaviours.DraggableBehaviour"/>
     <classEntry path="com.clarityenglish.bento.view.exercise.events.SectionEvent"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.model.Answer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.Answer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Model"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.Question"/>
     <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
@@ -85,8 +85,9 @@
     <classEntry path="com.clarityenglish.textLayout.components.AudioPlayer"/>
     <classEntry path="skins.bento.VideoPlayerSkin"/>
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.model.TextAnswer"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.model.NodeAnswer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.TextAnswer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.NodeAnswer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.GroupAnswer"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
