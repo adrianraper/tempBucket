@@ -7,18 +7,10 @@ package com.clarityenglish.bento.vo.content.model {
 		public static const INCORRECT:String = "incorrect";
 		public static const NEUTRAL:String = "neutral";
 		
-		private var xml:XML;
+		protected var xml:XML;
 		
 		public function Answer(xml:XML) {
 			this.xml = xml;
-		}
-		
-		public function get value():String {
-			return xml.@value;
-		}
-		
-		public function get source():String {
-			return xml.@source;
 		}
 		
 		public function get score():int {
@@ -55,17 +47,34 @@ package com.clarityenglish.bento.vo.content.model {
 			return NEUTRAL;
 		}
 		
-		public function getSourceNodes(exercise:Exercise):Array {
-			return Model.sourceToNodeArray(exercise, source);
-		}
-		
 		public function toXMLString():String {
 			return xml.toXMLString();
 		}
 		
+		/**
+		 * Factory method for creating the correct answer class based on the question type. 
+		 * 
+		 * @param answerNode
+		 * @return 
+		 */
 		public static function create(answerNode:XML):Answer {
-			var answer:Answer = new Answer(answerNode);
-			return answer;
+			var questionType:String = answerNode.parent().name().toString();
+			
+			var answer:Answer;
+			switch (questionType) {
+				case Question.GAP_FILL_QUESTION:
+				case Question.ERROR_CORRECTION_QUESTION:
+					return new TextAnswer(answerNode);
+				case Question.DRAG_QUESTION:
+				case Question.DROP_DOWN_QUESTION:
+				case Question.MULTIPLE_CHOICE_QUESTION:
+				case Question.TARGET_SPOTTING_QUESTION:
+					return new NodeAnswer(answerNode);
+				default:
+					throw new Error("Unknown question type " + questionType);
+			}
+			
+			return null;
 		}
 		
 	}

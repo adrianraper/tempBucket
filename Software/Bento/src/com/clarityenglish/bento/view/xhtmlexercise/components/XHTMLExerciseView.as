@@ -3,7 +3,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Answer;
-	import com.clarityenglish.bento.vo.content.model.Model;
+	import com.clarityenglish.bento.vo.content.model.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;
@@ -109,8 +109,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			switch (question.type) {
 				case Question.MULTIPLE_CHOICE_QUESTION:
 				case Question.TARGET_SPOTTING_QUESTION:
+					var nodeAnswer:NodeAnswer = answer as NodeAnswer;
+					
 					// First deselect any other selected answers
-					for each (var otherAnswer:Answer in question.answers) {
+					for each (var otherAnswer:NodeAnswer in question.answers) {
 						for each (var otherSource:XML in otherAnswer.getSourceNodes(exercise)) {
 							XHTML.removeClass(otherSource, "selected");
 							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
@@ -118,7 +120,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					}
 					
 					// Get the node and FlowElement for the selected answer
-					var answerNode:XML = exercise.getElementById(answer.source);
+					var answerNode:XML = exercise.getElementById(nodeAnswer.source);
 					var answerElement:FlowElement = getFlowElement(answerNode);
 					
 					// Add the selected class
@@ -146,8 +148,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			switch (question.type) {
 				case Question.MULTIPLE_CHOICE_QUESTION:
 				case Question.TARGET_SPOTTING_QUESTION:
+					var nodeAnswer:NodeAnswer = answer as NodeAnswer;
+					
 					// First unmark any other marked answers
-					for each (var otherAnswer:Answer in question.answers) {
+					for each (var otherAnswer:NodeAnswer in question.answers) {
 						for each (var otherSource:XML in otherAnswer.getSourceNodes(exercise)) {
 							XHTML.removeClass(otherSource, Answer.CORRECT);
 							XHTML.removeClass(otherSource, Answer.INCORRECT);
@@ -157,7 +161,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					}
 					
 					// Get the node and FlowElement for the selected answer
-					var answerNode:XML = exercise.getElementById(answer.source);
+					var answerNode:XML = exercise.getElementById(nodeAnswer.source);
 					var answerElement:FlowElement = getFlowElement(answerNode);
 					
 					// Add the selected class

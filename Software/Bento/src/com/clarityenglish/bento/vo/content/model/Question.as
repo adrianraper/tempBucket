@@ -35,11 +35,16 @@ package com.clarityenglish.bento.vo.content.model {
 			return _answers;
 		}
 		
-		public function getScoreForTextAnswer(textAnswer:String):int {
+		public function getScoreForAnswerString(answerString:String):int {
 			// Go through the answers looking for one with the correct value
+			// TODO: THIS IS IN THE WRONG PLACE; SHOULD BE IN TEXTANSWER SOMEHOW
 			for each (var answer:Answer in answers) {
-				if (textAnswer == answer.value) {
-					return answer.score;
+				if (answer is TextAnswer) {
+					var textAnswer:TextAnswer = answer as TextAnswer;
+					
+					if (answerString == textAnswer.value) {
+						return textAnswer.score;
+					}
 				}
 			}
 			

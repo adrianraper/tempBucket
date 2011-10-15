@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.content.model.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.TextAnswer;
 	
 	import flash.utils.Dictionary;
 	
@@ -59,11 +60,14 @@ package com.clarityenglish.bento.model {
 		public function questionAnswer(question:Question, answerOrString:*):void {
 			var answer:Answer;
 			if (answerOrString is String) {
+				// When answerOrString is a String it means that the user has entered something (i.e. in a GapFill).  In this situation we need to construct
+				// a TextAnswer with the value they have entered, and a derived score.
 				var answerString:String = answerOrString;
-				var score:int = question.getScoreForTextAnswer(answerString);
 				
-				// If the answer is a string then construct a fake answer with the correct score
-				answer = new Answer(<TextualAnswer value={answerString} score={score} />);
+				// TODO: This is badly in the wrong place
+				var score:int = question.getScoreForAnswerString(answerString);
+				
+				answer = new TextAnswer(<Answer value={answerString} score={score} />);
 			} else if (answerOrString is Answer) {
 				answer = answerOrString;
 			} else {

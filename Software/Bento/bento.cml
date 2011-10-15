@@ -1,0 +1,127 @@
+<diagram>
+  <class name="Model" isInner="false" visibility="public" isMxml="false" width="291" height="264" x="132" y="-19">
+    <asdoc name="AsDoc" content=""/>
+    <property name="exercise" type="com.clarityenglish.bento.vo.content.Exercise" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="xml" type="XML" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="_questions" type="Vector.&lt;Question>" visibility="private" hasGetter="true" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <method name="Model" returnType="@constructor" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+      <argument name="exercise" type="com.clarityenglish.bento.vo.content.Exercise" defaultValue=""/>
+      <argument name="xml" type="XML" defaultValue=""/>
+    </method>
+    <property name="_view" type="String" visibility="public" hasGetter="true" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <method name="getViewParam" returnType="String" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+      <argument name="paramName" type="String" defaultValue=""/>
+    </method>
+    <method name="getPossibleAnswersForNode" returnType="Vector.&lt;Answer>" visibility="public">
+      <asdoc name="AsDoc" content="Given a node in the body of the exercise, this returns all the possible Answer nodes that could match it.  This only really applies for&#xD;&#xA;&lt;input> and &lt;select> nodes, and returns all the Answers in a matching Question.&#xD;&#xA; &#xD;&#xA;@param id&#xD;&#xA;@return &#xD;&#xA;&#xD;"/>
+      <argument name="node" type="XML" defaultValue=""/>
+    </method>
+    <method name="sourceToNodeArray" returnType="Array" visibility="public" isStatic="true">
+      <asdoc name="AsDoc" content="In exercise files the 'source' parameter (which is used to specify a node in the body) can either be a straight id - for example source=&quot;myInput&quot; which references&#xD;&#xA;&lt;input id=&quot;myInput&quot;>, or it can be a CSS selector in curly braces - for example source=&quot;{input.yellowInputs}&quot;, which references all the inputs with class 'yellowInputs'.&#xD;&#xA;&#xD;&#xA;This method takes a source string and returns an array of matching nodes.&#xD;&#xA;&#xD;&#xA;@param exercise&#xD;&#xA;@param source&#xD;&#xA;@return &#xD;"/>
+      <argument name="exercise" type="com.clarityenglish.bento.vo.content.Exercise" defaultValue=""/>
+      <argument name="source" type="String" defaultValue=""/>
+    </method>
+  </class>
+  <class name="Question" isInner="false" visibility="public" isMxml="false" width="242" height="364" x="538" y="-69">
+    <asdoc name="AsDoc" content=""/>
+    <property name="MULTIPLE_CHOICE_QUESTION" type="String" visibility="public" hasGetter="false" hasSetter="false" isConstant="true" isStatic="true">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="TARGET_SPOTTING_QUESTION" type="String" visibility="public" hasGetter="false" hasSetter="false" isConstant="true" isStatic="true">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="DRAG_QUESTION" type="String" visibility="public" hasGetter="false" hasSetter="false" isConstant="true" isStatic="true">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="GAP_FILL_QUESTION" type="String" visibility="public" hasGetter="false" hasSetter="false" isConstant="true" isStatic="true">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="ERROR_CORRECTION_QUESTION" type="String" visibility="public" hasGetter="false" hasSetter="false" isConstant="true" isStatic="true">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="DROP_DOWN_QUESTION" type="String" visibility="public" hasGetter="false" hasSetter="false" isConstant="true" isStatic="true">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="_answers" type="Vector.&lt;Answer>" visibility="private" hasGetter="true" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <method name="Question" returnType="@constructor" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+      <argument name="xml" type="XML" defaultValue=""/>
+    </method>
+    <property name="_type" type="String" visibility="public" hasGetter="true" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="_source" type="String" visibility="public" hasGetter="true" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <method name="getScoreForTextAnswer" returnType="int" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+      <argument name="textAnswer" type="String" defaultValue=""/>
+    </method>
+    <method name="create" returnType="com.clarityenglish.bento.vo.content.model.Question" visibility="public" isStatic="true">
+      <asdoc name="AsDoc" content="Create a new Question from a question XML node&#xD;&#xA;&#xD;&#xA;@param questionNode&#xD;&#xA;@return &#xD;"/>
+      <argument name="questionNode" type="XML" defaultValue=""/>
+    </method>
+  </class>
+  <relation name="relation" type="composition" from="Model" to="Question" shape=""/>
+  <class name="Answer" isInner="false" visibility="public" isMxml="false" x="605" y="409" width="108" height="72">
+    <asdoc name="AsDoc" content=""/>
+    <property name="score" type="uint" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+  </class>
+  <class name="TextAnswer" isInner="false" visibility="public" isMxml="false" x="450" y="601" width="132" height="72">
+    <asdoc name="AsDoc" content=""/>
+    <property name="value" type="String" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+  </class>
+  <class name="NodeAnswer" isInner="false" visibility="public" isMxml="false" x="649" y="599" width="140" height="72">
+    <asdoc name="AsDoc" content=""/>
+    <property name="source" type="String" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+  </class>
+  <relation name="relation" type="generalization" from="TextAnswer" to="Answer" shape=""/>
+  <relation name="relation" type="generalization" from="NodeAnswer" to="Answer" shape=""/>
+  <relation name="relation" type="composition" from="Question" to="Answer" shape=""/>
+  <class name="ExerciseProxy" isInner="false" visibility="public" isMxml="false" x="-36" y="439" width="184" height="97">
+    <asdoc name="AsDoc" content=""/>
+    <property name="markableAnswers" type="flash.utils.Dictionary" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <property name="selectedAnswers" type="flash.utils.Dictionary" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+  </class>
+  <class name="MultiAnswer" isInner="false" visibility="public" isMxml="false" x="884" y="480" width="170" height="164">
+    <asdoc name="AsDoc" content=""/>
+    <property name="answers" type="Vector.&lt;Answer>" visibility="private" hasGetter="false" hasSetter="false" isConstant="false" isStatic="false">
+      <asdoc name="AsDoc" content=""/>
+    </property>
+    <method name="addAnswer" returnType="void" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+    </method>
+    <method name="addAnswerAt" returnType="void" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+      <argument name="idx" type="uint"/>
+    </method>
+    <method name="getAnswerAt" returnType="Answer" visibility="public">
+      <asdoc name="AsDoc" content=""/>
+      <argument name="idx" type="uint"/>
+    </method>
+  </class>
+  <relation name="relation" type="generalization" from="MultiAnswer" to="Answer" shape=""/>
+  <relation name="relation" type="composition" from="MultiAnswer" to="Answer" shape="971,431"/>
+</diagram>

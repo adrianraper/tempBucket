@@ -2,7 +2,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Answer;
-	import com.clarityenglish.bento.vo.content.model.Model;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
@@ -78,15 +77,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 import com.clarityenglish.bento.vo.content.Exercise;
 import com.clarityenglish.bento.vo.content.model.Answer;
-import com.clarityenglish.bento.vo.content.model.Model;
+import com.clarityenglish.bento.vo.content.model.NodeAnswer;
 import com.clarityenglish.bento.vo.content.model.Question;
+import com.clarityenglish.bento.vo.content.model.TextAnswer;
 import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 import com.clarityenglish.textLayout.elements.InputElement;
 import com.clarityenglish.textLayout.elements.TextComponentElement;
 import com.clarityenglish.textLayout.vo.XHTML;
 
 import flash.events.Event;
-import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 
 import flashx.textLayout.elements.FlowElement;
@@ -122,9 +121,14 @@ class AnswerManager {
 	
 	protected function getLongestAnswerValue(answers:Vector.<Answer>):String {
 		var longestAnswer:String = "";
-		for each (var answer:Answer in answers)
-		if (answer.value.length > longestAnswer.length)
-			longestAnswer = answer.value;
+		for each (var answer:Answer in answers) {
+			if (answer is TextAnswer) {
+				var textAnswer:TextAnswer = answer as TextAnswer;
+				if (textAnswer.value.length > longestAnswer.length) {
+					longestAnswer = textAnswer.value;
+				}
+			}
+		}
 		
 		return longestAnswer;
 	}
@@ -143,7 +147,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
-		for each (var answer:Answer in question.answers) {
+		for each (var answer:NodeAnswer in question.answers) {
 			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				var flowElement:FlowElement = flowElementXmlBiMap.getFlowElement(source);
 				if (flowElement) {
@@ -200,7 +204,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		if (inputElement.enteredValue != "" || inputElement.droppedNode) {
 			// If there is a dropped node then match it up to an answer if possible
 			if (inputElement.droppedNode) {
-				for each (var answer:Answer in question.answers) {
+				for each (var answer:NodeAnswer in question.answers) {
 					// TODO: group questions
 					if (answer.source == inputElement.droppedNode.@id) {
 						answerOrString = answer;
@@ -214,6 +218,8 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			if (!answerOrString)
 				answerOrString = inputElement.enteredValue;
 			
+			// TODO: I am starting to think there should be 2 notifications; one for answering a question with a node and one for answering a question with text, and the command
+			// can create the textual answer.  This is almost certainly better, since then the proxy can only deal in answers not strings (which are stupid).
 			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
 		}
 	}
