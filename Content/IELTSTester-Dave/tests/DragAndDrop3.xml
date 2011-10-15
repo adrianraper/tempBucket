@@ -24,8 +24,6 @@
 		]]>
 		</style>
 		<script id="model" type="application/xml">
-			<!-- not sure about this syntax; I have contacted the as3csslib developer to see what he thinks about it.  XPath is another possibility, as is
-				 just listing the nodes either with a delimiter or as children <source> nodes -->
 			<questions>
 				<DragQuestion source="{#q1Block input}">
 					<answer correct="true" source="count1" />

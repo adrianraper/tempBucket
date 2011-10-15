@@ -212,54 +212,28 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 					// If the dropped node matches any of the source nodes then this is the matching answer
 					answerOrString = nodeAnswer;
 					break;
-				} else {
-					// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
-					// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
-					if (!inputElement.droppedNode.hasOwnProperty("@id"))
-						inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
-					
-					// Create a NodeAnswer pointing to the dropped node with a score of 0
-					var source:String = inputElement.droppedNode.@id;
-					answerOrString = new NodeAnswer(<Answer score="0" source={source} />);
 				}
+			}
+			
+			if (!answerOrString) {
+				// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
+				// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
+				if (!inputElement.droppedNode.hasOwnProperty("@id"))
+					inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
+				
+				// Create a NodeAnswer pointing to the dropped node with a score of 0
+				var source:String = inputElement.droppedNode.@id;
+				answerOrString = new NodeAnswer(<Answer score="0" source={source} />);
 			}
 		}
 		
 		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
-		// use a String with the value the user has entered.
+		// use a String with the value the user has entered.  QuestionStringAnswerCommand will derive the score for this
+		// string and create a TextAnswer to pass on to ExerciseProxy. 
 		if (!answerOrString)
 			answerOrString = inputElement.enteredValue;
 		
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
-	}
-	
-	// TODO: This is all quite poor and messy.  Do this better!
-	private function onAnswerSubmittedOLD(e:Event, exercise:Exercise, question:Question):void {
-		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated InputElement
-		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
-		
-		var answerOrString:* = null;
-		
-		// Ignore empty answers
-		if (inputElement.enteredValue != "" || inputElement.droppedNode) {
-			// If there is a dropped node then match it up to an answer if possible
-			if (inputElement.droppedNode) {
-				for each (var answer:NodeAnswer in question.answers) {
-					// TODO: group questions
-					if (answer.source == inputElement.droppedNode.@id) {
-						answerOrString = answer;
-						break;
-					}
-				}
-			}
-			
-			// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
-			// use a String with the value the user has entered.
-			if (!answerOrString)
-				answerOrString = inputElement.enteredValue;
-			
-			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
-		}
 	}
 	
 }

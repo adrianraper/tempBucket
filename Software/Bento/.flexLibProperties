@@ -87,7 +87,7 @@
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.answer.TextAnswer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.answer.NodeAnswer"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.GroupAnswer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.MultiAnswer"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
