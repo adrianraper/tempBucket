@@ -1,7 +1,6 @@
-package com.clarityenglish.common.vo.config
-{
-	public class Licence
-	{
+package com.clarityenglish.common.vo.config {
+	
+	public class Licence {
 		public static const LEARNER_TRACKING:uint = 1;
 		public static const ANONYMOUS_ACCESS:uint = 2;
 		public static const CONCURRENT_TRACKING:uint = 3;
@@ -10,11 +9,12 @@ package com.clarityenglish.common.vo.config
 		
 		public var type:uint;
 		public var size:uint;
-		public var expiryDate:String;
-
-		public function Licence() {
-			
-		}
+		public var expiryDate:Date;
+		public var startDate:Date;
 		
+		public function Licence() {
+		
+		}
+	
 	}
 }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<streamingMedia />
+	<sharedMedia />
+	<brandingMedia />
 	<language>EN*</language>
 	<contentPath>../../../../Content/RoadToIELTS-Academic/Courses/1150976390861/</contentPath>
 	<dbHost>2</dbHost>

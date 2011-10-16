@@ -4,6 +4,7 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	
 	import flash.events.Event;
@@ -84,7 +85,7 @@ package com.clarityenglish.common.model {
 		private function getRMSettings():void {
 			var params:Array = [ config ];
 			// new RemoteDelegate("getRMSettings", params, this).execute();
-			onDelegateResult("getRMSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true}});
+			onDelegateResult("getRMSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
 		}
 		
 		/**
@@ -127,10 +128,32 @@ package com.clarityenglish.common.model {
 				case "getRMSettings":
 					if (data) {
 						config.mergeAccountData(data);
-						sendNotification(CommonNotifications.CONFIG_LOADED, data);
+						// At this point we can check to see if the config contains anything that stops us going on
+						// This account doesn't have this title
+						if (config.noSuchTitle())
+							var error:BentoError = new BentoError(BentoError.ERROR_NO_SUCH_ACCOUNT);
+						if (config.accountSuspended())
+							error = new BentoError(BentoError.ERROR_ACCOUNT_SUSPENDED);
+						if (config.licenceInvalid())
+							error = new BentoError(BentoError.ERROR_LICENCE_INVALID);
+						if (config.licenceExpired())
+							error = new BentoError(BentoError.ERROR_LICENCE_EXPIRED);
+						if (config.licenceNotStarted())
+							error = new BentoError(BentoError.ERROR_LICENCE_NOT_STARTED);
+						if (config.termsNotAccepted())
+							error = new BentoError(BentoError.ERROR_TERMS_NOT_ACCEPTED);
+						if (config.outsideIPRange())
+							error = new BentoError(BentoError.ERROR_OUTSIDE_IP_RANGE);
+						if (config.outsideRURange())
+							error = new BentoError(BentoError.ERROR_OUTSIDE_RU_RANGE);
 					} else {
-						// Can't successfully read from the database
-						sendNotification(CommonNotifications.DATABASE_ERROR);
+						// Can't read from the database
+						error = new BentoError(BentoError.ERROR_DATABASE_READING);
+					}
+					if (error) {
+						sendNotification(CommonNotifications.CONFIG_ERROR, error);
+					} else {
+						sendNotification(CommonNotifications.CONFIG_LOADED);
 					}
 					break;
 				default:
