@@ -1,44 +1,12 @@
 <?php
 /**
- * -Database changes -
- * o Need to make the SQL Server database accessible through SQL authentication (see basecamp writeboard)
- * o Turn on auto_increment in t_groupstructures.F_GroupID (in SQL Server make it an identity column)
- * o Add T_Accounts
- * o Add T_Accountroot
- * o Add T_Titlelicences
- * o Add T_HiddenContent
- *
- * ... database changes too numerous to list here.  Check Basecamp for full descriptions of what has changed.
+ * 
  */
 require_once(dirname(__FILE__)."/../../config.php");
  
 require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
-// Can I remove all of these to more details services?
-/*
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
-
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
-
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Content.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
-
-require_once(dirname(__FILE__)."/../../classes/Session.php");
-require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
-require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
-require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
-require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
-require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
-require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
-require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
-require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
-*/
 require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
@@ -88,18 +56,6 @@ class AbstractService {
 		AbstractService::$debugLog = & Log::factory('file');
 		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');	
 		
-		// v3.2 To get rid of the need for CONVERT statements in some SQLServer instances
-		//if ($GLOBALS['dbms'] == 'mssql_n') {
-			// Not tested.
-			//$sql = "set dateformat ymd";
-			//$rc = $this->db->Execute($sql);
-		//}
-
-		// Set the user id in the logging system. Except that it is not a session variable yet.
-		// So do this in DMSService instead.
-		//if (Session::is_set('userID')) {
-		//	AbstractService::$log->setUserID(Session::get('userID'));
-		//};
 	}
 	
 	/**
@@ -124,8 +80,7 @@ class AbstractService {
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
 			$function_called == "getContent" ||
-			$function_called == "getCoverage" ||
-			$function_called == "getEveryonesCoverage"
+			$function_called == "getRMSettings"
 			) return true;
 		
 		// If the user isn't authenticated then fail
