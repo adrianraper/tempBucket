@@ -26,5 +26,43 @@ package flexUnitTests.tests {
 			Assert.assertEquals(vectorMap.fetch("b"), "value-b");
 		}
 		
+		[Test]
+		public function testObjectMapping():void {
+			var a:Object = {};
+			var b:Object = {};
+			
+			vectorMap.put(a, "value-a");
+			vectorMap.put(b, "value-b");
+			
+			Assert.assertEquals(vectorMap.fetch(a), "value-a");
+			Assert.assertEquals(vectorMap.fetch(b), "value-b");
+		}
+		
+		[Test]
+		public function testXMLMapping():void {
+			var a:XML = <node />
+			var b:XML = <node />
+			
+			vectorMap.put(a, "value-a");
+			vectorMap.put(b, "value-b");
+			
+			Assert.assertEquals(vectorMap.fetch(a), "value-a");
+			Assert.assertEquals(vectorMap.fetch(b), "value-b");
+		}
+		
+		[Test]
+		public function testReplace():void {
+			var a:XML = <node />
+			var b:XML = <node />
+			
+			vectorMap.put(a, "value-a");
+			vectorMap.put(b, "value-b");
+			vectorMap.put(a, "value-c");
+			
+			Assert.assertEquals(vectorMap.fetch(a), "value-c");
+			Assert.assertEquals(vectorMap.fetch(b), "value-b");
+			Assert.assertEquals(vectorMap.getKeys().length, 2);
+		}
+		
 	}
 }
