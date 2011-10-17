@@ -13,7 +13,7 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_CAPTION:String = "DragAndDrop3";
+		private static const STARTING_CAPTION:String = "GapFill1";
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;

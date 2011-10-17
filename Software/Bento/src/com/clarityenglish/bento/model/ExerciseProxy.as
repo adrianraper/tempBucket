@@ -2,7 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
-	import com.clarityenglish.bento.vo.content.model.answer.MultiAnswer;
+	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	import flash.utils.Dictionary;
@@ -31,7 +31,9 @@ package com.clarityenglish.bento.model {
 		/**
 		 * This maintains a map of the currently selected answers
 		 */
-		private var selectedAnswers:Dictionary;
+		//private var selectedAnswers:Dictionary;
+		
+		private var selectedAnswerMap:Dictionary;
 		
 		private var delayedMarking:Boolean = false;
 		
@@ -39,11 +41,17 @@ package com.clarityenglish.bento.model {
 			super(NAME);
 			
 			markableAnswers = new Dictionary(true);
-			selectedAnswers = new Dictionary(true);
+			//selectedAnswers = new Dictionary(true);
+			
+			selectedAnswerMap = new Dictionary(true);
 		}
 		
-		public function getSelectedAnswerForQuestion(question:Question):Answer {
+		/*public function getSelectedAnswerForQuestion(question:Question):Answer {
 			return selectedAnswers[question];
+		}*/
+		
+		public function getSelectedAnswerMap(question:Question):AnswerMap {
+			return selectedAnswerMap[question];
 		}
 		
 		/**
@@ -69,9 +77,20 @@ package com.clarityenglish.bento.model {
 			// Set the currently selected answer for this question
 			//selectedAnswers[question] = answer;
 			
-			var multiAnswer:MultiAnswer = getSelectedAnswerForQuestion(question) as MultiAnswer || new MultiAnswer();
+			/*var multiAnswer:AnswerMap = getSelectedAnswerForQuestion(question) as AnswerMap || new AnswerMap();
 			multiAnswer.putAnswer(key, answer);
-			selectedAnswers[question] = multiAnswer;
+			selectedAnswers[question] = multiAnswer;*/
+			
+			// Get the answer map for this question (or if there isn't one yet then create it) and put the answer
+			var answerMap:AnswerMap = getSelectedAnswerMap(question) || new AnswerMap();
+			
+			if (key) {
+				answerMap.put(key, answer);
+			} else {
+				answerMap.putOne(answer);
+			}
+			
+			selectedAnswerMap[question] = answerMap;
 			
 			// Send a notification to say the question has been answered
 			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );

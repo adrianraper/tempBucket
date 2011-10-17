@@ -2,9 +2,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.bento.vo.content.model.answer.Answer;
-	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
+	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.util.TLFUtil;
@@ -105,11 +106,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 		}
 		
-		public function questionAnswered(question:Question, answer:Answer):void {
+		public function selectAnswerMap(question:Question, answerMap:AnswerMap):void {
 			switch (question.type) {
 				case Question.MULTIPLE_CHOICE_QUESTION:
 				case Question.TARGET_SPOTTING_QUESTION:
-					var nodeAnswer:NodeAnswer = answer as NodeAnswer;
+					var nodeAnswer:NodeAnswer = answerMap.getOne() as NodeAnswer;
 					
 					// First deselect any other selected answers
 					for each (var otherAnswer:NodeAnswer in question.answers) {
@@ -130,25 +131,18 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					TLFUtil.markFlowElementFormatChanged(answerElement);
 					answerElement.getTextFlow().flowComposer.updateAllControllers();
 					break;
+				case Question.GAP_FILL_QUESTION:
+				case Question.DRAG_QUESTION:
+					// These question types do not become 'selected', so do nothing
+					break;
 			}
 		}
 		
-		public function questionMark(question:Question, answer:Answer):void {
-			// At this point there is *no way* to work out which input an answer may have been dropped into if this is a group question.
-			// But it doesn't feel like good MVC to pass that very view-specific thing to the model and back.  I suppose an id could be
-			// passed back and forth, or perhaps the XML for that node.  Even then its not ideal though.
-			
-			// P.S. for a non group question it can be figured out using question.source
-			
-			// - One potential solution is to both submit and mark all the questions at once.
-			// - Another is to retrieve the answer here, from the view (or proxy??)
-			// - Another is to set the node in the <answer> (this is a bit rubbish too)
-			// - Another is to check for the last action in the view (totally rubbish, don't even consider this)
-			
+		public function markAnswerMap(question:Question, answerMap:AnswerMap):void {
 			switch (question.type) {
 				case Question.MULTIPLE_CHOICE_QUESTION:
 				case Question.TARGET_SPOTTING_QUESTION:
-					var nodeAnswer:NodeAnswer = answer as NodeAnswer;
+					var nodeAnswer:NodeAnswer = answerMap.getOne() as NodeAnswer;
 					
 					// First unmark any other marked answers
 					for each (var otherAnswer:NodeAnswer in question.answers) {
@@ -165,7 +159,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					var answerElement:FlowElement = getFlowElement(answerNode);
 					
 					// Add the selected class
-					XHTML.addClass(answerNode, answer.result);
+					XHTML.addClass(answerNode, nodeAnswer.result);
 					
 					// Refresh the element and update the screen
 					TLFUtil.markFlowElementFormatChanged(answerElement);
@@ -173,18 +167,23 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					break;
 				case Question.GAP_FILL_QUESTION:
 				case Question.DRAG_QUESTION:
-					var sourceNode:XML = exercise.getElementById(question.source);
-					var inputElement:InputElement = getFlowElement(sourceNode) as InputElement;
+					for each (var key:Object in answerMap.keys) {
+						var answer:Answer = answerMap.get(key);
+						var inputNode:XML = key as XML;
+						
+						var inputElement:InputElement = getFlowElement(inputNode) as InputElement;
+						
+						// Remove any existing classes and add the result class
+						XHTML.removeClass(inputNode, Answer.CORRECT);
+						XHTML.removeClass(inputNode, Answer.INCORRECT);
+						XHTML.removeClass(inputNode, Answer.NEUTRAL);
+						
+						XHTML.addClass(inputNode, answer.result);
+						
+						// Refresh the element and update the screen
+						TLFUtil.markFlowElementFormatChanged(inputElement);
+					}
 					
-					// Remove any existing classes and add the result class
-					XHTML.removeClass(sourceNode, Answer.CORRECT);
-					XHTML.removeClass(sourceNode, Answer.INCORRECT);
-					XHTML.removeClass(sourceNode, Answer.NEUTRAL);
-					
-					XHTML.addClass(sourceNode, answer.result);
-					
-					// Refresh the element and update the screen
-					TLFUtil.markFlowElementFormatChanged(inputElement);
 					inputElement.getTextFlow().flowComposer.updateAllControllers();
 					break;
 			}

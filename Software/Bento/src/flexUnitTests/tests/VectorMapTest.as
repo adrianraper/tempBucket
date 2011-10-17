@@ -22,8 +22,8 @@ package flexUnitTests.tests {
 			vectorMap.put("a", "value-a");
 			vectorMap.put("b", "value-b");
 			
-			Assert.assertEquals(vectorMap.fetch("a"), "value-a");
-			Assert.assertEquals(vectorMap.fetch("b"), "value-b");
+			Assert.assertEquals(vectorMap.get("a"), "value-a");
+			Assert.assertEquals(vectorMap.get("b"), "value-b");
 		}
 		
 		[Test]
@@ -34,8 +34,8 @@ package flexUnitTests.tests {
 			vectorMap.put(a, "value-a");
 			vectorMap.put(b, "value-b");
 			
-			Assert.assertEquals(vectorMap.fetch(a), "value-a");
-			Assert.assertEquals(vectorMap.fetch(b), "value-b");
+			Assert.assertEquals(vectorMap.get(a), "value-a");
+			Assert.assertEquals(vectorMap.get(b), "value-b");
 		}
 		
 		[Test]
@@ -46,8 +46,12 @@ package flexUnitTests.tests {
 			vectorMap.put(a, "value-a");
 			vectorMap.put(b, "value-b");
 			
-			Assert.assertEquals(vectorMap.fetch(a), "value-a");
-			Assert.assertEquals(vectorMap.fetch(b), "value-b");
+			Assert.assertEquals(vectorMap.get(a), "value-a");
+			Assert.assertEquals(vectorMap.get(b), "value-b");
+			
+			Assert.assertTrue(vectorMap.containsKey(a));
+			Assert.assertTrue(vectorMap.containsKey(b));
+			Assert.assertFalse(vectorMap.containsKey(<node />));
 		}
 		
 		[Test]
@@ -59,9 +63,27 @@ package flexUnitTests.tests {
 			vectorMap.put(b, "value-b");
 			vectorMap.put(a, "value-c");
 			
-			Assert.assertEquals(vectorMap.fetch(a), "value-c");
-			Assert.assertEquals(vectorMap.fetch(b), "value-b");
-			Assert.assertEquals(vectorMap.getKeys().length, 2);
+			Assert.assertEquals(vectorMap.get(a), "value-c");
+			Assert.assertEquals(vectorMap.get(b), "value-b");
+			Assert.assertEquals(vectorMap.keys.length, 2);
+			
+			Assert.assertTrue(vectorMap.containsKey(a));
+			Assert.assertTrue(vectorMap.containsKey(b));
+		}
+		
+		[Test(expects="Error")]
+		public function testNullPut():void {
+			vectorMap.put(null, "can't put a null key");
+		}
+		
+		[Test(expects="Error")]
+		public function testNullGet():void {
+			vectorMap.put(null, "can't get a null key");
+		}
+		
+		[Test(expects="Error")]
+		public function testNullContainsKey():void {
+			vectorMap.containsKey(null);
 		}
 		
 	}

@@ -87,6 +87,8 @@
     <classEntry path="org.davekeen.collections.VectorMap"/>
     <classEntry path="flexUnitTests.BentoTests"/>
     <classEntry path="flexUnitTests.tests.VectorMapTest"/>
+    <classEntry path="flexUnitTests.tests.ExerciseProxyTest"/>
+    <classEntry path="flexUnitTests.tests.XHTMLTest"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

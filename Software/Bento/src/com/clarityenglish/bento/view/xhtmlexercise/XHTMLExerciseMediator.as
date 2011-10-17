@@ -5,9 +5,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
-	import com.clarityenglish.bento.vo.content.model.answer.Answer;
-	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
+	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -48,13 +48,21 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			switch (note.getName()) {
 				case BBNotifications.QUESTION_ANSWERED:
-					var question:Question = note.getBody().question as Question;
+					/*var question:Question = note.getBody().question as Question;
 					var answer:Answer = exerciseProxy.getSelectedAnswerForQuestion(question);
 					
 					view.questionAnswered(question, answer);
 					
 					if (!note.getBody().delayedMarking)
-						view.questionMark(question, answer);
+						view.questionMark(question, answer);*/
+					
+					var question:Question = note.getBody().question as Question;
+					var answerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
+					
+					view.selectAnswerMap(question, answerMap);
+					
+					if (!note.getBody().delayedMarking)
+						view.markAnswerMap(question, answerMap);
 					
 					break;
 			}
