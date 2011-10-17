@@ -86,6 +86,7 @@
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>
     <classEntry path="org.davekeen.collections.VectorMap"/>
     <classEntry path="flexUnitTests.BentoTests"/>
+    <classEntry path="flexUnitTests.tests.VectorMapTest"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
