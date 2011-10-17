@@ -164,7 +164,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, true));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, null, true));
 	}
 	
 }
@@ -189,13 +189,13 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
-					eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question));
+					eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
 				}
 			}
 		}
 	}
 	
-	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question):void {
+	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question, inputNode:XML):void {
 		// Since the event actually comes from the overlaid TextInput we need to use this tomfoolery to get the associated InputElement
 		var inputElement:InputElement = e.target.tlf_internal::_element as InputElement;
 		
@@ -233,7 +233,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		if (!answerOrString)
 			answerOrString = inputElement.enteredValue;
 		
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, true));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
 	}
 	
 }

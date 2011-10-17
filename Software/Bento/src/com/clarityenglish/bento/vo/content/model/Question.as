@@ -19,7 +19,7 @@ package com.clarityenglish.bento.vo.content.model {
 		public function Question(xml:XML) {
 			this.xml = xml;
 			
-			// Create an Answer object for each <answer> child node
+			// Create an Answer object for each predefined <answer> child node
 			_answers = new Vector.<Answer>();
 			for each (var answerNode:XML in xml.answer)
 				_answers.push(Answer.create(answerNode));
@@ -35,22 +35,6 @@ package com.clarityenglish.bento.vo.content.model {
 		
 		public function get answers():Vector.<Answer> {
 			return _answers;
-		}
-		
-		// Go through the answers looking for one with the correct value
-		// TODO: THIS IS IN THE WRONG PLACE; SHOULD BE IN TEXTANSWER SOMEHOW
-		public function getScoreForAnswerString(answerString:String):int {
-			for each (var answer:Answer in answers) {
-				if (answer is TextAnswer) {
-					var textAnswer:TextAnswer = answer as TextAnswer;
-					
-					if (answerString == textAnswer.value) {
-						return textAnswer.score;
-					}
-				}
-			}
-			
-			return -1;
 		}
 		
 		public function getSourceNodes(exercise:Exercise):Array {

@@ -84,7 +84,8 @@
     <classEntry path="com.clarityenglish.textLayout.components.AudioPlayer"/>
     <classEntry path="skins.bento.VideoPlayerSkin"/>
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>
-    <classEntry path="com.clarityenglish.bento.view.interfaces.IBentoApplication"/>
+    <classEntry path="org.davekeen.collections.VectorMap"/>
+    <classEntry path="flexUnitTests.BentoTests"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

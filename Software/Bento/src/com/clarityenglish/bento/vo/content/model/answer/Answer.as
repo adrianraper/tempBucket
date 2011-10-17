@@ -10,7 +10,7 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		protected var xml:XML;
 		
-		public function Answer(xml:XML) {
+		public function Answer(xml:XML = null) {
 			this.xml = xml;
 		}
 		

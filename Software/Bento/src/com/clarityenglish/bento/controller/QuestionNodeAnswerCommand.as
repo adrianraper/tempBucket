@@ -1,7 +1,7 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.ExerciseProxy;
-	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -22,9 +22,10 @@ package com.clarityenglish.bento.controller {
 			
 			var question:Question = note.getBody().question as Question;
 			var nodeAnswer:NodeAnswer = note.getBody().nodeAnswer;
+			var key:Object = note.getBody().key;
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, nodeAnswer);
+			exerciseProxy.questionAnswer(question, nodeAnswer, key);
 		}
 		
 	}

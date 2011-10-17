@@ -1,26 +1,28 @@
 package com.clarityenglish.bento.vo.content.model.answer {
+	import flash.utils.Dictionary;
 	
+	import org.davekeen.collections.VectorMap;
+	
+	/**
+	 * @author Dave
+	 */
 	public class MultiAnswer extends Answer {
 		
-		private var answers:Vector.<Answer>;
+		private var answerMap:VectorMap;
 		
-		public function MultiAnswer(xml:XML) {
-			super(xml);
-		}
-		
-		public function addAnswer(answer:Answer):void {
-			answers.push(answer);
-		}
-		
-		public function getAnswerAt(idx:int):Answer {
-			if (idx < 0 || idx >= length)
-				throw new RangeError("Illegal index " + idx);
+		public function MultiAnswer(xml:XML = null) {
+			if (xml)
+				throw new Error("MultiAnswers should not take an xml parameter");
 			
-			return answers[idx];
+			answerMap = new VectorMap();
 		}
 		
-		public function get length():int {
-			return answers.length
+		public function putAnswer(key:Object, answer:Answer):void {
+			answerMap.put(key, answer);
+		}
+		
+		public function getAnswer(key:Object):Answer {
+			return answerMap.fetch(key) as Answer;
 		}
 		
 		/**
@@ -31,7 +33,7 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		public override function get score():int {
 			var totalScore:int = 0;
 			
-			for each (var answer:Answer in answers)
+			for each (var answer:Answer in answerMap.getValues())
 				totalScore += answer.score;	
 			
 			return totalScore;

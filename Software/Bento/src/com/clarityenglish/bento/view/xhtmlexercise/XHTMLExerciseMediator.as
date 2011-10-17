@@ -70,9 +70,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			// Dispatch the appropriate notitification depending on whether the answer is a NodeAnswer or a String
 			if (answerOrString is NodeAnswer) {
-				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { question: event.question, nodeAnswer: event.answerOrString } );
+				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { question: event.question, nodeAnswer: event.answerOrString, key: event.key } );
 			} else if (answerOrString is String) {
-				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { question: event.question, answerString: event.answerOrString } );
+				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { question: event.question, answerString: event.answerOrString, key: event.key } );
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}

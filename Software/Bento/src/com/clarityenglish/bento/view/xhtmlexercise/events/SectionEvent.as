@@ -10,8 +10,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 		
 		private var _question:Question;
 		private var _answerOrString:*;
+		private var _key:Object;
 		
-		public function SectionEvent(type:String, question:Question, answerOrString:*, bubbles:Boolean = false) {
+		public function SectionEvent(type:String, question:Question, answerOrString:*, key:Object = null, bubbles:Boolean = false) {
 			super(type, bubbles);
 			
 			if (!(answerOrString is Answer || answerOrString is String))
@@ -19,6 +20,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 			
 			this._question = question;
 			this._answerOrString = answerOrString;
+			this._key = key;
 		}
 		
 		public function get question():Question {
@@ -27,6 +29,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 		
 		public function get answerOrString():* {
 			return _answerOrString;
+		}
+		
+		public function get key():Object {
+			return _key;
 		}
 		
 		public override function clone():Event {

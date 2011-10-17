@@ -4,9 +4,11 @@ package org.davekeen.delegates {
 	import flash.events.StatusEvent;
 	import flash.net.NetConnection;
 	import flash.net.ObjectEncoding;
+	
 	import mx.core.Application;
-	import mx.messaging.channels.AMFChannel;
+	import mx.core.FlexGlobals;
 	import mx.messaging.ChannelSet;
+	import mx.messaging.channels.AMFChannel;
 	import mx.rpc.AbstractOperation;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
@@ -96,7 +98,7 @@ package org.davekeen.delegates {
 			
 			if (args) operation.arguments = args;
 			
-			if (disableAppOnCall) Application.application.enabled = false;
+			if (disableAppOnCall) FlexGlobals.topLevelApplication.enabled = false;
 			
 			//trace("CALLING: " + operationName + "(" + args + ")");
 			
@@ -113,7 +115,7 @@ package org.davekeen.delegates {
 			//remoteObject.disconnect();
 			remoteObject = null;
 			
-			if (disableAppOnCall) Application.application.enabled = true;
+			if (disableAppOnCall) FlexGlobals.topLevelApplication.enabled = true;
 		}
 		
 		/**

@@ -1,7 +1,8 @@
 package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.MultiAnswer;
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	import flash.utils.Dictionary;
@@ -56,15 +57,21 @@ package com.clarityenglish.bento.model {
 		 * 
 		 * @param question
 		 * @param answer
+		 * @param key
 		 */
-		public function questionAnswer(question:Question, answer:Answer):void {
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.result, answer.score);
 			
+			// TODO: Marking still needs to be figured out, especially for multi answers
 			// If delayed marking is off and this is the first answer for the question record this seperately
-			if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
+			//if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
 			
 			// Set the currently selected answer for this question
-			selectedAnswers[question] = answer;
+			//selectedAnswers[question] = answer;
+			
+			var multiAnswer:MultiAnswer = getSelectedAnswerForQuestion(question) as MultiAnswer || new MultiAnswer();
+			multiAnswer.putAnswer(key, answer);
+			selectedAnswers[question] = multiAnswer;
 			
 			// Send a notification to say the question has been answered
 			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
