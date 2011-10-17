@@ -3,7 +3,7 @@ package com.clarityenglish.common.vo.config {
 	/**
 	 * This class is for errors raised by licence control, account validation, user validation etc
 	 */
-	public class BentoError {
+	public class BentoError extends Error {
 		/**
 		 * We use numbers as the key, with descriptions and actions
 		 */

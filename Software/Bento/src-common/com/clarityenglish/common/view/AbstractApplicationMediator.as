@@ -35,10 +35,11 @@ package com.clarityenglish.common.view {
 		}
 		
 		/**
-		 * In order for this to work with both Flex 3 and Flex 4 this needs to return Object instead of Application
-		 * since that could be an mx:Application or an s:Application
+		 * xxx
 		 */
-		private function get application():Object {
+		private function get application():iBentoApplication {
+			// This should return an iBentoApplication
+			//return viewComponent;
 			return viewComponent;
 		}
 		

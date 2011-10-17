@@ -163,9 +163,9 @@ package com.clarityenglish.common.vo.config {
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 
 			// streamingMedia=http://streaming.clarityenglish.com:1935/cfx/ty/[version]/streamingMedia
-			this.paths.streamingMedia = this.paths.streamingMedia.split('[version]').join(data.contentLocation);
-			this.paths.sharedMedia = this.paths.sharedMedia.split('[version]').join(data.contentLocation);
-			this.paths.brandingMedia = this.paths.brandingMedia.split('[prefix]').join(data.prefix);
+			this.paths.streamingMedia = this.paths.streamingMedia.toString().split('[version]').join(data.contentLocation);
+			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('[version]').join(data.contentLocation);
+			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('[prefix]').join(data.prefix);
 				
 			// Licence details
 			if (data.licenceType) {
