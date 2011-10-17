@@ -10,6 +10,7 @@ package com.clarityenglish.common.vo.config {
 		public var errorNumber:Number;
 		public var errorDescription:String;
 
+		// A lot of these come back from the database so numbers are needed.
 		public static const ERROR_NO_SUCH_ACCOUNT:uint = 200;
 		public static const ERROR_ACCOUNT_SUSPENDED:uint = 201;
 		public static const ERROR_LICENCE_INVALID:uint = 202;

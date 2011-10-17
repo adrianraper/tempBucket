@@ -1,6 +1,8 @@
 package com.clarityenglish.common.vo.config {
 	
 	public class Licence {
+		
+		// These constants are taken from T_AccountType
 		public static const LEARNER_TRACKING:uint = 1;
 		public static const ANONYMOUS_ACCESS:uint = 2;
 		public static const CONCURRENT_TRACKING:uint = 3;

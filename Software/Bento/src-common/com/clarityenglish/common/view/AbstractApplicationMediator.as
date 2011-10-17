@@ -7,6 +7,7 @@ package com.clarityenglish.common.view {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
+	import com.clarityenglish.common.vo.config.BentoError;
 	
 	import flash.display.Sprite;
 	
@@ -65,7 +66,8 @@ package com.clarityenglish.common.view {
 					CommonNotifications.TRACE_WARNING,
 					CommonNotifications.TRACE_ERROR,
 					CommonNotifications.COPY_LOADED,
-				];
+					CommonNotifications.CONFIG_ERROR,
+			];
 		}
 
 		/**
@@ -79,6 +81,14 @@ package com.clarityenglish.common.view {
 		 */
 		override public function handleNotification(note:INotification):void {
 			switch (note.getName()) {
+				case CommonNotifications.CONFIG_ERROR:
+					// Errors handled by this mediator show an alert (or similar) on the current screen
+					// and are warnings that nothing is going to happen no.
+					// A typical such error would be wrong name/password/
+					// Hmm, but can you ask a state to do this? How do I know which state?
+					// Is this where a FSM would come in handy?
+					this.application.showErrorMessage(note.getBody() as BentoError);
+					break;
 				case CommonNotifications.TRACE_NOTICE:
 					log.info(note.getBody().toString());
 					break;

@@ -84,6 +84,7 @@
     <classEntry path="com.clarityenglish.textLayout.components.AudioPlayer"/>
     <classEntry path="skins.bento.VideoPlayerSkin"/>
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>
+    <classEntry path="com.clarityenglish.bento.view.interfaces.IBentoApplication"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

@@ -2,7 +2,6 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
-	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -40,7 +39,6 @@ package com.clarityenglish.ielts.view {
 				CommonNotifications.INVALID_LOGIN,
 				CommonNotifications.LOGGED_IN,
 				CommonNotifications.CONFIG_LOADED,
-				CommonNotifications.CONFIG_ERROR,
 			]);
 		}
 		
@@ -53,14 +51,6 @@ package com.clarityenglish.ielts.view {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case CommonNotifications.CONFIG_ERROR:
-					// Errors handled by this mediator show an alert (or similar) on the current screen
-					// and are warnings that nothing is going to happen no.
-					// A typical such error would be wrong name/password/
-					// Hmm, but can you ask a state to do this? How do I know which state?
-					// Is this where a FSM would come in handy?
-					view.showErrorMessage((note.getBody() as BentoError));
-					break;
 				
 				case CommonNotifications.CONFIG_LOADED:
 					view.currentState="login";

@@ -39,7 +39,7 @@
 				facade.sendNotification(BBNotifications.STARTUP, this);
 			}
 			
-			// Implement the function from the interface
+			// Implement the function from the interface to display errors
 			public function showErrorMessage(error:BentoError):void {
 				trace("want to handle the error " + error.errorNumber); 
 			}
