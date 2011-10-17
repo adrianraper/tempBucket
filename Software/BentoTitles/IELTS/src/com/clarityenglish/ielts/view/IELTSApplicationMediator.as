@@ -59,8 +59,7 @@ package com.clarityenglish.ielts.view {
 					// A typical such error would be wrong name/password/
 					// Hmm, but can you ask a state to do this? How do I know which state?
 					// Is this where a FSM would come in handy?
-					//view.displayError(note.getBody());
-					trace("want to handle the error " + (note.getBody() as BentoError).errorNumber);
+					view.showErrorMessage((note.getBody() as BentoError));
 					break;
 				
 				case CommonNotifications.CONFIG_LOADED:

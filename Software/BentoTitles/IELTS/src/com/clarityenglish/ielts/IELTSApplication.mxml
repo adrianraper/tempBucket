@@ -7,6 +7,7 @@
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.menu.*"
 						creationComplete="creationComplete(event)"
+						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
 						currentState="loading">
 	
 	<fx:Metadata>
@@ -25,6 +26,7 @@
 		<![CDATA[
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
+			import com.clarityenglish.common.vo.config.BentoError;
 			
 			import mx.events.FlexEvent;
 			
@@ -35,6 +37,11 @@
 			protected function creationComplete(event:FlexEvent):void {
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);
+			}
+			
+			// Implement the function from the interface
+			public function showErrorMessage(error:BentoError):void {
+				trace("want to handle the error " + error.errorNumber); 
 			}
 		]]>
 	</fx:Script>

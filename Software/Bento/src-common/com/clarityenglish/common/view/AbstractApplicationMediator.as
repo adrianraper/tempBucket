@@ -6,6 +6,7 @@ package com.clarityenglish.common.view {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
 	
 	import flash.display.Sprite;
 	
@@ -37,10 +38,10 @@ package com.clarityenglish.common.view {
 		/**
 		 * xxx
 		 */
-		private function get application():iBentoApplication {
+		private function get application():IBentoApplication {
 			// This should return an iBentoApplication
 			//return viewComponent;
-			return viewComponent;
+			return (viewComponent as IBentoApplication);
 		}
 		
 		/**
