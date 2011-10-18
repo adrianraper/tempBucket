@@ -98,7 +98,7 @@ package com.clarityenglish.common.view {
 					break;
 				case CommonNotifications.TRACE_ERROR:
 					log.error(note.getBody().toString());
-					Alert.show(note.getBody() as String, "Error", Alert.OK, application as Sprite);
+					//Alert.show(note.getBody() as String, "Error", Alert.OK, application as Sprite);
 					break;
 				case CommonNotifications.COPY_LOADED:
 					// Set the alert box labels from the copy
