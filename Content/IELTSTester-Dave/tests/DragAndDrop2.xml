@@ -17,10 +17,6 @@
 				
 			}
 			
-			#noscroll {
-				tab-stops: 200, 400, 600;
-			}
-			
 			.titledBlock {
 				padding-bottom: 30;
 			}
@@ -57,8 +53,8 @@
 		</header>
 		
 		<section id="noscroll">
-			<span id="some" draggable="true">some</span><tab/>
-			<span id="any" draggable="true">any</span><tab/>
+			<span id="some" draggable="true">some</span>
+			<span id="any" draggable="true">any</span>
 		</section>
 		
 		<section id="body">

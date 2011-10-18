@@ -135,17 +135,36 @@ package com.clarityenglish.textLayout.rendering {
 				
 				// At this point the dimensions of the rendered flow are known, so if there is an IGE placeholder on the containing block set any dynamic dimensions
 				matchPlaceholderToSize();
+				
+				drawBorderAndBackground();
 			}
+		}
+		
+		/**
+		 * Draw the border based of the padding and margin properties.  In fact TLF doesn't implement any margins, only padding, so everything is converted to padding
+		 * within FloatableTextFlow and then we perform calculations here in order to draw the border in the middle of the padding/margin (which is really all padding!)
+		 * 
+		 * Also draw any background colour as the rectangle fill.
+		 */
+		private function drawBorderAndBackground():void {
+			var hasBorder:Boolean = (_textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE);
+			var hasBackgroundColor:Boolean = (_textFlow.backgroundColor != null);
 			
-			// Draw the border in between the padding and margin
-			if (inlineGraphicElementPlaceholder && _textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE) {
+			if (inlineGraphicElementPlaceholder && (hasBorder || hasBackgroundColor)) {
 				var borderX:Number = _textFlow.marginLeft + _textFlow.borderWidth / 2;
 				var borderY:Number = _textFlow.marginTop + _textFlow.borderWidth / 2;
 				var borderWidth:Number = inlineGraphicElementPlaceholder.width - _textFlow.marginLeft - _textFlow.marginRight - _textFlow.borderWidth;
 				var borderHeight:Number = inlineGraphicElementPlaceholder.height - _textFlow.marginTop - _textFlow.marginBottom - _textFlow.borderWidth;
 				
-				graphics.lineStyle(_textFlow.borderWidth, _textFlow.borderColor);
+				graphics.lineStyle(_textFlow.borderWidth, _textFlow.borderColor, (hasBorder) ? 1 : 0);
+				
+				if (hasBackgroundColor)
+					graphics.beginFill(_textFlow.backgroundColor);
+				
 				graphics.drawRoundRect(borderX, borderY, borderWidth, borderHeight, _textFlow.borderRadius, _textFlow.borderRadius);
+				
+				if (hasBackgroundColor)
+					graphics.endFill();
 			}
 		}
 		

@@ -4,11 +4,6 @@
 		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
 		<style type="text/css">
 		<![CDATA[
-			#noscroll span[draggable=true] {
-				float: left;
-				width: 170px;
-			}
-			
 			.titledBlock {
 				padding-bottom: 30;
 			}

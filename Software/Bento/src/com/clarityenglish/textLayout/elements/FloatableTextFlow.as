@@ -129,6 +129,9 @@ package com.clarityenglish.textLayout.elements {
 			return _borderWidth;
 		}
 		
+		/**
+		 * We make up the actual TLF padding out of the padding, margin and border (as defined in the CSS box model)
+		 */
 		private function updateRealPadding():void {
 			writableTextLayoutFormat().setStyle("paddingLeft", originalPaddingLeft + _marginLeft + (_borderWidth * 2));
 			writableTextLayoutFormat().setStyle("paddingRight", originalPaddingRight + _marginRight + (_borderWidth * 2));

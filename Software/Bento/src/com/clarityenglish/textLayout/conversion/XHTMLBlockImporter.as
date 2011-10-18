@@ -466,6 +466,8 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.paddingTop) element.paddingTop = style.paddingTop;
 			if (style.paddingBottom) element.paddingBottom = style.paddingBottom;
 			
+			if (style.backgroundColor) element.backgroundColor = style.backgroundColor;
+			
 			if (style.marginLeft) element.marginLeft = style.marginLeft;
 			if (style.marginRight) element.marginRight = style.marginRight;
 			if (style.marginTop) element.marginTop = style.marginTop;

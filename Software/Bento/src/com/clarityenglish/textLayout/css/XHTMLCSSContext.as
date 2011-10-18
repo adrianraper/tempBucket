@@ -4,6 +4,7 @@ package com.clarityenglish.textLayout.css {
 	import com.newgonzo.web.css.CSSContext;
 	import com.newgonzo.web.css.ICSSFactory;
 	import com.newgonzo.web.css.properties.PropertyManager;
+	import com.newgonzo.web.css.properties.css3.backgrounds.BackgroundColorManager;
 	import com.newgonzo.web.css.properties.css3.borders.BorderShorthand;
 	import com.newgonzo.web.css.properties.css3.box.BoxModule;
 	import com.newgonzo.web.css.values.StringValue;
@@ -21,6 +22,9 @@ package com.clarityenglish.textLayout.css {
 			
 			// Padding & margin
 			addPropertyManagers(BoxModule.PROPERTY_MANAGERS);
+			
+			// Background
+			addPropertyManager(new BackgroundColorManager());
 			
 			// Misc
 			addPropertyManager(new TabManager("tab-stops"));
