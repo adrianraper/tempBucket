@@ -11,6 +11,7 @@ package com.clarityenglish.bento.model {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.flexunit.internals.namespaces.classInternal;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -26,13 +27,11 @@ package com.clarityenglish.bento.model {
 		/**
 		 * This maintains a map of the answers that will count towards the exercise score
 		 */
-		private var markableAnswers:Dictionary;
+		//private var markableAnswers:Dictionary;
 		
 		/**
 		 * This maintains a map of the currently selected answers
 		 */
-		//private var selectedAnswers:Dictionary;
-		
 		private var selectedAnswerMap:Dictionary;
 		
 		private var delayedMarking:Boolean = false;
@@ -40,17 +39,16 @@ package com.clarityenglish.bento.model {
 		public function ExerciseProxy() {
 			super(NAME);
 			
-			markableAnswers = new Dictionary(true);
-			//selectedAnswers = new Dictionary(true);
+			//markableAnswers = new Dictionary(true);
 			
 			selectedAnswerMap = new Dictionary(true);
 		}
 		
-		/*public function getSelectedAnswerForQuestion(question:Question):Answer {
-			return selectedAnswers[question];
-		}*/
-		
 		public function getSelectedAnswerMap(question:Question):AnswerMap {
+			// If there is no selected answer map yet then create one
+			if (!selectedAnswerMap[question])
+				selectedAnswerMap[question] = new AnswerMap();
+			
 			return selectedAnswerMap[question];
 		}
 		
@@ -70,27 +68,19 @@ package com.clarityenglish.bento.model {
 		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.result, answer.score);
 			
-			// TODO: Marking still needs to be figured out, especially for multi answers
 			// If delayed marking is off and this is the first answer for the question record this seperately
-			//if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
+			// if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
 			
-			// Set the currently selected answer for this question
-			//selectedAnswers[question] = answer;
+			// Get the answer map for this question
+			var answerMap:AnswerMap = getSelectedAnswerMap(question);
 			
-			/*var multiAnswer:AnswerMap = getSelectedAnswerForQuestion(question) as AnswerMap || new AnswerMap();
-			multiAnswer.putAnswer(key, answer);
-			selectedAnswers[question] = multiAnswer;*/
+			// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
+			// can only have one answer at a time in the map.
+			if (question.isMutuallyExclusive())
+				answerMap.clear();
 			
-			// Get the answer map for this question (or if there isn't one yet then create it) and put the answer
-			var answerMap:AnswerMap = getSelectedAnswerMap(question) || new AnswerMap();
-			
-			if (key) {
-				answerMap.put(key, answer);
-			} else {
-				answerMap.putOne(answer);
-			}
-			
-			selectedAnswerMap[question] = answerMap;
+			// Add the answer
+			answerMap.put(key, answer);
 			
 			// Send a notification to say the question has been answered
 			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );

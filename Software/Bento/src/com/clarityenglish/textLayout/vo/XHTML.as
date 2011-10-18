@@ -285,6 +285,11 @@ package com.clarityenglish.textLayout.vo {
 			}
 		}
 		
+		public static function removeClasses(node:XML, classes:Array):void {
+			for each (var classString:String in classes)
+				removeClass(node, classString);
+		}
+		
 		public static function toggleClass(node:XML, classString:String):void {
 			if (classString.indexOf(" ") >= 0)
 				throw new Error("Only a single class can be manipulated at a time");

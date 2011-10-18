@@ -164,7 +164,7 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	}
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
-		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, null, true));
+		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true));
 	}
 	
 }

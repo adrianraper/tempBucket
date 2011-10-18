@@ -4,6 +4,8 @@ package com.clarityenglish.bento.vo.content.model.answer {
 	
 	public class Answer {
 		
+		public static const SELECTED:String = "selected";
+		
 		public static const CORRECT:String = "correct";
 		public static const INCORRECT:String = "incorrect";
 		public static const NEUTRAL:String = "neutral";

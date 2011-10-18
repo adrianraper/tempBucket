@@ -42,6 +42,25 @@ package com.clarityenglish.bento.vo.content.model {
 		}
 		
 		/**
+		 * 
+		 * 
+		 * @return 
+		 */
+		public function isSelectable():Boolean {
+			return (type == Question.MULTIPLE_CHOICE_QUESTION ||
+					type == Question.TARGET_SPOTTING_QUESTION);
+		}
+		
+		/**
+		 * 
+		 * 
+		 * @return 
+		 */
+		public function isMutuallyExclusive():Boolean {
+			return isSelectable();
+		}
+		
+		/**
 		 * Create a new Question from a question XML node
 		 * 
 		 * @param questionNode

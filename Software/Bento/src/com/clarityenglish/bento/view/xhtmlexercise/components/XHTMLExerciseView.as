@@ -107,85 +107,58 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		}
 		
 		public function selectAnswerMap(question:Question, answerMap:AnswerMap):void {
-			switch (question.type) {
-				case Question.MULTIPLE_CHOICE_QUESTION:
-				case Question.TARGET_SPOTTING_QUESTION:
-					var nodeAnswer:NodeAnswer = answerMap.getOne() as NodeAnswer;
-					
-					// First deselect any other selected answers
-					for each (var otherAnswer:NodeAnswer in question.answers) {
-						for each (var otherSource:XML in otherAnswer.getSourceNodes(exercise)) {
-							XHTML.removeClass(otherSource, "selected");
+			// This is only applicable for selectable questions
+			if (!question.isSelectable())
+				return;
+			
+			for each (var key:Object in answerMap.keys) {
+				var answer:Answer = answerMap.get(key);
+				var answerNode:XML = key as XML;
+				var answerElement:FlowElement = getFlowElement(answerNode);
+				
+				// For some questions deselect all other nodes
+				if (question.isMutuallyExclusive()) {
+					for each (var allAnswers:NodeAnswer in question.answers) {
+						for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
+							XHTML.removeClass(otherSource, Answer.SELECTED);
 							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
 						}
 					}
-					
-					// Get the node and FlowElement for the selected answer
-					var answerNode:XML = exercise.getElementById(nodeAnswer.source);
-					var answerElement:FlowElement = getFlowElement(answerNode);
-					
-					// Add the selected class
-					XHTML.addClass(answerNode, "selected");
-					
-					// Refresh the element and update the screen
-					TLFUtil.markFlowElementFormatChanged(answerElement);
-					answerElement.getTextFlow().flowComposer.updateAllControllers();
-					break;
-				case Question.GAP_FILL_QUESTION:
-				case Question.DRAG_QUESTION:
-					// These question types do not become 'selected', so do nothing
-					break;
+				}
+				
+				// Add the selected class
+				XHTML.addClass(answerNode, Answer.SELECTED);
+				
+				// Refresh the element and update the screen
+				TLFUtil.markFlowElementFormatChanged(answerElement);
+				answerElement.getTextFlow().flowComposer.updateAllControllers();
+				break;
 			}
 		}
 		
 		public function markAnswerMap(question:Question, answerMap:AnswerMap):void {
-			switch (question.type) {
-				case Question.MULTIPLE_CHOICE_QUESTION:
-				case Question.TARGET_SPOTTING_QUESTION:
-					var nodeAnswer:NodeAnswer = answerMap.getOne() as NodeAnswer;
-					
-					// First unmark any other marked answers
-					for each (var otherAnswer:NodeAnswer in question.answers) {
-						for each (var otherSource:XML in otherAnswer.getSourceNodes(exercise)) {
-							XHTML.removeClass(otherSource, Answer.CORRECT);
-							XHTML.removeClass(otherSource, Answer.INCORRECT);
-							XHTML.removeClass(otherSource, Answer.NEUTRAL);
+			for each (var key:Object in answerMap.keys) {
+				var answer:Answer = answerMap.get(key);
+				var answerNode:XML = key as XML;
+				var answerElement:FlowElement = getFlowElement(answerNode);
+				
+				// For some questions deselect all other nodes
+				if (question.isMutuallyExclusive()) {
+					for each (var allAnswers:NodeAnswer in question.answers) {
+						for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
+							XHTML.removeClasses(otherSource, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
 							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
 						}
 					}
-					
-					// Get the node and FlowElement for the selected answer
-					var answerNode:XML = exercise.getElementById(nodeAnswer.source);
-					var answerElement:FlowElement = getFlowElement(answerNode);
-					
-					// Add the selected class
-					XHTML.addClass(answerNode, nodeAnswer.result);
-					
-					// Refresh the element and update the screen
-					TLFUtil.markFlowElementFormatChanged(answerElement);
-					answerElement.getTextFlow().flowComposer.updateAllControllers();
-					break;
-				case Question.GAP_FILL_QUESTION:
-				case Question.DRAG_QUESTION:
-					for each (var key:Object in answerMap.keys) {
-						var answer:Answer = answerMap.get(key);
-						var inputNode:XML = key as XML;
-						
-						var inputElement:InputElement = getFlowElement(inputNode) as InputElement;
-						
-						// Remove any existing classes and add the result class
-						XHTML.removeClass(inputNode, Answer.CORRECT);
-						XHTML.removeClass(inputNode, Answer.INCORRECT);
-						XHTML.removeClass(inputNode, Answer.NEUTRAL);
-						
-						XHTML.addClass(inputNode, answer.result);
-						
-						// Refresh the element and update the screen
-						TLFUtil.markFlowElementFormatChanged(inputElement);
-					}
-					
-					inputElement.getTextFlow().flowComposer.updateAllControllers();
-					break;
+				}
+				
+				// Remove any existing classes and add the result class
+				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
+				XHTML.addClass(answerNode, answer.result);
+				
+				// Refresh the element and update the screen
+				TLFUtil.markFlowElementFormatChanged(answerElement);
+				answerElement.getTextFlow().flowComposer.updateAllControllers();
 			}
 		}
 		
