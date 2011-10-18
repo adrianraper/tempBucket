@@ -11,6 +11,7 @@ package com.clarityenglish.ielts.view.login {
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.TextInput;
+	import spark.components.Panel;
 
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -18,6 +19,8 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart(required="true")]
 		public var loginButton:Button;
 		
+		[SkinPart]
+		public var loginPanel:Panel;
 		[SkinPart]
 		public var passwordLabel:Label;
 		[SkinPart]
@@ -38,7 +41,6 @@ package com.clarityenglish.ielts.view.login {
 				case loginButton:
 					loginButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
-
 			}
 		}
 

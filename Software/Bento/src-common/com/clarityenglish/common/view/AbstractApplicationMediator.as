@@ -83,7 +83,8 @@ package com.clarityenglish.common.view {
 			switch (note.getName()) {
 				case CommonNotifications.CONFIG_ERROR:
 					// Errors handled by this mediator show an alert (or similar) on the current screen
-					// and are warnings that nothing is going to happen no.
+					// and are generally warnings that nothing is going to happen now. But
+					// some might request a state change as well as an alert.
 					// A typical such error would be wrong name/password/
 					// Hmm, but can you ask a state to do this? How do I know which state?
 					// Is this where a FSM would come in handy?

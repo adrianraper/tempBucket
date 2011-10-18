@@ -1,5 +1,8 @@
 package com.clarityenglish.common.vo.config {
-	import com.clarityenglish.common.vo.config.Licence;
+	//import com.clarityenglish.common.vo.config.Licence;
+	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.dms.vo.account.Account;
 	
 	/**
 	 * This holds configuration information that comes from any source.
@@ -24,23 +27,32 @@ package com.clarityenglish.common.vo.config {
 		public var courseFile:String;
 		public var language:String;
 		public var action:String;
+		public var remoteGateway:String;
+		public var remoteService:String;
 		
-		public var errorNumber:uint;
+		// TODO: Or should this be a BentoError object?
+		public var error:BentoError;
+		//public var errorNumber:uint;
+		//public var errorDescription:String;
 		
 		// Is it worth paths being a separate class?
 		public var paths:Object;
 		// Licence control is a separate class fed by this one
-		public var licence:Licence;
+		//public var licence:Licence;
+		// Actually, we might just use the Account class rather than a special licence class
+		public var account:Account;
 		
 		public function Config() {
 			this.paths = {content: '', streamingMedia: '', sharedMedia: '', brandingMedia: '', accountRepository: ''};
-			this.licence = new Licence();
+			//this.licence = new Licence();
+			this.error = new BentoError();
 		}
 		
 		/**
 		 *  You can pass the following to the application from start page or command line
 		 * 	  prefix
 		 * 	  rootID
+		 * 	  productCode
 		 * 	  username
 		 * 	  password
 		 * 	  courseID
@@ -59,7 +71,7 @@ package com.clarityenglish.common.vo.config {
 			if (parameters.prefix) {
 				this.prefix = parameters.prefix;
 			} else if (parameters.rootID) {
-				this.rootID = parameters.rootID
+				this.rootID = parameters.rootID;
 			}
 			// userID takes precedence over name/studentID/email
 			if (parameters.userID) {
@@ -91,6 +103,7 @@ package com.clarityenglish.common.vo.config {
 		/**
 		 *  You can pass the following to the application from the config file
 		 * 	  dbHost
+		 * 	  productCode
 		 * 	  content
 		 * 	  streamingMedia
 		 * 	  sharedMedia
@@ -98,45 +111,63 @@ package com.clarityenglish.common.vo.config {
 		 * 	  courseID
 		 * 	  courseFile
 		 * 	  language
+		 * 	  remoteGateway
+		 * 	  remoteService
 		 */
 		public function mergeFileData(xml:XML):void {
 			
-			if (xml.dbHost)
-				this.dbHost = xml.dbHost;
-			if (xml.action)
-				this.action = xml.action;
+			if (xml.dbHost.toString())
+				this.dbHost = xml.dbHost.toString();
+			if (xml.productCode.toString())
+				this.productCode = xml.productCode.toString();
+			if (xml.action.toString())
+				this.action = xml.action.toString();
 			
 			// This is the base content folder, we expect it to be added to with title specific subFolder
-			if (xml.content) {
-				this.paths.content = xml.content;
+			if (xml.content.toString()) {
+				this.paths.content = xml.content.toString();
 			} else {
 				this.paths.content = "/Content";
 			}
-			if (xml.streamingMedia) {
-				this.paths.streamingMedia = xml.streamingMedia;
+			if (xml.streamingMedia.toString()) {
+				this.paths.streamingMedia = xml.streamingMedia.toString();
 			}
-			if (xml.sharedMedia) {
-				this.paths.sharedMedia = xml.sharedMedia;
+			if (xml.sharedMedia.toString()) {
+				this.paths.sharedMedia = xml.sharedMedia.toString();
 			}
-			// TODO. This is not working if there is no brandingMedia node
-			if (xml.brandingMedia) {
-				this.paths.brandingMedia = xml.brandingMedia;
+			if (xml.brandingMedia.toString()) {
+				this.paths.brandingMedia = xml.brandingMedia.toString();
 			} else {
 				this.paths.brandingMedia = '';
 			}
 			
-			if (xml.courseID)
-				this.courseID = xml.courseID;
-			if (xml.courseFile)
-				this.courseFile = xml.courseFile;
+			if (xml.courseID.toString())
+				this.courseID = xml.courseID.toString();
+			if (xml.courseFile.toString())
+				this.courseFile = xml.courseFile.toString();
 			
-			if (xml.language)
-				this.language = xml.language;
+			if (xml.language.toString())
+				this.language = xml.language.toString();
+			
+			// To handle the amfphp gateway
+			if (xml.remoteGateway.toString()) {
+				this.remoteGateway = xml.remoteGateway.toString();
+			} else {
+				this.remoteGateway = "/Software/ResultsManager/web/amfphp/";
+			}
+			if (xml.remoteService.toString()) {
+				this.remoteService = xml.remoteService.toString();
+			} else {
+				this.remoteService = "BentoService";
+			}
 		}
 		
 		/**
-		 *  You can read the following from the database about the account
-		 * 	  contentLocation
+		 * You can read the following from the database about the account
+		 * 
+		 * @param data This object contains account, error and config objects
+		 * 
+		 * the account object includes a title object
 		 * 	  licenceType
 		 * 	  licenceSize
 		 * 	  accountName
@@ -148,17 +179,32 @@ package com.clarityenglish.common.vo.config {
 		public function mergeAccountData(data:Object):void {
 			
 			// You might come back with an error rather than valid data
-			if (data.error && data.error>0) {
+			if (data.error && data.error.errorNumber>0) {
 				// Accept any error number coming back. You can handle the details later.
-				this.errorNumber = data.error;
+				// TODO. I think this should be a BentoError oject
+				this.error = data.error as BentoError;
+				//this.errorNumber = data.error.errorNumber;
+				//this.errorDescription = data.error.errorDescription;
 				
 				// No point going on, this is all you need
 				return;
 			}
-			// This is the title specific subFolder. It will be something like TenseBuster-International
+			
+			// Grab the account and title into our classes
+			this.account = data.account as Account;
+			
+			// A temporary variable for the title - there can only be one
+			// Which I think should be caught in getRMSettings really
+			if (this.account.children.length != 1) {
+				this.error.errorNumber = BentoError.ERROR_DATABASE_READING;
+				this.error.errorDescription = 'More than one title matched the product code';
+			}
+			var thisTitle:Title = this.account.getTitle();
+			
+			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from T_ProductLocation. Its purpose is to allow an account to swap language versions easily for a title.
-			if (data.contentLocation) {
-				this.paths.content += data.contentLocation;
+			if (thisTitle.contentLocation) {
+				this.paths.content += thisTitle.contentLocation;
 			}
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 
@@ -167,10 +213,12 @@ package com.clarityenglish.common.vo.config {
 			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('[version]').join(data.contentLocation);
 			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('[prefix]').join(data.prefix);
 				
-			// Licence details
-			if (data.licenceType) {
-				this.licence.type = (data.licenceType as uint);
+			// Licence details - all part of the account now
+			/*
+			if (thisTitle.licenceType) {
+				this.licence.type = thisTitle.licenceType;
 			} else {
+				// Defaults don't really make sense - it is more likely an error if this is not set
 				this.licence.type == Licence.LEARNER_TRACKING;
 			}
 			if (data.licenceSize) {
@@ -189,6 +237,24 @@ package com.clarityenglish.common.vo.config {
 			} else {
 				this.licence.startDate = new Date(); // well, what? today?
 			}
+			*/
+		}
+		
+		/**
+		 * This getter lets you find the licence type directly from the config object 
+		 * @return the licence type - can match against Title.LEARNER_TRACKING etc
+		 * 
+		 */
+		public function get licenceType():uint {
+			return this.account.getTitle().licenceType;
+		}
+		/**
+		 * This getter lets you find the account name directly from the config object
+		 * @return the account name
+		 * 
+		 */
+		public function get accountName():String {
+			return this.account.name;
 		}
 		
 		/**
@@ -198,7 +264,7 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function noSuchTitle():Boolean {
-			return this.errorNumber == BentoError.ERROR_NO_SUCH_ACCOUNT;
+			return this.error.errorNumber == BentoError.ERROR_NO_SUCH_ACCOUNT;
 		}
 		/**
 		 * This method tests to see if the account has been suspended
@@ -207,7 +273,7 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function accountSuspended():Boolean {
-			return this.errorNumber == BentoError.ERROR_ACCOUNT_SUSPENDED;
+			return this.error.errorNumber == BentoError.ERROR_ACCOUNT_SUSPENDED;
 		}
 		/**
 		 * This method tests to see if the account has been suspended
@@ -216,7 +282,7 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function termsNotAccepted():Boolean {
-			return this.errorNumber == BentoError.ERROR_TERMS_NOT_ACCEPTED
+			return this.error.errorNumber == BentoError.ERROR_TERMS_NOT_ACCEPTED
 		}
 		/**
 		 * This method tests to see if the licence is corrupt
@@ -225,7 +291,7 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function licenceInvalid():Boolean {
-			return this.errorNumber == BentoError.ERROR_LICENCE_INVALID;
+			return this.error.errorNumber == BentoError.ERROR_LICENCE_INVALID;
 		}
 		/**
 		 * This method tests to see if the account has not started yet
@@ -236,7 +302,7 @@ package com.clarityenglish.common.vo.config {
 		 */
 		public function licenceNotStarted():Boolean {
 			//return (this.licence.startDate > new Date());
-			return this.errorNumber == BentoError.ERROR_LICENCE_NOT_STARTED;
+			return this.error.errorNumber == BentoError.ERROR_LICENCE_NOT_STARTED;
 		}
 		/**
 		 * This method tests to see if the account has expired
@@ -247,7 +313,7 @@ package com.clarityenglish.common.vo.config {
 		 */
 		public function licenceExpired():Boolean {
 			//return (this.licence.expiryDate < new Date());
-			return this.errorNumber == BentoError.ERROR_LICENCE_EXPIRED;
+			return this.error.errorNumber == BentoError.ERROR_LICENCE_EXPIRED;
 		}
 		/**
 		 * This method tests to see if the user is outside the licence IP range
@@ -256,7 +322,7 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function outsideIPRange():Boolean {
-			return this.errorNumber == BentoError.ERROR_OUTSIDE_IP_RANGE;
+			return this.error.errorNumber == BentoError.ERROR_OUTSIDE_IP_RANGE;
 		}
 		/**
 		 * This method tests to see if the user is outside the licence referrer range
@@ -265,7 +331,7 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function outsideRURange():Boolean {
-			return this.errorNumber == BentoError.ERROR_OUTSIDE_RU_RANGE;
+			return this.error.errorNumber == BentoError.ERROR_OUTSIDE_RU_RANGE;
 		}
 	}
 }

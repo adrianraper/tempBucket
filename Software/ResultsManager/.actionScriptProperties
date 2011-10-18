@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="com/clarityenglish/resultsmanager/RMApplication.mxml" projectUUID="42f17c26-dcbe-4c83-a1d0-a275902d63b2" version="10">
-  <compiler additionalCompilerArguments="-locale en_US&#13;&#10;-define=CONFIG::flex3,true&#13;&#10;-define=CONFIG::flex4,false" autoRSLOrdering="false" copyDependentFiles="false" flexSDK="Flex 3.6" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+<actionScriptProperties analytics="false" mainApplicationPath="ResultsManager.mxml" projectUUID="2de56bea-a59a-49d3-bcc4-aceee6749cfe" version="10">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="true" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -14,11 +14,9 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="com/clarityenglish/dms/DMSApplication.mxml"/>
-    <application path="com/clarityenglish/resultsmanager/RMApplication.mxml"/>
+    <application path="ResultsManager.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
-

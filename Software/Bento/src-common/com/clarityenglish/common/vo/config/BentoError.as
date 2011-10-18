@@ -1,7 +1,13 @@
 package com.clarityenglish.common.vo.config {
-	
 	/**
+	 * 
+	 * @author Adrian
 	 * This class is for errors raised by licence control, account validation, user validation etc
+	 * It can be used as an object to be passed with notifications, or thrown as necessary
+	 * The error number must be one of the constants.
+	 * The error description is a fixed string coming from copyRecevier based on the language.
+	 * The error context is a message that the creator of the error wants to use. It is not translated and is most likely for internal debugging.
+	 * 
 	 */
 	public class BentoError extends Error {
 		/**
@@ -9,6 +15,7 @@ package com.clarityenglish.common.vo.config {
 		 */
 		public var errorNumber:Number;
 		public var errorDescription:String;
+		public var errorContext:String;
 
 		// A lot of these come back from the database so numbers are needed.
 		public static const ERROR_NO_SUCH_ACCOUNT:uint = 200;
@@ -22,10 +29,11 @@ package com.clarityenglish.common.vo.config {
 		
 		public static const ERROR_DATABASE_READING:uint = 100;
 		
-		public function BentoError(errNum:uint) {
+		public function BentoError(errNum:uint=0) {
 			this.errorNumber = errNum;
 			
 			// Get the description for this number
+			// TODO. Need the copyReceiver
 			
 		}
 		

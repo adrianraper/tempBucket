@@ -6,6 +6,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.dms.vo.account.Account;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -26,7 +27,7 @@ package com.clarityenglish.common.model {
 	/**
 	 * A proxy
 	 */
-	public class ConfigProxy extends Proxy implements IProxy {
+	public class ConfigProxy extends Proxy implements IProxy, IDelegateResponder {
 		
 		/**
 		 * Standard flex logger
@@ -35,10 +36,6 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "ConfigProxy";
 		
-		// TODO. Make a config class to hold all this info
-		//private var config:XML;
-		//private var parameters:Array;
-		//private var RMSettings:Object;
 		private var config:Config;
 		
 		/**
@@ -80,12 +77,20 @@ package com.clarityenglish.common.model {
 		}
 		/**
 		 * Method to get details about the account from the database
-		 * 
+		 *
+		 * @return void - Asynchronous call. Will return account, title, config and error objects. 
 		 */
 		private function getRMSettings():void {
-			var params:Array = [ config ];
-			// new RemoteDelegate("getRMSettings", params, this).execute();
-			onDelegateResult("getRMSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
+			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
+			
+			// Create a subset of the config object to pass to the remote call
+			// I could do some error handling before we go
+			//	we must have rootID or prefix
+			//	we must have a productCode
+			var dbConfig:Object = {dbHost:config.dbHost, prefix:config.prefix, rootID:config.rootID, productCode:config.productCode};
+			var params:Array = [ dbConfig ];
+			new RemoteDelegate("getRMSettings", params, this).execute();
+			//onDelegateResult("getRMSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
 		}
 		
 		/**
@@ -110,6 +115,11 @@ package com.clarityenglish.common.model {
 		public function onConfigLoadComplete(e:Event):void {
 			//config = new XML(e.target.data);
 			config.mergeFileData(new XML(e.target.data));
+			
+			// Configure the delegate now that you have the gateway path 
+			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php");
+			RemoteDelegate.setService(config.remoteService);
+			
 			getApplicationParameters();
 		}
 		
@@ -121,12 +131,31 @@ package com.clarityenglish.common.model {
 		public function getContentPath():String {
 			return config.paths.content;
 		}
+		public function getAccount():Account {
+			return config.account;
+		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
 				case "getRMSettings":
 					if (data) {
+						/*
+						We will get back the following objects in data
+						account
+						error - should this be called status and include info/warning/error objects?
+						config
+						<db>
+							<note>
+								<query dbHost="2" method="getRMSettings" rootID="" prefix="Clarity" eKey="" dateStamp="2011-10-17 22:50:42" productCode="9" cacheVersion="1318863042928" />
+							</note>
+							<note>dbhost=localhost dbname=rack80829 driver=mysql</note>
+							<database version="6" />
+							<settings loginOption="1" verified="1" selfRegister="0" />
+							<decrypt key="undefined" />
+							<account expiryDate="2012-12-31 23:59:59" maxStudents="998" groupID="163" rootID="163" licenceType="1" institution="Clarity Language Consultants Ltd" contentLocation="TenseBuster-International" MGSRoot="" licenceStartDate="2009-01-01 00:00:00" checksum="351669aed74a984aa13f8501ecdcadcd7c8f61b3cad49eaf4611a4510abfe85e" languageCode="EN" />
+						</db>
+						*/
 						config.mergeAccountData(data);
 						// At this point we can check to see if the config contains anything that stops us going on
 						// This account doesn't have this title

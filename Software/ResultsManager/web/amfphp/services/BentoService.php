@@ -58,20 +58,72 @@ class BentoService extends AbstractService {
 		};
 		
 		// Create the operation classes
-		//$this->loginOps = new LoginOps($this->db);
-		//$this->copyOps = new CopyOps($this->db);
-		//$this->manageableOps = new ManageableOps($this->db);
-		//$this->contentOps = new ContentOps($this->db);
+		$this->loginOps = new LoginOps($this->db);
+		$this->copyOps = new CopyOps($this->db);
+		$this->manageableOps = new ManageableOps($this->db);
+		$this->contentOps = new ContentOps($this->db);
 
 	}
+	/**
+	 *
+	 * This call finds the relevant account, keyed on rootID or prefix.
+	 * Additionally it gets configuration data for this title.
+	 * @param config - an object containing the keys to get the account
+	 * rootID, prefix, productCode
+	 * dbHost
+	 * @return account - Account object - includes the ONE relevant title 
+	 * @return title - Title object 
+	 * @return config - Miscellaneous information, such as database version 
+	 * @return error - Error object if required 
+	 */
 	function getRMSettings($config) {
-		return array("status" => " success", 
-					"account" => array("rootID" => "163",
-										"name" => "Clarity",
-										"loginOptions" => 2, 
-										"verified" => "true",
-										"licenceStartDate" => "100",
-										"licenceExpiryDate" => "999999999"));
+	
+		$errorObj = array();
+		
+		// Send the passed data through to the SQL
+		if (isset($config['productCode'])) {
+			$productCode = $config['productCode'];
+		} else {
+			$errorObj['errorNumber']=100; // Need a generalised db error number
+			$errorObj['errorDescription']='No productCode sent to getRMSettings';
+		}
+		if (isset($config['prefix']))
+			$prefix = $config['prefix'];
+		if (isset($config['rootID']))
+			$rootID = $config['rootID'];
+		if (!$prefix && !$rootID) {
+			$errorObj['errorNumber']=100; // Need a generalised db error number
+			$errorObj['errorDescription']='No prefix or rootID sent to getRMSettings';
+		}
+		
+		// Fake the database return for now
+		
+		// Title
+		$title = new Title();
+		$title->id = $productCode;
+		$title->expiryDate = '2012-12-31 00:00:00';
+		$title->licenceStartDate = '2011-01-01-00:00:00';
+		$title->contentLocation = 'RoadToIELTS2-Academic';
+		$title->licenceType = 1;
+		
+		// Account
+		$account = new Account();
+		$account->rootID = 163;
+		$account->prefix = 163;
+		$account->name = 'Clarity DEV account';
+		$account->tacStatus = 2;
+		$account->accountStatus = 1;
+		$account->loginOptions = 2;
+		$account->verified = 'true';
+		$account->selfRegister = 'false';
+		$account->addTitles(array($title));
+		
+		// Misc
+		$config = array("databaseVersion" => 7);
+		
+		return array("error" => $errorObj, 
+					"config" => $config,
+					"account" => $account);
 	}
 	// Allow several optional parameters to come from Flash
 	// $productCode is deprecated

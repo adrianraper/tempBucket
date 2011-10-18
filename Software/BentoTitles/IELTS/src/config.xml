@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+	<dbHost>2</dbHost>
+	<productCode>12</productCode>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN*</language>
-	<contentPath>../../../../Content/RoadToIELTS-Academic/Courses/1150976390861/</contentPath>
-	<dbHost>2</dbHost>
+	<contentPath>../../../../Content/RoadToIELTS2-Academic/Courses/1150976390861/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>BentoService</remoteService>
 </config>

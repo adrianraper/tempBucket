@@ -17,6 +17,7 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new XHTMLProxy());
 			facade.registerProxy(new ExerciseProxy());
 			facade.registerProxy(new LoginProxy());
+
 		}
 		
 	}

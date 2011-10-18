@@ -3,67 +3,66 @@ class DBDetails {
 	function DBDetails($dbHost) {
 		switch ($dbHost) {
 			// British Council Road to IELTS database
-			case 100:
-				$this->driver = "mssql_n"; 
-				$this->host = "dock\SQLExpress";  
-				$this->user = "AppUserRTI"; 
-				$this->password = "BCMartin5532"; 
+			case 101:
+				$this->driver = "mysql"; 
+				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";  
+				$this->user = "clarity"; 
+				$this->password = "clarity123"; 
 				$this->dbname  = "GlobalRoadToIELTS";
 				break;
-			// Network SQLite database
-			case 101:
-				$this->driver = "pdo_sqlite"; 
-				$this->host = urlencode("../../../../Database/clarity.db"); 
-				$this->host = urlencode("e:/Clarity/Database/clarity.db"); 
-				$this->dbname  = "";
-				$this->user = ""; 
-				$this->password = ""; 
-				
-				break;
-			// New SQLServer 2008 on rackspace
-			case 11:
-				$this->driver = "mssql_n"; 
-				// Try to specify an instance - but if I type it wrong it picks up the only one anyway, so I don't know the format
-				//$this->host = "67.192.58.54\MSSQL2008,1533";
-				$this->host = "67.192.58.54,1533";
-				$this->user = "AppUser";  
-				$this->password = "Sunshine1787";  
-				$this->dbname  = "rack80829"; 
-				break;
-			// SQLServer 2005 on Rackspace
-			case 111:
-				$this->driver = "mssql_n";  
-				$this->host = "67.192.58.54,1433";
-				$this->user = "AppUser";  
-				$this->password = "Sunshine1787";  
-				$this->dbname  = "rack80829"; 
-				break;
-			case 22:
+			case 300:
 				$this->driver = "mysql"; 
-				$this->host = "localhost"; 
-				$this->user = "AppUser"; 
-				$this->password = "Sunshine1787"; 
-				$this->dbname  = "hct-1";
+				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com"; 
+				$this->user = "clarity"; 
+				$this->password = "clarity123"; 
+				$this->dbname  = "taiwanclarity";
 				break;
+			case 200:
+				$this->driver = "mysql"; 
+				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";  
+				$this->user = "clarity"; 
+				$this->password = "clarity123"; 
+				$this->dbname  = "rack80829";
+				break;
+			case 301:
+				$this->driver = "mysql"; 
+				$this->host = "122.248.247.221";  
+				$this->user = "root";
+				$this->password = "bitnami"; 
+				$this->dbname  = "taiwanclarity";
+				break;				
+			// Claritydevelop
 			case 10:
-			//default:
-				$this->driver = "mssql_n";  
-				$this->host = "CLARITYMAIN\SQLEXPRESS";  
-				$this->user = "AppUser";  
-				$this->password = "Sunshine1787";  
-				$this->dbname  = "rack80829"; 
-				//$this->dbname  = "Clarity"; 
-				break; 
+				$this->driver = "mysql"; 
+				$this->host = "ClarityDevelop"; 
+				$this->user = "root"; 
+				$this->password = "Sunshine1787"; 
+				$this->dbname  = "rack80829";
+				break;
 			// Adrian's local database
+			case 100:
+				$this->driver = "mysql"; 
+				$this->host = "localhost";  
+				$this->user = "root"; 
+				$this->password = "Sunshine1787"; 
+				$this->dbname  = "GlobalRoadToIELTS";
+				break;
+			case 3:
+				$this->driver = "mysql"; 
+				$this->host = "localhost";  
+				$this->user = "root"; 
+				$this->password = "Sunshine1787"; 
+				$this->dbname  = "taiwanclarity"; 
+				break; 
 			case 2:
 			default:
-				$this->driver = "mssql_n";  
-				$this->host = "dock\SQLExpress";
-				$this->user = "AppUser";  
-				$this->password = "Sunshine1787";  
-				$this->dbname  = "rack80829"; 
-				break; 
-		}
+				$this->driver = "mysql"; 
+				$this->host = "localhost";  
+				$this->user = "root"; 
+				$this->password = "Sunshine1787"; 
+				$this->dbname  = "rack80829";
+				break;
+	}
 		// Build the dsn based on a username or not
 		$this->dsn = $this->driver."://";
 		if ($this->user!="") {

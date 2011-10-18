@@ -19,13 +19,16 @@ class Account extends Reportable {
 	var $logo;
 	// v3.0.6 Self-hosting
 	var $selfHost;
-	// v3.0.6 Anonymous Access login through CE.com/shared
-	var $loginOption;
 	// v3.3 Security of self-hosting
 	var $selfHostDomain;
 	// v3.5 To allow flexibility of email system
 	var $optOutEmails;
 	var $optOutEmailDate;
+	// v3.0.6 Anonymous Access login through CE.com/shared
+	public $loginOption;
+	// v4.0 Integration with Bento
+	public $verified;
+	public $selfRegister;
 	
 	/**
 	 * This is private since we get the real user object from the db in AccountOps for DMS (this is filled into $adminUser) and
@@ -99,8 +102,6 @@ class Account extends Reportable {
 		// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
 		//$this->selfHost = $obj->F_SelfHost;
 		$this->selfHost = ($obj->F_SelfHost==0) ? false : true;
-		// v3.0.6 Anonymous Access login through CE.com/shared
-		$this->loginOption = $obj->F_LoginOption;
 		// v3.3 Security of self-hosting
 		$this->selfHostDomain = $obj->F_SelfHostDomain;
 		$this->adminUserID = $obj->F_AdminUserID;
@@ -109,6 +110,12 @@ class Account extends Reportable {
 		// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
 		$this->optOutEmails = ($obj->F_OptOutEmails==0) ? false : true;
 		$this->optOutEmailDate = ($this->optOutEmails) ? $obj->F_OptOutEmailDate : null;
+		// v3.0.6 Anonymous Access login through CE.com/shared
+		$this->loginOption = $obj->F_LoginOption;
+		// v4.0 Integration with Bento
+		$this->selfRegister = $obj->F_SelfRegister;
+		$this->verified = $obj->F_Verified;
+		
 	}
 	
 	/**
@@ -145,6 +152,10 @@ class Account extends Reportable {
 		//if ($this->optOutEmails) $array['F_OptOutEmails'] = $this->optOutEmails;
 		if (isset($this->optOutEmails)) $array['F_OptOutEmails'] = ($this->optOutEmails) ? 1 : 0;
 		if (isset($this->optOutEmails)) $array['F_OptOutEmailDate'] = $this->optOutEmailDate;
+		// v4.0 Integration with Bento
+		$array['F_LoginOption'] = $this->loginOption;
+		$array['F_Verified'] = $this->verified;
+		$array['F_SelfRegister'] = $this->selfregister;
 		
 		return $array;
 	}
@@ -174,6 +185,11 @@ class Account extends Reportable {
 		// v3.5 To allow flexibility of email system
 						"$prefix.F_OptOutEmails",
 						"$prefix.F_OptOutEmailDate",
+		// v4.0 Integration with Bento
+						"$prefix.F_LoginOption",
+						"$prefix.F_Verified",
+						"$prefix.F_SelfRegister",
+						
 						"$prefix.F_Logo");
 		
 		return implode(",", $fields);

@@ -27,6 +27,7 @@
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
 			import com.clarityenglish.common.vo.config.BentoError;
+			import mx.core.FlexGlobals;
 			
 			import mx.events.FlexEvent;
 			
@@ -35,6 +36,10 @@
 			}
 			
 			protected function creationComplete(event:FlexEvent):void {
+				
+				// Hardcode some parameters that you expect to come from flashvars
+				FlexGlobals.topLevelApplication.parameters.rootID=163;
+				
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);
 			}
@@ -47,7 +52,7 @@
 	</fx:Script>
 	
 	<s:Panel title="loading..." width="100" height="100" includeIn="loading"/>	
-	<login:LoginView width="100%" height="100%" includeIn="login" />
+	<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 	<menu:MenuView id="menuView" width="100%" height="100%" includeIn=" menu" />
 	
 </bento:BentoApplication>

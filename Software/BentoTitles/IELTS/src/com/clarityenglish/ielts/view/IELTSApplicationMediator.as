@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -54,6 +55,11 @@ package com.clarityenglish.ielts.view {
 				
 				case CommonNotifications.CONFIG_LOADED:
 					view.currentState="login";
+					
+					// Inject some data to the login view
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					view.loginView.loginPanel.title = configProxy.getAccount().name;
+					
 					break;
 				
 				case CommonNotifications.LOGGED_IN:
