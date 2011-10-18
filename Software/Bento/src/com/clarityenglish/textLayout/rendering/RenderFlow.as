@@ -112,10 +112,6 @@ package com.clarityenglish.textLayout.rendering {
 						break;
 				}
 				
-				if (childRenderFlow._textFlow.overflow == FloatableTextFlow.OVERFLOW_HIDDEN) {
-					calculatedWidth = width - 200;
-				}
-				
 				var calculatedHeight:Number;
 				switch (childRenderFlow._textFlow.heightType) {
 					case FloatableTextFlow.SIZE_FIXED:
@@ -140,6 +136,17 @@ package com.clarityenglish.textLayout.rendering {
 				// At this point the dimensions of the rendered flow are known, so if there is an IGE placeholder on the containing block set any dynamic dimensions
 				matchPlaceholderToSize();
 			}
+			
+			// Draw the border in between the padding and margin
+			if (inlineGraphicElementPlaceholder && _textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE) {
+				var borderX:Number = _textFlow.marginLeft + _textFlow.borderWidth / 2;
+				var borderY:Number = _textFlow.marginTop + _textFlow.borderWidth / 2;
+				var borderWidth:Number = inlineGraphicElementPlaceholder.width - _textFlow.marginLeft - _textFlow.marginRight - _textFlow.borderWidth;
+				var borderHeight:Number = inlineGraphicElementPlaceholder.height - _textFlow.marginTop - _textFlow.marginBottom - _textFlow.borderWidth;
+				
+				graphics.lineStyle(_textFlow.borderWidth, _textFlow.borderColor);
+				graphics.drawRoundRect(borderX, borderY, borderWidth, borderHeight, _textFlow.borderRadius, _textFlow.borderRadius);
+			}
 		}
 		
 		/**
@@ -151,29 +158,36 @@ package com.clarityenglish.textLayout.rendering {
 		 */
 		private function matchPlaceholderToSize():void {
 			if (containingBlock && inlineGraphicElementPlaceholder) {
+				var placeholderWidth:Number = 0;
+				var placeholderHeight:Number = 0;
+				
 				switch (_textFlow.widthType) {
 					case FloatableTextFlow.SIZE_FIXED:
-						inlineGraphicElementPlaceholder.width = _textFlow.width;
+						placeholderWidth = _textFlow.width;
 						break;
 					case FloatableTextFlow.SIZE_PERCENTAGE:
-						inlineGraphicElementPlaceholder.width = width;
+						placeholderWidth = width;
 						break;
 					case FloatableTextFlow.SIZE_DYNAMIC:
-						inlineGraphicElementPlaceholder.width = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
+						placeholderWidth = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
 						break;
 				}
 				
 				switch (_textFlow.heightType) {
 					case FloatableTextFlow.SIZE_FIXED:
-						inlineGraphicElementPlaceholder.height = _textFlow.height;
+						placeholderHeight = _textFlow.height;
 						break;
 					case FloatableTextFlow.SIZE_PERCENTAGE:
-						inlineGraphicElementPlaceholder.height = height;
+						placeholderHeight = height;
 						break;
 					case FloatableTextFlow.SIZE_DYNAMIC:
-						inlineGraphicElementPlaceholder.height = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
+						placeholderHeight = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
 						break;
 				}
+				
+				// Set the placeholder size
+				inlineGraphicElementPlaceholder.width = placeholderWidth;
+				inlineGraphicElementPlaceholder.height = placeholderHeight;
 			}
 		}
 		

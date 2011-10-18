@@ -218,9 +218,6 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// Create a seperate flow if necessary, otherwise continue parsing within this flow
 			if (isSeperateFlow(name, style)) {
-				if (!style.width && !style.height)
-					log.error("Non image floats should have a fixed width or height otherwise unpredicable behaviour can occur.");
-				
 				// Create an inline graphic element to act as a placeholder for the render flow
 				var inlineGraphicElement:InlineGraphicElement = new InlineGraphicElement();
 				if (style.float) inlineGraphicElement.float = style.float;
@@ -459,16 +456,26 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.height) element.height = style.height;
 			if (style.float) element.float = style.float;
 			
-			// I'm not sure why, but the TextFlow doesn't render some styles in the CssFormatResolver, so add them manually here
-			if (style.left) element.left = style.left;
-			if (style.right) element.right = style.right;
-			if (style.top) element.top = style.top;
-			if (style.bottom) element.bottom = style.bottom;
+			if (style.borderStyle) element.borderStyle = style.borderStyle;
+			if (style.borderWidth) element.borderWidth = style.borderWidth;
+			if (style.borderColor) element.borderColor = style.borderColor;
+			if (style.borderRadius) element.borderRadius = style.borderRadius;
 			
 			if (style.paddingLeft) element.paddingLeft = style.paddingLeft;
 			if (style.paddingRight) element.paddingRight = style.paddingRight;
 			if (style.paddingTop) element.paddingTop = style.paddingTop;
 			if (style.paddingBottom) element.paddingBottom = style.paddingBottom;
+			
+			if (style.marginLeft) element.marginLeft = style.marginLeft;
+			if (style.marginRight) element.marginRight = style.marginRight;
+			if (style.marginTop) element.marginTop = style.marginTop;
+			if (style.marginBottom) element.marginBottom = style.marginBottom;
+			
+			// I'm not sure why, but the TextFlow doesn't render some styles in the CssFormatResolver, so add them manually here
+			if (style.left) element.left = style.left;
+			if (style.right) element.right = style.right;
+			if (style.top) element.top = style.top;
+			if (style.bottom) element.bottom = style.bottom;
 			
 			addToFlowElementXmlMap(xmlToParse, element);
 			return element as TextFlow;

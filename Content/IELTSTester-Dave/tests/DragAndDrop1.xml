@@ -18,13 +18,14 @@
 			
 			#noscroll span[draggable=true] {
 				float: left;
-				width: 140px;
+				padding: 10px;
+				margin-right: 3px;
+				margin-bottom: 3px;
+				border-style: solid;
+				border-width: 1px;
+				border-color: #FF0000;
+				border-radius: 5px;
 			}
-			
-			a, span[draggable="true"] {
-				color: #3A00FF;
-			}
-			
 		]]>
 		</style>
 		<script id="model" type="application/xml">
@@ -83,13 +84,13 @@
 		</header>
 		
 		<section id="noscroll">
-			<span id="a1" draggable="true">No, she doesn't</span><tab/>
-			<span id="a2" draggable="true">Yes, he does</span><tab/>
-			<span id="a3" draggable="true">No, it doesn't</span><tab/>
-			<span id="a4" draggable="true">No, he doesn't</span><br/>
-			<span id="a5" draggable="true">Yes, I do</span><tab/>
-			<span id="a6" draggable="true">Yes, it does</span><tab/>
-			<span id="a7" draggable="true">No, I don't</span><tab/>
+			<span id="a1" draggable="true">No, she doesn't</span>
+			<span id="a2" draggable="true">Yes, he does</span>
+			<span id="a3" draggable="true">No, it doesn't</span>
+			<span id="a4" draggable="true">No, he doesn't</span>
+			<span id="a5" draggable="true">Yes, I do</span>
+			<span id="a6" draggable="true">Yes, it does</span>
+			<span id="a7" draggable="true">No, I don't</span>
 			<span id="a8" draggable="true">Yes, she does</span>
 		</section>
 		

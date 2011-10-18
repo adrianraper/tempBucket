@@ -4,6 +4,8 @@ package com.clarityenglish.textLayout.css {
 	import com.newgonzo.web.css.CSSContext;
 	import com.newgonzo.web.css.ICSSFactory;
 	import com.newgonzo.web.css.properties.PropertyManager;
+	import com.newgonzo.web.css.properties.css3.borders.BorderShorthand;
+	import com.newgonzo.web.css.properties.css3.box.BoxModule;
 	import com.newgonzo.web.css.values.StringValue;
 	import com.newgonzo.web.css.views.ICSSView;
 	
@@ -14,11 +16,16 @@ package com.clarityenglish.textLayout.css {
 		public function XHTMLCSSContext(defaultCSSView:ICSSView = null, objectFactory:ICSSFactory = null) {
 			super(defaultCSSView, objectFactory);
 			
-			// Add property managers here
-			addPropertyManager(new TabManager("tab-stops"));
+			// Border
+			addPropertyManager(new BorderShorthand());
 			
-			// TODO: This doesn't stop position being inherited
+			// Padding & margin
+			addPropertyManagers(BoxModule.PROPERTY_MANAGERS);
+			
+			// Misc
+			addPropertyManager(new TabManager("tab-stops"));
 			addPropertyManager(new PropertyManager("position", new StringValue(CSSPrimitiveValueTypes.CSS_STRING, FloatableTextFlow.POSITION_STATIC), true));
+			
 		}
 		
 	}
