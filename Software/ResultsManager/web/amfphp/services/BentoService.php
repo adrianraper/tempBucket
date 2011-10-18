@@ -58,6 +58,7 @@ class BentoService extends AbstractService {
 		};
 		
 		// Create the operation classes
+		$this->accountOps = new AccountOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
 		$this->copyOps = new CopyOps($this->db);
 		$this->manageableOps = new ManageableOps($this->db);
@@ -69,7 +70,7 @@ class BentoService extends AbstractService {
 	 * This call finds the relevant account, keyed on rootID or prefix.
 	 * Additionally it gets configuration data for this title.
 	 * @param config - an object containing the keys to get the account
-	 * rootID, prefix, productCode
+	 * rootID, [prefix,] productCode
 	 * dbHost
 	 * @return account - Account object - includes the ONE relevant title 
 	 * @return title - Title object 
@@ -87,15 +88,35 @@ class BentoService extends AbstractService {
 			$errorObj['errorNumber']=100; // Need a generalised db error number
 			$errorObj['errorDescription']='No productCode sent to getRMSettings';
 		}
-		if (isset($config['prefix']))
-			$prefix = $config['prefix'];
-		if (isset($config['rootID']))
+		// RootID is more important than prefix.
+		if (isset($config['rootID'])) {
 			$rootID = $config['rootID'];
-		if (!$prefix && !$rootID) {
+			
+		// TODO. At present getAccounts can only cope with rootID not prefix. That should be OK
+		//} else if (isset($config['prefix'])) {
+		//	$prefix = $config['prefix'];
+		
+		} else {
 			$errorObj['errorNumber']=100; // Need a generalised db error number
-			$errorObj['errorDescription']='No prefix or rootID sent to getRMSettings';
+			$errorObj['errorContext']='No rootID sent to getRMSettings';
 		}
 		
+		// Query the database
+		/*
+		// Comment until DK has database setup
+		// First get the record from T_AccountRoot and T_Accounts
+		$conditions = array("productCode" => $productCode);
+		$accounts = $this->accountOps->getAccounts(array($rootID), $conditions);
+		// It would be an error to have more than one account
+		$account = $accounts[0];
+		
+		// We also need some misc stuff (do we really?)
+		//   databaseVersion
+		//$configObj = $this->loginOps->getConfig();
+		*/
+		
+		//*
+		// Comment until DK has database setup
 		// Fake the database return for now
 		
 		// Title
@@ -109,7 +130,7 @@ class BentoService extends AbstractService {
 		// Account
 		$account = new Account();
 		$account->rootID = 163;
-		$account->prefix = 163;
+		$account->prefix = 'DEV';
 		$account->name = 'Clarity DEV account';
 		$account->tacStatus = 2;
 		$account->accountStatus = 1;
@@ -117,6 +138,7 @@ class BentoService extends AbstractService {
 		$account->verified = 'true';
 		$account->selfRegister = 'false';
 		$account->addTitles(array($title));
+		//*/
 		
 		// Misc
 		$config = array("databaseVersion" => 7);

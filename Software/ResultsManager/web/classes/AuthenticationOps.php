@@ -2,7 +2,7 @@
 
 class AuthenticationOps {
 	
-	public static $useAuthentication = true;
+	public static $useAuthentication = false;
 	
 	/**
 	 * Clear the list of valid user and group ids for the logged in user

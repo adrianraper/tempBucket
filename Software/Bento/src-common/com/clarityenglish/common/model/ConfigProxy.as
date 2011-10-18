@@ -85,7 +85,7 @@ package com.clarityenglish.common.model {
 			
 			// Create a subset of the config object to pass to the remote call
 			// I could do some error handling before we go
-			//	we must have rootID or prefix
+			//	we must have rootID or prefix (actually only rootID is implemented now)
 			//	we must have a productCode
 			var dbConfig:Object = {dbHost:config.dbHost, prefix:config.prefix, rootID:config.rootID, productCode:config.productCode};
 			var params:Array = [ dbConfig ];
