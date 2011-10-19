@@ -11,6 +11,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.ui.Mouse;
 	
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
@@ -31,8 +32,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	public class DraggableBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
-		private var dragImage:Image;
+		[Embed(source="/skins/assets/draggable_pointer.png")]
+		private static var draggableIcon:Class;
+		private static var draggableIconOffsetX:Number = -8;
+		private static var draggableIconOffsetY:Number = -3;
 		
+		private var draggableIconId:int = -1;
+		
+		private var dragImage:Image;
+
 		public function DraggableBehaviour(container:Group) {
 			super(container);
 		}
@@ -71,6 +79,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				// draggable="true" is only allowed on FlowLeafElements
 				if (draggableFlowElement is FlowLeafElement) {
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode));
+					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, onRollOver);
+					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, onRollOut);
 				} else {
 					log.error("draggable='true' is only valid on leaf elements - " + draggableFlowElement);
 				}
@@ -116,8 +126,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			}
 		}
 		
-		public function onTextFlowClear(textFlow:TextFlow):void {
+		protected function onRollOver(event:FlowElementMouseEvent):void {
+			if (draggableIconId == -1)
+				draggableIconId = container.cursorManager.setCursor(draggableIcon, 2, draggableIconOffsetX, draggableIconOffsetY);
 		}
-	
+		
+		protected function onRollOut(event:FlowElementMouseEvent):void {
+			container.cursorManager.removeCursor(draggableIconId);
+			draggableIconId = -1;
+		}
+		
+		public function onTextFlowClear(textFlow:TextFlow):void { }
+		
 	}
 }
