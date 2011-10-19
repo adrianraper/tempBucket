@@ -14,7 +14,10 @@
 			}
 			
 			.titledBlock .dropBlock {
-				
+				overflow: hidden; /* this isn't correct; but border properties are getting inherited which is breaking everything in isSeperateFlow */
+				border-width: 1px;
+				border-style: solid;
+				border-color: #FF0000;
 			}
 			
 			.titledBlock .dropBlock input {
@@ -79,14 +82,14 @@
 				<p>I can count <span class="blue">apples: one apple, two apples, three apples.</span></p>
 				<div class="dropBlock">
 					<p><input id="q1Input1" type="droptarget" /></p>
-					<p><input id="q1Input2" type="droptarget" /></p>
+					<!-- <p><input id="q1Input2" type="droptarget" /></p>
 					<p><input id="q1Input3" type="droptarget" /></p>
 					<p><input id="q1Input4" type="droptarget" /></p>
-					<p><input id="q1Input5" type="droptarget" /></p>
+					<p><input id="q1Input5" type="droptarget" /></p> -->
 				</div>
 			</div>
 			
-			<div id="q2Block" class="titledBlock">
+			<!-- <div id="q2Block" class="titledBlock">
 				<p><b>Things I can't count</b></p>
 				<p>I can't count <span class="blue">milk</span>.  I can't say '<span class="blue">two milks</span>'</p>
 				<div class="dropBlock">
@@ -96,7 +99,7 @@
 					<p><input id="q2Input4" type="droptarget" /></p>
 					<p><input id="q2Input5" type="droptarget" /></p>
 				</div>
-			</div>
+			</div>-->
 			
 		</section>
 	</body>
