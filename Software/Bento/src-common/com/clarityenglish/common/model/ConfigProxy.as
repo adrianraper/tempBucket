@@ -89,8 +89,8 @@ package com.clarityenglish.common.model {
 			//	we must have a productCode
 			var dbConfig:Object = {dbHost:config.dbHost, prefix:config.prefix, rootID:config.rootID, productCode:config.productCode};
 			var params:Array = [ dbConfig ];
-			new RemoteDelegate("getRMSettings", params, this).execute();
-			//onDelegateResult("getRMSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
+			new RemoteDelegate("getAccountSettings", params, this).execute();
+			//onDelegateResult("getAccountSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
 		}
 		
 		/**
@@ -138,7 +138,7 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
-				case "getRMSettings":
+				case "getAccountSettings":
 					if (data) {
 						/*
 						We will get back the following objects in data

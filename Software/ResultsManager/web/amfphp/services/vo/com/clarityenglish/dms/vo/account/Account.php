@@ -40,6 +40,13 @@ class Account extends Reportable {
 	var $titles = array();
 	
 	var $licenceAttributes = array();
+
+	/*
+	 * Add an array to the licenceAttributes
+	 */
+	function addLicenceAttributes($a) {
+		$this->licenceAttributes = array_merge($a, $this->licenceAttributes);
+	}
 	
 	/*
 	 * Concatenate the parameter array onto our current array

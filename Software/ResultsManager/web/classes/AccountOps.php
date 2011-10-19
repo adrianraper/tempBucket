@@ -273,11 +273,33 @@ class AccountOps {
 	
 	/**
 	 * Get the licence attributes for an account.
+	 * v4.0 Allow productCode to be optionally specified 
 	 */
-	function getAccountLicenceDetails($accountID) {
+	function getAccountLicenceDetails($accountID, $productCode=null) {
 		
 		// Can I delay doing this until I want to edit an account? It is pretty rare anyway.
-		return $this->db->GetArray("SELECT F_Key licenceKey, F_Value licenceValue, F_ProductCode productCode FROM T_LicenceAttributes WHERE F_RootID=?", array($accountID));
+		$licenceAttributes = $this->db->GetArray("SELECT F_Key licenceKey, F_Value licenceValue, F_ProductCode productCode FROM T_LicenceAttributes WHERE F_RootID=?", array($accountID));
+		if ($productCode && $licenceAttributes && count($licenceAttributes>0)) {
+			$relevantAttributes = array();
+			// If you set the productCode, then it means you want all null values, and any value that includes your pc in the list
+			// I think this is going to be simplest to do post query.
+			foreach ($detail in $licenceAttributes) {
+				if ($detail['productCode']=='') {
+					$relevantAttributes[] = $detail;
+				} else {
+					$codes = implode(',',$detail['productCode']);
+					foreach ($code in $codes) {
+						if ($code==$productCode) {
+							$relevantAttributes[] = $detail;
+							break;
+						}
+					}
+				}
+			}
+		} else {
+			$relevantAttributes = $licenceAttributes;
+		}
+		return $relevantAttributes;
 	}
 	
 	/**
