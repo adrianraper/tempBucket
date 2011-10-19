@@ -13,13 +13,13 @@ package com.clarityenglish.textLayout.components.behaviours {
 	
 	import flashx.textLayout.elements.TextFlow;
 	
+	import mx.core.IUIComponent;
+	
 	import org.davekeen.util.PointUtil;
 	
 	import spark.components.Group;
 	
 	public class OverlayBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
-		
-		private var overlayContainer:Group;
 		
 		public function OverlayBehaviour(container:Group):void {
 			super(container);
@@ -27,7 +27,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 		
 		private function getComponentElements(textFlow:TextFlow):Array {
 			var floatableTextFlow:FloatableTextFlow = textFlow as FloatableTextFlow;
-		
+			
 			// Get all the elements that we will overlay
 			if (floatableTextFlow) {
 				return [ ].concat(
@@ -40,20 +40,16 @@ package com.clarityenglish.textLayout.components.behaviours {
 			return null;
 		}
 		
-		public function onCreateChildren():void {
-			if (!overlayContainer) {
-				overlayContainer = new Group();
-				overlayContainer.percentWidth = 100;
-				container.addElement(overlayContainer);
-			}
-		}
+		public function onCreateChildren():void { }
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 			for each (var componentElement:IComponentElement in getComponentElements(textFlow)) {
-				// If the component hasn't yet been created then create a new one
+				var containingBlock:RenderFlow = componentElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+				
+				// If the component hasn't yet been created then create a new one and add it to the containing block
 				if (!componentElement.hasComponent()) {
 					componentElement.createComponent();
-					overlayContainer.addElement(componentElement.getComponent());
+					containingBlock.addChild(componentElement.getComponent());
 				}
 				
 				// Style the component in line with its underlying text
@@ -62,17 +58,14 @@ package com.clarityenglish.textLayout.components.behaviours {
 				componentElement.getComponent().setStyle("color", componentElement.computedFormat.color);
 				
 				var bounds:Rectangle = componentElement.getElementBounds();
-				
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container
-					// TODO: The reason this doesn't work is that at the time of the first update, the render flow is not yet in position.
-					var containingBlock:RenderFlow = componentElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					
 					if (!isNaN(bounds.width)) componentElement.getComponent().width = bounds.width;
 					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height;
 					componentElement.getComponent().x = bounds.x;
-					componentElement.getComponent().y = bounds.y + 1; // not sure if we want +1 - that should probably be in getElementBounds depending on the component
+					componentElement.getComponent().y = bounds.y;
 					
 					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
 					componentElement.getComponent().visible = !componentElement.hideChrome;
@@ -80,9 +73,6 @@ package com.clarityenglish.textLayout.components.behaviours {
 					componentElement.getComponent().visible = false;
 				}
 			}
-			
-			// Make sure the overlay container is at the front
-			container.setElementIndex(overlayContainer, container.numChildren - 1); 
 		}
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { }

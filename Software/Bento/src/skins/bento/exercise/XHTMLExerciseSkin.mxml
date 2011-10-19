@@ -63,7 +63,7 @@
 				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
 			</s:Scroller>
 		</s:Group>
-	
+		
 	</s:Group>
 	
 </s:Skin>

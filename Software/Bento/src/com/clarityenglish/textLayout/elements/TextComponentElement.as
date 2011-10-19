@@ -39,7 +39,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public function removeComponent():void {
-			(component.parent as Group).removeElement(component);
+			component.parent.removeChild(component);
 			component = null;
 		}
 		

@@ -31,9 +31,9 @@ package com.clarityenglish.textLayout.rendering {
 	
 	use namespace mx_internal;
 	
-	[Event(name="updateComplete", type="flashx.textLayout.events.UpdateCompleteEvent")]
+	[Event(name="renderFlowUpdateComplete", type="com.clarityenglish.textLayout.events.RenderFlowEvent")]
 	[Event(name="textFlowCleared", type="com.clarityenglish.textLayout.events.RenderFlowEvent")]
-	public class RenderFlow extends SpriteVisualElement {
+	public class RenderFlow extends UIComponent {
 		
 		/**
 		 * Standard flex logger
@@ -51,8 +51,6 @@ package com.clarityenglish.textLayout.rendering {
 		public var inlineGraphicElementPlaceholder:InlineGraphicElement;
 		
 		public function RenderFlow(textFlow:FloatableTextFlow = null) {
-			resizeMode = ResizeMode.NO_SCALE;
-			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
@@ -95,6 +93,13 @@ package com.clarityenglish.textLayout.rendering {
 				log.error("No TextFlow in RenderFlow onAddedToStage");
 				return;
 			}
+		}
+		
+		protected override function measure():void {
+			super.measure();
+			
+			if (_textFlow)
+				measuredHeight = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height
 		}
 		
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
@@ -149,6 +154,8 @@ package com.clarityenglish.textLayout.rendering {
 		private function drawBorderAndBackground():void {
 			var hasBorder:Boolean = (_textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE);
 			var hasBackgroundColor:Boolean = (_textFlow.backgroundColor != null);
+			
+			graphics.clear();
 			
 			if (inlineGraphicElementPlaceholder && (hasBorder || hasBackgroundColor)) {
 				var borderX:Number = _textFlow.marginLeft + _textFlow.borderWidth / 2;
@@ -229,7 +236,7 @@ package com.clarityenglish.textLayout.rendering {
 						
 						// Apply the position to the child
 						childRenderFlow.x = pos.x;
-						childRenderFlow.y = pos.y; // TODO: This isn't quite working... perhaps I am thinking about this slightly wrongly...
+						childRenderFlow.y = pos.y;
 					}
 				}
 			}
@@ -242,8 +249,8 @@ package com.clarityenglish.textLayout.rendering {
 			if (!containingBlock)
 				invalidateParentSizeAndDisplayList();
 			
-			// Dispatch a clone of the event in bubbling mode so that anything listening for it on the top level RenderFlow can respond
-			dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, event.textFlow, event.controller));
+			// Dispatch a RenderFlow version of the event in bubbling mode so that anything listening for it on the top level RenderFlow can respond
+			dispatchEvent(new RenderFlowEvent(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, true, false, event.textFlow, event.controller));
 		}
 		
 		/**

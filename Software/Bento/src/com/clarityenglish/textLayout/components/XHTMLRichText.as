@@ -147,7 +147,7 @@ package com.clarityenglish.textLayout.components {
 					if (renderFlow.parent)
 						removeElement(renderFlow);
 					
-					renderFlow.removeEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+					renderFlow.removeEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
 					renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
 				}
 				
@@ -162,7 +162,7 @@ package com.clarityenglish.textLayout.components {
 					importer = null;
 					
 					// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
-					renderFlow.addEventListener(UpdateCompleteEvent.UPDATE_COMPLETE, onUpdateComplete);
+					renderFlow.addEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
 					renderFlow.addEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
 					
 					// The main RenderFlow should always fill the viewport horizontally
@@ -192,7 +192,7 @@ package com.clarityenglish.textLayout.components {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 		}
 		
-		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
+		protected function onUpdateComplete(event:RenderFlowEvent):void {
 			// Apply to registered behaviours
 			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onTextFlowUpdate(event.textFlow); } );
 		}
