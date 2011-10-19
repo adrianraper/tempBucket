@@ -13,6 +13,13 @@
 				padding-bottom: 10;
 			}
 			
+			.titledBlock .dropBlock {
+				overflow: hidden; /* this isn't correct; but border properties are getting inherited which is breaking everything in isSeperateFlow */
+				border-width: 1px;
+				border-style: solid;
+				border-color: #FF0000;
+			}
+			
 			.titledBlock .dropBlock input {
 				
 			}

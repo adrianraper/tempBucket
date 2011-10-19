@@ -202,6 +202,10 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.position == FloatableTextFlow.POSITION_RELATIVE)
 				return true;
 			
+			// TODO: This is no good as it gets inherited so everything ends up being a seperate flow.  Implicit display:block might be the way forward.
+			/*if (style.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE)
+				return true;*/
+			
 			if (style.overflow == FloatableTextFlow.OVERFLOW_HIDDEN)
 				return true;
 			

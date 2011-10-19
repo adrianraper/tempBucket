@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.elements {
 	import flash.geom.Rectangle;
 	
+	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.ITextLayoutFormat;
 	
 	import mx.core.UIComponent;
@@ -20,6 +21,8 @@ package com.clarityenglish.textLayout.elements {
 		function getElementBounds():Rectangle;
 		
 		function get computedFormat():ITextLayoutFormat;
+		
+		function getTextFlow():TextFlow;
 		
 	}
 	

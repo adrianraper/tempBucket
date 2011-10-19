@@ -28,7 +28,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 		private function getComponentElements(textFlow:TextFlow):Array {
 			var floatableTextFlow:FloatableTextFlow = textFlow as FloatableTextFlow;
 		
-			// This is just temporary; make this nicer once we have a better idea of how the Spark overlays are going to work
+			// Get all the elements that we will overlay
 			if (floatableTextFlow) {
 				return [ ].concat(
 					   floatableTextFlow.getElementsByClass(InputElement),
@@ -65,12 +65,12 @@ package com.clarityenglish.textLayout.components.behaviours {
 				
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container
-					// TODO: This doesn't quite work vertically in floats; horizontally it is correct
-					var containingBlock:RenderFlow = textFlow.flowComposer.getControllerAt(0).container as RenderFlow;
+					// TODO: The reason this doesn't work is that at the time of the first update, the render flow is not yet in position.
+					var containingBlock:RenderFlow = componentElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					
 					if (!isNaN(bounds.width)) componentElement.getComponent().width = bounds.width;
-					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height; // TODO: This doesn't set the height correctly on the dropdownlist
+					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height;
 					componentElement.getComponent().x = bounds.x;
 					componentElement.getComponent().y = bounds.y + 1; // not sure if we want +1 - that should probably be in getElementBounds depending on the component
 					
