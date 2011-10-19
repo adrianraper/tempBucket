@@ -5,7 +5,8 @@
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: normal;
+	color: #333333;
 }
 
 /* This is the image or video floating on the right hand side in many exercises */
@@ -25,14 +26,15 @@ a, span[draggable="true"] {
 /* Draggable spans in noscroll should be in a bordered filled box */
 #noscroll span[draggable=true] {
 	float: left;
-	padding: 10px;
-	margin-right: 3px;
-	margin-bottom: 3px;
+	color: #0E00AB;
+	padding: 5px 8px;
+	margin-right: 4px;
+	margin-bottom: 8px;
 	border-style: solid;
 	border-width: 1px;
-	border-color: #FF0000;
+	border-color: #B5B5B5;
 	border-radius: 12px;
-	background-color: #EEFFEA;
+	background-color: #FFFFFF;
 }
 
 /* Use the custom after-pad property to add a width of 1 _ characters to any input's maximum length */

@@ -19,43 +19,35 @@
 	<s:states />
 	
 	<s:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout gap="0" />
 	</s:layout>
 	
 	<s:Group id="headerGroup" width="100%">
 		<s:Rect width="100%" height="100%">
-			<s:stroke>
-				<s:SolidColorStroke color="#666666" />
-			</s:stroke>
 			<s:fill>
-				<s:SolidColor color="#CCCCCC" />
+				<s:SolidColor color="#F5D767" />
 			</s:fill>
 		</s:Rect>
-		<components:XHTMLRichText id="headerRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
+		<components:XHTMLRichText id="headerRichText" top="13" left="16" right="16" bottom="13" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
 	</s:Group>
 	
 	<s:Group id="noscrollGroup" width="100%">
 		<s:Rect width="100%" height="100%">
-			<s:stroke>
-				<s:SolidColorStroke color="#666666" />
-			</s:stroke>
 			<s:fill>
-				<s:SolidColor color="#F7E6E6" />
+				<s:SolidColor color="#D2DDE2" />
 			</s:fill>
 		</s:Rect>
 		
-		<components:XHTMLRichText id="noscrollRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
+		<components:XHTMLRichText id="noscrollRichText" top="8" left="16" right="16" bottom="8" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
 	</s:Group>
 	
-	<s:BorderContainer width="100%" height="100%">
+	<s:Group width="100%" height="100%">
 		<s:layout>
 			<s:HorizontalLayout />
 		</s:layout>
+		
 		<s:Group id="readingTextGroup" width="100%">
 			<s:Rect width="100%" height="100%">
-				<s:stroke>
-					<s:SolidColorStroke color="#666666" />
-				</s:stroke>
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" />
 				</s:fill>
@@ -67,16 +59,11 @@
 		</s:Group>
 		
 		<s:Group id="bodyGroup" width="100%" height="100%">
-			<s:Rect width="100%" height="100%">
-				<s:stroke>
-					<s:SolidColorStroke color="#666666" />
-				</s:stroke>
-			</s:Rect>
-			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5">
+			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="16" right="5" bottom="5">
 				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
 			</s:Scroller>
 		</s:Group>
 	
-	</s:BorderContainer>
+	</s:Group>
 	
 </s:Skin>
