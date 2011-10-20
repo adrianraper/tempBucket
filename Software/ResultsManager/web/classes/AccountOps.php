@@ -283,12 +283,12 @@ class AccountOps {
 			$relevantAttributes = array();
 			// If you set the productCode, then it means you want all null values, and any value that includes your pc in the list
 			// I think this is going to be simplest to do post query.
-			foreach ($detail in $licenceAttributes) {
+			foreach ($licenceAttributes as $detail) {
 				if ($detail['productCode']=='') {
 					$relevantAttributes[] = $detail;
 				} else {
 					$codes = implode(',',$detail['productCode']);
-					foreach ($code in $codes) {
+					foreach ($codes as $code) {
 						if ($code==$productCode) {
 							$relevantAttributes[] = $detail;
 							break;
