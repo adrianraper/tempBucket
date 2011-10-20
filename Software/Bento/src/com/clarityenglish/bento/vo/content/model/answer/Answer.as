@@ -22,13 +22,9 @@ package com.clarityenglish.bento.vo.content.model.answer {
 				return xml.@score;
 			
 			// Otherwise we use the @correct properties (true is +1, false is -1)
-			if (xml.hasOwnProperty("@correct")) {
-				if (xml.@correct == "true") {
+			if (xml.hasOwnProperty("@correct"))
+				if (xml.@correct == "true")
 					return 1;
-				} else if (xml.@correct == "false") {
-					return -1;
-				}
-			}
 			
 			// Otherwise the question is neutral (note that this will pick up correct="neutral" too)
 			return 0;
