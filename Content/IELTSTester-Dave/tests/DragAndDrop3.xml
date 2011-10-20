@@ -28,6 +28,8 @@
 					<answer correct="true" source="count1" />
 					<answer correct="true" source="count2" />
 					<answer correct="true" source="count3" />
+					<answer correct="true" source="count4" />
+					<answer correct="true" source="count5" />
 					<answer correct="false" source="nocount1" />
 					<answer correct="false" source="nocount2" />
 					<answer correct="false" source="nocount3" />
@@ -41,6 +43,8 @@
 					<answer correct="false" source="count1" />
 					<answer correct="false" source="count2" />
 					<answer correct="false" source="count3" />
+					<answer correct="false" source="count4" />
+					<answer correct="false" source="count5" />
 					<answer correct="true" source="nocount1" />
 					<answer correct="true" source="nocount2" />
 					<answer correct="true" source="nocount3" />
@@ -69,6 +73,8 @@
 			<span id="count2" draggable="true">lemons</span>
 			<span id="count3" draggable="true">apples</span>
 			<span id="nocount7" draggable="true">sugar</span>
+			<span id="count4" draggable="true">dog</span>
+			<span id="count5" draggable="true">cat</span>
 		</section>
 		
 		<section id="body">
