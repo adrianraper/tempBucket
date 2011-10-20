@@ -154,7 +154,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				
 				// Remove any existing classes and add the result class
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
-				XHTML.addClass(answerNode, answer.result);
+				XHTML.addClass(answerNode, answer.markingClass);
 				
 				// Refresh the element and update the screen
 				TLFUtil.markFlowElementFormatChanged(answerElement);

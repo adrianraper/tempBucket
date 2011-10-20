@@ -66,7 +66,7 @@ package com.clarityenglish.bento.model {
 		 * @param key
 		 */
 		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
-			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.result, answer.score);
+			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 			
 			// If delayed marking is off and this is the first answer for the question record this seperately
 			// if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;

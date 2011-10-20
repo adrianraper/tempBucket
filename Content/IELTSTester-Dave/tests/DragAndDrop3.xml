@@ -30,21 +30,9 @@
 					<answer correct="true" source="count3" />
 					<answer correct="true" source="count4" />
 					<answer correct="true" source="count5" />
-					<answer correct="false" source="nocount1" />
-					<answer correct="false" source="nocount2" />
-					<answer correct="false" source="nocount3" />
-					<answer correct="false" source="nocount4" />
-					<answer correct="false" source="nocount5" />
-					<answer correct="false" source="nocount6" />
-					<answer correct="false" source="nocount7" />
 				</DragQuestion>
 				
 				<DragQuestion source="{#q2Block input}">
-					<answer correct="false" source="count1" />
-					<answer correct="false" source="count2" />
-					<answer correct="false" source="count3" />
-					<answer correct="false" source="count4" />
-					<answer correct="false" source="count5" />
 					<answer correct="true" source="nocount1" />
 					<answer correct="true" source="nocount2" />
 					<answer correct="true" source="nocount3" />

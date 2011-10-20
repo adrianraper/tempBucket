@@ -40,6 +40,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public override function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.QUESTION_ANSWERED,
+				BBNotifications.SHOW_ANSWERS,
 			]);
 		}
 		
@@ -55,6 +56,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					
 					if (!note.getBody().delayedMarking)
 						view.markAnswerMap(question, answerMap);
+					
+					break;
+				case BBNotifications.SHOW_ANSWERS:
 					
 					break;
 			}

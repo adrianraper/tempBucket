@@ -11,6 +11,8 @@
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
+		public static const SHOW_ANSWERS:String = "show_answers";
+		
 	}
 	
 }

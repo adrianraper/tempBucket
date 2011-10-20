@@ -21,29 +21,29 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			if (xml.hasOwnProperty("@score"))
 				return xml.@score;
 			
-			// Otherwise we use the @correct properties (true is +1, false is -1)
+			// Otherwise if @correct is true, then the score is +1
 			if (xml.hasOwnProperty("@correct"))
 				if (xml.@correct == "true")
 					return 1;
 			
-			// Otherwise the question is neutral (note that this will pick up correct="neutral" too)
+			// Otherwise there is no score
 			return 0;
 		}
 		
 		/**
-		 * As well as a numerical score we can use 'result' to return a constant CORRECT, INCORRECT or NEUTRAL.  This is more
-		 * convenient in some use cases.
+		 * When marking this defines the CSS class that is applied to the answer.
 		 * 
 		 * @return 
 		 */
-		public function get result():String {
+		public function get markingClass():String {
 			if (score > 0)
 				return CORRECT;
 			
 			if (score < 0)
 				return INCORRECT;
 			
-			return NEUTRAL;
+			// If score is 0 then the marking class can be either neutral or incorrect based on the value of @correct
+			return (xml.hasOwnProperty("@correct") && xml.@correct == "neutral") ? NEUTRAL : INCORRECT;
 		}
 		
 		public function toXMLString():String {

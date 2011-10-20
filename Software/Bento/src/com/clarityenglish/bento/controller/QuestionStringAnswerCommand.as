@@ -24,27 +24,27 @@ package com.clarityenglish.bento.controller {
 			var answerString:String = note.getBody().answerString;
 			var key:Object = note.getBody().key;
 			
-			var textAnswer:TextAnswer = new TextAnswer(<Answer value={answerString} score={getScore(question, answerString)} />);
+			var textAnswer:TextAnswer = getTextAnswer(question, answerString);
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
 			exerciseProxy.questionAnswer(question, textAnswer, key);
 		}
 		
 		/**
-		 * Get the score for this text question
+		 * If the entered text already exists as a predefined answer return that, or create a blank one.
 		 * 
 		 * @param question
 		 * @param answerString
 		 * @return 
 		 */
-		private function getScore(question:Question, answerString:String):int {
+		private function getTextAnswer(question:Question, answerString:String):TextAnswer {
 			for each (var textAnswer:TextAnswer in question.answers) {
 				if (answerString == textAnswer.value) {
-					return textAnswer.score;
+					return textAnswer;
 				}
 			}
 			
-			return 0;
+			return new TextAnswer(<Answer value={answerString} />);
 		}
 		
 	}

@@ -61,7 +61,10 @@ a.correct, input.correct, g.correct {
 	color: #00AA00 !important;
 }
 
-a.neutral, input.neutral,
 a.incorrect, input.incorrect {
 	color: #AA0000 !important;
+}
+
+a.neutral, input.neutral {
+	color: #0000AA !important;
 }
