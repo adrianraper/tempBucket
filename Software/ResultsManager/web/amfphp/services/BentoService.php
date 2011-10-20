@@ -179,7 +179,8 @@ class BentoService extends AbstractService {
 	// Assume that dbHost is handled in config.php
 	// Assume, for now, that rootID and productCode were put into session variables by getAccountDetails
 	// otherwise they need to be passed with every call.
-	function startUser($username, $studentID, $email, $password, $loginOption, $instanceID) {
+	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
+	function login($loginObj, $loginOption, $instanceID) {
 	
 		$errorObj = array("errorNumber" => 0);
 		
@@ -191,7 +192,20 @@ class BentoService extends AbstractService {
 								 User::USER_TYPE_AUTHOR,
 								 User::USER_TYPE_LEARNER,
 								 User::USER_TYPE_REPORTER);
-								 
+
+		// Pull out the relevant login details from the passed object
+		// LoginOption controls what fields you use to login with.
+		// TODO. make it use constants.
+		if ($loginOption==1) {
+			if (isset($loginObj['username'])) {
+				$username = $loginObj['username'];
+				$studentID=null;
+				$email=null;
+			}
+		}
+		if (isset($loginObj['password']))
+			$password = $loginObj['password'];
+			
 		// First, confirm that the user details are correct
 		// This might return an error object or a user object		 
 		$userObj = $this->loginOps->getUser($username, $studentID, $email, $password, $loginOption, $allowedUserTypes, $rootID, $productCode);
@@ -205,7 +219,7 @@ class BentoService extends AbstractService {
 		
 		// Then get the group that this user belongs to.
 		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
-		$groupObj = $this->loginOps->getGroup($userID);
+		$groupObj = $this->loginOps->getGroup($user->id);
 		// This might return an error object or a group object		 
 		if (isset($groupObj['errorNumber'])) {
 			return array("error" => $groupObj);
@@ -218,7 +232,7 @@ class BentoService extends AbstractService {
 		$group->addManageables(array($user));
 				
 		// Next we need to set the instance ID for the user
-		$rc = $this->loginOps->setInstanceID($userID, $instanceID);
+		$rc = $this->loginOps->setInstanceID($user->id, $instanceID);
 		if (!$rc) {
 			$errorObj['errorNumber']=100; 
 			$errorObj['errorContext']="Can't set the instance ID for the user $userID";

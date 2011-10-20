@@ -30,40 +30,28 @@ package com.clarityenglish.common.model {
 			logout();
 		}
 		
-		public function login(username:String, password:String):void {
-			// The rootID can optionally be defined in FlashVars (in fact this will always be done in the live application, but leave
-			// it optional to make testing easier - if the rootID is not defined then get it for the logged in user.  In the event that
-			// there is more than one user with the given username/password in different roots the login will fail with a message to
-			// that effect.
-			var params:Array = [ username, password ];
-			if (FlexGlobals.topLevelApplication.parameters.rootID) {
-				params.push(new Number(FlexGlobals.topLevelApplication.parameters.rootID));
-			} else {
-				// Just push a null if it hasn't been passed
-				params.push(null);
+		public function login(key:String, password:String):void {
+			
+			// getAccountSettings will already have established rootID and productCode
+			// The parameters you pass are controlled by loginOption
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var loginOption:uint = configProxy.getAccount().loginOption;
+			if (loginOption==1) {
+				var loginObj:Object = {username:key, password:password};
+			} else if (loginOption==2) {
+				loginObj = {studentID:key, password:password};
 			}
-			// v3.4 If you pass dbHost, the backend wants to know it. But by the time you can read from here, it is too late.
-			// So we will have to stick to session variables.
-			/*
-			if (Application.application.parameters.dbHost) {
-				params.push(new Number(Application.application.parameters.dbhost));
-			} else {
-				// Just push a null if it hasn't been passed
-				params.push(null);
-			}
-			// v3.1 If you pass a productCode, then limit account information to that product
-			// I think this is not used at all in the backend.
-			if (Application.application.parameters.productCode) {
-				params.push(new Number(Application.application.parameters.productCode));
-			} else {
-				// Just push a null if it hasn't been passed
-				params.push(null);
-			}
-			*/
-			// I think that for now I don't have RemoteDelegate working - so fake a return
-			//new RemoteDelegate("login", params, this).execute();
-			trace("In LoginProxy calling RemoteDelegate");
-			onDelegateResult("login", {status:"success", user:{id:"10159", name:username}, languageCode:"EN"});
+			
+			// Create a unique number to use as an instance ID, and save it in the config object
+			var instanceID:Number = new Date().getTime();
+			configProxy.getConfig().instanceID = instanceID;
+			
+			// Off to the database
+			var params:Array = [ loginObj, loginOption, instanceID ];
+			new RemoteDelegate("login", params, this).execute();
+			//trace("In LoginProxy calling RemoteDelegate");
+			//onDelegateResult("login", {status:"success", user:{id:"10159", name:username}, languageCode:"EN"});
 		}
 		
 		public function logout():void {

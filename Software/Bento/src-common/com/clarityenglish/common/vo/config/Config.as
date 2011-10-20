@@ -1,7 +1,7 @@
 package com.clarityenglish.common.vo.config {
 	//import com.clarityenglish.common.vo.config.Licence;
-	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	/**
@@ -29,6 +29,7 @@ package com.clarityenglish.common.vo.config {
 		public var action:String;
 		public var remoteGateway:String;
 		public var remoteService:String;
+		public var instanceID:Number;
 		
 		// TODO: Or should this be a BentoError object?
 		public var error:BentoError;

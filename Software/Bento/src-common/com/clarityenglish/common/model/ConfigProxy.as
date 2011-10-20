@@ -134,6 +134,10 @@ package com.clarityenglish.common.model {
 		public function getAccount():Account {
 			return config.account;
 		}
+		// Is it OK to just get the config object?
+		public function getConfig():Config {
+			return config;
+		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{

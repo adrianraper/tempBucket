@@ -287,7 +287,7 @@ class AccountOps {
 				if ($detail['productCode']=='') {
 					$relevantAttributes[] = $detail;
 				} else {
-					$codes = implode(',',$detail['productCode']);
+					$codes = explode(',',$detail['productCode']);
 					foreach ($codes as $code) {
 						if ($code==$productCode) {
 							$relevantAttributes[] = $detail;
