@@ -80,7 +80,7 @@ class AbstractService {
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
 			$function_called == "getContent" ||
-			$function_called == "getRMSettings"
+			$function_called == "getAccountSettings"
 			) return true;
 		
 		// If the user isn't authenticated then fail
