@@ -80,7 +80,7 @@ package com.clarityenglish.ielts.view.login {
 		}
 
 		public function showInvalidLogin():void {
-			Alert("Sorry, that name or password are wrong.");
+			Alert.show("Sorry, that name or password are wrong.","Login problem");
 		}
 
 		public function clearData():void {

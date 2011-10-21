@@ -4,6 +4,7 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.common.vo.manageable.Group;
 	
 	import mx.core.Application;
 	import mx.core.FlexGlobals;
@@ -21,6 +22,7 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "LoginProxy";
 		
 		public var _user:User;
+		public var _group:Group;
 
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
@@ -64,14 +66,20 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "login":
 					if (data) {
-						// Successful login
-						CopyProxy.languageCode = data.languageCode as String;
-						
-						// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
-						_user = new User();
-						_user.buildUser(data.user);
-						
-						sendNotification(CommonNotifications.LOGGED_IN, data);
+						// First need to see if the return has an error
+						if (data.error && data.error.errorNumber>0) {
+							sendNotification(CommonNotifications.INVALID_LOGIN);
+						} else {
+							// Successful login
+							// This should have been set in configProxy
+							//CopyProxy.languageCode = data.languageCode as String;
+							
+							// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
+							_user = new User();
+							_user.buildUser(data.group.manageables[0]);
+							
+							sendNotification(CommonNotifications.LOGGED_IN, data);
+						}
 					} else {
 						// Invalid login
 						sendNotification(CommonNotifications.INVALID_LOGIN);

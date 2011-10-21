@@ -190,48 +190,38 @@ class BentoService extends AbstractService {
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,
 								 User::USER_TYPE_AUTHOR,
-								 User::USER_TYPE_LEARNER,
+								 User::USER_TYPE_STUDENT,
 								 User::USER_TYPE_REPORTER);
 
-		// Pull out the relevant login details from the passed object
-		// LoginOption controls what fields you use to login with.
-		// TODO. make it use constants.
-		if ($loginOption==1) {
-			if (isset($loginObj['username'])) {
-				$username = $loginObj['username'];
-				$studentID=null;
-				$email=null;
-			}
-		}
-		if (isset($loginObj['password']))
-			$password = $loginObj['password'];
-			
 		// First, confirm that the user details are correct
-		// This might return an error object or a user object		 
-		$userObj = $this->loginOps->getUser($username, $studentID, $email, $password, $loginOption, $allowedUserTypes, $rootID, $productCode);
-		if (isset($userObj['errorNumber'])) {
-			return array("error" => $userObj);
-		} else {
+		// This might return an error object or a user object
+		try {
+			$userObj = $this->loginOps->login($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		//if (isset($userObj['errorNumber'])) {
+		//	return array("error" => $userObj);
+		//} else {
 			Session::set('userID', $userObj->F_UserID);
+			Session::set('userType', $userObj->F_UserType);
 			$user = new User();
-			$user->fromDatabaseObject($userObj);
-		}
+			$user->fromDatabaseObj($userObj);
+		//}
 		
-		// Then get the group that this user belongs to.
+		// That call also gave us the groupID
 		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
-		$groupObj = $this->loginOps->getGroup($user->id);
+		$groupObj = $this->loginOps->getGroup($userObj->groupID);
 		// This might return an error object or a group object		 
-		if (isset($groupObj['errorNumber'])) {
-			return array("error" => $groupObj);
-		} else {
-			$group = new Group();
-			$group->fromDatabaseObject($groupObj);
-		}
+		$group = new Group();
+		$group->fromDatabaseObj($groupObj);
 		
 		// Add the user into the group
 		$group->addManageables(array($user));
 				
-		// Next we need to set the instance ID for the user
+		// Next we need to set the instance ID for the user in the database
 		$rc = $this->loginOps->setInstanceID($user->id, $instanceID);
 		if (!$rc) {
 			$errorObj['errorNumber']=100; 
@@ -240,19 +230,19 @@ class BentoService extends AbstractService {
 		}
 		
 		// General config information - though you don't know which course they are going to start yet
-		$contentObj = $this->loginOps->getBookmark($userID, $productCode);
+		//$contentObj = $this->loginOps->getBookmark($userID, $productCode);
 		// This might return an error object or a group object		 
-		if (isset($contentObj['errorNumber'])) {
-			return array("error" => $contentObj);
-		} else {
+		//if (isset($contentObj['errorNumber'])) {
+		//	return array("error" => $contentObj);
+		//} else {
 			// TODO. What is a good format for sending back bookmark information?
 			// For now I will just expect an array of courseIDs that this user has started so that
 			// you can use them in licence control.
-		}
+		//}
 		
 		// Send this information back
 		return array("error" => $errorObj,
-					"group" => $groupObj,
+					"group" => $group,
 					"content" => $contentObj);
 		
 	}

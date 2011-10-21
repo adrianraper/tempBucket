@@ -11,7 +11,24 @@ class LoginOps {
 		$this->manageableOps = new ManageableOps($db);
 	}
 	
-	function login($username, $password, $userTypes, $rootID, $productCode = null) {
+	// Bento login has different options than RM
+	//function login($username, $password, $userTypes, $rootID, $productCode = null) {
+	function login($loginObj, $loginOption, $userTypes, $rootID, $productCode = null) {
+		
+		// Pull out the relevant login details from the passed object
+		// loginOption controls what fields you use to login with.
+		// TODO. make it use constants.
+		// TODO. The code below ONLY uses username at the moment
+		if ($loginOption==1) {
+			if (isset($loginObj['username'])) {
+				$key = 'username';
+				$keyValue = $loginObj['username'];
+			}
+		}
+		if (isset($loginObj['password']))
+			$password = $loginObj['password'];
+			
+		
 		// Network version. SQLite can't cope with this query. RIGHT and FULL OUTER JOINs are not currently supported.
 		// I suspect that for a network login it can be made simpler as there will only be 1 root.
 		// v3.4.1 Need to pass back name to pick up 'correct' capitalisation
@@ -39,7 +56,7 @@ EOD;
 			// TODO: This currently binds the language to productCode=2 (RM) but we'll want to make this configurable when we add more products)
 			// AR I also want to know the login user's ID back in RM. Hmm, I think I was able to pick this up anyway without it being in the selectFields. How?
 			// No, I don't think it was being properly passed. Anyway, it is now.
-			$selectFields = array("g.F_GroupID",
+			$selectFields = array("g.F_GroupID as groupID",
 								  "m.F_RootID",
 								  "u.F_UserType",
 								  "u.F_UserName",
@@ -48,17 +65,6 @@ EOD;
 								  $this->db->SQLDate("Y-m-d H:i:s", "u.F_StartDate")." UserStartDate",
 								  $this->db->SQLDate("Y-m-d H:i:s", "u.F_ExpiryDate")." UserExpiryDate");
 								  
-			// Only add in the titles fields if $productCode is specified (i.e. this is not DMS)
-			if ($productCode) { 
-				$selectFields = array_merge($selectFields, 
-									  array($this->db->SQLDate("Y-m-d H:i:s", "a.F_ExpiryDate")." ProductExpiryDate",
-											"a.F_LanguageCode",
-											"a.F_MaxTeachers",
-											"a.F_MaxAuthors", 
-											"a.F_MaxReporters",
-											"a.F_LicenceType"));
-			}
-			
 			$sql  = "SELECT ".join(",", $selectFields);
 			$sql .=	<<<EOD
 					FROM T_User u LEFT JOIN 
@@ -66,33 +72,23 @@ EOD;
 					T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
 EOD;
 			
-			// Only add in the titles fields if $productCode is specified (i.e. this is not DMS)
-			if ($productCode) {
-				$sql .=	<<<EOD
-						RIGHT JOIN
-							(SELECT F_RootID, F_LanguageCode, F_MaxTeachers, F_MaxAuthors, F_MaxReporters, F_ExpiryDate, F_LicenceType
-							FROM T_Accounts
-							WHERE F_ProductCode = ?) a ON a.F_RootID = m.F_RootID
-EOD;
-			}
-			
+			// Check password in the code afterwards
+			//		AND u.F_Password=?
 			$sql .=	<<<EOD
 					WHERE u.F_UserName=?
-					AND u.F_Password=?
 EOD;
 			
 			// Construct the allowed login types into an SQL string and add it to the end of the query
 			$userTypesSQL = array();
-				foreach ($userTypes as $userType)
-					$userTypesSQL[] = "u.F_UserType=$userType";
+			foreach ($userTypes as $userType)
+				$userTypesSQL[] = "u.F_UserType=$userType";
 			$sql .= " AND (".implode(" OR ", $userTypesSQL).")";
 		
 		}		
 		// Create the binding parameters
-		$bindingParams = array($username, $password);
-		
-		// Only add in the titles productcode binding if $productCode is specified (i.e. this is not DMS)
-		if ($productCode) array_unshift($bindingParams, $productCode);
+		//$bindingParams = array($username, $password);
+		//$bindingParams = array($keyValue, $password);
+		$bindingParams = array($keyValue);
 		
 		if ($rootID != null) {
 			$sql.= "AND m.F_RootID=?";
@@ -107,13 +103,26 @@ EOD;
 		switch ($rs->RecordCount()) {
 			case 0:
 				// Invalid login
-				return false;
+				// Bento requires an error object as explanation
+				throw new Exception("No such user", 100);
+				//$errorObj['errorNumber']=100; 
+				//$errorObj['errorContext']='No such user';
+				//return $errorObj;
+				
+				//return false;
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
 		
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
-				if ($password != $loginObj->F_Password) return false;
+				if ($password != $loginObj->F_Password) {
+					//return false;
+					// If I do this as an Exception - can I catch it in BentoService? Yes
+					throw new Exception("Wrong password", 100);
+					//$errorObj['errorNumber']=100; 
+					//$errorObj['errorContext']='Wrong password';
+					//return $errorObj;
+				}
 				
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
 				// AR Some users have NULL expiry date, so this will throw an exception, so add an extra condition to test for this
@@ -121,35 +130,91 @@ EOD;
 				if ($loginObj->UserExpiryDate && ($loginObj->UserExpiryDate > '2038')) $loginObj->UserExpiryDate = '2038-01-01';
 				if ($loginObj->UserExpiryDate && 
 						(strtotime($loginObj->UserExpiryDate) > 0) && 
-						(strtotime($loginObj->UserExpiryDate) < strtotime(date("Y-m-d"))))
+						(strtotime($loginObj->UserExpiryDate) < strtotime(date("Y-m-d")))) {
 					//throw new Exception($this->copyOps->getCopyForId("userExpiredError", array("date" => $loginObj->UserExpiryDate), "EN"));
-					throw new Exception("Your user account expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)));
-				
-				// Check if the product has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
+					//throw new Exception("Your user account expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)));
+					throw new Exception("User account has expired", 100);
+					//$errorObj['errorNumber']=100; 
+					//$errorObj['errorContext']='User account has expired';
+					//return $errorObj;
+				}
+
+				// Bento - this check will have been done in getAccountSettings
+/*				// Check if the product has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
 				// It seems that copyOps not yet loaded? But this should do it as required, right?
 				if ($loginObj->ProductExpiryDate && ($loginObj->ProductExpiryDate > '2038')) $loginObj->ProductExpiryDate = '2038-01-01';
 				if ($loginObj->ProductExpiryDate && 
 						(strtotime($loginObj->ProductExpiryDate) < strtotime(date("Y-m-d"))))
 					//throw new Exception($this->copyOps->getCopyForId("productExpiredError", array("date" => $loginObj->ProductExpiryDate, "EN")));
 					throw new Exception("Your Results Manager expired on ".date("d M Y", strtotime($loginObj->ProductExpiryDate)));
-				
+*/				
 				// Authenticate the user with the session
 				Authenticate::login($username, $loginObj->F_UserType);
 				
 				// Store information about this login in the session
-				Session::set('userID', $loginObj->F_UserID);
-				Session::set('userType', $loginObj->F_UserType);
+				// No, do this in BentoService now
+				//Session::set('userID', $loginObj->F_UserID);
+				//Session::set('userType', $loginObj->F_UserType);
 
 				// Return the loginObj so the specific service can continue with whatever action it likes
 				return $loginObj;
 				
 			default:
-				// Something is wrong with the database
-				throw new Exception("Multiple users were returned from this login or there are multiple 'Results Manager' titles registered to this account.");
+				// More than one user with this name/password
+				//throw new Exception("Multiple users were returned from this login or there are multiple 'Results Manager' titles registered to this account.");
+				throw new Exception("More than one user matches these details", 100);
+				//$errorObj['errorNumber']=100; 
+				//$errorObj['errorContext']='More than one user matches these details';
+				//return $errorObj;
 		}
 		
 	}
 
+	/**
+	 * 
+	 * This function gets a group record
+	 * @param Number $groupID
+	 */
+	function getGroup($groupID) {
+		$sql = "SELECT * FROM T_GroupStructure WHERE F_GroupID=?";
+		$rs = $this->db->Execute($sql, array($groupID));
+		if ($rs)
+			return $rs->FetchNextObj();
+	}
+	
+	/**
+	 * 
+	 * This function updates a user record with an instance ID
+	 * @param Number $instanceID
+	 */
+	function setInstanceID($userID, $instanceID) {
+		
+		// TODO. This seems messy to do it here rather than in config.php
+		// But it isn't actually very important so leave here for now.
+		// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+			$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+			$ip = $ipList[0];
+		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
+		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+			$ip = $_SERVER["HTTP_CLIENT_IP"];
+		} else {
+			$ip = $_SERVER["REMOTE_ADDR"];
+		}
+		$sql .=	<<<EOD
+				UPDATE T_USER u					
+				SET u.F_UserIP=?, u.F_LicenceID=? 
+				WHERE u.F_UserID=?
+EOD;
+		$bindingParams = array($ip, $instanceID, $userID);
+		$resultObj = $this->db->Execute($sql, $bindingParams);
+		if ($resultObj)
+			return true;
+		return false;
+	}
+	
 	// v3.2 A simplified login which is for identification rather than authentication purposes
 	// Not used yet.
 	/*

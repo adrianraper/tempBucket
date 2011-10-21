@@ -144,6 +144,8 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "getAccountSettings":
 					if (data) {
+						// TODO. We should be able to set the language code for 
+						//CopyProxy.languageCode = data.languageCode as String;
 						/*
 						We will get back the following objects in data
 						account
