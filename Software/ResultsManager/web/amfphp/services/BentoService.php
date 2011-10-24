@@ -78,67 +78,28 @@ class BentoService extends AbstractService {
 	 */
 	function getAccountSettings($config) {
 	
+		// All errors are caught with an exception handler. This includes expected
+		// errors such as incorrect password, data errors such as no account
+		// and unexpected errors such as no database connection.
 		$errorObj = array("errorNumber" => 0);
-		
-		// Send the passed data through to the SQL
-		if (isset($config['productCode'])) {
-			$productCode = $config['productCode'];
-		} else {
-			$errorObj['errorNumber']=100; // Need a generalised db error number
-			$errorObj['errorContext']='No productCode sent to getAccountSettings';
-			// Can I throw an Exception that will be caught the moment I find an error?
-			// Or just return here?
-			return array("error" => $errorObj);
-		}
-		// RootID is more important than prefix.
-		if (isset($config['rootID'])) {
-			$rootID = $config['rootID'];
-			
-		// TODO. At present getAccounts can only cope with rootID not prefix. That should be OK
-		//} else if (isset($config['prefix'])) {
-		//	$prefix = $config['prefix'];
-		
-		} else {
-			$errorObj['errorNumber']=100; // Need a generalised db error number
-			$errorObj['errorContext']='No rootID sent to getAccountSettings';
-			return array("error" => $errorObj);
-		}
-		
-		// Query the database
-		// First get the record from T_AccountRoot and T_Accounts
-		$conditions = array("productCode" => $productCode);
-		$accounts = $this->accountOps->getAccounts(array($rootID), $conditions);
-		
-		// It would be an error to have more or less than one account
-		if (count($accounts)==1) {
-			$account = $accounts[0];
-		} else if (count($accounts)>1) {
-			$errorObj['errorNumber']=100; 
-			$errorObj['errorContext']="More than one account with rootID $rootID";
-			return array("error" => $errorObj);
-		} else {
-			$errorObj['errorNumber']=100; 
-			$errorObj['errorContext']="No account with rootID $rootID";
-			return array("error" => $errorObj);
-		}
-		
-		// It would also be an error to have more or less than one title in that account
-		if (count($account->titles)>1) {
-			$errorObj['errorNumber']=100;
-			$errorObj['errorContext']="More than one title with productCode $productCode";
-			return array("error" => $errorObj);
-		} else if (count($accounts)==0) {
-			$errorObj['errorNumber']=100; 
-			$errorObj['errorContext']="No title with productCode $productCode in rootID $rootID";
-			return array("error" => $errorObj);
-		} 
-		
-		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
-		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));
+		try {
+			// Not sure where the following function should go - AccountOps or LoginOps
+			// For now I will put it in LoginOps
+			if (isset($config['rootID'])) 
+				$rootID = $config['rootID'];
+			if (isset($config['productCode'])) 
+				$productCode = $config['productCode'];
+			$account = $this->loginOps->getAccountSettings($rootID, $productCode);
+						
+			// We also need some misc stuff.
+			$configObj = array("databaseVersion" => $this->getDatabaseVersion());
 
-		// We also need some misc stuff.
-		$configObj = array("databaseVersion" => $this->getDatabaseVersion());
-
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $rootID);
 		Session::set('productCode', $productCode);
@@ -182,63 +143,58 @@ class BentoService extends AbstractService {
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
 	function login($loginObj, $loginOption, $instanceID) {
 	
+		// All errors are caught with an exception handler. This includes expected
+		// errors such as incorrect password, data errors such as no account
+		// and unexpected errors such as no database connection.
 		$errorObj = array("errorNumber" => 0);
-		
-		$rootID = Session::get('rootID');
-		$productCode = Session::get('productCode');
-	
-		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
-								 User::USER_TYPE_ADMINISTRATOR,
-								 User::USER_TYPE_AUTHOR,
-								 User::USER_TYPE_STUDENT,
-								 User::USER_TYPE_REPORTER);
-
-		// First, confirm that the user details are correct
-		// This might return an error object or a user object
 		try {
+				
+			$rootID = Session::get('rootID');
+			$productCode = Session::get('productCode');
+		
+			$allowedUserTypes = array(User::USER_TYPE_TEACHER,
+									 User::USER_TYPE_ADMINISTRATOR,
+									 User::USER_TYPE_AUTHOR,
+									 User::USER_TYPE_STUDENT,
+									 User::USER_TYPE_REPORTER);
+			// First, confirm that the user details are correct
 			$userObj = $this->loginOps->login($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
+			$user = new User();
+			$user->fromDatabaseObj($userObj);
+			
+			// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
+			Session::set('userID', $userObj->F_UserID);
+			Session::set('userType', $userObj->F_UserType);
+			
+			// That call also gave us the groupID
+			// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
+			$groupObj = $this->loginOps->getGroup($userObj->groupID);
+			// This might return an error object or a group object		 
+			$group = new Group();
+			$group->fromDatabaseObj($groupObj);
+			
+			// Add the user into the group
+			$group->addManageables(array($user));
+					
+			// Next we need to set the instance ID for the user in the database
+			$rc = $this->loginOps->setInstanceID($user->userID, $instanceID);
+			
+			// Content information - though you don't know which course they are going to start yet
+			// you can still send back hiddenContent information and bookmarks
+			// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
+			// although maybe we need the full is of parent groups in here too.
+			Session::set('valid_groupIDs', array($group->id));
+			$contentObj = $this->contentOps->getHiddenContent($productCode);
+			
+			// TODO. What is a good format for sending back bookmark information?
+			// For now I will just expect an array of courseIDs that this user has started so that
+			// you can use them in licence control.
+			
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
 			return array("error" => $errorObj);
 		}
-		//if (isset($userObj['errorNumber'])) {
-		//	return array("error" => $userObj);
-		//} else {
-			Session::set('userID', $userObj->F_UserID);
-			Session::set('userType', $userObj->F_UserType);
-			$user = new User();
-			$user->fromDatabaseObj($userObj);
-		//}
-		
-		// That call also gave us the groupID
-		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
-		$groupObj = $this->loginOps->getGroup($userObj->groupID);
-		// This might return an error object or a group object		 
-		$group = new Group();
-		$group->fromDatabaseObj($groupObj);
-		
-		// Add the user into the group
-		$group->addManageables(array($user));
-				
-		// Next we need to set the instance ID for the user in the database
-		$rc = $this->loginOps->setInstanceID($user->id, $instanceID);
-		if (!$rc) {
-			$errorObj['errorNumber']=100; 
-			$errorObj['errorContext']="Can't set the instance ID for the user $userID";
-			return array("error" => $errorObj);
-		}
-		
-		// General config information - though you don't know which course they are going to start yet
-		//$contentObj = $this->loginOps->getBookmark($userID, $productCode);
-		// This might return an error object or a group object		 
-		//if (isset($contentObj['errorNumber'])) {
-		//	return array("error" => $contentObj);
-		//} else {
-			// TODO. What is a good format for sending back bookmark information?
-			// For now I will just expect an array of courseIDs that this user has started so that
-			// you can use them in licence control.
-		//}
 		
 		// Send this information back
 		return array("error" => $errorObj,

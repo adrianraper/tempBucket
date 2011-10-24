@@ -11,7 +11,8 @@ class ContentOps {
 		$this->manageableOps = new ManageableOps($this->db);
 	}
 	
-	function getHiddenContent() {
+	// Add optional productCode to allow this to work more efficently with Bento
+	function getHiddenContent($productCode=null) {
 		if (!Session::is_set('valid_groupIDs'))
 			throw new Exception("Unable to get hidden content until manageables have been read for the first time.");
 		
@@ -20,11 +21,17 @@ class ContentOps {
 		AuthenticationOps::authenticateGroupIDs($groupIDArray);
 		
 		$groupIdInString = join(",", $groupIDArray);
-		
+
+		if ($productCode) {
+			$whereClause = " AND F_ProductCode=$productCode ";
+		} else {
+			$whereClause = '';
+		}
 		$sql = 	<<<EOD
 				SELECT F_GroupID, F_ProductCode, F_CourseID, F_UnitID, F_ExerciseID, F_EnabledFlag
 				FROM T_HiddenContent
 				WHERE F_GroupID IN ($groupIdInString)
+				$whereClause
 				ORDER BY F_GroupID
 EOD;
 		

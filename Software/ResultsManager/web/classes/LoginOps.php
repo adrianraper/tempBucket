@@ -9,6 +9,7 @@ class LoginOps {
 		
 		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($db);
+		$this->accountOps = new AccountOps($db);
 	}
 	
 	// Bento login has different options than RM
@@ -212,7 +213,7 @@ EOD;
 		$resultObj = $this->db->Execute($sql, $bindingParams);
 		if ($resultObj)
 			return true;
-		return false;
+		throw new Exception("Can't set the instance ID for the user $userID", 100);
 	}
 	
 	// v3.2 A simplified login which is for identification rather than authentication purposes
@@ -396,6 +397,51 @@ EOD;
 		}
 		*/
 	}
-	
+	/**
+	 * 
+	 * Before you login a user, you need to find things like loginOptions from the account.
+	 * @param Number productCode
+	 * @param Number rootID
+	 */
+	function getAccountSettings($rootID=null, $productCode=null) {
+		
+		// Check data
+		if (!$productCode)
+			throw new Exception("No productCode sent to getAccountSettings", 100);
+		
+		// RootID is more important than prefix.
+		// TODO. At present getAccounts can only cope with rootID not prefix. 
+		// That should be OK short term, but for max flexibility we should also be able to query from prefix.
+		//} else if (isset($config['prefix'])) {
+		//	$prefix = $config['prefix'];
+		if (!$rootID)
+			throw new Exception("No rootID sent to getAccountSettings", 100);
+		
+		// Query the database
+		// First get the record from T_AccountRoot and T_Accounts
+		$conditions = array("productCode" => $productCode);
+		$accounts = $this->accountOps->getAccounts(array($rootID), $conditions);
+		
+		// It would be an error to have more or less than one account
+		if (count($accounts)==1) {
+			$account = $accounts[0];
+		} else if (count($accounts)>1) {
+			throw new Exception("More than one account with rootID $rootID", 100);
+		} else {
+			throw new Exception("No account with rootID $rootID", 100);
+		}
+		
+		// It would also be an error to have more or less than one title in that account
+		if (count($account->titles)>1) {
+			throw new Exception("More than one title with productCode $productCode", 100);
+		} else if (count($accounts)==0) {
+			throw new Exception("No title with productCode $productCode in rootID $rootID", 100);
+		} 
+		
+		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
+		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));
+
+		return $account;
+	}
 }
 ?>
