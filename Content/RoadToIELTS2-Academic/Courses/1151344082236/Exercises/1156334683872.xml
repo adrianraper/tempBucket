@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a5" correct="false"/><answer source="a6" correct="false"/><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a9" correct="true"/><answer source="a10" correct="false"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a13" correct="false"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/><answer source="a16" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Match Alexandra being interviewed in Part 1 of her test. Decide what she is doing in response to each of the questions. Click to watch the videos.
+		
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit04_e4a.flv" mode="16" id="1003"  /><video class="leftFloat" src="../Media/Unit04_e4b.flv" mode="16" id="1004"  /><video class="leftFloat" src="../Media/Unit04_e4c.flv" mode="16" id="1005"  /><video class="leftFloat" src="../Media/Unit04_e4d.flv" mode="16" id="1006"  /><br/><ol id="questionList"><br/><li id="1">How does Alexandra respond to this question?<ol class="answerList"><li><a id="q1" >She simply answers the question.</a></li><li><a id="q2" >She doesn't understand the question.</a></li><li><a id="q3" >She answers the question and adds more information.</a></li><li><a id="q4" >She answers the question and then talks about something else.</a></li></ol><br/></li><br/><li id="2">What does Alexandra say to this question?<ol class="answerList"><li><a id="q5" >She ignores the question and talks about something else.</a></li><li><a id="q6" >She answers the question.</a></li><li><a id="q7" >She seems to misunderstand the question.</a></li><li><a id="q8" >She needs help in understanding the question.</a></li></ol><br/></li><br/><li id="3">What does she do in response to this question?<ol class="answerList"><li><a id="q9" >She clarifies the question, gives her answer and says why.</a></li><li><a id="q10" >She misunderstands, so she talks about something else.</a></li><li><a id="q11" >She asks for clarification, disagrees and says why.</a></li><li><a id="q12" >She corrects the Examiner and then answers the question.</a></li></ol><br/></li><br/><li id="4">How does Alexandra respond to this question?<ol class="answerList"><li><a id="q13" >She says what she would have liked to do, but has not been able to.</a></li><li><a id="q14" >She doesn't answer the question properly.</a></li><li><a id="q15" >She lists things she would like to do in the future.</a></li><li><a id="q16" >She talks about her goals and what she has done so far to achieve them.</a></li></ol><br/></li></ol>
+</section>
+</body>
+</bento>

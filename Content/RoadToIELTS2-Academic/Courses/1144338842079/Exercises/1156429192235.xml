@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback neutral="true"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/MM_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Reading Passage 1</b></font></p><p align="left"><b>Tuned in and switched off</b>You will read an article describing the effects of television on children and adults.</p><p align="left"><font color="#0000ff"><b>Academic Reading Passage 2</b></font></p><p align="left"><b>Why newspapers will flourish in the years ahead</b>You will read an article explaining why newspapers are not threatened by competition from television or the Internet.</p><p align="left"><font color="#0000ff"><b>Question types</b></font>You will attempt two question types.<u><g id="1">Summary completion</g></u><u><g id="2">Multiple selection</g></u></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left"><font face="verdana" size="13" color="#000000"><b>Summary Completion</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">(Using words from the passage/using words from a box)</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">This is usually the last of the exercises for a given text, so by the time you reach this exercise you should already have a good idea of what the text is about and how it is organised. You are given a short, gapped summary of the main points of the whole text or the main points of an important part of the text. You will be asked to fill the gaps in the summary with words or phrases taken either from the text or from a word box given with the exercise.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">The first thing to do is read the summary once through, without worrying about the gaps. Decide if the summary refers to only a particular section of the text. If so, go directly to that section and read it through again carefully. If, on the other hand, the summary deals with the main points of the whole passage, make a note of how many separate points the summary mentions. Go back to the text, skim through it until you have found these same points and underline or number the relevant parts of the text. Once you have done this, you will find it easier to move back and forth, comparing the summary with the original text. Now you are ready to fill the gaps.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">As with all gap-filling exercises, check the instructions carefully. There will be a limit to the number of words you can use in a gap. Usually this is up to three words, but check this is the case.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">If you have to use words or phrases from the text, make sure that they fit grammatically. The words on either side of the gap will help you understand whether a noun or a verb or a whole phrase is needed. Remember, though, that this is a reading test and not a grammar test. If a single word is needed to fill the gap, you can be sure that it will be a word that carries meaning on its own. In other words, articles, auxiliary verbs and pronouns are not gapped on their own. The missing words are key words in the text.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">If you have to use words from a word box rather than the text, remember that the box contains more words and phrases than you need. Again, the grammar of each sentence in the summary will help you choose the correct word. Don't be tempted to use a word from the box just because you saw the same word in the passage. Some of the words in the box will be taken from the text, but sometimes the words you need to use are synonyms of important words from the passage. Cross off the words as you use them and write them in the gaps on the question paper. Before you finally copy your answers onto the answer sheet, read through the summary and check that what you've written makes sense and agrees with the information in the passage.</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><b>Multiple Selection</b><font color="#0000ff"></font></p><p align="left"><font color="#000000">(Multiple answers with 1 mark each)</font></p><p align="left"></p><p align="left">This is similar to the multiple choice exercise but with two main differences. Firstly, there's usually only one question. Secondly, you have to select more than one correct answer from the list of alternatives. You are given one mark for each correct answer you choose. The instructions will tell you exactly how many items from the list you must choose. This exercise usually summarises the main points of the text and so is often the last of the exercises on a given text.</p><p align="left"></p><p align="left">The first thing to do is to read the list of alternatives carefully and make sure you are clear in your mind about how each item in the list differs from the others. If all the items in the list refer to the same part of the text, you should already know which part of the text has the information. Go straight to the relevant section and read through carefully, ticking off items in the list as you find them.</p><p align="left"></p><p align="left">If the list of options summarises information from the whole the text, then it's best to take a slightly different approach, taking each item in the list in turn. Read the first item in the list and underline key words. You may already recognise which part of the text the words refer to. If not, skim through the text searching for the keywords or words which mean the same. When you've found them, read from the beginning of the previous sentence until the end of the following sentence, keeping in mind the meaning of the whole sentences, not just the words. Is this meaning the same as the first item in the list? If yes, choose this item and move on to the next.</p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="190"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="D " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="F " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="B " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="H " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="A " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Complete each of the statements (Questions 1-5) with the best ending from the list (A-H). Write the appropriate letters A-H against Questions 1-5. There are more endings than statements, so you will not use them all.
+		
+</header>
+	
+<section id="body">
+	<media class="leftFloat" src="../Media/DD_LN2a.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/DD_LN_005.jpg" mode="1" id="1001"  /><p align="left"><b>A</b>	power landmine detectors.B	provide employment for the disabled.C	provide entertainment for the poor.D	improve life for the handicapped.E	power small computers.F	facilitate access to health information.G	support aid projects.H	help people survive in remote areas.</p><p align="left">1.	A lifelong aim of Trevor Baylis has been to <input id="1" width="100" />&#160;</p><ol><li>The original purpose of windup technology was to <input id="2" width="100" /></li><li>One of BayGen's policies is to <input id="3" width="100" /></li><li>One use for the radio in developed countries is to <input id="4" width="100" /></li><li>A future use of the generator might be to <input id="5" width="100" /></li>
+</section>
+<section id="fb1">
+	<p align="left">1. Martin says that Trevor Bayliss has always been interested in designing devices that make life easier for people with physical disabilities, which means the same as improving life for the handicapped.</p>
+</section>
+<section id="rt2001">
+	<p align="left">You should be able to tell from looking at both the numbered sentence halves and those in the box that you will hear someone talking about some kind of technology. If you read carefully you might also be able to see that the technological item is a windup radio, which has more than one application. You could also look ahead to the other exercises and see if they can help, as the talk should continue in the same theme. There is a diagram in the next exercise.&nbsp;Questions 1-5It's not easy to predict the answers to an exercise like this unless you know something about the subject already. So you need to make sure you are familiar with the stems and that you can think of alternative ways in which the information might be presented. For example, A - 'power landmine detectors' could be have 'give power to ...' or 'provide energy for ...' etc. before it.</p>
+</section>
+</body>
+</bento>

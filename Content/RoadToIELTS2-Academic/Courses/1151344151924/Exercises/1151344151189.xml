@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a19" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a20" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a21" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a22" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a23" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a24" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a25" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a27" correct="true"/></DragQuestion><DragQuestion source="q10"><answer source="a28" correct="true"/></DragQuestion><DragQuestion source="q11"><answer source="a29" correct="true"/></DragQuestion><DragQuestion source="q12"><answer source="a30" correct="true"/></DragQuestion><DragQuestion source="q13"><answer source="a31" correct="true"/></DragQuestion><DragQuestion source="q14"><answer source="a32" correct="true"/></DragQuestion><DragQuestion source="q15"><answer source="a33" correct="true"/></DragQuestion><DragQuestion source="q16"><answer source="a34" correct="true"/></DragQuestion><DragQuestion source="q17"><answer source="a35" correct="true"/></DragQuestion><DragQuestion source="q18"><answer source="a36" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences by putting the correct word into each gap.
+</header>
+	
+<section id="noscroll">
+	
+		
+		<span id="a30" draggable="true">immune</span><span id="a23" draggable="true">immunisation</span>
+		<span id="a34" draggable="true">cure</span><span id="a29" draggable="true">inoculated</span>
+		<span id="a20" draggable="true">medicinal</span>
+		
+		
+		<span id="a22" draggable="true">incurable</span><span id="a33" draggable="true">disinfected</span>
+		<span id="a28" draggable="true">cured</span><span id="a19" draggable="true">antiseptic</span>
+		<span id="a26" draggable="true">vaccines</span>
+		
+		
+		<span id="a21" draggable="true">antibiotics</span><span id="a25" draggable="true">bacteria</span>
+		<span id="a27" draggable="true">infectious</span><span id="a32" draggable="true">vaccinate</span>
+		<span id="a36" draggable="true">pathogenic</span>
+		
+		
+		<span id="a35" draggable="true">immunity</span><span id="a31" draggable="true">bacterial</span>
+		<span id="a24" draggable="true">viral</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_TV_005.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Applying <input id="q1" type="droptarget" /> cream to a wound protects again infection.</li><li id="2">Plants have been used for a wide variety of <input id="q2" type="droptarget" /> purposes since ancient times and today many plant extracts are used in the production of modern drugs, among them aspirin and digitalis. </li><li id="3">Nowadays bacterial infections, such as tuberculosis, typhoid fever and scarlet fever, are treated with a course of <input id="q3" type="droptarget" />.</li><li id="4">The transplantation of an organ, such as a kidney, liver or heart, is often the only hope for people suffering from <input id="q4" type="droptarget" /> diseases. </li><li id="5">Smallpox, a highly contagious viral disease, was totally eradicated by the end of the 1970s as the result of a worldwide <input id="q5" type="droptarget" /> programme.</li><li id="6">The common cold, influenza and smallpox are all <input id="q6" type="droptarget" />  infections.</li><li id="7">Before viruses were discovered, people believed that all infectious diseases were caused by <input id="q7" type="droptarget" />.</li><li id="8">Viral infections cannot be treated with antibiotics; the only effective approach is prevention through the use of <input id="q8" type="droptarget" />. </li><li id="9">To avoid contracting <input id="q9" type="droptarget" /> bacterial and viral diseases, such as influenza, pneumonia and tuberculosis, precautions need to be taken around people who are contagious.</li><li id="10">There are millions of people around the world who have survived cancer and who can be regarded as <input id="q10" type="droptarget" />.</li><li id="11">The vast majority of children in the United Kingdom are <input id="q11" type="droptarget" /> against the measles, mumps and rubella viruses before they start school.</li><li id="12">As we age, the <input id="q12" type="droptarget" /> system gradually loses its ability to fight off infections.</li><li id="13">Antibiotics have played a key role in the control of <input id="q13" type="droptarget" /> infections.</li><li id="14">If you <input id="q14" type="droptarget" /> people against influenza, you reduce their chances of contracting the disease. </li><li id="15">Water from an unknown source must be <input id="q15" type="droptarget" /> before it can be considered safe to drink.</li><li id="16">The earlier a disease is diagnosed, the greater the chance of a <input id="q16" type="droptarget" />.</li><li id="17">People who recover from an infectious disease develop natural <input id="q17" type="droptarget" /> to it and, in most cases, will never contract it again. </li><li id="18">Most bacteria perform a variety of useful functions and are harmless. However, approximately 200 species are <input id="q18" type="droptarget" />, that is, they cause diseases in humans.</li></ol>
+</section>
+</body>
+</bento>

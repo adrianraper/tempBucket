@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="false"/><answer source="a8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="true"/><answer source="a10" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="true"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="true"/><answer source="a14" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a15" correct="true"/><answer source="a16" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a17" correct="true"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a19" correct="false"/><answer source="a20" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="a21" correct="true"/><answer source="a22" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="a23" correct="false"/><answer source="a24" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q13"><answer source="a25" correct="true"/><answer source="a26" correct="false"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the report describing the information shown in the graph from Practice Activity A again. Find examples of the two sentence patterns for describing trends. Decide which sentence pattern each of the clauses on the left follows. Click on a or b on the right as appropriate.
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><br/><li id="1">Which sentence pattern does the phrase "there was an overall downward trend" have?<ol class="answerList"><li><a id="q1" >Noun phrase + verb + (adverb)</a></li><li><a id="q2" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="2">Which sentence pattern does the phrase "enrolments for French dropped steadily" have?<ol class="answerList"><li><a id="q3" >Noun phrase + verb + (adverb)</a></li><li><a id="q4" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="3">Which sentence pattern does the phrase "there was a slight rise" have?<ol class="answerList"><li><a id="q5" >Noun phrase + verb + (adverb)</a></li><li><a id="q6" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="4">Which sentence pattern does the phrase "there was a sharp fall" have?<ol class="answerList"><li><a id="q7" >Noun phrase + verb + (adverb)</a></li><li><a id="q8" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="5">Which sentence pattern does the phrase "Numbers finally plunged" have?<ol class="answerList"><li><a id="q9" >Noun phrase + verb + (adverb)</a></li><li><a id="q10" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="6">Which sentence pattern does the phrase "numbers had fallen" have?<ol class="answerList"><li><a id="q11" >Noun phrase + verb + (adverb)</a></li><li><a id="q12" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="7">Which sentence pattern does the phrase "the figure recovered" have?<ol class="answerList"><li><a id="q13" >Noun phrase + verb + (adverb)</a></li><li><a id="q14" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="8">Which sentence pattern does the phrase "numbers declined steadily" have?<ol class="answerList"><li><a id="q15" >Noun phrase + verb + (adverb)</a></li><li><a id="q16" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="9">Which sentence pattern does the phrase "The number of students accepted onto Russian courses fluctuated" have?<ol class="answerList"><li><a id="q17" >Noun phrase + verb + (adverb)</a></li><li><a id="q18" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="10">Which sentence pattern does the phrase "there was a drop" have?<ol class="answerList"><li><a id="q19" >Noun phrase + verb + (adverb)</a></li><li><a id="q20" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="11">Which sentence pattern does the phrase "Enrolments for two of the five languages, however, actually grew" have?<ol class="answerList"><li><a id="q21" >Noun phrase + verb + (adverb)</a></li><li><a id="q22" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="12">Which sentence pattern does the phrase "there was a steady increase" have?<ol class="answerList"><li><a id="q23" >Noun phrase + verb + (adverb)</a></li><li><a id="q24" >There was a/an + (adjective) + noun</a></li></ol><br/></li><br/><li id="13">Which sentence pattern does the phrase "remained stable" have?<ol class="answerList"><li><a id="q25" >Noun phrase + verb + (adverb)</a></li><li><a id="q26" >There was a/an + (adjective) + noun</a></li></ol><br/></li></ol>
+</section>
+<section id="rt2001">
+	<p align="left"><font color="#000000">It is not necessary and you are not expected, to write long, complex sentences in your reports. It is much more important to write clearly and accurately. Look at these two simple sentence patterns, which are very useful for describing trends in charts:</font></p>Noun phrase + verb + (adverb)There was a/an + (adjective) + noun
+</section>
+<section id="rt5">
+	<p align="left"><font color="#000000">The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that <font color="#0000ff">(1) there was an overall downward trend</font> in student numbers for such courses during this period.</font></p><p align="left"><font color="#000000">Courses in French, German and Russian all became less popular during this time. The figures for French show the most dramatic changes of all. Between 1994 and 1996 <font color="#0000ff">(2) enrolments for French dropped steadily</font> to around 5,700. A year later <font color="#0000ff">(3) there was a slight rise</font> of around 100 students, but then <font color="#0000ff">(4) there was a sharp fall</font> of about 600 in 1998. <font color="#0000ff">(5) Numbers finally plunged</font> to around 4,700 in 1999. The pattern for German was very similar. Starting at around 2,400 students in 1994, <font color="#0000ff">(6) numbers had fallen</font> to about 2,300 by 1996. In 1997 <font color="#0000ff">(7) the figure recovered</font> to its 1994 level, but then <font color="#0000ff">(8) numbers declined steadily</font> by around 150 per year for the next two years. <font color="#0000ff">(9) The number of students accepted onto Russian courses fluctuated</font> between 400 and 500 for most of the period, but <font color="#0000ff">(10) there was a drop</font> to around 300 in 1999.</font></p><p align="left"><font color="#0000ff">(11) Enrolments for two of the five languages, however, actually grew in number over the five years. From 1994 onwards, (12) there was a steady increase in enrolments for Spanish of approximately 100 every year. Likewise, (13) the number of students studying Italian rose gradually to around 900 in 1997 and (13) remained stable for the following two years.</font></p><p align="left">Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

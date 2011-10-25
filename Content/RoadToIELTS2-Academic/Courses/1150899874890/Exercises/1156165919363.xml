@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/><answer source="a8" correct="true"/><answer source="a8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="a9" correct="true"/><answer source="a9" correct="true"/><answer source="a9" correct="true"/><answer source="a9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="a10" correct="true"/><answer source="a10" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+Complete the sentences by filling each gap with an appropriate form of one of the verbs provided. You will need to use one of the verbs more than once.
+</header>
+	
+<section id="noscroll">
+	
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_AW_027.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Perhaps there would be fewer conflicts in the world if everyone <input id="q1" width="100" /> the same language.</li><li id="2">It <input id="q2" width="100" /> a great pity if the thousands of languages still spoken in the world today died out.</li><li id="3">Many people today <input id="q3" width="100" /> their working lives very difficult without modern means of communication such as e-mail and mobile phones.</li><li id="4">Even if an international language was introduced, not everyone <input id="q4" width="100" /> to use it.</li><li id="5">Some minority languages have already disappeared and more would certainly die out altogether if governments <input id="q5" width="100" /> efforts to protect them.</li><li id="6">If we <input id="q6" width="100" /> learn a foreign language at school, we would have more time to spend on other subjects.</li><li id="7">It would be ideal if all children <input id="q7" width="100" /> fluent in at least one foreign language by the time they left school.</li><li id="8">If schools devoted more time to teaching modern communication skills, such as using e-mail, rather than traditional ones, like spelling and grammar, they <input id="q8" width="100" /> children better for the future.</li><li id="9">Many people <input id="q9" width="100" /> to friends and family members at all if they did not have e-mail.</li><li id="10">We would probably all be better communicators if schools <input id="q10" width="100" /> children to be more articulate speakers.</li></ol>
+</section>
+<section id="rt2001">
+	<p align="left"><font color="#000000">In compositions where we want to discuss the arguments for and against something, it is sometimes necessary to discuss hypothetical situations. To do this, we use a verb form known as the conditional. This is often found in sentences with an 'if' clause, for example:</font></p>If we removed language differences, we would find it easier to understand each other's point of view.However, we can also use the conditional without an 'if' clause. For example:It is generally agreed that a common language would make international travel much easier for everyone.
+</section>
+</body>
+</bento>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="190"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="the main points " correct="true"/><answer value="most important points" correct="true"/><answer value="the important points" correct="true"/><answer value="the key points" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="5 - 15 " correct="true"/><answer value="five - fifteen" correct="true"/><answer value="5 to 15" correct="true"/><answer value="five to fifteen" correct="true"/><answer value="5 and 15" correct="true"/><answer value="five and fifteen" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="discuss it " correct="true"/><answer value="discuss topic" correct="true"/><answer value="discuss the topic" correct="true"/><answer value="talk about it" correct="true"/><answer value="talk about topic" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="understand arguments " correct="true"/><answer value="understand the arguments" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="any study problems " correct="true"/><answer value="their study problems" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="workshops " correct="true"/><answer value="workshop" correct="true"/><answer value="a workshop" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="give a presentation " correct="true"/><answer value="give presentation" correct="true"/><answer value="do a presentation" correct="true"/><answer value="do presentation" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="their research skills " correct="true"/><answer value="research skills" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-8. Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/ED_LN_005.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/ED_LN2a.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Lecture</b></font>Participants:	Lecturer and large group</p>What happens:	Lecturer talks, students take notesAims:	Guide students through course, draw students'	attention to (1) <input id="1" width="100" /><p align="left"><font color="#0000ff"><b>Seminar</b></font>Participants:	Tutor and between (2) <input id="2" width="100" /> students</p>What happens:	Students present topic, tutor and students	(3) <input id="3" width="100" /> as a groupAims:	Help students to:	(4) <input id="4" width="100" />, make critical	judgements, form opinions<p align="left"><font color="#0000ff"><b>Tutorial</b></font>Participants:	Tutor and individual student or small group</p>What happens:	Tutor and students discuss workAims:	Give students guidance on their work, help	students with (5) <input id="5" width="100" /><p align="left"><font color="#0000ff"><b>Practical Work</b></font>Participants:	Individual student or small group</p>What happens:	Students take part in (6) <input id="6" width="100" />Aims:	Provide students with practical experience<p align="left"><font color="#0000ff"><b>Independent Study</b></font>Participants:	Individual student or small group</p>What happens:	Students research a subject and then produce	written work or (7) <input id="7" width="100" />Aims:	Help students to develop (8) <input id="8" width="100" />,	provide opportunity for further study, encourage	students to develop their own ideas
+</section>
+<section id="fb1">
+	<p align="left"><font face="verdana" size="13" color="#000000">1. Dr Grant says that one of the aims of the lectures is to help students focus on the main points of the course. 'Help students focus' means the same as 'draw their attention'.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">3. Dr Grant says they have a group discussion. The gap required a verb not a noun so you had to change the form.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font face="verdana" size="13" color="#000000">5. Dr Grant says that tutorials give students 'assistance' with study problems and 'assistance' means the same as 'help'.</font></p>
+</section>
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">You will see from the headings in the table and the information given that you will hear someone talking about the different methods of study. You will hear the lecturer talk about who is invited, what they do and the purpose behind the method. You will also see that you have to complete the table horizontally, row by row.</font>&nbsp;Question 1What part of speech follows 'draw attention to'? You should be listening out for a noun or noun phrase. What do you think is brought to the students' attention in a lecture?&nbsp;Question 2The word 'between' should indicate to you that two numbers will follow.&nbsp;Question 3You should see that you have the subject here so need a verb as the next word. What do you think the tutor and students do in a seminar?&nbsp;Question 4What should follow 'help to'?&nbsp;Question 5What do you think students need help with?&nbsp;Question 6 Read the rest of the row in the table. What is the name of a method of study whereby you get practical experience?&nbsp;Question 7What else do students do after they have done some research?&nbsp;Question 8Read the rest of the row. What kind of skills do you think students might be developing?</p>
+</section>
+</body>
+</bento>

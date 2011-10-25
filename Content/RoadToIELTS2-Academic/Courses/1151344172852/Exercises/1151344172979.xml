@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false" scorebased="true"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a4" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a5" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a6" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Here is a sample answer to the writing task in an earlier exercise, which is based on Plan 2 in the last exercise. The topic sentences for some of the paragraphs have been removed. Match each topic sentence to the correct paragraph.
+</header>
+	
+<section id="noscroll">
+	
+		•
+		<span id="a6" draggable="true">today's lack of job security and the consequent worry about the future contribute significantly to stress in the workplace</span>
+		•
+		<span id="a5" draggable="true">a major source of stress in today's workplace is the rapid pace of technological change</span>
+		•
+		<span id="a4" draggable="true">work-related stress stems largely from ever-increasing workloads</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/WB_AW_015.jpg" mode="1" id="1001"  /><p align="left">Despite generally better working conditions and higher pay, workers today seem to suffer more than ever before from stress and stress-related illnesses, including headaches, depression and heart-disease. Since stress at work has a number of causes, there is no single 'cure'. Each cause needs to be dealt with in a particular way.</p><p align="left">Firstly, <font color="#0000ff"><input id="q1" type="droptarget" />. Companies today demand that employees cope with heavier workloads while working to tighter and tighter deadlines. This not only puts workers under great pressure but also means that they work far longer hours than they used to. For the sake of employees' well-being, legislation limiting the number of hours worked should be strictly enforced. Furthermore, systems agreed on by both management and employees ought to be implemented to avoid excessive workloads and unrealistic deadlines.</font></p><p align="left">Secondly, <font color="#0000ff"><input id="q2" type="droptarget" />. In order to keep ahead in business, companies need to invest in new technology. This often means, however, that employees are constantly having to get used to using new equipment, software or techniques, and this can be a frustrating and stressful process. It is essential, therefore, that whenever such innovations are introduced, employees should be given adequate training and support so that the changeover to new technologies is relatively stress-free. Also, perhaps managers should take a more judicious approach to the introduction of new technology so as to avoid unnecessary change, and not just make change for change's sake.</font></p><p align="left">Finally, <font color="#0000ff"><input id="q3" type="droptarget" />. Few employers these days offer long-term contracts. As a result, workplaces are becoming increasingly competitive as employees try to reach targets set by their managers in order to secure their future with the company. Clearly, the only way to address this is for employers to show more commitment towards their employees. Legislation ought to be brought into force with the aim of protecting workers' rights and ensuring a greater level of job security for employees.</font></p><p align="left">In conclusion, a certain amount of stress is a fact of life in all workplaces. However, since the consequences are harmful to both the company and to society as a whole, employers must take measures such as those suggested above to ensure that stress does not reach levels which threaten the mental and physical health of their employees.</p>
+</section>
+<section id="fb0">
+	<p align="left"><font face="verdana" size="13" color="#000000">Remember that in this composition each paragraph deals with one cause of the problem and suggests solutions for that particular cause. Which cause of stress is dealt with in each paragraph?</font></p>
+</section>
+</body>
+</bento>

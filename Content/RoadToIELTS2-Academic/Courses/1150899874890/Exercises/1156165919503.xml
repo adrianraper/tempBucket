@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Now watch Zenia doing Part 2 of her test. Zenia speaks about a well-known attraction in her country. How does she answer the following questions about it? Type in your answers.
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit02_e5.flv" mode="1" id="1003"  /><br/><ol id="questionList"><li id="1">What is it?an <input id="q1" width="100" /></li><li id="2">Where is it?in <input id="q2" width="100" /></li><li id="3">How do you get there nowadays?by <input id="q3" width="100" /></li><li id="4">How did people used to get there?by <input id="q4" width="100" /></li><li id="5">When is the best time to go?you can go <input id="q5" width="100" /></li></ol>
+</section>
+</body>
+</bento>

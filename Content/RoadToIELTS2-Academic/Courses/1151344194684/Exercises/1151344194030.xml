@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="quiz" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false" groupbased="true"/>
+		<buttons marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="true"/><answer source="a10" correct="false"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look at the statements below about the speaking exam and decide which are true or false.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/SS_SP_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Expand your answer with examples and details.<a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Practise giving answers to personal questions before you go into the exam.<a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Make yourself comfortable and relaxed at the beginning.<a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">Be positive about your present and your future.<a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">Check you know the required tenses in which to answer personal questions.<a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li></ol>
+</section>
+<section id="fb1">
+	<p align="left"><font face="verdana" size="13" color="#000000">1. This is what you would do normally, so do it in the exam.</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font face="verdana" size="13" color="#000000">2. This is one area that you can get specific practice in.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">3. This will help you to do your best during the exam.</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font face="verdana" size="13" color="#000000">4. Being positive about these will give a good impression of you as a person.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font face="verdana" size="13" color="#000000">5. Learning which tenses to use is vital for clear communication.</font></p>
+</section>
+</body>
+</bento>

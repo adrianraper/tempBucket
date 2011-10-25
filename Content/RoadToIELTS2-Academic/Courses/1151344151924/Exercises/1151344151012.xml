@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a15" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a17" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a18" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a19" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a20" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a21" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a22" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a23" correct="true"/></DragQuestion><DragQuestion source="q10"><answer source="a24" correct="true"/></DragQuestion><DragQuestion source="q11"><answer source="a25" correct="true"/></DragQuestion><DragQuestion source="q12"><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q13"><answer source="a27" correct="true"/></DragQuestion><DragQuestion source="q14"><answer source="a28" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Listen to these patients talking to their doctor or dentist. Match the symptoms they describe to the medical conditions.
+</header>
+	
+<section id="noscroll">
+	
+		
+		<span id="a25" draggable="true">a migraine</span>
+		<span id="a27" draggable="true">tonsillitis</span>
+		<span id="a17" draggable="true">asthma</span>
+		<span id="a28" draggable="true">tooth decay</span>
+		
+		
+		<span id="a20" draggable="true">a dental abscess</span>
+		<span id="a15" draggable="true">an allergy</span>
+		<span id="a19" draggable="true">bronchitis</span>
+		<span id="a24" draggable="true">malaria</span>
+		
+		
+		<span id="a21" draggable="true">flu</span><span id="a22" draggable="true">gum disease</span>
+		<span id="a16" draggable="true">appendicitis</span><span id="a26" draggable="true">a stomach ulcer</span>
+		
+		
+		<span id="a23" draggable="true">laryngitis</span>
+		<span id="a18" draggable="true">athlete's foot</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_TV_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ai.mp3" mode="1" id="1"  /></li><li id="2"><input id="q2" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ak.mp3" mode="1" id="2"  /></li><li id="3"><input id="q3" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ad.mp3" mode="1" id="3"  /></li><li id="4"><input id="q4" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1am.mp3" mode="1" id="4"  /></li><li id="5"><input id="q5" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1an.mp3" mode="1" id="5"  /></li><li id="6"><input id="q6" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1af.mp3" mode="1" id="6"  /></li><li id="7"><input id="q7" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ag.mp3" mode="1" id="7"  /></li><li id="8"><input id="q8" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1al.mp3" mode="1" id="8"  /></li><li id="9"><input id="q9" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ac.mp3" mode="1" id="9"  /></li><li id="10"><input id="q10" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ab.mp3" mode="1" id="10"  /></li><li id="11"><input id="q11" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1aj.mp3" mode="1" id="11"  /></li><li id="12"><input id="q12" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1aa.mp3" mode="1" id="12"  /></li><li id="13"><input id="q13" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ae.mp3" mode="1" id="13"  /></li><li id="14"><input id="q14" type="droptarget" /><audio class="leftFloat" src="../Media/HF_TV1ah.mp3" mode="1" id="14"  /></li></ol>
+</section>
+</body>
+</bento>

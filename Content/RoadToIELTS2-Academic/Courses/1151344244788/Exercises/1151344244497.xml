@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback neutral="true"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/DD_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Reading Passage 1</b></font>You will read an article about terrace farming in Nepal.</p><p align="left"><font color="#0000ff"><b>Academic Reading Passage 2</b></font>You will read an article describing a water disinfection system highly suited for use in developing countries.</p><p align="left"><b>Question types</b>You will attempt six question types.<u><g id="1">Matching (information to paragraph)</g></u><u><g id="2">Table completion</g></u><u><g id="3">Diagram completion</g></u><u><g id="4">Short-answer questions</g></u><u><g id="5">Sentence completion (flow chart)</g></u><u><g id="6">Multiple selection</g></u></p>
+</section>
+<section id="fb1">
+	<p align="left"><b>Matching Information to Paragraphs </b></p><p align="left"><font color="#000000">(i.e. scanning and identifying location of information)</font></p><p align="left"></p><p align="left">At first glance, this may seem similar to the 'matching headings to paragraphs' exercise. However, whereas a heading summarises the content of a paragraph, here you are looking for a piece of information that happens to be included in a paragraph, but that does not represent the whole meaning of that paragraph. In fact, this exercise type is more like short answer questions or table completion because you are searching quickly for specific information, but instead of writing down what you find, you simply say where you found it.</p><p align="left"></p><p align="left">Don't read from the start of the text until you reach the required information. If you have already surveyed the text and have a mental 'map', you should know in which part of the text the information is likely to be found. Go straight to the paragraph or section you think it is located in and start reading carefully from that point onwards.</p><p align="left"></p><p align="left"><font color="#000000">Unlike short answer questions or table completion, the information you're looking for will not be just a few words or a number. The phrases in the questions usually summarise an idea or a concept that is included in the paragraph, so you're trying to find whole sentences, not just a couple of words. Underline the key words in the phrase given in the exercise and look for synonyms – words that mean the same things – in the section of the text you think contains the information.</font></p><p align="left"></p><p align="left">It's a good idea to cross off items from the list as you find them and to underline the part of the text where you found the information. This will give you a record of how far you've got with the exercise and, if you think you've made a mistake, you can easily go back to the relevant part of the text to check.</p>
+</section>
+<section id="fb2">
+	<p align="left"><font face="verdana" size="13" color="#000000"><b>Table Completion</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">(Gaps are NOT part of sentences)</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">This is an exercise which checks how quickly and accurately you can find specific pieces of information in the text. The table you have to complete will summarise certain parts of the passage. In some cases all the information will be found in the same section of the text. Sometimes information for each column or row may come from different sections. If you have already skimmed over the text, you should know which part will give you your answer, so you can go directly to the relevant section.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">Before you search for your answers, take time to understand how the table is organised. Look at column and row headings, so that you know what kind of information is required. The information in the text is presented in the same order as the numbered gaps in the table and knowing this should help you find your answers.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">As with all exercise types, don't forget to read the instructions carefully. Usually, your answer should be no more than three words or a number.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><b>Diagram Completion</b></p><p align="left"></p><p align="left">Occasionally you are asked to use the information given in the text to complete labels on a diagram. This will be a visual summary of a part of the text, with gapped labels that you have to fill.</p><p align="left"></p><p align="left">Spend some time looking carefully at the diagram. It will usually have a title, which should help you recognise which section of the text it refers to. The numbered gaps follow the order in which information is given in the text, so this should help you find the right words.</p><p align="left"></p><p align="left">As always, read the instructions carefully. Usually you are asked to complete the diagram with words taken from the passage. There will be a word limit for each gap, so make sure you check what it is. As with short answers and sentence completion, the words you need to complete a gap will be found close together in the same sentence.</p><p align="left"></p><p align="left">Read the labels in the diagram and then scan the relevant section of the text for those words, or words that mean the same.</p><p align="left"></p><p align="left">At least one of the gaps will probably be a number and the phrase before the gap, as well as the drawing, will give you clues as to what kind of number is required, such as speed, height or temperature. Also, look out for units of measurement, such as kilometers, kilogrammes or hours after the gap.</p><p align="left"></p><p align="left">Finally, as with all gap-filling exercises, you should make sure that the words you choose fit grammatically.</p>
+</section>
+<section id="fb4">
+	<p align="left"><b>Short Answer Questions</b></p><p align="left"><font color="#000000">(Discrete questions and 'listing' questions)</font></p><p align="left"></p><p align="left">These questions test how well you can find specific pieces of information in the text. Question words such as 'who', 'where' and 'when' will help you understand what kind of information you are looking for. If you have already skimmed over the text, you should know which part of the text will give you your answer, so you can go directly to the relevant section.</p><p align="left"></p><p align="left">Make sure you read the instructions very carefully, because you will usually be asked to take a certain number of words directly from the text. If this is the case, make sure you don't go over the word limit, which is usually three words, and don't change the words from the text in any way. You shouldn't have to use contractions in your answer, so if your answer includes them, it's probably wrong. Also, watch your spelling. Candidates often lose marks because they are careless when they copy words from the text.</p><p align="left"></p><p align="left">Sometimes you will be asked to list a number of items or examples mentioned in the text. Usually you can list them in any order, but read the instructions carefully to make sure this is the case.</p>
+</section>
+<section id="fb5">
+	<p align="left"><b>Sentence Completion</b></p><p align="left"><font color="#000000">('Free-standing' sentences/sentences in a flow chart)</font></p><p align="left"></p><p align="left">This exercise involves completing sentences which paraphrase or summarise a piece of information in the text. As always, make sure you read the instructions carefully. The words must be taken from the text and you mustn't change them in any way. You will be given a word limit for the gaps, which is usually up to three words, but you ought to check this is the case. The gapped words are not normally contractions, so if you find you need to use a contraction to stay inside the word limit, then your answer is probably wrong.</p><p align="left"></p><p align="left">The sentences follow the order of the text, so this should give you an idea of where to look to find the answer before and after the gap. If you need a two or three word phrase to fill a gap, then these words will be found close together in the text, in the same sentence. Don't try to 'make' a phrase by collecting words from completing different parts of the text. </p><p align="left"></p><p align="left"><font color="#000000">Remember that the completed sentence must be grammatically correct. It helps if you look at the words immediately before and after the gap. If these words are prepositions, articles or auxillary verbs, then you should know what kind of word (noun, verb or participle for example) will follow.</font></p><p align="left"></p><p align="left">This exercise is intended to check if you have understood the main points of the text, so the words and phrases that are missing are important ones that carry a lot of meaning. Once you've completed a sentence, read it to yourself. Does it summarise a main point or piece of information from the text? If not, then you need to think again about your answer.</p>
+</section>
+<section id="fb6">
+	<p align="left"><b>Multiple Selection</b><font color="#0000ff"></font></p><p align="left"><font color="#000000">(Multiple answers with 1 mark each)</font></p><p align="left"></p><p align="left">This is similar to the multiple choice exercise but with two main differences. Firstly, there's usually only one question. Secondly, you have to select more than one correct answer from the list of alternatives. You are given one mark for each correct answer you choose. The instructions will tell you exactly how many items from the list you must choose. This exercise usually summarises the main points of the text and so is often the last of the exercises on a given text.</p><p align="left"></p><p align="left">The first thing to do is to read the list of alternatives carefully and make sure you are clear in your mind about how each item in the list differs from the others. If all the items in the list refer to the same part of the text, you should already know which part of the text has the information. Go straight to the relevant section and read through carefully, ticking off items in the list as you find them.</p><p align="left"></p><p align="left">If the list of options summarises information from the whole of the text, then it's best to take a slightly different approach, taking each item in the list in turn. Read the first item in the list and underline key words. You may already recognise which part of the text the words refer to. If not, skim through the text searching for the keywords or words which mean the same. When you've found them, read from the beginning of the previous sentence until the end of the following sentence, keeping in mind the meaning of the whole sentences, not just the words. Is this meaning the same as the first item in the list? If yes, choose this item and move on to the next.</p>
+</section>
+</body>
+</bento>

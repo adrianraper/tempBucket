@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="quiz" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="false"/><answer source="a10" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="true"/><answer source="a14" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a15" correct="false"/><answer source="a16" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../Media/HF_WT2b.jpg" mode="16" id="1004"  />Read the writing task and then listen to these people talking about gene therapy.Group their comments according to whether they are arguments for or against.
+		
+		Writing Task 2
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_AW_014.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><a id="q1" >For</a><tab/><a id="q2" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ab.mp3" mode="1" id="1"  /><br/><li id="2"><a id="q3" >For</a><tab/><a id="q4" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ac.mp3" mode="1" id="2"  /><br/><li id="3"><a id="q5" >For</a><tab/><a id="q6" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ad.mp3" mode="1" id="3"  /><br/><li id="4"><a id="q7" >For</a><tab/><a id="q8" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ae.mp3" mode="1" id="4"  /><br/><li id="5"><a id="q9" >For</a><tab/><a id="q10" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1af.mp3" mode="1" id="5"  /><br/><li id="6"><a id="q11" >For</a><tab/><a id="q12" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ag.mp3" mode="1" id="6"  /><br/><li id="7"><a id="q13" >For</a><tab/><a id="q14" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ah.mp3" mode="1" id="7"  /><br/><li id="8"><a id="q15" >For</a><tab/><a id="q16" >Against</a><br/></li><audio class="leftFloat" src="../Media/HF_WR1ai.mp3" mode="1" id="8"  /></ol>
+</section>
+<section id="fb1">
+	<p align="left">1. Parents could make sure their children were intelligent.</p>
+</section>
+<section id="fb2">
+	<p align="left">2. Criminals could be 'cured' of their criminal tendencies.</p>
+</section>
+<section id="fb3">
+	<p align="left">3. Could upset natural balances such as the male to female ratio.</p>
+</section>
+<section id="fb4">
+	<p align="left">4. Fatal diseases could be cured.</p>
+</section>
+<section id="fb5">
+	<p align="left">5. Could be controlled by political regimes.</p>
+</section>
+<section id="fb6">
+	<p align="left">6. Children and future generations will not be able to give their consent to genetic changes.</p>
+</section>
+<section id="fb7">
+	<p align="left">7. Parents could choose their children's physical appearance.</p>
+</section>
+<section id="fb8">
+	<p align="left">8. The advantages of gene therapy may only be available to the rich.</p>
+</section>
+<section id="rt2001">
+	<p align="left">This exercise will help you with ideas for the writing task.</p>
+</section>
+</body>
+</bento>

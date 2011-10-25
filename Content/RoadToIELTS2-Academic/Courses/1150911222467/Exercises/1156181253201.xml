@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="false"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="false"><feedback source="fb13"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q17" correct="false"><feedback source="fb17"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q19" correct="false"><feedback source="fb19"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q20" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q21" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q23" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q24" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q25" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q26" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q27" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q28" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q29" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q30" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q31" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q32" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q33" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q34" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q35" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q36" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q37" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q38" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q39" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q40" correct="true"/></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look at the tables and complete the sentences by choosing the correct word or phrase for each gap.  There is more than one correct answer in each case.
+</header>
+	
+<section id="noscroll">
+	<img class="leftFloat" src="../Media/TT_AW_004.jpg" mode="1" id="1003"  />
+</section>
+<section id="body">
+	<p align="left"><font color="#000000"><b>1</b>  UK residents who travelled to North America spent (…) more money per visit than</font></p>those who went to Europe.<g id="1">A  much</g><g id="2">B  many</g><g id="3">C  far</g><g id="4">D  a lot</g><p align="left"><font color="#000000"><b>2</b>  UK residents who travelled to EU countries spent the (…) time per visit.</font></p><g id="5">A  fewest</g><g id="6">B  least</g><g id="7">C  smallest amount of</g><g id="8">D  smallest number of</g><p align="left"><font color="#000000"><b>3</b>  UK residents who travelled to EU countries spent the (…) days per visit.</font></p><g id="9">A  fewest</g><g id="10">B  least</g><g id="11">C  smallest amount of</g><g id="12">D  smallest number of</g><p align="left"><font color="#000000"><b>4</b>  Visits to countries outside Europe lasted (…) more days than visits to countries within Europe.</font></p><g id="13">A  much</g><g id="14">B  many</g><g id="15">C  far</g><g id="16">D  a lot</g><p align="left"><font color="#000000"><b>5</b>  (…) UK residents went to non-EU countries than to EU countries.</font></p><g id="17">A  Far less</g><g id="18">B  Far fewer</g><g id="19">C  A far smaller quantity of</g><g id="20">D  A far smaller number of</g>
+</section>
+<section id="fb2">
+	<p align="left">1B. 'Many' is for countable nouns only. Money is an uncountable noun.</p>
+</section>
+<section id="fb5">
+	<p align="left">2A. 'Few' is for countable nouns only. Time is uncountable noun.</p>
+</section>
+<section id="fb8">
+	<p align="left">2D. 'Number' suits only countable nouns. Time is an uncountable noun.</p>
+</section>
+<section id="fb10">
+	<p align="left">3B. 'Least' is for uncountable nouns, unless it is used in the expression 'least number of'.</p>
+</section>
+<section id="fb13">
+	<p align="left">4A. 'Much' cannot be used in this way with countable nouns such as 'days'.</p>
+</section>
+<section id="fb17">
+	<p align="left">5A. 'Less' is for uncountable nouns.</p>
+</section>
+<section id="fb19">
+	<p align="left">5C. A 'quantity of residents' is not natural English usage.</p>
+</section>
+<section id="rt2001">
+	<p align="left"><font color="#000000">In order to describe the information shown in tables and charts you will need to use language for describing and comparing quantities. You must decide whether the figures refer to countable or uncountable nouns and use appropriate quantifiers (many, much, little, few, etc.).</font></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	IELTS Writing Task 2 <br>You should spend about 40 minutes on this task. You should write at least 250 words.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/ED_AW_003.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>Distance learning via the Internet has developed to such an extent in recent years that teachers and classrooms seem outdated and unnecessary. Schools, colleges and universities should abandon traditional teaching methods and deliver all their courses online.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+</section>
+</body>
+</bento>

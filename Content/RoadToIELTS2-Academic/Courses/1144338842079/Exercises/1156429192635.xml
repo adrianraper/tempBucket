@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	Tips for Part 2 of the IELTS Speaking test - your 1-2 minute talk.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/MM_SP_002.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tip 1</b></font>Read what is required. Try and think of at last two things to say for each question.</p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tip 2</b></font>Don't say you cannot talk about the topic. </p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tip 3</b></font>Don't go off the topic.</p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tip 4</b></font>Don't wait to be prompted by the examiner.</p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tip 5</b></font>Show that you are willing to discuss anything, even if you know very little about it. Use your strategies to 'talk round' it.</p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tip 6</b></font>Give your own opinion about the question and ideas.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="quiz" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false" scorebased="true"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="false"/><answer source="a4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="false"/><answer source="a8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="false"/><answer source="a10" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="false"/><answer source="a14" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a15" correct="false"/><answer source="a16" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a17" correct="true"/><answer source="a18" correct="false"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../Media/WB_WT2.jpg" mode="16" id="1004"  />
+		
+		Read the writing task and listen to these people talking about the problem of stress at work. Decide whether each comment refers to the causes of the problem or to possible solutions.
+		
+		
+		Writing Task 2
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/WB_AW_012.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><a id="q1" >Cause</a><tab/><a id="q2" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1aa.mp3" mode="1" id="1"  /><br/><li id="2"><a id="q3" >Cause</a><tab/><a id="q4" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ab.mp3" mode="1" id="2"  /><br/><li id="3"><a id="q5" >Cause</a><tab/><a id="q6" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ac.mp3" mode="1" id="3"  /><br/><li id="4"><a id="q7" >Cause</a><tab/><a id="q8" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ad.mp3" mode="1" id="4"  /><br/><li id="5"><a id="q9" >Cause</a><tab/><a id="q10" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ae.mp3" mode="1" id="5"  /><br/><li id="6"><a id="q11" >Cause</a><tab/><a id="q12" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1af.mp3" mode="1" id="6"  /><br/><li id="7"><a id="q13" >Cause</a><tab/><a id="q14" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ag.mp3" mode="1" id="7"  /><br/><li id="8"><a id="q15" >Cause</a><tab/><a id="q16" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ah.mp3" mode="1" id="8"  /><br/><li id="9"><a id="q17" >Cause</a><tab/><a id="q18" >Solution</a><br/></li><audio class="leftFloat" src="../Media/WB_WR1ai.mp3" mode="1" id="9"  /></ol>
+</section>
+<section id="fb0">
+	<p align="left"><b>Causes of the problem</b></p><p align="left"><font color="#000000">1:  Increased workloads and tighter deadlines</font></p><p align="left"><font color="#000000">3:  Rapid pace of technological change in the workplace</font></p><p align="left"><font color="#000000">9:  Lack of job security</font></p><p align="left"></p><p align="left"><b>Possible solutions to the problem</b></p><p align="left"><font color="#000000">2:  Avoidance of unnecessary change</font></p><p align="left"><font color="#000000">4:  More legal protection to ensure job security</font></p><p align="left"><font color="#000000">5:  Realistic workloads and deadlines agreed on by management and employees</font></p><p align="left"><font color="#000000">6:  Legislation to limit working hours</font></p><p align="left"><font color="#000000">7:  Provision of training and support for new technology</font></p><p align="left"><font color="#000000">8:  Greater commitment from employers</font></p>
+</section>
+</body>
+</bento>

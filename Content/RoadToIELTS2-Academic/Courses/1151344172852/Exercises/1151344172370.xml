@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="false"/><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="false"/><answer source="a8" correct="true"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="false"/><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="false"/><answer source="a17" correct="false"/><answer source="a18" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Look at the ideas from the previous exercise again. Look at each of the solutions below and click on the problem it relates it.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/WB_AW_013.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Legislation to limit working hours<ol class="answerList"><li><a id="q1" >Increased workloads and tighter deadlines</a></li><li><a id="q2" >Rapid pace of technological change in the workplace</a></li><li><a id="q3" >Lack of job security</a></li></ol><br/></li><br/><li id="2">Avoidance of unnecessary change<ol class="answerList"><li><a id="q4" >Increased workloads and tighter deadlines</a></li><li><a id="q5" >Rapid pace of technological change in the workplace</a></li><li><a id="q6" >Lack of job security</a></li></ol><br/></li><br/><li id="3">Provision of training and support for new technology<ol class="answerList"><li><a id="q7" >Increased workloads and tighter deadlines</a></li><li><a id="q8" >Rapid pace of technological change in the workplace</a></li><li><a id="q9" >Lack of job security</a></li></ol><br/></li><br/><li id="4">Greater commitment from employers<ol class="answerList"><li><a id="q10" >Increased workloads and tighter deadlines</a></li><li><a id="q11" >Rapid pace of technological change in the workplace</a></li><li><a id="q12" >Lack of job security</a></li></ol><br/></li><br/><li id="5">Realistic workloads and deadlines agreed on by management and employees<ol class="answerList"><li><a id="q13" >Increased workloads and tighter deadlines</a></li><li><a id="q14" >Rapid pace of technological change in the workplace</a></li><li><a id="q15" >Lack of job security</a></li></ol><br/></li><br/><li id="6">More legal protection to ensure job security<ol class="answerList"><li><a id="q16" >Increased workloads and tighter deadlines</a></li><li><a id="q17" >Rapid pace of technological change in the workplace</a></li><li><a id="q18" >Lack of job security</a></li></ol><br/></li></ol>
+</section>
+</body>
+</bento>

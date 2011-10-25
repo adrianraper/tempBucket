@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="true"/><answer source="a3" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="false"/><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="false"/><answer source="a14" correct="true"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="false"/><answer source="a20" correct="false"/><answer source="a21" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a22" correct="false"/><answer source="a23" correct="false"/><answer source="a24" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a25" correct="false"/><answer source="a26" correct="true"/><answer source="a27" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a28" correct="true"/><answer source="a29" correct="false"/><answer source="a30" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="a31" correct="true"/><answer source="a32" correct="false"/><answer source="a33" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="a34" correct="true"/><answer source="a35" correct="false"/><answer source="a36" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q13"><answer source="a37" correct="false"/><answer source="a38" correct="false"/><answer source="a39" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q14"><answer source="a40" correct="false"/><answer source="a41" correct="true"/><answer source="a42" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q15"><answer source="a43" correct="false"/><answer source="a44" correct="true"/><answer source="a45" correct="false"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task on the left and look at the list of ideas on the right that a group of IELTS students produced. Decide whether each idea is an argument for an international language, an argument against or an idea which is irrelevant to the task.
+</header>
+	
+<section id="body">
+	<img class="leftFloat" src="../Media/LC_AW_022.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Cost of teaching everyone the language <ol class="answerList"><li><a id="q1" >Argument for</a></li><li><a id="q2" >Argument against</a></li><li><a id="q3" >Irrelevant idea</a></li></ol><br/></li><br/><li id="2">Diversification of language into dialects <ol class="answerList"><li><a id="q4" >Argument for</a></li><li><a id="q5" >Argument against</a></li><li><a id="q6" >Irrelevant idea</a></li></ol><br/></li><br/><li id="3">Help international trade <ol class="answerList"><li><a id="q7" >Argument for</a></li><li><a id="q8" >Argument against</a></li><li><a id="q9" >Irrelevant idea</a></li></ol><br/></li><br/><li id="4">Improve international co-operation and understanding <ol class="answerList"><li><a id="q10" >Argument for</a></li><li><a id="q11" >Argument against</a></li><li><a id="q12" >Irrelevant idea</a></li></ol><br/></li><br/><li id="5">Interpreters and translators would lose their jobs <ol class="answerList"><li><a id="q13" >Argument for</a></li><li><a id="q14" >Argument against</a></li><li><a id="q15" >Irrelevant idea</a></li></ol><br/></li><br/><li id="6">Make international travel easier <ol class="answerList"><li><a id="q16" >Argument for</a></li><li><a id="q17" >Argument against</a></li><li><a id="q18" >Irrelevant idea</a></li></ol><br/></li><br/><li id="7">Many languages already have a large number of words in common <ol class="answerList"><li><a id="q19" >Argument for</a></li><li><a id="q20" >Argument against</a></li><li><a id="q21" >Irrelevant idea</a></li></ol><br/></li><br/><li id="8">Many people enjoy learning new languages <ol class="answerList"><li><a id="q22" >Argument for</a></li><li><a id="q23" >Argument against</a></li><li><a id="q24" >Irrelevant idea</a></li></ol><br/></li><br/><li id="9">Might not be used <ol class="answerList"><li><a id="q25" >Argument for</a></li><li><a id="q26" >Argument against</a></li><li><a id="q27" >Irrelevant idea</a></li></ol><br/></li><br/><li id="10">Reduce nationalism <ol class="answerList"><li><a id="q28" >Argument for</a></li><li><a id="q29" >Argument against</a></li><li><a id="q30" >Irrelevant idea</a></li></ol><br/></li><br/><li id="11">Reduce the amount of translation work needed <ol class="answerList"><li><a id="q31" >Argument for</a></li><li><a id="q32" >Argument against</a></li><li><a id="q33" >Irrelevant idea</a></li></ol><br/></li><br/><li id="12">Simplify electronic communication <ol class="answerList"><li><a id="q34" >Argument for</a></li><li><a id="q35" >Argument against</a></li><li><a id="q36" >Irrelevant idea</a></li></ol><br/></li><br/><li id="13">There are about 6,000 languages spoken in the world today <ol class="answerList"><li><a id="q37" >Argument for</a></li><li><a id="q38" >Argument against</a></li><li><a id="q39" >Irrelevant idea</a></li></ol><br/></li><br/><li id="14">World would lose cultural diversity <ol class="answerList"><li><a id="q40" >Argument for</a></li><li><a id="q41" >Argument against</a></li><li><a id="q42" >Irrelevant idea</a></li></ol><br/></li><br/><li id="15">Would kill less widely-spoken languages <ol class="answerList"><li><a id="q43" >Argument for</a></li><li><a id="q44" >Argument against</a></li><li><a id="q45" >Irrelevant idea</a></li></ol><br/></li></ol>
+</section>
+<section id="fb7">
+	<p align="left">7. This might make learning a new language a little easier for some people, but it is not itself an advantage that an international language would bring.</p>
+</section>
+<section id="fb8">
+	<p align="left">8. This might be true, but it is neither an advantage nor a disadvantage of having an 'international language'.</p>
+</section>
+<section id="fb13">
+	<p align="left">13. Although you might be able to use this fact to support an argument, on its own it is neither an advantage nor a disadvantage.</p>
+</section>
+<section id="rt9">
+	<p align="left"><b>Writing Task 2</b></p><p align="left">You should spend about 40 minutes on this task.</p><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>An international language would remove one of the main differences which separates people of different nationalities and this would lead to greater international understanding and co-operation.  There should be one international language which everyone agrees to learn and speak.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should write at least 250 words.</p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q17" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q19" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q20" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q21" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q23" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q24" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q25" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q26" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q27" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q28" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q29" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q30" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q31" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q32" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q33" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q34" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q35" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q36" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q37" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q38" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q39" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q40" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q41" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q42" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q43" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q44" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q45" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q46" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q47" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q48" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q49" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q50" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q51" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q52" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q53" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q54" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q55" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q56" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q57" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q58" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q59" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q60" correct="true"/></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Each question gives a noun (lake, river, etc). Decide which of the five adjectives below each question can be used to describe the noun. There is more than one correct answer in each case.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/EN_TV_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000">1.  a (…) lake</font></p><g id="1">A.  deep</g><g id="2">B.  cascading</g><g id="3">C.  freshwater</g><g id="4">D.  salt</g><g id="5">E.  fast-flowing</g><p align="left"><font color="#000000">2.  a/an (…) river</font></p><g id="6">A.  deep</g><g id="7">B.  long</g><g id="8">C.  extinct</g><g id="9">D.  cascading</g><g id="10">E.  fast-flowing</g><p align="left"><font color="#000000">3.  a (…) waterfall</font></p><g id="11">A.  deep</g><g id="12">B.  cascading</g><g id="13">C.  lush</g><g id="14">D.  high</g><g id="15">E.  long</g><p align="left"><font color="#000000">4.  (…) rainforests</font></p><g id="16">A.  tropical</g><g id="17">B.  arid</g><g id="18">C.  dense</g><g id="19">D.  lush</g><g id="20">E.  barren</g><p align="left"><font color="#000000">5.  a/an (...) desert</font></p><g id="21">A.  tropical</g><g id="22">B.  arid</g><g id="23">C.  dense</g><g id="24">D.  lush</g><g id="25">E.  barren</g><p align="left"><font color="#000000">6.  a (…) valley</font></p><g id="26">A.  river</g><g id="27">B.  cascading</g><g id="28">C.  dense</g><g id="29">D.  lush</g><g id="30">E.  fertile</g><p align="left"><font color="#000000">7.  (…) farmland</font></p><g id="31">A.  dense</g><g id="32">B.  extinct</g><g id="33">C.  productive</g><g id="34">D.  active</g><g id="35">E.  fertile</g><p align="left"><font color="#000000">8.  a/an (…) island</font></p><g id="36">A.  uninhabited</g><g id="37">B.  tropical</g><g id="38">C.  desert</g><g id="39">D.  active</g><g id="40">E.  extinct</g><p align="left"><font color="#000000">9.  a/an (…) volcano</font></p><g id="41">A.  cascading</g><g id="42">B.  active</g><g id="43">C.  extinct</g><g id="44">D.  productive</g><g id="45">E.  fast-flowing</g><p align="left"><font color="#000000">10.  a (…) mountain</font></p><g id="46">A.  high</g><g id="47">B.  deep</g><g id="48">C.  towering</g><g id="49">D.  sheer</g><g id="50">E.  narrow</g><p align="left"><font color="#000000">11.  (…) cliffs</font></p><g id="51">A.  high</g><g id="52">B.  deep</g><g id="53">C.  towering</g><g id="54">D.  sheer</g><g id="55">E.  narrow</g><p align="left"><font color="#000000">12.  a (…) gorge</font></p><g id="56">A.  high</g><g id="57">B.  deep</g><g id="58">C.  towering</g><g id="59">D.  sheer</g><g id="60">E.  narrow</g><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

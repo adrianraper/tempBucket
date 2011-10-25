@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="According " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="a little bit " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="foretell " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="just imagine " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="could " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="I believe " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="less " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="hope that " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="more bikes " correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="for example " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	The examiner asks: "How do you think city life will change in the next few decades?" Watch the very different but equally acceptable answers from Zafir and Alexandra. Fill in the missing words.
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit09_e5a.flv" mode="16" id="1005"  /><video class="leftFloat" src="../Media/Unit09_e5b.flv" mode="16" id="1006"  /><p align="left"><font color="#0000ff"><b>Zafir</b></font><input id="1" width="100" /> to what we have today, I mean technology, everything we are seeing every day, I think it's <input id="2" width="100" /> difficult just to <input id="3" width="100" /> what's going to happen tomorrow, not in a few decades. And that's because things are going very fast and life is changing very fast. And <input id="4" width="100" /> before ten years, I think nobody <input id="5" width="100" /> imagine what we are having nowadays – what we live or what we see.</p><p align="left"><font color="#0000ff"><b>Alexandra</b></font>Not much, <input id="6" width="100" />. I hope, though, that we will have <input id="7" width="100" /> concentration of cars and buses in the centres of the cities. I <input id="8" width="100" /> some programme will be developed that will push the people to use <input id="9" width="100" />, or special roads will be built for the people who can travel on roller skates <input id="10" width="100" />. Maybe the roads for pedestrians will be better.</p><p align="left"><font size="2"></font></p>
+<p align="left">
+<b>Click to watch the video</b></p>
+<p align="left">
+<b>Click to watch the video</b></p>
+</section>
+</body>
+</bento>

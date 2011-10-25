@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="false"/><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="false"/><answer source="a11" correct="true"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="false"/><answer source="a14" correct="false"/><answer source="a15" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="false"/><answer source="a20" correct="false"/><answer source="a21" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read this sample answer to the last writing task on the left and complete it by choosing the clause or phrase which best fits each gap.
+		
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><br/><li id="1"><ol class="answerList"><li><a id="q1" >are reluctant to introduce entrance fees</a></li><li><a id="q2" >have begun to charge entrance fees</a></li><li><a id="q3" >want to charge entrance fees</a></li></ol><br/></li><br/><li id="2"><ol class="answerList"><li><a id="q4" >charging no fee would mean the same</a></li><li><a id="q5" >free admission makes it accessible to everyone, regardless of income</a></li><li><a id="q6" >but not everyone can afford it</a></li></ol><br/></li><br/><li id="3"><ol class="answerList"><li><a id="q7" >the number of people who visit them on impulse is also high</a></li><li><a id="q8" >some people visit the same museum two or three times</a></li><li><a id="q9" >some visitors are tourists and school children</a></li></ol><br/></li><br/><li id="4"><ol class="answerList"><li><a id="q10" >they also need to put on exhibitions which make money</a></li><li><a id="q11" >free museums do not suffer from the same constraints, which may mean they present their exhibitions in a more serious way</a></li><li><a id="q12" >free museums need to appeal to a wider public, which means they only put on popular exhibitions</a></li></ol><br/></li><br/><li id="5"><ol class="answerList"><li><a id="q13" >many museums have millions of visitors every year</a></li><li><a id="q14" >hospitals and schools receive priority when it comes to government funding</a></li><li><a id="q15" >museums have to compete for funding with the health service and the education system, both of which tend to receive higher priority</a></li></ol><br/></li><br/><li id="6"><ol class="answerList"><li><a id="q16" >free museums often become unpleasantly overcrowded, especially during holiday periods, which can discourage more serious visitors</a></li><li><a id="q17" >museums are always looking for ways to make their exhibits appeal to a larger audience</a></li><li><a id="q18" >free admission would encourage more visitors to come</a></li></ol><br/></li><br/><li id="7"><ol class="answerList"><li><a id="q19" >not have to pay for them</a></li><li><a id="q20" >be given free entrance</a></li><li><a id="q21" >pay a moderate entrance fee</a></li></ol><br/></li></ol>
+</section>
+<section id="fb1">
+	<p align="left">1. The word 'despite' suggests that even though there are pressures to change, many museums are not doing so.</p>
+</section>
+<section id="fb2">
+	<p align="left"><font color="#000000">2. a: 'whereas' is used to show contrast, not similarity.</font></p><p align="left"><font color="#000000">c: 'Whereas' and 'but' can't be used in the same sentence.</font></p>
+</section>
+<section id="fb3">
+	<p align="left">3. This could not be a very useful or meaningful comparison.</p>
+</section>
+<section id="fb4">
+	<p align="left"><font color="#000000">4. a: This is a repetition of the statement which begins the sentence. The second half of this sentence should contrast with the first.</font></p><p align="left"><font color="#000000">c: The writer is making quite the opposite point.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font color="#000000">5. a: We use 'in spite of' to show that two facts seem to contradict one another. These two facts together would not be contradictory.</font></p><p align="left"><font color="#000000">b: Written like this, it seems that hospitals and schools are 'popular'. This isn't what the writer means to say.</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000">6. b: This repeats the statement which begins the sentence.</font></p><p align="left"><font color="#000000">c: Notice that the writer uses the word 'though' at the beginning of this sentence. To finish with this phrase would not make any sense.</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font color="#000000">7. a, b: There should be an idea here which contrasts with the first, not which says the same.</font></p>
+</section>
+<section id="rt56">
+	<p align="left"><font color="#000000">The tradition which some countries have of free admission to state-owned museums is coming under increasing threat due to rising costs and limited funding. Despite these pressures, many museums in these countries <font color="#0000ff"><b>(1)</b></font>.</font></p><p align="left"><font color="#000000">There are several advantages to allowing the public free access to museums. Firstly, whereas charging an entry fee means that a nation's heritage is only available to those who can afford it, <font color="#0000ff"><b>(2)</b></font>. As a result, museums, like public libraries, are treated as an extension of the state education system, which is based on the principle of equal opportunity for all. A further advantage is that free museums attract far more visitors because, although many people make a special trip to visit them, <font color="#0000ff"><b>(3)</b></font>. Free museums, therefore, reach a much wider public. Finally, while private museums may be influenced by commercial pressures, <font color="#0000ff"><b>(4)</b></font>.</font></p><p align="left"><font color="#000000">However, a policy of free admission to museums also has a number of disadvantages. First and foremost, museums whose income comes entirely from public funds may be more subject to government policy, which sometimes means that exhibitions are expected to reflect the government's views. Moreover, in spite of their popularity, <font color="#0000ff"><b>(5)</b></font>. Consequently, museums that do not charge admission may not always be able to afford ambitious projects, or to buy new items to add to their collections. Lastly, though museum directors want to attract large numbers of visitors, <font color="#0000ff"><b>(6)</b></font>.</font></p><p align="left"><font color="#000000">In conclusion, I believe that children and students should have free admission to museums, while adults should <font color="#0000ff"><b>(7)</b></font>. In this way, museums would be able to raise sufficient money to maintain the quality of their collections and add to them, and, at the same time, fulfil a valuable role in educating the general public.</font></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="rt2001">
+	<p align="left">It is important in IELTS Writing Task 2 to demonstrate your ability to use complex sentence structures. Using linking words and phrases to join your ideas together is one way to make your language more complex. In Units 1 and 3 we looked at a range of linking expressions and the various purposes they can be used for. This exercise focuses on the use of linking words and phrases to express contrast and concession, such as 'although', 'whereas', 'despite', 'in spite of' and 'however'. Notice how these words and phrases are used in the composition.</p>
+</section>
+</body>
+</bento>

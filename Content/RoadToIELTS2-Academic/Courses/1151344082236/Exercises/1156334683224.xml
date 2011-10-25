@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise samelengthgaps="true"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="desert " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="gorges " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="lakes " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="rainforests " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="waterfalls " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="beaches " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="islands " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="coast " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="cliff " correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="valley " correct="true"/></GapFillQuestion><GapFillQuestion source="q11"><answer value="farmland " correct="true"/></GapFillQuestion><GapFillQuestion source="q12"><answer value="mountain range " correct="true"/></GapFillQuestion><GapFillQuestion source="q13"><answer value="river " correct="true"/></GapFillQuestion><GapFillQuestion source="q14"><answer value="Ocean " correct="true"/></GapFillQuestion><GapFillQuestion source="q15"><answer value="volcanoes " correct="true"/></GapFillQuestion><GapFillQuestion source="q16"><answer value="peninsulas " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete the advertisement by filling each gap with the correct word or phrase.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/EN_TV_004.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Adventures Down Under</b></font></p><p align="left">Discover a land of contrasts. From luxuriant tropical scenery to vast tracts of arid <input id="1" width="100" />, from terraced vineyards to snow-clad ski slopes, from towering mountain peaks to deep rocky <input id="2" width="100" />, from cool alpine streams to salt and freshwater <input id="3" width="100" />, from small mountain villages to vibrant cosmopolitan cities - Australia has something for everyone.</p><p align="left">Explore the lush green interior of the tropical <input id="4" width="100" /> of Queensland - home to hundreds of species of plants, birds, mammals and reptiles. Admire spectacular <input id="5" width="100" /> as they cascade into tranquil pools of crystal-clear water. Relax on the soft white sands of world-renowned <input id="6" width="100" />, go snorkelling or scuba diving on the Great Barrier Reef, the world's largest living organism, or take a cruise around the beautiful desert <input id="7" width="100" /> that lie just off the east <input id="8" width="100" />.</p><p align="left">Go horse riding in the Blue Mountains of New South Wales. As you meander along towering <input id="9" width="100" /> tops, enjoy breathtaking views of the fertile river <input id="10" width="100" /> below. Stop for a picnic along the way and taste fresh produce from some of Australia's most productive <input id="11" width="100" />.</p><p align="left">Go climbing or skiing in the Snowy Mountains - Australia's highest <input id="12" width="100" /> and the country's winter sports playground. </p><p align="left">Go canoeing or water skiing or take a cruise on Australia's longest <input id="13" width="100" />, the Murray, as it wends its way from its source high in the Snowy Mountains to Encounter Bay in South Australia, where it flows into the Indian <input id="14" width="100" />.</p><p align="left">Visit Mount Gambier, just one of the many extinct <input id="15" width="100" /> in South Australia, and enjoy stunning views of the surrounding countryside from the crater. </p><p align="left">Or visit a World Heritage site - two <input id="16" width="100" /> jutting out into Shark Bay in Western Australia, where the action centres on a group of dolphins that have a taste for human contact.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

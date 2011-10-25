@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="quiz" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="false"/><answer source="a4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="false"/><answer source="a8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="false"/><answer source="a10" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	You should know what you can and can't do during the exam. Look at the questions below, choose YES if you can do this and NO if you can't.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_SP_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Ask for another topic to discuss. <a id="q1" >YES</a><tab/><a id="q2" >NO</a><br/></li><br/><li id="2">Ask the Examiner his or her opinion of the topic. <a id="q3" >YES</a><tab/><a id="q4" >NO</a><br/></li><br/><li id="3">Ask the Examiner to repeat the question. <a id="q5" >YES</a><tab/><a id="q6" >NO</a><br/></li><br/><li id="4">Ask what the Examiner thought of your performance. <a id="q7" >YES</a><tab/><a id="q8" >NO</a><br/></li><br/><li id="5">Ask for the correct answer to the question. <a id="q9" >YES</a><tab/><a id="q10" >NO</a><br/></li></ol>
+</section>
+<section id="fb1">
+	<p align="left">You can't do that.</p>
+</section>
+<section id="fb2">
+	<p align="left">You must discuss the topic you are given.</p>
+</section>
+<section id="fb3">
+	<p align="left">Examiners want to know your opinion, not give theirs.</p>
+</section>
+<section id="fb4">
+	<p align="left">Examiners should ask the questions, not you.</p>
+</section>
+<section id="fb5">
+	<p align="left">This is fine.</p>
+</section>
+<section id="fb6">
+	<p align="left">Of course you can, so learn a polite way of asking.</p>
+</section>
+<section id="fb7">
+	<p align="left">You will find out when you get your results, no sooner.</p>
+</section>
+<section id="fb8">
+	<p align="left">Examiners can't answer this question, so you shouldn't ask it.</p>
+</section>
+<section id="fb9">
+	<p align="left">There are no correct or wrong answers to questions.</p>
+</section>
+<section id="fb10">
+	<p align="left">It is your opinion that matters and how well you communicate it.</p>
+</section>
+</body>
+</bento>

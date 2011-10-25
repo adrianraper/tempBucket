@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_TV_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Medical conditions and symptoms</b></font></p><p align="left">You will listen to patients talking to their doctor or dentist and match their symptoms to medical conditions.</p><p align="left"><font color="#0000ff"><b>Healthy eating</b></font></p><p align="left">You will complete the notes a student made during an introductory lecture on food science and then listen to the lecture and check your answers.</p><p align="left"><font color="#0000ff"><b>Infectious diseases - causes, prevention and treatment</b></font></p><p align="left">You will group words according to whether they are related to the causes of infectious diseases or to their prevention and treatment. You will complete sentences with appropriate words.</p>
+</section>
+</body>
+</bento>

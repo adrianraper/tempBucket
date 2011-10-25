@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a17" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a18" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a19" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a20" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a21" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a22" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a23" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a24" correct="true"/></DragQuestion><DragQuestion source="q10"><answer source="a25" correct="true"/></DragQuestion><DragQuestion source="q11"><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q12"><answer source="a27" correct="true"/></DragQuestion><DragQuestion source="q13"><answer source="a28" correct="true"/></DragQuestion><DragQuestion source="q14"><answer source="a29" correct="true"/></DragQuestion><DragQuestion source="q15"><answer source="a30" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences by putting the correct word or phrase into each gap.
+</header>
+	
+<section id="noscroll">
+	
+		
+		<span id="a21" draggable="true">conjunctions</span>
+		<span id="a30" draggable="true">verbs</span>
+		<span id="a26" draggable="true">vowel</span>
+		<span id="a20" draggable="true">adverbs</span>
+		<span id="a24" draggable="true">pronoun</span>
+		
+		
+		<span id="a22" draggable="true">noun</span>
+		<span id="a18" draggable="true">adjective</span>
+		<span id="a25" draggable="true">vocabulary</span>
+		<span id="a28" draggable="true">sentences</span>
+		<span id="a27" draggable="true">definitions</span>
+		
+		
+		<span id="a19" draggable="true">phrasal verb</span>
+		<span id="a29" draggable="true">pronunciation</span>
+		<span id="a17" draggable="true">consonants</span>
+		<span id="a16" draggable="true">preposition</span>
+		<span id="a23" draggable="true">spelling</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_TV_003.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">You've used the wrong <input id="q1" type="droptarget" /> here. If the man was in the wall, we wouldn't be able to see him!</li><li id="2">You need to work on your pronunciation of English sounds, especially <input id="q2" type="droptarget" /> like 'b', as in the word 'big', and 'p', as in the word 'pig'.</li><li id="3">The <input id="q3" type="droptarget" /> 'beautiful' has three syllables so the comparative is formed with 'more'.</li><li id="4">There must be at least six different definitions of the <input id="q4" type="droptarget" />, 'make up'. It's probably used most to mean 'invent', as in 'invent a story or excuse'.</li><li id="5">Remember that the normal position of <input id="q5" type="droptarget" /> of frequency like 'never', 'sometimes', 'usually' and 'always' is after auxiliary verbs but before main verbs.</li><li id="6">Try to vary the <input id="q6" type="droptarget" /> you use. You've used 'and' eight times when you could have used words or phrases like 'despite this' for contrast and 'in addition' for addition.</li><li id="7">The word 'object' is both a verb and a <input id="q7" type="droptarget" />. You can tell which part of speech it is by the way it's stressed.</li><li id="8">You've made quite a few careless <input id="q8" type="droptarget" /> mistakes. Remember 'i' comes before 'e' except after 'c'.</li><li id="9">It isn't clear who the <input id="q9" type="droptarget" /> 'him' refers to in this sentence - the dog or the man?</li><li id="10">In order to expand your <input id="q10" type="droptarget" />, you need to read more books and magazines and watch films.</li><li id="11">You need to focus on individual <input id="q11" type="droptarget" /> sounds like 'a' in 'cat' and 'e' in 'egg'.</li><li id="12">I often look words up in the dictionary but sometimes the <input id="q12" type="droptarget" /> are too difficult for me to understand!</li><li id="13">Your <input id="q13" type="droptarget" /> tend to be too long. Some of them go on for three lines!</li><li id="14">Your <input id="q14" type="droptarget" /> of English sounds is quite good but you do need to work on your intonation and stress too.</li><li id="15">A lot of your <input id="q15" type="droptarget" /> are in the wrong tense. Have a look at the uses of the present simple and present continuous again.</li></ol>
+</section>
+</body>
+</bento>

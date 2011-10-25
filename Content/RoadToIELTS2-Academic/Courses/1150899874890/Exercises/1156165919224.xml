@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback neutral="true"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_LN_001.JPG" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Monologue (social context)</b></font></p>You will listen to a talk about ways to improve your English.<p align="left"><font color="#0000ff"><b>Conversation (educational context)</b></font></p>You will listen to a tutor and a student discussing endangered languages.<p align="left"><b>Question types</b>You will attempt two question types.<u><g id="1">Sentence completion</g></u><u><g id="2">Matching (descriptions to items)</g></u></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left"><b>Sentence Completion</b></p><p align="left"></p><p align="left">You will be given a number of incomplete sentences which you need to complete with information from the listening text. The sentences may be in a table.</p><p align="left"></p><p align="left">Read the instructions carefully. They will usually state that your answer should be NO MORE THAN THREE WORDS OR A NUMBER. But check this is the case.</p><p align="left"></p><p align="left">Read the sentences.</p><p align="left"></p><p align="left">If the sentences are part of a table, check whether the questions are horizontal or vertical.</p><p align="left"></p><p align="left">Try to work out what you will be listening to. Any headings or sub-headings given will help you.</p><p align="left"></p><p align="left">Decide what you are listening for.</p><p align="left"></p><p align="left">Try to work out what grammatical form should follow the last word given in the sentence. Make sure you read the stem of the sentence carefully.</p><p align="left"></p><p align="left">Complete the sentences as you listen.</p><p align="left"></p><p align="left">The information will be given in the same order as the questions although it may be expressed differently. Listen out for words or phrases of similar meaning to those in the sentence stems.</p><p align="left"></p><p align="left">You may use your own words. Make sure your sentences are grammatically correct.</p><p align="left"></p><p align="left">Remember as you write, the answer could be a number, one word, two words or three words but not four words or more.</p><p align="left"></p><p align="left">If you think you need more than three words your answer is probably incorrect.</p>
+</section>
+<section id="fb2">
+	<p align="left"><b>Matching</b></p><p align="left"></p><p align="left">You are usually given words or phrases to match to other words, phrases or sentences. You will usually have to insert a letter representing one of the words or phrases beside a number which represents another word or phrase.</p><p align="left"></p><p align="left">Read the instructions carefully.</p><p align="left"></p><p align="left">Read through all the words, phrases or sentences and underline key words.</p><p align="left"></p><p align="left">Try to work out what you will be listening to.</p><p align="left"></p><p align="left">You may be able to predict one or two of the answers.</p><p align="left"></p><p align="left">Think about how any unusual names might be pronounced.</p><p align="left"></p><p align="left">The information will be given in the same order as the numbered words or phrases.</p><p align="left"></p><p align="left">Listen out for the words or phrases in the exercise.</p><p align="left"></p><p align="left">Cross out the lettered words or phrases as you use them.</p><p align="left"></p><p align="left">Be careful of words that either look or sound similar. </p>
+</section>
+</body>
+</bento>

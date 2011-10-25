@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="a9" correct="true"/><answer source="a9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="a10" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete each sentence so that it means the same as the sentence before it. Use the passive form of the highlighted verb in each case and do not include the agent.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_AW_026.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Some people think that an international language would reduce nationalistic feelings.It <input id="q1" width="100" /> that an international language would reduce nationalistic feelings.</li><li id="2">Experts believe that about 6,000 languages are spoken in the world today.About 6,000 languages <input id="q2" width="100" /> to be spoken in the world today.</li><li id="3">People often suggest that an international language would lead to the disappearance of minority languages.It <input id="q3" width="100" /> that an international language would lead to the disappearance of minority languages.</li><li id="4">People argue that an international language would facilitate international trade.It <input id="q4" width="100" /> that an international language would facilitate international trade.</li><li id="5">Some experts estimate that up to 1.5 billion people speak some English nowadays.There <input id="q5" width="100" /> to be up to 1.5 billion people who speak some English nowadays.</li><li id="6">Many people consider the biggest problem to be which language to choose as an international language.The biggest problem <input id="q6" width="100" /> to be which language to choose as an international language.</li><li id="7">Many people feel that if an international language was imposed on people, there would be a strong reaction against it.It <input id="q7" width="100" /> that if an international language was imposed on people, there would be a strong reaction against it.</li><li id="8">People say that an international language would increase international co-operation and understanding.It <input id="q8" width="100" /> that an international language would increase international co-operation and understanding.</li><li id="9">People generally agree that artificial languages such as Esperanto are not the solution to the problem.It <input id="q9" width="100" /> that artificial languages such as Esperanto are not the solution to the problem.</li><li id="10">Linguists have pointed out that all languages diversify into dialects.It <input id="q10" width="100" /> that all languages diversify into dialects.</li></ol>
+</section>
+</body>
+</bento>

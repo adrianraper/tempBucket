@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="errorcorrection" date="2011-10-11" />
+	<meta name="conversion" type="errorcorrection" date="2011-10-25" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -31,8 +31,7 @@
 	<script id="settings" type="application/xml">
 		<settings><marking test="false"/><feedback wrongonly="true"/><buttons hints="true" print="true" progress="true" scratchpad="true"/><exercise correctmistakes="true" hiddentargets="true"/><misc soundeffects="false"/></settings>
 	</script>
-	
-
+	<br/>
 <script id="model" type="application/xml">
 <questions><ErrorCorrectionQuestion source="q1"><answer value="poorly" correct="false"/><answer value="low-income" correct="true"/><answer value="low income" correct="true"/></ErrorCorrectionQuestion></questions></script>
 

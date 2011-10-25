@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="readership" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="circulation" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="tabloid" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="broadsheets" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="layout" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="columns" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="classified " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="edition" correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="front page" correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="headline" correct="true"/></GapFillQuestion><GapFillQuestion source="q11"><answer value="report" correct="true"/></GapFillQuestion><GapFillQuestion source="q12"><answer value="viewers" correct="true"/></GapFillQuestion><GapFillQuestion source="q13"><answer value="channel" correct="true"/></GapFillQuestion><GapFillQuestion source="q14"><answer value="coverage" correct="true"/></GapFillQuestion><GapFillQuestion source="q15"><answer value="live" correct="true"/></GapFillQuestion><GapFillQuestion source="q16"><answer value="ratings" correct="true"/></GapFillQuestion><GapFillQuestion source="q17"><answer value="programmes" correct="true"/></GapFillQuestion><GapFillQuestion source="q18"><answer value="pre-recorded" correct="true"/></GapFillQuestion><GapFillQuestion source="q19"><answer value="studio" correct="true"/></GapFillQuestion><GapFillQuestion source="q20"><answer value="commercial" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Using words from the previous exercise, complete the reports by filling each gap with the correct word or phase.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/MM_TV_005.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>The UK Today</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Today saw the launch of the new daily newspaper 'The UK Today'. According to the paper's editor, Charles Moody, 'The UK Today' is aimed at a younger twenty-something <input id="1" width="100" /> and is expected to reach an average <input id="2" width="100" /> of 200,000 in its first year. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Although the paper is <input id="3" width="100" /> in format, Moody was quick to point out that it will have as much serious news as any of the <input id="4" width="100" />. One of its most striking features is its highly unusual <input id="5" width="100" />. Articles aren't laid out in <input id="6" width="100" /> but in boxes, each accompanied by a colour photograph. </font></p><p align="left"><font face="verdana" size="13" color="#000000">You'll find all the usual sections - national and international news, financial news, arts and entertainment, sport and, of course, <input id="7" width="100" /> advertisements. </font></p><p align="left"><font face="verdana" size="13" color="#000000">So, what's in today's <input id="8" width="100" />? Well, on the <input id="9" width="100" />, under the eye-catching banner <input id="10" width="100" /> 'More hot air?' is an in-depth <input id="11" width="100" /> on the outcomes of this week's international summit meeting on global warming. Well worth a read!</font></p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Barnston TV Goes Live</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Tomorrow television <input id="12" width="100" /> in the south-east will be able to tune into Barnston TV. The new cable <input id="13" width="100" /> hopes to attract as wide an audience as possible with extensive <input id="14" width="100" /> of both national and local news as well as all major sporting events. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Football matches will be broadcast <input id="15" width="100" /> both mid-week and at weekends and these are expected to boost <input id="16" width="100" /> significantly. Other <input id="17" width="100" /> will include a late-night chat show, which will be <input id="18" width="100" /> in front of a <input id="19" width="100" /> audience and aired on Saturday evenings. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Funding will be generated through advertising. A 60-second <input id="20" width="100" /> will cost considerably less on Barnston TV than on national television and there is expected to be a huge demand for airtime from local businesses. </font></p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

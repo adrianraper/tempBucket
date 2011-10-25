@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="a9" correct="true"/><answer source="a9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="a10" correct="true"/><answer source="a10" correct="true"/></GapFillQuestion><GapFillQuestion group="q11"><answer source="a11" correct="true"/><answer source="a11" correct="true"/></GapFillQuestion><GapFillQuestion group="q12"><answer source="a12" correct="true"/></GapFillQuestion><GapFillQuestion group="q13"><answer source="a13" correct="true"/><answer source="a13" correct="true"/></GapFillQuestion><GapFillQuestion group="q14"><answer source="a14" correct="true"/></GapFillQuestion><GapFillQuestion group="q15"><answer source="a15" correct="true"/></GapFillQuestion><GapFillQuestion group="q16"><answer source="a16" correct="true"/><answer source="a16" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences by filling each gap with the correct word or phrase.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/ED_TV_004.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">A <input id="q1" width="100" /> is someone who has been awarded a first degree.</li><li id="2">A university building that has rooms for students to live in is called a <input id="q2" width="100" />.</li><li id="3">An MA is an example of a <input id="q3" width="100" />.</li><li id="4">A <input id="q4" width="100" /> is a sum of money given to students by the state to cover their living expenses while they are studying at a college or university.</li><li id="5">An <input id="q5" width="100" /> is someone who is studying for a first degree.</li><li id="6">The place where university students sit in rows of seats and listen to formal talks by university teachers giving information about the subject they are studying is called a <input id="q6" width="100" />.</li><li id="7">The land that belongs to a university and where all the main buildings are situated is known as a <input id="q7" width="100" />.</li><li id="8">A <input id="q8" width="100" /> is a sum of money given to a student by a school, college, university or other organization, usually awarded on the basis of academic achievement, to help pay for a course of study.</li><li id="9">A <input id="q9" width="100" /> is someone who holds the lowest teaching rank at a university.</li><li id="10">A <input id="q10" width="100" /> is someone who is studying or doing research for a master's or doctoral degree.</li><li id="11">A <input id="q11" width="100" /> is a university teacher who supervises the studies of a single student or a small group of students.</li><li id="12">A BA is an example of a <input id="q12" width="100" />.</li><li id="13">A <input id="q13" width="100" /> is someone who holds the highest teaching rank at a university.</li><li id="14">Universities and colleges charges <input id="q14" width="100" /> for their courses.</li><li id="15">A <input id="q15" width="100" /> is a qualification awarded by a university or college which is not as high as a degree.</li><li id="16">A room containing scientific equipment where teaching, experiments and research are carried out is called a <input id="q16" width="100" />.</li></ol>
+</section>
+</body>
+</bento>

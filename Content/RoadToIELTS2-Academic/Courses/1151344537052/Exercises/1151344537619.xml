@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="267"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="B " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="A " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="B " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="A " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="C " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Write the appropriate letters A-C against Questions 1-8. According to the speaker, when did the following take place?
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/AC_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/AC_LN2.mp3" mode="4" id="1002"  /><p align="left"><i><b>A</b>	in the period up to 1950</i><i>B	in the period between 1951 and 1984</i><i>C	in the period after 1984</i></p><p align="left"><b>1</b> cinema attendance fell	<input id="1" width="100" /></p><p align="left"><b>2</b> cinema admissions reached a peak	<input id="2" width="100" /></p><p align="left"><b>3</b> multi-screen cinemas were introduced		<input id="3" width="100" /></p><p align="left"><b>4</b> films mainly of interest to men were shown	<input id="4" width="100" /></p><p align="left"><b>5</b> cinemas were built at out-of-town sites	<input id="5" width="100" /></p><p align="left"><b>6</b> cinema-goers were given access to free car parks	<input id="6" width="100" /></p><p align="left"><b>7</b> cinemas were built in easy reach of public transport	<input id="7" width="100" /></p><p align="left"><b>8</b> cinemas began to target younger audiences	<input id="8" width="100" /></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left">1. The lecturer says that audiences shrank which means the same as 'cinema attendance fell', reaching an all-time low in 1984.</p>
+</section>
+<section id="fb2">
+	<p align="left">2. The lecturer says that during this period 'cinema attendance was at its height' which means the same as reaching a peak.</p>
+</section>
+<section id="fb3">
+	<p align="left">3. The lecturer says that the first multiplex cinema, which he describes as having five or more screens, was opened in 1985.</p>
+</section>
+<section id="fb4">
+	<p align="left">4. The lecturer says that the films during this period featured explicit sex and were designed to appeal to young adults, particularly males.</p>
+</section>
+<section id="fb5">
+	<p align="left">5. The lecturer says that multiplex cinemas were constructed outside city areas. If you were not sure when the multiplex cinemas were built, you were given another clue as he says they were successful for similar reasons to that of the cinemas in the 1930s and 40s.</p>
+</section>
+<section id="fb6">
+	<p align="left">6. The lecturer says that multiplex cinemas of the 1990s were often constructed in shopping complexes with free parking.</p>
+</section>
+<section id="fb7">
+	<p align="left">7. The lecturer says that the super cinemas of the 1930s and 1940s were located on bus routes which means they were within easy reach of public transport.</p>
+</section>
+<section id="fb8">
+	<p align="left">8. The lecturer states that in recent decades an attempt has been made to screen films aimed specifically at children, which means the same as targetting younger audiences. </p>
+</section>
+<section id="rt2001">
+	<p align="left">You should be able to work out from the question asked, the statements and the categories that you are going to hear someone talking about cinema from the 1950s-onwards. You should also see that you are expected to listen and find out for which period of time each statement is true. Look at the different periods and think about how they might be expressed differently. What century or part of the century does each period refer to, for example?&nbsp;Questions 1-8 Make sure you are familiar with each of these statements before you start to listen. Can you guess or eliminate any of the answers? What about number 3 for example? What do you think multiplex cinemas are and do you think they could have been introduced before 1950?</p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/><answer source="a8" correct="true"/><answer source="a8" correct="true"/><answer source="a8" correct="true"/><answer source="a8" correct="true"/><answer source="a8" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete each sentence so that it means the same as the sentence before it. Use the word given in brackets at the end of each sentence and any other words necessary.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_AW_013.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">It is unlikely that genetically modified crops will have such a disastrous effect on the environment.Genetically modified crops <input id="q1" width="100" /> such a disastrous effect on the environment. (likely)</li><li id="2">Research into gene therapy will probably provide a cure for certain forms of cancer.<input id="q2" width="100" />, research into gene therapy will provide a cure for certain forms of cancer. (probability)</li><li id="3">People who eat a fatty diet could very well suffer from heart disease in later life.People who eat a fatty diet <input id="q3" width="100" /> from heart disease in later life. (likely)</li><li id="4">It is possible that a cure for AIDS will be available within the next decade.A cure for AIDS <input id="q4" width="100" /> available within the next decade. (just)</li><li id="5">Viruses buried deep in the Arctic could well be released by a change in the Earth's climate.<input id="q5" width="100" /> viruses buried deep in the Arctic will be released by a change in the Earth's climate. (possible)</li><li id="6">In the future most of the world's population will probably live considerably longer.<input id="q6" width="100" />, most of the world's population will live considerably longer in the future. (likelihood)</li><li id="7">People are unlikely to stop smoking simply because of the health warnings on cigarette packets.<input id="q7" width="100" /> people will stop smoking simply because of the health warnings on cigarette packets. (likely)</li><li id="8">There is every likelihood that gene therapy will make some hereditary diseases a thing of the past.Gene therapy <input id="q8" width="100" /> some hereditary diseases a thing of the past. (well)</li></ol>
+</section>
+<section id="fb3">
+	<p align="left">[highly/very/extremely/quite/] </p>
+</section>
+<section id="fb8">
+	<p align="left"></p>
+</section>
+</body>
+</bento>

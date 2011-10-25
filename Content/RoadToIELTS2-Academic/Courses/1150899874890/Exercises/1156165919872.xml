@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="false"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"><feedback source="fb8"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	In what order do you think the candidate should perform these tasks after being given the discussion topic? Choose the right order.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_SP_004.JPG" mode="1" id="1001"  /><p align="left"><b>In Part 2 of the IELTS Speaking Module you will be given a topic, time to think and make notes, then one to two minutes to talk.</b>Use your time to:</p><ol><li>be clear about instructions</li><li>get your ideas in a logical order</li><li>have enough materials to speak until the examiner stops you</li></ol><p align="left"><b>In what order should you perform these tasks in Part 2 of the Speaking Module?</b><g id="1">A.  Think Speak Write Read</g><g id="2">B.  Think Read Speak Write</g><g id="3">C.  Write Read Speak Think</g><g id="4">D.  Write Speak Read Think</g><g id="5">E.  Read Write Think Speak</g><g id="6">F.  Read Think Write Speak</g><g id="7">G.  Speak Think Read Write</g><g id="8">H.  Speak Write Think Read</g></p>
+</section>
+<section id="fb1">
+	<p align="left">It would be a good idea to find out what you have to do first.</p>
+</section>
+<section id="fb2">
+	<p align="left">It would be difficult to know what to think about.</p>
+</section>
+<section id="fb3">
+	<p align="left">It would be difficult to know what to write.</p>
+</section>
+<section id="fb4">
+	<p align="left">It might be a good idea to find out what you have to do first.</p>
+</section>
+<section id="fb5">
+	<p align="left">It is a better idea to think before you write anything down.</p>
+</section>
+<section id="fb7">
+	<p align="left">Speaking is the last thing you should do.</p>
+</section>
+<section id="fb8">
+	<p align="left">Speaking is the last thing you should do.</p>
+</section>
+</body>
+</bento>

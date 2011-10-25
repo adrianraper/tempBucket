@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-11" />
+	<meta name="conversion" type="quiz" date="2011-10-25" />
 	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
@@ -37,8 +37,7 @@
 		<misc/>
 	</settings>
 	</script>
-	
-
+	<br/>
 <script id="model" type="application/xml">
 <questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="false"/><answer source="a4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion></questions></script>
 
@@ -50,16 +49,7 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/Unit01_Write_e2.1q.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/Unit01_Write_e2.1a.jpg" mode="16" id="1004"  /><img class="rightFloat" src="../Media/Unit01_Write_e2.1b.jpg" mode="16" id="1005"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.2q.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.2a.jpg" mode="16" id="1007"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.2b.jpg" mode="16" id="1008"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.3q.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.3a.jpg" mode="16" id="1010"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.3b.jpg" mode="16" id="1011"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.4q.jpg" mode="1" id="1012"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.4a.jpg" mode="16" id="1013"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.4b.jpg" mode="16" id="1014"  />
-<ol id="questionList">
-<li id="1">Chart 01
-</li><font face="verdana" size="13" color="#0f157a"><b><a id="q1" >Chart A</a><tab/><a id="q2" >Chart B</a></b></font>
-<li id="2">Chart 02
-</li><font face="verdana" size="13" color="#0f157a"><b><a id="q3" >Chart A</a><tab/><a id="q4" >Chart B</a></b></font>
-<li id="3">Chart 03
-</li><font face="verdana" size="13" color="#0f157a"><b><a id="q5" >Chart A</a><tab/><a id="q6" >Chart B</a></b></font>
-<li id="4">Chart 04
-</li><font face="verdana" size="13" color="#0f157a"><b><a id="q7" >Chart A</a><tab/><a id="q8" >Chart B</a></b></font></ol>
+	<img class="leftFloat" src="../Media/Unit01_Write_e2.1q.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/Unit01_Write_e2.1a.jpg" mode="16" id="1004"  /><img class="rightFloat" src="../Media/Unit01_Write_e2.1b.jpg" mode="16" id="1005"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.2q.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.2a.jpg" mode="16" id="1007"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.2b.jpg" mode="16" id="1008"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.3q.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.3a.jpg" mode="16" id="1010"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.3b.jpg" mode="16" id="1011"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.4q.jpg" mode="1" id="1012"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.4a.jpg" mode="16" id="1013"  /><img class="leftFloat" src="../Media/Unit01_Write_e2.4b.jpg" mode="16" id="1014"  /><br/><ol id="questionList"><br/><li id="1">Chart 01<br/></li><font face="verdana" size="13" color="#0f157a"><b><a id="q1" >Chart A</a><tab/><a id="q2" >Chart B</a></b></font><br/><li id="2">Chart 02<br/></li><font face="verdana" size="13" color="#0f157a"><b><a id="q3" >Chart A</a><tab/><a id="q4" >Chart B</a></b></font><br/><li id="3">Chart 03<br/></li><font face="verdana" size="13" color="#0f157a"><b><a id="q5" >Chart A</a><tab/><a id="q6" >Chart B</a></b></font><br/><li id="4">Chart 04<br/></li><font face="verdana" size="13" color="#0f157a"><b><a id="q7" >Chart A</a><tab/><a id="q8" >Chart B</a></b></font></ol>
 </section>
 <section id="fb1">
 	<p align="left">This standard bar chart has a separate bar for each place of interest such as the National Gallery or The British Museum, but the figures are exactly the same as for the proportional bar chart on the left.</p>

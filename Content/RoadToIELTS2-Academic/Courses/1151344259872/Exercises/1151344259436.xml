@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="The Universe " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="planets " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="a galaxy " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="the Galaxy " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="The sun " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="suns " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="The solar system " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="Asteroids " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="Comets " correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="Meteors " correct="true"/></GapFillQuestion><GapFillQuestion source="q11"><answer value="Meteorites " correct="true"/></GapFillQuestion><GapFillQuestion source="q12"><answer value="Moons " correct="true"/></GapFillQuestion><GapFillQuestion source="q13"><answer value="The moon " correct="true"/></GapFillQuestion><GapFillQuestion source="q14"><answer value="satellite " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Here are the notes taken by a student while she was listening to the lecture. Complete the notes by filling each gap with the correct word or phrase. In some gaps you may also need to supply 'a' or 'the'. When you have finished, listen to the lecture to check your answers.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/ST_TV_004.jpg" mode="1" id="1001"  /><media class="rightFloat" src="../Media/ST_TV2aa.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Astronomy – Lecture 1</b></font></p><p align="left"><font color="#000000"><input id="1" width="100" /> is the whole of space – it consists of stars, <input id="2" width="100" />, other celestial bodies, and dust and gas.</font></p>A collection of millions/billions of stars is known as <input id="3" width="100" />.Our collection of stars is referred to as <input id="4" width="100" /> – it's also called the Milky Way.<input id="5" width="100" /> is the star that the Earth orbits. It's also the only star we can see during the day.All <input id="6" width="100" /> are stars.<input id="7" width="100" /> is made up of the sun and all the objects that orbit it.These include the following:<input id="8" width="100" /> – lumps of rock orbiting the sun. Large numbers are found between Mars and Jupiter.<input id="9" width="100" /> – icy celestial objects with a tail of gas and dust.<input id="10" width="100" /> – pieces of metal and rock that make streaks of light in the night sky as they pass through the atmosphere. If they fall to Earth they are called <input id="11" width="100" />.<input id="12" width="100" /> orbit planets. Mars has two and Jupiter sixteen.<input id="13" width="100" />takes about a month to orbit the Earth.The Earth is a natural <input id="14" width="100" /> of the sun.
+		<p align="left">
+		<b>Click to listen</b></p>
+</section>
+</body>
+</bento>

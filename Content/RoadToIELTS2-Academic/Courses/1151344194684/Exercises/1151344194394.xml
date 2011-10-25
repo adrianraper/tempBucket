@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="have taken place " correct="true"/><answer value="have been taking place" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="has been " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="is " correct="true"/><answer value="has been" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="consisted " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="had shot up " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="will reach " correct="true"/><answer value="will have reached" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="accounted for " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="had risen " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="will continue " correct="true"/><answer value="is going to continue" correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="has risen " correct="true"/><answer value="has been rising" correct="true"/></GapFillQuestion><GapFillQuestion source="q11"><answer value="will consist " correct="true"/></GapFillQuestion><GapFillQuestion source="q12"><answer value="has changed " correct="true"/><answer value="has been changing" correct="true"/></GapFillQuestion><GapFillQuestion source="q13"><answer value="accounted for " correct="true"/></GapFillQuestion><GapFillQuestion source="q14"><answer value="has fallen " correct="true"/><answer value="has been falling" correct="true"/></GapFillQuestion><GapFillQuestion source="q15"><answer value="will decline " correct="true"/><answer value="is going to decline" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look at the bar charts and complete the report by filling each gap with the correct tense of the verb given in brackets.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/SS_AW_005s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/SS_AW_005.jpg" mode="16" id="1004"  /><p align="left"><font color="#000000">A number of significant changes <input id="1" width="100" /> (take place) in the proportion of single-person households in England in recent years.</font></p>&nbsp;Generally speaking, since 1971 there <input id="2" width="100" /> (be) a marked upward trend in the numbers of people living alone among the under 65s and this trend <input id="3" width="100" /> (be) most pronounced for men. In 1971 only about 3.5 per cent of households <input id="4" width="100" /> (consist) of one man living alone. By 2001 this figure <input id="5" width="100" /> (shoot up) to over 10 per cent. It is predicted that by 2021 the proportion <input id="6" width="100" /> (reach) almost 14 per cent of all households.&nbsp;A similar trend can be seen for women under 65. In 1971 women living alone <input id="7" width="100" /> (account for) just under 5 per cent of all households. By 2001 the proportion <input id="8" width="100" /> (rise) to around 7 per cent. Again, it is predicted that this upward trend <input id="9" width="100" /> (continue) for the foreseeable future.&nbsp;The pattern for the over 65s who live alone is somewhat different. Since the early 1970s the proportion of households consisting of male pensioners living alone <input id="10" width="100" /> (rise) steadily, but at a much slower rate than other types of single-person households. By 2021 almost 1 in 20 households <input id="11" width="100" /> (consist) of one man over 65. The proportion of female pensioners living alone <input id="12" width="100" /> (change) significantly in recent years. This used to be the most common kind of single-person household. In 1981, for example, this <input id="13" width="100" /> (account for) around 1 in 10 of all households. Since then, however, the proportion <input id="14" width="100" /> (fall) and it <input id="15" width="100" /> (decline) further over the coming years.<p align="left"><font size="2"></font></p>
+		<p align="left">
+		<b>Click to enlarge</b></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a11" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a12" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a13" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a14" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a15" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a17" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a18" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a19" correct="true"/></DragQuestion><DragQuestion source="q10"><answer source="a20" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Match each verb or phrase to the line graph it describes best.
+</header>
+	
+<section id="noscroll">
+	
+
+<span id="a13" draggable="true">a sharp rise</span>
+<span id="a14" draggable="true">a slight drop</span>
+<span id="a15" draggable="true">a steady downward trend</span>
+<span id="a12" draggable="true">a peak</span>
+
+
+<span id="a18" draggable="true">to plunge</span>
+<span id="a20" draggable="true">to remain stable</span>
+<span id="a19" draggable="true">to reach a plateau</span>
+<span id="a11" draggable="true">a dip</span>
+
+
+<span id="a17" draggable="true">to fluctuate</span>
+<span id="a16" draggable="true">an overall upward trend</span>
+</section>
+<section id="body">
+	<img class="leftFloat" src="../Media/Unit02_Write_e3a.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/Unit02_Write_e3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/Unit02_Write_e3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/Unit02_Write_e3j.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/Unit02_Write_e3d.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../Media/Unit02_Write_e3e.jpg" mode="1" id="1008"  /><img class="leftFloat" src="../Media/Unit02_Write_e3f.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit02_Write_e3g.jpg" mode="1" id="1010"  /><img class="leftFloat" src="../Media/Unit02_Write_e3h.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../Media/Unit02_Write_e3i.jpg" mode="1" id="2012"  /><br/><ol id="questionList"><li id="1">
+</li>
+<p align="left"><font color="#0000ff"><input id="q1" type="droptarget" /></font></p><li id="2">
+</li>
+<p align="left"><font color="#0000ff"><input id="q2" type="droptarget" /></font></p><li id="3">
+</li>
+<p align="left"><font color="#0000ff"><input id="q3" type="droptarget" /></font></p><li id="4">
+</li>
+<p align="left"><font color="#0000ff"><input id="q4" type="droptarget" /></font></p><li id="5">
+</li>
+<p align="left"><font color="#0000ff"><input id="q5" type="droptarget" /></font></p><li id="6">
+</li>
+<p align="left"><font color="#0000ff"><input id="q6" type="droptarget" /></font></p><li id="7">
+</li>
+<p align="left"><font color="#0000ff"><input id="q7" type="droptarget" /></font></p><li id="8">
+</li>
+<p align="left"><font color="#0000ff"><input id="q8" type="droptarget" /></font></p><li id="9">
+</li>
+<p align="left"><font color="#0000ff"><input id="q9" type="droptarget" /></font></p><li id="10">
+</li>
+<p align="left"><font color="#0000ff"><input id="q10" type="droptarget" /></font></p></ol>
+</section>
+<section id="fb1">
+	<p align="left"><font color="#000000">1. <b>a dip</b>: A dip is a slight and temporary fall in an otherwise stable trend.</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font color="#000000">2. <b>a peak</b>: The figures reach their highest point and then fall.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font color="#000000">3. <b>a sharp rise</b>: The figures suddenly begin a dramatic rise.</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font color="#000000">4. <b>a slight drop</b>: The figures fall a little and then remain stable.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font color="#000000">5. <b>a steady downward trend</b>: The figures don't fall dramatically, but there is a slight, continuous fall.</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000">6. <b>an overall upward trend</b>: Although there may be some very slight falls occasionally, generally the figures rise steadily throughout the time shown in the graph.</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font color="#000000">7. <b>to fluctuate</b>: The figures are continuously changing around the same point.</font></p>
+</section>
+<section id="fb8">
+	<p align="left"><font color="#000000">8. <b>to plunge</b>: The figures suddenly take a very large fall.</font></p>
+</section>
+<section id="fb9">
+	<p align="left"><font color="#000000">9. <b>to reach a plateau</b>: In the beginning there is an upward trend, but then the increase falls off and the figures remain stable.</font></p>
+</section>
+<section id="fb10">
+	<p align="left"><font color="#000000">10. <b>to remain stable</b>: There is no significant change in the figures.</font></p>
+</section>
+<section id="rt2001">
+	<p align="left">Examiners will be looking for a range of appropriate vocabulary for describing trends. Here are some useful words and expressions.</p>
+</section>
+</body>
+</bento>

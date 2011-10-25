@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a22" correct="true"/><answer source="a21" correct="true"/><answer source="a23" correct="true"/><answer source="a31" correct="true"/><answer source="a32" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a21" correct="true"/><answer source="a22" correct="true"/><answer source="a23" correct="true"/><answer source="a31" correct="true"/><answer source="a32" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a23" correct="true"/><answer source="a22" correct="true"/><answer source="a21" correct="true"/><answer source="a31" correct="true"/><answer source="a32" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a31" correct="true"/><answer source="a22" correct="true"/><answer source="a21" correct="true"/><answer source="a23" correct="true"/><answer source="a32" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a32" correct="true"/><answer source="a22" correct="true"/><answer source="a21" correct="true"/><answer source="a23" correct="true"/><answer source="a31" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a26" correct="true"/><answer source="a22" correct="true"/><answer source="a21" correct="true"/><answer source="a23" correct="true"/><answer source="a31" correct="true"/><answer source="a32" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a29" correct="true"/><answer source="a27" correct="true"/><answer source="a33" correct="true"/><answer source="a28" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a27" correct="true"/><answer source="a29" correct="true"/><answer source="a33" correct="true"/><answer source="a28" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a33" correct="true"/><answer source="a29" correct="true"/><answer source="a27" correct="true"/><answer source="a28" correct="true"/></DragQuestion><DragQuestion source="q10"><answer source="a28" correct="true"/><answer source="a29" correct="true"/><answer source="a27" correct="true"/><answer source="a33" correct="true"/></DragQuestion><DragQuestion source="q11"><answer source="a34" correct="true"/><answer source="a25" correct="true"/><answer source="a35" correct="true"/></DragQuestion><DragQuestion source="q12"><answer source="a25" correct="true"/><answer source="a34" correct="true"/><answer source="a35" correct="true"/></DragQuestion><DragQuestion source="q13"><answer source="a35" correct="true"/><answer source="a34" correct="true"/><answer source="a25" correct="true"/></DragQuestion><DragQuestion source="q14"><answer source="a20" correct="true"/><answer source="a24" correct="true"/><answer source="a30" correct="true"/></DragQuestion><DragQuestion source="q15"><answer source="a24" correct="true"/><answer source="a20" correct="true"/><answer source="a30" correct="true"/></DragQuestion><DragQuestion source="q16"><answer source="a30" correct="true"/><answer source="a20" correct="true"/><answer source="a24" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Put the words and phrases into the correct category.
+</header>
+	
+<section id="noscroll">
+	
+		
+		<span id="a20" draggable="true">a grant</span><span id="a21" draggable="true">a lecturer</span>
+		<span id="a22" draggable="true">a graduate</span><span id="a23" draggable="true">a postgraduate</span>
+		
+		
+		<span id="a24" draggable="true">a scholarship</span><span id="a25" draggable="true">a diploma</span>
+		<span id="a26" draggable="true">an undergraduate</span><span id="a27" draggable="true">a hall of residence</span>
+		
+		
+		<span id="a28" draggable="true">a lecture hall</span><span id="a29" draggable="true">a campus</span>
+		<span id="a30" draggable="true">tuition fees</span><span id="a31" draggable="true">a professor</span>
+		
+		
+		<span id="a32" draggable="true">a tutor</span><span id="a33" draggable="true">a laboratory</span>
+		<span id="a34" draggable="true">a bachelor's degree</span><span id="a35" draggable="true">a master's degree</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/ED_TV_002.jpg" mode="1" id="1001"  /><p align="left"><b>People</b><input id="q1" type="droptarget" />, <input id="q2" type="droptarget" />, <input id="q3" type="droptarget" />, <input id="q4" type="droptarget" />, <input id="q5" type="droptarget" />, <input id="q6" type="droptarget" /></p><p align="left"><b>Places</b><input id="q7" type="droptarget" />, <input id="q8" type="droptarget" />, <input id="q9" type="droptarget" />, <input id="q10" type="droptarget" /></p><p align="left"><b>Qualification</b><input id="q11" type="droptarget" />, <input id="q12" type="droptarget" />, <input id="q13" type="droptarget" /></p><p align="left"><b>Money</b><input id="q14" type="droptarget" />, <input id="q15" type="droptarget" />, <input id="q16" type="droptarget" /></p>
+</section>
+</body>
+</bento>

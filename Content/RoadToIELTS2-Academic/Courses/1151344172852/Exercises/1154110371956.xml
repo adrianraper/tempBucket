@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/WB_AW_011.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Writing Task 2 </b></font></p><p align="left"><b>Problem and solution 2</b>You will ...</p><ol><li>listen and group comments according to whether they	are causes of or solutions to a problem.</li><li>match solutions to problems.</li><li>organise notes into two possible plans for a composition.</li><li>complete a composition with topic sentences and	complete sentences with participle clauses.</li><li>identify ways of expressing purpose in a composition.</li><li>match solutions to problems.</li></ol><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

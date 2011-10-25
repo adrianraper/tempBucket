@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="proofreading" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise proofreading="true" hiddentargets="true"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../Media/MM_Task01.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 16 and they may be grammatical or lexical errors. Click on them.
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/MM_AW_010s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/MM_AW_010.jpg" mode="16" id="1002"  /><br/><ol id="questionList"></ol>
+</section>
+<section id="fb1">
+	<p align="left"><b>during -> between</b></p>
+</section>
+<section id="fb2">
+	<p align="left"><b>at -> during</b></p>
+</section>
+<section id="fb3">
+	<p align="left"><font color="#000000"><b>in - > from:</b> The period referred to began in 1999 and ended in 2001.</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font color="#000000"><b>to -> of:</b> The figure fell from 143 million to 138 million. This is a drop of 5 million.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><b>on -> in</b></p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000"><b>by -> to:</b> This is the level it rose to, not the size of the increase.</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font color="#000000"><b>before -> by:</b> Note the use of past perfect tense for the main verb, 'had risen' in this sentence.</font></p>
+</section>
+<section id="fb8">
+	<p align="left"><font color="#000000"><b>had been -> were:</b> There is no need for the past perfect tense here.</font></p>
+</section>
+<section id="fb9">
+	<p align="left"><font color="#000000"><b>In -> Between:</b> A period that falls between two dates is referred to here.</font></p>
+</section>
+<section id="fb10">
+	<p align="left"><font color="#000000"><b>to -> by:</b> This is the size of the increase referred to here, not the level the figures reached.</font></p>
+</section>
+<section id="fb11">
+	<p align="left"><font color="#000000"><b>to -> over:</b> 'During this period', in other words.</font></p>
+</section>
+<section id="fb12">
+	<p align="left"><font color="#000000"><b>latter -> former:</b> The former is 'Europe'.</font></p>
+</section>
+<section id="fb13">
+	<p align="left"><font color="#000000"><b>former -> latter:</b> The latter is 'Eurasia'.</font></p>
+</section>
+<section id="fb14">
+	<p align="left"><font color="#000000"><b>to -> by:</b> This is the size of the decrease, not the level the figures fell to.</font></p>
+</section>
+<section id="fb15">
+	<p align="left"><b>had been -> was</b></p>
+</section>
+<section id="fb16">
+	<p align="left"><font face="verdana" size="13" color="#000000">from</font></p>
+</section>
+<section id="fb17">
+	<p align="left"><font face="verdana" size="13" color="#000000">in</font></p>
+</section>
+</body>
+</bento>

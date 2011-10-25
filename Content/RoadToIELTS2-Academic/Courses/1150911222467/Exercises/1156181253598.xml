@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback groupbased="true" wrongonly="false" scorebased="true"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a12" correct="true"/><answer source="a11" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a11" correct="true"/><answer source="a12" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a13" correct="true"/><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a16" correct="true"/><answer source="a13" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a20" correct="true"/><answer source="a19" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a19" correct="true"/><answer source="a20" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a24" correct="true"/><answer source="a23" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a23" correct="true"/><answer source="a24" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../Media/TT_WT2b.jpg" mode="16" id="1004"  />
+		
+		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
+		
+
+Writing Task 2
+</header>
+	
+<section id="noscroll">
+	
+			
+			<span id="a13" draggable="true">Audio A</span>
+			<span id="a17" draggable="true">Audio B</span>
+			<span id="a21" draggable="true">Audio C</span>
+			<span id="a19" draggable="true">Audio D</span>
+			
+			
+			<span id="a12" draggable="true">Audio E</span>
+			<span id="a10" draggable="true">Audio F</span>
+			<span id="a22" draggable="true">Audio G</span>
+			<span id="a15" draggable="true">Audio H</span><audio class="leftFloat" src="../Media/TT_WR1at.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../Media/TT_WR1au.mp3" mode="1" id="1012"  /><audio class="rightFloat" src="../Media/TT_WR1av.mp3" mode="1" id="1013"  /><audio class="rightFloat" src="../Media/TT_WR1aw.mp3" mode="1" id="1014"  /><audio class="leftFloat" src="../Media/TT_WR1ax.mp3" mode="1" id="1015"  /><audio class="rightFloat" src="../Media/TT_WR1ay.mp3" mode="1" id="1016"  /><audio class="rightFloat" src="../Media/TT_WR1az.mp3" mode="1" id="1017"  /><audio class="rightFloat" src="../Media/TT_WR1ba.mp3" mode="1" id="1018"  />
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/TT_AW_013.jpg" mode="1" id="1001"  /><p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" />&nbsp;</p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" />&nbsp;</li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" />&nbsp;</li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb0">
+	<p align="left"><b>1. Employment Opportunities </b></p><p align="left">- More and better job opportunities for locals</p><p align="left">- Tourist industry only offers locals menial, badly-paid, seasonal jobs</p><p align="left"><b></b></p><p align="left"><b>2. Business and the local economy </b></p><p align="left">- Local businesses flourish</p><p align="left">- If holiday company is often foreign-owned, little money may reach local economy</p><p align="left"></p><p align="left"><b>3. Infrastructure, facilities and the environment</b></p><p align="left">- Tourist facilities may cause environmental damage </p><p align="left">- Locals as well as tourists benefit from improved infrastructure</p><p align="left"></p><p align="left"><b>4.  Local customs and culture</b></p><p align="left">- Local customs and traditions may not be respected</p><p align="left"><font color="#000000">- Locals and tourists learn about each other’s cultures</font></p>
+</section>
+<section id="rt2001">
+	<p align="left">This exercise will help you with ideas for the writing task. You'll have to choose which ideas you want to use as some won't support your opinion. When you have finished this exercise, you can decide whether you want to write a balanced 'for and against' composition or a 'one-sided' composition that gives your personal opinion and only discusses the arguments that support it.</p>
+</section>
+</body>
+</bento>

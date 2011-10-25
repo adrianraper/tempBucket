@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/MM_TV_001.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Television and newspapers</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">You will learn to ...</font></p><ol><li>group words and phrases according to whether they	refer to television or newspapers.</li><li>read reports about a new newspaper and a new	television channel and complete each one with	appropriate words and phrases.</li></ol><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Jobs in the media</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">You will listen to people talking about what they do for a living and match their descriptions to the jobs.</font></p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

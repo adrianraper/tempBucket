@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="auction " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="art gallery " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="masterpieces " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="collector " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="artefacts " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="ceramics " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="sculptures " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="heritage " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="exhibit " correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="monuments " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Using words from the previous exercise, complete the newspaper article by filling each gap with the correct word or phrase.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/AC_TV_005.jpg" mode="1" id="1001"  /><p align="left"><b>Losing our National Treasures</b></p><p align="left">The government is believed to have arranged a private <input id="1" width="100" /> yesterday at which paintings dating back to the sixteenth century were sold. The sale, which took place at a new <input id="2" width="100" />, near the National Museum, has been described as scandalous. The paintings are believed to be <input id="3" width="100" /> by the most famous painters of the time and priceless <input id="4" width="100" />'s items. This is just the latest in a series of similar incidents involving the present government. In April last year a number of thirteenth century weapons were auctioned off. These <input id="5" width="100" /> had been part of a permanent collection at the National Museum. In November there was also a covert sale of <input id="6" width="100" /> consisting of ancient Greek clay dishes and pots. It is now thought that the government may have had a hand in the mysterious disappearance of the life-size <input id="7" width="100" /> outside the National Museum. These stone figures are part of our cultural <input id="8" width="100" />. </p><p align="left"><font color="#000000">What will they sell next? When our museums and galleries have been emptied of every last <input id="9" width="100" />, will the country’s historic <input id="10" width="100" /> be next to go under the hammer?</font></p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

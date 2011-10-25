@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="quiz" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="false"/><answer source="a8" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="false"/><answer source="a10" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="false"/><answer source="a14" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Here is the card with a topic for Part 2. Read it. Then watch Alexandra and answer the questions that follow.
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit06_e3.flv" mode="1" id="1003"  /><img class="leftFloat" src="../Media/MM_SP_004.jpg" mode="1" id="1004"  /><br/><ol id="questionList"><br/><li id="1">Alexandra explains that generally she likes advertisements with good music. Is this part of the instructions on the card? <a id="q1" >Yes</a><tab/><a id="q2" >No</a><br/></li><br/><li id="2">Does she explain what the advertisement showed? <a id="q3" >Yes</a><tab/><a id="q4" >No</a><br/></li><br/><li id="3">Does she say who it was aimed at? <a id="q5" >Yes</a><tab/><a id="q6" >No</a><br/></li><br/><li id="4">Does she explain what effect it had on her? <a id="q7" >Yes</a><tab/><a id="q8" >No</a><br/></li><br/><li id="5">Does she explain why she finds this type of advert admirable or not? <a id="q9" >Yes</a><tab/><a id="q10" >No</a><br/></li><br/><li id="6">Does she go on until the examiner stops her? <a id="q11" >Yes</a><tab/><a id="q12" >No</a><br/></li><br/><li id="7">Does she take notes at the beginning? <a id="q13" >Yes</a><tab/><a id="q14" >No</a><br/></li></ol>
+</section>
+<section id="fb1">
+	<p align="left">Question 1</p><p align="left">It is best not to get too far away from the instructions on the card.</p>
+</section>
+<section id="fb2">
+	<p align="left"><font face="verdana" size="13" color="#000000">Question 2</font></p><p align="left"><font face="verdana" size="13" color="#000000">Watch the interview again.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">Question 3</font></p><p align="left"><font face="verdana" size="13" color="#000000">She should have, but she didn't.</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font face="verdana" size="13" color="#000000">Question 4</font></p><p align="left"><font face="verdana" size="13" color="#000000">She doesn't explain this, which is a shame as she was asked to do so.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font face="verdana" size="13" color="#000000">Question 5</font></p><p align="left"><font face="verdana" size="13" color="#000000">It is important to read the card carefully and to make notes before you start.</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font face="verdana" size="13" color="#000000">Question 6</font></p><p align="left"><font face="verdana" size="13" color="#000000">She should have looked at the card again and answered the parts of the task that she hadn't done.</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font face="verdana" size="13" color="#000000">Question 7</font></p><p align="left"><font face="verdana" size="13" color="#000000">This is probably the biggest mistake she makes in this part of the exam.</font></p>
+</section>
+</body>
+</bento>

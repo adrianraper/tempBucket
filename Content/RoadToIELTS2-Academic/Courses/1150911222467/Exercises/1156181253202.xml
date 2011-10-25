@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-25" />
+	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q17" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q19" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q20" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q21" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q23" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q24" correct="false"><feedback source="fb24"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q25" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q26" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q27" correct="false"><feedback source="fb27"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q28" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q29" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q30" correct="false"><feedback source="fb30"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q31" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q32" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q33" correct="false"><feedback source="fb33"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q34" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q35" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q36" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q37" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q38" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q39" correct="false"><feedback source="fb39"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q40" correct="true"/></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look at the table and complete the sentences by choosing the correct word or phrase for each gap.  There is more than one correct answer in each case.
+</header>
+	
+<section id="noscroll">
+	<img class="leftFloat" src="../Media/TT_AW_004a.jpg" mode="1" id="1003"  />
+</section>
+<section id="body">
+	<p align="left"><font color="#000000"><b>1</b>  Every year road transport consumed the greatest (…) of petroleum.</font></p><g id="21">A  quantity</g><g id="22">B  amount</g><g id="23">C  proportion</g><g id="24">D  number</g><p align="left"><font color="#000000"><b>2</b>  Petroleum consumption for railways was (…) less than for other means of transport.</font></p><g id="25">A  a lot</g><g id="26">B  far</g><g id="27">C  many</g><g id="28">D  much</g><p align="left"><font color="#000000"><b>3</b>  In 1999 road transport consumed (…) petroleum than the previous year.</font></p><g id="29">A  less</g><g id="30">B  fewer</g><g id="31">C  fewer tonnes of</g><g id="32">D  a smaller quantity of</g><p align="left"><font color="#000000"><b>4</b>  Petroleum consumption by air transport was (…) in 1999 than ten years earlier.</font></p><g id="33">A  many more</g><g id="34">B  much higher</g><g id="35">C  a lot higher</g><g id="36">D  far higher</g><p align="left"><font color="#000000"><b>5</b>  Over the years railway and water transport consumed (…) petroleum.</font></p><g id="37">A  less and less</g><g id="38">B  smaller and smaller amounts of</g><g id="39">C  fewer and fewer</g><g id="40">D  fewer and fewer tonnes of</g><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb24">
+	<p align="left">1D. Petroleum is uncountable.</p>
+</section>
+<section id="fb27">
+	<p align="left">2C. 'Many' is used for countable nouns, while 'less' is used for uncountable nouns. You cannot use the two together.</p>
+</section>
+<section id="fb30">
+	<p align="left">3B. 'Few' and 'fewer' cannot be used with uncountable nouns such as 'petroleum'.</p>
+</section>
+<section id="fb33">
+	<p align="left">4A. The missing word refers to the noun 'consumption', which is uncountable.</p>
+</section>
+<section id="fb39">
+	<p align="left">5C. Petroleum is uncountable. 'Fewer' can be used only with countable nouns.</p>
+</section>
+</body>
+</bento>
