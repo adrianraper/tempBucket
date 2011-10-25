@@ -33,6 +33,10 @@ class Title extends Content {
 	//var $softwareLocation;
 	
 	var $licenceType;
+	// v3.6.5 Adding licence clearance date
+	var $licenceClearanceDate;
+	var $licenceClearanceFrequency;
+	
 	// v3.1 For emus and courses - not used for database storage
 	var $indexFile;
 	// v3.3 For getting information from T_Product in ContentOps._buildTitle
@@ -188,6 +192,12 @@ class Title extends Content {
 		$this->licenceType = $obj->F_LicenceType;
 		$this->checksum = $obj->F_Checksum;
 		$this->deliveryFrequency = $obj->F_DeliveryFrequency;
+		// v3.6.5 Licence clearance date		
+		if (isset($obj->F_LicenceClearanceDate))
+			$this->licenceClearanceDate = substr($obj->F_LicenceClearanceDate, 0, 10).' 00:00:00';
+		if (isset($obj->F_LicenceClearanceFrequency))
+			$this->licenceClearanceFrequency = $obj->F_LicenceClearanceFrequency;
+
 		// data that doesn't come from the database, but might have been added to the object before this method called
 		if (isset($obj->indexFile)) $this->indexFile = $obj->indexFile;
 		if (isset($obj->name)) $this->name = $obj->name;
@@ -219,7 +229,16 @@ class Title extends Content {
 		$array['F_LicenceType'] = $this->licenceType;
 		$array['F_Checksum'] = $this->checksum;
 		$array['F_DeliveryFrequency'] = $this->deliveryFrequency;
-		
+
+		// v3.6 Licence clearance date
+		if (isset($this->licenceClearanceDate)) {
+			$array['F_LicenceClearanceDate'] = substr($this->licenceClearanceDate, 0, 10).' 00:00:00';
+		} else {
+			$array['F_LicenceClearanceDate'] = null;
+		}
+		if (isset($this->licenceClearanceFrequency))
+		$array['F_LicenceClearanceFrequency'] = $this->licenceClearanceFrequency;
+
 		return $array;
 	}
 	
@@ -240,7 +259,10 @@ class Title extends Content {
 						"$prefix.F_LicenceFile",
 						"$prefix.F_LicenceType",
 						"$prefix.F_Checksum",
-						"$prefix.F_DeliveryFrequency");
+						"$prefix.F_DeliveryFrequency",
+						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_LicenceClearanceDate")." F_LicenceClearanceDate",
+						"$prefix.F_LicenceClearanceFrequency",
+						);
 		
 		return implode(",", $fields);
 	}

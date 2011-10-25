@@ -18,6 +18,7 @@ class TemplateOps {
 		// Register any functions that might be used by the templates
 		$smarty->register_function("format_ansi_date", array($this, "formatAnsiDate"));
 		$smarty->register_function("get_dictionary_label", array($this, "getDictionaryLabel"));
+		$smarty->register_function("date_diff", array($this, "dateDiff"));
 		// This next function will not be cached
 		$smarty->register_function("dynamic_user_name", array($this, "getUserName"), false);
 		
@@ -74,16 +75,27 @@ class TemplateOps {
 		
 		// Get each entry
 		while ($entryName = readdir($directory)) {
-			if (preg_match('/^(.*)\.(tpl)$/D', $entryName, $matches) > 0) {
+			//echo $entryName.'<br/>';
+			// But ignore any files that start with xx
+			//if (preg_match('/^(.*)\.(tpl)$/D', $entryName, $matches) > 0) {
+			// Try negative look behind. No, doesn't block xx
+			//if (preg_match('/^(?<![^xx]])(.*)\.(tpl)$/D', $entryName, $matches) > 0) {
+			// The following blocks xx, but consumes one character if it isn't x
+			//if (preg_match('/^([^x])(.*)\.(tpl)$/D', $entryName, $matches) > 0) {
+			// So catch the first character and add it if not x. Clumsy but works
+			if (preg_match('/^([^x])(.*)\.(tpl)$/D', $entryName, $matches) > 0) {
+				//var_dump($matches);
 				$templateDefinition = new TemplateDefinition();
 				//$templateDefinition->title = $matches[1];
-				$templateDefinition->filename = $matches[1];
+				$templateDefinition->filename = $matches[1].$matches[2];
 				
 				$content = file_get_contents($templateDir.$templateDefinition->filename.".tpl");
 				preg_match('/\{\* Name:(.*)\*\}/', $content, $matches);
-				$templateDefinition->title = trim($matches[1]);
+				if (isset($matches[1]))
+					$templateDefinition->title = trim($matches[1]);
 				preg_match('/\{\* Description:(.*)\*\}/', $content, $matches);
-				$templateDefinition->description = trim($matches[1]);
+				if (isset($matches[1]))
+					$templateDefinition->description = trim($matches[1]);
 				
 				$templateDefinitions[] = $templateDefinition;
 			}
@@ -92,7 +104,17 @@ class TemplateOps {
 		// Close directory
 		closedir($directory);
 		
+		// Can we sort them by title? Filename is rather internal.
+		// You can also put a _ in front of the {* name *} in the templates to relegate them to the end.
+		usort($templateDefinitions, array($this, 'titleCompare'));
 		return $templateDefinitions;
+	}
+	function titleCompare($a, $b) {
+		if (strtoupper($a->title) == strtoupper($b->title)) {
+			return 0;
+		} else {
+			return (strtoupper($a->title) < strtoupper($b->title)) ? -1 : 1;
+		}
 	}
 	
 	function fetchTemplate($templateName, $dataArray, $useCache=false) {
@@ -133,9 +155,26 @@ class TemplateOps {
 		return strftime($format, $this->db->UnixTimeStamp($ansiDate));
 	}
 	/**
+	 * Send back a date (Y-m-d) that is 'period' away from 'date'
+	 */
+	function dateDiff($params, &$smarty) {
+		// Example smarty call:
+		//	{date_diff assign='oneMonthAgo' date='' period='-1month'}
+		//  {if $title->expiryDate|truncate:10:"" >= $oneMonthAgo}
+		if ($params['date'] != '') {
+			$timestamp = strtotime($params['date']);
+		} else {
+			$timestamp = time();
+		}
+		if ($params['period']!='') {
+			$timestamp = strtotime($params['period'],$timestamp);
+		}
+		$smarty->assign($params['assign'],strftime('%Y-%m-%d',$timestamp));
+	}
+	/**
 	 * Used to put the user's name dynamically into a cached template
 	 */
-	function getUserName($params, & $smarty) {
+	function getUserName($params, &$smarty) {
 		return $params['uname'];
 	}
 	

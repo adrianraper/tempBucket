@@ -37,18 +37,29 @@ class SubscriptionOps {
 		}
 		
 		// Next we need to check that the offerID is valid
-		if (!is_numeric($apiInformation->offerID)) {
-			returnError(1, "offerID is invalid ".$apiInformation->offerID);
+		// Convert a single offerID into an array, then validate each item in the array
+		if (!is_array($apiInformation->offerID)) {
+			// Its not an array, but is it a comma delimited string?
+			if (count(explode(',', $apiInformation->offerID)) > 1) {
+				$apiInformation->offerID = explode(',', $apiInformation->offerID);
+			} else {
+				$apiInformation->offerID = array($apiInformation->offerID);
+			}
 		}
-		if (!$this->checkOfferID($apiInformation->offerID)) {
-			returnError(202, $apiInformation->offerID);
-		} else {
-			//echo " with a good offer ";
+		foreach($apiInformation->offerID as $offerID) {
+			if (!is_numeric($offerID)) {
+				returnError(1, "offerID is invalid ".$offerID);
+			}
+			if (!$this->checkOfferID($offerID)) {
+				returnError(202, $offerID);
+			} else {
+				//echo " with a good offer ";
+			}
 		}
 		
 		// If they have sent a password it implies that this is adding to an existing account.
 		// TODO: Not a good test as they maybe are sending a desired password for a new account.
-		// Why not have a method name instead?
+		// Why not have a method name instead? Yes
 		//if (isset($apiInformation->password)) {
 		if (stristr($apiInformation->method, 'update') !== false) {
 			// So check the email/password combination. If success, we can keep going in update mode.
@@ -292,19 +303,22 @@ EOD;
 	private function getTitlesFromOffer($apiInformation) {
 		// An offerID links a package, price, currency and duration (days)
 		// A package lists titles and/or courses (through package contents)
+		// Expect offerID to be an array - and just pick up all packages within all the included offers
+		// We could get distinct productCode?
 		$titles = array();
-		$offerID = $apiInformation->offerID;
+		$offerID = implode(',',$apiInformation->offerID);
 		
+		//	SELECT pc.F_ProductCode as productCode, o.F_Duration as duration
 		$sql = 	<<<EOD
-			SELECT pc.F_ProductCode as productCode, o.F_Duration as duration
+			SELECT distinct(pc.F_ProductCode) as productCode, o.F_Duration as duration
 			FROM T_Offer o, T_Package p, T_PackageContents pc
 			WHERE o.F_PackageID=p.F_PackageID
 			AND p.F_PackageID=pc.F_PackageID
-			AND o.F_OfferID=?
+			AND o.F_OfferID in ($offerID)
 EOD;
-
-		$rs = $this->db->Execute($sql, array($offerID));	
-		//echo 'offer records='.$rs->RecordCount();
+		$rs = $this->db->Execute($sql);	
+		//echo $sql."<br/>";
+		//echo 'offer includes titles='.$rs->RecordCount()."<br/>";
 		if ($rs->RecordCount() > 0) {
 		
 			while ($record = $rs->FetchNextObj()) {
@@ -478,7 +492,7 @@ EOD;
 
 	// Send our accounts team an email notifiying of a new subscription
 	public function sendAccountsEmail($dataObject, $templateID = null, $send = true) {
-		$accountEmail = 'accounts@clarityenglish.com';
+		$to = 'accounts@clarityenglish.com';
 		$emailData = array("data" => $dataObject);
 		$emailArray = array("to" => $to, "data" => $emailData);
 		// Check that the template exists
@@ -569,7 +583,7 @@ EOD;
 		$array['F_FullName'] = $account->name;
 		$array['F_Email'] = $account->adminUser->email;
 		$array['F_RootID'] = $account->id;
-		$array['F_OfferID'] = $api->offerID;
+		$array['F_OfferID'] = implode(',',$api->offerID);
 		$array['F_StartDate'] = $api->startDate;
 		$array['F_ExpiryDate'] = $api->expiryDate;
 		$array['F_Password'] = $account->adminUser->password;

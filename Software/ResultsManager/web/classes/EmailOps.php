@@ -53,15 +53,17 @@ class EmailOps {
 			$mail->setHTML($emailHTML);
 
 			// Check if there is a from in the template - will only be expecting one
-			$templateFrom = $this->getFromFromTemplate($emailHTML); 
+			$templateFrom = urldecode($this->getFromFromTemplate($emailHTML)); 
 			if (isset($templateFrom) && $templateFrom!='') {
 				$useFrom = $templateFrom;
 			}
+			//$useFrom = "\"Adrian Raper, Clarity\" <adrian@clarityenglish.com>";
 			$mail->setFrom($useFrom);
 			
 			// Check if any cc or bcc from the template (must be written in the header in comments)
 			$ccArray = array($this->getCcFromTemplate($emailHTML)); 
 			$bccArray = array($this->getBccFromTemplate($emailHTML));
+			// Check if there is any cc or bcc set in the $email object
 			// Check if there is any cc or bcc set in the $email object
 			if (isset($email['cc'])) {
 				$ccArray = array_merge($ccArray,$email['cc']);
@@ -90,6 +92,8 @@ class EmailOps {
 			// Put cleaned data into the mail class
 			$mail->setCc(implode(",",$ccArray));
 			$mail->setBcc(implode(",",$bccArray));
+			//echo 'final cc='.implode(",", $ccArray);
+			//echo 'final bcc='.implode(",", $bccArray);
 
 			// Does the template list any attachment file?
 			if ($this->getAttachmentFromTemplate($emailHTML)) {
@@ -118,10 +122,11 @@ class EmailOps {
 			// Do the send
 			$result = $mail->send(array($to), "smtp");
 			$ccList = implode(",",$ccArray);
+			$bccList = implode(",",$bccArray);
 			if (!$result) {
 				$logMsg = "Email error: ".$mail->errors[0]." sending $to with template $templateName";
 			} else {
-				$logMsg = "Sent email to $to with template $templateName and subject {$this->getSubjectFromHTMLTitle($emailHTML)} from $useFrom cc $ccList";
+				$logMsg = "Sent email to $to with template $templateName and subject {$this->getSubjectFromHTMLTitle($emailHTML)} from $useFrom cc $ccList bcc $bccList";
 			}
 			AbstractService::$log->notice($logMsg);
 			
@@ -149,7 +154,7 @@ class EmailOps {
 		
 		$to = $email['to'];
 		$from = $email['from'];
-		//$from = "Nicole Lung Clarity <news@clarityenglish.com>";
+		//$from = "\"Nicole Lung, Clarity\" <news@clarityenglish.com>";
 		
 		// Get the subject of the email from the <title></title> tag
 		if (isset($email['subject'])) {
@@ -273,6 +278,7 @@ class EmailOps {
 	}
 	private function getFromFromTemplate($emailHTML) {
 		if (preg_match("/<from>(.*)<\/from>/i", $emailHTML, $out))
+			//echo '++'.$out[1].'++';
 			return $out[1];
 	}
 	private function getCcFromTemplate($emailHTML) {

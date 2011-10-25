@@ -17,13 +17,15 @@ class UsageOps {
 		// v3.5 This is picking up all usage stats that we want, it differs for AA and LT licences
 		$rootID = Session::get('rootID');
 		// What stats do we want for AA licences? Well, everything except for licence counts
+		$fromDateStamp = $this->getLicenceClearanceDate($title);
+
 		if ($title->licenceType == 2) {
 			//NetDebug::trace("AA usage stats please");		
 			//$usage['sessionDuration'] = $this->getAASessionDuration($title, $fromDate, $toDate);
 		} else {
 			// AR also read the number of title/user licences that have been used. This is based on licence
 			// period, not the dates the reporter selected
-			$usage['titleUserCounts'] = $this->getTitleUserCounts($title, $rootID);
+			$usage['titleUserCounts'] = $this->getTitleUserCounts($title, $rootID, $fromDateStamp);
 		}
 		$usage['sessionCounts'] = $this->getAASessionCounts($title, $fromDate, $toDate);
 		$courseCountArray = $this->getCourseCounts($title, $fromDate, $toDate);
@@ -31,6 +33,9 @@ class UsageOps {
 		if (isset($courseCountArray['otherCourseCounts']))
 			$usage['otherCourseCounts'] = $courseCountArray['otherCourseCounts'];
 		$usage['failedLoginCounts'] = $this->getFailedLoginCounts($title, $rootID, $fromDate, $toDate);
+		// Tell RM what date we used for licence clearance date, so it doesn't calculate it wrongly
+		$usage['licenceClearanceDate'] = strftime('%Y-%m-%d 00:00:00',$fromDateStamp);
+		
 		return $usage;
 	}
 	// The following is a public function for getting licences used for all titles in an account.
@@ -38,13 +43,16 @@ class UsageOps {
 	function getLicencesUsedForAccount($account) {
 		$accountLicenceTypes=0;
 		foreach ($account->titles as $title) {
+			// v3.6.5 Add licence clearance date.
+			$fromDateStamp = $this->getLicenceClearanceDate($title);
+				
 			// As well as licences used, I want to know if this account is purely one licence type.
 			// If an AA licence has had RM added, it too should be AA
 			// This should also pick up Transferable Tracking
 			switch ($title->licenceType) {
 				case 1:
 				case 6:
-					$title->licencesUsed = $this->getTitleUserCountsApprox($title, $account->id);
+					$title->licencesUsed = $this->getTitleUserCountsApprox($title, $account->id, $fromDateStamp);
 					$accountLicenceTypes = $accountLicenceTypes | 1;
 					break;
 				case 2:
@@ -281,11 +289,19 @@ EOD;
 	}
 	
 	// AR How many title/user licences have been used so far in this licence period?
-	private function getTitleUserCounts($title, $rootID) {
+	//private function getTitleUserCounts($title, $rootID) {
+	private function getTitleUserCounts($title, $rootID, $fromDateStamp = null) {
 		// AR We want special processing for counting licences in perpetual licences, basically a rolling 1 year.
 		// So test to see if perpetual (any date>=2049). The $title dates are in m/d/y format. Why? I think this will change 
 		// Note that you can't do strtotime for dates after 19 Jan 2038 as this is greatest range of integer
 		// So well have to do it manually
+		// v3.6.5 Add licence clearance date.
+		if (!$fromDateStamp)
+			$fromDateStamp = $this->getLicenceClearanceDate($title);
+		$fromDate = strftime('%Y-%m-%d 00:00:00',$fromDateStamp);
+		//echo strftime('%d %B, %Y',$fromDateStamp);
+		
+		/*
 		$myYearBit = explode(" ", $title->expiryDate);
 		//$brokenDate = explode("/", $myYearBit[0]);
 		$brokenDate = explode("-", $myYearBit[0]);
@@ -299,6 +315,7 @@ EOD;
 		} else {
 			$fromDateStamp = $title->licenceStartDate;
 		}
+		*/
 		//NetDebug::trace("UsageOps.getTitleUserCounts.fromDateStamp=".$fromDateStamp." expiryDate=".$title->expiryDate." productCode=".$title->productCode." root=".Session::get('rootID'));
 		//		AND l.F_StartTime >= '$fromDateStamp'	
 		// v6.5.5.0 There will be no T_Licences table anymore, just get everything from T_Session
@@ -332,10 +349,10 @@ EOD;
 			AND s.F_RootID=?
 			AND s.F_UserID = u.F_UserID
 			AND u.F_UserType=0
-			AND s.F_StartDateStamp>'$fromDateStamp'
+			AND s.F_StartDateStamp>'$fromDate'
 			AND EXISTS (SELECT * FROM T_Score c WHERE c.F_SessionID=s.F_SessionID)
 EOD;
-		//NetDebug::trace("UsageOps ".$sql);
+		//NetDebug::trace("UsageOps active ".$sql);
 		//NetDebug::trace("UsageOps $rootID ".$title->productCode." $fromDateStamp");
 		// v3.4 Now you pass rootID in case you are working in DMS mode
 		//$rs = $this->db->GetRow($sql, array($title->productCode, Session::get('rootID')));
@@ -355,11 +372,11 @@ EOD;
 					on s.F_UserID = u.F_UserID
 					WHERE s.F_ProductCode=?
 					AND s.F_RootID=?
-					AND s.F_StartDateStamp>'$fromDateStamp'
+					AND s.F_StartDateStamp>'$fromDate'
 					AND u.F_UserID IS NULL
 					AND s.F_UserID > 0
 EOD;
-			//NetDebug::trace("UsageOps ".$sql);
+			//NetDebug::trace("UsageOps deleted ".$sql);
 			//$rs2 = $this->db->GetRow($sql, array($title->productCode, Session::get('rootID')));
 			$rs2 = $this->db->GetRow($sql, array($title-> productCode, $rootID));
 			//NetDebug::trace("UsageOps.sql.deleted.rs=".$rs2['allDeletedCount']);
@@ -368,8 +385,10 @@ EOD;
 
 		return $rs['activeStudentCount'] + $deletedCount;
 	}
-	// AR This is used in EarlyWarningSystem. It is much quicker, and a little rough
-	private function getTitleUserCountsApprox($title, $rootID) {
+	// AR This is used in EarlyWarningSystem. It is much quicker, though a little rough
+	//private function getTitleUserCountsApprox($title, $rootID) {
+	private function getTitleUserCountsApprox($title, $rootID, $fromDateStamp=null) {
+		/*
 		$myYearBit = explode(" ", $title->expiryDate);
 		$brokenDate = explode("-", $myYearBit[0]);
 		if ($brokenDate[0] >= '2037') {
@@ -377,6 +396,11 @@ EOD;
 		} else {
 			$fromDateStamp = $title->licenceStartDate;
 		}
+		*/
+		if (!$fromDateStamp)
+			$fromDateStamp = $this->getLicenceClearanceDate($title);
+		$fromDate = strftime('%Y-%m-%d 00:00:00',$fromDateStamp);
+
 		$sql = 	<<<EOD
 			SELECT COUNT(DISTINCT s.F_UserID) AS activeStudentCount
 			FROM T_Session s, T_User u
@@ -384,7 +408,7 @@ EOD;
 			AND s.F_RootID=?
 			AND s.F_UserID = u.F_UserID
 			AND u.F_UserType=0
-			AND s.F_StartDateStamp>'$fromDateStamp'
+			AND s.F_StartDateStamp>'$fromDate'
 EOD;
 		$rs = $this->db->GetRow($sql, array($title->productCode, $rootID));
 		
@@ -395,7 +419,7 @@ EOD;
 				on s.F_UserID = u.F_UserID
 				WHERE s.F_ProductCode=?
 				AND s.F_RootID=?
-				AND s.F_StartDateStamp>'$fromDateStamp'
+				AND s.F_StartDateStamp>'$fromDate'
 				AND u.F_UserID IS NULL
 				AND s.F_UserID > 0
 EOD;
@@ -885,7 +909,42 @@ EOD;
 	public function clearDirectStartRecords() {
 		$this->db->Execute("DELETE FROM T_DirectStart WHERE F_ValidUntilDate<?", array(date('Y-m-d H:i:s', time())));		
 	}
-	
+
+	// v3.6.5 Figure out the most recent clearance date
+	private function getLicenceClearanceDate($title) {
+		// The from date for counting licence use is calculated as follows:
+		// If there is no licenceClearanceDate, then use licenceStartDate.
+		// If there is no licenceClearanceFrequency, then use +1y
+		// Take licenceClearanceDate and add the frequency to it until we get a date in the future.
+		// The previous date is our fromDate.
+		if (!$title->licenceClearanceDate) 
+			$title->licenceClearanceDate = $title->licenceStartDate;
+		// Just in case dates have been put in wrongly. 
+		// First, if clearance date is in the future, use the start date
+		if ($title->licenceClearanceDate > time()) 
+			$title->licenceClearanceDate = $title->licenceStartDate;
+		// If clearance date is before the start date, it doesn't much matter
+		// Turn the string into a timestamp
+		$fromDateStamp = strtotime($title->licenceClearanceDate);
+		
+		// You mustn't have a negative frequency otherwise the loop will be infinite
+		if (!$title->licenceClearanceFrequency)
+			$title->licenceClearanceFrequency = '1 year';
+		if (stristr($title->licenceClearanceFrequency, '-')!==FALSE) 
+			$title->licenceClearanceFrequency = str_replace('-', '', $title-> licenceClearanceFrequency);
+		// Check that the frequency is valid
+		if (!strtotime($title-> licenceClearanceFrequency, $fromDateStamp) > 0)
+			$title->licenceClearanceFrequency = '1 year';
+		// Just in case we still have invalid data
+		//NetDebug::trace("fromDateStamp=".$fromDateStamp.' which is '.strftime('%Y-%m-%d 00:00:00',$fromDateStamp));
+		$safetyCount=0;
+		while ($safetyCount<99 && strtotime($title->licenceClearanceFrequency, $fromDateStamp) < time()) {
+			$fromDateStamp = strtotime($title->licenceClearanceFrequency, $fromDateStamp);
+			$safetyCount++;
+		}
+		// We want the datestamp, not a formatted date
+		return $fromDateStamp;
+	}
 	// v3.4.3 I am not sure that we should be emailing from in here.
 	/*
 	public function sendDirectStartEmail($account, $templateID, $securityString) {

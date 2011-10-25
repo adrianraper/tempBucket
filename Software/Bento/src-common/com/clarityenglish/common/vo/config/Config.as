@@ -117,47 +117,52 @@ package com.clarityenglish.common.vo.config {
 		 */
 		public function mergeFileData(xml:XML):void {
 			
-			if (xml.dbHost.toString())
-				this.dbHost = xml.dbHost.toString();
-			if (xml.productCode.toString())
-				this.productCode = xml.productCode.toString();
-			if (xml.action.toString())
-				this.action = xml.action.toString();
+			//ODD. For some reason, xml.config.dbHost.length() fails but xml..dbHost.length(); succeeds.
+			//var myL:int = xml.config.dbHost.length();
+			//var myS:String = xml..dbHost.toString();
+			if (xml..dbHost.length()>0)
+				this.dbHost = xml..dbHost.toString();
+			if (xml..dbHost.toString())
+				this.dbHost = xml..dbHost.toString();
+			if (xml..productCode.toString())
+				this.productCode = xml..productCode.toString();
+			if (xml..action.toString())
+				this.action = xml..action.toString();
 			
 			// This is the base content folder, we expect it to be added to with title specific subFolder
-			if (xml.content.toString()) {
-				this.paths.content = xml.content.toString();
+			if (xml..contentPath.toString()) {
+				this.paths.content = xml..contentPath.toString();
 			} else {
 				this.paths.content = "/Content";
 			}
-			if (xml.streamingMedia.toString()) {
-				this.paths.streamingMedia = xml.streamingMedia.toString();
+			if (xml..streamingMedia.toString()) {
+				this.paths.streamingMedia = xml..streamingMedia.toString();
 			}
-			if (xml.sharedMedia.toString()) {
-				this.paths.sharedMedia = xml.sharedMedia.toString();
+			if (xml..sharedMedia.toString()) {
+				this.paths.sharedMedia = xml..sharedMedia.toString();
 			}
-			if (xml.brandingMedia.toString()) {
-				this.paths.brandingMedia = xml.brandingMedia.toString();
+			if (xml..brandingMedia.toString()) {
+				this.paths.brandingMedia = xml..brandingMedia.toString();
 			} else {
 				this.paths.brandingMedia = '';
 			}
 			
-			if (xml.courseID.toString())
-				this.courseID = xml.courseID.toString();
-			if (xml.courseFile.toString())
-				this.courseFile = xml.courseFile.toString();
+			if (xml..courseID.toString())
+				this.courseID = xml..courseID.toString();
+			if (xml..courseFile.toString())
+				this.courseFile = xml..courseFile.toString();
 			
-			if (xml.language.toString())
-				this.language = xml.language.toString();
+			if (xml..language.toString())
+				this.language = xml..language.toString();
 			
 			// To handle the amfphp gateway
-			if (xml.remoteGateway.toString()) {
-				this.remoteGateway = xml.remoteGateway.toString();
+			if (xml..remoteGateway.toString()) {
+				this.remoteGateway = xml..remoteGateway.toString();
 			} else {
 				this.remoteGateway = "/Software/ResultsManager/web/amfphp/";
 			}
-			if (xml.remoteService.toString()) {
-				this.remoteService = xml.remoteService.toString();
+			if (xml..remoteService.toString()) {
+				this.remoteService = xml..remoteService.toString();
 			} else {
 				this.remoteService = "BentoService";
 			}
@@ -205,7 +210,7 @@ package com.clarityenglish.common.vo.config {
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from T_ProductLocation. Its purpose is to allow an account to swap language versions easily for a title.
 			if (thisTitle.contentLocation) {
-				this.paths.content += thisTitle.contentLocation;
+				this.paths.content = thisTitle.contentLocation;
 			}
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 

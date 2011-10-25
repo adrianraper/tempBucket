@@ -104,6 +104,8 @@ class Condition {
 			$result .= "&update=".$this->update;
 		if ($this->active)
 			$result .= "&active=".$this->active;
+		if ($this->selfHost)
+			$result .= "&selfHost=".$this->selfHost;
 		return $result;
 	}
 	/*
@@ -127,7 +129,12 @@ class Condition {
 			// v3.5 If you want to get any date that matches today's day part.
 			// But this probably doesn't happen here.
 			case "day":
-				$built = date('d'); //$db->SQLDate('d');
+				// Sometimes you will have passed a triggerDate, which is used instead of now
+				if ($this->timeStamp) {
+					$built = date('d',$this->timeStamp);
+				} else {
+					$built = date('d');
+				}
 				// You don't want to do anything else with this
 				return $built;
 				break;

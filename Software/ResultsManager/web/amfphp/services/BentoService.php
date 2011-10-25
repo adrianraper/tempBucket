@@ -158,7 +158,7 @@ class BentoService extends AbstractService {
 									 User::USER_TYPE_STUDENT,
 									 User::USER_TYPE_REPORTER);
 			// First, confirm that the user details are correct
-			$userObj = $this->loginOps->login($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
+			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
 			$user = new User();
 			$user->fromDatabaseObj($userObj);
 			

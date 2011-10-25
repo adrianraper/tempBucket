@@ -2,64 +2,64 @@
 <item version="6.4" caption="Unit%205:%20Art%20and%20culture" id="0">
 	<item caption-position="bc" x="68" y="140" unit="1" caption="Words" 
 	alt="Word Power - words and phrases to talk about art, cinema, theatre and national treasures." 
-	id="1148525497375" picture="Words" enabledFlag="3">
-		<item unit="1" id="1151344537319" caption="Introduction" fileName="1151344537319.xml" action="1151344537319" exerciseID="1151344537319" enabledFlag="3"/>
-		<item unit="1" id="1151344537735" caption="Matching" fileName="1151344537735.xml" action="1151344537735" exerciseID="1151344537735" enabledFlag="3"/>
-		<item unit="1" id="1151344537273" caption="Reviews" fileName="1151344537273.xml" action="1151344537273" exerciseID="1151344537273" enabledFlag="3"/>
-		<item unit="1" id="1151344537991" caption="National%20treasures" fileName="1151344537991.xml" action="1151344537991" exerciseID="1151344537991" enabledFlag="3"/>
-		<item unit="1" id="1151344537785" caption="Losing%20our%20national%20treasures" fileName="1151344537785.xml" action="1151344537785" exerciseID="1151344537785" enabledFlag="3"/>
-		<item unit="1" id="1151344537748" caption="Complete%20the%20article" fileName="1151344537748.xml" action="1151344537748" exerciseID="1151344537748" enabledFlag="3"/>
-		<item unit="1" id="1151344537259" caption="E%2Dmail%20news" fileName="1151344537259.xml" action="1151344537259" exerciseID="1151344537259" enabledFlag="3"/>
-		<item unit="1" id="1151344537209" caption="Complete%20the%20e%2Dmail" fileName="1151344537209.xml" action="1151344537209" exerciseID="1151344537209" enabledFlag="3"/>
+	id="1148525497375" picture="Words" enabledFlag="35">
+		<item unit="1" id="1151344537319" caption="Introduction" fileName="1151344537319.xml" action="1151344537319" exerciseID="1151344537319" enabledFlag="35"/>
+		<item unit="1" id="1151344537735" caption="Matching" fileName="1151344537735.xml" action="1151344537735" exerciseID="1151344537735" enabledFlag="35"/>
+		<item unit="1" id="1151344537273" caption="Reviews" fileName="1151344537273.xml" action="1151344537273" exerciseID="1151344537273" enabledFlag="35"/>
+		<item unit="1" id="1151344537991" caption="National%20treasures" fileName="1151344537991.xml" action="1151344537991" exerciseID="1151344537991" enabledFlag="35"/>
+		<item unit="1" id="1151344537785" caption="Losing%20our%20national%20treasures" fileName="1151344537785.xml" action="1151344537785" exerciseID="1151344537785" enabledFlag="35"/>
+		<item unit="1" id="1151344537748" caption="Complete%20the%20article" fileName="1151344537748.xml" action="1151344537748" exerciseID="1151344537748" enabledFlag="35"/>
+		<item unit="1" id="1151344537259" caption="E%2Dmail%20news" fileName="1151344537259.xml" action="1151344537259" exerciseID="1151344537259" enabledFlag="35"/>
+		<item unit="1" id="1151344537209" caption="Complete%20the%20e%2Dmail" fileName="1151344537209.xml" action="1151344537209" exerciseID="1151344537209" enabledFlag="35"/>
 	</item>
 	<item caption-position="bc" x="172" y="140" unit="2" caption="Listening" 
 	alt="Listening - a telephone conversation about booking theatre tickets and a lecture on the history of British cinemas." 
-	id="1148532534515" picture="Listening" enabledFlag="3">
-		<item unit="2" id="1151344537853" caption="Introduction" fileName="1151344537853.xml" action="1151344537853" exerciseID="1151344537853" enabledFlag="3"/>
-		<item unit="2" id="1151344537628" caption="Purchasing%20tickets" fileName="1151344537628.xml" action="1151344537628" exerciseID="1151344537628" enabledFlag="3"/>
-		<item unit="2" id="1151344537619" caption="British%20cinema" fileName="1151344537619.xml" action="1151344537619" exerciseID="1151344537619" enabledFlag="3"/>
+	id="1148532534515" picture="Listening" enabledFlag="35">
+		<item unit="2" id="1151344537853" caption="Introduction" fileName="1151344537853.xml" action="1151344537853" exerciseID="1151344537853" enabledFlag="35"/>
+		<item unit="2" id="1151344537628" caption="Purchasing%20tickets" fileName="1151344537628.xml" action="1151344537628" exerciseID="1151344537628" enabledFlag="35"/>
+		<item unit="2" id="1151344537619" caption="British%20cinema" fileName="1151344537619.xml" action="1151344537619" exerciseID="1151344537619" enabledFlag="35"/>
 	</item>
 	<item caption-position="bc" x="68" y="218" unit="3" caption="Reading" 
 	alt="Academic Reading - an article about artists who painted self-portraits and an article discussing the value of studying ancient cultures." 
-	id="1148542695312" picture="Reading" enabledFlag="3">
-		<item unit="3" id="1151344537388" caption="Introduction" fileName="1151344537388.xml" action="1151344537388" exerciseID="1151344537388" enabledFlag="3"/>
-		<item unit="3" id="1151344537791" caption="Self%2Dportraits%20in%20series" fileName="1151344537791.xml" action="1151344537791" exerciseID="1151344537791" enabledFlag="3"/>
-		<item unit="3" id="1151344537636" caption="Ancient%20world%20cultures" fileName="1151344537636.xml" action="1151344537636" exerciseID="1151344537636" enabledFlag="3"/>
+	id="1148542695312" picture="Reading" enabledFlag="35">
+		<item unit="3" id="1151344537388" caption="Introduction" fileName="1151344537388.xml" action="1151344537388" exerciseID="1151344537388" enabledFlag="35"/>
+		<item unit="3" id="1151344537791" caption="Self%2Dportraits%20in%20series" fileName="1151344537791.xml" action="1151344537791" exerciseID="1151344537791" enabledFlag="35"/>
+		<item unit="3" id="1151344537636" caption="Ancient%20world%20cultures" fileName="1151344537636.xml" action="1151344537636" exerciseID="1151344537636" enabledFlag="35"/>
 	</item>
 	<item caption-position="bc" x="277" y="140" unit="4" caption="Writing 1" 
 	alt="Academic Writing - practice exercises for reports on static charts." 
-	id="1148546120969" picture="Writing1" enabledFlag="3">
-		<item unit="4" id="1151344537377" caption="Introduction" fileName="1151344537377.xml" action="1151344537377" exerciseID="1151344537377" enabledFlag="3"/>
-		<item unit="4" id="1151344537016" caption="Static%20charts" fileName="1151344537016.xml" action="1151344537016" exerciseID="1151344537016" enabledFlag="3"/>
-		<item unit="4" id="1151344537449" caption="New%20Zealand%20readers" fileName="1151344537449.xml" action="1151344537449" exerciseID="1151344537449" enabledFlag="3"/>
-		<item unit="4" id="1151344537286" caption="New%20Zealand%20music" fileName="1151344537286.xml" action="1151344537286" exerciseID="1151344537286" enabledFlag="3"/>
-		<item unit="4" id="1151344537805" caption="Making%20comparisons" fileName="1151344537805.xml" action="1151344537805" exerciseID="1151344537805" enabledFlag="3"/>
-		<item unit="4" id="1151344537840" caption="Organising%20your%20report" fileName="1151344537840.xml" action="1151344537840" exerciseID="1151344537840" enabledFlag="3"/>
-		<item unit="4" id="1151344537899" caption="Practice%20activity%20A" fileName="1151344537899.xml" action="1151344537899" exerciseID="1151344537899" enabledFlag="3"/>
-		<item unit="4" id="1151344537422" caption="Sample%20answer" fileName="1151344537422.xml" action="1151344537422" exerciseID="1151344537422" enabledFlag="3"/>
+	id="1148546120969" picture="Writing1" enabledFlag="35">
+		<item unit="4" id="1151344537377" caption="Introduction" fileName="1151344537377.xml" action="1151344537377" exerciseID="1151344537377" enabledFlag="35"/>
+		<item unit="4" id="1151344537016" caption="Static%20charts" fileName="1151344537016.xml" action="1151344537016" exerciseID="1151344537016" enabledFlag="35"/>
+		<item unit="4" id="1151344537449" caption="New%20Zealand%20readers" fileName="1151344537449.xml" action="1151344537449" exerciseID="1151344537449" enabledFlag="35"/>
+		<item unit="4" id="1151344537286" caption="New%20Zealand%20music" fileName="1151344537286.xml" action="1151344537286" exerciseID="1151344537286" enabledFlag="35"/>
+		<item unit="4" id="1151344537805" caption="Making%20comparisons" fileName="1151344537805.xml" action="1151344537805" exerciseID="1151344537805" enabledFlag="35"/>
+		<item unit="4" id="1151344537840" caption="Organising%20your%20report" fileName="1151344537840.xml" action="1151344537840" exerciseID="1151344537840" enabledFlag="35"/>
+		<item unit="4" id="1151344537899" caption="Practice%20activity%20A" fileName="1151344537899.xml" action="1151344537899" exerciseID="1151344537899" enabledFlag="35"/>
+		<item unit="4" id="1151344537422" caption="Sample%20answer" fileName="1151344537422.xml" action="1151344537422" exerciseID="1151344537422" enabledFlag="35"/>
 	</item>
 	<item caption-position="bc" x="277" y="218" unit="5" caption="Writing 2" 
 	alt="Academic Writing - practice exercises for compositions discussing advantages and disadvantages." 
-	id="1148552066219" picture="Writing2" enabledFlag="3">
-		<item unit="5" id="1153925866014" caption="Introduction" fileName="1153925866014.xml" action="1153925866014" exerciseID="1153925866014" enabledFlag="3"/>
-		<item unit="5" id="1153929967942" caption="Ideas%20for%20a%20writing%20task%20" fileName="1153929967942.xml" action="1153929967942" exerciseID="1153929967942" enabledFlag="3"/>
-		<item unit="5" id="1151344537567" caption="Free%20museums" fileName="1151344537567.xml" action="1151344537567" exerciseID="1151344537567" enabledFlag="3"/>
-		<item unit="5" id="1151344537330" caption="Linking%20words%20and%20phrases" fileName="1151344537330.xml" action="1151344537330" exerciseID="1151344537330" enabledFlag="3"/>
-		<item unit="5" id="1151344537542" caption="Relative%20clauses" fileName="1151344537542.xml" action="1151344537542" exerciseID="1151344537542" enabledFlag="3"/>
-		<item unit="5" id="1151344537842" caption="Relative%20pronouns" fileName="1151344537842.xml" action="1151344537842" exerciseID="1151344537842" enabledFlag="3"/>
-		<item unit="5" id="1151344537821" caption="Practice%20activity%20B" fileName="1151344537821.xml" action="1151344537821" exerciseID="1151344537821" enabledFlag="3"/>
-		<item unit="5" id="1151344537183" caption="Sample%20answer" fileName="1151344537183.xml" action="1151344537183" exerciseID="1151344537183" enabledFlag="3"/>
+	id="1148552066219" picture="Writing2" enabledFlag="35">
+		<item unit="5" id="1153925866014" caption="Introduction" fileName="1153925866014.xml" action="1153925866014" exerciseID="1153925866014" enabledFlag="35"/>
+		<item unit="5" id="1153929967942" caption="Ideas%20for%20a%20writing%20task%20" fileName="1153929967942.xml" action="1153929967942" exerciseID="1153929967942" enabledFlag="35"/>
+		<item unit="5" id="1151344537567" caption="Free%20museums" fileName="1151344537567.xml" action="1151344537567" exerciseID="1151344537567" enabledFlag="35"/>
+		<item unit="5" id="1151344537330" caption="Linking%20words%20and%20phrases" fileName="1151344537330.xml" action="1151344537330" exerciseID="1151344537330" enabledFlag="35"/>
+		<item unit="5" id="1151344537542" caption="Relative%20clauses" fileName="1151344537542.xml" action="1151344537542" exerciseID="1151344537542" enabledFlag="35"/>
+		<item unit="5" id="1151344537842" caption="Relative%20pronouns" fileName="1151344537842.xml" action="1151344537842" exerciseID="1151344537842" enabledFlag="35"/>
+		<item unit="5" id="1151344537821" caption="Practice%20activity%20B" fileName="1151344537821.xml" action="1151344537821" exerciseID="1151344537821" enabledFlag="35"/>
+		<item unit="5" id="1151344537183" caption="Sample%20answer" fileName="1151344537183.xml" action="1151344537183" exerciseID="1151344537183" enabledFlag="35"/>
 	</item>
 	<item caption-position="bc" x="172" y="218" unit="6" caption="Speaking" 
 	alt="Speaking - video clips and practice exercises for talking about a topic in Part 2." 
-	id="1148614229140" picture="Speaking" enabledFlag="3">
-		<item unit="6" id="1151344537382" caption="Introduction" fileName="1151344537382.xml" action="1151344537382" exerciseID="1151344537382" enabledFlag="3"/>
-		<item unit="6" id="1151344537369" caption="Tips%20for%20Part%201%20test" fileName="1151344537369.xml" action="1151344537369" exerciseID="1151344537369" enabledFlag="3"/>
-		<item unit="6" id="1151344537344" caption="Tips%20%2D%20true%20or%20false%3F" fileName="1151344537344.xml" action="1151344537344" exerciseID="1151344537344" enabledFlag="3"/>
-		<item unit="6" id="1151344537547" caption="Watch%20a%20candidate" fileName="1151344537547.xml" action="1151344537547" exerciseID="1151344537547" enabledFlag="3"/>
-		<item unit="6" id="1151344537741" caption="When%20you%20don%27t%20know%21" fileName="1151344537741.xml" action="1151344537741" exerciseID="1151344537741" enabledFlag="3"/>
-		<item unit="6" id="1151344537189" caption="Watch%20the%20candidate%20again" fileName="1151344537189.xml" action="1151344537189" exerciseID="1151344537189" enabledFlag="3"/>
-		<item unit="6" id="1151344537448" caption="Not%20knowing%20what%20to%20say" fileName="1151344537448.xml" action="1151344537448" exerciseID="1151344537448" enabledFlag="3"/>
-		<item unit="6" id="1151344537796" caption="Final%20preparation" fileName="1151344537796.xml" action="1151344537796" exerciseID="1151344537796" enabledFlag="3"/>
+	id="1148614229140" picture="Speaking" enabledFlag="35">
+		<item unit="6" id="1151344537382" caption="Introduction" fileName="1151344537382.xml" action="1151344537382" exerciseID="1151344537382" enabledFlag="35"/>
+		<item unit="6" id="1151344537369" caption="Tips%20for%20Part%201%20test" fileName="1151344537369.xml" action="1151344537369" exerciseID="1151344537369" enabledFlag="35"/>
+		<item unit="6" id="1151344537344" caption="Tips%20%2D%20true%20or%20false%3F" fileName="1151344537344.xml" action="1151344537344" exerciseID="1151344537344" enabledFlag="35"/>
+		<item unit="6" id="1151344537547" caption="Watch%20a%20candidate" fileName="1151344537547.xml" action="1151344537547" exerciseID="1151344537547" enabledFlag="35"/>
+		<item unit="6" id="1151344537741" caption="When%20you%20don%27t%20know%21" fileName="1151344537741.xml" action="1151344537741" exerciseID="1151344537741" enabledFlag="35"/>
+		<item unit="6" id="1151344537189" caption="Watch%20the%20candidate%20again" fileName="1151344537189.xml" action="1151344537189" exerciseID="1151344537189" enabledFlag="35"/>
+		<item unit="6" id="1151344537448" caption="Not%20knowing%20what%20to%20say" fileName="1151344537448.xml" action="1151344537448" exerciseID="1151344537448" enabledFlag="35"/>
+		<item unit="6" id="1151344537796" caption="Final%20preparation" fileName="1151344537796.xml" action="1151344537796" exerciseID="1151344537796" enabledFlag="35"/>
 	</item>
 </item>

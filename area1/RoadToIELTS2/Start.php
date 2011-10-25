@@ -1,0 +1,187 @@
+<?php	
+	session_start();
+	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
+	$studentID = $Email = $userID = $instanceID = '';
+	$referrer = $ip = $server = $productCode = '';
+	
+	// For this product
+	$productCode = 52; // RoadToIELTS 2
+	
+	// If we do not know the prefix, the page shouldn't run.
+	// The prefix might come from session variables or from the URL parameters
+	// Read URL first in case session variables are lingering
+	// allow case insensitive parameters
+	if (isset($_GET['prefix'])) {
+		$prefix = $_GET['prefix'];
+	} elseif (isset($_GET['Prefix'])) {
+		$prefix = $_GET['Prefix'];
+	} elseif (isset($_SESSION['Prefix'])) {
+		$prefix = $_SESSION['Prefix'];
+	} else {
+		// I think we should go to the page not found - otherwise you have no clue what is happening
+		// This is NOT the correct way to generate a page not found error.
+		//404 is not a suitable error message when sessions vars times out
+		//header("location: /error/404_programs.htm");
+		header("location: /error/session_timeout.htm");
+		//header("HTTP/1.0 404 Not Found");
+		//echo "page not found";
+		//header("location: /index.php");
+		exit;
+	}
+	
+	$locationFile = "config.xml";
+	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']); 
+	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
+	
+	$server=$_SERVER['HTTP_HOST'];
+	// For Akamai served files- a special header is attached. Check the Akamai configuration to see which files this works for.
+	if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
+	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+		$ip = $_SERVER["HTTP_CLIENT_IP"];
+	} else {
+		$ip = $_SERVER["REMOTE_ADDR"];
+	}
+	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
+	if (isset($_SERVER['HTTP_REFERER'])) {
+		if (strpos($_SERVER['HTTP_REFERER'],'?')) {
+			$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
+		} else {
+			$referrer = $_SERVER['HTTP_REFERER'];
+		}
+	}
+	
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>Road to IELTS 2 from Clarity and the British Council</title>
+	<link rel="shortcut icon" href="/Software/RoadToIELTS2.ico" type="image/x-icon" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="en" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
+	<script type="text/javascript">
+		// ****
+		// Change this variable along with the above fixed paths
+		var webShare = "";
+		// 
+		// ****
+		function thisMovie(movieName) {
+			if (window.document[movieName]) {
+				return window.document[movieName];
+			}
+			if (navigator.appName.indexOf("Microsoft Internet") == -1) {
+				if (document.embeds && document.embeds[movieName])
+					return document.embeds[movieName];
+			} else { // if (navigator.appName.indexOf("Microsoft Internet")!=-1)
+				return document.getElementById(movieName);
+			}
+		}
+		
+		function onLoad() {
+			thisMovie("orchid").focus();
+		}
+		// *********
+		// *********
+		// Running scale, width and height with swfobject is off
+		// If I set both to 100%, then IE shows a very small image, FF shows nothing (but the app is running)
+		// If I set a specific height, then it doesn't matter what I put for width
+		var startControl = webShare + "/Software/ResultsManager/web/";
+		// v6.5.5.6 Allow resize screen mode
+		if (swfobject.getQueryParamValue("resize")=="true") {;
+			var coordsWidth = "100%"; var coordsHeight = "100%";
+		} else {
+			var coordsWidth = 800; var coordsHeight = 600;
+		}
+		var sections = location.pathname.split("/");
+		var userdatapath = sections.slice(0,sections.length-1).join("/");
+		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
+		argList+="<?php if (file_exists(dirname(__FILE__).'/'.$licenceFile)) {echo '&licence='.$licenceFile;} ?>";
+		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
+		
+		// see whether variables have come from command line or, preferentially, session variables
+		if ("<?php echo $userName ?>".length>0) {
+			var jsUserName = "<?php echo $userName ?>";
+		} else {
+			var jsUserName = swfobject.getQueryParamValue("username");
+		}
+		if ("<?php echo $password ?>".length>0) {
+			var jsPassword = "<?php echo $password ?>";
+		} else {
+			var jsPassword = swfobject.getQueryParamValue("password");
+		}
+		if ("<?php echo $studentID ?>".length>0) {
+			var jsStudentID = "<?php echo $studentID ?>";
+		} else {
+			var jsStudentID = swfobject.getQueryParamValue("studentID");
+		}
+		if ("<?php echo $userID ?>".length>0) {
+			var jsUserID = "<?php echo $userID ?>";
+		} else {
+			var jsUserID = swfobject.getQueryParamValue("userID");
+		}
+		if ("<?php echo $Email ?>".length>0) {
+			var jsEmail = "<?php echo $Email ?>";
+		} else {
+			var jsEmail = swfobject.getQueryParamValue("email");
+		}
+		if ("<?php echo $instanceID ?>".length>0) {
+			var jsInstanceID = "<?php echo $instanceID ?>";
+		} else {
+			var jsInstanceID = swfobject.getQueryParamValue("instanceID");
+		}
+		var flashvars = {
+			username: jsUserName,
+			password: jsPassword,
+			studentID: jsStudentID,
+			userID: jsUserID,
+			email: jsEmail,
+			instanceID: jsInstanceID,
+			startingPoint: swfobject.getQueryParamValue("startingPoint"),
+			course: swfobject.getQueryParamValue("course"),
+			action: swfobject.getQueryParamValue("action"),
+			referrer: "<?php echo $referrer ?>",
+			server: "<?php echo $server ?>",
+			ip: "<?php echo $ip ?>"
+		};
+		var params = {
+			id: "Bento",
+			name: "Bento",
+			allowfullscreen: "true"
+		};
+		// v6.5.5.6 Allow resize screen mode
+		if (swfobject.getQueryParamValue("resize")=="true") {
+			params.scale="showall";
+		} else {
+			params.scale="noScale";
+		}
+		var attr = {
+			id: "Bento",
+			name: "Bento"
+		};
+		var expressInstall = startControl + "expressInstall.swf";
+		swfobject.embedSWF(startControl + "IELTSApplication.swf" + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
+	</script>
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+
+</head>
+<body onload="onLoad()">
+
+	<div align="center" id="altContent">
+		<p>This application requires Adobe's Flash player, running at least version 9.</p>
+		<p>It seems your browser doesn't have this.</p>
+		<p>Please download the latest Adobe Flash Player.</p>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
+		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+	</div>
+<NOSCRIPT>
+This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
+Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
+to switch this on and then refresh this page.</NOSCRIPT>
+</body>
+</html>

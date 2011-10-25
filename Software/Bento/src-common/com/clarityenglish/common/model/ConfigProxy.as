@@ -73,14 +73,14 @@ package com.clarityenglish.common.model {
 			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
 
 			// Trigger the database call
-			getRMSettings();
+			getAccountSettings();
 		}
 		/**
 		 * Method to get details about the account from the database
 		 *
 		 * @return void - Asynchronous call. Will return account, title, config and error objects. 
 		 */
-		private function getRMSettings():void {
+		private function getAccountSettings():void {
 			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
 			
 			// Create a subset of the config object to pass to the remote call

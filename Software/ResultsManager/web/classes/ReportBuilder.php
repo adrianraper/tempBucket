@@ -232,6 +232,7 @@ EOD;
 		
 		// For Science Po who need more data. How can I tell if it is them?
 		// They were first of all root 12923, and now moved to 13770
+		// And now moved to something else!
 		$rootID = Session::get('rootID');
 		if ($rootID == '13770') {
 			$this->addColumn("u.F_StudentID", "studentID");
@@ -418,7 +419,23 @@ EOD;
 		
 		return $this->selectBuilder->toSQL();
 	}
-
+	// v3.4 If you want to write a report that shows students who have done NOTHING, here is the starting SQL
+	/*
+		SELECT ci.F_ProductCode productCode,ci.F_CourseID courseID,g.F_GroupName groupName,u.F_UserName userName,
+		0 average_score, 0 complete, 0 average_time, 0 total_time 
+		FROM T_CourseInfo ci, T_User u 
+		INNER JOIN T_Membership m ON u.F_UserID=m.F_UserID 
+		INNER JOIN T_Groupstructure g on g.F_GroupID = m.F_GroupID 
+		WHERE NOT EXISTS (SELECT * FROM T_Score es
+						WHERE es.F_UserID = u.F_UserID
+						AND es.F_CourseID IN (1189057932446) )
+		AND g.F_GroupID IN (21560,10379) 
+		AND ci.F_CourseID IN (1189057932446) 
+		AND u.F_UserType=0 
+		GROUP BY ci.F_ProductCode,ci.F_CourseID,g.F_GroupName,u.F_UserName 
+		ORDER BY ci.F_ProductCode,ci.F_CourseID,g.F_GroupName,u.F_UserName 
+	*/
+		
 	// v3.4 A new function for getting score details into a report
 	function buildDetailReportSQL() {
 		$this->selectBuilder = new SelectBuilder();

@@ -80,7 +80,10 @@ class AbstractService {
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
 			$function_called == "getContent" ||
-			$function_called == "getAccountSettings"
+			$function_called == "getCoverage" ||
+			$function_called == "getEveryonesCoverage" ||
+			$function_called == "getAccountSettings" ||
+			$function_called == "getCCBContent"
 			) return true;
 		
 		// If the user isn't authenticated then fail

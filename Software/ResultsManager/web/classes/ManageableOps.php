@@ -730,6 +730,42 @@ EOD;
 	}
 	
 	/**
+	 * Temporary function for updating user names if studentID matches
+	 * This does NOT move users. It simply finds a matching studentID and changes the name.
+	 * No errors or success flags are raised.
+	 */
+	function updateManageableNames($groups) {
+		$this->db->StartTrans();
+		NetDebug::trace('ManageableOps.updateManageableNames groups='.count($groups));
+		foreach ($groups as $group) {
+			$manageables = $group->manageables;
+			NetDebug::trace('ManageableOps.updateManageableNames group='.$group->name);
+			foreach ($manageables as $manageable) {
+				NetDebug::trace('ManageableOps.getUser from id='.$manageable->studentID);
+				$user = $this->getUserByLearnerId($manageable);
+				if ($user) {
+					NetDebug::trace('ManageableOps.got name='.$user->name);
+					
+					// Update the existing user name
+					$updateRequired = false;
+					//NetDebug::trace('ManageableOps.updateUser new email ='.$userDetails->email);
+					if (isset($manageable->name) && ($user->name != $manageable->name)) {
+						$user->name = $manageable->name;
+						$updateRequired = true;
+					}
+					if ($updateRequired) {
+						NetDebug::trace('ManageableOps.updateUser to='.$user->name);
+						// Update the user record
+						$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
+					}
+				}
+			}
+		}
+		$this->db->CompleteTrans();
+		return true;
+	}
+
+	/**
 	 * Import the given XML document into parentGroup
 	 * v3.6.1 Allow moving and importing
 	 */
@@ -941,6 +977,8 @@ EOD;
 		if ($usersRS->RecordCount()==1) {
 			$userObj = $usersRS->FetchNextObj();
 			$user = $this->_createUserFromObj($userObj);
+		} else if ($usersRS->RecordCount()==0) {
+			return false;
 		} else {
 			throw new Exception("More than one user with this studentID ($user->studentID)");
 		}

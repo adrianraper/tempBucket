@@ -77,7 +77,9 @@ EOD;
 		if ($contentIDObject['Unit']) $whereArray[] = "F_UnitID=?";
 		if ($contentIDObject['Exercise']) $whereArray[] = "F_ExerciseID=?";
 		
-		// v3.4 Why don't we delete based on UID?
+		// v3.4 Why don't we delete based on UID? Ah, because we want to catch courses in a title, for instance if we only specify the title.
+		//$sql = "DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString) AND F_HiddenContentUID=?";
+		//$this->db->Execute($sql, array(Content::idObjectToUID($contentIDObject)));
 		$sql = "DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString) AND ".join(" AND ", $whereArray);
 		$this->db->Execute($sql, array($contentIDObject['Title'], $contentIDObject['Course'], $contentIDObject['Unit'], $contentIDObject['Exercise']));
 		
@@ -95,6 +97,7 @@ EOD;
 			$dbObj['F_UnitID'] = $contentIDObject['Unit'];
 			$dbObj['F_ExerciseID'] = $contentIDObject['Exercise'];
 			
+			// AR Why am I doing replace, surely the above delete got rid of any row that exists?
 			$this->db->Replace("T_HiddenContent", $dbObj, array("F_HiddenContentUID", "F_GroupID"));
 		}
 		

@@ -66,8 +66,9 @@ package com.clarityenglish.ielts.view {
 					
 					// For now hardcode the menu file and the path
 					// To get the real path will be a combination of the config data (a base path)
-					// and the contentLocation that comes back from getRMSettings
-					view.menuView.href = new Href(Href.XHTML, "menu.xml", "http://dock.projectbench/Content/IELTS-Dave");
+					// and the contentLocation that comes back from getAccountSettings
+					configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					view.menuView.href = new Href(Href.XHTML, "menu.xml", configProxy.getContentPath());
 					break;
 
 			}

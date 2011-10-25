@@ -110,6 +110,7 @@ class TriggerOps {
 				} else {
 					$accountIDs = null;
 				}
+				//echo "selfHost trigger condtion=".$trigger->condition->selfHost;
 				$triggerResults = $this->accountOps->getAccounts($accountIDs, $accountConditions);
 				//echo "got ".count($triggerResults)." accounts that expire on ".$trigger->condition->expiryDate ."<br />";
 				//$executor = $trigger->executor;

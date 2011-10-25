@@ -128,8 +128,13 @@ class AccountOps {
 						$needsAccountsTable = true;
 						break;
 					// v3.4.3 This is a boolean - should it be string enclosed?
+					// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
 					case 'selfHost':
-						$selectBuilder->addWhere("a.F_SelfHost = '".$value."'");
+						if ($value == 'true') {
+							$selectBuilder->addWhere("a.F_SelfHost = 1");
+						} else {
+							$selectBuilder->addWhere("a.F_SelfHost = 0");
+						}
 						break;
 					case 'deliveryFrequency':
 						$selectBuilder->addWhere("t.F_DeliveryFrequency = '".$value."'");
@@ -173,6 +178,25 @@ class AccountOps {
 							$selectBuilder->addWhere("$buildDateString = $value");
 							$selectBuilder->addWhere("t.F_ProductCode=2");
 							$needsAccountsTable = true;
+						}
+						break;
+					case 'accountName':
+						//NetDebug::trace("condition=$condition=$value");
+						// This is currently used only from DMS as a search. 
+						// So it makes sense to assume we want to find this word anywhere in the name.
+						// Add in a hack that lets you type in other search stuff too
+						if (substr($value,0,2)== 'P:') {
+							$selectBuilder->addWhere("a.F_Prefix = '".substr($value,2)."'");
+						} elseif (substr($value,0,2)== 'R:') {
+							$selectBuilder->addWhere("a.F_RootID = '".substr($value,2)."'");
+						} elseif (substr($value,0,2)== 'D:') {
+							$selectBuilder->addWhere("a.F_ResellerCode = '".substr($value,2)."'");
+						} else {
+							if (stristr($value, '%') === FALSE) {
+								$selectBuilder->addWhere("a.F_Name like '%$value%'");
+							} else {
+								$selectBuilder->addWhere("a.F_Name like '$value'");
+							}
 						}
 						break;
 				}
@@ -231,7 +255,8 @@ class AccountOps {
 
 		//throw new Exception($selectBuilder->toSQL());
 		$sql = $selectBuilder->toSQL();
-		//echo $sql;
+		//NetDebug::trace($sql);
+		// echo $sql;
 		//$accountsRS = $this->db->Execute($selectBuilder->toSQL($sql)); 
 		$accountsRS = $this->db->Execute($sql); 
 		//NetDebug::trace("accounts=".$accountsRS->RecordCount());

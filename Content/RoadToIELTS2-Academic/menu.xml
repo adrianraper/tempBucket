@@ -4,7 +4,7 @@
 		<script id="model" type="application/xml">
 			<menu>
 				<course caption="Unit 1: Leisure and entertainment" id="1150976390861">
-					<unit caption="Words" id="1156153794621">
+					<unit caption="Worms" id="1156153794621">
 						<exercise unit="1" id="1156153794194" caption="Introduction" href="Courses/1150976390861/Exercises/1156153794194.xml" enabledFlag="3"/>
 						<exercise unit="1" id="1156153794534" caption="Leisure%20activities" href="Courses/1150976390861/Exercises/1156153794534.xml" action="1156153794534" exerciseID="1156153794534" enabledFlag="3"/>
 						<exercise unit="1" id="1156153794170" caption="Complete%20an%20email%20%281%29" href="Courses/1150976390861/Exercises/1156153794170.xml" action="1156153794170" exerciseID="1156153794170" enabledFlag="3"/>

@@ -17,6 +17,14 @@ class Trigger {
 	var $frequency;
 	var $timeStamp; // used if we want to run the trigger against a date that is not today
 	var $messageType;
+	
+	const TRIGGER_TYPE_INTERNAL = 0;
+	const TRIGGER_TYPE_SUBSCRIPTION_REMINDERS = 1;
+	const TRIGGER_TYPE_USAGE_STATISTICS = 2;
+	const TRIGGER_TYPE_SERVICE = 3;
+	const TRIGGER_TYPE_SUPPORT = 4;
+	const TRIGGER_TYPE_UPGRADE = 5;
+	const TRIGGER_TYPE_PRODUCT = 6;
 
 	function Trigger($timeStamp = null) {
 		//echo "build trigger for $timeStamp";

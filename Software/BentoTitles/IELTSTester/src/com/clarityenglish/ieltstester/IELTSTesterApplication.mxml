@@ -58,8 +58,9 @@
 		<s:ButtonBar id="buttonBar" requireSelection="true" change="onButtonBarChange(event)">
 			<s:dataProvider>
 				<s:ArrayCollection>
-					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://dock.projectbench/Content/IELTSTester-Dave" />
-					<fx:Object label="Road to IELTS" filename="menu.xml" currentDir="http://dock.projectbench/Content/RoadToIELTS2-Academic" />
+					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://claritydevelop/Content/IELTSTester-Dave" />
+					<fx:Object label="Road to IELTS" filename="menu.xml" currentDir="http://claritydevelop/Content/RoadToIELTS2-Academic" />
+					<fx:Object label="30-hour" filename="menu.xml" currentDir="http://claritydevelop/Content/IELTS-Joe" />
 				</s:ArrayCollection>
 			</s:dataProvider>
 		</s:ButtonBar>
