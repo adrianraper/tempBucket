@@ -16,9 +16,10 @@ class ConversionOps {
 		// Check that you can create this file
 		$fh = fopen($this->outfile, 'wb');
 		if (!$fh) {
-			throw new Exception("Can't write to the file $filename");
+			throw new Exception("Can't write to the file ".$this->outfile);
 		} else {
 			// build the contents of the string we will write out
+			//echo $this->outfile;
 			$head = $this->formatHtmlHead();
 			$rubric = $this->formatHtmlRubric();
 			$sections = $this->formatHtmlSections();

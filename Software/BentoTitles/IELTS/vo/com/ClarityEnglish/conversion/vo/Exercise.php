@@ -63,6 +63,10 @@ class Exercise {
 					$this->type = Exercise::EXERCISE_TYPE_GAPFILL;
 					$this->questionBased = true;
 					break;
+				case 'analyze':
+					$this->type = Exercise::EXERCISE_TYPE_MULTIPLECHOICE;
+					$this->questionBased = true;
+					break;
 				// Then text based versions with standard names
 				case 'dropdown':
 				case 'presentation':

@@ -141,10 +141,12 @@ class Content{
 				$buildText.=$mediaNode->output();
 			}
 			foreach ($this->getParagraphs() as $paragraph) {
-				// Keep track of any paragraph that is a different tag type than the previous one
-				$thisTagType = $paragraph->getTagType();
-				$buildText.=$paragraph->output($lastTagType,$thisTagType);
-				$lastTagType = $thisTagType;
+				if ($paragraph) {
+					// Keep track of any paragraph that is a different tag type than the previous one
+					$thisTagType = $paragraph->getTagType();
+					$buildText.=$paragraph->output($lastTagType,$thisTagType);
+					$lastTagType = $thisTagType;
+				}
 			}		
 		}
 		// Whatever happens there are some characters I want to replace
@@ -183,10 +185,12 @@ class Content{
 			$builder='';
 			$lastTagType = null;
 			foreach ($this->getParagraphs() as $paragraph) {
-				// Keep track of any paragraph that is a different tag type than the previous one
-				$thisTagType = $paragraph->getTagType();
-				$builder.=$paragraph->output($lastTagType,$thisTagType);
-				$lastTagType = $thisTagType;
+				if ($paragraph) {
+					// Keep track of any paragraph that is a different tag type than the previous one
+					$thisTagType = $paragraph->getTagType();
+					$builder.=$paragraph->output($lastTagType,$thisTagType);
+					$lastTagType = $thisTagType;
+				}
 			}		
 			//echo $builder;
 			
@@ -211,7 +215,7 @@ class Content{
 							// TODO: What if we didn't find this field id?
 						}
 					}
-					echo $fieldType;
+					//echo $fieldType;
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {

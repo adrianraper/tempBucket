@@ -27,7 +27,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=true;
+$plainView=false;
 $batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
@@ -43,37 +43,54 @@ if ($plainView) {
 $contentFolder = '/../../../Content';
 $titleFolder = '/RoadToIELTS-Academic';
 $titleFolderOut = '/RoadToIELTS2-Academic';
-$courseFolder = '/1150976390861';
-$exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses'.$courseFolder.'/Exercises/';
-$exerciseFolderOut = dirname(__FILE__).$contentFolder.$titleFolderOut.'/Courses'.$courseFolder.'/Exercises/';
-$exerciseURL = $contentFolder.$titleFolderOut.'/Courses'.$courseFolder.'/Exercises/';
-$outURL='';
 
+// Add an extra loop to do all folders at once
+$topFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses';
 // Either read all the files in a folder
-if ($batch && $handle = opendir($exerciseFolder)) {
+if ($batch && $handle1 = opendir($topFolder)) {
 	
-	while (false !== ($file = readdir($handle))) {
-		//$exerciseID = substr($file,0,strpos($file,'.xml'));
-		// Only pick up files with just numbers, especially ignore *-new.xml
-		$pattern = '/^([\d]+).xml/is';
-		if (preg_match($pattern, $file, $matches)) {
-			convertExercise($matches[1]);
+	while (false !== ($folder = readdir($handle1))) {
+		if (stristr($folder,'.')===FALSE) {
+			$courseFolder = $folder;
+			$exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
+			$exerciseFolderOut = dirname(__FILE__).$contentFolder.$titleFolderOut.'/Courses/'.$courseFolder.'/Exercises/';
+			$exerciseURL = $contentFolder.$titleFolderOut.'/Courses/'.$courseFolder.'/Exercises/';
+			$outURL='';
+			echo "processing $courseFolder $newline";
+			
+			if ($handle = opendir($exerciseFolder)) {
+				while (false !== ($file = readdir($handle))) {
+					//$exerciseID = substr($file,0,strpos($file,'.xml'));
+					// Only pick up files with just numbers, especially ignore *-new.xml
+					$pattern = '/^([\d]+).xml/is';
+					if (preg_match($pattern, $file, $matches)) {
+						echo $exerciseFolder.$file."$newline";
+						convertExercise($matches[1]);
+					}
+				}
+			}
 		}
 	}
 } else {
 	// or just a specific one
+	$courseFolder = '/1144338842079';
+	$exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
+	$exerciseFolderOut = dirname(__FILE__).$contentFolder.$titleFolderOut.'/Courses/'.$courseFolder.'/Exercises/';
+	$exerciseURL = $contentFolder.$titleFolderOut.'/Courses/'.$courseFolder.'/Exercises/';
+	$outURL='';
 	//$exerciseID = '1156153794194';
 	//$exerciseID = '1156153794055'; // presentation
 	//$exerciseID = '1156153794170'; // drag and drop
 	//$exerciseID = '1156155508240'; // gapfill
 	//$exerciseID = '1156153794807'; // dropdown
 	//$exerciseID = '1156153794223'; // multiple choice
-	$exerciseID = '1156153794534'; // q based drag and drop
+	//$exerciseID = '1156153794534'; // q based drag and drop
 	//$exerciseID = '1156153794851'; // target spotting with feedback
 	//$exerciseID = '1156153794618'; // stopgap (q based gapfill)
 	//$exerciseID = '1156153794077'; // quiz
 	//$exerciseID = '1317260895296'; // correct mistakes (not R2I)
 	//$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
+	$exerciseID = '1156429192216'; // analyze
 	convertExercise($exerciseID);
 }
 
@@ -89,14 +106,22 @@ function convertExercise($exerciseID) {
 	$outfile = $exerciseFolderOut.$exerciseID.'.xml';
 	
 	// Load the contents into an XML structure
-	$xml = simplexml_load_file($infile);
-	
-	// Confirm that this is an Author Plus file - and see what type
-	if ($xml->getName()=='exercise') {
-		$attr = $xml->attributes();
-		$type = $attr['type'];
-		//echo 'type='.$attr['type']. "<br />";	
+	try {
+		$xml = simplexml_load_file($infile);
+		// Confirm that this is an Author Plus file - and see what type
+		if (!$xml)
+			throw new Exception("Can't read the xml, check the tags");
+		if ($xml->getName()=='exercise') {
+			$attr = $xml->attributes();
+			$type = $attr['type'];
+			//echo 'type='.$attr['type']. "$newline";	
+		}
+	} catch (Exception $e) {
+		//var_dump($e);
+		echo "Had to skip file $infile as xml problems $newline";
+		return false;
 	}
+	
 	// Create an internal exercise to hold the data. 
 	// Will we need different classes for different types?
 	switch (strtolower($type)) {
@@ -114,6 +139,7 @@ function convertExercise($exerciseID) {
 		case 'dropdown':
 			$exercise = new Dropdown($xml);
 			break;
+		case 'analyze':
 		case 'multiplechoice':
 			$exercise = new MultipleChoice($xml);
 			break;
@@ -129,28 +155,28 @@ function convertExercise($exerciseID) {
 			break;
 		default;
 			//throw new Exception("unknown exercise type $type");
-			echo "unknown exercise type $type for $exerciseID ";
+			echo "unknown exercise type $type for $exerciseID $newline";
 			return;
 	}
 	// At the end of construction, you can check the object if you want
 	if ($plainView) echo $exercise->toString();
 	
 	// Then create an output function
-	switch (strtolower($type)) {
-		case 'presentation':
-		case 'dragon':
-		case 'draganddrop':
-		case 'cloze':
-		case 'dropdown':
-		case 'targetspotting':
-		default:
+//	switch (strtolower($type)) {
+//		case 'presentation':
+//		case 'dragon':
+//		case 'draganddrop':
+//		case 'cloze':
+//		case 'dropdown':
+//		case 'targetspotting':
+//		default:
 			$converter = New ConversionOps($exercise);
 			$converter->setOutputFile($outfile);
 			$rc = $converter->createOutput();
 			$outURL = $exerciseURL.$exerciseID.'.xml';
-			//echo " and writing out $outfile <br/>";
-			break;
-	}
+			//echo " and writing out $outfile $newline";
+//			break;
+//	}
 }
 
 // It might help to display the output file in the browser (or the last of many)
