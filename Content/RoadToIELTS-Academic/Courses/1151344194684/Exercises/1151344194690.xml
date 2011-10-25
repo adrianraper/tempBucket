@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Stopgap" name="Bands%2C%20Tribes%20and%20Chiefdoms" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise sameLengthGaps="true"/>
+		<misc splitScreen="true"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Using the passage on the left, classify the characteristics on the right. You may use any answer more than once.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph indent="0" tabs="30" style="normal" height="0" width="282" y="+16" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>B</B>	- bands only; </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="30" style="normal" height="0" width="282" y="+0" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>BT</B>	- both bands and tribes; </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="30" style="normal" height="0" width="282" y="+0" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>TC</B>	- both tribes and chiefdoms; </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="30" style="normal" height="0" width="282" y="+0" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>C</B>	- chiefdoms only. </FONT></P></TEXTFORMAT>]]></paragraph>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">shared decision making	[1]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">individual anonymity	[2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">no agriculture	[3]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">settled communities	[4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">no formal social ranks	[5]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">use of slaves	[6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="200" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">two or more social groupings	[7]</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:gap" group="1" id="1">
+			<answer correct="true">BT </answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">C </answer>
+		</field>
+		<field mode="0" type="i:gap" group="3" id="3">
+			<answer correct="true">B </answer>
+		</field>
+		<field mode="0" type="i:gap" group="4" id="4">
+			<answer correct="true">TC </answer>
+		</field>
+		<field mode="0" type="i:gap" group="5" id="5">
+			<answer correct="true">BT </answer>
+		</field>
+		<field mode="0" type="i:gap" group="6" id="6">
+			<answer correct="true">C </answer>
+		</field>
+		<field mode="0" type="i:gap" group="7" id="7">
+			<answer correct="true">TC </answer>
+		</field>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Bands, Tribes and Chiefdoms</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Bands are the tiniest societies, consisting typically of 5 to 80 people, most or all of them close relatives by birth or by marriage. In effect, a band is an extended family or several related extended families. Today, bands still living autonomously are almost confined to the most remote parts of New Guinea and Amazonia, but within modern times there were many others that have only recently fallen under state control or been assimilated or exterminated. All those modern bands are or were nomadic hunter-gatherers rather than settled food producers. Probably all humans lived in bands until at least 40,000 years ago, and most still did as recently as 11,000 years ago.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Bands lack many institutions that we take for granted in our own society. They have no permanent single base of residence. The band's land is used jointly by the whole group, instead of being partitioned among subgroups or individuals. There is no regular economic specialization, except by age and sex: all able-bodied individuals forage for food. There are no formal institutions, such as laws, police, and treaties, to resolve conflicts within and between bands. Band organization is often described as 'egalitarian': there is no formalized social stratification into upper and lower classes, no formalized or hereditary leadership, and no formalized monopolies of information and decision making. However, the term 'egalitarian' should not be taken to mean that all band members are equal in prestige and contribute equally to decisions. Rather, the term merely means that any band 'leadership' is informal and acquired through qualities such as personality, strength, intelligence, and fighting skills.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Our closest animal relatives, the gorillas and chimpanzees and bonobos of Africa, also live in bands. All humans presumably did so too, until improved technology for extracting food allowed some hunter-gatherers to settle in permanent dwellings in some resource-rich areas. The band is the political, economic, and social organization that we have inherited from our millions of years of evolutionary history. Our development beyond it all took place within the last few tens of thousands of years.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The first of those stages beyond the band is termed the tribe, which differs in being larger (typically comprising hundreds rather than dozens of people) and having fixed settlements. A tribe also differs in that it consists of more than one formally recognized kinship group, termed clans, which exchange marriage partners. Land belongs to a particular clan, not to the whole tribe. However, the number of people in a tribe is still low enough that everyone knows everyone else by name and relationships.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Despite all of these differences between bands and tribes, many similarities remain. Tribes still have an informal, 'egalitarian' system of government. Information and decision making are both communal. Tribes also share with bands an 'egalitarian' social system, without ranked lineages or classes. Not only is status not inherited; no member of a traditional tribe or band can become disproportionately wealthy by his or her own efforts, because each individual has debts and obligations to many others.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Like bands, tribes lack a bureaucracy, police force, and taxes. Their economy is based on reciprocal exchanges between individuals or families, rather than on a redistribution of tribute paid to some central authority. Economic specialization is slight: full-time crafts specialists are lacking, and every able-bodied adult participates in growing, gathering, or hunting food. Since tribes thus lack economic specialists, they also lack slaves, because there are no specialized menial jobs for a slave to perform.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Although a few bands and tribes survive today on remote and ecologically marginal lands outside state control, fully independent chiefdoms had disappeared by the early twentieth century, because they tended to occupy prime land coveted by states. However, as of A.D. 1492, chiefdoms were still widespread over much of the eastern United States, in productive areas of South and Central America and sub-Saharan Africa that had not yet been subsumed under native states, and in all of Polynesia.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">As regards population size, chiefdoms were considerably larger than tribes, ranging from several thousand to several tens of thousands of people. That size created serious potential for internal conflict because, for any person living in a chiefdom, the vast majority of other people in the chiefdom were neither closely related by blood or marriage nor known by name. With the rise of chiefdoms around 7,500 years ago, people had to learn, for the first time in history, how to encounter strangers regularly without attempting to kill them.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Part of the solution to that problem was for one person, the chief, to exercise a monopoly on the right to use force. A chief held a recognized office, filled by hereditary right. Instead of the decentralized anarchy of a village meeting, the chief was a permanent centralized authority, made all significant decisions, and had a monopoly on critical information.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A chiefdom's large population in a small area required plenty of food, obtained by food production in most cases, by hunting-gathering in a few especially rich areas. The food surpluses generated by some people, regulated to the rank of commoners, went to feed the chiefs, their families, bureaucrats, and craft specialists, who variously made canoes, adzes, or spittoons or worked as bird catchers or tattooers. Furthermore, since chiefs required menial servants as well as specialized craftspeople, chiefdoms differed from tribes in having many jobs that could be filled by slaves, typically obtained by capture in raids.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Guns, Germs and Steel, Jared Diamond, Vintage 1998, pp. 267-275.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">As with all classification exercises, once you've skimmed the text to get a general idea of its content and organisation, you should look carefully at the classifications and the letters that represent each one. The classifications in this case refer to different types of social grouping. Although there are no headings, the text is clearly divided into sections, which deal with each type of social group in turn.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">If you find that a description applies to 'bands', check if it also applies to tribes. The same is also true of 'chiefdoms'.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Remember that the questions obviously don't follow the order of the text, so you should do the task in an organised, logical way. For each question, skim over the text from the beginning looking for words or phrases that match the description.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

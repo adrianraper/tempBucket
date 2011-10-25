@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Proofreading" name="Sample%20Answer" id="0">
+	<settings>
+	<marking instant="true"/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="false" marking="true"/>
+		<exercise hiddenTargets="true" proofreading="true"/>
+		<misc />
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 12. Click on them.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+		<media filename="WB_WT1.jpg" y="+4" x="608" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Writing Task 1</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The flow chart illustrates the process which the Hong Kong Post Office [1] to select suitable artwork for its stamps.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The first stages [2] gathering ideas for possible themes. District councils, tourist associations and government departments are all [3] to send in suggestions to the Post Office. These are then forwarded to a special stamp advisory committee which [4] chooses between six and eight of the best ideas.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[5], the committee may decide [6] to use the work of professional artists or to hold a competition and ask the public to enter their own artwork. [7] professionals are to be used, three artists will normally [8] to submit designs. The best of these will [9]. Prior to printing, however, the design must be endorsed by the Secretary for Home Affairs. If, on the other hand, the committee decides to use amateur artwork, then a competition will be set up and publicised. [10] entries have been submitted, the committee will [11] the best and the winning artwork is [12] for printing.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="true">is used</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="2">
+			<answer correct="true">are involved</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="true">invite</answer>
+		</field>
+		<field id="4" group="4" type="i:target" mode="0">
+			<answer correct="true">simultaneously</answer>
+		</field>
+		<field id="5" group="5" type="i:target" mode="0">
+			<answer correct="true">Prior to this</answer>
+		</field>
+		<field id="6" group="6" type="i:target" mode="0">
+			<answer correct="true">or</answer>
+		</field>
+		<field id="7" group="7" type="i:target" mode="0">
+			<answer correct="true">In case</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="8">
+			<answer correct="true">commissioned</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="9">
+			<answer correct="true">choose</answer>
+		</field>
+		<field id="10" group="10" type="i:target" mode="0">
+			<answer correct="true">Before</answer>
+		</field>
+		<field id="11" group="11" type="i:target" mode="0">
+			<answer correct="true">be chosen</answer>
+		</field>
+		<field id="12" group="12" type="i:target" mode="0">
+			<answer correct="true">sending</answer>
+		</field>
+		<media filename="WB_WR8s.jpg" y="20" x="448" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<media filename="WB_WR8.jpg" y="165" x="456" stretch="false" mode="16" id="1003" type="m:picture"/>
+		<paragraph type="text" y="170" x="484" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to enlarge</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>is used -> </B><FONT COLOR="#0000FF"><B>uses</B></FONT><B>:</B> 'the Hong Kong Post Office' is the subject of this verb in active voice.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>are involved -> </B><FONT COLOR="#0000FF"><B>involve</B></FONT><B>:</B> 'The first stages' is the subject of this verb in active voice.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>invited -> </B><FONT COLOR="#0000FF"><B>invited</B></FONT><B>:</B> Passive is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>simultaneously -> </B><FONT COLOR="#0000FF"><B>subsequently</B></FONT><B>:</B> 'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Prior to this -> </B><FONT COLOR="#0000FF"><B>At this stage</B></FONT><B>:</B> 'Prior to this' means 'before'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>or -> </B><FONT COLOR="#0000FF"><B>either</B></FONT><B>:</B> 'Either' introduces the first alternative.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>In case -> </B><FONT COLOR="#0000FF"><B>If</B></FONT><B>:</B> 'In case' does not have exactly the same meaning as 'if'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>commissioned -> </B><FONT COLOR="#0000FF"><B>be commissioned</B></FONT><B>:</B> This verb is in passive voice in the future form, 'will be + past participle'. </FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="9">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>choose -> </B><FONT COLOR="#0000FF"><B>be chosen</B></FONT><B>:</B> This verb is in passive voice in the future form, 'will be + past participle'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Before -> </B><FONT COLOR="#0000FF"><B>Once</B></FONT><B>:</B> 'Once' here means 'as soon as'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="11">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>be chosen -> </B><FONT COLOR="#0000FF"><B>choose</B></FONT><B>:</B> This verb is in passive voice in the future form, 'will be + past participle'.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>sending -> </B><FONT COLOR="#0000FF"><B>sent</B></FONT><B>:</B> The 'is' here is part of the passive verb. Present continuous is not appropriate here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

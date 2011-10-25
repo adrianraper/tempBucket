@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="Express%20purpose%2C%20cause%20and%20result" id="0">
+	<settings>
+		<marking overwriteAnswers="true"/>
+		<feedback wrongOnly="false"/>
+		<buttons feedback="false"/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read the report describing the information shown in the diagram from the previous exercise again, and find words and phrases that are used to express purpose and cause and result. There are 4 examples of each. Drag each to the appropriate column below.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,159,293,427" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[9]</FONT><tab><FONT COLOR="#0000FF">[11]</FONT><tab><FONT COLOR="#0000FF">[13]</FONT><tab><FONT COLOR="#0000FF">[14]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,159,293,427" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[16]</FONT><tab><FONT COLOR="#0000FF">[15]</FONT><tab><FONT COLOR="#0000FF">[12]</FONT><tab><FONT COLOR="#0000FF">[10]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="9" group="1" type="i:drag" mode="0">
+			<answer correct="false">to</answer>
+		</field>
+		<field id="10" group="1" type="i:drag" mode="0">
+			<answer correct="false">Due to</answer>
+		</field>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">so that</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">causing</answer>
+		</field>
+		<field id="13" group="1" type="i:drag" mode="0">
+			<answer correct="false">so as to</answer>
+		</field>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">As a result</answer>
+		</field>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">in order to</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">Consequently</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph tabs="140,240" type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Purpose 	</B>*<B>	 Cause and Result</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="140,240" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[1] 	*	 [2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="140,240" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[3] 	*	 [4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="140,240" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[5] 	*	 [6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="140,240" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[7] 	*	 [8]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="140,240" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="140,240" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages <FONT COLOR="#0000FF">to</FONT> transport passengers up and down a hillside 30 metres in height.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The carriages are made of timber and steel <FONT COLOR="#0000FF">so that</FONT> they are light and strong. Underneath each one is a ballast tank, which carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. These go around a large drum at the top of the slope.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir <FONT COLOR="#0000FF">so as to</FONT> make it slightly heavier than the lower carriage. <FONT COLOR="#0000FF">Due to</FONT> this imbalance, the top one begins to roll down the hill, pulling the other one up. A computer control system weighs each carriage <FONT COLOR="#0000FF">in order to</FONT> gauge exactly how much water is needed to make them move. Speed is controlled by means of a braking system built into the drum at the top. This consists of a hydraulic pump, which slows the drum down if it is turning too fast, <FONT COLOR="#0000FF">causing</FONT> the carriages to reduce speed. Each time this happens, the system compresses gas in special cylinders.<FONT COLOR="#0000FF"> As a result</FONT>, some of the energy of braking is stored. This can later be used to pump a proportion of the water back up to the reservoir. <FONT COLOR="#0000FF">Consequently</FONT>, some energy is recycled.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:drop" mode="0">
+			<answer correct="true">to</answer>
+			<answer correct="true" noOverwrite="true">so that</answer>
+			<answer correct="true" noOverwrite="true">so as to</answer>
+			<answer correct="true" noOverwrite="true">in order to</answer>
+		</field>
+		<field id="2" group="2" type="i:drop" mode="0">
+			<answer correct="true">Due to</answer>
+			<answer correct="true" noOverwrite="true">causing</answer>
+			<answer correct="true" noOverwrite="true">As a result</answer>
+			<answer correct="true" noOverwrite="true">Consequently</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">so that</answer>
+			<answer correct="true" noOverwrite="true">to</answer>
+			<answer correct="true" noOverwrite="true">so as to</answer>
+			<answer correct="true" noOverwrite="true">in order to</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">causing</answer>
+			<answer correct="true" noOverwrite="true">Due to</answer>
+			<answer correct="true" noOverwrite="true">As a result</answer>
+			<answer correct="true" noOverwrite="true">Consequently</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">so as to</answer>
+			<answer correct="true" noOverwrite="true">to</answer>
+			<answer correct="true" noOverwrite="true">so that</answer>
+			<answer correct="true" noOverwrite="true">in order to</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">As a result</answer>
+			<answer correct="true" noOverwrite="true">Due to</answer>
+			<answer correct="true" noOverwrite="true">causing</answer>
+			<answer correct="true" noOverwrite="true">Consequently</answer>
+		</field>
+		<field mode="0" type="i:drop" group="7" id="7">
+			<answer correct="true">in order to</answer>
+			<answer correct="true" noOverwrite="true">to</answer>
+			<answer correct="true" noOverwrite="true">so that</answer>
+			<answer correct="true" noOverwrite="true">so as to</answer>
+		</field>
+		<field mode="0" type="i:drop" group="8" id="8">
+			<answer correct="true">Consequently</answer>
+			<answer correct="true" noOverwrite="true">Due to</answer>
+			<answer correct="true" noOverwrite="true">causing</answer>
+			<answer correct="true" noOverwrite="true">As a result</answer>
+		</field>
+		<media filename="EN_AW_002s.jpg" y="18" x="430" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<media filename="EN_AW_002.jpg" y="190" x="480" stretch="false" mode="16" id="1003" type="m:picture"/>
+		<paragraph type="text" y="195" x="510" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to enlarge</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">If you are asked to write a report describing a process or how something works, you need to be able to identify and explain the stages in a process, or the functions of the various parts of the device and the relationships between them. These include relationships of cause and result, and purpose. There are some useful words and phrases you can use to express such relationships.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

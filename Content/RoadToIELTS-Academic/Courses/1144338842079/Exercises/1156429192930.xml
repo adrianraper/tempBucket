@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="TargetSpotting" name="Two%20more%20candidates" id="0">
+	<settings>
+		<marking />
+		<feedback wrongOnly="false" />
+		<buttons feedback="false" marking="true"/>
+		<exercise />
+		<misc />
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">&lt;B&gt;&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Part 3 of the speaking test consists of questions related to the topic in Part 2. &lt;/B&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;The news is the related topic being discussed here.&lt;/B&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;&lt;/B&gt;</paragraph>
+		<media filename="MM_SP_004.jpg" y="+4" x="608" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Card</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;What, according to the candidates, are the main reasons for choosing a particular news medium?&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#0000FF&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;&lt;B&gt;Zafir&lt;/B&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[1]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[2]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[3]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[4]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[5]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[6]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[7]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[8]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[9]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="310" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot; LETTERSPACING=&quot;0&quot; KERNING=&quot;0&quot;&gt;[10]&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph height="0" width="605" y="+16" x="12">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT SIZE=&quot;2&quot;&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="true">A. Trust</answer>
+		</field>
+		<field id="2" group="2" type="i:target" mode="0">
+			<answer correct="true">B. Availability</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="false">C. Like to read it</answer>
+		</field>
+		<field id="4" group="4" type="i:target" mode="0">
+			<answer correct="false">D. Immediacy</answer>
+		</field>
+		<field id="5" group="5" type="i:target" mode="0">
+			<answer correct="false">E. Political orientation</answer>
+		</field>
+		<field id="6" group="6" type="i:target" mode="0">
+			<answer correct="false">F. Cost</answer>
+		</field>
+		<field id="7" group="7" type="i:target" mode="0">
+			<answer correct="false">G. Some prefer to look than listen</answer>
+		</field>
+		<field id="8" group="8" type="i:target" mode="0">
+			<answer correct="false">H. Objectivity</answer>
+		</field>
+		<field id="9" group="9" type="i:target" mode="0">
+			<answer correct="false">I. Personal circumstances</answer>
+		</field>
+		<field id="10" group="10" type="i:target" mode="0">
+			<answer correct="false">J. Can be read anywhere</answer>
+		</field>
+		<media filename="Unit06_e7b.flv" y="18" x="370" stretch="false" duration="60" mode="1" id="1002" type="m:video" />
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal" />
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline" />
+	</template>
+	<handmaker made="true" />
+</exercise>

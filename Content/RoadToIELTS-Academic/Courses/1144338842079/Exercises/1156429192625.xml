@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Proofreading" name="Proofreading" id="0">
+	<settings>
+		<marking instant="true"/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="false" marking="true"/>
+		<exercise proofReading="true" hiddenTargets="true"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">&lt;B&gt;&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot;&gt;&lt;B&gt;Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 16 and they may be grammatical or lexical errors. Click on them.&lt;/B&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot;&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;&lt;/B&gt;</paragraph>
+		<media filename="MM_Task01.jpg" y="+4" x="670" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Writing Task 1</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;The line graph shows the growth in the total global audience for the BBC World Service [1] 1994 and 2001. The bar chart compares trends in the number of listeners to this service in five regions of the world. It can be seen that, overall, the World Service audience increased [2] this period. However, [3] 1999 to 2001, audience growth occurred in only two of the five regions served.&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;_sans&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;As regards the total global audience, apart from a fall [4] 5 million [5] 1998, the number of listeners rose steadily during this period. From 130 million in 1994, it had risen [6] 153 million [7] 2001. On average, this is a rise of about 3 million listeners per year. However, the bar chart shows significant changes in the way this total audience was distributed between the different world regions.&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;_sans&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;The vast majority of listeners [8] in two regions: Africa and the Middle East and Asia and the Pacific. [9] 1999 and 2001, these audiences grew [10] 10 million and 5 million listeners for the latter. In contrast, audience sizes in Europe and Eurasia decreased steadily [11] this period. In 1999, the audience for the [12] was 16 million and for the [13] 12 million. By 2001 these figures had fallen [14] 2 million and 3 million respectively. The smallest audience of all [15] in the Americas, which remained stable at 9 million listeners throughout the period.&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;_sans&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;In conclusion, over the period described, the BBC World Service broadcast to a growing but less widely dispersed audience.&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph height="0" width="605" y="+16" x="12">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT SIZE=&quot;2&quot;&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="true">during</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="2">
+			<answer correct="true">at</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="true">in</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="4">
+			<answer correct="true">to</answer>
+		</field>
+		<field id="5" group="5" type="i:target" mode="0">
+			<answer correct="true">on</answer>
+		</field>
+		<field id="6" group="6" type="i:target" mode="0">
+			<answer correct="true">by</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="7">
+			<answer correct="true">before</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="8">
+			<answer correct="true">had been located</answer>
+		</field>
+		<field id="9" group="9" type="i:target" mode="0">
+			<answer correct="true">In</answer>
+		</field>
+		<field id="10" group="10" type="i:target" mode="0">
+			<answer correct="true">to</answer>
+		</field>
+		<field id="11" group="11" type="i:target" mode="0">
+			<answer correct="true">to</answer>
+		</field>
+		<field id="12" group="12" type="i:target" mode="0">
+			<answer correct="true">latter</answer>
+		</field>
+		<field id="13" group="13" type="i:target" mode="0">
+			<answer correct="true">former</answer>
+		</field>
+		<field id="14" group="14" type="i:target" mode="0">
+			<answer correct="true">to</answer>
+		</field>
+		<field id="15" group="15" type="i:target" mode="0">
+			<answer correct="true">had been</answer>
+		</field>
+		<media filename="MM_AW_010s.jpg" y="10" x="430" stretch="false" mode="1" id="1001" type="m:picture" />
+		<media filename="MM_AW_010.jpg" y="170" x="448" stretch="false" mode="16" id="1002" type="m:picture" />
+		<paragraph type="text" y="175" x="476" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to enlarge</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>during -> between</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>at -> during</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>in - > from:</B> The period referred to began in 1999 and ended in 2001.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>to -> of:</B> The figure fell from 143 million to 138 million. This is a drop of 5 million.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>on -> in</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>by -> to:</B> This is the level it rose to, not the size of the increase.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>before -> by:</B> Note the use of past perfect tense for the main verb, 'had risen' in this sentence.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>had been -> were:</B> There is no need for the past perfect tense here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="9">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>In -> Between:</B> A period that falls between two dates is referred to here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>to -> by:</B> This is the size of the increase referred to here, not the level the figures reached.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="11">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>to -> over:</B> 'During this period', in other words.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>latter -> former:</B> The former is 'Europe'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="13">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>former -> latter:</B> The latter is 'Eurasia'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="14">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>to -> by:</B> This is the size of the decrease, not the level the figures fell to.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="15">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>had been -> was</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="16">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">from</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="17">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">in</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal" />
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline" />
+	</template>
+	<handmaker made="true" />
+</exercise>

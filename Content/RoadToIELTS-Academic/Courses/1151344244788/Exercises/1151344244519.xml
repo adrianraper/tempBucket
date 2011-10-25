@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Proofreading" name="Sample%20Answer" id="0">
+	<settings>
+		<marking instant="true"/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="false"/>
+		<exercise hiddenTargets="true" proofreading="true"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 15. Click on them.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Many developing countries continue to struggle against poverty and the constant threat of famine. It is often argued that the best way forward for these nations is a radical change of their economy and farming systems in order to grow cash crops [1] as coffee and animal feed for export. [2], there are several reasons why I [3] this idea is [4] unlikely to bring a solution.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is widely believed that foreign currency earned through large-scale, mechanised farming for export would give life to less developed economies. In turn, the argument goes, these earnings would help them become less dependent on loans and aid. In [5], I think it is far more [6] that they would become even more dependent on the economies of the affluent West. The West, for example, would set the price for goods imported from developing nations. Furthermore, these cash-crop economies would have to depend on imports of food to feed their populations. Consequently, a downturn in the economies of the West would bring almost [7] disaster for these countries.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is often said that the money earned through exports of crops [8] tobacco or cocoa would end poverty and hunger in the developing world. However, there is little evidence to [9] this, and in all [10] such a system would only serve to worsen the situation. Firstly, those who formerly lived off subsistence farming would become labourers and, in most cases, would be paid poverty wages. In addition, the best land would be devoted to growing cash crops, leaving only degraded or unsuitable land for the cultivation of food.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Another [11] is that the modernised farming of cash crops is less damaging to the environment. Subsistence farmers, it is argued, farm their land to exhaustion and then search for new fertile areas. This leads to deforestation and soil erosion. [12], intensive farming of cash crops can be equally damaging to the environment by, [13] instance, wasteful exploitation of water resources and excessive use of chemical pesticides and fertilisers.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In summary, I am [14] that a move to large-scale farming of cash crops would only replace one set of problems with another. In some cases, it [15] well exacerbate the most serious problems of all: hunger and poverty.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="true">examples</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="2">
+			<answer correct="true">Consequently</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="3">
+			<answer correct="true">support</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="4">
+			<answer correct="true">really</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="5">
+			<answer correct="true">contrast</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="6">
+			<answer correct="true">probably</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="7">
+			<answer correct="true">probable</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="8">
+			<answer correct="true">as</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="9">
+			<answer correct="true">believe</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="10">
+			<answer correct="true">possibility</answer>
+		</field>
+		<field mode="0" type="i:target" group="11" id="11">
+			<answer correct="true">reason</answer>
+		</field>
+		<field mode="0" type="i:target" group="12" id="12">
+			<answer correct="true">Despite</answer>
+		</field>
+		<field mode="0" type="i:target" group="13" id="13">
+			<answer correct="true">as</answer>
+		</field>
+		<field mode="0" type="i:target" group="14" id="14">
+			<answer correct="true">believed</answer>
+		</field>
+		<field mode="0" type="i:target" group="15" id="15">
+			<answer correct="true">must</answer>
+		</field>
+		<media filename="DD_AW_005.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>example -> </B><FONT COLOR="#0000FF"><B>such</B><FONT COLOR="#000000"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Consequently -> </B><FONT COLOR="#0000FF"><B>However</B></FONT><B>:</B> 'Consequently' means 'as a result'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>support -> </B><FONT COLOR="#0000FF"><B>believe</B></FONT><B>:</B> 'Support' should be followed with a noun or gerund, but not with another verb clause.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>really -> </B><FONT COLOR="#0000FF"><B>highly</B></FONT><B>:</B> 'really' is too informal.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>In contrast -> </B><FONT COLOR="#0000FF"><B>In fact</B></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>probably -> </B><FONT COLOR="#0000FF"><B>likely</B><FONT COLOR="#000000"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>probable -> </B><FONT COLOR="#0000FF"><B>certain</B></FONT><B>:</B> 'almost certain' means 'probable'. 'Almost probable' doesn't make sense.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="8">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>as -> </B><FONT COLOR="#0000FF"><B>like</B></FONT><B>:</B> We can say 'such as' or 'like' when giving examples.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="9">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>believe -> </B><FONT COLOR="#0000FF"><B>support</B></FONT><B>:</B> evidence can be used to 'support' an argument.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>possibility -> </B><FONT COLOR="#0000FF"><B>probability</B></FONT><B>:</B> This is an expression.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="11">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>reason -> </B><FONT COLOR="#0000FF"><B>claim</B></FONT><B>:</B> In other words, 'it is also argued that...'</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Despite -> </B><FONT COLOR="#0000FF"><B>Nevertheless</B></FONT><B>:</B> 'Despite' must be followed with a noun, a gerund or the word 'this'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="13">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>as instance -></B><FONT COLOR="#0000FF"><B> for instance</B></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="14">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>believed -> </B><FONT COLOR="#0000FF"><B>convinced</B><FONT COLOR="#000000"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="15">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>must -> </B><FONT COLOR="#0000FF"><B>could</B></FONT><B>:</B> 'Must' can't be used to speculate about the future.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

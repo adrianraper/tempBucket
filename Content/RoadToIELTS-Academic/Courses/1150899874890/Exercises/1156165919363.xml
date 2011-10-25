@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Stopgap" name="Conditional%20in%20Hypothetical%20Discussion" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Complete the sentences by filling each gap with an appropriate form of one of the verbs provided. You will need to use one of the verbs more than once.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+	<paragraph indent="0" tabs="20,120,230,340,450" style="normal" height="0" width="700" y="+2" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"
+		><tab><FONT COLOR="#0000FF">teach</FONT><tab><FONT COLOR="#0000FF">find</FONT>
+		<tab><FONT COLOR="#0000FF">agree</FONT><tab><FONT COLOR="#0000FF">have to</FONT>		
+		<tab><FONT COLOR="#0000FF">write</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	<paragraph indent="0" tabs="20,120,230,340,450" style="normal" height="0" width="700" y="+2" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"
+		><tab><FONT COLOR="#0000FF">is</FONT><tab><FONT COLOR="#0000FF">speak</FONT>
+		<tab><FONT COLOR="#0000FF">prepare</FONT><tab><FONT COLOR="#0000FF">be</FONT>
+		<tab><FONT COLOR="#0000FF">make</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+	<paragraph indent="0" style="normal" height="0" width="700" y="=" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</noscroll>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Perhaps there would be fewer conflicts in the world if everyone [1] the same language.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It [2] a great pity if the thousands of languages still spoken in the world today died out.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Many people today [3] their working lives very difficult without modern means of communication such as e-mail and mobile phones.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Even if an international language was introduced, not everyone [4] to use it.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Some minority languages have already disappeared and more would certainly die out altogether if governments [5] efforts to protect them.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">If we [6] learn a foreign language at school, we would have more time to spend on other subjects.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It would be ideal if all children [7] fluent in at least one foreign language by the time they left school.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">If schools devoted more time to teaching modern communication skills, such as using e-mail, rather than traditional ones, like spelling and grammar, they [8] children better for the future.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Many people [9] to friends and family members at all if they did not have e-mail.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">We would probably all be better communicators if schools [10] children to be more articulate speakers.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:gap" mode="0">
+			<answer correct="true">spoke </answer>
+			<answer correct="true">was to speak</answer>
+			<answer correct="true">were to speak</answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">would be </answer>
+		</field>
+		<field mode="0" type="i:gap" group="3" id="3">
+			<answer correct="true">find</answer>
+			<answer correct="true">would find </answer>
+			<answer correct="true">minght find</answer>
+		</field>
+		<field id="4" group="4" type="i:gap" mode="0">
+			<answer correct="true">would agree</answer>
+		</field>
+		<field id="5" group="5" type="i:gap" mode="0">
+			<answer correct="true">didn't make</answer>
+			<answer correct="true">did not make</answer>
+		</field>
+		<field id="6" group="6" type="i:gap" mode="0">
+			<answer correct="true">didn't have to</answer>
+			<answer correct="true">did not have to</answer>
+		</field>
+		<field id="7" group="7" type="i:gap" mode="0">
+			<answer correct="true">were </answer>
+		</field>
+		<field mode="0" type="i:gap" group="8" id="8">
+			<answer correct="true">would prepare</answer>
+			<answer correct="true">might prepare</answer>
+			<answer correct="true">could prepare</answer>
+		</field>
+		<field mode="0" type="i:gap" group="9" id="9">
+			<answer correct="true">wouldn't write</answer>
+			<answer correct="true">would not write</answer>
+			<answer correct="true">mightn't write</answer>
+			<answer correct="true">might not write</answer>
+		</field>
+		<field mode="0" type="i:gap" group="10" id="10">
+			<answer correct="true">taught</answer>
+			<answer correct="true">were to teach</answer>
+		</field>
+		<media filename="LC_AW_027.JPG" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" category="YourGraphic" location="" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In compositions where we want to discuss the arguments for and against something, it is sometimes necessary to discuss hypothetical situations. To do this, we use a verb form known as the conditional. This is often found in sentences with an 'if' clause, for example:</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">If we removed language differences, we would find it easier to understand each other's point of view.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">However, we can also use the conditional without an 'if' clause. For example:</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is generally agreed that a common language would make international travel much easier for everyone.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="MultipleChoice" name="Multiple%20Choice%203" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="175"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Questions 11-15. Listen to the recording, which will play automatically, and follow the instructions. Click the correct letters A-C.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>11</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">How should the radio be wound?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[13]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[14]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[15]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+25" x="7"><![CDATA[<tab><B>12</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">How long will the radio play when completely wound?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[1]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[2]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[3]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>13</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">For AM reception the antenna should …</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[4]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[5]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[6]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>14</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The function of the solar panel is to …</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[7]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[8]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[9]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>15</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">How long will the radio play with a fully charged battery?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[10]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[11]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="269" y="=" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[12]</FONT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="2" type="i:target" mode="0">
+			<answer correct="false">16 minutes</answer>
+		</field>
+		<field id="2" group="2" type="i:target" mode="0">
+			<answer correct="false">50 minutes</answer>
+		</field>
+		<field id="3" group="2" type="i:target" mode="0">
+			<answer correct="true">60 minutes</answer>
+		</field>
+		<field id="4" group="3" type="i:target" mode="0">
+			<answer correct="true">not be extended.</answer>
+		</field>
+		<field id="5" group="3" type="i:target" mode="0">
+			<answer correct="false">be semi-extended.</answer>
+		</field>
+		<field id="6" group="3" type="i:target" mode="0">
+			<answer correct="false">be fully extended.</answer>
+		</field>
+		<field id="7" group="4" type="i:target" mode="0">
+			<answer correct="false">play the radio.</answer>
+		</field>
+		<field id="8" group="4" type="i:target" mode="0">
+			<answer correct="false">charge the battery.</answer>
+		</field>
+		<field id="9" group="4" type="i:target" mode="0">
+			<answer correct="true">both play the radio and charge the battery.</answer>
+		</field>
+		<field id="10" group="5" type="i:target" mode="0">
+			<answer correct="true">16 hours</answer>
+		</field>
+		<field id="11" group="5" type="i:target" mode="0">
+			<answer correct="false">20 hours</answer>
+		</field>
+		<field id="12" group="5" type="i:target" mode="0">
+			<answer correct="false">30 hours</answer>
+		</field>
+		<field id="13" group="1" type="i:target" mode="0">
+			<answer correct="true">Pic A</answer>
+		</field>
+		<field id="14" group="1" type="i:target" mode="0">
+			<answer correct="false">Pic B</answer>
+		</field>
+		<field id="15" group="1" type="i:target" mode="0">
+			<answer correct="false">Pic C</answer>
+		</field>
+		<media filename="DD_LN3.jpg" y="40" x="300" stretch="false" mode="1" id="1008" type="m:picture"/>
+		<media filename="DD_LN2c.mp3" mode="4" id="1002" type="m:streamingAudio" playTimes="1" />
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">You should see from the questions and alternative answers that you will hear more facts about the radio.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 11</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Make sure you know which direction each of the arrows is pointing. Clockwise or anticlockwise? Left or right?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 12</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Is there an answer you can eliminate here? Do you think it would last only 16 minutes? Look at the choices here. Why have you been given a choice of 16 or 60? Is it because they sound the same and are sometimes confused?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 13</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Note the question asks about AM reception.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 14</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Look at the possible answers here. C is a combination of A and B. Don't just go for the first one you hear. There may be more to come.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 15</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">This one is difficult to guess but maybe the 16 was used on question 2 as it comes up here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

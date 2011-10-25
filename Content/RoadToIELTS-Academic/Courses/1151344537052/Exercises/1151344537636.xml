@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Analyze" name="Ancient%20World%20Cultures" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitScreen="true"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="905" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Do the statements on the right agree with the views of the writer of the passage on the left?
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="300" y="+16" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>YES </B>- if the statement agrees with the views of the writer; </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="300" y="+0" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>NO</B> - if the statement contradicts the views of the writer; </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="300" y="+0" x="25" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>NOT GIVEN</B> - if it is impossible to say what the writer thinks about this.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The study of ancient cultures is an essential part of any Western education.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[1]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[2]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[3]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">We cannot take it for granted that people from different cultures think in the same way.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[4]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[5]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[6]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">What makes a culture worth studying is the way it contrasts with other cultures.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[7]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[8]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[9]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Even today we can understand how the Egyptian workers who built the Pyramids must have thought and felt.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[10]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[11]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[12]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Studying ancient cultures helps give us a deeper understanding of our own.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[13]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[14]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[15]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is difficult to compare critically the artistic achievements of different cultures.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[16]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[17]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[18]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Only those who accept a culture's values truly belong to that culture.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[19]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[20]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[21]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The generalizations we make about ancient cultures are mostly mistaken.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[22]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[23]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[24]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The works of a culture's most influential and successful members accurately reflect the values held by the whole society.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[25]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[26]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[27]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The truth is we do not know much about ordinary people in ancient cultures.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[28]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[29]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[30]</FONT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="905" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="1" id="2">
+			<answer correct="false">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="1" id="3">
+			<answer correct="true">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="4">
+			<answer correct="true">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="5">
+			<answer correct="false">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="6">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="7">
+			<answer correct="true">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="8">
+			<answer correct="false">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="9">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="10">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="11">
+			<answer correct="true">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="12">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="13">
+			<answer correct="true">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="14">
+			<answer correct="false">No </answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="15">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="16">
+			<answer correct="true">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="17">
+			<answer correct="false">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="18">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="19">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="20">
+			<answer correct="true">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="21">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="22">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="23">
+			<answer correct="false">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="24">
+			<answer correct="true">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="25">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="26">
+			<answer correct="true">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="27">
+			<answer correct="false">Not given</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="28">
+			<answer correct="true">Yes</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="29">
+			<answer correct="false">No</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="30">
+			<answer correct="false">Not given</answer>
+		</field>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Questions 1-10 - Yes, No, Not Given</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This is a difficult passage with some reasonably complex ideas. However, the statements themselves are quite straightforward if you read them carefully. The most important thing to remember is that for each statement you have to decide whether it agrees with the writer's views, disagrees with the writer's views, or if the writer doesn't give an opinion in that particular point. You must also be very careful to distinguish between facts and the writer's opinions.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Why Study Ancient World Cultures?</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Why study ancient cultures? You might feel that the question is moot: students <I>do</I> study and <I>will</I> study ancient cultures; such study is an expected part of a tradition of intellectual development. The response to the <I>why</I> of the initial question is a matter of tradition, if not fact. A study of the Roman Empire, a reading of Greek philosophy and literature, a look at the Pyramids of Egypt – these are all accepted parts of a Western education, aren't they?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Probably so: even today, in the plurality of approaches to the study of history and to the study of cultures, people talk about Plato or Dante or Krishna or Mohammed. At this point, you might ask yourself these two additional questions:  Do we study these cultures because, to some extent, all cultures share certain characteristics? Does our own culture reflect aspects of these other cultures?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The answer to the first of the two questions has historically been found in a discussion of universality. The danger in looking for universals consists in reformulating other, possibly alien, views to fit our own. We must always guard against the assumption that other people think as we do – or that they should.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The differences among cultures are of greatest interest here, and reading about ancient cultures is thus reading about other people whose lives were surely different from our own. The social organization of Socrates' Athens – where a gimpy-legged man could hobble around interrogating citizens at will – differs profoundly from today's world beset with modern media whereby people rarely get to see or literally hear their critics. How can we today understand the psychology of the thousands of Egyptian workers who, apparently unquestioningly, spent their lives dragging great blocks of stone across burning sands in the construction of staggering pyramidal edifices whose completion took many lifetimes?  Interestingly, these differences may help us better to see – and know – the limits of our culture and the limits of our language and experience.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The problem with the second question lies in its formulation. What is a culture after all? This paper proceeds under the assumption that there is some sort of definition to the word <I>culture</I>. Most people would ascribe an abstract value to culture – that which produces <I>good</I> art, <I>great</I> literature, etc. Yet the criteria of quality are scarcely international or inter-cultural: a revered "classical" work on the sitar resists comparison to a Mozart symphony beyond the statement that both are considered great cultural achievements in the context of their home cultures. Is, then, culture something that can be taught, or are its constituent parts more sweeping and pervasive than what can be learned from books or lectures? Answers to this second question already exist in the form of canons and reading lists, though there is much discussion today about what makes up those reading lists and about the assumptions concerning what should or should not fit on such lists.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">So, what have we learned about ancient cultures? You could probably tally up a list of facts, e.g. Mohammed's birth and death dates, and key concepts: the association of Hinduism with the illusory nature of the material world, the Greek belief in rationality, the Roman ability to organize and delegate. But these generalizations do not allow for minority opinions within the cultures, nor, most likely, do the generalizations say much about the people who were not gifted writers, powerful politicians, influential artists, successful interpreters of their social circumstances. On just about any given day in the midst of choking sand and blazing heat, what might some of those Egyptian stone-haulers have said in passing about their omnipotent pharaoh?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Glossary</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Akhenaton:  Egyptian pharaoh (1603-36 BC) of the 18th dynasty who introduced a new monotheistic cult of the sun god Aton.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Bill Hemminger, Exploring Ancient World Cultures web site at the University of Evansville.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="905" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

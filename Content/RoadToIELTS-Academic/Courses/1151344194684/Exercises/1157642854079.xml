@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="TargetSpotting" name="Writing%20the%20Introduction%205" id="0">
+	<settings>
+		<marking instant="true"/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read the writing tasks and choose the best introductory paragraph. Click A, B or C.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>More and more people throughout the world are now living to a very old age and it is unreasonable to expect their families to look after them. The state should take responsibility for caring for old people when they are no longer capable of looking after themselves.</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>[1]</B> Over the course of the last hundred years, life expectancy has increased considerably in most countries of the world. However, problems such as failing health and dementia mean that this growing population of senior citizens needs looking after. The pressures of modern life make it difficult for families to take care of older relatives as they used to in the past so the state should now take on this responsibility.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>[2]</B>  Life expectancy throughout the world has increased dramatically even in the last fifty years. In countries as different as Turkey and Korea, for example, life expectancy has increased by 20 years since 1960. There are three basic reasons why this has occurred.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="450" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>[3]</B> People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations did. Yet few of us consider the problems, both for society and for individuals, associated with living to a very old age.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="true">A</answer>
+		</field>
+		<field id="2" group="2" type="i:target" mode="0">
+			<answer correct="false">B</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="false">C</answer>
+		</field>
+		<media filename="SS_AW_013e.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">It seems from this introduction that the rest of the composition will be about the reasons why people are living longer these days. This is quite irrelevant to the task.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">This candidate is clearly going to write a descriptive composition listing the drawbacks of growing to a very old age. However, the task asks who should look after the older members of society and invites candidates to express their opinions on this issue.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

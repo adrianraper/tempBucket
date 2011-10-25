@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragAndDrop" name="Comparative%20Forms" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Revise comparative forms. Fill in the comparative forms in these sentences. You should try and use these forms in sentences of your own when comparing ideas and solutions.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,138,251,364,477" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[15]</FONT><tab><FONT COLOR="#0000FF">[13]</FONT><tab><FONT COLOR="#0000FF">[12]</FONT><tab><FONT COLOR="#0000FF">[18]</FONT><tab><FONT COLOR="#0000FF">[20]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,138,251,364,477" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[16]</FONT><tab><FONT COLOR="#0000FF">[19]</FONT><tab><FONT COLOR="#0000FF">[11]</FONT><tab><FONT COLOR="#0000FF">[14]</FONT><tab><FONT COLOR="#0000FF">[17]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">much</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">less</answer>
+		</field>
+		<field id="13" group="1" type="i:drag" mode="0">
+			<answer correct="false">different</answer>
+		</field>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">smaller</answer>
+		</field>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">better</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">than</answer>
+		</field>
+		<field id="17" group="1" type="i:drag" mode="0">
+			<answer correct="false">worse</answer>
+		</field>
+		<field id="18" group="1" type="i:drag" mode="0">
+			<answer correct="false">best</answer>
+		</field>
+		<field id="19" group="1" type="i:drag" mode="0">
+			<answer correct="false">simpler</answer>
+		</field>
+		<field id="20" group="1" type="i:drag" mode="0">
+			<answer correct="false">easier</answer>
+		</field>
+	</noscroll>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">My city is <FONT COLOR="#0000FF">[1]</FONT> smaller than the capital.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Smaller families are not necessarily <FONT COLOR="#0000FF">[2]</FONT> interesting than big ones.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">My grandmother's life was very <FONT COLOR="#0000FF">[3]</FONT> from mine.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">My village is only slightly <FONT COLOR="#0000FF">[4]</FONT> than the nearest town.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Children who spend fewer years at school may get <FONT COLOR="#0000FF">[5]</FONT> jobs than those who stay on.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is more important to have experience <FONT COLOR="#0000FF">[6]</FONT> to have a diploma.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">We are having a bad winter. The weather is much <FONT COLOR="#0000FF">[7]</FONT> than last year.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I loved the film. It was the <FONT COLOR="#0000FF">[8]</FONT> film I had ever seen.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Did people lead simple lives thirty years ago?</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Yes, my grandmother's life was much <FONT COLOR="#0000FF">[9]</FONT> than mine.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Would you say people have comfortable lives now?</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Yes, my life is much <FONT COLOR="#0000FF">[10]</FONT> than my parents'.</FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:drop" mode="0">
+			<answer correct="true">much</answer>
+		</field>
+		<field id="2" group="2" type="i:drop" mode="0">
+			<answer correct="true">less</answer>
+		</field>
+		<field id="3" group="3" type="i:drop" mode="0">
+			<answer correct="true">different</answer>
+		</field>
+		<field id="4" group="4" type="i:drop" mode="0">
+			<answer correct="true">smaller</answer>
+		</field>
+		<field id="5" group="5" type="i:drop" mode="0">
+			<answer correct="true">better</answer>
+		</field>
+		<field id="6" group="6" type="i:drop" mode="0">
+			<answer correct="true">than</answer>
+		</field>
+		<field id="7" group="7" type="i:drop" mode="0">
+			<answer correct="true">worse</answer>
+		</field>
+		<field id="8" group="8" type="i:drop" mode="0">
+			<answer correct="true">best</answer>
+		</field>
+		<field id="9" group="9" type="i:drop" mode="0">
+			<answer correct="true">simpler</answer>
+		</field>
+		<field id="10" group="10" type="i:drop" mode="0">
+			<answer correct="true">easier</answer>
+		</field>
+		<media filename="WB_SP_003.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

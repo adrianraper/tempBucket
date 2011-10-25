@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Correct%20tenses" id="0">
+	<settings>
+		<marking />
+		<feedback wrongOnly="false" />
+		<buttons />
+		<exercise />
+		<misc />
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">&lt;B&gt;&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;12&quot; COLOR=&quot;#000000&quot;&gt;&lt;B&gt;Look carefully at charts 1 and 2 and complete the reports by filling each gap with the correct tense of one of the verbs provided. Write the verb in the appropriate gap.&lt;/B&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;&lt;/B&gt;</paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,140,280,420,530" style="normal" height="0" width="680" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">be</FONT><tab><FONT COLOR="#0000FF">change</FONT><tab><FONT COLOR="#0000FF">double</FONT><tab><FONT COLOR="#0000FF">drop</FONT><tab><FONT COLOR="#0000FF">fall</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,140,280,420,530" style="normal" height="0" width="680" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">occur</FONT>
+		<tab><FONT COLOR="#0000FF">fluctuate</FONT>
+		<tab><FONT COLOR="#0000FF">increase</FONT>
+		<tab><FONT COLOR="#0000FF">plunge</FONT>
+		<tab><FONT COLOR="#0000FF">reach</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,140,280,420,530" style="normal" height="0" width="680" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">rise</FONT>
+		<tab><FONT COLOR="#0000FF">remain</FONT>
+		<tab><FONT COLOR="#0000FF">shoot up</FONT>
+		<tab><FONT COLOR="#0000FF">triple</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="270" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;Chart 1 shows changes in the newspaper industry in Indonesia between 1995 and 1999. During the first four years of this period, the number of newspaper titles published [1] more or less stable. The figure [2] slightly in 1997, but otherwise it [3] between 76 and 77 titles. By 1999, however, the situation [4] dramatically. The number of titles published [5] to over 170. A significant proportion of these new titles [6] tabloids. In fact, by 1999 the number of tabloids [7] from 2 to 30.&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="270" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="270" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;Over the same period, the overall circulation figures for Indonesian newspapers [8] dramatically. Between 1995 and 1997 the total circulation [9] steadily to a little over 4.7 million copies. By 1998, however, the figure [10] to over 5 million. It then [11] to just under 4.8 million a year later.&lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="270" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="270" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt;Chart 2; The line graph shows the dramatic increase that [12] since the 1960s in the number of commercial satellites launched, many of which are used to broadcast television signals around the globe. In the 1960s there [13] an average of about 15 satellite launches per year. From that time until the 1980s, the average number of satellites launched [14] every decade. By the 1990s the number of launches [15], reaching an average of approximately 215 per year. It is forecast that by the end of the first decade of this century, the number of new satellites sent into orbit [16] roughly 320 per year. &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<paragraph type="text" x="12" y="+0" width="270" height="0" style="normal" tabs="" indent="0">&lt;TEXTFORMAT LEADING=&quot;2&quot;&gt;&lt;P ALIGN=&quot;LEFT&quot;&gt;&lt;FONT FACE=&quot;Verdana&quot; SIZE=&quot;13&quot; COLOR=&quot;#000000&quot;&gt; &lt;/FONT&gt;&lt;/P&gt;&lt;/TEXTFORMAT&gt;</paragraph>
+		<field mode="0" type="i:gap" group="1" id="1">
+			<answer correct="true">remained  </answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">fell  </answer>
+		</field>
+		<field mode="0" type="i:gap" group="3" id="3">
+			<answer correct="true">fluctuated  </answer>
+		</field>
+		<field mode="0" type="i:gap" group="4" id="4">
+			<answer correct="true">had changed  </answer>
+		</field>
+		<field mode="0" type="i:gap" group="5" id="5">
+			<answer correct="true">shot up  </answer>
+		</field>
+		<field mode="0" type="i:gap" group="6" id="6">
+			<answer correct="true">were  </answer>
+		</field>
+		<field mode="0" type="i:gap" group="7" id="7">
+			<answer correct="true">had risen  </answer>
+		</field>
+		<field id="8" group="8" type="i:gap" mode="0">
+			<answer correct="true">fluctuated  </answer>
+		</field>
+		<field id="9" group="9" type="i:gap" mode="0">
+			<answer correct="true">dropped  </answer>
+		</field>
+		<field id="10" group="10" type="i:gap" mode="0">
+			<answer correct="true">had increased  </answer>
+		</field>
+		<field id="11" group="11" type="i:gap" mode="0">
+			<answer correct="true">plunged  </answer>
+		</field>
+		<field id="12" group="12" type="i:gap" mode="0">
+			<answer correct="true">has occurred  </answer>
+		</field>
+		<field id="13" group="13" type="i:gap" mode="0">
+			<answer correct="true">was  </answer>
+		</field>
+		<field id="14" group="14" type="i:gap" mode="0">
+			<answer correct="true">doubled  </answer>
+		</field>
+		<field id="15" group="15" type="i:gap" mode="0">
+			<answer correct="true">had tripled  </answer>
+		</field>
+		<field id="16" group="16" type="i:gap" mode="0">
+			<answer correct="true">will have reached  </answer>
+		</field>
+		<media filename="MM_AW_008.jpg" y="10" x="270" stretch="false" mode="1" id="1003" type="m:picture" />
+		<media filename="MM_AW_009.jpg" y="490" x="315" stretch="false" mode="1" id="1004" type="m:picture" />
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In Unit 1 and Unit 5 we looked at static charts - charts that do not show change over time. We saw that simple tenses were most appropriate for describing such charts. In this unit and in Unit 2 we have been dealing with charts and graphs that show changes over time. These are sometimes referred to as 'dynamic' charts and graphs. To describe this kind of chart you need to use a greater variety of verb tenses including past simple, past perfect and occasionally present perfect or future perfect.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+</exercise>

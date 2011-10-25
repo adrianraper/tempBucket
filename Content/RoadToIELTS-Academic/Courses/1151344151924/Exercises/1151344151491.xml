@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragAndDrop" name="A%20Lecture%20on%20food%20science" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Here are the notes made by a student during an introductory lecture on food science. Complete the notes by putting the correct word or phrase into each gap. When you have finished, listen to the lecture to check your answers.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="20,160,300,420,530" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[26]</FONT><tab><FONT COLOR="#0000FF">[19]</FONT>
+		<tab><FONT COLOR="#0000FF">[20]</FONT><tab><FONT COLOR="#0000FF">[25]</FONT>
+		<tab><FONT COLOR="#0000FF">[14]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="20,160,300,420,530" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[16]</FONT><tab><FONT COLOR="#0000FF">[24]</FONT>
+		<tab><FONT COLOR="#0000FF">[18]</FONT><tab><FONT COLOR="#0000FF">[21]</FONT>
+		<tab><FONT COLOR="#0000FF">[23]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="20,160,300,420,530" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[15]</FONT><tab><FONT COLOR="#0000FF">[22]</FONT>
+		<tab><FONT COLOR="#0000FF">[17]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">a calorie</answer>
+		</field>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">carbohydrates</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">fats</answer>
+		</field>
+		<field id="17" group="1" type="i:drag" mode="0">
+			<answer correct="false">proteins</answer>
+		</field>
+		<field id="18" group="1" type="i:drag" mode="0">
+			<answer correct="false">vitamins</answer>
+		</field>
+		<field id="19" group="1" type="i:drag" mode="0">
+			<answer correct="false">an antioxidant</answer>
+		</field>
+		<field id="20" group="1" type="i:drag" mode="0">
+			<answer correct="false">minerals</answer>
+		</field>
+		<field id="21" group="1" type="i:drag" mode="0">
+			<answer correct="false">calcium</answer>
+		</field>
+		<field id="22" group="1" type="i:drag" mode="0">
+			<answer correct="false">iron</answer>
+		</field>
+		<field id="23" group="1" type="i:drag" mode="0">
+			<answer correct="false">dietary fibre</answer>
+		</field>
+		<field id="24" group="1" type="i:drag" mode="0">
+			<answer correct="false">sodium chloride</answer>
+		</field>
+		<field id="25" group="1" type="i:drag" mode="0">
+			<answer correct="false">cholesterol</answer>
+		</field>
+		<field id="26" group="1" type="i:drag" mode="0">
+			<answer correct="false">additives</answer>
+		</field>
+	</noscroll>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[1]<FONT COLOR="#000000"> - a unit used to measure the energy value of foods.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[2]<FONT COLOR="#000000"> - the body's main source of energy.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[3]<FONT COLOR="#000000"> - nutrients that provide a stock of energy and help the body to dissolve and use vitamins.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[4]<FONT COLOR="#000000"> - nutrients used to make muscles, enzymes and hormones.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[5]<FONT COLOR="#000000"> - a group of nutrients essential in helping the body to change  carbohydrates, fats and proteins into energy. They're also needed to make hormones, blood cells and body tissues.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[6]<FONT COLOR="#000000"> - a substance that can reduce the damaging effects of oxygen in cells.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[7]<FONT COLOR="#000000"> - a group of nutrients (e.g. calcium, iron) mainly needed in the formation of body tissue.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[8]<FONT COLOR="#000000"> - a mineral required for healthy bones.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[9]<FONT COLOR="#000000"> - a mineral required by the blood so that it can carry oxygen.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[10]<FONT COLOR="#000000"> - plant material that improves digestion, lowers cholesterol and protects against some cancers.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[11]<FONT COLOR="#000000"> - a mineral commonly known as salt. It maintains the balance of body fluid but too much can lead to high blood pressure.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[12]<FONT COLOR="#000000"> - a substance found in the blood and body tissue. It's essential for healthy cells and is needed to produce some hormones. Excessive amounts in the blood can cause heart disease.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">[13]<FONT COLOR="#000000"> - substances added to food to improve its taste or its colour, or to give it a longer shelf life. <FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:drop" group="1" id="1">
+			<answer correct="true">a calorie</answer>
+		</field>
+		<field mode="0" type="i:drop" group="2" id="2">
+			<answer correct="true">carbohydrates</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">fats</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">proteins</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">vitamins</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">an antioxidant</answer>
+		</field>
+		<field mode="0" type="i:drop" group="7" id="7">
+			<answer correct="true">minerals</answer>
+		</field>
+		<field mode="0" type="i:drop" group="8" id="8">
+			<answer correct="true">calcium</answer>
+		</field>
+		<field mode="0" type="i:drop" group="9" id="9">
+			<answer correct="true">iron</answer>
+		</field>
+		<field mode="0" type="i:drop" group="10" id="10">
+			<answer correct="true">dietary fibre</answer>
+		</field>
+		<field mode="0" type="i:drop" group="11" id="11">
+			<answer correct="true">sodium chloride</answer>
+		</field>
+		<field mode="0" type="i:drop" group="12" id="12">
+			<answer correct="true">cholesterol</answer>
+		</field>
+		<field mode="0" type="i:drop" group="13" id="13">
+			<answer correct="true">additives</answer>
+		</field>
+		<media filename="HF_TV_003.jpg" y="36" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<media filename="HF_TV2aa.mp3" y="10" x="500" mode="1" id="1002" type="m:streamingAudio" playTimes="0" />
+		<paragraph type="text" y="15" x="529" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to listen</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

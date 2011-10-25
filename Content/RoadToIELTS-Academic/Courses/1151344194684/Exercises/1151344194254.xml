@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Dropdown" name="Describing%20a%20Process" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Look carefully at the flow chart and complete the report by choosing the word or phrase which best fits each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">One way in which new laws come into existence in Britain is through the parliamentary process. When a government wishes to bring new legislation into force, there are certain steps which must [1].</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[2], the relevant government department consults with experts. Based on their advice, a first draft, known as a Bill, [3] by parliamentary draftspeople. [4] the government department is satisfied with the wording of the Bill, it can [5] to the House of Commons. [6], the Bill is made available to the public on the Internet. [7] this process, any amendments made to the Bill are also posted here. If the House of Commons votes for the Bill, it is [8] debated and amended by what is known as a standing committee. Any amendments are [9]. reported to the House of Commons, which [10] votes for a second time. If the Bill [11] this stage, it is handed over to the House of Lords.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A similar process of amending and voting takes place in the House of Lords. The Lords can [12] the Bill if they wish to, [13] it is the second time it has passed through parliament. In this case, the Bill can [14] but not rejected. [15], the Bill must be given the royal assent [16] the Queen. [17] this formality [18], the new law, now called an Act of Parliament, can come into force.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:dropdown" mode="0">
+			<answer correct="true">be followed</answer>
+			<answer correct="false">follow</answer>
+			<answer correct="false">are followed</answer>
+		</field>
+		<field id="2" group="2" type="i:dropdown" mode="0">
+			<answer correct="true">First</answer>
+			<answer correct="false">Firstly</answer>
+			<answer correct="false">At first</answer>
+		</field>
+		<field id="3" group="3" type="i:dropdown" mode="0">
+			<answer correct="true">is written</answer>
+			<answer correct="false">had written</answer>
+			<answer correct="false">written</answer>
+		</field>
+		<field id="4" group="4" type="i:dropdown" mode="0">
+			<answer correct="true">Provided that</answer>
+			<answer correct="false">In case</answer>
+			<answer correct="false">Unless</answer>
+		</field>
+		<field id="5" group="5" type="i:dropdown" mode="0">
+			<answer correct="true">be introduced</answer>
+			<answer correct="false">introduce</answer>
+			<answer correct="false">is introduced</answer>
+		</field>
+		<field id="6" group="6" type="i:dropdown" mode="0">
+			<answer correct="true">At the same time</answer>
+			<answer correct="false">Later</answer>
+			<answer correct="false">Prior to this</answer>
+		</field>
+		<field id="7" group="7" type="i:dropdown" mode="0">
+			<answer correct="true">During</answer>
+			<answer correct="false">Through</answer>
+			<answer correct="false">While</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="8" id="8">
+			<answer correct="true">then</answer>
+			<answer correct="false">after</answer>
+			<answer correct="false">beforehand</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="9" id="9">
+			<answer correct="true">subsequently</answer>
+			<answer correct="false">beforehand</answer>
+			<answer correct="false">simultaneously</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="10" id="10">
+			<answer correct="true">in turn</answer>
+			<answer correct="false">after</answer>
+			<answer correct="false">otherwise</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="11" id="11">
+			<answer correct="true">passes</answer>
+			<answer correct="false">is passed</answer>
+			<answer correct="false">be passed</answer>
+		</field>
+		<field id="12" group="12" type="i:dropdown" mode="0">
+			<answer correct="true">reject</answer>
+			<answer correct="false">rejected</answer>
+			<answer correct="false">be rejected</answer>
+		</field>
+		<field id="13" group="13" type="i:dropdown" mode="0">
+			<answer correct="true">unless</answer>
+			<answer correct="false">in case</answer>
+			<answer correct="false">provided that</answer>
+		</field>
+		<field id="14" group="14" type="i:dropdown" mode="0">
+			<answer correct="true">be amended</answer>
+			<answer correct="false">is amended</answer>
+			<answer correct="false">amend</answer>
+		</field>
+		<field id="15" group="15" type="i:dropdown" mode="0">
+			<answer correct="true">Finally</answer>
+			<answer correct="false">In the end</answer>
+			<answer correct="false">At the end</answer>
+		</field>
+		<field id="16" group="16" type="i:dropdown" mode="0">
+			<answer correct="true">by</answer>
+			<answer correct="false">to</answer>
+			<answer correct="false">from</answer>
+		</field>
+		<field id="17" group="17" type="i:dropdown" mode="0">
+			<answer correct="true">Once</answer>
+			<answer correct="false">Next</answer>
+			<answer correct="false">Subsequently</answer>
+		</field>
+		<field id="18" group="18" type="i:dropdown" mode="0">
+			<answer correct="true">has been dealt with</answer>
+			<answer correct="false">has dealt with</answer>
+			<answer correct="false">had been dealt with</answer>
+		</field>
+		<media filename="SS_AW_007s.jpg" y="16" x="470" stretch="false" mode="1" id="1003" type="m:picture"/>
+		<media filename="SS_AW_007.jpg" y="150" x="488" stretch="false" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="155" x="520" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to enlarge</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>be followed:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>follow:</B> The passive is needed here.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>are follow:</B> After a modal verb such as 'must' we use the infinitive.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>First:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Firstly:</B> 'Firstly' is used when giving a list of reasons. It is more often used in discursive comparisons.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>At first:</B> 'At first' means 'in the beginning' and is usually used in stories and narrative comparisons.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>is written:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>had written/written:</B> The passive form of the verb in the present tense is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Provided that:</B><FONT COLOR="#000000"> This is the correct answer. 'Provided that' means 'as long as' or 'on condition that'.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>In case:</B> We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Unless:</B> Unless means 'if not'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>be introduced:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The passive form is needed here.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">After a modal such as 'can' the infinitive is needed.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>At the same time:</B><FONT COLOR="#000000"> The Bill is made available on the Internet while the House of Commons is discussing it for the first time.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Later:</B> Have another look at the flow chart. The Bill is made available on the Internet while the House of Common is discussing it for the first time.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Prior to:</B> 'Prior to' means before. If you have another look at the flow chart, you'll see that this is not the case.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>During:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Through:</B> Perhaps you have confused 'through' with the word 'throughout'.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>While:</B> 'While' needs to be followed with a full verb clause. For example, 'While this process takes place…'</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="9">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>subsequently:</B><FONT COLOR="#000000"> This is the correct answer.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>beforehand:</B> Check the flow chart.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>simultaneously:</B> 'Simultaneously' means at the same time. Check the flow chart.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>in turn:</B><FONT COLOR="#000000"> This means 'then'.<FONT COLOR="#0000FF"></FONT></FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>after:</B> 'After' is a preposition and needs to be followed with a noun or 'ing' form.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>otherwise:</B> We use 'otherwise' to show what happens if a certain condition is not true.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="11">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>passes:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This sentence is in active voice. You don't have to put all the verbs in passive.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>reject:</B><FONT COLOR="#000000"> This sentence is in active voice. You don't have to put all the verbs in passive.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>rejected:</B> Present tenses are usually used to describe processes.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>be rejected:</B> This sentence is in active voice. You don't have to put all the verbs in passive.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="13">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Unless:</B><FONT COLOR="#000000"> This is the correct answer. 'Unless' means 'if not'.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>In case:</B> We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Provided that:</B> 'Provided that' means 'if'. Here an expression or word is needed which means 'if not'. Check the flow chart again.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="14">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>be amended:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>is amended:</B> After a modal such as 'can' the infinitive is needed.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>amend:</B> The passive form is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="15">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Finally:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>In the end:</B> We usually use this in narrative comparisons and stories, not reports describing a process.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>At the end:</B> This describes a place, not a point in a process. 'At the end of the road', for example.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="16">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>by:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>to/from:</B> These are not the prepositions usually used to show the 'agent' of the passive verb.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="17">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Once:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A word which means 'when' is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="18">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>has been dealt with:</B><FONT COLOR="#000000"> This is the correct answer.</FONT></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>has dealt with:</B> This is not the correct form of the passive in present perfect. You have forgotten the auxiliary verb 'be'.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>had been dealt with:</B> This is past perfect in the passive. Here, the present perfect is needed.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

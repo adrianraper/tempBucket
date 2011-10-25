@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="TargetSpotting" name="Back%20from%20the%20dead" id="0">
+	<settings>
+		<marking instant="true"/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc splitScreen="true"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read the passage on the left. Choose TWO letters A-E for each question on the right.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="310" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>1	</B>Where has tomato mosaic tobamovirus </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">been found?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[1]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[3]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[5]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>2</B>	Scientists know that the tomato </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">mosaic tobamovirus …</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[7]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[8]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[9]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[10]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>3</B>	The tomato mosaic tobamovirus's</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">strong protein coat helps it …</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[11]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[12]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[13]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[14]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="37" y="+0" width="282" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[15]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="true">A.  in clouds</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="2">
+			<answer correct="false">B.  in Antarctic ice</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="3">
+			<answer correct="false">C.  in sterile conditions</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="4">
+			<answer correct="true">D.  in Arctic ice</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="5">
+			<answer correct="false">E.  in coastal areas</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="6">
+			<answer correct="false">A.  destroys organisms.</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="7">
+			<answer correct="true">B.  comes in different varieties.</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="8">
+			<answer correct="false">C.  is still infectious after being frozen.</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="9">
+			<answer correct="false">D.  causes epidemics every 20 years.</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="10">
+			<answer correct="true">E.  is found in many places.</answer>
+		</field>
+		<field mode="0" type="i:target" group="11" id="11">
+			<answer correct="false">A.  evolve and change.</answer>
+		</field>
+		<field mode="0" type="i:target" group="12" id="12">
+			<answer correct="true">B.  cause infections.</answer>
+		</field>
+		<field mode="0" type="i:target" group="13" id="13">
+			<answer correct="true">C.  survive extreme conditions.</answer>
+		</field>
+		<field mode="0" type="i:target" group="14" id="14">
+			<answer correct="false">D.  amplify its genetic material.</answer>
+		</field>
+		<field mode="0" type="i:target" group="15" id="15">
+			<answer correct="false">E.  move from one place to another.</answer>
+		</field>
+		<media filename="Education_006.jpg" y="32" x="448" height="250" width="165" stretch="false" mode="1" id="1001" category="Education" location="shared" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Back from the dead</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Prehistoric viruses are lying dormant in the polar ice caps – and a bout of warm weather could release them into the atmosphere, sparking new epidemics. This chilling warning follows the discovery, for the first time, of an ancient virus in Arctic ice.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The virus, found deep within the Greenland icepack, is known as a tomato mosaic tobamovirus (ToMV), a common plant pathogen. The discovery suggests that other viruses, such as ancient strains of flu, polio and smallpox, may also be entombed and could make a comeback. "We don't know the survival rate, or how often they get back into the environment. But it certainly is possible," says Tom Starmer of Syracuse University in New York.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Starmer's colleagues Scott Rogers and John Castello of the State University of New York in Syracuse had earlier found ToMV in clouds and fog. The virus can survive in such environments because it belongs to a family with particularly tough protein coats. "Since it's widespread, moves in the atmosphere and is very stable, we deduced that we would find it in the Arctic ice," says Rogers.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">So under sterile conditions, the researchers examined four cores containing ice between 500 and 140 000 years old from three sites in Greenland. To prevent contamination, they first disinfected the outside of each core using ultraviolet light, then searched the inner core for RNA from the tomato pathogen using the polymerase chain reaction (PCR). Sure enough, the telltale RNA was present. What's more, sequencing revealed 15 strains of the virus (Polar Biology, vol 22, p 207).</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The frozen viruses were probably still infectious. PCR destroys organisms as it amplifies their genetic material, so the researchers can't be sure the viruses had retained the protein coats that help them invade cells. But Castello says they probably needed their coats to survive for hundreds of years in the ice.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The team says that a brief rise in temperature could unleash the entombed viruses. "The ice is melting constantly around the poles," says Rogers. If released, they could cause outbreaks of disease. "If you've got these things lying in the ice for a thousand years or more and their usual host has not had to deal with them, this may be a source of epidemics," says Alvin Smith, a virologist at Oregon State University in Corvallis. He has already found evidence that caliciviruses, which can cause diarrhoea, periodically re-emerge from the oceans, causing new infections.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The findings may answer some puzzling questions, Smith adds. Viruses evolve fast, continually changing their protein coats. Yet identical caliciviruses have appeared at 20-year intervals on opposite sides of the US, he says. "How did these viruses stay the same for so long? Where have they been hanging out?" He thinks they might have spent years trapped in polar ice before re-emerging to strike again.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Such exchanges could put a spanner in the works of viral evolution studies. Castello says that instead of representing the endpoint of steady evolution, modern populations of viruses might be a complex mishmash of highly evolved ones and others that have taken a holiday from evolution in cold storage. "Perhaps they are actually ancient populations that have been recycled over and over again," he says. "How can you do evolutionary studies if that's true?"</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The New York team plans to use other techniques to find out if viruses in other cores are still viable. As well as Arctic ice, they will look at ice from Antarctica that is up to 400 000 years old.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Glossary</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>1 RNA:</B> ribonucleic acid. RNA is present in all living cells and plays an important role in protein synthesis. In certain viruses RNA, rather than DNA, carries the genetic information.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>2 polymerase chain reaction (PCR):</B> a technique for making an unlimited number of copies of any pieces of DNA.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>3 sequencing:</B> determining the order of nucleotides in a DNA or RNA molecule.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Matt Walker, New Scientist, 4th September 1999.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Questions 1-3 - Multiple choice</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The quickest way to tackle this exercise is to decide which are the key words in the questions and then skim to find those same words, or synonyms, in the passage. Once you've found them, read the whole sentence carefully. Remember, just because one of the choices contains words from the passage doesn't mean that it will be correct. And don't forget, you have to choose two correct options for each question.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 1</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">You need to look for places where the virus has already been found, not for places where scientists believe it may possibly exist, or places where it might be found in the future.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 2</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Look for what scientists know for sure, not what they assume to be true, or think may probably be true.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 3</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Find the phrase 'protein coat' in the passage and read the relevant sections very carefully.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

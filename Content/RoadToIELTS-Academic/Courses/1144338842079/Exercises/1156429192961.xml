@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="Practice%20Activity%20D" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Look at the charts from previous exercises again. Complete the paragraphs so that the information reflects the charts, using 'respectively', 'former' or 'latter'.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,170,293" style="normal" height="0" width="605" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[13]</FONT><tab><FONT COLOR="#0000FF">[10]</FONT>
+		<tab><FONT COLOR="#0000FF">[11]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="9" group="1" type="i:drag" mode="0">
+			<answer correct="false">former</answer>
+		</field>
+		<field id="10" group="1" type="i:drag" mode="0">
+			<answer correct="false">latter</answer>
+		</field>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">former</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">latter</answer>
+		</field>
+		<field id="13" group="1" type="i:drag" mode="0">
+			<answer correct="false">respectively</answer>
+		</field>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">respectively</answer>
+		</field>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">former</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">latter</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="280" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In 1970 there was a slight increase in both evening paper circulation and morning paper circulation. The <FONT COLOR="#0000FF">[1]</FONT> rose by just over 1 million and the <FONT COLOR="#0000FF">[2]</FONT> by almost 2 million. From 1980 to 1990 trends in circulation figures for evening papers and morning papers differed dramatically. Circulation for the <FONT COLOR="#0000FF">[3]</FONT> fell by more than a third while for the <FONT COLOR="#0000FF">[4]</FONT> it rose by more than a third. In 1999 circulation figures for Sunday papers and evening papers fell by 3 million and 11 million <FONT COLOR="#0000FF">[5]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="280" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="280" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Between 1989 and 1990 the percentage of those who relied on television for world news and the percentage of those who relied in newspapers rose by 11 per cent and fell by 7 per cent <FONT COLOR="#0000FF">[6]</FONT>. From 1995 to 1997 the percentage who mainly relied on newspapers as a source of world news began to grow, while the percentage who relied mainly on television began to decline. Nevertheless, by 1998 the <FONT COLOR="#0000FF">[7]</FONT> had fallen again and the <FONT COLOR="#0000FF">[8]</FONT> had risen significantly. </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:drop" group="1" id="1">
+			<answer correct="true">former</answer>
+		</field>
+		<field mode="0" type="i:drop" group="2" id="2">
+			<answer correct="true">latter</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">former</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">latter</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">respectively</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">respectively</answer>
+		</field>
+		<field mode="0" type="i:drop" group="7" id="7">
+			<answer correct="true">former</answer>
+		</field>
+		<field mode="0" type="i:drop" group="8" id="8">
+			<answer correct="true">latter</answer>
+		</field>
+		<media filename="MM_AW_002.jpg" y="10" x="300" stretch="false" duration="60" mode="1" id="1001" type="m:picture"/>
+		<media filename="MM_AW_003.jpg" y="310" x="290" stretch="false" duration="60" mode="1" id="1005" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Examiners are looking for your ability to vary the language you use in your report. One way to avoid repeating words and phrases is replacing them with 'the former', 'the latter' and 'respectively'.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

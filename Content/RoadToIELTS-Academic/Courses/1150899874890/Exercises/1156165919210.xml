@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Targetspotting" name="Reporting%20Verbs%20in%20the%20Passive%201" id="0">
+	<settings>
+		<marking instant="true"/>
+		<feedback wrongOnly="false" />
+		<buttons/>
+		<exercise hiddenTargets="true" proofreading="false"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read the complete sample answer to the writing task in the earlier exercise and find all the reporting verbs using passive constructions. Click on them.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[1] we should all learn to speak an international language, and both artificial and natural languages, including Esperanto, Latin and English, have been put forward at various times in history as candidates to fill this role.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The arguments in favour of an international language are both ideological and practical. Firstly, [2] that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, [3] if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, [4] a common language would make international travel much easier for everyone.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">However, there are strong arguments against the introduction of an international language. To start with, [5] while an international language might initially facilitate communication, all languages tend to divide into dialects, some of which cannot always be understood by all native speakers. Secondly, [6] an international language would eventually come to dominate over, and in some cases cause the disappearance of, less widely-spoken languages. Furthermore, as culture and language are closely associated, [7] the threat to minority languages posed by an international one would also mean a threat to their related cultures. The result would be a dull world, lacking in both linguistic and cultural diversity.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">On balance, I believe that it would be undesirable to impose an international language on the world. I doubt that an international language would bring about international peace, and the disappearance of minority languages and cultures would be a sad loss.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="true">It has often been suggested that</answer>
+		</field>
+		<field id="2" group="2" type="i:target" mode="0">
+			<answer correct="true">it is sometimes said</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="true">it is argued that</answer>
+		</field>
+		<field id="4" group="4" type="i:target" mode="0">
+			<answer correct="true">it is generally agreed that</answer>
+		</field>
+		<field id="5" group="5" type="i:target" mode="0">
+			<answer correct="true">it is often pointed out that</answer>
+		</field>
+		<field id="6" group="6" type="i:target" mode="0">
+			<answer correct="true">it is often claimed that</answer>
+		</field>
+		<field id="7" group="7" type="i:target" mode="0">
+			<answer correct="true">it is widely believed that</answer>
+		</field>
+		<media filename="LC_AW_025.JPG" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" category="YourGraphic" location="" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Writers often introduce ideas and arguments using passive forms of reporting verbs such as 'say', 'argue', 'suggest' and 'believe' and this formal style is more appropriate for Writing Task 2.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">For example, instead of writing:</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'Many people believe that …'</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">it is better to write:</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'It is widely believed that ...'</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Remember that when you use this kind of passive construction, it is not necessary to include the agent, as it does not add any useful information to the sentence. For example 'People think ...' just becomes 'It is thought that ...' and not 'It is thought by many people that ...'</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

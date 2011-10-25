@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Fill%20in%20the%20table%202" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitScreen="true" timed="265"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Questions 1-8. Listen to the recording, which will play automatically, and follow the instructions. Match the diseases on the left to the insects that cause them. Write the appropriate letters A-K against Questions 1-8.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph tabs="200" type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Insects	Diseases</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">================================</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="150" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Anopheles mosquitoes	(1) [1]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="150" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Aedes aegypti mosquitoes	(2) [2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="150" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Houseflies	(3) [3]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="150" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Deer ticks	(4) [4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Body lice	(5) [5]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Fleas	(6) [6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Black flies	(7) [7]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph tabs="200" type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Sand flies	(8) [8]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:gap" group="1" id="1">
+			<answer correct="true">C </answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">H </answer>
+		</field>
+		<field mode="0" type="i:gap" group="3" id="3">
+			<answer correct="true">K </answer>
+		</field>
+		<field mode="0" type="i:gap" group="4" id="4">
+			<answer correct="true">J </answer>
+		</field>
+		<field mode="0" type="i:gap" group="5" id="5">
+			<answer correct="true">E </answer>
+		</field>
+		<field mode="0" type="i:gap" group="6" id="6">
+			<answer correct="true">D </answer>
+		</field>
+		<field mode="0" type="i:gap" group="7" id="7">
+			<answer correct="true">A </answer>
+		</field>
+		<field id="8" group="8" type="i:gap" mode="0">
+			<answer correct="true">F </answer>
+		</field>
+		<media filename="HF_LN2a.mp3" mode="4" id="1002" type="m:streamingAudio" playTimes="1"/>
+	</body>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Diseases</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">==============</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>A</B>	river blindness</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>B</B>	toxoplasmosis</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>C</B>	malaria</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>D</B>	endemic typhus</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>E</B>	epidemic typhus</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>F</B>	leishmaniasis</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>G</B>	Q-fever</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>H</B>	dengue fever</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>I</B>	sleeping sickness</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>J</B>	Lyme disease</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>K</B>	dysentery</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

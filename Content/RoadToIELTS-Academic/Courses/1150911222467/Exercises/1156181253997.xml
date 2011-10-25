@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Dropdown" name="Linking%20words%20and%20phrases%201%20AR" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false" scoreBased="true"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Choose what these linking words and phrases are used for.</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>01.</B> I am opposed to - [1]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>02.</B> a case in point is - [2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>03.</B> a final reason is - [3]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>04.</B> I am in favour of - [4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>05.</B> I believe - [5]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>06.</B> for example - [6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>07.</B> a further reason is - [7]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>08.</B> for instance - [8]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>09.</B> I agree - [9]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>10.</B> I am against - [10]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>11.</B> I am convinced that - [11]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>12.</B> a good example of this is - [12]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>13.</B> I am of the opinion that - [13]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>14.</B> I am sure - [14]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>15.</B> I disagree - [15]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>16.</B> I strongly support the idea that - [16]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>17.</B> I think - [17]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>18.</B> the main reason is - [18]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>19.</B> in my opinion - [19]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>20.</B> including - [20]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>21.</B> on the grounds that - [21]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>22.</B> personally, I feel that - [22]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>23.</B> such as - [23]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>24.</B> the most important reason is - [24]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="480" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>25.</B> the second reason is - [25]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:dropdown" group="1" id="1">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field id="2" group="2" type="i:dropdown" mode="0">
+			<answer correct="true">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="3" id="3">
+			<answer correct="true">Introducing reasons for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="4" id="4">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="5" id="5">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="6" id="6">
+			<answer correct="true">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="7" id="7">
+			<answer correct="true">Introducing reasons for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="8" id="8">
+			<answer correct="true">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="9" id="9">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="10" id="10">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="11" id="11">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="12" id="12">
+			<answer correct="true">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="13" id="13">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="14" id="14">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="15" id="15">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="16" id="16">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="17" id="17">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="18" id="18">
+			<answer correct="true">Introducing reasons for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="19" id="19">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="20" id="20">
+			<answer correct="true">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="21" id="21">
+			<answer correct="true">Introducing reasons for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="22" id="22">
+			<answer correct="true">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="23" id="23">
+			<answer correct="true">Giving examples</answer>
+			<answer correct="false">Introducing reason for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="24" id="24">
+			<answer correct="true">Introducing reasons for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="25" id="25">
+			<answer correct="true">Introducing reasons for opinions</answer>
+			<answer correct="false">Giving opinions</answer>
+			<answer correct="false">Giving examples</answer>
+		</field>
+		<media filename="TT_AW_011.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" category="YourGraphic" location="" type="m:picture"/>
+	</body>
+	<feedback mode="101" id="0">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Giving Opinions</B></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I agree</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I am against</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I am convinced that</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I am in favour of</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I am of the opinion that</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I am opposed to</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I am sure</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I believe</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I disagree</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I strongly support the idea that</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- I think</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- in my opinion</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- personally, I feel that</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Giving Examples</B></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- a case in point is</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- a good example of this is</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- for example</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- for instance</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- including</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- such as</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B></B></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Introducing Reasons for Opinions</B></FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- a final reason is</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- a further reason is</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- on that grounds that</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- the main reason is</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- the most important reason is</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">- the second reason is</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

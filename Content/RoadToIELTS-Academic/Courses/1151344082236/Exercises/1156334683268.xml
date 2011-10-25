@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="The%20Hydram%20Water%20Pump" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Look carefully at the diagram, which shows how a water-powered pump works. Complete the report by selecting the correct phrase for each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,250" style="normal" height="0" width="690" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[10]</FONT>
+		<tab><FONT COLOR="#0000FF">[9]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,250" style="normal" height="0" width="690" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[12]</FONT>
+		<tab><FONT COLOR="#0000FF">[11]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,250" style="normal" height="0" width="690" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[8]</FONT>
+		<tab><FONT COLOR="#0000FF">[13]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,250" style="normal" height="0" width="690" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[14]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="8" group="1" type="i:drag" mode="0">
+			<answer correct="false">irrigate higher ground</answer>
+		</field>
+		<field id="9" group="1" type="i:drag" mode="0">
+			<answer correct="false">create a fast stream down the drive pipe</answer>
+		</field>
+		<field id="10" group="1" type="i:drag" mode="0">
+			<answer correct="false">the waste valve to close</answer>
+		</field>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">pressure suddenly begins to build up in the valve box</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">release this pressure</answer>
+		</field>
+		<field id="13" group="1" type="i:drag" mode="0">
+			<answer correct="false">the pressure in the valve box drops</answer>
+		</field>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">after a few cycles the pressure forces the water up the delivery pipe</answer>
+		</field>
+	</noscroll>
+	<body>
+		<media filename="EN_AW_003.jpg" y="12" x="376" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<paragraph type="text" x="12" y="+12" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The hydram, which has been around for some two hundred years, is an example of sustainable technology. It is basically a water-powered pump for lifting water from a river or stream in order to <FONT COLOR="#0000FF">[1]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="360" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The device consists of a valve box, a system of valves and an air vessel. Water is drawn from a point about 2 metres higher than the bottom of the hydram itself so as to <FONT COLOR="#0000FF">[2]</FONT> . This flow of water into the valve box eventually causes <FONT COLOR="#0000FF">[3]</FONT>. As a result, <FONT COLOR="#0000FF">[4]</FONT>. In order to <FONT COLOR="#0000FF">[5]</FONT>, the delivery valve opens and water rushes into the air vessel. Consequently, <FONT COLOR="#0000FF">[6]</FONT>, the delivery valve closes and the whole cycle begins again. The air vessel is designed so that <FONT COLOR="#0000FF">[7]</FONT>.  It can be pumped as high as 60 metres.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:drop" group="1" id="1">
+			<answer correct="true">irrigate higher ground</answer>
+		</field>
+		<field mode="0" type="i:drop" group="2" id="2">
+			<answer correct="true">create a fast stream down the drive pipe</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">the waste valve to close</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">pressure suddenly begins to build up in the valve box</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">release this pressure</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">the pressure in the valve box drops</answer>
+		</field>
+		<field mode="0" type="i:drop" group="7" id="7">
+			<answer correct="true">after a few cycles the pressure forces the water up the delivery pipe</answer>
+		</field>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">When writing sentences that express purpose or cause and result, you should think carefully about the logic and syntax of what you write.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

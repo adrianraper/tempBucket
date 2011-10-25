@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Describing%20an%20Object" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="603" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read the writing task and look carefully at the diagram. Complete the report by filling each gap with a word, phrase or number taken from the diagram. You will need to use some of the words more than once.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+		<media filename="EN_Task01.jpg" y="+4" x="670" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+<B>Writing Task 1</B></FONT></P></TEXTFORMAT>]]></paragraph>
+
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages to transport passengers up and down a hillside [1] metres in height.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The carriages are made of [2] so that they are light and strong. Underneath each one is a [3], which carries up to [4] litres of water. The carriages run along [5] metres of parallel steel track and are linked by steel cables. These go around a large [6] at the top of the slope.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a [7] so as to make it slightly heavier than the lower carriage. Due to this imbalance, the top one begins to roll down the hill, pulling the other one up. A [8] weighs each carriage in order to gauge exactly how much water is needed to make them move. Speed is controlled by means of a [9] built into the [10] at the top. This consists of a [11], which slows the drum down if it is turning too fast, causing the carriages to reduce speed. Each time this happens, the system compresses [12] in special cylinders. As a result, some of the energy of braking is stored. This can later be used to [13] a proportion of the water back up to the [14]. Consequently, some energy is recycled.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:gap" group="1" id="1">
+			<answer correct="true">thirty </answer>
+			<answer correct="true">30</answer>
+		</field>
+		<field mode="0" type="i:gap" group="2" id="2">
+			<answer correct="true">timber and steel </answer>
+			<answer correct="true">steel and timber</answer>
+			<answer correct="true">wood and steel</answer>
+		</field>
+		<field mode="0" type="i:gap" group="3" id="3">
+			<answer correct="true">ballast tank </answer>
+		</field>
+		<field mode="0" type="i:gap" group="4" id="4">
+			<answer correct="true">1600 </answer>
+			<answer correct="true">1,600</answer>
+			<answer correct="true">1 thousand 6 hundred</answer>
+			<answer correct="true">one thousand six hundred</answer>
+			<answer correct="true">1 thousand six hundred</answer>
+			<answer correct="true">one thousand 6 hundred</answer>
+		</field>
+		<field id="5" group="5" type="i:gap" mode="0">
+			<answer correct="true">53 </answer>
+			<answer correct="true">fifty-three</answer>
+			<answer correct="true">fifty three</answer>
+		</field>
+		<field id="6" group="6" type="i:gap" mode="0">
+			<answer correct="true">drum </answer>
+		</field>
+		<field id="7" group="7" type="i:gap" mode="0">
+			<answer correct="true">reservoir </answer>
+		</field>
+		<field id="8" group="8" type="i:gap" mode="0">
+			<answer correct="true">computer control system </answer>
+			<answer correct="true">computer system</answer>
+			<answer correct="true">computer</answer>
+		</field>
+		<field mode="0" type="i:gap" group="9" id="9">
+			<answer correct="true">braking system </answer>
+		</field>
+		<field mode="0" type="i:gap" group="10" id="10">
+			<answer correct="true">drum </answer>
+		</field>
+		<field mode="0" type="i:gap" group="11" id="11">
+			<answer correct="true">hydraulic pump </answer>
+		</field>
+		<field mode="0" type="i:gap" group="12" id="12">
+			<answer correct="true">gas </answer>
+		</field>
+		<field mode="0" type="i:gap" group="13" id="13">
+			<answer correct="true">pump </answer>
+		</field>
+		<field mode="0" type="i:gap" group="14" id="14">
+			<answer correct="true">reservoir </answer>
+		</field>
+		<media filename="EN_AW_002s.jpg" y="18" x="430" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<media filename="EN_AW_002.jpg" y="190" x="480" stretch="false" mode="16" id="1003" type="m:picture"/>
+		<paragraph type="text" y="195" x="510" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to enlarge</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

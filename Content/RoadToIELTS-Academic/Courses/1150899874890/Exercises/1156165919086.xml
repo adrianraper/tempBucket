@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Analyze" name="Useful%20Sentence%20Pattern" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitScreen="true"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="680" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read the report describing the information shown in the graph from Practice Activity A again. Find examples of the two sentence patterns for describing trends. Decide which sentence pattern each of the clauses on the left follows. Click on a or b on the right as appropriate.</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "there was an overall downward trend" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[1]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[2]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "enrolments for French dropped steadily" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[3]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[4]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "there was a slight rise" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[5]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[6]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "there was a sharp fall" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[7]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[8]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "Numbers finally plunged" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[9]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[10]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "numbers had fallen" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[11]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[12]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "the figure recovered" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[13]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[14]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "numbers declined steadily" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[15]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[16]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "The number of students accepted onto Russian courses fluctuated" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[17]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[18]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "there was a drop" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[19]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[20]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "Enrolments for two of the five languages, however, actually grew" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[21]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[22]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "there was a steady increase" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[23]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[24]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Which sentence pattern does the phrase "remained stable" have?</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[25]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[26]</FONT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="false">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="1" id="2">
+			<answer correct="true">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="3">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="4">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="5">
+			<answer correct="false">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="6">
+			<answer correct="true">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="7">
+			<answer correct="false">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="8">
+			<answer correct="true">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="9">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="10">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="11">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="12">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="13">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="14">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="15">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="16">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="17">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="18">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="19">
+			<answer correct="false">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="20">
+			<answer correct="true">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="11" id="21">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="11" id="22">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="12" id="23">
+			<answer correct="false">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="12" id="24">
+			<answer correct="true">There was a/an + (adjective) + noun</answer>
+		</field>
+		<field mode="0" type="i:target" group="13" id="25">
+			<answer correct="true">Noun phrase + verb + (adverb)</answer>
+		</field>
+		<field mode="0" type="i:target" group="13" id="26">
+			<answer correct="false">There was a/an + (adjective) + noun</answer>
+		</field>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is not necessary and you are not expected, to write long, complex sentences in your reports. It is much more important to write clearly and accurately. Look at these two simple sentence patterns, which are very useful for describing trends in charts:</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Noun phrase + verb + (adverb)</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There was a/an + (adjective) + noun</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that <FONT COLOR="#0000FF">(1) there was an overall downward trend</FONT> in student numbers for such courses during this period.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Courses in French, German and Russian all became less popular during this time. The figures for French show the most dramatic changes of all. Between 1994 and 1996 <FONT COLOR="#0000FF">(2) enrolments for French dropped steadily</FONT> to around 5,700. A year later <FONT COLOR="#0000FF">(3) there was a slight rise</FONT> of around 100 students, but then <FONT COLOR="#0000FF">(4) there was a sharp fall</FONT> of about 600 in 1998. <FONT COLOR="#0000FF">(5) Numbers finally plunged</FONT> to around 4,700 in 1999. The pattern for German was very similar. Starting at around 2,400 students in 1994, <FONT COLOR="#0000FF">(6) numbers had fallen</FONT> to about 2,300 by 1996. In 1997 <FONT COLOR="#0000FF">(7) the figure recovered</FONT> to its 1994 level, but then <FONT COLOR="#0000FF">(8) numbers declined steadily</FONT> by around 150 per year for the next two years. <FONT COLOR="#0000FF">(9) The number of students accepted onto Russian courses fluctuated</FONT> between 400 and 500 for most of the period, but <FONT COLOR="#0000FF">(10) there was a drop</FONT> to around 300 in 1999.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0">(11) Enrolments for two of the five languages, however, actually grew<FONT COLOR="#000000"> in number over the five years. From 1994 onwards, </FONT>(12) there was a steady increase<FONT COLOR="#000000"> in enrolments for Spanish of approximately 100 every year. Likewise, </FONT>(13) the number of students studying Italian rose gradually<FONT COLOR="#000000"> to around 900 in 1997 and </FONT>(13) remained stable<FONT COLOR="#000000"> for the following two years.</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

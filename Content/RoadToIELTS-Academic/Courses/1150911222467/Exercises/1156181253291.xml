@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragAndDrop" name="Choosing%20an%20introduction" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="680" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Here are six possible introductory paragraphs to the writing task you looked at in the previous exercise. Read the introductions and think about how appropriate they would be. Then listen to a teacher and drag the comments to the appropriate paragraph.</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,320" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[11]</FONT><tab><FONT COLOR="#0000FF">[8]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,320" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[10]</FONT><tab><FONT COLOR="#0000FF">[12]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,320" style="normal" height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana"><tab><FONT COLOR="#0000FF">[9]</FONT><tab><FONT COLOR="#0000FF">[7]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="7" group="1" type="i:drag" mode="0">
+			<answer correct="false">Historical background is irrelevant</answer>
+		</field>
+		<field id="8" group="1" type="i:drag" mode="0">
+			<answer correct="false">Opinion clearly stated, good</answer>
+		</field>
+		<field id="9" group="1" type="i:drag" mode="0">
+			<answer correct="false">Copying! Use your own words</answer>
+		</field>
+		<field id="10" group="1" type="i:drag" mode="0">
+			<answer correct="false">Too short</answer>
+		</field>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">Inappropriate chatty style</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">Too long</answer>
+		</field>
+		<media filename="TT_Task02.jpg" y="+4" x="608" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Writing Task 2</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</noscroll>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking. </FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><FONT COLOR="#0000FF">[1]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done. </FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><FONT COLOR="#0000FF">[2]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea. </FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><FONT COLOR="#0000FF">[3]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre. </FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><FONT COLOR="#0000FF">[4]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre. </FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><FONT COLOR="#0000FF">[5]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="365" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so. </FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><FONT COLOR="#0000FF">[6]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:drop" mode="0">
+			<answer correct="true">Historical background is irrelevant</answer>
+		</field>
+		<field id="2" group="2" type="i:drop" mode="0">
+			<answer correct="true">Opinion clearly stated, good</answer>
+		</field>
+		<field id="3" group="3" type="i:drop" mode="0">
+			<answer correct="true">Copying! Use your own words</answer>
+		</field>
+		<field id="4" group="4" type="i:drop" mode="0">
+			<answer correct="true">Too short</answer>
+		</field>
+		<field id="5" group="5" type="i:drop" mode="0">
+			<answer correct="true">Inappropriate chatty style</answer>
+		</field>
+		<field id="6" group="6" type="i:drop" mode="0">
+			<answer correct="true">Too long</answer>
+		</field>
+		<!-- Extra audio button -->
+		<media filename="TT_WR1aa.mp3" y="6" x="500" stretch="false" mode="1" id="1004" type="m:streamingAudio" playTimes="0"/>
+		<paragraph type="text" y="16" x="530" width="540" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to listen</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<media y="3" x="0" id="1" type="q:audio" filename="TT_WR1as.mp3" mode="1"/>
+		<media y="3" x="0" id="2" type="q:audio" filename="TT_WR1ao.mp3" mode="1"/>
+		<media y="3" x="0" id="3" type="q:audio" filename="TT_WR1ap.mp3" mode="1"/>
+		<media y="3" x="0" id="4" type="q:audio" filename="TT_WR1ar.mp3" mode="1"/>
+		<media y="3" x="0" id="5" type="q:audio" filename="TT_WR1aq.mp3" mode="1"/>
+		<media y="3" x="0" id="6" type="q:audio" filename="TT_WR1an.mp3" mode="1"/>
+		<media filename="TT_AW_010.jpg" y="36" x="500" height="250" width="165" stretch="false" mode="1" id="1001" category="YourGraphic" location="" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is very important to write a good introductory paragraph for your composition. If your introduction is good, it makes the rest of the composition easier to write and it makes a good impression on the reader. Remember, if you decide not to write a balanced 'for and against' composition, you should give your personal opinion in the first paragraph and repeat it in the conclusion.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

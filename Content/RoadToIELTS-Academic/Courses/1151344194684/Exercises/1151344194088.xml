@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="TargetSpotting" name="Advice%20for%20Writing%20Task" id="0">
+	<settings>
+		<marking instant="false"/>
+		<feedback wrongOnly="false" />
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Read these pieces of advice for IELTS Writing Task 1 and decide which of them are things you should do.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>1.	What should you do before you write?</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[1]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[2]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[3]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[4]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[5]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[6]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[7]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>2.	What should you do while you are writing?</B><FONT FACE="_sans" SIZE="12"> <FONT FACE="Verdana" SIZE="13"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[8]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[9]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[10]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[11]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[12]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[13]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[14]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>3.	What type of language should you use?</B><FONT FACE="_sans" SIZE="12"> <FONT FACE="Verdana" SIZE="13"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[15]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[16]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[17]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[18]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[19]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[20]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[21]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>4.	What should you do with the diagrams, charts, graphs and tables?</B><FONT FACE="_sans" SIZE="12"> <FONT FACE="Verdana" SIZE="13"></FONT></FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[22]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[23]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[24]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[25]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[26]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[27]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="30" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[28]</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="true">A Decide which figures are not important enough to mention in your report.</answer>
+		</field>
+		<field id="2" group="2" type="i:target" mode="0">
+			<answer correct="true">B Spend time carefully reading any titles, axes, labels and legends before you start writing.</answer>
+		</field>
+		<field id="3" group="3" type="i:target" mode="0">
+			<answer correct="true">C Spend time looking for the main trends before you start writing.</answer>
+		</field>
+		<field id="4" group="4" type="i:target" mode="0">
+			<answer correct="true">D Spend time planning the most appropriate order in which to present the information.</answer>
+		</field>
+		<field id="5" group="5" type="i:target" mode="0">
+			<answer correct="true">E Plan to leave some time at the end to check your report for mistakes.</answer>
+		</field>
+		<field id="6" group="6" type="i:target" mode="0">
+			<answer correct="false">F Ask questions about anything you have not understood.</answer>
+		</field>
+		<field id="7" group="7" type="i:target" mode="0">
+			<answer correct="false">G Try to remember anything you have read about the subject before.</answer>
+		</field>
+		<field id="8" group="8" type="i:target" mode="0">
+			<answer correct="false">A Copy the question and use it as your opening sentence.</answer>
+		</field>
+		<field id="9" group="9" type="i:target" mode="0">
+			<answer correct="true">B Divide your report into paragraphs.</answer>
+		</field>
+		<field id="10" group="10" type="i:target" mode="0">
+			<answer correct="true">C End your report with one or two sentences summarising the most important trends.</answer>
+		</field>
+		<field id="11" group="11" type="i:target" mode="0">
+			<answer correct="false">D Include a paragraph with your personal opinions about the topic.</answer>
+		</field>
+		<field id="12" group="12" type="i:target" mode="0">
+			<answer correct="false">E Spend more than 20 minutes on Writing Task 1.</answer>
+		</field>
+		<field id="13" group="13" type="i:target" mode="0">
+			<answer correct="false">F Start writing immediately.</answer>
+		</field>
+		<field mode="0" type="i:target" group="14" id="14">
+			<answer correct="true">G Write a minimum of 150 words.</answer>
+		</field>
+		<field id="15" group="15" type="i:target" mode="0">
+			<answer correct="false">A Use a linking word or phrase between every sentence.</answer>
+		</field>
+		<field id="16" group="16" type="i:target" mode="0">
+			<answer correct="true">B Use a range of grammatical structures and vocabulary.</answer>
+		</field>
+		<field id="17" group="17" type="i:target" mode="0">
+			<answer correct="false">C Use contractions.</answer>
+		</field>
+		<field id="18" group="18" type="i:target" mode="0">
+			<answer correct="true">D Use formal language.</answer>
+		</field>
+		<field id="19" group="19" type="i:target" mode="0">
+			<answer correct="true">E Use linking words and phrases between sentences and paragraphs where appropriate.</answer>
+		</field>
+		<field id="20" group="20" type="i:target" mode="0">
+			<answer correct="true">F Vary the way you describe figures by using percentages, fractions and ratios.</answer>
+		</field>
+		<field id="21" group="21" type="i:target" mode="0">
+			<answer correct="true">G Refer to the figures.</answer>
+		</field>
+		<field id="22" group="22" type="i:target" mode="0">
+			<answer correct="false">A Add extra information you may know about the topic but which is not included in the diagram, chart, graph or table.</answer>
+		</field>
+		<field id="23" group="23" type="i:target" mode="0">
+			<answer correct="false">B Always describe charts, graphs and tables from left to right or top to bottom.</answer>
+		</field>
+		<field id="24" group="24" type="i:target" mode="0">
+			<answer correct="false">C Include every figure from the chart, graph or table in your report.</answer>
+		</field>
+		<field id="25" group="25" type="i:target" mode="0">
+			<answer correct="true">D Round figures up or down where appropriate.</answer>
+		</field>
+		<field id="26" group="26" type="i:target" mode="0">
+			<answer correct="true">E Summarise overall trends first and then describe any important specific features.</answer>
+		</field>
+		<field id="27" group="27" type="i:target" mode="0">
+			<answer correct="true">F Write a short introduction briefly explaining what the diagram, chart, graph or table shows.</answer>
+		</field>
+		<field id="28" group="28" type="i:target" mode="0">
+			<answer correct="false">G Speculate on possible reasons for the trends and patterns shown in the chart, graph or table.</answer>
+		</field>
+		<media filename="SS_AW_008.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

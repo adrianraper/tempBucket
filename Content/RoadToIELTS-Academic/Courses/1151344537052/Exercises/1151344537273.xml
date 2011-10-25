@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Reviews" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Complete the reviews by dragging each word to the correct place.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,166,307,448,580" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[21]</FONT><tab><FONT COLOR="#0000FF">[16]</FONT>
+		<tab><FONT COLOR="#0000FF">[26]</FONT><tab><FONT COLOR="#0000FF">[18]</FONT>
+		<tab><FONT COLOR="#0000FF">[17]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,166,307,448,580" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[23]</FONT><tab><FONT COLOR="#0000FF">[22]</FONT>
+		<tab><FONT COLOR="#0000FF">[15]</FONT><tab><FONT COLOR="#0000FF">[28]</FONT>
+		<tab><FONT COLOR="#0000FF">[25]</FONT></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,166,307,448,580" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[19]</FONT><tab><FONT COLOR="#0000FF">[27]</FONT>
+		<tab><FONT COLOR="#0000FF">[24]</FONT><tab><FONT COLOR="#0000FF">[20]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">playwright</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">comedy</answer>
+		</field>
+		<field id="17" group="1" type="i:drag" mode="0">
+			<answer correct="false">script</answer>
+		</field>
+		<field id="18" group="1" type="i:drag" mode="0">
+			<answer correct="false">cast</answer>
+		</field>
+		<field id="19" group="1" type="i:drag" mode="0">
+			<answer correct="false">act</answer>
+		</field>
+		<field id="20" group="1" type="i:drag" mode="0">
+			<answer correct="false">portraits</answer>
+		</field>
+		<field id="21" group="1" type="i:drag" mode="0">
+			<answer correct="false">canvases</answer>
+		</field>
+		<field id="22" group="1" type="i:drag" mode="0">
+			<answer correct="false">self-portrait</answer>
+		</field>
+		<field id="23" group="1" type="i:drag" mode="0">
+			<answer correct="false">painter</answer>
+		</field>
+		<field id="24" group="1" type="i:drag" mode="0">
+			<answer correct="false">dubbed</answer>
+		</field>
+		<field id="25" group="1" type="i:drag" mode="0">
+			<answer correct="false">subtitles</answer>
+		</field>
+		<field id="26" group="1" type="i:drag" mode="0">
+			<answer correct="false">plot</answer>
+		</field>
+		<field id="27" group="1" type="i:drag" mode="0">
+			<answer correct="false">scenes</answer>
+		</field>
+		<field id="28" group="1" type="i:drag" mode="0">
+			<answer correct="false">screen</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Out on a limb!</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Last year's <FONT COLOR="#0000FF">[1]</FONT> of the year, Kevin Peters, has written yet another hysterical <FONT COLOR="#0000FF">[2]</FONT>. Each line of the <FONT COLOR="#0000FF">[3]</FONT> is not only extremely funny but often thought-provoking too. It is brought to life by a very talented <FONT COLOR="#0000FF">[4]</FONT> at the Haverstone Underground Theatre. I have rarely seen such an animated audience in the interval after the first <FONT COLOR="#0000FF">[5]</FONT> of a play.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>The Sally Adam Exhibition</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This is an impressive collection of <FONT COLOR="#0000FF">[6]</FONT> of people the artist has known. Through brilliant splashes of colour and bold brushstrokes on very large <FONT COLOR="#0000FF">[7]</FONT>, Sally Adam depicts the characters of these people. She has also included a <FONT COLOR="#0000FF">[8]</FONT> in which she reveals glimpses of her inner psyche. This is an amazing departure from her earlier years as a landscape <FONT COLOR="#0000FF">[9]</FONT>.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Africa by Storm</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">What a disappointment this video is! Maybe if it was not <FONT COLOR="#0000FF">[10]</FONT> into English but had <FONT COLOR="#0000FF">[11]</FONT> instead it would be better. On the positive side, the <FONT COLOR="#0000FF">[12]</FONT> has some interesting twists and there are some lovely picture-postcard <FONT COLOR="#0000FF">[13]</FONT>, especially of the wildlife along the Zambezi River. However, as the film was originally destined for the big <FONT COLOR="#0000FF">[14]</FONT> rather than video, these do not have quite the visual impact that was intended.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:drop" mode="0">
+			<answer correct="true">playwright</answer>
+		</field>
+		<field id="2" group="2" type="i:drop" mode="0">
+			<answer correct="true">comedy</answer>
+		</field>
+		<field id="3" group="3" type="i:drop" mode="0">
+			<answer correct="true">script</answer>
+		</field>
+		<field id="4" group="4" type="i:drop" mode="0">
+			<answer correct="true">cast</answer>
+		</field>
+		<field id="5" group="5" type="i:drop" mode="0">
+			<answer correct="true">act</answer>
+		</field>
+		<field id="6" group="6" type="i:drop" mode="0">
+			<answer correct="true">portraits</answer>
+		</field>
+		<field id="7" group="7" type="i:drop" mode="0">
+			<answer correct="true">canvases</answer>
+		</field>
+		<field id="8" group="8" type="i:drop" mode="0">
+			<answer correct="true">self-portrait</answer>
+		</field>
+		<field id="9" group="9" type="i:drop" mode="0">
+			<answer correct="true">painter</answer>
+		</field>
+		<field id="10" group="10" type="i:drop" mode="0">
+			<answer correct="true">dubbed</answer>
+		</field>
+		<field id="11" group="11" type="i:drop" mode="0">
+			<answer correct="true">subtitles</answer>
+		</field>
+		<field id="12" group="12" type="i:drop" mode="0">
+			<answer correct="true">plot</answer>
+		</field>
+		<field id="13" group="13" type="i:drop" mode="0">
+			<answer correct="true">scenes</answer>
+		</field>
+		<field id="14" group="14" type="i:drop" mode="0">
+			<answer correct="true">screen</answer>
+		</field>
+		<media filename="AC_TV_002.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

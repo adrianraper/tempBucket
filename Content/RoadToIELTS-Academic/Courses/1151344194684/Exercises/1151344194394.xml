@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Cloze" name="Tenses" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Look at the bar charts and complete the report by filling each gap with the correct tense of the verb given in brackets.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A number of significant changes [1] (take place) in the proportion of single-person households in England in recent years.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Generally speaking, since 1971 there [2] (be) a marked upward trend in the numbers of people living alone among the under 65s and this trend [3] (be) most pronounced for men. In 1971 only about 3.5 per cent of households [4] (consist) of one man living alone. By 2001 this figure [5] (shoot up) to over 10 per cent. It is predicted that by 2021 the proportion [6] (reach) almost 14 per cent of all households.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A similar trend can be seen for women under 65. In 1971 women living alone [7] (account for) just under 5 per cent of all households. By 2001 the proportion [8] (rise) to around 7 per cent. Again, it is predicted that this upward trend [9] (continue) for the foreseeable future.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT">&nbsp;</P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="430" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The pattern for the over 65s who live alone is somewhat different. Since the early 1970s the proportion of households consisting of male pensioners living alone [10] (rise) steadily, but at a much slower rate than other types of single-person households. By 2021 almost 1 in 20 households [11] (consist) of one man over 65. The proportion of female pensioners living alone [12] (change) significantly in recent years. This used to be the most common kind of single-person household. In 1981, for example, this [13] (account for) around 1 in 10 of all households. Since then, however, the proportion [14] (fall) and it [15] (decline) further over the coming years.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:gap" mode="0">
+			<answer correct="true">have taken place </answer>
+			<answer correct="true">have been taking place</answer>
+		</field>
+		<field id="2" group="2" type="i:gap" mode="0">
+			<answer correct="true">has been </answer>
+		</field>
+		<field id="3" group="3" type="i:gap" mode="0">
+			<answer correct="true">is </answer>
+			<answer correct="true">has been</answer>
+		</field>
+		<field id="4" group="4" type="i:gap" mode="0">
+			<answer correct="true">consisted </answer>
+		</field>
+		<field id="5" group="5" type="i:gap" mode="0">
+			<answer correct="true">had shot up </answer>
+		</field>
+		<field id="6" group="6" type="i:gap" mode="0">
+			<answer correct="true">will reach </answer>
+			<answer correct="true">will have reached</answer>
+		</field>
+		<field id="7" group="7" type="i:gap" mode="0">
+			<answer correct="true">accounted for </answer>
+		</field>
+		<field id="8" group="8" type="i:gap" mode="0">
+			<answer correct="true">had risen </answer>
+		</field>
+		<field id="9" group="9" type="i:gap" mode="0">
+			<answer correct="true">will continue </answer>
+			<answer correct="true">is going to continue</answer>
+		</field>
+		<field id="10" group="10" type="i:gap" mode="0">
+			<answer correct="true">has risen </answer>
+			<answer correct="true">has been rising</answer>
+		</field>
+		<field id="11" group="11" type="i:gap" mode="0">
+			<answer correct="true">will consist </answer>
+		</field>
+		<field id="12" group="12" type="i:gap" mode="0">
+			<answer correct="true">has changed </answer>
+			<answer correct="true">has been changing</answer>
+		</field>
+		<field id="13" group="13" type="i:gap" mode="0">
+			<answer correct="true">accounted for </answer>
+		</field>
+		<field id="14" group="14" type="i:gap" mode="0">
+			<answer correct="true">has fallen </answer>
+			<answer correct="true">has been falling</answer>
+		</field>
+		<field id="15" group="15" type="i:gap" mode="0">
+			<answer correct="true">will decline </answer>
+			<answer correct="true">is going to decline</answer>
+		</field>
+		<media filename="SS_AW_005s.jpg" y="16" x="480" stretch="false" mode="1" id="1003" type="m:picture"/>
+		<media filename="SS_AW_005.jpg" y="250" x="500" stretch="false" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="255" x="530" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Click to enlarge</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

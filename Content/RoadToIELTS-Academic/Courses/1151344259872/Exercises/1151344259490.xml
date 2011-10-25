@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="Sample%20Answer" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read this sample answer to the writing task in Exercise 1. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+		<media filename="ST_WT2.jpg" y="+4" x="608" mode="16" id="1004" type="m:picture"/>
+		<paragraph type="text" y="30" x="608" width="630" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="10" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		<B>Writing Task 2</B></FONT></P></TEXTFORMAT>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,187,349,510" style="normal" height="0" width="660" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[17]</FONT><tab><FONT COLOR="#0000FF">[32]</FONT>
+		<tab><FONT COLOR="#0000FF">[23]</FONT><tab><FONT COLOR="#0000FF">[27]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,187,349,510" style="normal" height="0" width="660" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[22]</FONT><tab><FONT COLOR="#0000FF">[26]</FONT>
+		<tab><FONT COLOR="#0000FF">[18]</FONT><tab><FONT COLOR="#0000FF">[36]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,187,349,510" style="normal" height="0" width="660" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[20]</FONT><tab><FONT COLOR="#0000FF">[35]</FONT>
+		<tab><FONT COLOR="#0000FF">[21]</FONT><tab><FONT COLOR="#0000FF">[29]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,187,349,510" style="normal" height="0" width="660" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[33]</FONT><tab><FONT COLOR="#0000FF">[28]</FONT>
+		<tab><FONT COLOR="#0000FF">[34]</FONT><tab><FONT COLOR="#0000FF">[25]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,187,349,510" style="normal" height="0" width="660" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[19]</FONT><tab><FONT COLOR="#0000FF">[30]</FONT>
+		<tab><FONT COLOR="#0000FF">[31]</FONT><tab><FONT COLOR="#0000FF">[24]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="18"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="17" group="1" type="i:drag" mode="0">
+			<answer correct="false">As a result of</answer>
+		</field>
+		<field id="18" group="1" type="i:drag" mode="0">
+			<answer correct="false">with the aim of</answer>
+		</field>
+		<field id="19" group="1" type="i:drag" mode="0">
+			<answer correct="false">leads to</answer>
+		</field>
+		<field id="20" group="1" type="i:drag" mode="0">
+			<answer correct="false">not wanting to</answer>
+		</field>
+		<field id="21" group="1" type="i:drag" mode="0">
+			<answer correct="false">who apply for</answer>
+		</field>
+		<field id="22" group="1" type="i:drag" mode="0">
+			<answer correct="false">effective</answer>
+		</field>
+		<field id="23" group="1" type="i:drag" mode="0">
+			<answer correct="false">Consequently</answer>
+		</field>
+		<field id="24" group="1" type="i:drag" mode="0">
+			<answer correct="false">In order to</answer>
+		</field>
+		<field id="25" group="1" type="i:drag" mode="0">
+			<answer correct="false">looking for</answer>
+		</field>
+		<field id="26" group="1" type="i:drag" mode="0">
+			<answer correct="false">provided</answer>
+		</field>
+		<field id="27" group="1" type="i:drag" mode="0">
+			<answer correct="false">should</answer>
+		</field>
+		<field id="28" group="1" type="i:drag" mode="0">
+			<answer correct="false">who are rejected</answer>
+		</field>
+		<field id="29" group="1" type="i:drag" mode="0">
+			<answer correct="false">essential</answer>
+		</field>
+		<field id="30" group="1" type="i:drag" mode="0">
+			<answer correct="false">which gather</answer>
+		</field>
+		<field id="31" group="1" type="i:drag" mode="0">
+			<answer correct="false">so that</answer>
+		</field>
+		<field id="32" group="1" type="i:drag" mode="0">
+			<answer correct="false">result in</answer>
+		</field>
+		<field id="33" group="1" type="i:drag" mode="0">
+			<answer correct="false">since</answer>
+		</field>
+		<field id="34" group="1" type="i:drag" mode="0">
+			<answer correct="false">because</answer>
+		</field>
+		<field id="35" group="1" type="i:drag" mode="0">
+			<answer correct="false">providing</answer>
+		</field>
+		<field id="36" group="1" type="i:drag" mode="0">
+			<answer correct="false">stems from</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Information on private citizens has been collected and stored in electronic form by governments and organisations for many years. However, with the advent of the Internet, information about our finances, health, relationships and tastes as consumers can now be easily accessed and disseminated without our knowledge or consent. <FONT COLOR="#0000FF">[1]</FONT> this, unscrupulous individuals and organisations can misuse this information and our privacy is threatened.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There are a number of ways in which personal data can be misused. The most common is probably the trading of consumers' personal details between commercial organisations <FONT COLOR="#0000FF">[2]</FONT> targeting potential customers. This <FONT COLOR="#0000FF">[3]</FONT> people being inundated with unsolicited promotional leaflets, catalogues and e-mails. More seriously, employers can run checks on prospective employees to glean details about their health, criminal record or political allegiances. Similarly, insurance companies, <FONT COLOR="#0000FF">[4]</FONT> pay out expensive medical claims, may access the health records of individuals <FONT COLOR="#0000FF">[5]</FONT> life insurance policies before deciding whether or not to insure them.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">How can such abuses be prevented? Regarding the exchange of customer information between companies, the only <FONT COLOR="#0000FF">[6]</FONT> solution is to make unsolicited promotional post and e-mail illegal. <FONT COLOR="#0000FF">[7]</FONT>, organisations would have no incentive to trade in people's personal details. <FONT COLOR="#0000FF">[8]</FONT> protect people <FONT COLOR="#0000FF">[9]</FONT> work, only information <FONT COLOR="#0000FF">[10]</FONT> by applicants themselves on the application form or during the interview <FONT COLOR="#0000FF">[11]</FONT> be legitimate grounds for rejection, and candidates <FONT COLOR="#0000FF">[12]</FONT> should have the right to ask for the reasons why. Finally, as a general measure to prevent misuse by insurance companies, it is <FONT COLOR="#0000FF">[13]</FONT> that organisations <FONT COLOR="#0000FF">[14]</FONT> data should inform individuals of the information that is collected. Individuals must be able to access the data themselves <FONT COLOR="#0000FF">[15]</FONT> they can find out exactly what kind of information it is and check for inaccuracies, they must be allowed to choose how and to what extent it is used, and the data must be held securely.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is not likely that the above measures will <FONT COLOR="#0000FF">[16]</FONT> guaranteed individual privacy. However, I am convinced that they will go some way to help limit the misuse of personal information while at the same time giving individuals more control over the information that is held on them.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:drop" mode="0">
+			<answer correct="true">As a result of</answer>
+		</field>
+		<field id="2" group="2" type="i:drop" mode="0">
+			<answer correct="true">with the aim of</answer>
+		</field>
+		<field id="3" group="3" type="i:drop" mode="0">
+			<answer correct="true">leads to</answer>
+		</field>
+		<field id="4" group="4" type="i:drop" mode="0">
+			<answer correct="true">not wanting to</answer>
+		</field>
+		<field id="5" group="5" type="i:drop" mode="0">
+			<answer correct="true">who apply for</answer>
+		</field>
+		<field id="6" group="6" type="i:drop" mode="0">
+			<answer correct="true">effective</answer>
+		</field>
+		<field id="7" group="7" type="i:drop" mode="0">
+			<answer correct="true">Consequently</answer>
+		</field>
+		<field id="8" group="8" type="i:drop" mode="0">
+			<answer correct="true">In order to</answer>
+		</field>
+		<field id="9" group="9" type="i:drop" mode="0">
+			<answer correct="true">looking for</answer>
+		</field>
+		<field id="10" group="10" type="i:drop" mode="0">
+			<answer correct="true">provided</answer>
+		</field>
+		<field id="11" group="11" type="i:drop" mode="0">
+			<answer correct="true">should</answer>
+		</field>
+		<field id="12" group="12" type="i:drop" mode="0">
+			<answer correct="true">who are rejected</answer>
+		</field>
+		<field id="13" group="13" type="i:drop" mode="0">
+			<answer correct="true">essential</answer>
+		</field>
+		<field id="14" group="14" type="i:drop" mode="0">
+			<answer correct="true">which gather</answer>
+		</field>
+		<field id="15" group="15" type="i:drop" mode="0">
+			<answer correct="true">so that</answer>
+		</field>
+		<field id="16" group="16" type="i:drop" mode="0">
+			<answer correct="true">result in</answer>
+		</field>
+		<media filename="ST_AW_003.jpg" y="45" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

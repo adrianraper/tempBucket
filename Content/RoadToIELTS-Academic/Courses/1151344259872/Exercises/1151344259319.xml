@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Analyze" name="Multiple%20choice" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc splitScreen="true"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Questions 17-18. Choose the appropriate letters A-D.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>Robomoths</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>A</B> With rare exceptions, such as bees and silkworms, the insect world is a source of pests rather than of pets or pack animals. In an age of miniaturisation, however, a few researchers are wondering if more insects might be harnessed to the service of man. One is John Hildebrand, a neurobiologist at the University of Arizona. As part of a project run by America's Defence Advanced Research Projects Agency (DARPA), he and his colleagues have been working with the giant sphinx moth to create a "biobot" – an animal that can be controlled electronically by a human. They have designed a radio transmitter small enough to attach to a sphinx moth without impairing its ability to fly. The next stage is to add a receiver to tell the moth where to go.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>B</B> Moths may not be that bright, but Dr Hildebrand believes they can be manipulated in rather the same way as a donkey is by dangling a carrot in front of its head. The "carrot" he proposes is a sex pheromone – a mixture of chemicals that female sphinx moths give off to attract males. It is potent stuff. Previous research has shown that a few molecules are enough to attract a male's attention, and that, given a favourable wind, an amorous male can find a mate who is several kilometres away.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>C</B> One of the team's ideas is to fit male sphinx moths with small, radio-controlled pheromone dispensers. A moth's pheromone-detectors are its antennae. It can work out where pheromone molecules are coming from by comparing the signals from each antenna, in the same way that a person works out the direction of a sound by comparing signals from each ear. A moth's senses could be subverted by puffing suitable molecules from a dispenser to steer it towards a chosen target.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>D </B> That is a rather crude approach. Dr Hildebrand hopes to be more subtle. He has spent much of his career examining how a moth's nervous system responds to the pheromone, and he thinks he knows enough to steer a moth directly, without the need for the chemicals themselves. He plans to do it by attaching electrodes to the nerves involved and stimulating them appropriately – turning the moth into a genuine, radio-controlled biobot.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>E</B> That would be an interesting demonstration of mankind's powers over nature. Could it also be useful? Brian Smith and his colleagues at Ohio State University have recently shown that sphinx moths can be manipulated like dogs as well as donkeys. Pavlov's early experiments on reflexes trained dogs to salivate at the sound of a bell, by ringing one every time they were fed with meat. Dr Smith's team has mimicked Pavlov by training moths to stick their tongues out in response to a chemical called cyclohexanone, which was puffed at them while they were fed sugared water.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>F</B> The reason that this trick might be useful – and the reason for DARPA's interest – is that cyclohexanone is a volatile component of TNT, an explosive often used in landmines. By releasing a swarm of trained moths over a minefield, and observing where they stuck their tongues out, it should be possible to locate mines without risk either to people or to expensive mine-detecting machinery.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>G</B> It is hard to see if a moth is sticking its tongue out at a range of several hundred metres. But Dr Smith has thought of a way round that. He can sense when a moth is blowing a raspberry by attaching a wire to the muscle that controls the insect's tongue, and using it to transmit a signal via one of Dr Hildebrand's tiny electronic backpacks.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>H</B> If lepidopteran mine detectors work, they could be the start of a new industry. The rate at which video cameras are being miniaturised means that they, too, may soon be light enough for insects to carry. That would have obvious military applications, even if one countermeasure is obvious, too: surrounding sensitive installations with giant candles.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Glossary</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>1 landmine</B>: a bomb which is hidden in the ground and explodes when a person or vehicle passes over it.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>2 lepidopteran</B>: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The Economist, 4th March 2000.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>17</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">An alternative title for this passage would be …</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[1]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[2]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[3]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">d.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[4]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>18</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This passage has probably been taken from …</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[5]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[6]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[7]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">d.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[8]</FONT>]]></paragraph>
+		</question>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="false">intelligent moths.</answer>
+		</field>
+		<field id="2" group="1" type="i:target" mode="0">
+			<answer correct="false">new developments in microelectronics.</answer>
+		</field>
+		<field id="3" group="1" type="i:target" mode="0">
+			<answer correct="true">new ways to harness nature for human work.</answer>
+		</field>
+		<field id="4" group="1" type="i:target" mode="0">
+			<answer correct="false">recent discoveries in lepidopteran behaviour.</answer>
+		</field>
+		<field id="5" group="2" type="i:target" mode="0">
+			<answer correct="false">a journal of neurobiology.</answer>
+		</field>
+		<field id="6" group="2" type="i:target" mode="0">
+			<answer correct="true">a popular science magazine.</answer>
+		</field>
+		<field id="7" group="2" type="i:target" mode="0">
+			<answer correct="false">a formal research report.</answer>
+		</field>
+		<field id="8" group="2" type="i:target" mode="0">
+			<answer correct="false">a wildlife magazine.</answer>
+		</field>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The two questions in this exercise are 'summary' questions, in that they refer to the text as a whole.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 17</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Choose a title that suits the whole passage, not just certain sections or information it contains. What news is the writer reporting?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 18</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Consider the style and tone of this passage. How serious is it? Is there any humour in the passage? Are there any references or footnotes of the kind that often appear in academic journals? What is the overall subject matter? Would non-specialists understand it?</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

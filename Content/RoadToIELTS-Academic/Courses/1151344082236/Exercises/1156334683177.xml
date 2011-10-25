@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Analyze" name="And%20then%20there%20were%20none" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitScreen="true"/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="630" height="0" style="headline" tabs="0" indent="0">
+		<![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0">
+		Do the statements on the right agree with the information given in the reading passage on the left? TRUE - if the statement is true according to the passage; FALSE - if the statement is false according to the passage; NOT GIVEN - if the information is not given in the passage.
+		</FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There have been seven great extinctions throughout the history of the Earth.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[1]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[2]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[3]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">According to some experts, the variety of living organisms on Earth may almost be halved over the next fifty years.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[4]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[5]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[6]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Scientists are not certain that the ivory-billed woodpecker is extinct in the wild.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[7]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[8]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[9]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">A greater proportion of plant species than bird species may become extinct.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[10]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[11]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[12]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">No species of primate have yet become extinct.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[13]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[14]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[15]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Most insects are pests for the agricultural industry.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[16]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[17]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[18]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Regions with a large variety of species are less able to cope with environmental changes.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[19]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[20]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[21]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'Keystone' species are the most endangered.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[22]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[23]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[24]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The importance of a species may not be known until it is too late.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[25]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[26]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[27]</FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="44" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="256" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Fires have caused a large number of extinctions.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">a.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[28]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">b.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[29]</FONT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="25" y="+0" x="60"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13">c.</FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="250" y="=" x="90"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0000FF">[30]</FONT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:target" group="1" id="1">
+			<answer correct="false">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="1" id="2">
+			<answer correct="true">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="1" id="3">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="4">
+			<answer correct="true">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="5">
+			<answer correct="false">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="2" id="6">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="7">
+			<answer correct="true">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="8">
+			<answer correct="false">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="3" id="9">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="10">
+			<answer correct="true">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="11">
+			<answer correct="false">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="4" id="12">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="13">
+			<answer correct="false">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="14">
+			<answer correct="true">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="5" id="15">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="16">
+			<answer correct="false">True </answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="17">
+			<answer correct="true">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="6" id="18">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="19">
+			<answer correct="false">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="20">
+			<answer correct="true">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="7" id="21">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="22">
+			<answer correct="false">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="23">
+			<answer correct="false">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="8" id="24">
+			<answer correct="true">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="25">
+			<answer correct="true">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="26">
+			<answer correct="false">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="9" id="27">
+			<answer correct="false">Not Given</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="28">
+			<answer correct="false">True</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="29">
+			<answer correct="false">False</answer>
+		</field>
+		<field mode="0" type="i:target" group="10" id="30">
+			<answer correct="true">Not Given</answer>
+		</field>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text">
+		<![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 1<br><br>Notice the tense used (present perfect). Another way this statement could be expressed is 'Seven great extinctions have already taken place.'</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<texts>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+16" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#0000FF" LETTERSPACING="0" KERNING="0"><B>And then there were none</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">"We're on the verge of the seventh great extinction," says Harvard biologist E. O. Wilson. While cosmic accident or climate change used to be the cause of such biological cataclysms, humans alone are responsible for nearly every loss of species in the past few thousand years. Since the advent of Homo sapiens, Wilson says, extinctions have occurred 100 to 100,000 times faster than before, principally because we have degraded and destroyed forests, spread agriculture, introduced animals into new environments, and polluted the air, water, and soil.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There are at least 10 million species on Earth, and experts estimate we're killing 30,000 of them each year, a pace that appears to be increasing. Some scenarios predict that nearly 50 percent of all living species could be lost in the next 50 years. Think of an Earth without elephants, orangutans, giant pandas, rhinoceroses, dolphins, macaws, frogs, frankincense. That's the kind of world we may be entering, an everlasting bear market in species – a period Wilson dubs the Age of Loneliness.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Habitat loss is the single biggest problem. In Hawaii, two thirds of the original forest cover has been destroyed, half of the islands' 140 native bird species are extinct, and 30 more are endangered.  Birds of wider range are dying too. The Spix's macaw, native to Brazil, is down to a single individual in the wild, and the ivory-billed woodpecker, which once ranged over the southeastern United States, is probably gone altogether. Twelve percent of all surviving bird species worldwide are endangered, reports a BirdLife International study. Roughly a quarter of the world's plant species will be threatened over the next few decades, says Peter Wyse Jackson, of Botanic Gardens Conservation International.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Our primate cousins are particularly vulnerable because they depend on shrinking tropical forests and endangered ecosystems for foraging. Although most have made it through the last 100 years, an estimated 20 percent – some 120 types of prosimians, monkeys, and apes – will be at severe risk of extinction within the next two decades. Among them are some whose faces are as appealing as their names, including the Tonkin snub-nosed monkey, the golden lion tamarin, and Miss Waldron's red colobus monkey.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Exactly what we're losing isn't known, because about 90 percent of the disappeared are unnamed, unknown invertebrates – mostly insects – that thrive in tropical rain forests.  And insects make the world as we know it work. They play a crucial role in pollination, they devour detritus, and they contain pests. "If we lost half of all insects," says Norman Myers, British ecologist and author of <I>The Sinking Ark</I>, "our agricultural system would be in deep trouble in just one year."</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Indeed, our own survival depends on the survival of other species. Studies show that the more biologically diverse a region is, the more species it contains and the more resilient it is to environmental perturbations. And ecologists already know that the loss of a species can have a devastating ripple effect. David Hawksworth, former director of the International Mycological Institute, estimates that every time one plant becomes extinct, at least 15 other organisms also vanish.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">To understand how ecological systems stay healthy, biologists study so-called keystone species, whose behavior helps shape the distinctive features of an ecosystem. The elephant, for example, digs water holes, clears paths in the forest, replenishes soil, and spreads seed through its dung (some seeds will not germinate unless they have passed through an elephant's digestive system). Sea otters control the population of sea urchins that feed on kelp, thus protecting kelp forests, which in turn shelter a variety of marine life and protect coastlines from wave erosion. Unfortunately, we may not learn that a species is a keystone until it's gone and takes others with it.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">"If someone burned down the Louvre, you can be sure people would be outraged," says Russell Mittermeier, president of Conservation International. "We're burning down nature's Louvre, and no one pays attention."</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="" style="normal" height="0" width="282" y="+0" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Jack McClintock, Discover Magazine, Vol.21, No.10, October 2000.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

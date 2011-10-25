@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Quiz" name="Watch%20a%20candidate" id="0">
+	<settings>
+		<marking/>
+		<feedback groupBased="true" wrongOnly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Here is the card with a topic for Part 2. Read it. Then watch Alexandra and answer the questions that follow.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+200" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Alexandra explains that generally she likes advertisements with good music. Is this part of the instructions on the card? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[1]<tab>[2]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Does she explain what the advertisement showed? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[3]<tab>[4]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Does she say who it was aimed at? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[5]<tab>[6]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Does she explain what effect it had on her? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[7]<tab>[8]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Does she explain why she finds this type of advert admirable or not? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[9]<tab>[10]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Does she go on until the examiner stops her? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[11]<tab>[12]</B></FONT>]]></paragraph>
+		</question>
+		<question>
+			<paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7"><![CDATA[<tab><B>#q</B>]]></paragraph>
+			<paragraph indent="0" tabs="" style="normal" height="0" width="310" y="=" x="55" type="question"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Does she take notes at the beginning? </FONT></P></TEXTFORMAT>]]></paragraph>
+			<paragraph indent="0" tabs="2,143" style="normal" height="0" width="319" y="+0" x="80"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[13]<tab>[14]</B></FONT>]]></paragraph>
+		</question>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="1" group="1" type="i:target" mode="0">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field id="2" group="1" type="i:target" mode="0">
+			<answer correct="true">No</answer>
+		</field>
+		<field id="3" group="2" type="i:target" mode="0">
+			<answer correct="true">Yes</answer>
+		</field>
+		<field id="4" group="2" type="i:target" mode="0">
+			<answer correct="false">No</answer>
+		</field>
+		<field id="5" group="3" type="i:target" mode="0">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field id="6" group="3" type="i:target" mode="0">
+			<answer correct="true">No</answer>
+		</field>
+		<field id="7" group="4" type="i:target" mode="0">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field id="8" group="4" type="i:target" mode="0">
+			<answer correct="true">No</answer>
+		</field>
+		<field id="9" group="5" type="i:target" mode="0">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field id="10" group="5" type="i:target" mode="0">
+			<answer correct="true">No</answer>
+		</field>
+		<field id="11" group="6" type="i:target" mode="0">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field id="12" group="6" type="i:target" mode="0">
+			<answer correct="true">No</answer>
+		</field>
+		<field id="13" group="7" type="i:target" mode="0">
+			<answer correct="false">Yes</answer>
+		</field>
+		<field id="14" group="7" type="i:target" mode="0">
+			<answer correct="true">No</answer>
+		</field>
+			<media filename="Unit06_e3.flv" y="18" x="370" stretch="false" duration="60" mode="1" id="1003" type="m:video"/>
+			<media filename="MM_SP_004.jpg" y="18" x="15" mode="1" id="1004" type="m:picture"/>
+	</body>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Question 1</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">It is best not to get too far away from the instructions on the card.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 2</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Watch the interview again.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 3</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">She should have, but she didn't.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 4</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">She doesn't explain this, which is a shame as she was asked to do so.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 5</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">It is important to read the card carefully and to make notes before you start.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 6</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">She should have looked at the card again and answered the parts of the task that she hadn't done.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">Question 7</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000">This is probably the biggest mistake she makes in this part of the exam.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="Dropdown" name="Noise%20Problems%20and%20Solutions" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read this sample answer to the writing task in an earlier exercise. Complete the composition by choosing the word or phrase which best fits each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There is no doubt that we have to live with far more noise than in the past, particularly in cities, and this may be the form of pollution which affects us most directly. For example, it has been found that prolonged exposure to high levels of noise can [1] hearing loss and high blood pressure. It may also [2] stress, insomnia and mental problems, including depression. These problems, in turn, often [3] lower productivity at work [4] employees are too tired and stressed to work efficiently.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In order to find effective solutions to the problem, it is necessary to understand what has [5] this increase in noise. There are three main causes. Firstly, there is traffic noise, [6] the ever-increasing number of vehicles on our roads. The second major source of noise in our cities is low-flying aircraft which have either just taken off, or are just landing at local airports. Finally, there is noise [7] neighbours listening to music or watching television at full volume, or using noisy power tools such as drills or lawn mowers.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Clearly, noise is a serious problem. [8] measures should be taken to reduce the amount of noise in our daily lives. Regarding traffic noise, [9] improved soundproofing for buildings near busy roads. In addition, local authorities [10] imposing strict speed limits in residential areas. </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">[11] aircraft noise could be lessened is by building airports further away from urban areas. Moreover, legislation [12] prohibit aeroplanes from flying over built-up areas. As far as noisy neighbours are concerned, [13] for us all to behave more considerately by, for example, turning down the volume of our music or televisions and limiting our use of noisy power tools.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In conclusion, there is no simple solution to the problem. However, if the measures I have suggested were introduced, we would all enjoy a better quality of life. [14] living and working in a quieter environment, people would feel more relaxed and they would be less prone to the physiological and psychological problems that are known to [15] exposure to high levels of noise.</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:dropdown" group="1" id="1">
+			<answer correct="true">lead to</answer>
+			<answer correct="false">be caused by</answer>
+			<answer correct="false">be due to</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="2" id="2">
+			<answer correct="true">give rise to</answer>
+			<answer correct="false">be due to</answer>
+			<answer correct="false">be caused by</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="3" id="3">
+			<answer correct="true">result in</answer>
+			<answer correct="false">result from</answer>
+			<answer correct="false">stem from</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="4" id="4">
+			<answer correct="true">because</answer>
+			<answer correct="false">due to</answer>
+			<answer correct="false">on account of</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="5" id="5">
+			<answer correct="true">brought about</answer>
+			<answer correct="false">resulted from</answer>
+			<answer correct="false">stemmed from</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="6" id="6">
+			<answer correct="true">due to</answer>
+			<answer correct="false">because</answer>
+			<answer correct="false">resulting in</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="7" id="7">
+			<answer correct="true">caused by</answer>
+			<answer correct="false">leading to</answer>
+			<answer correct="false">giving rise to</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="8" id="8">
+			<answer correct="true">It is therefore essential that</answer>
+			<answer correct="false">The most obvious answer for</answer>
+			<answer correct="false">One way in which</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="9" id="9">
+			<answer correct="true">the most obvious answer is</answer>
+			<answer correct="false">it is essential that</answer>
+			<answer correct="false">one way in which</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="10" id="10">
+			<answer correct="true">ought to consider</answer>
+			<answer correct="false">must</answer>
+			<answer correct="false">should</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="11" id="11">
+			<answer correct="true">One way in which</answer>
+			<answer correct="false">One solution for</answer>
+			<answer correct="false">The most obvious answer for</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="12" id="12">
+			<answer correct="true">should</answer>
+			<answer correct="false">might</answer>
+			<answer correct="false">may</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="13" id="13">
+			<answer correct="true">the only effective solution is</answer>
+			<answer correct="false">one way in which</answer>
+			<answer correct="false">it is essential that</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="14" id="14">
+			<answer correct="true">As a result of</answer>
+			<answer correct="false">Because</answer>
+			<answer correct="false">Consequently</answer>
+		</field>
+		<field mode="0" type="i:dropdown" group="15" id="15">
+			<answer correct="true">stem from</answer>
+			<answer correct="false">lead to</answer>
+			<answer correct="false">bring about</answer>
+		</field>
+		<media filename="EN_AW_010.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+		<media name="Exam tip" mode="1" id="2001" type="m:text" />
+	</body>
+	<texts id="2001">
+		<paragraph indent="0" tabs="" style="normal" height="0" width="400" y="+6" x="12" type="text"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In order to analyse the reasons why a problem exists and suggest solutions, you will need to describe ‘cause and effect’ relationships. There are certain phrases, which are useful for this. There are also a number of useful expressions for making suggestions, which are appropriate for this kind of composition.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</texts>
+	<feedback mode="101" id="1">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">1. What follows the gap is a result, not a cause.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="2">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">2. What follows the gap is a result, not a cause.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="3">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">3. What follows the gap is a result, not a cause.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="4">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">4. This needs to be followed with a noun or gerund.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="5">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">5. 'Result from' and 'Stem from' can't be used in the passive voice in this way.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="6">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">6. 'because' needs to be followed by 'of' or by a verb phrase.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">What follows the gap is the cause of traffic noise, not the result.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="7">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">7. What follows the gap is the cause of traffic noise, not the result.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="10">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">10. Modal verbs like this are followed with the infinitive form of the verb. </FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="12">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">12. You need a modal verb for making suggestions.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<feedback mode="101" id="14">
+		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">14. 'because' needs to followed by 'of' or by a verb phrase.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">What follows the gap is a cause, not a result.</FONT></P></TEXTFORMAT>]]></paragraph>
+	</feedback>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

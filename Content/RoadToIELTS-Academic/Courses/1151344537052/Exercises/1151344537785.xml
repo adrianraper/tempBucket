@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exercise version="6.4" type="DragOn" name="Losing%20our%20National%20Treasures" id="0">
+	<settings>
+		<marking/>
+		<feedback wrongOnly="false"/>
+		<buttons/>
+		<exercise dragTimes="1"/>
+		<misc/>
+	</settings>
+	<title>
+		<paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Complete the newspaper article by putting the correct word or phrase into each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+	</title>
+	<noscroll>
+		<paragraph indent="0" tabs="25,159,293,427,550" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[13]</FONT>
+		<tab><FONT COLOR="#0000FF">[14]</FONT>
+		<tab><FONT COLOR="#0000FF">[15]</FONT>
+		<tab><FONT COLOR="#0000FF">[11]</FONT>
+		<tab><FONT COLOR="#0000FF">[12]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph indent="0" tabs="25,159,293,427,550" style="normal" height="0" width="700" y="+0" x="12">
+		<![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="13" FACE="Verdana">
+		<tab><FONT COLOR="#0000FF">[16]</FONT>
+		<tab><FONT COLOR="#0000FF">[19]</FONT>
+		<tab><FONT COLOR="#0000FF">[18]</FONT>
+		<tab><FONT COLOR="#0000FF">[20]</FONT>
+		<tab><FONT COLOR="#0000FF">[17]</FONT>
+		</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+0" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field id="11" group="1" type="i:drag" mode="0">
+			<answer correct="false">auction</answer>
+		</field>
+		<field id="12" group="1" type="i:drag" mode="0">
+			<answer correct="false">art gallery</answer>
+		</field>
+		<field id="13" group="1" type="i:drag" mode="0">
+			<answer correct="false">masterpieces</answer>
+		</field>
+		<field id="14" group="1" type="i:drag" mode="0">
+			<answer correct="false">collector</answer>
+		</field>
+		<field id="15" group="1" type="i:drag" mode="0">
+			<answer correct="false">artefacts</answer>
+		</field>
+		<field id="16" group="1" type="i:drag" mode="0">
+			<answer correct="false">ceramics</answer>
+		</field>
+		<field id="17" group="1" type="i:drag" mode="0">
+			<answer correct="false">sculptures</answer>
+		</field>
+		<field id="18" group="1" type="i:drag" mode="0">
+			<answer correct="false">heritage</answer>
+		</field>
+		<field id="19" group="1" type="i:drag" mode="0">
+			<answer correct="false">exhibit</answer>
+		</field>
+		<field id="20" group="1" type="i:drag" mode="0">
+			<answer correct="false">monuments</answer>
+		</field>
+	</noscroll>
+	<body>
+		<paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Losing our National Treasures</B></FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The government is believed to have arranged a private <FONT COLOR="#0000FF">[1]</FONT> yesterday at which paintings dating back to the sixteenth century were sold. The sale, which took place at a new <FONT COLOR="#0000FF">[2]</FONT>, near the National Museum, has been described as scandalous. The paintings are believed to be <FONT COLOR="#0000FF">[3]</FONT> by the most famous painters of the time and priceless <FONT COLOR="#0000FF">[4]</FONT>'s items. This is just the latest in a series of similar incidents involving the present government. </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In April last year a number of thirteenth century weapons were auctioned off. These <FONT COLOR="#0000FF">[5]</FONT> had been part of a permanent collection at the National Museum. In November there was also a covert sale of <FONT COLOR="#0000FF">[6]</FONT> consisting of ancient Greek clay dishes and pots. It is now thought that the government may have had a hand in the mysterious disappearance of the life-size <FONT COLOR="#0000FF">[7]</FONT> outside the National Museum. These stone figures are part of our cultural <FONT COLOR="#0000FF">[8]</FONT>. </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">What will they sell next? When our museums and galleries have been emptied of every last <FONT COLOR="#0000FF">[9]</FONT>, will the country’s historic <FONT COLOR="#0000FF">[10]</FONT> be next to go under the hammer?</FONT></P></TEXTFORMAT>]]></paragraph>
+		<paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+		<field mode="0" type="i:drop" group="1" id="1">
+			<answer correct="true">auction</answer>
+		</field>
+		<field mode="0" type="i:drop" group="2" id="2">
+			<answer correct="true">art gallery</answer>
+		</field>
+		<field mode="0" type="i:drop" group="3" id="3">
+			<answer correct="true">masterpieces</answer>
+		</field>
+		<field mode="0" type="i:drop" group="4" id="4">
+			<answer correct="true">collector</answer>
+		</field>
+		<field mode="0" type="i:drop" group="5" id="5">
+			<answer correct="true">artefacts</answer>
+		</field>
+		<field mode="0" type="i:drop" group="6" id="6">
+			<answer correct="true">ceramics</answer>
+		</field>
+		<field mode="0" type="i:drop" group="7" id="7">
+			<answer correct="true">sculptures</answer>
+		</field>
+		<field mode="0" type="i:drop" group="8" id="8">
+			<answer correct="true">heritage</answer>
+		</field>
+		<field mode="0" type="i:drop" group="9" id="9">
+			<answer correct="true">exhibit</answer>
+		</field>
+		<field mode="0" type="i:drop" group="10" id="10">
+			<answer correct="true">monuments</answer>
+		</field>
+		<media filename="AC_TV_004.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
+	</body>
+	<template>
+		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>
+		<style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline"/>
+	</template>
+</exercise>

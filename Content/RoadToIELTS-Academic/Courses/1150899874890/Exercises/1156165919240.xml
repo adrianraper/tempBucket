@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercise version="6.4" type="Dropdown" name="Sample%20Answer" id="0">
+  <settings>
+    <marking />
+    <feedback wrongOnly="false" />
+    <buttons />
+    <exercise />
+    <misc />
+  </settings>
+  <title>
+    <paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Read this sample answer to the writing task in the previous exercise. Complete the composition by choosing the word or phrase which best fits each gap.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+  </title>
+  <body>
+    <paragraph type="text" x="12" y="+16" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In many countries mobile phones have become a normal part of daily life for almost everyone, from professionals, such as doctors and lawyers, to young children. Some people, however, [1] to see ownership restricted because of the possible risks these phones pose to our health and the negative impact they are already having on society. But should such restrictions be imposed?</FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">There are some persuasive arguments in favour of restricting ownership. Firstly, radio wave emissions from mobile phones [2] to affect brain activity and some scientists are worried about the effects this may have on the health of children who use such phones. [3] that fewer people would [4] to these risks if restrictions [5]. Furthermore, it is [6] agreed that such measures would [7] the number of traffic accidents caused by people talking on their mobile phones. There is also the social impact to consider. It is now common for a concert, a theatrical performance or even a quiet meal in a restaurant to be disrupted by an inconsiderate mobile phone user. [8] that none of this would be the case if the government [9] ownership to professional use only.</FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">On the other hand, there are strong arguments against such measures. Firstly, it is [10] believed that mobile phones are indispensable in the case of accidents, or when other difficult situations arise, and that everyone should have the right to the protection they offer. Secondly, it is argued that if phone companies [11] more to raise public awareness of the risks posed by radio wave emissions, people would only make short calls from their phones and these risks would then be reduced. Finally, it is [12] pointed out that there will always be a minority of inconsiderate people and that restrictions on ownership would unfairly [13] the majority of considerate users.</FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">To sum up, [14] that some restrictions on ownership to protect young people's health [15] a good thing. However, adults should have the right to use mobile phones if they wish, for both personal and professional purposes.</FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph type="text" x="12" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="_sans" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"> </FONT></P></TEXTFORMAT>]]></paragraph>
+    <paragraph height="0" width="605" y="+16" x="12"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+    <field mode="0" type="i:dropdown" group="1" id="1">
+      <answer correct="true">would like</answer>
+      <answer correct="false">like</answer>
+      <answer correct="false">liked</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="2" id="2">
+      <answer correct="true">are known</answer>
+      <answer correct="false">known</answer>
+      <answer correct="false">have known</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="3" id="3">
+      <answer correct="true">It is claimed</answer>
+      <answer correct="false">I claim</answer>
+      <answer correct="false">It claims</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="4" id="4">
+      <answer correct="true">be exposed</answer>
+      <answer correct="false">exposed</answer>
+      <answer correct="false">expose</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="5" id="5">
+      <answer correct="true">were introduced</answer>
+      <answer correct="false">have been intorduced</answer>
+      <answer correct="false">are introduced</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="6" id="6">
+      <answer correct="true">generally</answer>
+      <answer correct="false">sometimes</answer>
+      <answer correct="false">often</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="7" id="7">
+      <answer correct="true">reduce</answer>
+      <answer correct="false">reduced</answer>
+      <answer correct="false">be reduced</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="8" id="8">
+      <answer correct="true">It is sometimes said</answer>
+      <answer correct="false">We sometimes say</answer>
+      <answer correct="false">They sometimes say</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="9" id="9">
+      <answer correct="true">restricted</answer>
+      <answer correct="false">will restrict</answer>
+      <answer correct="false">restricts</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="10" id="10">
+      <answer correct="true">widely</answer>
+      <answer correct="false">hightly</answer>
+      <answer correct="false">broadly</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="11" id="11">
+      <answer correct="true">did</answer>
+      <answer correct="false">will do</answer>
+      <answer correct="false">do</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="12" id="12">
+      <answer correct="true">often</answer>
+      <answer correct="false">always</answer>
+      <answer correct="false">never</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="13" id="13">
+      <answer correct="true">penalise</answer>
+      <answer correct="false">have penalised</answer>
+      <answer correct="false">penalised</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="14" id="14">
+      <answer correct="true">I believe</answer>
+      <answer correct="false">it is believed</answer>
+      <answer correct="false">I am believed</answer>
+    </field>
+    <field mode="0" type="i:dropdown" group="15" id="15">
+      <answer correct="true">would probably be</answer>
+      <answer correct="false">were probably</answer>
+      <answer correct="false">would not be</answer>
+    </field>
+    <media filename="LC_AW_030.JPG" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" category="YourGraphic" location="" type="m:picture" />
+  </body>
+  <feedback mode="101" id="1">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This is a special use of like meaning 'want'.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="2">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Passive voice is formed with the verb 'be' plus the past participle. Passive voice is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="3">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The writer is not stating an opinion in this paragraph, but reporting facts or commonly held opinions. Passive voice is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="4">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'Would' can't be followed with a past form of the verb. This is the conditional form of the verb, but passive voice is also needed.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="5">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The past tense is needed to show that this is hypothetical.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="6">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">In other words, most people would probably agree that ...</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="7">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'Would' can't be followed with a past form of the verb. Passive voice is not needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="8">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">This is too informal in style.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="9">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">We rarely use 'if' and 'will' together in the same clause. The past tense of the verb is needed here.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="11">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">We rarely use 'if' and 'will' together in the same clause. The past tense is needed to show that this is hypothetical.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="13">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'Would' plus a perfect infinitive is used to refer to past situations. This is not the case here. 'Would' can't be followed with a past form of the verb.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="14">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Now the writer is introducing a personal opinion on the issue. Passive voice doesn't fit here.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <feedback mode="101" id="15">
+    <paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">The 'conditional' form of the verb is needed here.</FONT></P></TEXTFORMAT><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">'Would not be' is grammatically possible, but if you read the next sentence – which beings 'However' – you'll see that this is not what the writer means to say.</FONT></P></TEXTFORMAT>]]></paragraph>
+  </feedback>
+  <template>
+    <style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal" />
+    <style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline" />
+  </template>
+</exercise>
