@@ -345,3 +345,5 @@ INSERT INTO `T_Language` VALUES
 ('GT10','General Training 10-hour'),
 ('GTFull','General Training full');
 
+INSERT INTO `T_Accounts` (`F_RootID`,`F_ProductCode`,`F_MaxStudents`,`F_MaxAuthors`,`F_MaxTeachers`,`F_MaxReporters`,`F_ExpiryDate`,`F_ContentLocation`,`F_LanguageCode`,`F_MGSRoot`,`F_StartPage`,`F_LicenceFile`,`F_LicenceStartDate`,`F_LicenceType`,`F_Checksum`,`F_DeliveryFrequency`,`F_LicenceClearanceDate`,`F_LicenceClearanceFrequency`) 
+VALUES (163,52,999,0,30,30,'2049-12-31 23:59:59',NULL,'AC30',NULL,'','','2011-10-25 00:00:00',1,'32c926512da043c294aafcb08c089e146b279df91c05e9ea0610fba437ec58cc',NULL,NULL,NULL);
