@@ -170,7 +170,7 @@ XML;
 			//		<answer correct="false" source="4" />
 			//	</DropdownQuestion>
 				
-				$newQ = $this->model->questions->addChild("DropdownQuestion");
+				$newQ = $this->model->questions->addChild("DropDownQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
 				$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {

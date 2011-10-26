@@ -64,7 +64,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 					// Only pick up files with just numbers, especially ignore *-new.xml
 					$pattern = '/^([\d]+).xml/is';
 					if (preg_match($pattern, $file, $matches)) {
-						echo $exerciseFolder.$file."$newline";
+						//echo $exerciseFolder.$file."$newline";
 						convertExercise($matches[1]);
 					}
 				}
@@ -73,7 +73,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	}
 } else {
 	// or just a specific one
-	$courseFolder = '/1144338842079';
+	$courseFolder = '/1150976390861';
 	$exerciseFolder = dirname(__FILE__).$contentFolder.$titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
 	$exerciseFolderOut = dirname(__FILE__).$contentFolder.$titleFolderOut.'/Courses/'.$courseFolder.'/Exercises/';
 	$exerciseURL = $contentFolder.$titleFolderOut.'/Courses/'.$courseFolder.'/Exercises/';
@@ -90,7 +90,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1156153794077'; // quiz
 	//$exerciseID = '1317260895296'; // correct mistakes (not R2I)
 	//$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
-	$exerciseID = '1156429192216'; // analyze
+	$exerciseID = '1156153794672'; // Stopgap with splitscreen
 	convertExercise($exerciseID);
 }
 
@@ -121,6 +121,10 @@ function convertExercise($exerciseID) {
 		echo "Had to skip file $infile as xml problems $newline";
 		return false;
 	}
+	// Do you want to only convert certain file types?
+//	if (strtolower($type)!='dropdown')
+//	if (strtolower($type)!='cloze')
+//		return;
 	
 	// Create an internal exercise to hold the data. 
 	// Will we need different classes for different types?

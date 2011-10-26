@@ -66,7 +66,7 @@ EOD;
 		$build =<<< EOD
 <head>
 	<meta name="conversion" type="$exerciseType" date="$now" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[			
 		list {
@@ -86,10 +86,6 @@ EOD;
 			font-weight: bold;
 			color: #3A00FF;	
 		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
 	]]>
 	</style>
 	<script id="settings" type="application/xml">

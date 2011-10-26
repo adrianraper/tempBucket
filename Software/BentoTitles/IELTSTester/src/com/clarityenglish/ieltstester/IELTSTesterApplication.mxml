@@ -34,7 +34,7 @@
 			
 			protected function addedToStage(event:Event):void {
 				// Select the first entry by default
-				buttonBar.selectedIndex = 0;
+				buttonBar.selectedIndex = 2;
 				buttonBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 			}
 			
@@ -58,9 +58,9 @@
 		<s:ButtonBar id="buttonBar" requireSelection="true" change="onButtonBarChange(event)">
 			<s:dataProvider>
 				<s:ArrayCollection>
-					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://claritydevelop/Content/IELTSTester-Dave" />
-					<fx:Object label="Road to IELTS" filename="menu.xml" currentDir="http://claritydevelop/Content/RoadToIELTS2-Academic" />
-					<fx:Object label="30-hour" filename="menu.xml" currentDir="http://claritydevelop/Content/IELTS-Joe" />
+					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://dock.projectbench/Content/IELTSTester-Dave" />
+					<fx:Object label="Leisure (old)" filename="menu.xml" currentDir="http://claritydevelop/Content/RoadToIELTS2-Academic" />
+					<fx:Object label="Last minute" filename="menu-LastMinute.xml" currentDir="http://dock.projectbench/Content/IELTS-Joe" />
 				</s:ArrayCollection>
 			</s:dataProvider>
 		</s:ButtonBar>

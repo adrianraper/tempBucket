@@ -2,7 +2,8 @@
 
 class Text extends Content{
 	   
-	private static $nextID=1;
+	// It is no good having a static like this as it carries on between different exercises in a batch conversion
+	//private static $nextID=1;
 	protected $id;
 	
 	function __construct($xmlObj, $parent) {
@@ -22,8 +23,10 @@ class Text extends Content{
 			}			
 		}
 		// Some related texts will not have an id
+		// Maybe they will always be 1 in that case?
 		if (!$this->id) {
-			$this->id = (string)self::$nextID++;
+			//$this->id = (string)self::$nextID++;
+			$this->id = 1;
 		}			
 			
 		parent::__construct($xmlObj, $parent);
