@@ -28,7 +28,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.
 
 // If you want to see echo stmts, then use plainView
 $plainView=false;
-$batch=true;
+$batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";

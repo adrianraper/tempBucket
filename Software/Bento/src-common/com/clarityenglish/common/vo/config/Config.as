@@ -187,8 +187,10 @@ package com.clarityenglish.common.vo.config {
 			// You might come back with an error rather than valid data
 			if (data.error && data.error.errorNumber>0) {
 				// Accept any error number coming back. You can handle the details later.
-				// TODO. I think this should be a BentoError oject
-				this.error = data.error as BentoError;
+				// This doesn't seem to coerce well, do it a long handed way
+				//this.error = data.error as BentoError;
+				this.error = new BentoError(data.error.errorNumber as uint);
+				this.error.errorContext = data.error.errorContext;
 				//this.errorNumber = data.error.errorNumber;
 				//this.errorDescription = data.error.errorDescription;
 				

@@ -127,7 +127,7 @@ class MediaNode {
 		// Location is merged into filename
 		// TODO. We want to use symbolic folder names that can be evaluated at runtime.
 		//if ($this->location=='shared') {
-			$build.="src=\"../Media/$this->filename\" ";
+			$build.="src=\"../media/$this->filename\" ";
 		//}
 		// Other attributes that just get copied
 		$build.="mode=\"$this->mode\" id=\"$this->id\" ";

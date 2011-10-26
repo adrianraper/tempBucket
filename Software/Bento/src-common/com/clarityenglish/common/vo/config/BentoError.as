@@ -13,7 +13,7 @@ package com.clarityenglish.common.vo.config {
 		/**
 		 * We use numbers as the key, with descriptions and actions
 		 */
-		public var errorNumber:Number;
+		public var errorNumber:uint;
 		public var errorDescription:String;
 		public var errorContext:String;
 

@@ -219,7 +219,7 @@ class Content{
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" />'.$m[3];
+						$buildText.=$m[1].'<input id="'.$m[2].'" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
 						$buildText.=$m[1].'<g id="'.$m[2].'">'.$answer.'</g>'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGETGAP) {

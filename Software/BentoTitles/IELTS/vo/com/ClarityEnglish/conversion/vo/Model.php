@@ -120,9 +120,9 @@ XML;
 			//	<field mode="0" type="i:gap" group="1" id="1">
 			//		<answer correct="true">chess</answer>
 			//	</field>
-			//	<GapFillQuestion source="1" group="1">
+			//	<GapFillQuestion source="q1" block="q1">
 			//		<answer correct="true" value="xxxxx" />
-			//		<answer correct="true" source="yyyyy" />
+			//		<answer correct="true" value="yyyyy" />
 			//	</GapQuestion>
 				
 				$newQ = $this->model->questions->addChild("GapFillQuestion");
@@ -139,16 +139,16 @@ XML;
 			// Each question has its own fields
 			foreach ($this->getParent()->body->getQuestions() as $question) {
 				$newQ = $this->model->questions->addChild("GapFillQuestion");
-				//$newQ->addAttribute('source',$field->getID());
 				// Whilst you can get the group from the field, you can also get it from the question
 				// Ideally we would match to make sure they are the same
 				//$newQ->addAttribute('group',$field->group);
-				$newQ->addAttribute('group','q'.$question->getID());
+				$newQ->addAttribute('source','q'.$question->getID());
 				foreach ($question->getFields() as $field) {
 					// You can have multiple answers per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
-						$newA->addAttribute('source','a'.$field->getID());
+						//$newA->addAttribute('source','a'.$field->getID());
+						$newA->addAttribute('value',$answer->getAnswer());
 						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					}
 					//echo $newQ;
