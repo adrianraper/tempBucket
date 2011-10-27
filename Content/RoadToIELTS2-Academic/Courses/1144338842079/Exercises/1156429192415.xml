@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 	
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_AW_008.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/MM_AW_009.jpg" mode="1" id="1004"  /><p align="left"><font face="verdana" size="13" color="#000000">Chart 1 shows changes in the newspaper industry in Indonesia between 1995 and 1999. During the first four years of this period, the number of newspaper titles published <input id="1" width="100" /> more or less stable. The figure <input id="2" width="100" /> slightly in 1997, but otherwise it <input id="3" width="100" /> between 76 and 77 titles. By 1999, however, the situation <input id="4" width="100" /> dramatically. The number of titles published <input id="5" width="100" /> to over 170. A significant proportion of these new titles <input id="6" width="100" /> tabloids. In fact, by 1999 the number of tabloids <input id="7" width="100" /> from 2 to 30.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Over the same period, the overall circulation figures for Indonesian newspapers <input id="8" width="100" /> dramatically. Between 1995 and 1997 the total circulation <input id="9" width="100" /> steadily to a little over 4.7 million copies. By 1998, however, the figure <input id="10" width="100" /> to over 5 million. It then <input id="11" width="100" /> to just under 4.8 million a year later.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Chart 2; The line graph shows the dramatic increase that <input id="12" width="100" /> since the 1960s in the number of commercial satellites launched, many of which are used to broadcast television signals around the globe. In the 1960s there <input id="13" width="100" /> an average of about 15 satellite launches per year. From that time until the 1980s, the average number of satellites launched <input id="14" width="100" /> every decade. By the 1990s the number of launches <input id="15" width="100" />, reaching an average of approximately 215 per year. It is forecast that by the end of the first decade of this century, the number of new satellites sent into orbit <input id="16" width="100" /> roughly 320 per year. </font></p>
+	<img class="rightFloat" src="../media/MM_AW_008.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/MM_AW_009.jpg" mode="1" id="1004"  /><p align="left"><font face="verdana" size="13" color="#000000">Chart 1 shows changes in the newspaper industry in Indonesia between 1995 and 1999. During the first four years of this period, the number of newspaper titles published <input id="q1" /> more or less stable. The figure <input id="q2" /> slightly in 1997, but otherwise it <input id="q3" /> between 76 and 77 titles. By 1999, however, the situation <input id="q4" /> dramatically. The number of titles published <input id="q5" /> to over 170. A significant proportion of these new titles <input id="q6" /> tabloids. In fact, by 1999 the number of tabloids <input id="q7" /> from 2 to 30.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Over the same period, the overall circulation figures for Indonesian newspapers <input id="q8" /> dramatically. Between 1995 and 1997 the total circulation <input id="q9" /> steadily to a little over 4.7 million copies. By 1998, however, the figure <input id="q10" /> to over 5 million. It then <input id="q11" /> to just under 4.8 million a year later.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Chart 2; The line graph shows the dramatic increase that <input id="q12" /> since the 1960s in the number of commercial satellites launched, many of which are used to broadcast television signals around the globe. In the 1960s there <input id="q13" /> an average of about 15 satellite launches per year. From that time until the 1980s, the average number of satellites launched <input id="q14" /> every decade. By the 1990s the number of launches <input id="q15" />, reaching an average of approximately 215 per year. It is forecast that by the end of the first decade of this century, the number of new satellites sent into orbit <input id="q16" /> roughly 320 per year. </font></p>
 </section>
 <section id="rt2001">
 	

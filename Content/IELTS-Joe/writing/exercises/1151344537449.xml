@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_AW_003s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/AC_AW_003.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><br/><li id="1">6 per cent of New Zealand adults only read poetry.<ol class="answerList"><li><a id="q1" >True</a></li><li><a id="q2" >False</a></li><li><a id="q3" >Not given</a></li></ol><br/></li><br/><li id="2">Poetry is only read by 6 per cent of New Zealand adults.<ol class="answerList"><li><a id="q4" >True</a></li><li><a id="q5" >False</a></li><li><a id="q6" >Not given</a></li></ol><br/></li><br/><li id="3">The majority of New Zealand women read poetry.<ol class="answerList"><li><a id="q7" >True</a></li><li><a id="q8" >False</a></li><li><a id="q9" >Not given</a></li></ol><br/></li><br/><li id="4">Just over a quarter of adults who read poetry in New Zealand are men.<ol class="answerList"><li><a id="q10" >True</a></li><li><a id="q11" >False</a></li><li><a id="q12" >Not given</a></li></ol><br/></li><br/><li id="5">About two-thirds of adults who read fiction in New Zealand are women.<ol class="answerList"><li><a id="q13" >True</a></li><li><a id="q14" >False</a></li><li><a id="q15" >Not given</a></li></ol><br/></li><br/><li id="6">All men and women in New Zealand read fiction.<ol class="answerList"><li><a id="q16" >True</a></li><li><a id="q17" >False</a></li><li><a id="q18" >Not given</a></li></ol><br/></li><br/><li id="7">Fiction is the most popular kind of book among New Zealand adults.<ol class="answerList"><li><a id="q19" >True</a></li><li><a id="q20" >False</a></li><li><a id="q21" >Not given</a></li></ol><br/></li><br/><li id="8">Most New Zealand adults read fiction.<ol class="answerList"><li><a id="q22" >True</a></li><li><a id="q23" >False</a></li><li><a id="q24" >Not given</a></li></ol><br/></li><br/><li id="9">44 per cent of the New Zealand population read non-fiction.<ol class="answerList"><li><a id="q25" >True</a></li><li><a id="q26" >False</a></li><li><a id="q27" >Not given</a></li></ol><br/></li><br/><li id="10">In New Zealand more women than men read non-fiction.<ol class="answerList"><li><a id="q28" >True</a></li><li><a id="q29" >False</a></li><li><a id="q30" >Not given</a></li></ol><br/></li><br/><li id="11">45 per cent of New Zealand men read non-fiction.<ol class="answerList"><li><a id="q31" >True</a></li><li><a id="q32" >False</a></li><li><a id="q33" >Not given</a></li></ol><br/></li><br/><li id="12">Over half of the adult population of New Zealand do not read anything at all.<ol class="answerList"><li><a id="q34" >True</a></li><li><a id="q35" >False</a></li><li><a id="q36" >Not given</a></li></ol><br/></li></ol>
+	<img class="rightFloat" src="../media/AC_AW_003s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/AC_AW_003.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><br/><li id="1">6 per cent of New Zealand adults only read poetry.<ol class="answerList"><li><a id="q1" >True</a></li><li><a id="q2" >False</a></li><li><a id="q3" >Not given</a></li></ol><br/></li><br/><li id="2">Poetry is only read by 6 per cent of New Zealand adults.<ol class="answerList"><li><a id="q4" >True</a></li><li><a id="q5" >False</a></li><li><a id="q6" >Not given</a></li></ol><br/></li><br/><li id="3">The majority of New Zealand women read poetry.<ol class="answerList"><li><a id="q7" >True</a></li><li><a id="q8" >False</a></li><li><a id="q9" >Not given</a></li></ol><br/></li><br/><li id="4">Just over a quarter of adults who read poetry in New Zealand are men.<ol class="answerList"><li><a id="q10" >True</a></li><li><a id="q11" >False</a></li><li><a id="q12" >Not given</a></li></ol><br/></li><br/><li id="5">About two-thirds of adults who read fiction in New Zealand are women.<ol class="answerList"><li><a id="q13" >True</a></li><li><a id="q14" >False</a></li><li><a id="q15" >Not given</a></li></ol><br/></li><br/><li id="6">All men and women in New Zealand read fiction.<ol class="answerList"><li><a id="q16" >True</a></li><li><a id="q17" >False</a></li><li><a id="q18" >Not given</a></li></ol><br/></li><br/><li id="7">Fiction is the most popular kind of book among New Zealand adults.<ol class="answerList"><li><a id="q19" >True</a></li><li><a id="q20" >False</a></li><li><a id="q21" >Not given</a></li></ol><br/></li><br/><li id="8">Most New Zealand adults read fiction.<ol class="answerList"><li><a id="q22" >True</a></li><li><a id="q23" >False</a></li><li><a id="q24" >Not given</a></li></ol><br/></li><br/><li id="9">44 per cent of the New Zealand population read non-fiction.<ol class="answerList"><li><a id="q25" >True</a></li><li><a id="q26" >False</a></li><li><a id="q27" >Not given</a></li></ol><br/></li><br/><li id="10">In New Zealand more women than men read non-fiction.<ol class="answerList"><li><a id="q28" >True</a></li><li><a id="q29" >False</a></li><li><a id="q30" >Not given</a></li></ol><br/></li><br/><li id="11">45 per cent of New Zealand men read non-fiction.<ol class="answerList"><li><a id="q31" >True</a></li><li><a id="q32" >False</a></li><li><a id="q33" >Not given</a></li></ol><br/></li><br/><li id="12">Over half of the adult population of New Zealand do not read anything at all.<ol class="answerList"><li><a id="q34" >True</a></li><li><a id="q35" >False</a></li><li><a id="q36" >Not given</a></li></ol><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. The six per cent who read poetry may also be included in the 48 per cent for fiction or the 44 per cent for non-fiction, but we don't know for sure.</p>

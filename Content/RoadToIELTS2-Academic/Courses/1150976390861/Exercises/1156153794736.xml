@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -55,7 +37,7 @@
 	<span id="a30" draggable="true">squash</span><span id="a25" draggable="true">rock climbing</span><span id="a22" draggable="true">hiking</span><span id="a19" draggable="true">cycling</span><span id="a29" draggable="true">snorkelling</span><span id="a28" draggable="true">snooker</span><span id="a27" draggable="true">skiing</span><span id="a24" draggable="true">ice hockey</span><span id="a23" draggable="true">horse riding</span><span id="a17" draggable="true">baseball</span><span id="a20" draggable="true">football</span><span id="a32" draggable="true">tennis</span><span id="a18" draggable="true">a board game</span><span id="a26" draggable="true">scuba diving</span><span id="a31" draggable="true">table tennis</span><span id="a21" draggable="true">golf</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/LE_TV_005.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">ball, bat, cap, diamond, field, gloves, helmet, home run, run  <input id="q1" type="droptarget" /></li><li id="2">board, dice, pieces  <input id="q2" type="droptarget" /></li><li id="3">gears, handlebars, helmet, pedals, saddle  <input id="q3" type="droptarget" /></li><li id="4">ball, boots, goal, pitch, referee  <input id="q4" type="droptarget" /></li><li id="5">ball, club, course, flag, green, hole, tee  <input id="q5" type="droptarget" /></li><li id="6">hiking boots, map, rucksack  <input id="q6" type="droptarget" /></li><li id="7">crop, hat, reins, saddle, stirrups  <input id="q7" type="droptarget" /></li><li id="8">puck, rink, skates, stick  <input id="q8" type="droptarget" /></li><li id="9">climbing shoes, harness, helmet, rope  <input id="q9" type="droptarget" /></li><li id="10">air tank, flippers, mask, weight belt, wetsuit  <input id="q10" type="droptarget" /></li><li id="11">boots, goggles, poles, ski suit, skis, slopes  <input id="q11" type="droptarget" /></li><li id="12">balls, chalk, cue, pocket, table, triangle <input id="q12" type="droptarget" /></li><li id="13">flippers, mask, snorkel, swimsuit  <input id="q13" type="droptarget" /></li><li id="14">ball, court, racket  <input id="q14" type="droptarget" /></li><li id="15">ball, bat, net, table  <input id="q15" type="droptarget" /></li><li id="16">ball, court, net, racket, set, umpire  <input id="q16" type="droptarget" /></li></ol>
+	<img class="rightFloat" src="../media/LE_TV_005.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">ball, bat, cap, diamond, field, gloves, helmet, home run, run  <input id="q1" type="droptarget" /></li><li id="2">board, dice, pieces  <input id="q2" type="droptarget" /></li><li id="3">gears, handlebars, helmet, pedals, saddle  <input id="q3" type="droptarget" /></li><li id="4">ball, boots, goal, pitch, referee  <input id="q4" type="droptarget" /></li><li id="5">ball, club, course, flag, green, hole, tee  <input id="q5" type="droptarget" /></li><li id="6">hiking boots, map, rucksack  <input id="q6" type="droptarget" /></li><li id="7">crop, hat, reins, saddle, stirrups  <input id="q7" type="droptarget" /></li><li id="8">puck, rink, skates, stick  <input id="q8" type="droptarget" /></li><li id="9">climbing shoes, harness, helmet, rope  <input id="q9" type="droptarget" /></li><li id="10">air tank, flippers, mask, weight belt, wetsuit  <input id="q10" type="droptarget" /></li><li id="11">boots, goggles, poles, ski suit, skis, slopes  <input id="q11" type="droptarget" /></li><li id="12">balls, chalk, cue, pocket, table, triangle <input id="q12" type="droptarget" /></li><li id="13">flippers, mask, snorkel, swimsuit  <input id="q13" type="droptarget" /></li><li id="14">ball, court, racket  <input id="q14" type="droptarget" /></li><li id="15">ball, bat, net, table  <input id="q15" type="droptarget" /></li><li id="16">ball, court, net, racket, set, umpire  <input id="q16" type="droptarget" /></li></ol>
 </section>
 </body>
 </bento>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/><answer source="a6" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="I " correct="true"/><answer value="G " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="A " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="J " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="F " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="B " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="G " correct="true"/><answer value="G " correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -52,9 +34,9 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/DD_AR_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">a technical achievement by Nepalese farmers  <input id="q1" width="100" /></li><li id="2">the difficulties facing farmers in developing countries  <input id="q2" width="100" /></li><li id="3">a more modern method of irrigation  <input id="q3" width="100" /></li><li id="4">land use and time of year  <input id="q4" width="100" /></li><li id="5">factors which make Nepal worth studying  <input id="q5" width="100" /></li><li id="6">the spread of terrace farming  <input id="q6" width="100" /></li></ol>
+	<img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">a technical achievement by Nepalese farmers  <input id="q1" width="100" /></li><li id="2">the difficulties facing farmers in developing countries  <input id="q2" width="100" /></li><li id="3">a more modern method of irrigation  <input id="q3" width="100" /></li><li id="4">land use and time of year  <input id="q4" width="100" /></li><li id="5">factors which make Nepal worth studying  <input id="q5" width="100" /></li><li id="6">the spread of terrace farming  <input id="q6" width="100" /></li></ol>
 </section>
-<section id="rt44">
+<section id="readingText">
 	<p align="left"><font color="#0000ff"><b>The Mountain Sculptors</b></font></p><p align="left"><font color="#000000"><b>A</b>  The grandest of all human sculptures are, in fact, the work of the planet's poorest people. Unable to find a job or a plot of land in the valley, the most disadvantaged people of the developing world carve mountains to grow their food. The problem with terraced mountainsides is that they hide a cruel irony. While many would agree that mountain farming is a visual success, there is much less accord about its viability. Today, two-thirds of the non-irrigated farmland in developing countries suffers from some degree of limitation on its productivity:  acidity, aridity, salinity or erosion. Ten percent of this land, located on the flanks of mountains, is especially vulnerable to erosion. In many of these lands, where on average people can rely on plots of land measuring only 30 meters by 50 meters, the mountains are under a state of siege.</font></p><p align="left"><font color="#000000"><b>B</b>  Nepal is a good example of a country where the limited supply of farmland is under constant and increasing demographic pressure. With the highest mountains in the world, and one of the fastest-growing populations (2.6 percent), the Kingdom of Nepal represents a veritable laboratory for studying the impact of farming on mountains. Few Alpine environments have been so thoroughly shaped by man as the middle ranges of Nepal, located between the peaks of the high Himalayas to the north and the Indian plain to the south.</font></p><p align="left"><font color="#000000"><b>C </b> Since 1989, a team from the International Centre for Integrated Mountain Development (ICIMOD), mainly funded by the Swiss Agency for Development and Cooperation and with support from Canada's International Development Research Centre, has been studying farming in the valley of the Jhikhu River, located 40 kilometers to the east of Kathmandu. The Nepalese team also includes Swiss and Canadian scientists.</font></p><p align="left"><font color="#000000"><b>D </b> After 10 years of research, scientists examining this valley of 11,000 hectares, located at altitudes of between 750 and 2,100 meters above sea level and inhabited by approximately 33,000 people, have painted a picture of a land that is on the brink of exhaustion. Experts are full of praise for the skill, the spirit of enterprise and the hard work of the inhabitants of Jhikhu Khola (khola means "river" in Nepalese). But they fear that the increasingly intense exploitation of every square meter of soil will be seen as folly by future generations of archeologists.</font></p><p align="left"><b>E</b>  Traditionally, the low walls that separate the fields have served as footpaths. Yet today it is wise to look carefully where one steps when walking along the walls between the terraces of Jhikhu Khola as one is just as likely to crush a potato plant there as in the middle of the field.</p><p align="left"><font color="#000000"><b>F</b>  Putting these walls to use is just one of the many signs of the intense farming fever that has seized the valley. Traditionally, irrigated terraces were used to grow rice in the rainy season, and then wheat and potatoes when the land dried out. On those terraces that depend exclusively on rainwater, the traditional crops have been millet or corn. In the 1980s, it was common to take only one annual harvest from a plot of land. Yet Bhuban Shrestha, a geographer with ICIMOD, and Sandra Brown from the University of British Columbia have found that the farmers of Jhikhu Khola now take two or three harvests every year. A growing proportion of families are planting as many as four crops in succession on their parcels of land. "What this means," says Hans Schreier of the University of British Columbia, "is that the soil never has a chance to rest for more than three or four days between crops. You have rice, followed by wheat, followed by corn. And this goes on year in and year out. Crops are being harvested so frequently that we must ask ourselves: how long can we keep up this rhythm?"</font></p><p align="left"><b>G </b> The tremendous energy and drive of the farmers of Jhikhu Khola, whose numbers are growing by 3.1 percent each year, is leading them to cultivate ever more inappropriate soils. Shrestha and Brown calculate that two-thirds of the lands that were cleared between 1972 and 1990 were on slopes with a gradient steeper than 20 percent. Even slopes of 36 to 49 percent that were once covered by trees and brush are now under cultivation. By way of comparison, the slope of a standard department store escalator is between 30 and 35 percent.</p><p align="left"><b>H</b>  Most of the valleys of Nepal receive abundant rainfall; the monsoon brings between 1.8 and 3.2 meters of water every year to Jhikhu Khola. Yet Juerg Merz, a Swiss hydrologist, has found that terraces in the higher part of the valley are already suffering from a shortage of water, while those at lower levels will soon face the same threat.</p><p align="left"><b>I</b>  The extraordinary system of traditional irrigation is a marvel of engineering.  From the headwaters of the valley, water is fed into the channels from each side of the river. The channels run parallel to the river on its course down into the valley, but their slope is much more gentle, and their relative height above the riverbed becomes greater as it descends. In this way Nepalese farmers have for centuries been able to bring water to the slopes of their mountains without the benefit of pumps.</p><p align="left"><b>J</b>  Yet this water supply is no longer enough to sustain today's vegetable crops during the dry season. In the space of a few years, the number of motorized pumps has multiplied. In the 1998-1999 season alone, at least a hundred pumps were installed.</p><p align="left"><b>K</b>  Because of the deforestation of the Himalayas, Nepalese farmers are widely thought to be responsible for the disastrous flooding and sedimentation that afflict the rivers of Bangladesh and India. Yet the reality is more complex.</p><p align="left"><b>L</b>  Initially, scientists believed that the soil carried away by the rains was lost forever. Yet the terraces are arranged in such a way that the soil washed from one terrace will be captured by the next. Unfortunately, it is generally the poorest farmers who cultivate the highest terraces, and soil lost to them is soil gained for the richer farmers in the lower reaches of the valley.</p><p align="left">Jean-Marc Fleury, IDRC Briefing No. 5, March 2000.</p>
 </section>
 <section id="rt2001">

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit03_e5.flv" mode="1" id="1003"  /><p align="left">You can travel on <input id="1" width="100" /> or by <input id="2" width="100" />.You can take some <input id="3" width="100" /> on the <input id="4" width="100" />.Lots of people <input id="5" width="100" /> by <input id="6" width="100" />.Or you can just <input id="7" width="100" /> a <input id="8" width="100" />.</p><p align="left"><font size="2"></font></p>
+	<video class="rightFloat" src="../media/Unit03_e5.flv" mode="1" id="1003"  /><p align="left">You can travel on <input id="q1" /> or by <input id="q2" />.You can take some <input id="q3" /> on the <input id="q4" />.Lots of people <input id="q5" /> by <input id="q6" />.Or you can just <input id="q7" /> a <input id="q8" />.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

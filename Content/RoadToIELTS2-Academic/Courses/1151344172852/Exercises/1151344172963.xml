@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/><answer source="a6" correct="true"/><answer source="a6" correct="true"/><answer source="a6" correct="true"/><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/><answer source="a7" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="in part-time jobs " correct="true"/><answer value="part time jobs" correct="true"/><answer value="part-time jobs" correct="true"/><answer value="in part-time employment" correct="true"/><answer value="in part time jobs" correct="true"/><answer value="part time" correct="true"/><answer value="part-time" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="service industries " correct="true"/><answer value="the service industry" correct="true"/><answer value="service industries" correct="true"/><answer value="the service industries" correct="true"/><answer value="services" correct="true"/><answer value="the services" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="their husbands " correct="true"/><answer value="husbands" correct="true"/><answer value="husband" correct="true"/><answer value="their husband" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="their husbands " correct="true"/><answer value="40" correct="true"/><answer value="aged forty" correct="true"/><answer value="aged 40" correct="true"/><answer value="aged over forty" correct="true"/><answer value="aged over 40" correct="true"/><answer value="over forty" correct="true"/><answer value="over 40" correct="true"/><answer value="forty" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="fifties " correct="true"/><answer value="50s" correct="true"/><answer value="50's" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="their house " correct="true"/><answer value="their home" correct="true"/><answer value="the house" correct="true"/><answer value="the home" correct="true"/><answer value="their houses" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="aged over forty " correct="true"/><answer value="40" correct="true"/><answer value="aged forty" correct="true"/><answer value="aged 40" correct="true"/><answer value="aged over forty" correct="true"/><answer value="aged over 40" correct="true"/><answer value="over forty" correct="true"/><answer value="over 40" correct="true"/><answer value="forty" correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_LN_005.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/WB_LN2b.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><tab/><b>6</b>Compared to men, women are more prepared to work <input id="q1" width="100" />.<tab/><b>7</b>The growth in <input id="q2" width="100" /> has led to an increase in the rate of female employment.<tab/><b>8</b>Female managers often have higher incomes than <input id="q3" width="100" />.<tab/><b>9</b>Female managers often employ <input id="q4" width="100" /> in their companies.<tab/><b>10</b>Husbands of female managers often retire in their <input id="q5" width="100" />.<tab/><b>11</b>Men and women sometimes reverse roles, with men looking after <input id="q6" width="100" />.<tab/><b>12</b>The people who have greatest difficulty in role reversal are <input id="q7" width="100" />.</ol>
+	<img class="rightFloat" src="../media/WB_LN_005.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/WB_LN2b.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><tab/><b>6</b>Compared to men, women are more prepared to work <input id="q1" width="100" />.<tab/><b>7</b>The growth in <input id="q2" width="100" /> has led to an increase in the rate of female employment.<tab/><b>8</b>Female managers often have higher incomes than <input id="q3" width="100" />.<tab/><b>9</b>Female managers often employ <input id="q4" width="100" /> in their companies.<tab/><b>10</b>Husbands of female managers often retire in their <input id="q5" width="100" />.<tab/><b>11</b>Men and women sometimes reverse roles, with men looking after <input id="q6" width="100" />.<tab/><b>12</b>The people who have greatest difficulty in role reversal are <input id="q7" width="100" />.</ol>
 </section>
 <section id="fb1">
 	<p align="left">6. Mary says that women are willing to go into part-time work. In other words, more prepared to work part time.</p>

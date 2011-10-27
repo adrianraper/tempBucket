@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="D " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="F " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="E " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="B " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="A " correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -76,7 +58,7 @@
 	
 		<p align="left">We saw in Unit 1 that you can organise your reports by grouping information into paragraphs. Good writers include a topic sentence at the beginning of each paragraph to act as a 'signpost' for the reader. The topic sentence tells the reader what aspect of the table or chart the coming paragraph will deal with. The paragraphs in your reports should include topic sentences of this kind.</p>
 </section>
-<section id="rt10">
+<section id="readingText">
 	<p align="left"><b>A. </b>The figures show the average number of trips made per year in urban and rural areas in the UK.</p><p align="left"><b>B.</b> The table compares British rural and urban areas in terms of average distances travelled over the year.</p><p align="left"><b>C.</b> The table seems to suggest that, for most forms of transport, it is becoming safer to travel about Britain.</p><p align="left"><b>D.</b> The table shows how the top ten holiday destinations for 1999 were ranked.</p><p align="left"><b>E.</b> There are clearly large differences between the relative safety of each mode of transport in the UK.</p><p align="left"><b>F.</b> Tourist numbers grew at very different rates in the world's top ten tourist destinations between 1998 and 1999.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +27,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/ST_WT1.jpg" mode="16" id="1004"  />Look carefully at the diagram and complete the report by typing an appropriate form of one of the verbs provided in each gap. In each case, decide whether you need active or passive voice and remember to use the correct tense.
+	<img class="rightFloat" src="../media/ST_WT1.jpg" mode="16" id="1004"  />Look carefully at the diagram and complete the report by typing an appropriate form of one of the verbs provided in each gap. In each case, decide whether you need active or passive voice and remember to use the correct tense.
 		
 		Writing Task 1
 </header>
@@ -54,7 +36,7 @@
 	
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/ST_WR1s.jpg" mode="1" id="1004"  /><img class="leftFloat" src="../Media/ST_WR1.jpg" mode="16" id="1005"  /><p align="left">The flow chart shows how animal remains can <input id="1" width="100" /> through a process known as replacement.</p><p align="left">The animal <input id="2" width="100" /> on the banks of a river or lake and the flow of rainwater <input id="3" width="100" /> its body in. It then <input id="4" width="100" /> to the bottom, where its body <input id="5" width="100" /> with sediment which <input id="6" width="100" /> into the lake or river and settles on the bed to form layers. Consequently, the remains <input id="7" width="100" /> in a protective environment where fossilisation can take place.</p><p align="left">Over time the soft tissues decay and sediment gradually <input id="8" width="100" /> the resultant cavities. The hard mineral parts such as bones and teeth, however, are left behind. Eventually, the river or lake <input id="9" width="100" /> with sediment layers. Due to the enormous pressure and heat caused by the weight of the upper layers, the lower layers <input id="10" width="100" /> into rock.</p><p align="left"><font color="#000000">Ground water rich in minerals such as calcite and silica slowly seeps through the rock and over the animal’s remains. Eventually, these hard mineral parts <input id="11" width="100" /> and dissolve into the ground water. As a result, cavities <input id="12" width="100" /> in the rock. Subsequently, these cavities <input id="13" width="100" /> with minerals.</font></p><p align="left">In this way, the original animal parts <input id="14" width="100" /> with mineral deposits and a fossil <input id="15" width="100" />.</p>
+	<img class="rightFloat" src="../media/ST_WR1s.jpg" mode="1" id="1004"  /><img class="leftFloat" src="../media/ST_WR1.jpg" mode="16" id="1005"  /><p align="left">The flow chart shows how animal remains can <input id="q1" /> through a process known as replacement.</p><p align="left">The animal <input id="q2" /> on the banks of a river or lake and the flow of rainwater <input id="q3" /> its body in. It then <input id="q4" /> to the bottom, where its body <input id="q5" /> with sediment which <input id="q6" /> into the lake or river and settles on the bed to form layers. Consequently, the remains <input id="q7" /> in a protective environment where fossilisation can take place.</p><p align="left">Over time the soft tissues decay and sediment gradually <input id="q8" /> the resultant cavities. The hard mineral parts such as bones and teeth, however, are left behind. Eventually, the river or lake <input id="q9" /> with sediment layers. Due to the enormous pressure and heat caused by the weight of the upper layers, the lower layers <input id="q10" /> into rock.</p><p align="left"><font color="#000000">Ground water rich in minerals such as calcite and silica slowly seeps through the rock and over the animal’s remains. Eventually, these hard mineral parts <input id="q11" /> and dissolve into the ground water. As a result, cavities <input id="q12" /> in the rock. Subsequently, these cavities <input id="q13" /> with minerals.</font></p><p align="left">In this way, the original animal parts <input id="q14" /> with mineral deposits and a fossil <input id="q15" />.</p>
 		<p align="left">
 		<b>Click to enlarge</b></p>
 </section>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +27,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/WB_WT01a.jpg" mode="16" id="1004"  />Read the writing task and the sample answer. 
+	<img class="rightFloat" src="../media/WB_WT01a.jpg" mode="16" id="1004"  />Read the writing task and the sample answer. 
 		
 		Writing Task 1
 </header>
@@ -54,7 +36,7 @@
 	
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_WR3s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/WB_WR3.jpg" mode="16" id="1003"  />
+	<img class="rightFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"  />
 </section>
 </body>
 </bento>

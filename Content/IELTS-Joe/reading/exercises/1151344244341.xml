@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/><answer source="a6" correct="true"/><answer source="a6" correct="true"/><answer source="a6" correct="true"/><answer source="a6" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="40km " correct="true"/><answer value="forty km" correct="true"/><answer value="40 kilometers" correct="true"/><answer value="forty kilometers" correct="true"/><answer value="40 kilometres" correct="true"/><answer value="forty kilometres" correct="true"/><answer value="40 km." correct="true"/><answer value="forty km." correct="true"/><answer value="40 kms" correct="true"/><answer value="forty kms" correct="true"/><answer value="40 kms." correct="true"/><answer value="forty kms." correct="true"/><answer value="40 km" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="11,000 hectares " correct="true"/><answer value="11000 hectares" correct="true"/><answer value="eleven thousand hectares" correct="true"/><answer value="11 thousand hectares" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="2,100m " correct="true"/><answer value="2100 meters" correct="true"/><answer value="2,100 metres" correct="true"/><answer value="2100 metres" correct="true"/><answer value="2,100 m" correct="true"/><answer value="2100 m" correct="true"/><answer value="2,100 m." correct="true"/><answer value="2100 m." correct="true"/><answer value="2,100 meters" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="approximately 33,000 " correct="true"/><answer value="approximately 33,000 people" correct="true"/><answer value="approximately 33000 " correct="true"/><answer value="approximately 33000 people" correct="true"/><answer value="approximately thirty-three thousand" correct="true"/><answer value="approximately 33 thousand" correct="true"/><answer value="approx 33,000" correct="true"/><answer value="approx 33000" correct="true"/><answer value="approx thirty-three thousand" correct="true"/><answer value="approx 33 thousand" correct="true"/><answer value="approx 33,000 people" correct="true"/><answer value="approx 33000 people" correct="true"/><answer value="approx 33 thousand" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="three " correct="true"/><answer value="3" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="3.2m " correct="true"/><answer value="3.2 metres" correct="true"/><answer value="3.2 m" correct="true"/><answer value="3.2 m." correct="true"/><answer value="3.2meters" correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>

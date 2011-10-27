@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-26" />
+	<meta name="conversion" type="quiz" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_SP_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">You should talk about every question until the Examiner stops you. <a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Use as many big words as you can - they will impress the Examiner. <a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Long complex answers which you have memorised will give a good impression of your general knowledge. <a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">A complex sentence always sounds better than a simple one. <a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">You will be penalised if your answers have obviously been learned by heart. <a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li><br/><li id="6">Looking relaxed, intelligent and confident gives the impression that you are relaxed, intelligent and confident. <a id="q11" >True</a><tab/><a id="q12" >False</a><br/></li><br/><li id="7">Answer yes or no to the question, then wait for the next one. <a id="q13" >True</a><tab/><a id="q14" >False</a><br/></li><br/><li id="8">Giving examples and details to fill out your answers will increase your chances of success. <a id="q15" >True</a><tab/><a id="q16" >False</a><br/></li><br/><li id="9">If you are not sure about the question, just say as little as possible about it. <a id="q17" >True</a><tab/><a id="q18" >False</a><br/></li><br/><li id="10">The Examiner wants you to make mistakes so the less you say the better it is. <a id="q19" >True</a><tab/><a id="q20" >False</a><br/></li></ol>
+	<img class="rightFloat" src="../media/AC_SP_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">You should talk about every question until the Examiner stops you. <a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Use as many big words as you can - they will impress the Examiner. <a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Long complex answers which you have memorised will give a good impression of your general knowledge. <a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">A complex sentence always sounds better than a simple one. <a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">You will be penalised if your answers have obviously been learned by heart. <a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li><br/><li id="6">Looking relaxed, intelligent and confident gives the impression that you are relaxed, intelligent and confident. <a id="q11" >True</a><tab/><a id="q12" >False</a><br/></li><br/><li id="7">Answer yes or no to the question, then wait for the next one. <a id="q13" >True</a><tab/><a id="q14" >False</a><br/></li><br/><li id="8">Giving examples and details to fill out your answers will increase your chances of success. <a id="q15" >True</a><tab/><a id="q16" >False</a><br/></li><br/><li id="9">If you are not sure about the question, just say as little as possible about it. <a id="q17" >True</a><tab/><a id="q18" >False</a><br/></li><br/><li id="10">The Examiner wants you to make mistakes so the less you say the better it is. <a id="q19" >True</a><tab/><a id="q20" >False</a><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left"><font color="#000000">1. This is not very natural!</font></p>

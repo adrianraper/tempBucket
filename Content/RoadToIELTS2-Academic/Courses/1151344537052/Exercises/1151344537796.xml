@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_SP_004.jpg" mode="1" id="1001"  /><p align="left"> How can you describe complex things using simple language?</p><p align="left">The answers to these questions will help you to prepare for your own test.</p><p align="left"><font color="#0000ff"><b>Speaking task:</b></font></p><p align="left">Describe a piece of modern art and explain how it made you feel when you saw it.&#160;</p><p align="left">Practice what you would say and then look at the checklist below of strategies that you could include.</p><p align="left"><font color="#0000ff"><b>Did you find ways:</b></font></p>- to get around vocabulary you didn't know?- to explain things clearly without knowing the correct vocabulary?- to use expressions to give you more time to think?
+	<img class="rightFloat" src="../media/AC_SP_004.jpg" mode="1" id="1001"  /><p align="left"> How can you describe complex things using simple language?</p><p align="left">The answers to these questions will help you to prepare for your own test.</p><p align="left"><font color="#0000ff"><b>Speaking task:</b></font></p><p align="left">Describe a piece of modern art and explain how it made you feel when you saw it.&#160;</p><p align="left">Practice what you would say and then look at the checklist below of strategies that you could include.</p><p align="left"><font color="#0000ff"><b>Did you find ways:</b></font></p>- to get around vocabulary you didn't know?- to explain things clearly without knowing the correct vocabulary?- to use expressions to give you more time to think?
 </section>
 </body>
 </bento>

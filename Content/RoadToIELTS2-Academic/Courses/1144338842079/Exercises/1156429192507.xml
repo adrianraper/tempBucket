@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_TV_005.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>The UK Today</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Today saw the launch of the new daily newspaper 'The UK Today'. According to the paper's editor, Charles Moody, 'The UK Today' is aimed at a younger twenty-something <input id="1" width="100" /> and is expected to reach an average <input id="2" width="100" /> of 200,000 in its first year. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Although the paper is <input id="3" width="100" /> in format, Moody was quick to point out that it will have as much serious news as any of the <input id="4" width="100" />. One of its most striking features is its highly unusual <input id="5" width="100" />. Articles aren't laid out in <input id="6" width="100" /> but in boxes, each accompanied by a colour photograph. </font></p><p align="left"><font face="verdana" size="13" color="#000000">You'll find all the usual sections - national and international news, financial news, arts and entertainment, sport and, of course, <input id="7" width="100" /> advertisements. </font></p><p align="left"><font face="verdana" size="13" color="#000000">So, what's in today's <input id="8" width="100" />? Well, on the <input id="9" width="100" />, under the eye-catching banner <input id="10" width="100" /> 'More hot air?' is an in-depth <input id="11" width="100" /> on the outcomes of this week's international summit meeting on global warming. Well worth a read!</font></p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Barnston TV Goes Live</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Tomorrow television <input id="12" width="100" /> in the south-east will be able to tune into Barnston TV. The new cable <input id="13" width="100" /> hopes to attract as wide an audience as possible with extensive <input id="14" width="100" /> of both national and local news as well as all major sporting events. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Football matches will be broadcast <input id="15" width="100" /> both mid-week and at weekends and these are expected to boost <input id="16" width="100" /> significantly. Other <input id="17" width="100" /> will include a late-night chat show, which will be <input id="18" width="100" /> in front of a <input id="19" width="100" /> audience and aired on Saturday evenings. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Funding will be generated through advertising. A 60-second <input id="20" width="100" /> will cost considerably less on Barnston TV than on national television and there is expected to be a huge demand for airtime from local businesses. </font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/MM_TV_005.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>The UK Today</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Today saw the launch of the new daily newspaper 'The UK Today'. According to the paper's editor, Charles Moody, 'The UK Today' is aimed at a younger twenty-something <input id="q1" /> and is expected to reach an average <input id="q2" /> of 200,000 in its first year. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Although the paper is <input id="q3" /> in format, Moody was quick to point out that it will have as much serious news as any of the <input id="q4" />. One of its most striking features is its highly unusual <input id="q5" />. Articles aren't laid out in <input id="q6" /> but in boxes, each accompanied by a colour photograph. </font></p><p align="left"><font face="verdana" size="13" color="#000000">You'll find all the usual sections - national and international news, financial news, arts and entertainment, sport and, of course, <input id="q7" /> advertisements. </font></p><p align="left"><font face="verdana" size="13" color="#000000">So, what's in today's <input id="q8" />? Well, on the <input id="q9" />, under the eye-catching banner <input id="q10" /> 'More hot air?' is an in-depth <input id="q11" /> on the outcomes of this week's international summit meeting on global warming. Well worth a read!</font></p><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Barnston TV Goes Live</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Tomorrow television <input id="q12" /> in the south-east will be able to tune into Barnston TV. The new cable <input id="q13" /> hopes to attract as wide an audience as possible with extensive <input id="q14" /> of both national and local news as well as all major sporting events. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Football matches will be broadcast <input id="q15" /> both mid-week and at weekends and these are expected to boost <input id="q16" /> significantly. Other <input id="q17" /> will include a late-night chat show, which will be <input id="q18" /> in front of a <input id="q19" /> audience and aired on Saturday evenings. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Funding will be generated through advertising. A 60-second <input id="q20" /> will cost considerably less on Barnston TV than on national television and there is expected to be a huge demand for airtime from local businesses. </font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -72,7 +54,7 @@
 		<span id="a23" draggable="true">spelling</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/LC_TV_003.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">You've used the wrong <input id="q1" type="droptarget" /> here. If the man was in the wall, we wouldn't be able to see him!</li><li id="2">You need to work on your pronunciation of English sounds, especially <input id="q2" type="droptarget" /> like 'b', as in the word 'big', and 'p', as in the word 'pig'.</li><li id="3">The <input id="q3" type="droptarget" /> 'beautiful' has three syllables so the comparative is formed with 'more'.</li><li id="4">There must be at least six different definitions of the <input id="q4" type="droptarget" />, 'make up'. It's probably used most to mean 'invent', as in 'invent a story or excuse'.</li><li id="5">Remember that the normal position of <input id="q5" type="droptarget" /> of frequency like 'never', 'sometimes', 'usually' and 'always' is after auxiliary verbs but before main verbs.</li><li id="6">Try to vary the <input id="q6" type="droptarget" /> you use. You've used 'and' eight times when you could have used words or phrases like 'despite this' for contrast and 'in addition' for addition.</li><li id="7">The word 'object' is both a verb and a <input id="q7" type="droptarget" />. You can tell which part of speech it is by the way it's stressed.</li><li id="8">You've made quite a few careless <input id="q8" type="droptarget" /> mistakes. Remember 'i' comes before 'e' except after 'c'.</li><li id="9">It isn't clear who the <input id="q9" type="droptarget" /> 'him' refers to in this sentence - the dog or the man?</li><li id="10">In order to expand your <input id="q10" type="droptarget" />, you need to read more books and magazines and watch films.</li><li id="11">You need to focus on individual <input id="q11" type="droptarget" /> sounds like 'a' in 'cat' and 'e' in 'egg'.</li><li id="12">I often look words up in the dictionary but sometimes the <input id="q12" type="droptarget" /> are too difficult for me to understand!</li><li id="13">Your <input id="q13" type="droptarget" /> tend to be too long. Some of them go on for three lines!</li><li id="14">Your <input id="q14" type="droptarget" /> of English sounds is quite good but you do need to work on your intonation and stress too.</li><li id="15">A lot of your <input id="q15" type="droptarget" /> are in the wrong tense. Have a look at the uses of the present simple and present continuous again.</li></ol>
+	<img class="rightFloat" src="../media/LC_TV_003.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">You've used the wrong <input id="q1" type="droptarget" /> here. If the man was in the wall, we wouldn't be able to see him!</li><li id="2">You need to work on your pronunciation of English sounds, especially <input id="q2" type="droptarget" /> like 'b', as in the word 'big', and 'p', as in the word 'pig'.</li><li id="3">The <input id="q3" type="droptarget" /> 'beautiful' has three syllables so the comparative is formed with 'more'.</li><li id="4">There must be at least six different definitions of the <input id="q4" type="droptarget" />, 'make up'. It's probably used most to mean 'invent', as in 'invent a story or excuse'.</li><li id="5">Remember that the normal position of <input id="q5" type="droptarget" /> of frequency like 'never', 'sometimes', 'usually' and 'always' is after auxiliary verbs but before main verbs.</li><li id="6">Try to vary the <input id="q6" type="droptarget" /> you use. You've used 'and' eight times when you could have used words or phrases like 'despite this' for contrast and 'in addition' for addition.</li><li id="7">The word 'object' is both a verb and a <input id="q7" type="droptarget" />. You can tell which part of speech it is by the way it's stressed.</li><li id="8">You've made quite a few careless <input id="q8" type="droptarget" /> mistakes. Remember 'i' comes before 'e' except after 'c'.</li><li id="9">It isn't clear who the <input id="q9" type="droptarget" /> 'him' refers to in this sentence - the dog or the man?</li><li id="10">In order to expand your <input id="q10" type="droptarget" />, you need to read more books and magazines and watch films.</li><li id="11">You need to focus on individual <input id="q11" type="droptarget" /> sounds like 'a' in 'cat' and 'e' in 'egg'.</li><li id="12">I often look words up in the dictionary but sometimes the <input id="q12" type="droptarget" /> are too difficult for me to understand!</li><li id="13">Your <input id="q13" type="droptarget" /> tend to be too long. Some of them go on for three lines!</li><li id="14">Your <input id="q14" type="droptarget" /> of English sounds is quite good but you do need to work on your intonation and stress too.</li><li id="15">A lot of your <input id="q15" type="droptarget" /> are in the wrong tense. Have a look at the uses of the present simple and present continuous again.</li></ol>
 </section>
 </body>
 </bento>

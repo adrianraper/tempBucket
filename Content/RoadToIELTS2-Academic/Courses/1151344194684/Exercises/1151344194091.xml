@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_AW_013a.jpg" mode="1" id="1001"  /><p align="left"><b>Many judges prefer to sentence young offenders to do community service, such as working in an old people's home, collecting litter, or painting a local school, rather than send them to prison. This form of punishment has a number of benefits but also some drawbacks.</b></p><p align="left"><b><g id="1">A</g></b>  In many Western societies crime committed by young men and women has reached epidemic proportions. It is clear that traditional forms of punishment such as prison sentences no longer act as a deterrent to these offenders, and that other more effective punishments are required. Probably the most effective of these is community service. There are a number of reasons why this is so.&nbsp;<g id="2">B</g>  The traditional method of dealing with young people who break the law has been to send them to prison. However, in many countries the juvenile crime rate has continued to rise and governments have had to look for other ways to tackle the problem, such as sentencing young offenders to community service. In common with all forms of punishment, this has both advantages and disadvantages.&nbsp;<g id="3">C</g>  Most young people who turn to crime do so on account of the social environment in which they live and their upbringing. These offenders need correction rather than punishment, and there are a number of reasons why prison is not the most effective way of achieving this.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/SS_AW_013a.jpg" mode="1" id="1001"  /><p align="left"><b>Many judges prefer to sentence young offenders to do community service, such as working in an old people's home, collecting litter, or painting a local school, rather than send them to prison. This form of punishment has a number of benefits but also some drawbacks.</b></p><p align="left"><b><g id="t1">A</g></b>  In many Western societies crime committed by young men and women has reached epidemic proportions. It is clear that traditional forms of punishment such as prison sentences no longer act as a deterrent to these offenders, and that other more effective punishments are required. Probably the most effective of these is community service. There are a number of reasons why this is so.&nbsp;<g id="t2">B</g>  The traditional method of dealing with young people who break the law has been to send them to prison. However, in many countries the juvenile crime rate has continued to rise and governments have had to look for other ways to tackle the problem, such as sentencing young offenders to community service. In common with all forms of punishment, this has both advantages and disadvantages.&nbsp;<g id="t3">C</g>  Most young people who turn to crime do so on account of the social environment in which they live and their upbringing. These offenders need correction rather than punishment, and there are a number of reasons why prison is not the most effective way of achieving this.</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">From this introduction it seems that the writer is only going to discuss the advantages. The introduction should mention that the disadvantages will also form part of the discussion.</font></p>

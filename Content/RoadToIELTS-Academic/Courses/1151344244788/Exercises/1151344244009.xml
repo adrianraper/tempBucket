@@ -80,7 +80,7 @@
 			<answer correct="false">E  a career</answer>
 		</field>
 		<media filename="DD_LN1a.mp3" mode="4" id="1002" type="m:streamingAudio" playTimes="1" />
-		<media filename="DD_LN_002.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>	</body>
+		<media filename="DD_LN_002.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
 	</body>
 	<feedback mode="101" id="1">
 		<paragraph x="0" y="+0" width="407" height="0" style="normal" tabs="" indent="0"><![CDATA[<TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">1A. James does not mention South America in any context.</FONT></P></TEXTFORMAT>]]></paragraph>

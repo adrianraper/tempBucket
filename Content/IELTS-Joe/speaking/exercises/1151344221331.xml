@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="true"/></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="true"/></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit010_e4.flv" mode="1" id="1003"  /><p align="left"><b>Which of the following does Dimitris do in his response?</b>&nbsp;<g id="1">A.  read the instructions carefully</g><g id="2">B.  make notes</g><g id="3">C.  say what the device is</g><g id="4">D.  say why he got the device</g><g id="5">E.  say what he uses it for</g><g id="6">F.  talk about its advantages and disadvantages</g><g id="7">G.  explain how it has changed his life</g><g id="8">H.  appear confident and relaxed</g></p>
+	<video class="rightFloat" src="../media/Unit010_e4.flv" mode="1" id="1003"  /><p align="left"><b>Which of the following does Dimitris do in his response?</b>&nbsp;<g id="t1">A.  read the instructions carefully</g><g id="t2">B.  make notes</g><g id="t3">C.  say what the device is</g><g id="t4">D.  say why he got the device</g><g id="t5">E.  say what he uses it for</g><g id="t6">F.  talk about its advantages and disadvantages</g><g id="t7">G.  explain how it has changed his life</g><g id="t8">H.  appear confident and relaxed</g></p>
 </section>
 </body>
 </bento>

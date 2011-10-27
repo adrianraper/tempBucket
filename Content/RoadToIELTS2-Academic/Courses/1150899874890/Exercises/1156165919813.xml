@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/LC_LN_003.JPG" mode="1" id="1001"  /><media class="leftFloat" src="../Media/LC_LN2.mp3" mode="4" id="1020"  /><p align="left">What does Mark say about each language?</p><p align="left"><b>Language	  Description</b>Cornish	  (1) <input id="1" width="100" />&#160;</p>Manx	  (2) <input id="2" width="100" />&#160;Welsh	  (3) <input id="3" width="100" />&#160;Achumawi	  (4) <input id="4" width="100" />&#160;Trumai	  (5) <input id="5" width="100" />&#160;Catalan	  (6) <input id="6" width="100" /><p align="left"><font size="2"></font></p>
+	<img class="leftFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"  /><media class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"  /><p align="left">What does Mark say about each language?</p><p align="left"><b>Language	  Description</b>Cornish	  (1) <input id="q1" />&#160;</p>Manx	  (2) <input id="q2" />&#160;Welsh	  (3) <input id="q3" />&#160;Achumawi	  (4) <input id="q4" />&#160;Trumai	  (5) <input id="q5" />&#160;Catalan	  (6) <input id="q6" /><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">1. Mark says 'Cornish .... has been extinct since the nineteenth century' and 'extinct' means the same as 'disappeared'.</p>
@@ -72,7 +54,7 @@
 <section id="rt2001">
 	<p align="left">You should be able to tell from the question asked and the headings in the tables and the content of the tables that you are going to hear people talking about endangered languages.</p><p align="left">Questions 1-6From your general knowledge you might be able to guess one or two of the answers. However, the most useful thing you can do there is to make yourself familiar with the statements. You should be able to put them into two categories; 'a language that has disappeared' and 'a language that is still spoken' with one statement left that doesn't fit either.</p>
 </section>
-<section id="rt7">
+<section id="readingText">
 	<p align="left"><font color="#000000"><b>Description A:</b></font></p>It disappeared as the result of an epidemic.Description B:It is spoken by a fifth of the local population.Description C:It is spoken by more children than adults.Description D:It disappeared in the first half of the 20th century.Description E:It has become more widely spoken in recent decades.Description F:It is a compulsory subject in schools.Description G:It disappeared in the 19th century.Description H:It is only spoken in one village.Description I:It is spoken by fewer than a dozen people.<p align="left"><font size="2"></font></p>
 </section>
 </body>

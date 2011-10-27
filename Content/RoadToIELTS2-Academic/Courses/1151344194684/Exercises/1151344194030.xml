@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="quiz" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_SP_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Expand your answer with examples and details.<a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Practise giving answers to personal questions before you go into the exam.<a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Make yourself comfortable and relaxed at the beginning.<a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">Be positive about your present and your future.<a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">Check you know the required tenses in which to answer personal questions.<a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li></ol>
+	<img class="rightFloat" src="../media/SS_SP_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Expand your answer with examples and details.<a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Practise giving answers to personal questions before you go into the exam.<a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Make yourself comfortable and relaxed at the beginning.<a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">Be positive about your present and your future.<a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">Check you know the required tenses in which to answer personal questions.<a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">1. This is what you would do normally, so do it in the exam.</font></p>

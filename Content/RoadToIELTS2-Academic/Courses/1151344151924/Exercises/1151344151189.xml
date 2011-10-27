@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -70,7 +52,7 @@
 		<span id="a24" draggable="true">viral</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/HF_TV_005.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Applying <input id="q1" type="droptarget" /> cream to a wound protects again infection.</li><li id="2">Plants have been used for a wide variety of <input id="q2" type="droptarget" /> purposes since ancient times and today many plant extracts are used in the production of modern drugs, among them aspirin and digitalis. </li><li id="3">Nowadays bacterial infections, such as tuberculosis, typhoid fever and scarlet fever, are treated with a course of <input id="q3" type="droptarget" />.</li><li id="4">The transplantation of an organ, such as a kidney, liver or heart, is often the only hope for people suffering from <input id="q4" type="droptarget" /> diseases. </li><li id="5">Smallpox, a highly contagious viral disease, was totally eradicated by the end of the 1970s as the result of a worldwide <input id="q5" type="droptarget" /> programme.</li><li id="6">The common cold, influenza and smallpox are all <input id="q6" type="droptarget" />  infections.</li><li id="7">Before viruses were discovered, people believed that all infectious diseases were caused by <input id="q7" type="droptarget" />.</li><li id="8">Viral infections cannot be treated with antibiotics; the only effective approach is prevention through the use of <input id="q8" type="droptarget" />. </li><li id="9">To avoid contracting <input id="q9" type="droptarget" /> bacterial and viral diseases, such as influenza, pneumonia and tuberculosis, precautions need to be taken around people who are contagious.</li><li id="10">There are millions of people around the world who have survived cancer and who can be regarded as <input id="q10" type="droptarget" />.</li><li id="11">The vast majority of children in the United Kingdom are <input id="q11" type="droptarget" /> against the measles, mumps and rubella viruses before they start school.</li><li id="12">As we age, the <input id="q12" type="droptarget" /> system gradually loses its ability to fight off infections.</li><li id="13">Antibiotics have played a key role in the control of <input id="q13" type="droptarget" /> infections.</li><li id="14">If you <input id="q14" type="droptarget" /> people against influenza, you reduce their chances of contracting the disease. </li><li id="15">Water from an unknown source must be <input id="q15" type="droptarget" /> before it can be considered safe to drink.</li><li id="16">The earlier a disease is diagnosed, the greater the chance of a <input id="q16" type="droptarget" />.</li><li id="17">People who recover from an infectious disease develop natural <input id="q17" type="droptarget" /> to it and, in most cases, will never contract it again. </li><li id="18">Most bacteria perform a variety of useful functions and are harmless. However, approximately 200 species are <input id="q18" type="droptarget" />, that is, they cause diseases in humans.</li></ol>
+	<img class="rightFloat" src="../media/HF_TV_005.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Applying <input id="q1" type="droptarget" /> cream to a wound protects again infection.</li><li id="2">Plants have been used for a wide variety of <input id="q2" type="droptarget" /> purposes since ancient times and today many plant extracts are used in the production of modern drugs, among them aspirin and digitalis. </li><li id="3">Nowadays bacterial infections, such as tuberculosis, typhoid fever and scarlet fever, are treated with a course of <input id="q3" type="droptarget" />.</li><li id="4">The transplantation of an organ, such as a kidney, liver or heart, is often the only hope for people suffering from <input id="q4" type="droptarget" /> diseases. </li><li id="5">Smallpox, a highly contagious viral disease, was totally eradicated by the end of the 1970s as the result of a worldwide <input id="q5" type="droptarget" /> programme.</li><li id="6">The common cold, influenza and smallpox are all <input id="q6" type="droptarget" />  infections.</li><li id="7">Before viruses were discovered, people believed that all infectious diseases were caused by <input id="q7" type="droptarget" />.</li><li id="8">Viral infections cannot be treated with antibiotics; the only effective approach is prevention through the use of <input id="q8" type="droptarget" />. </li><li id="9">To avoid contracting <input id="q9" type="droptarget" /> bacterial and viral diseases, such as influenza, pneumonia and tuberculosis, precautions need to be taken around people who are contagious.</li><li id="10">There are millions of people around the world who have survived cancer and who can be regarded as <input id="q10" type="droptarget" />.</li><li id="11">The vast majority of children in the United Kingdom are <input id="q11" type="droptarget" /> against the measles, mumps and rubella viruses before they start school.</li><li id="12">As we age, the <input id="q12" type="droptarget" /> system gradually loses its ability to fight off infections.</li><li id="13">Antibiotics have played a key role in the control of <input id="q13" type="droptarget" /> infections.</li><li id="14">If you <input id="q14" type="droptarget" /> people against influenza, you reduce their chances of contracting the disease. </li><li id="15">Water from an unknown source must be <input id="q15" type="droptarget" /> before it can be considered safe to drink.</li><li id="16">The earlier a disease is diagnosed, the greater the chance of a <input id="q16" type="droptarget" />.</li><li id="17">People who recover from an infectious disease develop natural <input id="q17" type="droptarget" /> to it and, in most cases, will never contract it again. </li><li id="18">Most bacteria perform a variety of useful functions and are harmless. However, approximately 200 species are <input id="q18" type="droptarget" />, that is, they cause diseases in humans.</li></ol>
 </section>
 </body>
 </bento>

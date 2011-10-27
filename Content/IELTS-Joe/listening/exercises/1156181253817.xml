@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -51,7 +33,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/TT_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/TT_LN2.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><br/><li id="1">What is the Havasupai's main source of income?<ol class="answerList"><li><a id="q1" >a casino</a></li><li><a id="q2" >tourism</a></li><li><a id="q3" >farming</a></li></ol><br/></li><br/><li id="2">How do most visitors to the village arrive?<ol class="answerList"><li><a id="q4" >on foot</a></li><li><a id="q5" >by road</a></li><li><a id="q6" >by air</a></li></ol><br/></li><br/><li id="3">Why did the Havasupai feel imprisoned until recently?<ol class="answerList"><li><a id="q7" >Their village was difficult to leave.</a></li><li><a id="q8" >They were surrounded by tourists.</a></li><li><a id="q9" >They lost some of their original land.</a></li></ol><br/></li><br/><li id="4">Members of the Havasupai tribe mainly eat …<ol class="answerList"><li><a id="q10" >traditional tribal food.</a></li><li><a id="q11" >fast food.</a></li><li><a id="q12" >French food.</a></li></ol><br/></li><br/><li id="5">What happens to their rubbish?<ol class="answerList"><li><a id="q13" >It is flown out.</a></li><li><a id="q14" >It is recycled.</a></li><li><a id="q15" >It is burnt.</a></li></ol><br/></li><br/><li id="6">Most young Havasupai …<ol class="answerList"><li><a id="q16" >prefer their traditional music.</a></li><li><a id="q17" >avoid watching television.</a></li><li><a id="q18" >speak the native language.</a></li></ol><br/></li><br/><li id="7">The future of the village may lie in …<ol class="answerList"><li><a id="q19" >better educational opportunities.</a></li><li><a id="q20" >attracting a new type of visitor.</a></li><li><a id="q21" >breeding animals.</a></li></ol><br/></li></ol>
+	<img class="rightFloat" src="../media/TT_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/TT_LN2.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><br/><li id="1">What is the Havasupai's main source of income?<ol class="answerList"><li><a id="q1" >a casino</a></li><li><a id="q2" >tourism</a></li><li><a id="q3" >farming</a></li></ol><br/></li><br/><li id="2">How do most visitors to the village arrive?<ol class="answerList"><li><a id="q4" >on foot</a></li><li><a id="q5" >by road</a></li><li><a id="q6" >by air</a></li></ol><br/></li><br/><li id="3">Why did the Havasupai feel imprisoned until recently?<ol class="answerList"><li><a id="q7" >Their village was difficult to leave.</a></li><li><a id="q8" >They were surrounded by tourists.</a></li><li><a id="q9" >They lost some of their original land.</a></li></ol><br/></li><br/><li id="4">Members of the Havasupai tribe mainly eat …<ol class="answerList"><li><a id="q10" >traditional tribal food.</a></li><li><a id="q11" >fast food.</a></li><li><a id="q12" >French food.</a></li></ol><br/></li><br/><li id="5">What happens to their rubbish?<ol class="answerList"><li><a id="q13" >It is flown out.</a></li><li><a id="q14" >It is recycled.</a></li><li><a id="q15" >It is burnt.</a></li></ol><br/></li><br/><li id="6">Most young Havasupai …<ol class="answerList"><li><a id="q16" >prefer their traditional music.</a></li><li><a id="q17" >avoid watching television.</a></li><li><a id="q18" >speak the native language.</a></li></ol><br/></li><br/><li id="7">The future of the village may lie in …<ol class="answerList"><li><a id="q19" >better educational opportunities.</a></li><li><a id="q20" >attracting a new type of visitor.</a></li><li><a id="q21" >breeding animals.</a></li></ol><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. The lecturer says 'they live off their visitors', in other words tourists.</p>

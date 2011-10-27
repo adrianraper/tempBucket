@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit01_e5.flv" mode="1" id="1003"  /><p align="left">When Dimitris is talking about Athens, his home town, he mentions a lot of <input id="1" width="100" /> and lots of <input id="2" width="100" />.</p><p align="left"><font size="2"></font></p>
+	<video class="rightFloat" src="../media/Unit01_e5.flv" mode="1" id="1003"  /><p align="left">When Dimitris is talking about Athens, his home town, he mentions a lot of <input id="q1" /> and lots of <input id="q2" />.</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">He isn't talking about construction he is taking about homes and offices.</p>

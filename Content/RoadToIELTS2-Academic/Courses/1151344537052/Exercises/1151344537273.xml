@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -66,7 +48,7 @@
 		<span id="a24" draggable="true">dubbed</span><span id="a20" draggable="true">portraits</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_TV_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000"><b>Out on a limb!</b></font></p>Last year's <input id="q1" type="droptarget" /> of the year, Kevin Peters, has written yet another hysterical <input id="q2" type="droptarget" />. Each line of the <input id="q3" type="droptarget" /> is not only extremely funny but often thought-provoking too. It is brought to life by a very talented <input id="q4" type="droptarget" /> at the Haverstone Underground Theatre. I have rarely seen such an animated audience in the interval after the first <input id="q5" type="droptarget" /> of a play.<p align="left"><b>The Sally Adam Exhibition</b>This is an impressive collection of <input id="q6" type="droptarget" /> of people the artist has known. Through brilliant splashes of colour and bold brushstrokes on very large <input id="q7" type="droptarget" />, Sally Adam depicts the characters of these people. She has also included a <input id="q8" type="droptarget" /> in which she reveals glimpses of her inner psyche. This is an amazing departure from her earlier years as a landscape <input id="q9" type="droptarget" />.</p><p align="left"><b>Africa by Storm</b>What a disappointment this video is! Maybe if it was not <input id="q10" type="droptarget" /> into English but had <input id="q11" type="droptarget" /> instead it would be better. On the positive side, the <input id="q12" type="droptarget" /> has some interesting twists and there are some lovely picture-postcard <input id="q13" type="droptarget" />, especially of the wildlife along the Zambezi River. However, as the film was originally destined for the big <input id="q14" type="droptarget" /> rather than video, these do not have quite the visual impact that was intended.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_TV_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000"><b>Out on a limb!</b></font></p>Last year's <input id="q1" type="droptarget" /> of the year, Kevin Peters, has written yet another hysterical <input id="q2" type="droptarget" />. Each line of the <input id="q3" type="droptarget" /> is not only extremely funny but often thought-provoking too. It is brought to life by a very talented <input id="q4" type="droptarget" /> at the Haverstone Underground Theatre. I have rarely seen such an animated audience in the interval after the first <input id="q5" type="droptarget" /> of a play.<p align="left"><b>The Sally Adam Exhibition</b>This is an impressive collection of <input id="q6" type="droptarget" /> of people the artist has known. Through brilliant splashes of colour and bold brushstrokes on very large <input id="q7" type="droptarget" />, Sally Adam depicts the characters of these people. She has also included a <input id="q8" type="droptarget" /> in which she reveals glimpses of her inner psyche. This is an amazing departure from her earlier years as a landscape <input id="q9" type="droptarget" />.</p><p align="left"><b>Africa by Storm</b>What a disappointment this video is! Maybe if it was not <input id="q10" type="droptarget" /> into English but had <input id="q11" type="droptarget" /> instead it would be better. On the positive side, the <input id="q12" type="droptarget" /> has some interesting twists and there are some lovely picture-postcard <input id="q13" type="droptarget" />, especially of the wildlife along the Zambezi River. However, as the film was originally destined for the big <input id="q14" type="droptarget" /> rather than video, these do not have quite the visual impact that was intended.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

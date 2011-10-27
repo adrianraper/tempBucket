@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -65,7 +47,7 @@
 		<span id="a14" draggable="true">after a few cycles the pressure forces the water up the delivery pipe</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/EN_AW_003.jpg" mode="1" id="1001"  /><p align="left">The hydram, which has been around for some two hundred years, is an example of sustainable technology. It is basically a water-powered pump for lifting water from a river or stream in order to <font color="#0000ff"><input id="q1" type="droptarget" />.</font>&nbsp;The device consists of a valve box, a system of valves and an air vessel. Water is drawn from a point about 2 metres higher than the bottom of the hydram itself so as to <input id="q2" type="droptarget" /> . This flow of water into the valve box eventually causes <input id="q3" type="droptarget" />. As a result, <input id="q4" type="droptarget" />. In order to <input id="q5" type="droptarget" />, the delivery valve opens and water rushes into the air vessel. Consequently, <input id="q6" type="droptarget" />, the delivery valve closes and the whole cycle begins again. The air vessel is designed so that <input id="q7" type="droptarget" />.  It can be pumped as high as 60 metres.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/EN_AW_003.jpg" mode="1" id="1001"  /><p align="left">The hydram, which has been around for some two hundred years, is an example of sustainable technology. It is basically a water-powered pump for lifting water from a river or stream in order to <font color="#0000ff"><input id="q1" type="droptarget" />.</font>&nbsp;The device consists of a valve box, a system of valves and an air vessel. Water is drawn from a point about 2 metres higher than the bottom of the hydram itself so as to <input id="q2" type="droptarget" /> . This flow of water into the valve box eventually causes <input id="q3" type="droptarget" />. As a result, <input id="q4" type="droptarget" />. In order to <input id="q5" type="droptarget" />, the delivery valve opens and water rushes into the air vessel. Consequently, <input id="q6" type="droptarget" />, the delivery valve closes and the whole cycle begins again. The air vessel is designed so that <input id="q7" type="droptarget" />.  It can be pumped as high as 60 metres.</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="rt2001">
 	

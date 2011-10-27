@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +35,16 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><br/><li id="1">There have been seven great extinctions throughout the history of the Earth.<ol class="answerList"><li><a id="q1" >True</a></li><li><a id="q2" >False</a></li><li><a id="q3" >Not Given</a></li></ol><br/></li><br/><li id="2">According to some experts, the variety of living organisms on Earth may almost be halved over the next fifty years.<ol class="answerList"><li><a id="q4" >True</a></li><li><a id="q5" >False</a></li><li><a id="q6" >Not Given</a></li></ol><br/></li><br/><li id="3">Scientists are not certain that the ivory-billed woodpecker is extinct in the wild.<ol class="answerList"><li><a id="q7" >True</a></li><li><a id="q8" >False</a></li><li><a id="q9" >Not Given</a></li></ol><br/></li><br/><li id="4">A greater proportion of plant species than bird species may become extinct.<ol class="answerList"><li><a id="q10" >True</a></li><li><a id="q11" >False</a></li><li><a id="q12" >Not Given</a></li></ol><br/></li><br/><li id="5">No species of primate have yet become extinct.<ol class="answerList"><li><a id="q13" >True</a></li><li><a id="q14" >False</a></li><li><a id="q15" >Not Given</a></li></ol><br/></li><br/><li id="6">Most insects are pests for the agricultural industry.<ol class="answerList"><li><a id="q16" >True </a></li><li><a id="q17" >False</a></li><li><a id="q18" >Not Given</a></li></ol><br/></li><br/><li id="7">Regions with a large variety of species are less able to cope with environmental changes.<ol class="answerList"><li><a id="q19" >True</a></li><li><a id="q20" >False</a></li><li><a id="q21" >Not Given</a></li></ol><br/></li><br/><li id="8">'Keystone' species are the most endangered.<ol class="answerList"><li><a id="q22" >True</a></li><li><a id="q23" >False</a></li><li><a id="q24" >Not Given</a></li></ol><br/></li><br/><li id="9">The importance of a species may not be known until it is too late.<ol class="answerList"><li><a id="q25" >True</a></li><li><a id="q26" >False</a></li><li><a id="q27" >Not Given</a></li></ol><br/></li><br/><li id="10">Fires have caused a large number of extinctions.<ol class="answerList"><li><a id="q28" >True</a></li><li><a id="q29" >False</a></li><li><a id="q30" >Not Given</a></li></ol><br/></li></ol>
+	<ol id="questionList">
+		<li id="1">There have been seven great extinctions throughout the history of the Earth.
+			<list class="answerList">
+				<li><a id="q1" >True</a></li>
+				<li><a id="q2" >False</a></li>
+				<li><a id="q3" >Not Given</a></li>
+			</list>
+		</li>
+		<li id="2">According to some experts, the variety of living organisms on Earth may almost be halved over the next fifty years.<ol class="answerList"><li><a id="q4" >True</a></li><li><a id="q5" >False</a></li><li><a id="q6" >Not Given</a></li></ol><br/></li><br/><li id="3">Scientists are not certain that the ivory-billed woodpecker is extinct in the wild.<ol class="answerList"><li><a id="q7" >True</a></li><li><a id="q8" >False</a></li><li><a id="q9" >Not Given</a></li></ol><br/></li><br/><li id="4">A greater proportion of plant species than bird species may become extinct.<ol class="answerList"><li><a id="q10" >True</a></li><li><a id="q11" >False</a></li><li><a id="q12" >Not Given</a></li></ol><br/></li><br/><li id="5">No species of primate have yet become extinct.<ol class="answerList"><li><a id="q13" >True</a></li><li><a id="q14" >False</a></li><li><a id="q15" >Not Given</a></li></ol><br/></li><br/><li id="6">Most insects are pests for the agricultural industry.<ol class="answerList"><li><a id="q16" >True </a></li><li><a id="q17" >False</a></li><li><a id="q18" >Not Given</a></li></ol><br/></li><br/><li id="7">Regions with a large variety of species are less able to cope with environmental changes.<ol class="answerList"><li><a id="q19" >True</a></li><li><a id="q20" >False</a></li><li><a id="q21" >Not Given</a></li></ol><br/></li><br/><li id="8">'Keystone' species are the most endangered.<ol class="answerList"><li><a id="q22" >True</a></li><li><a id="q23" >False</a></li><li><a id="q24" >Not Given</a></li></ol><br/></li><br/><li id="9">The importance of a species may not be known until it is too late.<ol class="answerList"><li><a id="q25" >True</a></li><li><a id="q26" >False</a></li><li><a id="q27" >Not Given</a></li></ol><br/></li><br/><li id="10">Fires have caused a large number of extinctions.<ol class="answerList"><li><a id="q28" >True</a></li><li><a id="q29" >False</a></li><li><a id="q30" >Not Given</a></li></ol><br/></li>
+	</ol>
 </section>
 <section id="rt2001">
 	

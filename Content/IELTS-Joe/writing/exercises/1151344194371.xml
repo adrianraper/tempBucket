@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/SS_AW_009as.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/SS_AW_009a.jpg" mode="16" id="1004"  /><img class="leftFloat" src="../Media/SS_AW_009bs.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/SS_AW_009b.jpg" mode="16" id="1006"  /><p align="left"><b>The bar chart below shows changes in the active membership of religious faiths in the UK between 1970 and 2000.  The pie chart shows how frequently people in Britain attended religious services in 1999.</b></p><p align="left">Write a report for a university lecturer describing the information shown below.</p><p align="left"><font size="2"></font></p>
+	<img class="leftFloat" src="../media/SS_AW_009as.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/SS_AW_009a.jpg" mode="16" id="1004"  /><img class="leftFloat" src="../media/SS_AW_009bs.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../media/SS_AW_009b.jpg" mode="16" id="1006"  /><p align="left"><b>The bar chart below shows changes in the active membership of religious faiths in the UK between 1970 and 2000.  The pie chart shows how frequently people in Britain attended religious services in 1999.</b></p><p align="left">Write a report for a university lecturer describing the information shown below.</p><p align="left"><font size="2"></font></p>
 		<p align="left">
 		<b>Click to enlarge</b></p>
 		<p align="left">

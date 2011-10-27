@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Reading Passage 1</b></font>Multiple Personalities - Self-portraits in SeriesYou will read an article about the artists Rembrandt, Max Beckmann and Pablo Picasso and the self-portraits they painted. </p><p align="left"><font color="#0000ff"><b>Academic Reading Passage 2</b></font>Why Study Ancient World Cultures?You will read an article discussing the value of studying ancient cultures.</p><p align="left"><b>Question types</b>You will attempt two question types.<u><g id="1">Classification</g></u><u><g id="2">Yes, No, Not Given</g></u></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Reading Passage 1</b></font>Multiple Personalities - Self-portraits in SeriesYou will read an article about the artists Rembrandt, Max Beckmann and Pablo Picasso and the self-portraits they painted. </p><p align="left"><font color="#0000ff"><b>Academic Reading Passage 2</b></font>Why Study Ancient World Cultures?You will read an article discussing the value of studying ancient cultures.</p><p align="left"><b>Question types</b>You will attempt two question types.<u><g id="t1">Classification</g></u><u><g id="t2">Yes, No, Not Given</g></u></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000"><b>Classification</b></font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">This is similar to the matching exercise, with the difference that you are not making one-to-one matches, but grouping pieces of information, names or other details into categories or classifications.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">Read the instructions carefully and make sure you know which letters represent each category. Remember that some categories are a combination of two other categories in the same exercise. For example, 'Painting', 'Sculpture' and 'Both Painting and Sculpture' could be three possible categories. Similarly, a category can exclude all others in the exercise. For example 'Neither Painting nor Sculpture' is a possible category.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">Next, read the list of statements carefully. For each one, underline key words and decide which part of the text is likely to give the answer by looking for the same words or words which mean the same in the text. Remember that the questions in this exercise do not follow the order of the text, so you will have to keep moving about the text to locate information. Some statements may need you to skim the text to find information from different parts. This is especially true of the combination categories I mentioned earlier. Once you think you have found the relevant sentence, read it and the sentence immediately before and after it.</font></p><p align="left"><font face="verdana" size="13" color="#000000"></font></p><p align="left"><font face="verdana" size="13" color="#000000">Make sure that at the end of the exercise you have used all the categories at least once. If this isn't the case, you've probably made a mistake.</font></p>

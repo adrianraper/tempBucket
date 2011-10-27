@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="leftFloat" src="../Media/Unit06_e6.flv" mode="1" id="1002"  /><img class="rightFloat" src="../Media/MM_SP_004.jpg" mode="1" id="1004"  /><p align="left"><font color="#0000ff"><b>The follow-up question</b></font></p><p align="left">At the end of Part 2, the Examiner often asks a question. The next clip shows the end of each candidate's talk about an advertisement. Look at the different ways they answer the question.</p><p align="left">Zafir should have expanded in one or two short sentences.</p><p align="left">Dmitris performs much better. Always remember to give reasons for your answers, rather then just agreeing or disagreeing with the statement the examiner makes.</p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p>
+	<video class="leftFloat" src="../media/Unit06_e6.flv" mode="1" id="1002"  /><img class="rightFloat" src="../media/MM_SP_004.jpg" mode="1" id="1004"  /><p align="left"><font color="#0000ff"><b>The follow-up question</b></font></p><p align="left">At the end of Part 2, the Examiner often asks a question. The next clip shows the end of each candidate's talk about an advertisement. Look at the different ways they answer the question.</p><p align="left">Zafir should have expanded in one or two short sentences.</p><p align="left">Dmitris performs much better. Always remember to give reasons for your answers, rather then just agreeing or disagreeing with the statement the examiner makes.</p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

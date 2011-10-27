@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_AW_019.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topics.&nbsp;In most countries, young people form a large proportion of those who are unemployed. Why is this the case, and what can be done to solve the problem?&nbsp;You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/WB_AW_019.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topics.&nbsp;In most countries, young people form a large proportion of those who are unemployed. Why is this the case, and what can be done to solve the problem?&nbsp;You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

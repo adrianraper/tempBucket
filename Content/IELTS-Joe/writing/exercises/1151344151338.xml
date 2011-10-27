@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/HF_AW_004.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">78 per cent of British men reported good health in 1994.<ol class="answerList"><li><a id="q1" >nearly four out of every five</a></li><li><a id="q2" ></a></li><li><a id="q3" ></a></li><li><a id="q4" ></a></li></ol><br/></li></ol>
+	<img class="rightFloat" src="../media/HF_AW_004.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">78 per cent of British men reported good health in 1994.<ol class="answerList"><li><a id="q1" >nearly four out of every five</a></li><li><a id="q2" ></a></li><li><a id="q3" ></a></li><li><a id="q4" ></a></li></ol><br/></li></ol>
 </section>
 </body>
 </bento>

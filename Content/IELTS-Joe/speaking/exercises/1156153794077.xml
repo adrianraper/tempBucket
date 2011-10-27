@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-26" />
+	<meta name="conversion" type="quiz" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit01_e3.flv" mode="1" id="1003"  /><br/><ol id="questionList"><br/><li id="1">The Examiner introduces herself to the candidate.<a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Zenia has to give the Examiner her full name.<a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Zenia does not need to produce identification.<a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">The candidate has a turn to ask questions.<a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">The candidate is asked where she comes from.<a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li><br/><li id="6">The candidate asks the Examiner her name.<a id="q11" >True</a><tab/><a id="q12" >False</a><br/></li><br/><li id="7">Zenia is asked to describe her home town.<a id="q13" >True</a><tab/><a id="q14" >False</a><br/></li><br/><li id="8">The Examiner asks Zenia about her family.<a id="q15" >True</a><tab/><a id="q16" >False</a><br/></li><br/><li id="9">The candidate is asked where she was born.<a id="q17" >True</a><tab/><a id="q18" >False</a><br/></li><br/><li id="10">The Examiner asks Zenia to talk about her life.<a id="q19" >True</a><tab/><a id="q20" >False</a><br/></li></ol>
+	<video class="rightFloat" src="../media/Unit01_e3.flv" mode="1" id="1003"  /><br/><ol id="questionList"><br/><li id="1">The Examiner introduces herself to the candidate.<a id="q1" >True</a><tab/><a id="q2" >False</a><br/></li><br/><li id="2">Zenia has to give the Examiner her full name.<a id="q3" >True</a><tab/><a id="q4" >False</a><br/></li><br/><li id="3">Zenia does not need to produce identification.<a id="q5" >True</a><tab/><a id="q6" >False</a><br/></li><br/><li id="4">The candidate has a turn to ask questions.<a id="q7" >True</a><tab/><a id="q8" >False</a><br/></li><br/><li id="5">The candidate is asked where she comes from.<a id="q9" >True</a><tab/><a id="q10" >False</a><br/></li><br/><li id="6">The candidate asks the Examiner her name.<a id="q11" >True</a><tab/><a id="q12" >False</a><br/></li><br/><li id="7">Zenia is asked to describe her home town.<a id="q13" >True</a><tab/><a id="q14" >False</a><br/></li><br/><li id="8">The Examiner asks Zenia about her family.<a id="q15" >True</a><tab/><a id="q16" >False</a><br/></li><br/><li id="9">The candidate is asked where she was born.<a id="q17" >True</a><tab/><a id="q18" >False</a><br/></li><br/><li id="10">The Examiner asks Zenia to talk about her life.<a id="q19" >True</a><tab/><a id="q20" >False</a><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. When you give your name to someone this is an introduction.</p>

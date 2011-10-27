@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"/></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"/></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/LC_AW_023.JPG" mode="1" id="1001"  /><p align="left">The arguments in favour of an international language are both ideological and practical. Firstly, it is sometimes said that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, it is argued that if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, it is generally agreed that a common language would make international travel much easier for everyone.</p><p align="left"><b>1</b>  Which of these arguments in favour of an international language are included in the paragraph?</p><p align="left"><g id="1">A  Improve international co-operation and understanding</g><g id="2">B  Reduce nationalism</g><g id="3">C  Reduce the amount of translation work needed</g><g id="4">D  Help international trade</g><g id="5">E  Simplify electronic communication</g><g id="6">F  Make international travel easier</g></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/LC_AW_023.JPG" mode="1" id="1001"  /><p align="left">The arguments in favour of an international language are both ideological and practical. Firstly, it is sometimes said that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, it is argued that if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, it is generally agreed that a common language would make international travel much easier for everyone.</p><p align="left"><b>1</b>  Which of these arguments in favour of an international language are included in the paragraph?</p><p align="left"><g id="t1">A  Improve international co-operation and understanding</g><g id="t2">B  Reduce nationalism</g><g id="t3">C  Reduce the amount of translation work needed</g><g id="t4">D  Help international trade</g><g id="t5">E  Simplify electronic communication</g><g id="t6">F  Make international travel easier</g></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb2">
 	<p align="left">Although the writer says that an international language would improve understanding between nations, this doesn't necessarily mean that people will be less 'nationalistic'.</p>

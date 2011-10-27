@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -55,7 +37,7 @@
 <section id="rt2001">
 			<p align="left">Cohesive devices are words and phrases, which can be used to refer back or forward to other words and ideas in a text. 'It', 'this', 'who', 'which', 'such', 'one' are examples of words that can be used as cohesive devices. Using them will help avoid repetition and they will also make your ideas clearer and easier for the reader to follow.</p>
 </section>
-<section id="rt3">
+<section id="readingText">
 	<p align="left"><font face="verdana" size="13" color="#000000">Nowadays, whenever a catastrophic event such as a war or an earthquake takes place, there is usually a television or video camera on hand <font color="#0000ff"><b>which</b></font> will film and broadcast images of it around the world almost instantly, no matter how disturbing they might be. It is often suggested that these are not the kind of pictures we should have to see in our homes, but there are some who think there are very good reasons why <font color="#0000ff"><b>such</b></font> images should be included in television news reports.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Firstly, it is sometimes claimed that when disturbing images of war or some other disastrous event are broadcast, people become motivated to do something to remedy the situation or to help the victims. Unless the public see these images, it is argued,<font color="#0000ff"><b> they</b></font> are unlikely to act. On the other hand, it is also said that if people see too many disturbing or violent scenes on the news, they grow accustomed to <font color="#0000ff"><b>them </b></font>and no longer react as if these events were something unusual.  As a result, they may begin to think that what they are seeing is normal or even acceptable.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Secondly, there is the issue of whether or not children should be exposed to such images. It is sometimes argued that television news reports should show the world as<font color="#0000ff"><b> it </b></font>really is and that it is best for children to be aware of this reality. The counter-argument to<font color="#0000ff"><b> this</b></font>, however, is that violent images on television can be particularly disturbing for children, and that some of <font color="#0000ff"><b>them</b></font> may be severely traumatised by seeing such things.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Finally, it is often pointed out that if viewers find images upsetting, <font color="#0000ff"><b>they</b></font> can simply switch off the television or change channel. However, viewers are not always forewarned that a report may include distressing pictures. Besides <font color="#0000ff"><b>this</b></font>, most people would probably find flicking from one channel to another during a news programme rather frustrating.</font></p><p align="left"><font face="verdana" size="13" color="#000000">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful <font color="#0000ff"><b>one</b></font>. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>

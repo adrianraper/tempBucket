@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -72,10 +54,10 @@
 		<span id="a22" draggable="true">a sun</span>
 		<span id="a31" draggable="true">the moon</span>
 		<span id="a29" draggable="true">a meteorite</span>
-		<span id="a21" draggable="true">the sun</span><media class="rightFloat" src="../Media/ST_TV2aa.mp3" mode="4" id="1002"  />
+		<span id="a21" draggable="true">the sun</span><media class="rightFloat" src="../media/ST_TV2aa.mp3" mode="4" id="1002"  />
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/ST_TV_003.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Introduction to Astronomy</b></font></p><p align="left"><font color="#000000"><b>1</b>&#160;<font color="#0000ff"><input id="q1" type="droptarget" /><font color="#000000"> – everything that exists, including the whole of space (e.g. stars, planets, etc.).</font></font></font></p><p align="left"><font color="#000000"><b>2</b>&#160;<font color="#0000ff"><input id="q2" type="droptarget" /><font color="#000000"> – a collection of millions or billions of stars held together by gravitational forces.</font></font></font></p><p align="left"><font color="#000000"><b>3</b>&#160;<font color="#0000ff"><input id="q3" type="droptarget" /><font color="#000000"> – a large group of stars to which our sun and its planets belong. Also know as the Milky Way.</font></font></font></p><p align="left"><font color="#000000"><b>4</b>&#160;<font color="#0000ff"><input id="q4" type="droptarget" /><font color="#000000"> – a large celestial body that appears as a fixed point of light in the night sky.</font></font></font></p><p align="left"><font color="#000000"><b>5</b>&#160;<font color="#0000ff"><input id="q5" type="droptarget" /><font color="#000000"> – the closest star to us. The Earth revolves around it and receives light and warmth from it.</font></font></font></p><p align="left"><font color="#000000"><b>6</b>&#160;<font color="#0000ff"><input id="q6" type="droptarget" /><font color="#000000"> – a type of star that consists of a ball of burning gas – with or without planets revolving around it.</font></font></font></p><p align="left"><font color="#000000"><b>7</b>&#160;<font color="#0000ff"><input id="q7" type="droptarget" /><font color="#000000"> – the sun and the 9 planets and other celestial bodies which all resolve around it.</font></font></font></p><p align="left"><font color="#000000"><b>8</b>&#160;<font color="#0000ff"><input id="q8" type="droptarget" /><font color="#000000">– a celestial body that resolves around a star.</font></font></font></p><p align="left"><font color="#000000"><b>9</b>&#160;<font color="#0000ff"><input id="q9" type="droptarget" /><font color="#000000">– the curved path taken by a celestial body, satellite or spacecraft around a star or planet.</font></font></font></p><p align="left"><font color="#000000"><b>10</b>&#160;<font color="#0000ff"><input id="q10" type="droptarget" /><font color="#000000"> – a small rocky body that revolves around the sun. Mainly found between the orbits of Mars and Jupiter.</font></font></font></p><p align="left"><font color="#000000"><b>11</b>&#160;<font color="#0000ff"><input id="q11" type="droptarget" /><font color="#000000"> – an icy body made up of dust and gases – recognizable by its bright tail.</font></font></font></p><p align="left"><font color="#000000"><b>12</b>&#160;<font color="#0000ff"><input id="q12" type="droptarget" /><font color="#000000"> – a piece of rock or metal from outer space that makes a bright streak of light in the night sky as it enters the Earth's atmosphere.</font></font></font></p><p align="left"><font color="#000000"><b>13</b>&#160;<font color="#0000ff"><input id="q13" type="droptarget" /><font color="#000000"> – a piece of rock or metal from outer space that has fallen onto the Earth's surface.</font></font></font></p><p align="left"><font color="#000000"><b>14</b>&#160;<font color="#0000ff"><input id="q14" type="droptarget" /><font color="#000000"> – a natural celestial body that revolves around a planet.</font></font></font></p><p align="left"><font color="#000000"><b>15</b>&#160;<font color="#0000ff"><input id="q15" type="droptarget" /><font color="#000000"> – the celestial body that revolves around the Earth once every 28 days.</font></font></font></p><p align="left"><font color="#000000"><b>16</b>&#160;<font color="#0000ff"><input id="q16" type="droptarget" /><font color="#000000"> – a natural or artificial object that revolves around a planet or a star.</font></font></font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/ST_TV_003.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Introduction to Astronomy</b></font></p><p align="left"><font color="#000000"><b>1</b>&#160;<font color="#0000ff"><input id="q1" type="droptarget" /><font color="#000000"> – everything that exists, including the whole of space (e.g. stars, planets, etc.).</font></font></font></p><p align="left"><font color="#000000"><b>2</b>&#160;<font color="#0000ff"><input id="q2" type="droptarget" /><font color="#000000"> – a collection of millions or billions of stars held together by gravitational forces.</font></font></font></p><p align="left"><font color="#000000"><b>3</b>&#160;<font color="#0000ff"><input id="q3" type="droptarget" /><font color="#000000"> – a large group of stars to which our sun and its planets belong. Also know as the Milky Way.</font></font></font></p><p align="left"><font color="#000000"><b>4</b>&#160;<font color="#0000ff"><input id="q4" type="droptarget" /><font color="#000000"> – a large celestial body that appears as a fixed point of light in the night sky.</font></font></font></p><p align="left"><font color="#000000"><b>5</b>&#160;<font color="#0000ff"><input id="q5" type="droptarget" /><font color="#000000"> – the closest star to us. The Earth revolves around it and receives light and warmth from it.</font></font></font></p><p align="left"><font color="#000000"><b>6</b>&#160;<font color="#0000ff"><input id="q6" type="droptarget" /><font color="#000000"> – a type of star that consists of a ball of burning gas – with or without planets revolving around it.</font></font></font></p><p align="left"><font color="#000000"><b>7</b>&#160;<font color="#0000ff"><input id="q7" type="droptarget" /><font color="#000000"> – the sun and the 9 planets and other celestial bodies which all resolve around it.</font></font></font></p><p align="left"><font color="#000000"><b>8</b>&#160;<font color="#0000ff"><input id="q8" type="droptarget" /><font color="#000000">– a celestial body that resolves around a star.</font></font></font></p><p align="left"><font color="#000000"><b>9</b>&#160;<font color="#0000ff"><input id="q9" type="droptarget" /><font color="#000000">– the curved path taken by a celestial body, satellite or spacecraft around a star or planet.</font></font></font></p><p align="left"><font color="#000000"><b>10</b>&#160;<font color="#0000ff"><input id="q10" type="droptarget" /><font color="#000000"> – a small rocky body that revolves around the sun. Mainly found between the orbits of Mars and Jupiter.</font></font></font></p><p align="left"><font color="#000000"><b>11</b>&#160;<font color="#0000ff"><input id="q11" type="droptarget" /><font color="#000000"> – an icy body made up of dust and gases – recognizable by its bright tail.</font></font></font></p><p align="left"><font color="#000000"><b>12</b>&#160;<font color="#0000ff"><input id="q12" type="droptarget" /><font color="#000000"> – a piece of rock or metal from outer space that makes a bright streak of light in the night sky as it enters the Earth's atmosphere.</font></font></font></p><p align="left"><font color="#000000"><b>13</b>&#160;<font color="#0000ff"><input id="q13" type="droptarget" /><font color="#000000"> – a piece of rock or metal from outer space that has fallen onto the Earth's surface.</font></font></font></p><p align="left"><font color="#000000"><b>14</b>&#160;<font color="#0000ff"><input id="q14" type="droptarget" /><font color="#000000"> – a natural celestial body that revolves around a planet.</font></font></font></p><p align="left"><font color="#000000"><b>15</b>&#160;<font color="#0000ff"><input id="q15" type="droptarget" /><font color="#000000"> – the celestial body that revolves around the Earth once every 28 days.</font></font></font></p><p align="left"><font color="#000000"><b>16</b>&#160;<font color="#0000ff"><input id="q16" type="droptarget" /><font color="#000000"> – a natural or artificial object that revolves around a planet or a star.</font></font></font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

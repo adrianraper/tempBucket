@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion-type" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-27"/>
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +36,7 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../Media/HF_LN2a.mp3" mode="4" id="1002"  /><p align="left"><b>Insects	Diseases</b>================================Anopheles mosquitoes	(1) <input id="1" width="100" /></p>Aedes aegypti mosquitoes	(2) <input id="2" width="100" />Houseflies	(3) <input id="3" width="100" />Deer ticks	(4) <input id="4" width="100" />Body lice	(5) <input id="5" width="100" />Fleas	(6) <input id="6" width="100" />Black flies	(7) <input id="7" width="100" />Sand flies	(8) <input id="8" width="100" /><p align="left"><font size="2"></font></p>
+	<media class="leftFloat" src="../media/HF_LN2a.mp3" mode="4" id="1002"  /><p align="left"><b>Insects	Diseases</b>================================Anopheles mosquitoes	(1) <input id="q1" /></p>Aedes aegypti mosquitoes	(2) <input id="q2" />Houseflies	(3) <input id="q3" />Deer ticks	(4) <input id="q4" />Body lice	(5) <input id="q5" />Fleas	(6) <input id="q6" />Black flies	(7) <input id="q7" />Sand flies	(8) <input id="q8" /><p align="left"><font size="2"></font></p>
 </section>
 <section id="readingText">
 	<p align="left"><b>Diseases</b>==============A	river blindnessB	toxoplasmosisC	malariaD	endemic typhusE	epidemic typhusF	leishmaniasisG	Q-feverH	dengue feverI	sleeping sicknessJ	Lyme diseaseK	dysentery</p><p align="left"><font size="2"></font></p>

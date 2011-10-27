@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -67,7 +49,7 @@
 <span id="a16" draggable="true">an overall upward trend</span>
 </section>
 <section id="body">
-	<img class="leftFloat" src="../Media/Unit02_Write_e3a.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/Unit02_Write_e3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/Unit02_Write_e3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/Unit02_Write_e3j.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/Unit02_Write_e3d.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../Media/Unit02_Write_e3e.jpg" mode="1" id="1008"  /><img class="leftFloat" src="../Media/Unit02_Write_e3f.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit02_Write_e3g.jpg" mode="1" id="1010"  /><img class="leftFloat" src="../Media/Unit02_Write_e3h.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../Media/Unit02_Write_e3i.jpg" mode="1" id="2012"  /><br/><ol id="questionList"><li id="1">
+	<img class="leftFloat" src="../media/Unit02_Write_e3a.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../media/Unit02_Write_e3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../media/Unit02_Write_e3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../media/Unit02_Write_e3j.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../media/Unit02_Write_e3d.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../media/Unit02_Write_e3e.jpg" mode="1" id="1008"  /><img class="leftFloat" src="../media/Unit02_Write_e3f.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../media/Unit02_Write_e3g.jpg" mode="1" id="1010"  /><img class="leftFloat" src="../media/Unit02_Write_e3h.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../media/Unit02_Write_e3i.jpg" mode="1" id="2012"  /><br/><ol id="questionList"><li id="1">
 </li>
 <p align="left"><font color="#0000ff"><input id="q1" type="droptarget" /></font></p><li id="2">
 </li>

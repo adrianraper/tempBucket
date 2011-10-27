@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_TV_006.jpg" mode="1" id="1001"  /><p align="left">Dear Jonathon,</p><p align="left"><font color="#000000">Sorry I haven't been in touch for a while but I've been rather busy job hunting! Yes, I'm afraid I lost my fabulous job! I'm sure you remember how I boasted about the wonderful working conditions - the <input id="1" width="100" /> that meant I could work when I wanted to, and the wonderful <input id="2" width="100" /> of promotion! Well, I was made <input id="3" width="100" /> in March. I should have seen it coming really. The economic <input id="4" width="100" /> here led to a dramatic drop in sales, which affected the company's <input id="5" width="100" /> so badly that it almost went <input id="6" width="100" /> at the end of last year. </font></p><p align="left">Then in February things started to look up as another company in the same field stepped in and a <input id="7" width="100" /> took place. When that happened, I thought I might just keep my job, but they decided that they didn't need such a big <input id="8" width="100" />, and one of the first things they did was to <input id="9" width="100" /> the company and <input id="10" width="100" /> a lot of the work to consultants and other companies.</p><p align="left">Anyway, since then I've been to at least twenty interviews but I'm getting nowhere. It's quite depressing actually because I've spent years getting the perfect <input id="11" width="100" /> together and it's looking really good now. I've got over fifteen years' experience in the marketing field, I've been on lots of courses and I've picked up quite a few <input id="12" width="100" /> along the way. I've also got some great <input id="13" width="100" /> from previous employers but it seems that the <input id="14" width="100" /> is just flooded with people like me. </p><p align="left"><font color="#000000">What's more nobody wants to take on new staff in the present economic climate, at least not on full-time contracts. One company asked me if I was interested in <input id="15" width="100" /> - can you imagine that? Half the pay for probably just as much work! I'm seriously considering <input id="16" width="100" /> - I've got my own computer and an Internet connection and I quite fancy the idea of working from home for a change.</font></p><p align="left"><font color="#000000">I'm afraid I haven't really got any other news for you - and I'd better get back to scouring the papers for job ads!</font></p><p align="left">Take care, Claire.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/WB_TV_006.jpg" mode="1" id="1001"  /><p align="left">Dear Jonathon,</p><p align="left"><font color="#000000">Sorry I haven't been in touch for a while but I've been rather busy job hunting! Yes, I'm afraid I lost my fabulous job! I'm sure you remember how I boasted about the wonderful working conditions - the <input id="q1" /> that meant I could work when I wanted to, and the wonderful <input id="q2" /> of promotion! Well, I was made <input id="q3" /> in March. I should have seen it coming really. The economic <input id="q4" /> here led to a dramatic drop in sales, which affected the company's <input id="q5" /> so badly that it almost went <input id="q6" /> at the end of last year. </font></p><p align="left">Then in February things started to look up as another company in the same field stepped in and a <input id="q7" /> took place. When that happened, I thought I might just keep my job, but they decided that they didn't need such a big <input id="q8" />, and one of the first things they did was to <input id="q9" /> the company and <input id="q10" /> a lot of the work to consultants and other companies.</p><p align="left">Anyway, since then I've been to at least twenty interviews but I'm getting nowhere. It's quite depressing actually because I've spent years getting the perfect <input id="q11" /> together and it's looking really good now. I've got over fifteen years' experience in the marketing field, I've been on lots of courses and I've picked up quite a few <input id="q12" /> along the way. I've also got some great <input id="q13" /> from previous employers but it seems that the <input id="q14" /> is just flooded with people like me. </p><p align="left"><font color="#000000">What's more nobody wants to take on new staff in the present economic climate, at least not on full-time contracts. One company asked me if I was interested in <input id="q15" /> - can you imagine that? Half the pay for probably just as much work! I'm seriously considering <input id="q16" /> - I've got my own computer and an Internet connection and I quite fancy the idea of working from home for a change.</font></p><p align="left"><font color="#000000">I'm afraid I haven't really got any other news for you - and I'd better get back to scouring the papers for job ads!</font></p><p align="left">Take care, Claire.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

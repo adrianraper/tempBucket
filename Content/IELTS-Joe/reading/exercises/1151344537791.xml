@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#000000">Classify the following descriptions as referring to:<font face="_sans" size="12">&#160;</font></font></p>Rembrandt - RBeckmann - BPicasso - PBoth Beckmann and Rembrandt - BRBoth Beckmann and Picasso - BP<p align="left"><input id="1" width="100" />&#160;revealed the influence of other artists in self-portraits.</p><p align="left"><input id="2" width="100" /> often wore curious clothing in self-portraits.</p><p align="left"><input id="3" width="100" /> had experiences which had a profound effect on the mood of the self-portraits.</p><p align="left"><input id="4" width="100" /> painted works in which the artist appears with another person.</p><p align="left"><input id="5" width="100" /> used fewer colours in later self-portraits.</p><p align="left"><input id="6" width="100" /> included a wide variety of objects in the self-portraits.</p><p align="left"><input id="7" width="100" /> created works which may surprise us.</p><p align="left"><input id="8" width="100" /> looks more self-assured in earlier works</p><p align="left"><font size="2"></font></p>
+	<p align="left"><font color="#000000">Classify the following descriptions as referring to:<font face="_sans" size="12">&#160;</font></font></p>Rembrandt - RBeckmann - BPicasso - PBoth Beckmann and Rembrandt - BRBoth Beckmann and Picasso - BP<p align="left"><input id="q1" />&#160;revealed the influence of other artists in self-portraits.</p><p align="left"><input id="q2" /> often wore curious clothing in self-portraits.</p><p align="left"><input id="q3" /> had experiences which had a profound effect on the mood of the self-portraits.</p><p align="left"><input id="q4" /> painted works in which the artist appears with another person.</p><p align="left"><input id="q5" /> used fewer colours in later self-portraits.</p><p align="left"><input id="q6" /> included a wide variety of objects in the self-portraits.</p><p align="left"><input id="q7" /> created works which may surprise us.</p><p align="left"><input id="q8" /> looks more self-assured in earlier works</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">The passage tells us that Picasso was influenced by the artists Van Gogh, Gauguin, Toulouse-Lautrec and Cezanne.</p>

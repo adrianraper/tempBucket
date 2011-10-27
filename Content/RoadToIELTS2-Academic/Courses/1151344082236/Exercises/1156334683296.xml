@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -84,7 +66,7 @@
 <section id="rt2001">
 	<p align="left">Cohesive devices are words and phrases that can be used to refer back or forward to other words and ideas in a text. Good writers use them to make their writing clearer, more organized and more logical. Such devices include linking words and phrase like those we looked at in the earlier exercises. Pronouns such as 'which', 'it', 'this', 'that', and 'they' are other examples of cohesive devices.</p>
 </section>
-<section id="rt17">
+<section id="readingText">
 	<p align="left">The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages to transport passengers up and down a hillside 30 metres in height.</p><p align="left"><font color="#000000">The carriages are made of timber and steel so that they are light and strong. Underneath each one is a ballast tank, <font color="#0000ff"><b>(1) which</b></font> carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. <font color="#0000ff"><b>(2) These</b></font> go around a large drum at the top of the slope.</font></p><p align="left"><font color="#000000">When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir so as to make <font color="#0000ff"><b>(3) it</b></font> slightly heavier than the lower carriage. Due to this imbalance, the top one begins to roll down the hill, pulling <font color="#0000ff"><b>(4) the</b></font>&#160;<font color="#0000ff"><b>other one</b></font> up. A computer control system weighs each carriage in order to gauge exactly how much water is needed to make <font color="#0000ff"><b>(5) them</b></font> move. Speed is controlled by means of a braking system built into the drum at the top. <font color="#0000ff"><b>(6) This</b></font> consists of a hydraulic pump, <font color="#0000ff"><b>(7) which</b></font> slows the drum down if <font color="#0000ff"><b>(8) it</b></font> is turning too fast, causing the carriages to reduce speed. Each time <font color="#0000ff"><b>(9) this</b></font> happens, the system compresses gas in special cylinders. As a result, some of the energy of braking is stored. <font color="#0000ff"><b>(10) This</b></font> can later be used to pump a proportion of the water back up to the reservoir. Consequently, some energy is recycled.</font></p><p align="left">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>

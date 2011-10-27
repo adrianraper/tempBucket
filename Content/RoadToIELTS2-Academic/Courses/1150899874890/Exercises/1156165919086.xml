@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -56,7 +38,7 @@
 <section id="rt2001">
 	<p align="left"><font color="#000000">It is not necessary and you are not expected, to write long, complex sentences in your reports. It is much more important to write clearly and accurately. Look at these two simple sentence patterns, which are very useful for describing trends in charts:</font></p>Noun phrase + verb + (adverb)There was a/an + (adjective) + noun
 </section>
-<section id="rt5">
+<section id="readingText">
 	<p align="left"><font color="#000000">The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that <font color="#0000ff">(1) there was an overall downward trend</font> in student numbers for such courses during this period.</font></p><p align="left"><font color="#000000">Courses in French, German and Russian all became less popular during this time. The figures for French show the most dramatic changes of all. Between 1994 and 1996 <font color="#0000ff">(2) enrolments for French dropped steadily</font> to around 5,700. A year later <font color="#0000ff">(3) there was a slight rise</font> of around 100 students, but then <font color="#0000ff">(4) there was a sharp fall</font> of about 600 in 1998. <font color="#0000ff">(5) Numbers finally plunged</font> to around 4,700 in 1999. The pattern for German was very similar. Starting at around 2,400 students in 1994, <font color="#0000ff">(6) numbers had fallen</font> to about 2,300 by 1996. In 1997 <font color="#0000ff">(7) the figure recovered</font> to its 1994 level, but then <font color="#0000ff">(8) numbers declined steadily</font> by around 150 per year for the next two years. <font color="#0000ff">(9) The number of students accepted onto Russian courses fluctuated</font> between 400 and 500 for most of the period, but <font color="#0000ff">(10) there was a drop</font> to around 300 in 1999.</font></p><p align="left"><font color="#0000ff">(11) Enrolments for two of the five languages, however, actually grew in number over the five years. From 1994 onwards, (12) there was a steady increase in enrolments for Spanish of approximately 100 every year. Likewise, (13) the number of students studying Italian rose gradually to around 900 in 1997 and (13) remained stable for the following two years.</font></p><p align="left">Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>

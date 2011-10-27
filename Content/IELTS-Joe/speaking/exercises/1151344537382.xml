@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_SP_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Strategies for answering questions</b></font></p><p align="left">You will ...</p><ol><li>read advice on how to relax and make the most of	opportunities to communicate in Part 1 of the speaking	test.</li><li>review strategies for giving the best impression to the	examiner.</li><li>watch a video clip of a candidate talking about a topic	that she doesn't know much about.</li><li>read advice on what to do if you can't remember a	word,  and view a video example. What would you say	when faced with the same question?</li></ol><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_SP_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Strategies for answering questions</b></font></p><p align="left">You will ...</p><ol><li>read advice on how to relax and make the most of	opportunities to communicate in Part 1 of the speaking	test.</li><li>review strategies for giving the best impression to the	examiner.</li><li>watch a video clip of a candidate talking about a topic	that she doesn't know much about.</li><li>read advice on what to do if you can't remember a	word,  and view a video example. What would you say	when faced with the same question?</li></ol><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

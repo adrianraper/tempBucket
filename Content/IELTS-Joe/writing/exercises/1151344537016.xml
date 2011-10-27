@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="dropdown" date="2011-10-26" />
+	<meta name="conversion" type="dropdown" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,13 +27,13 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/AC_Task01.jpg" mode="16" id="1004"  />Read the writing task and look carefully at the bar chart. Complete the report by choosing the word, phrase or number which best fits each gap.
+	<img class="rightFloat" src="../media/AC_Task01.jpg" mode="16" id="1004"  />Read the writing task and look carefully at the bar chart. Complete the report by choosing the word, phrase or number which best fits each gap.
 
 Writing Task 1
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_AW_002s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/AC_AW_002.jpg" mode="16" id="1004"  /><p align="left">The chart compares the attendance of Canadians of different <select id="1" type="dropdown" ><option id="o1">ages"</option>"<option id="o2">incomes"</option>"<option id="o3">interests"</option>"</select> at live arts performances. There is clearly a strong relationship between age and the sort of events people attend.</p><p align="left">The figures show that <select id="2" type="dropdown" ><option id="o4">almost half"</option>"<option id="o5">half"</option>"<option id="o6">just over half"</option>"</select> of Canadian teenagers frequently go to live arts events and that they are almost <select id="3" type="dropdown" ><option id="o7">twice"</option>"<option id="o8">half"</option>"<option id="o9">three times"</option>"</select> as likely to attend such performances as Canadians who are 60 or over. Not surprisingly, the greatest difference in attendance figures is for <select id="4" type="dropdown" ><option id="o10">pop concerts"</option>"<option id="o11">theatrical performances"</option>"<option id="o12">opera"</option>"</select>. The 15 to 19 age group is almost <select id="5" type="dropdown" ><option id="o13">five times"</option>"<option id="o14">twice"</option>"<option id="o15">ten times"</option>"</select> as likely as the over 60s to attend such concerts. Likewise, the proportion of Canadians who go to theatre, opera and <select id="6" type="dropdown" ><option id="o16">dance"</option>"<option id="o17">symphonic or classical music"</option>"<option id="o18">choral music"</option>"</select> performances falls as age increases.</p><p align="left">In contrast, the proportion who go to classical and choral music performances rises as age increases. Approximately <select id="7" type="dropdown" ><option id="o19">1 in 10"</option>"<option id="o20">1 in 4"</option>"<option id="o21">1 in 3"</option>"</select> Canadians who are 60 or over go to classical concerts. This percentage is almost <select id="8" type="dropdown" ><option id="o22">twice as high"</option>"<option id="o23">as high"</option>"<option id="o24">three times as high"</option>"</select> as that for teenagers.</p><p align="left">Attendance rates vary the least for theatre and opera performances. Only about <select id="9" type="dropdown" ><option id="o25">a fifth"</option>"<option id="o26">a tenth"</option>"<option id="o27">a quarter"</option>"</select> of all age groups attend the theatre frequently. Similarly, a very small <select id="10" type="dropdown" ><option id="o28">percentage"</option>"<option id="o29">quantity"</option>"<option id="o30">number"</option>"</select> of any age group go to the opera regularly.</p><p align="left">In summary, audiences at Canadian performing arts events seem to be mainly young people attending plays or pop concerts.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_AW_002s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/AC_AW_002.jpg" mode="16" id="1004"  /><p align="left">The chart compares the attendance of Canadians of different <select id="q1" type="dropdown" ><option id="o1">ages"</option>"<option id="o2">incomes"</option>"<option id="o3">interests"</option>"</select> at live arts performances. There is clearly a strong relationship between age and the sort of events people attend.</p><p align="left">The figures show that <select id="q2" type="dropdown" ><option id="o4">almost half"</option>"<option id="o5">half"</option>"<option id="o6">just over half"</option>"</select> of Canadian teenagers frequently go to live arts events and that they are almost <select id="q3" type="dropdown" ><option id="o7">twice"</option>"<option id="o8">half"</option>"<option id="o9">three times"</option>"</select> as likely to attend such performances as Canadians who are 60 or over. Not surprisingly, the greatest difference in attendance figures is for <select id="q4" type="dropdown" ><option id="o10">pop concerts"</option>"<option id="o11">theatrical performances"</option>"<option id="o12">opera"</option>"</select>. The 15 to 19 age group is almost <select id="q5" type="dropdown" ><option id="o13">five times"</option>"<option id="o14">twice"</option>"<option id="o15">ten times"</option>"</select> as likely as the over 60s to attend such concerts. Likewise, the proportion of Canadians who go to theatre, opera and <select id="q6" type="dropdown" ><option id="o16">dance"</option>"<option id="o17">symphonic or classical music"</option>"<option id="o18">choral music"</option>"</select> performances falls as age increases.</p><p align="left">In contrast, the proportion who go to classical and choral music performances rises as age increases. Approximately <select id="q7" type="dropdown" ><option id="o19">1 in 10"</option>"<option id="o20">1 in 4"</option>"<option id="o21">1 in 3"</option>"</select> Canadians who are 60 or over go to classical concerts. This percentage is almost <select id="q8" type="dropdown" ><option id="o22">twice as high"</option>"<option id="o23">as high"</option>"<option id="o24">three times as high"</option>"</select> as that for teenagers.</p><p align="left">Attendance rates vary the least for theatre and opera performances. Only about <select id="q9" type="dropdown" ><option id="o25">a fifth"</option>"<option id="o26">a tenth"</option>"<option id="o27">a quarter"</option>"</select> of all age groups attend the theatre frequently. Similarly, a very small <select id="q10" type="dropdown" ><option id="o28">percentage"</option>"<option id="o29">quantity"</option>"<option id="o30">number"</option>"</select> of any age group go to the opera regularly.</p><p align="left">In summary, audiences at Canadian performing arts events seem to be mainly young people attending plays or pop concerts.</p><p align="left"><font size="2"></font></p>
 		<p align="left">
 		<b>Click to enlarge</b></p>
 </section>

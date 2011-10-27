@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -57,7 +39,7 @@
 <section id="rt2001">
 	<p align="left">Questions 1-10 - Yes, No, Not GivenThis is a difficult passage with some reasonably complex ideas. However, the statements themselves are quite straightforward if you read them carefully. The most important thing to remember is that for each statement you have to decide whether it agrees with the writer's views, disagrees with the writer's views, or if the writer doesn't give an opinion in that particular point. You must also be very careful to distinguish between facts and the writer's opinions.</p>
 </section>
-<section id="rt57">
+<section id="readingText">
 	<p align="left"><b>Why Study Ancient World Cultures?</b></p><p align="left"><font color="#000000">Why study ancient cultures? You might feel that the question is moot: students <i>do</i> study and <i>will</i> study ancient cultures; such study is an expected part of a tradition of intellectual development. The response to the <i>why</i> of the initial question is a matter of tradition, if not fact. A study of the Roman Empire, a reading of Greek philosophy and literature, a look at the Pyramids of Egypt – these are all accepted parts of a Western education, aren't they?</font></p>Probably so: even today, in the plurality of approaches to the study of history and to the study of cultures, people talk about Plato or Dante or Krishna or Mohammed. At this point, you might ask yourself these two additional questions:  Do we study these cultures because, to some extent, all cultures share certain characteristics? Does our own culture reflect aspects of these other cultures?The answer to the first of the two questions has historically been found in a discussion of universality. The danger in looking for universals consists in reformulating other, possibly alien, views to fit our own. We must always guard against the assumption that other people think as we do – or that they should.The differences among cultures are of greatest interest here, and reading about ancient cultures is thus reading about other people whose lives were surely different from our own. The social organization of Socrates' Athens – where a gimpy-legged man could hobble around interrogating citizens at will – differs profoundly from today's world beset with modern media whereby people rarely get to see or literally hear their critics. How can we today understand the psychology of the thousands of Egyptian workers who, apparently unquestioningly, spent their lives dragging great blocks of stone across burning sands in the construction of staggering pyramidal edifices whose completion took many lifetimes?  Interestingly, these differences may help us better to see – and know – the limits of our culture and the limits of our language and experience.<p align="left"><font color="#000000">The problem with the second question lies in its formulation. What is a culture after all? This paper proceeds under the assumption that there is some sort of definition to the word <i>culture</i>. Most people would ascribe an abstract value to culture – that which produces <i>good</i> art, <i>great</i> literature, etc. Yet the criteria of quality are scarcely international or inter-cultural: a revered "classical" work on the sitar resists comparison to a Mozart symphony beyond the statement that both are considered great cultural achievements in the context of their home cultures. Is, then, culture something that can be taught, or are its constituent parts more sweeping and pervasive than what can be learned from books or lectures? Answers to this second question already exist in the form of canons and reading lists, though there is much discussion today about what makes up those reading lists and about the assumptions concerning what should or should not fit on such lists.</font></p><p align="left"><font color="#000000">Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</font></p><p align="left"><font color="#000000">So, what have we learned about ancient cultures? You could probably tally up a list of facts, e.g. Mohammed's birth and death dates, and key concepts: the association of Hinduism with the illusory nature of the material world, the Greek belief in rationality, the Roman ability to organize and delegate. But these generalizations do not allow for minority opinions within the cultures, nor, most likely, do the generalizations say much about the people who were not gifted writers, powerful politicians, influential artists, successful interpreters of their social circumstances. On just about any given day in the midst of choking sand and blazing heat, what might some of those Egyptian stone-haulers have said in passing about their omnipotent pharaoh?</font></p><p align="left"><b>Glossary</b>Akhenaton:  Egyptian pharaoh (1603-36 BC) of the 18th dynasty who introduced a new monotheistic cult of the sun god Aton.</p><p align="left">Bill Hemminger, Exploring Ancient World Cultures web site at the University of Evansville.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>

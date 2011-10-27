@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_TV_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Art, cinema and theatre</b></font>You will ...</p><ol><li>group words and phrases according to whether they	relate to art, the cinema or theatre.</li><li>read a review of a play, a film and an art exhibition.</li></ol><p align="left"><font color="#0000ff"><b>National treasures</b></font>You will ...</p><ol><li>listen to people explaining a variety of terms related to	national treasures and match each explanation to the	appropriate word or phrase.</li><li>read a newspaper article about national treasures and	complete it with appropriate words and phrases.</li></ol><p align="left"><font color="#0000ff"><b>The theatre</b></font>You will ...</p><ol><li>read an e-mail describing a theatre production and	complete it with appropriate words.</li></ol><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_TV_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Art, cinema and theatre</b></font>You will ...</p><ol><li>group words and phrases according to whether they	relate to art, the cinema or theatre.</li><li>read a review of a play, a film and an art exhibition.</li></ol><p align="left"><font color="#0000ff"><b>National treasures</b></font>You will ...</p><ol><li>listen to people explaining a variety of terms related to	national treasures and match each explanation to the	appropriate word or phrase.</li><li>read a newspaper article about national treasures and	complete it with appropriate words and phrases.</li></ol><p align="left"><font color="#0000ff"><b>The theatre</b></font>You will ...</p><ol><li>read an e-mail describing a theatre production and	complete it with appropriate words.</li></ol><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

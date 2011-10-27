@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -64,7 +46,7 @@
 		<span id="a13" draggable="true">women</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_AW_004s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/AC_AW_004.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><li id="1">Over the four-week period shown in the charts, <input id="q1" type="droptarget" /> accounted for 55 per cent of all adult jazz concert-goers.</li><li id="2">5 per cent of <input id="q2" type="droptarget" /> attended pop/rock concerts.</li><li id="3"><input id="q3" type="droptarget" /> accounted for two-fifths of all pop/rock concert goers.</li><li id="4">About three-fifths of <input id="q4" type="droptarget" /> were men.</li><li id="5">Approximately half of <input id="q5" type="droptarget" /> were men.</li><li id="6">The ratio of men to women was almost equal among <input id="q6" type="droptarget" />.</li><li id="7">Nearly two-thirds of <input id="q7" type="droptarget" /> were women.</li><li id="8">Only 2 per cent of <input id="q8" type="droptarget" /> attended jazz concerts.</li><li id="9">The percentage of adults who went to jazz concerts was half that of adults who attended <input id="q9" type="droptarget" />.</li><li id="10">Only a very small minority of <input id="q10" type="droptarget" /> went to these musical performances.</li></ol>
+	<img class="rightFloat" src="../media/AC_AW_004s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/AC_AW_004.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><li id="1">Over the four-week period shown in the charts, <input id="q1" type="droptarget" /> accounted for 55 per cent of all adult jazz concert-goers.</li><li id="2">5 per cent of <input id="q2" type="droptarget" /> attended pop/rock concerts.</li><li id="3"><input id="q3" type="droptarget" /> accounted for two-fifths of all pop/rock concert goers.</li><li id="4">About three-fifths of <input id="q4" type="droptarget" /> were men.</li><li id="5">Approximately half of <input id="q5" type="droptarget" /> were men.</li><li id="6">The ratio of men to women was almost equal among <input id="q6" type="droptarget" />.</li><li id="7">Nearly two-thirds of <input id="q7" type="droptarget" /> were women.</li><li id="8">Only 2 per cent of <input id="q8" type="droptarget" /> attended jazz concerts.</li><li id="9">The percentage of adults who went to jazz concerts was half that of adults who attended <input id="q9" type="droptarget" />.</li><li id="10">Only a very small minority of <input id="q10" type="droptarget" /> went to these musical performances.</li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. The pie chart for Jazz tells us this.</p>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../Media/DD_LN1b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/DD_LN_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><tab/><b>4</b>How many people have VWI sent abroad to work?a.<a id="q1" >nearly 21,000</a>b.<a id="q2" >21,000</a>c.<a id="q3" >more than 21,000</a><tab/><b>5</b>Where do VWI volunteers come from?a.<a id="q4" >The USA and Canada</a>b.<a id="q5" >The USA and Europe</a>c.<a id="q6" >Canada and Australia</a><tab/><b>6</b>How old is the oldest volunteer?a.<a id="q7" >65</a>b.<a id="q8" >66</a>c.<a id="q9" >70</a><tab/><b>7</b>What are volunteers in Vietnam doing?a.<a id="q10" >training teachers</a>b.<a id="q11" >teaching English</a>c.<a id="q12" >teaching primary school children</a><tab/><b>8</b>Where are volunteers in South Africa working?a.<a id="q13" >in the cities</a>b.<a id="q14" >in the countryside</a>c.<a id="q15" >in both the cities and the countryside</a><tab/><b>9</b>Who are volunteers in Thailand training?a.<a id="q16" >healthcare workers</a>b.<a id="q17" >youth workers</a>c.<a id="q18" >park workers</a></ol>
+	<media class="leftFloat" src="../media/DD_LN1b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/DD_LN_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><tab/><b>4</b>How many people have VWI sent abroad to work?a.<a id="q1" >nearly 21,000</a>b.<a id="q2" >21,000</a>c.<a id="q3" >more than 21,000</a><tab/><b>5</b>Where do VWI volunteers come from?a.<a id="q4" >The USA and Canada</a>b.<a id="q5" >The USA and Europe</a>c.<a id="q6" >Canada and Australia</a><tab/><b>6</b>How old is the oldest volunteer?a.<a id="q7" >65</a>b.<a id="q8" >66</a>c.<a id="q9" >70</a><tab/><b>7</b>What are volunteers in Vietnam doing?a.<a id="q10" >training teachers</a>b.<a id="q11" >teaching English</a>c.<a id="q12" >teaching primary school children</a><tab/><b>8</b>Where are volunteers in South Africa working?a.<a id="q13" >in the cities</a>b.<a id="q14" >in the countryside</a>c.<a id="q15" >in both the cities and the countryside</a><tab/><b>9</b>Who are volunteers in Thailand training?a.<a id="q16" >healthcare workers</a>b.<a id="q17" >youth workers</a>c.<a id="q18" >park workers</a></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. James says they've sent over 21,000 and over means the same as more than.</p>

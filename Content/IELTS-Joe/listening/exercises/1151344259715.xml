@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../Media/ST_LN2b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/ST_LN_006.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Setting up a web site</b></font></p><p align="left"><font color="#000000"><b>Step 1.	</b>Find a reliable Internet Service Provider (ISP).</font></p>Step 2.	Acquire (5) <input id="1" width="100" />Step 3.	Look at (6) <input id="2" width="100" />Step 4.	Determine what the purpose of the web site is	and who (7) <input id="3" width="100" />Step 5.	Collect (8) <input id="4" width="100" />Step 6.	Test on a low specification computer with 	a (9) <input id="5" width="100" />Step 7.	Test on different configurations of computer	software and server.&#160;Step 8.	Set up your web site once but	(10) <input id="6" width="100" /><p align="left"><font size="2"></font></p>
+	<media class="leftFloat" src="../media/ST_LN2b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Setting up a web site</b></font></p><p align="left"><font color="#000000"><b>Step 1.	</b>Find a reliable Internet Service Provider (ISP).</font></p>Step 2.	Acquire (5) <input id="q1" />Step 3.	Look at (6) <input id="q2" />Step 4.	Determine what the purpose of the web site is	and who (7) <input id="q3" />Step 5.	Collect (8) <input id="q4" />Step 6.	Test on a low specification computer with 	a (9) <input id="q5" />Step 7.	Test on different configurations of computer	software and server.&#160;Step 8.	Set up your web site once but	(10) <input id="q6" /><p align="left"><font size="2"></font></p>
 </section>
 <section id="rt2001">
 	<p align="left">You should be able to tell from the title of the flow chart and the information provided that you will hear someone talking about how to set up a web site.</p><p align="left">Question 5What part of speech do you think can follow 'acquire'? What do you think you need to acquire when setting up a web site? What words of similar meaning can you think of for 'acquire'?</p><p align="left">Question 6What do you think you should 'look at' before creating your site? What would you do? What other words or phrases might you hear instead of 'look at'?</p><p align="left">Question 7The stem of this sentence should help you. What do you think the 'who' could refer to, a business? Who are the people involved?</p><p align="left">Question 8Think about other words for 'collect'. Any ideas about what you might need to collect?</p><p align="left">Question 9In this question you are given the stem, which helps you when you are listening. Make sure you understand what is written here.</p><p align="left">Question 10The 'but' in this statement should help you. The advice is to do something 'once' so maybe you have to do something else more frequently?</p>

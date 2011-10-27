@@ -45,7 +45,7 @@
 		<field id="8" group="8" type="i:target" mode="0">
 			<answer correct="true">H.  appear confident and relaxed</answer>
 		</field>
-		<media filename="Unit010_e4.flv" y="18" x="370" stretch="false" duration="60" mode="1" id="1003" type="m:video"/>	</body>
+		<media filename="Unit010_e4.flv" y="18" x="370" stretch="false" duration="60" mode="1" id="1003" type="m:video"/>
 	</body>
 	<template>
 		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>

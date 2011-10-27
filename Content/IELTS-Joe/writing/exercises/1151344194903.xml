@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_AW_002s.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/SS_AW_002.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><br/><li id="1">The proportion of men who were found guilty or cautioned in 2000 ....<ol class="answerList"><li><a id="q1" >declined steadily throughout the year</a></li><li><a id="q2" >increased steadily with age</a></li><li><a id="q3" >was greater than the proportion of women</a></li></ol><br/></li><br/><li id="2">In 2000 over 7 per cent of all ....<ol class="answerList"><li><a id="q4" >18-year-old males were offenders</a></li><li><a id="q5" >male offenders were 18 years old</a></li><li><a id="q6" >18-year-olds were offenders</a></li></ol><br/></li><br/><li id="3">In 2000 ....<ol class="answerList"><li><a id="q7" >more crimes were committed by 20-year-old women than by 30-year-old women</a></li><li><a id="q8" >a greater percentage of 20-year-old women than 30-year-old women committed crimes</a></li><li><a id="q9" >more 20-year-old women than 30-year-old women committed crimes</a></li></ol><br/></li><br/><li id="4">In 2000 ....<ol class="answerList"><li><a id="q10" >no one over the age of 70 was found guilty or cautioned</a></li><li><a id="q11" >the number of 70-year-old offenders fell sharply</a></li><li><a id="q12" >only a tiny proportion of people over the age of 70 were found guilty or cautioned</a></li></ol><br/></li><br/><li id="5">In 2000 approximately 0.5 per cent of ....<ol class="answerList"><li><a id="q13" >30-year-old offenders were women</a></li><li><a id="q14" >30-year-old women were offenders</a></li><li><a id="q15" >crimes were committed by 30-year-old women</a></li></ol><br/></li><br/><li id="6">Between 1999 and 2001 ....<ol class="answerList"><li><a id="q16" >there was an overall decrease in the number of recorded crimes</a></li><li><a id="q17" >the overall number of recorded crimes remained the same</a></li><li><a id="q18" >there was an overall increase in the number of recorded crimes</a></li></ol><br/></li><br/><li id="7">Between 1999 and 2001 there was a reduction in ....<ol class="answerList"><li><a id="q19" >only a few types of crime</a></li><li><a id="q20" >most types of crime</a></li><li><a id="q21" >all types of crime</a></li></ol><br/></li><br/><li id="8">Over the period 2000-2001 the total number of thefts, including car thefts, stood at just over ....<ol class="answerList"><li><a id="q22" >2,000</a></li><li><a id="q23" >2 million</a></li><li><a id="q24" >3 million</a></li></ol><br/></li><br/><li id="9">Over the period 2000-2001 ....<ol class="answerList"><li><a id="q25" >nearly half of all thefts involved motor vehicles</a></li><li><a id="q26" >over half of all thefts were thefts of motor vehicles</a></li><li><a id="q27" >the majority of thefts were thefts from vehicles</a></li></ol><br/></li><br/><li id="10">Between 2000 and 2001 ....<ol class="answerList"><li><a id="q28" >fewer people were arrested than between 1999 and 2000</a></li><li><a id="q29" >fewer offenders were cautioned or found guilty than between 1999 and 2000</a></li><li><a id="q30" >fewer crimes were recorded than between 1999 and 2000</a></li></ol><br/></li></ol>
+	<img class="rightFloat" src="../media/SS_AW_002s.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../media/SS_AW_002.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><br/><li id="1">The proportion of men who were found guilty or cautioned in 2000 ....<ol class="answerList"><li><a id="q1" >declined steadily throughout the year</a></li><li><a id="q2" >increased steadily with age</a></li><li><a id="q3" >was greater than the proportion of women</a></li></ol><br/></li><br/><li id="2">In 2000 over 7 per cent of all ....<ol class="answerList"><li><a id="q4" >18-year-old males were offenders</a></li><li><a id="q5" >male offenders were 18 years old</a></li><li><a id="q6" >18-year-olds were offenders</a></li></ol><br/></li><br/><li id="3">In 2000 ....<ol class="answerList"><li><a id="q7" >more crimes were committed by 20-year-old women than by 30-year-old women</a></li><li><a id="q8" >a greater percentage of 20-year-old women than 30-year-old women committed crimes</a></li><li><a id="q9" >more 20-year-old women than 30-year-old women committed crimes</a></li></ol><br/></li><br/><li id="4">In 2000 ....<ol class="answerList"><li><a id="q10" >no one over the age of 70 was found guilty or cautioned</a></li><li><a id="q11" >the number of 70-year-old offenders fell sharply</a></li><li><a id="q12" >only a tiny proportion of people over the age of 70 were found guilty or cautioned</a></li></ol><br/></li><br/><li id="5">In 2000 approximately 0.5 per cent of ....<ol class="answerList"><li><a id="q13" >30-year-old offenders were women</a></li><li><a id="q14" >30-year-old women were offenders</a></li><li><a id="q15" >crimes were committed by 30-year-old women</a></li></ol><br/></li><br/><li id="6">Between 1999 and 2001 ....<ol class="answerList"><li><a id="q16" >there was an overall decrease in the number of recorded crimes</a></li><li><a id="q17" >the overall number of recorded crimes remained the same</a></li><li><a id="q18" >there was an overall increase in the number of recorded crimes</a></li></ol><br/></li><br/><li id="7">Between 1999 and 2001 there was a reduction in ....<ol class="answerList"><li><a id="q19" >only a few types of crime</a></li><li><a id="q20" >most types of crime</a></li><li><a id="q21" >all types of crime</a></li></ol><br/></li><br/><li id="8">Over the period 2000-2001 the total number of thefts, including car thefts, stood at just over ....<ol class="answerList"><li><a id="q22" >2,000</a></li><li><a id="q23" >2 million</a></li><li><a id="q24" >3 million</a></li></ol><br/></li><br/><li id="9">Over the period 2000-2001 ....<ol class="answerList"><li><a id="q25" >nearly half of all thefts involved motor vehicles</a></li><li><a id="q26" >over half of all thefts were thefts of motor vehicles</a></li><li><a id="q27" >the majority of thefts were thefts from vehicles</a></li></ol><br/></li><br/><li id="10">Between 2000 and 2001 ....<ol class="answerList"><li><a id="q28" >fewer people were arrested than between 1999 and 2000</a></li><li><a id="q29" >fewer offenders were cautioned or found guilty than between 1999 and 2000</a></li><li><a id="q30" >fewer crimes were recorded than between 1999 and 2000</a></li></ol><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">1. The line graph shows that, for all ages, the percentage (proportion per 100 of the population) of male offenders was higher than the percentage of female offenders.</font></p>

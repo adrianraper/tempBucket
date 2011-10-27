@@ -9,6 +9,11 @@ body > header {
 	color: #000000;
 }
 
+/* The body should always have a bit of space at the top */
+#body {
+	padding-top: 12px;
+}
+
 /* Paragraphs have spacing after them */
 p {
 	padding-bottom: 12px;
@@ -30,10 +35,30 @@ h2 {
 	color: #000099;
 }
 		
-/* Lists use numbers. You can't actually change this, so is currently superfluous. */
+/* Lists use numbers. */
 #questionList {
 	list-style-type: decimal;
+	padding-left: 20px;
+	margin-left: 0px;
+	padding-right: 15px;
 }
+/* Multiple-choice answers use letters */
+.answerList {
+	list-style-type: lowerLatin;
+	padding-left: 15px;
+	margin-left: 0px;
+}
+/* Reading text spacing */
+/* I would be happier doing #readingText * {} but that overrides the h1 settings */
+#readingText p {
+	padding-right: 12px;
+}
+/* A paragraph class for hanging indents that work with numbers */
+.hangingIndent {
+ 	tab-stops: 30px;
+ 	text-indent: -30px;
+ 	padding-left: 30px;
+}		
 
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {

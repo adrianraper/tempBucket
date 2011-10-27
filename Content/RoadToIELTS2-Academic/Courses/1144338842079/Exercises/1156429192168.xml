@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -58,7 +40,7 @@
 		<span id="a50" draggable="true">Newspapers</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_TV_002.jpg" mode="1" id="1001"  /><p align="left">to air - <font color="#0000ff"><input id="q1" type="droptarget" /></font>to broadcast - <input id="q2" type="droptarget" />a tabloid - <input id="q3" type="droptarget" />the press - <input id="q4" type="droptarget" />a front page - <input id="q5" type="droptarget" />an edition - <input id="q6" type="droptarget" />a commercial - <input id="q7" type="droptarget" />a channel - <input id="q8" type="droptarget" />a readership - <input id="q9" type="droptarget" />a layout - <input id="q10" type="droptarget" />coverage - <input id="q11" type="droptarget" />chequebook journalism - <input id="q12" type="droptarget" />a broadsheet - <input id="q13" type="droptarget" />newscast - <input id="q14" type="droptarget" />live - <input id="q15" type="droptarget" />ratings - <input id="q16" type="droptarget" />a report - <input id="q17" type="droptarget" />a story - <input id="q18" type="droptarget" />a headline - <input id="q19" type="droptarget" />circulation - <input id="q20" type="droptarget" />an article - <input id="q21" type="droptarget" />a newsflash - <input id="q22" type="droptarget" />pre-recorded - <input id="q23" type="droptarget" />a programme - <input id="q24" type="droptarget" />a column - <input id="q25" type="droptarget" />classified advertisements - <input id="q26" type="droptarget" />censorship - <input id="q27" type="droptarget" />an audience - <input id="q28" type="droptarget" />a studio - <input id="q29" type="droptarget" />a viewer - <input id="q30" type="droptarget" /></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/MM_TV_002.jpg" mode="1" id="1001"  /><p align="left">to air - <font color="#0000ff"><input id="q1" type="droptarget" /></font>to broadcast - <input id="q2" type="droptarget" />a tabloid - <input id="q3" type="droptarget" />the press - <input id="q4" type="droptarget" />a front page - <input id="q5" type="droptarget" />an edition - <input id="q6" type="droptarget" />a commercial - <input id="q7" type="droptarget" />a channel - <input id="q8" type="droptarget" />a readership - <input id="q9" type="droptarget" />a layout - <input id="q10" type="droptarget" />coverage - <input id="q11" type="droptarget" />chequebook journalism - <input id="q12" type="droptarget" />a broadsheet - <input id="q13" type="droptarget" />newscast - <input id="q14" type="droptarget" />live - <input id="q15" type="droptarget" />ratings - <input id="q16" type="droptarget" />a report - <input id="q17" type="droptarget" />a story - <input id="q18" type="droptarget" />a headline - <input id="q19" type="droptarget" />circulation - <input id="q20" type="droptarget" />an article - <input id="q21" type="droptarget" />a newsflash - <input id="q22" type="droptarget" />pre-recorded - <input id="q23" type="droptarget" />a programme - <input id="q24" type="droptarget" />a column - <input id="q25" type="droptarget" />classified advertisements - <input id="q26" type="droptarget" />censorship - <input id="q27" type="droptarget" />an audience - <input id="q28" type="droptarget" />a studio - <input id="q29" type="droptarget" />a viewer - <input id="q30" type="droptarget" /></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb0">
 	

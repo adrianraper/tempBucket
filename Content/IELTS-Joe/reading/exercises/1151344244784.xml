@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */	
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="ground " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="surface " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="sand " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="spigot " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="storage tank " correct="true"/><answer value="small storage tank" correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -52,13 +34,15 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/DD_WR2.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><tab/><b>8</b>Contaminated <input id="q1" width="100" /> water<tab/><b>9</b>Contaminated <input id="q2" width="100" /> water<tab/><b>10</b><input id="q3" width="100" /> filter<tab/><b>11</b>To users through a <input id="q4" width="100" /><tab/><b>12</b>To a <input id="q5" width="100" /> suitable for drinking water</ol>
+	<img class="leftFloat" src="../media/DD_WR2.jpg" mode="1" id="1001"  /><br/>
+	<p class="hangingIndent"><b>8</b><tab/>Contaminated <input id="q1" width="100" /> water</p>
+	<p class="hangingIndent"><b>9</b><tab/>Contaminated <input id="q2" width="100" /> water</p>
+	<p class="hangingIndent"><b>10</b><tab/><input id="q3" width="100" /> filter</p>
+	<p class="hangingIndent"><b>11</b><tab/>To users through a <input id="q4" width="100" /></p>
+	<p class="hangingIndent"><b>12</b><tab/>To a <input id="q5" width="100" /> suitable for drinking water</p>
 </section>
 <section id="readingText">
 	<p align="left"><font color="#0000ff"><b>To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries</b></font></p><p align="left"><b>Introduction</b>Waterborne diseases such as cholera, typhoid fever, gastroenteritis, dysentery, and infectious hepatitis kill more than 400 developing-world children every hour, and result in the loss of billions of hours of worker productivity each year. Home-delivered tap water is uncommon in developing countries, and two out of three people in the world must fetch water from outside their homes. To address this significant public health problem, there is an effort underway at the Lawrence Berkeley Laboratory (LBL) to introduce a water disinfection system using ultraviolet light to rural villages in India.</p><p align="left"><b>The Ultraviolet Water Disinfection System</b>The proposed technology uses ultraviolet (UV) light to eliminate waterborne pathogens (germs, viruses, and molds) from the local water supply.</p>Before contaminated water enters the UV disinfection chamber, the water must be filtered to reduce turbidity. If water is pumped into the chamber directly from a ground water source (e.g. a shallow tube well), filtering is often unnecessary because the turbidity of ground water is low. The turbidity in surface water can be reduced by using an appropriate sand filter.In the disinfection chamber, water is disinfected by exposure to UV light. In the present design, the UV chamber is constructed from sheet metal and contains a UV lamp under a reflector. A shallow stream of water flows under the UV lamp through channels in a metal tray.The energy density of the UV light shining on the water is 20 milliwatt-sec/cm² – more than enough to kill 99% of the waterborne pathogens (Wolfe, 1990). The chamber has an electrical interlock so that the lamp cannot operate unless the lid to the chamber is shut tightly. The interlock eliminates the risk to system operators of exposure to the harmful UV light. From the disinfection chamber, the water is delivered through a spigot to the user or can be channeled into a small storage tank for potable water. Gravity is used to move water through the system. Consuming a total of 40 watts, the system disinfects approximately 30 liters of water per minute. This is more than three times the flow from a typical U.S. bathtub faucet or a common garden hose.<p align="left"><b>Ultraviolet Disinfection Compared to Other Water Treatment Techniques</b>Despite its growing popularity in Europe, UV disinfection is not a common water treatment method in developing countries. Some people in developing countries obtain safe drinking water from deep tube wells. Others disinfect their water with chlorine or by boiling it over a cookstove. We do not claim that ultraviolet disinfection is the best choice for water disinfection under all circumstances, but believe that it is a viable and preferable alternative in certain situations.In India, many rural families obtain drinking water from deep tube wells. Because the wells are more than 200 feet deep, the water has been sealed beneath an impermeable layer of earth for a long time and is commonly bacteria-free. One disadvantage of obtaining water from a deep tube well is that many people dislike the taste. Because the water is old, it has a high dissolved salt content, and many people prefer the taste of fresher, surface water. Compared to deep tube wells, UV disinfection has several advantages. The UV disinfection process can be used to disinfect fresh water and has no effect on the smell or flavor of the water. Moreover, unlike a tube well, the system can be easily moved from one place to another as needed.The water supplies in many rural communities are disinfected with chlorine bleach. Chlorine disinfection kills all pathogens, including giardia. In addition, chlorine has a residual effect; that is, if bacteria are reintroduced into a chlorinated water supply, the new bacteria will die. Although chlorine disinfection is a well-proven technique, it has a few disadvantages. Often, people dislike the taste and smell of chlorinated water. In addition, because it is easy to overdose water with chlorine, it is necessary for a trained person to test chlorine levels before water is consumed. Most importantly, it is necessary to maintain a steady supply of chlorine. Unlike chlorine disinfection, UV disinfection does not kill giardia or have a residual effect on bacteria that may be reintroduced into the water after UV treatment. However, in areas where giardia is not a problem and where long-term storage of drinking water is unnecessary, UV disinfection can provide a useful treatment alternative. As mentioned above, UV disinfection has no effect on the smell or flavor of the water. In addition, there is no risk of overdose as there is with chlorine. The most significant advantage is that the system is not vulnerable to a breakdown in the supply chain. Once the initial components are provided, and so long as the UV lamp is replaced annually, the system can operate for years.Boiling water over a cookstove is common practice among rural families in some developing countries (e.g. China). The burning of biomass fuels for water disinfection increases the pressure on the forests. In many areas of India as well as other developing countries, deforestation is extensive. In addition, there are serious health risks associated with smoke inhalation from biomass-fueled traditional cookstoves. Generally, the health risks for women and children are much greater than those for men because women, as the household cooks, often spend many hours each day at unvented, indoor hearths with their children nearby. The UV system puts no pressure on forests and does not require someone to tend a smoky fire while waiting for water to boil. In addition, the energy savings associated with the UV system compared to burning biomass fuels are enormous: the UV disinfection technique uses approximately 40,000 times less primary energy than boiling water over a cookstove.</p><p align="left"><b>Conclusion</b>The UV disinfection system represents a useful water treatment alternative for developing countries. The provision of a simple and inexpensive method for disinfecting drinking water will save the lives of many people – particularly the lives of children, who are the most susceptible to diarrheal diseases. In addition, the UV disinfection system can greatly improve the quality of life for rural women by reducing their workloads as well as the number of children they lose to waterborne diseases.</p><p align="left"> turbidity: the cloudiness of the water. The water needs to be clear in order for the UV light to travel all the way through it during the disinfection process.</p>2 tube well: a well made by driving a tube into the earth to a layer of water-bearing rock.3 potable: drinkable; fit to drink.4 giardia: single-celled organisms which can cause diarrhea.5 biomass fuels: plants and plant materials used as fuel.<p align="left">Ashok J. Gadgil and Leslie J. Shown, 1st February 1995, Solar Cooking Archive web site.</p>
-</section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">All the answers for this exercise come from the same section of the passage. Which section is it?</font>&nbsp;Read the flow chart from left and right. It doesn't actually show how the disinfection chambers works, but what happens to the water before and after it enters the chamber. Make sure your answers are grammatically correct and be careful with spelling.</p>
 </section>
 </body>
 </bento>

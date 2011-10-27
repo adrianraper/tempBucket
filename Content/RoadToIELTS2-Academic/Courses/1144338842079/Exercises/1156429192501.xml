@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -61,7 +43,7 @@
 		<span id="a22" draggable="true">report</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_TV_003.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>The UK Today</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Today saw the launch of the new daily newspaper 'The UK Today'. According to the paper's editor, Charles Moody, 'The UK Today' is aimed at a younger twenty-something <font color="#0000ff"><input id="q1" type="droptarget" /></font> and is expected to reach an average <font color="#0000ff"><input id="q2" type="droptarget" /></font> of 200,000 in its first year. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Although the paper is <font color="#0000ff"><input id="q3" type="droptarget" /></font> in format, Moody was quick to point out that it will have as much serious news as any of the <font color="#0000ff"><input id="q4" type="droptarget" /></font>. One of its most striking features is its highly unusual <font color="#0000ff"><input id="q5" type="droptarget" /></font>. Articles aren't laid out in <font color="#0000ff"><input id="q6" type="droptarget" /></font> but in boxes, each accompanied by a colour photograph. </font></p><p align="left"><font face="verdana" size="13" color="#000000">You'll find all the usual sections - national and international news, financial news, arts and entertainment, sport and, of course, <font color="#0000ff"><input id="q7" type="droptarget" />&#160;</font>advertisements. </font></p><p align="left"><font face="verdana" size="13" color="#000000">So, what's in today's <font color="#0000ff"><input id="q8" type="droptarget" /></font>? Well, on the <font color="#0000ff"><input id="q9" type="droptarget" /></font>, under the eye-catching banner <font color="#0000ff"><input id="q10" type="droptarget" /></font> 'More hot air?' is an in-depth <font color="#0000ff"><input id="q11" type="droptarget" /></font> on the outcomes of this week's international summit meeting on global warming. Well worth a read!</font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/MM_TV_003.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>The UK Today</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Today saw the launch of the new daily newspaper 'The UK Today'. According to the paper's editor, Charles Moody, 'The UK Today' is aimed at a younger twenty-something <font color="#0000ff"><input id="q1" type="droptarget" /></font> and is expected to reach an average <font color="#0000ff"><input id="q2" type="droptarget" /></font> of 200,000 in its first year. </font></p><p align="left"><font face="verdana" size="13" color="#000000">Although the paper is <font color="#0000ff"><input id="q3" type="droptarget" /></font> in format, Moody was quick to point out that it will have as much serious news as any of the <font color="#0000ff"><input id="q4" type="droptarget" /></font>. One of its most striking features is its highly unusual <font color="#0000ff"><input id="q5" type="droptarget" /></font>. Articles aren't laid out in <font color="#0000ff"><input id="q6" type="droptarget" /></font> but in boxes, each accompanied by a colour photograph. </font></p><p align="left"><font face="verdana" size="13" color="#000000">You'll find all the usual sections - national and international news, financial news, arts and entertainment, sport and, of course, <font color="#0000ff"><input id="q7" type="droptarget" />&#160;</font>advertisements. </font></p><p align="left"><font face="verdana" size="13" color="#000000">So, what's in today's <font color="#0000ff"><input id="q8" type="droptarget" /></font>? Well, on the <font color="#0000ff"><input id="q9" type="droptarget" /></font>, under the eye-catching banner <font color="#0000ff"><input id="q10" type="droptarget" /></font> 'More hot air?' is an in-depth <font color="#0000ff"><input id="q11" type="droptarget" /></font> on the outcomes of this week's international summit meeting on global warming. Well worth a read!</font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

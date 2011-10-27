@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="G " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="E " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="H " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="B " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="F " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="D " correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/LC_AR_002.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">The truth probably lies between two extremes. <input id="q1" width="100" /></li><li id="2">How a theory was disproved. <input id="q2" width="100" /></li><li id="3">The problem of defining communication. <input id="q3" width="100" /></li><li id="4">Two theories of the origin of language. <input id="q4" width="100" /></li><li id="5">The difference between animal noises and language. <input id="q5" width="100" /></li><li id="6">Examples of how a particular species communicates. <input id="q6" width="100" /></li></ol>
+	<img class="leftFloat" src="../media/LC_AR_002.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">The truth probably lies between two extremes. <input id="q1" width="100" /></li><li id="2">How a theory was disproved. <input id="q2" width="100" /></li><li id="3">The problem of defining communication. <input id="q3" width="100" /></li><li id="4">Two theories of the origin of language. <input id="q4" width="100" /></li><li id="5">The difference between animal noises and language. <input id="q5" width="100" /></li><li id="6">Examples of how a particular species communicates. <input id="q6" width="100" /></li></ol>
 </section>
 <section id="readingText">
 	<p align="left"><font color="#0000ff"><b>Do animals talk?</b></font></p><p align="left"><font color="#0000ff"><b>A</b> Do any animals naturally have a true language? In order to answer this question, we must compare human language with animal communication. But such a comparison presents a number of perhaps unsolvable problems. Two in particular need to be discussed before we can give a coherent reply to the query, Do animals talk naturally?<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>B</b><font color="#000000"> The first problem is this: are we comparing systems which differ quantitatively or qualitatively? On the one hand, human language may have gradually evolved from a more primitive animal means of communication in a continuous line of growth – a viewpoint sometimes known as a continuity theory. On the other hand, human language may be something quite different from our basic animal heritage, and superimposed upon it. This is a discontinuity theory.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>C</b><font color="#000000"> Supporters of continuity theories suggest that language grew out of a primate call system, like the ones used by apes today. They assume that humans started out with a simple set of cries in which each one meant something different, such as, Danger! or Follow me! or Don't touch that female, she's mine! These cries gradually became more elaborate, and eventually evolved into language.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>D</b><font color="#000000"> A possible intermediate stage is seen in the cries of the vervet monkey. This monkey has several alarm calls which distinguish between different types of danger (Struhsaker 1967). The chutter announces that a puff adder or cobra is around. The rruap gives warning of an eagle. A chirp is used for lions and leopards. A less panic-stricken utterance, the uh!, signals the presence of a spotted hyena or Masai tribesman. According to some, it is a very short step from an alarm call warning of a poisonous snake to using the chutter as a word symbolizing a poisonous snake.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>E</b><font color="#000000"> Another interpretation of these signals is possible. The monkeys could merely be distinguishing between the intensity of different types of danger. They may be more frightened of puff adders than eagles – or vice versa. This plausible explanation has been ruled out by an experiment in which a concealed loudspeaker played recordings of the various alarm calls. When they heard a chutter, the vervets stood on their hind legs and looked around for a snake. At the sound of a rraup they dived into the vegetation as if hiding from an eagle. And at the lion-leopard chirp, they hastily climbed up a tree. So the monkeys clearly have a special signal for each type of enemy.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>F</b> Yet the danger cries of monkeys are still far from human language. They are a mix of a shriek of fear and a warning to others, and are only partly a symbol. The huge gulf between these calls and real speech has led many people to argue for a discontinuity theory. Proponents of discontinuity theories claim that humans still retain their basic set of animal cries, which exist alongside language. Yelps of pain, shrieks of fear, and the different types of crying observed in babies may be closely related to the call systems of monkeys. If this view is correct then it is fairly difficult to compare human and animal means of communication. It may be like comparing two things as different as the Chinese language and a set of traffic lights.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>G</b> But a continuity versus discontinuity divide may be oversimple. Language is a complex mosaic in which some features are continuous, and some discontinuous with ape communication. Exactly which is which is still under discussion.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>H</b><font color="#000000"> The second major problem we face is that it is not always easy to decide what counts as communication in animals. So that, at the very least, cats spitting and rabbits thumping their back legs must be taken into consideration – and it isn't at all clear where to stop. It is sometimes suggested that this problem could be solved by concentrating on examples where the animal is intentionally trying to convey information. But such distinctions are difficult to draw, both in humans and animals. If a man smooths down his hair when an attractive woman walks into the room, is this an unconscious response? Or is he doing it intentionally in the hope of catching her attention? In the sea, so-called snapping shrimps can produce loud cracks by closing their claws sharply. Since the cracks can upset naval sonar devices, marine biologists have attempted to discover the circumstances which lead the shrimps to produce them. But no one has yet discovered the significance of the snaps. They may be informative – but they may not. There is no way in which we can be sure about making the right decision when it comes to interpreting such a phenomenon.<font color="#0000ff"></font></font></font></p><p align="left"> puff adder: a large poisonous African snake.</p>2 hyena: a wild dog-like animal native to Africa and Asia.3 Masai tribesman: a member of an African tribe of cattle herders.<p align="left">The Articulate Mammal, Jean Aitchison, Routledge 1998, pp. 24-26.</p><p align="left"><font size="2"></font></p>

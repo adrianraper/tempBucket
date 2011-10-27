@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/TT_SP_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000">Parts 2 and 3 are linked by a common theme. When you have finished your talk in Part 2, you will be asked several questions related to the same theme. Answer simply but clearly. Take a little time to think about your answer, if necessary. Each answer could be from one to five sentences long. You may be asked to compare, to evaluate, to explain, to describe, to speculate. Over the coming units you will learn strategies to deal with all these situations. Remember, you are NOT being tested on your general knowledge, but on your ability to communicate! </font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/TT_SP_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000">Parts 2 and 3 are linked by a common theme. When you have finished your talk in Part 2, you will be asked several questions related to the same theme. Answer simply but clearly. Take a little time to think about your answer, if necessary. Each answer could be from one to five sentences long. You may be asked to compare, to evaluate, to explain, to describe, to speculate. Over the coming units you will learn strategies to deal with all these situations. Remember, you are NOT being tested on your general knowledge, but on your ability to communicate! </font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="true"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"><feedback source="fb7"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"><feedback source="fb7"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../Media/ST_LN2a.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/ST_LN_005.jpg" mode="1" id="1001"  /><p align="left"><b>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</b></p><p align="left"><g id="1">A.  Fewer employees are needed.</g><g id="2">B.  It is an inexpensive form of publicity.</g><g id="3">C.  Small companies can compete with large international ones.</g><g id="4">D.  Companies can do business 24 hours a day, 365 days a year.</g><g id="5">E.  Far more potential customers have access to your products.</g><g id="6">F.  It is easier to adapt products and services to the market.</g><g id="7">G.  Information needed by customers can be kept up-to-date.</g></p>
+	<media class="leftFloat" src="../media/ST_LN2a.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/ST_LN_005.jpg" mode="1" id="1001"  /><p align="left"><b>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</b></p><p align="left"><g id="t1">A.  Fewer employees are needed.</g><g id="t2">B.  It is an inexpensive form of publicity.</g><g id="t3">C.  Small companies can compete with large international ones.</g><g id="t4">D.  Companies can do business 24 hours a day, 365 days a year.</g><g id="t5">E.  Far more potential customers have access to your products.</g><g id="t6">F.  It is easier to adapt products and services to the market.</g><g id="t7">G.  Information needed by customers can be kept up-to-date.</g></p>
 </section>
 <section id="fb1">
 	<p align="left">A. The speaker says that you don't have to employ a professional programmer. In other words, you don't need to employ additional staff. She does not say anything about being able to reduce staff.</p>

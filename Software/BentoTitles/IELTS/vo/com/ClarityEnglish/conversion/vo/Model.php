@@ -253,7 +253,7 @@ XML;
 				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
-					$newA->addAttribute('source','q'.$field->getID());
+					$newA->addAttribute('source','t'.$field->getID());
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					// Is there any feedback to be added to the model related to this answer?
 					// NOTE: This code assumes that each answer has an ID that relates to a feedback ID

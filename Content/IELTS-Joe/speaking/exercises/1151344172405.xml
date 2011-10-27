@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -51,7 +33,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_SP_002.jpg" mode="1" id="1001"  /><p align="left">Your answers will be fuller and more interesting if you can support them with reasons and examples. In daily life, practise giving yourself reasons for what you do and what you think.</p><p align="left">eg. Why am I buying this ice-cream?      It's very hot today.      I want to reward myself for working hard this morning.      It looks delicious on the TV ad.      I'm rather thirsty.</p><p align="left">Learn to <b>give reasons</b> for your statements and opinions.Learn phrases like:</p>- The reason I like ... is ...- The reason for this is ...- One of the important things about this is ...- What I like about ... is ...- Because of this, ...- This means that ...- As I see it, ...<p align="left"><font color="#0000ff"><b>Pros and Cons – Advantages and Disadvantages</b></font></p><p align="left">Try and see both sides of a picture. Give yourself two reasons for, and two reasons against. Learn to evaluate ideas and situations.Use phrases such as:</p>- On one hand ..., on the other hand ...- Although ..., it could be said that ...- The advantages of this are ..., while the disadvantages are ...- It is sometimes said that ..., but I think ...<p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/WB_SP_002.jpg" mode="1" id="1001"  /><p align="left">Your answers will be fuller and more interesting if you can support them with reasons and examples. In daily life, practise giving yourself reasons for what you do and what you think.</p><p align="left">eg. Why am I buying this ice-cream?      It's very hot today.      I want to reward myself for working hard this morning.      It looks delicious on the TV ad.      I'm rather thirsty.</p><p align="left">Learn to <b>give reasons</b> for your statements and opinions.Learn phrases like:</p>- The reason I like ... is ...- The reason for this is ...- One of the important things about this is ...- What I like about ... is ...- Because of this, ...- This means that ...- As I see it, ...<p align="left"><font color="#0000ff"><b>Pros and Cons – Advantages and Disadvantages</b></font></p><p align="left">Try and see both sides of a picture. Give yourself two reasons for, and two reasons against. Learn to evaluate ideas and situations.Use phrases such as:</p>- On one hand ..., on the other hand ...- Although ..., it could be said that ...- The advantages of this are ..., while the disadvantages are ...- It is sometimes said that ..., but I think ...<p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

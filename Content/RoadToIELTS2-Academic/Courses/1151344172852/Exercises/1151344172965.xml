@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 	
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_TV_003.jpg" mode="1" id="1001"  /><p align="left"><b>1.</b> Tropical fruits, such as pineapples and mangoes, do not grow in Britain so they have to be <input id="1" width="100" />. </p><p align="left"><b>2.</b> Successful <input id="2" width="100" /> for the post will be invited to attend an interview.</p><p align="left"><b>3.</b> Do you think the <input id="3" width="100" /> age should be the same for men and women?</p><p align="left"><b>4.</b> One of the best ways to find work is to look at the job <input id="4" width="100" /> in newspaper.</p><p align="left"><b>5.</b> I'm not a fully-qualified accountant yet - I'm still a <input id="5" width="100" />.</p><p align="left"><b>6.</b> One of the advantages of working for a large company is that there are more prospects for the <input id="6" width="100" /> so it is  easier to move up the career ladder.</p><p align="left"><b>7.</b> One way businesses try to increase sales is by selling goods and services at a lower price than their <input id="7" width="100" />. </p><p align="left"><b>8.</b> Nowadays most companies run regular <input id="8" width="100" /> courses so that their employees can acquire new skills .</p><p align="left"><b>9.</b> Despite the introduction of equal opportunities policies, women are still rarely <input id="9" width="100" /> to the most senior positions.</p><p align="left"><b>10.</b> Trade union leaders <input id="10" width="100" /> for better working conditions with employers on behalf of the workers they represent.</p><p align="left"><b>11.</b> Nowadays many companies have a system of performance-related pay, and salary increases are linked to an employee's <input id="11" width="100" />. </p><p align="left"><b>12.</b> Modern means of transport have made it far easier for manufacturers to <input id="12" width="100" /> products to their customers.</p><p align="left"><b>13.</b> More women than men are <input id="13" width="100" /> in part-time jobs.</p><p align="left"><b>14.</b> Sri Lanka <input id="14" width="100" /> more tea abroard than any of the other tea-producing countries.</p><p align="left"><b>15.</b> When a company goes bankrupt, it is often due to financial <input id="15" width="100" />. </p><p align="left"><b>16.</b> Sales of environmentally friendly <input id="16" width="100" /> have risen dramatically in recent years.</p><p align="left"><b>17.</b> When you apply for a new job, your previous <input id="17" width="100" /> will be asked to supply a reference.</p><p align="left"><b>18.</b> It is a good idea to take out a private pension plan so that you will have enough money to live on when you <input id="18" width="100" />.</p><p align="left"><b>19.</b> There is a great deal of <input id="19" width="100" /> for jobs at times of high unemployment.</p><p align="left"><b>20.</b> Good relations between <input id="20" width="100" /> and workers are often the key to the success of a company.</p><p align="left"><b>21.</b> The more experience and qualifications you have, the easier it should be to find <input id="21" width="100" />.</p><p align="left"><b>22.</b> Agreement regarding pay increases is sometimes only reached after weeks of <input id="22" width="100" />. </p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/WB_TV_003.jpg" mode="1" id="1001"  /><p align="left"><b>1.</b> Tropical fruits, such as pineapples and mangoes, do not grow in Britain so they have to be <input id="q1" />. </p><p align="left"><b>2.</b> Successful <input id="q2" /> for the post will be invited to attend an interview.</p><p align="left"><b>3.</b> Do you think the <input id="q3" /> age should be the same for men and women?</p><p align="left"><b>4.</b> One of the best ways to find work is to look at the job <input id="q4" /> in newspaper.</p><p align="left"><b>5.</b> I'm not a fully-qualified accountant yet - I'm still a <input id="q5" />.</p><p align="left"><b>6.</b> One of the advantages of working for a large company is that there are more prospects for the <input id="q6" /> so it is  easier to move up the career ladder.</p><p align="left"><b>7.</b> One way businesses try to increase sales is by selling goods and services at a lower price than their <input id="q7" />. </p><p align="left"><b>8.</b> Nowadays most companies run regular <input id="q8" /> courses so that their employees can acquire new skills .</p><p align="left"><b>9.</b> Despite the introduction of equal opportunities policies, women are still rarely <input id="q9" /> to the most senior positions.</p><p align="left"><b>10.</b> Trade union leaders <input id="q10" /> for better working conditions with employers on behalf of the workers they represent.</p><p align="left"><b>11.</b> Nowadays many companies have a system of performance-related pay, and salary increases are linked to an employee's <input id="q11" />. </p><p align="left"><b>12.</b> Modern means of transport have made it far easier for manufacturers to <input id="q12" /> products to their customers.</p><p align="left"><b>13.</b> More women than men are <input id="q13" /> in part-time jobs.</p><p align="left"><b>14.</b> Sri Lanka <input id="q14" /> more tea abroard than any of the other tea-producing countries.</p><p align="left"><b>15.</b> When a company goes bankrupt, it is often due to financial <input id="q15" />. </p><p align="left"><b>16.</b> Sales of environmentally friendly <input id="q16" /> have risen dramatically in recent years.</p><p align="left"><b>17.</b> When you apply for a new job, your previous <input id="q17" /> will be asked to supply a reference.</p><p align="left"><b>18.</b> It is a good idea to take out a private pension plan so that you will have enough money to live on when you <input id="q18" />.</p><p align="left"><b>19.</b> There is a great deal of <input id="q19" /> for jobs at times of high unemployment.</p><p align="left"><b>20.</b> Good relations between <input id="q20" /> and workers are often the key to the success of a company.</p><p align="left"><b>21.</b> The more experience and qualifications you have, the easier it should be to find <input id="q21" />.</p><p align="left"><b>22.</b> Agreement regarding pay increases is sometimes only reached after weeks of <input id="q22" />. </p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

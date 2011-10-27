@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/LC_LN_002.JPG" mode="1" id="1001"  /><media class="leftFloat" src="../Media/LC_LN1.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>How to improve your English outside the classroom</b><font face="_sans" size="12" color="#000000">&#160;<font face="verdana" size="13" color="#0000ff"></font></font></font>- Make sure you (1) <input id="1" width="100" />.</p>- Make use of the (2) <input id="2" width="100" />.- Go to the cinema.- Watch television.- Borrow (3) <input id="3" width="100" />.- (4) <input id="4" width="100" /> with people of other nationalities.- Join clubs.- Start your own (5) <input id="5" width="100" />.<p align="left"><font color="#0000ff"><b>Dealing with problem areas</b>&#160;</font>Grammar&#160;- Select a book from the (6) <input id="6" width="100" />.</p>- Do grammar exercises regularly.<p align="left"><b>Vocabulary</b><font face="_sans" size="12">&#160;<font face="verdana" size="13"></font></font>- Select 5 new words a day.- Write them on cards.- (7) <input id="7" width="100" /> whenever you have time to kill.</p><p align="left"><b>Listening</b><font face="_sans" size="12">&#160;<font face="verdana" size="13"></font></font>- Tape (8) <input id="8" width="100" /> from the radio or TV.</p>- Take notes.- Listen again to check.<p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"  /><media class="leftFloat" src="../media/LC_LN1.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>How to improve your English outside the classroom</b><font face="_sans" size="12" color="#000000">&#160;<font face="verdana" size="13" color="#0000ff"></font></font></font>- Make sure you (1) <input id="q1" />.</p>- Make use of the (2) <input id="q2" />.- Go to the cinema.- Watch television.- Borrow (3) <input id="q3" />.- (4) <input id="q4" /> with people of other nationalities.- Join clubs.- Start your own (5) <input id="q5" />.<p align="left"><font color="#0000ff"><b>Dealing with problem areas</b>&#160;</font>Grammar&#160;- Select a book from the (6) <input id="q6" />.</p>- Do grammar exercises regularly.<p align="left"><b>Vocabulary</b><font face="_sans" size="12">&#160;<font face="verdana" size="13"></font></font>- Select 5 new words a day.- Write them on cards.- (7) <input id="q7" /> whenever you have time to kill.</p><p align="left"><b>Listening</b><font face="_sans" size="12">&#160;<font face="verdana" size="13"></font></font>- Tape (8) <input id="q8" /> from the radio or TV.</p>- Take notes.- Listen again to check.<p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><font color="#000000">1. The speaker says 'Firstly' followed by 'your homework! Please do it!'</font></p>

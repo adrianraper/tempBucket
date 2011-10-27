@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 	<span id="a17" draggable="true">appoint</span><span id="a28" draggable="true">train</span><span id="a16" draggable="true">manage</span><span id="a23" draggable="true">import</span><span id="a22" draggable="true">retire</span><span id="a18" draggable="true">negotiate</span><span id="a15" draggable="true">produce</span><span id="a20" draggable="true">distribute</span><span id="a27" draggable="true">compete</span><span id="a21" draggable="true">employ</span><span id="a19" draggable="true">promote</span><span id="a24" draggable="true">advertise</span><span id="a26" draggable="true">export</span><span id="a25" draggable="true">apply</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_TV_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /> electrical appliances in a factory; a quarter of the nation's gas; goods for export</li><li id="2"><input id="q2" type="droptarget" /> a company; the staff effectively; a department; a family business</li><li id="3"><input id="q3" type="droptarget" /> a new director; someone to a post; someone to the board of directors; a successor</li><li id="4"><input id="q4" type="droptarget" /> a pay rise with your boss; a contract; a better price for your goods; a sale; a discount; a deal</li><li id="5"><input id="q5" type="droptarget" /> an employee to a position with more responsibility; a product with an advertising campaign</li><li id="6"><input id="q6" type="droptarget" /> goods by road and rail; products to shops; catalogues to customers; free to local businesses</li><li id="7"><input id="q7" type="droptarget" /> temporary staff during busy periods; hundreds of workers in a factory</li><li id="8"><input id="q8" type="droptarget" /> from a company after 30 years of service; from your job; on a pension; at the age of 65</li><li id="9"><input id="q9" type="droptarget" /> goods from aboard; cars from Japan</li><li id="10"><input id="q10" type="droptarget" /> job vacancies in a newspaper; new products on television; a training course on the notice board</li><li id="11"><input id="q11" type="droptarget" /> for a job; for a place on a training programme; for leave of absence; in writing</li><li id="12"><input id="q12" type="droptarget" /> products all over the world; goods to many different countries</li><li id="13"><input id="q13" type="droptarget" /> against other companies for customers; for a contract; with other applicants for a job</li><li id="14"><input id="q14" type="droptarget" /> staff in computer skills; employees to use new equipment; to be a manager; as a teacher</li></ol>
+	<img class="rightFloat" src="../media/WB_TV_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /> electrical appliances in a factory; a quarter of the nation's gas; goods for export</li><li id="2"><input id="q2" type="droptarget" /> a company; the staff effectively; a department; a family business</li><li id="3"><input id="q3" type="droptarget" /> a new director; someone to a post; someone to the board of directors; a successor</li><li id="4"><input id="q4" type="droptarget" /> a pay rise with your boss; a contract; a better price for your goods; a sale; a discount; a deal</li><li id="5"><input id="q5" type="droptarget" /> an employee to a position with more responsibility; a product with an advertising campaign</li><li id="6"><input id="q6" type="droptarget" /> goods by road and rail; products to shops; catalogues to customers; free to local businesses</li><li id="7"><input id="q7" type="droptarget" /> temporary staff during busy periods; hundreds of workers in a factory</li><li id="8"><input id="q8" type="droptarget" /> from a company after 30 years of service; from your job; on a pension; at the age of 65</li><li id="9"><input id="q9" type="droptarget" /> goods from aboard; cars from Japan</li><li id="10"><input id="q10" type="droptarget" /> job vacancies in a newspaper; new products on television; a training course on the notice board</li><li id="11"><input id="q11" type="droptarget" /> for a job; for a place on a training programme; for leave of absence; in writing</li><li id="12"><input id="q12" type="droptarget" /> products all over the world; goods to many different countries</li><li id="13"><input id="q13" type="droptarget" /> against other companies for customers; for a contract; with other applicants for a job</li><li id="14"><input id="q14" type="droptarget" /> staff in computer skills; employees to use new equipment; to be a manager; as a teacher</li></ol>
 </section>
 </body>
 </bento>

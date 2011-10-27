@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="a9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="a10" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="human intellect" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="content" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="children's needs" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="news reporting" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="hidden curriculum" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="living room" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="imagination" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="electronic scanning" correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="reason and think" correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="passive visual processing" correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>

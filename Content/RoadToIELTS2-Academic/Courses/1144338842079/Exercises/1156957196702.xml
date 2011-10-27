@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="true"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="true"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="true"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="false"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="true"><feedback source="fb11"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="true"><feedback source="fb12"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="true"><feedback source="fb13"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="false"><feedback source="fb14"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="true"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="true"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="false"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="true"><feedback source="fb11"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="true"><feedback source="fb12"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="true"><feedback source="fb13"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="false"><feedback source="fb14"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -47,12 +29,12 @@
 <header>
 	
 		
-		Listen to the recording, which will play automatically, and follow the instructions. <br>Click on FOUR items A-G.
+		Listen to the recording, which will play automatically, and follow the instructions. <br/>Click on FOUR items A-G.
 		
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/MM_LN1.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Questions 1-4 </b></font>What FOUR things does the guide say you can see on the first floor?<g id="1">A. old televisions</g><g id="2">B. TV personalities</g><g id="3">C. news stories about TV stars</g><g id="4">D. objects used in TV programmes</g><g id="5">E. historical moments on screen</g><g id="6">F. TV programmes being made</g><g id="7">G. TV programmes</g></p><p align="left"><font color="#0000ff"><b>Questions 5-8 </b></font>What FOUR things does the guide say you can do on the second floor?<g id="8">A. look at old radios</g><g id="9">B. look at radio parts</g><g id="10">C. meet famous disc jockeys</g><g id="11">D. see life-size models of radio personalities</g><g id="12">E. listen to radio broadcasts</g><g id="13">F. watch a radio drama as it is being aired</g><g id="14">G. play a role in radio drama</g></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/MM_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/MM_LN1.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Questions 1-4 </b></font>What FOUR things does the guide say you can see on the first floor?<g id="t1">A. old televisions</g><g id="t2">B. TV personalities</g><g id="t3">C. news stories about TV stars</g><g id="t4">D. objects used in TV programmes</g><g id="t5">E. historical moments on screen</g><g id="t6">F. TV programmes being made</g><g id="t7">G. TV programmes</g></p><p align="left"><font color="#0000ff"><b>Questions 5-8 </b></font>What FOUR things does the guide say you can do on the second floor?<g id="t8">A. look at old radios</g><g id="t9">B. look at radio parts</g><g id="t10">C. meet famous disc jockeys</g><g id="t11">D. see life-size models of radio personalities</g><g id="t12">E. listen to radio broadcasts</g><g id="t13">F. watch a radio drama as it is being aired</g><g id="t14">G. play a role in radio drama</g></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><b>A. Correct. </b></p><p align="left">The guide says that you will see some of the first TV sets ever produced. In other words 'old televisions'.</p>

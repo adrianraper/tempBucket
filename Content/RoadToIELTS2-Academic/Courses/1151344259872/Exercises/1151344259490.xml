@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +27,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/ST_WT2.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in Exercise 1. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.
+	<img class="rightFloat" src="../media/ST_WT2.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in Exercise 1. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.
 		
 		Writing Task 2
 </header>
@@ -73,7 +55,7 @@
 		<span id="a31" draggable="true">so that</span><span id="a24" draggable="true">In order to</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/ST_AW_003.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/ST_AW_003.jpg" mode="1" id="1001"  />
 		<p align="left">Information on private citizens has been collected and stored in electronic form by governments and organisations for many years. However, with the advent of the Internet, information about our finances, health, relationships and tastes as consumers can now be easily accessed and disseminated without our knowledge or consent. <font color="#0000ff"><input id="q1" type="droptarget" /> this, unscrupulous individuals and organisations can misuse this information and our privacy is threatened.</font></p>
 		<p align="left">There are a number of ways in which personal data can be misused. The most common is probably the trading of consumers' personal details between commercial organisations <font color="#0000ff"><input id="q2" type="droptarget" /> targeting potential customers. This <font color="#0000ff"><input id="q3" type="droptarget" /></font> people being inundated with unsolicited promotional leaflets, catalogues and e-mails. More seriously, employers can run checks on prospective employees to glean details about their health, criminal record or political allegiances. Similarly, insurance companies, <font color="#0000ff"><input id="q4" type="droptarget" /></font> pay out expensive medical claims, may access the health records of individuals <font color="#0000ff"><input id="q5" type="droptarget" /></font> life insurance policies before deciding whether or not to insure them.</font></p>
 		<p align="left">How can such abuses be prevented? Regarding the exchange of customer information between companies, the only <font color="#0000ff"><input id="q6" type="droptarget" /> solution is to make unsolicited promotional post and e-mail illegal. <font color="#0000ff"><input id="q7" type="droptarget" /></font>, organisations would have no incentive to trade in people's personal details. <font color="#0000ff"><input id="q8" type="droptarget" /></font> protect people <font color="#0000ff"><input id="q9" type="droptarget" /></font> work, only information <font color="#0000ff"><input id="q10" type="droptarget" /></font> by applicants themselves on the application form or during the interview <font color="#0000ff"><input id="q11" type="droptarget" /></font> be legitimate grounds for rejection, and candidates <font color="#0000ff"><input id="q12" type="droptarget" /></font> should have the right to ask for the reasons why. Finally, as a general measure to prevent misuse by insurance companies, it is <font color="#0000ff"><input id="q13" type="droptarget" /></font> that organisations <font color="#0000ff"><input id="q14" type="droptarget" /></font> data should inform individuals of the information that is collected. Individuals must be able to access the data themselves <font color="#0000ff"><input id="q15" type="droptarget" /></font> they can find out exactly what kind of information it is and check for inaccuracies, they must be allowed to choose how and to what extent it is used, and the data must be held securely.</font></p>

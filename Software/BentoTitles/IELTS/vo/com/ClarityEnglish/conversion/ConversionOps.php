@@ -65,27 +65,15 @@ EOD;
 		$now =date('Y-m-d');
 		$build =<<< EOD
 <head>
-	<meta name="conversion" type="$exerciseType" date="$now" />
+	<meta name="conversion-from" content="$exerciseType" />
+	<meta name="conversion-date" content="$now" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -100,6 +88,7 @@ EOD;
 		// Switch from practically xhtml to xml with html characteristics
 		//	<!DOCTYPE html>
 		//	<html xmlns="http://www.w3.org/1999/xhtml">
+		// TODO. Note that trac has an issue raised regarding this xmlns as it stops xpath working.
 		$build =<<< EOD
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">

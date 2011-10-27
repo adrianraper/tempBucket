@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +27,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/TT_WT2b.jpg" mode="16" id="1004"  />
+	<img class="rightFloat" src="../media/TT_WT2b.jpg" mode="16" id="1004"  />
 		
 		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
 		
@@ -65,10 +47,10 @@ Writing Task 2
 			<span id="a12" draggable="true">Audio E</span>
 			<span id="a10" draggable="true">Audio F</span>
 			<span id="a22" draggable="true">Audio G</span>
-			<span id="a15" draggable="true">Audio H</span><audio class="leftFloat" src="../Media/TT_WR1at.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../Media/TT_WR1au.mp3" mode="1" id="1012"  /><audio class="rightFloat" src="../Media/TT_WR1av.mp3" mode="1" id="1013"  /><audio class="rightFloat" src="../Media/TT_WR1aw.mp3" mode="1" id="1014"  /><audio class="leftFloat" src="../Media/TT_WR1ax.mp3" mode="1" id="1015"  /><audio class="rightFloat" src="../Media/TT_WR1ay.mp3" mode="1" id="1016"  /><audio class="rightFloat" src="../Media/TT_WR1az.mp3" mode="1" id="1017"  /><audio class="rightFloat" src="../Media/TT_WR1ba.mp3" mode="1" id="1018"  />
+			<span id="a15" draggable="true">Audio H</span><audio class="leftFloat" src="../media/TT_WR1at.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../media/TT_WR1au.mp3" mode="1" id="1012"  /><audio class="rightFloat" src="../media/TT_WR1av.mp3" mode="1" id="1013"  /><audio class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"  /><audio class="leftFloat" src="../media/TT_WR1ax.mp3" mode="1" id="1015"  /><audio class="rightFloat" src="../media/TT_WR1ay.mp3" mode="1" id="1016"  /><audio class="rightFloat" src="../media/TT_WR1az.mp3" mode="1" id="1017"  /><audio class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"  />
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/TT_AW_013.jpg" mode="1" id="1001"  /><p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" />&nbsp;</p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" />&nbsp;</li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" />&nbsp;</li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  /><p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" />&nbsp;</p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" />&nbsp;</li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" />&nbsp;</li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb0">
 	<p align="left"><b>1. Employment Opportunities </b></p><p align="left">- More and better job opportunities for locals</p><p align="left">- Tourist industry only offers locals menial, badly-paid, seasonal jobs</p><p align="left"><b></b></p><p align="left"><b>2. Business and the local economy </b></p><p align="left">- Local businesses flourish</p><p align="left">- If holiday company is often foreign-owned, little money may reach local economy</p><p align="left"></p><p align="left"><b>3. Infrastructure, facilities and the environment</b></p><p align="left">- Tourist facilities may cause environmental damage </p><p align="left">- Locals as well as tourists benefit from improved infrastructure</p><p align="left"></p><p align="left"><b>4.  Local customs and culture</b></p><p align="left">- Local customs and traditions may not be respected</p><p align="left"><font color="#000000">- Locals and tourists learn about each other’s cultures</font></p>

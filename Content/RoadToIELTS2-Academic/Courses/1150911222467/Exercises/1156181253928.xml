@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/TT_AW_014.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it.  However, tourism rarely benefits the countries which tourists visit.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/TT_AW_014.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p><p align="left"><b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it.  However, tourism rarely benefits the countries which tourists visit.</b></p><p align="left"><b>To what extent do you agree or disagree?</b></p><p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

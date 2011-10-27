@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/AC_LN2.mp3" mode="4" id="1002"  /><p align="left"><i><b>A</b>	in the period up to 1950</i><i>B	in the period between 1951 and 1984</i><i>C	in the period after 1984</i></p><p align="left"><b>1</b> cinema attendance fell	<input id="1" width="100" /></p><p align="left"><b>2</b> cinema admissions reached a peak	<input id="2" width="100" /></p><p align="left"><b>3</b> multi-screen cinemas were introduced		<input id="3" width="100" /></p><p align="left"><b>4</b> films mainly of interest to men were shown	<input id="4" width="100" /></p><p align="left"><b>5</b> cinemas were built at out-of-town sites	<input id="5" width="100" /></p><p align="left"><b>6</b> cinema-goers were given access to free car parks	<input id="6" width="100" /></p><p align="left"><b>7</b> cinemas were built in easy reach of public transport	<input id="7" width="100" /></p><p align="left"><b>8</b> cinemas began to target younger audiences	<input id="8" width="100" /></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/AC_LN2.mp3" mode="4" id="1002"  /><p align="left"><i><b>A</b>	in the period up to 1950</i><i>B	in the period between 1951 and 1984</i><i>C	in the period after 1984</i></p><p align="left"><b>1</b> cinema attendance fell	<input id="q1" /></p><p align="left"><b>2</b> cinema admissions reached a peak	<input id="q2" /></p><p align="left"><b>3</b> multi-screen cinemas were introduced		<input id="q3" /></p><p align="left"><b>4</b> films mainly of interest to men were shown	<input id="q4" /></p><p align="left"><b>5</b> cinemas were built at out-of-town sites	<input id="q5" /></p><p align="left"><b>6</b> cinema-goers were given access to free car parks	<input id="q6" /></p><p align="left"><b>7</b> cinemas were built in easy reach of public transport	<input id="q7" /></p><p align="left"><b>8</b> cinemas began to target younger audiences	<input id="q8" /></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">1. The lecturer says that audiences shrank which means the same as 'cinema attendance fell', reaching an all-time low in 1984.</p>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/ED_LN_004.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/ED_LN1c.mp3" mode="4" id="1002"  /><p align="left"><b>13.</b> What is the title of the coursebook used on the course?<input id="1" width="100" /></p><p align="left"><b>14.</b> How much does the coursebook cost? £ <input id="2" width="100" /></p><p align="left"><b>15.</b> How long is the break?<input id="3" width="100" /></p><p align="left"><b>16.</b> What nationality is the teacher?<input id="4" width="100" /></p>
+	<img class="rightFloat" src="../media/ED_LN_004.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"  /><p align="left"><b>13.</b> What is the title of the coursebook used on the course?<input id="q1" /></p><p align="left"><b>14.</b> How much does the coursebook cost? £ <input id="q2" /></p><p align="left"><b>15.</b> How long is the break?<input id="q3" /></p><p align="left"><b>16.</b> What nationality is the teacher?<input id="q4" /></p>
 </section>
 <section id="rt2001">
 	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see from the questions that you will hear some details about the course.</font>&nbsp;Question 13You are asked for the name of the course book.&nbsp;Question 14You are asked for the cost of the book. Think about an appropriate figure in pounds.&nbsp;Question 15What do you think the length of the break might be?&nbsp;Question 16What nationality do you think the teacher could be?</p>

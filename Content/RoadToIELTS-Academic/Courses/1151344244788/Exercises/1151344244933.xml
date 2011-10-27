@@ -114,7 +114,7 @@
 		<field mode="0" type="i:drop" group="13" id="13">
 			<answer correct="true">contribute</answer>
 		</field>
-		<media filename="DD_TV_003.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>	</body>
+		<media filename="DD_TV_003.jpg" y="32" x="500" height="250" width="165" stretch="false" mode="1" id="1001" type="m:picture"/>
 	</body>
 	<template>
 		<style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal"/>

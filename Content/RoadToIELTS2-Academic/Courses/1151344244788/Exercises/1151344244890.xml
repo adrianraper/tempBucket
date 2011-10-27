@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit011_e1.flv" mode="1" id="1003"  /><p align="left">Success in the spoken test depends on simple clear statements, extended where appropriate with suitable examples or remarks. When you talk about yourself, give an example to illustrate your point. The Examiner knows nothing about you. Your words will give him or her a clearer picture of you and your interests. Parts 1 and 2 consist of questions asked by the examiner. Answer them fully, logically and clearly, if you can. If you can't, communicate fully, logically and clearly.</p><p align="left">Now listen to Alexandra explaining her answer to the question "What do you do? Do you work or study?" How would you answer this question?</p>
+	<video class="rightFloat" src="../media/Unit011_e1.flv" mode="1" id="1003"  /><p align="left">Success in the spoken test depends on simple clear statements, extended where appropriate with suitable examples or remarks. When you talk about yourself, give an example to illustrate your point. The Examiner knows nothing about you. Your words will give him or her a clearer picture of you and your interests. Parts 1 and 2 consist of questions asked by the examiner. Answer them fully, logically and clearly, if you can. If you can't, communicate fully, logically and clearly.</p><p align="left">Now listen to Alexandra explaining her answer to the question "What do you do? Do you work or study?" How would you answer this question?</p>
 </section>
 </body>
 </bento>

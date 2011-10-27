@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q17" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q19" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q20" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q21" correct="false"/></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t17" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t19" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t20" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t21" correct="false"/></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -51,7 +33,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit03_e2a.flv" mode="16" id="1003"  /><video class="leftFloat" src="../Media/Unit03_e2b.flv" mode="16" id="1004"  /><video class="leftFloat" src="../Media/Unit03_e2c.flv" mode="16" id="1005"  /><p align="left"><b>What reasons does Zenia give for visiting other countries?</b><g id="1">A.  see the sights</g><g id="2">B.  learn languages</g><g id="3">C.  souvenirs</g><g id="4">D.  culture</g><g id="5">E.  traditions</g><g id="6">F.  food</g><g id="7">G.  music</g></p><p align="left"><b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b><g id="8">A.  learning another language</g><g id="9">B.  becoming more open-minded</g><g id="10">C.  seeing another way of living</g><g id="11">D.  meeting people from different countries</g><g id="12">E.  discovering the culture</g><g id="13">F.  getting better job opportunities</g><g id="14">G.  learning to be independent</g></p><p align="left"><b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b><g id="15">A.  see relatives</g><g id="16">B.  emergencies</g><g id="17">C.  pleasure</g><g id="18">D.  business</g><g id="19">E.  able to afford it</g><g id="20">F.  study</g><g id="21">G.  shopping</g></p>
+	<video class="rightFloat" src="../media/Unit03_e2a.flv" mode="16" id="1003"  /><video class="leftFloat" src="../media/Unit03_e2b.flv" mode="16" id="1004"  /><video class="leftFloat" src="../media/Unit03_e2c.flv" mode="16" id="1005"  /><p align="left"><b>What reasons does Zenia give for visiting other countries?</b><g id="t1">A.  see the sights</g><g id="t2">B.  learn languages</g><g id="t3">C.  souvenirs</g><g id="t4">D.  culture</g><g id="t5">E.  traditions</g><g id="t6">F.  food</g><g id="t7">G.  music</g></p><p align="left"><b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b><g id="t8">A.  learning another language</g><g id="t9">B.  becoming more open-minded</g><g id="t10">C.  seeing another way of living</g><g id="t11">D.  meeting people from different countries</g><g id="t12">E.  discovering the culture</g><g id="t13">F.  getting better job opportunities</g><g id="t14">G.  learning to be independent</g></p><p align="left"><b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b><g id="t15">A.  see relatives</g><g id="t16">B.  emergencies</g><g id="t17">C.  pleasure</g><g id="t18">D.  business</g><g id="t19">E.  able to afford it</g><g id="t20">F.  study</g><g id="t21">G.  shopping</g></p>
 <p align="left">
 <b>Click to watch the video</b></p>
 <p align="left">

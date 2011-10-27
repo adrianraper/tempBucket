@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_LN_004.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/WB_LN_004a.jpg" mode="1" id="1004"  /><media class="leftFloat" src="../Media/WB_LN2a.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><br/><li id="1">What percentage of the working population nowadays are women?<ol class="answerList"><li><a id="q1" >less than 20%</a></li><li><a id="q2" >between 21% and 50%</a></li><li><a id="q3" >more than 50%</a></li></ol><br/></li><br/><li id="2">Nowadays the average female manager's salary is between ...<ol class="answerList"><li><a id="q4" >£25,000–£29,000.</a></li><li><a id="q5" >£30,000–£34,000.</a></li><li><a id="q6" >£35,000–£39,000.</a></li></ol><br/></li><br/><li id="3">What is the principal reason for women going out to work?<ol class="answerList"><li><a id="q7" >They do not want to depend on other people for money.</a></li><li><a id="q8" >They can no longer depend on husbands to support them.</a></li><li><a id="q9" >They find life more expensive.</a></li></ol><br/></li><br/><li id="4">Changes in attitudes in the 1960s and '70s meant that more young women ...<ol class="answerList"><li><a id="q10" >were able to take office jobs.</a></li><li><a id="q11" >went into temporary employment.</a></li><li><a id="q12" >received a university education.</a></li></ol><br/></li><br/><li id="5">Which pie chart shows the proportion of men and women who are expected to start businesses in 2010?<ol class="answerList"><li><a id="q13" >Chart A</a></li><li><a id="q14" >Chart B</a></li><li><a id="q15" >Chart C</a></li></ol><br/></li></ol>
+	<img class="rightFloat" src="../media/WB_LN_004.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/WB_LN_004a.jpg" mode="1" id="1004"  /><media class="leftFloat" src="../media/WB_LN2a.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><br/><li id="1">What percentage of the working population nowadays are women?<ol class="answerList"><li><a id="q1" >less than 20%</a></li><li><a id="q2" >between 21% and 50%</a></li><li><a id="q3" >more than 50%</a></li></ol><br/></li><br/><li id="2">Nowadays the average female manager's salary is between ...<ol class="answerList"><li><a id="q4" >£25,000–£29,000.</a></li><li><a id="q5" >£30,000–£34,000.</a></li><li><a id="q6" >£35,000–£39,000.</a></li></ol><br/></li><br/><li id="3">What is the principal reason for women going out to work?<ol class="answerList"><li><a id="q7" >They do not want to depend on other people for money.</a></li><li><a id="q8" >They can no longer depend on husbands to support them.</a></li><li><a id="q9" >They find life more expensive.</a></li></ol><br/></li><br/><li id="4">Changes in attitudes in the 1960s and '70s meant that more young women ...<ol class="answerList"><li><a id="q10" >were able to take office jobs.</a></li><li><a id="q11" >went into temporary employment.</a></li><li><a id="q12" >received a university education.</a></li></ol><br/></li><br/><li id="5">Which pie chart shows the proportion of men and women who are expected to start businesses in 2010?<ol class="answerList"><li><a id="q13" >Chart A</a></li><li><a id="q14" >Chart B</a></li><li><a id="q15" >Chart C</a></li></ol><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">1. Mary says that now women make up just over half of all employees. In other words more than 50%.</font></p>

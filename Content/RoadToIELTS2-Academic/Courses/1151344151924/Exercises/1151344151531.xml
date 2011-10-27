@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="a9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="a10" correct="true"/></GapFillQuestion><GapFillQuestion group="q11"><answer source="a11" correct="true"/></GapFillQuestion><GapFillQuestion group="q12"><answer source="a12" correct="true"/></GapFillQuestion><GapFillQuestion group="q13"><answer source="a13" correct="true"/></GapFillQuestion><GapFillQuestion group="q14"><answer source="a14" correct="true"/></GapFillQuestion><GapFillQuestion group="q15"><answer source="a15" correct="true"/></GapFillQuestion><GapFillQuestion group="q16"><answer source="a16" correct="true"/></GapFillQuestion><GapFillQuestion group="q17"><answer source="a17" correct="true"/></GapFillQuestion><GapFillQuestion group="q18"><answer source="a18" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="antiseptic " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="medicinal " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="antibiotics" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="incurable " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="immunisation " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="viral " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="bacteria" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="vaccines" correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="infectious " correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="cured" correct="true"/></GapFillQuestion><GapFillQuestion source="q11"><answer value="inoculated " correct="true"/></GapFillQuestion><GapFillQuestion source="q12"><answer value="immune " correct="true"/></GapFillQuestion><GapFillQuestion source="q13"><answer value="bacterial " correct="true"/></GapFillQuestion><GapFillQuestion source="q14"><answer value="vaccinate " correct="true"/></GapFillQuestion><GapFillQuestion source="q15"><answer value="disinfected " correct="true"/></GapFillQuestion><GapFillQuestion source="q16"><answer value="cure" correct="true"/></GapFillQuestion><GapFillQuestion source="q17"><answer value="immunity " correct="true"/></GapFillQuestion><GapFillQuestion source="q18"><answer value="pathogenic" correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/HF_TV_006.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Applying <input id="q1" width="100" /> cream to a wound protects again infection.</li><li id="2">Plants have been used for a wide variety of <input id="q2" width="100" /> purposes since ancient times and today many plant extracts are used in the production of modern drugs, among them aspirin and digitalis. </li><li id="3">Nowadays bacterial infections, such as tuberculosis, typhoid fever and scarlet fever, are treated with a course of <input id="q3" width="100" />.</li><li id="4">The transplantation of an organ, such as a kidney, liver or heart, is often the only hope for people suffering from <input id="q4" width="100" /> diseases. </li><li id="5">Smallpox, a highly contagious viral disease, was totally eradicated by the end of the 1970s as the result of a worldwide <input id="q5" width="100" /> programme.</li><li id="6">The common cold, influenza and smallpox are all <input id="q6" width="100" /> infections.</li><li id="7">Before viruses were discovered, people believed that all infectious diseases were caused by <input id="q7" width="100" />.</li><li id="8">Viral infections cannot be treated with antibiotics; the only effective approach is prevention through the use of <input id="q8" width="100" />.</li><li id="9">To avoid contracting <input id="q9" width="100" /> bacterial and viral diseases, such as influenza, pneumonia and tuberculosis, precautions need to be taken around people who are contagious.</li><li id="10">There are millions of people around the world who have survived cancer and who can be regarded as <input id="q10" width="100" />.</li><li id="11">The vast majority of children in the United Kingdom are <input id="q11" width="100" /> against the measles, mumps and rubella viruses before they start school.</li><li id="12">As we age, the <input id="q12" width="100" /> system gradually loses its ability to fight off infections.</li><li id="13">Antibiotics have played a key role in the control of <input id="q13" width="100" /> infections.</li><li id="14">If you <input id="q14" width="100" /> people against influenza, you reduce their chances of contracting the disease. </li><li id="15">Water from an unknown source must be <input id="q15" width="100" /> before it can be considered safe to drink.</li><li id="16">The earlier a disease is diagnosed, the greater the chance of a <input id="q16" width="100" />.</li><li id="17">People who recover from an infectious disease develop natural <input id="q17" width="100" /> to it and, in most cases, will never contract it again. </li><li id="18">Most bacteria perform a variety of useful functions and are harmless. However, approximately 200 species are <input id="q18" width="100" />, that is, they cause diseases in humans.</li></ol>
+	<img class="rightFloat" src="../media/HF_TV_006.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Applying <input id="q1" width="100" /> cream to a wound protects again infection.</li><li id="2">Plants have been used for a wide variety of <input id="q2" width="100" /> purposes since ancient times and today many plant extracts are used in the production of modern drugs, among them aspirin and digitalis. </li><li id="3">Nowadays bacterial infections, such as tuberculosis, typhoid fever and scarlet fever, are treated with a course of <input id="q3" width="100" />.</li><li id="4">The transplantation of an organ, such as a kidney, liver or heart, is often the only hope for people suffering from <input id="q4" width="100" /> diseases. </li><li id="5">Smallpox, a highly contagious viral disease, was totally eradicated by the end of the 1970s as the result of a worldwide <input id="q5" width="100" /> programme.</li><li id="6">The common cold, influenza and smallpox are all <input id="q6" width="100" /> infections.</li><li id="7">Before viruses were discovered, people believed that all infectious diseases were caused by <input id="q7" width="100" />.</li><li id="8">Viral infections cannot be treated with antibiotics; the only effective approach is prevention through the use of <input id="q8" width="100" />.</li><li id="9">To avoid contracting <input id="q9" width="100" /> bacterial and viral diseases, such as influenza, pneumonia and tuberculosis, precautions need to be taken around people who are contagious.</li><li id="10">There are millions of people around the world who have survived cancer and who can be regarded as <input id="q10" width="100" />.</li><li id="11">The vast majority of children in the United Kingdom are <input id="q11" width="100" /> against the measles, mumps and rubella viruses before they start school.</li><li id="12">As we age, the <input id="q12" width="100" /> system gradually loses its ability to fight off infections.</li><li id="13">Antibiotics have played a key role in the control of <input id="q13" width="100" /> infections.</li><li id="14">If you <input id="q14" width="100" /> people against influenza, you reduce their chances of contracting the disease. </li><li id="15">Water from an unknown source must be <input id="q15" width="100" /> before it can be considered safe to drink.</li><li id="16">The earlier a disease is diagnosed, the greater the chance of a <input id="q16" width="100" />.</li><li id="17">People who recover from an infectious disease develop natural <input id="q17" width="100" /> to it and, in most cases, will never contract it again. </li><li id="18">Most bacteria perform a variety of useful functions and are harmless. However, approximately 200 species are <input id="q18" width="100" />, that is, they cause diseases in humans.</li></ol>
 </section>
 </body>
 </bento>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_AW_013e.jpg" mode="1" id="1001"  /><p align="left"><b>More and more people throughout the world are now living to a very old age and it is unreasonable to expect their families to look after them. The state should take responsibility for caring for old people when they are no longer capable of looking after themselves.</b></p><p align="left"><b><g id="1">A</g></b> Over the course of the last hundred years, life expectancy has increased considerably in most countries of the world. However, problems such as failing health and dementia mean that this growing population of senior citizens needs looking after. The pressures of modern life make it difficult for families to take care of older relatives as they used to in the past so the state should now take on this responsibility.&nbsp;<g id="2">B</g>  Life expectancy throughout the world has increased dramatically even in the last fifty years. In countries as different as Turkey and Korea, for example, life expectancy has increased by 20 years since 1960. There are three basic reasons why this has occurred.&nbsp;<g id="3">C</g> People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations did. Yet few of us consider the problems, both for society and for individuals, associated with living to a very old age.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/SS_AW_013e.jpg" mode="1" id="1001"  /><p align="left"><b>More and more people throughout the world are now living to a very old age and it is unreasonable to expect their families to look after them. The state should take responsibility for caring for old people when they are no longer capable of looking after themselves.</b></p><p align="left"><b><g id="t1">A</g></b> Over the course of the last hundred years, life expectancy has increased considerably in most countries of the world. However, problems such as failing health and dementia mean that this growing population of senior citizens needs looking after. The pressures of modern life make it difficult for families to take care of older relatives as they used to in the past so the state should now take on this responsibility.&nbsp;<g id="t2">B</g>  Life expectancy throughout the world has increased dramatically even in the last fifty years. In countries as different as Turkey and Korea, for example, life expectancy has increased by 20 years since 1960. There are three basic reasons why this has occurred.&nbsp;<g id="t3">C</g> People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations did. Yet few of us consider the problems, both for society and for individuals, associated with living to a very old age.</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb2">
 	<p align="left"><font face="verdana" size="13" color="#000000">It seems from this introduction that the rest of the composition will be about the reasons why people are living longer these days. This is quite irrelevant to the task.</font></p>

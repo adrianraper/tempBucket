@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit05_e6.flv" mode="1" id="1003"  /><p align="left"><font color="#0000ff"><b>Strategies</b></font>There are always other ways to say things!</p><p align="left">Don't panic if you can't remember a word, or if you feel you are stuck for words.</p><p align="left"><font color="#000000">Remember the following expressions:</font></p><p align="left"><font color="#000000">"I'm not sure what it's called, but it is/looks like/is used for …"</font></p>"I've forgotten what it is in English, but …""It's similar to …, but I don't remember the word."<p align="left"><font color="#000000"><b>We all forget words sometimes. It happens in natural conversations.</b>&#160;<b>Don't let it bother you!</b></font></p>
+	<video class="rightFloat" src="../media/Unit05_e6.flv" mode="1" id="1003"  /><p align="left"><font color="#0000ff"><b>Strategies</b></font>There are always other ways to say things!</p><p align="left">Don't panic if you can't remember a word, or if you feel you are stuck for words.</p><p align="left"><font color="#000000">Remember the following expressions:</font></p><p align="left"><font color="#000000">"I'm not sure what it's called, but it is/looks like/is used for …"</font></p>"I've forgotten what it is in English, but …""It's similar to …, but I don't remember the word."<p align="left"><font color="#000000"><b>We all forget words sometimes. It happens in natural conversations.</b>&#160;<b>Don't let it bother you!</b></font></p>
 </section>
 </body>
 </bento>

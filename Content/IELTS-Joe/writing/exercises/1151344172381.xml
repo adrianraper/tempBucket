@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/WB_WR3s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/WB_WR3.jpg" mode="16" id="1003"  /><br/><ol id="questionList"><br/><li id="1">First<ol class="answerList"><li><a id="q1" >Consecutive stages</a></li><li><a id="q2" >Concurrent stages</a></li><li><a id="q3" >Alternative stages</a></li></ol><br/></li><br/><li id="2">already<ol class="answerList"><li><a id="q46" >Consecutive stages</a></li><li><a id="q47" >Concurrent stages</a></li><li><a id="q48" >Alternative stages</a></li></ol><br/></li><br/><li id="3">The next stage<ol class="answerList"><li><a id="q43" >Consecutive stages</a></li><li><a id="q44" >Concurrent stages</a></li><li><a id="q45" >Alternative stages</a></li></ol><br/></li><br/><li id="4">either<ol class="answerList"><li><a id="q40" >Consecutive stages</a></li><li><a id="q41" >Concurrent stages</a></li><li><a id="q42" >Alternative stages</a></li></ol><br/></li><br/><li id="5">already<ol class="answerList"><li><a id="q37" >Consecutive stages</a></li><li><a id="q38" >Concurrent stages</a></li><li><a id="q39" >Alternative stages</a></li></ol><br/></li><br/><li id="6">or<ol class="answerList"><li><a id="q34" >Consecutive stages</a></li><li><a id="q60" >Concurrent stages</a></li><li><a id="q36" >Alternative stages</a></li></ol><br/></li><br/><li id="7">then<ol class="answerList"><li><a id="q31" >Consecutive stages</a></li><li><a id="q32" >Concurrent stages</a></li><li><a id="q33" >Alternative stages</a></li></ol><br/></li><br/><li id="8">in turn<ol class="answerList"><li><a id="q28" >Consecutive stages</a></li><li><a id="q29" >Concurrent stages</a></li><li><a id="q30" >Alternative stages</a></li></ol><br/></li><br/><li id="9">If<ol class="answerList"><li><a id="q25" >Consecutive stages</a></li><li><a id="q26" >Concurrent stages</a></li><li><a id="q27" >Alternative stages</a></li></ol><br/></li><br/><li id="10">then<ol class="answerList"><li><a id="q22" >Consecutive stages</a></li><li><a id="q23" >Concurrent stages</a></li><li><a id="q24" >Alternative stages</a></li></ol><br/></li><br/><li id="11">If<ol class="answerList"><li><a id="q19" >Consecutive stages</a></li><li><a id="q20" >Concurrent stages</a></li><li><a id="q21" >Alternative stages</a></li></ol><br/></li><br/><li id="12">otherwise<ol class="answerList"><li><a id="q16" >Consecutive stages</a></li><li><a id="q17" >Concurrent stages</a></li><li><a id="q18" >Alternative stages</a></li></ol><br/></li><br/><li id="13">While<ol class="answerList"><li><a id="q13" >Consecutive stages</a></li><li><a id="q14" >Concurrent stages</a></li><li><a id="q15" >Alternative stages</a></li></ol><br/></li><br/><li id="14">Subsequently<ol class="answerList"><li><a id="q10" >Consecutive stages</a></li><li><a id="q11" >Concurrent stages</a></li><li><a id="q12" >Alternative stages</a></li></ol><br/></li><br/><li id="15">before<ol class="answerList"><li><a id="q7" >Consecutive stages</a></li><li><a id="q8" >Concurrent stages</a></li><li><a id="q9" >Alternative stages</a></li></ol><br/></li><br/><li id="16">Once<ol class="answerList"><li><a id="q4" >Consecutive stages</a></li><li><a id="q5" >Concurrent stages</a></li><li><a id="q6" >Alternative stages</a></li></ol><br/></li><br/><li id="17">finally<ol class="answerList"><li><a id="q49" >Consecutive stages</a></li><li><a id="q50" >Concurrent stages</a></li><li><a id="q51" >Alternative stages</a></li></ol><br/></li></ol>
+	<img class="leftFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"  /><br/><ol id="questionList"><br/><li id="1">First<ol class="answerList"><li><a id="q1" >Consecutive stages</a></li><li><a id="q2" >Concurrent stages</a></li><li><a id="q3" >Alternative stages</a></li></ol><br/></li><br/><li id="2">already<ol class="answerList"><li><a id="q46" >Consecutive stages</a></li><li><a id="q47" >Concurrent stages</a></li><li><a id="q48" >Alternative stages</a></li></ol><br/></li><br/><li id="3">The next stage<ol class="answerList"><li><a id="q43" >Consecutive stages</a></li><li><a id="q44" >Concurrent stages</a></li><li><a id="q45" >Alternative stages</a></li></ol><br/></li><br/><li id="4">either<ol class="answerList"><li><a id="q40" >Consecutive stages</a></li><li><a id="q41" >Concurrent stages</a></li><li><a id="q42" >Alternative stages</a></li></ol><br/></li><br/><li id="5">already<ol class="answerList"><li><a id="q37" >Consecutive stages</a></li><li><a id="q38" >Concurrent stages</a></li><li><a id="q39" >Alternative stages</a></li></ol><br/></li><br/><li id="6">or<ol class="answerList"><li><a id="q34" >Consecutive stages</a></li><li><a id="q60" >Concurrent stages</a></li><li><a id="q36" >Alternative stages</a></li></ol><br/></li><br/><li id="7">then<ol class="answerList"><li><a id="q31" >Consecutive stages</a></li><li><a id="q32" >Concurrent stages</a></li><li><a id="q33" >Alternative stages</a></li></ol><br/></li><br/><li id="8">in turn<ol class="answerList"><li><a id="q28" >Consecutive stages</a></li><li><a id="q29" >Concurrent stages</a></li><li><a id="q30" >Alternative stages</a></li></ol><br/></li><br/><li id="9">If<ol class="answerList"><li><a id="q25" >Consecutive stages</a></li><li><a id="q26" >Concurrent stages</a></li><li><a id="q27" >Alternative stages</a></li></ol><br/></li><br/><li id="10">then<ol class="answerList"><li><a id="q22" >Consecutive stages</a></li><li><a id="q23" >Concurrent stages</a></li><li><a id="q24" >Alternative stages</a></li></ol><br/></li><br/><li id="11">If<ol class="answerList"><li><a id="q19" >Consecutive stages</a></li><li><a id="q20" >Concurrent stages</a></li><li><a id="q21" >Alternative stages</a></li></ol><br/></li><br/><li id="12">otherwise<ol class="answerList"><li><a id="q16" >Consecutive stages</a></li><li><a id="q17" >Concurrent stages</a></li><li><a id="q18" >Alternative stages</a></li></ol><br/></li><br/><li id="13">While<ol class="answerList"><li><a id="q13" >Consecutive stages</a></li><li><a id="q14" >Concurrent stages</a></li><li><a id="q15" >Alternative stages</a></li></ol><br/></li><br/><li id="14">Subsequently<ol class="answerList"><li><a id="q10" >Consecutive stages</a></li><li><a id="q11" >Concurrent stages</a></li><li><a id="q12" >Alternative stages</a></li></ol><br/></li><br/><li id="15">before<ol class="answerList"><li><a id="q7" >Consecutive stages</a></li><li><a id="q8" >Concurrent stages</a></li><li><a id="q9" >Alternative stages</a></li></ol><br/></li><br/><li id="16">Once<ol class="answerList"><li><a id="q4" >Consecutive stages</a></li><li><a id="q5" >Concurrent stages</a></li><li><a id="q6" >Alternative stages</a></li></ol><br/></li><br/><li id="17">finally<ol class="answerList"><li><a id="q49" >Consecutive stages</a></li><li><a id="q50" >Concurrent stages</a></li><li><a id="q51" >Alternative stages</a></li></ol><br/></li></ol>
 </section>
 <section id="fb0">
 	<p align="left"><b>Consecutive Stages</b></p><p align="left">- after this</p><p align="left">- afterwards</p><p align="left">- beforehand</p><p align="left">- before this</p><p align="left">- next</p><p align="left">- later</p><p align="left">- prior to</p><p align="left">- First</p><p align="left">- The next stage</p><p align="left">- already</p><p align="left">- then</p><p align="left">- in turn</p><p align="left">- Subsequently</p><p align="left">- before</p><p align="left">- Once</p><p align="left">- finally</p><p align="left"></p><p align="left"><b>Concurrent Stages</b></p><p align="left">- at the same time</p><p align="left">- at this stage</p><p align="left">- in the meantime</p><p align="left">- meanwhile</p><p align="left">- simultaneously</p><p align="left">- While</p><p align="left"><b></b></p><p align="left"><b>Alternative Stages</b></p><p align="left">- alternatively</p><p align="left">- instead</p><p align="left">- on the other hand</p><p align="left">- either</p><p align="left">- or</p><p align="left">- If</p><p align="left">- otherwise</p>

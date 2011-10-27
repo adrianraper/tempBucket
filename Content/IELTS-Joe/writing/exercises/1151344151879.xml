@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/HF_AW_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><ol class="answerList"><li><a id="q1" >Rounding down</a></li><li><a id="q2" >Rounding up</a></li><li><a id="q3" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ab.mp3" mode="1" id="1"  /><br/><li id="2"><ol class="answerList"><li><a id="q16" >Rounding down</a></li><li><a id="q17" >Rounding up</a></li><li><a id="q20" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ad.mp3" mode="1" id="2"  /><br/><li id="3"><ol class="answerList"><li><a id="q14" >Rounding down</a></li><li><a id="q15" >Rounding up</a></li><li><a id="q21" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1af.mp3" mode="1" id="3"  /><br/><li id="4"><ol class="answerList"><li><a id="q12" >Rounding down</a></li><li><a id="q13" >Rounding up</a></li><li><a id="q22" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1al.mp3" mode="1" id="4"  /><br/><li id="5"><ol class="answerList"><li><a id="q11" >Rounding down</a></li><li><a id="q23" >Rounding up</a></li><li><a id="q24" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ac.mp3" mode="1" id="5"  /><br/><li id="6"><ol class="answerList"><li><a id="q10" >Rounding down</a></li><li><a id="q25" >Rounding up</a></li><li><a id="q26" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1aa.mp3" mode="1" id="6"  /><br/><li id="7"><ol class="answerList"><li><a id="q9" >Rounding down</a></li><li><a id="q27" >Rounding up</a></li><li><a id="q28" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ae.mp3" mode="1" id="7"  /><br/><li id="8"><ol class="answerList"><li><a id="q8" >Rounding down</a></li><li><a id="q29" >Rounding up</a></li><li><a id="q30" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1an.mp3" mode="1" id="8"  /><br/><li id="9"><ol class="answerList"><li><a id="q7" >Rounding down</a></li><li><a id="q31" >Rounding up</a></li><li><a id="q32" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1aj.mp3" mode="1" id="9"  /><br/><li id="10"><ol class="answerList"><li><a id="q6" >Rounding down</a></li><li><a id="q33" >Rounding up</a></li><li><a id="q34" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ah.mp3" mode="1" id="10"  /><br/><li id="11"><ol class="answerList"><li><a id="q5" >Rounding down</a></li><li><a id="q35" >Rounding up</a></li><li><a id="q36" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ai.mp3" mode="1" id="11"  /><br/><li id="12"><ol class="answerList"><li><a id="q4" >Rounding down</a></li><li><a id="q37" >Rounding up</a></li><li><a id="q38" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ak.mp3" mode="1" id="12"  /><br/><li id="13"><ol class="answerList"><li><a id="q18" >Rounding down</a></li><li><a id="q39" >Rounding up</a></li><li><a id="q40" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1am.mp3" mode="1" id="13"  /><br/><li id="14"><ol class="answerList"><li><a id="q19" >Rounding down</a></li><li><a id="q41" >Rounding up</a></li><li><a id="q42" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../Media/HF_AW1ag.mp3" mode="1" id="14"  /></ol>
+	<img class="rightFloat" src="../media/HF_AW_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><ol class="answerList"><li><a id="q1" >Rounding down</a></li><li><a id="q2" >Rounding up</a></li><li><a id="q3" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ab.mp3" mode="1" id="1"  /><br/><li id="2"><ol class="answerList"><li><a id="q16" >Rounding down</a></li><li><a id="q17" >Rounding up</a></li><li><a id="q20" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ad.mp3" mode="1" id="2"  /><br/><li id="3"><ol class="answerList"><li><a id="q14" >Rounding down</a></li><li><a id="q15" >Rounding up</a></li><li><a id="q21" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1af.mp3" mode="1" id="3"  /><br/><li id="4"><ol class="answerList"><li><a id="q12" >Rounding down</a></li><li><a id="q13" >Rounding up</a></li><li><a id="q22" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1al.mp3" mode="1" id="4"  /><br/><li id="5"><ol class="answerList"><li><a id="q11" >Rounding down</a></li><li><a id="q23" >Rounding up</a></li><li><a id="q24" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ac.mp3" mode="1" id="5"  /><br/><li id="6"><ol class="answerList"><li><a id="q10" >Rounding down</a></li><li><a id="q25" >Rounding up</a></li><li><a id="q26" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1aa.mp3" mode="1" id="6"  /><br/><li id="7"><ol class="answerList"><li><a id="q9" >Rounding down</a></li><li><a id="q27" >Rounding up</a></li><li><a id="q28" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ae.mp3" mode="1" id="7"  /><br/><li id="8"><ol class="answerList"><li><a id="q8" >Rounding down</a></li><li><a id="q29" >Rounding up</a></li><li><a id="q30" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1an.mp3" mode="1" id="8"  /><br/><li id="9"><ol class="answerList"><li><a id="q7" >Rounding down</a></li><li><a id="q31" >Rounding up</a></li><li><a id="q32" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1aj.mp3" mode="1" id="9"  /><br/><li id="10"><ol class="answerList"><li><a id="q6" >Rounding down</a></li><li><a id="q33" >Rounding up</a></li><li><a id="q34" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ah.mp3" mode="1" id="10"  /><br/><li id="11"><ol class="answerList"><li><a id="q5" >Rounding down</a></li><li><a id="q35" >Rounding up</a></li><li><a id="q36" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ai.mp3" mode="1" id="11"  /><br/><li id="12"><ol class="answerList"><li><a id="q4" >Rounding down</a></li><li><a id="q37" >Rounding up</a></li><li><a id="q38" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ak.mp3" mode="1" id="12"  /><br/><li id="13"><ol class="answerList"><li><a id="q18" >Rounding down</a></li><li><a id="q39" >Rounding up</a></li><li><a id="q40" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1am.mp3" mode="1" id="13"  /><br/><li id="14"><ol class="answerList"><li><a id="q19" >Rounding down</a></li><li><a id="q41" >Rounding up</a></li><li><a id="q42" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ag.mp3" mode="1" id="14"  /></ol>
 </section>
 <section id="fb0">
 	<p align="left"><b>Rounding down</b></p><p align="left"><font color="#000000">1:  more than</font></p><p align="left"><font color="#000000">4:  just over</font></p><p align="left"><font color="#000000">8:  well over</font></p><p align="left"><b></b></p><p align="left"><b>Rounding up</b></p><p align="left"><font color="#000000">2:  less than</font></p><p align="left"><font color="#000000">3:  nearly</font></p><p align="left"><font color="#000000">9:  almost</font></p><p align="left"><font color="#000000">12:  fewer than</font></p><p align="left"><font color="#000000">13:  well under</font></p><p align="left"><font color="#000000">14:  just under</font></p><p align="left"></p><p align="left"><b>General approximation</b></p><p align="left"><font color="#000000">5:  approximately</font></p><p align="left"><font color="#000000">6:  roughly</font></p><p align="left"><font color="#000000">7:  more or less</font></p><p align="left"><font color="#000000">10:  about</font></p><p align="left"><font color="#000000">11:  around</font></p>

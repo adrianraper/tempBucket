@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-26" />
+	<meta name="conversion" type="quiz" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_SP_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Talk confidently.  <a id="q1" >Yes</a><tab/><a id="q2" >No</a><br/></li><br/><li id="2">Feel free to correct yourself if you make a mistake. <a id="q3" >Yes</a><tab/><a id="q4" >No</a><br/></li><br/><li id="3">Tell the examiner you are very nervous. <a id="q5" >Yes</a><tab/><a id="q6" >No</a><br/></li><br/><li id="4">Smile and look directly at the examiner. <a id="q7" >Yes</a><tab/><a id="q8" >No</a><br/></li><br/><li id="5">Think of enough material to talk about until the examiner stops you.<a id="q9" >Yes</a><tab/><a id="q10" >No</a><br/></li><br/><li id="6">Show interest in the topic.<a id="q11" >Yes</a><tab/><a id="q12" >No</a><br/></li><br/><li id="7">Learn by heart several short speeches on topics which may come up. <a id="q13" >Yes</a><tab/><a id="q14" >No</a><br/></li><br/><li id="8">Don't speak about something if you know nothing about it. <a id="q15" >Yes</a><tab/><a id="q16" >No</a><br/></li></ol>
+	<img class="rightFloat" src="../media/MM_SP_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Talk confidently.  <a id="q1" >Yes</a><tab/><a id="q2" >No</a><br/></li><br/><li id="2">Feel free to correct yourself if you make a mistake. <a id="q3" >Yes</a><tab/><a id="q4" >No</a><br/></li><br/><li id="3">Tell the examiner you are very nervous. <a id="q5" >Yes</a><tab/><a id="q6" >No</a><br/></li><br/><li id="4">Smile and look directly at the examiner. <a id="q7" >Yes</a><tab/><a id="q8" >No</a><br/></li><br/><li id="5">Think of enough material to talk about until the examiner stops you.<a id="q9" >Yes</a><tab/><a id="q10" >No</a><br/></li><br/><li id="6">Show interest in the topic.<a id="q11" >Yes</a><tab/><a id="q12" >No</a><br/></li><br/><li id="7">Learn by heart several short speeches on topics which may come up. <a id="q13" >Yes</a><tab/><a id="q14" >No</a><br/></li><br/><li id="8">Don't speak about something if you know nothing about it. <a id="q15" >Yes</a><tab/><a id="q16" >No</a><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left">Confidence is a positive thing and will make what you say more interesting.</p>

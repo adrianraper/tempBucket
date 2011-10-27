@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -55,7 +37,7 @@
 	<span id="a9" draggable="true">to</span><span id="a11" draggable="true">so that</span><span id="a13" draggable="true">so as to</span><span id="a14" draggable="true">As a result</span><span id="a16" draggable="true">Consequently</span><span id="a15" draggable="true">in order to</span><span id="a12" draggable="true">causing</span><span id="a10" draggable="true">Due to</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/EN_AW_002s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/EN_AW_002.jpg" mode="16" id="1003"  /><p align="left"><font color="#000000"><b>Purpose 	</b>*<b>	 Cause and Result</b></font></p><input id="q1" type="droptarget" /> 	*	 <input id="q2" type="droptarget" /><input id="q3" type="droptarget" /> 	*	 <input id="q4" type="droptarget" /><input id="q5" type="droptarget" /> 	*	 <input id="q6" type="droptarget" /><input id="q7" type="droptarget" /> 	*	 <input id="q8" type="droptarget" /><p align="left">The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages <font color="#0000ff">to transport passengers up and down a hillside 30 metres in height.</font></p><p align="left">The carriages are made of timber and steel <font color="#0000ff">so that they are light and strong. Underneath each one is a ballast tank, which carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. These go around a large drum at the top of the slope.</font></p><p align="left">When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir <font color="#0000ff">so as to make it slightly heavier than the lower carriage. <font color="#0000ff">Due to</font> this imbalance, the top one begins to roll down the hill, pulling the other one up. A computer control system weighs each carriage <font color="#0000ff">in order to</font> gauge exactly how much water is needed to make them move. Speed is controlled by means of a braking system built into the drum at the top. This consists of a hydraulic pump, which slows the drum down if it is turning too fast, <font color="#0000ff">causing</font> the carriages to reduce speed. Each time this happens, the system compresses gas in special cylinders.<font color="#0000ff"> As a result</font>, some of the energy of braking is stored. This can later be used to pump a proportion of the water back up to the reservoir. <font color="#0000ff">Consequently</font>, some energy is recycled.</font></p><p align="left">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/EN_AW_002s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/EN_AW_002.jpg" mode="16" id="1003"  /><p align="left"><font color="#000000"><b>Purpose 	</b>*<b>	 Cause and Result</b></font></p><input id="q1" type="droptarget" /> 	*	 <input id="q2" type="droptarget" /><input id="q3" type="droptarget" /> 	*	 <input id="q4" type="droptarget" /><input id="q5" type="droptarget" /> 	*	 <input id="q6" type="droptarget" /><input id="q7" type="droptarget" /> 	*	 <input id="q8" type="droptarget" /><p align="left">The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages <font color="#0000ff">to transport passengers up and down a hillside 30 metres in height.</font></p><p align="left">The carriages are made of timber and steel <font color="#0000ff">so that they are light and strong. Underneath each one is a ballast tank, which carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. These go around a large drum at the top of the slope.</font></p><p align="left">When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir <font color="#0000ff">so as to make it slightly heavier than the lower carriage. <font color="#0000ff">Due to</font> this imbalance, the top one begins to roll down the hill, pulling the other one up. A computer control system weighs each carriage <font color="#0000ff">in order to</font> gauge exactly how much water is needed to make them move. Speed is controlled by means of a braking system built into the drum at the top. This consists of a hydraulic pump, which slows the drum down if it is turning too fast, <font color="#0000ff">causing</font> the carriages to reduce speed. Each time this happens, the system compresses gas in special cylinders.<font color="#0000ff"> As a result</font>, some of the energy of braking is stored. This can later be used to pump a proportion of the water back up to the reservoir. <font color="#0000ff">Consequently</font>, some energy is recycled.</font></p><p align="left">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</p><p align="left"><font size="2"></font></p>
 		<p align="left">
 		<b>Click to enlarge</b></p>
 </section>

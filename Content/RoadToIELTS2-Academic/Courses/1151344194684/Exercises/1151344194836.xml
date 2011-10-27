@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Reading Passage 1</b></font>Bands, Tribes and ChiefdomsRead a book extract comparing the main characteristics of bands, tribes and chiefdoms.</p><p align="left"><font color="#0000ff"><b>Academic Reading Passage 2</b></font>HypermobilityRead an article discussing the effects of modern means of transport and communications on society.</p><p align="left"><b>Question types</b>You will attempt four question types.<u><g id="1">Classification</g></u><u><g id="2">Matching (sentence beginnings and endings)</g></u><u><g id="3">Yes, No, Not Given</g></u><u><g id="4">Short-answer questions</g></u></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/SS_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Reading Passage 1</b></font>Bands, Tribes and ChiefdomsRead a book extract comparing the main characteristics of bands, tribes and chiefdoms.</p><p align="left"><font color="#0000ff"><b>Academic Reading Passage 2</b></font>HypermobilityRead an article discussing the effects of modern means of transport and communications on society.</p><p align="left"><b>Question types</b>You will attempt four question types.<u><g id="t1">Classification</g></u><u><g id="t2">Matching (sentence beginnings and endings)</g></u><u><g id="t3">Yes, No, Not Given</g></u><u><g id="t4">Short-answer questions</g></u></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">

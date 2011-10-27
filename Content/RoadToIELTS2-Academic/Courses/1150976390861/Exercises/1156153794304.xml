@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 	<span id="a18" draggable="true">hiking</span><span id="a29" draggable="true">golf</span><span id="a23" draggable="true">snooker</span><span id="a22" draggable="true">cycling</span><span id="a26" draggable="true">snorkelling</span><span id="a28" draggable="true">table tennis</span><span id="a25" draggable="true">horse riding</span><span id="a27" draggable="true">squash</span><span id="a31" draggable="true">rock climbing</span><span id="a19" draggable="true">baseball</span><span id="a17" draggable="true">scuba diving</span><span id="a30" draggable="true">tennis</span><span id="a20" draggable="true">a board game</span><span id="a32" draggable="true">ice hockey</span><span id="a21" draggable="true">skiing</span><span id="a24" draggable="true">football</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/Unit01_Words2_ex1h.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/Unit01_Words2_ex1k.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/Unit01_Words2_ex1n.jpg" mode="1" id="1005"  /><img class="rightFloat" src="../Media/Unit01_Words2_ex1b.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1e.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1p.jpg" mode="1" id="1008"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1g.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1f.jpg" mode="1" id="1010"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1j.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1a.jpg" mode="1" id="1012"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1c.jpg" mode="1" id="1013"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1l.jpg" mode="1" id="1014"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1o.jpg" mode="1" id="1015"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1i.jpg" mode="1" id="1016"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1m.jpg" mode="1" id="1017"  /><img class="leftFloat" src="../Media/Unit01_Words2_ex1d.jpg" mode="1" id="1018"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /></li><li id="2"><input id="q2" type="droptarget" /></li><li id="3"><input id="q3" type="droptarget" /></li><li id="4"><input id="q4" type="droptarget" /></li><li id="5"><input id="q5" type="droptarget" /></li><li id="6"><input id="q6" type="droptarget" /></li><li id="7"><input id="q7" type="droptarget" /></li><li id="8"><input id="q8" type="droptarget" /></li><li id="9"><input id="q9" type="droptarget" /></li><li id="10"><input id="q10" type="droptarget" /></li><li id="11"><input id="q11" type="droptarget" /></li><li id="12"><input id="q12" type="droptarget" /></li><li id="13"><input id="q13" type="droptarget" /></li><li id="14"><input id="q14" type="droptarget" /></li><li id="15"><input id="q15" type="droptarget" /></li><li id="16"><input id="q16" type="droptarget" /></li></ol>
+	<img class="rightFloat" src="../media/Unit01_Words2_ex1h.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../media/Unit01_Words2_ex1k.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../media/Unit01_Words2_ex1n.jpg" mode="1" id="1005"  /><img class="rightFloat" src="../media/Unit01_Words2_ex1b.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1e.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1p.jpg" mode="1" id="1008"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1g.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1f.jpg" mode="1" id="1010"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1j.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1a.jpg" mode="1" id="1012"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1c.jpg" mode="1" id="1013"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1l.jpg" mode="1" id="1014"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1o.jpg" mode="1" id="1015"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1i.jpg" mode="1" id="1016"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1m.jpg" mode="1" id="1017"  /><img class="leftFloat" src="../media/Unit01_Words2_ex1d.jpg" mode="1" id="1018"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /></li><li id="2"><input id="q2" type="droptarget" /></li><li id="3"><input id="q3" type="droptarget" /></li><li id="4"><input id="q4" type="droptarget" /></li><li id="5"><input id="q5" type="droptarget" /></li><li id="6"><input id="q6" type="droptarget" /></li><li id="7"><input id="q7" type="droptarget" /></li><li id="8"><input id="q8" type="droptarget" /></li><li id="9"><input id="q9" type="droptarget" /></li><li id="10"><input id="q10" type="droptarget" /></li><li id="11"><input id="q11" type="droptarget" /></li><li id="12"><input id="q12" type="droptarget" /></li><li id="13"><input id="q13" type="droptarget" /></li><li id="14"><input id="q14" type="droptarget" /></li><li id="15"><input id="q15" type="droptarget" /></li><li id="16"><input id="q16" type="droptarget" /></li></ol>
 </section>
 </body>
 </bento>

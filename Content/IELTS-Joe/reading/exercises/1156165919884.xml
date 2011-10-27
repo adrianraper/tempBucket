@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/><answer source="a2" correct="true"/><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="lesions " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="right hemisphere " correct="true"/><answer value="right side" correct="true"/><answer value="right half" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="recognize words " correct="true"/><answer value="recognise words" correct="true"/><answer value="make out words" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="nonverbal means " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="quiet areas " correct="true"/><answer value="the quite areas" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="deaf " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="abstract rules " correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../Media/LC_AR_003.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Broca discovered that aphasic patients often have <input id="q1" width="100" /> located in the same part of the brain.</li><li id="2">The left half of the body is known to be controlled by the <input id="q2" width="100" /> of the brain.</li><li id="3">For most people, the right ear and eye <input id="q3" width="100" /> better than the left ear and eye.</li><li id="4">After surgery, patients suffering from epilepsy are only able to use <input id="q4" width="100" /> to describe what is happening in their left visual field.</li><li id="5">In photographs produced by the PET technique, <input id="q5" width="100" /> of the brain appear less brightly.</li><li id="6">Sign aphasia is a condition associated with <input id="q6" width="100" /> people.</li><li id="7">It seems that the left hemisphere of the brain deals with the <input id="q7" width="100" /> of language rather than the physical acts involved in speech.</li></ol>
+	<img class="leftFloat" src="../media/LC_AR_003.JPG" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">Broca discovered that aphasic patients often have <input id="q1" width="100" /> located in the same part of the brain.</li><li id="2">The left half of the body is known to be controlled by the <input id="q2" width="100" /> of the brain.</li><li id="3">For most people, the right ear and eye <input id="q3" width="100" /> better than the left ear and eye.</li><li id="4">After surgery, patients suffering from epilepsy are only able to use <input id="q4" width="100" /> to describe what is happening in their left visual field.</li><li id="5">In photographs produced by the PET technique, <input id="q5" width="100" /> of the brain appear less brightly.</li><li id="6">Sign aphasia is a condition associated with <input id="q6" width="100" /> people.</li><li id="7">It seems that the left hemisphere of the brain deals with the <input id="q7" width="100" /> of language rather than the physical acts involved in speech.</li></ol>
 </section>
 <section id="readingText">
 	<p align="left"><font color="#0000ff"><b>Language and the Brain</b></font></p><p align="left">In 1861 the French physician Paul Broca dissected the brain of an aphasic patient who had been nicknamed "Tan" by hospital workers because that was the only syllable he uttered. Broca discovered a large cyst producing a lesion in Tan's left hemisphere. The next eight cases of aphasia he observed also had left-hemisphere lesions, too many to be attributed to chance. Broca concluded that "the faculty for articulate language" resides in the left hemisphere.</p><p align="left">In the 130 years since, Broca's conclusion has been confirmed by many kinds of evidence. Some of it comes from the convenient fact that the right half of the body and of perceptual space is controlled by the left hemisphere of the brain and vice versa. Many people with aphasia suffer weakness or paralysis on the right side, including Tan. </p><p align="left">Normal people recognize words more accurately when the words are flashed to the right side of their visual field than when they are flashed to the left, even when the language is Hebrew, which is written from right to left. When different words are presented simultaneously to the two ears, the person can make out the word coming into the right ear better. </p><p align="left"><font color="#000000">In some cases of otherwise incurable epilepsy, surgeons disconnect the two cerebral hemispheres by cutting the bundle of fibers running between them. After surgery the patients live completely normal lives, except for a subtlety discovered by the neuroscientist Michael Gazzaniga: when the patients are kept still, they can describe events taking place in their right visual field and can name objects in their right hand, but cannot describe events taking place in their left visual field or name objects placed in their left hand (though the right hemisphere can display its awareness of those events by nonverbal means). The left half of their world has been disconnected from their language center.</font></p><p align="left"><font color="#000000">When neuroscientists look directly at the brain, using a variety of techniques, they can actually see language in action in the left hemisphere. In a technique called Positron Emission Tomography (PET), a volunteer is injected with mildly radioactive glucose or water, or inhales a radioactive gas, comparable in dosage to a chest X-ray, and puts his head inside a ring of gamma-ray detectors. The parts of the brain that are more active burn more glucose and have more oxygenated blood sent their way. </font></p><p align="left">Computer algorithms can reconstruct which parts of the brain are working harder from the pattern of radiation that emanates from the head. An actual picture of metabolic activity within a slice of the brain can be displayed in a computer-generated photograph, with the more active areas showing up in bright reds and yellows, the quiet areas in dark indigos. By subtracting an image of the brain when its owner is watching meaningless patterns or listening to meaningless sounds from an image when the owner is understanding words or speech, one can see which areas of the brain "light up" during language processing. The hot spots, as expected, are on the left side.</p><p align="left">What exactly is engaging the left hemisphere? It is not merely speechlike sounds, or wordlike shapes, or movements of the mouth, but abstract language. Most aphasic people can blow out candles and suck on straws, but their writing suffers as much as their speech; this shows that it is not mouth control but language control that is damaged. </p><p align="left">The study of aphasia in the deaf leads to a similar conclusion. Deaf signers with damage to their left hemispheres suffer from forms of sign aphasia that are virtually identical to the aphasia of hearing victims with similar lesions. Language, whether by ear and mouth or by eye and hand, is controlled by the left hemisphere. The left hemisphere must be handling the abstract rules underlying language and not merely the sounds and the mouthings at the surface.</p><p align="left"> lesion: a damaged area in an organ or tissue.</p>2 aphasia: inability to understand or produce language due to brain damage.3 cerebral hemisphere: each of the two halves of the main part of the brain located at the front of the skull.<p align="left">The Language Instinct, Steven Pinker, Penguin 1995, pp. 299-302.</p><p align="left"><font size="2"></font></p>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../Media/TT_LN1.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/TT_LN_e1.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/TT_LN_e2.jpg" mode="1" id="1004"  /><img class="leftFloat" src="../Media/TT_LN_e3.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/TT_LN_e4.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/TT_LN_e5.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../Media/TT_LN_e6.jpg" mode="1" id="1008"  /><br/><ol id="questionList"><br/><li id="1">
+	<media class="leftFloat" src="../media/TT_LN1.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/TT_LN_e1.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/TT_LN_e2.jpg" mode="1" id="1004"  /><img class="leftFloat" src="../media/TT_LN_e3.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../media/TT_LN_e4.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../media/TT_LN_e5.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../media/TT_LN_e6.jpg" mode="1" id="1008"  /><br/><ol id="questionList"><br/><li id="1">
 			 When Sarah wakes up, what time is it in Hong Kong?<ol class="answerList"><li><a id="q1" >Pic A</a></li><li><a id="q2" >Pic B</a></li><li><a id="q3" >Pic C</a></li><li><a id="q4" >Pic D</a></li></ol><br/></li><br/><li id="2">What time is the plane due to arrive at Heathrow?<ol class="answerList"><li><a id="q5" >Pic A</a></li><li><a id="q6" >Pic B</a></li><li><a id="q7" >Pic C</a></li><li><a id="q8" >Pic D</a></li></ol><br/></li><br/><li id="3">What does Peter decide to order for breakfast?<ol class="answerList"><li><a id="q9" >Pic A</a></li><li><a id="q10" >Pic B</a></li><li><a id="q11" >Pic C</a></li><li><a id="q12" >Pic D</a></li></ol><br/></li><br/><li id="4">What does Sarah plan to have for breakfast?<ol class="answerList"><li><a id="q13" >Pic A</a></li><li><a id="q14" >Pic B</a></li><li><a id="q15" >Pic C</a></li><li><a id="q16" >Pic D</a></li></ol><br/></li><br/><li id="5">What does Peter's suitcase look like?<ol class="answerList"><li><a id="q17" >Pic A</a></li><li><a id="q18" >Pic B</a></li><li><a id="q19" >Pic C</a></li><li><a id="q20" >Pic D</a></li></ol><br/></li><br/><li id="6">What does Sarah's brother look like?<ol class="answerList"><li><a id="q21" >Pic A</a></li><li><a id="q22" >Pic B</a></li><li><a id="q23" >Pic C</a></li><li><a id="q24" >Pic D</a></li></ol><br/></li></ol>
 </section>
 <section id="fb1">

@@ -59,7 +59,7 @@
 			<s:dataProvider>
 				<s:ArrayCollection>
 					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://dock.projectbench/Content/IELTSTester-Dave" />
-					<fx:Object label="Leisure (old)" filename="menu.xml" currentDir="http://claritydevelop/Content/RoadToIELTS2-Academic" />
+					<fx:Object label="Leisure (old)" filename="menu.xml" currentDir="http://dock.projectbench/Content/RoadToIELTS2-Academic" />
 					<fx:Object label="Last minute" filename="menu-LastMinute.xml" currentDir="http://dock.projectbench/Content/IELTS-Joe" />
 				</s:ArrayCollection>
 			</s:dataProvider>

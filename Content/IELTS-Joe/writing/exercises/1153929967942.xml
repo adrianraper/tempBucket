@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-26" />
+	<meta name="conversion" type="quiz" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +27,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/AC_Task03.jpg" mode="16" id="1004"  />
+	<img class="rightFloat" src="../media/AC_Task03.jpg" mode="16" id="1004"  />
 		
 		Click on the icon to read the writing task. Then listen to six people saying how they feel about free admission to museums. Click according to whether each person is For or Against. 
 		
@@ -54,7 +36,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_AW_008.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><a id="q1" >For</a><tab/><a id="q2" >Against</a><br/></li><audio class="leftFloat" src="../Media/AC_WR1aa.mp3" mode="1" id="1"  /><br/><li id="2"><a id="q3" >For</a><tab/><a id="q4" >Against</a><br/></li><audio class="leftFloat" src="../Media/AC_WR1ab.mp3" mode="1" id="2"  /><br/><li id="3"><a id="q5" >For</a><tab/><a id="q6" >Against</a><br/></li><audio class="leftFloat" src="../Media/AC_WR1ac.mp3" mode="1" id="3"  /><br/><li id="4"><a id="q7" >For</a><tab/><a id="q8" >Against</a><br/></li><audio class="leftFloat" src="../Media/AC_WR1ad.mp3" mode="1" id="4"  /><br/><li id="5"><a id="q9" >For</a><tab/><a id="q10" >Against</a><br/></li><audio class="leftFloat" src="../Media/AC_WR1ae.mp3" mode="1" id="5"  /><br/><li id="6"><a id="q11" >For</a><tab/><a id="q12" >Against</a><br/></li><audio class="leftFloat" src="../Media/AC_WR1af.mp3" mode="1" id="6"  /></ol>
+	<img class="rightFloat" src="../media/AC_AW_008.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><a id="q1" >For</a><tab/><a id="q2" >Against</a><br/></li><audio class="leftFloat" src="../media/AC_WR1aa.mp3" mode="1" id="1"  /><br/><li id="2"><a id="q3" >For</a><tab/><a id="q4" >Against</a><br/></li><audio class="leftFloat" src="../media/AC_WR1ab.mp3" mode="1" id="2"  /><br/><li id="3"><a id="q5" >For</a><tab/><a id="q6" >Against</a><br/></li><audio class="leftFloat" src="../media/AC_WR1ac.mp3" mode="1" id="3"  /><br/><li id="4"><a id="q7" >For</a><tab/><a id="q8" >Against</a><br/></li><audio class="leftFloat" src="../media/AC_WR1ad.mp3" mode="1" id="4"  /><br/><li id="5"><a id="q9" >For</a><tab/><a id="q10" >Against</a><br/></li><audio class="leftFloat" src="../media/AC_WR1ae.mp3" mode="1" id="5"  /><br/><li id="6"><a id="q11" >For</a><tab/><a id="q12" >Against</a><br/></li><audio class="leftFloat" src="../media/AC_WR1af.mp3" mode="1" id="6"  /></ol>
 </section>
 <section id="fb0">
 	<p align="left"><b>For</b></p><p align="left"><font color="#000000">2: More people visit museums</font></p><p align="left"><font color="#000000">3: National heritage and culture is accessible to everyone</font></p><p align="left"><font color="#000000">6: Museums are less commercial/more serious</font></p><p align="left"></p><p align="left"><b>Against</b></p><p align="left"><font color="#000000">1: Museums may be overcrowded</font></p><p align="left"><font color="#000000">4: Museums lack financial resources</font></p><p align="left"><font color="#000000">5: Museums are less independent/more subject to government policy</font></p>

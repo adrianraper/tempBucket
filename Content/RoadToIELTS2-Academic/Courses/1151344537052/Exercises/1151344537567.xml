@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -75,7 +57,7 @@
 <section id="fb7">
 	<p align="left"><font color="#000000">7. a, b: There should be an idea here which contrasts with the first, not which says the same.</font></p>
 </section>
-<section id="rt56">
+<section id="readingText">
 	<p align="left"><font color="#000000">The tradition which some countries have of free admission to state-owned museums is coming under increasing threat due to rising costs and limited funding. Despite these pressures, many museums in these countries <font color="#0000ff"><b>(1)</b></font>.</font></p><p align="left"><font color="#000000">There are several advantages to allowing the public free access to museums. Firstly, whereas charging an entry fee means that a nation's heritage is only available to those who can afford it, <font color="#0000ff"><b>(2)</b></font>. As a result, museums, like public libraries, are treated as an extension of the state education system, which is based on the principle of equal opportunity for all. A further advantage is that free museums attract far more visitors because, although many people make a special trip to visit them, <font color="#0000ff"><b>(3)</b></font>. Free museums, therefore, reach a much wider public. Finally, while private museums may be influenced by commercial pressures, <font color="#0000ff"><b>(4)</b></font>.</font></p><p align="left"><font color="#000000">However, a policy of free admission to museums also has a number of disadvantages. First and foremost, museums whose income comes entirely from public funds may be more subject to government policy, which sometimes means that exhibitions are expected to reflect the government's views. Moreover, in spite of their popularity, <font color="#0000ff"><b>(5)</b></font>. Consequently, museums that do not charge admission may not always be able to afford ambitious projects, or to buy new items to add to their collections. Lastly, though museum directors want to attract large numbers of visitors, <font color="#0000ff"><b>(6)</b></font>.</font></p><p align="left"><font color="#000000">In conclusion, I believe that children and students should have free admission to museums, while adults should <font color="#0000ff"><b>(7)</b></font>. In this way, museums would be able to raise sufficient money to maintain the quality of their collections and add to them, and, at the same time, fulfil a valuable role in educating the general public.</font></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="rt2001">

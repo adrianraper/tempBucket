@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 	<span id="a15" draggable="true">row</span><span id="a16" draggable="true">orchestra</span><span id="a14" draggable="true">wing</span><span id="a19" draggable="true">stage</span><span id="a21" draggable="true">prop</span><span id="a18" draggable="true">auditorium</span><span id="a12" draggable="true">box</span><span id="a17" draggable="true">conductor</span><span id="a10" draggable="true">circle</span><span id="a20" draggable="true">costumes</span><span id="a11" draggable="true">aisle</span><span id="a13" draggable="true">stalls</span><span id="a22" draggable="true">curtain</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_TV_006.jpg" mode="1" id="1001"  /><p align="left">Dear Jane, </p><p align="left">Just had to get this off to you before you buy tickets for that one-man show I was talking about last week. We went to see it at the new theatre last night. It was a really odd production actually. There were about twenty musicians and only one actor and we really weren't impressed with either the show or the theatre.</p><p align="left">We'd booked our seats over the telephone but we didn't get the ones we'd asked for. We'd wanted seats up in the <font color="#0000ff"><input id="q1" type="droptarget" /> but we were in the front <font color="#0000ff"><input id="q2" type="droptarget" /></font> of the stalls, right behind the <font color="#0000ff"><input id="q3" type="droptarget" /></font>, who played far too loudly. Also, I couldn't see half the time because the <font color="#0000ff"><input id="q4" type="droptarget" /></font>'s head kept getting in the way and the <font color="#0000ff"><input id="q5" type="droptarget" /></font> was packed so we couldn't move anywhere else. </font></p><p align="left">It was pretty boring too, watching one actor walking around the <font color="#0000ff"><input id="q6" type="droptarget" /> for nearly two hours, there were no <font color="#0000ff"><input id="q7" type="droptarget" /></font> really either. He just wore a pair of black trousers and polo-neck sweater. He used only one <font color="#0000ff"><input id="q8" type="droptarget" /></font> too - a camera. I was really relieved when the <font color="#0000ff"><input id="q9" type="droptarget" /></font> finally came down and we could go home.</font></p><p align="left">So, anyway, if I were you, I'd definitely give it a miss.</p><p align="left">I'm afraid I have to dash now - will write later if I have time.</p><p align="left">Take care, </p><p align="left">Katie</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/AC_TV_006.jpg" mode="1" id="1001"  /><p align="left">Dear Jane, </p><p align="left">Just had to get this off to you before you buy tickets for that one-man show I was talking about last week. We went to see it at the new theatre last night. It was a really odd production actually. There were about twenty musicians and only one actor and we really weren't impressed with either the show or the theatre.</p><p align="left">We'd booked our seats over the telephone but we didn't get the ones we'd asked for. We'd wanted seats up in the <font color="#0000ff"><input id="q1" type="droptarget" /> but we were in the front <font color="#0000ff"><input id="q2" type="droptarget" /></font> of the stalls, right behind the <font color="#0000ff"><input id="q3" type="droptarget" /></font>, who played far too loudly. Also, I couldn't see half the time because the <font color="#0000ff"><input id="q4" type="droptarget" /></font>'s head kept getting in the way and the <font color="#0000ff"><input id="q5" type="droptarget" /></font> was packed so we couldn't move anywhere else. </font></p><p align="left">It was pretty boring too, watching one actor walking around the <font color="#0000ff"><input id="q6" type="droptarget" /> for nearly two hours, there were no <font color="#0000ff"><input id="q7" type="droptarget" /></font> really either. He just wore a pair of black trousers and polo-neck sweater. He used only one <font color="#0000ff"><input id="q8" type="droptarget" /></font> too - a camera. I was really relieved when the <font color="#0000ff"><input id="q9" type="droptarget" /></font> finally came down and we could go home.</font></p><p align="left">So, anyway, if I were you, I'd definitely give it a miss.</p><p align="left">I'm afraid I have to dash now - will write later if I have time.</p><p align="left">Take care, </p><p align="left">Katie</p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

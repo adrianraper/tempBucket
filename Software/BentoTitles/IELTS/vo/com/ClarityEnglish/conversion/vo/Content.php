@@ -219,13 +219,13 @@ class Content{
 					if ($fieldType==Field::FIELD_TYPE_DROP) {
 						$buildText.=$m[1].'<input id="q'.$m[2].'" type="droptarget" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_GAP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" />'.$m[3];
+						$buildText.=$m[1].'<input id="q'.$m[2].'" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<g id="'.$m[2].'">'.$answer.'</g>'.$m[3];
+						$buildText.=$m[1].'<g id="t'.$m[2].'">'.$answer.'</g>'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGETGAP) {
 						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" value="'.$answer.'" enabled="false" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_DROPDOWN) {
-						$buildText.=$m[1].'<select id="'.$m[2].'" type="dropdown" >';
+						$buildText.=$m[1].'<select id="q'.$m[2].'" type="dropdown" >';
 						foreach ($answers as $answer) {
 							$buildText.= '<option id="o'.$generatedID++.'">'.$answer->getAnswer().'"</option>"';
 						}
@@ -275,12 +275,15 @@ class Content{
 					$options = preg_split($pattern, $subBuilder);
 					
 					// Then output the options as another list
+					// CSS in TLF currently means we have to use <list> not <ol>
+					//$builder.='<ol class="answerList">';
+					//$builder.='</ol>';
 					$builder.='<ol class="answerList">';
 						for ($i=1; $i<count($options); $i++) {
 							// As the first character has been eaten by the regex
 							$builder.='<li>'.'['.$options[$i].'</li>';
 						} 
-					$builder.='</ol>';
+					$builder.='</list>';
 					$builder.="$newline</li>";
 				} else {
 					$builder.=$paragraph->output($lastTagType,$thisTagType);

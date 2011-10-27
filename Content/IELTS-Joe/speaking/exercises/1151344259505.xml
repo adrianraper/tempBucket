@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q16" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q17" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q19" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q20" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q21" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q23" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q24" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q25" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q26" correct="true"/></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t16" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t17" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t19" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t20" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t21" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t23" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t24" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t25" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t26" correct="true"/></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit012_e5a.flv" mode="16" id="1003"  /><video class="leftFloat" src="../Media/Unit012_e5b.flv" mode="16" id="1004"  /><p align="left"><b>Zenia</b><g id="1">A.  it can be used everywhere</g><g id="2">B.  it's very helpful</g><g id="3">C.  it makes it easy for someone to be found</g><g id="4">D.  it can save a life</g><g id="5">E.  emergency</g><g id="6">F.  useful when you have no other means of communication</g><g id="7">G.  it's a great technical device</g><g id="8">H.  it's useful if you get lost</g><g id="9">I.  it can make life easier</g><g id="10">J.  it bring us the news more quickly</g><g id="11">K.  it's noisy</g><g id="12">L.  it interrupts people in quiet places</g><g id="13">M.  it interrupts your rest</g></p><p align="left"><b>Zafir</b><g id="14">A.  it can be used everywhere</g><g id="15">B.  it's very helpful</g><g id="16">C.  it makes it easy for someone to be found</g><g id="17">D.  it can save a life</g><g id="18">E.  emergency</g><g id="19">F.  useful when you have no other means of communication</g><g id="20">G.  it's a great technical device</g><g id="21">H.  it's useful if you get lost</g><g id="22">I.  it can make life easier</g><g id="23">J.  it bring us the news more quickly</g><g id="24">K.  it's noisy</g><g id="25">L.  it interrupts people in quiet places</g><g id="26">M.  it interrupts your rest</g></p>
+	<video class="rightFloat" src="../media/Unit012_e5a.flv" mode="16" id="1003"  /><video class="leftFloat" src="../media/Unit012_e5b.flv" mode="16" id="1004"  /><p align="left"><b>Zenia</b><g id="t1">A.  it can be used everywhere</g><g id="t2">B.  it's very helpful</g><g id="t3">C.  it makes it easy for someone to be found</g><g id="t4">D.  it can save a life</g><g id="t5">E.  emergency</g><g id="t6">F.  useful when you have no other means of communication</g><g id="t7">G.  it's a great technical device</g><g id="t8">H.  it's useful if you get lost</g><g id="t9">I.  it can make life easier</g><g id="t10">J.  it bring us the news more quickly</g><g id="t11">K.  it's noisy</g><g id="t12">L.  it interrupts people in quiet places</g><g id="t13">M.  it interrupts your rest</g></p><p align="left"><b>Zafir</b><g id="t14">A.  it can be used everywhere</g><g id="t15">B.  it's very helpful</g><g id="t16">C.  it makes it easy for someone to be found</g><g id="t17">D.  it can save a life</g><g id="t18">E.  emergency</g><g id="t19">F.  useful when you have no other means of communication</g><g id="t20">G.  it's a great technical device</g><g id="t21">H.  it's useful if you get lost</g><g id="t22">I.  it can make life easier</g><g id="t23">J.  it bring us the news more quickly</g><g id="t24">K.  it's noisy</g><g id="t25">L.  it interrupts people in quiet places</g><g id="t26">M.  it interrupts your rest</g></p>
 <p align="left">
 <b>Click to watch the video</b></p>
 <p align="left">

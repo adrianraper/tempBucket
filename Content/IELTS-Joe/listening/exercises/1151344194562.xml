@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/SS_LN1a.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Campus Security</b></font></p><p align="left"><b>Report of theft or burglary</b></p><p align="left"><font color="#000000">NAME:	Lucy (1) <input id="1" width="100" /></font></p>HOUSE NAME:	(2) <input id="2" width="100" /> HouseROOM NUMBER:	(3) <input id="3" width="100" />FLOOR:	(4) <input id="4" width="100" />CONTACT NUMBER:	(5) <input id="5" width="100" />ITEMS STOLEN<p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/SS_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/SS_LN1a.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Campus Security</b></font></p><p align="left"><b>Report of theft or burglary</b></p><p align="left"><font color="#000000">NAME:	Lucy (1) <input id="q1" /></font></p>HOUSE NAME:	(2) <input id="q2" /> HouseROOM NUMBER:	(3) <input id="q3" />FLOOR:	(4) <input id="q4" />CONTACT NUMBER:	(5) <input id="q5" />ITEMS STOLEN<p align="left"><font size="2"></font></p>
 </section>
 <section id="rt2001">
 	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see from the form that you will need to listen for names and numbers.</font>&nbsp;Questions 1-5 &nbsp;Make sure you are familiar with the form and you know where to put the information you hear.</p>

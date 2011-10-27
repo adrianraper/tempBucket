@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-26" />
+	<meta name="conversion" type="proofreading" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -45,7 +27,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../Media/SS_WT1.jpg" mode="16" id="1004"  />
+	<img class="rightFloat" src="../media/SS_WT1.jpg" mode="16" id="1004"  />
 		
 		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 15. Click on them.
 		
@@ -54,7 +36,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_AW_009as.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/SS_AW_009a.jpg" mode="16" id="1004"  /><img class="leftFloat" src="../Media/SS_AW_009bs.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/SS_AW_009b.jpg" mode="16" id="1006"  /><br/><ol id="questionList"></ol>
+	<img class="rightFloat" src="../media/SS_AW_009as.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/SS_AW_009a.jpg" mode="16" id="1004"  /><img class="leftFloat" src="../media/SS_AW_009bs.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../media/SS_AW_009b.jpg" mode="16" id="1006"  /><br/><ol id="questionList"></ol>
 </section>
 <section id="fb1">
 	<p align="left"><font face="verdana" size="13" color="#000000">changes: Not all changes over the period were increases.</font></p>

@@ -90,7 +90,8 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1156153794077'; // quiz
 	//$exerciseID = '1317260895296'; // correct mistakes (not R2I)
 	//$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
-	$exerciseID = '1156153794672'; // Stopgap with splitscreen
+	//$exerciseID = '1156153794672'; // Stopgap with splitscreen
+	$exerciseID = '1156153794384'; // For testing customised=true
 	convertExercise($exerciseID);
 }
 
@@ -104,6 +105,33 @@ function convertExercise($exerciseID) {
 	//echo "checking on $exerciseID $newline";
 	$infile = $exerciseFolder.$exerciseID.'.xml';
 	$outfile = $exerciseFolderOut.$exerciseID.'.xml';
+
+	// Before you spend any time running the conversion, check if the output already exists
+	// If it does, see if it has a meta tag for customised=true - in which case leave it alone.
+	try {
+		$existingXml = simplexml_load_file($outfile);
+		// If we can read it, does it have a meta tag?
+		echo "$outfile exists already...$newline";
+		if ($existingXml) {
+			//var_dump($existingXml->head->meta); exit();
+			// Note that this is a neat way to do it with xpath. But if the XML has the following namespace 
+			// <bento xmlns="http://www.w3.org/1999/xhtml">
+			// xpath stops working. So until we know that we can drop that NS, do it with arrays and foreach
+			//if ($existingXml->xpath('//meta[@name="customised" and @content="true"]')) {
+			foreach ($existingXml->head->meta as $metaTag) {
+				//echo (string) $metaTag['content'];
+				if ((string) $metaTag['name']=='customised' && (string) $metaTag['content']=='true') {
+					echo "Skip $outfile as it has been customised";
+					return;
+				}
+			}
+			exit();
+		}
+		
+	} catch (Exception $e) {
+		echo "Couldn't read $outfile, no problem!$newline";
+		// Do nothing - not being able to read the file means we will just overwrite/create it
+	}
 	
 	// Load the contents into an XML structure
 	try {

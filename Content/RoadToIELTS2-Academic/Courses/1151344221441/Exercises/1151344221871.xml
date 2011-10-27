@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/ED_TV_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>University education</b></font></p><p align="left">You will ...</p><ol><li>group words and phrases according to the aspect of	university education they relate to.</li><li>do a quiz about university education.</li><li>complete sentences with words related to university	education.</li></ol><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/ED_TV_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>University education</b></font></p><p align="left">You will ...</p><ol><li>group words and phrases according to the aspect of	university education they relate to.</li><li>do a quiz about university education.</li><li>complete sentences with words related to university	education.</li></ol><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

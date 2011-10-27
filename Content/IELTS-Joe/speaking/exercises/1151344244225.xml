@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit011_e3n4.flv" mode="1" id="1003"  /><p align="left"><font color="#000000">I think <input id="1" width="100" /> is that now life is going very <input id="2" width="100" /> let's say ten years or twenty years ago. Everything has changed – life-style, you know, because nowadays, because we have this technology we can see what is there. I mean, in the other countries you can see, you can learn, you can see what are they doing, what are <input id="3" width="100" /> you can see everything. This has changed even the way of thinking of people <input id="4" width="100" />. I mean they are learning from each other. They are sharing. We say <input id="5" width="100" />. It's very good.</font></p>
+	<video class="rightFloat" src="../media/Unit011_e3n4.flv" mode="1" id="1003"  /><p align="left"><font color="#000000">I think <input id="q1" /> is that now life is going very <input id="q2" /> let's say ten years or twenty years ago. Everything has changed – life-style, you know, because nowadays, because we have this technology we can see what is there. I mean, in the other countries you can see, you can learn, you can see what are they doing, what are <input id="q3" /> you can see everything. This has changed even the way of thinking of people <input id="q4" />. I mean they are learning from each other. They are sharing. We say <input id="q5" />. It's very good.</font></p>
 </section>
 </body>
 </bento>

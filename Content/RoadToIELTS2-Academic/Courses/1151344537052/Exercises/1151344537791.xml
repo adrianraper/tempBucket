@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<p align="left"><font color="#000000">Classify the following descriptions as referring to:<font face="_sans" size="12">&#160;</font></font></p>Rembrandt - RBeckmann - BPicasso - PBoth Beckmann and Rembrandt - BRBoth Beckmann and Picasso - BP<p align="left"><input id="1" width="100" />&#160;revealed the influence of other artists in self-portraits.</p><p align="left"><input id="2" width="100" /> often wore curious clothing in self-portraits.</p><p align="left"><input id="3" width="100" /> had experiences which had a profound effect on the mood of the self-portraits.</p><p align="left"><input id="4" width="100" /> painted works in which the artist appears with another person.</p><p align="left"><input id="5" width="100" /> used fewer colours in later self-portraits.</p><p align="left"><input id="6" width="100" /> included a wide variety of objects in the self-portraits.</p><p align="left"><input id="7" width="100" /> created works which may surprise us.</p><p align="left"><input id="8" width="100" /> looks more self-assured in earlier works</p><p align="left"><font size="2"></font></p>
+	<p align="left"><font color="#000000">Classify the following descriptions as referring to:<font face="_sans" size="12">&#160;</font></font></p>Rembrandt - RBeckmann - BPicasso - PBoth Beckmann and Rembrandt - BRBoth Beckmann and Picasso - BP<p align="left"><input id="q1" />&#160;revealed the influence of other artists in self-portraits.</p><p align="left"><input id="q2" /> often wore curious clothing in self-portraits.</p><p align="left"><input id="q3" /> had experiences which had a profound effect on the mood of the self-portraits.</p><p align="left"><input id="q4" /> painted works in which the artist appears with another person.</p><p align="left"><input id="q5" /> used fewer colours in later self-portraits.</p><p align="left"><input id="q6" /> included a wide variety of objects in the self-portraits.</p><p align="left"><input id="q7" /> created works which may surprise us.</p><p align="left"><input id="q8" /> looks more self-assured in earlier works</p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">The passage tells us that Picasso was influenced by the artists Van Gogh, Gauguin, Toulouse-Lautrec and Cezanne.</p>
@@ -63,7 +45,7 @@
 <section id="rt2001">
 	<p align="left">Questions 1-8 - ClassificationMake sure you're clear about which letters and combinations of letters are used for each category. The text is clearly divided into sections dealing with each artist in turn, so you need to skim through each section looking for key words and phrases or synonyms of key words and phrases used in the questions.</p><p align="left">Notice that the artist Beckmann is also grouped with Rembrandt and Picasso to form two of the categories. Each time you find something that applies to Beckmann, you should look through the sections on Rembrandt or Picasso and decide if it also applies to them. Similarly, when you find something that applies to Rembrandt or Picasso, you should check whether it also applies to Beckmann.</p>
 </section>
-<section id="rt58">
+<section id="readingText">
 	<p align="left"><b>Multiple Personalities </b>Self-portraits in Series&nbsp;Many artists have turned to the mirror and made a self-portrait based on what they saw reflected. For different reasons, some have recorded their image over the course of a lifetime.&nbsp;Rembrandt van Rijn (1606-1669)</p>Rembrandt produced one of the most significant series of self-portraits in art history, generating more than ninety works that range from humorous sketches and etchings of himself as a young man to skeptical, philosophical, and deeply moving images of the artist in old age.&nbsp;Rembrandt was born and raised in the Dutch city of Leiden but moved to Amsterdam when he was in his mid-twenties. He found success doing commissioned portraits, and the formal, almost rigid quality of these works is carried over into the self-portrait he painted around 1629. Rembrandt's early self-portraits are often characterized by the flamboyant costumes he dressed in to satirize himself. He also used them as an excuse to render exotic, highly patterned materials. In a self-portrait from 1631, he appears in a feather-capped turban, a velvet cape, and a shiny, patterned, fringed silk robe and is standing next to a curly-haired dog. It's an absurd portrait, and it's obvious the Old Master chose these items solely for their pictorial attributes.&nbsp;Rembrandt's obsessive recording of details gives way in his later works to a more austere and monumental image of the artist. The palette is sparse, made up of mostly browns, flesh tones, and an occasional scarlet or gold. Generally, he appears in front of a nearly monochromatic background of shadow. In these self-portraits, role-playing is replaced by quiet contemplation.&nbsp;Max Beckmann (1884-1950)Max Beckmann, one of the greatest German artists of the twentieth century and one of the leaders of German Expressionism, painted himself in a variety of guises. His self-portraits show him dressed in a tuxedo, in a sailor's cap, as a carnival performer, as a clown, as a medical orderly, with musical instruments, with a crystal ball, with a champagne glass, in a blue robe, with a cigarette in hand, in gloves, and with other props and costumes. He created approximately eighty self-portraits over a span of more than fifty years.&nbsp;As an early twentieth century European artist, Beckmann's career was profoundly affected by two world wars. In the First World War, Beckmann served as a volunteer medical orderly. He suffered a mental collapse in 1915, which was followed by a series of self-portraits and other works that reflect the pain and horror he experienced during the war. Although the artist achieved acclaim during the tentative peace between the two wars, the rise of Hitler and the Nazi regime turned his life upside down. During the 1930s, his work was removed from the museums and nearly six hundred paintings were confiscated by the state. Fearing for his life, Beckmann fled with his wife to Amsterdam and then to America, where he lived and worked until he died in 1950.&nbsp;You can sense the change in attitude and the conflicting sense of self brought on by these events by comparing Beckmann's treatment of his clothing and face in the double portrait of the artist and his wife done in 1909, with the later self-portrait from 1944. In the earlier work, the artist portrays himself casually leaning against a chair. His gaze is calm and the artist looks confident and comfortable in his formal attire. In the later work, the pose and mood have turned completely. The artist's staring eyes, completely engulfed in shadow, gaze pessimistically out at the viewer.&nbsp;Pablo Picasso (1881-1973)Pablo Picasso's self-portraits are also autobiographical. Although few in number relative to his total output, they coincide roughly with the changes in style taking place in his other works. For example, his early self-portraits reveal an interest in Realism, Impressionism, and the post-Impressionistic works of Van Gogh, Gauguin, and Toulouse-Lautrec. His later works reflect his study of Cézanne, primitivism, abstraction, neoclassicism, Surrealism, Expressionism and even Abstract Expressionism.&nbsp;The 1906 self-portrait reveals the simplifications and abstractions taking place in all his paintings in response to African and Iberian sculpture, which would lead toward his breakthrough into Cubism. In other paintings, the artist's realistic silhouette, based on a photo taken by the artist, appears beside a contorted abstract face. In another painting – of his first wife, Olga – what appears to be an unfinished patch of random brushstrokes behind the figure's head turns out to be the painter's profile rendered in the negative space of the untouched canvas. In a Picasso you can never take anything for granted. In one of his last self-portraits, done in 1972, a year before he died, he painted himself almost as a living death mask.&nbsp;Terry Sullivan, American Artist Magazine, September 1997, Vol.61, No.662, pp. 30.<p align="left"><font size="2"></font></p>
 </section>
 </body>

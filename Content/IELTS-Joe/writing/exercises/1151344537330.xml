@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/AC_AW_009.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">State-owned museums generally suffer from rising costs. ..., many are reluctant to introduce admission charges.<ol class="answerList"><li><a id="q1" >Whereas</a></li><li><a id="q2" >However</a></li><li><a id="q3" >Although</a></li><li><a id="q4" >In spite of</a></li></ol><br/></li><br/><li id="2">... admission fees mean that a country's national heritage is only available to those who can afford to pay for it, free entrance makes it accessible to everyone.<ol class="answerList"><li><a id="q5" >While</a></li><li><a id="q6" >However</a></li><li><a id="q7" >In spite of</a></li><li><a id="q8" >Despite</a></li></ol><br/></li><br/><li id="3">... the fact that many people make a special trip to visit free museums, a lot of people visit them on impulse.<ol class="answerList"><li><a id="q9" >While</a></li><li><a id="q10" >However</a></li><li><a id="q11" >Despite</a></li><li><a id="q12" >Although</a></li></ol><br/></li><br/><li id="4">Entrance fees mean that museums are under pressure to entertain the public, ... free admission and state funding allow a museum to be more serious.<ol class="answerList"><li><a id="q13" >though</a></li><li><a id="q14" >although</a></li><li><a id="q15" >in spite of</a></li><li><a id="q16" >whereas</a></li></ol><br/></li><br/><li id="5">... museums are popular attractions, they do not always receive sufficient funds.<ol class="answerList"><li><a id="q17" >Although</a></li><li><a id="q18" >However</a></li><li><a id="q19" >Despite</a></li><li><a id="q20" >Nevertheless</a></li></ol><br/></li><br/><li id="6">Museums try to maximise the number of visitors ... this leads to overcrowding at times.<ol class="answerList"><li><a id="q21" >whereas</a></li><li><a id="q22" >even though</a></li><li><a id="q23" >in spite of</a></li><li><a id="q24" >despite</a></li></ol><br/></li><br/><li id="7">Museums should be free for children and students. ..., adults should pay an admission fee.<ol class="answerList"><li><a id="q25" >However</a></li><li><a id="q26" >Even though</a></li><li><a id="q27" >Despite</a></li><li><a id="q28" >Whereas</a></li></ol><br/></li><br/><li id="8">Some governments regard museums as part of the education system. ..., for many visitors visiting them is first and foremost a leisure activity<ol class="answerList"><li><a id="q29" >Despite</a></li><li><a id="q30" >Nevertheless</a></li><li><a id="q31" >Although</a></li><li><a id="q32" >Whereas</a></li></ol><br/></li><br/><li id="9">... the increasing popularity of museums, taxpayers are generally unwilling to have their money spent on them.<ol class="answerList"><li><a id="q33" >Nevertheless</a></li><li><a id="q34" >Although</a></li><li><a id="q35" >In spite of</a></li><li><a id="q36" >While</a></li></ol><br/></li><br/><li id="10">Some museums reflect mainstream culture, ... others are very specialist.<ol class="answerList"><li><a id="q37" >even though</a></li><li><a id="q38" >while</a></li><li><a id="q39" >in spite of</a></li><li><a id="q40" >despite</a></li></ol><br/></li></ol>
+	<img class="rightFloat" src="../media/AC_AW_009.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">State-owned museums generally suffer from rising costs. ..., many are reluctant to introduce admission charges.<ol class="answerList"><li><a id="q1" >Whereas</a></li><li><a id="q2" >However</a></li><li><a id="q3" >Although</a></li><li><a id="q4" >In spite of</a></li></ol><br/></li><br/><li id="2">... admission fees mean that a country's national heritage is only available to those who can afford to pay for it, free entrance makes it accessible to everyone.<ol class="answerList"><li><a id="q5" >While</a></li><li><a id="q6" >However</a></li><li><a id="q7" >In spite of</a></li><li><a id="q8" >Despite</a></li></ol><br/></li><br/><li id="3">... the fact that many people make a special trip to visit free museums, a lot of people visit them on impulse.<ol class="answerList"><li><a id="q9" >While</a></li><li><a id="q10" >However</a></li><li><a id="q11" >Despite</a></li><li><a id="q12" >Although</a></li></ol><br/></li><br/><li id="4">Entrance fees mean that museums are under pressure to entertain the public, ... free admission and state funding allow a museum to be more serious.<ol class="answerList"><li><a id="q13" >though</a></li><li><a id="q14" >although</a></li><li><a id="q15" >in spite of</a></li><li><a id="q16" >whereas</a></li></ol><br/></li><br/><li id="5">... museums are popular attractions, they do not always receive sufficient funds.<ol class="answerList"><li><a id="q17" >Although</a></li><li><a id="q18" >However</a></li><li><a id="q19" >Despite</a></li><li><a id="q20" >Nevertheless</a></li></ol><br/></li><br/><li id="6">Museums try to maximise the number of visitors ... this leads to overcrowding at times.<ol class="answerList"><li><a id="q21" >whereas</a></li><li><a id="q22" >even though</a></li><li><a id="q23" >in spite of</a></li><li><a id="q24" >despite</a></li></ol><br/></li><br/><li id="7">Museums should be free for children and students. ..., adults should pay an admission fee.<ol class="answerList"><li><a id="q25" >However</a></li><li><a id="q26" >Even though</a></li><li><a id="q27" >Despite</a></li><li><a id="q28" >Whereas</a></li></ol><br/></li><br/><li id="8">Some governments regard museums as part of the education system. ..., for many visitors visiting them is first and foremost a leisure activity<ol class="answerList"><li><a id="q29" >Despite</a></li><li><a id="q30" >Nevertheless</a></li><li><a id="q31" >Although</a></li><li><a id="q32" >Whereas</a></li></ol><br/></li><br/><li id="9">... the increasing popularity of museums, taxpayers are generally unwilling to have their money spent on them.<ol class="answerList"><li><a id="q33" >Nevertheless</a></li><li><a id="q34" >Although</a></li><li><a id="q35" >In spite of</a></li><li><a id="q36" >While</a></li></ol><br/></li><br/><li id="10">Some museums reflect mainstream culture, ... others are very specialist.<ol class="answerList"><li><a id="q37" >even though</a></li><li><a id="q38" >while</a></li><li><a id="q39" >in spite of</a></li><li><a id="q40" >despite</a></li></ol><br/></li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1. 'Whereas' and 'Although' join two clauses together, but this sentence only has one clause. 'In spite of' is always followed by a gerund or a noun.</p>

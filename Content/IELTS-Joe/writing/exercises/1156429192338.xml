@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="true"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="true"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="false"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="true"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="false"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="true"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="true"><feedback source="fb11"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="true"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="false"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="true"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="false"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="true"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="true"><feedback source="fb11"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_AW_003.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Which of the following would you include?</b></font></p><p align="left"><g id="1">A During this decade, there was an overall upward trend in the percentage who were mainly informed by television.</g></p><p align="left"><g id="2">B In 1989 there was a noticeable drop in the figure for television.</g></p><p align="left"><g id="3">C In 1992 the percentage for those who were informed by television was seven times higher than for those who relied on radio.</g></p><p align="left"><g id="4">D In 1997 the percentage who were informed by newspapers was just over twice the percentage for radio.</g></p><p align="left"><g id="5">E The figure for those who were informed by radio in 1989 was the same as for newspapers in 1998.</g></p><p align="left"><g id="6">F The percentage for those who mainly relied on radio or newspapers for world news declined over the period.</g></p><p align="left"><g id="7">G The percentage for those who relied on newspapers rose slightly in 1991, 1993, 1995,1996 and 1997.</g></p><p align="left"><g id="8">H The smallest proportion of the population were informed by radio.</g></p><p align="left"><g id="9">I There was a 1 per cent rise in the percentage who were informed by television in 1992.</g></p><p align="left"><g id="10">J There was a more marked decline for newspapers than for radio.</g></p><p align="left"><g id="11">K Throughout this period most people received their news about the world from television.</g></p><p align="left">&#160;</p>
+	<img class="rightFloat" src="../media/MM_AW_003.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Which of the following would you include?</b></font></p><p align="left"><g id="t1">A During this decade, there was an overall upward trend in the percentage who were mainly informed by television.</g></p><p align="left"><g id="t2">B In 1989 there was a noticeable drop in the figure for television.</g></p><p align="left"><g id="t3">C In 1992 the percentage for those who were informed by television was seven times higher than for those who relied on radio.</g></p><p align="left"><g id="t4">D In 1997 the percentage who were informed by newspapers was just over twice the percentage for radio.</g></p><p align="left"><g id="t5">E The figure for those who were informed by radio in 1989 was the same as for newspapers in 1998.</g></p><p align="left"><g id="t6">F The percentage for those who mainly relied on radio or newspapers for world news declined over the period.</g></p><p align="left"><g id="t7">G The percentage for those who relied on newspapers rose slightly in 1991, 1993, 1995,1996 and 1997.</g></p><p align="left"><g id="t8">H The smallest proportion of the population were informed by radio.</g></p><p align="left"><g id="t9">I There was a 1 per cent rise in the percentage who were informed by television in 1992.</g></p><p align="left"><g id="t10">J There was a more marked decline for newspapers than for radio.</g></p><p align="left"><g id="t11">K Throughout this period most people received their news about the world from television.</g></p><p align="left">&#160;</p>
 </section>
 <section id="fb1">
 	<p align="left">A. This summarises the main changes shown in the 'television line'.</p>

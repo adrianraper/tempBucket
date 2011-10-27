@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -56,10 +38,10 @@
 			
 				<span id="a8" draggable="true">Audio A</span><span id="a10" draggable="true">Audio D</span>
 				<span id="a7" draggable="true">Audio C</span><span id="a6" draggable="true">Audio E</span>
-				<span id="a9" draggable="true">Audio B</span><audio class="leftFloat" src="../Media/MM_WR1ea.mp3" mode="1" id="1003"  /><audio class="rightFloat" src="../Media/MM_WR1ed.mp3" mode="1" id="1004"  /><audio class="rightFloat" src="../Media/MM_WR1ec.mp3" mode="1" id="1005"  /><audio class="rightFloat" src="../Media/MM_WR1ee.mp3" mode="1" id="1006"  /><audio class="rightFloat" src="../Media/MM_WR1eb.mp3" mode="1" id="1007"  />
+				<span id="a9" draggable="true">Audio B</span><audio class="leftFloat" src="../media/MM_WR1ea.mp3" mode="1" id="1003"  /><audio class="rightFloat" src="../media/MM_WR1ed.mp3" mode="1" id="1004"  /><audio class="rightFloat" src="../media/MM_WR1ec.mp3" mode="1" id="1005"  /><audio class="rightFloat" src="../media/MM_WR1ee.mp3" mode="1" id="1006"  /><audio class="rightFloat" src="../media/MM_WR1eb.mp3" mode="1" id="1007"  />
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/MM_AW_013.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">
+	<img class="rightFloat" src="../media/MM_AW_013.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">
 			To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.<input id="q1" type="droptarget" /></li><li id="2">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.<input id="q2" type="droptarget" /></li><li id="3">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.<input id="q3" type="droptarget" /></li><li id="4">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.<input id="q4" type="droptarget" /></li><li id="5">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.<input id="q5" type="droptarget" /></li></ol>
 </section>
 <section id="fb1">

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion></questions></script>
+<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/EN_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Untangling the science of climate</b></font>Read an article about global warming.</p><p align="left"><font color="#0000ff"><b>And then there were none</b></font>Read an article discussing animal extinctions.</p><p align="left"><font color="#000000"><b>Question types: </b></font></p>You will attempt two question types.<u><g id="1">Diagram completion</g></u><u><g id="2">True, False, Not given</g></u><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/EN_AR_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Untangling the science of climate</b></font>Read an article about global warming.</p><p align="left"><font color="#0000ff"><b>And then there were none</b></font>Read an article discussing animal extinctions.</p><p align="left"><font color="#000000"><b>Question types: </b></font></p>You will attempt two question types.<u><g id="t1">Diagram completion</g></u><u><g id="t2">True, False, Not given</g></u><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left"><b>Diagram Completion</b></p><p align="left"></p><p align="left">Occasionally you are asked to use the information given in the text to complete labels on a diagram. This will be a visual summary of a part of the text, with gapped labels that you have to fill.</p><p align="left"></p><p align="left">Spend some time looking carefully at the diagram. It will usually have a title, which should help you recognise which section of the text it refers to. The numbered gaps follow the order in which information is given in the text, so this should help you find the right words.</p><p align="left"></p><p align="left">As always, read the instructions carefully. Usually you are asked to complete the diagram with words taken from the passage. There will be a word limit for each gap, so make sure you check what it is. As with short answers and sentence completion, the words you need to complete a gap will be found close together in the same sentence.</p><p align="left"></p><p align="left">Read the labels in the diagram and then scan the relevant section of the text for those words, or words that mean the same.</p><p align="left"></p><p align="left">At least one of the gaps will probably be a number and the phrase before the gap, as well as the drawing, will give you clues as to what kind of number is required, such as speed, height or temperature. Also, look out for units of measurement, such as kilometers, kilogrammes or hours after the gap.</p><p align="left"></p><p align="left">Finally, as with all gap-filling exercises, you should make sure that the words you choose fit grammatically.</p>

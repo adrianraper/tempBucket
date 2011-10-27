@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -51,7 +33,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit010_e2.flv" mode="1" id="1003"  /><br/><ol id="questionList"><br/><li id="1">What is his nationality?<ol class="answerList"><li><a id="q1" >Albanian</a></li><li><a id="q2" >Afghan</a></li><li><a id="q3" >Athenian</a></li><li><a id="q4" >Greek</a></li></ol><br/></li><br/><li id="2">Does he work or study?<ol class="answerList"><li><a id="q5" >he works part time</a></li><li><a id="q6" >he is a university student</a></li><li><a id="q7" >he is studying to prepare for university</a></li><li><a id="q8" >he works full-time</a></li></ol><br/></li><br/><li id="3">Why does he want to follow one particular course of study?<ol class="answerList"><li><a id="q9" >he wants to be an athlete</a></li><li><a id="q10" >he wants to help athletes do better</a></li><li><a id="q11" >he wants to help old people get better</a></li><li><a id="q12" >he wants to help injured athletes</a></li></ol><br/></li><br/><li id="4">How does Dimitris prefer to study?<ol class="answerList"><li><a id="q13" >from books</a></li><li><a id="q14" >by asking questions</a></li><li><a id="q15" >from lectures</a></li><li><a id="q16" >through doing</a></li></ol><br/></li><br/><li id="5">What interests him most about physiotherapy?<ol class="answerList"><li><a id="q17" >the anatomy of the body</a></li><li><a id="q18" >what to do about the injury</a></li><li><a id="q19" >the different types of injury</a></li><li><a id="q20" >how the athletes hurt themselves</a></li></ol><br/></li><br/><li id="6">How will his studies affect his life?<ol class="answerList"><li><a id="q21" >he will get a good job</a></li><li><a id="q22" >he will live with sportsmen </a></li><li><a id="q23" >he will have a lot to do with sport</a></li><li><a id="q24" >he will heal people</a></li></ol><br/></li></ol>
+	<video class="rightFloat" src="../media/Unit010_e2.flv" mode="1" id="1003"  /><br/><ol id="questionList"><br/><li id="1">What is his nationality?<ol class="answerList"><li><a id="q1" >Albanian</a></li><li><a id="q2" >Afghan</a></li><li><a id="q3" >Athenian</a></li><li><a id="q4" >Greek</a></li></ol><br/></li><br/><li id="2">Does he work or study?<ol class="answerList"><li><a id="q5" >he works part time</a></li><li><a id="q6" >he is a university student</a></li><li><a id="q7" >he is studying to prepare for university</a></li><li><a id="q8" >he works full-time</a></li></ol><br/></li><br/><li id="3">Why does he want to follow one particular course of study?<ol class="answerList"><li><a id="q9" >he wants to be an athlete</a></li><li><a id="q10" >he wants to help athletes do better</a></li><li><a id="q11" >he wants to help old people get better</a></li><li><a id="q12" >he wants to help injured athletes</a></li></ol><br/></li><br/><li id="4">How does Dimitris prefer to study?<ol class="answerList"><li><a id="q13" >from books</a></li><li><a id="q14" >by asking questions</a></li><li><a id="q15" >from lectures</a></li><li><a id="q16" >through doing</a></li></ol><br/></li><br/><li id="5">What interests him most about physiotherapy?<ol class="answerList"><li><a id="q17" >the anatomy of the body</a></li><li><a id="q18" >what to do about the injury</a></li><li><a id="q19" >the different types of injury</a></li><li><a id="q20" >how the athletes hurt themselves</a></li></ol><br/></li><br/><li id="6">How will his studies affect his life?<ol class="answerList"><li><a id="q21" >he will get a good job</a></li><li><a id="q22" >he will live with sportsmen </a></li><li><a id="q23" >he will have a lot to do with sport</a></li><li><a id="q24" >he will heal people</a></li></ol><br/></li></ol>
 </section>
 </body>
 </bento>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -71,7 +53,7 @@
 		<span id="a15" draggable="true">a slight dip</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/SS_AW_003s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/SS_AW_003.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><li id="1">Between 1971 and 1999 there was a dramatic fall in the number of first marriages.Between 1971 and 1999 the number of first marriages <input id="q1" type="droptarget" />.</li><li id="2">From 1971 onwards the number of remarriages declined steadily.From 1971 onwards there was <input id="q2" type="droptarget" /> in the number of remarriages.</li><li id="3">In 1981 the divorce rate was almost twice as high as in 1971.Between 1971 and 1981 the divorce rate nearly <input id="q3" type="droptarget" />.</li><li id="4">The divorce rate stood at its highest level in 1991.The divorce rate <input id="q4" type="droptarget" /> in 1991.</li><li id="5">Between 1971 and 1972 the number of children whose parents were divorced shot up.Between 1971 and 1972 there was <input id="q5" type="droptarget" /> in the number of children whose parents were divorced.</li><li id="6">Between 1983 and 1985 the number of children with divorced parents fell slightly and then rose again.Between 1983 and 1985 there was <input id="q6" type="droptarget" /> in the number of children with divorced parents.</li><li id="7">During the 1980s there was not a great deal of change in the number of children with divorced parents.During the 1980s the number of children with divorced parents <input id="q7" type="droptarget" />.</li><li id="8">From 1973 to 1980 the number of children whose parents were divorced rose steadily.From 1973 to 1980 there was <input id="q8" type="droptarget" /> in the number of children whose parents were divorced.</li></ol>
+	<img class="rightFloat" src="../media/SS_AW_003s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/SS_AW_003.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><li id="1">Between 1971 and 1999 there was a dramatic fall in the number of first marriages.Between 1971 and 1999 the number of first marriages <input id="q1" type="droptarget" />.</li><li id="2">From 1971 onwards the number of remarriages declined steadily.From 1971 onwards there was <input id="q2" type="droptarget" /> in the number of remarriages.</li><li id="3">In 1981 the divorce rate was almost twice as high as in 1971.Between 1971 and 1981 the divorce rate nearly <input id="q3" type="droptarget" />.</li><li id="4">The divorce rate stood at its highest level in 1991.The divorce rate <input id="q4" type="droptarget" /> in 1991.</li><li id="5">Between 1971 and 1972 the number of children whose parents were divorced shot up.Between 1971 and 1972 there was <input id="q5" type="droptarget" /> in the number of children whose parents were divorced.</li><li id="6">Between 1983 and 1985 the number of children with divorced parents fell slightly and then rose again.Between 1983 and 1985 there was <input id="q6" type="droptarget" /> in the number of children with divorced parents.</li><li id="7">During the 1980s there was not a great deal of change in the number of children with divorced parents.During the 1980s the number of children with divorced parents <input id="q7" type="droptarget" />.</li><li id="8">From 1973 to 1980 the number of children whose parents were divorced rose steadily.From 1973 to 1980 there was <input id="q8" type="droptarget" /> in the number of children whose parents were divorced.</li></ol>
 </section>
 </body>
 </bento>

@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -57,7 +39,7 @@
 <section id="rt2001">
 	<p align="left"><font color="#000000">Another way to make your language more complex is to join ideas together using relative clauses. There are two basic types of relative clause, defining and non-defining. For example:</font></p><p align="left">Museums which do not have an admission fee attract a lot of visitors.The relative clause gives essential information about 'museums', so it is a defining relative clause.</p><p align="left">Free museums, which do not have an admission fee, attract a lot of visitors.The relative clause gives additional information about 'free museums', so it is a non-defining relative clause.</p><p align="left">Only non-defining relative clauses need to be enclosed in commas.</p>
 </section>
-<section id="rt55">
+<section id="readingText">
 	<p align="left"><font color="#000000">The tradition <font color="#0000ff">(1) which some countries have of free admission to state-owned museums</font> is coming under increasing threat due to rising costs and limited funding. Despite these pressures, many museums in these countries are reluctant to introduce entrance fees.</font></p><p align="left"><font color="#000000">There are several advantages to allowing the public free access to museums. Firstly, whereas charging an entry fee means that a nation's heritage is only available to those <font color="#0000ff">(2) who can afford it</font>, free admission makes it accessible to everyone, regardless of income. As a result, museums, like public libraries, are treated as an extension of the state education system, <font color="#0000ff">(3) which is based on the principle of equal opportunity for all</font>. A further advantage is that free museums attract far more visitors because, although many people make a special trip to visit them, the number of people <font color="#0000ff">(4) who visit them on impulse</font> is also high. Free museums, therefore, reach a much wider public. Finally, while private museums may be influenced by commercial pressures, free museums do not suffer from the same constraints, <font color="#0000ff">(5) which may mean they present their exhibitions in a more serious way</font>.</font></p><p align="left"><font color="#000000">However, a policy of free admission to museums also has a number of disadvantages. First and foremost, museums <font color="#0000ff">(6) whose income comes entirely from public funds</font> may be more subject to government policy, <font color="#0000ff">(7) which sometimes means that exhibitions are expected to reflect the government's views</font>. Moreover, in spite of their popularity, museums have to compete for funding with the health service and the education system, <font color="#0000ff">(8) both of which tend to receive higher priority</font>. Consequently, museums <font color="#0000ff">(9) that do not charge admission</font> may not always be able to afford ambitious projects, or to buy new items to add to their collections. Lastly, though museum directors want to attract large numbers of visitors, free museums often become unpleasantly overcrowded, especially during holiday periods, <font color="#0000ff">(10) which can discourage more serious visitors</font>.</font></p><p align="left">In conclusion, I believe that children and students should have free admission to museums, while adults should pay a moderate entrance fee. In this way, museums would be able to raise sufficient money to maintain the quality of their collections and add to them, and, at the same time, fulfil a valuable role in educating the general public.</p><p align="left"><font size="2"></font></p>
 </section>
 </body>

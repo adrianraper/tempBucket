@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -59,7 +41,7 @@
 		<span id="a7" draggable="true">11 to 14</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/LE_SP_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">The test is <input id="q1" type="droptarget" /> minutes long.</li><li id="2">There are <input id="q2" type="droptarget" /> to the test.</li><li id="3">The test assesses your ability to <input id="q3" type="droptarget" /> in English.</li><li id="4">You talk on a particular topic for <input id="q4" type="droptarget" /> minutes.</li><li id="5">In <input id="q5" type="droptarget" /> you answer general questions about yourself and your life.</li><li id="6"><input id="q6" type="droptarget" /> are linked by a common theme.</li></ol>
+	<img class="rightFloat" src="../media/LE_SP_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">The test is <input id="q1" type="droptarget" /> minutes long.</li><li id="2">There are <input id="q2" type="droptarget" /> to the test.</li><li id="3">The test assesses your ability to <input id="q3" type="droptarget" /> in English.</li><li id="4">You talk on a particular topic for <input id="q4" type="droptarget" /> minutes.</li><li id="5">In <input id="q5" type="droptarget" /> you answer general questions about yourself and your life.</li><li id="6"><input id="q6" type="droptarget" /> are linked by a common theme.</li></ol>
 </section>
 </body>
 </bento>

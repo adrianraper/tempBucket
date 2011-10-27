@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -39,7 +21,7 @@
 	</script>
 	<br/>
 <script id="model" type="application/xml">
-<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion></questions></script>
+<questions><GapFillQuestion source="q1"><answer value="in the north " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="but due to " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="so people who " correct="true"/><answer value="so young people who" correct="true"/></GapFillQuestion></questions></script>
 
 </head>
 <body>
@@ -49,7 +31,7 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../Media/Unit07_e3.flv" mode="1" id="1003"  /><br/><ol id="questionList"><li id="1">Where does your family come from?It comes from Aleppo. It's a city <input id="q1" width="100" /> of Syria.</li><li id="2">Can you describe the area where you grew up?Basically I am from that city <input id="q2" width="100" /> my father's job we changes many cities. I mean, I lived in many cities and that's why I'm multicultural, in Syria.</li><li id="3">What facilities and opportunities are there for young people in Aleppo?It has trade. It's consider a trade centre, <input id="q3" width="100" /> are interested in these subjects, these matters, I mean, they can find a lot of jobs.</li></ol>
+	<video class="rightFloat" src="../media/Unit07_e3.flv" mode="1" id="1003"  /><br/><ol id="questionList"><li id="1">Where does your family come from?It comes from Aleppo. It's a city <input id="q1" width="100" /> of Syria.</li><li id="2">Can you describe the area where you grew up?Basically I am from that city <input id="q2" width="100" /> my father's job we changes many cities. I mean, I lived in many cities and that's why I'm multicultural, in Syria.</li><li id="3">What facilities and opportunities are there for young people in Aleppo?It has trade. It's consider a trade centre, <input id="q3" width="100" /> are interested in these subjects, these matters, I mean, they can find a lot of jobs.</li></ol>
 </section>
 </body>
 </bento>

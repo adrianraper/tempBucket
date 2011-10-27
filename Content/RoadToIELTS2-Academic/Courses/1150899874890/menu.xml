@@ -27,7 +27,7 @@
 	id="1156165919204" picture="Writing1" enabledFlag="3">
 		<item unit="4" id="1156165919770" caption="Introduction" fileName="1156165919770.xml" action="1156165919770" exerciseID="1156165919770" enabledFlag="3"/>
 		<item unit="4" id="1156165919489" caption="Practice%20activity%20A" fileName="1156165919489.xml" action="1156165919489" exerciseID="1156165919489" enabledFlag="3"/>
-		<item unit="4" id="1156165919886" caption="Understanding%20dynamic%20charts%20&%20graphs" fileName="1156165919886.xml" action="1156165919886" exerciseID="1156165919886" enabledFlag="3"/>
+		<item unit="4" id="1156165919886" caption="Understanding%20dynamic%20charts%20&amp;%20graphs" fileName="1156165919886.xml" action="1156165919886" exerciseID="1156165919886" enabledFlag="3"/>
 		<item unit="4" id="1156165919969" caption="Useful%20expressions" fileName="1156165919969.xml" action="1156165919969" exerciseID="1156165919969" enabledFlag="3"/>
 		<item unit="4" id="1156165919086" caption="Useful%20sentence%20patterns" fileName="1156165919086.xml" action="1156165919086" exerciseID="1156165919086" enabledFlag="3"/>
 		<item unit="4" id="1156165919072" caption="Practice" fileName="1156165919072.xml" action="1156165919072" exerciseID="1156165919072" enabledFlag="3"/>

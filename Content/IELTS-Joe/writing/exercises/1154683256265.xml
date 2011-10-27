@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -76,7 +58,7 @@
 		<span id="a15" draggable="true">perceiving</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/WB_AW_020.jpg" mode="1" id="1001"  /><p align="left">Large-scale unemployment among young people is one of the most serious problems <font color="#0000ff"><input id="q1" type="droptarget" /> many governments. What is more, long-term unemployment in early adult life can cause feelings of alienation among those affected, <font color="#0000ff"><input id="q2" type="droptarget" /></font> to higher levels of crime, drug abuse and social unrest. <font color="#0000ff"><input id="q3" type="droptarget" />&#160;</font>solutions, it is necessary first to identify the root causes of the problem. There are three main causes, each of which requires an appropriate response from governments and society as a whole.</font></p><p align="left">Firstly, information technology and automation have brought about a reduction in the number of unskilled jobs available. This means that, whereas in the past a young person <font color="#0000ff"><input id="q4" type="droptarget" /> school at the age of sixteen could join a company and carry out basic duties while being trained for more skilled work, nowadays this is rarely an option. <font color="#0000ff"><input id="q5" type="droptarget" /></font> employers to provide more job opportunities for school leavers, the government should pay subsidies to those <font color="#0000ff"><input id="q6" type="droptarget" /></font> young people. These young employees could shadow experienced members of staff <font color="#0000ff"><input id="q7" type="droptarget" /></font> work experience, which would make them more employable in the future.</font></p><p align="left">Secondly, education systems have not managed to keep pace with the technological changes mentioned above. As a result, school leavers are often not equipped with the skills and qualifications <font color="#0000ff"><input id="q8" type="droptarget" /> by employers nowadays. The obvious solutions is for schools to include more vocational courses in the curriculum <font color="#0000ff"><input id="q9" type="droptarget" /></font> students are prepared for specific jobs and given the necessary skills. </font></p><p align="left">Finally, modern society and the media in particular create unrealistic expectations among unqualified young people, <font color="#0000ff"><input id="q10" type="droptarget" /> to do the sort of work that is open to them. School leavers need to appreciate that certain jobs, although often <font color="#0000ff"><input id="q11" type="droptarget" /></font> to be low status, have an important part to play in society. Parents need to talk to their children about such issues <font color="#0000ff"><input id="q12" type="droptarget" /></font> them better for the realities of the job market. In addition, careers advisors should do more to help widen children's perspectives on the higher and further education and career opportunities available to them.</font></p><p align="left">In conclusion, there is no blanket solution for the problem of youth unemployment. However, governments and educators should use all the means at their disposal to tackle the problem and reduce the social evils which accompany it.</p>
+	<img class="rightFloat" src="../media/WB_AW_020.jpg" mode="1" id="1001"  /><p align="left">Large-scale unemployment among young people is one of the most serious problems <font color="#0000ff"><input id="q1" type="droptarget" /> many governments. What is more, long-term unemployment in early adult life can cause feelings of alienation among those affected, <font color="#0000ff"><input id="q2" type="droptarget" /></font> to higher levels of crime, drug abuse and social unrest. <font color="#0000ff"><input id="q3" type="droptarget" />&#160;</font>solutions, it is necessary first to identify the root causes of the problem. There are three main causes, each of which requires an appropriate response from governments and society as a whole.</font></p><p align="left">Firstly, information technology and automation have brought about a reduction in the number of unskilled jobs available. This means that, whereas in the past a young person <font color="#0000ff"><input id="q4" type="droptarget" /> school at the age of sixteen could join a company and carry out basic duties while being trained for more skilled work, nowadays this is rarely an option. <font color="#0000ff"><input id="q5" type="droptarget" /></font> employers to provide more job opportunities for school leavers, the government should pay subsidies to those <font color="#0000ff"><input id="q6" type="droptarget" /></font> young people. These young employees could shadow experienced members of staff <font color="#0000ff"><input id="q7" type="droptarget" /></font> work experience, which would make them more employable in the future.</font></p><p align="left">Secondly, education systems have not managed to keep pace with the technological changes mentioned above. As a result, school leavers are often not equipped with the skills and qualifications <font color="#0000ff"><input id="q8" type="droptarget" /> by employers nowadays. The obvious solutions is for schools to include more vocational courses in the curriculum <font color="#0000ff"><input id="q9" type="droptarget" /></font> students are prepared for specific jobs and given the necessary skills. </font></p><p align="left">Finally, modern society and the media in particular create unrealistic expectations among unqualified young people, <font color="#0000ff"><input id="q10" type="droptarget" /> to do the sort of work that is open to them. School leavers need to appreciate that certain jobs, although often <font color="#0000ff"><input id="q11" type="droptarget" /></font> to be low status, have an important part to play in society. Parents need to talk to their children about such issues <font color="#0000ff"><input id="q12" type="droptarget" /></font> them better for the realities of the job market. In addition, careers advisors should do more to help widen children's perspectives on the higher and further education and career opportunities available to them.</font></p><p align="left">In conclusion, there is no blanket solution for the problem of youth unemployment. However, governments and educators should use all the means at their disposal to tackle the problem and reduce the social evils which accompany it.</p>
 </section>
 </body>
 </bento>

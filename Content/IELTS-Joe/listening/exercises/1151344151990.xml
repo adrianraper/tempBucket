@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion" type="gapfill" date="2011-10-27" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/HF_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/HF_LN1a.mp3" mode="4" id="1002"  /><p align="left"><font color="#000000"><b>To keep healthy in winter eat:	Source of:</b></font></p>-------------------------------------------------------------------Rice, pasta, potatoes, (1) <input id="1" width="100" />	carbohydratesand cereals-------------------------------------------------------------------Meat, fish, eggs, beans, (2) <input id="2" width="100" />,	proteinmilk, cheese and yoghurt-------------------------------------------------------------------Fruit and vegetables	vitamins &amp; minerals-------------------------------------------------------------------Citrus fruits, (3) <input id="3" width="100" /> &	vitamin Cblackcurrants-------------------------------------------------------------------(4) <input id="4" width="100" />, egg yolks &amp; carrots	vitamin A-------------------------------------------------------------------(5) <input id="5" width="100" /> &amp; wholegrain cereals	zinc-------------------------------------------------------------------Oily fish	(6) <input id="6" width="100" />-------------------------------------------------------------------Nuts &amp; (7) <input id="7" width="100" />	vitamin E<p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/HF_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/HF_LN1a.mp3" mode="4" id="1002"  /><p align="left"><font color="#000000"><b>To keep healthy in winter eat:	Source of:</b></font></p>-------------------------------------------------------------------Rice, pasta, potatoes, (1) <input id="q1" />	carbohydratesand cereals-------------------------------------------------------------------Meat, fish, eggs, beans, (2) <input id="q2" />,	proteinmilk, cheese and yoghurt-------------------------------------------------------------------Fruit and vegetables	vitamins &amp; minerals-------------------------------------------------------------------Citrus fruits, (3) <input id="q3" /> &	vitamin Cblackcurrants-------------------------------------------------------------------(4) <input id="q4" />, egg yolks &amp; carrots	vitamin A-------------------------------------------------------------------(5) <input id="q5" /> &amp; wholegrain cereals	zinc-------------------------------------------------------------------Oily fish	(6) <input id="q6" />-------------------------------------------------------------------Nuts &amp; (7) <input id="q7" />	vitamin E<p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

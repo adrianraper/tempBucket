@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +34,7 @@
 	<span id="a18" draggable="true">turbulence</span><span id="a23" draggable="true">thrombosis</span><span id="a15" draggable="true">bomb threat</span><span id="a20" draggable="true">recycled air</span><span id="a14" draggable="true">overbooked</span><span id="a24" draggable="true">jet lag</span><span id="a16" draggable="true">technical problem</span><span id="a21" draggable="true">near misses</span><span id="a17" draggable="true">air rage</span><span id="a13" draggable="true">strike</span><span id="a19" draggable="true">air sickness</span><span id="a22" draggable="true">missed your connection</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/TT_TV_005.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>The Perils of Flying</b></font></p><p align="left">On a particularly eventful trip recently I began to wonder if air travel really is as convenient as they say. Before you even get to the airport your plane can be delayed or even cancelled because the crew are on <font color="#0000ff"><input id="q1" type="droptarget" /> over pay. </font></p><p align="left">Or, having booked your tickets months in advance, you arrive at the airport only to be informed that there are no seats left - the flight is <font color="#0000ff"><input id="q2" type="droptarget" /> and you'll just have to wait for the next one. Or you may get to the front of the queue at the check-in desk, as I did, to be told that the building has to be evacuated as they've just received a <font color="#0000ff"><input id="q3" type="droptarget" /></font>.</font></p><p align="left">When you eventually make it to the departure lounge, your troubles may still not be over. Once there, you learn that your aircraft has a <font color="#0000ff"><input id="q4" type="droptarget" /> and that it'll be fixed in twenty minutes, then another twenty minutes, and then another, and so on. Even if you're lucky enough to be sitting on the plane at this stage, you could now be subject to a display of <font color="#0000ff"><input id="q5" type="droptarget" /></font> as passengers run out of patience and start shouting at the cabin crew.</font></p><p align="left">And this is all before you've even taken off. What about once you're airborne? There's an endless list of things that can go wrong. Your fellow passengers may not be the most considerate, for one. Your plane doesn't have to hit a pocket of air <font color="#0000ff"><input id="q6" type="droptarget" /> for your cocktail or coffee to land in your lap. You could have this experience courtesy of the passenger in front who shoots their seat back without warning. </font></p><p align="left">You might also be unlucky enough to find yourself sitting next to someone who suffers from <font color="#0000ff"><input id="q7" type="droptarget" />. And you don't have to be in a seat near someone with an infectious illness to catch it - you can do that just by breathing in the <font color="#0000ff"><input id="q8" type="droptarget" /></font> in the cabin.</font></p><p align="left"><font color="#000000">Presuming you land without incident (although with so many flights taking off and landing at some airports, you'll wonder why far more <font color="#0000ff"><input id="q9" type="droptarget" /></font> aren't reported) you could now, due to the late arrival of your plane, have <font color="#0000ff"><input id="q10" type="droptarget" /></font> and end up spending the night at the airport waiting for the next available flight. </font></p><p align="left">You might also be one of those unlucky passengers who, after sitting in a cramped seat for hours on a long-haul flight, develop <font color="#0000ff"><input id="q11" type="droptarget" /> which can be fatal. And then, of course, there's the inevitable <font color="#0000ff"><input id="q12" type="droptarget" /></font> that most of us will suffer from for days afterwards.</font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/TT_TV_005.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>The Perils of Flying</b></font></p><p align="left">On a particularly eventful trip recently I began to wonder if air travel really is as convenient as they say. Before you even get to the airport your plane can be delayed or even cancelled because the crew are on <font color="#0000ff"><input id="q1" type="droptarget" /> over pay. </font></p><p align="left">Or, having booked your tickets months in advance, you arrive at the airport only to be informed that there are no seats left - the flight is <font color="#0000ff"><input id="q2" type="droptarget" /> and you'll just have to wait for the next one. Or you may get to the front of the queue at the check-in desk, as I did, to be told that the building has to be evacuated as they've just received a <font color="#0000ff"><input id="q3" type="droptarget" /></font>.</font></p><p align="left">When you eventually make it to the departure lounge, your troubles may still not be over. Once there, you learn that your aircraft has a <font color="#0000ff"><input id="q4" type="droptarget" /> and that it'll be fixed in twenty minutes, then another twenty minutes, and then another, and so on. Even if you're lucky enough to be sitting on the plane at this stage, you could now be subject to a display of <font color="#0000ff"><input id="q5" type="droptarget" /></font> as passengers run out of patience and start shouting at the cabin crew.</font></p><p align="left">And this is all before you've even taken off. What about once you're airborne? There's an endless list of things that can go wrong. Your fellow passengers may not be the most considerate, for one. Your plane doesn't have to hit a pocket of air <font color="#0000ff"><input id="q6" type="droptarget" /> for your cocktail or coffee to land in your lap. You could have this experience courtesy of the passenger in front who shoots their seat back without warning. </font></p><p align="left">You might also be unlucky enough to find yourself sitting next to someone who suffers from <font color="#0000ff"><input id="q7" type="droptarget" />. And you don't have to be in a seat near someone with an infectious illness to catch it - you can do that just by breathing in the <font color="#0000ff"><input id="q8" type="droptarget" /></font> in the cabin.</font></p><p align="left"><font color="#000000">Presuming you land without incident (although with so many flights taking off and landing at some airports, you'll wonder why far more <font color="#0000ff"><input id="q9" type="droptarget" /></font> aren't reported) you could now, due to the late arrival of your plane, have <font color="#0000ff"><input id="q10" type="droptarget" /></font> and end up spending the night at the airport waiting for the next available flight. </font></p><p align="left">You might also be one of those unlucky passengers who, after sitting in a cramped seat for hours on a long-haul flight, develop <font color="#0000ff"><input id="q11" type="droptarget" /> which can be fatal. And then, of course, there's the inevitable <font color="#0000ff"><input id="q12" type="droptarget" /></font> that most of us will suffer from for days afterwards.</font></p><p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

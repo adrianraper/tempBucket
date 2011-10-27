@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -63,7 +45,7 @@
 		<span id="a9" draggable="true">hydrosphere</span><span id="a16" draggable="true">inner core</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/EN_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/EN_LN2.mp3" mode="4" id="1002"  /><p align="left">1. <font color="#0000ff"><input id="q1" type="droptarget" /></font></p><ol><li><input id="q2" type="droptarget" /></li><li><input id="q3" type="droptarget" /></li><li><input id="q4" type="droptarget" /></li><li><input id="q5" type="droptarget" /></li><li><input id="q6" type="droptarget" /></li><li><input id="q7" type="droptarget" /></li><li><input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/EN_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/EN_LN2.mp3" mode="4" id="1002"  /><p align="left">1. <font color="#0000ff"><input id="q1" type="droptarget" /></font></p><ol><li><input id="q2" type="droptarget" /></li><li><input id="q3" type="droptarget" /></li><li><input id="q4" type="droptarget" /></li><li><input id="q5" type="droptarget" /></li><li><input id="q6" type="droptarget" /></li><li><input id="q7" type="droptarget" /></li><li><input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">1. This is the first term the lecturer mentions. Also, she says that the hydosphere is the layer of water that 'covers almost three-quarters of the Earth's surface' and the line indicator in the diagram is pointing to the top of the Earth.</p>

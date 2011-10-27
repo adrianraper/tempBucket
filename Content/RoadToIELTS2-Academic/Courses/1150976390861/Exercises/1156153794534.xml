@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-25" />
-	<link rel="stylesheet" href="../../../css/exercises.css" type="text/css" />
+	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -71,7 +53,7 @@
 			<span id="a19" draggable="true">watching television</span>
 </section>
 <section id="body">
-	<img class="rightFloat" src="../Media/LE_TV_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ab.mp3" mode="1" id="1"  /></li><li id="2"><input id="q2" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1af.mp3" mode="1" id="2"  /></li><li id="3"><input id="q3" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1aa.mp3" mode="1" id="3"  /></li><li id="4"><input id="q4" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ak.mp3" mode="1" id="4"  /></li><li id="5"><input id="q5" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1al.mp3" mode="1" id="5"  /></li><li id="6"><input id="q6" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ae.mp3" mode="1" id="6"  /></li><li id="7"><input id="q7" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ag.mp3" mode="1" id="7"  /></li><li id="8"><input id="q8" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ad.mp3" mode="1" id="8"  /></li><li id="9"><input id="q9" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ai.mp3" mode="1" id="9"  /></li><li id="10"><input id="q10" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ac.mp3" mode="1" id="10"  /></li><li id="11"><input id="q11" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1aj.mp3" mode="1" id="11"  /></li><li id="12"><input id="q12" type="droptarget" /><audio class="leftFloat" src="../Media/LE_TV1ah.mp3" mode="1" id="12"  /></li></ol>
+	<img class="rightFloat" src="../media/LE_TV_002.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1"><input id="q1" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ab.mp3" mode="1" id="1"  /></li><li id="2"><input id="q2" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1af.mp3" mode="1" id="2"  /></li><li id="3"><input id="q3" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1aa.mp3" mode="1" id="3"  /></li><li id="4"><input id="q4" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ak.mp3" mode="1" id="4"  /></li><li id="5"><input id="q5" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1al.mp3" mode="1" id="5"  /></li><li id="6"><input id="q6" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ae.mp3" mode="1" id="6"  /></li><li id="7"><input id="q7" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ag.mp3" mode="1" id="7"  /></li><li id="8"><input id="q8" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ad.mp3" mode="1" id="8"  /></li><li id="9"><input id="q9" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ai.mp3" mode="1" id="9"  /></li><li id="10"><input id="q10" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ac.mp3" mode="1" id="10"  /></li><li id="11"><input id="q11" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1aj.mp3" mode="1" id="11"  /></li><li id="12"><input id="q12" type="droptarget" /><audio class="leftFloat" src="../media/LE_TV1ah.mp3" mode="1" id="12"  /></li></ol>
 </section>
 <section id="fb1">
 	<p align="left">1.<font color="#0000ff">&#32;<b>shopping</b>: credit card, to spend money, to try things on, a price, to buy</font></p>

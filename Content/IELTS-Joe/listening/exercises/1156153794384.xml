@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<meta name="conversion-type" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-27"/>
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[			
-		list {
-			list-style-type: decimal;
-			margin-left: 0; 
-			padding-left: 20px; 
-			padding-bottom: 12px; 
-		}
-		p {
-			padding-bottom: 12px; 
-		}
-		.no-padding {
-			padding-bottom: 0px; 
-		}
-		.h1 {
-			font-size: 12px;
-			font-weight: bold;
-			color: #3A00FF;	
-		}
-		#noscroll span[draggable="true"] {
-		   float: left;
-		   width: 140px;
-		} 
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
@@ -52,7 +36,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../Media/LE_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/LE_LN1.mp3" mode="4" id="1002"  /><p align="left">Which <b>THREE</b> types of restaurant does the speaker recommend?</p><p align="left"><b>1.	</b><input id="1" width="100" /></p><p align="left"><b>2.	</b><input id="2" width="100" /></p><p align="left"><b>3.	</b><input id="3" width="100" /></p><p align="left">Which <b>TWO</b> places in the High Street sell vegetarian takeaway food?</p><p align="left"><b>4.	</b><input id="4" width="100" /></p><p align="left"><b>5.	</b><input id="5" width="100" /></p><p align="left">What does 'The White Swan' have in winter?</p><p align="left"><b>6.	</b><input id="6" width="100" /></p><p align="left">What can you see in 'The George' on a Saturday?</p><p align="left"><b>7.	</b><input id="7" width="100" /></p><p align="left">Where is the 'The Cellar'?</p><p align="left"><b>8.	</b><input id="8" width="100" /></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/LE_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/LE_LN1.mp3" mode="4" id="1002"  /><p align="left">Which <b>THREE</b> types of restaurant does the speaker recommend?</p><p align="left"><b>1.	</b><input id="q1" /></p><p align="left"><b>2.	</b><input id="q2" /></p><p align="left"><b>3.	</b><input id="q3" /></p><p align="left">Which <b>TWO</b> places in the High Street sell vegetarian takeaway food?</p><p align="left"><b>4.	</b><input id="q4" /></p><p align="left"><b>5.	</b><input id="q5" /></p><p align="left">What does 'The White Swan' have in winter?</p><p align="left"><b>6.	</b><input id="q6" /></p><p align="left">What can you see in 'The George' on a Saturday?</p><p align="left"><b>7.	</b><input id="q7" /></p><p align="left">Where is the 'The Cellar'?</p><p align="left"><b>8.	</b><input id="q8" /></p><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb1">
 	<p align="left">1. The speaker says the Italian restaurant is a popular place and that their prices are reasonable and their pasta sauces are good.</p>
