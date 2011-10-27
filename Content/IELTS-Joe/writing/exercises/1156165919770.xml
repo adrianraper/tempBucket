@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_AW_001.JPG" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Writing Task 1</b></font></p><p align="left"><b>Dynamic charts and graphs 1</b>You will ...</p><ol><li>read a report based on a graph, and answer questions	based on charts.</li><li>match appropriate verb and noun phrases to trends	shown in charts. You will also read a report and identify	the verb and noun structures used to describe trends.</li><li>practise describing trends using appropriate verbs and	noun structures.</li><li>look at a bar chart and complete a report with the	correct words, and write a report based on a chart.</li><li>correct mistakes in a sample report.</li></ol><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

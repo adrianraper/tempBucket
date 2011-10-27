@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the text below and practise giving a short talk.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/ED_SP_003.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>PART 2 OF THE INTERVIEW</b></font></p><p align="left"><font color="#000000">The Examiner says “Now I'm going to give you a topic. You will have one to two minutes to talk”. The Examiner explains that you can make notes, and hands over paper and pencil, and reads out the topic to you.</font></p><p align="left">1 Find pencil and paper</p><p align="left">2 Read the instructionsDescribe the technological device you find most useful.You should say:</p>-	why you got it-	what you use it for-	what advantages and disadvantages it has and explain how it has changed your life-style<p align="left"><font color="#000000">3 Write down some ideas – you have one minute to think starting now</font></p><p align="left"><font color="#000000">4 Stop writing when one minute is up (or before)</font></p><p align="left"><font color="#000000">5 You now have two minutes to talk, starting now! (Don't be embarrassed!)</font></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="false"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="false"><feedback source="fb12"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="false"><feedback source="fb14"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="false"><feedback source="fb15"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q17" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q18" correct="false"><feedback source="fb18"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q19" correct="false"><feedback source="fb19"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q20" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q21" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q22" correct="false"><feedback source="fb22"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q23" correct="false"><feedback source="fb23"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q24" correct="false"><feedback source="fb24"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q25" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q26" correct="false"><feedback source="fb26"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q27" correct="false"><feedback source="fb27"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q28" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q29" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q30" correct="false"><feedback source="fb30"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q31" correct="false"><feedback source="fb31"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q32" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q33" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q34" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q35" correct="false"><feedback source="fb35"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q36" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q37" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q38" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q39" correct="false"><feedback source="fb39"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q40" correct="false"><feedback source="fb40"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q41" correct="false"><feedback source="fb41"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q42" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q43" correct="false"><feedback source="fb43"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q44" correct="false"><feedback source="fb44"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q45" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q46" correct="false"><feedback source="fb46"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q47" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q48" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q49" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q50" correct="false"><feedback source="fb50"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences by choosing the correct word or phrase for each gap. There is more than one correct answer in each case.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/EN_AW_011.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000"><b>1  Many experts believe that CO2 emissions from industry and vehicles have (…) global warming.</b></font></p><g id="1">A  caused</g><g id="2">B  stemmed from</g><g id="3">C  brought about</g><g id="4">D  led to</g><g id="5">E  been caused by</g><p align="left"><font color="#000000"><b>2  Sea levels have begun to rise (…) to global warming.</b></font></p><g id="6">A  leading</g><g id="7">B  owing</g><g id="8">C  due</g><g id="9">D  giving rise</g><g id="10">E  thanks</g><p align="left"><font color="#000000"><b>3  The destruction of forest habitats has (…) many animal species to die out.</b></font></p><g id="11">A  led</g><g id="12">B  resulted in</g><g id="13">C  caused</g><g id="14">D  brought about</g><g id="15">E  given rise to</g><p align="left"><font color="#000000"><b>4  Marine life in the world's seas is being devastated (…) overfishing.</b></font></p><g id="16">A  due to</g><g id="17">B  as a result of</g><g id="18">C  leading to</g><g id="19">D  giving rise to</g><g id="20">E  because of</g><p align="left"><font color="#000000"><b>5  In many parts of the world, once fertile land is turning into semi-desert (…) intensive farming methods.</b></font></p><g id="21">A  owing to</g><g id="22">B  leading to</g><g id="23">C  since</g><g id="24">D  resulting in</g><g id="25">E  on account of</g><p align="left"><font color="#000000"><b>6  Accidents at sea involving large oil tankers have often (…) environmental damage on a huge scale.</b></font></p><g id="26">A  been due to</g><g id="27">B  been caused by</g><g id="28">C  given rise to</g><g id="29">D  led to</g><g id="30">E  stemmed from</g><p align="left"><font color="#000000"><b>7  The difficulty meteorologists have in making predictions about climate change (…) the complexity of global weather systems.</b></font></p><g id="31">A  results in</g><g id="32">B  is due to</g><g id="33">C  stems from</g><g id="34">D  results from</g><g id="35">E  brings about</g><p align="left"><font color="#000000"><b>8  Public awareness of environmental issues is far greater than it used to be (…) energetic campaigning by environmentalists.</b></font></p><g id="36">A  on account of</g><g id="37">B  thanks to</g><g id="38">C  as a consequence of</g><g id="39">D  resulting in</g><g id="40">E  because</g><p align="left"><font color="#000000"><b>9  Zoos can sometimes help prevent certain species from becoming extinct (…) they can breed the animals in captivity.</b></font></p><g id="41">A  owing to</g><g id="42">B  because</g><g id="43">C  due to</g><g id="44">D  on account of</g><g id="45">E  since</g><p align="left"><font color="#000000"><b>10  Poor air quality in urban areas is known to have (…) an increase in breathing disorders such as asthma.</b></font></p><g id="46">A  stemmed from</g><g id="47">B  given rise to</g><g id="48">C  resulted in</g><g id="49">D  brought about</g><g id="50">E  resulted from</g><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb2">
+	<p align="left">This is used to mention a cause, not a result.</p>
+</section>
+<section id="fb5">
+	<p align="left">This is used to mention a cause, not a result.</p>
+</section>
+<section id="fb6">
+	<p align="left">This is used to mention a result,  but 'global warming' is the cause.</p>
+</section>
+<section id="fb9">
+	<p align="left">This is used to mention a result,  but 'global warming' is the cause.</p>
+</section>
+<section id="fb12">
+	<p align="left"><font color="#000000">This needs to be followed by a noun phrase or gerund: 'Resulted in many species dying out.'</font></p>
+</section>
+<section id="fb14">
+	<p align="left"><font color="#000000">This needs to be followed by a noun phrase: 'Brought about the extinction of many species.'</font></p>
+</section>
+<section id="fb15">
+	<p align="left">This needs to be followed by a noun phrase or gerund.</p>
+</section>
+<section id="fb18">
+	<p align="left">This is used to mention a result, but 'overfishing' is the cause of the problem.</p>
+</section>
+<section id="fb19">
+	<p align="left">This is used to mention a result, but 'overfishing' is the cause of the problem.</p>
+</section>
+<section id="fb22">
+	<p align="left">This is used to mention a result, but these farming methods are the cause of the problem.</p>
+</section>
+<section id="fb23">
+	<p align="left"><font color="#000000">This needs to be followed by a whole verb phrase: 'since farmers use intensive farming methods'.</font></p>
+</section>
+<section id="fb24">
+	<p align="left">This is used to mention a result, but these farming methods are the cause of the problem.</p>
+</section>
+<section id="fb26">
+	<p align="left">'Due to' introduces the cause, you need an expression which introduces the result.</p>
+</section>
+<section id="fb27">
+	<p align="left">You need an expression which introduces the result.</p>
+</section>
+<section id="fb30">
+	<p align="left">'Stem from' introduces the cause, you need an expression which introduces the result.</p>
+</section>
+<section id="fb31">
+	<p align="left">This introduces the result. You need an expression which introduces the cause of the problem.</p>
+</section>
+<section id="fb35">
+	<p align="left">This introduces the result. You need an expression which introduces the cause of the problem.</p>
+</section>
+<section id="fb39">
+	<p align="left">This introduces the result. You need an expression which introduces the cause of the problem.</p>
+</section>
+<section id="fb40">
+	<p align="left"><font color="#000000">This needs to be followed by 'of' or a whole verb phrase: 'because environmentalists have campaigned.'</font></p>
+</section>
+<section id="fb41">
+	<p align="left">This needs to be followed by a noun, noun phrase or gerund.</p>
+</section>
+<section id="fb43">
+	<p align="left">This needs to be followed by a noun, noun phrase or gerund.</p>
+</section>
+<section id="fb44">
+	<p align="left">This needs to be followed by a noun, noun phrase or gerund.</p>
+</section>
+<section id="fb46">
+	<p align="left">This expression introduces the cause, not the result.</p>
+</section>
+<section id="fb50">
+	<p align="left">This expression introduces the cause, not the result.</p>
+</section>
+</body>
+</bento>

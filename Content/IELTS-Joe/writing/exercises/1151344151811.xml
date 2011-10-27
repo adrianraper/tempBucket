@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="proofreading" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise hiddentargets="true" proofreading="true"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../Media/HF_WT1b.jpg" mode="16" id="1004"  />
+		
+		Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 10. Click on them.
+		
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_AW_007s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/HF_AW_007.jpg" mode="16" id="1003"  /><br/><ol id="questionList"></ol>
+</section>
+<section id="fb1">
+	<p align="left"><font color="#000000"> nearly: 1972-1999 is nearly three decades.</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font color="#000000">Encouragingly: The fact that smoking became less common is good news.</font></p>
+</section>
+<section id="fb3">
+	<p align="left">Concerning</p>
+</section>
+<section id="fb4">
+	<p align="left">almost</p>
+</section>
+<section id="fb5">
+	<p align="left">just over</p>
+</section>
+<section id="fb6">
+	<p align="left">2</p>
+</section>
+<section id="fb7">
+	<p align="left"><font color="#000000">Less positively: The fact that some groups are more likely to smoke can't be describe as 'encouraging'. </font></p>
+</section>
+<section id="fb8">
+	<p align="left">just under</p>
+</section>
+<section id="fb9">
+	<p align="left">As far as</p>
+</section>
+<section id="fb10">
+	<p align="left">around</p>
+</section>
+</body>
+</bento>

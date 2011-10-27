@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"/></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/SS_AW_013d.jpg" mode="1" id="1001"  /><p align="left"><b>We are all citizens of the world. People should be allowed to move freely, and to live and work in the country of their choice without restrictions.</b></p><p align="left"><b><g id="1">A</g></b>  Due to phenomena such as globalisation and the general opening up of borders which have taken place in recent decades, an increasing number of people are choosing to work and settle down outside their county of birth. This has certain benefits and drawbacks, both for individuals and for society as a whole.</p><p align="left"><b><g id="2">B</g></b> Increasing numbers of asylum seekers and economic and political refugees have led many governments to impose harsh immigration restrictions. However, such restrictions mean that many individuals are condemned to lives of poverty or oppression from which they cannot escape. Governments of wealthier nations ought to take measures to alleviate the problems these people face.</p><p align="left"><b><g id="3">C</g></b>  In response to the growing pressure from people living in developing countries to be allowed to migrate and work in developed countries, many governments have now imposed harsh restrictions on immigration. However, more and more people believe that these restrictions should be relaxed.</p>
+</section>
+<section id="fb1">
+	<p align="left">This writer has turned the task into an 'advantages and disadvantages' composition. However, the wording clearly invites candidates to express their opinions on this issue.</p>
+</section>
+<section id="fb2">
+	<p align="left">The writer has limited the discussion to 'asylum seekers' and refugees'. However, the statement in the task is more general. It does not refer specifically to any single type of emigrants.</p>
+</section>
+</body>
+</bento>

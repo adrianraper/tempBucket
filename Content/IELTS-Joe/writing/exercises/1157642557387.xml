@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/SS_AW_013c.jpg" mode="1" id="1001"  /><p align="left"><b>Every year thousands of workers from poor countries enter richer, more developed countries illegally to live and work, and this gives rise to a variety of social problems in those countries. What can be done to deal with this situation?</b></p><p align="left"><b><g id="1">A</g></b>  The migration of workers from poorer countries to richer, more developed countries is becoming increasingly common in the modern world. War, political oppression, poverty and lack of employment opportunities are the main reasons why people leave their home countries. The governments of these countries need to take urgent measures to prevent people leaving in such large numbers.</p><p align="left"><b><g id="2">B</g></b>  In recent years, restrictions on immigration into rich countries combined with a lack of opportunities in their home countries have resulted in an increase in the number of illegal immigrants. This influx of immigrants, in turn, has led to a range of social problems related to unemployment, cultural integration, education and housing, all of which require an appropriate response from the governments of the countries affected.</p><p align="left"><b><g id="3">C</g></b>  The widening gap between the relatively high standard of living in developed countries and the hardship of poorer nations continues to force many people to enter countries illegally in search of a better life. It is argued that this situation causes social problems such as increased crime and unemployment. However, there is very little evidence to support this point of view.</p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left"><font face="verdana" size="13" color="#000000">This writer has not read the task carefully enough. In the task 'those countries' means the 'more developed countries', not the immigrants' original home countries. Also, the writer has not picked up on the keyword 'illegally', but instead seems to be referring to emigration in general.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">This writer has chosen to dispute the fact that the situation causes problems and it seems that the rest of the composition will support this opinion. However, the task is clearly a 'problem and solution' composition, not 'presenting an opinion.'</font></p>
+</section>
+</body>
+</bento>

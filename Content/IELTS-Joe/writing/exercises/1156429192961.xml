@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a15" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a15" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a14" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a14" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a15" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a16" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Look at the charts from previous exercises again. Complete the paragraphs so that the information reflects the charts, using 'respectively', 'former' or 'latter'.
+		
+</header>
+	
+<section id="noscroll">
+	
+		
+		<span id="a13" draggable="true">respectively</span><span id="a10" draggable="true">latter</span>
+		<span id="a11" draggable="true">former</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/MM_AW_002.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../Media/MM_AW_003.jpg" mode="1" id="1005"  /><p align="left">In 1970 there was a slight increase in both evening paper circulation and morning paper circulation. The <font color="#0000ff"><input id="q1" type="droptarget" /> rose by just over 1 million and the <font color="#0000ff"><input id="q2" type="droptarget" /></font> by almost 2 million. From 1980 to 1990 trends in circulation figures for evening papers and morning papers differed dramatically. Circulation for the <font color="#0000ff"><input id="q3" type="droptarget" /></font> fell by more than a third while for the <font color="#0000ff"><input id="q4" type="droptarget" /></font> it rose by more than a third. In 1999 circulation figures for Sunday papers and evening papers fell by 3 million and 11 million <font color="#0000ff"><input id="q5" type="droptarget" /></font>.</font></p><p align="left">Between 1989 and 1990 the percentage of those who relied on television for world news and the percentage of those who relied in newspapers rose by 11 per cent and fell by 7 per cent <font color="#0000ff"><input id="q6" type="droptarget" />. From 1995 to 1997 the percentage who mainly relied on newspapers as a source of world news began to grow, while the percentage who relied mainly on television began to decline. Nevertheless, by 1998 the <font color="#0000ff"><input id="q7" type="droptarget" /></font> had fallen again and the <font color="#0000ff"><input id="q8" type="droptarget" /></font> had risen significantly. </font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="rt2001">
+	
+		<p align="left">Examiners are looking for your ability to vary the language you use in your report. One way to avoid repeating words and phrases is replacing them with 'the former', 'the latter' and 'respectively'.</p>
+</section>
+</body>
+</bento>

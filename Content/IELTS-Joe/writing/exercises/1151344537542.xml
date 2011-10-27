@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false" scorebased="true"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="false"/><answer source="a10" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="true"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="false"/><answer source="a14" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a15" correct="false"/><answer source="a16" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a17" correct="true"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a19" correct="false"/><answer source="a20" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the composition from an earlier exercise again and identify the examples of defining relative clauses and non-defining relative clauses.
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><br/><li id="1">which some countries have of free admission to state-owned museums<ol class="answerList"><li><a id="q1" >Defining relative clause</a></li><li><a id="q2" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="2">who can afford it<ol class="answerList"><li><a id="q3" >Defining relative clause</a></li><li><a id="q4" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="3">which is based on the principle of equal opportunity for all<ol class="answerList"><li><a id="q5" >Defining relative clause</a></li><li><a id="q6" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="4">who visit them on impulse<ol class="answerList"><li><a id="q7" >Defining relative clause</a></li><li><a id="q8" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="5">which may mean they present their exhibitions in a more serious way<ol class="answerList"><li><a id="q9" >Defining relative clause</a></li><li><a id="q10" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="6">whose income comes entirely from public funds<ol class="answerList"><li><a id="q11" >Defining relative clause</a></li><li><a id="q12" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="7">which sometimes means that exhibitions are expected to reflect the government's views<ol class="answerList"><li><a id="q13" >Defining relative clause</a></li><li><a id="q14" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="8">both of which tend to receive higher priority<ol class="answerList"><li><a id="q15" >Defining relative clause</a></li><li><a id="q16" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="9">that do not charge admission<ol class="answerList"><li><a id="q17" >Defining relative clause</a></li><li><a id="q18" >Non-defining relative clause</a></li></ol><br/></li><br/><li id="10">which can discourage more serious visitors<ol class="answerList"><li><a id="q19" >Defining relative clause</a></li><li><a id="q20" >Non-defining relative clause</a></li></ol><br/></li></ol>
+</section>
+<section id="fb0">
+	<p align="left">Would the sentence make sense without this clause? Is this separated from the rest of the sentence by a comma? Is 'that' used for the relative pronoun?</p>
+</section>
+<section id="rt2001">
+	<p align="left"><font color="#000000">Another way to make your language more complex is to join ideas together using relative clauses. There are two basic types of relative clause, defining and non-defining. For example:</font></p><p align="left">Museums which do not have an admission fee attract a lot of visitors.The relative clause gives essential information about 'museums', so it is a defining relative clause.</p><p align="left">Free museums, which do not have an admission fee, attract a lot of visitors.The relative clause gives additional information about 'free museums', so it is a non-defining relative clause.</p><p align="left">Only non-defining relative clauses need to be enclosed in commas.</p>
+</section>
+<section id="readingText">
+	<p align="left"><font color="#000000">The tradition <font color="#0000ff">(1) which some countries have of free admission to state-owned museums</font> is coming under increasing threat due to rising costs and limited funding. Despite these pressures, many museums in these countries are reluctant to introduce entrance fees.</font></p><p align="left"><font color="#000000">There are several advantages to allowing the public free access to museums. Firstly, whereas charging an entry fee means that a nation's heritage is only available to those <font color="#0000ff">(2) who can afford it</font>, free admission makes it accessible to everyone, regardless of income. As a result, museums, like public libraries, are treated as an extension of the state education system, <font color="#0000ff">(3) which is based on the principle of equal opportunity for all</font>. A further advantage is that free museums attract far more visitors because, although many people make a special trip to visit them, the number of people <font color="#0000ff">(4) who visit them on impulse</font> is also high. Free museums, therefore, reach a much wider public. Finally, while private museums may be influenced by commercial pressures, free museums do not suffer from the same constraints, <font color="#0000ff">(5) which may mean they present their exhibitions in a more serious way</font>.</font></p><p align="left"><font color="#000000">However, a policy of free admission to museums also has a number of disadvantages. First and foremost, museums <font color="#0000ff">(6) whose income comes entirely from public funds</font> may be more subject to government policy, <font color="#0000ff">(7) which sometimes means that exhibitions are expected to reflect the government's views</font>. Moreover, in spite of their popularity, museums have to compete for funding with the health service and the education system, <font color="#0000ff">(8) both of which tend to receive higher priority</font>. Consequently, museums <font color="#0000ff">(9) that do not charge admission</font> may not always be able to afford ambitious projects, or to buy new items to add to their collections. Lastly, though museum directors want to attract large numbers of visitors, free museums often become unpleasantly overcrowded, especially during holiday periods, <font color="#0000ff">(10) which can discourage more serious visitors</font>.</font></p><p align="left">In conclusion, I believe that children and students should have free admission to museums, while adults should pay a moderate entrance fee. In this way, museums would be able to raise sufficient money to maintain the quality of their collections and add to them, and, at the same time, fulfil a valuable role in educating the general public.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

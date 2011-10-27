@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="YES " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="YES " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="YES " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="1.5 " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="2 " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="10  " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="15  " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="2  " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="2  " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-9. Complete the table on the right by writing YES, NO or a number.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/Education_008.jpg" mode="1" id="1001"  /><p align="left"><b>Skin Type	I	II	III</b>-------------------------------------------Does this skin	<input id="1" width="100" />	_<input id="2" width="100" />	YEStype burn?-------------------------------------------Does this skin	NO	YES	<input id="3" width="100" />type tan?-------------------------------------------Ultraviolet level	<input id="4" width="100" /> 	_<input id="5" width="100" />	3required to produceerythema (doses)</p>-------------------------------------------Minimum sun	N/A	10	<input id="6" width="100" />protection factorfor southern Europe-------------------------------------------Minimum sun	N/A	<input id="7" width="100" />	15protection factorfor the tropics-------------------------------------------Recommended	2	<input id="8" width="100" /> 	_<input id="9" width="100" />applicationthickness(mg/cm²)<p align="left"><font size="2"></font></p>
+</section>
+<section id="readingText">
+	<p align="left"><b>Has the sun protection factor had its day?</b>&nbsp;The concept of the sun protection factor was originally proposed by the Austrian scientist Franz Greiter and subsequently adopted by many regulatory authorities and the cosmetic and pharmaceutical industries. It is popularly interpreted as how much longer skin covered with sunscreen takes to burn compared with unprotected skin.&nbsp;What is the sun protection factor?&nbsp;The sun protection factor is defined as the ratio of the least amount of ultraviolet energy required to produce a minimal erythema on skin protected by sunscreen to the amount of energy required to produce the same erythema on unprotected skin. Ten years ago most commercially available sunscreen products had sun protection factors of less than 10, but today there is a trend for higher factors. Most manufacturers make products with factors of 15 to 20, and it is not uncommon to find products claiming a factor of 50 or higher.&nbsp;How high should the sun protection factor be?&nbsp;The primary function of sunscreens is to prevent sunburn, so just how high should the sun protection factor be to satisfy this requirement?&nbsp;Maximum daily ambient ultraviolet levels, expressed in units of standard erythema dose, under clear summer skies are about 70 in the tropics, 60 at mid-latitudes approximating to those of southern Europe, and 45 for UK latitudes. The standard erythema dose is a measure of erythemal ultraviolet radiation. It requires an exposure of about 1.5 standard erythema doses to produce just perceptible erythema in the unacclimatised skin of sun sensitive people who burn easily and never tan (skin type I), about 2 in subjects who burn easily but tan minimally (skin type II), and 3 in subjects who will burn but tan readily (skin type III). In the British population about 11%, 30%, and 31% of people are of skin types I, II and III respectively.</p>&nbsp;People are unlikely to receive these maximum ambient exposures simply because it would be unrealistic to lie in the unshaded sun all day without moving. An extreme sunbather might spend half the time supine and half the time prone, resulting in a maximum exposure on much of the body surface of 50% of ambient. For upright people engaging in various outdoor pursuits – such as gardening, walking, or tennis – the exposure relative to ambient on commonly exposed sites – for example, chest, shoulder, face, forearms, and lower legs – ranges from about 20% to 60%. So someone who is on vacation in southern Europe would receive a daily exposure of no more than 20 standard erythema doses over much of the body surface. As an exposure of 2-3 doses is necessary for a minimal erythema in the most common British skin types (II/III), a photoprotective device (sunscreen or clothing) need possess only a sun protection factor of 10 or more to give a holiday without sunburn. For tropical sun exposure, a protection factor of 15 or higher should be more than adequate for all day exposure.&nbsp;Why do people who use high factor sunscreens still get sunburnt?&nbsp;If, then, sunscreens of sun protection factor 15 are sufficient to protect against sunburn even for all day exposure in tropical sunshine, why are people who usually or always use high factor (greater than or equal to 15) sunscreen more likely to report sunburn than those who rarely or never use sunscreen? Conversely, and not surprisingly, fewer people who usually or always sought shade, wore a hat, or wore covering clothes got sunburnt compared with those who rarely or never did so.&nbsp;The protection offered by a sunscreen – defined by its sun protection factor – is assessed after it is phototested in vivo at an internationally agreed application thickness of 2mg/cm². Yet a number of studies have shown that consumers apply much less than this, typically between 0.5 to 1.3mg/cm². Application thickness has a significant effect on protection, with most users probably achieving a mean value of 20-50% of that expected from the product label as a result of common application thicknesses. Compounded with this is the likely variability of protection over the skin surface because of application technique. So the likely explanation for people getting sunburnt despite using high factor sunscreens is that inadequate amounts of sunscreen were applied or areas of the body were missed, or both, coupled with overexposure to the sun in the belief that they were protected. Experience has led consumers to realise that if they want to spend several hours in the sun and avoid sunburn, they need to use products labelled with factors of 20, 30, or higher. The point is that if people applied sunscreens uniformly and appropriately there would be no need for sun protection factors higher than 15.&nbsp;Glossary1 erythema: redness of the skin, often a sign of inflammation or infection.2 in vivo: within a living organism.&nbsp;Professor Brian Diffey, British Medical Journal, Volume 320, Issue 7228, pp.176-7, 15th January 2000.<p align="left"><font size="2"></font></p>
+</section>
+<section id="rt2001">
+	<p align="left">Questions 1-9 - Table completionThis passage is fairly complex in parts, but remember that all you need to do in order to complete the table is to 'use' the passage as a source of information.&nbsp;Study the table carefully before you start reading so that you know what you're looking for. What do the column headings refer to? Which parts of the table need the word 'Yes' or 'No' and which need a number? What do the numbers refer to? The information that has already been filled in should help you. Remember, you'll find the information you need in the same order as the questions, so make sure that you follow the question numbers. </p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	Endings are as important as first impressions.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/ST_SP_004.jpg" mode="1" id="1001"  /><p align="left"><b>Don't </b></p><ol><li>Don't just tail off, or peter out, EVER.</li><li>Don't say how relieved you are the test is over!</li><li>Don't ask for your marks.</li><li>Don't comment on your own performance.</li></ol><p align="left"><b>Do</b></p><ol><li>If you really have nothing more to say about the	question, look at the Examiner and say so. Do not	just fade out!</li><li>Have phrases ready to use, to conclude what you say:	"Have I given you enough information?"	"Shall I tell you more about it?"	"That's about all I know."	"Would you like me to explain anything?"	"Do you need to know anything else?"</li><li>Smile, say "Thank you. Goodbye", and leave the room.</li><li>Enjoy the experience!</li></ol><p align="left">Now you are ready for your speaking test.</p><p align="left">1.	Use the unique experiences of your own life to enhance 	your performance.</p><ol><li>Use your language skills simply and clearly.</li><li>Use your communication skills effectively.</li></ol><p align="left">Remember that what you are doing and what you are being tested on is <font color="#0000ff"><b>COMMUNICATION</b>.</font></p>
+</section>
+</body>
+</bento>

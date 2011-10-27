@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a16" correct="false"/><answer source="a17" correct="false"/><answer source="a18" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a1" correct="false"/><answer source="a2" correct="true"/><answer source="a3" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a10" correct="false"/><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Do the statements on the right agree with the views of the writer of the passage? YES - the statement agrees with the views of the writer; NO - the statement contradicts the views of the writer; NOT GIVEN - it is impossible to say what the writer thinks about this.
+		
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><br/><li id="1">Sagan and Drake overestimated the size of the Universe.<ol class="answerList"><li><a id="q16" >Yes</a></li><li><a id="q17" >No</a></li><li><a id="q18" >Not given</a></li></ol><br/></li><br/><li id="2">All forms of life are extremely rare outside our Galaxy.<ol class="answerList"><li><a id="q1" >Yes</a></li><li><a id="q2" >No</a></li><li><a id="q3" >Not given</a></li></ol><br/></li><br/><li id="3">Microbial life will not necessarily evolve into intelligent life forms.<ol class="answerList"><li><a id="q4" >Yes</a></li><li><a id="q5" >No</a></li><li><a id="q6" >Not given</a></li></ol><br/></li><br/><li id="4">Scientists have overestimated the possibility of complex extraterrestrial life forms.<ol class="answerList"><li><a id="q7" >Yes</a></li><li><a id="q8" >No</a></li><li><a id="q9" >Not given</a></li></ol><br/></li><br/><li id="5">Venus could once have had primitive, microbial life forms.<ol class="answerList"><li><a id="q10" >Yes</a></li><li><a id="q11" >No</a></li><li><a id="q12" >Not given</a></li></ol><br/></li><br/><li id="6">The Earth is an unusual planet.<ol class="answerList"><li><a id="q13" >Yes</a></li><li><a id="q14" >No</a></li><li><a id="q15" >Not given</a></li></ol><br/></li></ol>
+</section>
+<section id="readingText">
+	<p align="left"><font color="#0000ff"><b>No place like home</b></font>Intelligent life on other planets is rarer than you think, says Peter Ward</p><p align="left"><font color="#000000">Night in night out, the world's television and movie screens radiate the sights and sounds of extraterrestrial life and the message is clear: the Universe is filled with alien life forms of all shapes and sizes, every conceivable level of intelligence, and covering the gamut of attitudes from friendly benevolence to outright hostility. The idea that planets with animal life are commonplace has firmly taken root.</font></p><p align="left">We don't just have science fiction writers to thank for this, but two celebrated astronomers. In 1973, Frank Drake and Carl Sagan gave us the Drake equation, a method of working out the potential number of advanced civilisations in our Galaxy. Using the best information available at the time, Sagan estimated that there may be a million civilisations in the Milky Way alone. And since our Galaxy is only one of hundreds of billions of galaxies in the Universe, there could be billions of planets with intelligent, alien species.</p><p align="left">It's a breathtaking concept. But is it credible? How probable is it that single-celled life on other planets could have evolved into more complex varieties, culminating in the development of animals and a sophisticated culture?</p><p align="left"><font color="#000000">In our book Rare Earth: Why Complex Life is Uncommon in the Universe, Don Brownlee and I argue that even the simplest forms of animal life are exceedingly rare in our Galaxy, and in the Universe beyond. That's not to say all life is rare; but we do take issue with the notion that just because microbial life is common in the Universe, you'll automatically get animals and higher plants, let alone intelligent beings.</font></p><p align="left">But let's start from the beginning. Why do so many people believe animal life could be common elsewhere? One important reason is the discovery that microbes can survive, and even thrive, in the searing temperatures and crushing pressures of the deep sea and beneath the surface of the Earth. Similar conditions exist on other planets, and people take this to mean that if primitive life can survive on Earth, why not elsewhere in the Universe?</p><p align="left">Then there's the fossil record. This tells us that life on Earth began soon after the end of the period when planets were being bombarded about 3.8 billion years ago. The fact that life appeared so early in Earth's history suggests that it forms quite easily. If it can happen here, it's reasonable to ask why shouldn't it have happened countless times elsewhere.</p><p align="left">We think, however, that this line of reasoning is flawed. Just because life evolves does not mean that animal life will then eventually appear. The chances of animal life springing up are probably more remote than many scientists believe. Why? Because Earth is actually rather a special place, and there are unlikely to be many planets on which conditions are appropriate for simple life forms to evolve into complex organisms such as plants and animals.</p><p align="left"><b>What are those conditions?</b><font face="_sans" size="12">&#160;<font face="verdana" size="13"></font></font>&nbsp;One is stability. Life needs a relatively stable environment like that on Earth, which has a stable orbit and receives a stable amount of energy from the Sun. Most planets we know of outside the Solar System have irregular or unstable orbits. And the energy from stars in other solar systems and galaxies tends not to be constant – certainly not for such a long time. Had our Sun's energy output undergone rapid swings during life's long development, there would be little chance of animal life on this planet.</p><p align="left">Also, astronomers have calculated that we probably aren't hit by comets and asteroids as often as other planets. Such collisions cause mass extinctions, even wipe out life altogether. We don't know why collisions with Earth are rare, but there is evidence that we have Jupiter to thank. The giant planet shields us from such catastrophes by acting as a comet and asteroid catcher, a gravity-sink that sweeps the Solar System clean of cosmic garbage that might otherwise have collided with Earth.</p><p align="left">But not all Jupiter-sized planets have the stable orbits needed to do this job. A lot of solar systems contain "bad" Jupiters that are either orbiting close to their stars, or have highly eccentric or unstable orbits. In the star-packed interiors of other galaxies, supernova explosions and close encounters with neighbouring stars could occur just too frequently to bring about the long-term stability we think is needed for the development of animal life.</p><p align="left">Another happy accident is in the nature of Earth itself. Our planet provides just the right mix of metals for life to evolve and thrive. It is also the only planet in our Solar System with a moon of an appreciable size compared to the planet it orbits. This keeps our tilt stable, which keeps climate relatively constant. And Earth is the only planet in the Solar System that has tectonic plates, which lead to continental drift, the most crucial element in maintaining a long-term climate that allows liquid water to exist. Plate tectonics helps limestone to form, which scrubs greenhouse gases from our atmosphere.</p><p align="left">Water is critical to life. And Earth happens to be the right distance from the Sun to enable liquid water to have existed on its surface for more than 4 billion years. A little farther from the Sun and we'd have frozen; any closer and most of the water would have boiled away, as happened on Venus.</p><p align="left">Even Earth's position in our Galaxy is important. If we were closer to the galactic centre, animal life would be at risk from mass extinctions. But if we were further away, there wouldn't be enough of the heavy elements needed to build rocky planets.</p><p align="left">Ever since Copernicus removed our planet from the centre of the Universe and placed it in orbit around the Sun, its status has steadily been downgraded. We have gone from the centre of the Universe to a small, insignificant planet orbiting a small, undistinguished star in an obscure fringe of the Milky Way. This is the "principle of mediocrity", the idea that Earth is one of a very common class of planets, and it's time we got rid of it. Mediocre and commonplace scarcely does justice to the special planet we call home.</p><p align="left"> supernova: an exploding star.</p>2 tectonic plates: the huge moveable blocks into which the surface of the Earth is divided.3 continental drift: the slow movement of the continents over the surface of the Earth.4 Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun.<p align="left">Peter Ward, New Scientist Magazine, 18th March 2000.</p>
+</section>
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">Don't be put off by the theme of this text. It is written for non-specialists and doesn't go into great technical details. The main points are organised clearly and logically by the author. Use the topic sentences of each paragraph (usually the first) to help you find the information you need.</font></p>&nbsp;Question 1The key words in this question are 'the size of the universe'. Where is this discussed in the text?&nbsp;Question 2The key word here is 'all'. If this is true, the word 'all' or a synonym for it should be in the text.&nbsp;Question 3Microbial forms of life are very tiny, simple life forms such as bacteria. Note that this statement is negative. Nevertheless, if the text agrees with this, your answer should be YES, not NO.&nbsp;Question 4This is very similar to Question 1. How is it different from Question 1?&nbsp;Question 5The information you need to answer this is in the second half of the text.&nbsp;Question 6The answer to this sums up the views expressed in the passage.
+</section>
+</body>
+</bento>

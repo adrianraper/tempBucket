@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc timed="130"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/><answer source="a5" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 6-10. Listen to the recording, which will play automatically, and follow the instructions. Complete the labels on the diagram below. Write ONE OR TWO WORDS for each answer.
+		
+</header>
+	
+<section id="body">
+	<media class="leftFloat" src="../Media/DD_LN2b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/DD_LN2.jpg" mode="1" id="1004"  /><br/><ol id="questionList"><tab/><b>6</b><input id="q1" width="100" /><tab/><b>7</b><input id="q2" width="100" /><tab/><b>8</b><input id="q3" width="100" /><tab/><b>9</b><input id="q4" width="100" /><tab/><b>10</b><input id="q5" width="100" /></ol>
+</section>
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">From the diagram you can tell that you will hear someone describe the parts of the windup radio. Notice that the questions are in a clockwise direction from the bottom of the diagram to the top.</font>&nbsp;Questions 6-10Can you guess what any of the parts are? Or can you think of any associated vocabulary you might hear? When describing number 1, for example, you might hear the word 'detachable' or the phrase 'comes off'. Notice also the words given – 'socket' and 'cord'. You may hear them mentioned too.</p>
+</section>
+</body>
+</bento>

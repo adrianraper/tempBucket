@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="smoke " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="smoking " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="moving " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="walk " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	In Part 1, you will also be asked your opinion on two other topics.In this particular test, our candidates were asked about health.
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit07_e4.flv" mode="1" id="1003"  /><p align="left"><font color="#000000">Examiner: "What do you do to keep fit and healthy?"</font></p><p align="left"><font color="#000000">Zafir: "First of all, I don't <input id="1" width="100" /> I think keeping as far as possible from <input id="2" width="100" />, from smokers, as well as just, I can do some practices, you know exercise and erm. I don't drink. I keep <input id="3" width="100" /> I <input id="4" width="100" />."</font></p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

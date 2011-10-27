@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a18" correct="true"/><answer source="a27" correct="true"/><answer source="a20" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a27" correct="true"/><answer source="a18" correct="true"/><answer source="a20" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a20" correct="true"/><answer source="a18" correct="true"/><answer source="a27" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a19" correct="true"/><answer source="a28" correct="true"/><answer source="a23" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a28" correct="true"/><answer source="a19" correct="true"/><answer source="a23" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a23" correct="true"/><answer source="a19" correct="true"/><answer source="a28" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a22" correct="true"/><answer source="a24" correct="true"/><answer source="a29" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a24" correct="true"/><answer source="a22" correct="true"/><answer source="a29" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a29" correct="true"/><answer source="a24" correct="true"/><answer source="a22" correct="true"/></DragQuestion><DragQuestion source="q10"><answer source="a21" correct="true"/><answer source="a17" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q11"><answer source="a17" correct="true"/><answer source="a21" correct="true"/><answer source="a26" correct="true"/></DragQuestion><DragQuestion source="q12"><answer source="a26" correct="true"/><answer source="a17" correct="true"/><answer source="a21" correct="true"/></DragQuestion><DragQuestion source="q13"><answer source="a16" correct="true"/><answer source="a25" correct="true"/><answer source="a30" correct="true"/></DragQuestion><DragQuestion source="q14"><answer source="a25" correct="true"/><answer source="a16" correct="true"/><answer source="a30" correct="true"/></DragQuestion><DragQuestion source="q15"><answer source="a30" correct="true"/><answer source="a25" correct="true"/><answer source="a16" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Listen to these facts about leisure time in Britain and match the information to the appropriate chart by dragging down the letter.
+</header>
+	
+<section id="noscroll">
+	
+		
+		<span id="a18" draggable="true">A</span>
+		<span id="a21" draggable="true">B</span>
+		<span id="a19" draggable="true">C</span>
+		<span id="a27" draggable="true">D</span>
+		<span id="a16" draggable="true">E</span>
+		<span id="a22" draggable="true">F</span>
+		<span id="a28" draggable="true">G</span>
+		<span id="a24" draggable="true">H</span>
+		<span id="a20" draggable="true">I</span>
+		<span id="a17" draggable="true">J</span>
+		
+		<span id="a25" draggable="true">K</span>
+		<span id="a26" draggable="true">L</span>
+		<span id="a23" draggable="true">M</span>
+		<span id="a29" draggable="true">N</span>
+		<span id="a30" draggable="true">O</span><audio class="leftFloat" src="../Media/LE_AW1aa.mp3" mode="1" id="1003"  /><audio class="leftFloat" src="../Media/LE_AW1ab.mp3" mode="1" id="1004"  /><audio class="rightFloat" src="../Media/LE_AW1ac.mp3" mode="1" id="1005"  /><audio class="rightFloat" src="../Media/LE_AW1ad.mp3" mode="1" id="1006"  /><audio class="rightFloat" src="../Media/LE_AW1ae.mp3" mode="1" id="1007"  /><audio class="rightFloat" src="../Media/LE_AW1af.mp3" mode="1" id="1008"  /><audio class="rightFloat" src="../Media/LE_AW1ag.mp3" mode="1" id="1009"  /><audio class="rightFloat" src="../Media/LE_AW1ah.mp3" mode="1" id="1010"  /><audio class="rightFloat" src="../Media/LE_AW1ai.mp3" mode="1" id="1011"  /><audio class="rightFloat" src="../Media/LE_AW1aj.mp3" mode="1" id="1012"  /><audio class="leftFloat" src="../Media/LE_AW1ak.mp3" mode="1" id="1013"  /><audio class="leftFloat" src="../Media/LE_AW1al.mp3" mode="1" id="1014"  /><audio class="rightFloat" src="../Media/LE_AW1am.mp3" mode="1" id="1015"  /><audio class="rightFloat" src="../Media/LE_AW1an.mp3" mode="1" id="1016"  /><audio class="rightFloat" src="../Media/LE_AW1ao.mp3" mode="1" id="1017"  />
+</section>
+<section id="body">
+	<img class="leftFloat" src="../Media/LE_AW_3a.jpg" mode="1" id="1003"  /><img class="rightFloat" src="../Media/LE_AW_3b.jpg" mode="1" id="1004"  /><img class="rightFloat" src="../Media/LE_AW_3c.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/LE_AW_3d.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../Media/LE_AW_3e.jpg" mode="1" id="1007"  /><p align="left"><font color="#0000ff"><input id="q1" type="droptarget" />, <font color="#0000ff"><input id="q2" type="droptarget" /></font>, <font color="#0000ff"><input id="q3" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="q4" type="droptarget" />, <font color="#0000ff"><input id="q5" type="droptarget" /></font>, <font color="#0000ff"><input id="q6" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="q7" type="droptarget" />, <font color="#0000ff"><input id="q8" type="droptarget" /></font>, <font color="#0000ff"><input id="q9" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="q10" type="droptarget" />, <font color="#0000ff"><input id="q11" type="droptarget" /></font>, <font color="#0000ff"><input id="q12" type="droptarget" /></font></font></p><p align="left"><font color="#0000ff"><input id="q13" type="droptarget" />, <font color="#0000ff"><input id="q14" type="droptarget" /></font>, <font color="#0000ff"><input id="q15" type="droptarget" /></font></font></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left"><font color="#000000">Audio A: 1 in 5</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font color="#000000">Audio D: 20 per cent</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font color="#000000">Audio I: a fifth</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font color="#000000">Audio C: a quarter</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font color="#000000">Audio G: 25 per cent</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000">Audio M: 1 in 4</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font color="#000000">Audio F: a third</font></p>
+</section>
+<section id="fb8">
+	<p align="left"><font color="#000000">Audio H: 30 per cent</font></p>
+</section>
+<section id="fb9">
+	<p align="left"><font color="#000000">Audio N: 1 in every 3</font></p>
+</section>
+<section id="fb10">
+	<p align="left"><font color="#000000">Audio B: 50 per cent</font></p>
+</section>
+<section id="fb11">
+	<p align="left"><font color="#000000">Audio J: half</font></p>
+</section>
+<section id="fb12">
+	<p align="left"><font color="#000000">Audio L: 1 in every 2</font></p>
+</section>
+<section id="fb13">
+	<p align="left"><font color="#000000">Audio E: 3 in 4</font></p>
+</section>
+<section id="fb14">
+	<p align="left"><font color="#000000">Audio K: 75 per cent</font></p>
+</section>
+<section id="fb15">
+	<p align="left"><font color="#000000">Audio O: three-quarters</font></p>
+</section>
+<section id="rt2001">
+	<p align="left">Although the bar chart in the previous exercise shows percentages, the figures are referred to in a variety of ways in the report, for example, 'almost half' instead of 50 per cent and '1 in 5' instead of 20 per cent. It is good to have this kind of variety in your reports.</p>
+</section>
+</body>
+</bento>

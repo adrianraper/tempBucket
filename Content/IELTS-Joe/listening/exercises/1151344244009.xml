@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q4" correct="true"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q7" correct="false"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q8" correct="true"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q9" correct="false"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q10" correct="true"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q11" correct="true"><feedback source="fb11"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q12" correct="false"><feedback source="fb12"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q13" correct="false"><feedback source="fb13"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q14" correct="true"><feedback source="fb14"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q15" correct="false"><feedback source="fb15"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-3. Listen to the recording, which will play automatically, and follow the instructions. Click TWO letters A-E for each question.
+		
+</header>
+	
+<section id="body">
+	<media class="leftFloat" src="../Media/DD_LN1a.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/DD_LN_002.jpg" mode="1" id="1001"  /><p align="left"><b>1 Which areas of the world does Voluntary Workers International send people to work in?</b><g id="1">A  South America</g><g id="2">B  Central America</g><g id="3">C  Africa</g><g id="4">D  Asia</g><g id="5">E  Eastern Europe</g></p><p align="left"><b>2 What does James Lewis say that volunteers bring to local communities?</b><g id="6">A  their ideas</g><g id="7">B  their professionalism</g><g id="8">C  their skills</g><g id="9">D  their wisdom</g><g id="10">E  their experience</g></p><p align="left"><b>3 What does he say that volunteers gain from their experiences?</b><g id="11">A  new friends</g><g id="12">B  knowledge of different cultures</g><g id="13">C  knowledge about themselves</g><g id="14">D  increased expertise</g><g id="15">E  a career</g></p>
+</section>
+<section id="fb1">
+	<p align="left">1A. James does not mention South America in any context.</p>
+</section>
+<section id="fb2">
+	<p align="left">1B. James does not mention Central America in any context.</p>
+</section>
+<section id="fb3">
+	<p align="left">1C. James says the volunteers are sent to developing countries in Africa.</p>
+</section>
+<section id="fb4">
+	<p align="left">1D. James says that volunteers are sent to developing countries in Africa.</p>
+</section>
+<section id="fb5">
+	<p align="left">1E. James says they hope to move into Eastern Europe shortly not that they are already sending volunteers there.</p>
+</section>
+<section id="fb6">
+	<p align="left">2A. James doesn't mention 'ideas'.</p>
+</section>
+<section id="fb7">
+	<p align="left">2B. James doesn't mention 'professionalism'.</p>
+</section>
+<section id="fb8">
+	<p align="left">2C. James says the volunteers share their skills with the local people. People make up communities.</p>
+</section>
+<section id="fb9">
+	<p align="left">2D. James does not mention wisdom.</p>
+</section>
+<section id="fb10">
+	<p align="left">2E. James says they share their experience with local people. People make up communities.</p>
+</section>
+<section id="fb11">
+	<p align="left">3A. James says that volunteers talk about the friendships they've made.</p>
+</section>
+<section id="fb12">
+	<p align="left">3B. James doesn't mention this.</p>
+</section>
+<section id="fb13">
+	<p align="left">3C. James doesn't mention this.</p>
+</section>
+<section id="fb14">
+	<p align="left">3D. James says volunteers talk about the new skills they've learnt. Expertise has a similar meaning to skill.</p>
+</section>
+<section id="fb15">
+	<p align="left">3E. James doesn't mention this.</p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="false"/><answer source="a8" correct="true"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="false"/><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="false"/><answer source="a20" correct="false"/><answer source="a21" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a22" correct="false"/><answer source="a23" correct="true"/><answer source="a24" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a25" correct="true"/><answer source="a26" correct="false"/><answer source="a27" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a28" correct="false"/><answer source="a29" correct="true"/><answer source="a30" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="a31" correct="false"/><answer source="a32" correct="true"/><answer source="a33" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="a34" correct="false"/><answer source="a35" correct="true"/><answer source="a36" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q13"><answer source="a37" correct="false"/><answer source="a38" correct="true"/><answer source="a39" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q14"><answer source="a40" correct="true"/><answer source="a41" correct="false"/><answer source="a42" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q15"><answer source="a43" correct="false"/><answer source="a44" correct="true"/><answer source="a45" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q16"><answer source="a46" correct="true"/><answer source="a47" correct="false"/><answer source="a48" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q17"><answer source="a49" correct="false"/><answer source="a50" correct="true"/><answer source="a51" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q18"><answer source="a52" correct="false"/><answer source="a53" correct="true"/><answer source="a54" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q19"><answer source="a55" correct="false"/><answer source="a56" correct="false"/><answer source="a57" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q20"><answer source="a58" correct="true"/><answer source="a59" correct="false"/><answer source="a60" correct="false"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to these adjectives and click on a, b or c according to how the comparative is formed.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LE_AW_014.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">bad<ol class="answerList"><li><a id="q1" >adjective + -er</a></li><li><a id="q2" >more + adjective</a></li><li><a id="q3" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ab.mp3" mode="1" id="1"  /><br/><li id="2">easy<ol class="answerList"><li><a id="q4" >adjective + -er</a></li><li><a id="q5" >more + adjective</a></li><li><a id="q6" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ac.mp3" mode="1" id="2"  /><br/><li id="3">exact<ol class="answerList"><li><a id="q7" >adjective + -er</a></li><li><a id="q8" >more + adjective</a></li><li><a id="q9" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ad.mp3" mode="1" id="3"  /><br/><li id="4">far<ol class="answerList"><li><a id="q10" >adjective + -er</a></li><li><a id="q11" >more + adjective</a></li><li><a id="q12" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ae.mp3" mode="1" id="4"  /><br/><li id="5">fast<ol class="answerList"><li><a id="q13" >adjective + -er</a></li><li><a id="q14" >more + adjective</a></li><li><a id="q15" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1af.mp3" mode="1" id="5"  /><br/><li id="6">few<ol class="answerList"><li><a id="q16" >adjective + -er</a></li><li><a id="q17" >more + adjective</a></li><li><a id="q18" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ag.mp3" mode="1" id="6"  /><br/><li id="7">good<ol class="answerList"><li><a id="q19" >adjective + -er</a></li><li><a id="q20" >more + adjective</a></li><li><a id="q21" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ah.mp3" mode="1" id="7"  /><br/><li id="8">harmful<ol class="answerList"><li><a id="q22" >adjective + -er</a></li><li><a id="q23" >more + adjective</a></li><li><a id="q24" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ai.mp3" mode="1" id="8"  /><br/><li id="9">healthy<ol class="answerList"><li><a id="q25" >adjective + -er</a></li><li><a id="q26" >more + adjective</a></li><li><a id="q27" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1aj.mp3" mode="1" id="9"  /><br/><li id="10">imaginative<ol class="answerList"><li><a id="q28" >adjective + -er</a></li><li><a id="q29" >more + adjective</a></li><li><a id="q30" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ak.mp3" mode="1" id="10"  /><br/><li id="11">important<ol class="answerList"><li><a id="q31" >adjective + -er</a></li><li><a id="q32" >more + adjective</a></li><li><a id="q33" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1al.mp3" mode="1" id="11"  /><br/><li id="12">isolated<ol class="answerList"><li><a id="q34" >adjective + -er</a></li><li><a id="q35" >more + adjective</a></li><li><a id="q36" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1am.mp3" mode="1" id="12"  /><br/><li id="13">limited<ol class="answerList"><li><a id="q37" >adjective + -er</a></li><li><a id="q38" >more + adjective</a></li><li><a id="q39" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1an.mp3" mode="1" id="13"  /><br/><li id="14">lonely<ol class="answerList"><li><a id="q40" >adjective + -er</a></li><li><a id="q41" >more + adjective</a></li><li><a id="q42" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ao.mp3" mode="1" id="14"  /><br/><li id="15">popular<ol class="answerList"><li><a id="q43" >adjective + -er</a></li><li><a id="q44" >more + adjective</a></li><li><a id="q45" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ap.mp3" mode="1" id="15"  /><br/><li id="16">safe<ol class="answerList"><li><a id="q46" >adjective + -er</a></li><li><a id="q47" >more + adjective</a></li><li><a id="q48" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1aq.mp3" mode="1" id="16"  /><br/><li id="17">sociable<ol class="answerList"><li><a id="q49" >adjective + -er</a></li><li><a id="q50" >more + adjective</a></li><li><a id="q51" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1ar.mp3" mode="1" id="17"  /><br/><li id="18">tiring<ol class="answerList"><li><a id="q52" >adjective + -er</a></li><li><a id="q53" >more + adjective</a></li><li><a id="q54" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1as.mp3" mode="1" id="18"  /><br/><li id="19">well-informed<ol class="answerList"><li><a id="q55" >adjective + -er</a></li><li><a id="q56" >more + adjective</a></li><li><a id="q57" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1at.mp3" mode="1" id="19"  /><br/><li id="20">wide<ol class="answerList"><li><a id="q58" >adjective + -er</a></li><li><a id="q59" >more + adjective</a></li><li><a id="q60" >irregular</a></li></ol><br/></li><audio class="leftFloat" src="../Media/LE_WR1au.mp3" mode="1" id="20"  /></ol>
+</section>
+<section id="fb1">
+	<p align="left">1. bad - worse</p>
+</section>
+<section id="fb2">
+	<p align="left">2. easy - easier. This has two syllables, but it ends in 'y'.</p>
+</section>
+<section id="fb3">
+	<p align="left">3. exact - more exact. This has two syllables.</p>
+</section>
+<section id="fb4">
+	<p align="left">4. far - farther / further. </p>
+</section>
+<section id="fb5">
+	<p align="left">5. fast - faster. This has only one syllable.</p>
+</section>
+<section id="fb6">
+	<p align="left">6. few - fewer. This has only one syllable.</p>
+</section>
+<section id="fb7">
+	<p align="left">7. good - better.</p>
+</section>
+<section id="fb8">
+	<p align="left">8. harmful - more harmful. This has only one syllable.</p>
+</section>
+<section id="fb9">
+	<p align="left">9. healthy - healthier. This has two syllables, but it ends in 'y'.</p>
+</section>
+<section id="fb10">
+	<p align="left">10. imaginative - more imaginative. This has more than two syllables.</p>
+</section>
+<section id="fb11">
+	<p align="left">11. important - more important. This has more than two syllables.</p>
+</section>
+<section id="fb12">
+	<p align="left">12. isolated - more isolated. This has more than two syllables.</p>
+</section>
+<section id="fb13">
+	<p align="left">13. limited - more limited. This has more than two syllables.</p>
+</section>
+<section id="fb14">
+	<p align="left">14. lonely - lonelier. This has two syllables, but it ends in 'y'.</p>
+</section>
+<section id="fb15">
+	<p align="left">15. popular - more popular. This has more than two syllables.</p>
+</section>
+<section id="fb16">
+	<p align="left">16. safe - safer.  This has only one syllable.</p>
+</section>
+<section id="fb17">
+	<p align="left">17. sociable - more sociable. This has more than two syllables.</p>
+</section>
+<section id="fb18">
+	<p align="left">18. tiring - more tiring.</p>
+</section>
+<section id="fb19">
+	<p align="left">19. well-informed - better informed. This has more than two syllables.</p>
+</section>
+<section id="fb20">
+	<p align="left">20. wide - wider. This has only one syllable.</p>
+</section>
+<section id="rt2001">
+	
+		<p align="left">In order to show how the way in which the children spend their leisure time has changed as a result of television, it is necessary to make comparisons between the present and the past. We often use comparative adjectives when we make comparisons.</p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc timed="224"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="7 " correct="true"/><answer value="07" correct="true"/><answer value="7th" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="8 " correct="true"/><answer value="eight" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="circle " correct="true"/><answer value="the circle" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="A8 A9 " correct="true"/><answer value="A 8 A 9" correct="true"/><answer value="A9 A8" correct="true"/><answer value="A 9 A 8" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="30 " correct="true"/><answer value="thirty" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="Hart " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="9087 6788 0156 5532 " correct="true"/><answer value="9087678801565532" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="23 Chilcomb Road" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/AC_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/AC_LN1.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM	</b></font></p><p align="left">Production	HamletDate	(1) <input id="1" width="100" /> September</p>Time	(2) <input id="2" width="100" /> p.m.Seating Area	(3) <input id="3" width="100" />No. of Tickets	TWOSeat Numbers	(4)  <input id="4" width="100" />Total Cost		£ (5) <input id="5" width="100" /><p align="left"><b>CREDIT CARD DETAILS	</b>Card	_ VISA	_ Master Card	X American ExpressName of Cardholder	Mr Richard (6) <input id="6" width="100" /></p>Card No.	(7) <input id="7" width="100" />Expiry Date	March 2005<p align="left"><b>DELIVERY METHOD	</b>	_ Hold tickets for collection		X Post tickets	Address	(8) <input id="8" width="100" />, Winchester</p>Contact No.	2719 8832<p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left">DEFAULT The 7th is his second choice but the date he asked for first was unavailable.</p>
+</section>
+<section id="fb3">
+	<p align="left">DEFAULT He says 'I'll go for the circle' meaning he would like tickets in the circle.</p>
+</section>
+</body>
+</bento>

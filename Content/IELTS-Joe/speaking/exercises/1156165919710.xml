@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will you do when you're not sure about something?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_SP_003.JPG" mode="1" id="1001"  /><video class="leftFloat" src="../Media/Unit02_e3a.flv" mode="16" id="1003"  /><video class="leftFloat" src="../Media/Unit02_e3b.flv" mode="16" id="1004"  /><video class="leftFloat" src="../Media/Unit02_e3c.flv" mode="16" id="1005"  /><video class="leftFloat" src="../Media/Unit02_e3d.flv" mode="16" id="1006"  /><p align="left"><font color="#000000"><b>Look at these expressions:</b></font></p><ol><li>Sorry, could you repeat that?</li><li>Could you say that again?</li><li>I didn't catch what you said?</li><li>I'm not sure what you mean by … ?</li><li>Do you mean … or … ?</li><li>I'm not sure what "urban" means.</li></ol><p align="left"><font color="#000000">Now look at the following clips:</font></p>Dimitris realises he has nothing more to say: "Nothing else, really."<p align="left"><font color="#000000">Zafir asks for clarification: "This is a little bit confusing, you mean … ?"</font></p><p align="left">Alexandra hesitates to collect her thoughts before talking about the family.</p><p align="left">Dimitris explains, "I don't see really a big difference".</p><p align="left">These examples, and others you will notice during the other interviews, should reassure you.</p><p align="left"><font color="#000000">You are not being tested on your general knowledge, but on your ability to communicate. There are no fixed answers! Concentrate on learning language skills and communication skills.</font></p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

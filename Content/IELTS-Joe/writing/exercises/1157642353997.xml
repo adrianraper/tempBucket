@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="targetspotting" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><TargetSpottingQuestion><answer source="q1" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="q3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/SS_AW_013b.jpg" mode="1" id="1001"  /><p align="left"><b>Prison serves no useful purpose for young first-time offenders. No young person committing a crime for the first time should receive a prison sentence.</b></p><p align="left"><b><g id="1">A</g></b> Most young criminals commit their first crime while they are teenagers and generally do so because they are looking for excitement, or because they are following the example of older friends. I am convinced that sending these young people to prison is a counter-productive way of combating crime, and there are a number of reasons why I believe young first-time offenders should not be imprisoned.&nbsp;<g id="2">B</g> No one would dispute the fact that in many societies today juvenile crime has become a very serious issue. While there is much discussion about what form of punishment is the most effective in dealing with young offenders, we seldom consider the causes of the problem. In order to find a solution, we need to look at what motivates these young people to commit crimes.&nbsp;<g id="3">C</g> Soaring crime rates have meant that prison populations are growing too quickly for governments to cope with. Spending on overcrowded prisons is a drain on a country's resources and does nothing to reduce crime. There are a number of alternative forms of punishment which ought to be considered.</p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font face="verdana" size="13" color="#000000">It's clear from this introduction that the writer is about to begin a discussion of the reasons why young people commit crimes. This is not what the task asks for.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">No mention is made in this introduction of first-time or young offenders. A general discussion of prison as a punishment is not what is asked for in this task. The focus is an prison as a punishment for first-time offenders.</font></p>
+</section>
+</body>
+</bento>

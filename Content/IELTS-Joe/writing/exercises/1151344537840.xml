@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="draganddrop" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><DragQuestion source="q1"><answer source="a10" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a11" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a12" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a13" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a14" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a15" correct="true"/></DragQuestion><DragQuestion source="q7"><answer source="a16" correct="true"/></DragQuestion><DragQuestion source="q8"><answer source="a17" correct="true"/></DragQuestion><DragQuestion source="q9"><answer source="a18" correct="true"/></DragQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look at the charts from an earlier exercise again and put the sentences into the correct gaps.
+</header>
+	
+<section id="noscroll">
+	<span id="a12" draggable="true">Similarly</span><span id="a11" draggable="true">Almost half</span><span id="a16" draggable="true">well over half</span><span id="a18" draggable="true">every four</span><span id="a10" draggable="true">clearly shows</span><span id="a14" draggable="true">Turning now</span><span id="a15" draggable="true">Almost</span><span id="a17" draggable="true">this tendency</span><span id="a13" draggable="true">In sharp contrast</span>
+</section>
+<section id="body">
+	<img class="rightFloat" src="../Media/AC_AW_003s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/AC_AW_003.jpg" mode="16" id="1004"  /><p align="left">The bar chart <font color="#0000ff"><input id="q1" type="droptarget" /> that adult readers in New Zealand prefer fiction or non-fiction to poetry for their leisure time reading. <font color="#0000ff"><input id="q2" type="droptarget" />&#160;</font>of all New Zealand adults read fiction of some kind in their free time. <font color="#0000ff"><input id="q3" type="droptarget" /></font>, just over two-fifths read works of non-fiction for pleasure<font color="#0000ff">. <input id="q4" type="droptarget" /></font>, only a tiny minority (6%) enjoy reading poetry. <font color="#0000ff"><input id="q5" type="droptarget" /></font> to the reading preferences of men and women, the pie charts suggest that the New Zealand readership is mostly female. <font color="#0000ff"><input id="q6" type="droptarget" /></font> two-thirds of adults who read fiction are women. Likewise, <font color="#0000ff"><input id="q7" type="droptarget" /></font> of readers of non-fiction are women. However, <font color="#0000ff"><input id="q8" type="droptarget" /></font> is most noticeable in the readership for poetry. Three out of <font color="#0000ff"><input id="q9" type="droptarget" /></font> of these readers are women.</font></p><p align="left"><font size="2"></font></p>
+		<p align="left">
+		<b>Click to enlarge</b></p>
+</section>
+<section id="rt2001">
+	<p align="left">As well as having an overall plan for your report, each paragraph also needs to be logically organised. One way to organise a paragraph is by grouping information to show the similarities and contrasts in the figures. Using linking words and expressions such as 'similarly', 'likewise', 'in contrast' and 'however' can help make this clearer.</p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_SP_001.JPG" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Talking about yourself</b></font>&nbsp;You will ...</p><ol><li>watch examples of students answering questions about	themselves in the first part of the speaking test.</li><li>think about how to deal with difficult questions or when	you are not sure about something.</li><li>learn what you should do in Part 2 of the speaking test.</li><li>watch a candidate answering a Part 2 task.</li><li>look at ways of making complex notes.</li><li>watch the examiner ask the candidate a follow up	question.</li></ol><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

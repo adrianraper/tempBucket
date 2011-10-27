@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc timed="305"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="antennae " correct="true"/><answer value="antenna" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="palp " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="needle " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="proboscis " correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 9-12. Complete the labels on the diagram below. Write ONE WORD for each answer.
+		
+</header>
+	
+<section id="body">
+	<media class="leftFloat" src="../Media/HF_LN2b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/HF_LN_004.jpg" mode="1" id="1004"  /><p align="left"><font color="#000000"><b>(9)	</b>&#160;<input id="1" width="100" /></font></p>(10)	&#160;<input id="2" width="100" />(11)	&#160;<input id="3" width="100" />(12)	&#160;<input id="4" width="100" /><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left">9. She says these are projections with hairs called antennae.</p>
+</section>
+<section id="fb2">
+	<p align="left">10. Sally says that this is a type of sensor called a palp.</p>
+</section>
+<section id="fb3">
+	<p align="left">11. Sally says that this long pointed thing is the needle.</p>
+</section>
+<section id="fb4">
+	<p align="left">12. Sally says that this long, curved tube is the proboscis.</p>
+</section>
+</body>
+</bento>

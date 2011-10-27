@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/></GapFillQuestion><GapFillQuestion group="q9"><answer source="a9" correct="true"/></GapFillQuestion><GapFillQuestion group="q10"><answer source="a10" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Complete the summary on the right using NO MORE THAN THREE WORDS from the passage on the left for each answer. Write your answers in the gaps 1-10.
+		
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><li id="1">Statistics tell us that, on average, children and adults spend more time watching television than on almost any other activity. The author sees this trend as a threat to the shaping of the <input id="q1" width="100" /> in years to come and also to the proper education of the young.</li><li id="2">Criticism has already been voiced concerning the <input id="q2" width="100" /> of television programmes,</li><li id="3">TV advertising that takes advantage of <input id="q3" width="100" /></li><li id="4">and also the lack of objectivity in <input id="q4" width="100" />.</li><li id="5">However, according to the author, much of TV's influence is not directly related to what viewers watch but to the fact that they watch at all. This, she argues, is TV's <input id="q5" width="100" />. </li><li id="6">The most significant effect of this is the exclusion of other leisure activities from people's lives and the consequent lack of interaction with the community beyond the <input id="q6" width="100" />. </li><li id="7">The author goes on to cite studies which evidence other harmful effects, such as the impairment of people's ability to think. For the author, most worrying of all are studies which show that TV viewing causes the deterioration of the <input id="q7" width="100" />. </li><li id="8">Other studies suggest that the way television operates, by means of <input id="q8" width="100" />, </li><li id="9">leads to the weakening of areas of the brain associated with the capacity to <input id="q9" width="100" /></li><li id="10">and the dominance of those areas responsible for <input id="q10" width="100" />. </li></ol>
+</section>
+<section id="rt2001">
+	<p align="left">Questions 1-10 - Summary completion&nbsp;First, you should read the summary and analyse each gap carefully, thinking about the kind of word or phrase needed for each one. A noun or noun phrase? A verb or verb phrase? An adjective? An adverb? This is very important, as your answers must be grammatically correct. Next, skim through the passage to find the relevant information. Remember, you're not allowed to use more than three words for each gap and these must be taken from the reading passage.&nbsp;Thinking about these questions before you search for answers in the passage should give you a clearer idea of what you are looking for.&nbsp;Question 1In this sentence 'shaping' means 'formation' or 'development'. What might television threaten the information or development of, do you think?&nbsp;Question 2 What aspects of television programmes do people criticise?&nbsp;Question 3Who or what does television advertising take advantage of?&nbsp;Question 4When should television be objective, do you think?&nbsp;Question 7'Deterioration' mean 'worsening'. What might get worse if you watch too much television? Be careful here. The writer mentions a number of harmful effects of television. To fill this gap correctly, you have to decide which one she finds 'most worrying'.&nbsp;Questions 9 and 10What 'capacities' does the brain have? In other words, what can it do?</p>
+</section>
+<section id="readingText">
+	<p align="left"><font face="verdana" size="13" color="#0000ff"><b>Tuned in and switched off </b></font>&nbsp;For years US statistics have been telling us that people watch, on average, more than seven hours of television a day. In fact, by the time they reach the age of 18, most children have spent more time in front of the TV set than at school. As adults, the only activity which rivals TV viewing (in terms of time devoted to it) is sleeping.</p>&nbsp;As this profile of human life becomes a planet-wide characteristic, it raises grave doubts about the future of human intellect and the goal of educating children to become balanced and rounded human beings. Television erects major obstacles to that goal both by imposing its own definition of what a whole person is and by teaching us a way of living that accords with its own curriculum.&nbsp;The overt part of television's curriculum is its programming content and its advertising. Television is a mass classroom - for adults and children alike - in which we are educated in a quite narrow range of behaviors and values. Recently people have begun to criticize the violence, sexism and racism in many programmes, the exploitation of children's needs by commercials aimed at them, the biased politics of 'objective' news reporting.&nbsp;But there is another aspect of television's curriculum that is more hidden - and perhaps even more powerful - than that contained in specific programmes. Just consider, for a moment, all the things a person is not doing during those seven hours they spend in front of the set each day. A whole range of leisure pursuits, hobbies, social encounters, information sources, are automatically excluded. The most powerful impact of TV's hidden curriculum is simply that of keeping people switched off from life outside the living room.  &nbsp;Needless to say, there have been certain noticeable effects on people raised on TV over the past 40 years. Psychologists Dorothy and Jerome Singer, co-directors of the Yale University Family Television Research and Consultation Center, found that addicted TV viewers have a shortened attention span and a lack of reflectiveness - the ability to think, in other words. Another study, in Harvard in 1981, revealed that children learning from television showed poorer logical thinking than those who obtained their information from books. Other research, by child psychologist Dorothy Cohen, found that extensive TV viewing led to atrophy of children's imaginations.&nbsp;It is erosion - or elimination - of the imagination that is perhaps the most worrying aspect of TV's hidden curriculum. The imagination is one of the most important - and potentially political - characteristics of the human species. Through it we can challenge the status quo, raise the possibility of social change, imagine things that have never existed before, social arrangements that have never been tried.&nbsp;But television tends to block this ability by filling our minds with its own images and reiterating them over and over again. Our own capacities diminish as they become dominated by TV images. And it becomes more and more difficult to imagine any world other than the one portrayed on TV. There is also evidence that TV, as a technology which works by electronic scanning, effectively shuts down the functioning of those parts of the brain that reason and think actively and logically - the skills that have been associated with the left hemisphere of the brain. Switching off this mode of processing allows the complementary mode to predominate. This mode has been associated with the right hemisphere and tends more towards passive visual processing, during which the overall emotional tone of a situation becomes paramount.&nbsp;Obviously this is dangerous. We need to be alert to all aspects of our environment if we are to live sanely in the world. And it is essential that we should be the ones who control just which parts of our brains we use so that we can achieve what we have decided are our goals.&nbsp;The person who graduates from television's school, then, is someone who has little imagination and few skills in logical analysis and critical discussion, they have a marked preference for images rather than reality; and a deep and increasing commitment to just one activity: watching television. Educators, and others, who abhor the idea of a world filled with TV's graduates are clearly out of step with the times. But that, in itself, may provide reason for hope.&nbsp;Joyce Nelson, New Internationalist Magazine, Issue 180, February 1988.&nbsp;
+</section>
+</body>
+</bento>

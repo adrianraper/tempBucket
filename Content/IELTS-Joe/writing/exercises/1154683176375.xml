@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	IELTS Writing Task 2You should spend about 40 minutes on this task and write at least 250 words.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/WB_AW_019.jpg" mode="1" id="1001"  /><p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topics.&nbsp;In most countries, young people form a large proportion of those who are unemployed. Why is this the case, and what can be done to solve the problem?&nbsp;You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

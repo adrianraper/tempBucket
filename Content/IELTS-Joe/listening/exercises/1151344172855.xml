@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="240"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="E-mail address " correct="true"/><answer value="Email address" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="Your nationality " correct="true"/><answer value="Nationality" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="Diplomas " correct="true"/><answer value="Certificates" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="Certificates " correct="true"/><answer value="Diplomas " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="PC skills " correct="true"/><answer value="Computer skills" correct="true"/><answer value="Foreign languages spoken" correct="true"/><answer value="Foreign languages" correct="true"/><answer value="Languages spoken" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="Foreign languages spoken " correct="true"/><answer value="PC skills" correct="true"/><answer value="Computer skills" correct="true"/><answer value="Foreign languages" correct="true"/><answer value="Languages spoken" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="Work experience " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="Job title " correct="true"/><answer value="Title of job" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS for each answer.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/WB_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/WB_LN1a.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>Layout of a Curriculum Vitae</b></font></p><p align="left"><font color="#000000"><b>Section 1:	Personal Information</b></font></p>	Name	Home address	Telephone number	(1) <input id="1" width="100" />	Date of Birth	Place of Birth	(2) <input id="2" width="100" /><p align="left"><font color="#000000"><b>Section 2:	Education &amp; Qualifications</b></font></p>(dates)	University Degrees	(3) <input id="3" width="100" />&#160;	(4) <input id="4" width="100" />(dates)	Secondary School	A-levels	GCSEs<p align="left"><font color="#000000"><b>Section 3:	Skills</b></font></p>Examples:	Driving	(5) <input id="5" width="100" />	Typing	(6) <input id="6" width="100" /><p align="left"><font color="#000000"><b>Section 4:</b>	(7) <input id="7" width="100" /></font></p>(dates)	(8) <input id="8" width="100" />	Company	Address	Duties<p align="left"><font color="#000000"><b>Section 5:	Activities</b></font></p>	Hobbies and interests<p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left"><font face="verdana" size="13" color="#000000">1. Address is already given as 'home address' above. What other kind of address is there?</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">3. Mary is not talking about one specific diploma but diplomas in general. </font></p>
+</section>
+</body>
+</bento>

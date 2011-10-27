@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to Zafir's answer to the question "How do you think daily life has changed since the arrival of modern technology?" again. Could he have given a better answer?
+		
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit011_e3n4.flv" mode="1" id="1003"  /><p align="left">Watch Zafir again, how many points does he make?</p><p align="left">What advice would you give him about making his points more clearly?</p><p align="left"><font color="#000000">Look at the list below:</font></p>- State each point clearly- Give an example to illustrate each point- Use linking words and phrases, such as "also", or "as well as"- Use a wider vocabulary – perhaps talk about the internet, for example- Make more points- Avoid too much repetition<p align="left"><font color="#000000">Can you think of at least three ways in which daily life has changed since the arrival of modern technology? Don't forget to give an example for each one!</font></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="multiplechoice" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="true"/><answer source="a3" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="false"/><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="false"/><answer source="a8" correct="false"/><answer source="a9" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="false"/><answer source="a11" correct="true"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="true"/><answer source="a20" correct="false"/><answer source="a21" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a22" correct="false"/><answer source="a23" correct="false"/><answer source="a24" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a25" correct="true"/><answer source="a26" correct="false"/><answer source="a27" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a28" correct="false"/><answer source="a29" correct="true"/><answer source="a30" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="a31" correct="false"/><answer source="a32" correct="false"/><answer source="a33" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="a34" correct="false"/><answer source="a35" correct="false"/><answer source="a36" correct="true"/></MultipleChoiceQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	Look carefully at the charts and choose the best option, a, b or c.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/Unit02_Write_e2ab_s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/Unit02_Write_e2ab.jpg" mode="16" id="1004"  /><img class="leftFloat" src="../Media/Unit02_Write_e2cd_s.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../Media/Unit02_Write_e2cd.jpg" mode="16" id="1006"  /><img class="leftFloat" src="../Media/Unit02_Write_e2ef_s.jpg" mode="1" id="1007"  /><img class="leftFloat" src="../Media/Unit02_Write_e2ef.jpg" mode="16" id="1008"  /><img class="leftFloat" src="../Media/Unit02_Write_e2gh_s.jpg" mode="1" id="1009"  /><img class="leftFloat" src="../Media/Unit02_Write_e2gh.jpg" mode="16" id="1010"  /><img class="leftFloat" src="../Media/Unit02_Write_e2ij_s.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../Media/Unit02_Write_e2ij.jpg" mode="16" id="1012"  /><img class="leftFloat" src="../Media/Unit02_Write_e2kl_s.jpg" mode="1" id="1013"  /><img class="leftFloat" src="../Media/Unit02_Write_e2kl.jpg" mode="16" id="1014"  /><br/><ol id="questionList"><br/><li id="1">How many people spoke three languages in 2001?<ol class="answerList"><li><a id="q1" >1 million</a></li><li><a id="q2" >1.5 million</a></li><li><a id="q3" >3 million</a></li></ol><br/></li><br/><li id="2">The number of people who spoke two languages (…) between 1960 and 2001.<ol class="answerList"><li><a id="q4" >decreased by 500,000</a></li><li><a id="q5" >remained the same</a></li><li><a id="q6" >increased by 500,000</a></li></ol><br/></li><br/><li id="3">What does this graph show?<ol class="answerList"><li><a id="q7" >the number of people in the population who had language disorders</a></li><li><a id="q8" >the number of people in the population who did not have language disorders</a></li><li><a id="q9" >the proportion of the population who had language disorders</a></li></ol><br/></li><br/><li id="4">In 1981 (…) had language disorders.<ol class="answerList"><li><a id="q10" >500,000 people</a></li><li><a id="q11" >5 in every 100,000 people</a></li><li><a id="q12" >5 per cent of the population</a></li></ol><br/></li><br/><li id="5">Approximately how many students studied Italian in 1987?<ol class="answerList"><li><a id="q13" >30</a></li><li><a id="q14" >80</a></li><li><a id="q15" >180</a></li></ol><br/></li><br/><li id="6">Between 1997 and 2002 the number of students of Italian (…).<ol class="answerList"><li><a id="q16" >fell</a></li><li><a id="q17" >remained the same</a></li><li><a id="q18" >rose</a></li></ol><br/></li><br/><li id="7">How much time did the majority of 19 to 25-year-olds spend on the telephone each week?<ol class="answerList"><li><a id="q19" >less than 1 hour</a></li><li><a id="q20" >1 to 3 hours</a></li><li><a id="q21" >more than 5 hours</a></li></ol><br/></li><br/><li id="8">Which age group spent the least time on the telephone per week?<ol class="answerList"><li><a id="q22" >12-18</a></li><li><a id="q23" >26-45</a></li><li><a id="q24" >65+</a></li></ol><br/></li><br/><li id="9">How many languages were spoken in 1500?<ol class="answerList"><li><a id="q25" >approximately 7,000</a></li><li><a id="q26" >7,000</a></li><li><a id="q27" >approximately 9,000</a></li></ol><br/></li><br/><li id="10">What is the predicted world population in 2100?<ol class="answerList"><li><a id="q28" >8,000 million</a></li><li><a id="q29" >10,000 million</a></li><li><a id="q30" >80,000 million</a></li></ol><br/></li><br/><li id="11">What does this chart show?<ol class="answerList"><li><a id="q31" >the percentage of the population with e-mail and personal web sites</a></li><li><a id="q32" >the percentage of workers who know how to use e-mail and web sites</a></li><li><a id="q33" >the percentage of workers whose employers provide them with e-mail facilities or personal web sites</a></li></ol><br/></li><br/><li id="12">The percentage of UK employees with access to e-mail or web sites (…) between 1997 and 1998.<ol class="answerList"><li><a id="q34" >decreased</a></li><li><a id="q35" >remained the same</a></li><li><a id="q36" >increased</a></li></ol><br/></li></ol>
+</section>
+<section id="rt2001">
+	<p align="left">Before you begin writing your report, it is important to make sure that you have understood the chart properly. Check that you have read the axes carefully and that you understand what the figures refer to. Don't forget also to look carefully at the key or legend and the title. They will all help to give you a better understanding of what the chart shows.</p>
+</section>
+</body>
+</bento>

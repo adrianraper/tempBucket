@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/></GapFillQuestion><GapFillQuestion group="q5"><answer source="a5" correct="true"/></GapFillQuestion><GapFillQuestion group="q6"><answer source="a6" correct="true"/></GapFillQuestion><GapFillQuestion group="q7"><answer source="a7" correct="true"/></GapFillQuestion><GapFillQuestion group="q8"><answer source="a8" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-8. The passage on the left has eight paragraphs A-H. Choose the most suitable heading for each paragraph from the list on the right. Write the appropriate numbers (i-xii) in gaps 1-8. There are more headings than paragraphs, so you will not use them all.
+		
+</header>
+	
+<section id="body">
+	<br/><ol id="questionList"><p align="left"><b>	List of Headings</b>-------------------------------i	Turning interest into salesii	A cautionary taleiii	The best way to learniv	Increasing demandv	Using professionalsvi	Making profitsvii	Using available resourcesviii	Technology for translationix	Motivation to learnx	Where to learnxi	Advice for native speakersxii	Worrying figures</p><li id="1">Paragraph A  <input id="q1" width="100" /></li><li id="2">Paragraph B  <input id="q2" width="100" /></li><li id="3">Paragraph C  <input id="q3" width="100" /></li><li id="4">Paragraph D  <input id="q4" width="100" /></li><li id="5">Paragraph E  <input id="q5" width="100" /></li><li id="6">Paragraph F  <input id="q6" width="100" /></li><li id="7">Paragraph G  <input id="q7" width="100" /></li><li id="8">Paragraph H  <input id="q8" width="100" /></li></ol>
+</section>
+<section id="fb1">
+	<p align="left"><font face="verdana" size="13" color="#000000">1. 'A cautionary tale' is a story that warns us of a danger.</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font face="verdana" size="13" color="#000000">2. The figures in paragraph B are worrying because they show how few British employees speak another language, and the amount of international trade that is lost as a result.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font face="verdana" size="13" color="#000000">3. Paragraph C describes an increasing demand for language training.</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font face="verdana" size="13" color="#000000">4. Paragraph D describes the steps Canford Group took to ensure that interest in its products from overseas resulted in orders.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font face="verdana" size="13" color="#000000">5. Paragraph E describes how employees are motivated to learn a language if they know it will bring them benefits such as promotion and a higher salary.</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font face="verdana" size="13" color="#000000">6. 'Professionals' refers to professional translators.</font></p>
+</section>
+<section id="fb7">
+	<p align="left"><font face="verdana" size="13" color="#000000">7. Paragraph G describes how one firm made use of local human resources: a student and an employee who could speak Chinese.</font></p>
+</section>
+<section id="fb8">
+	<p align="left"><font face="verdana" size="13" color="#000000">8. This is advice that native speakers of English should follow when communicating with non-native speakers.</font></p>
+</section>
+<section id="readingText">
+	<p align="left"><font color="#0000ff"><b>Mind your language</b></font></p><p align="left">Small businesses are losing out because they have poor linguistic skills. When will they learn that English is not the only international business language?</p><p align="left"><font color="#0000ff"><b>A</b> In business a lack of linguistic ability can be fatal. Scare stories are legion, but the most poignant involves a UK manufacturer that went bust last year. When the official receivers looked through the paperwork, they found a letter in a filing cabinet, written in German. No-one at the firm had understood it, so it had been filed away with other miscellaneous correspondence. It turned out to be a purchase order big enough to have saved the firm from insolvency.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>B</b><font color="#000000">  Small businesses need to sit up and take notice. Research shows that only 38% of British companies employing up to 500 people have an executive able to negotiate in another language. The Centre for Information on Language Teaching and Research (CILT) has found that a third of UK exporters miss out on trade opportunities because of poor language skills.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>C</b><font color="#000000">  As stories of export success filter through, however, the Department of Trade and Industry (DTI), Training and Enterprise Councils and language schools are reporting increasing interest from small businesses in their training services. "People are realising that if the British are monolingual at higher levels, potential business will go elsewhere," says Reinier Salverda, professor of Dutch at University College London. "More and more people are coming to us," confirms Paul Moran of the Language Training Centre in Liverpool. "They know business is about relationships and contacts and you can't have either if you can't talk your customer's language."<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>D</b>  Moran echoes the beliefs of companies such as Canford Group, a Tyne and Wear mail-order audio equipment supplier, which started receiving a number of enquiries from abroad around eight years ago. The company used a translation agency to produce foreign language versions of its 850-page catalogue and recruited new staff with language skills. "It seemed silly not to be able to convert those overseas enquiries into orders," says Canford chairman Hugh Morgan Williams. The company also joined forces with Sunderland City Council on a scheme to boost linguistic skills within its workforce.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>E</b><font color="#000000">  But how do you persuade employees to learn a language? "Our employees know it will make their jobs easier and, most importantly, they know it will help them to get on in the company," says Morgan Williams. Getting on means promotion and promotion means more pay. It works. In the last two years, Canford's turnover has risen from £12 million to £17.5 million. A third of its total turnover is now made up of exports.<font color="#0000ff"></font></font></font></p><p align="left"><font color="#0000ff"><b>F</b>  For a company that has so many staff with language skills, it may seem strange that Canford still uses an external translator for its catalogues. But this policy comes recommended by experts in the field. The DTI has seen the alarming consequences of small and medium-size businesses using "cheap, unregulated services" or, worse still, attempting to do the job in-house without having the requisite fluency. If a translator is not bilingual, they should be translating into their native tongue. The DTI recommends translators who belong to a professional body, such as the Institute of Translation and Interpreting, which monitors the qualifications and competence of its members. It also advises companies to appoint someone to buy translation services and recommends listening to feedback from translation users as a means of quality control.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>G</b>  While it helps to learn a few basics of a customer's language, even non-linguists can export, says Moran. When Peebles Transformers of Edinburgh won a contract to supply a Tianhuangping Pumped Storage site in China with six generators, the firm organised a multimedia training package for its staff in Mandarin. It used a local computer-science student, gathered audio- visual material on site and hired a local Chinese employee for translations and voice-overs.<font color="#0000ff"></font></font></p><p align="left"><font color="#0000ff"><b>H </b><font color="#000000"> If the worst comes to the worst, small businesses have to resort to English but should bear in mind a few ground rules. When dealing with customers, you should avoid colloquialisms and idioms, speak slowly and give the customer time to absorb what has been said. Do not get impatient if you are asked to repeat a phrase. Avoid complex sentence structures including double or phrasal verbs – "develop" a proposal, not "work up" a proposal. Finally, don't assume that a smile or nod from a foreign colleague or customer denotes agreement. They might be too polite or too embarrassed to say "I don't understand".<font color="#0000ff"></font></font></font></p><p align="left">John Bloom, Management Today, August 1998.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		The beginning of Part 1 of the IELTS Speaking Module is easy, in that you can prepare for it. The questions ask for specific details about you. The Examiner will say "Good morning", or "Good afternoon", or "Good evening". You should respond in the same way.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/LC_SP_002.JPG" mode="1" id="1001"  /><video class="rightFloat" src="../Media/Unit02_e1a.flv" mode="16" id="1003"  /><video class="rightFloat" src="../Media/Unit02_e1b.flv" mode="16" id="1004"  /><video class="rightFloat" src="../Media/Unit02_e1c.flv" mode="16" id="1005"  /><video class="rightFloat" src="../Media/Unit02_e1d.flv" mode="16" id="1006"  /><video class="rightFloat" src="../Media/Unit02_e1e.flv" mode="16" id="1007"  /><video class="rightFloat" src="../Media/Unit02_e1f.flv" mode="16" id="1008"  /><video class="rightFloat" src="../Media/Unit02_e1g.flv" mode="16" id="1009"  /><video class="rightFloat" src="../Media/Unit02_e1h.flv" mode="16" id="1010"  /><video class="leftFloat" src="../Media/Unit02_e1i.flv" mode="16" id="1011"  /><video class="leftFloat" src="../Media/Unit02_e1j.flv" mode="16" id="1012"  /><video class="leftFloat" src="../Media/Unit02_e1k.flv" mode="16" id="1013"  /><video class="leftFloat" src="../Media/Unit02_e1l.flv" mode="16" id="1014"  /><p align="left"><font color="#0000ff"><b>You will be asked questions such as the following:</b></font></p><p align="left"><b>1. What is your name?</b>Give your full name - given name, then surname.</p><p align="left"><b>2. Where are you from?</b>Give your town and country, if the Examiner is unlikely to know it. Follow with a brief explanation, eg "it's the capital of my country", or "it's a small village fifty kilometers from the capital".</p><p align="left"><b>3. Do you work or do you study?</b>I study engineering / I'm a teacher etc. Follow with a brief description.</p><p align="left">After this giving of personal information, you will be asked to give your opinion on general topics, such as friends, family, leisure activities, celebrations, or hobbies.</p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

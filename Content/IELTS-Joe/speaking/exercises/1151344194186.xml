@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="presentation" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Conversational techniques required for Part 3. Read the techniques you need to learn and watch the videos.
+		
+</header>
+	
+<section id="body">
+	<video class="rightFloat" src="../Media/Unit09_e2a.flv" mode="16" id="1003"  /><video class="rightFloat" src="../Media/Unit09_e2b.flv" mode="16" id="1004"  /><p align="left">1.	Learn to give reasons for your opinions.</p><ol><li>Learn strategies for when you don't understand the	question.</li><li>Learn what to do when you don't know the answer.</li><li>Learn how to cover up gaps in your vocabulary.</li></ol><p align="left"><font size="2"></font></p>
+<p align="left">
+<b>Click to watch the video</b></p>
+<p align="left">
+<b>Click to watch the video</b></p>
+</section>
+</body>
+</bento>

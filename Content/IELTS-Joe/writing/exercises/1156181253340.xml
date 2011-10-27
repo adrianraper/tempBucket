@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="proofreading" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise hiddentargets="true" proofreading="true"/>
+		<misc/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions/></script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../Media/TT_Task01.jpg" mode="16" id="1004"  />
+		
+		Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 12 and they are all grammatical errors. Click on them.
+		
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/TT_AW_007s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../Media/TT_AW_007.jpg" mode="16" id="1005"  /><br/><ol id="questionList"></ol>
+</section>
+<section id="fb1">
+	<p align="left"><font color="#000000"><b>greatest -> greater:</b> This sentence includes the word 'than' and so the comparative form of the adjective is needed here.</font></p>
+</section>
+<section id="fb2">
+	<p align="left"><font color="#000000"><b>less and less -> fewer and fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font></p>
+</section>
+<section id="fb3">
+	<p align="left"><font color="#000000"><b>more -> most</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font></p>
+</section>
+<section id="fb4">
+	<p align="left"><font color="#000000"><b>much -> many</b>: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font></p>
+</section>
+<section id="fb5">
+	<p align="left"><font color="#000000"><b>farer -> further</b>: 'Farer' is not the correct form of the comparative of this adjective.</font></p>
+</section>
+<section id="fb6">
+	<p align="left"><font color="#000000"><b>strikingest -> most striking</b>: 'Strikingest' is not the correct form of the superlative of this adjective.</font></p><p align="left"></p>
+</section>
+<section id="fb7">
+	<p align="left"><b>amount -> number</b></p>
+</section>
+<section id="fb8">
+	<p align="left"><font color="#000000"><b>much less -> far fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font></p>
+</section>
+<section id="fb9">
+	<p align="left"><font color="#000000"><b>many -> great</b>: 'Distance' is an uncountable noun. 'Many' can only be used with countable nouns.</font></p>
+</section>
+<section id="fb10">
+	<p align="left"><font color="#000000"><b>greater -> greatest</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font></p>
+</section>
+<section id="fb11">
+	<p align="left"><b>further -> far</b></p>
+</section>
+<section id="fb12">
+	<p align="left"><b>most youngest -> youngest</b></p>
+</section>
+<section id="fb14">
+	<p align="left"><b>The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</b></p>
+</section>
+<section id="fb15">
+	<p align="left"><font color="#000000">Many: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font></p>
+</section>
+<section id="fb16">
+	<p align="left"><font color="#000000">most: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font></p>
+</section>
+</body>
+</bento>

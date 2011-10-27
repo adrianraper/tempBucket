@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc timed="130"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion source="q1"><answer value="take regular exercise " correct="true"/><answer value="do exercise" correct="true"/><answer value="take exercise" correct="true"/><answer value="exercise regularly" correct="true"/><answer value="do regular exercise" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="wash hands often " correct="true"/><answer value="wash hands" correct="true"/><answer value="wash hands regularly" correct="true"/><answer value="wash hands frequently" correct="true"/><answer value="wash your hands" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="get enough sleep " correct="true"/><answer value="sleep enough" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="wrap up warmly " correct="true"/><answer value="wrap up well" correct="true"/><answer value="wear warm clothes" correct="true"/><answer value="dress well" correct="true"/><answer value="dress warmly" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 8-11. Write NO MORE THAN THREE WORDS for each answer.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../Media/HF_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../Media/HF_LN1b.mp3" mode="4" id="1002"  /><p align="left"><b>What FOUR pieces of advice does the speaker give about keeping healthy in winter?</b></p><p align="left"><font color="#000000">(8)   <input id="1" width="100" />&#160;</font></p><p align="left"><font color="#000000">(9)   <input id="2" width="100" />&#160;</font></p><p align="left"><font color="#000000">(10)  <input id="3" width="100" /></font></p><p align="left"><font color="#000000">(11)  <input id="4" width="100" /></font></p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+	<p align="left">8. The speaker says that exercise is very important all year round and that we mustn't become lazy in the winter because our body's disease fighting cells will do the same.</p>
+</section>
+<section id="fb2">
+	<p align="left">9. The speaker says to remember that germs can be transmitted by the hands so the students must remember to wash them regularly.</p>
+</section>
+<section id="fb3">
+	<p align="left">10. The speaker says that the students must make sure they get enough sleep.</p>
+</section>
+<section id="fb4">
+	<p align="left">11. The speaker says that they mustn't forget to wrap up warmly.</p>
+</section>
+</body>
+</bento>

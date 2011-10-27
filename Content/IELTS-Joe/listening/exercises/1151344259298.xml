@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion" type="gapfill" date="2011-10-26" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[			
+		list {
+			list-style-type: decimal;
+			margin-left: 0; 
+			padding-left: 20px; 
+			padding-bottom: 12px; 
+		}
+		p {
+			padding-bottom: 12px; 
+		}
+		.no-padding {
+			padding-bottom: 0px; 
+		}
+		.h1 {
+			font-size: 12px;
+			font-weight: bold;
+			color: #3A00FF;	
+		}
+		#noscroll span[draggable="true"] {
+		   float: left;
+		   width: 140px;
+		} 
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc timed="140"/>
+	</settings>
+	</script>
+	<br/>
+<script id="model" type="application/xml">
+<questions><GapFillQuestion group="q1"><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/><answer source="a1" correct="true"/></GapFillQuestion><GapFillQuestion group="q2"><answer source="a2" correct="true"/></GapFillQuestion><GapFillQuestion group="q3"><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/><answer source="a3" correct="true"/></GapFillQuestion><GapFillQuestion group="q4"><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/><answer source="a4" correct="true"/></GapFillQuestion></questions></script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 10-13. Listen to the recording, which will play automatically, and follow the instructions. Write NO MORE THAN THREE WORDS for each answer.
+		
+</header>
+	
+<section id="body">
+	<media class="leftFloat" src="../Media/ST_LN1c.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../Media/ST_LN_004.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><tab/><b>10</b>When is the earliest a service engineer is available?<input id="q1" width="100" /><tab/><b>11</b>Why is this inconvenient for Jane?<input id="q2" width="100" /><tab/><b>12</b>When would be most convenient for Jane?<input id="q3" width="100" /><tab/><b>13</b>When do they arrange for the service engineer to see the machine?<input id="q4" width="100" /></ol>
+</section>
+</body>
+</bento>
