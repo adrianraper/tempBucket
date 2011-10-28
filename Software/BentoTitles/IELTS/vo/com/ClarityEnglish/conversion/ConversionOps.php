@@ -40,15 +40,22 @@ EOD;
 	function formatHtmlSections() {
 		$build = '';
 		// Better to write out the sections in a specific order
-		// Mind you we build them in a specific order so shoud be fine
+		// Mind you we build them in a specific order so should be fine
 		foreach ($this->exercise->getSections() as $section) {
 			$sectionText = $section->output();
 			$sectionType = $section->getSection();
-			$build .=<<< EOD
+			$sectionBuild =<<< EOD
 \n<section id="$sectionType">
 	$sectionText
 </section>
 EOD;
+			// It might be nice to format the sectionText - not sure. Or leave Dreamweaver to do this?
+			//$build .= $sectionBuild; 
+			$dom = new DOMDocument('1.0');
+			$dom->preserveWhiteSpace = false;
+			$dom->formatOutput = true;
+			$dom->loadXML($sectionBuild);
+			$build .= str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML()); 
 		}
 		return $build;
 	}
@@ -60,7 +67,8 @@ EOD;
 		$settings = strtolower($this->exercise->getSettings());
 		
 		// Model (questions and answers)
-		$model = $this->exercise->model->toString();
+		//$model = $this->exercise->model->toString();
+		$model = $this->exercise->model->output();
 		
 		$now =date('Y-m-d');
 		$build =<<< EOD

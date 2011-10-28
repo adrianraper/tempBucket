@@ -105,8 +105,9 @@ class MediaNode {
 			case 'image':
 				$build.= '<img '; 
 				break;
+			case 'streamingAudio':
 			case 'audio':
-				$build.= '<audio '; 
+				$build.= '<audio controls="compact" '; 
 				break;
 			case 'video':
 				$build.= '<video '; 
@@ -119,10 +120,14 @@ class MediaNode {
 				$build.= '<media ';
 		}
 		// Then based on the x and y we will position it somehow
-		if ($this->x>=100 && $this->y<=100) {
-			$build.= 'class="rightFloat" ';
-		} else {	
-			$build.= 'class="leftFloat" ';
+		// But for now don't try to get video to float as it will fail
+		// It also seems likely that most video exercises will get tweaked a bit anyway
+		if ($this->type!='video') {
+			if ($this->x>=100 && $this->y<=100) {
+				$build.= 'class="rightFloat" ';
+			} else {	
+				$build.= 'class="leftFloat" ';
+			}
 		}
 		// Location is merged into filename
 		// TODO. We want to use symbolic folder names that can be evaluated at runtime.

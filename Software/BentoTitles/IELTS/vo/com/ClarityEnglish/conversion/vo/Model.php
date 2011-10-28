@@ -295,7 +295,7 @@ XML;
 				// Whilst you can get the group from the field, you can also get it from the question
 				// Ideally we would match to make sure they are the same
 				//$newQ->addAttribute('group',$field->group);
-				$newQ->addAttribute('group','q'.$question->getID());
+				$newQ->addAttribute('block','q'.$question->getID());
 				foreach ($question->getFields() as $field) {
 				
 			//	<field mode="0" type="i:target" group="1" id="1">
@@ -324,14 +324,21 @@ XML;
 	// For output to xhtml
 	function output() {
 		// Just output whole model, but make sure it doesn't have xml special header
-		return str_replace('<?xml version="1.0"?>','',$this->model->asXML());
+		// The following works but doesn't use any white space, so tough to read and edit
+		// Stackoverflow suggests going via DOM to get pretty printing
+		//return str_replace('<?xml version="1.0"?'.'>','',$this->model->asXML());
+		$dom = new DOMDocument('1.0');
+		$dom->preserveWhiteSpace = false;
+		$dom->formatOutput = true;
+		$dom->loadXML($this->model->asXML());
+		return $newline.str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML());
 	}
 	// A utility function to describe the object
 	function toString() {
 		//$this->nodes->script->addAttribute("bug", "bad");
 		//echo "model to string";
 		global $newline;
-		return $newline.str_replace('<?xml version="1.0"?>','',$this->model->asXML());
+		return $newline.str_replace('<?xml version="1.0"?'.'>','',$this->model->asXML());
 	}
 }
 ?>

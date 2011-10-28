@@ -241,7 +241,6 @@ class Content{
 		global $newline;
 		$builder='';
 		// Each question in any question based exercise extends content so comes here
-		// Each question in any question based exercise extends content so comes here
 		if ($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) {
 			// You need to output all the paragraphs.
 			$lastTagType = null;
@@ -252,7 +251,8 @@ class Content{
 				$thisTagType = $paragraph->getTagType();
 				// Just in case there is some other paragraph too
 				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					$builder.=$newline.'<li id="'.$this->getID().'">';
+					// ID. This id matches to the question block 
+					$builder.=$newline.'<li id="q'.$this->getID().'">';
 					// Grab the whole paragraph text, need to mangle it to get question and options.
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
@@ -278,7 +278,7 @@ class Content{
 					// CSS in TLF currently means we have to use <list> not <ol>
 					//$builder.='<ol class="answerList">';
 					//$builder.='</ol>';
-					$builder.='<ol class="answerList">';
+					$builder.='<list class="answerList">';
 						for ($i=1; $i<count($options); $i++) {
 							// As the first character has been eaten by the regex
 							$builder.='<li>'.'['.$options[$i].'</li>';
@@ -310,7 +310,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<a id="q'.$m[2].'" >'.$answer.'</a>'.$m[3];
+						$buildText.=$m[1].'<a id="a'.$m[2].'" >'.$answer.'</a>'.$m[3];
 					}
 				}
 			}			
@@ -327,7 +327,7 @@ class Content{
 				$thisTagType = $paragraph->getTagType();
 				// Just in case there is some other paragraph too
 				if (stristr($paragraph->getPureText(),'#q')!==FALSE) {
-					$builder.=$newline.'<li id="'.$this->getID().'">';
+					$builder.=$newline.'<li id="q'.$this->getID().'">';
 					// Grab the whole paragraph text, need to mangle it to get question and options.
 					$subBuilder=$paragraph->output($lastTagType,$thisTagType);
 					//echo $subBuilder;
@@ -364,7 +364,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_TARGET) {
-						$buildText.=$m[1].'<a id="q'.$m[2].'" >'.$answer.'</a>'.$m[3];
+						$buildText.=$m[1].'<a id="a'.$m[2].'" >'.$answer.'</a>'.$m[3];
 					}
 				}
 			}			
