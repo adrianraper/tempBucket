@@ -36,13 +36,6 @@ XML;
 		//echo "Model qbased=".$this->getParent()->isQuestionBased();
 		if ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
-			//	<field mode="0" type="i:drop" group="1" id="1">
-			//		<answer correct="true">chess</answer>
-			//	</field>
-			//	<DragQuestion source="q1">
-			//		<answer correct="true" source="a5" />
-			//		<answer correct="true" source="a7" />
-			//	</DragQuestion>
 				
 				$newQ = $this->model->questions->addChild("DragQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
@@ -85,13 +78,6 @@ XML;
 				// against the answers in the fields in noscroll to get the answer source id
 				foreach ($question->getFields() as $field) {
 				
-			//	<field mode="0" type="i:target" group="1" id="1">
-			//		<answer correct="false">golf</answer>
-			//	</field>
-			//	<DragQuestion source="q1">
-			//		<answer correct="true" source="a1" />
-			//		<answer correct="false" source="a2" />
-			//	</MultipleChoiceQuestion>
 					// Only ever 1 answer per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
@@ -117,16 +103,10 @@ XML;
 		// For a gapfill, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
-			//	<field mode="0" type="i:gap" group="1" id="1">
-			//		<answer correct="true">chess</answer>
-			//	</field>
-			//	<GapFillQuestion source="q1" block="q1">
-			//		<answer correct="true" value="xxxxx" />
-			//		<answer correct="true" value="yyyyy" />
-			//	</GapQuestion>
 				
 				$newQ = $this->model->questions->addChild("GapFillQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
+				$newQ->addAttribute('block','b'.$field->group);
 				//$newQ->addAttribute('group',$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
@@ -145,6 +125,8 @@ XML;
 				$newQ->addAttribute('source','q'.$question->getID());
 				foreach ($question->getFields() as $field) {
 					// You can have multiple answers per field
+					// they should all have the same group id
+					$newQ->addAttribute('block','b'.$field->group);
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
 						//$newA->addAttribute('source','a'.$field->getID());
@@ -159,20 +141,10 @@ XML;
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN) {
 			$generateID=1;
 			foreach ($this->getParent()->body->getFields() as $field) {
-			//	<field mode="0" type="i:dropdown" id="1">
-			//		<answer correct="true">xxxxx</answer>
-			//		<answer correct="false">yyyyy</answer>
-			//		<answer correct="false">zzzzz</answer>
-			//	</field>
-			//	<DropdownQuestion source="1" group="1">
-			//		<answer correct="true" source="2" />
-			//		<answer correct="false" source="3" />
-			//		<answer correct="false" source="4" />
-			//	</DropdownQuestion>
 				
 				$newQ = $this->model->questions->addChild("DropDownQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
-				$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('block','b'.$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					//$newA->addAttribute('value',$answer->getAnswer());
@@ -184,16 +156,6 @@ XML;
 		// For a targetspotting, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_ERRORCORRECTION) {
 			foreach ($this->getParent()->body->getFields() as $field) {
-			//	<field gapLength="1" group="1" id="1" mode="0" type="i:targetGap">
-			//		<answer correct="false">poorly</answer>
-			//		<answer correct="true">low-income</answer>
-			//		<answer correct="true">low income</answer>
-			//	</field>
-			//	<ErrorCorrectionQuestion >
-			//		<answer correct="true" source="1" >
-			//			<feedback id="fb1" source="fb1" />
-			//		</answer>
-			//	</ErrorCorrectionQuestion>
 				
 				$newQ = $this->model->questions->addChild("ErrorCorrectionQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
@@ -221,55 +183,12 @@ XML;
     	// For a targetspotting, the questions have their source as the gaps
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_TARGETSPOTTING) {
 			foreach ($this->getParent()->body->getFields() as $field) {
-			//	<field mode="0" type="i:target" id="1">
-			//		<answer correct="true">xxxxx</answer>
-			//	</field>
-			//	<feedback id="1" mode="101">
-			//		<paragraph ...>xxx</paragraph>
-			//		<paragraph ...>xxx</paragraph>
-			//	</feedback>
-			//	<TargetSpottingQuestion>
-			//		<answer correct="true" source="1" >
-			//			<feedback id="fb1">
-			//				<p ...>xxx</p>
-			//				<p ...>xxx</p>
-			//			</feedback>
-			//		</answer>
-			//	</TargetSpottingQuestion>
-			// OR you could have the feedback as a section in the html body
-			// I think the second option is better - keep text in the html body and references in the model.
-			//	<TargetSpottingQuestion>
-			//		<answer correct="true" source="1" >
-			//			<feedback id="fb1" source="fb1" />
-			//		</answer>
-			//	</TargetSpottingQuestion>
-			//	<section id="feedback">
-			//		<feedback id="fb1">
-			//			<p ...>xxx</p>
-			//			<p ...>xxx</p>
-			//		</feedback>
-			//	</section>
 				
 				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('source','t'.$field->getID());
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
-					// Is there any feedback to be added to the model related to this answer?
-					// NOTE: This code assumes that each answer has an ID that relates to a feedback ID
-					/* 
-					if ($answer->getID() && $this->getParent()->feedbacks) {
-					if (method_exists($answer,'getID') && $this->getParent()->feedbacks) {
-						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
-							// Is this feedback for this field?
-							if ($feedback->getID()==$field->getID()) {
-								$newFB = $newA->addChild('feedback');	
-								$newFB->addAttribute('source',$field->getID());
-								break;
-							}
-						}
-					}
-					*/
 				}
 				//echo $newQ;
 				// Is there any feedback to be added to the model related to this field?
@@ -298,13 +217,6 @@ XML;
 				$newQ->addAttribute('block','q'.$question->getID());
 				foreach ($question->getFields() as $field) {
 				
-			//	<field mode="0" type="i:target" group="1" id="1">
-			//		<answer correct="false">golf</answer>
-			//	</field>
-			//	<MultipleChoiceQuestion block="q1">
-			//		<answer correct="true" source="1" />
-			//		<answer correct="false" source="2" />
-			//	</MultipleChoiceQuestion>
 					// Only ever 1 answer per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
