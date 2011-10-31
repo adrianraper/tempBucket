@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,55 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="false"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="true"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t10" correct="false">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -36,24 +84,62 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/MM_AW_012.jpg" mode="1" id="1001"  /><media class="rightFloat" src="../media/MM_WR1aa.mp3" mode="1" id="1002"  /><p align="left"><font color="#0000ff"><b>Arguments for</b></font></p><p align="left"><g id="t1">A.  Pictures have more impact than words.</g><g id="t2">B.  If unpleasant images are shown on television, people may take action.</g><g id="t3">C.  Important news events must not be 'censored' for the public, even if the images are unpleasant.</g><g id="t4">D.  If you find the images upsetting, you can turn the television off.</g><g id="t5">E.  Some political systems work better when people know exactly what is happening in the world.</g><g id="t6">F.  Young people should not be sheltered from the unpleasant realities of the world.</g></p><p align="left"><font color="#0000ff"><b>Arguments against</b></font></p><p align="left"><g id="t7">A.  Victims of violence may not want to be shown on television.</g><g id="t8">B.  Television news reports often trivialise tragic events by turning them into entertainment.</g><g id="t9">C.  Viewers are not always given enough warning before disturbing images are shown.</g><g id="t10">D.  Viewers want to be entertained, not distressed, when they watch television.</g><g id="t11">E.  Children may be traumatised by disturbing images.</g><g id="t12">F.  Too much exposure to disturbing images may accustom us to them, so we no longer react.</g></p><p align="left"><font size="2"></font></p>
-		<p align="left">
-		<b>Click to start the audio</b></p>
+  <img class="rightFloat" src="../media/MM_AW_012.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="rightFloat" src="../media/MM_WR1aa.mp3" mode="1" id="1002"/>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Arguments for</b>
+    </font>
+  </p>
+  <p align="left">
+    <g id="t1">A.  Pictures have more impact than words.</g>
+    <g id="t2">B.  If unpleasant images are shown on television, people may take action.</g>
+    <g id="t3">C.  Important news events must not be 'censored' for the public, even if the images are unpleasant.</g>
+    <g id="t4">D.  If you find the images upsetting, you can turn the television off.</g>
+    <g id="t5">E.  Some political systems work better when people know exactly what is happening in the world.</g>
+    <g id="t6">F.  Young people should not be sheltered from the unpleasant realities of the world.</g>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Arguments against</b>
+    </font>
+  </p>
+  <p align="left">
+    <g id="t7">A.  Victims of violence may not want to be shown on television.</g>
+    <g id="t8">B.  Television news reports often trivialise tragic events by turning them into entertainment.</g>
+    <g id="t9">C.  Viewers are not always given enough warning before disturbing images are shown.</g>
+    <g id="t10">D.  Viewers want to be entertained, not distressed, when they watch television.</g>
+    <g id="t11">E.  Children may be traumatised by disturbing images.</g>
+    <g id="t12">F.  Too much exposure to disturbing images may accustom us to them, so we no longer react.</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to start the audio</b>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
+
 <section id="fb5">
-	<p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
+
 <section id="fb8">
-	<p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
+
 <section id="fb10">
-	<p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
+
 <section id="rt2001">
-	<p align="left">The plan you saw in the previous exercise is just one way to organize a 'for and against' composition. Another way is to form paragraphs by pairing arguments and counter-arguments. If you are going to use the composition structure shown in this exercise, the easiest way to do this is to state the argument you don't agree with first, and then state a counter-argument, which refutes it. In order to be able to write at least 250 words, you will need three or four arguments and the same number of counter-arguments.</p><p align="left">This is a good structure to use if you find you have thought of a lot of arguments for and against. You will not have the time or space to include them all, and by using this composition structure, you will find it easier to decide which arguments to keep and which to reject. But remember, this structure only works when you have a counter-argument to match each argument.</p>
+  <p align="left">The plan you saw in the previous exercise is just one way to organize a 'for and against' composition. Another way is to form paragraphs by pairing arguments and counter-arguments. If you are going to use the composition structure shown in this exercise, the easiest way to do this is to state the argument you don't agree with first, and then state a counter-argument, which refutes it. In order to be able to write at least 250 words, you will need three or four arguments and the same number of counter-arguments.</p>
+  <p align="left">This is a good structure to use if you find you have thought of a lot of arguments for and against. You will not have the time or space to include them all, and by using this composition structure, you will find it easier to decide which arguments to keep and which to reject. But remember, this structure only works when you have a counter-argument to match each argument.</p>
 </section>
+
 </body>
 </bento>

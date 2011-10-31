@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,35 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="true"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,13 +59,79 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/Education_004.jpg" mode="1" id="1001"  /><p align="left"><b>Which FIVE of the following changes are mentioned?</b></p><p align="left"><g id="t1">A	cutting the number of management levels</g></p><p align="left"><g id="t2">B	limiting the amount of bureaucracy at management level</g></p><p align="left"><g id="t3">C	reducing the size of the workforce</g></p><p align="left"><g id="t4">D	organising a more self-reliant workforce</g></p><p align="left"><g id="t5">E	giving workers 'team leader' status</g></p><p align="left"><g id="t6">F	using technology instead of managers to supervise work processes</g></p><p align="left"><g id="t7">G	taking advantage of electronic communications</g></p><p align="left"><g id="t8">H	putting work out to contract</g></p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/Education_004.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <b>Which FIVE of the following changes are mentioned?</b>
+  </p>
+  <p align="left">
+    <g id="t1">A	cutting the number of management levels</g>
+  </p>
+  <p align="left">
+    <g id="t2">B	limiting the amount of bureaucracy at management level</g>
+  </p>
+  <p align="left">
+    <g id="t3">C	reducing the size of the workforce</g>
+  </p>
+  <p align="left">
+    <g id="t4">D	organising a more self-reliant workforce</g>
+  </p>
+  <p align="left">
+    <g id="t5">E	giving workers 'team leader' status</g>
+  </p>
+  <p align="left">
+    <g id="t6">F	using technology instead of managers to supervise work processes</g>
+  </p>
+  <p align="left">
+    <g id="t7">G	taking advantage of electronic communications</g>
+  </p>
+  <p align="left">
+    <g id="t8">H	putting work out to contract</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="readingText">
-	<p align="left"><font color="#0000ff"><b>Abolishing management, one slice at a time</b></font></p><p align="left">The management function has been whittled away since the seventies. Harry Onsman suggests the whittling may not be over yet.</p><p align="left">Is it possible to abolish the management function? Is it conceivable that we could create a corporate structure in which management has no place? Can it be done?</p><p align="left"><font color="#000000">In the last twenty years, the management function has been threatened on a number of fronts. Individually none of these present a mortal threat to management. But collectively, it is possible to construct – at least conceptually – a corporate entity in which the function of management has all but disappeared. The question is, just how big is that "but".</font></p><p align="left"><font color="#000000">Possibly the first serious threat to management came in the eighties when the downsizing fad, in conjunction with the short-lived Business Process Re-engineering (BPR) craze, removed several layers of management from most organisations. Until then, the idea of multi-layered management structures was the norm. Most people employed in organisations in the seventies will remember a multitude of levels in organisation charts of mind-boggling complexity. As a 16-year old working in a manufacturing company of about 1500 people, I recall being on the bottom of a management pile that comprised 13 layers. I reported to a leading hand who had never met the manager of our division five levels above him.</font></p><p align="left">Stripping layers of management out of such overly bureaucratic and unwieldy structures was a long overdue task. Recommending such changes made consulting companies very rich. Middle management became a threatened species and whilst there has been some "re-layering" in recent times, we are unlikely to see the old days of leading hands, foremen, assistant supervisors, supervisors, senior supervisors, and assistant managers return.</p><p align="left">Reducing the size of management was partly possible because the actual size of organisations has been getting smaller. My old factory now employs about 400 people and yet produces more than it did twenty-five years ago. Improvements in production equipment, information technology, work processes, employee skill levels, and the design of work have all contributed to a need for fewer staff.</p><p align="left"><font color="#000000">Nevertheless, in terms of proportion, more management positions disappeared than frontline employee positions. Consequently, the span of control has widened significantly for the remaining managers. Today, it is not uncommon to see a "lean" management structure based on only two or three levels of management (team leaders and manager) involving 100-200 employees. It would not be unusual for this to involve only about 8-12 team leaders. Such a lean structure is positively anorexic compared to the typical operations in the seventies.</font></p><p align="left"><font color="#000000">In about the same time frame (mid-seventies onwards), the introduction of employee self-management provided another threat to the career future of managers. Growing out of the Work Design/Redesign movement spawned in the UK and Scandinavia in the fifties, the use of self-managing work teams created the possibility of even leaner management structures than the BPR vandals could have conceived of. Whilst no overnight solution, the technology was now available to combine social and technical aspects of work to the point where the idea of supervision was eliminated.</font></p><p align="left"><font color="#000000">Many tried this approach but almost as many failed. Those that succeeded did so through a rigorous process of redesigning the work, which in part included designing supervision out. By the late eighties I was involved with factories where one plant manager might have 8-12 self-managing work teams (SMWT) reporting to him, with each team comprising 6-10 employees. These SMWTs were substantially leaderless although a strong sense of leadership prevailed within the teams. The position of team leader had evolved into a series of separate and distinct leadership functions that rotated around the members of the team.</font></p><p align="left">It is not too far-fetched to describe these plants as having only one layer of management involving one manager. In a plant of 100 people, this is the ultimate lean management structure.</p><p align="left">What is making an even greater impact today is the use of technical infrastructure in the workplace. The astounding capabilities of information technology in particular make it possible to supervise employees at a great distance. At the extreme, this means managing them whilst half a world away. Tele-working is impractical without the supporting IT infrastructure. With it, it becomes possible for a manager to have only virtual contact with an employee, managing through results rather than through process.</p><p align="left">This in turn leads to the question of why such people should be employees at all. The outsourcing craze continues unabated and will probably continue to speed up. There is no function left that cannot be or has not been outsourced. Even core functions like setting strategy and human resource management have been handed over to outside suppliers. Even management itself in the form of consultants and management companies has been handed over. Nothing is sacred when it comes to what is core and what is not.</p><p align="left">Where will it end? Greater spans of control, fewer layers of management, high levels of self-management, and fewer corporate functions. Each is a threat to the manager's career path. Put them together and they become a threat to management itself.</p><p align="left">Harry Onsman, The Manager's web site.</p><p align="left"><font size="2"></font></p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Abolishing management, one slice at a time</b>
+    </font>
+  </p>
+  <p align="left">The management function has been whittled away since the seventies. Harry Onsman suggests the whittling may not be over yet.</p>
+  <p align="left">Is it possible to abolish the management function? Is it conceivable that we could create a corporate structure in which management has no place? Can it be done?</p>
+  <p align="left">
+    <font color="#000000">In the last twenty years, the management function has been threatened on a number of fronts. Individually none of these present a mortal threat to management. But collectively, it is possible to construct &#x2013; at least conceptually &#x2013; a corporate entity in which the function of management has all but disappeared. The question is, just how big is that "but".</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Possibly the first serious threat to management came in the eighties when the downsizing fad, in conjunction with the short-lived Business Process Re-engineering (BPR) craze, removed several layers of management from most organisations. Until then, the idea of multi-layered management structures was the norm. Most people employed in organisations in the seventies will remember a multitude of levels in organisation charts of mind-boggling complexity. As a 16-year old working in a manufacturing company of about 1500 people, I recall being on the bottom of a management pile that comprised 13 layers. I reported to a leading hand who had never met the manager of our division five levels above him.</font>
+  </p>
+  <p align="left">Stripping layers of management out of such overly bureaucratic and unwieldy structures was a long overdue task. Recommending such changes made consulting companies very rich. Middle management became a threatened species and whilst there has been some "re-layering" in recent times, we are unlikely to see the old days of leading hands, foremen, assistant supervisors, supervisors, senior supervisors, and assistant managers return.</p>
+  <p align="left">Reducing the size of management was partly possible because the actual size of organisations has been getting smaller. My old factory now employs about 400 people and yet produces more than it did twenty-five years ago. Improvements in production equipment, information technology, work processes, employee skill levels, and the design of work have all contributed to a need for fewer staff.</p>
+  <p align="left">
+    <font color="#000000">Nevertheless, in terms of proportion, more management positions disappeared than frontline employee positions. Consequently, the span of control has widened significantly for the remaining managers. Today, it is not uncommon to see a "lean" management structure based on only two or three levels of management (team leaders and manager) involving 100-200 employees. It would not be unusual for this to involve only about 8-12 team leaders. Such a lean structure is positively anorexic compared to the typical operations in the seventies.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">In about the same time frame (mid-seventies onwards), the introduction of employee self-management provided another threat to the career future of managers. Growing out of the Work Design/Redesign movement spawned in the UK and Scandinavia in the fifties, the use of self-managing work teams created the possibility of even leaner management structures than the BPR vandals could have conceived of. Whilst no overnight solution, the technology was now available to combine social and technical aspects of work to the point where the idea of supervision was eliminated.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Many tried this approach but almost as many failed. Those that succeeded did so through a rigorous process of redesigning the work, which in part included designing supervision out. By the late eighties I was involved with factories where one plant manager might have 8-12 self-managing work teams (SMWT) reporting to him, with each team comprising 6-10 employees. These SMWTs were substantially leaderless although a strong sense of leadership prevailed within the teams. The position of team leader had evolved into a series of separate and distinct leadership functions that rotated around the members of the team.</font>
+  </p>
+  <p align="left">It is not too far-fetched to describe these plants as having only one layer of management involving one manager. In a plant of 100 people, this is the ultimate lean management structure.</p>
+  <p align="left">What is making an even greater impact today is the use of technical infrastructure in the workplace. The astounding capabilities of information technology in particular make it possible to supervise employees at a great distance. At the extreme, this means managing them whilst half a world away. Tele-working is impractical without the supporting IT infrastructure. With it, it becomes possible for a manager to have only virtual contact with an employee, managing through results rather than through process.</p>
+  <p align="left">This in turn leads to the question of why such people should be employees at all. The outsourcing craze continues unabated and will probably continue to speed up. There is no function left that cannot be or has not been outsourced. Even core functions like setting strategy and human resource management have been handed over to outside suppliers. Even management itself in the form of consultants and management companies has been handed over. Nothing is sacred when it comes to what is core and what is not.</p>
+  <p align="left">Where will it end? Greater spans of control, fewer layers of management, high levels of self-management, and fewer corporate functions. Each is a threat to the manager's career path. Put them together and they become a threat to management itself.</p>
+  <p align="left">Harry Onsman, The Manager's web site.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">Read through the list of changes. Which do you think are the most likely to cause the disappearance of management in companies and organisations? Underline key words and search for them in the text.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Read through the list of changes. Which do you think are the most likely to cause the disappearance of management in companies and organisations? Underline key words and search for them in the text.</font>
+  </p>
 </section>
+
 </body>
 </bento>

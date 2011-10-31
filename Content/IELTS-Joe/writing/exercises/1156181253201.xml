@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,145 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="false"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="false"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="false"><feedback source="fb13"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t15" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t16" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t17" correct="false"><feedback source="fb17"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t19" correct="false"><feedback source="fb19"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t20" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t21" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t23" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t24" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t25" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t26" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t27" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t28" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t29" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t30" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t31" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t32" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t33" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t34" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t35" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t36" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t37" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t38" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t39" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t40" correct="true"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t10" correct="false">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t13" correct="false">
+        <feedback source="fb13"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t16" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t17" correct="false">
+        <feedback source="fb17"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t19" correct="false">
+        <feedback source="fb19"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t25" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t26" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t27" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t28" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t29" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t30" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t31" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t32" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t33" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t34" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t35" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t36" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t37" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t38" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t39" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t40" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,34 +169,44 @@
 </header>
 	
 <section id="noscroll">
-	<img class="leftFloat" src="../media/TT_AW_004.jpg" mode="1" id="1003"  />
+  <img class="leftFloat" src="../media/TT_AW_004.jpg" mode="1" id="1003"/>
 </section>
-<section id="body">
-	<p align="left"><font color="#000000"><b>1</b>  UK residents who travelled to North America spent (…) more money per visit than</font></p>those who went to Europe.<g id="t1">A  much</g><g id="t2">B  many</g><g id="t3">C  far</g><g id="t4">D  a lot</g><p align="left"><font color="#000000"><b>2</b>  UK residents who travelled to EU countries spent the (…) time per visit.</font></p><g id="t5">A  fewest</g><g id="t6">B  least</g><g id="t7">C  smallest amount of</g><g id="t8">D  smallest number of</g><p align="left"><font color="#000000"><b>3</b>  UK residents who travelled to EU countries spent the (…) days per visit.</font></p><g id="t9">A  fewest</g><g id="t10">B  least</g><g id="t11">C  smallest amount of</g><g id="t12">D  smallest number of</g><p align="left"><font color="#000000"><b>4</b>  Visits to countries outside Europe lasted (…) more days than visits to countries within Europe.</font></p><g id="t13">A  much</g><g id="t14">B  many</g><g id="t15">C  far</g><g id="t16">D  a lot</g><p align="left"><font color="#000000"><b>5</b>  (…) UK residents went to non-EU countries than to EU countries.</font></p><g id="t17">A  Far less</g><g id="t18">B  Far fewer</g><g id="t19">C  A far smaller quantity of</g><g id="t20">D  A far smaller number of</g>
-</section>
+
+<section id="body"><p align="left"><font color="#000000"><b>1</b>  UK residents who travelled to North America spent (&#x2026;) more money per visit than</font></p>those who went to Europe.<g id="t1">A  much</g><g id="t2">B  many</g><g id="t3">C  far</g><g id="t4">D  a lot</g><p align="left"><font color="#000000"><b>2</b>  UK residents who travelled to EU countries spent the (&#x2026;) time per visit.</font></p><g id="t5">A  fewest</g><g id="t6">B  least</g><g id="t7">C  smallest amount of</g><g id="t8">D  smallest number of</g><p align="left"><font color="#000000"><b>3</b>  UK residents who travelled to EU countries spent the (&#x2026;) days per visit.</font></p><g id="t9">A  fewest</g><g id="t10">B  least</g><g id="t11">C  smallest amount of</g><g id="t12">D  smallest number of</g><p align="left"><font color="#000000"><b>4</b>  Visits to countries outside Europe lasted (&#x2026;) more days than visits to countries within Europe.</font></p><g id="t13">A  much</g><g id="t14">B  many</g><g id="t15">C  far</g><g id="t16">D  a lot</g><p align="left"><font color="#000000"><b>5</b>  (&#x2026;) UK residents went to non-EU countries than to EU countries.</font></p><g id="t17">A  Far less</g><g id="t18">B  Far fewer</g><g id="t19">C  A far smaller quantity of</g><g id="t20">D  A far smaller number of</g></section>
+
 <section id="fb2">
-	<p align="left">1B. 'Many' is for countable nouns only. Money is an uncountable noun.</p>
+  <p align="left">1B. 'Many' is for countable nouns only. Money is an uncountable noun.</p>
 </section>
+
 <section id="fb5">
-	<p align="left">2A. 'Few' is for countable nouns only. Time is uncountable noun.</p>
+  <p align="left">2A. 'Few' is for countable nouns only. Time is uncountable noun.</p>
 </section>
+
 <section id="fb8">
-	<p align="left">2D. 'Number' suits only countable nouns. Time is an uncountable noun.</p>
+  <p align="left">2D. 'Number' suits only countable nouns. Time is an uncountable noun.</p>
 </section>
+
 <section id="fb10">
-	<p align="left">3B. 'Least' is for uncountable nouns, unless it is used in the expression 'least number of'.</p>
+  <p align="left">3B. 'Least' is for uncountable nouns, unless it is used in the expression 'least number of'.</p>
 </section>
+
 <section id="fb13">
-	<p align="left">4A. 'Much' cannot be used in this way with countable nouns such as 'days'.</p>
+  <p align="left">4A. 'Much' cannot be used in this way with countable nouns such as 'days'.</p>
 </section>
+
 <section id="fb17">
-	<p align="left">5A. 'Less' is for uncountable nouns.</p>
+  <p align="left">5A. 'Less' is for uncountable nouns.</p>
 </section>
+
 <section id="fb19">
-	<p align="left">5C. A 'quantity of residents' is not natural English usage.</p>
+  <p align="left">5C. A 'quantity of residents' is not natural English usage.</p>
 </section>
+
 <section id="rt2001">
-	<p align="left"><font color="#000000">In order to describe the information shown in tables and charts you will need to use language for describing and comparing quantities. You must decide whether the figures refer to countable or uncountable nouns and use appropriate quantifiers (many, much, little, few, etc.).</font></p>
+  <p align="left">
+    <font color="#000000">In order to describe the information shown in tables and charts you will need to use language for describing and comparing quantities. You must decide whether the figures refer to countable or uncountable nouns and use appropriate quantifiers (many, much, little, few, etc.).</font>
+  </p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="dropdown" date="2011-10-27" />
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,86 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DropDownQuestion source="q1" group="1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></DropDownQuestion><DropDownQuestion source="q2" group="2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></DropDownQuestion><DropDownQuestion source="q3" group="3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></DropDownQuestion><DropDownQuestion source="q4" group="4"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></DropDownQuestion><DropDownQuestion source="q5" group="5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></DropDownQuestion><DropDownQuestion source="q6" group="6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></DropDownQuestion><DropDownQuestion source="q7" group="7"><answer source="a19" correct="true"/><answer source="a20" correct="false"/><answer source="a21" correct="false"/></DropDownQuestion><DropDownQuestion source="q8" group="8"><answer source="a22" correct="true"/><answer source="a23" correct="false"/><answer source="a24" correct="false"/></DropDownQuestion><DropDownQuestion source="q9" group="9"><answer source="a25" correct="true"/><answer source="a26" correct="false"/><answer source="a27" correct="false"/></DropDownQuestion><DropDownQuestion source="q10" group="10"><answer source="a28" correct="true"/><answer source="a29" correct="false"/><answer source="a30" correct="false"/></DropDownQuestion><DropDownQuestion source="q11" group="11"><answer source="a31" correct="true"/><answer source="a32" correct="false"/><answer source="a33" correct="false"/></DropDownQuestion><DropDownQuestion source="q12" group="12"><answer source="a34" correct="true"/><answer source="a35" correct="false"/><answer source="a36" correct="false"/></DropDownQuestion><DropDownQuestion source="q13" group="13"><answer source="a37" correct="true"/><answer source="a38" correct="false"/><answer source="a39" correct="false"/></DropDownQuestion><DropDownQuestion source="q14" group="14"><answer source="a40" correct="true"/><answer source="a41" correct="false"/><answer source="a42" correct="false"/></DropDownQuestion><DropDownQuestion source="q15" group="15"><answer source="a43" correct="true"/><answer source="a44" correct="false"/><answer source="a45" correct="false"/></DropDownQuestion></questions></script>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q11" block="b11">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q12" block="b12">
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q13" block="b13">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q14" block="b14">
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="false"/>
+      <answer source="a42" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q15" block="b15">
+      <answer source="a43" correct="true"/>
+      <answer source="a44" correct="false"/>
+      <answer source="a45" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,40 +110,64 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/EN_AW_010.jpg" mode="1" id="1001"  /><p align="left">There is no doubt that we have to live with far more noise than in the past, particularly in cities, and this may be the form of pollution which affects us most directly. For example, it has been found that prolonged exposure to high levels of noise can <select id="q1" type="dropdown" ><option id="o1">lead to"</option>"<option id="o2">be caused by"</option>"<option id="o3">be due to"</option>"</select> hearing loss and high blood pressure. It may also <select id="q2" type="dropdown" ><option id="o4">give rise to"</option>"<option id="o5">be due to"</option>"<option id="o6">be caused by"</option>"</select> stress, insomnia and mental problems, including depression. These problems, in turn, often <select id="q3" type="dropdown" ><option id="o7">result in"</option>"<option id="o8">result from"</option>"<option id="o9">stem from"</option>"</select> lower productivity at work <select id="q4" type="dropdown" ><option id="o10">because"</option>"<option id="o11">due to"</option>"<option id="o12">on account of"</option>"</select> employees are too tired and stressed to work efficiently.</p><p align="left">In order to find effective solutions to the problem, it is necessary to understand what has <select id="q5" type="dropdown" ><option id="o13">brought about"</option>"<option id="o14">resulted from"</option>"<option id="o15">stemmed from"</option>"</select> this increase in noise. There are three main causes. Firstly, there is traffic noise, <select id="q6" type="dropdown" ><option id="o16">due to"</option>"<option id="o17">because"</option>"<option id="o18">resulting in"</option>"</select> the ever-increasing number of vehicles on our roads. The second major source of noise in our cities is low-flying aircraft which have either just taken off, or are just landing at local airports. Finally, there is noise <select id="q7" type="dropdown" ><option id="o19">caused by"</option>"<option id="o20">leading to"</option>"<option id="o21">giving rise to"</option>"</select> neighbours listening to music or watching television at full volume, or using noisy power tools such as drills or lawn mowers.</p><p align="left">Clearly, noise is a serious problem. <select id="q8" type="dropdown" ><option id="o22">It is therefore essential that"</option>"<option id="o23">The most obvious answer for"</option>"<option id="o24">One way in which"</option>"</select> measures should be taken to reduce the amount of noise in our daily lives. Regarding traffic noise, <select id="q9" type="dropdown" ><option id="o25">the most obvious answer is"</option>"<option id="o26">it is essential that"</option>"<option id="o27">one way in which"</option>"</select> improved soundproofing for buildings near busy roads. In addition, local authorities <select id="q10" type="dropdown" ><option id="o28">ought to consider"</option>"<option id="o29">must"</option>"<option id="o30">should"</option>"</select> imposing strict speed limits in residential areas. </p><p align="left"><select id="q11" type="dropdown" ><option id="o31">One way in which"</option>"<option id="o32">One solution for"</option>"<option id="o33">The most obvious answer for"</option>"</select> aircraft noise could be lessened is by building airports further away from urban areas. Moreover, legislation <select id="q12" type="dropdown" ><option id="o34">should"</option>"<option id="o35">might"</option>"<option id="o36">may"</option>"</select> prohibit aeroplanes from flying over built-up areas. As far as noisy neighbours are concerned, <select id="q13" type="dropdown" ><option id="o37">the only effective solution is"</option>"<option id="o38">one way in which"</option>"<option id="o39">it is essential that"</option>"</select> for us all to behave more considerately by, for example, turning down the volume of our music or televisions and limiting our use of noisy power tools.</p><p align="left">In conclusion, there is no simple solution to the problem. However, if the measures I have suggested were introduced, we would all enjoy a better quality of life. <select id="q14" type="dropdown" ><option id="o40">As a result of"</option>"<option id="o41">Because"</option>"<option id="o42">Consequently"</option>"</select> living and working in a quieter environment, people would feel more relaxed and they would be less prone to the physiological and psychological problems that are known to <select id="q15" type="dropdown" ><option id="o43">stem from"</option>"<option id="o44">lead to"</option>"<option id="o45">bring about"</option>"</select> exposure to high levels of noise.</p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/EN_AW_010.jpg" mode="1" id="1001"/>
+  <p align="left">There is no doubt that we have to live with far more noise than in the past, particularly in cities, and this may be the form of pollution which affects us most directly. For example, it has been found that prolonged exposure to high levels of noise can <select id="q1"><option>lead to</option><option>be caused by</option><option>be due to</option></select> hearing loss and high blood pressure. It may also <select id="q2"><option>give rise to</option><option>be due to</option><option>be caused by</option></select> stress, insomnia and mental problems, including depression. These problems, in turn, often <select id="q3"><option>result in</option><option>result from</option><option>stem from</option></select> lower productivity at work <select id="q4"><option>because</option><option>due to</option><option>on account of</option></select> employees are too tired and stressed to work efficiently.</p>
+  <p align="left">In order to find effective solutions to the problem, it is necessary to understand what has <select id="q5"><option>brought about</option><option>resulted from</option><option>stemmed from</option></select> this increase in noise. There are three main causes. Firstly, there is traffic noise, <select id="q6"><option>due to</option><option>because</option><option>resulting in</option></select> the ever-increasing number of vehicles on our roads. The second major source of noise in our cities is low-flying aircraft which have either just taken off, or are just landing at local airports. Finally, there is noise <select id="q7"><option>caused by</option><option>leading to</option><option>giving rise to</option></select> neighbours listening to music or watching television at full volume, or using noisy power tools such as drills or lawn mowers.</p>
+  <p align="left">Clearly, noise is a serious problem. <select id="q8"><option>It is therefore essential that</option><option>The most obvious answer for</option><option>One way in which</option></select> measures should be taken to reduce the amount of noise in our daily lives. Regarding traffic noise, <select id="q9"><option>the most obvious answer is</option><option>it is essential that</option><option>one way in which</option></select> improved soundproofing for buildings near busy roads. In addition, local authorities <select id="q10"><option>ought to consider</option><option>must</option><option>should</option></select> imposing strict speed limits in residential areas. </p>
+  <p align="left"><select id="q11"><option>One way in which</option><option>One solution for</option><option>The most obvious answer for</option></select> aircraft noise could be lessened is by building airports further away from urban areas. Moreover, legislation <select id="q12"><option>should</option><option>might</option><option>may</option></select> prohibit aeroplanes from flying over built-up areas. As far as noisy neighbours are concerned, <select id="q13"><option>the only effective solution is</option><option>one way in which</option><option>it is essential that</option></select> for us all to behave more considerately by, for example, turning down the volume of our music or televisions and limiting our use of noisy power tools.</p>
+  <p align="left">In conclusion, there is no simple solution to the problem. However, if the measures I have suggested were introduced, we would all enjoy a better quality of life. <select id="q14"><option>As a result of</option><option>Because</option><option>Consequently</option></select> living and working in a quieter environment, people would feel more relaxed and they would be less prone to the physiological and psychological problems that are known to <select id="q15"><option>stem from</option><option>lead to</option><option>bring about</option></select> exposure to high levels of noise.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left">1. What follows the gap is a result, not a cause.</p>
+  <p align="left">1. What follows the gap is a result, not a cause.</p>
 </section>
+
 <section id="fb2">
-	<p align="left">2. What follows the gap is a result, not a cause.</p>
+  <p align="left">2. What follows the gap is a result, not a cause.</p>
 </section>
+
 <section id="fb3">
-	<p align="left">3. What follows the gap is a result, not a cause.</p>
+  <p align="left">3. What follows the gap is a result, not a cause.</p>
 </section>
+
 <section id="fb4">
-	<p align="left">4. This needs to be followed with a noun or gerund.</p>
+  <p align="left">4. This needs to be followed with a noun or gerund.</p>
 </section>
+
 <section id="fb5">
-	<p align="left">5. 'Result from' and 'Stem from' can't be used in the passive voice in this way.</p>
+  <p align="left">5. 'Result from' and 'Stem from' can't be used in the passive voice in this way.</p>
 </section>
+
 <section id="fb6">
-	<p align="left">6. 'because' needs to be followed by 'of' or by a verb phrase.</p><p align="left">What follows the gap is the cause of traffic noise, not the result.</p>
+  <p align="left">6. 'because' needs to be followed by 'of' or by a verb phrase.</p>
+  <p align="left">What follows the gap is the cause of traffic noise, not the result.</p>
 </section>
+
 <section id="fb7">
-	<p align="left">7. What follows the gap is the cause of traffic noise, not the result.</p>
+  <p align="left">7. What follows the gap is the cause of traffic noise, not the result.</p>
 </section>
+
 <section id="fb10">
-	<p align="left">10. Modal verbs like this are followed with the infinitive form of the verb. </p>
+  <p align="left">10. Modal verbs like this are followed with the infinitive form of the verb. </p>
 </section>
+
 <section id="fb12">
-	<p align="left">12. You need a modal verb for making suggestions.</p>
+  <p align="left">12. You need a modal verb for making suggestions.</p>
 </section>
+
 <section id="fb14">
-	<p align="left">14. 'because' needs to followed by 'of' or by a verb phrase.</p><p align="left">What follows the gap is a cause, not a result.</p>
+  <p align="left">14. 'because' needs to followed by 'of' or by a verb phrase.</p>
+  <p align="left">What follows the gap is a cause, not a result.</p>
 </section>
+
 <section id="rt2001">
-	<p align="left"><font color="#000000">In order to analyse the reasons why a problem exists and suggest solutions, you will need to describe ‘cause and effect’ relationships. There are certain phrases, which are useful for this. There are also a number of useful expressions for making suggestions, which are appropriate for this kind of composition.</font></p>
+  <p align="left">
+    <font color="#000000">In order to analyse the reasons why a problem exists and suggest solutions, you will need to describe &#x2018;cause and effect&#x2019; relationships. There are certain phrases, which are useful for this. There are also a number of useful expressions for making suggestions, which are appropriate for this kind of composition.</font>
+  </p>
 </section>
+
 </body>
 </bento>

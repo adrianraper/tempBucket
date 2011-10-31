@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,20 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="G " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="E " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="C " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="G " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="E " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,14 +46,25 @@
 		
 </header>
 	
-<section id="body">
-	<p align="left"><font color="#0000ff"><b>Paragraph 1</b> – Introduction</font></p><p align="left"><font color="#0000ff"><b>Paragraph 2</b> – Argument 1 + Counter-argument</font></p>GM crops interfere with natureCounter-Argument <input id="q1" /><p align="left"><font color="#0000ff"><b>Paragraph 3</b> – Argument 2 + Counter-argument</font></p>GM foods may be bad for our healthCounter-Argument <input id="q2" /><p align="left"><font color="#0000ff"><b>Paragraph 4</b> – Argument 3 + Counter-argument</font></p>GM crops may cause ecological damage (e.g. kill harmless insects)&#160;Counter-Argument <input id="q3" /><p align="left"><font color="#0000ff"><b>Paragraph 5</b> – Conclusion</font></p><p align="left"><font size="2"></font></p>
-</section>
+<section id="body"><p align="left"><font color="#0000ff"><b>Paragraph 1</b> &#x2013; Introduction</font></p><p align="left"><font color="#0000ff"><b>Paragraph 2</b> &#x2013; Argument 1 + Counter-argument</font></p>GM crops interfere with natureCounter-Argument <input id="q1"/><p align="left"><font color="#0000ff"><b>Paragraph 3</b> &#x2013; Argument 2 + Counter-argument</font></p>GM foods may be bad for our healthCounter-Argument <input id="q2"/><p align="left"><font color="#0000ff"><b>Paragraph 4</b> &#x2013; Argument 3 + Counter-argument</font></p>GM crops may cause ecological damage (e.g. kill harmless insects)&#xA0;Counter-Argument <input id="q3"/><p align="left"><font color="#0000ff"><b>Paragraph 5</b> &#x2013; Conclusion</font></p><p align="left"><font size="2"/></p></section>
+
 <section id="readingText">
-	<p align="left"><b>Counter-Argument</b>AIncreased agricultural productivity</p><p align="left"><b>B</b>Greater profits for the agriculture industry</p><p align="left"><b>C</b>Tampering with nature is nothing new in agriculture</p><p align="left"><b>D</b>GM crops could be grown in difficult environments such as semi-desert</p><p align="left"><b>E</b>Farmers of GM crops are less dependent on environmentally harmful insecticides</p><p align="left"><b>F</b>GM crops last longer in storage</p><p align="left"><b>G</b>Improved nutritional value of GM foods</p><p align="left"><b>H</b>Improved flavour and appearance of GM foods</p><p align="left"><font size="2"></font></p>
+  <p align="left"><b>Counter-Argument</b>AIncreased agricultural productivity</p>
+  <p align="left"><b>B</b>Greater profits for the agriculture industry</p>
+  <p align="left"><b>C</b>Tampering with nature is nothing new in agriculture</p>
+  <p align="left"><b>D</b>GM crops could be grown in difficult environments such as semi-desert</p>
+  <p align="left"><b>E</b>Farmers of GM crops are less dependent on environmentally harmful insecticides</p>
+  <p align="left"><b>F</b>GM crops last longer in storage</p>
+  <p align="left"><b>G</b>Improved nutritional value of GM foods</p>
+  <p align="left"><b>H</b>Improved flavour and appearance of GM foods</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="rt2001">
-	<p align="left">In Unit 6 we saw how a balanced 'for and against' composition can be written by matching arguments and counter-arguments to form paragraphs. A similar outline can be used for a 'one-sided' composition. In this case, however, linking phrases are used to 'refute' each argument with a counter-argument.</p>
+  <p align="left">In Unit 6 we saw how a balanced 'for and against' composition can be written by matching arguments and counter-arguments to form paragraphs. A similar outline can be used for a 'one-sided' composition. In this case, however, linking phrases are used to 'refute' each argument with a counter-argument.</p>
 </section>
+
 </body>
 </bento>

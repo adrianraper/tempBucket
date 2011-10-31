@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,53 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/><answer source="a4" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a5" correct="false"/><answer source="a6" correct="false"/><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a9" correct="false"/><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/><answer source="a16" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a17" correct="false"/><answer source="a18" correct="false"/><answer source="a19" correct="true"/><answer source="a20" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a21" correct="false"/><answer source="a22" correct="false"/><answer source="a23" correct="false"/><answer source="a24" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a25" correct="false"/><answer source="a26" correct="false"/><answer source="a27" correct="true"/><answer source="a28" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+      <answer source="a4" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+      <answer source="a16" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a21" correct="false"/>
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a25" correct="false"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="true"/>
+      <answer source="a28" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,13 +79,50 @@
 </header>
 	
 <section id="body">
-	<img class="leftFloat" src="../media/TT_AR_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">Glen Nisbett is mentioned in the text because he is an example of someone who …<ol class="answerList"><li><a id="q1" >enjoys winter breaks.</a></li><li><a id="q2" >has a hectic lifestyle.</a></li><li><a id="q3" >cannot get away for long periods.</a></li><li><a id="q4" >has travelled widely.</a></li></ol><br/></li><br/><li id="2">According to the text, the majority of holidays taken by Europeans …<ol class="answerList"><li><a id="q5" >are long weekends.</a></li><li><a id="q6" >last up to three days.</a></li><li><a id="q7" >last less than eight days.</a></li><li><a id="q8" >last about four weeks.</a></li></ol><br/></li><br/><li id="3">Which of the following is NOT a factor which has led to the popularity of short breaks?<ol class="answerList"><li><a id="q9" >busy work schedules</a></li><li><a id="q10" >the expense of longer holidays</a></li><li><a id="q11" >irregular working hours</a></li><li><a id="q12" >an increase in the number of holiday destinations</a></li></ol><br/></li><br/><li id="4">According to the text, Lyons, Milan and Bilbao are examples of cities which …<ol class="answerList"><li><a id="q13" >attract the well-travelled tourist.</a></li><li><a id="q14" >are becoming known for their restaurants and nightlife.</a></li><li><a id="q15" >are becoming more popular than Paris, London and Rome.</a></li><li><a id="q16" >were ignored by tour operators in the past.</a></li></ol><br/></li><br/><li id="5">Which of the following is the closest to how Lyn Hughes feels about Rio de Janeiro?<ol class="answerList"><li><a id="q17" >She believes that few Europeans would want to go there for a short break.</a></li><li><a id="q18" >She believes that it could be the next big holiday destination.</a></li><li><a id="q19" >She doubts that it is a possible destination for a weekend break.</a></li><li><a id="q20" >She considers it such an attractive place that people would not worry about the travelling time.</a></li></ol><br/></li><br/><li id="6">Which of the following destinations is NOT yet being offered by tour operators?<ol class="answerList"><li><a id="q21" >Rio de Janeiro</a></li><li><a id="q22" >Verona</a></li><li><a id="q23" >Lyons</a></li><li><a id="q24" >Buenos Aires</a></li></ol><br/></li><br/><li id="7">What is the main change in the tourist industry reported in the text?<ol class="answerList"><li><a id="q25" >People cannot go on holiday as often as they used to.</a></li><li><a id="q26" >Fewer people are choosing Europe as a holiday destination.</a></li><li><a id="q27" >Less time off work is leading to shorter, more frequent holidays.</a></li><li><a id="q28" >Tourists are travelling further than ever before.</a></li></ol><br/></li></ol>
+  <img class="leftFloat" src="../media/TT_AR_003.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">Glen Nisbett is mentioned in the text because he is an example of someone who &#x2026;<list class="answerList"><li><a id="a1">enjoys winter breaks.</a></li><li><a id="a2">has a hectic lifestyle.</a></li><li><a id="a3">cannot get away for long periods.</a></li><li><a id="a4">has travelled widely.</a></li></list><br/></li>
+    <br/>
+    <li id="q2">According to the text, the majority of holidays taken by Europeans &#x2026;<list class="answerList"><li><a id="a5">are long weekends.</a></li><li><a id="a6">last up to three days.</a></li><li><a id="a7">last less than eight days.</a></li><li><a id="a8">last about four weeks.</a></li></list><br/></li>
+    <br/>
+    <li id="q3">Which of the following is NOT a factor which has led to the popularity of short breaks?<list class="answerList"><li><a id="a9">busy work schedules</a></li><li><a id="a10">the expense of longer holidays</a></li><li><a id="a11">irregular working hours</a></li><li><a id="a12">an increase in the number of holiday destinations</a></li></list><br/></li>
+    <br/>
+    <li id="q4">According to the text, Lyons, Milan and Bilbao are examples of cities which &#x2026;<list class="answerList"><li><a id="a13">attract the well-travelled tourist.</a></li><li><a id="a14">are becoming known for their restaurants and nightlife.</a></li><li><a id="a15">are becoming more popular than Paris, London and Rome.</a></li><li><a id="a16">were ignored by tour operators in the past.</a></li></list><br/></li>
+    <br/>
+    <li id="q5">Which of the following is the closest to how Lyn Hughes feels about Rio de Janeiro?<list class="answerList"><li><a id="a17">She believes that few Europeans would want to go there for a short break.</a></li><li><a id="a18">She believes that it could be the next big holiday destination.</a></li><li><a id="a19">She doubts that it is a possible destination for a weekend break.</a></li><li><a id="a20">She considers it such an attractive place that people would not worry about the travelling time.</a></li></list><br/></li>
+    <br/>
+    <li id="q6">Which of the following destinations is NOT yet being offered by tour operators?<list class="answerList"><li><a id="a21">Rio de Janeiro</a></li><li><a id="a22">Verona</a></li><li><a id="a23">Lyons</a></li><li><a id="a24">Buenos Aires</a></li></list><br/></li>
+    <br/>
+    <li id="q7">What is the main change in the tourist industry reported in the text?<list class="answerList"><li><a id="a25">People cannot go on holiday as often as they used to.</a></li><li><a id="a26">Fewer people are choosing Europe as a holiday destination.</a></li><li><a id="a27">Less time off work is leading to shorter, more frequent holidays.</a></li><li><a id="a28">Tourists are travelling further than ever before.</a></li></list><br/></li>
+  </ol>
 </section>
-<section id="rt2001">
-	<p align="left">Questions 1-7 - Multiple choiceThe questions in this exercise need quite detailed, careful reading.&nbsp;Question 1 Many of the options are true of Glen Nisbett, but there's only one reason why he's mentioned in the passage. The key phrase in the question is 'he is an example of someone who …'</p>&nbsp;Question 2This question requires some simple calculations.&nbsp;Question 3Obviously, the key phrase in the question is 'is NOT a factor'.&nbsp;Question 4Read the options carefully and look for synonyms in the relevant section of the passage.&nbsp;Question 5The answer to this question isn't expressed clearly. You have to read between the lines.&nbsp;Question 6The key word in the question is 'NOT'. You have to scan several different parts of the text to find the answer.&nbsp;Question 7This question focuses on the gist of the whole text.
-</section>
+
+
 <section id="readingText">
-	<p align="left"><b>Leisure in the Fast Lane</b></p><p align="left">Glen Nisbett, a London-based management accountant, is difficult to reach on weekends. He might be off "experiencing a real winter," he says, as he did in Bergen last January, or "catching up with an old friend" in Venice. Or he could be "having a riot" in New York or "just seeing the sun again," which he did on a last-minute break to Alicante in April. "There are so many places I want to see, but I'm restricted in terms of how much time I can take off work," he explains. "So I pack as much as possible into two or three days at a time."</p><p align="left"><font color="#000000">Like Nisbett, more and more Europeans are finding that the once-traditional four-week summer vacation is no longer an option. According to the European Travel Monitor, short trips of between one and three days accounted for 27% of all breaks taken in 1999. Six out of 10 trips now last a week or less. And short holidays are more ambitious than ever before.</font></p><p align="left"><font color="#000000">Numerous factors are fueling the boom in minibreaks. Demanding jobs and erratic hours mean that longer holidays, which often need to be planned well in advance, may be difficult to arrange. Shorter, more frequent vacations – often extended weekends or business trips – fit into busy schedules better. Besides, money is plentiful, and so are good deals. Low-cost, no-frills airlines have opened up a growing list of destinations.</font></p><p align="left"><font color="#000000">City trips take the biggest slice of the short-break cake. Paris, London and Rome remain the favored stops but among seasoned nomads "there's a feeling of 'Been there, done that'," says Christine Ball, spokeswoman for a leading U.K. tour operator. Hence the growing popularity of what were once "second-string" cities: Lyons and Carcassonne in France, Milan and Bologna in Italy and Bilbao and Seville in Spain. Eastern Europe is also catching on: Estonia's Tallinn, Latvia's Riga and Poland's Krakow are all billing themselves as "the new Prague." And Reykjavik, with its all-night street parties in summer and huge club scene year-round, is benefiting from the boom in young, hip tourists.</font></p><p align="left"><font color="#000000">Travelers are not just taking more city breaks, they expect to be entertained while they're there. Says Robin Zimmermann, PR Manager at TUI Germany, the country's largest tour group: "People want more out of a city than just sightseeing." Like fabulous food or their favorite music. One of TUI's most popular trips: a gastronomy weekend in Lyons, which culminates in an evening meal at the restaurant of the original celebrity chef, Paul Bocuse. Opera buffs are flocking to Verona now that dozens of tour operators are offering tickets to Aida and La Traviata in its world-famous Arena as part of the tour.</font></p><p align="left">Increasingly, European holidaymakers are going farther afield for quick kicks. Lyn Hughes, editor of a magazine for independent travelers, says that a survey revealed that the city most readers wanted covered as a weekend break was Rio de Janeiro. "We're sending a writer down there this summer to see whether it can be done," she says dubiously. But Lucy Nicholson, product manager for upmarket tour operator Cox &amp; Kings, which recently introduced four-night trips to both Rio and Cape Town, says it's "such a fabulous place that you won't even notice the jet lag." Her prediction for the next hot destination? Buenos Aires, a further three hours away. Fritidsresor Group, Scandinavia's largest tour operator, is market-testing long weekends in Toronto and Beijing. "It's only a nine-hour flight," says communications director Lottie Knutson, of Beijing. "If it's somewhere you've always wanted to go, you'll do it. It's a new way of thinking."</p><p align="left">Christine Whitehouse, Time Europe, 30th October 2000, Vol.156, No.18.http://www.time.com/time/europe/magazine/2000/1030/travel/short.html</p><p align="left"><font size="2"></font></p>
+  <p align="left">
+    <b>Leisure in the Fast Lane</b>
+  </p>
+  <p align="left">Glen Nisbett, a London-based management accountant, is difficult to reach on weekends. He might be off "experiencing a real winter," he says, as he did in Bergen last January, or "catching up with an old friend" in Venice. Or he could be "having a riot" in New York or "just seeing the sun again," which he did on a last-minute break to Alicante in April. "There are so many places I want to see, but I'm restricted in terms of how much time I can take off work," he explains. "So I pack as much as possible into two or three days at a time."</p>
+  <p align="left">
+    <font color="#000000">Like Nisbett, more and more Europeans are finding that the once-traditional four-week summer vacation is no longer an option. According to the European Travel Monitor, short trips of between one and three days accounted for 27% of all breaks taken in 1999. Six out of 10 trips now last a week or less. And short holidays are more ambitious than ever before.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Numerous factors are fueling the boom in minibreaks. Demanding jobs and erratic hours mean that longer holidays, which often need to be planned well in advance, may be difficult to arrange. Shorter, more frequent vacations &#x2013; often extended weekends or business trips &#x2013; fit into busy schedules better. Besides, money is plentiful, and so are good deals. Low-cost, no-frills airlines have opened up a growing list of destinations.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">City trips take the biggest slice of the short-break cake. Paris, London and Rome remain the favored stops but among seasoned nomads "there's a feeling of 'Been there, done that'," says Christine Ball, spokeswoman for a leading U.K. tour operator. Hence the growing popularity of what were once "second-string" cities: Lyons and Carcassonne in France, Milan and Bologna in Italy and Bilbao and Seville in Spain. Eastern Europe is also catching on: Estonia's Tallinn, Latvia's Riga and Poland's Krakow are all billing themselves as "the new Prague." And Reykjavik, with its all-night street parties in summer and huge club scene year-round, is benefiting from the boom in young, hip tourists.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Travelers are not just taking more city breaks, they expect to be entertained while they're there. Says Robin Zimmermann, PR Manager at TUI Germany, the country's largest tour group: "People want more out of a city than just sightseeing." Like fabulous food or their favorite music. One of TUI's most popular trips: a gastronomy weekend in Lyons, which culminates in an evening meal at the restaurant of the original celebrity chef, Paul Bocuse. Opera buffs are flocking to Verona now that dozens of tour operators are offering tickets to Aida and La Traviata in its world-famous Arena as part of the tour.</font>
+  </p>
+  <p align="left">Increasingly, European holidaymakers are going farther afield for quick kicks. Lyn Hughes, editor of a magazine for independent travelers, says that a survey revealed that the city most readers wanted covered as a weekend break was Rio de Janeiro. "We're sending a writer down there this summer to see whether it can be done," she says dubiously. But Lucy Nicholson, product manager for upmarket tour operator Cox &amp; Kings, which recently introduced four-night trips to both Rio and Cape Town, says it's "such a fabulous place that you won't even notice the jet lag." Her prediction for the next hot destination? Buenos Aires, a further three hours away. Fritidsresor Group, Scandinavia's largest tour operator, is market-testing long weekends in Toronto and Beijing. "It's only a nine-hour flight," says communications director Lottie Knutson, of Beijing. "If it's somewhere you've always wanted to go, you'll do it. It's a new way of thinking."</p>
+  <p align="left">Christine Whitehouse, Time Europe, 30th October 2000, Vol.156, No.18.http://www.time.com/time/europe/magazine/2000/1030/travel/short.html</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

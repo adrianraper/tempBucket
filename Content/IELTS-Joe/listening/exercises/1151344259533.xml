@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,44 @@
 		<misc timed="210"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="Mackay " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="14, Wilsham Street " correct="true"/><answer value="14 Wilsham Street" correct="true"/><answer value="14, Wilsham St" correct="true"/><answer value="14 Wilsham St" correct="true"/><answer value="14, Wilsham St." correct="true"/><answer value="14 Wilsham St." correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="76200685 " correct="true"/><answer value="7620 0685" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="Superwash " correct="true"/><answer value="Super Wash" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="PDW233 " correct="true"/><answer value="PDW 233" correct="true"/><answer value="pdw 233" correct="true"/><answer value="pdw233" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="Saturday 13th " correct="true"/><answer value="Sat 13th" correct="true"/><answer value="Saturday 13" correct="true"/><answer value="Sat 13" correct="true"/><answer value="13" correct="true"/><answer value="13th" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Mackay " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="14, Wilsham Street " correct="true"/>
+      <answer value="14 Wilsham Street" correct="true"/>
+      <answer value="14, Wilsham St" correct="true"/>
+      <answer value="14 Wilsham St" correct="true"/>
+      <answer value="14, Wilsham St." correct="true"/>
+      <answer value="14 Wilsham St." correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="76200685 " correct="true"/>
+      <answer value="7620 0685" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="Superwash " correct="true"/>
+      <answer value="Super Wash" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="PDW233 " correct="true"/>
+      <answer value="PDW 233" correct="true"/>
+      <answer value="pdw 233" correct="true"/>
+      <answer value="pdw233" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="Saturday 13th " correct="true"/>
+      <answer value="Sat 13th" correct="true"/>
+      <answer value="Saturday 13" correct="true"/>
+      <answer value="Sat 13" correct="true"/>
+      <answer value="13" correct="true"/>
+      <answer value="13th" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,11 +70,13 @@
 		
 </header>
 	
-<section id="body">
-	<media class="leftFloat" src="../media/ST_LN1a.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Williams Electrical Goods</b></font>Repair Request Form</p><p align="left"><font color="#000000"><b>Name:</b>	Mrs Jane (1) <input id="q1" /></font></p>Address:	(2) <input id="q2" />, Notting Hill, 	London W11.Telephone:	Home: 7391 3264 	Work: (3) <input id="q3" />Appliance:	washing machineMake:	(4) <input id="q4" />Model number:	(5) <input id="q5" />Date of purchase:	(6) <input id="q6" /> October, 2001
+<section id="body"><audio controls="compact" class="leftFloat" src="../media/ST_LN1a.mp3" mode="4" id="1002"/><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Williams Electrical Goods</b></font>Repair Request Form</p><p align="left"><font color="#000000"><b>Name:</b>	Mrs Jane (1) <input id="q1"/></font></p>Address:	(2) <input id="q2"/>, Notting Hill, 	London W11.Telephone:	Home: 7391 3264 	Work: (3) <input id="q3"/>Appliance:	washing machineMake:	(4) <input id="q4"/>Model number:	(5) <input id="q5"/>Date of purchase:	(6) <input id="q6"/> October, 2001
 </section>
+
 <section id="rt2001">
-	<p align="left">You should be able to see from the form that you will need to listen for a name, an address, a phone number, the name of a product, a number and a date.</p><p align="left">Questions 1-8Make sure you are familiar with the form and you know where to put the information you hear.</p>
+  <p align="left">You should be able to see from the form that you will need to listen for a name, an address, a phone number, the name of a product, a number and a date.</p>
+  <p align="left">Questions 1-8Make sure you are familiar with the form and you know where to put the information you hear.</p>
 </section>
+
 </body>
 </bento>

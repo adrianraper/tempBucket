@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="dropdown" date="2011-10-27" />
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,26 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DropDownQuestion source="q1" group="1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></DropDownQuestion><DropDownQuestion source="q2" group="2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></DropDownQuestion><DropDownQuestion source="q3" group="3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></DropDownQuestion></questions></script>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,8 +52,6 @@
 		
 </header>
 	
-<section id="body">
-	<img class="rightFloat" src="../media/EN_SP_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000">candidate gives personal information and opinions: <select id="q1" type="dropdown" ><option id="o1">Part 1"</option>"<option id="o2">Part 2"</option>"<option id="o3">Part 3"</option>"</select></font></p>&nbsp;candidate speaks for 1-2 minutes: <select id="q2" type="dropdown" ><option id="o4">Part 2"</option>"<option id="o5">Part 3"</option>"<option id="o6">Part 1"</option>"</select><p align="left"><font color="#000000">candidate and examiner discuss together: <select id="q3" type="dropdown" ><option id="o7">Part 3"</option>"<option id="o8">Part 1"</option>"<option id="o9">Part 2"</option>"</select></font></p><p align="left"><font size="2"></font></p>
-</section>
+
 </body>
 </bento>

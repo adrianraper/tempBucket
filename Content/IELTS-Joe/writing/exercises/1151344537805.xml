@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,82 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="as many films were made " correct="true"/><answer value="the number of films were made" correct="true"/><answer value="the number of films were produced" correct="true"/><answer value="as many films were produced" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="three times as many " correct="true"/><answer value="3 times as many" correct="true"/><answer value="three times as high" correct="true"/><answer value="3 times as high" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="half " correct="true"/><answer value="half as many as" correct="true"/><answer value="half as high as" correct="true"/><answer value="fewer than" correct="true"/><answer value="far fewer than" correct="true"/><answer value="lower than" correct="true"/><answer value="far lower than" correct="true"/><answer value="much lower than" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="the same " correct="true"/><answer value="as many" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="many films were made " correct="true"/><answer value="many films were produced" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="More films were made " correct="true"/><answer value="Far more films were made" correct="true"/><answer value="More films were produced" correct="true"/><answer value="Far more films were produced" correct="true"/><answer value="Many more films were made" correct="true"/><answer value="Many more films were produced" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="Fewer films were made " correct="true"/><answer value="Fewer films were produced" correct="true"/><answer value="Far fewer films were made" correct="true"/><answer value="Far fewer films were produced" correct="true"/><answer value="Six times fewer films were made" correct="true"/><answer value="Six times fewer films were produced" correct="true"/><answer value="6 times fewer films were made" correct="true"/><answer value="6 times fewer films were produced" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="double " correct="true"/><answer value="twice" correct="true"/><answer value="two times" correct="true"/><answer value="2 times" correct="true"/><answer value="twice as many as" correct="true"/><answer value="two times as many as" correct="true"/><answer value="2 times as many as" correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="triple " correct="true"/><answer value="three times" correct="true"/><answer value="3 times" correct="true"/><answer value="three times as many as" correct="true"/><answer value="three times as high as" correct="true"/><answer value="3 times as many as" correct="true"/><answer value="3 times as high as" correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="times as many films were made " correct="true"/><answer value="times as many films were produced" correct="true"/><answer value="times the number of films were made" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="as many films were made " correct="true"/>
+      <answer value="the number of films were made" correct="true"/>
+      <answer value="the number of films were produced" correct="true"/>
+      <answer value="as many films were produced" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="three times as many " correct="true"/>
+      <answer value="3 times as many" correct="true"/>
+      <answer value="three times as high" correct="true"/>
+      <answer value="3 times as high" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="half " correct="true"/>
+      <answer value="half as many as" correct="true"/>
+      <answer value="half as high as" correct="true"/>
+      <answer value="fewer than" correct="true"/>
+      <answer value="far fewer than" correct="true"/>
+      <answer value="lower than" correct="true"/>
+      <answer value="far lower than" correct="true"/>
+      <answer value="much lower than" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="the same " correct="true"/>
+      <answer value="as many" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="many films were made " correct="true"/>
+      <answer value="many films were produced" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="More films were made " correct="true"/>
+      <answer value="Far more films were made" correct="true"/>
+      <answer value="More films were produced" correct="true"/>
+      <answer value="Far more films were produced" correct="true"/>
+      <answer value="Many more films were made" correct="true"/>
+      <answer value="Many more films were produced" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="Fewer films were made " correct="true"/>
+      <answer value="Fewer films were produced" correct="true"/>
+      <answer value="Far fewer films were made" correct="true"/>
+      <answer value="Far fewer films were produced" correct="true"/>
+      <answer value="Six times fewer films were made" correct="true"/>
+      <answer value="Six times fewer films were produced" correct="true"/>
+      <answer value="6 times fewer films were made" correct="true"/>
+      <answer value="6 times fewer films were produced" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="double " correct="true"/>
+      <answer value="twice" correct="true"/>
+      <answer value="two times" correct="true"/>
+      <answer value="2 times" correct="true"/>
+      <answer value="twice as many as" correct="true"/>
+      <answer value="two times as many as" correct="true"/>
+      <answer value="2 times as many as" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="triple " correct="true"/>
+      <answer value="three times" correct="true"/>
+      <answer value="3 times" correct="true"/>
+      <answer value="three times as many as" correct="true"/>
+      <answer value="three times as high as" correct="true"/>
+      <answer value="3 times as many as" correct="true"/>
+      <answer value="3 times as high as" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="times as many films were made " correct="true"/>
+      <answer value="times as many films were produced" correct="true"/>
+      <answer value="times the number of films were made" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,10 +106,23 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/AC_AW_005s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/AC_AW_005.jpg" mode="16" id="1004"  /><br/><ol id="questionList"><li id="1">Twice <input id="q1" width="100" /> in Ukraine as in Estonia.</li><li id="2">The number of films produced in Romania was <input id="q2" width="100" /> as in Croatia.</li><li id="3">The number of films produced in Ukraine was <input id="q3" width="100" /> the number produced in Hungary.</li><li id="4">The number of films produced in Belarus was exactly <input id="q4" width="100" /> as the number produced in Slovenia.</li><li id="5">As <input id="q5" width="100" /> in Croatia as were produced in Estonia.</li><li id="6"><input id="q6" width="100" /> in the Czech Republic than in any other country in the chart.</li><li id="7"><input id="q7" width="100" /> in Belarus than in Hungary.</li><li id="8">The number of films produced in Slovakia was <input id="q8" width="100" /> the number produced in Slovenia.</li><li id="9">The number of films produced in Ukraine was <input id="q9" width="100" /> the number produced in Belarus.</li><li id="10">Four <input id="q10" width="100" /> in Hungary as in Estonia.</li></ol>
+  <img class="rightFloat" src="../media/AC_AW_005s.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/AC_AW_005.jpg" mode="16" id="1004"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">Twice <input id="q1"/> in Ukraine as in Estonia.</li>
+    <li id="2">The number of films produced in Romania was <input id="q2"/> as in Croatia.</li>
+    <li id="3">The number of films produced in Ukraine was <input id="q3"/> the number produced in Hungary.</li>
+    <li id="4">The number of films produced in Belarus was exactly <input id="q4"/> as the number produced in Slovenia.</li>
+    <li id="5">As <input id="q5"/> in Croatia as were produced in Estonia.</li>
+    <li id="6"><input id="q6"/> in the Czech Republic than in any other country in the chart.</li>
+    <li id="7"><input id="q7"/> in Belarus than in Hungary.</li>
+    <li id="8">The number of films produced in Slovakia was <input id="q8"/> the number produced in Slovenia.</li>
+    <li id="9">The number of films produced in Ukraine was <input id="q9"/> the number produced in Belarus.</li>
+    <li id="10">Four <input id="q10"/> in Hungary as in Estonia.</li>
+  </ol>
 </section>
-<section id="rt2001">
-	<p align="left">In Unit 1 we saw how static charts do not show changes over time. If you are asked to write a report on a static chart, you will not have to describe trends, but you are expected to make comparisons between values.&nbsp;Here are some ways of making comparison.&nbsp;More films were produced in the Czech Republic than in Bulgaria.&nbsp;The number of films produced in the Czech Republic was double the number of films produced in Bulgaria.&nbsp;Twice as many films were produced in the Czech Republic as in Bulgaria.&nbsp;The number of films produced in the Czech Republic was twice as many as the number produced in Bulgaria. &nbsp;The number of films produced in the Czech Republic was twice as high as the number produced in Bulgaria.</p>
-</section>
+
+
 </body>
 </bento>

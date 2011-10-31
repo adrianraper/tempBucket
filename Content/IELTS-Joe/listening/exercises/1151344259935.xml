@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-27" />
+	<meta name="conversion-from" content="quiz" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,31 @@
 		<misc timed="150"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="false"/><answer source="a4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="false"/><answer source="a10" correct="true"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,25 +58,40 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../media/ST_LN2c.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/ST_LN_007.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><tab/><b>11</b>texts with lots of detailed information<a id="q1" >B</a><tab/><a id="q2" >G</a><tab/><b>12</b>simple language<a id="q3" >B</a><tab/><a id="q4" >G</a><tab/><b>13</b>texts and graphics together on the same page<a id="q5" >B</a><tab/><a id="q6" >G</a><tab/><b>14</b>big pictures<a id="q7" >B</a><tab/><a id="q8" >G</a><tab/><b>15</b>company details on the first page of a web site<a id="q9" >B</a><tab/><a id="q10" >G</a></ol>
+  <audio controls="compact" class="leftFloat" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
+  <img class="rightFloat" src="../media/ST_LN_007.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList"><tab/><b>11</b>texts with lots of detailed information<a id="a1">B</a><tab/><a id="a2">G</a><tab/><b>12</b>simple language<a id="a3">B</a><tab/><a id="a4">G</a><tab/><b>13</b>texts and graphics together on the same page<a id="a5">B</a><tab/><a id="a6">G</a><tab/><b>14</b>big pictures<a id="a7">B</a><tab/><a id="a8">G</a><tab/><b>15</b>company details on the first page of a web site<a id="a9">B</a><tab/><a id="a10">G</a></ol>
 </section>
+
 <section id="fb1">
-	<p align="left"><font face="verdana" size="13" color="#000000">11. The speaker says that if you overload the site with too much text it can look very unattractive so she does not think this is a good design feature.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">11. The speaker says that if you overload the site with too much text it can look very unattractive so she does not think this is a good design feature.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><font face="verdana" size="13" color="#000000">12. The speaker says that texts with simple grammar are far easier to read, so argues that this is a good design feature.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">12. The speaker says that texts with simple grammar are far easier to read, so argues that this is a good design feature.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left">13. The speaker say it's boring and discouraging to have text without pictures. So she believes the combination of text and graphics to be a good design feature.</p>
+  <p align="left">13. The speaker say it's boring and discouraging to have text without pictures. So she believes the combination of text and graphics to be a good design feature.</p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font face="verdana" size="13" color="#000000">14. The speaker says to avoid large pictures as they slow down the time a page takes to load, so she doesn't see this as a good design feature. </font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">14. The speaker says to avoid large pictures as they slow down the time a page takes to load, so she doesn't see this as a good design feature. </font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font face="verdana" size="13" color="#000000">15. The speaker says that you don't want people searching all over the site for company details as they might give up, so sees this an important feature.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">15. The speaker says that you don't want people searching all over the site for company details as they might give up, so sees this an important feature.</font>
+  </p>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell that you will hear someone giving their opinions about designing a web site.</font>&nbsp;Questions 11-15Think about each of these statements and from your own knowledge of web sites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
-</section>
+
+
 </body>
 </bento>

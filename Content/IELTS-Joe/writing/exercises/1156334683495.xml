@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -36,43 +39,97 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/EN_AW_007s.jpg" mode="1" id="1001"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/EN_AW_007s.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left"><font color="#000000">'so that' needs to be followed with a full verb clause (subject + verb + object).</font></p><p align="left"><font color="#000000">Correct: ...of waves <font color="#0000ff"><b>to</b></font> generate...</font></p>
+  <p align="left">
+    <font color="#000000">'so that' needs to be followed with a full verb clause (subject + verb + object).</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Correct: ...of waves <font color="#0000ff"><b>to</b></font> generate...</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left">A relative pronoun which shows possession is needed here. 'The piston of the pump' in other words.</p><p align="left"><font color="#000000">Correct: ...the pump, <font color="#0000ff"><b>whose</b></font> piston...</font></p>
+  <p align="left">A relative pronoun which shows possession is needed here. 'The piston of the pump' in other words.</p>
+  <p align="left">
+    <font color="#000000">Correct: ...the pump, <font color="#0000ff"><b>whose</b></font> piston...</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font color="#000000">Correct: When <font color="#0000ff"><b>it</b></font> falls, ...</font></p>
+  <p align="left">
+    <font color="#000000">Correct: When <font color="#0000ff"><b>it</b></font> falls, ...</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font color="#000000">'so that' needs to be followed with a full verb clause (subject + verb + object).<font face="verdana" size="12"></font></font></p><p align="left"><font color="#000000">Correct: <font color="#0000ff"><b>Consequently</b></font>, the valve...</font></p>
+  <p align="left">
+    <font color="#000000">'so that' needs to be followed with a full verb clause (subject + verb + object).<font face="verdana" size="12"/></font>
+  </p>
+  <p align="left">
+    <font color="#000000">Correct: <font color="#0000ff"><b>Consequently</b></font>, the valve...</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left">'Due to' means 'because of'.<font face="verdana" size="12"></font></p><p align="left"><font color="#000000">Correct: <font color="#0000ff"><b>In order</b></font> to leave...</font></p>
+  <p align="left">'Due to' means 'because of'.<font face="verdana" size="12"/></p>
+  <p align="left">
+    <font color="#000000">Correct: <font color="#0000ff"><b>In order</b></font> to leave...</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font color="#000000">'so that' needs to be followed with a full verb clause (subject + verb + object).<font face="verdana" size="12"></font></font></p><p align="left"><font color="#000000">Correct: a turbine, <font color="#0000ff"><b>causing it</b></font> to rotate.</font></p>
+  <p align="left">
+    <font color="#000000">'so that' needs to be followed with a full verb clause (subject + verb + object).<font face="verdana" size="12"/></font>
+  </p>
+  <p align="left">
+    <font color="#000000">Correct: a turbine, <font color="#0000ff"><b>causing it</b></font> to rotate.</font>
+  </p>
 </section>
+
 <section id="fb7">
-	<p align="left">'Who' is used to refer to people.<font face="verdana" size="12"></font></p><p align="left"><font color="#000000">Correct: ...to a generator, <font color="#0000ff"><b>which</b> </font> converts...</font></p>
+  <p align="left">'Who' is used to refer to people.<font face="verdana" size="12"/></p>
+  <p align="left">
+    <font color="#000000">Correct: ...to a generator, <font color="#0000ff"><b>which</b></font> converts...</font>
+  </p>
 </section>
+
 <section id="fb8">
-	<p align="left"><font color="#000000">Correct: ...in this case <font color="#0000ff"><b>it</b></font> is surrounded...</font></p>
+  <p align="left">
+    <font color="#000000">Correct: ...in this case <font color="#0000ff"><b>it</b></font> is surrounded...</font>
+  </p>
 </section>
+
 <section id="fb9">
-	<p align="left">This is the second reference to the chamber, so 'a' is not appropriate here.<font face="verdana" size="12"></font></p><p align="left"><font color="#000000">Correct: ...another chamber, <font color="#0000ff"><b>which</b></font> is half...</font></p>
+  <p align="left">This is the second reference to the chamber, so 'a' is not appropriate here.<font face="verdana" size="12"/></p>
+  <p align="left">
+    <font color="#000000">Correct: ...another chamber, <font color="#0000ff"><b>which</b></font> is half...</font>
+  </p>
 </section>
+
 <section id="fb10">
-	<p align="left"><font face="verdana" size="13" color="#000000">this</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">this</font>
+  </p>
 </section>
+
 <section id="fb11">
-	<p align="left">'So that' can't be used here because there is a comma.<font face="verdana" size="12"></font></p><p align="left"><font color="#000000">Correct: <font color="#0000ff"><b>As a result</b></font>, a current...</font></p>
+  <p align="left">'So that' can't be used here because there is a comma.<font face="verdana" size="12"/></p>
+  <p align="left">
+    <font color="#000000">Correct: <font color="#0000ff"><b>As a result</b></font>, a current...</font>
+  </p>
 </section>
+
 <section id="fb12">
-	<p align="left">'Currents' is plural.</p><p align="left"><font color="#000000">Correct: Due to <font color="#0000ff"><b>these</b></font> currents...</font></p>
+  <p align="left">'Currents' is plural.</p>
+  <p align="left">
+    <font color="#000000">Correct: Due to <font color="#0000ff"><b>these</b></font> currents...</font>
+  </p>
 </section>
+
 </body>
 </bento>

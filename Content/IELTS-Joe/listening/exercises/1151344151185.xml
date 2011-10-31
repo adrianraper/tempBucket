@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion-type" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-27"/>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -21,9 +21,35 @@
 		<misc splitscreen="true" timed="265"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="H " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="K " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="J " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="E " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="D " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="A " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="F " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="C " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="H " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="K " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="J " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="E " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="D " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="A " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="F " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -35,11 +61,14 @@
 		
 </header>
 	
-<section id="body">
-	<media class="leftFloat" src="../media/HF_LN2a.mp3" mode="4" id="1002"  /><p align="left"><b>Insects	Diseases</b>================================Anopheles mosquitoes	(1) <input id="q1" /></p>Aedes aegypti mosquitoes	(2) <input id="q2" />Houseflies	(3) <input id="q3" />Deer ticks	(4) <input id="q4" />Body lice	(5) <input id="q5" />Fleas	(6) <input id="q6" />Black flies	(7) <input id="q7" />Sand flies	(8) <input id="q8" /><p align="left"><font size="2"></font></p>
-</section>
+<section id="body"><audio controls="compact" class="leftFloat" src="../media/HF_LN2a.mp3" mode="4" id="1002"/><p align="left"><b>Insects	Diseases</b>================================Anopheles mosquitoes	(1) <input id="q1"/></p>Aedes aegypti mosquitoes	(2) <input id="q2"/>Houseflies	(3) <input id="q3"/>Deer ticks	(4) <input id="q4"/>Body lice	(5) <input id="q5"/>Fleas	(6) <input id="q6"/>Black flies	(7) <input id="q7"/>Sand flies	(8) <input id="q8"/><p align="left"><font size="2"/></p></section>
+
 <section id="readingText">
-	<p align="left"><b>Diseases</b>==============A	river blindnessB	toxoplasmosisC	malariaD	endemic typhusE	epidemic typhusF	leishmaniasisG	Q-feverH	dengue feverI	sleeping sicknessJ	Lyme diseaseK	dysentery</p><p align="left"><font size="2"></font></p>
+  <p align="left"><b>Diseases</b>==============A	river blindnessB	toxoplasmosisC	malariaD	endemic typhusE	epidemic typhusF	leishmaniasisG	Q-feverH	dengue feverI	sleeping sicknessJ	Lyme diseaseK	dysentery</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

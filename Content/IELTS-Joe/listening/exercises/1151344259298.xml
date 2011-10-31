@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,35 @@
 		<misc timed="140"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="on Monday morning " correct="true"/><answer value="on Mon morning" correct="true"/><answer value="Monday morning" correct="true"/><answer value="Mon morning" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="She is working " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="on Monday evening " correct="true"/><answer value="on Mon evening" correct="true"/><answer value="Monday evening" correct="true"/><answer value="Mon evening" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="Thursday evening " correct="true"/><answer value="Next Thurs evening" correct="true"/><answer value="Next Thur evening" correct="true"/><answer value="next Thursday evening" correct="true"/><answer value="next Thurs evening" correct="true"/><answer value="next Thur evening" correct="true"/><answer value="next Thursday evening" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="on Monday morning " correct="true"/>
+      <answer value="on Mon morning" correct="true"/>
+      <answer value="Monday morning" correct="true"/>
+      <answer value="Mon morning" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="She is working " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="on Monday evening " correct="true"/>
+      <answer value="on Mon evening" correct="true"/>
+      <answer value="Monday evening" correct="true"/>
+      <answer value="Mon evening" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="Thursday evening " correct="true"/>
+      <answer value="Next Thurs evening" correct="true"/>
+      <answer value="Next Thur evening" correct="true"/>
+      <answer value="next Thursday evening" correct="true"/>
+      <answer value="next Thurs evening" correct="true"/>
+      <answer value="next Thur evening" correct="true"/>
+      <answer value="next Thursday evening" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,7 +62,11 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../media/ST_LN1c.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><tab/><b>10</b>When is the earliest a service engineer is available?<input id="q1" width="100" /><tab/><b>11</b>Why is this inconvenient for Jane?<input id="q2" width="100" /><tab/><b>12</b>When would be most convenient for Jane?<input id="q3" width="100" /><tab/><b>13</b>When do they arrange for the service engineer to see the machine?<input id="q4" width="100" /></ol>
+  <audio controls="compact" class="leftFloat" src="../media/ST_LN1c.mp3" mode="4" id="1002"/>
+  <img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList"><tab/><b>10</b>When is the earliest a service engineer is available?<input id="q1"/><tab/><b>11</b>Why is this inconvenient for Jane?<input id="q2"/><tab/><b>12</b>When would be most convenient for Jane?<input id="q3"/><tab/><b>13</b>When do they arrange for the service engineer to see the machine?<input id="q4"/></ol>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,41 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="false"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,7 +67,27 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit06_e7b.flv" mode="1" id="1002"  /><p align="left">What, according to the candidates, are the main reasons for choosing a particular news medium?</p><p align="left"><font color="#0000ff"><b>Zafir</b></font><g id="t1">A. Trust</g><g id="t2">B. Availability</g><g id="t3">C. Like to read it</g><g id="t4">D. Immediacy</g><g id="t5">E. Political orientation</g><g id="t6">F. Cost</g><g id="t7">G. Some prefer to look than listen</g><g id="t8">H. Objectivity</g><g id="t9">I. Personal circumstances</g><g id="t10">J. Can be read anywhere</g></p><p align="left"><font size="2"></font></p>
+  <video src="../media/Unit06_e7b.flv" mode="1" id="1002"/>
+  <p align="left">What, according to the candidates, are the main reasons for choosing a particular news medium?</p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Zafir</b>
+    </font>
+    <g id="t1">A. Trust</g>
+    <g id="t2">B. Availability</g>
+    <g id="t3">C. Like to read it</g>
+    <g id="t4">D. Immediacy</g>
+    <g id="t5">E. Political orientation</g>
+    <g id="t6">F. Cost</g>
+    <g id="t7">G. Some prefer to look than listen</g>
+    <g id="t8">H. Objectivity</g>
+    <g id="t9">I. Personal circumstances</g>
+    <g id="t10">J. Can be read anywhere</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

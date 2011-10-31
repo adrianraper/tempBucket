@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,17 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="true"/><answer source="a3" correct="false"/><answer source="a4" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="true"/>
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,7 +41,13 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit02_e7.flv" mode="1" id="1003"  /><br/><ol id="questionList"><br/><li id="1">Which of these questions does the examiner ask at the end of Zenia's talk?<ol class="answerList"><li><a id="q1" >Do tourists benefit many people in your country?</a></li><li><a id="q2" >Does tourism benefit many people in your country?</a></li><li><a id="q3" >Does tourism bring many benefits to your country?</a></li><li><a id="q4" >Do tourists bring many benefits to your country?</a></li></ol><br/></li></ol>
+  <video src="../media/Unit02_e7.flv" mode="1" id="1003"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">Which of these questions does the examiner ask at the end of Zenia's talk?<list class="answerList"><li><a id="a1">Do tourists benefit many people in your country?</a></li><li><a id="a2">Does tourism benefit many people in your country?</a></li><li><a id="a3">Does tourism bring many benefits to your country?</a></li><li><a id="a4">Do tourists bring many benefits to your country?</a></li></list><br/></li>
+  </ol>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -36,37 +39,57 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/HF_AW_007s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/HF_AW_007.jpg" mode="16" id="1003"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/HF_AW_007s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/HF_AW_007.jpg" mode="16" id="1003"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left"><font color="#000000"> nearly: 1972-1999 is nearly three decades.</font></p>
+  <p align="left">
+    <font color="#000000"> nearly: 1972-1999 is nearly three decades.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><font color="#000000">Encouragingly: The fact that smoking became less common is good news.</font></p>
+  <p align="left">
+    <font color="#000000">Encouragingly: The fact that smoking became less common is good news.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left">Concerning</p>
+  <p align="left">Concerning</p>
 </section>
+
 <section id="fb4">
-	<p align="left">almost</p>
+  <p align="left">almost</p>
 </section>
+
 <section id="fb5">
-	<p align="left">just over</p>
+  <p align="left">just over</p>
 </section>
+
 <section id="fb6">
-	<p align="left">2</p>
+  <p align="left">2</p>
 </section>
+
 <section id="fb7">
-	<p align="left"><font color="#000000">Less positively: The fact that some groups are more likely to smoke can't be describe as 'encouraging'. </font></p>
+  <p align="left">
+    <font color="#000000">Less positively: The fact that some groups are more likely to smoke can't be describe as 'encouraging'. </font>
+  </p>
 </section>
+
 <section id="fb8">
-	<p align="left">just under</p>
+  <p align="left">just under</p>
 </section>
+
 <section id="fb9">
-	<p align="left">As far as</p>
+  <p align="left">As far as</p>
 </section>
+
 <section id="fb10">
-	<p align="left">around</p>
+  <p align="left">around</p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,37 @@
 		<misc timed="300"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="Western countries  " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="over 45  " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="the weather forecast  " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="lengthy newspaper articles  " correct="true"/><answer value="lengthy articles" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="frequently updated  " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="the radio  " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="newspaper income  " correct="true"/><answer value="newspaper revenue" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="distribution costs  " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Western countries  " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="over 45  " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="the weather forecast  " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="lengthy newspaper articles  " correct="true"/>
+      <answer value="lengthy articles" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="frequently updated  " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="the radio  " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="newspaper income  " correct="true"/>
+      <answer value="newspaper revenue" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="distribution costs  " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,7 +64,21 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/MM_LN_003.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/MM_LN2.mp3" mode="4" id="1006"  /><p align="left"><font color="#000000">In recent years, the Internet has changed the way people consume the news. Many (1) <input id="q1" /> have experienced a fall in newspaper circulation, partly because of greater competition for people's leisure time. The majority of readers are now people (2) <input id="q2" />.</font></p><p align="left"><font color="#000000">It is quicker to access specialised information, for example (3) <input id="q3" />, on the Internet. Most people no longer want to read (4) <input id="q4" />. What they prefer is news which is (5) <input id="q5" />. More people now go to the Internet for this than to (6) <input id="q6" /> even.</font></p><p align="left"><font color="#000000">The Internet is also a threat to (7) <input id="q7" /> as it is a cheaper and more effective medium for classified advertisements. In addition, the Internet does not incur any (8) <input id="q8" />.</font></p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/MM_LN_003.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/MM_LN2.mp3" mode="4" id="1006"/>
+  <p align="left">
+    <font color="#000000">In recent years, the Internet has changed the way people consume the news. Many (1) <input id="q1"/> have experienced a fall in newspaper circulation, partly because of greater competition for people's leisure time. The majority of readers are now people (2) <input id="q2"/>.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">It is quicker to access specialised information, for example (3) <input id="q3"/>, on the Internet. Most people no longer want to read (4) <input id="q4"/>. What they prefer is news which is (5) <input id="q5"/>. More people now go to the Internet for this than to (6) <input id="q6"/> even.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">The Internet is also a threat to (7) <input id="q7"/> as it is a cheaper and more effective medium for classified advertisements. In addition, the Internet does not incur any (8) <input id="q8"/>.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

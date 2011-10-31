@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -31,7 +34,24 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/EN_AW_008.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Writing Task 2</b></font></p><p align="left"><b>Problem and solution 1</b>You will ...</p><ol><li>analyse a writing task and match paragraph headings to	paragraphs.</li><li>organize notes into paragraphs.</li><li>complete a composition with words and phrases used to	express cause and effect and to suggest solutions.</li><li>complete sentences expressing cause and effect with	appropriate words and phrases.</li><li>listen and group comments according to whether they	are causes of the problem or possible solutions to the	problem.</li></ol><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/EN_AW_008.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Academic Writing Task 2</b>
+    </font>
+  </p>
+  <p align="left"><b>Problem and solution 1</b>You will ...</p>
+  <ol>
+    <li>analyse a writing task and match paragraph headings to	paragraphs.</li>
+    <li>organize notes into paragraphs.</li>
+    <li>complete a composition with words and phrases used to	express cause and effect and to suggest solutions.</li>
+    <li>complete sentences expressing cause and effect with	appropriate words and phrases.</li>
+    <li>listen and group comments according to whether they	are causes of the problem or possible solutions to the	problem.</li>
+  </ol>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

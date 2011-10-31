@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,51 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="true"/><answer source="a5" correct="true"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="false"/><answer source="a8" correct="true"/><answer source="a9" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="false"/><answer source="a17" correct="true"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="true"/><answer source="a20" correct="true"/><answer source="a21" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a22" correct="false"/><answer source="a23" correct="true"/><answer source="a24" correct="true"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true"/>
+      <answer source="a9" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+      <answer source="a21" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,10 +78,31 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/HF_AW_005.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1">(…), waiting lists for hip operations have grown shorter over the last few months.<ol class="answerList"><li><a id="q1" >Worryingly</a></li><li><a id="q2" >Disappointingly</a></li><li><a id="q3" >Encouragingly</a></li></ol><br/></li><br/><li id="2">(…), there has been a noticeable upward trend in the number of patients admitted to hospital with heart problems.<ol class="answerList"><li><a id="q4" >Disturbingly</a></li><li><a id="q5" >Worryingly</a></li><li><a id="q6" >Unpredictably</a></li></ol><br/></li><br/><li id="3">(…), the figures show that high blood pressure is more common among the elderly.<ol class="answerList"><li><a id="q7" >Strangely</a></li><li><a id="q8" >Not surprisingly</a></li><li><a id="q9" >Predictably</a></li></ol><br/></li><br/><li id="4">(…), the number of common colds reported rose during the summer months.<ol class="answerList"><li><a id="q10" >Unexpectedly</a></li><li><a id="q11" >Predictably</a></li><li><a id="q12" >Surprisingly</a></li></ol><br/></li><br/><li id="5">(…), a significant proportion of those who wanted to lose weight continued to eat a high-fat diet.<ol class="answerList"><li><a id="q13" >Strangely</a></li><li><a id="q14" >Encouragingly</a></li><li><a id="q15" >Surprisingly</a></li></ol><br/></li><br/><li id="6">(…), the percentage of the world's children immunised against diseases such as polio has risen dramatically in recent years.<ol class="answerList"><li><a id="q16" >Strangely</a></li><li><a id="q17" >Encouragingly</a></li><li><a id="q18" >Disturbingly</a></li></ol><br/></li><br/><li id="7">(…), the figures show that asthma is becoming more and more common among children and young people.<ol class="answerList"><li><a id="q19" >Worryingly</a></li><li><a id="q20" >Disturbingly</a></li><li><a id="q21" >Encouragingly</a></li></ol><br/></li><br/><li id="8">(…), the figures seem to show that those who take regular exercise run less risk of developing heart disease later in life.<ol class="answerList"><li><a id="q22" >Unpredictably</a></li><li><a id="q23" >Predictably</a></li><li><a id="q24" >Not surprisingly</a></li></ol><br/></li></ol>
+  <img class="rightFloat" src="../media/HF_AW_005.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">(&#x2026;), waiting lists for hip operations have grown shorter over the last few months.<list class="answerList"><li><a id="a1">Worryingly</a></li><li><a id="a2">Disappointingly</a></li><li><a id="a3">Encouragingly</a></li></list><br/></li>
+    <br/>
+    <li id="q2">(&#x2026;), there has been a noticeable upward trend in the number of patients admitted to hospital with heart problems.<list class="answerList"><li><a id="a4">Disturbingly</a></li><li><a id="a5">Worryingly</a></li><li><a id="a6">Unpredictably</a></li></list><br/></li>
+    <br/>
+    <li id="q3">(&#x2026;), the figures show that high blood pressure is more common among the elderly.<list class="answerList"><li><a id="a7">Strangely</a></li><li><a id="a8">Not surprisingly</a></li><li><a id="a9">Predictably</a></li></list><br/></li>
+    <br/>
+    <li id="q4">(&#x2026;), the number of common colds reported rose during the summer months.<list class="answerList"><li><a id="a10">Unexpectedly</a></li><li><a id="a11">Predictably</a></li><li><a id="a12">Surprisingly</a></li></list><br/></li>
+    <br/>
+    <li id="q5">(&#x2026;), a significant proportion of those who wanted to lose weight continued to eat a high-fat diet.<list class="answerList"><li><a id="a13">Strangely</a></li><li><a id="a14">Encouragingly</a></li><li><a id="a15">Surprisingly</a></li></list><br/></li>
+    <br/>
+    <li id="q6">(&#x2026;), the percentage of the world's children immunised against diseases such as polio has risen dramatically in recent years.<list class="answerList"><li><a id="a16">Strangely</a></li><li><a id="a17">Encouragingly</a></li><li><a id="a18">Disturbingly</a></li></list><br/></li>
+    <br/>
+    <li id="q7">(&#x2026;), the figures show that asthma is becoming more and more common among children and young people.<list class="answerList"><li><a id="a19">Worryingly</a></li><li><a id="a20">Disturbingly</a></li><li><a id="a21">Encouragingly</a></li></list><br/></li>
+    <br/>
+    <li id="q8">(&#x2026;), the figures seem to show that those who take regular exercise run less risk of developing heart disease later in life.<list class="answerList"><li><a id="a22">Unpredictably</a></li><li><a id="a23">Predictably</a></li><li><a id="a24">Not surprisingly</a></li></list><br/></li>
+  </ol>
 </section>
+
 <section id="rt2001">
-	<p align="left">You are not expected to give your own opinions in your reports. However, it can sometimes be useful to use adverbs such as 'surprisingly' or 'worryingly' to bring the reader's attention to the most important information in a table or chart.</p>
+  <p align="left">You are not expected to give your own opinions in your reports. However, it can sometimes be useful to use adverbs such as 'surprisingly' or 'worryingly' to bring the reader's attention to the most important information in a table or chart.</p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,41 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"><feedback source="fb6"/></answer></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,25 +65,77 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/MM_SP_005.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#000000"><g id="t1">A. Talk more about the subject in general.</g></font></p><p align="left"><font face="verdana" size="13" color="#000000"><g id="t2">B. Read the instructions carefully.</g></font></p><p align="left"><font face="verdana" size="13" color="#000000"><g id="t3">C. Find out what to expect in each part of the test.</g></font></p><p align="left"><font face="verdana" size="13" color="#000000"><g id="t4">D. Ask the examiner for more information.</g></font></p><p align="left"><font face="verdana" size="13" color="#000000"><g id="t5">E. Learn more about advertising and other popular topics.</g></font></p><p align="left"><font face="verdana" size="13" color="#000000"><g id="t6">F. Consider taking notes to sort out her thoughts.</g></font></p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/MM_SP_005.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <g id="t1">A. Talk more about the subject in general.</g>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <g id="t2">B. Read the instructions carefully.</g>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <g id="t3">C. Find out what to expect in each part of the test.</g>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <g id="t4">D. Ask the examiner for more information.</g>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <g id="t5">E. Learn more about advertising and other popular topics.</g>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <g id="t6">F. Consider taking notes to sort out her thoughts.</g>
+    </font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left"><font face="verdana" size="13" color="#000000">Speaking more generally would not help.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Speaking more generally would not help.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><font face="verdana" size="13" color="#000000">Yes. You will never answer the question correctly unless you read the instructions carefully.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Yes. You will never answer the question correctly unless you read the instructions carefully.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font face="verdana" size="13" color="#000000">This will help you to prepare properly, and will increase your confidence.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This will help you to prepare properly, and will increase your confidence.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font face="verdana" size="13" color="#000000">She had all the information she needed on the card.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">She had all the information she needed on the card.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font face="verdana" size="13" color="#000000">Her knowledge was not the problem here.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Her knowledge was not the problem here.</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font face="verdana" size="13" color="#000000">Notes will help you to keep going, and will also prevent you from straying from the topic.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Notes will help you to keep going, and will also prevent you from straying from the topic.</font>
+  </p>
 </section>
+
 </body>
 </bento>

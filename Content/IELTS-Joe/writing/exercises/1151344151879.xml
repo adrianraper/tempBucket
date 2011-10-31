@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,81 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a16" correct="false"/><answer source="a17" correct="true"/><answer source="a20" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a14" correct="false"/><answer source="a15" correct="true"/><answer source="a21" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a12" correct="true"/><answer source="a13" correct="false"/><answer source="a22" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a11" correct="false"/><answer source="a23" correct="false"/><answer source="a24" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a10" correct="false"/><answer source="a25" correct="false"/><answer source="a26" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a9" correct="false"/><answer source="a27" correct="false"/><answer source="a28" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a8" correct="true"/><answer source="a29" correct="false"/><answer source="a30" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a7" correct="false"/><answer source="a31" correct="true"/><answer source="a32" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a6" correct="false"/><answer source="a33" correct="false"/><answer source="a34" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="a5" correct="false"/><answer source="a35" correct="false"/><answer source="a36" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="a4" correct="false"/><answer source="a37" correct="true"/><answer source="a38" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q13"><answer source="a18" correct="false"/><answer source="a39" correct="true"/><answer source="a40" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q14"><answer source="a19" correct="false"/><answer source="a41" correct="true"/><answer source="a42" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a21" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a12" correct="true"/>
+      <answer source="a13" correct="false"/>
+      <answer source="a22" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a11" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a10" correct="false"/>
+      <answer source="a25" correct="false"/>
+      <answer source="a26" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a9" correct="false"/>
+      <answer source="a27" correct="false"/>
+      <answer source="a28" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a8" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a7" correct="false"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a6" correct="false"/>
+      <answer source="a33" correct="false"/>
+      <answer source="a34" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q11">
+      <answer source="a5" correct="false"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q12">
+      <answer source="a4" correct="false"/>
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q13">
+      <answer source="a18" correct="false"/>
+      <answer source="a39" correct="true"/>
+      <answer source="a40" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q14">
+      <answer source="a19" correct="false"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,13 +108,297 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/HF_AW_003.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><ol class="answerList"><li><a id="q1" >Rounding down</a></li><li><a id="q2" >Rounding up</a></li><li><a id="q3" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ab.mp3" mode="1" id="1"  /><br/><li id="2"><ol class="answerList"><li><a id="q16" >Rounding down</a></li><li><a id="q17" >Rounding up</a></li><li><a id="q20" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ad.mp3" mode="1" id="2"  /><br/><li id="3"><ol class="answerList"><li><a id="q14" >Rounding down</a></li><li><a id="q15" >Rounding up</a></li><li><a id="q21" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1af.mp3" mode="1" id="3"  /><br/><li id="4"><ol class="answerList"><li><a id="q12" >Rounding down</a></li><li><a id="q13" >Rounding up</a></li><li><a id="q22" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1al.mp3" mode="1" id="4"  /><br/><li id="5"><ol class="answerList"><li><a id="q11" >Rounding down</a></li><li><a id="q23" >Rounding up</a></li><li><a id="q24" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ac.mp3" mode="1" id="5"  /><br/><li id="6"><ol class="answerList"><li><a id="q10" >Rounding down</a></li><li><a id="q25" >Rounding up</a></li><li><a id="q26" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1aa.mp3" mode="1" id="6"  /><br/><li id="7"><ol class="answerList"><li><a id="q9" >Rounding down</a></li><li><a id="q27" >Rounding up</a></li><li><a id="q28" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ae.mp3" mode="1" id="7"  /><br/><li id="8"><ol class="answerList"><li><a id="q8" >Rounding down</a></li><li><a id="q29" >Rounding up</a></li><li><a id="q30" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1an.mp3" mode="1" id="8"  /><br/><li id="9"><ol class="answerList"><li><a id="q7" >Rounding down</a></li><li><a id="q31" >Rounding up</a></li><li><a id="q32" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1aj.mp3" mode="1" id="9"  /><br/><li id="10"><ol class="answerList"><li><a id="q6" >Rounding down</a></li><li><a id="q33" >Rounding up</a></li><li><a id="q34" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ah.mp3" mode="1" id="10"  /><br/><li id="11"><ol class="answerList"><li><a id="q5" >Rounding down</a></li><li><a id="q35" >Rounding up</a></li><li><a id="q36" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ai.mp3" mode="1" id="11"  /><br/><li id="12"><ol class="answerList"><li><a id="q4" >Rounding down</a></li><li><a id="q37" >Rounding up</a></li><li><a id="q38" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ak.mp3" mode="1" id="12"  /><br/><li id="13"><ol class="answerList"><li><a id="q18" >Rounding down</a></li><li><a id="q39" >Rounding up</a></li><li><a id="q40" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1am.mp3" mode="1" id="13"  /><br/><li id="14"><ol class="answerList"><li><a id="q19" >Rounding down</a></li><li><a id="q41" >Rounding up</a></li><li><a id="q42" >General approximation</a></li></ol><br/></li><audio class="leftFloat" src="../media/HF_AW1ag.mp3" mode="1" id="14"  /></ol>
+  <img class="rightFloat" src="../media/HF_AW_003.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">
+      <list class="answerList">
+        <li>
+          <a id="a1">Rounding down</a>
+        </li>
+        <li>
+          <a id="a2">Rounding up</a>
+        </li>
+        <li>
+          <a id="a3">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ab.mp3" mode="1" id="1"/>
+    <br/>
+    <li id="q2">
+      <list class="answerList">
+        <li>
+          <a id="a16">Rounding down</a>
+        </li>
+        <li>
+          <a id="a17">Rounding up</a>
+        </li>
+        <li>
+          <a id="a20">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ad.mp3" mode="1" id="2"/>
+    <br/>
+    <li id="q3">
+      <list class="answerList">
+        <li>
+          <a id="a14">Rounding down</a>
+        </li>
+        <li>
+          <a id="a15">Rounding up</a>
+        </li>
+        <li>
+          <a id="a21">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1af.mp3" mode="1" id="3"/>
+    <br/>
+    <li id="q4">
+      <list class="answerList">
+        <li>
+          <a id="a12">Rounding down</a>
+        </li>
+        <li>
+          <a id="a13">Rounding up</a>
+        </li>
+        <li>
+          <a id="a22">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1al.mp3" mode="1" id="4"/>
+    <br/>
+    <li id="q5">
+      <list class="answerList">
+        <li>
+          <a id="a11">Rounding down</a>
+        </li>
+        <li>
+          <a id="a23">Rounding up</a>
+        </li>
+        <li>
+          <a id="a24">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ac.mp3" mode="1" id="5"/>
+    <br/>
+    <li id="q6">
+      <list class="answerList">
+        <li>
+          <a id="a10">Rounding down</a>
+        </li>
+        <li>
+          <a id="a25">Rounding up</a>
+        </li>
+        <li>
+          <a id="a26">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1aa.mp3" mode="1" id="6"/>
+    <br/>
+    <li id="q7">
+      <list class="answerList">
+        <li>
+          <a id="a9">Rounding down</a>
+        </li>
+        <li>
+          <a id="a27">Rounding up</a>
+        </li>
+        <li>
+          <a id="a28">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ae.mp3" mode="1" id="7"/>
+    <br/>
+    <li id="q8">
+      <list class="answerList">
+        <li>
+          <a id="a8">Rounding down</a>
+        </li>
+        <li>
+          <a id="a29">Rounding up</a>
+        </li>
+        <li>
+          <a id="a30">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1an.mp3" mode="1" id="8"/>
+    <br/>
+    <li id="q9">
+      <list class="answerList">
+        <li>
+          <a id="a7">Rounding down</a>
+        </li>
+        <li>
+          <a id="a31">Rounding up</a>
+        </li>
+        <li>
+          <a id="a32">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1aj.mp3" mode="1" id="9"/>
+    <br/>
+    <li id="q10">
+      <list class="answerList">
+        <li>
+          <a id="a6">Rounding down</a>
+        </li>
+        <li>
+          <a id="a33">Rounding up</a>
+        </li>
+        <li>
+          <a id="a34">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ah.mp3" mode="1" id="10"/>
+    <br/>
+    <li id="q11">
+      <list class="answerList">
+        <li>
+          <a id="a5">Rounding down</a>
+        </li>
+        <li>
+          <a id="a35">Rounding up</a>
+        </li>
+        <li>
+          <a id="a36">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ai.mp3" mode="1" id="11"/>
+    <br/>
+    <li id="q12">
+      <list class="answerList">
+        <li>
+          <a id="a4">Rounding down</a>
+        </li>
+        <li>
+          <a id="a37">Rounding up</a>
+        </li>
+        <li>
+          <a id="a38">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ak.mp3" mode="1" id="12"/>
+    <br/>
+    <li id="q13">
+      <list class="answerList">
+        <li>
+          <a id="a18">Rounding down</a>
+        </li>
+        <li>
+          <a id="a39">Rounding up</a>
+        </li>
+        <li>
+          <a id="a40">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1am.mp3" mode="1" id="13"/>
+    <br/>
+    <li id="q14">
+      <list class="answerList">
+        <li>
+          <a id="a19">Rounding down</a>
+        </li>
+        <li>
+          <a id="a41">Rounding up</a>
+        </li>
+        <li>
+          <a id="a42">General approximation</a>
+        </li>
+      </list>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ag.mp3" mode="1" id="14"/>
+  </ol>
 </section>
+
 <section id="fb0">
-	<p align="left"><b>Rounding down</b></p><p align="left"><font color="#000000">1:  more than</font></p><p align="left"><font color="#000000">4:  just over</font></p><p align="left"><font color="#000000">8:  well over</font></p><p align="left"><b></b></p><p align="left"><b>Rounding up</b></p><p align="left"><font color="#000000">2:  less than</font></p><p align="left"><font color="#000000">3:  nearly</font></p><p align="left"><font color="#000000">9:  almost</font></p><p align="left"><font color="#000000">12:  fewer than</font></p><p align="left"><font color="#000000">13:  well under</font></p><p align="left"><font color="#000000">14:  just under</font></p><p align="left"></p><p align="left"><b>General approximation</b></p><p align="left"><font color="#000000">5:  approximately</font></p><p align="left"><font color="#000000">6:  roughly</font></p><p align="left"><font color="#000000">7:  more or less</font></p><p align="left"><font color="#000000">10:  about</font></p><p align="left"><font color="#000000">11:  around</font></p>
+  <p align="left">
+    <b>Rounding down</b>
+  </p>
+  <p align="left">
+    <font color="#000000">1:  more than</font>
+  </p>
+  <p align="left">
+    <font color="#000000">4:  just over</font>
+  </p>
+  <p align="left">
+    <font color="#000000">8:  well over</font>
+  </p>
+  <p align="left">
+    <b/>
+  </p>
+  <p align="left">
+    <b>Rounding up</b>
+  </p>
+  <p align="left">
+    <font color="#000000">2:  less than</font>
+  </p>
+  <p align="left">
+    <font color="#000000">3:  nearly</font>
+  </p>
+  <p align="left">
+    <font color="#000000">9:  almost</font>
+  </p>
+  <p align="left">
+    <font color="#000000">12:  fewer than</font>
+  </p>
+  <p align="left">
+    <font color="#000000">13:  well under</font>
+  </p>
+  <p align="left">
+    <font color="#000000">14:  just under</font>
+  </p>
+  <p align="left"/>
+  <p align="left">
+    <b>General approximation</b>
+  </p>
+  <p align="left">
+    <font color="#000000">5:  approximately</font>
+  </p>
+  <p align="left">
+    <font color="#000000">6:  roughly</font>
+  </p>
+  <p align="left">
+    <font color="#000000">7:  more or less</font>
+  </p>
+  <p align="left">
+    <font color="#000000">10:  about</font>
+  </p>
+  <p align="left">
+    <font color="#000000">11:  around</font>
+  </p>
 </section>
+
 <section id="rt2001">
-	<p align="left">You do not always need to quote exact figures in your report. It is often better to round numbers up or down because this will make it easier for the reader to understand them. There are a number of useful expressions you can use for making such approximations. </p>
+  <p align="left">You do not always need to quote exact figures in your report. It is often better to round numbers up or down because this will make it easier for the reader to understand them. There are a number of useful expressions you can use for making such approximations. </p>
 </section>
+
 </body>
 </bento>

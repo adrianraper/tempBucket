@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,47 @@
     <misc timed="280"/>
   </settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/><answer source="a4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a5" correct="false"/><answer source="a6" correct="true"/><answer source="a7" correct="false"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a9" correct="false"/><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a13" correct="false"/><answer source="a14" correct="false"/><answer source="a15" correct="true"/><answer source="a16" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a17" correct="false"/><answer source="a18" correct="false"/><answer source="a19" correct="false"/><answer source="a20" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a21" correct="true"/><answer source="a22" correct="false"/><answer source="a23" correct="false"/><answer source="a24" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,25 +73,52 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../media/SS_LN1b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/SS_LN_003a.jpg" mode="1" id="1011"  /><img class="leftFloat" src="../media/SS_LN_003b.jpg" mode="1" id="1012"  /><img class="leftFloat" src="../media/SS_LN_003c.jpg" mode="1" id="1013"  /><img class="leftFloat" src="../media/SS_LN_003d.jpg" mode="1" id="1014"  /><img class="leftFloat" src="../media/SS_LN_003e.jpg" mode="1" id="1015"  /><img class="leftFloat" src="../media/SS_LN_003f.jpg" mode="1" id="1016"  /><br/><ol id="questionList"><tab/><b>6</b>What does Lucy's stereo look like?a.<a id="q1" >Pic A</a>b.<a id="q2" >Pic B</a>c.<a id="q3" >Pic C</a>d.<a id="q4" >Pic D</a><tab/><b>7</b>What jewellery was stolen?a.<a id="q5" >Pic A</a>b.<a id="q6" >Pic B</a>c.<a id="q7" >Pic C</a>d.<a id="q8" >Pic D</a><tab/><b>8</b>What time did Lucy discover that the items were missing?a.<a id="q9" >Pic A</a>b.<a id="q10" >Pic B</a>c.<a id="q11" >Pic C</a>d.<a id="q12" >Pic D</a><tab/><b>9</b>What time did Lucy leave her room?a.<a id="q13" >Pic A</a>b.<a id="q14" >Pic B</a>c.<a id="q15" >Pic C</a>d.<a id="q16" >Pic D</a><tab/><b>10</b>What did the stranger look like?a.<a id="q17" >Pic A</a>b.<a id="q18" >Pic B</a>c.<a id="q19" >Pic C</a>d.<a id="q20" >Pic D</a><tab/><b>11</b>Where was the stranger sitting?a.<a id="q21" >Pic A</a>b.<a id="q22" >Pic B</a>c.<a id="q23" >Pic C</a>d.<a id="q24" >Pic D</a></ol>
+  <audio controls="compact" class="leftFloat" src="../media/SS_LN1b.mp3" mode="4" id="1002"/>
+  <img class="rightFloat" src="../media/SS_LN_003a.jpg" mode="1" id="1011"/>
+  <img class="leftFloat" src="../media/SS_LN_003b.jpg" mode="1" id="1012"/>
+  <img class="leftFloat" src="../media/SS_LN_003c.jpg" mode="1" id="1013"/>
+  <img class="leftFloat" src="../media/SS_LN_003d.jpg" mode="1" id="1014"/>
+  <img class="leftFloat" src="../media/SS_LN_003e.jpg" mode="1" id="1015"/>
+  <img class="leftFloat" src="../media/SS_LN_003f.jpg" mode="1" id="1016"/>
+  <br/>
+  <ol id="questionList"><tab/><b>6</b>What does Lucy's stereo look like?a.<a id="a1">Pic A</a>b.<a id="a2">Pic B</a>c.<a id="a3">Pic C</a>d.<a id="a4">Pic D</a><tab/><b>7</b>What jewellery was stolen?a.<a id="a5">Pic A</a>b.<a id="a6">Pic B</a>c.<a id="a7">Pic C</a>d.<a id="a8">Pic D</a><tab/><b>8</b>What time did Lucy discover that the items were missing?a.<a id="a9">Pic A</a>b.<a id="a10">Pic B</a>c.<a id="a11">Pic C</a>d.<a id="a12">Pic D</a><tab/><b>9</b>What time did Lucy leave her room?a.<a id="a13">Pic A</a>b.<a id="a14">Pic B</a>c.<a id="a15">Pic C</a>d.<a id="a16">Pic D</a><tab/><b>10</b>What did the stranger look like?a.<a id="a17">Pic A</a>b.<a id="a18">Pic B</a>c.<a id="a19">Pic C</a>d.<a id="a20">Pic D</a><tab/><b>11</b>Where was the stranger sitting?a.<a id="a21">Pic A</a>b.<a id="a22">Pic B</a>c.<a id="a23">Pic C</a>d.<a id="a24">Pic D</a></ol>
 </section>
+
 <section id="fb1">
-	<p align="left"><font face="verdana" size="13" color="#000000">6. The speakers are black and built-in.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">6. The speakers are black and built-in.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><font face="verdana" size="13" color="#000000">7. There is a gold chain, a black necklace and a watch attached to a gold bracelet with a black face and roman numerals in this picture.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">7. There is a gold chain, a black necklace and a watch attached to a gold bracelet with a black face and roman numerals in this picture.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font face="verdana" size="13" color="#000000">8. Lucy says quarter to two.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">8. Lucy says quarter to two.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font face="verdana" size="13" color="#000000">9. Lucy says ten past nine.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">9. Lucy says ten past nine.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font face="verdana" size="13" color="#000000">10. The man in this picture has hair hanging over his face and he is wearing glasses.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">10. The man in this picture has hair hanging over his face and he is wearing glasses.</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font face="verdana" size="13" color="#000000">11. The bench is left of the door as you come out of the house and nearest the wall of the house.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">11. The bench is left of the door as you come out of the house and nearest the wall of the house.</font>
+  </p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,16 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,7 +40,14 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit012_e4a.flv" mode="16" id="1003"  /><video class="rightFloat" src="../media/Unit012_e4b.flv" mode="16" id="1004"  /><br/><ol id="questionList"><br/><li id="1">Now watch the videos to see answers to the questions. Is the ideal answer:<ol class="answerList"><li><a id="q1" >yes or no?</a></li><li><a id="q2" >yes or no, plus one or two sentences?</a></li><li><a id="q3" >yes or no, plus an extended explanation?</a></li></ol><br/></li></ol>
+  <video src="../media/Unit012_e4a.flv" mode="16" id="1003"/>
+  <video src="../media/Unit012_e4b.flv" mode="16" id="1004"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">Now watch the videos to see answers to the questions. Is the ideal answer:<list class="answerList"><li><a id="a1">yes or no?</a></li><li><a id="a2">yes or no, plus one or two sentences?</a></li><li><a id="a3">yes or no, plus an extended explanation?</a></li></list><br/></li>
+  </ol>
 </section>
+
 </body>
 </bento>

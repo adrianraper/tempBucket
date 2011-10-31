@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="quiz" date="2011-10-27" />
+	<meta name="conversion-from" content="quiz" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,59 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a3" correct="false"/><answer source="a4" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a5" correct="false"/><answer source="a6" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a9" correct="true"/><answer source="a10" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a11" correct="false"/><answer source="a12" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a13" correct="true"/><answer source="a14" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a15" correct="true"/><answer source="a16" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a17" correct="true"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a19" correct="true"/><answer source="a20" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q11"><answer source="a21" correct="true"/><answer source="a22" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q12"><answer source="a23" correct="true"/><answer source="a24" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a9" correct="true"/>
+      <answer source="a10" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q11">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q12">
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -36,47 +88,171 @@ Writing Task 2
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/TT_AW_009.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><br/><li id="1"><a id="q1" >For</a><tab/><a id="q2" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ab.mp3" mode="1" id="1"  /><br/><li id="2"><a id="q3" >For</a><tab/><a id="q4" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ac.mp3" mode="1" id="2"  /><br/><li id="3"><a id="q5" >For</a><tab/><a id="q6" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ad.mp3" mode="1" id="3"  /><br/><li id="4"><a id="q7" >For</a><tab/><a id="q8" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ae.mp3" mode="1" id="4"  /><br/><li id="5"><a id="q9" >For</a><tab/><a id="q10" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1af.mp3" mode="1" id="5"  /><br/><li id="6"><a id="q11" >For</a><tab/><a id="q12" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ag.mp3" mode="1" id="6"  /><br/><li id="7"><a id="q13" >For</a><tab/><a id="q14" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ah.mp3" mode="1" id="7"  /><br/><li id="8"><a id="q15" >For</a><tab/><a id="q16" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ai.mp3" mode="1" id="8"  /><br/><li id="9"><a id="q17" >For</a><tab/><a id="q18" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1aj.mp3" mode="1" id="9"  /><br/><li id="10"><a id="q19" >For</a><tab/><a id="q20" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1ak.mp3" mode="1" id="10"  /><br/><li id="11"><a id="q21" >For</a><tab/><a id="q22" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1al.mp3" mode="1" id="11"  /><br/><li id="12"><a id="q23" >For</a><tab/><a id="q24" >Against</a><br/></li><audio class="leftFloat" src="../media/TT_WR1am.mp3" mode="1" id="12"  /></ol>
+  <img class="rightFloat" src="../media/TT_AW_009.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">
+      <a id="a1">For</a>
+      <tab/>
+      <a id="a2">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ab.mp3" mode="1" id="1"/>
+    <br/>
+    <li id="q2">
+      <a id="a3">For</a>
+      <tab/>
+      <a id="a4">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ac.mp3" mode="1" id="2"/>
+    <br/>
+    <li id="q3">
+      <a id="a5">For</a>
+      <tab/>
+      <a id="a6">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ad.mp3" mode="1" id="3"/>
+    <br/>
+    <li id="q4">
+      <a id="a7">For</a>
+      <tab/>
+      <a id="a8">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ae.mp3" mode="1" id="4"/>
+    <br/>
+    <li id="q5">
+      <a id="a9">For</a>
+      <tab/>
+      <a id="a10">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1af.mp3" mode="1" id="5"/>
+    <br/>
+    <li id="q6">
+      <a id="a11">For</a>
+      <tab/>
+      <a id="a12">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ag.mp3" mode="1" id="6"/>
+    <br/>
+    <li id="q7">
+      <a id="a13">For</a>
+      <tab/>
+      <a id="a14">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ah.mp3" mode="1" id="7"/>
+    <br/>
+    <li id="q8">
+      <a id="a15">For</a>
+      <tab/>
+      <a id="a16">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ai.mp3" mode="1" id="8"/>
+    <br/>
+    <li id="q9">
+      <a id="a17">For</a>
+      <tab/>
+      <a id="a18">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1aj.mp3" mode="1" id="9"/>
+    <br/>
+    <li id="q10">
+      <a id="a19">For</a>
+      <tab/>
+      <a id="a20">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ak.mp3" mode="1" id="10"/>
+    <br/>
+    <li id="q11">
+      <a id="a21">For</a>
+      <tab/>
+      <a id="a22">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1al.mp3" mode="1" id="11"/>
+    <br/>
+    <li id="q12">
+      <a id="a23">For</a>
+      <tab/>
+      <a id="a24">Against</a>
+      <br/>
+    </li>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1am.mp3" mode="1" id="12"/>
+  </ol>
 </section>
+
 <section id="fb1">
-	<p align="left">1. Banning cars would lead to an improvement in public transport.</p>
+  <p align="left">1. Banning cars would lead to an improvement in public transport.</p>
 </section>
+
 <section id="fb2">
-	<p align="left">2. People who live in city centres should be allowed to use their cars.</p>
+  <p align="left">2. People who live in city centres should be allowed to use their cars.</p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font color="#000000">3. I'd hate to have to go shopping using public transport – lugging heavy shopping bags onto an overcrowded bus and then having to hang onto them while I stand for an hour. Much easier to pop things into the boot of the car. So much more convenient, not to mention comfortable!</font></p>
+  <p align="left">
+    <font color="#000000">3. I'd hate to have to go shopping using public transport &#x2013; lugging heavy shopping bags onto an overcrowded bus and then having to hang onto them while I stand for an hour. Much easier to pop things into the boot of the car. So much more convenient, not to mention comfortable!</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left">4. It's really pretty dangerous walking or cycling round here. Just yesterday I was nearly knocked down crossing the street to the baker's.</p>
+  <p align="left">4. It's really pretty dangerous walking or cycling round here. Just yesterday I was nearly knocked down crossing the street to the baker's.</p>
 </section>
+
 <section id="fb5">
-	<p align="left">5. It's the noise that really gets me down. I dream of moving out to the peace and quiet of the countryside, but I can't afford to, and, besides, I work here. But I've read that noise pollution causes all sorts of psychological problems for people living in cities.</p>
+  <p align="left">5. It's the noise that really gets me down. I dream of moving out to the peace and quiet of the countryside, but I can't afford to, and, besides, I work here. But I've read that noise pollution causes all sorts of psychological problems for people living in cities.</p>
 </section>
+
 <section id="fb6">
-	<p align="left">6. Many of my customers come in to the centre by car. If cars were banned, my business would suffer terribly.</p>
+  <p align="left">6. Many of my customers come in to the centre by car. If cars were banned, my business would suffer terribly.</p>
 </section>
+
 <section id="fb7">
-	<p align="left">7. Oh, I'd definitely walk to work if I didn't have to walk round cars parked on the pavement and so on. Or I'd use a bike. It would be so much easier to find alternatives if we weren't overrun with cars.</p>
+  <p align="left">7. Oh, I'd definitely walk to work if I didn't have to walk round cars parked on the pavement and so on. Or I'd use a bike. It would be so much easier to find alternatives if we weren't overrun with cars.</p>
 </section>
+
 <section id="fb8">
-	<p align="left"><font color="#000000">8. We're starting to see more and more kids arriving at this school wearing breathing masks to protect them from the traffic fumes. Pollution causes so many health problems. I mean, just take asthma for example – it's at record levels.</font></p>
+  <p align="left">
+    <font color="#000000">8. We're starting to see more and more kids arriving at this school wearing breathing masks to protect them from the traffic fumes. Pollution causes so many health problems. I mean, just take asthma for example &#x2013; it's at record levels.</font>
+  </p>
 </section>
+
 <section id="fb9">
-	<p align="left"><font color="#000000">9. When I think what cities were like before the arrival of cars! All those beautiful buildings and monuments. Now you can hardly see them because of all the cars parked in front of them!</font></p>
+  <p align="left">
+    <font color="#000000">9. When I think what cities were like before the arrival of cars! All those beautiful buildings and monuments. Now you can hardly see them because of all the cars parked in front of them!</font>
+  </p>
 </section>
+
 <section id="fb10">
-	<p align="left"><font color="#000000">10. You know, it's estimated that about 30 per cent of cars driving round most city centres are just looking for somewhere to park – it's a vicious circle where traffic congestion causes more congestion.</font></p>
+  <p align="left">
+    <font color="#000000">10. You know, it's estimated that about 30 per cent of cars driving round most city centres are just looking for somewhere to park &#x2013; it's a vicious circle where traffic congestion causes more congestion.</font>
+  </p>
 </section>
+
 <section id="fb11">
-	<p align="left"><font color="#000000">11. You see, most of our city centres were never designed for all this traffic.  Narrow streets, no parking facilities – they were built when people still expected just to walk from A to B – or jump on their horse!</font></p>
+  <p align="left">
+    <font color="#000000">11. You see, most of our city centres were never designed for all this traffic.  Narrow streets, no parking facilities &#x2013; they were built when people still expected just to walk from A to B &#x2013; or jump on their horse!</font>
+  </p>
 </section>
+
 <section id="fb12">
-	<p align="left"><font color="#000000">12. You should see what's happening to the cathedral in my city – it's falling down after 750 years. Not only are the traffic fumes eating into the limestone, but the vibrations from passing traffic are damaging its foundations too.  It's so sad.</font></p>
+  <p align="left">
+    <font color="#000000">12. You should see what's happening to the cathedral in my city &#x2013; it's falling down after 750 years. Not only are the traffic fumes eating into the limestone, but the vibrations from passing traffic are damaging its foundations too.  It's so sad.</font>
+  </p>
 </section>
+
 <section id="rt2001">
-	
-		<p align="left">When you are faced with a writing task like this, you should try to think of as many ideas as possible, even arguments you don't agree with. Some students are given a low band score for Writing Task 2 because they don't include enough ideas in their compositions. This exercise will give you a variety of ideas, some of which you could use to answer the question.</p>
+  <p align="left">When you are faced with a writing task like this, you should try to think of as many ideas as possible, even arguments you don't agree with. Some students are given a low band score for Writing Task 2 because they don't include enough ideas in their compositions. This exercise will give you a variety of ideas, some of which you could use to answer the question.</p>
 </section>
+
 </body>
 </bento>

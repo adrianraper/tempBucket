@@ -127,26 +127,23 @@
             </exercise>
           </unit>
           <unit caption="Speaking: unit 3" id="9">
-            <exercise id="1151344172352" caption="Introduction" href="speaking/exercises/1151344172352.xml">
+            <exercise id="1156181253089" caption="Introduction" href="speaking/exercises/1156181253089.xml">
               <!--Presentation - TB-->
             </exercise>
-            <exercise id="1151344172405" caption="Practice for Part 2" href="speaking/exercises/1151344172405.xml">
+            <exercise id="1156181253123" caption="Tips for Part 3" href="speaking/exercises/1156181253123.xml">
               <!--Presentation - TB-->
             </exercise>
-            <exercise id="1151344172961" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml">
-              <!--D&D QB-->
-            </exercise>
-            <exercise id="1151344172836" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml">
+            <exercise id="1156181253456" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml">
               <!--Targetspotting - TB-->
             </exercise>
-            <exercise id="1151344172525" caption="Comparative forms" href="speaking/exercises/1151344172525.xml">
-              <!--D&D QB-->
+            <exercise id="1156181253086" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml">
+              <!--D&D TB-->
             </exercise>
-            <exercise id="1151344172701" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml">
-              <!--Presentation - TB-->
+            <exercise id="1156181253500" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml">
+              <!--T/F-->
             </exercise>
-            <exercise id="1156153794218" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml">
-              <!--Targetspotting - TB-->
+            <exercise id="1156181253785" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml">
+              <!--GF TB-->
             </exercise>
           </unit>
           <unit caption="Writing: unit 1" id="10">

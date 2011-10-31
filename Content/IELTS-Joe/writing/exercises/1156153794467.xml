@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,49 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="watched " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="listened " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="spent " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="came " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="took up " correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="did not seem " correct="true"/><answer value="didn't seem" correct="true"/><answer value="seemed not" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="accounted " correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="ate " correct="true"/></GapFillQuestion><GapFillQuestion source="q9"><answer value="went " correct="true"/></GapFillQuestion><GapFillQuestion source="q10"><answer value="entertained " correct="true"/></GapFillQuestion><GapFillQuestion source="q11"><answer value="played " correct="true"/></GapFillQuestion><GapFillQuestion source="q12"><answer value="walked " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="watched " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="listened " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="spent " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="came " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="took up " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="did not seem " correct="true"/>
+      <answer value="didn't seem" correct="true"/>
+      <answer value="seemed not" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="accounted " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="ate " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="went " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="entertained " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="played " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="walked " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,10 +73,18 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/Unit01_Write_e5.jpg" mode="1" id="1003"  /><p align="left"><font color="#000000">In 1961 people in the UK mostly <input id="q1" /> (watch) television or <input id="q2" /> (listen) to the radio in their leisure time. On average they <input id="q3" /> (spend) almost half of their free time on these activities. After that <input id="q4" />(come) other unspecified pastimes, which <input id="q5" /> (take up) about an hour and a quarter a day. People <input id="q6" /> (not seem) to socialise a great deal, as this <input id="q7" /> (account) for only 35 minutes in a typical day. People <input id="q8" /> (eat) out, <input id="q9" /> (go) to the cinema or <input id="q10" /> (entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="q11" /> (play) sports or <input id="q12" /> (walk) for an average of only 9 minutes a day.</font></p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/Unit01_Write_e5.jpg" mode="1" id="1003"/>
+  <p align="left">
+    <font color="#000000">In 1961 people in the UK mostly <input id="q1"/> (watch) television or <input id="q2"/> (listen) to the radio in their leisure time. On average they <input id="q3"/> (spend) almost half of their free time on these activities. After that <input id="q4"/>(come) other unspecified pastimes, which <input id="q5"/> (take up) about an hour and a quarter a day. People <input id="q6"/> (not seem) to socialise a great deal, as this <input id="q7"/> (account) for only 35 minutes in a typical day. People <input id="q8"/> (eat) out, <input id="q9"/> (go) to the cinema or <input id="q10"/> (entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="q11"/> (play) sports or <input id="q12"/> (walk) for an average of only 9 minutes a day.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="rt2001">
-	<p align="left">When a bar chart or pie chart has information relating to a single point in time in the past and does not show changes, we can mostly use the past simple to describe it.</p>
+  <p align="left">When a bar chart or pie chart has information relating to a single point in time in the past and does not show changes, we can mostly use the past simple to describe it.</p>
 </section>
+
 </body>
 </bento>

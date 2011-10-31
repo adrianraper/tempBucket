@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -31,19 +34,26 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit02_e2a.flv" mode="1" id="1003"  /><br/><ol id="questionList"></ol>
+  <video src="../media/Unit02_e2a.flv" mode="1" id="1003"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left">A. "Cover up" means to hide something, Zenia doesn't try to hide anything.</p>
+  <p align="left">A. "Cover up" means to hide something, Zenia doesn't try to hide anything.</p>
 </section>
+
 <section id="fb2">
-	<p align="left">B. Yes. Zenia asks for clarification.</p>
+  <p align="left">B. Yes. Zenia asks for clarification.</p>
 </section>
+
 <section id="fb3">
-	<p align="left">C. She doesn't do this, she wants more information.</p>
+  <p align="left">C. She doesn't do this, she wants more information.</p>
 </section>
+
 <section id="fb4">
-	<p align="left">D. This is not a good idea.</p>
+  <p align="left">D. This is not a good idea.</p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,41 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="Yes " correct="true"/><answer value="YES " correct="true"/><answer value="Y" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="Not given " correct="true"/><answer value="NOT GIVEN " correct="true"/><answer value="NG" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="Yes " correct="true"/><answer value="YES " correct="true"/><answer value="Y" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="No " correct="true"/><answer value="NO " correct="true"/><answer value="N" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="No " correct="true"/><answer value="NO " correct="true"/><answer value="N" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="Yes " correct="true"/><answer value="YES " correct="true"/><answer value="Y" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Yes " correct="true"/>
+      <answer value="YES " correct="true"/>
+      <answer value="Y" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="Not given " correct="true"/>
+      <answer value="NOT GIVEN " correct="true"/>
+      <answer value="NG" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="Yes " correct="true"/>
+      <answer value="YES " correct="true"/>
+      <answer value="Y" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="No " correct="true"/>
+      <answer value="NO " correct="true"/>
+      <answer value="N" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="No " correct="true"/>
+      <answer value="NO " correct="true"/>
+      <answer value="N" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="Yes " correct="true"/>
+      <answer value="YES " correct="true"/>
+      <answer value="Y" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,13 +68,46 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><li id="1">An increasingly mobile society is a threat to the environment.<input id="q1" width="100" /></li><li id="2">Greater mobility will widen the economic gap between the rich and the poor.<input id="q2" width="100" /></li><li id="3">Statistics concerning road safety are misleading.<input id="q3" width="100" /></li><li id="4">In order to develop essential social skills, children should spend more time with their parents than they do.<input id="q4" width="100" /></li><li id="5">People will become less isolated as a result of greater mobility.<input id="q5" width="100" /></li><li id="6">Police technology which can keep a close watch on people will be essential in a hypermobile society.<input id="q6" width="100" /></li></ol>
+  <br/>
+  <ol id="questionList">
+    <li id="1">An increasingly mobile society is a threat to the environment.<input id="q1"/></li>
+    <li id="2">Greater mobility will widen the economic gap between the rich and the poor.<input id="q2"/></li>
+    <li id="3">Statistics concerning road safety are misleading.<input id="q3"/></li>
+    <li id="4">In order to develop essential social skills, children should spend more time with their parents than they do.<input id="q4"/></li>
+    <li id="5">People will become less isolated as a result of greater mobility.<input id="q5"/></li>
+    <li id="6">Police technology which can keep a close watch on people will be essential in a hypermobile society.<input id="q6"/></li>
+  </ol>
 </section>
+
 <section id="readingText">
-	<p align="left"><font color="#0000ff"><b>Hypermobility</b></font></p><p align="left">Transport and communications provide the means by which everyone connects with everyone else. But the transformation in the speed and reach of these means is having profound social consequences. Many of the unwelcome characteristics of the hypermobile society can readily be imagined by extrapolating existing trends.</p><p align="left">Society will be more dispersed. The process of suburban sprawl will accelerate. Societies whose members move at high speed over great distances consume more space. More of the country will need to be paved to provide parking places; the extra roads required will scar cherished landscapes and subdivide still further the habitats of endangered species; room will have to be found for new and larger airports; those parts of the world valued for their remote tranquillity will be further encroached on.</p><p align="left">Society will be more polarised. The increase in the mobility of the average Briton conceals a growing gap between the mobility-rich and the mobility have-nots. All those too young, or too old, or otherwise disqualified from driving will get left behind, along with those too poor to afford cars and plane tickets. They will become second-class citizens dependent for their mobility on the withered remains of public transport or the goodwill of car owners.</p><p align="left"><font color="#000000">The world will be more dangerous for those not in cars. There will be more metal (or carbon fibre) in motion. The fact that there are now about one third as many children killed every year in road accidents as in 1922, when there was hardly any traffic and a 20mph speed limit, does not mean that the roads are now three times safer for children to play in; they have become so dangerous that children are not allowed out any more. The retreat of pedestrians and cyclists will continue. As traffic increases, fewer people try to cross the street – one of the reasons why fewer people know their neighbours on the other side of the street.</font></p><p align="left"><font color="#000000">Children's freedoms will be further curtailed by parental fears, and the social catalyst of children playing in the street will disappear. In Britain, as recently as 1971, 80 per cent of 7 and 8 year-olds went to school on their own, unaccompanied by an adult. Now almost none do so; the government issues guidance to parents warning that it is irresponsible to allow children under the age of 12 out of the house unaccompanied. Children seldom experience mixing independently with their peers and learning to cope without adult supervision – an experience essential to the process of socialisation.</font></p><p align="left"><font color="#000000">The world will be more anonymous and less convivial. Fewer people will know their neighbours. Gated communities and Neighbourhood Watch – attempts to recreate what used to happen naturally – are symptomatic of the new anomie. Even when they live in close physical proximity to each other, the mobile wealthy and the immobile poor live in different worlds. The poor, by their lack of mobility, are confined to prisons with invisible walls. They are continually tempted and taunted – as prisoners confined to cells with real walls are not – by the freedom and conspicuous consumption of the affluent. The wealthy can be seen and heard flying overhead, driving along motorways through the ghettos, appearing on television, enjoying privileges which remain out of reach. To the wealthy, the poor are often invisible; the wealthy tend to see the world at a lower resolution because of the height and speed at which they travel.</font></p><p align="left"><font color="#000000">Society will be more crime-ridden. The strained relations between haves and have-nots will generate more fear of crime. Homes become better defended with stronger doors, locks and alarm systems. People, especially women, retreat from the streets and no longer use public transport because they feel threatened; growing numbers of motorists travel with their doors locked. Policing becomes more intrusive, making greater use of closed circuit television surveillance and computer databases. The old-fashioned policeman on the beat who knew his neighbourhood is being replaced by clever cameras which can read number plates and recognise faces. High-tech policing, feared by civil libertarians, is an inescapable cost of hypermobility. The alternative is ineffectual policing. If criminals avail themselves of modern means of mobility – physical and electronic – and the police do not keep pace, the latter will become impotent.</font></p><p align="left">Society will be less democratic. Individuals will have less influence over the decisions which govern their lives. As we spread ourselves ever wider and thinner in our social and economic activities, the geographical scope of political authority must expand in order to keep up with the growing size of the problems which require governing. Political power migrates up the hierarchy from local authorities to unaccountable institutions such as the World Bank and the World Trade Organisation. Trust in these unaccountable institutions diminishes as their "facts" become increasingly difficult to distinguish from spin.</p><p align="left">To question the benefits of hypermobility is not to deny freedom and choice. It is to ask people what it is that they really, really want, and to confront them with the fact that their choices have consequences beyond the primary objects of their desires.</p><p align="left">John Adams, Prospect Magazine, March 2000.</p><p align="left"><font size="2"></font></p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Hypermobility</b>
+    </font>
+  </p>
+  <p align="left">Transport and communications provide the means by which everyone connects with everyone else. But the transformation in the speed and reach of these means is having profound social consequences. Many of the unwelcome characteristics of the hypermobile society can readily be imagined by extrapolating existing trends.</p>
+  <p align="left">Society will be more dispersed. The process of suburban sprawl will accelerate. Societies whose members move at high speed over great distances consume more space. More of the country will need to be paved to provide parking places; the extra roads required will scar cherished landscapes and subdivide still further the habitats of endangered species; room will have to be found for new and larger airports; those parts of the world valued for their remote tranquillity will be further encroached on.</p>
+  <p align="left">Society will be more polarised. The increase in the mobility of the average Briton conceals a growing gap between the mobility-rich and the mobility have-nots. All those too young, or too old, or otherwise disqualified from driving will get left behind, along with those too poor to afford cars and plane tickets. They will become second-class citizens dependent for their mobility on the withered remains of public transport or the goodwill of car owners.</p>
+  <p align="left">
+    <font color="#000000">The world will be more dangerous for those not in cars. There will be more metal (or carbon fibre) in motion. The fact that there are now about one third as many children killed every year in road accidents as in 1922, when there was hardly any traffic and a 20mph speed limit, does not mean that the roads are now three times safer for children to play in; they have become so dangerous that children are not allowed out any more. The retreat of pedestrians and cyclists will continue. As traffic increases, fewer people try to cross the street &#x2013; one of the reasons why fewer people know their neighbours on the other side of the street.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Children's freedoms will be further curtailed by parental fears, and the social catalyst of children playing in the street will disappear. In Britain, as recently as 1971, 80 per cent of 7 and 8 year-olds went to school on their own, unaccompanied by an adult. Now almost none do so; the government issues guidance to parents warning that it is irresponsible to allow children under the age of 12 out of the house unaccompanied. Children seldom experience mixing independently with their peers and learning to cope without adult supervision &#x2013; an experience essential to the process of socialisation.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">The world will be more anonymous and less convivial. Fewer people will know their neighbours. Gated communities and Neighbourhood Watch &#x2013; attempts to recreate what used to happen naturally &#x2013; are symptomatic of the new anomie. Even when they live in close physical proximity to each other, the mobile wealthy and the immobile poor live in different worlds. The poor, by their lack of mobility, are confined to prisons with invisible walls. They are continually tempted and taunted &#x2013; as prisoners confined to cells with real walls are not &#x2013; by the freedom and conspicuous consumption of the affluent. The wealthy can be seen and heard flying overhead, driving along motorways through the ghettos, appearing on television, enjoying privileges which remain out of reach. To the wealthy, the poor are often invisible; the wealthy tend to see the world at a lower resolution because of the height and speed at which they travel.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Society will be more crime-ridden. The strained relations between haves and have-nots will generate more fear of crime. Homes become better defended with stronger doors, locks and alarm systems. People, especially women, retreat from the streets and no longer use public transport because they feel threatened; growing numbers of motorists travel with their doors locked. Policing becomes more intrusive, making greater use of closed circuit television surveillance and computer databases. The old-fashioned policeman on the beat who knew his neighbourhood is being replaced by clever cameras which can read number plates and recognise faces. High-tech policing, feared by civil libertarians, is an inescapable cost of hypermobility. The alternative is ineffectual policing. If criminals avail themselves of modern means of mobility &#x2013; physical and electronic &#x2013; and the police do not keep pace, the latter will become impotent.</font>
+  </p>
+  <p align="left">Society will be less democratic. Individuals will have less influence over the decisions which govern their lives. As we spread ourselves ever wider and thinner in our social and economic activities, the geographical scope of political authority must expand in order to keep up with the growing size of the problems which require governing. Political power migrates up the hierarchy from local authorities to unaccountable institutions such as the World Bank and the World Trade Organisation. Trust in these unaccountable institutions diminishes as their "facts" become increasingly difficult to distinguish from spin.</p>
+  <p align="left">To question the benefits of hypermobility is not to deny freedom and choice. It is to ask people what it is that they really, really want, and to confront them with the fact that their choices have consequences beyond the primary objects of their desires.</p>
+  <p align="left">John Adams, Prospect Magazine, March 2000.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">In this text the author discusses the changes that increasing mobility will bring to society. The discussion is clearly divided up into six different areas. If you skim over the text, looking at the first sentence of each paragraph, you'll see what those areas are.</font>&nbsp;There are six statements in this exercise, and you should notice that each one focuses on a different part of the discussion in the text. Knowing this will help you find information quickly.&nbsp;Remember that at least one of the opinions listed in the exercise is not mentioned at all.</p>
-</section>
+
+
 </body>
 </bento>

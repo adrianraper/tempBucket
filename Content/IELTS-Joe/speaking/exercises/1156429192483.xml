@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,41 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="false"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="false"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="false"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="false"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"><feedback source="fb6"/></answer></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="false">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,25 +68,64 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit06_e5a.flv" mode="1" id="1002"  /><img class="leftFloat" src="../media/MM_SP_004.jpg" mode="1" id="1004"  /><p align="left">&#160;<g id="t1">A. He follows the instructions on the card.</g></p><p align="left"><g id="t2">B. He explains what the advertisement showed.</g></p><p align="left"><g id="t3">C. He says who it was aimed at.</g></p><p align="left"><g id="t4">D. He explains what effect it had on him.</g></p><p align="left"><g id="t5">E. He explains why he finds this type of advert admirable.</g></p><p align="left"><g id="t6">F. He goes on until the examiner stops him.</g></p><p align="left"><font size="2"></font></p>
+  <video src="../media/Unit06_e5a.flv" mode="1" id="1002"/>
+  <img class="leftFloat" src="../media/MM_SP_004.jpg" mode="1" id="1004"/>
+  <p align="left">&#xA0;<g id="t1">A. He follows the instructions on the card.</g></p>
+  <p align="left">
+    <g id="t2">B. He explains what the advertisement showed.</g>
+  </p>
+  <p align="left">
+    <g id="t3">C. He says who it was aimed at.</g>
+  </p>
+  <p align="left">
+    <g id="t4">D. He explains what effect it had on him.</g>
+  </p>
+  <p align="left">
+    <g id="t5">E. He explains why he finds this type of advert admirable.</g>
+  </p>
+  <p align="left">
+    <g id="t6">F. He goes on until the examiner stops him.</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left"><font face="verdana" size="13" color="#0000ff">A.&#32;He should have followed the instructions, but he didn't.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">A. He should have followed the instructions, but he didn't.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><font face="verdana" size="13" color="#0000ff">B.&#32;Yes, he explains what the advertisement showed.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">B. Yes, he explains what the advertisement showed.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font face="verdana" size="13" color="#0000ff">C.&#32;He didn't mention who the advertisement was aimed at.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">C. He didn't mention who the advertisement was aimed at.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font face="verdana" size="13" color="#0000ff">D.&#32;He said it was romantic, but not the effect it had on him.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">D. He said it was romantic, but not the effect it had on him.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font face="verdana" size="13" color="#0000ff">E.&#32;He says he likes it but not why he finds it admirable.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">E. He says he likes it but not why he finds it admirable.</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font face="verdana" size="13" color="#0000ff">F.&#32;Aways make sure you have answered all the questions before stopping.</font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">F. Aways make sure you have answered all the questions before stopping.</font>
+  </p>
 </section>
+
 </body>
 </bento>

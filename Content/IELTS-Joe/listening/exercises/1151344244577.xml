@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,36 @@
 		<misc timed="175"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a7" correct="false"/><answer source="a8" correct="false"/><answer source="a9" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,10 +63,12 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/DD_LN3.jpg" mode="1" id="1008"  /><media class="leftFloat" src="../media/DD_LN2c.mp3" mode="4" id="1002"  /><br/><ol id="questionList"><tab/><b>11</b>How should the radio be wound?a.<a id="q13" >Pic A</a>b.<a id="q14" >Pic B</a>c.<a id="q15" >Pic C</a><tab/><b>12</b>How long will the radio play when completely wound?a.<a id="q1" >16 minutes</a>b.<a id="q2" >50 minutes</a>c.<a id="q3" >60 minutes</a><tab/><b>13</b>For AM reception the antenna should …a.<a id="q4" >not be extended.</a>b.<a id="q5" >be semi-extended.</a>c.<a id="q6" >be fully extended.</a><tab/><b>14</b>The function of the solar panel is to …a.<a id="q7" >play the radio.</a>b.<a id="q8" >charge the battery.</a>c.<a id="q9" >both play the radio and charge the battery.</a><tab/><b>15</b>How long will the radio play with a fully charged battery?a.<a id="q10" >16 hours</a>b.<a id="q11" >20 hours</a>c.<a id="q12" >30 hours</a></ol>
+  <img class="rightFloat" src="../media/DD_LN3.jpg" mode="1" id="1008"/>
+  <audio controls="compact" class="leftFloat" src="../media/DD_LN2c.mp3" mode="4" id="1002"/>
+  <br/>
+  <ol id="questionList"><tab/><b>11</b>How should the radio be wound?a.<a id="a13">Pic A</a>b.<a id="a14">Pic B</a>c.<a id="a15">Pic C</a><tab/><b>12</b>How long will the radio play when completely wound?a.<a id="a1">16 minutes</a>b.<a id="a2">50 minutes</a>c.<a id="a3">60 minutes</a><tab/><b>13</b>For AM reception the antenna should &#x2026;a.<a id="a4">not be extended.</a>b.<a id="a5">be semi-extended.</a>c.<a id="a6">be fully extended.</a><tab/><b>14</b>The function of the solar panel is to &#x2026;a.<a id="a7">play the radio.</a>b.<a id="a8">charge the battery.</a>c.<a id="a9">both play the radio and charge the battery.</a><tab/><b>15</b>How long will the radio play with a fully charged battery?a.<a id="a10">16 hours</a>b.<a id="a11">20 hours</a>c.<a id="a12">30 hours</a></ol>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should see from the questions and alternative answers that you will hear more facts about the radio.</font>&nbsp;Question 11Make sure you know which direction each of the arrows is pointing. Clockwise or anticlockwise? Left or right?&nbsp;Question 12Is there an answer you can eliminate here? Do you think it would last only 16 minutes? Look at the choices here. Why have you been given a choice of 16 or 60? Is it because they sound the same and are sometimes confused?&nbsp;Question 13Note the question asks about AM reception.&nbsp;Question 14Look at the possible answers here. C is a combination of A and B. Don't just go for the first one you hear. There may be more to come.&nbsp;Question 15This one is difficult to guess but maybe the 16 was used on question 2 as it comes up here.</p>
-</section>
+
+
 </body>
 </bento>

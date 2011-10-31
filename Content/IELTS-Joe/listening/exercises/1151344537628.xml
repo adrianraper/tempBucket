@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,44 @@
 		<misc timed="224"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="7 " correct="true"/><answer value="07" correct="true"/><answer value="7th" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="8 " correct="true"/><answer value="eight" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="circle " correct="true"/><answer value="the circle" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="A8 A9 " correct="true"/><answer value="A 8 A 9" correct="true"/><answer value="A9 A8" correct="true"/><answer value="A 9 A 8" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="30 " correct="true"/><answer value="thirty" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="Hart " correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="9087 6788 0156 5532 " correct="true"/><answer value="9087678801565532" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="23 Chilcomb Road" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="7 " correct="true"/>
+      <answer value="07" correct="true"/>
+      <answer value="7th" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="8 " correct="true"/>
+      <answer value="eight" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="circle " correct="true"/>
+      <answer value="the circle" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="A8 A9 " correct="true"/>
+      <answer value="A 8 A 9" correct="true"/>
+      <answer value="A9 A8" correct="true"/>
+      <answer value="A 9 A 8" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="30 " correct="true"/>
+      <answer value="thirty" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="Hart " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="9087 6788 0156 5532 " correct="true"/>
+      <answer value="9087678801565532" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="23 Chilcomb Road" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,14 +70,16 @@
 		
 </header>
 	
-<section id="body">
-	<img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/AC_LN1.mp3" mode="4" id="1002"  /><p align="left"><font color="#0000ff"><b>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM	</b></font></p><p align="left">Production	HamletDate	(1) <input id="q1" /> September</p>Time	(2) <input id="q2" /> p.m.Seating Area	(3) <input id="q3" />No. of Tickets	TWOSeat Numbers	(4)  <input id="q4" />Total Cost		£ (5) <input id="q5" /><p align="left"><b>CREDIT CARD DETAILS	</b>Card	_ VISA	_ Master Card	X American ExpressName of Cardholder	Mr Richard (6) <input id="q6" /></p>Card No.	(7) <input id="q7" />Expiry Date	March 2005<p align="left"><b>DELIVERY METHOD	</b>	_ Hold tickets for collection		X Post tickets	Address	(8) <input id="q8" />, Winchester</p>Contact No.	2719 8832<p align="left"><font size="2"></font></p>
+<section id="body"><img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/AC_LN1.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM	</b></font></p><p align="left">Production	HamletDate	(1) <input id="q1"/> September</p>Time	(2) <input id="q2"/> p.m.Seating Area	(3) <input id="q3"/>No. of Tickets	TWOSeat Numbers	(4)  <input id="q4"/>Total Cost		&#xA3; (5) <input id="q5"/><p align="left"><b>CREDIT CARD DETAILS	</b>Card	_ VISA	_ Master Card	X American ExpressName of Cardholder	Mr Richard (6) <input id="q6"/></p>Card No.	(7) <input id="q7"/>Expiry Date	March 2005<p align="left"><b>DELIVERY METHOD	</b>	_ Hold tickets for collection		X Post tickets	Address	(8) <input id="q8"/>, Winchester</p>Contact No.	2719 8832<p align="left"><font size="2"/></p>
 </section>
+
 <section id="fb1">
-	<p align="left">DEFAULT The 7th is his second choice but the date he asked for first was unavailable.</p>
+  <p align="left">DEFAULT The 7th is his second choice but the date he asked for first was unavailable.</p>
 </section>
+
 <section id="fb3">
-	<p align="left">DEFAULT He says 'I'll go for the circle' meaning he would like tickets in the circle.</p>
+  <p align="left">DEFAULT He says 'I'll go for the circle' meaning he would like tickets in the circle.</p>
 </section>
+
 </body>
 </bento>

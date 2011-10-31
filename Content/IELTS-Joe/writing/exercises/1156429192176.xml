@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="dropdown" date="2011-10-27" />
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,121 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DropDownQuestion source="q1" group="1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></DropDownQuestion><DropDownQuestion source="q2" group="2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></DropDownQuestion><DropDownQuestion source="q3" group="3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></DropDownQuestion><DropDownQuestion source="q4" group="4"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></DropDownQuestion><DropDownQuestion source="q5" group="5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></DropDownQuestion><DropDownQuestion source="q6" group="6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></DropDownQuestion><DropDownQuestion source="q7" group="7"><answer source="a19" correct="true"/><answer source="a20" correct="false"/><answer source="a21" correct="false"/></DropDownQuestion><DropDownQuestion source="q8" group="8"><answer source="a22" correct="true"/><answer source="a23" correct="false"/><answer source="a24" correct="false"/></DropDownQuestion><DropDownQuestion source="q9" group="9"><answer source="a25" correct="true"/><answer source="a26" correct="false"/><answer source="a27" correct="false"/></DropDownQuestion><DropDownQuestion source="q10" group="10"><answer source="a28" correct="true"/><answer source="a29" correct="false"/><answer source="a30" correct="false"/></DropDownQuestion><DropDownQuestion source="q11" group="11"><answer source="a31" correct="true"/><answer source="a32" correct="false"/><answer source="a33" correct="false"/></DropDownQuestion><DropDownQuestion source="q12" group="12"><answer source="a34" correct="true"/><answer source="a35" correct="false"/><answer source="a36" correct="false"/></DropDownQuestion><DropDownQuestion source="q13" group="13"><answer source="a37" correct="true"/><answer source="a38" correct="false"/><answer source="a39" correct="false"/></DropDownQuestion><DropDownQuestion source="q14" group="14"><answer source="a40" correct="true"/><answer source="a41" correct="false"/><answer source="a42" correct="false"/></DropDownQuestion><DropDownQuestion source="q15" group="15"><answer source="a43" correct="true"/><answer source="a44" correct="false"/><answer source="a45" correct="false"/></DropDownQuestion><DropDownQuestion source="q16" group="16"><answer source="a46" correct="true"/><answer source="a47" correct="false"/><answer source="a48" correct="false"/></DropDownQuestion><DropDownQuestion source="q17" group="17"><answer source="a49" correct="true"/><answer source="a50" correct="false"/><answer source="a51" correct="false"/></DropDownQuestion><DropDownQuestion source="q18" group="18"><answer source="a52" correct="true"/><answer source="a53" correct="false"/><answer source="a54" correct="false"/></DropDownQuestion><DropDownQuestion source="q19" group="19"><answer source="a55" correct="true"/><answer source="a56" correct="false"/><answer source="a57" correct="false"/></DropDownQuestion><DropDownQuestion source="q20" group="20"><answer source="a58" correct="true"/><answer source="a59" correct="false"/><answer source="a60" correct="false"/></DropDownQuestion><DropDownQuestion source="q21" group="21"><answer source="a61" correct="true"/><answer source="a62" correct="false"/><answer source="a63" correct="false"/></DropDownQuestion><DropDownQuestion source="q22" group="22"><answer source="a64" correct="true"/><answer source="a65" correct="false"/><answer source="a66" correct="false"/></DropDownQuestion></questions></script>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q11" block="b11">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q12" block="b12">
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q13" block="b13">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q14" block="b14">
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="false"/>
+      <answer source="a42" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q15" block="b15">
+      <answer source="a43" correct="true"/>
+      <answer source="a44" correct="false"/>
+      <answer source="a45" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q16" block="b16">
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="false"/>
+      <answer source="a48" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q17" block="b17">
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="false"/>
+      <answer source="a51" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q18" block="b18">
+      <answer source="a52" correct="true"/>
+      <answer source="a53" correct="false"/>
+      <answer source="a54" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q19" block="b19">
+      <answer source="a55" correct="true"/>
+      <answer source="a56" correct="false"/>
+      <answer source="a57" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q20" block="b20">
+      <answer source="a58" correct="true"/>
+      <answer source="a59" correct="false"/>
+      <answer source="a60" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q21" block="b21">
+      <answer source="a61" correct="true"/>
+      <answer source="a62" correct="false"/>
+      <answer source="a63" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q22" block="b22">
+      <answer source="a64" correct="true"/>
+      <answer source="a65" correct="false"/>
+      <answer source="a66" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,83 +145,130 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/MM_AW_005s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/MM_AW_005.jpg" mode="16" id="1002"  /><img class="leftFloat" src="../media/MM_AW_006s.jpg" mode="1" id="1005"  /><img class="leftFloat" src="../media/MM_AW_006.jpg" mode="16" id="1003"  /><img class="leftFloat" src="../media/MM_AW_007s.jpg" mode="1" id="1006"  /><img class="leftFloat" src="../media/MM_AW_007.jpg" mode="16" id="1004"  /><p align="left"><font face="verdana" size="13" color="#000000">Chart A shows a general downward trend <select id="q1" type="dropdown" ><option id="o1">over"</option>"<option id="o2">in"</option>"<option id="o3">until"</option>"</select> the decade in the number of hours per week spent watching television. From just under 23.5 hours <select id="q2" type="dropdown" ><option id="o4">in"</option>"<option id="o5">at"</option>"<option id="o6">on"</option>"</select> 1991, the number of viewing hours fell steadily <select id="q3" type="dropdown" ><option id="o7">until"</option>"<option id="o8">by"</option>"<option id="o9">after"</option>"</select> 1995, when there was a marked rise. <select id="q4" type="dropdown" ><option id="o10">Between"</option>"<option id="o11">From "</option>"<option id="o12">Until"</option>"</select> 1996 and 1998 there was another steady decline. <select id="q5" type="dropdown" ><option id="o13">In"</option>"<option id="o14">At"</option>"<option id="o15">By"</option>"</select> 1999 there was a sharp drop of nearly an hour. Time spent viewing continued to decline steadily <select id="q6" type="dropdown" ><option id="o16">over"</option>"<option id="o17">until"</option>"<option id="o18">after"</option>"</select> the rest of the period.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Line graph B shows variations in audience size for Channel 1 <select id="q7" type="dropdown" ><option id="o19">at"</option>"<option id="o20">in"</option>"<option id="o21">from"</option>"</select> different times <select id="q8" type="dropdown" ><option id="o22">on"</option>"<option id="o23">in "</option>"<option id="o24">at"</option>"</select> an average weekday. The first peak in audience figures comes <select id="q9" type="dropdown" ><option id="o25">at"</option>"<option id="o26">during"</option>"<option id="o27">to"</option>"</select> 1 o'clock in the afternoon, when around 35 per cent of the population are watching. However, it is clear that prime time for Channel 1 is <select id="q10" type="dropdown" ><option id="o28">during"</option>"<option id="o29">to"</option>"<option id="o30">at"</option>"</select> the early evening. <select id="q11" type="dropdown" ><option id="o31">At"</option>"<option id="o32">In"</option>"<option id="o33">During"</option>"</select> 6 p.m. well over 50 per cent of the population are tuned in and <select id="q12" type="dropdown" ><option id="o34">from"</option>"<option id="o35">until"</option>"<option id="o36">to"</option>"</select> 7 p.m. <select id="q13" type="dropdown" ><option id="o37">to"</option>"<option id="o38">between"</option>"<option id="o39">at"</option>"</select> 10 p.m. at least two-fifths of the population are watching. Not surprisingly, the percentage falls off dramatically <select id="q14" type="dropdown" ><option id="o40">after"</option>"<option id="o41">during"</option>"<option id="o42">by"</option>"</select> midnight. <select id="q15" type="dropdown" ><option id="o43">By"</option>"<option id="o44">Until"</option>"<option id="o45">During"</option>"</select> 3 a.m. only a tiny proportion of the population are watching and figure does not rise significantly <select id="q16" type="dropdown" ><option id="o46">until"</option>"<option id="o47">to"</option>"<option id="o48">by"</option>"</select> 10 a.m. in the morning.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Chart C shows trends in audience size for a popular soap opera <select id="q17" type="dropdown" ><option id="o49">over"</option>"<option id="o50">at "</option>"<option id="o51">from"</option>"</select> a six-month period <select id="q18" type="dropdown" ><option id="o52">in"</option>"<option id="o53">at"</option>"<option id="o54">on"</option>"</select> 2001. <select id="q19" type="dropdown" ><option id="o55">Before"</option>"<option id="o56">During"</option>"<option id="o57">In"</option>"</select> the summer months, the programme attracted an audience of over 17 million. <select id="q20" type="dropdown" ><option id="o58">From"</option>"<option id="o59">Between"</option>"<option id="o60">In"</option>"</select> June <select id="q21" type="dropdown" ><option id="o61">to"</option>"<option id="o62">in"</option>"<option id="o63">during"</option>"</select> August there was a marked decline in audience number but <select id="q22" type="dropdown" ><option id="o64">by"</option>"<option id="o65">in"</option>"<option id="o66">at"</option>"</select> September the figure had recovered to its original level.</font></p>
-		<p align="left">
-		<b>Click to enlarge</b></p>
-		<p align="left">
-		<b>Click to enlarge</b></p>
-		<p align="left">
-		<b>Click to enlarge</b></p>
+  <img class="rightFloat" src="../media/MM_AW_005s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/MM_AW_005.jpg" mode="16" id="1002"/>
+  <img class="leftFloat" src="../media/MM_AW_006s.jpg" mode="1" id="1005"/>
+  <img class="leftFloat" src="../media/MM_AW_006.jpg" mode="16" id="1003"/>
+  <img class="leftFloat" src="../media/MM_AW_007s.jpg" mode="1" id="1006"/>
+  <img class="leftFloat" src="../media/MM_AW_007.jpg" mode="16" id="1004"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Chart A shows a general downward trend <select id="q1"><option>over</option><option>in</option><option>until</option></select> the decade in the number of hours per week spent watching television. From just under 23.5 hours <select id="q2"><option>in</option><option>at</option><option>on</option></select> 1991, the number of viewing hours fell steadily <select id="q3"><option>until</option><option>by</option><option>after</option></select> 1995, when there was a marked rise. <select id="q4"><option>Between</option><option>From </option><option>Until</option></select> 1996 and 1998 there was another steady decline. <select id="q5"><option>In</option><option>At</option><option>By</option></select> 1999 there was a sharp drop of nearly an hour. Time spent viewing continued to decline steadily <select id="q6"><option>over</option><option>until</option><option>after</option></select> the rest of the period.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Line graph B shows variations in audience size for Channel 1 <select id="q7"><option>at</option><option>in</option><option>from</option></select> different times <select id="q8"><option>on</option><option>in </option><option>at</option></select> an average weekday. The first peak in audience figures comes <select id="q9"><option>at</option><option>during</option><option>to</option></select> 1 o'clock in the afternoon, when around 35 per cent of the population are watching. However, it is clear that prime time for Channel 1 is <select id="q10"><option>during</option><option>to</option><option>at</option></select> the early evening. <select id="q11"><option>At</option><option>In</option><option>During</option></select> 6 p.m. well over 50 per cent of the population are tuned in and <select id="q12"><option>from</option><option>until</option><option>to</option></select> 7 p.m. <select id="q13"><option>to</option><option>between</option><option>at</option></select> 10 p.m. at least two-fifths of the population are watching. Not surprisingly, the percentage falls off dramatically <select id="q14"><option>after</option><option>during</option><option>by</option></select> midnight. <select id="q15"><option>By</option><option>Until</option><option>During</option></select> 3 a.m. only a tiny proportion of the population are watching and figure does not rise significantly <select id="q16"><option>until</option><option>to</option><option>by</option></select> 10 a.m. in the morning.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Chart C shows trends in audience size for a popular soap opera <select id="q17"><option>over</option><option>at </option><option>from</option></select> a six-month period <select id="q18"><option>in</option><option>at</option><option>on</option></select> 2001. <select id="q19"><option>Before</option><option>During</option><option>In</option></select> the summer months, the programme attracted an audience of over 17 million. <select id="q20"><option>From</option><option>Between</option><option>In</option></select> June <select id="q21"><option>to</option><option>in</option><option>during</option></select> August there was a marked decline in audience number but <select id="q22"><option>by</option><option>in</option><option>at</option></select> September the figure had recovered to its original level.</font>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left">1. This means 'during' the decade.</p>
+  <p align="left">1. This means 'during' the decade.</p>
 </section>
+
 <section id="fb2">
-	<p align="left">2. 'At' is used with time. 'At four o'clock', for example.</p><p align="left">'On' is used with days of the week. 'On Tuesday', for example.</p>
+  <p align="left">2. 'At' is used with time. 'At four o'clock', for example.</p>
+  <p align="left">'On' is used with days of the week. 'On Tuesday', for example.</p>
 </section>
+
 <section id="fb3">
-	<p align="left">3. In other words, up to 1995.</p>
+  <p align="left">3. In other words, up to 1995.</p>
 </section>
+
 <section id="fb4">
-	<p align="left">4. In other words, from 1996 to 1998.</p>
+  <p align="left">4. In other words, from 1996 to 1998.</p>
 </section>
+
 <section id="fb5">
-	<p align="left">5. 'At' is used with time. 'At four o'clock', for example.</p><p align="left">We usually use 'by' with perfect tenses. 'By 1992 the figures had risen.', for example.</p>
+  <p align="left">5. 'At' is used with time. 'At four o'clock', for example.</p>
+  <p align="left">We usually use 'by' with perfect tenses. 'By 1992 the figures had risen.', for example.</p>
 </section>
+
 <section id="fb6">
-	<p align="left">6. This means 'during' the rest of the period.</p>
+  <p align="left">6. This means 'during' the rest of the period.</p>
 </section>
+
 <section id="fb7">
-	<p align="left">7. The word 'times' in the sentence refers to clock hours during the day, so we use the proposition 'at'.</p>
+  <p align="left">7. The word 'times' in the sentence refers to clock hours during the day, so we use the proposition 'at'.</p>
 </section>
+
 <section id="fb8">
-	<p align="left">8. 'In' is used for years, not days of the week.</p><p align="left">'At' is used for the hour, not days of the week.</p>
+  <p align="left">8. 'In' is used for years, not days of the week.</p>
+  <p align="left">'At' is used for the hour, not days of the week.</p>
 </section>
+
 <section id="fb9">
-	<p align="left">9. 'During' is used with periods of time, not a single point in time.</p><p align="left">'To' is usually used with 'from' to refer to a period of time. 'From 2 o'clock to half past 3', for example.</p>
+  <p align="left">9. 'During' is used with periods of time, not a single point in time.</p>
+  <p align="left">'To' is usually used with 'from' to refer to a period of time. 'From 2 o'clock to half past 3', for example.</p>
 </section>
+
 <section id="fb10">
-	<p align="left">10. We use 'between' with two dates or times to refer to a period.</p><p align="left">With this preposition, the sentence doesn't agree with the figures in the chart. 'Until' would mean that 'prime time' came to an end in the evening.</p>
+  <p align="left">10. We use 'between' with two dates or times to refer to a period.</p>
+  <p align="left">With this preposition, the sentence doesn't agree with the figures in the chart. 'Until' would mean that 'prime time' came to an end in the evening.</p>
 </section>
+
 <section id="fb11">
-	<p align="left">11. 'In' is used for years, not hours of the day.</p><p align="left">'During' is used with periods of time, not a single point in time.</p>
+  <p align="left">11. 'In' is used for years, not hours of the day.</p>
+  <p align="left">'During' is used with periods of time, not a single point in time.</p>
 </section>
+
 <section id="fb12">
-	<p align="left">12. Also look at gap 13.</p>
+  <p align="left">12. Also look at gap 13.</p>
 </section>
+
 <section id="fb13">
-	<p align="left">13. Also look at gap 12.</p>
+  <p align="left">13. Also look at gap 12.</p>
 </section>
+
 <section id="fb14">
-	<p align="left">14. Midnight is a point of time, not an extended period.</p><p align="left">We usually use 'by' with perfect tenses. 'By 1 o'clock most viewers had switched off and gone to bed', for example.</p>
+  <p align="left">14. Midnight is a point of time, not an extended period.</p>
+  <p align="left">We usually use 'by' with perfect tenses. 'By 1 o'clock most viewers had switched off and gone to bed', for example.</p>
 </section>
+
 <section id="fb15">
-	<p align="left">15. In other words, by the time 3 a.m. is reached, very few people are still watching.</p>
+  <p align="left">15. In other words, by the time 3 a.m. is reached, very few people are still watching.</p>
 </section>
+
 <section id="fb16">
-	<p align="left">16. In other words, viewing figures remain low and do not rise before 10 a.m.</p>
+  <p align="left">16. In other words, viewing figures remain low and do not rise before 10 a.m.</p>
 </section>
+
 <section id="fb17">
-	<p align="left">17. In this sentence 'over' means 'during'.</p>
+  <p align="left">17. In this sentence 'over' means 'during'.</p>
 </section>
+
 <section id="fb18">
-	<p align="left">18. 'In' is used for years.</p>
+  <p align="left">18. 'In' is used for years.</p>
 </section>
+
 <section id="fb19">
-	<p align="left">19. This is also correct for 'During' or 'In', but they don't agree with the information in the chart.</p>
+  <p align="left">19. This is also correct for 'During' or 'In', but they don't agree with the information in the chart.</p>
 </section>
+
 <section id="fb20">
-	<p align="left">20. Also look at gap 21.</p>
+  <p align="left">20. Also look at gap 21.</p>
 </section>
+
 <section id="fb21">
-	<p align="left">21. Also look at gap 20.</p>
+  <p align="left">21. Also look at gap 20.</p>
 </section>
+
 <section id="fb22">
-	<p align="left">22. This is an example of using 'by' with the past perfect tense.</p>
+  <p align="left">22. This is an example of using 'by' with the past perfect tense.</p>
 </section>
+
 <section id="rt2001">
-	
-		<p align="left">When describing trends over time, you must be careful with the prepositions of time you use.</p>
+  <p align="left">When describing trends over time, you must be careful with the prepositions of time you use.</p>
 </section>
+
 </body>
 </bento>

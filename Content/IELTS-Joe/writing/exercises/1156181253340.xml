@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -36,52 +39,102 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/TT_AW_007s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/TT_AW_007.jpg" mode="16" id="1005"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/TT_AW_007s.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/TT_AW_007.jpg" mode="16" id="1005"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left"><font color="#000000"><b>greatest -> greater:</b> This sentence includes the word 'than' and so the comparative form of the adjective is needed here.</font></p>
+  <p align="left">
+    <font color="#000000"><b>greatest -&gt; greater:</b> This sentence includes the word 'than' and so the comparative form of the adjective is needed here.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><font color="#000000"><b>less and less -> fewer and fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font></p>
+  <p align="left">
+    <font color="#000000"><b>less and less -&gt; fewer and fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font color="#000000"><b>more -> most</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font></p>
+  <p align="left">
+    <font color="#000000"><b>more -&gt; most</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font color="#000000"><b>much -> many</b>: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font></p>
+  <p align="left">
+    <font color="#000000"><b>much -&gt; many</b>: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font color="#000000"><b>farer -> further</b>: 'Farer' is not the correct form of the comparative of this adjective.</font></p>
+  <p align="left">
+    <font color="#000000"><b>farer -&gt; further</b>: 'Farer' is not the correct form of the comparative of this adjective.</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font color="#000000"><b>strikingest -> most striking</b>: 'Strikingest' is not the correct form of the superlative of this adjective.</font></p><p align="left"></p>
+  <p align="left">
+    <font color="#000000"><b>strikingest -&gt; most striking</b>: 'Strikingest' is not the correct form of the superlative of this adjective.</font>
+  </p>
+  <p align="left"/>
 </section>
+
 <section id="fb7">
-	<p align="left"><b>amount -> number</b></p>
+  <p align="left">
+    <b>amount -&gt; number</b>
+  </p>
 </section>
+
 <section id="fb8">
-	<p align="left"><font color="#000000"><b>much less -> far fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font></p>
+  <p align="left">
+    <font color="#000000"><b>much less -&gt; far fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font>
+  </p>
 </section>
+
 <section id="fb9">
-	<p align="left"><font color="#000000"><b>many -> great</b>: 'Distance' is an uncountable noun. 'Many' can only be used with countable nouns.</font></p>
+  <p align="left">
+    <font color="#000000"><b>many -&gt; great</b>: 'Distance' is an uncountable noun. 'Many' can only be used with countable nouns.</font>
+  </p>
 </section>
+
 <section id="fb10">
-	<p align="left"><font color="#000000"><b>greater -> greatest</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font></p>
+  <p align="left">
+    <font color="#000000"><b>greater -&gt; greatest</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font>
+  </p>
 </section>
+
 <section id="fb11">
-	<p align="left"><b>further -> far</b></p>
+  <p align="left">
+    <b>further -&gt; far</b>
+  </p>
 </section>
+
 <section id="fb12">
-	<p align="left"><b>most youngest -> youngest</b></p>
+  <p align="left">
+    <b>most youngest -&gt; youngest</b>
+  </p>
 </section>
+
 <section id="fb14">
-	<p align="left"><b>The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</b></p>
+  <p align="left">
+    <b>The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</b>
+  </p>
 </section>
+
 <section id="fb15">
-	<p align="left"><font color="#000000">Many: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font></p>
+  <p align="left">
+    <font color="#000000">Many: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font>
+  </p>
 </section>
+
 <section id="fb16">
-	<p align="left"><font color="#000000">most: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font></p>
+  <p align="left">
+    <font color="#000000">most: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font>
+  </p>
 </section>
+
 </body>
 </bento>

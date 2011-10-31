@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,61 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="false"/><answer source="a11" correct="true"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="false"/><answer source="a20" correct="true"/><answer source="a21" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a22" correct="false"/><answer source="a23" correct="false"/><answer source="a24" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a25" correct="false"/><answer source="a26" correct="true"/><answer source="a27" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a28" correct="true"/><answer source="a29" correct="false"/><answer source="a30" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="true"/>
+      <answer source="a21" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a25" correct="false"/>
+      <answer source="a26" correct="true"/>
+      <answer source="a27" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,13 +88,37 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><br/><li id="1">The study of ancient cultures is an essential part of any Western education.<ol class="answerList"><li><a id="q1" >Yes</a></li><li><a id="q2" >No</a></li><li><a id="q3" >Not given</a></li></ol><br/></li><br/><li id="2">We cannot take it for granted that people from different cultures think in the same way.<ol class="answerList"><li><a id="q4" >Yes</a></li><li><a id="q5" >No</a></li><li><a id="q6" >Not given</a></li></ol><br/></li><br/><li id="3">What makes a culture worth studying is the way it contrasts with other cultures.<ol class="answerList"><li><a id="q7" >Yes</a></li><li><a id="q8" >No</a></li><li><a id="q9" >Not given</a></li></ol><br/></li><br/><li id="4">Even today we can understand how the Egyptian workers who built the Pyramids must have thought and felt.<ol class="answerList"><li><a id="q10" >Yes</a></li><li><a id="q11" >No</a></li><li><a id="q12" >Not given</a></li></ol><br/></li><br/><li id="5">Studying ancient cultures helps give us a deeper understanding of our own.<ol class="answerList"><li><a id="q13" >Yes</a></li><li><a id="q14" >No </a></li><li><a id="q15" >Not given</a></li></ol><br/></li><br/><li id="6">It is difficult to compare critically the artistic achievements of different cultures.<ol class="answerList"><li><a id="q16" >Yes</a></li><li><a id="q17" >No</a></li><li><a id="q18" >Not given</a></li></ol><br/></li><br/><li id="7">Only those who accept a culture's values truly belong to that culture.<ol class="answerList"><li><a id="q19" >Yes</a></li><li><a id="q20" >No</a></li><li><a id="q21" >Not given</a></li></ol><br/></li><br/><li id="8">The generalizations we make about ancient cultures are mostly mistaken.<ol class="answerList"><li><a id="q22" >Yes</a></li><li><a id="q23" >No</a></li><li><a id="q24" >Not given</a></li></ol><br/></li><br/><li id="9">The works of a culture's most influential and successful members accurately reflect the values held by the whole society.<ol class="answerList"><li><a id="q25" >Yes</a></li><li><a id="q26" >No</a></li><li><a id="q27" >Not given</a></li></ol><br/></li><br/><li id="10">The truth is we do not know much about ordinary people in ancient cultures.<ol class="answerList"><li><a id="q28" >Yes</a></li><li><a id="q29" >No</a></li><li><a id="q30" >Not given</a></li></ol><br/></li></ol>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">The study of ancient cultures is an essential part of any Western education.<list class="answerList"><li><a id="a1">Yes</a></li><li><a id="a2">No</a></li><li><a id="a3">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q2">We cannot take it for granted that people from different cultures think in the same way.<list class="answerList"><li><a id="a4">Yes</a></li><li><a id="a5">No</a></li><li><a id="a6">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q3">What makes a culture worth studying is the way it contrasts with other cultures.<list class="answerList"><li><a id="a7">Yes</a></li><li><a id="a8">No</a></li><li><a id="a9">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q4">Even today we can understand how the Egyptian workers who built the Pyramids must have thought and felt.<list class="answerList"><li><a id="a10">Yes</a></li><li><a id="a11">No</a></li><li><a id="a12">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q5">Studying ancient cultures helps give us a deeper understanding of our own.<list class="answerList"><li><a id="a13">Yes</a></li><li><a id="a14">No </a></li><li><a id="a15">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q6">It is difficult to compare critically the artistic achievements of different cultures.<list class="answerList"><li><a id="a16">Yes</a></li><li><a id="a17">No</a></li><li><a id="a18">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q7">Only those who accept a culture's values truly belong to that culture.<list class="answerList"><li><a id="a19">Yes</a></li><li><a id="a20">No</a></li><li><a id="a21">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q8">The generalizations we make about ancient cultures are mostly mistaken.<list class="answerList"><li><a id="a22">Yes</a></li><li><a id="a23">No</a></li><li><a id="a24">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q9">The works of a culture's most influential and successful members accurately reflect the values held by the whole society.<list class="answerList"><li><a id="a25">Yes</a></li><li><a id="a26">No</a></li><li><a id="a27">Not given</a></li></list><br/></li>
+    <br/>
+    <li id="q10">The truth is we do not know much about ordinary people in ancient cultures.<list class="answerList"><li><a id="a28">Yes</a></li><li><a id="a29">No</a></li><li><a id="a30">Not given</a></li></list><br/></li>
+  </ol>
 </section>
+
 <section id="rt2001">
-	<p align="left">Questions 1-10 - Yes, No, Not GivenThis is a difficult passage with some reasonably complex ideas. However, the statements themselves are quite straightforward if you read them carefully. The most important thing to remember is that for each statement you have to decide whether it agrees with the writer's views, disagrees with the writer's views, or if the writer doesn't give an opinion in that particular point. You must also be very careful to distinguish between facts and the writer's opinions.</p>
+  <p align="left">Questions 1-10 - Yes, No, Not GivenThis is a difficult passage with some reasonably complex ideas. However, the statements themselves are quite straightforward if you read them carefully. The most important thing to remember is that for each statement you have to decide whether it agrees with the writer's views, disagrees with the writer's views, or if the writer doesn't give an opinion in that particular point. You must also be very careful to distinguish between facts and the writer's opinions.</p>
 </section>
-<section id="readingText">
-	<p align="left"><b>Why Study Ancient World Cultures?</b></p><p align="left"><font color="#000000">Why study ancient cultures? You might feel that the question is moot: students <i>do</i> study and <i>will</i> study ancient cultures; such study is an expected part of a tradition of intellectual development. The response to the <i>why</i> of the initial question is a matter of tradition, if not fact. A study of the Roman Empire, a reading of Greek philosophy and literature, a look at the Pyramids of Egypt – these are all accepted parts of a Western education, aren't they?</font></p>Probably so: even today, in the plurality of approaches to the study of history and to the study of cultures, people talk about Plato or Dante or Krishna or Mohammed. At this point, you might ask yourself these two additional questions:  Do we study these cultures because, to some extent, all cultures share certain characteristics? Does our own culture reflect aspects of these other cultures?The answer to the first of the two questions has historically been found in a discussion of universality. The danger in looking for universals consists in reformulating other, possibly alien, views to fit our own. We must always guard against the assumption that other people think as we do – or that they should.The differences among cultures are of greatest interest here, and reading about ancient cultures is thus reading about other people whose lives were surely different from our own. The social organization of Socrates' Athens – where a gimpy-legged man could hobble around interrogating citizens at will – differs profoundly from today's world beset with modern media whereby people rarely get to see or literally hear their critics. How can we today understand the psychology of the thousands of Egyptian workers who, apparently unquestioningly, spent their lives dragging great blocks of stone across burning sands in the construction of staggering pyramidal edifices whose completion took many lifetimes?  Interestingly, these differences may help us better to see – and know – the limits of our culture and the limits of our language and experience.<p align="left"><font color="#000000">The problem with the second question lies in its formulation. What is a culture after all? This paper proceeds under the assumption that there is some sort of definition to the word <i>culture</i>. Most people would ascribe an abstract value to culture – that which produces <i>good</i> art, <i>great</i> literature, etc. Yet the criteria of quality are scarcely international or inter-cultural: a revered "classical" work on the sitar resists comparison to a Mozart symphony beyond the statement that both are considered great cultural achievements in the context of their home cultures. Is, then, culture something that can be taught, or are its constituent parts more sweeping and pervasive than what can be learned from books or lectures? Answers to this second question already exist in the form of canons and reading lists, though there is much discussion today about what makes up those reading lists and about the assumptions concerning what should or should not fit on such lists.</font></p><p align="left"><font color="#000000">Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</font></p><p align="left"><font color="#000000">So, what have we learned about ancient cultures? You could probably tally up a list of facts, e.g. Mohammed's birth and death dates, and key concepts: the association of Hinduism with the illusory nature of the material world, the Greek belief in rationality, the Roman ability to organize and delegate. But these generalizations do not allow for minority opinions within the cultures, nor, most likely, do the generalizations say much about the people who were not gifted writers, powerful politicians, influential artists, successful interpreters of their social circumstances. On just about any given day in the midst of choking sand and blazing heat, what might some of those Egyptian stone-haulers have said in passing about their omnipotent pharaoh?</font></p><p align="left"><b>Glossary</b>Akhenaton:  Egyptian pharaoh (1603-36 BC) of the 18th dynasty who introduced a new monotheistic cult of the sun god Aton.</p><p align="left">Bill Hemminger, Exploring Ancient World Cultures web site at the University of Evansville.</p><p align="left"><font size="2"></font></p>
+
+<section id="readingText"><p align="left"><b>Why Study Ancient World Cultures?</b></p><p align="left"><font color="#000000">Why study ancient cultures? You might feel that the question is moot: students <i>do</i> study and <i>will</i> study ancient cultures; such study is an expected part of a tradition of intellectual development. The response to the <i>why</i> of the initial question is a matter of tradition, if not fact. A study of the Roman Empire, a reading of Greek philosophy and literature, a look at the Pyramids of Egypt &#x2013; these are all accepted parts of a Western education, aren't they?</font></p>Probably so: even today, in the plurality of approaches to the study of history and to the study of cultures, people talk about Plato or Dante or Krishna or Mohammed. At this point, you might ask yourself these two additional questions:  Do we study these cultures because, to some extent, all cultures share certain characteristics? Does our own culture reflect aspects of these other cultures?The answer to the first of the two questions has historically been found in a discussion of universality. The danger in looking for universals consists in reformulating other, possibly alien, views to fit our own. We must always guard against the assumption that other people think as we do &#x2013; or that they should.The differences among cultures are of greatest interest here, and reading about ancient cultures is thus reading about other people whose lives were surely different from our own. The social organization of Socrates' Athens &#x2013; where a gimpy-legged man could hobble around interrogating citizens at will &#x2013; differs profoundly from today's world beset with modern media whereby people rarely get to see or literally hear their critics. How can we today understand the psychology of the thousands of Egyptian workers who, apparently unquestioningly, spent their lives dragging great blocks of stone across burning sands in the construction of staggering pyramidal edifices whose completion took many lifetimes?  Interestingly, these differences may help us better to see &#x2013; and know &#x2013; the limits of our culture and the limits of our language and experience.<p align="left"><font color="#000000">The problem with the second question lies in its formulation. What is a culture after all? This paper proceeds under the assumption that there is some sort of definition to the word <i>culture</i>. Most people would ascribe an abstract value to culture &#x2013; that which produces <i>good</i> art, <i>great</i> literature, etc. Yet the criteria of quality are scarcely international or inter-cultural: a revered "classical" work on the sitar resists comparison to a Mozart symphony beyond the statement that both are considered great cultural achievements in the context of their home cultures. Is, then, culture something that can be taught, or are its constituent parts more sweeping and pervasive than what can be learned from books or lectures? Answers to this second question already exist in the form of canons and reading lists, though there is much discussion today about what makes up those reading lists and about the assumptions concerning what should or should not fit on such lists.</font></p><p align="left"><font color="#000000">Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</font></p><p align="left"><font color="#000000">So, what have we learned about ancient cultures? You could probably tally up a list of facts, e.g. Mohammed's birth and death dates, and key concepts: the association of Hinduism with the illusory nature of the material world, the Greek belief in rationality, the Roman ability to organize and delegate. But these generalizations do not allow for minority opinions within the cultures, nor, most likely, do the generalizations say much about the people who were not gifted writers, powerful politicians, influential artists, successful interpreters of their social circumstances. On just about any given day in the midst of choking sand and blazing heat, what might some of those Egyptian stone-haulers have said in passing about their omnipotent pharaoh?</font></p><p align="left"><b>Glossary</b>Akhenaton:  Egyptian pharaoh (1603-36 BC) of the 18th dynasty who introduced a new monotheistic cult of the sun god Aton.</p><p align="left">Bill Hemminger, Exploring Ancient World Cultures web site at the University of Evansville.</p><p align="left"><font size="2"/></p>
 </section>
+
 </body>
 </bento>

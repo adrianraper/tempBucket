@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,76 @@
 		<misc timed="190"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="Italian conversation " correct="true"/><answer value="conversational Italian" correct="true"/><answer value="spoken Italian" correct="true"/><answer value="oral Italian" correct="true"/><answer value="speaking Italian" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="90 " correct="true"/><answer value="ninety" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="12 weeks " correct="true"/><answer value="twelve weeks" correct="true"/><answer value="3 months" correct="true"/><answer value="three months" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="Tuesday Thursday " correct="true"/><answer value="Tuesdays Thursdays" correct="true"/><answer value="Tue Thur" correct="true"/><answer value="Tues Thurs" correct="true"/><answer value="Tuesday and Thursday" correct="true"/><answer value="Thursday and Tuesday" correct="true"/><answer value="Tuesday or Thursday" correct="true"/><answer value="Thursday or Tuesday" correct="true"/><answer value="Tuesday, Thursday" correct="true"/><answer value="Thursday, Tuesday" correct="true"/><answer value="Tuesday + Thursday" correct="true"/><answer value="Thursday + Tuesday" correct="true"/><answer value="Tue and Thur" correct="true"/><answer value="Thur and Tue" correct="true"/><answer value="Tue or Thur" correct="true"/><answer value="Thur or Tue" correct="true"/><answer value="Tue, Thur" correct="true"/><answer value="Thur, Tue" correct="true"/><answer value="Tue + Thur" correct="true"/><answer value="Thur + Tue" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="Thursday " correct="true"/><answer value="Thursdays" correct="true"/><answer value="Thur" correct="true"/><answer value="Thurs" correct="true"/></GapFillQuestion><GapFillQuestion source="q6"><answer value="6.15 " correct="true"/><answer value="06.15" correct="true"/><answer value="6:15" correct="true"/><answer value="06:15" correct="true"/><answer value="six fifteen" correct="true"/><answer value="quarter past six" correct="true"/></GapFillQuestion><GapFillQuestion source="q7"><answer value="2 hours " correct="true"/><answer value="two hours" correct="true"/><answer value="2 hrs" correct="true"/><answer value="two hrs" correct="true"/></GapFillQuestion><GapFillQuestion source="q8"><answer value="15 " correct="true"/><answer value="15 students" correct="true"/><answer value="fifteen" correct="true"/><answer value="fifteen students" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Italian conversation " correct="true"/>
+      <answer value="conversational Italian" correct="true"/>
+      <answer value="spoken Italian" correct="true"/>
+      <answer value="oral Italian" correct="true"/>
+      <answer value="speaking Italian" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="90 " correct="true"/>
+      <answer value="ninety" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="12 weeks " correct="true"/>
+      <answer value="twelve weeks" correct="true"/>
+      <answer value="3 months" correct="true"/>
+      <answer value="three months" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="Tuesday Thursday " correct="true"/>
+      <answer value="Tuesdays Thursdays" correct="true"/>
+      <answer value="Tue Thur" correct="true"/>
+      <answer value="Tues Thurs" correct="true"/>
+      <answer value="Tuesday and Thursday" correct="true"/>
+      <answer value="Thursday and Tuesday" correct="true"/>
+      <answer value="Tuesday or Thursday" correct="true"/>
+      <answer value="Thursday or Tuesday" correct="true"/>
+      <answer value="Tuesday, Thursday" correct="true"/>
+      <answer value="Thursday, Tuesday" correct="true"/>
+      <answer value="Tuesday + Thursday" correct="true"/>
+      <answer value="Thursday + Tuesday" correct="true"/>
+      <answer value="Tue and Thur" correct="true"/>
+      <answer value="Thur and Tue" correct="true"/>
+      <answer value="Tue or Thur" correct="true"/>
+      <answer value="Thur or Tue" correct="true"/>
+      <answer value="Tue, Thur" correct="true"/>
+      <answer value="Thur, Tue" correct="true"/>
+      <answer value="Tue + Thur" correct="true"/>
+      <answer value="Thur + Tue" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="Thursday " correct="true"/>
+      <answer value="Thursdays" correct="true"/>
+      <answer value="Thur" correct="true"/>
+      <answer value="Thurs" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="6.15 " correct="true"/>
+      <answer value="06.15" correct="true"/>
+      <answer value="6:15" correct="true"/>
+      <answer value="06:15" correct="true"/>
+      <answer value="six fifteen" correct="true"/>
+      <answer value="quarter past six" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="2 hours " correct="true"/>
+      <answer value="two hours" correct="true"/>
+      <answer value="2 hrs" correct="true"/>
+      <answer value="two hrs" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="15 " correct="true"/>
+      <answer value="15 students" correct="true"/>
+      <answer value="fifteen" correct="true"/>
+      <answer value="fifteen students" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,13 +103,21 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/ED_LN1a.mp3" mode="4" id="1002"  /><p align="left"><b>Subject                                Level of Course</b>Italian                            One</p><p align="left"><b>Course Focus                     Course Fee</b>(1) <input id="q1" />   £ (2) <input id="q2" /></p><p align="left"><b>Length of Course               Days Course Runs</b>(3) <input id="q3" />             (4) <input id="q4" /></p><p align="left"><b>Time Class Starts              Length of Class</b>(5) <input id="q6" /> p.m.    (6) <input id="q7" />&#160;</p><p align="left"><b>Maximum Class Size        Start Dates</b>(7) <input id="q8" />         5th and 7th September</p>
+  <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
+  <p align="left"><b>Subject                                Level of Course</b>Italian                            One</p>
+  <p align="left"><b>Course Focus                     Course Fee</b>(1) <input id="q1"/>   &#xA3; (2) <input id="q2"/></p>
+  <p align="left"><b>Length of Course               Days Course Runs</b>(3) <input id="q3"/>             (4) <input id="q4"/></p>
+  <p align="left"><b>Time Class Starts              Length of Class</b>(5) <input id="q6"/> p.m.    (6) <input id="q7"/>&#xA0;</p>
+  <p align="left"><b>Maximum Class Size        Start Dates</b>(7) <input id="q8"/>         5th and 7th September</p>
 </section>
+
 <section id="fb1">
-	<p align="left"><font face="verdana" size="13" color="#000000">1. The admin officer says that the emphasis is on 'conversation' and emphasis is similar in meaning to focus. </font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">1. The admin officer says that the emphasis is on 'conversation' and emphasis is similar in meaning to focus. </font>
+  </p>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell from looking at the headings in the table and the information already given that you will hear about the details of a course in Italian.</font>&nbsp;Question 1Think about what aspects language courses focus on. Grammar, vocabulary, pronunciation and skills, for example.&nbsp;Question 2You are given the pound sign, so you know that you must listen out for a price in pounds. Do you know how much a pound is worth? Is the course likely to be closer to a hundred pounds or a thousand pounds?&nbsp;Question 3You know you have to listen out for a period of time, so you should be prepared to hear 'weeks' or 'months' or 'days' mentioned.&nbsp;Question 4There are only seven possibilities for each of the gaps here. Remember when the question is this simple there may be some discussion or misunderstanding and you will have to follow the conversation carefully.&nbsp;Question 5Another straightforward question. You just have to listen out for the time.&nbsp;Question 6 In what form is the length of a class usually given?&nbsp;Question 7 What do you think would be the maximum number in a language class? Definitely not over 30.</p>
-</section>
+
+
 </body>
 </bento>

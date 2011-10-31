@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,36 @@
 		<misc timed="130"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="detachable flashlight " correct="true"/><answer value="detachable light" correct="true"/><answer value="detachable torch" correct="true"/><answer value="flashlight" correct="true"/><answer value="light" correct="true"/><answer value="torch" correct="true"/><answer value="a flashlight" correct="true"/><answer value="a light" correct="true"/><answer value="a torch" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="a magnet " correct="true"/><answer value="magnet" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="winding handle " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="solar panel " correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="FM antenna " correct="true"/><answer value="FM aerial" correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="detachable flashlight " correct="true"/>
+      <answer value="detachable light" correct="true"/>
+      <answer value="detachable torch" correct="true"/>
+      <answer value="flashlight" correct="true"/>
+      <answer value="light" correct="true"/>
+      <answer value="torch" correct="true"/>
+      <answer value="a flashlight" correct="true"/>
+      <answer value="a light" correct="true"/>
+      <answer value="a torch" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="a magnet " correct="true"/>
+      <answer value="magnet" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="winding handle " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="solar panel " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="FM antenna " correct="true"/>
+      <answer value="FM aerial" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,10 +63,28 @@
 </header>
 	
 <section id="body">
-	<media class="leftFloat" src="../media/DD_LN2b.mp3" mode="4" id="1002"  /><img class="rightFloat" src="../media/DD_LN2.jpg" mode="1" id="1004"  /><br/><ol id="questionList"><tab/><b>6</b><input id="q1" width="100" /><tab/><b>7</b><input id="q2" width="100" /><tab/><b>8</b><input id="q3" width="100" /><tab/><b>9</b><input id="q4" width="100" /><tab/><b>10</b><input id="q5" width="100" /></ol>
+  <audio controls="compact" class="leftFloat" src="../media/DD_LN2b.mp3" mode="4" id="1002"/>
+  <img class="rightFloat" src="../media/DD_LN2.jpg" mode="1" id="1004"/>
+  <br/>
+  <ol id="questionList">
+    <tab/>
+    <b>6</b>
+    <input id="q1"/>
+    <tab/>
+    <b>7</b>
+    <input id="q2"/>
+    <tab/>
+    <b>8</b>
+    <input id="q3"/>
+    <tab/>
+    <b>9</b>
+    <input id="q4"/>
+    <tab/>
+    <b>10</b>
+    <input id="q5"/>
+  </ol>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">From the diagram you can tell that you will hear someone describe the parts of the windup radio. Notice that the questions are in a clockwise direction from the bottom of the diagram to the top.</font>&nbsp;Questions 6-10Can you guess what any of the parts are? Or can you think of any associated vocabulary you might hear? When describing number 1, for example, you might hear the word 'detachable' or the phrase 'comes off'. Notice also the words given – 'socket' and 'cord'. You may hear them mentioned too.</p>
-</section>
+
+
 </body>
 </bento>

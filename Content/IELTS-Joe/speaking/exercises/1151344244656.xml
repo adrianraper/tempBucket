@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -33,8 +36,8 @@
 		
 </header>
 	
-<section id="body">
-	<video class="rightFloat" src="../media/Unit011_e3n4.flv" mode="1" id="1003"  /><p align="left">Watch Zafir again, how many points does he make?</p><p align="left">What advice would you give him about making his points more clearly?</p><p align="left"><font color="#000000">Look at the list below:</font></p>- State each point clearly- Give an example to illustrate each point- Use linking words and phrases, such as "also", or "as well as"- Use a wider vocabulary – perhaps talk about the internet, for example- Make more points- Avoid too much repetition<p align="left"><font color="#000000">Can you think of at least three ways in which daily life has changed since the arrival of modern technology? Don't forget to give an example for each one!</font></p>
+<section id="body"><video src="../media/Unit011_e3n4.flv" mode="1" id="1003"/><p align="left">Watch Zafir again, how many points does he make?</p><p align="left">What advice would you give him about making his points more clearly?</p><p align="left"><font color="#000000">Look at the list below:</font></p>- State each point clearly- Give an example to illustrate each point- Use linking words and phrases, such as "also", or "as well as"- Use a wider vocabulary &#x2013; perhaps talk about the internet, for example- Make more points- Avoid too much repetition<p align="left"><font color="#000000">Can you think of at least three ways in which daily life has changed since the arrival of modern technology? Don't forget to give an example for each one!</font></p>
 </section>
+
 </body>
 </bento>

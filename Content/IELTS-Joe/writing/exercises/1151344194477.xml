@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="dropdown" date="2011-10-27" />
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,99 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DropDownQuestion source="q1" group="1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/></DropDownQuestion><DropDownQuestion source="q2" group="2"><answer source="a3" correct="true"/><answer source="a4" correct="false"/></DropDownQuestion><DropDownQuestion source="q3" group="3"><answer source="a5" correct="true"/><answer source="a6" correct="false"/></DropDownQuestion><DropDownQuestion source="q4" group="4"><answer source="a7" correct="true"/><answer source="a8" correct="false"/></DropDownQuestion><DropDownQuestion source="q5" group="5"><answer source="a9" correct="true"/><answer source="a10" correct="false"/></DropDownQuestion><DropDownQuestion source="q6" group="6"><answer source="a11" correct="true"/><answer source="a12" correct="false"/></DropDownQuestion><DropDownQuestion source="q7" group="7"><answer source="a13" correct="true"/><answer source="a14" correct="false"/></DropDownQuestion><DropDownQuestion source="q8" group="8"><answer source="a15" correct="true"/><answer source="a16" correct="false"/></DropDownQuestion><DropDownQuestion source="q9" group="9"><answer source="a17" correct="true"/><answer source="a18" correct="false"/></DropDownQuestion><DropDownQuestion source="q10" group="10"><answer source="a19" correct="true"/><answer source="a20" correct="false"/></DropDownQuestion><DropDownQuestion source="q11" group="11"><answer source="a21" correct="true"/><answer source="a22" correct="false"/></DropDownQuestion><DropDownQuestion source="q12" group="12"><answer source="a23" correct="true"/><answer source="a24" correct="false"/></DropDownQuestion><DropDownQuestion source="q13" group="13"><answer source="a25" correct="true"/><answer source="a26" correct="false"/></DropDownQuestion><DropDownQuestion source="q14" group="14"><answer source="a27" correct="true"/><answer source="a28" correct="false"/></DropDownQuestion><DropDownQuestion source="q15" group="15"><answer source="a29" correct="true"/><answer source="a30" correct="false"/></DropDownQuestion><DropDownQuestion source="q16" group="16"><answer source="a31" correct="true"/><answer source="a32" correct="false"/></DropDownQuestion><DropDownQuestion source="q17" group="17"><answer source="a33" correct="true"/><answer source="a34" correct="false"/></DropDownQuestion><DropDownQuestion source="q18" group="18"><answer source="a35" correct="true"/><answer source="a36" correct="false"/></DropDownQuestion><DropDownQuestion source="q19" group="19"><answer source="a37" correct="true"/><answer source="a38" correct="false"/></DropDownQuestion><DropDownQuestion source="q20" group="20"><answer source="a39" correct="true"/><answer source="a40" correct="false"/></DropDownQuestion><DropDownQuestion source="q21" group="21"><answer source="a41" correct="true"/><answer source="a42" correct="false"/></DropDownQuestion><DropDownQuestion source="q22" group="22"><answer source="a43" correct="true"/><answer source="a44" correct="false"/></DropDownQuestion></questions></script>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a3" correct="true"/>
+      <answer source="a4" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a9" correct="true"/>
+      <answer source="a10" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q11" block="b11">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q12" block="b12">
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q13" block="b13">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q14" block="b14">
+      <answer source="a27" correct="true"/>
+      <answer source="a28" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q15" block="b15">
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q16" block="b16">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q17" block="b17">
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q18" block="b18">
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q19" block="b19">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q20" block="b20">
+      <answer source="a39" correct="true"/>
+      <answer source="a40" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q21" block="b21">
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q22" block="b22">
+      <answer source="a43" correct="true"/>
+      <answer source="a44" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,58 +123,115 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/SS_AW_014.jpg" mode="1" id="1001"  /><p align="left">Most young criminals commit their first crime while they are teenagers and generally do so because <select id="q1" type="dropdown" ><option id="o1">they are"</option>"<option id="o2">they're"</option>"</select> seeking excitement, or because they are following the example of older friends. I am convinced that sending these <select id="q2" type="dropdown" ><option id="o3">young people"</option>"<option id="o4">kids"</option>"</select> to prison is a <select id="q3" type="dropdown" ><option id="o5">counter-productive"</option>"<option id="o6">useless"</option>"</select> way of combating crime, and there are <select id="q4" type="dropdown" ><option id="o7">a number"</option>"<option id="o8">loads"</option>"</select> of reasons why I believe <select id="q5" type="dropdown" ><option id="o9">they should not be imprisoned"</option>"<option id="o10">we should not imprison them"</option>"</select>.</p><p align="left">The main reason is that the majority of young people who break the law do so because of their upbringing or social circumstances. For example, they may come from deprived families, or live in run-down areas that already have a <select id="q6" type="dropdown" ><option id="o11">high crime rate"</option>"<option id="o12">lot of crime"</option>"</select>. Prison is highly unlikely to <select id="q7" type="dropdown" ><option id="o13">solve"</option>"<option id="o14">get to the bottom of"</option>"</select> their problems. What these first-time offenders need is to be supervised by qualified and skilled professionals, who can guide them away from a life of crime. This is best <select id="q8" type="dropdown" ><option id="o15">achieved"</option>"<option id="o16">pulled off"</option>"</select> by such means as youth centres and a system of probation or community service rather than by imprisonment.</p><p align="left">A further reason is that being imprisoned is <select id="q9" type="dropdown" ><option id="o17">an extremely"</option>"<option id="o18">a really"</option>"</select> unpleasant experience and one which is <select id="q10" type="dropdown" ><option id="o19">likely"</option>"<option id="o20">sure"</option>"</select> to alienate young people even further, with the result that, when <select id="q11" type="dropdown" ><option id="o21">they have"</option>"<option id="o22">they've"</option>"</select> served their sentence, they <select id="q12" type="dropdown" ><option id="o23">leave"</option>"<option id="o24">go off"</option>"</select> with a grudge against society and a desire <select id="q13" type="dropdown" ><option id="o25">for revenge"</option>"<option id="o26">to get their own back"</option>"</select>. Moreover, prisons <select id="q14" type="dropdown" ><option id="o27">do not"</option>"<option id="o28">don't"</option>"</select> prepare young offenders to live as law-abiding citizens on their release. On the contrary, they serve as 'universities of crime', where young delinquents <select id="q15" type="dropdown" ><option id="o29">acquire"</option>"<option id="o30">pick up"</option>"</select> skills from experienced criminals. <select id="q16" type="dropdown" ><option id="o31">Not surprisingly"</option>"<option id="o32">So of course"</option>"</select>, young criminals who have <select id="q17" type="dropdown" ><option id="o33">served a prison sentence"</option>"<option id="o34">done time"</option>"</select> are more likely to re-offend than those who <select id="q18" type="dropdown" ><option id="o35">have not"</option>"<option id="o36">haven't"</option>"</select>.</p><p align="left">A final reason is that <select id="q19" type="dropdown" ><option id="o37">prison is"</option>"<option id="o38">prison's"</option>"</select> a waste of young people's time, at an age when they should either be <select id="q20" type="dropdown" ><option id="o39">continuing"</option>"<option id="o40">getting on with"</option>"</select> their education or training for a job, the two activities which are most likely to steer them away from criminality.</p><p align="left"><select id="q21" type="dropdown" ><option id="o41">In conclusion"</option>"<option id="o42">At the end of the day"</option>"</select>, except in cases where they constitute a danger to society, I strongly believe that young first-time offenders should not receive prison sentences since imprisonment only increases the likelihood of their embarking on a career in crime. <select id="q22" type="dropdown" ><option id="o43">In my opinion"</option>"<option id="o44">If you ask me"</option>"</select>, they should be rehabilitated and encouraged to lead constructive lives rather than be punished.</p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/SS_AW_014.jpg" mode="1" id="1001"/>
+  <p align="left">Most young criminals commit their first crime while they are teenagers and generally do so because <select id="q1"><option>they are</option><option>they're</option></select> seeking excitement, or because they are following the example of older friends. I am convinced that sending these <select id="q2"><option>young people</option><option>kids</option></select> to prison is a <select id="q3"><option>counter-productive</option><option>useless</option></select> way of combating crime, and there are <select id="q4"><option>a number</option><option>loads</option></select> of reasons why I believe <select id="q5"><option>they should not be imprisoned</option><option>we should not imprison them</option></select>.</p>
+  <p align="left">The main reason is that the majority of young people who break the law do so because of their upbringing or social circumstances. For example, they may come from deprived families, or live in run-down areas that already have a <select id="q6"><option>high crime rate</option><option>lot of crime</option></select>. Prison is highly unlikely to <select id="q7"><option>solve</option><option>get to the bottom of</option></select> their problems. What these first-time offenders need is to be supervised by qualified and skilled professionals, who can guide them away from a life of crime. This is best <select id="q8"><option>achieved</option><option>pulled off</option></select> by such means as youth centres and a system of probation or community service rather than by imprisonment.</p>
+  <p align="left">A further reason is that being imprisoned is <select id="q9"><option>an extremely</option><option>a really</option></select> unpleasant experience and one which is <select id="q10"><option>likely</option><option>sure</option></select> to alienate young people even further, with the result that, when <select id="q11"><option>they have</option><option>they've</option></select> served their sentence, they <select id="q12"><option>leave</option><option>go off</option></select> with a grudge against society and a desire <select id="q13"><option>for revenge</option><option>to get their own back</option></select>. Moreover, prisons <select id="q14"><option>do not</option><option>don't</option></select> prepare young offenders to live as law-abiding citizens on their release. On the contrary, they serve as 'universities of crime', where young delinquents <select id="q15"><option>acquire</option><option>pick up</option></select> skills from experienced criminals. <select id="q16"><option>Not surprisingly</option><option>So of course</option></select>, young criminals who have <select id="q17"><option>served a prison sentence</option><option>done time</option></select> are more likely to re-offend than those who <select id="q18"><option>have not</option><option>haven't</option></select>.</p>
+  <p align="left">A final reason is that <select id="q19"><option>prison is</option><option>prison's</option></select> a waste of young people's time, at an age when they should either be <select id="q20"><option>continuing</option><option>getting on with</option></select> their education or training for a job, the two activities which are most likely to steer them away from criminality.</p>
+  <p align="left"><select id="q21"><option>In conclusion</option><option>At the end of the day</option></select>, except in cases where they constitute a danger to society, I strongly believe that young first-time offenders should not receive prison sentences since imprisonment only increases the likelihood of their embarking on a career in crime. <select id="q22"><option>In my opinion</option><option>If you ask me</option></select>, they should be rehabilitated and encouraged to lead constructive lives rather than be punished.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left"><font color="#0000ff"><b>they're:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>they're:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font color="#0000ff">When you want to refer to society in general, it's best to use the passive voice instead of general subject pronouns such as 'they' or 'we'.</font></p>
+  <p align="left">
+    <font color="#0000ff">When you want to refer to society in general, it's best to use the passive voice instead of general subject pronouns such as 'they' or 'we'.</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font color="#0000ff"><b>lots of crime:</b> This isn't particular informal, and you wouldn't be marked down for using it, but the alternative here is better.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>lots of crime:</b> This isn't particular informal, and you wouldn't be marked down for using it, but the alternative here is better.</font>
+  </p>
 </section>
+
 <section id="fb7">
-	<p align="left"><font color="#0000ff"><b>get to the bottom of:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>get to the bottom of:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font>
+  </p>
 </section>
+
 <section id="fb8">
-	<p align="left"><font color="#0000ff"><b>pulled off:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>pulled off:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font>
+  </p>
 </section>
+
 <section id="fb9">
-	<p align="left"><font color="#0000ff">'Really' before an adjective, meaning very, is common in spoken English, but looks far too informal in a composition like this.</font></p>
+  <p align="left">
+    <font color="#0000ff">'Really' before an adjective, meaning very, is common in spoken English, but looks far too informal in a composition like this.</font>
+  </p>
 </section>
+
 <section id="fb11">
-	<p align="left"><font color="#0000ff"><b>they've:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>they've:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font>
+  </p>
 </section>
+
 <section id="fb12">
-	<p align="left"><font color="#0000ff"><b>go off:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>go off:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font>
+  </p>
 </section>
+
 <section id="fb13">
-	<p align="left"><font color="#0000ff"><b>to get their own back:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>to get their own back:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font>
+  </p>
 </section>
+
 <section id="fb14">
-	<p align="left"><font color="#0000ff"><b>don't:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>don't:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font>
+  </p>
 </section>
+
 <section id="fb15">
-	<p align="left"><font color="#0000ff"><b>pick up:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>pick up:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font>
+  </p>
 </section>
+
 <section id="fb17">
-	<p align="left"><font color="#0000ff"><b>done time:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>done time:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font>
+  </p>
 </section>
+
 <section id="fb18">
-	<p align="left"><font color="#0000ff"><b>haven't:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>haven't:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font>
+  </p>
 </section>
+
 <section id="fb19">
-	<p align="left"><font color="#0000ff"><b>prison's:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>prison's:</b> You should avoid using contracted forms like this in your answers. They are too informal.</font>
+  </p>
 </section>
+
 <section id="fb20">
-	<p align="left"><font color="#0000ff"><b>getting on with:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>getting on with:</b> It's best to avoid using phrasal verbs like this if you can. If there is a single word equivalent, it is usually more formal and appropriate in style.</font>
+  </p>
 </section>
+
 <section id="fb21">
-	<p align="left"><font color="#0000ff"><b>At the end of the day:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font></p>
+  <p align="left">
+    <font color="#0000ff"><b>At the end of the day:</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</font>
+  </p>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">In Writing Task 2 you are expected to write in a fairly formal style. In practice this means that you should: </font></p>- avoid the use of phrasal verbs,- avoid the use of idioms and colloquial words and phrases,- avoid the use of informal intensifiers such as 'really',- use more formal equivalents of phrasal verbs, idioms, colloquialisms and intensifiers,- use full forms rather than contractions (e.g. 'it is' not it's'),- use passive voice more extensively (but not continually).
+
+<section id="rt2001"><p align="left"><font face="verdana" size="13" color="#000000">In Writing Task 2 you are expected to write in a fairly formal style. In practice this means that you should: </font></p>- avoid the use of phrasal verbs,- avoid the use of idioms and colloquial words and phrases,- avoid the use of informal intensifiers such as 'really',- use more formal equivalents of phrasal verbs, idioms, colloquialisms and intensifiers,- use full forms rather than contractions (e.g. 'it is' not it's'),- use passive voice more extensively (but not continually).
 </section>
+
 </body>
 </bento>

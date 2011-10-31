@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -36,43 +39,96 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/WB_WR8s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/WB_WR8.jpg" mode="16" id="1003"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/WB_WR8s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/WB_WR8.jpg" mode="16" id="1003"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left"><b>is used -> </b><font color="#0000ff"><b>uses</b><b>:</b> 'the Hong Kong Post Office' is the subject of this verb in active voice.</font></p>
+  <p align="left">
+    <b>is used -&gt; </b>
+    <font color="#0000ff"><b>uses</b><b>:</b> 'the Hong Kong Post Office' is the subject of this verb in active voice.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left"><b>are involved -> </b><font color="#0000ff"><b>involve</b><b>:</b> 'The first stages' is the subject of this verb in active voice.</font></p>
+  <p align="left">
+    <b>are involved -&gt; </b>
+    <font color="#0000ff"><b>involve</b><b>:</b> 'The first stages' is the subject of this verb in active voice.</font>
+  </p>
 </section>
+
 <section id="fb3">
-	<p align="left"><b>invited -> </b><font color="#0000ff"><b>invited</b><b>:</b> Passive is needed here.</font></p>
+  <p align="left">
+    <b>invited -&gt; </b>
+    <font color="#0000ff"><b>invited</b><b>:</b> Passive is needed here.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><b>simultaneously -> </b><font color="#0000ff"><b>subsequently</b><b>:</b> 'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.</font></p>
+  <p align="left">
+    <b>simultaneously -&gt; </b>
+    <font color="#0000ff"><b>subsequently</b><b>:</b> 'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><b>Prior to this -> </b><font color="#0000ff"><b>At this stage</b><b>:</b> 'Prior to this' means 'before'.</font></p>
+  <p align="left">
+    <b>Prior to this -&gt; </b>
+    <font color="#0000ff"><b>At this stage</b><b>:</b> 'Prior to this' means 'before'.</font>
+  </p>
 </section>
+
 <section id="fb6">
-	<p align="left"><b>or -> </b><font color="#0000ff"><b>either</b><b>:</b> 'Either' introduces the first alternative.</font></p>
+  <p align="left">
+    <b>or -&gt; </b>
+    <font color="#0000ff"><b>either</b><b>:</b> 'Either' introduces the first alternative.</font>
+  </p>
 </section>
+
 <section id="fb7">
-	<p align="left"><b>In case -> </b><font color="#0000ff"><b>If</b><b>:</b> 'In case' does not have exactly the same meaning as 'if'.</font></p>
+  <p align="left">
+    <b>In case -&gt; </b>
+    <font color="#0000ff"><b>If</b><b>:</b> 'In case' does not have exactly the same meaning as 'if'.</font>
+  </p>
 </section>
+
 <section id="fb8">
-	<p align="left"><b>commissioned -> </b><font color="#0000ff"><b>be commissioned</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'. </font></p>
+  <p align="left">
+    <b>commissioned -&gt; </b>
+    <font color="#0000ff"><b>be commissioned</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'. </font>
+  </p>
 </section>
+
 <section id="fb9">
-	<p align="left"><b>choose -> </b><font color="#0000ff"><b>be chosen</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'.</font></p>
+  <p align="left">
+    <b>choose -&gt; </b>
+    <font color="#0000ff"><b>be chosen</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'.</font>
+  </p>
 </section>
+
 <section id="fb10">
-	<p align="left"><b>Before -> </b><font color="#0000ff"><b>Once</b><b>:</b> 'Once' here means 'as soon as'.</font></p>
+  <p align="left">
+    <b>Before -&gt; </b>
+    <font color="#0000ff"><b>Once</b><b>:</b> 'Once' here means 'as soon as'.</font>
+  </p>
 </section>
+
 <section id="fb11">
-	<p align="left"><b>be chosen -> </b><font color="#0000ff"><b>choose</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'.</font></p><p align="left"></p>
+  <p align="left">
+    <b>be chosen -&gt; </b>
+    <font color="#0000ff"><b>choose</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'.</font>
+  </p>
+  <p align="left"/>
 </section>
+
 <section id="fb12">
-	<p align="left"><b>sending -> </b><font color="#0000ff"><b>sent</b><b>:</b> The 'is' here is part of the passive verb. Present continuous is not appropriate here.</font></p>
+  <p align="left">
+    <b>sending -&gt; </b>
+    <font color="#0000ff"><b>sent</b><b>:</b> The 'is' here is part of the passive verb. Present continuous is not appropriate here.</font>
+  </p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="presentation" date="2011-10-27" />
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -30,8 +33,8 @@
 	Look at the advice below about not knowing what to say and then watch the video.
 </header>
 	
-<section id="body">
-	<video class="rightFloat" src="../media/Unit05_e6.flv" mode="1" id="1003"  /><p align="left"><font color="#0000ff"><b>Strategies</b></font>There are always other ways to say things!</p><p align="left">Don't panic if you can't remember a word, or if you feel you are stuck for words.</p><p align="left"><font color="#000000">Remember the following expressions:</font></p><p align="left"><font color="#000000">"I'm not sure what it's called, but it is/looks like/is used for …"</font></p>"I've forgotten what it is in English, but …""It's similar to …, but I don't remember the word."<p align="left"><font color="#000000"><b>We all forget words sometimes. It happens in natural conversations.</b>&#160;<b>Don't let it bother you!</b></font></p>
+<section id="body"><video src="../media/Unit05_e6.flv" mode="1" id="1003"/><p align="left"><font color="#0000ff"><b>Strategies</b></font>There are always other ways to say things!</p><p align="left">Don't panic if you can't remember a word, or if you feel you are stuck for words.</p><p align="left"><font color="#000000">Remember the following expressions:</font></p><p align="left"><font color="#000000">"I'm not sure what it's called, but it is/looks like/is used for &#x2026;"</font></p>"I've forgotten what it is in English, but &#x2026;""It's similar to &#x2026;, but I don't remember the word."<p align="left"><font color="#000000"><b>We all forget words sometimes. It happens in natural conversations.</b>&#xA0;<b>Don't let it bother you!</b></font></p>
 </section>
+
 </body>
 </bento>

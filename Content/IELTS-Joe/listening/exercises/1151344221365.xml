@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,23 @@
 		<misc timed="150"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="A " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="C " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="B " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="A " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="C " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="C " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="B " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,10 +50,18 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/ED_LN2b.mp3" mode="4" id="1002"  /><p align="left"><b>What is Dr Grant's opinion on the following points?</b></p><p align="left"><font color="#0000ff">A	he is in favour</font>B	he has no strong opinion either wayC	he is against</p><p align="left">9. working on your own	<input id="q1" /></p><p align="left">10. learning large amounts of factual data	<input id="q2" /></p><p align="left">11. taking detailed notes during lectures	<input id="q3" /></p><p align="left">12. recording lectures on tape	<input id="q4" /></p>
+  <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
+  <p align="left">
+    <b>What is Dr Grant's opinion on the following points?</b>
+  </p>
+  <p align="left"><font color="#0000ff">A	he is in favour</font>B	he has no strong opinion either wayC	he is against</p>
+  <p align="left">9. working on your own	<input id="q1"/></p>
+  <p align="left">10. learning large amounts of factual data	<input id="q2"/></p>
+  <p align="left">11. taking detailed notes during lectures	<input id="q3"/></p>
+  <p align="left">12. recording lectures on tape	<input id="q4"/></p>
 </section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see that you will hear Dr Grant talking about study skills and that he will be giving his opinion on the various methods.</font>&nbsp;Question 9 - 12Think about the various ways these statements can be expressed. For example, 'working on your own' could be 'working in isolation', or 'working independently', or 'working alone' or in this context 'studying alone' etc.</p>
-</section>
+
+
 </body>
 </bento>

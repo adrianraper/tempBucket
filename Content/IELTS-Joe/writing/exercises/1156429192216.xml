@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="multiplechoice" date="2011-10-27" />
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,61 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><MultipleChoiceQuestion group="q1"><answer source="a1" correct="false"/><answer source="a2" correct="false"/><answer source="a3" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q3"><answer source="a7" correct="false"/><answer source="a8" correct="true"/><answer source="a9" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q4"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q5"><answer source="a13" correct="false"/><answer source="a14" correct="true"/><answer source="a15" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q6"><answer source="a16" correct="false"/><answer source="a17" correct="false"/><answer source="a18" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q7"><answer source="a19" correct="false"/><answer source="a20" correct="false"/><answer source="a21" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q8"><answer source="a22" correct="true"/><answer source="a23" correct="false"/><answer source="a24" correct="false"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q9"><answer source="a25" correct="false"/><answer source="a26" correct="false"/><answer source="a27" correct="true"/></MultipleChoiceQuestion><MultipleChoiceQuestion group="q10"><answer source="a28" correct="false"/><answer source="a29" correct="true"/><answer source="a30" correct="false"/></MultipleChoiceQuestion></questions></script>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a25" correct="false"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a28" correct="false"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -32,13 +86,55 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><br/><li id="1">What does which refer to?(paragraph 1)<ol class="answerList"><li><a id="q1" >a catastrophic event</a></li><li><a id="q2" >a war or an earthquake</a></li><li><a id="q3" >a camera</a></li></ol><br/></li><br/><li id="2">What does such mean here?(paragraph 1)<ol class="answerList"><li><a id="q4" >disturbing</a></li><li><a id="q5" >television</a></li><li><a id="q6" >news</a></li></ol><br/></li><br/><li id="3">What does they refer to?(paragraph 2)<ol class="answerList"><li><a id="q7" >disturbing images</a></li><li><a id="q8" >the public</a></li><li><a id="q9" >the victims</a></li></ol><br/></li><br/><li id="4">What does them refer to?(paragraph 2)<ol class="answerList"><li><a id="q10" >disturbing or violent scenes</a></li><li><a id="q11" >the public</a></li><li><a id="q12" >the news</a></li></ol><br/></li><br/><li id="5">What does it refer to?(paragraph 3)<ol class="answerList"><li><a id="q13" >the news</a></li><li><a id="q14" >the world</a></li><li><a id="q15" >what's best for children</a></li></ol><br/></li><br/><li id="6">What does this refer to?(paragraph 3)<ol class="answerList"><li><a id="q16" >the argument that news reports should show events as they really happen</a></li><li><a id="q17" >the argument that children should not see disturbing images on television</a></li><li><a id="q18" >the argument that children ought to be aware of the real world</a></li></ol><br/></li><br/><li id="7">What does them refer to?(paragraph 3)<ol class="answerList"><li><a id="q19" >news reports</a></li><li><a id="q20" >violent images</a></li><li><a id="q21" >children</a></li></ol><br/></li><br/><li id="8">What does they refer to?(paragraph 4)<ol class="answerList"><li><a id="q22" >viewers</a></li><li><a id="q23" >children</a></li><li><a id="q24" >upsetting images</a></li></ol><br/></li><br/><li id="9">What does this refer to?(paragraph 4)<ol class="answerList"><li><a id="q25" >the fact that viewers find images disturbing</a></li><li><a id="q26" >the fact that viewers have to change channel</a></li><li><a id="q27" >the fact that viewers are not always forewarned</a></li></ol><br/></li><br/><li id="10">What does one refer to?(paragraph 5)<ol class="answerList"><li><a id="q28" >situation</a></li><li><a id="q29" >argument</a></li><li><a id="q30" >television reporting</a></li></ol><br/></li></ol>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">What does which refer to?(paragraph 1)<list class="answerList"><li><a id="a1">a catastrophic event</a></li><li><a id="a2">a war or an earthquake</a></li><li><a id="a3">a camera</a></li></list><br/></li>
+    <br/>
+    <li id="q2">What does such mean here?(paragraph 1)<list class="answerList"><li><a id="a4">disturbing</a></li><li><a id="a5">television</a></li><li><a id="a6">news</a></li></list><br/></li>
+    <br/>
+    <li id="q3">What does they refer to?(paragraph 2)<list class="answerList"><li><a id="a7">disturbing images</a></li><li><a id="a8">the public</a></li><li><a id="a9">the victims</a></li></list><br/></li>
+    <br/>
+    <li id="q4">What does them refer to?(paragraph 2)<list class="answerList"><li><a id="a10">disturbing or violent scenes</a></li><li><a id="a11">the public</a></li><li><a id="a12">the news</a></li></list><br/></li>
+    <br/>
+    <li id="q5">What does it refer to?(paragraph 3)<list class="answerList"><li><a id="a13">the news</a></li><li><a id="a14">the world</a></li><li><a id="a15">what's best for children</a></li></list><br/></li>
+    <br/>
+    <li id="q6">What does this refer to?(paragraph 3)<list class="answerList"><li><a id="a16">the argument that news reports should show events as they really happen</a></li><li><a id="a17">the argument that children should not see disturbing images on television</a></li><li><a id="a18">the argument that children ought to be aware of the real world</a></li></list><br/></li>
+    <br/>
+    <li id="q7">What does them refer to?(paragraph 3)<list class="answerList"><li><a id="a19">news reports</a></li><li><a id="a20">violent images</a></li><li><a id="a21">children</a></li></list><br/></li>
+    <br/>
+    <li id="q8">What does they refer to?(paragraph 4)<list class="answerList"><li><a id="a22">viewers</a></li><li><a id="a23">children</a></li><li><a id="a24">upsetting images</a></li></list><br/></li>
+    <br/>
+    <li id="q9">What does this refer to?(paragraph 4)<list class="answerList"><li><a id="a25">the fact that viewers find images disturbing</a></li><li><a id="a26">the fact that viewers have to change channel</a></li><li><a id="a27">the fact that viewers are not always forewarned</a></li></list><br/></li>
+    <br/>
+    <li id="q10">What does one refer to?(paragraph 5)<list class="answerList"><li><a id="a28">situation</a></li><li><a id="a29">argument</a></li><li><a id="a30">television reporting</a></li></list><br/></li>
+  </ol>
 </section>
+
 <section id="rt2001">
-			<p align="left">Cohesive devices are words and phrases, which can be used to refer back or forward to other words and ideas in a text. 'It', 'this', 'who', 'which', 'such', 'one' are examples of words that can be used as cohesive devices. Using them will help avoid repetition and they will also make your ideas clearer and easier for the reader to follow.</p>
+  <p align="left">Cohesive devices are words and phrases, which can be used to refer back or forward to other words and ideas in a text. 'It', 'this', 'who', 'which', 'such', 'one' are examples of words that can be used as cohesive devices. Using them will help avoid repetition and they will also make your ideas clearer and easier for the reader to follow.</p>
 </section>
+
 <section id="readingText">
-	<p align="left"><font face="verdana" size="13" color="#000000">Nowadays, whenever a catastrophic event such as a war or an earthquake takes place, there is usually a television or video camera on hand <font color="#0000ff"><b>which</b></font> will film and broadcast images of it around the world almost instantly, no matter how disturbing they might be. It is often suggested that these are not the kind of pictures we should have to see in our homes, but there are some who think there are very good reasons why <font color="#0000ff"><b>such</b></font> images should be included in television news reports.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Firstly, it is sometimes claimed that when disturbing images of war or some other disastrous event are broadcast, people become motivated to do something to remedy the situation or to help the victims. Unless the public see these images, it is argued,<font color="#0000ff"><b> they</b></font> are unlikely to act. On the other hand, it is also said that if people see too many disturbing or violent scenes on the news, they grow accustomed to <font color="#0000ff"><b>them </b></font>and no longer react as if these events were something unusual.  As a result, they may begin to think that what they are seeing is normal or even acceptable.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Secondly, there is the issue of whether or not children should be exposed to such images. It is sometimes argued that television news reports should show the world as<font color="#0000ff"><b> it </b></font>really is and that it is best for children to be aware of this reality. The counter-argument to<font color="#0000ff"><b> this</b></font>, however, is that violent images on television can be particularly disturbing for children, and that some of <font color="#0000ff"><b>them</b></font> may be severely traumatised by seeing such things.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Finally, it is often pointed out that if viewers find images upsetting, <font color="#0000ff"><b>they</b></font> can simply switch off the television or change channel. However, viewers are not always forewarned that a report may include distressing pictures. Besides <font color="#0000ff"><b>this</b></font>, most people would probably find flicking from one channel to another during a news programme rather frustrating.</font></p><p align="left"><font face="verdana" size="13" color="#000000">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful <font color="#0000ff"><b>one</b></font>. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</font></p><p align="left"><font size="2"></font></p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Nowadays, whenever a catastrophic event such as a war or an earthquake takes place, there is usually a television or video camera on hand <font color="#0000ff"><b>which</b></font> will film and broadcast images of it around the world almost instantly, no matter how disturbing they might be. It is often suggested that these are not the kind of pictures we should have to see in our homes, but there are some who think there are very good reasons why <font color="#0000ff"><b>such</b></font> images should be included in television news reports.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Firstly, it is sometimes claimed that when disturbing images of war or some other disastrous event are broadcast, people become motivated to do something to remedy the situation or to help the victims. Unless the public see these images, it is argued,<font color="#0000ff"><b> they</b></font> are unlikely to act. On the other hand, it is also said that if people see too many disturbing or violent scenes on the news, they grow accustomed to <font color="#0000ff"><b>them </b></font>and no longer react as if these events were something unusual.  As a result, they may begin to think that what they are seeing is normal or even acceptable.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Secondly, there is the issue of whether or not children should be exposed to such images. It is sometimes argued that television news reports should show the world as<font color="#0000ff"><b> it </b></font>really is and that it is best for children to be aware of this reality. The counter-argument to<font color="#0000ff"><b> this</b></font>, however, is that violent images on television can be particularly disturbing for children, and that some of <font color="#0000ff"><b>them</b></font> may be severely traumatised by seeing such things.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Finally, it is often pointed out that if viewers find images upsetting, <font color="#0000ff"><b>they</b></font> can simply switch off the television or change channel. However, viewers are not always forewarned that a report may include distressing pictures. Besides <font color="#0000ff"><b>this</b></font>, most people would probably find flicking from one channel to another during a news programme rather frustrating.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful <font color="#0000ff"><b>one</b></font>. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

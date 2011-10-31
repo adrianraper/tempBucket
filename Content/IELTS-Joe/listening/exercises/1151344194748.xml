@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,26 @@
 		<misc timed="200"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DragQuestion source="q1"><answer source="a6" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a17" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a18" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a19" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a20" correct="true"/></DragQuestion></questions></script>
+  <questions>
+    <DragQuestion source="q1">
+      <answer source="a6" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2">
+      <answer source="a17" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3">
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4">
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5">
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,39 +53,61 @@
 </header>
 	
 <section id="noscroll">
-	
-		
-		<span id="a15" draggable="true">permissive</span><span id="a10" draggable="true">political</span>
-		<span id="a12" draggable="true">childhood</span><span id="a19" draggable="true">brand</span>
-		<span id="a18" draggable="true">conservative</span>
-		
-		
-		<span id="a20" draggable="true">education</span><span id="a8" draggable="true">class</span>
-		<span id="a13" draggable="true">hard-working</span><span id="a6" draggable="true">self-image</span>
-		<span id="a16" draggable="true">teenagers</span>
-		
-		
-		<span id="a9" draggable="true">habits</span><span id="a11" draggable="true">behaviour</span>
-		<span id="a17" draggable="true">adults</span><span id="a14" draggable="true">children</span>
-		<span id="a7" draggable="true">career</span>
+  <span id="a15" draggable="true">permissive</span>
+  <span id="a10" draggable="true">political</span>
+  <span id="a12" draggable="true">childhood</span>
+  <span id="a19" draggable="true">brand</span>
+  <span id="a18" draggable="true">conservative</span>
+  <span id="a20" draggable="true">education</span>
+  <span id="a8" draggable="true">class</span>
+  <span id="a13" draggable="true">hard-working</span>
+  <span id="a6" draggable="true">self-image</span>
+  <span id="a16" draggable="true">teenagers</span>
+  <span id="a9" draggable="true">habits</span>
+  <span id="a11" draggable="true">behaviour</span>
+  <span id="a17" draggable="true">adults</span>
+  <span id="a14" draggable="true">children</span>
+  <span id="a7" draggable="true">career</span>
 </section>
+
 <section id="body">
-	<img class="rightFloat" src="../media/SS_LN_005.jpg" mode="1" id="1001"  /><media class="leftFloat" src="../media/SS_LN2b.mp3" mode="4" id="1002"  /><p align="left"><font color="#000000">The prospect of living longer has brought about a change in people's (6) <font color="#0000ff"><input id="q1" type="droptarget" /></font>. The elderly no longer conform to Shakespearean stereotypes of old age, the middle-aged feel younger than previous generations while young people today regard themselves as (7) <font color="#0000ff"><input id="q2" type="droptarget" /></font> at sixteen.</font></p><p align="left"><font color="#000000">People who retire after 2010 are unlikely to be as (8) <font color="#0000ff"><input id="q3" type="droptarget" /></font> as previous generations of pensioners. There are two reasons for this. Firstly, attitudes and beliefs formed when we are young tend to remain with us throughout life, in much the same way that (9) <font color="#0000ff"><input id="q4" type="droptarget" /></font> loyalties do. Secondly, the next generation of pensioners will have had a better (10) <font color="#0000ff"><input id="q5" type="droptarget" /></font>.</font></p>
+  <img class="rightFloat" src="../media/SS_LN_005.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/SS_LN2b.mp3" mode="4" id="1002"/>
+  <p align="left">
+    <font color="#000000">The prospect of living longer has brought about a change in people's (6) <font color="#0000ff"><input id="q1" type="droptarget"/></font>. The elderly no longer conform to Shakespearean stereotypes of old age, the middle-aged feel younger than previous generations while young people today regard themselves as (7) <font color="#0000ff"><input id="q2" type="droptarget"/></font> at sixteen.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">People who retire after 2010 are unlikely to be as (8) <font color="#0000ff"><input id="q3" type="droptarget"/></font> as previous generations of pensioners. There are two reasons for this. Firstly, attitudes and beliefs formed when we are young tend to remain with us throughout life, in much the same way that (9) <font color="#0000ff"><input id="q4" type="droptarget"/></font> loyalties do. Secondly, the next generation of pensioners will have had a better (10) <font color="#0000ff"><input id="q5" type="droptarget"/></font>.</font>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left"><font color="#000000">6.  <b>self-image:</b> The lecturer talks about how the way we view ourselves has changed. This means the same as a change in our self-image.</font></p>
+  <p align="left">
+    <font color="#000000">6.  <b>self-image:</b> The lecturer talks about how the way we view ourselves has changed. This means the same as a change in our self-image.</font>
+  </p>
 </section>
+
 <section id="fb2">
-	<p align="left">7.  <b>adults</b></p>
+  <p align="left">7.  <b>adults</b></p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font color="#000000">8.  <b>conservative:</b> The lecturer says that those retiring after 2010 will probably have a far less conservative outlook.</font></p>
+  <p align="left">
+    <font color="#000000">8.  <b>conservative:</b> The lecturer says that those retiring after 2010 will probably have a far less conservative outlook.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font color="#000000">9.  <b>brand:</b> The lecturer says that people stay loyal to brands they buy between the ages of 18 and 34.</font></p>
+  <p align="left">
+    <font color="#000000">9.  <b>brand:</b> The lecturer says that people stay loyal to brands they buy between the ages of 18 and 34.</font>
+  </p>
 </section>
+
 <section id="fb5">
-	<p align="left"><font color="#000000">10.  <b>education:</b> The lecturer says future generations of pensioners will have benefited from higher or university education.</font></p>
+  <p align="left">
+    <font color="#000000">10.  <b>education:</b> The lecturer says future generations of pensioners will have benefited from higher or university education.</font>
+  </p>
 </section>
+
 </body>
 </bento>

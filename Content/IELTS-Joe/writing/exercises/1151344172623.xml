@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -34,7 +37,10 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/WB_AW_017.jpg" mode="1" id="1001"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/WB_AW_017.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 </body>
 </bento>

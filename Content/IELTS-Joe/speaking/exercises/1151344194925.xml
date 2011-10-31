@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,155 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t15" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t16" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t17" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t18" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t19" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t20" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t21" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t22" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t23" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t24" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t25" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t26" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t27" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t28" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t29" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t30" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t31" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t32" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t33" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t34" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t35" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t36" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t37" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t38" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t39" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t40" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t41" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t42" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t43" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t44" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t45" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t46" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t47" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t48" correct="false"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t19" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t26" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t27" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t28" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t29" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t30" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t31" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t32" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t33" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t34" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t35" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t36" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t37" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t38" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t39" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t40" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t41" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t42" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t43" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t44" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t45" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t46" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t47" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t48" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,19 +179,40 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit09_e3a.flv" mode="16" id="1005"  /><video class="leftFloat" src="../media/Unit09_e3b.flv" mode="16" id="1006"  /><video class="leftFloat" src="../media/Unit09_e3c.flv" mode="16" id="1007"  /><video class="leftFloat" src="../media/Unit09_e3d.flv" mode="16" id="1008"  /><video class="leftFloat" src="../media/Unit09_e3e.flv" mode="16" id="1009"  /><video class="leftFloat" src="../media/Unit09_e3f.flv" mode="16" id="1010"  /><p align="left"><b>1.  Which of the following does Zafir mention</b>in connection with city life now and twenty years ago?<g id="t1">A.  traffic jams</g><g id="t2">B.  life-style</g><g id="t3">C.  clothes</g><g id="t4">D.  transport</g><g id="t5">E.  communication</g><g id="t6">F.  technology</g><g id="t7">G.  schooling</g><g id="t8">H.  education</g></p><p align="left"><b>2.  Which of these does Zafir mention in </b>connection with his own life-style and that of his grandparents?<g id="t9">A.  simple</g><g id="t10">B.  nostalgia</g><g id="t11">C.  clothing</g><g id="t12">D.  stress</g><g id="t13">E.  electricity</g><g id="t14">F.  food</g><g id="t15">G.  poverty</g><g id="t16">H.  illness</g></p><p align="left"><b>3.  Which of the following does Zenia</b>mention in connection with her own life-style and that of her grandparents?<g id="t17">A.  technology</g><g id="t18">B.  friends</g><g id="t19">C.  open-mindedness</g><g id="t20">D.  education</g><g id="t21">E.  poverty</g><g id="t22">F.  entertainment</g><g id="t23">G.  education</g><g id="t24">H.  family</g></p><p align="left"><b>4.  What does Zenia mention about the</b>attitudes of different age groups in her society?<g id="t25">A.  clothes</g><g id="t26">B.  communication</g><g id="t27">C.  ambitions</g><g id="t28">D.  entertainment</g><g id="t29">E.  food</g><g id="t30">F.  beliefs</g><g id="t31">G.  opinions</g><g id="t32">H.  way of thinking</g></p><p align="left"><b>5.  Which of the following does Alexandra</b>mention in comparing city life with village life?<g id="t33">A.  movement to towns</g><g id="t34">B.  organisation</g><g id="t35">C.  young people</g><g id="t36">D.  houses</g><g id="t37">E.  income</g><g id="t38">F.  farming</g><g id="t39">G.  education</g><g id="t40">H.  transport</g></p><p align="left"><b>6.  Which of the following does Alexandra </b>mention when comparing her own life-style with that of her grandparents?<g id="t41">A.  reading</g><g id="t42">B.  transport</g><g id="t43">C.  way of thinking</g><g id="t44">D.  choices</g><g id="t45">E.  opportunities</g><g id="t46">F.  travel</g><g id="t47">G.  study</g><g id="t48">H.  hardship</g></p><p align="left"><font size="2"></font></p>
-<p align="left">
-<b>Click to watch the video</b></p>
-<p align="left">
-<b>Click to watch the video</b></p>
-<p align="left">
-<b>Click to watch the video</b></p>
-<p align="left">
-<b>Click to watch the video</b></p>
-<p align="left">
-<b>Click to watch the video</b></p>
-<p align="left">
-<b>Click to watch the video</b></p>
+  <video src="../media/Unit09_e3a.flv" mode="16" id="1005"/>
+  <video src="../media/Unit09_e3b.flv" mode="16" id="1006"/>
+  <video src="../media/Unit09_e3c.flv" mode="16" id="1007"/>
+  <video src="../media/Unit09_e3d.flv" mode="16" id="1008"/>
+  <video src="../media/Unit09_e3e.flv" mode="16" id="1009"/>
+  <video src="../media/Unit09_e3f.flv" mode="16" id="1010"/>
+  <p align="left"><b>1.  Which of the following does Zafir mention</b>in connection with city life now and twenty years ago?<g id="t1">A.  traffic jams</g><g id="t2">B.  life-style</g><g id="t3">C.  clothes</g><g id="t4">D.  transport</g><g id="t5">E.  communication</g><g id="t6">F.  technology</g><g id="t7">G.  schooling</g><g id="t8">H.  education</g></p>
+  <p align="left"><b>2.  Which of these does Zafir mention in </b>connection with his own life-style and that of his grandparents?<g id="t9">A.  simple</g><g id="t10">B.  nostalgia</g><g id="t11">C.  clothing</g><g id="t12">D.  stress</g><g id="t13">E.  electricity</g><g id="t14">F.  food</g><g id="t15">G.  poverty</g><g id="t16">H.  illness</g></p>
+  <p align="left"><b>3.  Which of the following does Zenia</b>mention in connection with her own life-style and that of her grandparents?<g id="t17">A.  technology</g><g id="t18">B.  friends</g><g id="t19">C.  open-mindedness</g><g id="t20">D.  education</g><g id="t21">E.  poverty</g><g id="t22">F.  entertainment</g><g id="t23">G.  education</g><g id="t24">H.  family</g></p>
+  <p align="left"><b>4.  What does Zenia mention about the</b>attitudes of different age groups in her society?<g id="t25">A.  clothes</g><g id="t26">B.  communication</g><g id="t27">C.  ambitions</g><g id="t28">D.  entertainment</g><g id="t29">E.  food</g><g id="t30">F.  beliefs</g><g id="t31">G.  opinions</g><g id="t32">H.  way of thinking</g></p>
+  <p align="left"><b>5.  Which of the following does Alexandra</b>mention in comparing city life with village life?<g id="t33">A.  movement to towns</g><g id="t34">B.  organisation</g><g id="t35">C.  young people</g><g id="t36">D.  houses</g><g id="t37">E.  income</g><g id="t38">F.  farming</g><g id="t39">G.  education</g><g id="t40">H.  transport</g></p>
+  <p align="left"><b>6.  Which of the following does Alexandra </b>mention when comparing her own life-style with that of her grandparents?<g id="t41">A.  reading</g><g id="t42">B.  transport</g><g id="t43">C.  way of thinking</g><g id="t44">D.  choices</g><g id="t45">E.  opportunities</g><g id="t46">F.  travel</g><g id="t47">G.  study</g><g id="t48">H.  hardship</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
 </section>
+
 </body>
 </bento>

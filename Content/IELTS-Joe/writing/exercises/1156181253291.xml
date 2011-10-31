@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="draganddrop" date="2011-10-27" />
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,29 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DragQuestion source="q1"><answer source="a7" correct="true"/></DragQuestion><DragQuestion source="q2"><answer source="a8" correct="true"/></DragQuestion><DragQuestion source="q3"><answer source="a9" correct="true"/></DragQuestion><DragQuestion source="q4"><answer source="a10" correct="true"/></DragQuestion><DragQuestion source="q5"><answer source="a11" correct="true"/></DragQuestion><DragQuestion source="q6"><answer source="a12" correct="true"/></DragQuestion></questions></script>
+  <questions>
+    <DragQuestion source="q1">
+      <answer source="a7" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5">
+      <answer source="a11" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,13 +55,32 @@
 </header>
 	
 <section id="noscroll">
-	<span id="a11" draggable="true">Inappropriate chatty style</span><span id="a8" draggable="true">Opinion clearly stated, good</span><span id="a10" draggable="true">Too short</span><span id="a12" draggable="true">Too long</span><span id="a9" draggable="true">Copying! Use your own words</span><span id="a7" draggable="true">Historical background is irrelevant</span><img class="rightFloat" src="../media/TT_Task02.jpg" mode="16" id="1004"  />
+  <span id="a11" draggable="true">Inappropriate chatty style</span>
+  <span id="a8" draggable="true">Opinion clearly stated, good</span>
+  <span id="a10" draggable="true">Too short</span>
+  <span id="a12" draggable="true">Too long</span>
+  <span id="a9" draggable="true">Copying! Use your own words</span>
+  <span id="a7" draggable="true">Historical background is irrelevant</span>
+  <img class="rightFloat" src="../media/TT_Task02.jpg" mode="16" id="1004"/>
 </section>
+
 <section id="body">
-	<media class="rightFloat" src="../media/TT_WR1aa.mp3" mode="1" id="1004"  /><img class="rightFloat" src="../media/TT_AW_010.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking. <input id="q1" type="droptarget" /><audio class="leftFloat" src="../media/TT_WR1as.mp3" mode="1" id="1"  /></li><li id="2">Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done. <input id="q2" type="droptarget" /><audio class="leftFloat" src="../media/TT_WR1ao.mp3" mode="1" id="2"  /></li><li id="3">Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea. <input id="q3" type="droptarget" /><audio class="leftFloat" src="../media/TT_WR1ap.mp3" mode="1" id="3"  /></li><li id="4">Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre. <input id="q4" type="droptarget" /><audio class="leftFloat" src="../media/TT_WR1ar.mp3" mode="1" id="4"  /></li><li id="5">At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre. <input id="q5" type="droptarget" /><audio class="leftFloat" src="../media/TT_WR1aq.mp3" mode="1" id="5"  /></li><li id="6">Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so. <input id="q6" type="droptarget" /><audio class="leftFloat" src="../media/TT_WR1an.mp3" mode="1" id="6"  /></li></ol>
+  <audio controls="compact" class="rightFloat" src="../media/TT_WR1aa.mp3" mode="1" id="1004"/>
+  <img class="rightFloat" src="../media/TT_AW_010.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking. <input id="q1" type="droptarget"/><audio controls="compact" class="leftFloat" src="../media/TT_WR1as.mp3" mode="1" id="1"/></li>
+    <li id="2">Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done. <input id="q2" type="droptarget"/><audio controls="compact" class="leftFloat" src="../media/TT_WR1ao.mp3" mode="1" id="2"/></li>
+    <li id="3">Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea. <input id="q3" type="droptarget"/><audio controls="compact" class="leftFloat" src="../media/TT_WR1ap.mp3" mode="1" id="3"/></li>
+    <li id="4">Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre. <input id="q4" type="droptarget"/><audio controls="compact" class="leftFloat" src="../media/TT_WR1ar.mp3" mode="1" id="4"/></li>
+    <li id="5">At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre. <input id="q5" type="droptarget"/><audio controls="compact" class="leftFloat" src="../media/TT_WR1aq.mp3" mode="1" id="5"/></li>
+    <li id="6">Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so. <input id="q6" type="droptarget"/><audio controls="compact" class="leftFloat" src="../media/TT_WR1an.mp3" mode="1" id="6"/></li>
+  </ol>
 </section>
+
 <section id="rt2001">
-	<p align="left">It is very important to write a good introductory paragraph for your composition. If your introduction is good, it makes the rest of the composition easier to write and it makes a good impression on the reader. Remember, if you decide not to write a balanced 'for and against' composition, you should give your personal opinion in the first paragraph and repeat it in the conclusion.</p>
+  <p align="left">It is very important to write a good introductory paragraph for your composition. If your introduction is good, it makes the rest of the composition easier to write and it makes a good impression on the reader. Remember, if you decide not to write a balanced 'for and against' composition, you should give your personal opinion in the first paragraph and repeat it in the conclusion.</p>
 </section>
+
 </body>
 </bento>

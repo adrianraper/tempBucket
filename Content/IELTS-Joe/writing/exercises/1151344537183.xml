@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -34,43 +37,70 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/AC_AW_012.jpg" mode="1" id="1001"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/AC_AW_012.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left">1<font face="verdana" size="13">. <font color="#0000ff"><b>where</b> it is seen...</font></font></p><p align="left">This pronoun refers to a place or places.<font color="#0000ff"></font></p>
+  <p align="left">1<font face="verdana" size="13">. <font color="#0000ff"><b>where</b> it is seen...</font></font></p>
+  <p align="left">This pronoun refers to a place or places.<font color="#0000ff"/></p>
 </section>
+
 <section id="fb2">
-	<p align="left">2. in <font color="#0000ff"><b>spite</b> of</font></p><p align="left">'Despite' is not followed by 'of'.</p>
+  <p align="left">2. in <font color="#0000ff"><b>spite</b> of</font></p>
+  <p align="left">'Despite' is not followed by 'of'.</p>
 </section>
+
 <section id="fb3">
-	<p align="left">3. <font color="#0000ff"><b>which</b> may be ...</font></p><p align="left">This is a relative clause and it needs a relative pronoun.</p>
+  <p align="left">3. <font color="#0000ff"><b>which</b> may be ...</font></p>
+  <p align="left">This is a relative clause and it needs a relative pronoun.</p>
 </section>
+
 <section id="fb4">
-	<p align="left">4. <font color="#0000ff"><b>Although</b></font></p><p align="left">'Despite' is followed by a noun or a gerund</p>
+  <p align="left">4. <font color="#0000ff"><b>Although</b></font></p>
+  <p align="left">'Despite' is followed by a noun or a gerund</p>
 </section>
+
 <section id="fb5">
-	<p align="left">5. <font color="#0000ff"><b>which</b> ...</font></p><p align="left">'That' cannot be used in a non-defining clause like this one.</p>
+  <p align="left">5. <font color="#0000ff"><b>which</b> ...</font></p>
+  <p align="left">'That' cannot be used in a non-defining clause like this one.</p>
 </section>
+
 <section id="fb6">
-	<p align="left">6. <font color="#0000ff"><b>whose</b> ...</font></p><p align="left">This is a relative clause and it needs a relative pronoun.</p>
+  <p align="left">6. <font color="#0000ff"><b>whose</b> ...</font></p>
+  <p align="left">This is a relative clause and it needs a relative pronoun.</p>
 </section>
+
 <section id="fb7">
-	<p align="left">7. <font color="#0000ff"><b>despite</b> ...</font></p><p align="left">'Although' needs to be followed with a subject -  verb clause.</p>
+  <p align="left">7. <font color="#0000ff"><b>despite</b> ...</font></p>
+  <p align="left">'Although' needs to be followed with a subject -  verb clause.</p>
 </section>
+
 <section id="fb8">
-	<p align="left">8. <font color="#0000ff"><b>where</b></font></p><p align="left">This relative clause defines a place.</p>
+  <p align="left">8. <font color="#0000ff"><b>where</b></font></p>
+  <p align="left">This relative clause defines a place.</p>
 </section>
+
 <section id="fb9">
-	<p align="left">9. <font color="#0000ff"><b>whose</b> ...</font></p><p align="left">This is a relative clause and it needs a relative pronoun. 'Their' is not a relative pronoun.</p>
+  <p align="left">9. <font color="#0000ff"><b>whose</b> ...</font></p>
+  <p align="left">This is a relative clause and it needs a relative pronoun. 'Their' is not a relative pronoun.</p>
 </section>
+
 <section id="fb10">
-	<p align="left">10. <font color="#0000ff"><b>while</b> ... </font></p><p align="left">What's needed here is a connector which shows 'concession'. </p>
+  <p align="left">10. <font color="#0000ff"><b>while</b> ... </font></p>
+  <p align="left">What's needed here is a connector which shows 'concession'. </p>
 </section>
+
 <section id="fb11">
-	<p align="left">11. <font color="#0000ff"><b>which</b> it cause ...</font></p><p align="left">This is a relative clause and it needs a relative pronoun. 'What' is not a relative pronoun.</p>
+  <p align="left">11. <font color="#0000ff"><b>which</b> it cause ...</font></p>
+  <p align="left">This is a relative clause and it needs a relative pronoun. 'What' is not a relative pronoun.</p>
 </section>
+
 <section id="fb12">
-	<p align="left">12. <font color="#0000ff"><b>although </b></font></p><p align="left">'However' is not a conjunction. It can't be used to join two clauses together in this way.</p>
+  <p align="left">12. <font color="#0000ff"><b>although </b></font></p>
+  <p align="left">'However' is not a conjunction. It can't be used to join two clauses together in this way.</p>
 </section>
+
 </body>
 </bento>

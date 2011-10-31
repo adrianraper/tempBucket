@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,101 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="true"><feedback source="fb1"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"><feedback source="fb2"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"><feedback source="fb3"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"><feedback source="fb4"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"><feedback source="fb5"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="true"><feedback source="fb6"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"><feedback source="fb7"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="true"><feedback source="fb8"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t9" correct="true"><feedback source="fb9"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t10" correct="true"><feedback source="fb10"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t11" correct="true"><feedback source="fb11"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="true"><feedback source="fb12"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="true"><feedback source="fb13"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="true"><feedback source="fb14"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t15" correct="true"><feedback source="fb15"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t16" correct="true"><feedback source="fb16"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t17" correct="true"><feedback source="fb17"/></answer></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t18" correct="true"><feedback source="fb18"/></answer></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t12" correct="true">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t13" correct="true">
+        <feedback source="fb13"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t14" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t15" correct="true">
+        <feedback source="fb15"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t16" correct="true">
+        <feedback source="fb16"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t17" correct="true">
+        <feedback source="fb17"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t18" correct="true">
+        <feedback source="fb18"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -33,64 +127,93 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/LE_AW_1n4.jpg" mode="1" id="1003"  /><p align="left">The bar chart <g id="t1">shows</g> the amount of time that 16 to 24-year-olds in England <g id="t2">spend</g> per week on sport and exercise. It <g id="t3">is</g> clear from the chart that young women <g id="t4">are</g> less active in their leisure time than young men.</p><p align="left">There <g id="t5">is</g> a striking difference between the percentages of men and women who <g id="t6">prefer</g> not to participate in sport in their free time. Almost half of young women <g id="t7">devote</g> no time at all to active leisure pursuits while this <g id="t8">applies</g> to only about a quarter of young men. There <g id="t9">is</g> a similar difference between the percentages of very active young people. Almost 1 in 5 men between the ages of 16 and 24 <g id="t10">play</g> sport for 7 or more hours a week. The figure for young women <g id="t11">is</g> only 5 per cent.</p><p align="left">A closer examination of the figures for young people who actually <g id="t12">play</g> sport <g id="t13">reveals</g> that the greatest proportion <g id="t14">dedicate</g> between 1 and 3 hours per week to these pastimes. This <g id="t15">is</g> true for just over a fifth of both men and women.</p><p align="left">The fact that only two-fifths of young women <g id="t16">spend</g> an hour or more a week on sport, compared to approximately two-thirds of young men, <g id="t17">raises</g> questions about how fit young women <g id="t18">are</g> in comparison to young men.</p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/LE_AW_1n4.jpg" mode="1" id="1003"/>
+  <p align="left">The bar chart <g id="t1">shows</g> the amount of time that 16 to 24-year-olds in England <g id="t2">spend</g> per week on sport and exercise. It <g id="t3">is</g> clear from the chart that young women <g id="t4">are</g> less active in their leisure time than young men.</p>
+  <p align="left">There <g id="t5">is</g> a striking difference between the percentages of men and women who <g id="t6">prefer</g> not to participate in sport in their free time. Almost half of young women <g id="t7">devote</g> no time at all to active leisure pursuits while this <g id="t8">applies</g> to only about a quarter of young men. There <g id="t9">is</g> a similar difference between the percentages of very active young people. Almost 1 in 5 men between the ages of 16 and 24 <g id="t10">play</g> sport for 7 or more hours a week. The figure for young women <g id="t11">is</g> only 5 per cent.</p>
+  <p align="left">A closer examination of the figures for young people who actually <g id="t12">play</g> sport <g id="t13">reveals</g> that the greatest proportion <g id="t14">dedicate</g> between 1 and 3 hours per week to these pastimes. This <g id="t15">is</g> true for just over a fifth of both men and women.</p>
+  <p align="left">The fact that only two-fifths of young women <g id="t16">spend</g> an hour or more a week on sport, compared to approximately two-thirds of young men, <g id="t17">raises</g> questions about how fit young women <g id="t18">are</g> in comparison to young men.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="fb1">
-	<p align="left"><b>shows</b> - The present tense in the third person singular.</p>
+  <p align="left"><b>shows</b> - The present tense in the third person singular.</p>
 </section>
+
 <section id="fb2">
-	<p align="left"><b>spend</b> - The present tense in the third person plural.</p>
+  <p align="left"><b>spend</b> - The present tense in the third person plural.</p>
 </section>
+
 <section id="fb3">
-	<p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
+  <p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
 </section>
+
 <section id="fb4">
-	<p align="left"><b>are</b> - The present tense of the verb 'be' in the plural.</p>
+  <p align="left"><b>are</b> - The present tense of the verb 'be' in the plural.</p>
 </section>
+
 <section id="fb5">
-	<p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
+  <p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
 </section>
+
 <section id="fb6">
-	<p align="left"><b>prefer</b> - The present tense in the third person singular.</p>
+  <p align="left"><b>prefer</b> - The present tense in the third person singular.</p>
 </section>
+
 <section id="fb7">
-	<p align="left"><b>devote</b> - The present tense in the third person plural.</p>
+  <p align="left"><b>devote</b> - The present tense in the third person plural.</p>
 </section>
+
 <section id="fb8">
-	<p align="left"><b>applies</b> - The present tense in the third person singular.</p>
+  <p align="left"><b>applies</b> - The present tense in the third person singular.</p>
 </section>
+
 <section id="fb9">
-	<p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
+  <p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
 </section>
+
 <section id="fb10">
-	<p align="left"><b>play</b> - The present tense in the third person plural.</p>
+  <p align="left"><b>play</b> - The present tense in the third person plural.</p>
 </section>
+
 <section id="fb11">
-	<p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
+  <p align="left"><b>is</b> - The present tense of the verb 'be' in the singular.</p>
 </section>
+
 <section id="fb12">
-	<p align="left"><b>play</b> - This is present tense in the third person plural.</p>
+  <p align="left"><b>play</b> - This is present tense in the third person plural.</p>
 </section>
+
 <section id="fb13">
-	<p align="left"><b>reveals</b> - The present tense in the third person singular.</p>
+  <p align="left"><b>reveals</b> - The present tense in the third person singular.</p>
 </section>
+
 <section id="fb14">
-	<p align="left"><b>dedicate</b> - The present tense in the third person plural.</p>
+  <p align="left"><b>dedicate</b> - The present tense in the third person plural.</p>
 </section>
+
 <section id="fb15">
-	<p align="left">This is present tense of the verb 'be' in the singular.</p>
+  <p align="left">This is present tense of the verb 'be' in the singular.</p>
 </section>
+
 <section id="fb16">
-	<p align="left"><b>spend</b> - This is present tense in the third person plural.</p>
+  <p align="left"><b>spend</b> - This is present tense in the third person plural.</p>
 </section>
+
 <section id="fb17">
-	<p align="left"><b>raises</b> - This is present tense in the third person singular.</p>
+  <p align="left"><b>raises</b> - This is present tense in the third person singular.</p>
 </section>
+
 <section id="fb18">
-	<p align="left"><b>are</b> - The present tense of the verb 'be' in the plural.</p>
+  <p align="left"><b>are</b> - The present tense of the verb 'be' in the plural.</p>
 </section>
+
 <section id="rt2001">
-	<p align="left"><font color="#000000">The bar chart in this exercise has no date so we can assume that the information relates to the present. It shows the situation at one point in time and does not show changes over time. This kind of chart is sometimes called a 'static' chart and simple tenses (rather than continuous or perfect tenses) are most appropriate when describing the information shown. In this case, we can use the present simple for most of the report.</font></p>
+  <p align="left">
+    <font color="#000000">The bar chart in this exercise has no date so we can assume that the information relates to the present. It shows the situation at one point in time and does not show changes over time. This kind of chart is sometimes called a 'static' chart and simple tenses (rather than continuous or perfect tenses) are most appropriate when describing the information shown. In this case, we can use the present simple for most of the report.</font>
+  </p>
 </section>
+
 </body>
 </bento>

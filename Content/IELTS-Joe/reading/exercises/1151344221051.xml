@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,26 @@
 		<misc splitscreen="true"/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="standardized test scores " correct="true"/><answer value="test scores" correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="non-essential " correct="true"/><answer value="&quot;non-essential&quot;" correct="true"/><answer value="'non-essential'" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="abstract thought " correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="interactions " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="standardized test scores " correct="true"/>
+      <answer value="test scores" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="non-essential " correct="true"/>
+      <answer value="&quot;non-essential&quot;" correct="true"/>
+      <answer value="'non-essential'" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="abstract thought " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="interactions " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -34,13 +53,16 @@
 </header>
 	
 <section id="body">
-	<br/><ol id="questionList"><li id="1">Administrators are reducing school playtime because they are anxious to improve <input id="q1" width="100" />.</li><li id="2">Many school districts consider play to be a <input id="q2" width="100" /> feature of school life.</li><li id="3">Lev Vygotsky realised that play was important in the development of conceptual skills and abilities such as <input id="q3" width="100" />.</li><li id="4">Piaget recognised the importance of the <input id="q4" width="100" /> which take place when children play.</li></ol>
+  <br/>
+  <ol id="questionList">
+    <li id="1">Administrators are reducing school playtime because they are anxious to improve <input id="q1"/>.</li>
+    <li id="2">Many school districts consider play to be a <input id="q2"/> feature of school life.</li>
+    <li id="3">Lev Vygotsky realised that play was important in the development of conceptual skills and abilities such as <input id="q3"/>.</li>
+    <li id="4">Piaget recognised the importance of the <input id="q4"/> which take place when children play.</li>
+  </ol>
 </section>
-<section id="readingText">
-	<p align="left"><font color="#0000ff"><b>Play: An Endangered Species</b></font></p><p align="left"><font color="#000000">In their rush to increase teaching hours, many districts are eliminating recess and free time – and something valuable is being lost.</font></p><p align="left"><font color="#000000">Children know a simple truth that many administrators seem to have forgotten: Play is a necessary part of growing up.</font></p><p align="left"><font color="#000000">Unfortunately, in their frantic quest to raise standardized test scores and give children a competitive advantage at ever-earlier ages, many school districts have targeted "non-essential" activities as cutting into crucial instructional time. The result: Recess and non-academic free time are being shortened and even eliminated. A widespread belief is that schools should be solely devoted to academics and play can occur outside of the educational system.</font></p><p align="left"><font color="#000000">I believe that this is a dangerous proposition. Playtime – recess play or unorganized inside play – is a vital educational activity all its own. It allows children at all ages to use initiative and imagination, to be creative and social. Children left to their own devices will explore, experiment, test, err, and try again, all at their own pace. They will use their bodies and expend energy that might otherwise erupt when they need to be focused and alert.</font></p><p align="left"><b>The Value of Free Playtime</b>Free play is a critically important factor in normal development from birth through childhood. Early in the 20th century, child-development specialists such as Switzerland's Jean Piaget and Russian psychologist Lev Vygotsky recognized the value of such activity. Vygotsky believed that play leads directly to the development of a child's conceptual abilities, enabling him or her to master abstract thought, among other skills. Piaget, who developed a widely accepted theory of intellectual development, noted that through the joys of recreation "knowledge arises neither from objects nor the child, but from interactions between the child and those objects."</p><p align="left"><b>Play Involves Free Choice</b>A lot of what is passed off as "play" in schools – the use of games, toys, and puzzles that teach academic concepts – does not promote the enriching qualities of play that involves free choice, that is non-literal and self-motivated. Non-literal, by definition, is non-realistic. Children direct and invent this kind of play – no one presents them with a task or a set of standards to follow. This means that the use of materials, the environment, the rules of the game, and the roles of the participants all flow from the children's imaginations and their sense of reality.</p><p align="left"><font color="#000000">Children engage in such play because they enjoy it – it's self-directed. They do not play for rewards; they enjoy the doing, not the end result. Once they get bored, they go on to do something else – and continue to learn and grow.</font></p><p align="left">But is this activity really as important as traditional academic areas of the curriculum? Teachers of young children are often obligated to explain and justify the value of play to administrators and parents anxious to know why their children aren't learning at a faster rate. Such critics believe that play takes valuable time away from more important activities and allows children to hide in a fantasy world instead of facing the realities of the here and now.</p><p align="left"><b>Preparation for Adulthood</b>The view held by critics of play is countered by the work of experts such as Piaget. He maintained that infants and young children learn new concepts through a two-part method: discovering a process and then practicing it. Seen in this light, play is the best preparation for adulthood, especially in our highly technological, competitive society. That's because play, whether in the classroom, at recess, or outdoors, is all about discovering and practicing. It allows children to form an understanding of the social, emotional, moral, and intellectual concepts to which they are being introduced at every turn as they rapidly develop.</p><p align="left">This is especially important today, when children are being exposed to so much, so early. Play helps them make sense of and internalize all the stimuli by which they are being bombarded; it provides emotional release from the increasing stress of modern life.</p><p align="left">Many recess activities, especially those that require coordinated efforts, teach children how to work together, how to take turns, and how to reciprocate. They offer concrete evidence that, by following some basic rules for the good of the group, the children can keep playing and having fun. If we allow children the freedom to experiment with language, higher-order thinking skills, and new ways of sharing a toy, they will make discoveries that help them throughout life.</p><p align="left"><font color="#000000">The social skills learned during free recreation are also closely related to the establishment of moral guidelines. We bemoan the fact that children do not have appropriate role models. Yet moral development arises from the ability of a child to put him- or herself in the other child's shoes – a lesson of play.</font></p><p align="left"><b>It's Good for the Body, Too</b>The most forward-thinking workplaces today recognize the need for employees to stretch, exercise, and move around – many provide a designated space in which to do so. If adult workers are happier, healthier, and more productive thanks to such respite, imagine the benefits for young students.</p><p align="left"><font color="#000000">Daily media stories of out-of-control young people should be a warning that kids need safe, healthy outlets for physical energy. Plus, there is an ever-increasing amount of research documenting the poor physical condition of children today. Yet schools persist in curtailing the time allotted for children to run, skip, stretch, jump – play. Why don't more administrators realize that active play develops healthy bodies while teaching children to enjoy exercise?</font></p>&nbsp;In your classroom and school, take the opportunity to fight for free play as an integral part of a child's day. When playtime is threatened, so is a child's chance to grow.<p align="left"> recess: a break or period of rest at school.</p>2 curriculum: all the different courses of study that are taught at a school.<p align="left"><font color="#000000">Sheila G. Flaxman, Instructor Magazine (1990), September 2000.</font></p>
-</section>
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">The text, which discusses the importance of playtime during school hours, is clearly divided up into sections, each with its own heading. Questions 1 and 2 focus on the first section, while questions 3 and 4 focus on the second.</font>&nbsp;Make sure that the words you choose to complete the sentences are from the text, unchanged and grammatically possible.</p>
-</section>
+
+
+
 </body>
 </bento>

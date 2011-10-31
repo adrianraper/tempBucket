@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,35 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t1" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t2" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t3" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t4" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t5" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t6" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t7" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t8" correct="false"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,7 +59,12 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit08_e3.flv" mode="1" id="1003"  /><p align="left">Which of the following does Alexandra mention?<g id="t1">A. telephones</g><g id="t2">B. lifts/elevators</g><g id="t3">C. public transport</g><g id="t4">D. street crossings</g><g id="t5">E. stairs</g>&#160;<g id="t6">F. seats</g><g id="t7">G. traffic lights</g><g id="t8">H. doors</g></p><p align="left"><font size="2"></font></p>
+  <video src="../media/Unit08_e3.flv" mode="1" id="1003"/>
+  <p align="left">Which of the following does Alexandra mention?<g id="t1">A. telephones</g><g id="t2">B. lifts/elevators</g><g id="t3">C. public transport</g><g id="t4">D. street crossings</g><g id="t5">E. stairs</g>&#xA0;<g id="t6">F. seats</g><g id="t7">G. traffic lights</g><g id="t8">H. doors</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

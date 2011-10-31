@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="dropdown" date="2011-10-27" />
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,91 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><DropDownQuestion source="q1" group="1"><answer source="a1" correct="true"/><answer source="a2" correct="false"/><answer source="a3" correct="false"/></DropDownQuestion><DropDownQuestion source="q2" group="2"><answer source="a4" correct="true"/><answer source="a5" correct="false"/><answer source="a6" correct="false"/></DropDownQuestion><DropDownQuestion source="q3" group="3"><answer source="a7" correct="true"/><answer source="a8" correct="false"/><answer source="a9" correct="false"/></DropDownQuestion><DropDownQuestion source="q4" group="4"><answer source="a10" correct="true"/><answer source="a11" correct="false"/><answer source="a12" correct="false"/></DropDownQuestion><DropDownQuestion source="q5" group="5"><answer source="a13" correct="true"/><answer source="a14" correct="false"/><answer source="a15" correct="false"/></DropDownQuestion><DropDownQuestion source="q6" group="6"><answer source="a16" correct="true"/><answer source="a17" correct="false"/><answer source="a18" correct="false"/></DropDownQuestion><DropDownQuestion source="q7" group="7"><answer source="a19" correct="true"/><answer source="a20" correct="false"/><answer source="a21" correct="false"/></DropDownQuestion><DropDownQuestion source="q8" group="8"><answer source="a22" correct="true"/><answer source="a23" correct="false"/><answer source="a24" correct="false"/></DropDownQuestion><DropDownQuestion source="q9" group="9"><answer source="a25" correct="true"/><answer source="a26" correct="false"/><answer source="a27" correct="false"/></DropDownQuestion><DropDownQuestion source="q10" group="10"><answer source="a28" correct="true"/><answer source="a29" correct="false"/><answer source="a30" correct="false"/></DropDownQuestion><DropDownQuestion source="q11" group="11"><answer source="a31" correct="true"/><answer source="a32" correct="false"/><answer source="a33" correct="false"/></DropDownQuestion><DropDownQuestion source="q12" group="12"><answer source="a34" correct="true"/><answer source="a35" correct="false"/><answer source="a36" correct="false"/></DropDownQuestion><DropDownQuestion source="q13" group="13"><answer source="a37" correct="true"/><answer source="a38" correct="false"/><answer source="a39" correct="false"/></DropDownQuestion><DropDownQuestion source="q14" group="14"><answer source="a40" correct="true"/><answer source="a41" correct="false"/><answer source="a42" correct="false"/></DropDownQuestion><DropDownQuestion source="q15" group="15"><answer source="a43" correct="true"/><answer source="a44" correct="false"/><answer source="a45" correct="false"/></DropDownQuestion><DropDownQuestion source="q16" group="16"><answer source="a46" correct="true"/><answer source="a47" correct="false"/><answer source="a48" correct="false"/></DropDownQuestion></questions></script>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q11" block="b11">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q12" block="b12">
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q13" block="b13">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q14" block="b14">
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="false"/>
+      <answer source="a42" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q15" block="b15">
+      <answer source="a43" correct="true"/>
+      <answer source="a44" correct="false"/>
+      <answer source="a45" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q16" block="b16">
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="false"/>
+      <answer source="a48" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,11 +115,19 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/LE_AW_013.jpg" mode="1" id="1001"  /><p align="left">In the past fifty years, television has become more popular among children than any other form of home entertainment and many children spend several hours a day watching it. <select id="q1" type="dropdown" ><option id="o1">Although"</option>"<option id="o2">However"</option>"<option id="o3">Despite"</option>"</select> parents and teachers often disapprove of it, few would prevent their children from watching it altogether.</p><p align="left">As a leisure activity, television has several advantages for children. <select id="q2" type="dropdown" ><option id="o4">Firstly"</option>"<option id="o5">Furthermore"</option>"<option id="o6">Moreover"</option>"</select>, it is an easier and safer way for them to relax than, <select id="q3" type="dropdown" ><option id="o7">for instance"</option>"<option id="o8">like"</option>"<option id="o9">such as"</option>"</select>, playing in the street or in a park.  <select id="q4" type="dropdown" ><option id="o10">Secondly"</option>"<option id="o11">Consequently"</option>"<option id="o12">For example"</option>"</select>, television can be highly educational because children can learn about subjects, <select id="q5" type="dropdown" ><option id="o13">like"</option>"<option id="o14">in addition"</option>"<option id="o15">even though"</option>"</select> music or sport, that they might not read about in books. <select id="q6" type="dropdown" ><option id="o16">Moreover"</option>"<option id="o17">In contrast"</option>"<option id="o18">Including"</option>"</select>, they acquire a wider vocabulary and improve their general knowledge. <select id="q7" type="dropdown" ><option id="o19">Lastly"</option>"<option id="o20">To sum up"</option>"<option id="o21">In conclusion"</option>"</select>, television fosters children's interest in subjects and gives them interests in common. <select id="q8" type="dropdown" ><option id="o22">In consequence"</option>"<option id="o23">For example"</option>"<option id="o24">Despite this"</option>"</select>, they are better-informed about the world than children were in the past and they form attitudes and opinions about things outside their direct experience.</p><p align="left"><select id="q9" type="dropdown" ><option id="o25">However"</option>"<option id="o26">Although"</option>"<option id="o27">Whereas"</option>"</select>, any invention as pervasive as television is bound to have some harmful effects. Nowadays perhaps, children in general are not as sociable as previous generations of children, who used to spend more time playing with friends. <select id="q10" type="dropdown" ><option id="o28">As a result"</option>"<option id="o29">However"</option>"<option id="o30">Furthermore"</option>"</select>, some children may feel lonelier and more isolated. <select id="q11" type="dropdown" ><option id="o31">In addition"</option>"<option id="o32">In contrast"</option>"<option id="o33">In consequence"</option>"</select>, they may be less imaginative than children in the past because they do not have to invent their own games and because they spend less time reading books. <select id="q12" type="dropdown" ><option id="o34">Finally"</option>"<option id="o35">However"</option>"<option id="o36">As a result"</option>"</select>, since they spend so much time in front of the television, they may have fewer hobbies, and, <select id="q13" type="dropdown" ><option id="o37">therefore"</option>"<option id="o38">for instance"</option>"<option id="o39">in conclusion"</option>"</select>, their range of leisure activities may be more limited than previous generations.</p><p align="left"><select id="q14" type="dropdown" ><option id="o40">To sum up"</option>"<option id="o41">Finally"</option>"<option id="o42">Therefore"</option>"</select>, it is clear that television has had both positive and negative effects on the way children spend their leisure time. I believe that parents should monitor both how much time their children spend watching television and the type of programmes they watch, and encourage them to watch those which are either entertaining or educational. <select id="q15" type="dropdown" ><option id="o43">However"</option>"<option id="o44">Although"</option>"<option id="o45">Lastly"</option>"</select>, children should also be encouraged to find time for other activities, <select id="q16" type="dropdown" ><option id="o46">such as"</option>"<option id="o47">moreover"</option>"<option id="o48">as a result"</option>"</select> playing with friends or pursuing hobbies.</p><p align="left"><font size="2"></font></p>
+  <img class="rightFloat" src="../media/LE_AW_013.jpg" mode="1" id="1001"/>
+  <p align="left">In the past fifty years, television has become more popular among children than any other form of home entertainment and many children spend several hours a day watching it. <select id="q1"><option>Although</option><option>However</option><option>Despite</option></select> parents and teachers often disapprove of it, few would prevent their children from watching it altogether.</p>
+  <p align="left">As a leisure activity, television has several advantages for children. <select id="q2"><option>Firstly</option><option>Furthermore</option><option>Moreover</option></select>, it is an easier and safer way for them to relax than, <select id="q3"><option>for instance</option><option>like</option><option>such as</option></select>, playing in the street or in a park.  <select id="q4"><option>Secondly</option><option>Consequently</option><option>For example</option></select>, television can be highly educational because children can learn about subjects, <select id="q5"><option>like</option><option>in addition</option><option>even though</option></select> music or sport, that they might not read about in books. <select id="q6"><option>Moreover</option><option>In contrast</option><option>Including</option></select>, they acquire a wider vocabulary and improve their general knowledge. <select id="q7"><option>Lastly</option><option>To sum up</option><option>In conclusion</option></select>, television fosters children's interest in subjects and gives them interests in common. <select id="q8"><option>In consequence</option><option>For example</option><option>Despite this</option></select>, they are better-informed about the world than children were in the past and they form attitudes and opinions about things outside their direct experience.</p>
+  <p align="left"><select id="q9"><option>However</option><option>Although</option><option>Whereas</option></select>, any invention as pervasive as television is bound to have some harmful effects. Nowadays perhaps, children in general are not as sociable as previous generations of children, who used to spend more time playing with friends. <select id="q10"><option>As a result</option><option>However</option><option>Furthermore</option></select>, some children may feel lonelier and more isolated. <select id="q11"><option>In addition</option><option>In contrast</option><option>In consequence</option></select>, they may be less imaginative than children in the past because they do not have to invent their own games and because they spend less time reading books. <select id="q12"><option>Finally</option><option>However</option><option>As a result</option></select>, since they spend so much time in front of the television, they may have fewer hobbies, and, <select id="q13"><option>therefore</option><option>for instance</option><option>in conclusion</option></select>, their range of leisure activities may be more limited than previous generations.</p>
+  <p align="left"><select id="q14"><option>To sum up</option><option>Finally</option><option>Therefore</option></select>, it is clear that television has had both positive and negative effects on the way children spend their leisure time. I believe that parents should monitor both how much time their children spend watching television and the type of programmes they watch, and encourage them to watch those which are either entertaining or educational. <select id="q15"><option>However</option><option>Although</option><option>Lastly</option></select>, children should also be encouraged to find time for other activities, <select id="q16"><option>such as</option><option>moreover</option><option>as a result</option></select> playing with friends or pursuing hobbies.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 <section id="rt2001">
-	
-		<p align="left">When you have finished this exercise, compare the composition with the linking words and phrases with the composition without them, as you saw it in Exercise 2. Notice how the linking words and phrases make the structure of the composition and the writer's arguments much easier to follow.</p>
+  <p align="left">When you have finished this exercise, compare the composition with the linking words and phrases with the composition without them, as you saw it in Exercise 2. Notice how the linking words and phrases make the structure of the composition and the writer's arguments much easier to follow.</p>
 </section>
+
 </body>
 </bento>

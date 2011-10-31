@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="targetspotting" date="2011-10-27" />
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,44 @@
     <misc/>
   </settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><TargetSpottingQuestion><answer source="t11" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t12" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t13" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t14" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t15" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t16" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t17" correct="true"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t18" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t19" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t20" correct="false"/></TargetSpottingQuestion><TargetSpottingQuestion><answer source="t21" correct="false"/></TargetSpottingQuestion></questions></script>
+  <questions>
+    <TargetSpottingQuestion>
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t18" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion>
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -32,7 +69,28 @@
 </header>
 	
 <section id="body">
-	<video class="rightFloat" src="../media/Unit06_e7c.flv" mode="1" id="1002"  /><p align="left">What, according to the candidates, are the main reasons for choosing a particular news medium?</p><p align="left"><font color="#0000ff"><b>Dimitris</b></font><g id="t11">A. Trust</g><g id="t12">B. Availability</g><g id="t13">C. Like to read it</g><g id="t14">D. Immediacy</g><g id="t15">E. Political orientation</g><g id="t16">F. Cost</g><g id="t17">G. Some prefer to look than listen</g><g id="t18">H. Objectivity</g><g id="t19">I. Personal circumstances</g><g id="t20">J. Can be read anywhere</g><g id="t21">K. Easy to access</g></p><p align="left"><font size="2"></font></p>
+  <video src="../media/Unit06_e7c.flv" mode="1" id="1002"/>
+  <p align="left">What, according to the candidates, are the main reasons for choosing a particular news medium?</p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>Dimitris</b>
+    </font>
+    <g id="t11">A. Trust</g>
+    <g id="t12">B. Availability</g>
+    <g id="t13">C. Like to read it</g>
+    <g id="t14">D. Immediacy</g>
+    <g id="t15">E. Political orientation</g>
+    <g id="t16">F. Cost</g>
+    <g id="t17">G. Some prefer to look than listen</g>
+    <g id="t18">H. Objectivity</g>
+    <g id="t19">I. Personal circumstances</g>
+    <g id="t20">J. Can be read anywhere</g>
+    <g id="t21">K. Easy to access</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
 </section>
+
 </body>
 </bento>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="gapfill" date="2011-10-27" />
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,29 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions><GapFillQuestion source="q1"><answer value="started " correct="true"/></GapFillQuestion><GapFillQuestion source="q2"><answer value="have been working " correct="true"/><answer value="have worked" correct="true"/></GapFillQuestion><GapFillQuestion source="q3"><answer value="have just finished " correct="true"/><answer value="just finished" correct="true"/></GapFillQuestion><GapFillQuestion source="q4"><answer value="will take " correct="true"/><answer value="am taking" correct="true"/></GapFillQuestion><GapFillQuestion source="q5"><answer value="work " correct="true"/></GapFillQuestion></questions></script>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="started " correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="have been working " correct="true"/>
+      <answer value="have worked" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="have just finished " correct="true"/>
+      <answer value="just finished" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="will take " correct="true"/>
+      <answer value="am taking" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="work " correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
 
 </head>
 <body>
@@ -31,7 +53,16 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/EN_SP_004.jpg" mode="1" id="1001"  /><br/><ol id="questionList"><li id="1">I <input id="q1" width="100" /> (start) working for this company last year.</li><li id="2">I <input id="q2" width="100" /> (work) as a trainee salesman since then.</li><li id="3">I <input id="q3" width="100" /> (just finish) my first year with the firm.</li><li id="4">In two months I <input id="q4" width="100" /> (take) an exam to become professionally qualified.</li><li id="5">We <input id="q5" width="100" /> (work) in the office on most days, but sometimes I travel to other companies.</li></ol>
+  <img class="rightFloat" src="../media/EN_SP_004.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">I <input id="q1"/> (start) working for this company last year.</li>
+    <li id="2">I <input id="q2"/> (work) as a trainee salesman since then.</li>
+    <li id="3">I <input id="q3"/> (just finish) my first year with the firm.</li>
+    <li id="4">In two months I <input id="q4"/> (take) an exam to become professionally qualified.</li>
+    <li id="5">We <input id="q5"/> (work) in the office on most days, but sometimes I travel to other companies.</li>
+  </ol>
 </section>
+
 </body>
 </bento>

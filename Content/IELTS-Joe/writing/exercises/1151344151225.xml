@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion" type="proofreading" date="2011-10-27" />
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
@@ -19,9 +21,10 @@
 		<misc/>
 	</settings>
 	</script>
-	<br/>
+	
 <script id="model" type="application/xml">
-<questions/></script>
+  <questions/>
+</script>
 
 </head>
 <body>
@@ -34,49 +37,89 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/HF_AW_016.jpg" mode="1" id="1001"  /><br/><ol id="questionList"></ol>
+  <img class="rightFloat" src="../media/HF_AW_016.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList"/>
 </section>
+
 <section id="fb1">
-	<p align="left"><font color="#000000">However: 'In contrast' is used to compare two things that are very different in some way.</font></p><p align="left"></p>
+  <p align="left">
+    <font color="#000000">However: 'In contrast' is used to compare two things that are very different in some way.</font>
+  </p>
+  <p align="left"/>
 </section>
+
 <section id="fb2">
-	<p align="left">objection</p>
+  <p align="left">objection</p>
 </section>
+
 <section id="fb3">
-	<p align="left"><font color="#000000">likely: 'Possible' is an adjective, but an adverb is needed here.</font></p>
+  <p align="left">
+    <font color="#000000">likely: 'Possible' is an adjective, but an adverb is needed here.</font>
+  </p>
 </section>
+
 <section id="fb4">
-	<p align="left"><font color="#000000">could: We use 'must' to speculate about the present or the past, but not about the future.</font></p><p align="left"></p>
+  <p align="left">
+    <font color="#000000">could: We use 'must' to speculate about the present or the past, but not about the future.</font>
+  </p>
+  <p align="left"/>
 </section>
+
 <section id="fb5">
-	<p align="left">argument</p>
+  <p align="left">argument</p>
 </section>
+
 <section id="fb6">
-	<p align="left"><font color="#000000">quite: 'Well' is used with modal verbs to express possibility. For example, 'could well be'.</font></p>
+  <p align="left">
+    <font color="#000000">quite: 'Well' is used with modal verbs to express possibility. For example, 'could well be'.</font>
+  </p>
 </section>
+
 <section id="fb7">
-	<p align="left"><font color="#000000">every: This is an expression.</font></p>
+  <p align="left">
+    <font color="#000000">every: This is an expression.</font>
+  </p>
 </section>
+
 <section id="fb8">
-	<p align="left"><font color="#000000">However: 'Consequently' means 'as a result'.</font></p>
+  <p align="left">
+    <font color="#000000">However: 'Consequently' means 'as a result'.</font>
+  </p>
 </section>
+
 <section id="fb9">
-	<p align="left">highly</p>
+  <p align="left">highly</p>
 </section>
+
 <section id="fb10">
-	<p align="left"><font color="#000000">might: Using 'could' here means that governments 'would be able to'. This isn't what the writer means.</font></p>
+  <p align="left">
+    <font color="#000000">might: Using 'could' here means that governments 'would be able to'. This isn't what the writer means.</font>
+  </p>
 </section>
+
 <section id="fb11">
-	<p align="left">however</p>
+  <p align="left">however</p>
 </section>
+
 <section id="fb12">
-	<p align="left"><font color="#000000">all: This is an expression.</font></p>
+  <p align="left">
+    <font color="#000000">all: This is an expression.</font>
+  </p>
 </section>
+
 <section id="fb13">
-	<p align="left"><font color="#000000">little: 'Evidence' is an uncountable noun.</font></p>
+  <p align="left">
+    <font color="#000000">little: 'Evidence' is an uncountable noun.</font>
+  </p>
 </section>
+
 <section id="fb14">
-	<p align="left"><font color="#000000">In fact: This sentence adds support to the argument put forward in the previous sentence.</font></p><p align="left"></p>
+  <p align="left">
+    <font color="#000000">In fact: This sentence adds support to the argument put forward in the previous sentence.</font>
+  </p>
+  <p align="left"/>
 </section>
+
 </body>
 </bento>
