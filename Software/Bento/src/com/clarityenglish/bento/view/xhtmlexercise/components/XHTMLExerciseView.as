@@ -153,6 +153,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					}
 				}
 				
+				// Fill in the input element with the given answer (if we are using 'show answer' this will fill it in,
+				// otherwise this will just fill it in with what is already there and will have no effect)
 				if (answerElement is InputElement) {
 					var inputElement:InputElement = answerElement as InputElement;
 					

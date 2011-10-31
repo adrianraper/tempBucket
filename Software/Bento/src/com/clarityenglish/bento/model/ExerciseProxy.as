@@ -53,98 +53,52 @@ package com.clarityenglish.bento.model {
 			return selectedAnswerMap[question];
 		}
 		
-		/*public function getCorrectAnswerMap(question:Question, exercise:Exercise):AnswerMap {
-			var answerMap:AnswerMap = new AnswerMap();
-			
-			for each (var answer:Answer in question.answers) {
-				// Find the first correct answer
-				if (answer.score > 0) {
-					var answerNodes:Array;
-					switch (ClassUtil.getClass(answer)) {
-						case NodeAnswer:
-							answerNodes = (answer as NodeAnswer).getSourceNodes(exercise);
-							break;
-						case TextAnswer:
-							answerNodes = question.getSourceNodes(exercise);
-							break;
-					}
-					
-					if (answerNodes) {
-						var markableNodes:Array = question.getSourceNodes(exercise);
-						if (!markableNodes || markableNodes.length == 0)
-							markableNodes = answerNodes;
-						
-						answerMap.put(markableNodes[0], answer);
-					} else {
-						log.error("Unable to find matching node for {0}, {1}", question, answer);
-					}
-					
-					break;
-				}
-			}
-			
-			return answerMap;
-		}*/
-		
+		/**
+		 * This method returns an AnswerMap containing the correct answers for the given questions.  This takes into account answers that
+		 * are currently selected.
+		 * 
+		 * @param question
+		 * @param exercise
+		 * @return 
+		 */
 		public function getCorrectAnswerMap(question:Question, exercise:Exercise):AnswerMap {
 			var answerMap:AnswerMap = new AnswerMap();
 			var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
 			
-			// 1. Get all the possible correct answers
+			// 1. Get all the possible correct answers.  If there are no correct answers for this question do nothing at all.
 			var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
+			if (correctAnswers.length == 0)
+				return answerMap;
 			
-			// 2. Get the target nodes (i.e. the things that actually get 'marked')
+			// 2. Get the target nodes (these are the keys in the answer map)
 			var targetNodes:Vector.<XML> = (question.isSelectable()) ? (correctAnswers[0] as NodeAnswer).getSourceNodes(exercise) : question.getSourceNodes(exercise);
 			
-			if (question.isSelectable()) {
-				// Something you click on
+			// 3. Remove any correct answers from the target nodes and correct answers
+			targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
+				var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 				
-				// 2. Find the markable node(s)
-				
-				
-				// 3. If the selected answer is wrong or empty add to answer map
-			} else {
-				// Something you type or drag into
-				
-				// 2. Get the markable nodes
-				
-				
-				// 3. Remove any correct answers from the correct answer list
-				// 4. Go through the answers adding correct answers where the selected answer is wrong or empty
-			}
-			
-			// First get the markableNodes - these are the things that actually get marked; for example, a <g> for a Target Spotting question,
-			// an <input> for a GapFill or a Drag and Drop, etc.  Some questions have multiple markableNodes.
-			//var markableNodes:Array = question.getSourceNodes(exercise);
-			
-			// However, if this is a selection question that doesn't work as the markableNodes are contained in the answer not the question
-			
-			/*for each (var answer:Answer in question.answers) {
-				// Find the first correct answer
-				if (answer.score > 0) {
-					var answerNodes:Array;
-					switch (ClassUtil.getClass(answer)) {
-						case NodeAnswer:
-							answerNodes = (answer as NodeAnswer).getSourceNodes(exercise);
-							break;
-						case TextAnswer:
-							answerNodes = question.getSourceNodes(exercise);
-							break;
+				if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
+					var idx:int = correctAnswers.indexOf(selectedAnswer);
+					if (idx > -1) {
+						correctAnswers.splice(idx, 1);
+						return true;
 					}
-					
-					if (answerNodes) {
-						var markableNodes:Array = question.getSourceNodes(exercise);
-						if (!markableNodes || markableNodes.length == 0)
-							markableNodes = answerNodes;
-						
-						answerMap.put(markableNodes[0], answer);
-					} else {
-						log.error("Unable to find matching node for {0}, {1}", question, answer);
-					}
-					
-					break;
 				}
-			}*/
+				
+				return false;
+			});
+			
+			// For each question
+			for each (var targetNode:XML in targetNodes) {
+				// 3. Get the answer currently in this target node
+				var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
+				
+				// 4. If the current answer is empty or incorrect then add it to the answer map
+				if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
+					answerMap.put(targetNode, correctAnswers[0]);
+					correctAnswers.shift();
+				}	
+			}
 			
 			return answerMap;
 		}

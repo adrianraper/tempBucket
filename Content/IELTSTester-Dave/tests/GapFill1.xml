@@ -38,6 +38,12 @@
 				<GapFillQuestion source="q6Input" block="q6Block">
 					<answer correct="true" value="you" />
 				</GapFillQuestion>
+				
+				<GapFillQuestion source="q7Input" block="q7Block">
+					<answer correct="true" value="one" />
+					<answer correct="true" value="two" />
+					<answer correct="true" value="three" />
+				</GapFillQuestion>
 			</questions>
 		</script>
 	</head>
@@ -74,6 +80,10 @@
 					<g id="q4Block">4. Patma and Hank are terrible!  I don't like <input id="q4Input" />.</g><br/>
 					<g id="q5Block">5. And Grant is useless.  I don't like <input id="q5Input" />.</g><br/>
 					<g id="q6Block">6. You ask too many questions.  I don't like <input id="q6Input" />, either!</g>
+				</p>
+				
+				<p>
+					<g id="q7Block">7. Correct answers are 'one', 'two' or 'three': <input id="q7Input" /></g>
 				</p>
 			</div>
 		</section>
