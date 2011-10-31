@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[
+			#body p {
+				padding-bottom: 25;
+			}
+		]]>
+		</style>
+		<script id="model" type="application/xml">
+			<questions>
+				<TargetSpottingQuestion>
+					<answer correct="true" source="target1">
+						<feedback source="fb1" />
+					</answer>
+				</TargetSpottingQuestion>
+				
+				<TargetSpottingQuestion>
+					<answer correct="true" source="target2">
+						<feedback source="fb2" />
+					</answer>
+				</TargetSpottingQuestion>
+				
+				<TargetSpottingQuestion>
+					<answer correct="true" source="target3">
+						<feedback source="fb3" />
+					</answer>
+				</TargetSpottingQuestion>
+			</questions>
+		</script>
+	</head>
+	
+	<body>
+		<header>
+			This is Dave's test to check out feedback.
+		</header>
+		
+		<section id="body">
+			<p>
+				<g id="target1">
+					This is a target spotting question linked to feedback (feedback 1)
+				</g>
+			</p>
+			
+			<p>
+				<g id="target2">
+					This is a target spotting question linked to feedback (feedback 2)
+				</g>
+			</p>
+			
+			<p>
+				<g id="target3">
+					This is a target spotting question linked to feedback (feedback 3)
+				</g>
+			</p>
+		</section>
+		
+		<section id="fb1">
+			This is feedback 1
+		</section>
+		
+		<section id="fb2">
+			This is feedback 2
+		</section>
+		
+		<section id="fb3">
+			This is feedback 3
+		</section>
+	</body>
+	
+</bento>

@@ -34,7 +34,7 @@
 			
 			protected function addedToStage(event:Event):void {
 				// Select the first entry by default
-				buttonBar.selectedIndex = 2;
+				buttonBar.selectedIndex = 0;
 				buttonBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 			}
 			
@@ -67,7 +67,7 @@
 		
 		<s:Spacer width="100%" />
 		
-		<s:Button label="Show answers" click="onShowAnswersClick(event)"/>
+		<s:Button label="Show correct answers" click="onShowAnswersClick(event)"/>
 	</s:HGroup>
 	
 	<tester:TesterView id="testerView" width="100%" height="100%" />

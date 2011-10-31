@@ -69,12 +69,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected function handleShowAnswers(note:INotification):void {
-			//view.showCorrectAnswers();
-			
-			// Just for testing; this is obviously rubbish
-			for each (var question:Question in view.exercise.model.questions) {
-				var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question, view.exercise);
-				view.markAnswerMap(question, answerMap);
+			// Go through the questions marking each of them
+			if (view.exercise.model) {
+				for each (var question:Question in view.exercise.model.questions) {
+					var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question, view.exercise);
+					view.markAnswerMap(question, answerMap);
+				}
 			}
 		}
 		

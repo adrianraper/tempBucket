@@ -1,122 +1,136 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-10-31" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
-	<style type="text/css">
+	<head>
+		<meta name="conversion-from" content="targetspotting" />
+		<meta name="conversion-date" content="2011-10-31" />
+		<meta name="customised" content="false" />
+		<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+		<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
-	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="true" marking="true"/>
-		<exercise/>
-		<misc timed="165"/>
-	</settings>
-	</script>
-	
-<script id="model" type="application/xml">
-  <questions>
-    <TargetSpottingQuestion>
-      <answer source="t1" correct="false">
-        <feedback source="fb1"/>
-      </answer>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
-      <answer source="t2" correct="true">
-        <feedback source="fb2"/>
-      </answer>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
-      <answer source="t3" correct="true">
-        <feedback source="fb3"/>
-      </answer>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
-      <answer source="t4" correct="false">
-        <feedback source="fb4"/>
-      </answer>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
-      <answer source="t5" correct="true">
-        <feedback source="fb5"/>
-      </answer>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
-      <answer source="t6" correct="true">
-        <feedback source="fb6"/>
-      </answer>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
-      <answer source="t7" correct="false">
-        <feedback source="fb7"/>
-      </answer>
-    </TargetSpottingQuestion>
-  </questions>
-</script>
+		</style>
+		<script id="settings" type="application/xml">
+			<settings>
+				<marking />
+				<feedback wrongonly="false" />
+				<buttons feedback="true" marking="true" />
+				<exercise />
+				<misc timed="165" />
+			</settings>
+		</script>
 
-</head>
-<body>
-	
-<header>
-	
-		
-		Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters A-G.
+		<script id="model" type="application/xml">
+			<questions>
+				<TargetSpottingQuestion>
+					<answer source="t1" correct="false">
+						<feedback source="fb1" />
+					</answer>
+				</TargetSpottingQuestion>
+				<TargetSpottingQuestion>
+					<answer source="t2" correct="true">
+						<feedback source="fb2" />
+					</answer>
+				</TargetSpottingQuestion>
+				<TargetSpottingQuestion>
+					<answer source="t3" correct="true">
+						<feedback source="fb3" />
+					</answer>
+				</TargetSpottingQuestion>
+				<TargetSpottingQuestion>
+					<answer source="t4" correct="false">
+						<feedback source="fb4" />
+					</answer>
+				</TargetSpottingQuestion>
+				<TargetSpottingQuestion>
+					<answer source="t5" correct="true">
+						<feedback source="fb5" />
+					</answer>
+				</TargetSpottingQuestion>
+				<TargetSpottingQuestion>
+					<answer source="t6" correct="true">
+						<feedback source="fb6" />
+					</answer>
+				</TargetSpottingQuestion>
+				<TargetSpottingQuestion>
+					<answer source="t7" correct="false">
+						<feedback source="fb7" />
+					</answer>
+				</TargetSpottingQuestion>
+			</questions>
+		</script>
+	</head>
+	<body>
+
+		<header>
+
+
+			Listen to the recording, which will play automatically, and follow the
+			instructions. Click FOUR letters A-G.
 		
 </header>
-	
-<section id="body">
-  <img class="rightFloat" src="../media/WB_LN_003.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/WB_LN1b.mp3" mode="4" id="1002"/>
-  <p align="left"><b>Questions 9-12</b><br/>Which FOUR pieces of advice about writing a CV does the speaker give?</p>
-  <p align="left">
-    <g id="t1">A.  You should find out about the company you are applying to.</g>
-    <g id="t2">B.  You should make your CV stand out from other applicants' CVs.</g>
-    <g id="t3">C.  You should be careful not to make any mistakes.</g>
-    <g id="t4">D.  You should use white paper for your CV.</g>
-    <g id="t5">E.  You should be truthful on your CV.</g>
-    <g id="t6">F.  You should limit the length of your CV.</g>
-    <g id="t7">G.  You should keep a copy of your CV for yourself.</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-</section>
 
-<section id="fb1">
-  <p align="left">A. Mary does not mention this at all.</p>
-</section>
+		<section id="body">
+			<img class="rightFloat" src="../media/WB_LN_003.jpg" mode="1" id="1001" />
+			<audio controls="compact" class="leftFloat" src="../media/WB_LN1b.mp3"
+				mode="4" id="1002" />
+			<p align="left">
+				<b>Questions 9-12</b>
+				<br />
+				Which FOUR pieces of advice about writing a CV does the speaker
+				give?
+			</p>
+			<p align="left">
+				<g id="t1">A. You should find out about the company you are applying
+					to.</g>
+				<g id="t2">B. You should make your CV stand out from other applicants'
+					CVs.</g>
+				<g id="t3">C. You should be careful not to make any mistakes.</g>
+				<g id="t4">D. You should use white paper for your CV.</g>
+				<g id="t5">E. You should be truthful on your CV.</g>
+				<g id="t6">F. You should limit the length of your CV.</g>
+				<g id="t7">G. You should keep a copy of your CV for yourself.</g>
+			</p>
+			<p align="left">
+				<font size="2" />
+			</p>
+		</section>
 
-<section id="fb2">
-  <p align="left">B. Mary says your CV should be unique and 'attract an employer's attention'. In other words 'stand out'.</p>
-</section>
+		<section id="fb1">
+			<p align="left">A. Mary does not mention this at all.</p>
+		</section>
 
-<section id="fb3">
-  <p align="left">C. Mary says that accuracy is important and that you shouldn't make any spelling, grammar, punctuation or spacing errors. The word 'errors' has the same meaning as 'mistakes'.</p>
-</section>
+		<section id="fb2">
+			<p align="left">B. Mary says your CV should be unique and 'attract an
+				employer's attention'. In other words 'stand out'.</p>
+		</section>
 
-<section id="fb4">
-  <p align="left">D. Mary does not mention the paper you should use.</p>
-</section>
+		<section id="fb3">
+			<p align="left">C. Mary says that accuracy is important and that you
+				shouldn't make any spelling, grammar, punctuation or spacing errors.
+				The word 'errors' has the same meaning as 'mistakes'.</p>
+		</section>
 
-<section id="fb5">
-  <p align="left">E. Mary says that honesty is important and that you should never include false information on your CV. 'Honesty' means the same as 'truthfulness'.</p>
-</section>
+		<section id="fb4">
+			<p align="left">D. Mary does not mention the paper you should use.</p>
+		</section>
 
-<section id="fb6">
-  <p align="left">F. Mary says that conciseness is important too. She says that your CV should never go beyond two sides of A4 paper. In other words, limit the length.</p>
-</section>
+		<section id="fb5">
+			<p align="left">E. Mary says that honesty is important and that you should
+				never include false information on your CV. 'Honesty' means the same
+				as 'truthfulness'.</p>
+		</section>
 
-<section id="fb7">
-  <p align="left">G. Mary doesn't mention this.</p>
-</section>
+		<section id="fb6">
+			<p align="left">F. Mary says that conciseness is important too. She says
+				that your CV should never go beyond two sides of A4 paper. In other
+				words, limit the length.</p>
+		</section>
 
-</body>
+		<section id="fb7">
+			<p align="left">G. Mary doesn't mention this.</p>
+		</section>
+	</body>
 </bento>
