@@ -5,6 +5,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
@@ -49,18 +50,31 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			switch (note.getName()) {
 				case BBNotifications.QUESTION_ANSWERED:
-					var question:Question = note.getBody().question as Question;
-					var answerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
-					
-					view.selectAnswerMap(question, answerMap);
-					
-					if (!note.getBody().delayedMarking)
-						view.markAnswerMap(question, answerMap);
-					
+					handleQuestionAnswered(note);
 					break;
 				case BBNotifications.SHOW_ANSWERS:
-					
+					handleShowAnswers(note);
 					break;
+			}
+		}
+		
+		protected function handleQuestionAnswered(note:INotification):void {
+			var question:Question = note.getBody().question as Question;
+			var answerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
+			
+			view.selectAnswerMap(question, answerMap);
+			
+			if (!note.getBody().delayedMarking)
+				view.markAnswerMap(question, answerMap);
+		}
+		
+		protected function handleShowAnswers(note:INotification):void {
+			//view.showCorrectAnswers();
+			
+			// Just for testing; this is obviously rubbish
+			for each (var question:Question in view.exercise.model.questions) {
+				var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question, view.exercise);
+				view.markAnswerMap(question, answerMap);
 			}
 		}
 		
@@ -74,9 +88,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			// Dispatch the appropriate notitification depending on whether the answer is a NodeAnswer or a String
 			if (answerOrString is NodeAnswer) {
-				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { question: event.question, nodeAnswer: event.answerOrString, key: event.key } );
+				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { exercise: view.exercise, question: event.question, nodeAnswer: event.answerOrString, key: event.key } );
 			} else if (answerOrString is String) {
-				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { question: event.question, answerString: event.answerOrString, key: event.key } );
+				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { exercise: view.exercise, question: event.question, answerString: event.answerOrString, key: event.key } );
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}

@@ -1,7 +1,9 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
+	import com.newgonzo.commons.utils.StringUtil;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -20,11 +22,12 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var exercise:Exercise = note.getBody().exercise as Exercise;
 			var question:Question = note.getBody().question as Question;
 			var answerString:String = note.getBody().answerString;
 			var key:Object = note.getBody().key;
 			
-			var textAnswer:TextAnswer = getTextAnswer(question, answerString);
+			var textAnswer:TextAnswer = getTextAnswer(question, answerString, exercise.isCaseSensitive());
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
 			exerciseProxy.questionAnswer(question, textAnswer, key);
@@ -37,9 +40,14 @@ package com.clarityenglish.bento.controller {
 		 * @param answerString
 		 * @return 
 		 */
-		private function getTextAnswer(question:Question, answerString:String):TextAnswer {
+		private function getTextAnswer(question:Question, answerString:String, isCaseSensitive:Boolean):TextAnswer {
+			// Always trim the answer before comparison (#20)
+			if (answerString)
+				answerString = StringUtil.trim(answerString);
+			
+			// Search for the answer.  Case sensitivity is controlled by the exercise settings (#20).
 			for each (var textAnswer:TextAnswer in question.answers) {
-				if (answerString == textAnswer.value) {
+				if ((isCaseSensitive) ? answerString == textAnswer.value : answerString.toLowerCase() == textAnswer.value.toLowerCase()) {
 					return textAnswer;
 				}
 			}

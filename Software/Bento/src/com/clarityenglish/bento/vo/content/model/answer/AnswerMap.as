@@ -35,6 +35,10 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return map.values;
 		}
 		
+		public function isEmpty():Boolean {
+			return keys.length == 0;
+		}
+		
 		public function clear():void {
 			map.clear();
 		}

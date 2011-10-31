@@ -12,8 +12,8 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return xml.@source;
 		}
 		
-		public function getSourceNodes(exercise:Exercise):Array {
-			return Model.sourceToNodeArray(exercise, source);
+		public function getSourceNodes(exercise:Exercise):Vector.<XML> {
+			return Model.sourceToNodes(exercise, source);
 		}
 		
 	}

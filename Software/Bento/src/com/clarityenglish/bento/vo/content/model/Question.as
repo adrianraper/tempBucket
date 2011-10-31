@@ -37,8 +37,17 @@ package com.clarityenglish.bento.vo.content.model {
 			return _answers;
 		}
 		
-		public function getSourceNodes(exercise:Exercise):Array {
-			return Model.sourceToNodeArray(exercise, source);
+		public function getCorrectAnswers():Vector.<Answer> {
+			var correctAnswers:Vector.<Answer> = new Vector.<Answer>();
+			for each (var answer:Answer in answers)
+				if (answer.score > 0)
+					correctAnswers.push(answer);
+			
+			return correctAnswers;
+		}
+		
+		public function getSourceNodes(exercise:Exercise):Vector.<XML> {
+			return Model.sourceToNodes(exercise, source);
 		}
 		
 		/**

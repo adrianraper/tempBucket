@@ -187,17 +187,9 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		protected function onDropDrop(event:DragEvent):void {
-			if (event.dragSource.hasFormat("node")) {
-				_droppedNode = event.dragSource.dataForFormat("node") as XML;
-			}
+			dragDrop(event.dragSource.dataForFormat("node") as XML, event.dragSource.dataForFormat("text").toString());
 			
 			if (event.dragSource.hasFormat("text")) {
-				value = event.dragSource.dataForFormat("text").toString();
-				updateComponentFromValue();
-				
-				// Bypass the gapText and gapAfterPadding properties by setting text on the superclass 
-				super.text = value;
-				
 				// TODO: This works, but basically we are forcing a complete update which isn't really necessary...
 				getTextFlow().flowComposer.damage(0, getTextFlow().textLength, FlowDamageType.GEOMETRY);
 				getTextFlow().flowComposer.updateAllControllers();
@@ -206,6 +198,20 @@ package com.clarityenglish.textLayout.elements {
 				
 				// Dispatch a value commit, so the question gets marked at this point
 				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+			}
+		}
+			
+		public function dragDrop(node:XML, text:String):void {
+			if (node) {
+				_droppedNode = node;
+			}
+			
+			if (text) {
+				value = text;
+				updateComponentFromValue();
+				
+				// Bypass the gapText and gapAfterPadding properties by setting text on the superclass 
+				super.text = value;
 			}
 		}
 		

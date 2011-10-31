@@ -22,7 +22,7 @@ p {
 /* Headings */
 h1 {
 	font-family: Arial;
-	font-size: 14px;
+	font-size: 14px !important;
 	font-weight: bold;
 	color: #0000FF;
 	padding-top: 4px;

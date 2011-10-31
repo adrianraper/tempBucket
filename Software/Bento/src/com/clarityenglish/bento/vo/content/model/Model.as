@@ -1,7 +1,7 @@
 package com.clarityenglish.bento.vo.content.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.newgonzo.web.css.CSS;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import com.newgonzo.web.css.CSS;
 
 	public class Model {
 		
@@ -44,7 +44,7 @@ package com.clarityenglish.bento.vo.content.model {
 		public function getPossibleAnswersForNode(node:XML):Vector.<Answer> {
 			var results:Vector.<Answer> = new Vector.<Answer>();
 			for each (var question:Question in _questions) {
-				var matchingNodes:Array = Model.sourceToNodeArray(exercise, question.source);
+				var matchingNodes:Vector.<XML> = Model.sourceToNodes(exercise, question.source);
 				
 				if (matchingNodes.indexOf(node) != -1) {
 					for each (var answer:Answer in question.answers) {
@@ -68,15 +68,15 @@ package com.clarityenglish.bento.vo.content.model {
 		 * @param source
 		 * @return 
 		 */
-		public static function sourceToNodeArray(exercise:Exercise, source:String):Array {
+		public static function sourceToNodes(exercise:Exercise, source:String):Vector.<XML> {
 			var matches:Array = source.match(/\{([^}]*)\}$/);
 			if (matches !== null) {
 				// If the source is wrapped in curly braces then its a CSS selector
-				return exercise.select(matches[1]);
+				return Vector.<XML>(exercise.select(matches[1]));
 			} else {
 				// Otherwise it is a straight id
 				var matchingNode:XMLList = exercise.body..*.(hasOwnProperty("@id") && @id == source);
-				return matchingNode.length() == 1 ? [ matchingNode[0] ] : null;
+				return matchingNode.length() == 1 ? Vector.<XML>( [ matchingNode[0] ] ) : null;
 			}
 			
 			return null;

@@ -80,5 +80,15 @@ package com.clarityenglish.bento.vo.content {
 			return (hasSection(sectionId)) ? _xml.body.section.(@id == sectionId)[0] : null;
 		}
 		
+		/**
+		 * TODO: #20 - for the moment this is hardcoded to false, but it should come from the parameters
+		 *  
+		 * @return 
+		 * 
+		 */
+		public function isCaseSensitive():Boolean {
+			return false;
+		}
+		
 	}
 }

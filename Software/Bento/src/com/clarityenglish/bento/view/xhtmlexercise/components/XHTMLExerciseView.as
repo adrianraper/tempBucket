@@ -6,12 +6,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
+	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;
+	import com.clarityenglish.textLayout.elements.TextComponentElement;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flashx.textLayout.elements.FlowElement;
+	
+	import org.davekeen.util.ClassUtil;
 	
 	import spark.components.Group;
 	
@@ -62,7 +66,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * 
 		 * @return 
 		 */
-		private function get exercise():Exercise {
+		public function get exercise():Exercise {
 			return _xhtml as Exercise;
 		}
 		
@@ -88,9 +92,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
-			
-			// If some XHTML makes it this far, its actually an Exercise (at least, it should be)
-			var exercise:Exercise = xhtml as Exercise;
 			
 			// Go through the sections supported by this exercise setting the visibility and contents of each section in the skin
 			for each (var sectionName:String in SUPPORTED_SECTIONS) {
@@ -152,6 +153,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					}
 				}
 				
+				if (answerElement is InputElement) {
+					var inputElement:InputElement = answerElement as InputElement;
+					
+					if (answer is TextAnswer) {
+						answerNode.text = inputElement.value = (answer as TextAnswer).value;
+					} else {
+						var sourceNodes:Vector.<XML> = (answer as NodeAnswer).getSourceNodes(exercise);
+						inputElement.dragDrop(sourceNodes[0], sourceNodes[0].toString());
+					}
+				}
+				
 				// Remove any existing classes and add the result class
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
 				XHTML.addClass(answerNode, answer.markingClass);
@@ -159,6 +171,46 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				// Refresh the element and update the screen
 				TLFUtil.markFlowElementFormatChanged(answerElement);
 				answerElement.getTextFlow().flowComposer.updateAllControllers();
+			}
+		}
+		
+		public function showCorrectAnswers():void {
+			for each (var question:Question in exercise.model.questions) {
+				// Get the first correct answer
+				var correctAnswer:Answer;
+				for each (var answer:Answer in question.answers) {
+					if (answer.score > 0) {
+						correctAnswer = answer;
+						break;
+					}
+				}
+				
+				if (correctAnswer) {
+					switch (ClassUtil.getClass(correctAnswer)) {
+						case NodeAnswer:
+							var nodeAnswer:NodeAnswer = correctAnswer as NodeAnswer;
+							for each (var answerNode:XML in nodeAnswer.getSourceNodes(exercise)) {
+								var answerElement:FlowElement = getFlowElement(answerNode);
+								
+								XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
+								XHTML.addClass(answerNode, answer.markingClass);
+								
+								// Refresh the element and update the screen
+								TLFUtil.markFlowElementFormatChanged(answerElement);
+								answerElement.getTextFlow().flowComposer.updateAllControllers();
+							}
+							break;
+						case TextAnswer:
+							var textAnswer:TextAnswer = correctAnswer as TextAnswer;
+							for each (var questionNode:XML in question.getSourceNodes(exercise)) {
+								var inputElement:InputElement = getFlowElement(questionNode) as InputElement;
+								inputElement.value = textAnswer.value;
+							}
+							break;
+						default:
+							throw new Error("Unsupported answer type " + correctAnswer);
+					}
+				}
 			}
 		}
 		
