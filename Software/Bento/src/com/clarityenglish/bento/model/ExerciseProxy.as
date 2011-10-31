@@ -54,8 +54,39 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
+		 * TODO: Need to store the first result (for instant marking)
+		 * 
+		 * @param question
+		 * @param answer
+		 * @param key
+		 */
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
+			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
+			
+			// If delayed marking is off and this is the first answer for the question record this seperately
+			// if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
+			
+			// Get the answer map for this question
+			var answerMap:AnswerMap = getSelectedAnswerMap(question);
+			
+			// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
+			// can only have one answer at a time in the map.
+			if (question.isMutuallyExclusive())
+				answerMap.clear();
+			
+			// Add the answer
+			answerMap.put(key, answer);
+			
+			// Send a notification to say the question has been answered
+			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
+			
+			
+			trace("FEEDBACK: " + answer.feedback);
+		}
+		
+		/**
 		 * This method returns an AnswerMap containing the correct answers for the given questions.  This takes into account answers that
-		 * are currently selected.
+		 * are currently selected, and deals correctly with unordered groups of answers.
 		 * 
 		 * @param question
 		 * @param exercise
@@ -101,34 +132,6 @@ package com.clarityenglish.bento.model {
 			}
 			
 			return answerMap;
-		}
-		
-		/**
-		 * TODO: Need to store the first result (for instant marking)
-		 * 
-		 * @param question
-		 * @param answer
-		 * @param key
-		 */
-		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
-			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
-			
-			// If delayed marking is off and this is the first answer for the question record this seperately
-			// if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
-			
-			// Get the answer map for this question
-			var answerMap:AnswerMap = getSelectedAnswerMap(question);
-			
-			// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
-			// can only have one answer at a time in the map.
-			if (question.isMutuallyExclusive())
-				answerMap.clear();
-			
-			// Add the answer
-			answerMap.put(key, answer);
-			
-			// Send a notification to say the question has been answered
-			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
 		}
 		
 	}

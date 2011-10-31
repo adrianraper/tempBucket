@@ -13,6 +13,8 @@
 		
 		public static const SHOW_ANSWERS:String = "show_answers";
 		
+		public static const SHOW_FEEDBACK:String = "show_feedback";
+		
 	}
 	
 }

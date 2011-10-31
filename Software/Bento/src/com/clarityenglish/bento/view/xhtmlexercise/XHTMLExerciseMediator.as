@@ -66,6 +66,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			if (!note.getBody().delayedMarking)
 				view.markAnswerMap(question, answerMap);
+			
 		}
 		
 		protected function handleShowAnswers(note:INotification):void {

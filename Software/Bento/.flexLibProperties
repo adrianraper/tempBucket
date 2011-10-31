@@ -89,6 +89,7 @@
     <classEntry path="flexUnitTests.tests.VectorMapTest"/>
     <classEntry path="flexUnitTests.tests.ExerciseProxyTest"/>
     <classEntry path="flexUnitTests.tests.XHTMLTest"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.model.answer.Feedback"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

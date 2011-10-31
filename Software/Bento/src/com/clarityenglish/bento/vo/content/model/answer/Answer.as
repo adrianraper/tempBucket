@@ -12,8 +12,13 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		protected var xml:XML;
 		
+		private var _feedback:Feedback;
+		
 		public function Answer(xml:XML = null) {
 			this.xml = xml;
+			
+			if (xml.hasOwnProperty("feedback"))
+				_feedback = new Feedback(xml.feedback[0]);
 		}
 		
 		public function get score():int {
@@ -44,6 +49,10 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			
 			// If score is 0 then the marking class can be either neutral or incorrect based on the value of @correct
 			return (xml.hasOwnProperty("@correct") && xml.@correct == "neutral") ? NEUTRAL : INCORRECT;
+		}
+		
+		public function get feedback():Feedback {
+			return _feedback;
 		}
 		
 		public function toXMLString():String {
