@@ -86,7 +86,7 @@ EOD;
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
-		
+
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 				if ($password != $loginObj->F_Password) {
 					//return false;
@@ -265,7 +265,7 @@ EOD;
 	 * @param Number $groupID
 	 */
 	function getGroup($groupID) {
-		$sql = "SELECT * FROM T_GroupStructure WHERE F_GroupID=?";
+		$sql = "SELECT * FROM T_Groupstructure WHERE F_GroupID=?";
 		$rs = $this->db->Execute($sql, array($groupID));
 		if ($rs)
 			return $rs->FetchNextObj();
@@ -293,7 +293,7 @@ EOD;
 			$ip = $_SERVER["REMOTE_ADDR"];
 		}
 		$sql .=	<<<EOD
-				UPDATE T_USER u					
+				UPDATE T_User u					
 				SET u.F_UserIP=?, u.F_LicenceID=? 
 				WHERE u.F_UserID=?
 EOD;
