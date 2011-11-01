@@ -83,14 +83,13 @@ package com.clarityenglish.ielts.view.home {
 			// Each button is a course, so get the id and send it as a signal
 			switch (event.target) {
 				case readingCourse:
-					var id:Number = menu.course.(@caption == "Reading").@id;
+					var course:XML = menu.course.(@caption == "Reading");
 					//var id:Number = menu.course.(@caption == event.target.caption).@id;
 					break;
 			}
 			
 			// Fire the courseSelect signal?
 			// CourseSelect should display zone view and read menu.course(@id==id)
-			// DK suggest sending the whole course node
 			courseSelect.dispatch(course);
 		}
 	}

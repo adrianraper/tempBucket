@@ -35,6 +35,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				IELTSNotifications.EXERCISE_SHOW,
+				IELTSNotifications.SELECT_COURSE,
 			]);
 		}
 		
@@ -45,6 +46,11 @@
 				case IELTSNotifications.EXERCISE_SHOW:
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
+					break;
+				
+				case IELTSNotifications.SELECT_COURSE:
+					var course:XML = note.getBody() as XML;
+					view.showCourse(course);
 					break;
 			}
 		}

@@ -214,6 +214,8 @@ package com.clarityenglish.common.vo.config {
 			if (thisTitle.contentLocation) {
 				this.paths.content = thisTitle.contentLocation;
 			}
+			this.paths.content = "../../../Content/IELTS-Joe";
+			
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 
 			// streamingMedia=http://streaming.clarityenglish.com:1935/cfx/ty/[version]/streamingMedia

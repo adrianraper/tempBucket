@@ -1,11 +1,12 @@
 package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
-	import com.clarityenglish.ielts.view.zone.ZoneView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
-	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.zone.ZoneView;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -14,7 +15,6 @@ package com.clarityenglish.ielts.view.title {
 	
 	import spark.components.Button;
 	import spark.components.TabBar;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	[SkinState("home")]
 	[SkinState("zone")]
@@ -49,11 +49,27 @@ package com.clarityenglish.ielts.view.title {
 		
 		private var currentExerciseHref:Href;
 		// Set the default state for the title
-		private var _skinState:String = 'home';
+		//private var _skinState:String = 'home';
 		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
+			invalidateSkinState();
+		}
+		
+		/**
+		 * Tell the zone view to handle the course
+		 * 
+		 * @param XML The course XML
+		 * 
+		 */
+		public function showCourse(course:XML):void {
+			
+			// Tell the zone which course to work with
+			zoneView.course = course;
+			
+			// Need to set the state to zone
+			currentState = 'zone';
 			invalidateSkinState();
 		}
 		
@@ -108,17 +124,7 @@ package com.clarityenglish.ielts.view.title {
 				return "exercise";
 			
 			//return (mainTabBar && mainTabBar.selectedItem) ? mainTabBar.selectedItem.data : null;
-			return this._skinState;
-		}
-		/**
-		 * The skin state is set by this function.
-		 * TODO. Since this is not a function that needs to be overridden, does that suggest it shouldn't be called like this?
-		 * 
-		 * @param string 
-		 */
-		protected function setCurrentSkinState(state:String):void {
-			//this._skinState = state;
-			this._skinState = state;
+			return currentState;
 		}
 		
 		/**
@@ -128,7 +134,7 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onMainTabBarIndexChange(event:Event):void {
 			// We should set the skin state from the tab bar click
-			setCurrentSkinState((event.target as TabBar).selectedItem.data);
+			currentState = (event.target as TabBar).selectedItem.data;
 			
 			// Then cause a refresh
 			invalidateSkinState();

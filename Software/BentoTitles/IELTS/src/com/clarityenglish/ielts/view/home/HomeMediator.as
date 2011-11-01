@@ -4,6 +4,8 @@
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.manageable.User;
 	
+	import com.clarityenglish.ielts.IELTSNotifications;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -22,8 +24,11 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
 			// AR inject data to the view.
 			injectUserDetails();
+			
+			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
 		}
         
@@ -56,7 +61,13 @@
 			view.user = loginProxy.user;
 		}
 
+		/**
+		 * Trigger the display of a course in the zone view
+		 * 
+		 */
 		private function onCourseSelected(course:XML):void {
 			// dispatch a notification, which titleMediator is listening for
+			sendNotification(IELTSNotifications.SELECT_COURSE, course);
+		}
 	}
 }

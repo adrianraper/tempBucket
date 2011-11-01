@@ -2,16 +2,13 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace login "com.clarityenglish.ielts.view.login.*";
-@namespace main "com.clarityenglish.ielts.view.main.*";
-@namespace menu "com.clarityenglish.ielts.view.title.*";
+@namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace almer "almerblank.flex.spark.components.*";
-@namespace zone "com.clarityenglish.ielts.view.zone.*";
-@namespace title "com.clarityenglish.ielts.view.title.*";
 
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
