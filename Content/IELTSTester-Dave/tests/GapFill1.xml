@@ -14,9 +14,7 @@
 				<GapFillQuestion source="q1Input" block="q1Block">
 					<answer correct="neutral" value="xxx" />
 					<answer correct="true" value="us" />
-					<answer correct="false" value="them">
-						<feedback>Think about it, fool!</feedback>
-					</answer>
+					<answer correct="false" value="them" />
 				</GapFillQuestion>
 				
 				<GapFillQuestion source="q2Input" block="q2Block">

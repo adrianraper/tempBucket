@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<script id="model" type="application/xml">
-			<renderer>EmuRenderer</renderer>
+		
 		</script>
 	</head>
 	
