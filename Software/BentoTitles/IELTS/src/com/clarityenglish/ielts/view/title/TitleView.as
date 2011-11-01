@@ -117,6 +117,7 @@ package com.clarityenglish.ielts.view.title {
 		 * @param string 
 		 */
 		protected function setCurrentSkinState(state:String):void {
+			//this._skinState = state;
 			this._skinState = state;
 		}
 		

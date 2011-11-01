@@ -24,10 +24,12 @@
 			super.onRegister();
 			// AR inject data to the view.
 			injectUserDetails();
+			view.courseSelect.add(onCourseSelected);
 		}
         
 		override public function onRemove():void {
 			super.onRemove();
+			view.courseSelect.remove(onCourseSelected);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -53,6 +55,8 @@
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			view.user = loginProxy.user;
 		}
-		
+
+		private function onCourseSelected(course:XML):void {
+			// dispatch a notification, which titleMediator is listening for
 	}
 }

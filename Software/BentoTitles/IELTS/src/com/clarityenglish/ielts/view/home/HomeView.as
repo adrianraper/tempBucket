@@ -38,7 +38,7 @@ package com.clarityenglish.ielts.view.home {
 		[Bindable]
 		public var _user:User;
 		
-		public var courseSelect:Signal = new Signal(XMLListCollection);
+		public var courseSelect:Signal = new Signal(XML);
 		
 		public function set user(value:User):void {
 			_user = value;
@@ -90,7 +90,8 @@ package com.clarityenglish.ielts.view.home {
 			
 			// Fire the courseSelect signal?
 			// CourseSelect should display zone view and read menu.course(@id==id)
-			courseSelect.dispatch(id);
+			// DK suggest sending the whole course node
+			courseSelect.dispatch(course);
 		}
 	}
 }
