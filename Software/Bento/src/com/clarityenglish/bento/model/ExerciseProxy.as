@@ -60,7 +60,7 @@ package com.clarityenglish.bento.model {
 		 * @param answer
 		 * @param key
 		 */
-		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
+		public function questionAnswer(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 			
 			// If delayed marking is off and this is the first answer for the question record this seperately
@@ -80,8 +80,9 @@ package com.clarityenglish.bento.model {
 			// Send a notification to say the question has been answered
 			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
 			
-			
-			trace("FEEDBACK: " + answer.feedback);
+			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback
+			if (answer.feedback)
+				sendNotification(BBNotifications.SHOW_FEEDBACK, { exercise: exercise, feedback: answer.feedback } );
 		}
 		
 		/**

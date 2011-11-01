@@ -30,7 +30,7 @@ package com.clarityenglish.bento.controller {
 			var textAnswer:TextAnswer = getTextAnswer(question, answerString, exercise.isCaseSensitive());
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, textAnswer, key);
+			exerciseProxy.questionAnswer(exercise, question, textAnswer, key);
 		}
 		
 		/**

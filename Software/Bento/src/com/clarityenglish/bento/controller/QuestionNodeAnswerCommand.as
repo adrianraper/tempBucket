@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	
@@ -20,12 +21,13 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var exercise:Exercise = note.getBody().exercise as Exercise;
 			var question:Question = note.getBody().question as Question;
 			var nodeAnswer:NodeAnswer = note.getBody().nodeAnswer;
 			var key:Object = note.getBody().key;
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, nodeAnswer, key);
+			exerciseProxy.questionAnswer(exercise, question, nodeAnswer, key);
 		}
 		
 	}

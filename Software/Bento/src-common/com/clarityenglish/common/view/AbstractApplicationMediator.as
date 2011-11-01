@@ -2,16 +2,11 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.common.view {
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	
-	import flash.display.Sprite;
-	
-	import mx.controls.Alert;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -34,14 +29,18 @@ package com.clarityenglish.common.view {
 			// pass the viewComponent to the superclass where 
 			// it will be stored in the inherited viewComponent property
 			super(NAME, viewComponent);
+			
+			if (!(viewComponent is IBentoApplication))
+				throw new Error("The main application must implement com.clarityenglish.bento.view.interfaces.IBentoApplication");
+			
+			if (!(viewComponent is BentoApplication))
+				throw new Error("The main application must extend com.clarityenglish.bento.BentoApplication");
 		}
 		
 		/**
 		 * xxx
 		 */
-		private function get application():IBentoApplication {
-			// This should return an iBentoApplication
-			//return viewComponent;
+		private function get view():IBentoApplication {
 			return (viewComponent as IBentoApplication);
 		}
 		
@@ -88,7 +87,7 @@ package com.clarityenglish.common.view {
 					// A typical such error would be wrong name/password/
 					// Hmm, but can you ask a state to do this? How do I know which state?
 					// Is this where a FSM would come in handy?
-					this.application.showErrorMessage(note.getBody() as BentoError);
+					this.view.showErrorMessage(note.getBody() as BentoError);
 					break;
 				case CommonNotifications.TRACE_NOTICE:
 					log.info(note.getBody().toString());

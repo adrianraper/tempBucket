@@ -12,21 +12,25 @@ package com.clarityenglish.ielts.view.login {
 	import spark.components.Label;
 	import spark.components.TextInput;
 	import spark.components.Panel;
-
+	
 	
 	public class LoginView extends BentoView implements LoginComponent {
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var loginButton:Button;
 		
 		[SkinPart]
 		public var loginPanel:Panel;
+		
 		[SkinPart]
 		public var passwordLabel:Label;
+		
 		[SkinPart]
 		public var nameLabel:Label;
+		
 		[SkinPart]
 		public var passwordInput:TextInput;
+		
 		[SkinPart]
 		public var nameInput:TextInput;
 		
@@ -35,18 +39,24 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName,instance);
+			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case loginButton:
 					loginButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
+				case nameInput:
+					nameInput.text = "dandelion";
+					break;
+				case passwordInput:
+					passwordInput.text = "password";
+					break;
 			}
 		}
-
+		
 		/**
 		 * The user has clicked the login button
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function onLoginButtonClick(event:MouseEvent):void {
@@ -54,38 +64,38 @@ package com.clarityenglish.ielts.view.login {
 			// RM process does it like this - and all the code is copied from RM to Bento.com.clarityenglish.common
 			// Dispatch a LoginEvent here
 			dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
-			
+		
 			// The loginMediator has told the loginView to listen for this event - (loginView.addEventListener(LoginEvent.LOGIN, onLogin);
 			// which the mediator handles by sending a Notification.LOGIN
-			
+		
 			// The applicationFacade has registered Notification.LOGIN to the LoginCommand
 			// This is picked up by LoginCommand, which tells LoginProxy to call the backside through RemoteDelegate
-			
+		
 			// LoginProxy picks up the result with onDelegateResult
 			// This sends a notification for success or failure
-			
+		
 			// The loginMediator is registered to get failure and passes the error to the loginView for display
-			
+		
 			// The applicationMediator is registered to get success notification and changes the application state
 			// The applicationFacade also links LoggedInCommand to the success notification
 			// Should the LoggedInCommand be in common? I would think so.
-			
+		
 			// The loggedInCommand gets all the data from the notification (it can trigger other notifications if necessary)
 			// It also loads registers all the proxies with the facade. This triggers all sorts of action...
-			
+		
 		}
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
-			
+		
 		}
-
+		
 		public function showInvalidLogin():void {
-			Alert.show("Sorry, that name or password are wrong.","Login problem");
+			Alert.show("Sorry, that name or password are wrong.", "Login problem");
 		}
-
+		
 		public function clearData():void {
 			passwordInput.text = "";
 		}
-
+	
 	}
 }

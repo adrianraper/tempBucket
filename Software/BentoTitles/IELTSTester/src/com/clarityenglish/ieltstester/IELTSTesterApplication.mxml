@@ -4,6 +4,7 @@
 			   			xmlns:mx="library://ns.adobe.com/flex/mx"
 			  			xmlns:bento="com.clarityenglish.bento.*"
 						xmlns:tester="com.clarityenglish.ieltstester.view.tester.*"
+						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
 						creationComplete="creationComplete(event)"
 						addedToStage="addedToStage(event)">
 	
@@ -18,9 +19,11 @@
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
 			import com.clarityenglish.bento.vo.Href;
+			import com.clarityenglish.common.vo.config.BentoError;
 			
-			import mx.events.FlexEvent;
 			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
 			import spark.events.IndexChangeEvent;
 
 			[Bindable]
@@ -58,6 +61,10 @@
 			
 			protected function onShowAnswersClick(event:Event):void {
 				facade.sendNotification(BBNotifications.SHOW_ANSWERS);
+			}
+			
+			public function showErrorMessage(error:BentoError):void {
+				log.error("Received error {0}", error);
 			}
 			
 		]]>

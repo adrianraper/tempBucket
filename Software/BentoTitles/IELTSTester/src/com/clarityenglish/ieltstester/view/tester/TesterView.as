@@ -38,7 +38,8 @@ package com.clarityenglish.ieltstester.view.tester {
 			for (var n:uint = 0; n < menuTree.dataProvider.length; n++)
 				menuTree.expandItem(menuTree.dataProvider.getItemAt(n));
 			
-			//menuTree.selectedItem = menu..exercise.(@caption == STARTING_CAPTION)[0];
+			menuTree.selectedItem = menu..exercise.(@caption == STARTING_CAPTION)[0];
+			
 			menuTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 		}
 		

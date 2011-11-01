@@ -12,6 +12,10 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return xml.@source;
 		}
 		
+		public function get title():String {
+			return xml.@title || "Feedback";
+		}
+		
 	}
 	
 }

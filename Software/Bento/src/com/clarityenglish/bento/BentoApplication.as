@@ -1,18 +1,15 @@
 package com.clarityenglish.bento {
+	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.textLayout.util.TLF2Application;
 	
 	import flash.events.Event;
 	
-	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.logging.LogEventLevel;
 	import mx.logging.targets.TraceTarget;
 	
 	import org.davekeen.util.ClassUtil;
-	
-	import spark.components.VideoPlayer;
-	import spark.skins.spark.VideoPlayerSkin;
 
 	public class BentoApplication extends TLF2Application {
 		
