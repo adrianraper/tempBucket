@@ -58,8 +58,8 @@ class DBDetails {
 			default:
 				$this->driver = "mysql"; 
 				$this->host = "localhost";  
-				$this->user = "root"; 
-				$this->password = "Sunshine1787"; 
+				$this->user = "clarity"; 
+				$this->password = "clarity"; 
 				$this->dbname  = "rack80829";
 				break;
 	}
