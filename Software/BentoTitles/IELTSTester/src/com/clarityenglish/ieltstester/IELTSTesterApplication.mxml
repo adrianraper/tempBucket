@@ -35,10 +35,10 @@
 				// Running as a debug from Flex actually uses 'URL'
 				// file:///D:/ProjectBench/Software/BentoTitles/IELTSTester/bin-debug/IELTSTesterApplication.html
 				// so you have to just look for part of that. Should work for DK too I think.
-				if (FlexGlobals.topLevelApplication.url.toLowerCase().indexOf('projectbench')>=0) {
-					serverName = "dock.projectbench";
-				} else {
+				if (FlexGlobals.topLevelApplication.url.toLowerCase().indexOf('claritydevelop')>=0) {
 					serverName = "claritydevelop";
+				} else {
+					serverName = "dock.projectbench";
 				}
 				
 				// Kick off the PureMVC framework with a STARTUP notification
