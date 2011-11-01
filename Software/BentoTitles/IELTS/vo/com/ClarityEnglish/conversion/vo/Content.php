@@ -223,11 +223,13 @@ class Content{
 					} else if ($fieldType==Field::FIELD_TYPE_TARGET) {
 						$buildText.=$m[1].'<g id="t'.$m[2].'">'.$answer.'</g>'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_TARGETGAP) {
-						$buildText.=$m[1].'<input id="'.$m[2].'" width="100" value="'.$answer.'" enabled="false" />'.$m[3];
+						$buildText.=$m[1].'<input id="q'.$m[2].'" value="'.$answer.'" />'.$m[3];
 					} else if ($fieldType==Field::FIELD_TYPE_DROPDOWN) {
-						$buildText.=$m[1].'<select id="q'.$m[2].'" type="dropdown" >';
+						$buildText.=$m[1].'<select id="q'.$m[2].'" >';
 						foreach ($answers as $answer) {
-							$buildText.= '<option id="o'.$generatedID++.'">'.$answer->getAnswer().'"</option>"';
+							// Is there any value in having an id for each option?
+							$buildText.= '<option>'.$answer->getAnswer().'</option>';
+							//$buildText.= '<option id="o'.$generatedID++.'">'.$answer->getAnswer().'</option>';
 						}
 						$buildText.='</select>'.$m[3];
 					}
@@ -481,7 +483,7 @@ class Content{
 						}
 					}
 					if ($fieldType==Field::FIELD_TYPE_GAP) {
-						$buildText.=$m[1].'<input id="q'.$m[2].'" width="100" />'.$m[3];
+						$buildText.=$m[1].'<input id="q'.$m[2].'" />'.$m[3];
 					}
 				}
 			}			

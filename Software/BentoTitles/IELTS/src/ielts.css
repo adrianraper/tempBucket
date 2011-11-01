@@ -9,27 +9,29 @@
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace almer "almerblank.flex.spark.components.*";
+@namespace zone "com.clarityenglish.ielts.view.zone.*";
+@namespace title "com.clarityenglish.ielts.view.title.*";
 
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
 }
 
-menu|MenuView {
-	skinClass: ClassReference("skins.ielts.MenuSkin");
+title|TitleView {
+	skinClass: ClassReference("skins.ielts.TitleSkin");
 }
 
-module|ModuleView {
-	skinClass: ClassReference("skins.ielts.ModuleSkin");
+zone|ZoneView {
+	skinClass: ClassReference("skins.ielts.ZoneSkin");
 }
 
-module|ModuleView #practiceZoneDataGroup almer|SkinnableItemRenderer {
+zone|ZoneView #practiceZoneDataGroup almer|SkinnableItemRenderer {
 	/* skinClass: ClassReference("skins.ielts.module.ButtonItemRendererSkin"); */
-	skinClass: ClassReference("skins.ielts.module.ImageItemRendererSkin");
+	skinClass: ClassReference("skins.ielts.zone.ImageItemRendererSkin");
 }
 
-module|ModuleView #examPractice1Difficulty,
-module|ModuleView #examPractice2Difficulty {
-	skinClass: ClassReference("skins.ielts.module.DifficultyRendererSkin");
+zone|ZoneView #examPractice1Difficulty,
+zone|ZoneView #examPractice2Difficulty {
+	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
 }
 
 exercise|ExerciseView {

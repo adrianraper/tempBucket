@@ -1,9 +1,9 @@
-package com.clarityenglish.ielts.view.module {
+package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.manageable.User;
-	import com.clarityenglish.ielts.view.module.ui.ButtonItemRenderer;
-	import com.clarityenglish.ielts.view.module.ui.ImageItemRenderer;
+	import com.clarityenglish.ielts.view.zone.ui.ButtonItemRenderer;
+	import com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -21,19 +21,13 @@ package com.clarityenglish.ielts.view.module {
 	import spark.components.TabBar;
 	import spark.components.VideoPlayer;
 	
-	public class ModuleView extends BentoView {
-		
-		[SkinPart(required="true")]
-		public var courseTabBar:TabBar;
+	public class ZoneView extends BentoView {
 		
 		[SkinPart(required="true")]
 		public var courseTitleLabel:Label;
 		
 		[SkinPart(required="true")]
 		public var courseDescriptionLabel:Label;
-		
-		[SkinPart(required="true")]
-		public var userNameLabel:Label;
 		
 		[SkinPart(required="true")]
 		public var questionZoneButton:Button;
@@ -59,9 +53,6 @@ package com.clarityenglish.ielts.view.module {
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
-		[Bindable]
-		public var _user:User;
-		
 		public var exerciseSelect:Signal = new Signal(Href);
 		
 		public function set course(value:XML):void {
@@ -69,18 +60,14 @@ package com.clarityenglish.ielts.view.module {
 			_courseChanged = true;
 			invalidateProperties();
 		}
-		public function set user(value:User):void {
-			_user = value;
-			// Also put some parts of this information into the skin
-			//userNameLabel.text = _user.fullName;
-		}
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
 			// Populate the course tab bar with the course names
-			courseTabBar.dataProvider = new XMLListCollection(menu..course);
+			//courseTabBar.dataProvider = new XMLListCollection(menu..course);
 			
 			// Preselect the first course
+			// TODO. The course will have been selected from the home screen (or zone screen or direct start)
 			course = menu..course[0];
 		}
 
@@ -88,8 +75,8 @@ package com.clarityenglish.ielts.view.module {
 			super.commitProperties();
 			
 			if (_courseChanged) {
-				courseTitleLabel.text = _course.@caption;
-				courseDescriptionLabel.text = _course.@description;
+				//courseTitleLabel.text = _course.@caption;
+				//courseDescriptionLabel.text = _course.@description;
 				
 				// class is a reserved keyword so have to use @["class"] instead of @class
 				examPractice1Button.label = _course.unit.(@["class"] == "exam-practice").exercise[0].@caption;
@@ -121,13 +108,8 @@ package com.clarityenglish.ielts.view.module {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			//trace("partAdded in ModuleView for " + partName);
+			//trace("partAdded in ZoneView for " + partName);
 			switch (instance) {
-				case courseTabBar:
-					courseTabBar.requireSelection = true;
-					courseTabBar.addEventListener(Event.CHANGE, onCourseTabBarIndexChange);
-					break;
-				
 				case practiceZoneDataGroup:
 					// Create a signal and listener for the button item renderer
 					var exerciseClick:Signal = new Signal(XML);
@@ -149,15 +131,6 @@ package com.clarityenglish.ielts.view.module {
 			}
 		}
 		
-		/**
-		 * The user has selected a course so update the module view
-		 * 
-		 * @param e
-		 */
-		protected function onCourseTabBarIndexChange(event:Event):void {
-			course = event.target.selectedItem;
-		}
-				
 		/**
 		 * The user has selected an exercise
 		 * 

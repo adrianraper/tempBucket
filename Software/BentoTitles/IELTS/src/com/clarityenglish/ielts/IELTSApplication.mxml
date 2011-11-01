@@ -5,10 +5,11 @@
 					    xmlns:bento="com.clarityenglish.bento.*"
 						xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*"
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
-						xmlns:menu="com.clarityenglish.ielts.view.menu.*"
+						xmlns:menu="com.clarityenglish.ielts.view.title.*"
+						xmlns:credits="com.clarityenglish.ielts.view.credits.*"
 						creationComplete="creationComplete(event)"
 						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
-						currentState="loading">
+						currentState="loading" xmlns:title="com.clarityenglish.ielts.view.title.*">
 	
 	<fx:Metadata>
 		[SWF(width=800, height=600)]
@@ -17,7 +18,8 @@
 	<bento:states>
 		<s:State name="loading" />
 		<s:State name="login" />
-		<s:State name="menu" />
+		<s:State name="title" />
+		<s:State name="credits" />
 	</bento:states>
 	
 	<fx:Style source="ielts.css" />
@@ -38,7 +40,8 @@
 			protected function creationComplete(event:FlexEvent):void {
 				
 				// Hardcode some parameters that you expect to come from flashvars
-				FlexGlobals.topLevelApplication.parameters.rootID=163;
+				//FlexGlobals.topLevelApplication.parameters.rootID=163;
+				FlexGlobals.topLevelApplication.parameters.prefix='Clarity';
 				
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);
@@ -53,6 +56,7 @@
 	
 	<s:Panel title="loading..." width="100" height="100" includeIn="loading"/>	
 	<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
-	<menu:MenuView id="menuView" width="100%" height="100%" includeIn=" menu" />
+	<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
+	<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
 	
 </bento:BentoApplication>

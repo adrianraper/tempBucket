@@ -12,12 +12,14 @@
 	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.login.LoginView;
-	import com.clarityenglish.ielts.view.menu.MenuMediator;
-	import com.clarityenglish.ielts.view.menu.MenuView;
-	import com.clarityenglish.ielts.view.module.ModuleMediator;
-	import com.clarityenglish.ielts.view.module.ModuleView;
+	import com.clarityenglish.ielts.view.title.TitleMediator;
+	import com.clarityenglish.ielts.view.title.TitleView;
+	import com.clarityenglish.ielts.view.zone.ZoneMediator;
+	import com.clarityenglish.ielts.view.zone.ZoneView;
 	import com.clarityenglish.ielts.view.progress.ProgressMediator;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
+	import com.clarityenglish.ielts.view.home.HomeMediator;
+	import com.clarityenglish.ielts.view.home.HomeView;
 	
 	/**
 	* ...
@@ -35,11 +37,12 @@
 			
 			// Map IELTS specific views to their mediators
 			mapView(LoginView, LoginMediator);
-			mapView(MenuView, MenuMediator);
-			mapView(ModuleView, ModuleMediator);
+			mapView(TitleView, TitleMediator);
+			mapView(ZoneView, ZoneMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(ProgressView, ProgressMediator);
 			mapView(AccountView, AccountMediator);
+			mapView(HomeView, HomeMediator);
 			
 			// Register IELTS specific commands
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);

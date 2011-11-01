@@ -1,4 +1,4 @@
-package com.clarityenglish.ielts.view.module.ui {
+package com.clarityenglish.ielts.view.zone.ui {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
 	import com.clarityenglish.bento.vo.Href;

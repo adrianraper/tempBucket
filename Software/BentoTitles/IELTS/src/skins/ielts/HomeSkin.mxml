@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
+	</fx:Metadata>
+	
+	<s:layout>
+		<s:HorizontalLayout />
+	</s:layout>
+	
+	<s:VGroup width="100%">
+		<s:HGroup width="100%">
+			<s:Label fontSize="14" fontWeight="bold" text="Welcome " />
+			<s:Label id="userNameLabel" fontSize="14" fontWeight="bold" text="{hostComponent._user.fullName}" />
+		</s:HGroup>
+		
+		<s:Line width="100%">
+			<s:stroke>
+				<s:SolidColorStroke color="0x000000" />
+			</s:stroke>
+		</s:Line>
+		<s:Button id="writingCourse" label="writing" />
+		<s:Button id="readingCourse" label="reading" />
+		<s:Button id="listeningCourse" label="listening" />
+		<s:Button id="speakingCourse" label="speaking" />
+		<s:Button id="examTipsCourse" label="exam tips" />
+
+	</s:VGroup>		
+	
+</s:Skin>

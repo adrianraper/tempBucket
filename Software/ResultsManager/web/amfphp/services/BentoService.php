@@ -85,11 +85,13 @@ class BentoService extends AbstractService {
 		try {
 			// Not sure where the following function should go - AccountOps or LoginOps
 			// For now I will put it in LoginOps
-			if (isset($config['rootID'])) 
+			/*if (isset($config['rootID'])) 
 				$rootID = $config['rootID'];
+			if (isset($config['prefix'])) 
+				$prefix = $config['prefix'];
 			if (isset($config['productCode'])) 
-				$productCode = $config['productCode'];
-			$account = $this->loginOps->getAccountSettings($rootID, $productCode);
+				$productCode = $config['productCode'];*/
+			$account = $this->loginOps->getAccountSettings($config);
 						
 			// We also need some misc stuff.
 			$configObj = array("databaseVersion" => $this->getDatabaseVersion());
@@ -101,7 +103,7 @@ class BentoService extends AbstractService {
 		}
 		
 		// Set some session variables that other calls will use
-		Session::set('rootID', $rootID);
+		Session::set('rootID', $account->id);
 		Session::set('productCode', $productCode);
 				
 		/*

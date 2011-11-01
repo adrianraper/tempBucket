@@ -25,7 +25,12 @@ package com.clarityenglish.ieltstester.view.tester {
 			super.updateViewFromXHTML(xhtml);
 			
 			// Set the unit of the first course as the dataprovider for the tree
-			menuTree.dataProvider = new XMLListCollection(menu.course[0]..unit);
+			// For IELTSTester I only want to see practice zone, but I want all courses
+			//menuTree.dataProvider = new XMLListCollection(menu.course[0]..unit);
+			// The following correctly selects practicfiree-zone only, but puts units as the top level in the tree
+			//menuTree.dataProvider = new XMLListCollection(menu.course..unit.(@["class"]=="practice-zone"));
+			// This shows too much, but works
+			menuTree.dataProvider = new XMLListCollection(menu.course);
 			
 			var startingExercise:XML = menu.course[0].unit[0].exercise[0];
 			
@@ -33,7 +38,7 @@ package com.clarityenglish.ieltstester.view.tester {
 			for (var n:uint = 0; n < menuTree.dataProvider.length; n++)
 				menuTree.expandItem(menuTree.dataProvider.getItemAt(n));
 			
-			menuTree.selectedItem = menu..exercise.(@caption == STARTING_CAPTION)[0];
+			//menuTree.selectedItem = menu..exercise.(@caption == STARTING_CAPTION)[0];
 			menuTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 		}
 		
@@ -42,7 +47,13 @@ package com.clarityenglish.ieltstester.view.tester {
 			
 			switch (instance) {
 				case menuTree:
-					menuTree.labelFunction = function(item:Object):String { return unescape(item.@caption); }
+					menuTree.labelFunction = function(item:Object):String {
+												if (item.@caption.toString()) {
+													return unescape(item.@caption);
+												} else {
+													return unescape(item.@["class"]);
+												}
+											}
 					menuTree.addEventListener(IndexChangeEvent.CHANGE, onMenuTreeChange);
 					break;
 			}

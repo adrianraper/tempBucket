@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.module.ui.ImageItemRenderer")]
+		[HostComponent("com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer")]
 	</fx:Metadata>
 	
 	<s:Image id="image" />

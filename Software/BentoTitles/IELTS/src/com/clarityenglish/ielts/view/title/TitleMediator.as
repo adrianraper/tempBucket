@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.ielts.view.menu {
+﻿package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
@@ -14,14 +14,14 @@
 	/**
 	 * A Mediator
 	 */
-	public class MenuMediator extends BentoMediator implements IMediator {
+	public class TitleMediator extends BentoMediator implements IMediator {
 		
-		public function MenuMediator(mediatorName:String, viewComponent:BentoView) {
+		public function TitleMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():MenuView {
-			return viewComponent as MenuView;
+		private function get view():TitleView {
+			return viewComponent as TitleView;
 		}
 		
 		override public function onRegister():void {

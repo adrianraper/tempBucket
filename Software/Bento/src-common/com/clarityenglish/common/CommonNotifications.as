@@ -18,6 +18,13 @@
 		public static const TRACE_WARNING:String = "trace_warning";
 		public static const TRACE_ERROR:String = "trace_error";
 		public static const DATABASE_ERROR:String = "database_error";
+		
+		// I guess the following are IELTS specific notifications
+		public static const GOTO_HOME:String = "goto_home";
+		public static const GOTO_PROGRESS:String = "goto_progress";
+		public static const GOTO_ACCOUNT:String = "goto_account";
+		public static const GOTO_ZONE:String = "goto_zone";
+
 	}
 	
 }

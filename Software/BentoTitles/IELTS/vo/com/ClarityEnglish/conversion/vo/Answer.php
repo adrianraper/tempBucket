@@ -45,7 +45,8 @@ class Answer {
 		}
 	}
 	function getAnswer(){
-		return $this->value;
+		// Always trim the answer at this point
+		return trim($this->value);
 	}
 	function isCorrect(){
 		return $this->correct;

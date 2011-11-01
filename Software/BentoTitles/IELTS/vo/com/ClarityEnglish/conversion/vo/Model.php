@@ -39,6 +39,7 @@ XML;
 				
 				$newQ = $this->model->questions->addChild("DragQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
+				$newQ->addAttribute('block','b'.$field->getID());
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$matchingID = 'unknown';
@@ -64,6 +65,18 @@ XML;
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
+				// Is there any feedback to be added to the model related to this field?
+				// NOTE: This code assumes that there is only one answer in the field 
+				if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+					foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+						// Is this feedback for this field?
+						if ($feedback->getID()==$field->getID()) {
+							$newFB = $newA->addChild('feedback');	
+							$newFB->addAttribute('source','fb'.$field->getID());
+							break;
+						}
+					}
+				}
 			}
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_DRAGANDDROP && $this->getParent()->isQuestionBased()) {
 			// Each question has its own fields
@@ -74,10 +87,10 @@ XML;
 				// Ideally we would match to make sure they are the same
 				//$newQ->addAttribute('group',$field->group);
 				$newQ->addAttribute('source','q'.$question->getID());
+				$newQ->addAttribute('block','b'.$question->getID());
 				// Each field in the body lists the correct answer. You need to match these
 				// against the answers in the fields in noscroll to get the answer source id
 				foreach ($question->getFields() as $field) {
-				
 					// Only ever 1 answer per field
 					foreach ($field->getAnswers() as $answer) {
 						$newA = $newQ->addChild('answer');
@@ -98,9 +111,56 @@ XML;
 						}
 					}
 					//echo $newQ;
+					// Is there any feedback to be added to the model related to this field?
+					// NOTE: This code assumes that there is only one answer in the field 
+					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source','fb'.$field->getID());
+								break;
+							}
+						}
+					}
 				}
 			}
 		// For a gapfill, the questions have their source as the gaps
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && $this->getParent()->isQuestionBased()) {
+			// Each question has its own fields
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("GapFillQuestion");
+				$newQ->addAttribute('source','q'.$question->getID());
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				//$newQ->addAttribute('block','b'.$question->getID());
+				foreach ($question->getFields() as $field) {
+					$newQ->addAttribute('block','b'.$field->group);
+					// You can have multiple answers per field
+					// they should all have the same group id
+					$newQ->addAttribute('block','b'.$field->group);
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						//$newA->addAttribute('source','a'.$field->getID());
+						$newA->addAttribute('value',$answer->getAnswer());
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+					// Is there any feedback to be added to the model related to this field?
+					// NOTE: This code assumes that there is only one answer in the field 
+					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source','fb'.$field->getID());
+								break;
+							}
+						}
+					}
+				}
+			}
+			
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 				
@@ -114,31 +174,21 @@ XML;
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
-			}
-		} elseif ($this->type==Exercise::EXERCISE_TYPE_GAPFILL && $this->getParent()->isQuestionBased()) {
-			// Each question has its own fields
-			foreach ($this->getParent()->body->getQuestions() as $question) {
-				$newQ = $this->model->questions->addChild("GapFillQuestion");
-				// Whilst you can get the group from the field, you can also get it from the question
-				// Ideally we would match to make sure they are the same
-				//$newQ->addAttribute('group',$field->group);
-				$newQ->addAttribute('source','q'.$question->getID());
-				foreach ($question->getFields() as $field) {
-					// You can have multiple answers per field
-					// they should all have the same group id
-					$newQ->addAttribute('block','b'.$field->group);
-					foreach ($field->getAnswers() as $answer) {
-						$newA = $newQ->addChild('answer');
-						//$newA->addAttribute('source','a'.$field->getID());
-						$newA->addAttribute('value',$answer->getAnswer());
-						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+				// Is there any feedback to be added to the model related to this field?
+				// NOTE: This code assumes that there is only one answer in the field 
+				if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+					foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+						// Is this feedback for this field?
+						if ($feedback->getID()==$field->getID()) {
+							$newFB = $newA->addChild('feedback');	
+							$newFB->addAttribute('source','fb'.$field->getID());
+							break;
+						}
 					}
-					//echo $newQ;
 				}
 			}
-			
 		// For a dropdown, the questions have their source as the gaps
-		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN) {
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN && !$this->getParent()->isQuestionBased()) {
 			$generateID=1;
 			foreach ($this->getParent()->body->getFields() as $field) {
 				
@@ -152,14 +202,59 @@ XML;
 					$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 				}
 				//echo $newQ;
+				// Is there any feedback to be added to the model related to this field?
+				// NOTE: This code assumes that there is only one answer in the field 
+				if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+					foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+						// Is this feedback for this field?
+						if ($feedback->getID()==$field->getID()) {
+							$newFB = $newA->addChild('feedback');	
+							$newFB->addAttribute('source','fb'.$field->getID());
+							break;
+						}
+					}
+				}
 			}
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_DROPDOWN && $this->getParent()->isQuestionBased()) {
+			// Each question has its own fields
+			$generateID=1;
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("DropDownQuestion");
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				//$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('source','q'.$question->getID());
+				foreach ($question->getFields() as $field) {
+					$newQ->addAttribute('block','b'.$field->group);
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						//$newA->addAttribute('source','a'.$field->getID());
+						$newA->addAttribute('source','a'.$generateID++);
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+					// Is there any feedback to be added to the model related to this field?
+					// NOTE: This code assumes that there is only one answer in the field 
+					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source','fb'.$field->getID());
+								break;
+							}
+						}
+					}
+				}
+			}
+			
 		// For a targetspotting, the questions have their source as the gaps
-		} elseif ($this->type==Exercise::EXERCISE_TYPE_ERRORCORRECTION) {
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_ERRORCORRECTION && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 				
 				$newQ = $this->model->questions->addChild("ErrorCorrectionQuestion");
 				$newQ->addAttribute('source','q'.$field->getID());
-				//$newQ->addAttribute('group',$field->group);
+				$newQ->addAttribute('block','b'.$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('value',$answer->getAnswer());
@@ -180,11 +275,45 @@ XML;
 					}
 				}
 			}
-    	// For a targetspotting, the questions have their source as the gaps
-		} elseif ($this->type==Exercise::EXERCISE_TYPE_TARGETSPOTTING) {
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_ERRORCORRECTION && $this->getParent()->isQuestionBased()) {
+			// Each question has its own fields
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("ErrorCorrectionQuestion");
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				$newQ->addAttribute('source','q'.$question->getID());
+				foreach ($question->getFields() as $field) {
+					// You can have multiple answers per field
+					// they should all have the same group id
+					$newQ->addAttribute('block','b'.$field->group);
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						//$newA->addAttribute('source','a'.$field->getID());
+						$newA->addAttribute('source',$answer->getAnswer());
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+					// Is there any feedback to be added to the model related to this field?
+					// NOTE: This code assumes that there is only one answer in the field 
+					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source','fb'.$field->getID());
+								break;
+							}
+						}
+					}					
+				}
+			}
+		// For a targetspotting, the questions have their source as the gaps
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_TARGETSPOTTING && !$this->getParent()->isQuestionBased()) {
 			foreach ($this->getParent()->body->getFields() as $field) {
 				
 				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
+				//$newQ->addAttribute('source','t'.$field->getID());
+				$newQ->addAttribute('block','b'.$field->group);
 				foreach ($field->getAnswers() as $answer) {
 					$newA = $newQ->addChild('answer');
 					$newA->addAttribute('source','t'.$field->getID());
@@ -204,7 +333,39 @@ XML;
 					}
 				}
 			}
-			// For a multiple choice, the questions have their source as the gaps and blocks
+		} elseif ($this->type==Exercise::EXERCISE_TYPE_TARGETSPOTTING && $this->getParent()->isQuestionBased()) {
+			// Each question has its own fields
+			foreach ($this->getParent()->body->getQuestions() as $question) {
+				$newQ = $this->model->questions->addChild("TargetSpottingQuestion");
+				// Whilst you can get the group from the field, you can also get it from the question
+				// Ideally we would match to make sure they are the same
+				$newQ->addAttribute('source','t'.$question->getID());
+				foreach ($question->getFields() as $field) {
+					// You can have multiple answers per field
+					// they should all have the same group id
+					$newQ->addAttribute('block','b'.$field->group);
+					foreach ($field->getAnswers() as $answer) {
+						$newA = $newQ->addChild('answer');
+						//$newA->addAttribute('source','a'.$field->getID());
+						$newA->addAttribute('source',$answer->getAnswer());
+						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
+					}
+					//echo $newQ;
+					// Is there any feedback to be added to the model related to this field?
+					// NOTE: This code assumes that there is only one answer in the field 
+					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source','fb'.$field->getID());
+								break;
+							}
+						}
+					}
+				}
+			}
+		// For a multiple choice, the questions have their source as the gaps and blocks
 		} elseif ($this->type==Exercise::EXERCISE_TYPE_MULTIPLECHOICE ||
 					$this->type==Exercise::EXERCISE_TYPE_QUIZ) {
 			// Each question has its own fields
@@ -224,6 +385,18 @@ XML;
 						$newA->addAttribute('correct',$answer->isCorrect() ? 'true' : 'false');
 					}
 					//echo $newQ;
+					// Is there any feedback to be added to the model related to this field?
+					// NOTE: This code assumes that there is only one answer in the field 
+					if (count($field->getAnswers()==1) && $this->getParent()->feedbacks) {
+						foreach ($this->getParent()->feedbacks->getFeedbacks() as $feedback) {
+							// Is this feedback for this field?
+							if ($feedback->getID()==$field->getID()) {
+								$newFB = $newA->addChild('feedback');	
+								$newFB->addAttribute('source','fb'.$field->getID());
+								break;
+							}
+						}
+					}
 				}
 			}
 		} 

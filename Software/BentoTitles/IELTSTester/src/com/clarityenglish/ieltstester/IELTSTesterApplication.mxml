@@ -20,14 +20,27 @@
 			import com.clarityenglish.bento.vo.Href;
 			
 			import mx.events.FlexEvent;
-			
+			import mx.core.FlexGlobals;
 			import spark.events.IndexChangeEvent;
+
+			[Bindable]
+			private var serverName:String;
 			
 			override protected function get facade():BentoFacade {
 				return IELTSTesterApplicationFacade.getInstance();
 			}
 			
 			protected function creationComplete(event:FlexEvent):void {
+				// What domain are you running in?
+				// Running as a debug from Flex actually uses 'URL'
+				// file:///D:/ProjectBench/Software/BentoTitles/IELTSTester/bin-debug/IELTSTesterApplication.html
+				// so you have to just look for part of that. Should work for DK too I think.
+				if (FlexGlobals.topLevelApplication.url.toLowerCase().indexOf('projectbench')>=0) {
+					serverName = "dock.projectbench";
+				} else {
+					serverName = "claritydevelop";
+				}
+				
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);
 			}
@@ -58,9 +71,9 @@
 		<s:ButtonBar id="buttonBar" requireSelection="true" change="onButtonBarChange(event)">
 			<s:dataProvider>
 				<s:ArrayCollection>
-					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://dock.projectbench/Content/IELTSTester-Dave" />
-					<fx:Object label="Leisure (old)" filename="menu.xml" currentDir="http://dock.projectbench/Content/RoadToIELTS2-Academic" />
-					<fx:Object label="Last minute" filename="menu-LastMinute.xml" currentDir="http://dock.projectbench/Content/IELTS-Joe" />
+					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://{serverName}/Content/IELTSTester-Dave" />
+					<fx:Object label="Leisure (old)" filename="menu.xml" currentDir="http://{serverName}/Content/RoadToIELTS2-Academic" />
+					<fx:Object label="Last minute" filename="menu-LastMinute.xml" currentDir="http://{serverName}/Content/IELTS-Joe" />
 				</s:ArrayCollection>
 			</s:dataProvider>
 		</s:ButtonBar>

@@ -825,5 +825,19 @@ EOD;
 		$rs = $this->db->Execute($sql);
 		return ((string)((int)($rs->FetchNextObj()->MAXPREFIX) + 1));
 	}
+	/*
+	 * Utility function to get the rootID for a particular prefix
+	 */
+	public function getAccountRootID($prefix) {
+		$sql = 	<<<EOD
+				SELECT F_RootID AS rootID 
+				FROM T_AccountRoot
+				WHERE F_Prefix=?   
+EOD;
+		$bindingParams = array($prefix);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs)
+			return $rs->FetchNextObj()->rootID;
+	}
 }
 ?>

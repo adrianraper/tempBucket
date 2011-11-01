@@ -35,8 +35,8 @@ package com.clarityenglish.ielts.view {
 			// Concatenate any extra notifications to the array returned by this function in the superclass
 			return super.listNotificationInterests().concat([
 				
-				// AR I think that I should register interest in LOGGED_IN here
-				// so that this mediator can change the state of the application from login to menu. Yes.
+				// Register interest in LOGGED_IN here
+				// so that this mediator can change the state of the application from login to home.
 				CommonNotifications.INVALID_LOGIN,
 				CommonNotifications.LOGGED_IN,
 				CommonNotifications.CONFIG_LOADED,
@@ -62,13 +62,11 @@ package com.clarityenglish.ielts.view {
 					break;
 				
 				case CommonNotifications.LOGGED_IN:
-					view.currentState="menu";
+					view.currentState="title";
 					
-					// For now hardcode the menu file and the path
-					// To get the real path will be a combination of the config data (a base path)
-					// and the contentLocation that comes back from getAccountSettings
+					// For now hardcode the menu file
 					configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					view.menuView.href = new Href(Href.XHTML, "menu.xml", configProxy.getContentPath());
+					view.titleView.href = new Href(Href.XHTML, "menu-LastMinute.xml", configProxy.getContentPath());
 					break;
 
 			}
