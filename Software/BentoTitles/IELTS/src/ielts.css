@@ -10,6 +10,14 @@
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace almer "almerblank.flex.spark.components.*";
 
+/* This changes the modal popup mask properties */
+global {
+	modal-transparency: 0.1;
+	modal-transparency-blur: 0;
+	modal-transparency-color: black;
+	modal-transparency-duration: 200;
+}
+
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
 }
@@ -27,7 +35,6 @@ zone|ZoneView {
 }
 
 zone|ZoneView #practiceZoneDataGroup almer|SkinnableItemRenderer {
-	/* skinClass: ClassReference("skins.ielts.module.ButtonItemRendererSkin"); */
 	skinClass: ClassReference("skins.ielts.zone.ImageItemRendererSkin");
 }
 

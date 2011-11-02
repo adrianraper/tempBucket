@@ -28,6 +28,24 @@
 						<feedback source="fb3" />
 					</answer>
 				</TargetSpottingQuestion>
+				
+				<TargetSpottingQuestion>
+					<answer correct="true" source="target4">
+						<feedback source="fb4" />
+					</answer>
+				</TargetSpottingQuestion>
+				
+				<TargetSpottingQuestion>
+					<answer correct="true" source="target5">
+						<feedback source="fb5" />
+					</answer>
+				</TargetSpottingQuestion>
+				
+				<TargetSpottingQuestion>
+					<answer correct="true" source="target6">
+						<feedback source="fb6" />
+					</answer>
+				</TargetSpottingQuestion>
 			</questions>
 		</script>
 	</head>
@@ -52,6 +70,24 @@
 			
 			<p>
 				<g id="target3">
+					This is a target spotting question linked to feedback (feedback 3)
+				</g>
+			</p>
+			
+			<p>
+				<g id="target4">
+					This is a target spotting question linked to feedback (feedback 4)
+				</g>
+			</p>
+			
+			<p>
+				<g id="target5">
+					This is a target spotting question linked to feedback (feedback 5)
+				</g>
+			</p>
+			
+			<p>
+				<g id="target6">
 					This is a target spotting question linked to feedback (feedback 3)
 				</g>
 			</p>

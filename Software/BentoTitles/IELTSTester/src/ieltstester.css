@@ -3,6 +3,13 @@
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace tester "com.clarityenglish.ieltstester.view.tester.*";
 
+global {
+	modal-transparency: 0.1;
+	modal-transparency-blur: 0;
+	modal-transparency-color: black;
+	modal-transparency-duration: 200;
+}
+
 tester|TesterView {
 	skinClass: ClassReference("com.clarityenglish.ieltstester.view.tester.TesterSkin");
 }
