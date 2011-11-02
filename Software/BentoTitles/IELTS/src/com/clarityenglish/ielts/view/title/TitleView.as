@@ -51,6 +51,12 @@ package com.clarityenglish.ielts.view.title {
 		// Set the default state for the title
 		//private var _skinState:String = 'home';
 		
+		// Constructor to let us initialise first view
+		public function TitleView() {
+			super();
+			currentState = "home";
+		}
+		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
@@ -128,9 +134,6 @@ package com.clarityenglish.ielts.view.title {
 			// The skin state is (for the moment) determined by the tab selection.
 			// This has to stop because the tabs don't include zone view
 			//return (mainTabBar && mainTabBar.selectedItem) ? mainTabBar.selectedItem.data : null;
-			// TODO. Is this a good way to set a default for the state? Or set it in the skin?
-			if (currentState == null)
-				currentState = "progress";
 			return currentState;
 		}
 		
