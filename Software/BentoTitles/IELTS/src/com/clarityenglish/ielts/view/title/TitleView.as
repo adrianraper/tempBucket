@@ -7,6 +7,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	import org.davekeen.util.StateUtil;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -16,6 +17,8 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.Button;
 	import spark.components.TabBar;
 	
+	// This tells us that the skin has these states, but the view needs to know about them too
+	// To avoid double 
 	[SkinState("home")]
 	[SkinState("zone")]
 	[SkinState("progress")]
@@ -48,13 +51,13 @@ package com.clarityenglish.ielts.view.title {
 		public var exerciseView:ExerciseView;
 		
 		private var currentExerciseHref:Href;
-		// Set the default state for the title
-		//private var _skinState:String = 'home';
 		
-		// Constructor to let us initialise first view
+		// Constructor to let us initialise our states
 		public function TitleView() {
 			super();
-			currentState = "home";
+			
+			// The first one listed will be the default
+			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "account" ], true);
 		}
 		
 		public function showExercise(exerciseHref:Href):void {
