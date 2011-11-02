@@ -2,6 +2,7 @@ package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.geom.Rectangle;
+	import flash.text.engine.BreakOpportunity;
 	
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.tlf_internal;
@@ -20,6 +21,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function TextComponentElement() {
 			super();
+			
+			// #15
+			breakOpportunity = BreakOpportunity.NONE;
 		}
 		
 		protected override function get abstract():Boolean {

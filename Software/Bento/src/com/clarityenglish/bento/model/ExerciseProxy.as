@@ -106,30 +106,34 @@ package com.clarityenglish.bento.model {
 			var targetNodes:Vector.<XML> = (question.isSelectable()) ? (correctAnswers[0] as NodeAnswer).getSourceNodes(exercise) : question.getSourceNodes(exercise);
 			
 			// 3. Remove any correct answers from the target nodes and correct answers
-			targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
-				var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
-				
-				if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
-					var idx:int = correctAnswers.indexOf(selectedAnswer);
-					if (idx > -1) {
-						correctAnswers.splice(idx, 1);
-						return true;
+			if (targetNodes) {
+				targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
+					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
+					
+					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
+						var idx:int = correctAnswers.indexOf(selectedAnswer);
+						if (idx > -1) {
+							correctAnswers.splice(idx, 1);
+							return true;
+						}
 					}
-				}
-				
-				return false;
-			});
+					
+					return false;
+				});
 			
-			// For each question
-			for each (var targetNode:XML in targetNodes) {
-				// 3. Get the answer currently in this target node
-				var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
-				
-				// 4. If the current answer is empty or incorrect then add it to the answer map
-				if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
-					answerMap.put(targetNode, correctAnswers[0]);
-					correctAnswers.shift();
-				}	
+				// For each question
+				for each (var targetNode:XML in targetNodes) {
+					// 3. Get the answer currently in this target node
+					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
+					
+					// 4. If the current answer is empty or incorrect then add it to the answer map
+					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
+						answerMap.put(targetNode, correctAnswers[0]);
+						correctAnswers.shift();
+					}	
+				}
+			} else {
+				log.error("Unable to find any target nodes for question {0}", question);
 			}
 			
 			return answerMap;
