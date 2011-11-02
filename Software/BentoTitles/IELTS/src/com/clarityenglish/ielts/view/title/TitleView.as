@@ -63,13 +63,15 @@ package com.clarityenglish.ielts.view.title {
 		 * @param XML The course XML
 		 * 
 		 */
-		public function showCourse(course:XML):void {
+		public function showCourse(course:XMLList):void {
 			
 			// Tell the zone which course to work with
-			zoneView.course = course;
+			// Do I need to do course[0] to ensure that there is only one XML object in the list?
+			// PROBLEM. I can't refer to zoneView as it has not been added to the view yet.
+			zoneView.course = (course as XML);
 			
 			// Need to set the state to zone
-			currentState = 'zone';
+			currentState = "zone";
 			invalidateSkinState();
 		}
 		
@@ -114,16 +116,21 @@ package com.clarityenglish.ielts.view.title {
 		}
 		
 		/**
-		 * The skin state is (for the moment) determined by the tab selection.
-		 * This has to stop because the tabs don't include zone view
 		 * 
-		 * @return 
+		 * This shows what state the skin is currently in
+		 * 
+		 * @return string State name 
 		 */
 		protected override function getCurrentSkinState():String {
 			if (currentExerciseHref)
 				return "exercise";
 			
+			// The skin state is (for the moment) determined by the tab selection.
+			// This has to stop because the tabs don't include zone view
 			//return (mainTabBar && mainTabBar.selectedItem) ? mainTabBar.selectedItem.data : null;
+			// TODO. Is this a good way to set a default for the state? Or set it in the skin?
+			if (currentState == null)
+				currentState = "progress";
 			return currentState;
 		}
 		
@@ -133,7 +140,7 @@ package com.clarityenglish.ielts.view.title {
 		 * @param event
 		 */
 		protected function onMainTabBarIndexChange(event:Event):void {
-			// We should set the skin state from the tab bar click
+			// We can set the skin state from the tab bar click
 			currentState = (event.target as TabBar).selectedItem.data;
 			
 			// Then cause a refresh

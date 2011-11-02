@@ -49,7 +49,7 @@
 					break;
 				
 				case IELTSNotifications.SELECT_COURSE:
-					var course:XML = note.getBody() as XML;
+					var course:XMLList = note.getBody() as XMLList;
 					view.showCourse(course);
 					break;
 			}

@@ -1,0 +1,92 @@
+﻿/*
+Proxy - PureMVC
+*/
+package com.clarityenglish.common.model {
+	
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.common.vo.config.BentoError;
+	
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	
+	import mx.core.Application;
+	import mx.core.FlexGlobals;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.delegates.IDelegateResponder;
+	import org.davekeen.delegates.RemoteDelegate;
+	import org.davekeen.util.ClassUtil;
+	import org.puremvc.as3.interfaces.IProxy;
+	import org.puremvc.as3.patterns.proxy.Proxy;
+	
+	/**
+	 * A proxy
+	 */
+	public class ProgressProxy extends Proxy implements IProxy, IDelegateResponder {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		public static const NAME:String = "ProgressProxy";
+		
+		/**
+		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
+		 */
+		
+		public function ProgressProxy(data:Object = null) {
+			super(NAME, data);
+
+			// As soon as you create the proxy, use it to get information from the database
+			if (data)
+				getProgressData(data.userID);
+		}
+		
+		/**
+		 * Not sure if we should be sending an object full of data (userID, groupID, rootID, productCode, country)
+		 * or just the userID as that will let the backend get it all anyway, albeit with another db call.
+		 * @param number userID 
+		 */
+		private function getProgressData(userID:Number):void {
+			
+			var params:Array = [ userID ];
+			new RemoteDelegate("getProgressData", params, this).execute();
+		}
+		
+		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
+		public function onDelegateResult(operation:String, data:Object):void{
+			switch (operation) {
+				case "getProgressData":
+					if (data) {
+						/*
+						We will get back the following objects in data
+						error - should this be called status and include info/warning/error objects?
+						progress - this should be structured so that we can directly use it as a data-provider for any charts
+						*/
+					} else {
+						// Can't read from the database
+						var error:BentoError = new BentoError(BentoError.ERROR_DATABASE_READING);
+					}
+					if (error) {
+						sendNotification(CommonNotifications.CONFIG_ERROR, error);
+					} else {
+						sendNotification(BBNotifications.PROGRESS_DATA_LOADED);
+					}
+					break;
+				default:
+					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
+			}
+		}
+		
+		public function onDelegateFault(operation:String, data:Object):void{
+			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		}
+		
+
+	}
+}

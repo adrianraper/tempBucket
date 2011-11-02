@@ -11,8 +11,8 @@ package com.clarityenglish.ielts.view.home {
 	
 	import org.osflash.signals.Signal;
 	
-	import spark.components.Label;
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.TabBar;
 	
 	public class HomeView extends BentoView {
@@ -38,7 +38,7 @@ package com.clarityenglish.ielts.view.home {
 		[Bindable]
 		public var _user:User;
 		
-		public var courseSelect:Signal = new Signal(XML);
+		public var courseSelect:Signal = new Signal(XMLList);
 		
 		public function set user(value:User):void {
 			_user = value;
@@ -81,12 +81,12 @@ package com.clarityenglish.ielts.view.home {
 		 */
 		protected function onCourseClick(event:MouseEvent):void {
 			// Each button is a course, so get the id and send it as a signal
-			switch (event.target) {
-				case readingCourse:
-					var course:XML = menu.course.(@caption == "Reading");
-					//var id:Number = menu.course.(@caption == event.target.caption).@id;
-					break;
-			}
+			//switch ((event.target) as Button) {
+			//	case readingCourse:
+					var course:XMLList = menu.course.(@caption == event.target.label);
+					//var id:Number = menu.course.(@caption == event.target.label).@id;
+			//		break;
+			//}
 			
 			// Fire the courseSelect signal?
 			// CourseSelect should display zone view and read menu.course(@id==id)

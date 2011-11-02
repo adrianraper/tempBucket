@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.ielts.view.progress {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.BBNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -24,7 +25,7 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				BBNotifications.PROGRESS_DATA_LOADED,
 			]);
 		}
 		
@@ -32,6 +33,9 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
+				case BBNotifications.PROGRESS_DATA_LOADED:
+					
+					view.setDataProvider(note.getBody() as XML);
 				
 			}
 		}

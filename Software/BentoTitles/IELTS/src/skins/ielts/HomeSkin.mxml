@@ -22,11 +22,11 @@
 				<s:SolidColorStroke color="0x000000" />
 			</s:stroke>
 		</s:Line>
-		<s:Button id="writingCourse" label="writing" />
-		<s:Button id="readingCourse" label="reading" />
-		<s:Button id="listeningCourse" label="listening" />
-		<s:Button id="speakingCourse" label="speaking" />
-		<s:Button id="examTipsCourse" label="exam tips" />
+		<s:Button id="writingCourse" label="Writing" />
+		<s:Button id="readingCourse" label="Reading" />
+		<s:Button id="listeningCourse" label="Listening" />
+		<s:Button id="speakingCourse" label="Speaking" />
+		<s:Button id="examTipsCourse" label="Exam tips" />
 
 	</s:VGroup>		
 	

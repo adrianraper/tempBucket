@@ -9,7 +9,8 @@
 						xmlns:credits="com.clarityenglish.ielts.view.credits.*"
 						creationComplete="creationComplete(event)"
 						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
-						currentState="loading" xmlns:title="com.clarityenglish.ielts.view.title.*">
+						currentState="loading" 
+						xmlns:title="com.clarityenglish.ielts.view.title.*">
 	
 	<fx:Metadata>
 		[SWF(width=800, height=600)]
