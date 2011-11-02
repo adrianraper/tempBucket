@@ -21,6 +21,9 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			// This is where we trigger the call to get the progress data
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD)
+			
 		}
         
 		override public function listNotificationInterests():Array {
@@ -35,8 +38,9 @@
 			switch (note.getName()) {
 				case BBNotifications.PROGRESS_DATA_LOADED:
 					
-					view.setDataProvider(note.getBody() as XML);
-				
+					// Split the data that comes back for the various charts
+					view.setAverageScoreDataProvider(note.getBody() as Array);
+					break;
 			}
 		}
 		

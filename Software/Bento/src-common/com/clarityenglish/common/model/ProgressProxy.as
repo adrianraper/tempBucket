@@ -3,9 +3,12 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
-	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.dms.vo.account.Account;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -38,23 +41,22 @@ package com.clarityenglish.common.model {
 		/**
 		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
 		 */
-		
 		public function ProgressProxy(data:Object = null) {
 			super(NAME, data);
-
-			// As soon as you create the proxy, use it to get information from the database
-			if (data)
-				getProgressData(data.userID);
 		}
 		
 		/**
 		 * Not sure if we should be sending an object full of data (userID, groupID, rootID, productCode, country)
 		 * or just the userID as that will let the backend get it all anyway, albeit with another db call.
+		 * Or do we just let the backend keep everything in session variables? 
+		 * I don't really like that much - it seems much safer to pass the little that we do need.
 		 * @param number userID 
 		 */
-		private function getProgressData(userID:Number):void {
+		public function getProgressData(user:User, account:Account):void {
 			
-			var params:Array = [ userID ];
+			// Send userID, rootID and productCode
+			// TODO. user doesn't currently have userID set. Check up on what comes back from login.
+			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id ];
 			new RemoteDelegate("getProgressData", params, this).execute();
 		}
 		
@@ -73,9 +75,10 @@ package com.clarityenglish.common.model {
 						var error:BentoError = new BentoError(BentoError.ERROR_DATABASE_READING);
 					}
 					if (error) {
-						sendNotification(CommonNotifications.CONFIG_ERROR, error);
+						// Who will handle this?
+						sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, error);
 					} else {
-						sendNotification(BBNotifications.PROGRESS_DATA_LOADED);
+						sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 					}
 					break;
 				default:

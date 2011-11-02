@@ -13,7 +13,7 @@ package com.clarityenglish.ielts.view.progress {
 
 		public var _fullChartXML:XML;
 		
-		public function setDataProvider(dataProvider:XML):void {
+		public function setAverageScoreDataProvider(dataProvider:Array):void {
 			//coveragePieChart.dataProvider = _dataProvider;
 			coveragePieChart.anychartXML = _fullChartXML;
 		}

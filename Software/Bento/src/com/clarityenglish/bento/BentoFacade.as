@@ -59,6 +59,9 @@
 			// AR Or is LoggedInCommand done in IELTSFacade?
 			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 			//registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);
+			
+			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressLoadCommand);
+
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

@@ -81,7 +81,8 @@ package com.clarityenglish.ielts.view.title {
 			
 			// Need to set the state to zone
 			currentState = "zone";
-			invalidateSkinState();
+			// No longer need to call invalidateSkinState as done in StateUtil
+			//invalidateSkinState();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

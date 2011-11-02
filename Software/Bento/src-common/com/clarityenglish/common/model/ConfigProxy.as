@@ -6,6 +6,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	import flash.events.Event;
@@ -128,12 +129,15 @@ package com.clarityenglish.common.model {
 			log.error("Problem loading the config file: {0}", e.text);
 		}
 		
-		// Then methods to get the configuration data
+		// Then methods to get parts of the configuration data
 		public function getContentPath():String {
 			return config.paths.content;
 		}
 		public function getAccount():Account {
 			return config.account;
+		}
+		public function getUserID():String {
+			return config.userID;
 		}
 		// Is it OK to just get the config object?
 		public function getConfig():Config {

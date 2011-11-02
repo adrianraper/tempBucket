@@ -104,6 +104,9 @@ package com.clarityenglish.common.model {
 		public function get user():User {
 			return _user;
 		}
+		public function get group():Group {
+			return _group;
+		}
 		
 	}
 }

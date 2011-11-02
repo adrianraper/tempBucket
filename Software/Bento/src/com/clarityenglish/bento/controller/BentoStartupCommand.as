@@ -3,6 +3,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.model.ProgressProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -17,6 +18,7 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new XHTMLProxy());
 			facade.registerProxy(new ExerciseProxy());
 			facade.registerProxy(new LoginProxy());
+			facade.registerProxy(new ProgressProxy());
 
 		}
 		

@@ -210,6 +210,19 @@ class BentoService extends AbstractService {
 	}
 	
 	/**
+	 * 
+	 * This service call will get progress data from the database, merge it with the menu.xml
+	 * and build an object that can act as a data-provider for a chart (or charts).
+	 * TODO. Check out authentication. I have added this to beforeFilter exceptions, though it shouldn't be. 
+	 */
+	function getProgressData($userID, $rootID, $productCode ) {
+		// I want to send back
+		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
+		//	a summary at the course level for practiceZone scores for me and for everyone else
+		//	a summary at the course level for time spent by me 
+		return array("writing"=>39, "reading"=>75, "speaking"=>66, "listening"=>14);
+	}
+	/**
 	 * Get the copy XML document
 	 */
 	function getCopy() {

@@ -80,6 +80,7 @@ class AbstractService {
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
 			$function_called == "getContent" ||
+			$function_called == "getProgressData" ||
 			$function_called == "getCoverage" ||
 			$function_called == "getEveryonesCoverage" ||
 			$function_called == "getAccountSettings" ||
