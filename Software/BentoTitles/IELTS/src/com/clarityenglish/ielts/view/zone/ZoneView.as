@@ -55,6 +55,12 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		
+		/**
+		 * This can be called from outside the view to make the view display a different course
+		 * 
+		 * @param XML A course node from the menu
+		 * 
+		 */
 		public function set course(value:XML):void {
 			_course = value;
 			_courseChanged = true;
@@ -63,12 +69,7 @@ package com.clarityenglish.ielts.view.zone {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			// Populate the course tab bar with the course names
-			//courseTabBar.dataProvider = new XMLListCollection(menu..course);
-			
-			// Preselect the first course
-			// TODO. The course will have been selected from the home screen (or zone screen or direct start)
-			course = menu..course[0];
+			// All data is actually being used from course rather than this main document
 		}
 
 		protected override function commitProperties():void {

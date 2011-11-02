@@ -7,12 +7,13 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	import com.clarityenglish.textLayout.vo.XHTML;
-	import org.davekeen.util.StateUtil;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
+	
+	import org.davekeen.util.StateUtil;
 	
 	import spark.components.Button;
 	import spark.components.TabBar;
@@ -50,6 +51,7 @@ package com.clarityenglish.ielts.view.title {
 		[SkinPart]
 		public var exerciseView:ExerciseView;
 		
+		public var currentCourse:XML;
 		private var currentExerciseHref:Href;
 		
 		// Constructor to let us initialise our states
@@ -76,8 +78,8 @@ package com.clarityenglish.ielts.view.title {
 			
 			// Tell the zone which course to work with
 			// Do I need to do course[0] to ensure that there is only one XML object in the list?
-			// PROBLEM. I can't refer to zoneView as it has not been added to the view yet.
-			zoneView.course = (course as XML);
+			// PROBLEM. I can't refer to zoneView as it has not been added to the view yet due to deferred mediation.
+			currentCourse = course[0];
 			
 			// Need to set the state to zone
 			currentState = "zone";
@@ -101,10 +103,14 @@ package com.clarityenglish.ielts.view.title {
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
 					break;
-				case zoneView:
 				case homeView:
 					// The zone and home views run off the same href as the title view, so directly inject it 
 					instance.href = href;
+					break;
+				case zoneView:
+					// The zone and home views run off the same href as the title view, so directly inject it 
+					instance.href = href;
+					instance.course = currentCourse;
 					break;
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;
