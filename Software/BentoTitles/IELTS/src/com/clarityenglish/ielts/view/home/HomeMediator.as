@@ -65,7 +65,7 @@
 		 * Trigger the display of a course in the zone view
 		 * 
 		 */
-		private function onCourseSelected(course:XMLList):void {
+		private function onCourseSelected(course:XML):void {
 			// dispatch a notification, which titleMediator is listening for
 			sendNotification(IELTSNotifications.SELECT_COURSE, course);
 		}

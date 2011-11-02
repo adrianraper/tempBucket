@@ -74,10 +74,12 @@ package com.clarityenglish.ielts.view.title {
 		 * @param XML The course XML
 		 * 
 		 */
+		/*
 		public function showCourse(course:XMLList):void {
 			
 			// Tell the zone which course to work with
 			// Do I need to do course[0] to ensure that there is only one XML object in the list?
+			// TODO. Do the course[0] as early as possible.
 			// PROBLEM. I can't refer to zoneView as it has not been added to the view yet due to deferred mediation.
 			currentCourse = course[0];
 			
@@ -86,6 +88,7 @@ package com.clarityenglish.ielts.view.title {
 			// No longer need to call invalidateSkinState as done in StateUtil
 			//invalidateSkinState();
 		}
+		*/
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
@@ -110,7 +113,7 @@ package com.clarityenglish.ielts.view.title {
 				case zoneView:
 					// The zone and home views run off the same href as the title view, so directly inject it 
 					instance.href = href;
-					instance.course = currentCourse;
+					//instance.course = currentCourse;
 					break;
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;

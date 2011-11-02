@@ -35,7 +35,7 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				//CommonNotifications.LOGGED_IN,
+				IELTSNotifications.SELECT_COURSE,
 			]);
 		}
 		
@@ -43,9 +43,10 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				//case CommonNotifications.LOGGED_IN:
-				//	onUserDetailsLoaded();
-				//	break;
+				case IELTSNotifications.SELECT_COURSE:
+					var course:XMLList = note.getBody() as XMLList;
+					view.course = course[0] as XML;
+					break;
 			}
 		}
 		

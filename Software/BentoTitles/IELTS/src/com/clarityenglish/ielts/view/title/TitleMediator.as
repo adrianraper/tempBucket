@@ -49,8 +49,9 @@
 					break;
 				
 				case IELTSNotifications.SELECT_COURSE:
-					var course:XMLList = note.getBody() as XMLList;
-					view.showCourse(course);
+					//var course:XMLList = note.getBody() as XMLList;
+					//view.showCourse(course);
+					view.currentState = "zone";
 					break;
 			}
 		}
