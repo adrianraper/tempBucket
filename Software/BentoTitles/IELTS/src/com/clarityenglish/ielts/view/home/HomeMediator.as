@@ -31,7 +31,7 @@
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
 		}
-        
+		
 		override public function onRemove():void {
 			super.onRemove();
 			view.courseSelect.remove(onCourseSelected);
@@ -40,7 +40,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				
-			]);
+				]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
@@ -50,20 +50,20 @@
 				
 			}
 		}
+		
 		/**
 		 * Inject the user details into the view from the model
-		 * 
-		 * @param 
+		 *
+		 * @param
 		 */
 		private function injectUserDetails():void {
-			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			view.user = loginProxy.user;
 		}
-
+		
 		/**
 		 * Trigger the display of a course in the zone view
-		 * 
+		 *
 		 */
 		private function onCourseSelected(course:XML):void {
 			// dispatch a notification, which titleMediator is listening for
