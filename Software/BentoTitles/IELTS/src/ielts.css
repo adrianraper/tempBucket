@@ -18,18 +18,33 @@ global {
 	modal-transparency-duration: 200;
 }
 
+/* Login view styles */
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
 }
 
+/* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
 }
 
+/* Home view styles */
 home|HomeView {
 	skinClass: ClassReference("skins.ielts.HomeSkin");
 }
 
+home|HomeView s|Button {
+	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");
+}
+
+home|HomeView s|Button#writingCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Writing.png");
+	title: "Writing";
+	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+}
+
+/* Zone view styles */
 zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");
 }
@@ -43,14 +58,17 @@ zone|ZoneView #examPractice2Difficulty {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
 }
 
+/* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
 }
 
+/* Progress view styles */
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
 
+/* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");
 }

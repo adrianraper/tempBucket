@@ -27,9 +27,6 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// AR inject data to the view.
-			injectUserDetails();
-			
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
 			
@@ -64,16 +61,6 @@
 					break;
 				
 			}
-		}
-		
-		/**
-		 * Inject the user details into the view from the model
-		 *
-		 * @param
-		 */
-		private function injectUserDetails():void {
-			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			view.user = loginProxy.user;
 		}
 		
 		/**

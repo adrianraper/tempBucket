@@ -45,12 +45,6 @@ package com.clarityenglish.ielts.view.login {
 				case loginButton:
 					loginButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
-				case nameInput:
-					nameInput.text = "dandelion";
-					break;
-				case passwordInput:
-					passwordInput.text = "password";
-					break;
 			}
 		}
 		

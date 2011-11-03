@@ -17,10 +17,7 @@ package com.clarityenglish.ielts.view.home {
 	import spark.components.TabBar;
 	
 	public class HomeView extends BentoView {
-
-		[SkinPart(required="true")]
-		public var userNameLabel:Label;
-
+		
 		[SkinPart(required="true")]
 		public var readingCourse:Button;
 		
@@ -39,19 +36,10 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var coveragePieChart:AnyChartFlex;
 		
-		public var _fullChartXML:XML;
+		private var _fullChartXML:XML;
+		
 		public var courseSelect:Signal = new Signal(XML);
 		
-		// This is the slurping method for getting data from view to skin. 
-		// Elsewhere we are doing injection and it might be neater to stick to that.
-		[Bindable]
-		public var _user:User;
-		public function set user(value:User):void {
-			_user = value;
-			// Also put some parts of this information into the skin
-			//userNameLabel.text = _user.fullName;
-		}
-
 		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
 			//coveragePieChart.dataProvider = _dataProvider;
 			coveragePieChart.anychartXML = _fullChartXML;
@@ -108,7 +96,7 @@ package com.clarityenglish.ielts.view.home {
 		 */
 		private function initPieChart():void {
 			// Purely a charting test
-			_fullChartXML=<anychart>
+			_fullChartXML = <anychart>
 							  <charts>
 								<chart plot_type="CategorizedVertical">
 								  <data>
