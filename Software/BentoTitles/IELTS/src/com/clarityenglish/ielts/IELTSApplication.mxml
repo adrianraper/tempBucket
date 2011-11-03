@@ -7,10 +7,10 @@
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.title.*"
 						xmlns:credits="com.clarityenglish.ielts.view.credits.*"
+						xmlns:title="com.clarityenglish.ielts.view.title.*"
 						creationComplete="creationComplete(event)"
 						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
-						currentState="loading" 
-						xmlns:title="com.clarityenglish.ielts.view.title.*">
+						currentState="loading">
 	
 	<fx:Metadata>
 		[SWF(width=800, height=600)]
@@ -42,7 +42,7 @@
 				
 				// Hardcode some parameters that you expect to come from flashvars
 				//FlexGlobals.topLevelApplication.parameters.rootID=163;
-				FlexGlobals.topLevelApplication.parameters.prefix='Clarity';
+				FlexGlobals.topLevelApplication.parameters.prefix = "Clarity";
 				
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);

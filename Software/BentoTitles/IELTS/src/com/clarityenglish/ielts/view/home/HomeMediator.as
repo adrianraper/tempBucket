@@ -66,8 +66,7 @@
 		 *
 		 */
 		private function onCourseSelected(course:XML):void {
-			// dispatch a notification, which titleMediator is listening for
-			sendNotification(IELTSNotifications.SELECT_COURSE, course);
+			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 		}
 	}
 }

@@ -35,19 +35,12 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				IELTSNotifications.SELECT_COURSE,
+				
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
-			
-			switch (note.getName()) {
-				case IELTSNotifications.SELECT_COURSE:
-					var course:XMLList = note.getBody() as XMLList;
-					view.course = course[0] as XML;
-					break;
-			}
 		}
 		
 		/**

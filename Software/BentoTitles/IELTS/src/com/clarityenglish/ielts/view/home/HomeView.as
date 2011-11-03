@@ -80,17 +80,13 @@ package com.clarityenglish.ielts.view.home {
 		 * @param event
 		 */
 		protected function onCourseClick(event:MouseEvent):void {
-			// Each button is a course, so get the id and send it as a signal
-			//switch ((event.target) as Button) {
-			//	case readingCourse:
-					var course:XMLList = menu.course.(@caption == event.target.label);
-					//var id:Number = menu.course.(@caption == event.target.label).@id;
-			//		break;
-			//}
+			var matchingCourses:XMLList = menu.course.(@caption == event.target.label);
 			
-			// Fire the courseSelect signal?
-			// CourseSelect should display zone view and read menu.course(@id==id)
-			courseSelect.dispatch(course[0] as XML);
+			if (matchingCourses.length() == 0) {
+				log.error("Unable to find a course with caption {0}", event.target.label);
+			} else {
+				courseSelect.dispatch(matchingCourses[0] as XML);
+			}
 		}
 	}
 }

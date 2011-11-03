@@ -15,7 +15,7 @@
 						<exercise href="reading/CriticalThinking_intro.flv" caption="Watch the teacher giving advice" />
 					</unit>
 					<unit class="practice-zone">
-						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794365.xml" caption="Introduction" thumbnail="../RoadToIELTS2-Academic/Courses/1150976390861/Media/1156153794365.jpg"/>
+						<exercise href="reading/exercises/exercise1.xml" caption="Introduction" thumbnail="../RoadToIELTS2-Academic/Courses/1150976390861/Media/1156153794365.jpg"/>
 						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794672.xml" caption="Short answer questions" thumbnail="../RoadToIELTS2-Academic/Courses/1150976390861/Media/1156153794672.jpg"/>
 						<exercise href="../RoadToIELTS2-Academic/Courses/1150976390861/Exercises/1156153794430.xml" caption="Table completion" thumbnail="../RoadToIELTS2-Academic/Courses/1150976390861/Media/1156153794430.jpg"/>
 					</unit>
