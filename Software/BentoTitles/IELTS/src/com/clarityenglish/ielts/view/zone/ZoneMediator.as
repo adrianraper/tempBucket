@@ -35,12 +35,22 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				//IELTSNotifications.COURSE_SHOW,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
+			
+			switch (note.getName()) {
+				// You can't send a notification like this from another mediator under Title as this mediator will not exist
+				/*
+				case IELTSNotifications.COURSE_SHOW:
+					var course:XMLList = note.getBody() as XMLList;
+					view.course = course[0] as XML;
+					break;
+				*/
+			}
 		}
 		
 		/**

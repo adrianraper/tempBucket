@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	import com.anychart.AnyChartFlex;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -34,19 +35,28 @@ package com.clarityenglish.ielts.view.home {
 		
 		[SkinPart(required="true")]
 		public var examTipsCourse:Button;
+
+		[SkinPart(required="true")]
+		public var coveragePieChart:AnyChartFlex;
 		
-		[Bindable]
-		public var _user:User;
-		
+		public var _fullChartXML:XML;
 		public var courseSelect:Signal = new Signal(XML);
 		
+		// This is the slurping method for getting data from view to skin. 
+		// Elsewhere we are doing injection and it might be neater to stick to that.
+		[Bindable]
+		public var _user:User;
 		public function set user(value:User):void {
 			_user = value;
 			// Also put some parts of this information into the skin
 			//userNameLabel.text = _user.fullName;
 		}
-		
-		// Just copied from ZoneView
+
+		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
+			//coveragePieChart.dataProvider = _dataProvider;
+			coveragePieChart.anychartXML = _fullChartXML;
+		}
+
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -72,6 +82,10 @@ package com.clarityenglish.ielts.view.home {
 				case examTipsCourse:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
+				case coveragePieChart:
+					// Initial settings for the chart
+					initPieChart();
+					break;
 			}
 		}
 		/**
@@ -88,5 +102,45 @@ package com.clarityenglish.ielts.view.home {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		}
+		/**
+		 * Many settings for the pie chart are completely static and can be initialised here 
+		 * 
+		 */
+		private function initPieChart():void {
+			// Purely a charting test
+			_fullChartXML=<anychart>
+							  <charts>
+								<chart plot_type="CategorizedVertical">
+								  <data>
+									<series name="Product Sales" type="Bar">
+									  <point name="2004" y="63716" />
+									  <point name="2005" y="72163" />
+									  <point name="2006" y="94866" />
+									  <point name="2007" y="56866" />
+									  <point name="2008" y="19000" />
+									</series>
+								  </data>
+								  <chart_settings>
+									  <title>
+										  <text>ACME Corp. Sales</text>
+									  </title>
+									  <axes>
+										  <x_axis>
+											  <title>
+												  <text>Year</text>
+											  </title>
+										  </x_axis>
+										  <y_axis>
+											  <title>
+												  <text>Sales (USD)</text>
+											  </title>
+										  </y_axis>
+									  </axes>
+								  </chart_settings>
+								</chart>
+							  </charts>
+							</anychart>;
+		}
+
 	}
 }

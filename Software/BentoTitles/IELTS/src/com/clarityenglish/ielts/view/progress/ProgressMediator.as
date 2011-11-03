@@ -1,7 +1,8 @@
 ﻿package com.clarityenglish.ielts.view.progress {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.common.vo.progress.Progress;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -22,7 +23,12 @@
 		override public function onRegister():void {
 			super.onRegister();
 			// This is where we trigger the call to get the progress data
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD)
+			// Progress data comes in three blocks, and to save time we can choose which block(s) we want from this call
+			var progress:Progress = new Progress();
+			progress.loadMySummary = true;
+			progress.loadMyDetails = true;
+			progress.loadEveryoneSummary = true;
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
 			
 		}
         
@@ -39,7 +45,8 @@
 				case BBNotifications.PROGRESS_DATA_LOADED:
 					
 					// Split the data that comes back for the various charts
-					view.setAverageScoreDataProvider(note.getBody() as Array);
+					var progress:Progress = new Progress(note.getBody() as Array);
+					view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
 					break;
 			}
 		}

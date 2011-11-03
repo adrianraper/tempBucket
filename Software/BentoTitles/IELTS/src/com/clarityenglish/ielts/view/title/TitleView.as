@@ -159,8 +159,8 @@ package com.clarityenglish.ielts.view.title {
 			// We can set the skin state from the tab bar click
 			currentState = (event.target as TabBar).selectedItem.data;
 			
-			// Then cause a refresh
-			invalidateSkinState();
+			// Then cause a refresh - no need if we are using StateUtils
+			//invalidateSkinState();
 		}
 		
 		/**

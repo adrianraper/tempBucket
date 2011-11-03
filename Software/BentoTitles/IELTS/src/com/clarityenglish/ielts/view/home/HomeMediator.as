@@ -3,8 +3,10 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.common.vo.progress.Progress;
 	
 	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.bento.BBNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -30,6 +32,13 @@
 			
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
+			
+			// Progress data comes in three blocks, and to save time we can choose which block(s) we want from this call
+			var progress:Progress = new Progress();
+			progress.loadMySummary = true;
+			progress.loadMyDetails = true;
+			progress.loadEveryoneSummary = true;
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
 		}
 		
 		override public function onRemove():void {
@@ -39,7 +48,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+					BBNotifications.PROGRESS_DATA_LOADED,
 				]);
 		}
 		
@@ -47,6 +56,12 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
+				case BBNotifications.PROGRESS_DATA_LOADED:
+					
+					// Split the data that comes back for the various charts
+					var progress:Progress = new Progress(note.getBody() as Array);
+					view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
+					break;
 				
 			}
 		}
@@ -66,6 +81,7 @@
 		 *
 		 */
 		private function onCourseSelected(course:XML):void {
+			// dispatch a notification, which titleMediator is listening for
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 		}
 	}

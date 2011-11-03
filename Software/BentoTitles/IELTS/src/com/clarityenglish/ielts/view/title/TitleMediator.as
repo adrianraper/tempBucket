@@ -34,8 +34,8 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				IELTSNotifications.COURSE_SHOW,
 				IELTSNotifications.EXERCISE_SHOW,
+				IELTSNotifications.COURSE_SHOW,
 			]);
 		}
 		
@@ -43,17 +43,18 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
+				case IELTSNotifications.EXERCISE_SHOW:
+					var href:Href = note.getBody() as Href;
+					view.showExercise(href);
+					break;
+				
 				case IELTSNotifications.COURSE_SHOW:
 					var course:XML = note.getBody() as XML;
 					view.currentState = "zone";
 					view.callLater(function():void {
 						view.zoneView.course = course;
 					});
-					break;
-				case IELTSNotifications.EXERCISE_SHOW:
-					var href:Href = note.getBody() as Href;
-					view.showExercise(href);
-					break;
+					break; 
 			}
 		}
 		
