@@ -25,19 +25,19 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="as many films were made " correct="true"/>
+      <answer value="as many films were made" correct="true"/>
       <answer value="the number of films were made" correct="true"/>
       <answer value="the number of films were produced" correct="true"/>
       <answer value="as many films were produced" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="three times as many " correct="true"/>
+      <answer value="three times as many" correct="true"/>
       <answer value="3 times as many" correct="true"/>
       <answer value="three times as high" correct="true"/>
       <answer value="3 times as high" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="half " correct="true"/>
+      <answer value="half" correct="true"/>
       <answer value="half as many as" correct="true"/>
       <answer value="half as high as" correct="true"/>
       <answer value="fewer than" correct="true"/>
@@ -47,15 +47,15 @@
       <answer value="much lower than" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="the same " correct="true"/>
+      <answer value="the same" correct="true"/>
       <answer value="as many" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="many films were made " correct="true"/>
+      <answer value="many films were made" correct="true"/>
       <answer value="many films were produced" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="More films were made " correct="true"/>
+      <answer value="More films were made" correct="true"/>
       <answer value="Far more films were made" correct="true"/>
       <answer value="More films were produced" correct="true"/>
       <answer value="Far more films were produced" correct="true"/>
@@ -63,7 +63,7 @@
       <answer value="Many more films were produced" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="Fewer films were made " correct="true"/>
+      <answer value="Fewer films were made" correct="true"/>
       <answer value="Fewer films were produced" correct="true"/>
       <answer value="Far fewer films were made" correct="true"/>
       <answer value="Far fewer films were produced" correct="true"/>
@@ -73,7 +73,7 @@
       <answer value="6 times fewer films were produced" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="double " correct="true"/>
+      <answer value="double" correct="true"/>
       <answer value="twice" correct="true"/>
       <answer value="two times" correct="true"/>
       <answer value="2 times" correct="true"/>
@@ -82,7 +82,7 @@
       <answer value="2 times as many as" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="triple " correct="true"/>
+      <answer value="triple" correct="true"/>
       <answer value="three times" correct="true"/>
       <answer value="3 times" correct="true"/>
       <answer value="three times as many as" correct="true"/>
@@ -91,7 +91,7 @@
       <answer value="3 times as high as" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="times as many films were made " correct="true"/>
+      <answer value="times as many films were made" correct="true"/>
       <answer value="times as many films were produced" correct="true"/>
       <answer value="times the number of films were made" correct="true"/>
     </GapFillQuestion>

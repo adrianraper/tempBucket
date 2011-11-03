@@ -35,8 +35,12 @@
       <answer source="a6" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a7" correct="true"/>
-      <answer source="a8" correct="false"/>
+      <answer source="a7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+      <answer source="a8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
       <answer source="a9" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
@@ -45,7 +49,9 @@
       <answer source="a12" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a13" correct="false"/>
+      <answer source="a13" correct="false">
+        <feedback source="fb13"/>
+      </answer>
       <answer source="a14" correct="true"/>
       <answer source="a15" correct="false"/>
     </MultipleChoiceQuestion>

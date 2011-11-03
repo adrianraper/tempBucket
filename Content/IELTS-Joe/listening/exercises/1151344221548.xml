@@ -25,10 +25,10 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Howlett " correct="true"/>
+      <answer value="Howlett" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="13 Berkely Road " correct="true"/>
+      <answer value="13 Berkely Road" correct="true"/>
       <answer value="13, Berkey Road" correct="true"/>
       <answer value="13 Berkey Rd" correct="true"/>
       <answer value="13, Berkey Rd" correct="true"/>
@@ -36,17 +36,17 @@
       <answer value="13, berkey Rd." correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="1962870533 " correct="true"/>
+      <answer value="1962870533" correct="true"/>
       <answer value="1962 870533" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="IT1B79 " correct="true"/>
+      <answer value="IT1B79" correct="true"/>
       <answer value="IT1 B79" correct="true"/>
       <answer value="It1b79" correct="true"/>
       <answer value="It1 b79" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="4027 9217 6632 8551 " correct="true"/>
+      <answer value="4027 9217 6632 8551" correct="true"/>
       <answer value="4027921766328551" correct="true"/>
     </GapFillQuestion>
   </questions>

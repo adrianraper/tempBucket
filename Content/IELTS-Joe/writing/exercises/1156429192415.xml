@@ -25,52 +25,52 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="remained  " correct="true"/>
+      <answer value="remained" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="fell  " correct="true"/>
+      <answer value="fell" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="fluctuated  " correct="true"/>
+      <answer value="fluctuated" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="had changed  " correct="true"/>
+      <answer value="had changed" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="shot up  " correct="true"/>
+      <answer value="shot up" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="were  " correct="true"/>
+      <answer value="were" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="had risen  " correct="true"/>
+      <answer value="had risen" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="fluctuated  " correct="true"/>
+      <answer value="fluctuated" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="dropped  " correct="true"/>
+      <answer value="dropped" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="had increased  " correct="true"/>
+      <answer value="had increased" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
-      <answer value="plunged  " correct="true"/>
+      <answer value="plunged" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q12" block="b12">
-      <answer value="has occurred  " correct="true"/>
+      <answer value="has occurred" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q13" block="b13">
-      <answer value="was  " correct="true"/>
+      <answer value="was" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q14" block="b14">
-      <answer value="doubled  " correct="true"/>
+      <answer value="doubled" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q15" block="b15">
-      <answer value="had tripled  " correct="true"/>
+      <answer value="had tripled" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q16" block="b16">
-      <answer value="will have reached  " correct="true"/>
+      <answer value="will have reached" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

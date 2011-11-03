@@ -25,16 +25,16 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="spoke " correct="true"/>
+      <answer value="spoke" correct="true"/>
       <answer value="was to speak" correct="true"/>
       <answer value="were to speak" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="would be " correct="true"/>
+      <answer value="would be" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="find" correct="true"/>
-      <answer value="would find " correct="true"/>
+      <answer value="would find" correct="true"/>
       <answer value="minght find" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
@@ -49,7 +49,7 @@
       <answer value="did not have to" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="were " correct="true"/>
+      <answer value="were" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
       <answer value="would prepare" correct="true"/>

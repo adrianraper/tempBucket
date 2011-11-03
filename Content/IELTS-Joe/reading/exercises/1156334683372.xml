@@ -25,45 +25,45 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="750 billion " correct="true"/>
+      <answer value="750 billion" correct="true"/>
       <answer value="750b" correct="true"/>
       <answer value="750,000,000,000" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="half " correct="true"/>
+      <answer value="half" correct="true"/>
       <answer value="1/2" correct="true"/>
       <answer value="50%" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="Terrestrial plants " correct="true"/>
+      <answer value="Terrestrial plants" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="marine plants " correct="true"/>
+      <answer value="marine plants" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="two billion tons " correct="true"/>
+      <answer value="two billion tons" correct="true"/>
       <answer value="2 billion tons" correct="true"/>
       <answer value="2,000,000,000 tons" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="altitude " correct="true"/>
+      <answer value="altitude" correct="true"/>
       <answer value="density" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="density " correct="true"/>
+      <answer value="density" correct="true"/>
       <answer value="altitude" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="trap heat " correct="true"/>
+      <answer value="trap heat" correct="true"/>
       <answer value="trap outgoing heat" correct="true"/>
       <answer value="can trap heat" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="dense and shiny " correct="true"/>
+      <answer value="dense and shiny" correct="true"/>
       <answer value="shiny and dense" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="weeks " correct="true"/>
+      <answer value="weeks" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

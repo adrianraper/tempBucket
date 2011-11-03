@@ -25,13 +25,15 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="the main points " correct="true"/>
+      <answer value="the main points" correct="true"/>
       <answer value="most important points" correct="true"/>
       <answer value="the important points" correct="true"/>
-      <answer value="the key points" correct="true"/>
+      <answer value="the key points" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="5 - 15 " correct="true"/>
+      <answer value="5 - 15" correct="true"/>
       <answer value="five - fifteen" correct="true"/>
       <answer value="5 to 15" correct="true"/>
       <answer value="five to fifteen" correct="true"/>
@@ -39,33 +41,37 @@
       <answer value="five and fifteen" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="discuss it " correct="true"/>
+      <answer value="discuss it" correct="true"/>
       <answer value="discuss topic" correct="true"/>
       <answer value="discuss the topic" correct="true"/>
       <answer value="talk about it" correct="true"/>
-      <answer value="talk about topic" correct="true"/>
+      <answer value="talk about topic" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="understand arguments " correct="true"/>
+      <answer value="understand arguments" correct="true"/>
       <answer value="understand the arguments" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="any study problems " correct="true"/>
-      <answer value="their study problems" correct="true"/>
+      <answer value="any study problems" correct="true"/>
+      <answer value="their study problems" correct="true">
+        <feedback source="fb5"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="workshops " correct="true"/>
+      <answer value="workshops" correct="true"/>
       <answer value="workshop" correct="true"/>
       <answer value="a workshop" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="give a presentation " correct="true"/>
+      <answer value="give a presentation" correct="true"/>
       <answer value="give presentation" correct="true"/>
       <answer value="do a presentation" correct="true"/>
       <answer value="do presentation" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="their research skills " correct="true"/>
+      <answer value="their research skills" correct="true"/>
       <answer value="research skills" correct="true"/>
     </GapFillQuestion>
   </questions>

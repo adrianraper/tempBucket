@@ -25,34 +25,34 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="According " correct="true"/>
+      <answer value="According" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="a little bit " correct="true"/>
+      <answer value="a little bit" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="foretell " correct="true"/>
+      <answer value="foretell" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="just imagine " correct="true"/>
+      <answer value="just imagine" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="could " correct="true"/>
+      <answer value="could" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="I believe " correct="true"/>
+      <answer value="I believe" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="less " correct="true"/>
+      <answer value="less" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="hope that " correct="true"/>
+      <answer value="hope that" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="more bikes " correct="true"/>
+      <answer value="more bikes" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="for example " correct="true"/>
+      <answer value="for example" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

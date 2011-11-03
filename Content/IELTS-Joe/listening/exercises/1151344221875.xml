@@ -25,25 +25,33 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="computer terminals " correct="true"/>
+      <answer value="computer terminals" correct="true"/>
       <answer value="PC terminals" correct="true"/>
       <answer value="computers" correct="true"/>
       <answer value="PCs" correct="true"/>
-      <answer value="personal computers" correct="true"/>
+      <answer value="personal computers" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="photocopiers " correct="true"/>
+      <answer value="photocopiers" correct="true"/>
       <answer value="copiers" correct="true"/>
-      <answer value="photocopy machines" correct="true"/>
+      <answer value="photocopy machines" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="dictionaries " correct="true"/>
+      <answer value="dictionaries" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="exam papers " correct="true"/>
+      <answer value="exam papers" correct="true"/>
       <answer value="public exams" correct="true"/>
       <answer value="university exams" correct="true"/>
-      <answer value="British exams" correct="true"/>
+      <answer value="British exams" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </GapFillQuestion>
   </questions>
 </script>

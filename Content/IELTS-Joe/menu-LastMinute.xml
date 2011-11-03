@@ -4,318 +4,371 @@
   <head>
     <script id="model" type="application/xml">
       <menu>
-        <course caption="Content" id="0">
-          <unit caption="Reading: unit 1" id="1">
-            <exercise id="1156153794672" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml">
-              <!--GF - splitscreen QB-->
-            </exercise>
-            <exercise id="1156153794430" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml">
-              <!--GF - splitscreen TB-->
-            </exercise>
-            <exercise id="1156165919506" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml">
-              <!--GF - splitscreen QB-->
-            </exercise>
-          </unit>
-          <unit caption="Reading: unit 2" id="2">
-            <exercise id="1156334683177" caption="And then there were none" href="reading/exercises/1156334683177.xml">
-              <!--MC - splitscreen QB-->
-            </exercise>
-            <exercise id="1151344537791" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml">
-              <!--GF - splitscreen TB-->
-            </exercise>
-          </unit>
-          <unit caption="Reading: unit 3" id="3">
-            <exercise id="1151344244836" caption="Short answer questions" href="reading/exercises/1151344244836.xml">
-              <!--MC - splitscreen QB-->
-            </exercise>
-            <exercise id="1151344244784" caption="Sentence completion" href="reading/exercises/1151344244784.xml">
-              <!--GF - splitscreen QB-->
-            </exercise>
-            <exercise id="1151344244888" caption="Multiple selection" href="reading/exercises/1151344244888.xml">
-              <!--Targetspotting TB-->
-            </exercise>
-            <exercise id="1151344259045" caption="Matching (1)" href="reading/exercises/1151344259045.xml">
-              <!--GF - splitscreen QB-->
-            </exercise>
-            <exercise id="1151344259264" caption="Classification" href="reading/exercises/1151344259264.xml">
-              <!--GF - splitscreen QB-->
-            </exercise>
-            <exercise id="1151344259319" caption="Multiple choice" href="reading/exercises/1151344259319.xml">
-              <!--MC - splitscreen QB-->
-            </exercise>
-          </unit>
-          <unit caption="Listening: unit 1" id="4">
-            <exercise id="1156153794384" caption="Short answer questions" href="listening/exercises/1156153794384.xml">
-              <!--GF - QB-->
-            </exercise>
-            <exercise id="1156165919813" caption="Matching" href="listening/exercises/1156165919813.xml">
-              <!--GF - splitscreen TB-->
-            </exercise>
-          </unit>
-          <unit caption="Listening: unit 2" id="5">
-            <exercise id="1156429192269" caption="Conversation" href="listening/exercises/1156429192269.xml">
-              <!--GF - TB-->
-            </exercise>
-            <exercise id="1151344537619" caption="British cinema" href="listening/exercises/1151344537619.xml">
-              <!--GF - QB-->
-            </exercise>
-          </unit>
-          <unit caption="Listening: unit 3" id="6">
-            <exercise id="1151344259533" caption="Form completion" href="listening/exercises/1151344259533.xml">
-              <!--GF - TB-->
-            </exercise>
-            <exercise id="1151344259234" caption="Multiple selection (1)" href="listening/exercises/1151344259234.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1151344259298" caption="Short answers" href="listening/exercises/1151344259298.xml">
-              <!--GF - QB-->
-            </exercise>
-            <exercise id="1151344221888" caption="Sentence completion" href="listening/exercises/1151344221888.xml">
-              <!--GF - TB-->
-            </exercise>
-            <exercise id="1151344221365" caption="Classification" href="listening/exercises/1151344221365.xml">
-              <!--GF - TB-->
-            </exercise>
-            <exercise id="1151344221875" caption="Labelling a diagram" href="listening/exercises/1151344221875.xml">
-              <!--GF - QB-->
-            </exercise>
-          </unit>
-          <unit caption="Speaking: unit 1" id="7">
-            <exercise id="1156153794397" caption="Introduction" href="speaking/exercises/1156153794397.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156153794715" caption="The speaking test (1)" href="speaking/exercises/1156153794715.xml">
-              <!--D&D - QB-->
-            </exercise>
-            <exercise id="1156153794077" caption="The speaking test (2)" href="speaking/exercises/1156153794077.xml">
-              <!--T/F-->
-            </exercise>
-            <exercise id="1156153794231" caption="Watch a video (1)" href="speaking/exercises/1156153794231.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156153794482" caption="Watch a video (2)" href="speaking/exercises/1156153794482.xml">
-              <!--GF - TB-->
-            </exercise>
-            <exercise id="1156153794271" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156153794218" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-          </unit>
-          <unit caption="Speaking: unit 2" id="8">
-            <exercise id="1151344172352" caption="Introduction" href="speaking/exercises/1151344172352.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344172405" caption="Practice for Part 2" href="speaking/exercises/1151344172405.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344172961" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml">
-              <!--D&D QB-->
-            </exercise>
-            <exercise id="1151344172836" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1151344172525" caption="Comparative forms" href="speaking/exercises/1151344172525.xml">
-              <!--D&D QB-->
-            </exercise>
-            <exercise id="1151344172701" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156153794218" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-          </unit>
-          <unit caption="Speaking: unit 3" id="9">
-            <exercise id="1156181253089" caption="Introduction" href="speaking/exercises/1156181253089.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156181253123" caption="Tips for Part 3" href="speaking/exercises/1156181253123.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156181253456" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156181253086" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156181253500" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml">
-              <!--T/F-->
-            </exercise>
-            <exercise id="1156181253785" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml">
-              <!--GF TB-->
-            </exercise>
-          </unit>
-          <unit caption="Writing: unit 1" id="10">
-            <exercise id="1156153794055" caption="Introduction" href="writing/exercises/1156153794055.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156153794671" caption="Static charts" href="writing/exercises/1156153794671.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156153794786" caption="Understanding static charts" href="writing/exercises/1156153794786.xml">
-              <!--T/F-->
-            </exercise>
-            <exercise id="1156153794241" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156153794414" caption="Present simple" href="writing/exercises/1156153794414.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156153794467" caption="Past simple" href="writing/exercises/1156153794467.xml">
-              <!--GF - TB-->
-            </exercise>
-            <exercise id="1156153794027" caption="Organising your report" href="writing/exercises/1156153794027.xml">
-              <!--D&D - QB-->
-            </exercise>
-            <exercise id="1156153794876" caption="Practice activity A" href="writing/exercises/1156153794876.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156153794679" caption="Sample answer" href="writing/exercises/1156153794679.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156181253271" caption="Introduction" href="writing/exercises/1156181253271.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156181253679" caption="Arguments &quot;for or against&quot;" href="writing/exercises/1156181253679.xml">
-              <!--T/F-->
-            </exercise>
-            <exercise id="1156181253291" caption="Choosing an introduction" href="writing/exercises/1156181253291.xml">
-              <!--D&D QB-->
-            </exercise>
-            <exercise id="1156181253997" caption="Linking words and phrases (1)" href="writing/exercises/1156181253997.xml">
-              <!--Dropdown QB-->
-            </exercise>
-            <exercise id="1156181253915" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml">
-              <!--Dropdown TB-->
-            </exercise>
-            <exercise id="1156181253598" caption="Ideas for the Writing task" href="writing/exercises/1156181253598.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156181253928" caption="Practice activity E" href="writing/exercises/1156181253928.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156181253739" caption="Proofreading" href="writing/exercises/1156181253739.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-          </unit>
-          <unit caption="Writing: unit 2" id="11">
-            <exercise id="1156334683219" caption="Introduction" href="writing/exercises/1156334683219.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156334683158" caption="Describing an object" href="writing/exercises/1156334683158.xml">
-              <!--GF TB-->
-            </exercise>
-            <exercise id="1156334683833" caption="Express purpose, cause and result" href="writing/exercises/1156334683833.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156334683268" caption="The hydram water pump" href="writing/exercises/1156334683268.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156334683268" caption="The hydram water pump" href="writing/exercises/1156334683268.xml">
-              <!--MC splitscreen QB-->
-            </exercise>
-            <exercise id="1156334683296" caption="Cohesive devices" href="writing/exercises/1156334683296.xml">
-              <!--GF QB-->
-            </exercise>
-            <exercise id="1156334683322" caption="Relative clauses (1)" href="writing/exercises/1156334683322.xml">
-              <!--MC-->
-            </exercise>
-            <exercise id="1157364253085" caption="Relative clauses (2)" href="writing/exercises/1157364253085.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156334683345" caption="The wind turbine" href="writing/exercises/1156334683345.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156334683160" caption="Practice activity A" href="writing/exercises/1156334683160.xml">
-              <!--Dropdown - TB-->
-            </exercise>
-            <exercise id="1156334683495" caption="Sample answer" href="writing/exercises/1156334683495.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156334683834" caption="Introduction" href="writing/exercises/1156334683834.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156334683730" caption="Paragraph headings" href="writing/exercises/1156334683730.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1156334683492" caption="Organising ideas into paragraphs" href="writing/exercises/1156334683492.xml">
-              <!--Dropdown - QB-->
-            </exercise>
-            <exercise id="1156334683290" caption="Noise problems and solutions" href="writing/exercises/1156334683290.xml">
-              <!--Dropdown - TB-->
-            </exercise>
-            <exercise id="1156334683327" caption="Expressing cause and effect" href="writing/exercises/1156334683327.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1156334683860" caption="Preparation for the next task" href="writing/exercises/1156334683860.xml">
-              <!--GF splitscreen QB-->
-            </exercise>
-            <exercise id="1156334683512" caption="Practice activity B" href="writing/exercises/1156334683512.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1156334683244" caption="Sample answer" href="writing/exercises/1156334683244.xml">
-              <!--GF splitscreen TB-->
-            </exercise>
-          </unit>
-          <unit caption="Writing: unit 3" id="12">
-            <exercise id="1151344172565" caption="Introduction" href="writing/exercises/1151344172565.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344172016" caption="Table completion" href="writing/exercises/1151344172016.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344172381" caption="Identifying stages in a process" href="writing/exercises/1151344172381.xml">
-              <!--MC splitscreen QB-->
-            </exercise>
-            <exercise id="1151344172816" caption="Sequence markers" href="writing/exercises/1151344172816.xml">
-              <!--D&D TB-->
-            </exercise>
-            <exercise id="1151344172861" caption="First conditional" href="writing/exercises/1151344172861.xml">
-              <!--Dropdown - QB-->
-            </exercise>
-            <exercise id="1151344172864" caption="Stages in a process - practice" href="writing/exercises/1151344172864.xml">
-              <!--Dropdown - TB-->
-            </exercise>
-            <exercise id="1151344172878" caption="Passive voice" href="writing/exercises/1151344172878.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1151344172453" caption="Active and passive" href="writing/exercises/1151344172453.xml">
-              <!--GF TB-->
-            </exercise>
-            <exercise id="1151344172813" caption="Practice activity A" href="writing/exercises/1151344172813.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344172669" caption="Sample answer" href="writing/exercises/1151344172669.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1154106427713" caption="Introduction" href="writing/exercises/1154106427713.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344151941" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
-            <exercise id="1155192197437" caption="Arguments" href="writing/exercises/1155192197437.xml">
-              <!--GF splitscreen TB-->
-            </exercise>
-            <exercise id="1151344151535" caption="Learning to refute arguments" href="writing/exercises/1151344151535.xml">
-              <!--MC splitscreen QB-->
-            </exercise>
-            <exercise id="1151344151459" caption="Expressing probability (1)" href="writing/exercises/1151344151459.xml">
-              <!--MC splitscreen QB-->
-            </exercise>
-            <exercise id="1151344151113" caption="Expressing probability (2)" href="writing/exercises/1151344151113.xml">
-              <!--GF QB-->
-            </exercise>
-            <exercise id="1151344151924" caption="For or against?" href="writing/exercises/1151344151924.xml">
-              <!--T/F-->
-            </exercise>
-            <exercise id="1151344151900" caption="Practice activity B" href="writing/exercises/1151344151900.xml">
-              <!--Presentation - TB-->
-            </exercise>
-            <exercise id="1151344151225" caption="Sample answer" href="writing/exercises/1151344151225.xml">
-              <!--Targetspotting - TB-->
-            </exercise>
+		<course id="1234567879" caption="Reading" description="This session will be focussed on reading. Reading units are organised thematically using themes commonly found in the IELTS exam. The first six units familiarise the student with the basic test types." >
+			<groups>
+				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Unit 2" task="1" alt="xxx." />
+				<group id="3" caption="Unit 3" task="1" alt="xxx." />
+			</groups>
+			<unit id="1234567879" class="question-zone">
+				<exercise id="1234567879" caption="Reading eBook" href="reading/questionzone.xml" />
+			</unit>
+			<unit id="1234567879" class="exam-practice">
+				<exercise id="1234567879" href="reading/practice1.pdf" caption="Reading practice paper Pt1" difficulty="1" />
+				<exercise id="1234567879" href="reading/practice2.pdf" caption="Reading practice paper Pt2" difficulty="2" />
+			</unit>
+			<unit id="1234567879" class="advice-zone">
+				<exercise id="1234567879" href="reading/media/Reading_intro.flv" caption="Watch the teacher giving advice." />
+			</unit>
+			<unit id="1234567879" class="practice-zone" >
+				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml">
+				  <!--GF - splitscreen TB-->
+				</exercise>
+				<exercise id="1156165919506" group="2" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344537791" group="3" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml">
+				  <!--GF - splitscreen TB-->
+				</exercise>
+				<exercise id="1151344244836" group="3" caption="Short answer questions" href="reading/exercises/1151344244836.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344244784" group="3" caption="Sentence completion" href="reading/exercises/1151344244784.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344244888" group="3" caption="Multiple selection" href="reading/exercises/1151344244888.xml">
+				  <!--Targetspotting TB-->
+				</exercise>
+				<exercise id="1151344259045" group="3" caption="Matching (1)" href="reading/exercises/1151344259045.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344259264" group="3" caption="Classification" href="reading/exercises/1151344259264.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344259319" group="3" caption="Multiple choice" href="reading/exercises/1151344259319.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+        	</unit>
+		</course>
+		<course id="1234567879" caption="Listening" description="xxxx xxxxxxx xxxxx">
+			<groups>
+				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Unit 2" task="1" alt="xxx." />
+				<group id="3" caption="Unit 3" task="1" alt="xxx." />
+			</groups>
+			<unit id="1234567879" class="question-zone">
+				<exercise id="1234567879" caption="Listening eBook" href="listening/questionzone.xml" />
+			</unit>
+			<unit id="1234567879" class="exam-practice">
+				<exercise id="1234567879" href="listening/practice1.pdf" caption="Listening practice paper Pt1" difficulty="1" />
+				<exercise id="1234567879" href="listening/practice2.pdf" caption="Listening practice paper Pt2" difficulty="2" />
+			</unit>
+			<unit id="1234567879" class="advice-zone">
+				<exercise id="1234567879" href="listening/CriticalThinking_intro.flv" caption="Watch the teacher giving advice." />
+			</unit>
+			<unit id="1234567879" class="practice-zone">
+				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1156165919813" group="1" caption="Matching" href="listening/exercises/1156165919813.xml">
+				  <!--GF - splitscreen TB-->
+				</exercise>
+				<exercise id="1156429192269" group="2" caption="Conversation" href="listening/exercises/1156429192269.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344537619" group="2" caption="British cinema" href="listening/exercises/1151344537619.xml">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344259533" group="3" caption="Form completion" href="listening/exercises/1151344259533.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344259234" group="3" caption="Multiple selection (1)" href="listening/exercises/1151344259234.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1151344259298" group="3" caption="Short answers" href="listening/exercises/1151344259298.xml">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344221888" group="3" caption="Sentence completion" href="listening/exercises/1151344221888.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221365" group="3" caption="Classification" href="listening/exercises/1151344221365.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221875" group="3" caption="Labelling a diagram" href="listening/exercises/1151344221875.xml">
+				  <!--GF - QB-->
+				</exercise>
+            </unit>
+		 </course>
+		<course id="1234567879" caption="Speaking" description="xxxx xxxxxxx xxxxx">
+			<groups>
+				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Unit 2" task="1" alt="xxx." />
+				<group id="3" caption="Unit 3" task="1" alt="xxx." />
+			</groups>
+			<unit id="1234567879" class="question-zone">
+				<exercise id="1234567879" caption="Speaking eBook" href="speaking/questionzone.xml" />
+			</unit>
+			<unit id="1234567879" class="exam-practice">
+				<exercise id="1234567879" href="speaking/practice1.pdf" caption="Speaking practice paper Pt1" difficulty="1" />
+				<exercise id="1234567879" href="speaking/practice2.pdf" caption="Speaking practice paper Pt2" difficulty="2" />
+			</unit>
+			<unit id="1234567879" class="advice-zone">
+				<exercise id="1234567879" href="listening/CriticalThinking_intro.flv" caption="Watch the teacher giving advice." />
+			</unit>
+			<unit id="1234567879" class="practice-zone">
+				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156153794715" group="1" caption="The speaking test (1)" href="speaking/exercises/1156153794715.xml">
+				  <!--D&D - QB-->
+				</exercise>
+				<exercise id="1156153794077" group="1" caption="The speaking test (2)" href="speaking/exercises/1156153794077.xml">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156153794231" group="1" caption="Watch a video (1)" href="speaking/exercises/1156153794231.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156153794482" group="1" caption="Watch a video (2)" href="speaking/exercises/1156153794482.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1156153794271" group="1" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156153794218" group="1" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344172405" group="2" caption="Practice for Part 2" href="speaking/exercises/1151344172405.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344172961" group="2" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml">
+				  <!--D&D QB-->
+				</exercise>
+				<exercise id="1151344172836" group="2" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1151344172525" group="2" caption="Comparative forms" href="speaking/exercises/1151344172525.xml">
+				  <!--D&D QB-->
+				</exercise>
+				<exercise id="1151344172701" group="2" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156153794218" group="2" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156181253123" group="3" caption="Tips for Part 3" href="speaking/exercises/1156181253123.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156181253456" group="3" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156181253086" group="3" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156181253500" group="3" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156181253785" group="3" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml">
+				  <!--GF TB-->
+				</exercise>
+			</unit>
+		</course>
+		<course caption="Writing" description="This session will be focussed on writing.  Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+			<groups>
+				<group id="1" caption="Unit 1" task="1" alt="xxx." />
+				<group id="2" caption="Unit 1" task="2" alt="xxx." />
+				<group id="3" caption="Unit 2" task="1" alt="xxx." />
+				<group id="4" caption="Unit 2" task="2" alt="xxx." />
+				<group id="5" caption="Unit 3" task="1" alt="xxx." />
+				<group id="6" caption="Unit 3" task="2" alt="xxx." />
+			</groups>
+			<unit class="question-zone">
+				<exercise href="writing/questionzone.xml"caption="Writing eBook"  />
+			</unit>
+			<unit class="exam-practice">
+				<exercise href="writing/practice1.xml" caption="Writing practice paper Pt1" difficulty="3" />
+				<exercise href="writing/practice2.xml" caption="Writing practice paper Pt2" difficulty="4" />
+			</unit>
+			<unit class="advice-zone">
+				<exercise href="writing/Writing_intro.flv" caption="Watch the teacher giving advice" />
+			</unit>
+			<unit class="practice-zone">
+				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156153794786" group="1" caption="Understanding static charts" href="writing/exercises/1156153794786.xml">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156153794241" group="1" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156153794414" group="1" caption="Present simple" href="writing/exercises/1156153794414.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156153794467" group="1" caption="Past simple" href="writing/exercises/1156153794467.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1156153794027" group="1" caption="Organising your report" href="writing/exercises/1156153794027.xml">
+				  <!--D&D - QB-->
+				</exercise>
+				<exercise id="1156153794876" group="1" caption="Practice activity A" href="writing/exercises/1156153794876.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156153794679" group="1" caption="Sample answer" href="writing/exercises/1156153794679.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156181253271" group="2" caption="Introduction" href="writing/exercises/1156181253271.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156181253679" group="2" caption="Arguments &quot;for or against&quot;" href="writing/exercises/1156181253679.xml">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156181253291" group="2" caption="Choosing an introduction" href="writing/exercises/1156181253291.xml">
+				  <!--D&D QB-->
+				</exercise>
+				<exercise id="1156181253997" group="2" caption="Linking words and phrases (1)" href="writing/exercises/1156181253997.xml">
+				  <!--Dropdown QB-->
+				</exercise>
+				<exercise id="1156181253915" group="2" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml">
+				  <!--Dropdown TB-->
+				</exercise>
+				<exercise id="1156181253598" group="2" caption="Ideas for the Writing task" href="writing/exercises/1156181253598.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156181253928" group="2" caption="Practice activity E" href="writing/exercises/1156181253928.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156181253739" group="2" caption="Proofreading" href="writing/exercises/1156181253739.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156334683219" group="3" caption="Introduction" href="writing/exercises/1156334683219.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156334683158" group="3" caption="Describing an object" href="writing/exercises/1156334683158.xml">
+				  <!--GF TB-->
+				</exercise>
+				<exercise id="1156334683833" group="3" caption="Express purpose, cause and result" href="writing/exercises/1156334683833.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156334683268" group="3" caption="The hydram water pump" href="writing/exercises/1156334683268.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156334683268" group="3" caption="The hydram water pump" href="writing/exercises/1156334683268.xml">
+				  <!--MC splitscreen QB-->
+				</exercise>
+				<exercise id="1156334683296" group="3" caption="Cohesive devices" href="writing/exercises/1156334683296.xml">
+				  <!--GF QB-->
+				</exercise>
+				<exercise id="1156334683322" group="3" caption="Relative clauses (1)" href="writing/exercises/1156334683322.xml">
+				  <!--MC-->
+				</exercise>
+				<exercise id="1157364253085" group="3" caption="Relative clauses (2)" href="writing/exercises/1157364253085.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156334683345" group="3" caption="The wind turbine" href="writing/exercises/1156334683345.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156334683160" group="3" caption="Practice activity A" href="writing/exercises/1156334683160.xml">
+				  <!--Dropdown - TB-->
+				</exercise>
+				<exercise id="1156334683495" group="3" caption="Sample answer" href="writing/exercises/1156334683495.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156334683834" group="4" caption="Introduction" href="writing/exercises/1156334683834.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156334683730" group="4" caption="Paragraph headings" href="writing/exercises/1156334683730.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1156334683492" group="4" caption="Organising ideas into paragraphs" href="writing/exercises/1156334683492.xml">
+				  <!--Dropdown - QB-->
+				</exercise>
+				<exercise id="1156334683290" group="4" caption="Noise problems and solutions" href="writing/exercises/1156334683290.xml">
+				  <!--Dropdown - TB-->
+				</exercise>
+				<exercise id="1156334683327" group="4" caption="Expressing cause and effect" href="writing/exercises/1156334683327.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1156334683860" group="4" caption="Preparation for the next task" href="writing/exercises/1156334683860.xml">
+				  <!--GF splitscreen QB-->
+				</exercise>
+				<exercise id="1156334683512" group="4" caption="Practice activity B" href="writing/exercises/1156334683512.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156334683244" group="4" caption="Sample answer" href="writing/exercises/1156334683244.xml">
+				  <!--GF splitscreen TB-->
+				</exercise>
+				<exercise id="1151344172565" group="5" caption="Introduction" href="writing/exercises/1151344172565.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344172016" group="5" caption="Table completion" href="writing/exercises/1151344172016.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344172381" group="5" caption="Identifying stages in a process" href="writing/exercises/1151344172381.xml">
+				  <!--MC splitscreen QB-->
+				</exercise>
+				<exercise id="1151344172816" group="5" caption="Sequence markers" href="writing/exercises/1151344172816.xml">
+				  <!--D&D TB-->
+				</exercise>
+				<exercise id="1151344172861" group="5" caption="First conditional" href="writing/exercises/1151344172861.xml">
+				  <!--Dropdown - QB-->
+				</exercise>
+				<exercise id="1151344172864" group="5" caption="Stages in a process - practice" href="writing/exercises/1151344172864.xml">
+				  <!--Dropdown - TB-->
+				</exercise>
+				<exercise id="1151344172878" group="5" caption="Passive voice" href="writing/exercises/1151344172878.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1151344172453" group="5" caption="Active and passive" href="writing/exercises/1151344172453.xml">
+				  <!--GF TB-->
+				</exercise>
+				<exercise id="1151344172813" group="5" caption="Practice activity A" href="writing/exercises/1151344172813.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344172669" group="5" caption="Sample answer" href="writing/exercises/1151344172669.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1154106427713" group="6" caption="Introduction" href="writing/exercises/1154106427713.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344151941" group="6" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
+				<exercise id="1155192197437" group="6" caption="Arguments" href="writing/exercises/1155192197437.xml">
+				  <!--GF splitscreen TB-->
+				</exercise>
+				<exercise id="1151344151535" group="6" caption="Learning to refute arguments" href="writing/exercises/1151344151535.xml">
+				  <!--MC splitscreen QB-->
+				</exercise>
+				<exercise id="1151344151459" group="6" caption="Expressing probability (1)" href="writing/exercises/1151344151459.xml">
+				  <!--MC splitscreen QB-->
+				</exercise>
+				<exercise id="1151344151113" group="6" caption="Expressing probability (2)" href="writing/exercises/1151344151113.xml">
+				  <!--GF QB-->
+				</exercise>
+				<exercise id="1151344151924" group="6" caption="For or against?" href="writing/exercises/1151344151924.xml">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1151344151900" group="6" caption="Practice activity B" href="writing/exercises/1151344151900.xml">
+				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1151344151225" group="6" caption="Sample answer" href="writing/exercises/1151344151225.xml">
+				  <!--Targetspotting - TB-->
+				</exercise>
           </unit>
         </course>
       </menu>

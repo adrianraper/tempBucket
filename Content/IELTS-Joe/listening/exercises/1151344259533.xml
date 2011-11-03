@@ -25,10 +25,10 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Mackay " correct="true"/>
+      <answer value="Mackay" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="14, Wilsham Street " correct="true"/>
+      <answer value="14, Wilsham Street" correct="true"/>
       <answer value="14 Wilsham Street" correct="true"/>
       <answer value="14, Wilsham St" correct="true"/>
       <answer value="14 Wilsham St" correct="true"/>
@@ -36,21 +36,21 @@
       <answer value="14 Wilsham St." correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="76200685 " correct="true"/>
+      <answer value="76200685" correct="true"/>
       <answer value="7620 0685" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="Superwash " correct="true"/>
+      <answer value="Superwash" correct="true"/>
       <answer value="Super Wash" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="PDW233 " correct="true"/>
+      <answer value="PDW233" correct="true"/>
       <answer value="PDW 233" correct="true"/>
       <answer value="pdw 233" correct="true"/>
       <answer value="pdw233" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="Saturday 13th " correct="true"/>
+      <answer value="Saturday 13th" correct="true"/>
       <answer value="Sat 13th" correct="true"/>
       <answer value="Saturday 13" correct="true"/>
       <answer value="Sat 13" correct="true"/>

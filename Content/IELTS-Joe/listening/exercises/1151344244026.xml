@@ -25,24 +25,24 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="local British group " correct="true"/>
+      <answer value="local British group" correct="true"/>
       <answer value="local group" correct="true"/>
-      <answer value="British group " correct="true"/>
+      <answer value="British group" correct="true"/>
       <answer value="group from Britain" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="fund-raising events " correct="true"/>
+      <answer value="fund-raising events" correct="true"/>
       <answer value="a fund-raising event" correct="true"/>
       <answer value="fund-raising event" correct="true"/>
       <answer value="fund raising events" correct="true"/>
       <answer value="a fund raising event" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="VWI merchandise " correct="true"/>
+      <answer value="VWI merchandise" correct="true"/>
       <answer value="merchandise" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="6% " correct="true"/>
+      <answer value="6%" correct="true"/>
       <answer value="six %" correct="true"/>
       <answer value="6 per cent" correct="true"/>
       <answer value="six per cent" correct="true"/>
@@ -50,7 +50,7 @@
       <answer value="six percent" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="a regular donation " correct="true"/>
+      <answer value="a regular donation" correct="true"/>
       <answer value="a donation" correct="true"/>
       <answer value="regular donation" correct="true"/>
       <answer value="a regular contribution" correct="true"/>
@@ -68,7 +68,7 @@
       <answer value="contribution regularly" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="volunteer " correct="true"/>
+      <answer value="volunteer" correct="true"/>
       <answer value="VWI volunteer" correct="true"/>
     </GapFillQuestion>
   </questions>

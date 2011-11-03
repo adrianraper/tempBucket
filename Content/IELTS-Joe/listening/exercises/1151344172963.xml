@@ -25,16 +25,18 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="in part-time jobs " correct="true"/>
+      <answer value="in part-time jobs" correct="true"/>
       <answer value="part time jobs" correct="true"/>
       <answer value="part-time jobs" correct="true"/>
       <answer value="in part-time employment" correct="true"/>
       <answer value="in part time jobs" correct="true"/>
       <answer value="part time" correct="true"/>
-      <answer value="part-time" correct="true"/>
+      <answer value="part-time" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="service industries " correct="true"/>
+      <answer value="service industries" correct="true"/>
       <answer value="the service industry" correct="true"/>
       <answer value="service industries" correct="true"/>
       <answer value="the service industries" correct="true"/>
@@ -42,13 +44,13 @@
       <answer value="the services" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="their husbands " correct="true"/>
+      <answer value="their husbands" correct="true"/>
       <answer value="husbands" correct="true"/>
       <answer value="husband" correct="true"/>
       <answer value="their husband" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="their husbands " correct="true"/>
+      <answer value="their husbands" correct="true"/>
       <answer value="40" correct="true"/>
       <answer value="aged forty" correct="true"/>
       <answer value="aged 40" correct="true"/>
@@ -59,19 +61,19 @@
       <answer value="forty" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="fifties " correct="true"/>
+      <answer value="fifties" correct="true"/>
       <answer value="50s" correct="true"/>
       <answer value="50's" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="their house " correct="true"/>
+      <answer value="their house" correct="true"/>
       <answer value="their home" correct="true"/>
       <answer value="the house" correct="true"/>
       <answer value="the home" correct="true"/>
       <answer value="their houses" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="aged over forty " correct="true"/>
+      <answer value="aged over forty" correct="true"/>
       <answer value="40" correct="true"/>
       <answer value="aged forty" correct="true"/>
       <answer value="aged 40" correct="true"/>

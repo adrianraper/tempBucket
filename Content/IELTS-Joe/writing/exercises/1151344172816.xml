@@ -24,26 +24,40 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <DragQuestion source="q1">
-      <answer source="a8" correct="true"/>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a8" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </DragQuestion>
-    <DragQuestion source="q2">
-      <answer source="a9" correct="true"/>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a9" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </DragQuestion>
-    <DragQuestion source="q3">
-      <answer source="a10" correct="true"/>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a10" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </DragQuestion>
-    <DragQuestion source="q4">
-      <answer source="a11" correct="true"/>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a11" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </DragQuestion>
-    <DragQuestion source="q5">
-      <answer source="a12" correct="true"/>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a12" correct="true">
+        <feedback source="fb5"/>
+      </answer>
     </DragQuestion>
-    <DragQuestion source="q6">
-      <answer source="a13" correct="true"/>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a13" correct="true">
+        <feedback source="fb6"/>
+      </answer>
     </DragQuestion>
-    <DragQuestion source="q7">
-      <answer source="a14" correct="true"/>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a14" correct="true">
+        <feedback source="fb7"/>
+      </answer>
     </DragQuestion>
   </questions>
 </script>

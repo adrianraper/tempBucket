@@ -24,30 +24,30 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
       <answer source="t2" correct="false">
         <feedback source="fb2"/>
       </answer>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
       <answer source="t3" correct="false">
         <feedback source="fb3"/>
       </answer>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
       <answer source="t4" correct="true">
         <feedback source="fb4"/>
       </answer>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
       <answer source="t5" correct="false">
         <feedback source="fb5"/>
       </answer>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
       <answer source="t6" correct="true"/>
     </TargetSpottingQuestion>
   </questions>

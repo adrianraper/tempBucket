@@ -25,19 +25,19 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="the busiest " correct="true"/>
+      <answer value="the busiest" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="more quickly " correct="true"/>
+      <answer value="more quickly" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="the most rapid " correct="true"/>
+      <answer value="the most rapid" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="greater " correct="true"/>
+      <answer value="greater" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="more important " correct="true"/>
+      <answer value="more important" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

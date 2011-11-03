@@ -25,15 +25,15 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="footpaths " correct="true"/>
+      <answer value="footpaths" correct="true"/>
       <answer value="fields" correct="true"/>
       <answer value="field" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="rice " correct="true"/>
+      <answer value="rice" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="millet and corn " correct="true"/>
+      <answer value="millet and corn" correct="true"/>
       <answer value="millet or corn" correct="true"/>
       <answer value="milet, corn" correct="true"/>
       <answer value="corn and millet" correct="true"/>
@@ -41,7 +41,7 @@
       <answer value="corn, millet" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="49% " correct="true"/>
+      <answer value="49%" correct="true"/>
       <answer value="49 percent" correct="true"/>
       <answer value="49 per cent" correct="true"/>
       <answer value="forty-nine %" correct="true"/>
@@ -49,11 +49,11 @@
       <answer value="forty-nine per cent" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="headwaters " correct="true"/>
+      <answer value="headwaters" correct="true"/>
       <answer value="river" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="richer farmers " correct="true"/>
+      <answer value="richer farmers" correct="true"/>
       <answer value="the richer farmers" correct="true"/>
     </GapFillQuestion>
   </questions>

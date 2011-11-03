@@ -27,7 +27,7 @@
     <GapFillQuestion source="q1" block="b1">
       <answer value="Italian" correct="true"/>
       <answer value="an Italian" correct="true"/>
-      <answer value="an Italian restaurant " correct="true"/>
+      <answer value="an Italian restaurant" correct="true"/>
       <answer value="Italian restaurant" correct="true"/>
       <answer value="an Indian restaurant" correct="true"/>
       <answer value="Indian restaurant" correct="true"/>
@@ -36,12 +36,14 @@
       <answer value="an Indian" correct="true"/>
       <answer value="Indian" correct="true"/>
       <answer value="a French" correct="true"/>
-      <answer value="French" correct="true"/>
+      <answer value="French" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="Indian" correct="true"/>
       <answer value="an Indian" correct="true"/>
-      <answer value="an Indian restaurant " correct="true"/>
+      <answer value="an Indian restaurant" correct="true"/>
       <answer value="Indian restaurant" correct="true"/>
       <answer value="a French restaurant" correct="true"/>
       <answer value="French restaurant" correct="true"/>
@@ -50,12 +52,14 @@
       <answer value="an Italian" correct="true"/>
       <answer value="Italian" correct="true"/>
       <answer value="a French" correct="true"/>
-      <answer value="French" correct="true"/>
+      <answer value="French" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="French" correct="true"/>
       <answer value="a French" correct="true"/>
-      <answer value="a French restaurant " correct="true"/>
+      <answer value="a French restaurant" correct="true"/>
       <answer value="French restaurant" correct="true"/>
       <answer value="an Italian restaurant" correct="true"/>
       <answer value="Italian restaurant" correct="true"/>
@@ -64,29 +68,41 @@
       <answer value="an Italian" correct="true"/>
       <answer value="Italian" correct="true"/>
       <answer value="an Indian" correct="true"/>
-      <answer value="Indian" correct="true"/>
+      <answer value="Indian" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="Food Express " correct="true"/>
+      <answer value="Food Express" correct="true"/>
       <answer value="Burger Bar" correct="true"/>
-      <answer value="The Burger Bar " correct="true"/>
+      <answer value="The Burger Bar" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
       <answer value="Burger Bar" correct="true"/>
-      <answer value="The Burger Bar " correct="true"/>
-      <answer value="Food Express" correct="true"/>
+      <answer value="The Burger Bar" correct="true"/>
+      <answer value="Food Express" correct="true">
+        <feedback source="fb5"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
       <answer value="a fire" correct="true"/>
       <answer value="a log fire" correct="true"/>
-      <answer value="a fire inside " correct="true"/>
+      <answer value="a fire inside" correct="true">
+        <feedback source="fb6"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
       <answer value="a live band" correct="true"/>
-      <answer value="a live group " correct="true"/>
+      <answer value="a live group" correct="true">
+        <feedback source="fb7"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="in Park Road " correct="true"/>
+      <answer value="in Park Road" correct="true">
+        <feedback source="fb8"/>
+      </answer>
     </GapFillQuestion>
   </questions>
 </script>

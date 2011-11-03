@@ -25,21 +25,21 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="home-delivered tap water " correct="true"/>
+      <answer value="home-delivered tap water" correct="true"/>
       <answer value="tap water" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="an electrical interlock " correct="true"/>
+      <answer value="an electrical interlock" correct="true"/>
       <answer value="an interlock" correct="true"/>
       <answer value="the electrical interlock" correct="true"/>
       <answer value="electrical interlock" correct="true"/>
       <answer value="the interlock" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="gravity " correct="true"/>
+      <answer value="gravity" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="approximately 30 liters " correct="true"/>
+      <answer value="approximately 30 liters" correct="true"/>
       <answer value="approximately 30 litres" correct="true"/>
       <answer value="approximately thirty liters" correct="true"/>
       <answer value="approximately thirty litres" correct="true"/>
@@ -57,16 +57,16 @@
       <answer value="thirty litres" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="in Europe " correct="true"/>
-      <answer value="Europe " correct="true"/>
+      <answer value="in Europe" correct="true"/>
+      <answer value="Europe" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="deep tube well " correct="true"/>
+      <answer value="deep tube well" correct="true"/>
       <answer value="deep tube wells" correct="true"/>
       <answer value="deep tube" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="rural women " correct="true"/>
+      <answer value="rural women" correct="true"/>
       <answer value="women" correct="true"/>
     </GapFillQuestion>
   </questions>

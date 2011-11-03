@@ -25,20 +25,36 @@
 <script id="model" type="application/xml">
   <questions>
     <MultipleChoiceQuestion block="q1">
-      <answer source="a1" correct="true"/>
-      <answer source="a2" correct="false"/>
+      <answer source="a1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
-      <answer source="a3" correct="false"/>
-      <answer source="a4" correct="true"/>
+      <answer source="a3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+      <answer source="a4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a5" correct="false"/>
-      <answer source="a6" correct="true"/>
+      <answer source="a5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+      <answer source="a6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
-      <answer source="a7" correct="true"/>
-      <answer source="a8" correct="false"/>
+      <answer source="a7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+      <answer source="a8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>

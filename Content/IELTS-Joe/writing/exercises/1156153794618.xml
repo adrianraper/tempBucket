@@ -25,34 +25,34 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="wider " correct="true"/>
+      <answer value="wider" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="more important " correct="true"/>
+      <answer value="more important" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="more sedentary " correct="true"/>
+      <answer value="more sedentary" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="faster " correct="true"/>
+      <answer value="faster" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="not as sociable " correct="true"/>
+      <answer value="not as sociable" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="more logical " correct="true"/>
+      <answer value="more logical" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="not as healthy " correct="true"/>
+      <answer value="not as healthy" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="easier " correct="true"/>
+      <answer value="easier" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="better-informed " correct="true"/>
+      <answer value="better-informed" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="less creative " correct="true"/>
+      <answer value="less creative" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

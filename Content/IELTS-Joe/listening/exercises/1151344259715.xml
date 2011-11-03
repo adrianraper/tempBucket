@@ -25,7 +25,7 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="user-friendly software " correct="true"/>
+      <answer value="user-friendly software" correct="true"/>
       <answer value="user friendly software" correct="true"/>
       <answer value="web authoring software" correct="true"/>
       <answer value="software for web-authoring" correct="true"/>
@@ -33,15 +33,15 @@
       <answer value="user-friendly web-authoring software" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="other companies' sites " correct="true"/>
+      <answer value="other companies' sites" correct="true"/>
       <answer value="other companies sites" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="your customers are " correct="true"/>
+      <answer value="your customers are" correct="true"/>
       <answer value="the customers are" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="text and graphics " correct="true"/>
+      <answer value="text and graphics" correct="true"/>
       <answer value="texts and graphics" correct="true"/>
       <answer value="graphics and text" correct="true"/>
       <answer value="graphics and texts" correct="true"/>
@@ -55,13 +55,13 @@
       <answer value="graphics texts" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="slow Internet connection " correct="true"/>
+      <answer value="slow Internet connection" correct="true"/>
       <answer value="slow internet connection" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="update it often " correct="true"/>
+      <answer value="update it often" correct="true"/>
       <answer value="update often" correct="true"/>
-      <answer value="update it frequently " correct="true"/>
+      <answer value="update it frequently" correct="true"/>
       <answer value="update frequently" correct="true"/>
       <answer value="update it regularly" correct="true"/>
       <answer value="update regularly" correct="true"/>

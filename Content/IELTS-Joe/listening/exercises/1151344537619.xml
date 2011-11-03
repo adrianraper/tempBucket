@@ -25,28 +25,44 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="B " correct="true"/>
+      <answer value="B" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="A " correct="true"/>
+      <answer value="A" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="C " correct="true"/>
+      <answer value="C" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="B " correct="true"/>
+      <answer value="B" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="C " correct="true"/>
+      <answer value="C" correct="true">
+        <feedback source="fb5"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="C " correct="true"/>
+      <answer value="C" correct="true">
+        <feedback source="fb6"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="A " correct="true"/>
+      <answer value="A" correct="true">
+        <feedback source="fb7"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="C " correct="true"/>
+      <answer value="C" correct="true">
+        <feedback source="fb8"/>
+      </answer>
     </GapFillQuestion>
   </questions>
 </script>

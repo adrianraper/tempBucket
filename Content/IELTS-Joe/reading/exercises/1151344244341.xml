@@ -25,7 +25,7 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="40km " correct="true"/>
+      <answer value="40km" correct="true"/>
       <answer value="forty km" correct="true"/>
       <answer value="40 kilometers" correct="true"/>
       <answer value="forty kilometers" correct="true"/>
@@ -40,13 +40,13 @@
       <answer value="40 km" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="11,000 hectares " correct="true"/>
+      <answer value="11,000 hectares" correct="true"/>
       <answer value="11000 hectares" correct="true"/>
       <answer value="eleven thousand hectares" correct="true"/>
       <answer value="11 thousand hectares" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="2,100m " correct="true"/>
+      <answer value="2,100m" correct="true"/>
       <answer value="2100 meters" correct="true"/>
       <answer value="2,100 metres" correct="true"/>
       <answer value="2100 metres" correct="true"/>
@@ -57,9 +57,9 @@
       <answer value="2,100 meters" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="approximately 33,000 " correct="true"/>
+      <answer value="approximately 33,000" correct="true"/>
       <answer value="approximately 33,000 people" correct="true"/>
-      <answer value="approximately 33000 " correct="true"/>
+      <answer value="approximately 33000" correct="true"/>
       <answer value="approximately 33000 people" correct="true"/>
       <answer value="approximately thirty-three thousand" correct="true"/>
       <answer value="approximately 33 thousand" correct="true"/>
@@ -72,11 +72,11 @@
       <answer value="approx 33 thousand" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="three " correct="true"/>
+      <answer value="three" correct="true"/>
       <answer value="3" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="3.2m " correct="true"/>
+      <answer value="3.2m" correct="true"/>
       <answer value="3.2 metres" correct="true"/>
       <answer value="3.2 m" correct="true"/>
       <answer value="3.2 m." correct="true"/>

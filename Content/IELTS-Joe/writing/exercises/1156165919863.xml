@@ -25,36 +25,36 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="is thought " correct="true"/>
+      <answer value="is thought" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="are believed " correct="true"/>
+      <answer value="are believed" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="is suggested " correct="true"/>
+      <answer value="is suggested" correct="true"/>
       <answer value="is often suggested" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="is argued " correct="true"/>
+      <answer value="is argued" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="are estimated " correct="true"/>
+      <answer value="are estimated" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="is considered " correct="true"/>
+      <answer value="is considered" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="is felt " correct="true"/>
+      <answer value="is felt" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="is said " correct="true"/>
+      <answer value="is said" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="is agreed " correct="true"/>
+      <answer value="is agreed" correct="true"/>
       <answer value="is generally agreed" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="has been pointed out " correct="true"/>
+      <answer value="has been pointed out" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

@@ -25,27 +25,27 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="iii " correct="true"/>
+      <answer value="iii" correct="true"/>
       <answer value="III" correct="true"/>
       <answer value="3" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="v " correct="true"/>
+      <answer value="v" correct="true"/>
       <answer value="V" correct="true"/>
       <answer value="5" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="vii " correct="true"/>
+      <answer value="vii" correct="true"/>
       <answer value="VII" correct="true"/>
       <answer value="7" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="i " correct="true"/>
+      <answer value="i" correct="true"/>
       <answer value="I" correct="true"/>
       <answer value="1" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="iv " correct="true"/>
+      <answer value="iv" correct="true"/>
       <answer value="IV" correct="true"/>
       <answer value="4" correct="true"/>
     </GapFillQuestion>

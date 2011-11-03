@@ -25,19 +25,19 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="the Galaxy " correct="true"/>
+      <answer value="the Galaxy" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="the Universe " correct="true"/>
+      <answer value="the Universe" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="simple life forms " correct="true"/>
+      <answer value="simple life forms" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="extreme conditions " correct="true"/>
+      <answer value="extreme conditions" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="fossils " correct="true"/>
+      <answer value="fossils" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

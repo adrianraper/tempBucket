@@ -25,30 +25,30 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Western countries  " correct="true"/>
+      <answer value="Western countries" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="over 45  " correct="true"/>
+      <answer value="over 45" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="the weather forecast  " correct="true"/>
+      <answer value="the weather forecast" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="lengthy newspaper articles  " correct="true"/>
+      <answer value="lengthy newspaper articles" correct="true"/>
       <answer value="lengthy articles" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="frequently updated  " correct="true"/>
+      <answer value="frequently updated" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="the radio  " correct="true"/>
+      <answer value="the radio" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="newspaper income  " correct="true"/>
+      <answer value="newspaper income" correct="true"/>
       <answer value="newspaper revenue" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="distribution costs  " correct="true"/>
+      <answer value="distribution costs" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

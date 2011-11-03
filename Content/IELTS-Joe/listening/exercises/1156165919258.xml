@@ -25,41 +25,57 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="do the homework " correct="true"/>
-      <answer value="do your homework" correct="true"/>
+      <answer value="do the homework" correct="true"/>
+      <answer value="do your homework" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="library " correct="true"/>
+      <answer value="library" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="videos " correct="true"/>
-      <answer value="video cassettes" correct="true"/>
+      <answer value="videos" correct="true"/>
+      <answer value="video cassettes" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="Make friends " correct="true"/>
+      <answer value="Make friends" correct="true"/>
       <answer value="make friends" correct="true"/>
       <answer value="Spend your time" correct="true"/>
       <answer value="spend your time" correct="true"/>
       <answer value="Spend some time" correct="true"/>
       <answer value="spend some time" correct="true"/>
       <answer value="Spend more time" correct="true"/>
-      <answer value="spend more time" correct="true"/>
+      <answer value="spend more time" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="conversation club " correct="true"/>
-      <answer value="English conversation club" correct="true"/>
+      <answer value="conversation club" correct="true"/>
+      <answer value="English conversation club" correct="true">
+        <feedback source="fb5"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="list " correct="true"/>
-      <answer value="book list" correct="true"/>
+      <answer value="list" correct="true"/>
+      <answer value="book list" correct="true">
+        <feedback source="fb6"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="Test yourself " correct="true"/>
-      <answer value="test yourself" correct="true"/>
+      <answer value="Test yourself" correct="true"/>
+      <answer value="test yourself" correct="true">
+        <feedback source="fb7"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="news " correct="true"/>
-      <answer value="the news" correct="true"/>
+      <answer value="news" correct="true"/>
+      <answer value="the news" correct="true">
+        <feedback source="fb8"/>
+      </answer>
     </GapFillQuestion>
   </questions>
 </script>

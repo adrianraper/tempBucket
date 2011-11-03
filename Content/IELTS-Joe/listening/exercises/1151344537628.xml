@@ -25,33 +25,37 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="7 " correct="true"/>
+      <answer value="7" correct="true"/>
       <answer value="07" correct="true"/>
-      <answer value="7th" correct="true"/>
+      <answer value="7th" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="8 " correct="true"/>
+      <answer value="8" correct="true"/>
       <answer value="eight" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="circle " correct="true"/>
-      <answer value="the circle" correct="true"/>
+      <answer value="circle" correct="true"/>
+      <answer value="the circle" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="A8 A9 " correct="true"/>
+      <answer value="A8 A9" correct="true"/>
       <answer value="A 8 A 9" correct="true"/>
       <answer value="A9 A8" correct="true"/>
       <answer value="A 9 A 8" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="30 " correct="true"/>
+      <answer value="30" correct="true"/>
       <answer value="thirty" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="Hart " correct="true"/>
+      <answer value="Hart" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="9087 6788 0156 5532 " correct="true"/>
+      <answer value="9087 6788 0156 5532" correct="true"/>
       <answer value="9087678801565532" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">

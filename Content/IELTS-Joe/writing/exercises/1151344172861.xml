@@ -82,7 +82,7 @@
   <p align="left"><b>1	</b><select id="q1"><option>Unless</option><option>If</option><option>Provided</option></select> publishers think that they can sell enough copies, they will not publish a book.</p>
   <p align="left"><b>2	</b><select id="q2"><option>Provided</option><option>Unless</option><option>If</option></select> reviewers like the manuscript, they will pass it on to the commissioning editor.</p>
   <p align="left"><b>3</b>	The book can go for printing <select id="q3"><option>if</option><option>provided</option><option>unless</option></select> it has been thoroughly checked for errors.</p>
-  <p align="left"><b>4</b>	Publishers will commission an author <select id="q4"><option>unless</option><option>provided</option><option>if </option></select> they have already been sent a good manuscript.</p>
+  <p align="left"><b>4</b>	Publishers will commission an author <select id="q4"><option>unless</option><option>provided</option><option>if</option></select> they have already been sent a good manuscript.</p>
   <p align="left"><b>5</b>	Blanks have value as coins <select id="q5"><option>if</option><option>provided</option><option>unless</option></select> they have their designs stamped on them.</p>
   <p align="left"><b>6	</b><select id="q6"><option>Unless</option><option>If</option><option>Provided</option></select> blanks have been softened and cleaned, they cannot go to the coining press.</p>
   <p align="left"><b>7</b>	Coins can go into circulation <select id="q7"><option>if</option><option>provided</option><option>unless</option></select> they pass the Trial of the Pyx quality inspection.</p>

@@ -25,39 +25,39 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Aboriginal " correct="true"/>
+      <answer value="Aboriginal" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="Buka women " correct="true"/>
+      <answer value="Buka women" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="coconut shells " correct="true"/>
+      <answer value="coconut shells" correct="true"/>
       <answer value="two coconut shells" correct="true"/>
       <answer value="2 coconut shells" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="Guatemala " correct="true"/>
+      <answer value="Guatemala" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="pin and balls " correct="true"/>
+      <answer value="pin and balls" correct="true"/>
       <answer value="a pin and balls" correct="true"/>
       <answer value="a wooden pin and balls" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="T   " correct="true"/>
+      <answer value="T" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="Inuit   " correct="true"/>
+      <answer value="Inuit" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="G   " correct="true"/>
+      <answer value="G" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="farmers " correct="true"/>
+      <answer value="farmers" correct="true"/>
       <answer value="Kelantanese farmers" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="paper " correct="true"/>
+      <answer value="paper" correct="true"/>
       <answer value="glazed paper" correct="true"/>
       <answer value="glazed colored paper" correct="true"/>
       <answer value="glazed coloured paper" correct="true"/>

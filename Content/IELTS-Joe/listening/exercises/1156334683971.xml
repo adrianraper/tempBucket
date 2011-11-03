@@ -25,10 +25,10 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Eamonn " correct="true"/>
+      <answer value="Eamonn" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="17 Warringah Road " correct="true"/>
+      <answer value="17 Warringah Road" correct="true"/>
       <answer value="17, Warringah Road" correct="true"/>
       <answer value="17, Warringah Rd" correct="true"/>
       <answer value="17, Warringah Rd." correct="true"/>
@@ -36,31 +36,31 @@
       <answer value="17 Warringah Rd." correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="9807 2366 " correct="true"/>
+      <answer value="9807 2366" correct="true"/>
       <answer value="98072366" correct="true"/>
       <answer value="980 723 66" correct="true"/>
       <answer value="98 07 23 66" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="a white tiger " correct="true"/>
+      <answer value="a white tiger" correct="true"/>
       <answer value="white tiger" correct="true"/>
       <answer value="the white tiger" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="Claire     " correct="true"/>
+      <answer value="Claire" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="1997 " correct="true"/>
+      <answer value="1997" correct="true"/>
       <answer value="97" correct="true"/>
       <answer value="'97" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="200 " correct="true"/>
+      <answer value="200" correct="true"/>
       <answer value="2 hundred" correct="true"/>
       <answer value="two hundred" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="4085 1388 1019 0242 " correct="true"/>
+      <answer value="4085 1388 1019 0242" correct="true"/>
       <answer value="4085138810190242" correct="true"/>
     </GapFillQuestion>
   </questions>

@@ -25,41 +25,41 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="rose sharply " correct="true"/>
+      <answer value="rose sharply" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="there was a slight fall in " correct="true"/>
+      <answer value="there was a slight fall in" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="fell markedly " correct="true"/>
+      <answer value="fell markedly" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="There was a dramatic decrease in " correct="true"/>
+      <answer value="There was a dramatic decrease in" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="there was a steep rise in " correct="true"/>
+      <answer value="there was a steep rise in" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="there was a peak in " correct="true"/>
+      <answer value="there was a peak in" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="has risen gradually " correct="true"/>
+      <answer value="has risen gradually" correct="true"/>
       <answer value="has been rising gradually" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="increased significantly " correct="true"/>
+      <answer value="increased significantly" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="dropped noticeably " correct="true"/>
+      <answer value="dropped noticeably" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="a dramatic increase in " correct="true"/>
+      <answer value="a dramatic increase in" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
-      <answer value="has fallen steadily " correct="true"/>
+      <answer value="has fallen steadily" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q12" block="b12">
-      <answer value="a significant drop " correct="true"/>
+      <answer value="a significant drop" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

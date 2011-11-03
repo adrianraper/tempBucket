@@ -25,56 +25,56 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="have taken place " correct="true"/>
+      <answer value="have taken place" correct="true"/>
       <answer value="have been taking place" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="has been " correct="true"/>
+      <answer value="has been" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="is " correct="true"/>
+      <answer value="is" correct="true"/>
       <answer value="has been" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="consisted " correct="true"/>
+      <answer value="consisted" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="had shot up " correct="true"/>
+      <answer value="had shot up" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="will reach " correct="true"/>
+      <answer value="will reach" correct="true"/>
       <answer value="will have reached" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="accounted for " correct="true"/>
+      <answer value="accounted for" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="had risen " correct="true"/>
+      <answer value="had risen" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="will continue " correct="true"/>
+      <answer value="will continue" correct="true"/>
       <answer value="is going to continue" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="has risen " correct="true"/>
+      <answer value="has risen" correct="true"/>
       <answer value="has been rising" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
-      <answer value="will consist " correct="true"/>
+      <answer value="will consist" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q12" block="b12">
-      <answer value="has changed " correct="true"/>
+      <answer value="has changed" correct="true"/>
       <answer value="has been changing" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q13" block="b13">
-      <answer value="accounted for " correct="true"/>
+      <answer value="accounted for" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q14" block="b14">
-      <answer value="has fallen " correct="true"/>
+      <answer value="has fallen" correct="true"/>
       <answer value="has been falling" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q15" block="b15">
-      <answer value="will decline " correct="true"/>
+      <answer value="will decline" correct="true"/>
       <answer value="is going to decline" correct="true"/>
     </GapFillQuestion>
   </questions>

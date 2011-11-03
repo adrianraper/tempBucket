@@ -25,24 +25,26 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Italian conversation " correct="true"/>
+      <answer value="Italian conversation" correct="true"/>
       <answer value="conversational Italian" correct="true"/>
       <answer value="spoken Italian" correct="true"/>
       <answer value="oral Italian" correct="true"/>
-      <answer value="speaking Italian" correct="true"/>
+      <answer value="speaking Italian" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="90 " correct="true"/>
+      <answer value="90" correct="true"/>
       <answer value="ninety" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="12 weeks " correct="true"/>
+      <answer value="12 weeks" correct="true"/>
       <answer value="twelve weeks" correct="true"/>
       <answer value="3 months" correct="true"/>
       <answer value="three months" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="Tuesday Thursday " correct="true"/>
+      <answer value="Tuesday Thursday" correct="true"/>
       <answer value="Tuesdays Thursdays" correct="true"/>
       <answer value="Tue Thur" correct="true"/>
       <answer value="Tues Thurs" correct="true"/>
@@ -64,13 +66,13 @@
       <answer value="Thur + Tue" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="Thursday " correct="true"/>
+      <answer value="Thursday" correct="true"/>
       <answer value="Thursdays" correct="true"/>
       <answer value="Thur" correct="true"/>
       <answer value="Thurs" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="6.15 " correct="true"/>
+      <answer value="6.15" correct="true"/>
       <answer value="06.15" correct="true"/>
       <answer value="6:15" correct="true"/>
       <answer value="06:15" correct="true"/>
@@ -78,13 +80,13 @@
       <answer value="quarter past six" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="2 hours " correct="true"/>
+      <answer value="2 hours" correct="true"/>
       <answer value="two hours" correct="true"/>
       <answer value="2 hrs" correct="true"/>
       <answer value="two hrs" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="15 " correct="true"/>
+      <answer value="15" correct="true"/>
       <answer value="15 students" correct="true"/>
       <answer value="fifteen" correct="true"/>
       <answer value="fifteen students" correct="true"/>

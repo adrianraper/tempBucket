@@ -25,30 +25,30 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="second-class citizens " correct="true"/>
-      <answer value="2nd-class citizens " correct="true"/>
+      <answer value="second-class citizens" correct="true"/>
+      <answer value="2nd-class citizens" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="12 " correct="true"/>
-      <answer value="twelve  " correct="true"/>
+      <answer value="12" correct="true"/>
+      <answer value="twelve" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="gated communities " correct="true"/>
+      <answer value="gated communities" correct="true"/>
       <answer value="Neighbourhood Watch" correct="true"/>
       <answer value="Neighborhood Watch" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="intrusive " correct="true"/>
+      <answer value="intrusive" correct="true"/>
       <answer value="more intrusive" correct="true"/>
       <answer value="high-tech" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="high-tech " correct="true"/>
+      <answer value="high-tech" correct="true"/>
       <answer value="intrusive" correct="true"/>
       <answer value="more intrusive" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="local authorities " correct="true"/>
+      <answer value="local authorities" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

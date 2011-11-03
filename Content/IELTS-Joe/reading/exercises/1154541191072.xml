@@ -25,33 +25,33 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Yes " correct="true"/>
-      <answer value="YES " correct="true"/>
+      <answer value="Yes" correct="true"/>
+      <answer value="YES" correct="true"/>
       <answer value="Y" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="Not given " correct="true"/>
-      <answer value="NOT GIVEN " correct="true"/>
+      <answer value="Not given" correct="true"/>
+      <answer value="NOT GIVEN" correct="true"/>
       <answer value="NG" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="Yes " correct="true"/>
-      <answer value="YES " correct="true"/>
+      <answer value="Yes" correct="true"/>
+      <answer value="YES" correct="true"/>
       <answer value="Y" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="No " correct="true"/>
-      <answer value="NO " correct="true"/>
+      <answer value="No" correct="true"/>
+      <answer value="NO" correct="true"/>
       <answer value="N" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="No " correct="true"/>
-      <answer value="NO " correct="true"/>
+      <answer value="No" correct="true"/>
+      <answer value="NO" correct="true"/>
       <answer value="N" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="Yes " correct="true"/>
-      <answer value="YES " correct="true"/>
+      <answer value="Yes" correct="true"/>
+      <answer value="YES" correct="true"/>
       <answer value="Y" correct="true"/>
     </GapFillQuestion>
   </questions>

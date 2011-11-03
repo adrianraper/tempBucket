@@ -25,29 +25,37 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="take regular exercise " correct="true"/>
+      <answer value="take regular exercise" correct="true"/>
       <answer value="do exercise" correct="true"/>
       <answer value="take exercise" correct="true"/>
       <answer value="exercise regularly" correct="true"/>
-      <answer value="do regular exercise" correct="true"/>
+      <answer value="do regular exercise" correct="true">
+        <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="wash hands often " correct="true"/>
+      <answer value="wash hands often" correct="true"/>
       <answer value="wash hands" correct="true"/>
       <answer value="wash hands regularly" correct="true"/>
       <answer value="wash hands frequently" correct="true"/>
-      <answer value="wash your hands" correct="true"/>
+      <answer value="wash your hands" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="get enough sleep " correct="true"/>
-      <answer value="sleep enough" correct="true"/>
+      <answer value="get enough sleep" correct="true"/>
+      <answer value="sleep enough" correct="true">
+        <feedback source="fb3"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="wrap up warmly " correct="true"/>
+      <answer value="wrap up warmly" correct="true"/>
       <answer value="wrap up well" correct="true"/>
       <answer value="wear warm clothes" correct="true"/>
       <answer value="dress well" correct="true"/>
-      <answer value="dress warmly" correct="true"/>
+      <answer value="dress warmly" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </GapFillQuestion>
   </questions>
 </script>

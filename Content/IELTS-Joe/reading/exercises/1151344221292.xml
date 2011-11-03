@@ -25,19 +25,19 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="child-development specialists " correct="true"/>
+      <answer value="child-development specialists" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="adulthood " correct="true"/>
+      <answer value="adulthood" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="social skills " correct="true"/>
+      <answer value="social skills" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="moral development " correct="true"/>
+      <answer value="moral development" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="poor physical condition " correct="true"/>
+      <answer value="poor physical condition" correct="true"/>
       <answer value="poor condition" correct="true"/>
     </GapFillQuestion>
   </questions>

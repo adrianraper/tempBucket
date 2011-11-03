@@ -25,42 +25,42 @@
 <script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="watched " correct="true"/>
+      <answer value="watched" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="listened " correct="true"/>
+      <answer value="listened" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="spent " correct="true"/>
+      <answer value="spent" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="came " correct="true"/>
+      <answer value="came" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="took up " correct="true"/>
+      <answer value="took up" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="did not seem " correct="true"/>
+      <answer value="did not seem" correct="true"/>
       <answer value="didn't seem" correct="true"/>
       <answer value="seemed not" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="accounted " correct="true"/>
+      <answer value="accounted" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="ate " correct="true"/>
+      <answer value="ate" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
-      <answer value="went " correct="true"/>
+      <answer value="went" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
-      <answer value="entertained " correct="true"/>
+      <answer value="entertained" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
-      <answer value="played " correct="true"/>
+      <answer value="played" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q12" block="b12">
-      <answer value="walked " correct="true"/>
+      <answer value="walked" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

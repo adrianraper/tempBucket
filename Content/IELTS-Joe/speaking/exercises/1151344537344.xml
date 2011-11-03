@@ -25,44 +25,84 @@
 <script id="model" type="application/xml">
   <questions>
     <MultipleChoiceQuestion block="q1">
-      <answer source="a1" correct="false"/>
-      <answer source="a2" correct="true"/>
+      <answer source="a1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
-      <answer source="a3" correct="false"/>
-      <answer source="a4" correct="true"/>
+      <answer source="a3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+      <answer source="a4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a5" correct="false"/>
-      <answer source="a6" correct="true"/>
+      <answer source="a5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+      <answer source="a6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
-      <answer source="a7" correct="false"/>
-      <answer source="a8" correct="true"/>
+      <answer source="a7" correct="false">
+        <feedback source="fb7"/>
+      </answer>
+      <answer source="a8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a9" correct="true"/>
-      <answer source="a10" correct="false"/>
+      <answer source="a9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+      <answer source="a10" correct="false">
+        <feedback source="fb10"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+      <answer source="a12" correct="false">
+        <feedback source="fb12"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q7">
-      <answer source="a13" correct="false"/>
-      <answer source="a14" correct="true"/>
+      <answer source="a13" correct="false">
+        <feedback source="fb13"/>
+      </answer>
+      <answer source="a14" correct="true">
+        <feedback source="fb14"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q8">
-      <answer source="a15" correct="true"/>
-      <answer source="a16" correct="false"/>
+      <answer source="a15" correct="true">
+        <feedback source="fb15"/>
+      </answer>
+      <answer source="a16" correct="false">
+        <feedback source="fb16"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q9">
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="true"/>
+      <answer source="a17" correct="false">
+        <feedback source="fb17"/>
+      </answer>
+      <answer source="a18" correct="true">
+        <feedback source="fb18"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q10">
-      <answer source="a19" correct="false"/>
-      <answer source="a20" correct="true"/>
+      <answer source="a19" correct="false">
+        <feedback source="fb19"/>
+      </answer>
+      <answer source="a20" correct="true">
+        <feedback source="fb20"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>

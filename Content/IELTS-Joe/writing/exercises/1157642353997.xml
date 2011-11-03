@@ -24,15 +24,15 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
       <answer source="t2" correct="true">
         <feedback source="fb2"/>
       </answer>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
       <answer source="t3" correct="false">
         <feedback source="fb3"/>
       </answer>

@@ -24,40 +24,40 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
       <answer source="t2" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
       <answer source="t3" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
       <answer source="t4" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
       <answer source="t5" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
       <answer source="t6" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
       <answer source="t7" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
       <answer source="t8" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
       <answer source="t9" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
       <answer source="t10" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
       <answer source="t11" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
       <answer source="t12" correct="true"/>
     </TargetSpottingQuestion>
   </questions>
