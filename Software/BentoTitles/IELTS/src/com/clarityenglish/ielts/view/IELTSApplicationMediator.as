@@ -57,16 +57,17 @@ package com.clarityenglish.ielts.view {
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 					view.loginView.loginPanel.title = configProxy.getAccount().name;
 					break;
+				
 				case CommonNotifications.LOGGED_IN:
 					view.currentState = "title";
 					
 					// For now hardcode the menu file
 					configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					//view.titleView.href = new Href(Href.XHTML, "menu-LastMinute.xml", configProxy.getContentPath());
+					view.titleView.href = new Href(Href.XHTML, "menu-LastMinute.xml", configProxy.getContentPath());
 					
 					// DK Hardcoded this for the moment as this contains the correct captions and classes for the IELTS zones
 					//view.titleView.href = new Href(Href.XHTML, "menu.xml", "../../../Content/IELTS-Dave");
-					view.titleView.href = new Href(Href.XHTML, "menu.xml", "http://dock.projectbench/Content/IELTS-Dave");
+					//view.titleView.href = new Href(Href.XHTML, "menu.xml", "http://dock.projectbench/Content/IELTS-Dave");
 					break;
 			}
 		}

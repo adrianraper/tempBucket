@@ -39,6 +39,7 @@ package com.clarityenglish.ielts.view.home {
 		private var _fullChartXML:XML;
 		
 		public var courseSelect:Signal = new Signal(XML);
+		public var chartTemplatesLoad:Signal = new Signal();
 		
 		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
 			//coveragePieChart.dataProvider = _dataProvider;
@@ -72,8 +73,8 @@ package com.clarityenglish.ielts.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case coveragePieChart:
-					// Initial settings for the chart
-					initPieChart();
+					// Load the chart templates
+					chartTemplatesLoad.dispatch();
 					break;
 			}
 		}
@@ -93,42 +94,11 @@ package com.clarityenglish.ielts.view.home {
 		}
 		/**
 		 * Many settings for the pie chart are completely static and can be initialised here 
-		 * 
+		 * The data comes from XML template files loaded by ConfigProxy
 		 */
-		private function initPieChart():void {
+		public function initCharts(templates:XML):void {
 			// Purely a charting test
-			_fullChartXML = <anychart>
-							  <charts>
-								<chart plot_type="CategorizedVertical">
-								  <data>
-									<series name="Product Sales" type="Bar">
-									  <point name="2004" y="63716" />
-									  <point name="2005" y="72163" />
-									  <point name="2006" y="94866" />
-									  <point name="2007" y="56866" />
-									  <point name="2008" y="19000" />
-									</series>
-								  </data>
-								  <chart_settings>
-									  <title>
-										  <text>ACME Corp. Sales</text>
-									  </title>
-									  <axes>
-										  <x_axis>
-											  <title>
-												  <text>Year</text>
-											  </title>
-										  </x_axis>
-										  <y_axis>
-											  <title>
-												  <text>Sales (USD)</text>
-											  </title>
-										  </y_axis>
-									  </axes>
-								  </chart_settings>
-								</chart>
-							  </charts>
-							</anychart>;
+			_fullChartXML = templates;
 		}
 
 	}

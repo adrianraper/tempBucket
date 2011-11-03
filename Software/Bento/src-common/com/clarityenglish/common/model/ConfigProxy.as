@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
@@ -45,7 +46,7 @@ package com.clarityenglish.common.model {
 		 * 2) parameters passed from the start page or command line. This is specific to this account or this user or this session
 		 * 3) details from the database for this account. Specific to this account.
 		 * 
-		 * Get it in the above order as, in theory, each could override the previous, though in practice this doesn't happen
+		 * Get it in the above order as, in theory, each could override the previous, though in practice this doesn't happen.
 		 */
 		
 		public function ConfigProxy(data:Object = null) {
@@ -205,6 +206,45 @@ package com.clarityenglish.common.model {
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
 		}
 		
+		/**
+		 * If the chart templates have already been loaded, just return them.
+		 * Otherwise load from XML
+		 *
+		 * @param	String	filename
+		 * @return
+		 */
+		public function getChartTemplates():void {
+			
+			if (config.chartTemplates) {
+				sendNotification(CommonNotifications.CHART_TEMPLATES_LOADED, config.chartTemplates);
+				return;
+			}
+			
+			/**
+			 * We will read the chart template from 
+			 *  a. the same place as config.xml
+			 *  b. from an assets path listed in config.xml
+			 *  c. ?
+			 */
+			var filename:String = 'chartTemplates.xml';
+			var urlLoader:URLLoader = new URLLoader();
+			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+			urlLoader.addEventListener(Event.COMPLETE, onChartTemplatesLoadComplete);
+			
+			try {
+				log.info("Open template file: {0}", filename);
+				urlLoader.load(new URLRequest(filename));
+			} catch (e:SecurityError) {
+				log.error("A SecurityError has occurred for the template file {0}", filename);
+			}
+		}
+		
+		public function onChartTemplatesLoadComplete(e:Event):void {
+			
+			// The XML contains sections for each chart with the static information and placeholders for data and titles.
+			config.chartTemplates = new XML(e.target.data);
+			sendNotification(CommonNotifications.CHART_TEMPLATES_LOADED, config.chartTemplates);
+		}
 
 	}
 }

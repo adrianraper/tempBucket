@@ -43,6 +43,9 @@ package com.clarityenglish.common.vo.config {
 		// Actually, we might just use the Account class rather than a special licence class
 		public var account:Account;
 		
+		// For holding chart templates
+		private var _chartTemplates:XML;
+		
 		public function Config() {
 			this.paths = {content: '', streamingMedia: '', sharedMedia: '', brandingMedia: '', accountRepository: ''};
 			//this.licence = new Licence();
@@ -248,6 +251,18 @@ package com.clarityenglish.common.vo.config {
 				this.licence.startDate = new Date(); // well, what? today?
 			}
 			*/
+		}
+		
+		/**
+		 * This sends back the XML that is the chart templates 
+		 * @return 
+		 * 
+		 */
+		public function get chartTemplates():XML {
+			return _chartTemplates;
+		}
+		public function set chartTemplates(value:XML):void {
+			_chartTemplates = value;
 		}
 		
 		/**

@@ -68,28 +68,6 @@ package com.clarityenglish.ielts.view.title {
 			invalidateSkinState();
 		}
 		
-		/**
-		 * Tell the zone view to handle the course
-		 * 
-		 * @param XML The course XML
-		 * 
-		 */
-		/*
-		public function showCourse(course:XMLList):void {
-			
-			// Tell the zone which course to work with
-			// Do I need to do course[0] to ensure that there is only one XML object in the list?
-			// TODO. Do the course[0] as early as possible.
-			// PROBLEM. I can't refer to zoneView as it has not been added to the view yet due to deferred mediation.
-			currentCourse = course[0];
-			
-			// Need to set the state to zone
-			currentState = "zone";
-			// No longer need to call invalidateSkinState as done in StateUtil
-			//invalidateSkinState();
-		}
-		*/
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			

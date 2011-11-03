@@ -14,6 +14,8 @@
 		public static const DICTIONARIES_LOADED:String = "dictionaries_loaded";
 		public static const CONFIG_LOADED:String = "config_loaded";
 		public static const CONFIG_ERROR:String = "config_error";
+		public static const CHART_TEMPLATES_LOADED:String = "chart_templates_loaded";
+		
 		public static const PROGRESS_LOAD_ERROR:String = "progress_load_error";
 		public static const TRACE_NOTICE:String = "trace_notice";
 		public static const TRACE_WARNING:String = "trace_warning";

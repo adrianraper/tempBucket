@@ -8,6 +8,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	import flash.events.Event;
@@ -52,11 +53,11 @@ package com.clarityenglish.common.model {
 		 * I don't really like that much - it seems much safer to pass the little that we do need.
 		 * @param number userID 
 		 */
-		public function getProgressData(user:User, account:Account):void {
+		public function getProgressData(user:User, account:Account, progress:Progress):void {
 			
-			// Send userID, rootID and productCode
+			// Send userID, rootID and productCode. Also say whether you want some or all data to come back.
 			// TODO. user doesn't currently have userID set. Check up on what comes back from login.
-			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id ];
+			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progress ];
 			new RemoteDelegate("getProgressData", params, this).execute();
 		}
 		

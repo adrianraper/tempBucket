@@ -60,7 +60,7 @@
 			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 			//registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);
 			
-			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressLoadCommand);
+			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
 
 		}
 		
