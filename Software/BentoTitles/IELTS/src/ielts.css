@@ -44,6 +44,27 @@ home|HomeView s|Button#writingCourse {
 	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
 }
 
+home|HomeView s|Button#speakingCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
+	title: "Speaking";
+	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+}
+
+home|HomeView s|Button#readingCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Reading.png");
+	title: "Reading";
+	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+}
+
+home|HomeView s|Button#listeningCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
+	courseImage: Embed(source="skins/ielts/assets/Listening.png");
+	title: "Listening";
+	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+}
+
 /* Zone view styles */
 zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");

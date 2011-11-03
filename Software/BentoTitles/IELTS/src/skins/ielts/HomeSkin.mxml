@@ -16,9 +16,9 @@
 	
 	<s:VGroup width="100%">
 		<s:Button id="writingCourse" width="100%" />
+		<s:Button id="speakingCourse" width="100%" />
 		<s:Button id="readingCourse" width="100%" />
 		<s:Button id="listeningCourse" width="100%" />
-		<s:Button id="speakingCourse" width="100%" />
 		<s:Button id="examTipsCourse" width="100%" />
 	</s:VGroup>		
 	
