@@ -55,6 +55,7 @@ package com.clarityenglish.ielts.view.home {
 			// This is probably a 'quick' call in usage stats mode rather than full progress
 			
 		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}		

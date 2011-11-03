@@ -9,6 +9,7 @@
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace almer "almerblank.flex.spark.components.*";
+@namespace bento "com.clarityenglish.bento.*";
 
 /* This changes the modal popup mask properties */
 global {

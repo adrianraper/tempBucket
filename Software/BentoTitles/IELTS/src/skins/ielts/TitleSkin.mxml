@@ -32,14 +32,11 @@
 		</s:Transition>
 	</s:transitions>
 	
-	<s:HGroup width="100%" paddingBottom="20">
-		<s:Label text="Road to IELTS" fontSize="20" fontWeight="bold" />
-		<s:Spacer width="100%" />
-		<s:Button label="Logout" />
-		<s:Button label="Contact us" />
-	</s:HGroup>
-	
-	<s:TabBar id="mainTabBar" excludeFrom="exercise" />
+	<s:Group width="100%" height="100" excludeFrom="exercise">
+		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTS')" width="100%" />
+		<s:Label text = "Welcome, Tim Clark.  Today is 16th July 2011." top="30"/>
+		<s:TabBar id="mainTabBar" right="0" />
+	</s:Group>
 	
 	<s:HGroup width="100%">
 		<s:Group width="100%" height="100%">
