@@ -202,9 +202,9 @@
 	</s:Label>
 	
 	<!-- layer 9: IELTS course button specific stuff -->
-	<s:Image source="{getStyle('courseIcon')}" width="40" height="40" />
+	<s:SWFLoader source="{getStyle('courseIcon')}" width="40" height="40" />
 	<s:Label text="{getStyle('title')}" left="40" fontSize="20" />
-	<s:Label text="{getStyle('description')}" left="40" right="200" top="40" fontSize="18" />
+	<s:Label text="{getStyle('description')}" left="40" right="200" top="40" fontSize="12" />
 	<s:Image source="{getStyle('courseImage')}" right="0" />
 
 </s:SparkButtonSkin>
