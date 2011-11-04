@@ -21,8 +21,9 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "LoginProxy";
 		
-		public var _user:User;
-		public var _group:Group;
+		private var _user:User;
+		
+		private var _group:Group;
 
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
@@ -32,11 +33,17 @@ package com.clarityenglish.common.model {
 			logout();
 		}
 		
+		public function get user():User {
+			return _user;
+		}
+		
+		public function get group():Group {
+			return _group;
+		}
+		
 		public function login(key:String, password:String):void {
-			
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
-			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var loginOption:uint = configProxy.getAccount().loginOption;
 			if (loginOption==1) {
@@ -95,17 +102,6 @@ package com.clarityenglish.common.model {
 		
 		public function onDelegateFault(operation:String, data:Object):void{
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
-		}
-		
-		/**
-		 * If anyone wants the logged in user's details
-		 * 
-		 */
-		public function get user():User {
-			return _user;
-		}
-		public function get group():Group {
-			return _group;
 		}
 		
 	}

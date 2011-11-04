@@ -2,12 +2,10 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
-	import mx.logging.ILogger;
-	import mx.logging.Log;
-	
-	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -26,6 +24,13 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			// Inject required data into the view
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			view.user = loginProxy.user;
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.dateFormatter = configProxy.getDateFormatter();
 		}
 		
 		override public function onRemove():void {

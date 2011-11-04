@@ -17,6 +17,7 @@ package com.clarityenglish.common.model {
 	
 	import mx.core.Application;
 	import mx.core.FlexGlobals;
+	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -40,6 +41,8 @@ package com.clarityenglish.common.model {
 		
 		private var config:Config;
 		
+		private var _dateFormatter:DateFormatter;
+		
 		/**
 		 * Configuration information comes from three sources
 		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products
@@ -52,7 +55,11 @@ package com.clarityenglish.common.model {
 		public function ConfigProxy(data:Object = null) {
 			super(NAME, data);
 			
+			_dateFormatter = new DateFormatter();
+			_dateFormatter.formatString = "D MMMM YYYY";
+			
 			config = new Config();
+			
 			// You might have passed a special config file as a paramter. If not, use a default name and path.
 			// The path should actually be the same folder as the start page, /area1/RoadToIELTS2
 			if (FlexGlobals.topLevelApplication.parameters.configFile) {
@@ -60,6 +67,7 @@ package com.clarityenglish.common.model {
 			} else {
 				configFile = "config.xml";
 			}
+			
 			getConfigFile(configFile);
 		}
 		
@@ -134,15 +142,22 @@ package com.clarityenglish.common.model {
 		public function getContentPath():String {
 			return config.paths.content;
 		}
+		
 		public function getAccount():Account {
 			return config.account;
 		}
+		
 		public function getUserID():String {
 			return config.userID;
 		}
+		
 		// Is it OK to just get the config object?
 		public function getConfig():Config {
 			return config;
+		}
+		
+		public function getDateFormatter():DateFormatter {
+			return _dateFormatter;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

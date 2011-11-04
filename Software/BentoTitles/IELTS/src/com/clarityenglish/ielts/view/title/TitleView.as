@@ -1,17 +1,18 @@
 package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
+	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.StateUtil;
 	
@@ -51,7 +52,14 @@ package com.clarityenglish.ielts.view.title {
 		[SkinPart]
 		public var exerciseView:ExerciseView;
 		
+		[Bindable]
+		public var user:User;
+		
+		[Bindable]
+		public var dateFormatter:DateFormatter;
+		
 		public var currentCourse:XML;
+		
 		private var currentExerciseHref:Href;
 		
 		// Constructor to let us initialise our states
