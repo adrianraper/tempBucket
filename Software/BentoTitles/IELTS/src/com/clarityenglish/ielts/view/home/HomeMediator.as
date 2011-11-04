@@ -1,12 +1,12 @@
 ﻿package com.clarityenglish.ielts.view.home {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.common.vo.progress.Progress;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -38,7 +38,6 @@
 			progress.loadMyDetails = true;
 			progress.loadEveryoneSummary = true;
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress);
-			
 		}
 		
 		override public function onRemove():void {

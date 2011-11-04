@@ -76,8 +76,8 @@ package com.clarityenglish.ielts.view.zone {
 			super.commitProperties();
 			
 			if (_courseChanged) {
-				//courseTitleLabel.text = _course.@caption;
-				//courseDescriptionLabel.text = _course.@description;
+				courseTitleLabel.text = _course.@caption;
+				courseDescriptionLabel.text = _course.@description;
 				
 				// class is a reserved keyword so have to use @["class"] instead of @class
 				examPractice1Button.label = _course.unit.(@["class"] == "exam-practice").exercise[0].@caption;

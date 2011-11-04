@@ -10,6 +10,7 @@
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace almer "almerblank.flex.spark.components.*";
 @namespace bento "com.clarityenglish.bento.*";
+@namespace tink "ws.tink.spark.containers.*";
 
 @font-face {
 	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
@@ -101,6 +102,15 @@ home|HomeView s|Button#listeningCourse {
 /* Zone view styles */
 zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");
+}
+
+zone|ZoneView tink|Accordion {
+	skinClass: ClassReference("ws.tink.spark.skins.containers.AccordionSkin");
+}
+
+zone|ZoneView tink|Accordion #buttonBar {
+	skinClass: ClassReference("skins.ielts.zone.ZoneAccordianButtonBarSkin");
+	cornerRadius: 0;
 }
 
 zone|ZoneView #practiceZoneDataGroup almer|SkinnableItemRenderer {

@@ -52,7 +52,6 @@
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
 					break;
-				
 				case IELTSNotifications.COURSE_SHOW:
 					var course:XML = note.getBody() as XML;
 					view.currentState = "zone";
