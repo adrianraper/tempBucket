@@ -29,16 +29,18 @@
 	fontThickness: -200;
 }
 
-/* This changes the modal popup mask properties */
 global {
+	/* This changes the modal popup mask properties */
 	modal-transparency: 0.1;
 	modal-transparency-blur: 0;
 	modal-transparency-color: black;
 	modal-transparency-duration: 200;
 	
+	/* This sets the default font properties */
 	fontFamily: "HelveticaNeueLtStd";
 	fontSize: 12;
 	fontWeight: normal;
+	color: #303030;
 }
 
 /* Login view styles */
@@ -49,6 +51,14 @@ login|LoginView {
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
+}
+
+title|TitleView #navBar {
+	skinClass: ClassReference("skins.ielts.title.NavBarSkin");
+}
+
+title|TitleView #navBar s|ButtonBarButton {
+	
 }
 
 /* Home view styles */

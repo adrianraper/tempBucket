@@ -17,7 +17,7 @@ package com.clarityenglish.ielts.view.title {
 	import org.davekeen.util.StateUtil;
 	
 	import spark.components.Button;
-	import spark.components.TabBar;
+	import spark.components.ButtonBar;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	// To avoid double 
@@ -29,10 +29,7 @@ package com.clarityenglish.ielts.view.title {
 	public class TitleView extends BentoView {
 		
 		[SkinPart]
-		public var mainTabBar:TabBar;
-		
-		[SkinPart]
-		public var courseTabBar:TabBar;
+		public var navBar:ButtonBar;
 		
 		[SkinPart]
 		public var backButton:Button;
@@ -58,9 +55,16 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
-		public var currentCourse:XML;
-		
 		private var currentExerciseHref:Href;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
+		private var homeIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
+		private var progressIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="AccountIcon")]
+		private var accountIcon:Class;
 		
 		// Constructor to let us initialise our states
 		public function TitleView() {
@@ -80,14 +84,15 @@ package com.clarityenglish.ielts.view.title {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case mainTabBar:
-					mainTabBar.dataProvider = new ArrayCollection( [
-						{ label: "Home", data: "home" },
-						{ label: "My Progress", data: "progress" },
-						{ label: "My Account", data: "account" },
+				case navBar:
+					navBar.dataProvider = new ArrayCollection( [
+						{ icon: homeIcon, label: "Home", data: "home" },
+						{ icon: progressIcon, label: "My Progress", data: "progress" },
+						{ icon: accountIcon, label: "My Account", data: "account" },
 					] );
-					mainTabBar.requireSelection = true;
-					mainTabBar.addEventListener(Event.CHANGE, onMainTabBarIndexChange);
+					
+					navBar.requireSelection = true;
+					navBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
@@ -111,8 +116,8 @@ package com.clarityenglish.ielts.view.title {
 			super.partRemoved(partName, instance);
 			
 			switch (instance) {
-				case mainTabBar:
-					mainTabBar.removeEventListener(Event.CHANGE, onMainTabBarIndexChange);
+				case navBar:
+					navBar.removeEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
 				case backButton:
 					backButton.removeEventListener(MouseEvent.CLICK, onBackButtonClick);
@@ -141,12 +146,9 @@ package com.clarityenglish.ielts.view.title {
 		 * 
 		 * @param event
 		 */
-		protected function onMainTabBarIndexChange(event:Event):void {
+		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
-			currentState = (event.target as TabBar).selectedItem.data;
-			
-			// Then cause a refresh - no need if we are using StateUtils
-			//invalidateSkinState();
+			currentState = event.target.selectedItem.data;
 		}
 		
 		/**

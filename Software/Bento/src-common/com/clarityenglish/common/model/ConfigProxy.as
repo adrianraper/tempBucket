@@ -76,7 +76,6 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		private function getApplicationParameters():void {
-			
 			/**
 			 *  Use what is passed from start page or command line
 			 */
