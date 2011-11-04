@@ -1,33 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <anychart>
+  <settings>
+    <animation enabled="True" />
+  </settings>
   <charts>
-	<chart plot_type="CategorizedVertical">
-	  <data>
-		<series name="Product Sales" type="Bar">
-		  <point name="2004" y="63716" />
-		  <point name="2005" y="72163" />
-		  <point name="2006" y="94866" />
-		  <point name="2007" y="56866" />
-		  <point name="2008" y="19000" />
-		</series>
-	  </data>
-	  <chart_settings>
-		  <title>
-			  <text>Clarity Sales</text>
-		  </title>
-		  <axes>
-			  <x_axis>
-				  <title>
-					  <text>Year</text>
-				  </title>
-			  </x_axis>
-			  <y_axis>
-				  <title>
-					  <text>Sales (USD)</text>
-				  </title>
-			  </y_axis>
-		  </axes>
-	  </chart_settings>
-	</chart>
+    <chart plot_type="CategorizedHorizontal">
+      <data_plot_settings default_series_type="Bar">
+        <bar_series group_padding="0.5">
+          <tooltip_settings enabled="false" />
+          <label_settings enabled="true">
+            <background enabled="false" />
+            <position anchor="Center" valign="Center" halign="Center" />
+            <font color="White" />
+            <format>{%YValue}{numDecimals:0}%</format>
+          </label_settings>
+        </bar_series>
+      </data_plot_settings>
+      <data>
+        <series name="Skill" type="Bar" palette="Default">
+        </series>
+      </data>
+      <chart_settings>
+        <chart_background enabled="false" />
+        <title enabled="false" />
+        <legend enabled="false" />
+        <axes>
+          <y_axis enabled="false" position="Opposite">
+            <scale minimum="0" maximum="100" major_interval="50" />
+            <title enabled="false" />
+            <labels enabled="false" />
+          </y_axis>
+          <x_axis>
+            <title enabled="false" />
+          </x_axis>
+        </axes>
+      </chart_settings>
+    </chart>
   </charts>
 </anychart>

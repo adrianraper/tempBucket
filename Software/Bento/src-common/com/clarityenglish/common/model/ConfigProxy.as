@@ -215,6 +215,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getChartTemplates():void {
 			
+			// We only want to load these once, so send back if already in memory
 			if (config.chartTemplates) {
 				sendNotification(CommonNotifications.CHART_TEMPLATES_LOADED, config.chartTemplates);
 				return;

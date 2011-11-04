@@ -1,9 +1,9 @@
 package com.clarityenglish.ielts.view.home {
+	import com.anychart.AnyChartFlex;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.textLayout.vo.XHTML;
-	import com.anychart.AnyChartFlex;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -43,6 +43,17 @@ package com.clarityenglish.ielts.view.home {
 		
 		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
 			//coveragePieChart.dataProvider = _dataProvider;
+			// We have the chart template, inject the data from the data provider
+			var dp:Array = [
+				{name:'Writing', value:'23'},
+				{name:'Speaking', value:'39'},
+				{name:'Reading', value:'68'},
+				{name:'Listening', value:'65'},
+				{name:'Exam tips', value:'100'}
+				];
+			for each (var point:Object in dp) {
+				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.name} y={point.value}/>);
+			}
 			coveragePieChart.anychartXML = _fullChartXML;
 		}
 

@@ -14,8 +14,8 @@
 	
 	<anychart:AnyChartFlex id="coveragePieChart" width="300" height="300" />
 	
-	<s:VGroup width="100%">
-		<s:Button id="writingCourse" width="100%" />
+	<s:VGroup width="100%" horizontalAlign="right" >
+		<s:Button id="writingCourse" width="60%" />
 		<s:Button id="speakingCourse" width="100%" />
 		<s:Button id="readingCourse" width="100%" />
 		<s:Button id="listeningCourse" width="100%" />
