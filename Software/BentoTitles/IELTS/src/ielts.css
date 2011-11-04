@@ -11,12 +11,34 @@
 @namespace almer "almerblank.flex.spark.components.*";
 @namespace bento "com.clarityenglish.bento.*";
 
+@font-face {
+	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+	fontFamily: "HelveticaNeueLtStd";
+	fontWeight: normal;
+	fontAntiAliasType: advanced;
+	fontSharpness: 400;
+	fontThickness: -200;
+}
+
+@font-face {
+	src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+	fontFamily: "HelveticaNeueLtStd";
+	fontWeight: bold;
+	fontAntiAliasType: advanced;
+	fontSharpness: 400;
+	fontThickness: -200;
+}
+
 /* This changes the modal popup mask properties */
 global {
 	modal-transparency: 0.1;
 	modal-transparency-blur: 0;
 	modal-transparency-color: black;
 	modal-transparency-duration: 200;
+	
+	fontFamily: "HelveticaNeueLtStd";
+	fontSize: 12;
+	fontWeight: normal;
 }
 
 /* Login view styles */
