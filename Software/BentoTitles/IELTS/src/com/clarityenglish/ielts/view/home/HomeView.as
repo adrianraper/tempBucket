@@ -48,7 +48,7 @@ package com.clarityenglish.ielts.view.home {
 			}
 			coveragePieChart.anychartXML = _fullChartXML;
 		}
-
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -57,7 +57,6 @@ package com.clarityenglish.ielts.view.home {
 			
 			// Get the coverage overview from the backside
 			// This is probably a 'quick' call in usage stats mode rather than full progress
-			
 		}
 		
 		protected override function commitProperties():void {
@@ -87,10 +86,10 @@ package com.clarityenglish.ielts.view.home {
 		 * @param event
 		 */
 		protected function onCourseClick(event:MouseEvent):void {
-			var matchingCourses:XMLList = menu.course.(@caption == event.target.label);
+			var matchingCourses:XMLList = menu.course.(@caption == event.target.getStyle("title"));
 			
 			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with caption {0}", event.target.label);
+				log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
