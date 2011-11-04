@@ -42,16 +42,8 @@ package com.clarityenglish.ielts.view.home {
 		public var chartTemplatesLoad:Signal = new Signal();
 		
 		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
-			//coveragePieChart.dataProvider = _dataProvider;
 			// We have the chart template, inject the data from the data provider
-			var dp:Array = [
-				{name:'Writing', value:'23'},
-				{name:'Speaking', value:'39'},
-				{name:'Reading', value:'68'},
-				{name:'Listening', value:'65'},
-				{name:'Exam tips', value:'100'}
-				];
-			for each (var point:Object in dp) {
+			for each (var point:Object in mySummary) {
 				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.name} y={point.value}/>);
 			}
 			coveragePieChart.anychartXML = _fullChartXML;

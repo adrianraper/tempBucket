@@ -61,7 +61,7 @@
 				case BBNotifications.PROGRESS_DATA_LOADED:
 					
 					// Split the data that comes back for the various charts
-					var progress:Progress = new Progress(note.getBody() as Array);
+					var progress:Progress = new Progress(note.getBody() as Object);
 					view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
 					break;
 				

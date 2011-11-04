@@ -25,7 +25,7 @@ package com.clarityenglish.common.vo.progress {
 		 * @param Array data
 		 * 
 		 */
-		public function Progress(data:Array = null) {
+		public function Progress(data:Object = null) {
 			if (data) {
 				if (data.mySummary) {
 					mySummary = data.mySummary;

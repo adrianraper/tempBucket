@@ -79,6 +79,14 @@ package com.clarityenglish.common.model {
 						// Who will handle this?
 						sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, error);
 					} else {
+						// Fake data
+						data.mySummary = [
+							{name:'Writing', value:'23'},
+							{name:'Speaking', value:'39'},
+							{name:'Reading', value:'68'},
+							{name:'Listening', value:'65'},
+							{name:'Exam tips', value:'100'}
+						];
 						sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 					}
 					break;
