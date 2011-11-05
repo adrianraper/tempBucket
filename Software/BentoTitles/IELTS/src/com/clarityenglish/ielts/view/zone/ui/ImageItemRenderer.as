@@ -23,6 +23,7 @@ package com.clarityenglish.ielts.view.zone.ui {
 		 */ 
 		public override function set data(value:Object):void {
 			super.data = value;
+			trace(data.toXMLString());
 			trace("add imageItemRenderer for " + data.@thumbnail);
 			// AR Remember that E4X sends things as strings in an XML wrapper
 			//image.source = data.@thumbnail.toString();
@@ -33,13 +34,13 @@ package com.clarityenglish.ielts.view.zone.ui {
 		protected function onComplete(e:Event):void {
 			trace("onComplete for " + e.toString());
 		}
+		
 		protected function onError(e:IOErrorEvent):void {
 			trace("onError for " + e.toString());
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			//trace("partAdded imageItemRenderer for " + partName);
 			
 			switch (instance) {
 				case image:

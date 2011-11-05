@@ -59,7 +59,7 @@ package com.clarityenglish.ielts.view.home {
 			// This is probably a 'quick' call in usage stats mode rather than full progress
 			
 			// TODO: GO STRAIGHT TO THE READING COURSE SINCE I AM WORKING ON THE ZONE PAGE
-			readingCourse.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			//readingCourse.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 		}
 		
 		protected override function commitProperties():void {
