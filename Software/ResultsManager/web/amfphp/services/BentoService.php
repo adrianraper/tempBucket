@@ -20,6 +20,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
 
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Progress.php");
+
 // v3.4 To allow the account root information to be passed back to RM
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
 
@@ -213,14 +215,33 @@ class BentoService extends AbstractService {
 	 * 
 	 * This service call will get progress data from the database, merge it with the menu.xml
 	 * and build an object that can act as a data-provider for a chart (or charts).
-	 * TODO. Check out authentication. I have added this to beforeFilter exceptions, though it shouldn't be. 
+	 * TODO. Check out authentication. I have added this to beforeFilter exceptions, though it shouldn't be.
+	 *  
+	 *  @param userID, rootID, productCode - these are all self-explanatory
+	 *  @param progress. This object tells us what type of progress data to return
+	 *  	loadMySummary:Boolean = false;
+	 *		loadEveryoneSummary:Boolean = false;
+	 *		loadMyDetails:Boolean = false;
 	 */
-	function getProgressData($userID, $rootID, $productCode ) {
-		// I want to send back
+	function getProgressData($userID, $rootID, $productCode, $progress ) {
+		
+		// How do you convert from the actionscript progress class to the php one?
+		//$progress;
+		
+		// I want to send back a section for each of the progress types
+		if ($progress->loadMySummary) {
+			$progress->mySummary = array(
+							(object) array('name' => 'Writing', 'value' => '23'),
+							(object) array('name' => 'Speaking', 'value' => '39'),
+							(object) array('name' => 'Reading', 'value' => '68'),
+							(object) array('name' => 'Listening', 'value' => '65'),
+							(object) array('name' => 'Exam tips', 'value' => '100'),
+							);
+		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
 		//	a summary at the course level for time spent by me 
-		return array("writing"=>39, "reading"=>75, "speaking"=>66, "listening"=>14);
+		return progress;
 	}
 	/**
 	 * Get the copy XML document

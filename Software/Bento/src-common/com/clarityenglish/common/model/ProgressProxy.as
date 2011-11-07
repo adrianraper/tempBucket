@@ -80,6 +80,8 @@ package com.clarityenglish.common.model {
 						sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, error);
 					} else {
 						// Fake data
+						data.mySummary;
+						/*
 						data.mySummary = [
 							{name:'Writing', value:'23'},
 							{name:'Speaking', value:'39'},
@@ -87,6 +89,7 @@ package com.clarityenglish.common.model {
 							{name:'Listening', value:'65'},
 							{name:'Exam tips', value:'100'}
 						];
+						*/
 						sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 					}
 					break;
