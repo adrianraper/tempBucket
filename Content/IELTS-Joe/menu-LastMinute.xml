@@ -14,8 +14,8 @@
 				<exercise id="1234567879" caption="Reading eBook" href="reading/questionzone.xml" />
 			</unit>
 			<unit id="1234567879" class="exam-practice">
-				<exercise id="1234567879" href="reading/practice1.pdf" caption="Reading practice paper Pt1" difficulty="1" />
-				<exercise id="1234567879" href="reading/practice2.pdf" caption="Reading practice paper Pt2" difficulty="2" />
+				<exercise id="1234567879" caption="Reading practice paper Pt1" href="reading/media/practice1.pdf" difficulty="1" />
+				<exercise id="1234567879" caption="Reading practice paper Pt2" href="reading/media/practice2.pdf" difficulty="2" />
 			</unit>
 			<unit id="1234567879" class="advice-zone">
 				<exercise id="1234567879" href="reading/media/Reading_intro.flv" caption="Watch the teacher giving advice." />
@@ -66,11 +66,11 @@
 				<exercise id="1234567879" caption="Listening eBook" href="listening/questionzone.xml" />
 			</unit>
 			<unit id="1234567879" class="exam-practice">
-				<exercise id="1234567879" href="listening/practice1.pdf" caption="Listening practice paper Pt1" difficulty="1" />
-				<exercise id="1234567879" href="listening/practice2.pdf" caption="Listening practice paper Pt2" difficulty="2" />
+				<exercise id="1234567879" href="listening/media/practice1.pdf" caption="Listening practice paper Pt1" difficulty="1" />
+				<exercise id="1234567879" href="listening/media/practice2.pdf" caption="Listening practice paper Pt2" difficulty="2" />
 			</unit>
 			<unit id="1234567879" class="advice-zone">
-				<exercise id="1234567879" href="listening/CriticalThinking_intro.flv" caption="Watch the teacher giving advice." />
+				<exercise id="1234567879" href="listening/media/Listening_intro.flv" caption="Watch the teacher giving advice." />
 			</unit>
 			<unit id="1234567879" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml">
@@ -115,11 +115,11 @@
 				<exercise id="1234567879" caption="Speaking eBook" href="speaking/questionzone.xml" />
 			</unit>
 			<unit id="1234567879" class="exam-practice">
-				<exercise id="1234567879" href="speaking/practice1.pdf" caption="Speaking practice paper Pt1" difficulty="1" />
-				<exercise id="1234567879" href="speaking/practice2.pdf" caption="Speaking practice paper Pt2" difficulty="2" />
+				<exercise id="1234567879" href="speaking/media/practice1.pdf" caption="Speaking practice paper Pt1" difficulty="1" />
+				<exercise id="1234567879" href="speaking/media/practice2.pdf" caption="Speaking practice paper Pt2" difficulty="2" />
 			</unit>
 			<unit id="1234567879" class="advice-zone">
-				<exercise id="1234567879" href="listening/CriticalThinking_intro.flv" caption="Watch the teacher giving advice." />
+				<exercise id="1234567879" href="speaking/media/Speaking_intro.flv" caption="Watch the teacher giving advice." />
 			</unit>
 			<unit id="1234567879" class="practice-zone">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml">
@@ -194,14 +194,14 @@
 				<group id="6" caption="Unit 3" task="2" alt="xxx." />
 			</groups>
 			<unit class="question-zone">
-				<exercise href="writing/questionzone.xml"caption="Writing eBook"  />
+				<exercise href="writing/questionzone.xml" caption="Writing eBook" />
 			</unit>
 			<unit class="exam-practice">
-				<exercise href="writing/practice1.xml" caption="Writing practice paper Pt1" difficulty="3" />
-				<exercise href="writing/practice2.xml" caption="Writing practice paper Pt2" difficulty="4" />
+				<exercise href="writing/media/practice1.pdf" caption="Writing practice paper Pt1" difficulty="3" />
+				<exercise href="writing/media/practice2.pdf" caption="Writing practice paper Pt2" difficulty="4" />
 			</unit>
 			<unit class="advice-zone">
-				<exercise href="writing/Writing_intro.flv" caption="Watch the teacher giving advice" />
+				<exercise href="writing/media/Writing_intro.flv" caption="Watch the teacher giving advice" />
 			</unit>
 			<unit class="practice-zone">
 				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml">
