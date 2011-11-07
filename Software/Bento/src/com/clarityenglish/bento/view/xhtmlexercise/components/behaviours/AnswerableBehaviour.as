@@ -258,7 +258,6 @@ class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManag
 				
 				// When the user clicks on the text show the component
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
-				
 				if (eventMirror) {
 					eventMirror.addEventListener(FlowElementMouseEvent.CLICK, onErrorCorrectionTextClick);
 				} else {
@@ -275,6 +274,7 @@ class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManag
 			// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
 			(e.flowElement as TextComponentElement).hideChrome = false;
 			
+			// TODO: This no longer works :(
 			var tf:TextFlow = e.flowElement.getTextFlow();
 			tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
 		}

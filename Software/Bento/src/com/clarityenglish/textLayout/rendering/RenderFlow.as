@@ -219,8 +219,8 @@ package com.clarityenglish.textLayout.rendering {
 			}
 			
 			// If this is the top-level RenderFlow (this will be the only one with no containingBlock) then tell the parent that it may
-			// need to lay this out.  Specifically this will make scrollbars work properly.  Using callLater ensure that the size is ready
-			// before the parent is invalidated.
+			// need to lay this out.  Specifically this will make scrollbars work properly.  This is done in both onUpdateComplete and 
+			// matchPlaceholderToSize which is probably not quite right, but due to the way that invalidate works does no harm.
 			if (!containingBlock)
 				invalidateParentSizeAndDisplayList();
 		}
@@ -251,6 +251,12 @@ package com.clarityenglish.textLayout.rendering {
 			
 			// Invalidate the size of the component in case it has changed
 			invalidateSize();
+			
+			// If this is the top-level RenderFlow (this will be the only one with no containingBlock) then tell the parent that it may
+			// need to lay this out.  Specifically this will make scrollbars work properly.  This is done in both onUpdateComplete and 
+			// matchPlaceholderToSize which is probably not quite right, but due to the way that invalidate works does no harm.
+			if (!containingBlock)
+				invalidateParentSizeAndDisplayList();
 			
 			// Dispatch a RenderFlow version of the event in bubbling mode so that anything listening for it on the top level RenderFlow can respond
 			dispatchEvent(new RenderFlowEvent(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, true, false, event.textFlow, event.controller));
