@@ -35,7 +35,7 @@ package com.clarityenglish.common.view.login {
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
 			
 			// For debug purposes automatically login as dandelion/password
-			view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
+			//view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
 		}
         
 		/**

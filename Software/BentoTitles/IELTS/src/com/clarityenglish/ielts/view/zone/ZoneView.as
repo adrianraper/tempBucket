@@ -10,6 +10,7 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.SWFLoader;
 	import mx.core.ClassFactory;
 	import mx.core.IDataRenderer;
 	
@@ -50,10 +51,29 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
 		
+		// This will be the control that is used once it is ready, until then just use 5 buttons
+		//[SkinPart(required="true")]
+		//public var courseSelector:SWFLoader;
+		[SkinPart]
+		public var readingCourse:Button;
+		
+		[SkinPart]
+		public var writingCourse:Button;
+		
+		[SkinPart]
+		public var speakingCourse:Button;
+		
+		[SkinPart]
+		public var listeningCourse:Button;
+		
+		[SkinPart]
+		public var examTipsCourse:Button;		
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
 		public var exerciseSelect:Signal = new Signal(Href);
+		public var courseSelect:Signal = new Signal(XML);
 		
 		/**
 		 * This can be called from outside the view to make the view display a different course
@@ -103,6 +123,15 @@ package com.clarityenglish.ielts.view.zone {
 				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
 				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
 								
+				// The course selector control
+				var fakeButtons:Array = [writingCourse, speakingCourse, readingCourse, listeningCourse, examTipsCourse];
+				for each (var thisButton:Button in fakeButtons) {
+					if (thisButton.label == _course.@caption) {
+						thisButton.enabled = false;
+					} else {
+						thisButton.enabled = true;
+					}
+				}
 				_courseChanged = false;
 			}
 		}
@@ -128,6 +157,14 @@ package com.clarityenglish.ielts.view.zone {
 				case examPractice1Button:
 				case examPractice2Button:
 					instance.addEventListener(MouseEvent.CLICK, onExerciseClick);
+					break;
+				// Fake buttons until course selector is ready
+				case readingCourse:
+				case writingCourse:
+				case speakingCourse:
+				case listeningCourse:
+				case examTipsCourse:
+					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 			}
 		}
@@ -156,6 +193,24 @@ package com.clarityenglish.ielts.view.zone {
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, hrefFilename));
 		}
 		
+		/**
+		 * The user has clicked a course button in the course selector control
+		 * 
+		 * @param event
+		 */
+		protected function onCourseClick(event:MouseEvent):void {
+			// Whilst we are using fake buttons
+			var matchingCourses:XMLList = menu.course.(@caption == event.target.label);
+			//var matchingCourses:XMLList = menu.course.(@caption == event.target.getStyle("title"));
+			//var matchingCourses:XMLList = menu.course.(@caption == 'Reading');
+			
+			if (matchingCourses.length() == 0) {
+				log.error("Unable to find a course with caption {0}", event.target.label);
+				//log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));
+			} else {
+				courseSelect.dispatch(matchingCourses[0] as XML);
+			}
+		}
 	}
 	
 }

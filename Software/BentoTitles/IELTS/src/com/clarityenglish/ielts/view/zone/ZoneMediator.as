@@ -24,6 +24,8 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			// listen for these signals
+			view.courseSelect.add(onCourseSelected);
 			view.exerciseSelect.add(onExerciseSelect);
 		}
 		
@@ -62,5 +64,13 @@
 			sendNotification(IELTSNotifications.HREF_SELECTED, href);
 		}
 		
+		/**
+		 * Trigger the display of a course in the zone view
+		 *
+		 */
+		private function onCourseSelected(course:XML):void {
+			// dispatch a notification, which titleMediator is listening for
+			sendNotification(IELTSNotifications.COURSE_SHOW, course);
+		}
 	}
 }

@@ -12,9 +12,9 @@
 		<s:HorizontalLayout />
 	</s:layout>
 	
-	<anychart:AnyChartFlex id="coveragePieChart" width="300" height="300" />
+	<anychart:AnyChartFlex id="coveragePieChart" width="60%" height="50%" />
 	
-	<s:VGroup width="100%">
+	<s:VGroup width="40%">
 		<s:Button id="writingCourse" width="100%" />
 		<s:Button id="speakingCourse" width="100%" />
 		<s:Button id="readingCourse" width="100%" />

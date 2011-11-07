@@ -15,6 +15,14 @@
 	
 	<s:Group width="30%">
 		<!-- this is for the rotating course selector -->
+		<s:layout>
+			<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
+		</s:layout>		
+		<s:Button id="writingCourse" label="Writing" width="100" />
+		<s:Button id="speakingCourse" label="Speaking" width="100" />
+		<s:Button id="readingCourse" label="Reading" width="100" />
+		<s:Button id="listeningCourse" label="Listening" width="100" />
+		<s:Button id="examTipsCourse" label="Exam tips" width="100" />
 	</s:Group>
 	
 	<s:BorderContainer width="70%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">

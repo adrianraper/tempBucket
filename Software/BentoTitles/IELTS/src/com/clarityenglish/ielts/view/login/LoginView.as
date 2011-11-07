@@ -34,6 +34,9 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var nameInput:TextInput;
 		
+		[SkinPart]
+		public var quickStartButton:Button;
+		
 		public function LoginView() {
 			super();
 		}
@@ -43,8 +46,9 @@ package com.clarityenglish.ielts.view.login {
 			
 			switch (instance) {
 				case loginButton:
-					loginButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
-					break;
+				case quickStartButton:
+					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
+					break;				
 			}
 		}
 		
@@ -55,10 +59,13 @@ package com.clarityenglish.ielts.view.login {
 		 */
 		protected function onLoginButtonClick(event:MouseEvent):void {
 			// Trigger the login command
-			// RM process does it like this - and all the code is copied from RM to Bento.com.clarityenglish.common
-			// Dispatch a LoginEvent here
-			dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
-		
+			if ((event.target)==quickStartButton) {
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password", true));				
+			} else {
+				// RM process does it like this - and all the code is copied from RM to Bento.com.clarityenglish.common
+				// Dispatch a LoginEvent here
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+			}
 			// The loginMediator has told the loginView to listen for this event - (loginView.addEventListener(LoginEvent.LOGIN, onLogin);
 			// which the mediator handles by sending a Notification.LOGIN
 		

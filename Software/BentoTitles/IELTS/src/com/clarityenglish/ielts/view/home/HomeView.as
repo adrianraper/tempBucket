@@ -42,11 +42,14 @@ package com.clarityenglish.ielts.view.home {
 		public var chartTemplatesLoad:Signal = new Signal();
 		
 		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
-			// We have the chart template, inject the data from the data provider
-			for each (var point:Object in mySummary) {
-				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.name} y={point.value}/>);
+			// Check that we DO have the template loaded
+			if (_fullChartXML) {
+				// We have the chart template, inject the data from the data provider
+				for each (var point:Object in mySummary) {
+					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.name} y={point.value}/>);
+				}
+				coveragePieChart.anychartXML = _fullChartXML;
 			}
-			coveragePieChart.anychartXML = _fullChartXML;
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -90,6 +93,7 @@ package com.clarityenglish.ielts.view.home {
 		 */
 		protected function onCourseClick(event:MouseEvent):void {
 			var matchingCourses:XMLList = menu.course.(@caption == event.target.getStyle("title"));
+			//var matchingCourses:XMLList = menu.course.(@caption == 'Reading');
 			
 			if (matchingCourses.length() == 0) {
 				log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));

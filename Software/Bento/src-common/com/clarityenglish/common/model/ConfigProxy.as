@@ -130,7 +130,9 @@ package com.clarityenglish.common.model {
 			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php");
 			RemoteDelegate.setService(config.remoteService);
 			
+			// Next stage is to get data from the database
 			getApplicationParameters();
+			
 		}
 		
 		public function errorHandler(e:IOErrorEvent):void {
@@ -183,6 +185,11 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						config.mergeAccountData(data);
+						// Now that we have that data, load the chart templates
+						// This could have happeneded earlier, but we might need data from Content paths
+						// We don't need to wait for this as it triggers it's own notification.
+						getChartTemplates();
+
 						// At this point we can check to see if the config contains anything that stops us going on
 						// This account doesn't have this title
 						if (config.noSuchTitle())

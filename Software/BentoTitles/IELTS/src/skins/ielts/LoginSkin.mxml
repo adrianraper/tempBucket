@@ -22,6 +22,7 @@
 				<s:TextInput id="passwordInput" displayAsPassword="true"/>				
 			</s:HGroup>
 			<s:Button id="loginButton" label="Start" />
+			<s:Button id="quickStartButton" label="Quick start" />
 		</s:VGroup>
 	</s:Panel>
 </s:Skin>
