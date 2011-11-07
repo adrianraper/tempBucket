@@ -9,6 +9,7 @@ package com.clarityenglish.textLayout.components {
 	import com.newgonzo.web.css.CSS;
 	
 	import flash.events.Event;
+	import flash.utils.setTimeout;
 	
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.UpdateCompleteEvent;

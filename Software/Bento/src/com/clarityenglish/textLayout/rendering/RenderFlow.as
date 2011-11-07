@@ -17,6 +17,7 @@ package com.clarityenglish.textLayout.rendering {
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
+	import mx.core.IInvalidating;
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;
 	import mx.events.ResizeEvent;
@@ -98,8 +99,9 @@ package com.clarityenglish.textLayout.rendering {
 		protected override function measure():void {
 			super.measure();
 			
-			if (_textFlow)
-				measuredHeight = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height
+			if (_textFlow) {
+				measuredHeight = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
+			}
 		}
 		
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
@@ -215,6 +217,12 @@ package com.clarityenglish.textLayout.rendering {
 				inlineGraphicElementPlaceholder.width = placeholderWidth;
 				inlineGraphicElementPlaceholder.height = placeholderHeight;
 			}
+			
+			// If this is the top-level RenderFlow (this will be the only one with no containingBlock) then tell the parent that it may
+			// need to lay this out.  Specifically this will make scrollbars work properly.  Using callLater ensure that the size is ready
+			// before the parent is invalidated.
+			if (!containingBlock)
+				invalidateParentSizeAndDisplayList();
 		}
 		
 		/**
@@ -243,11 +251,6 @@ package com.clarityenglish.textLayout.rendering {
 			
 			// Invalidate the size of the component in case it has changed
 			invalidateSize();
-			
-			// If this is the top-level RenderFlow (this will be the only one with no containingBlock) then tell the parent that it may
-			// need to lay this out.  Specifically this will make scrollbars work properly.
-			if (!containingBlock)
-				invalidateParentSizeAndDisplayList();
 			
 			// Dispatch a RenderFlow version of the event in bubbling mode so that anything listening for it on the top level RenderFlow can respond
 			dispatchEvent(new RenderFlowEvent(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, true, false, event.textFlow, event.controller));
