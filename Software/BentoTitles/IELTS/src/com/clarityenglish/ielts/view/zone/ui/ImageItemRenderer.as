@@ -23,13 +23,16 @@ package com.clarityenglish.ielts.view.zone.ui {
 		 */ 
 		public override function set data(value:Object):void {
 			super.data = value;
-			trace(data.toXMLString());
-			trace("add imageItemRenderer for " + data.@thumbnail);
-			// AR Remember that E4X sends things as strings in an XML wrapper
-			//image.source = data.@thumbnail.toString();
-			image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;;
-			image.addEventListener(Event.COMPLETE, onComplete);
-			image.addEventListener(IOErrorEvent.IO_ERROR, onError);
+			
+			if (data) {
+				trace(data.toXMLString());
+				trace("add imageItemRenderer for " + data.@thumbnail);
+				// AR Remember that E4X sends things as strings in an XML wrapper
+				//image.source = data.@thumbnail.toString();
+				image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;
+			} else {
+				image.source = null;
+			}
 		}
 		protected function onComplete(e:Event):void {
 			trace("onComplete for " + e.toString());
@@ -44,7 +47,9 @@ package com.clarityenglish.ielts.view.zone.ui {
 			
 			switch (instance) {
 				case image:
-					image.addEventListener(MouseEvent.CLICK, onClick);
+					image.addEventListener(MouseEvent.CLICK, onClick);		
+					image.addEventListener(Event.COMPLETE, onComplete);
+					image.addEventListener(IOErrorEvent.IO_ERROR, onError);
 					break;
 			}
 		}
@@ -55,6 +60,8 @@ package com.clarityenglish.ielts.view.zone.ui {
 			switch (instance) {
 				case image:
 					image.removeEventListener(MouseEvent.CLICK, onClick);
+					image.removeEventListener(Event.COMPLETE, onComplete);
+					image.removeEventListener(IOErrorEvent.IO_ERROR, onError);
 					break;
 			}
 		}
