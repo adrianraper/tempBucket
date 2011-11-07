@@ -21,13 +21,13 @@
 				<exercise id="1234567879" href="reading/media/Reading_intro.flv" caption="Watch the teacher giving advice." />
 			</unit>
 			<unit id="1234567879" class="practice-zone" >
-				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml">
+				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/1156153794672.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml">
+				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/cc1_02.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156165919506" group="2" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml">
+				<exercise id="1156165919506" group="2" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/cc1_03.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml">
