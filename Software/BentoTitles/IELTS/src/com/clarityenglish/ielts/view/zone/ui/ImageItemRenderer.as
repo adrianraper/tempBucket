@@ -2,21 +2,37 @@ package com.clarityenglish.ielts.view.zone.ui {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
 	import com.clarityenglish.bento.vo.Href;
-	import flash.events.MouseEvent;
-	import flash.events.IOErrorEvent;
-	import flash.events.Event;
 	
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.MouseEvent;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Image;
 	
 	public class ImageItemRenderer extends SkinnableItemRenderer {
 		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
 		[SkinPart(required="true")]
 		public var image:Image;
 		
 		public var exerciseClick:Signal;
 		public var href:Href;
+		
+		[Embed(source="skins/ielts/assets/defaultExerciseThumbnail.png")]
+		private static var defaultExerciseThumbnail:Class;
+		
+		[Embed(source="skins/ielts/assets/ioErrorThumbnail.png")]
+		private static var ioErrorThumbnail:Class;
 		
 		/**
 		 * This is an example of using injection from the component to get data into the skin (see DifficultyRenderer for another method)
@@ -25,21 +41,22 @@ package com.clarityenglish.ielts.view.zone.ui {
 			super.data = value;
 			
 			if (data) {
-				trace(data.toXMLString());
-				trace("add imageItemRenderer for " + data.@thumbnail);
-				// AR Remember that E4X sends things as strings in an XML wrapper
-				//image.source = data.@thumbnail.toString();
+				var thumbnailSource:Object = (data.@thumbnail.toString() != "") ? href.createRelativeHref(null, data.@thumbnail.toString()).url : defaultExerciseThumbnail;
+				trace(thumbnailSource);
 				image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;
 			} else {
 				image.source = null;
 			}
 		}
 		protected function onComplete(e:Event):void {
-			trace("onComplete for " + e.toString());
+			log.info("onComplete for {0}", e.toString());
 		}
 		
 		protected function onError(e:IOErrorEvent):void {
-			trace("onError for " + e.toString());
+			log.info("onError for {0}", e.toString());
+			
+			if (image)
+				image.source = ioErrorThumbnail;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
