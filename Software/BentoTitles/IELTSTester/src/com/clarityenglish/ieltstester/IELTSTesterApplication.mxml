@@ -6,7 +6,8 @@
 						xmlns:tester="com.clarityenglish.ieltstester.view.tester.*"
 						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
 						creationComplete="creationComplete(event)"
-						addedToStage="addedToStage(event)">
+						addedToStage="addedToStage(event)"
+						width="100%" height="100%">
 	
 	<fx:Metadata>
 		[SWF(width=900, height=600)]

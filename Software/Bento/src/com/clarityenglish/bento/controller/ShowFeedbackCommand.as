@@ -51,7 +51,6 @@ package com.clarityenglish.bento.controller {
 				xhtmlRichText.width = 300;
 				xhtmlRichText.xhtml = exercise;
 				xhtmlRichText.nodeId = "#" + feedback.source;
-				
 				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
 				
 				titleWindow.addElement(xhtmlRichText);

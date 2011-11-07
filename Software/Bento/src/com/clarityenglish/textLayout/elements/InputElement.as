@@ -49,6 +49,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function InputElement() {
 			super();
+			
+			// Hide the text underneath the input
+			textAlpha = 0;
 		}
 		
 		protected override function get abstract():Boolean {
@@ -129,6 +132,9 @@ package com.clarityenglish.textLayout.elements {
 		public override function set hideChrome(value:Boolean):void {
 			super.hideChrome = value;
 			text = this.value;
+			
+			// If the chrome is hidden then show what's underneath, otherwise hide it
+			textAlpha = (value) ? 1 : 0;
 		}
 		
 		[Inspectable(category="Common", enumeration="text,button,droptarget", defaultValue="text")]

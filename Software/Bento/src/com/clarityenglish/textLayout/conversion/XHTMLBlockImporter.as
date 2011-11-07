@@ -512,6 +512,10 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		public override function createListItemFromXML(xmlToParse:XML):ListItemElement {
+			// A TLF bug causes the list marker to inherit the styling of the first character of the list item so add a zero-width space
+			// to seperate the list content; this fixes the issue.
+			xmlToParse.prependChild(new XML("&#8203;"));
+			
 			var element:FlowElement = super.createListItemFromXML(xmlToParse);
 			addToFlowElementXmlMap(xmlToParse, element);
 			return element as ListItemElement;

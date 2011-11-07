@@ -52,6 +52,8 @@ package com.clarityenglish.textLayout.elements {
 		protected function onComponentCreationComplete(event:FlexEvent):void {
 			component.removeEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 			
+			// TODO: I have no idea why, but suddenly these are all returning 0 (except when debugging they show the correct values...).  This is causing text to flow over the audio
+			// player component.
 			elementWidth = component.width;
 			elementHeight = component.height;
 			

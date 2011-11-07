@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.elements {
 	
 	import flash.display.Loader;
 	import flash.events.Event;
+	import flash.events.FullScreenEvent;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	import flash.system.Security;
@@ -76,6 +77,18 @@ package com.clarityenglish.textLayout.elements {
 					videoPlayer.autoPlay = _autoPlay;
 					
 					component = videoPlayer;
+					
+					// Working around #22 (which seems to be http://bugs.adobe.com/jira/browse/SDK-26331, even though that is supposed to be fixed)
+					videoPlayer.addEventListener(Event.ADDED_TO_STAGE, function(addedToStageEvent:Event):void {
+						addedToStageEvent.currentTarget.removeEventListener(addedToStageEvent.type, arguments.callee);
+						videoPlayer.systemManager.stage.addEventListener(FullScreenEvent.FULL_SCREEN, function(event:FullScreenEvent):void {
+							if (!event.fullScreen) {
+								videoPlayer.width = (isAutoWidth()) ? videoPlayer.videoObject.videoWidth : width;
+								videoPlayer.height = (isAutoHeight()) ? videoPlayer.videoObject.videoHeight : height;
+								videoPlayer.invalidateDisplayList();
+							}
+						}, false, 0, true);
+					} );
 					break;
 				case YOU_TUBE:
 					var swfLoader:SWFLoader = new SWFLoader();

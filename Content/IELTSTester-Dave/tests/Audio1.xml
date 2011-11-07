@@ -8,6 +8,10 @@
 				float: left;
 				width: 200px;
 			}
+			
+			video {
+				width: 400px;
+			}
 		]]>
 		</style>
 
