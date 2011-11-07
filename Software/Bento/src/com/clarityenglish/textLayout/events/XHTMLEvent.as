@@ -4,8 +4,8 @@ package com.clarityenglish.textLayout.events {
 	public class XHTMLEvent extends Event {
 		
 		public static const EXTERNAL_STYLESHEETS_LOADED:String = "externalStylesheetsLoaded";
-		
 		public static const TEXT_FLOW_CLEARED:String = "textFlowCleared";
+		public static const CSS_PARSED:String = "cssParsed";
 		
 		public function XHTMLEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
 			super(type, bubbles, bubbles);

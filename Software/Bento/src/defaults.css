@@ -34,3 +34,7 @@ s|DropDownList {
 s|VideoPlayer {
 	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
 }
+
+s|TitleWindow {
+	skinClass: ClassReference("skins.bento.FeedbackWindowSkin");
+}

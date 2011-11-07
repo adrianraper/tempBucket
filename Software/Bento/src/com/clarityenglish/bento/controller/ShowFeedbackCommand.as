@@ -3,8 +3,11 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
+	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.newgonzo.web.css.CSSComputedStyle;
 	
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
 	
@@ -29,12 +32,14 @@ package com.clarityenglish.bento.controller {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var titleWindow:TitleWindow;
+
+		private var feedback:Feedback;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			feedback = note.getBody().feedback as Feedback;
 			var exercise:Exercise = note.getBody().exercise as Exercise;
-			var feedback:Feedback = note.getBody().feedback as Feedback;
 			
 			if (exercise.selectOne("#" + feedback.source)) {
 				// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
@@ -47,6 +52,8 @@ package com.clarityenglish.bento.controller {
 				xhtmlRichText.xhtml = exercise;
 				xhtmlRichText.nodeId = "#" + feedback.source;
 				
+				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
+				
 				titleWindow.addElement(xhtmlRichText);
 				
 				// Create the popup
@@ -57,10 +64,20 @@ package com.clarityenglish.bento.controller {
 				// Listen for the close event so that we can cleanup
 				titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 				FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
-				
 			} else {
 				log.error("Unable to find feedback source {0}", feedback.source);
 			}
+		}
+		
+		protected function onCssParsed(event:Event):void {
+			var xhtmlRichText:XHTMLRichText = event.target as XHTMLRichText;
+			
+			xhtmlRichText.removeEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
+			
+			var style:CSSComputedStyle = xhtmlRichText.css.style(<feedback class={"feedback titlebar " + feedback.answer.markingClass} />);
+			if (style.backgroundColor) titleWindow.setStyle("popUpBarColor", style.backgroundColor);
+			if (style.opacity) titleWindow.setStyle("popUpBarAlpha", style.opacity);
+			if (style.color) titleWindow.setStyle("popUpBarTextColor", style.color);
 		}
 		
 		/**
@@ -84,6 +101,7 @@ package com.clarityenglish.bento.controller {
 			
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
+			feedback = null;
 		}
 		
 	}

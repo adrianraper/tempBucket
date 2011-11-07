@@ -99,6 +99,7 @@
 			<element name="feedback" maxOccurs="1" minOccurs="0">
 				<complexType>
 					<attribute name="source" type="string"></attribute>
+					<attribute name="title" type="string"></attribute>
 				</complexType>
 			</element>
 		</sequence>

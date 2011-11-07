@@ -4,8 +4,11 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		private var xml:XML;
 		
-		public function Feedback(xml:XML = null) {
+		private var _answer:Answer;
+		
+		public function Feedback(xml:XML = null, answer:Answer = null) {
 			this.xml = xml;
+			this._answer = answer;
 		}
 		
 		public function get source():String {
@@ -14,6 +17,10 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		public function get title():String {
 			return xml.@title || "Feedback";
+		}
+		
+		public function get answer():Answer {
+			return _answer;
 		}
 		
 	}

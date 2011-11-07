@@ -6,6 +6,7 @@ package com.clarityenglish.textLayout.components {
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	import com.newgonzo.web.css.CSS;
 	
 	import flash.events.Event;
 	
@@ -19,6 +20,7 @@ package com.clarityenglish.textLayout.components {
 	
 	import spark.components.Group;
 	
+	[Event(name="cssParsed", type="com.clarityenglish.textLayout.events.XHTMLEvent")]
 	public class XHTMLRichText extends Group {
 		
 		/**
@@ -50,6 +52,8 @@ package com.clarityenglish.textLayout.components {
 		private var _behaviours:Vector.<IXHTMLBehaviour>;
 		
 		private var _flowElementXmlBiMap:FlowElementXmlBiMap;
+		
+		private var _css:CSS;
 		
 		public function XHTMLRichText() {
 			super();
@@ -118,6 +122,10 @@ package com.clarityenglish.textLayout.components {
 			return _flowElementXmlBiMap;
 		}
 		
+		public function get css():CSS {
+			return _css;
+		}
+		
 		/**
 		 * When the external stylesheets are loaded mark the xhtml as changed and invalidate the properties, which will cause
 		 * commitProperties to run (as commitProperties takes no action unless _exercise.isExternalStylesheetsLoaded is true).
@@ -149,6 +157,9 @@ package com.clarityenglish.textLayout.components {
 					
 					renderFlow.removeEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
 					renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
+					
+					_flowElementXmlBiMap = null;
+					_css = null;
 				}
 				
 				// Import the XHTML into the initial RenderFlow
@@ -158,6 +169,7 @@ package com.clarityenglish.textLayout.components {
 					// Parse the XHTML into a RenderFlow
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
 					_flowElementXmlBiMap = importer.getFlowElementXmlBiMap();
+					_css = importer.getCSS();
 					importer.clear();
 					importer = null;
 					
@@ -174,6 +186,9 @@ package com.clarityenglish.textLayout.components {
 					
 					// Apply to registered behaviours
 					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, _flowElementXmlBiMap); } );
+					
+					// Dispatch an event to say the CSS has been parsed.  Specifically this is used by ShowFeedbackCommand which need info out of the css to make the popup.
+					dispatchEvent(new XHTMLEvent(XHTMLEvent.CSS_PARSED));
 				}
 				
 				_xhtmlChanged = _selectorChanged = false;

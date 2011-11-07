@@ -7,19 +7,31 @@
 			#body p {
 				padding-bottom: 25;
 			}
+			
+			.feedback.titlebar.correct {
+				background-color: #00FF00;
+				opacity: 0.2;
+				color: #333333;
+			}
+			
+			.feedback.titlebar.incorrect {
+				background-color: #FF0000;
+				opacity: 0.2;
+				color: #000000;
+			}
 		]]>
 		</style>
 		<script id="model" type="application/xml">
 			<questions>
 				<TargetSpottingQuestion>
 					<answer correct="true" source="target1">
-						<feedback source="fb1" />
+						<feedback source="fb1" title="Correct feedback" />
 					</answer>
 				</TargetSpottingQuestion>
 				
 				<TargetSpottingQuestion>
 					<answer correct="false" source="target2">
-						<feedback source="fb2" />
+						<feedback source="fb2" title="Incorrect feedback" />
 					</answer>
 				</TargetSpottingQuestion>
 				
@@ -37,7 +49,7 @@
 				
 				<TargetSpottingQuestion>
 					<answer correct="neutral" source="target5">
-						<feedback source="fb5" />
+						<feedback source="fb5" title="Neutral feedback" />
 					</answer>
 				</TargetSpottingQuestion>
 				
@@ -103,6 +115,14 @@
 		
 		<section id="fb3">
 			This is feedback 3
+		</section>
+		
+		<section id="fb4">
+			This is feedback 4
+		</section>
+		
+		<section id="fb5">
+			This is feedback 5
 		</section>
 	</body>
 	

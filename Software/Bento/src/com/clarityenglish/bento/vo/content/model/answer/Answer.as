@@ -18,7 +18,7 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			this.xml = xml;
 			
 			if (xml.hasOwnProperty("feedback"))
-				_feedback = new Feedback(xml.feedback[0]);
+				_feedback = new Feedback(xml.feedback[0], this);
 		}
 		
 		public function get score():int {

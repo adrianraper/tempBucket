@@ -56,6 +56,10 @@ package com.clarityenglish.textLayout.conversion {
 			return flowElementXmlBiMap;
 		}
 		
+		public function getCSS():CSS {
+			return css;
+		}
+		
 		public function importToRenderFlow(xhtml:XHTML, node:XML):RenderFlow {
 			flowElementXmlBiMap = new FlowElementXmlBiMap();
 			css = parseCss(xhtml);
@@ -67,8 +71,6 @@ package com.clarityenglish.textLayout.conversion {
 			blockImporter.flowElementXmlBiMap = flowElementXmlBiMap;
 			blockImporter.css = css;
 			blockImporter.rootPath = xhtml.rootPath;
-			
-			//blockImporter.exercise = exercise;
 			
 			return blockImporter.importToRenderFlow(node);
 		}
