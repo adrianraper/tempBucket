@@ -2,11 +2,15 @@
 class ProgressOps {
 
 	var $db;
+	var $menu;
 
 	function ProgressOps($db) {
 		$this->db = $db;
 	}
 	
+	function getMenuXML($file) {
+		
+	}
 	/**
 	 * This method gets progress records and merges with XML at the summary level
 	 */

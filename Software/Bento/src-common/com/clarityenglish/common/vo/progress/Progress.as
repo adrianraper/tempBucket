@@ -7,6 +7,8 @@ package com.clarityenglish.common.vo.progress {
 	 * This class is for loading and working with progress records
 	 * 
 	 */
+	[RemoteClass(alias = "com.clarityenglish.bento.vo.progress.Progress")]
+	[Bindable]
 	public class Progress {
 		
 		// There are different types of progress records
