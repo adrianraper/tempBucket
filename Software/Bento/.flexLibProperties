@@ -91,6 +91,7 @@
     <classEntry path="flexUnitTests.tests.XHTMLTest"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.answer.Feedback"/>
     <classEntry path="skins.bento.FeedbackWindowSkin"/>
+    <classEntry path="skins.bento.exercise.ExerciseDropDownListButtonSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
