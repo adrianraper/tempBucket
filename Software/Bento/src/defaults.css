@@ -6,6 +6,7 @@
 @namespace exercise "com.clarityenglish.bento.view.exercise.components.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
 
 components|XHTMLExerciseView {
@@ -14,10 +15,20 @@ components|XHTMLExerciseView {
 
 tlfcomponents|AudioPlayer {
 	skinClass: ClassReference("skins.bento.components.AudioPlayerSkin");
+	compactStoppedIcon: Embed(source="skins/assets/play.png");
+	compactPlayedIcon: Embed(source="skins/assets/play.png");
+	compactPausedIcon: Embed(source="skins/assets/play.png");
+	compactPlayingIcon: Embed(source="skins/assets/stop.png");
+	fullPlayIcon: Embed(source="skins/assets/play.png");
+	fullPauseIcon: Embed(source="skins/assets/stop.png");
 }
 
 swfplayer|SWFPlayerView {
 	skinClass: ClassReference("skins.bento.swfplayer.SWFPlayerSkin");
+}
+
+marking|MarkingView {
+	skinClass: ClassReference("skins.bento.marking.MarkingSkin");
 }
 
 /* This applied to all TextInputs for now, but really it should be only for those in exercises */

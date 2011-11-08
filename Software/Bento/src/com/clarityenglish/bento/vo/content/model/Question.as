@@ -37,6 +37,11 @@ package com.clarityenglish.bento.vo.content.model {
 			return _answers;
 		}
 		
+		/**
+		 * Return a Vector of correct answers for this question, where a correct answer is any answer with a positive score
+		 * 
+		 * @return 
+		 */
 		public function getCorrectAnswers():Vector.<Answer> {
 			var correctAnswers:Vector.<Answer> = new Vector.<Answer>();
 			for each (var answer:Answer in answers)
@@ -45,14 +50,25 @@ package com.clarityenglish.bento.vo.content.model {
 			
 			return correctAnswers;
 		}
+
+		/**
+		 * Get the maximum possible score that an answer for this question can generate
+		 * 
+		 * @return 
+		 */
+		public function getMaximumScore():int {
+			var maximumScore:int = 0;
+			for each (var answer:Answer in answers)
+				maximumScore = Math.max(maximumScore, answer.score);
+			
+			return maximumScore;
+		}
 		
 		public function getSourceNodes(exercise:Exercise):Vector.<XML> {
 			return Model.sourceToNodes(exercise, source);
 		}
 		
 		/**
-		 * 
-		 * 
 		 * @return 
 		 */
 		public function isSelectable():Boolean {
@@ -61,8 +77,6 @@ package com.clarityenglish.bento.vo.content.model {
 		}
 		
 		/**
-		 * 
-		 * 
 		 * @return 
 		 */
 		public function isMutuallyExclusive():Boolean {

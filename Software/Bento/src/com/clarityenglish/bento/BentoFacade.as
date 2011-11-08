@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.bento.controller.*;
 	import com.clarityenglish.bento.view.*;
+	import com.clarityenglish.bento.view.marking.MarkingMediator;
+	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
 	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
@@ -46,12 +48,14 @@
 			mapView(DynamicView, DynamicMediator);
 			mapView(XHTMLExerciseView, XHTMLExerciseMediator);
 			mapView(SWFPlayerView, SWFPlayerMediator);
+			mapView(MarkingView, MarkingMediator);
 			
 			// Map built in commands
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
 			registerCommand(BBNotifications.SHOW_FEEDBACK, ShowFeedbackCommand);
+			registerCommand(BBNotifications.SHOW_MARKING, ShowMarkingCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);

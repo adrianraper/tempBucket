@@ -11,6 +11,8 @@
 @namespace almer "almerblank.flex.spark.components.*";
 @namespace bento "com.clarityenglish.bento.*";
 @namespace tink "ws.tink.spark.containers.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace components "com.clarityenglish.textLayout.components.*";
 
 @font-face {
 	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
@@ -127,6 +129,13 @@ exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
 }
 
+components|AudioPlayer {
+	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
+	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
+	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
+	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioPlaying");
+}
+
 /* Progress view styles */
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
@@ -135,4 +144,9 @@ progress|ProgressView {
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");
+}
+
+/* Marking view styles (this overwrites the default skin) */
+marking|MarkingView {
+	skinClass: ClassReference("skins.ielts.marking.MarkingSkin");
 }

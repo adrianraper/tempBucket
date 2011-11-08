@@ -1,11 +1,11 @@
 package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
-	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	import flash.utils.Dictionary;
 	
@@ -26,9 +26,10 @@ package com.clarityenglish.bento.model {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		/**
-		 * This maintains a map of the answers that will count towards the exercise score
+		 * This maintains a map of the answers that will count towards the exercise score.  If instant marking is turned on this is populated as questions are
+		 * answered, otherwise it happens the first time the exercise mark is requested.
 		 */
-		//private var markableAnswers:Dictionary;
+		private var markableAnswerMap:Dictionary;
 		
 		/**
 		 * This maintains a map of the currently selected answers
@@ -40,9 +41,17 @@ package com.clarityenglish.bento.model {
 		public function ExerciseProxy() {
 			super(NAME);
 			
-			//markableAnswers = new Dictionary(true);
+			markableAnswerMap = new Dictionary(true);
 			
 			selectedAnswerMap = new Dictionary(true);
+		}
+		
+		public function getMarkableAnswerMap(question:Question):AnswerMap {
+			// If there is no selected answer map yet then create one
+			if (!markableAnswerMap[question])
+				markableAnswerMap[question] = new AnswerMap();
+			
+			return markableAnswerMap[question];
 		}
 		
 		public function getSelectedAnswerMap(question:Question):AnswerMap {
@@ -63,8 +72,9 @@ package com.clarityenglish.bento.model {
 		public function questionAnswer(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 			
-			// If delayed marking is off and this is the first answer for the question record this seperately
-			// if (!delayedMarking && !markableAnswers[question]) markableAnswers[question] = answer;
+			// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
+			if (!delayedMarking)
+				markQuestion(exercise, question, answer, key);
 			
 			// Get the answer map for this question
 			var answerMap:AnswerMap = getSelectedAnswerMap(question);
@@ -83,6 +93,24 @@ package com.clarityenglish.bento.model {
 			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback
 			if (answer.feedback)
 				sendNotification(BBNotifications.SHOW_FEEDBACK, { exercise: exercise, feedback: answer.feedback } );
+		}
+		
+		private function markQuestion(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {
+			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
+			
+			if (question.isMutuallyExclusive()) {
+				// For mutually exlusive questions we store the answer if there isn't one already
+				if (markableAnswerMap.keys.length == 0) {
+					markableAnswerMap.put(key, answer);
+					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
+				}
+			} else {
+				// For non-mutually exclusive question we store the answer if there isn't already an entry for the particular key
+				if (!(markableAnswerMap.containsKey(key))) {
+					markableAnswerMap.put(key, answer);
+					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
+				}
+			}
 		}
 		
 		/**
@@ -137,6 +165,48 @@ package com.clarityenglish.bento.model {
 			}
 			
 			return answerMap;
+		}
+		
+		/**
+		 * Count the number of correct, incorrect and missed answers and return them.  If instant marking was on the markable answers will already have been set,
+		 * otherwise the currently selected answers will become the markable answers.
+		 * 
+		 * @return 
+		 */
+		public function getExerciseMark(exercise:Exercise):ExerciseMark {
+			// TODO: This assumes instant marking was on for the moment
+			
+			var exerciseMark:ExerciseMark = new ExerciseMark();
+			
+			// Go through the marked answers
+			for (var questionObj:Object in markableAnswerMap) {
+				var question:Question = questionObj as Question;
+				var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
+				
+				// Get the maximum correct score for this question
+				var maximumScore:int = question.getMaximumScore();
+				
+				if (maximumScore > 1)
+					throw new Error("Maximum scores of more than one are not currently supported as they are unused in IELTS.  To be implemented for later titles.");
+				
+				for each (var key:Object in answerMap.keys) {
+					var answer:Answer = answerMap.get(key);
+					
+					switch (answer.markingClass) {
+						case Answer.CORRECT:
+							exerciseMark.correctCount++;
+							break;
+						case Answer.INCORRECT:
+							exerciseMark.incorrectCount++;
+							break;
+						case Answer.NEUTRAL:
+							// TODO: Don't know what to do with neutral answers
+							throw new Error("Check with Adrian what to do in this situation");
+					}
+				}
+			}
+			
+			return exerciseMark;
 		}
 		
 	}

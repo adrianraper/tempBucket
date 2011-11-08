@@ -48,7 +48,14 @@
 		</s:Group>
 		
 		<s:VGroup>
-			<s:Button id="backButton" label="Back" includeIn="exercise" />
+			<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" includeIn="exercise" />
+			
+			<!--<s:Button id="feedbackButton" label="Feedback" includeIn="exercise" />-->
+			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" includeIn="exercise" />
+			<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" includeIn="exercise" />
+			<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" includeIn="exercise" />
+			<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" includeIn="exercise" />
+			
 			<s:Button label="Pad" />
 		</s:VGroup>
 	</s:HGroup>

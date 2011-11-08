@@ -12,6 +12,8 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		
 		protected var xml:XML;
 		
+		protected var question:Question;
+		
 		private var _feedback:Feedback;
 		
 		public function Answer(xml:XML = null) {

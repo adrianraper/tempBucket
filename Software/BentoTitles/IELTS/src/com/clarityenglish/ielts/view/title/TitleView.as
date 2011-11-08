@@ -32,7 +32,19 @@ package com.clarityenglish.ielts.view.title {
 		public var navBar:ButtonBar;
 		
 		[SkinPart]
+		public var backToMenuButton:Button;
+		
+		[SkinPart]
+		public var forwardButton:Button;
+		
+		[SkinPart]
 		public var backButton:Button;
+		
+		[SkinPart]
+		public var markingButton:Button;
+		
+		[SkinPart]
+		public var feedbackButton:Button;
 		
 		[SkinPart]
 		public var homeView:HomeView;
@@ -94,8 +106,8 @@ package com.clarityenglish.ielts.view.title {
 					navBar.requireSelection = true;
 					navBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
-				case backButton:
-					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
+				case backToMenuButton:
+					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
 				case homeView:
 					// The zone and home views run off the same href as the title view, so directly inject it 
@@ -119,8 +131,8 @@ package com.clarityenglish.ielts.view.title {
 				case navBar:
 					navBar.removeEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
-				case backButton:
-					backButton.removeEventListener(MouseEvent.CLICK, onBackButtonClick);
+				case backToMenuButton:
+					backToMenuButton.removeEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
 			}
 		}
@@ -156,7 +168,7 @@ package com.clarityenglish.ielts.view.title {
 		 * 
 		 * @param event
 		 */
-		protected function onBackButtonClick(event:MouseEvent):void {
+		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			showExercise(null);
 		}
 		

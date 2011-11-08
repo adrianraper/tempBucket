@@ -23,18 +23,18 @@
 	
 	<!-- All in one button with different states (compact mode) -->
 	<s:Image id="compactComponent"
-			 source.stopped="@Embed('/skins/assets/play.png')"
-			 source.played="@Embed('/skins/assets/play.png')"
-			 source.paused="@Embed('/skins/assets/play.png')"
-			 source.playing="@Embed('/skins/assets/stop.png')"
+			 source.stopped="{getStyle('compactStoppedIcon')}"
+			 source.played="{getStyle('compactPlayedIcon')}"
+			 source.paused="{getStyle('compactPausedIcon')}"
+			 source.playing="{getStyle('compactPlayingIcon')}"
 			 includeIn="compact"
 			 useHandCursor="true"
 			 buttonMode="true" />
 	
 	<!-- Proper control with a scrub bar and buttons (full mode) -->
 	<s:HGroup verticalAlign="middle">
-		<s:Image id="playComponent" source="@Embed('/skins/assets/play.png')" includeIn="stopped_full,paused_full,played_full" useHandCursor="true" buttonMode="true" />
-		<s:Image id="pauseComponent" source="@Embed('/skins/assets/pause.png')" includeIn="playing_full" useHandCursor="true" buttonMode="true" />
+		<s:Image id="playComponent" source="{getStyle('fullPlayIcon')}" includeIn="stopped_full,paused_full,played_full" useHandCursor="true" buttonMode="true" />
+		<s:Image id="pauseComponent" source="{getStyle('fullPauseIcon')}" includeIn="playing_full" useHandCursor="true" buttonMode="true" />
 		<s:ScrubBar id="scrubBar" width="90" includeIn="full" />
 	</s:HGroup>
 	

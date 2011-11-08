@@ -15,8 +15,8 @@
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
 		public static const SHOW_ANSWERS:String = "show_answers";
-		
 		public static const SHOW_FEEDBACK:String = "show_feedback";
+		public static const SHOW_MARKING:String = "show_marking";
 		
 	}
 	

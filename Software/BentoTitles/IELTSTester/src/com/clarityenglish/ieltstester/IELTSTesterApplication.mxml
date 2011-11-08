@@ -64,6 +64,10 @@
 				facade.sendNotification(BBNotifications.SHOW_ANSWERS);
 			}
 			
+			protected function onMarkingClick(event:MouseEvent):void {
+				facade.sendNotification(BBNotifications.SHOW_MARKING);
+			}
+			
 			public function showErrorMessage(error:BentoError):void {
 				log.error("Received error {0}", error);
 			}
@@ -88,6 +92,7 @@
 		
 		<s:Spacer width="100%" />
 		
+		<s:Button label="Marking" click="onMarkingClick(event)"/>
 		<s:Button label="Show correct answers" click="onShowAnswersClick(event)"/>
 	</s:HGroup>
 	

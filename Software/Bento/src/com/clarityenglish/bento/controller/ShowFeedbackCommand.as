@@ -55,9 +55,8 @@ package com.clarityenglish.bento.controller {
 				
 				titleWindow.addElement(xhtmlRichText);
 				
-				// Create the popup
+				// Create and centre the popup
 				PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
-				
 				PopUpManager.centerPopUp(titleWindow);
 				
 				// Listen for the close event so that we can cleanup
