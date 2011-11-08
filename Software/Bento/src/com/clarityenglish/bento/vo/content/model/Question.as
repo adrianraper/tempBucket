@@ -1,7 +1,6 @@
 package com.clarityenglish.bento.vo.content.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
-	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	public class Question {
 		
@@ -14,10 +13,13 @@ package com.clarityenglish.bento.vo.content.model {
 		
 		private var xml:XML;
 		
+		private var exercise:Exercise;
+		
 		private var _answers:Vector.<Answer>;
 		
-		public function Question(xml:XML) {
+		public function Question(xml:XML, exercise:Exercise) {
 			this.xml = xml;
+			this.exercise = exercise;
 			
 			// Create an Answer object for each predefined <answer> child node
 			_answers = new Vector.<Answer>();
@@ -56,12 +58,33 @@ package com.clarityenglish.bento.vo.content.model {
 		 * 
 		 * @return 
 		 */
-		public function getMaximumScore():int {
-			var maximumScore:int = 0;
-			for each (var answer:Answer in answers)
-				maximumScore = Math.max(maximumScore, answer.score);
+		public function getMaximumPossibleScore():int {
+			if (answers.length == 0)
+				return 0;
 			
-			return maximumScore;
+			// Construct an array of the possible scores sorted in descending order
+			var scores:Array = answers.map(function(answer:Answer, idx:int, vector:Vector.<Answer>):int {
+				return answer.score;
+			}).sort(Array.DESCENDING | Array.NUMERIC);
+			
+			if (isMutuallyExclusive()) {
+				// Return the first array entry (which will be the highest score)
+				return scores[0];
+			} else {
+				// If more than one answer is possible we calculate the highest score we can possibly get
+				// Count how many answers there are for the question
+				var numAnswers:int = getSourceNodes(exercise).length;
+				
+				// The maximum possible score is therefore the first numAnswers elements of the scores array summed
+				// TODO: This assumes we can only use each answer once
+				var sum:int = 0;
+				for (var n:uint = 0; n < numAnswers; n++)
+					sum += scores[n];
+				
+				return sum;
+			}
+			
+			return 0; // dummy
 		}
 		
 		public function getSourceNodes(exercise:Exercise):Vector.<XML> {
@@ -87,10 +110,11 @@ package com.clarityenglish.bento.vo.content.model {
 		 * Create a new Question from a question XML node
 		 * 
 		 * @param questionNode
+		 * @param exercise
 		 * @return 
 		 */
-		public static function create(questionNode:XML):Question {
-			var question:Question = new Question(questionNode);
+		public static function create(questionNode:XML, exercise:Exercise):Question {
+			var question:Question = new Question(questionNode, exercise);
 			return question;
 		}
 		

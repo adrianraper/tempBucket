@@ -18,7 +18,7 @@ package com.clarityenglish.bento.vo.content.model {
 			// Create any questions
 			_questions = new Vector.<Question>();
 			for each (var questionNode:XML in xml.questions.*)
-				_questions.push(Question.create(questionNode));
+				_questions.push(Question.create(questionNode, exercise));
 		}
 		
 		public function get questions():Vector.<Question> {

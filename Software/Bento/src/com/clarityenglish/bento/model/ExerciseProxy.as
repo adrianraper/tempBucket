@@ -178,31 +178,32 @@ package com.clarityenglish.bento.model {
 			
 			var exerciseMark:ExerciseMark = new ExerciseMark();
 			
-			// Go through the marked answers
-			for (var questionObj:Object in markableAnswerMap) {
-				var question:Question = questionObj as Question;
+			// Go through the questions
+			for each (var question:Question in exercise.model.questions) {
 				var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
 				
-				// Get the maximum correct score for this question
-				var maximumScore:int = question.getMaximumScore();
-				
-				if (maximumScore > 1)
-					throw new Error("Maximum scores of more than one are not currently supported as they are unused in IELTS.  To be implemented for later titles.");
-				
-				for each (var key:Object in answerMap.keys) {
-					var answer:Answer = answerMap.get(key);
-					
-					switch (answer.markingClass) {
-						case Answer.CORRECT:
-							exerciseMark.correctCount++;
-							break;
-						case Answer.INCORRECT:
-							exerciseMark.incorrectCount++;
-							break;
-						case Answer.NEUTRAL:
-							// TODO: Don't know what to do with neutral answers
-							throw new Error("Check with Adrian what to do in this situation");
+				if (answerMap) {
+					for each (var key:Object in answerMap.keys) {
+						var answer:Answer = answerMap.get(key);
+						
+						switch (answer.markingClass) {
+							case Answer.CORRECT:
+								exerciseMark.correctCount++;
+								break;
+							case Answer.INCORRECT:
+								exerciseMark.incorrectCount++;
+								break;
+							case Answer.NEUTRAL:
+								// TODO: Don't know what to do with neutral answers
+								throw new Error("Check with Adrian what to do in this situation");
+						}
 					}
+					
+					// Calculate the number of missed questions
+					exerciseMark.missedCount += (question.getMaximumPossibleScore() - exerciseMark.correctCount - exerciseMark.incorrectCount);
+				} else {
+					// The entire question was missed
+					exerciseMark.missedCount = question.getMaximumPossibleScore();
 				}
 			}
 			
