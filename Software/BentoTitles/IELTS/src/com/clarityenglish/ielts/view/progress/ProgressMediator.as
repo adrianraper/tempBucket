@@ -27,9 +27,15 @@
 			// This is where we trigger the call to get the progress data
 			// Progress data comes in three blocks, and to save time we can choose which block(s) we want from this call
 			var progress:Progress = new Progress();
-			progress.loadMySummary = true;
-			progress.loadMyDetails = true;
-			progress.loadEveryoneSummary = true;
+			//progress.loadMySummary = true;
+			//progress.loadMyDetails = true;
+			//progress.loadEveryoneSummary = true;
+			progress.href = view.href;
+			progress.type = Progress.PROGRESS_MY_DETAILS;
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
+			progress.type = Progress.PROGRESS_MY_SUMMARY;
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
+			progress.type = Progress.PROGRESS_EVERYONE_SUMMARY;
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
 				
 			// listen for these signals
@@ -51,8 +57,16 @@
 				case BBNotifications.PROGRESS_DATA_LOADED:
 					
 					// Split the data that comes back for the various charts
-					var progress:Progress = new Progress(note.getBody() as Array);
-					view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
+					var rs:Object = note.getBody() as Object;
+					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
+						//view.setMySummaryDataProvider(rs.dataProvider);
+					}
+					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
+						//view.setMyDetailsDataProvider(rs.dataProvider);
+					}
+					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
+						//view.setEveryoneSummaryDataProvider(rs.dataProvider);
+					}
 					break;
 				
 				// Once the chart templates are loaded, inject them into the view

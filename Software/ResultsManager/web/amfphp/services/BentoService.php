@@ -66,6 +66,7 @@ class BentoService extends AbstractService {
 		$this->copyOps = new CopyOps($this->db);
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->contentOps = new ContentOps($this->db);
+		$this->progressOps = new ProgressOps($this->db);
 
 	}
 	/**
@@ -224,32 +225,34 @@ class BentoService extends AbstractService {
 	 *		loadEveryoneSummary:Boolean = false;
 	 *		loadMyDetails:Boolean = false;
 	 */
-	function getProgressData($userID, $rootID, $productCode, $progress ) {
+	function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
 		
-		// How do you convert from the actionscript progress class to the php one?
-		$myProgress = New Progress();
-		if ($progress['loadMySummary'])
-			$myProgress->loadMySummary = true;
-		if ($progress['href']['currentDir'])
-			$myProgress->href = $progress['href']['currentDir'].'/'.$progress['href']['filename'];
+		// Before you get progress records, read the menu.xml
+		// TODO. Possibly move this bit into contentOps?
+		// This path is relative to the Bento application, not this script
+		$menuXMLFile = '../../'.$menuXMLFile;
+		$this->progressOps->getMenuXML($menuXMLFile);
 		
-		// I want to send back a section for each of the progress types
-		if ($myProgress->loadMySummary) {
-			$myProgress->mySummary = $bentoService->progressOps->getMySummary($userID, $productCode, $myProgress->href);
-			/*
-			$myProgress->mySummary = array(
+		$progress = New Progress();
+		// Each type of progress that we get goes back in data.
+		if ($progressType == Progress::PROGRESS_MY_SUMMARY) {
+			$rs = $this->progressOps->getMySummary($userID, $productCode);
+			//$progress->data = $this->progressOps->mergeXMLDataMySummary($rs);
+			
+			$progress->type = Progress::PROGRESS_MY_SUMMARY;
+			$progress->dataProvider = array(
 							(object) array('name' => 'Writing', 'value' => '23'),
 							(object) array('name' => 'Speaking', 'value' => '39'),
 							(object) array('name' => 'Reading', 'value' => '68'),
 							(object) array('name' => 'Listening', 'value' => '65'),
 							(object) array('name' => 'Exam tips', 'value' => '100'),
 							);
-			*/
+			
 		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
 		//	a summary at the course level for time spent by me 
-		return $myProgress;
+		return $progress;
 	}
 	/**
 	 * Get the copy XML document

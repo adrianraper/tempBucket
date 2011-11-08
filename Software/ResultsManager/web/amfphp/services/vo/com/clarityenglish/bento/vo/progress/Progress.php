@@ -9,13 +9,14 @@ class Progress {
 
 	var $_explicitType = 'com.clarityenglish.bento.vo.progress.Progress';
 	
-	public $loadMySummary;
-	public $loadMyDetails;
-	public $loadEveryoneSummary;
-	public $href;
-	
-	//const TRIGGER_TYPE_INTERNAL = 0;
+	const PROGRESS_MY_SUMMARY = "progress_my_summary";
+	const PROGRESS_EVERYONE_SUMMARY = "progress_everyone_summary";
+	const PROGRESS_MY_DETAILS = "progress_my_details";
 
+	public $href;
+	public $type;
+	public $dataProvider;
+	
 	function Progress() {
 	}
 	/*

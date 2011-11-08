@@ -57,7 +57,8 @@ package com.clarityenglish.common.model {
 			
 			// Send userID, rootID and productCode. Also say whether you want some or all data to come back.
 			// TODO. user doesn't currently have userID set. Check up on what comes back from login.
-			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progress ];
+			var menuFile:String = progress.href.currentDir+'/'+progress.href.filename;
+			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progress.type, menuFile ];
 			new RemoteDelegate("getProgressData", params, this).execute();
 		}
 		
@@ -80,8 +81,6 @@ package com.clarityenglish.common.model {
 						sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, error);
 					} else {
 						// Fake data
-						if (data.mySummary) {
-							
 							/*
 							data.mySummary = [
 								{name:'Writing', value:'23'},
@@ -92,7 +91,7 @@ package com.clarityenglish.common.model {
 							];
 							*/
 							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
-						}
+						
 					}
 					break;
 				default:

@@ -16,15 +16,17 @@ package com.clarityenglish.common.vo.progress {
 		public static const PROGRESS_EVERYONE_SUMMARY:String = "progress_everyone_summary";
 		public static const PROGRESS_MY_DETAILS:String = "progress_my_details";
 		
-		public var loadMySummary:Boolean = false;
-		public var loadEveryoneSummary:Boolean = false;
-		public var loadMyDetails:Boolean = false;
+		//public var loadMySummary:Boolean = false;
+		//public var loadEveryoneSummary:Boolean = false;
+		//public var loadMyDetails:Boolean = false;
 		
 		private var _mySummary:Array;
 		private var _everyoneSummary:Array;
 		private var _myDetails:Array;
 		
 		public var href:Href;
+		public var type:String;
+		public var dataProvider:Array;
 		
 		/**
 		 * The constructor lets you set data that has come back from the backside 
@@ -32,11 +34,9 @@ package com.clarityenglish.common.vo.progress {
 		 * 
 		 */
 		public function Progress(data:Object = null) {
-			if (data) {
-				if (data.mySummary) {
-					mySummary = data.mySummary;
-				}
-			}
+			//if (data.type == PROGRESS_MY_SUMMARY) {
+			//	mySummary = data.dataProvider;
+			//}
 		}
 		
 		/**

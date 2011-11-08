@@ -3,18 +3,24 @@ class ProgressOps {
 
 	var $db;
 	var $menu;
-
+	
 	function ProgressOps($db) {
 		$this->db = $db;
 	}
 	
+	/**
+	 * 
+	 * This method loads a menu xml file for future use
+	 * @param string $file
+	 */
 	function getMenuXML($file) {
-		
+		$this->menu = simplexml_load_file($file);
 	}
+	
 	/**
 	 * This method gets progress records and merges with XML at the summary level
 	 */
-	function getMySummary($userID, $productCode, $href) {
+	function getMySummary($userID, $productCode) {
 		
 		// First get the records from the database
 		$rs = $this->getMySummaryRecords($userID, $productCode);
