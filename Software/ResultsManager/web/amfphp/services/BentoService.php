@@ -30,6 +30,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/ProgressOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -226,22 +227,29 @@ class BentoService extends AbstractService {
 	function getProgressData($userID, $rootID, $productCode, $progress ) {
 		
 		// How do you convert from the actionscript progress class to the php one?
-		//$progress;
+		$myProgress = New Progress();
+		if ($progress['loadMySummary'])
+			$myProgress->loadMySummary = true;
+		if ($progress['href']['currentDir'])
+			$myProgress->href = $progress['href']['currentDir'].'/'.$progress['href']['filename'];
 		
 		// I want to send back a section for each of the progress types
-		if ($progress->loadMySummary) {
-			$progress->mySummary = array(
+		if ($myProgress->loadMySummary) {
+			$myProgress->mySummary = $bentoService->progressOps->getMySummary($userID, $productCode, $myProgress->href);
+			/*
+			$myProgress->mySummary = array(
 							(object) array('name' => 'Writing', 'value' => '23'),
 							(object) array('name' => 'Speaking', 'value' => '39'),
 							(object) array('name' => 'Reading', 'value' => '68'),
 							(object) array('name' => 'Listening', 'value' => '65'),
 							(object) array('name' => 'Exam tips', 'value' => '100'),
 							);
+			*/
 		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
 		//	a summary at the course level for time spent by me 
-		return progress;
+		return $myProgress;
 	}
 	/**
 	 * Get the copy XML document

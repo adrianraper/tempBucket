@@ -41,7 +41,7 @@ package com.clarityenglish.ielts.view.home {
 		public var courseSelect:Signal = new Signal(XML);
 		public var chartTemplatesLoad:Signal = new Signal();
 		
-		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
+		public function setSummaryDataProvider(mySummary:Array):void {
 			// Check that we DO have the template loaded
 			if (_fullChartXML) {
 				// We have the chart template, inject the data from the data provider

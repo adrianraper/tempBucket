@@ -37,6 +37,7 @@
 			progress.loadMySummary = true;
 			progress.loadMyDetails = true;
 			progress.loadEveryoneSummary = true;
+			progress.href = view.href;
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress);
 		}
 		
@@ -61,7 +62,8 @@
 					
 					// Split the data that comes back for the various charts
 					var progress:Progress = new Progress(note.getBody() as Object);
-					view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
+					//view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
+					view.setSummaryDataProvider(progress.mySummary);
 					break;
 				
 				// Once the chart templates are loaded, inject them into the view

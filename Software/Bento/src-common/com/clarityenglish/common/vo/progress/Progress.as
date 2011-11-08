@@ -1,4 +1,6 @@
 package com.clarityenglish.common.vo.progress {
+	import com.clarityenglish.bento.vo.Href;
+
 	/**
 	 * 
 	 * @author Adrian
@@ -19,6 +21,8 @@ package com.clarityenglish.common.vo.progress {
 		private var _mySummary:Array;
 		private var _everyoneSummary:Array;
 		private var _myDetails:Array;
+		
+		public var href:Href;
 		
 		/**
 		 * The constructor lets you set data that has come back from the backside 

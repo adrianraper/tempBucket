@@ -184,14 +184,14 @@
 				</exercise>
 			</unit>
 		</course>
-		<course caption="Writing" description="This session will be focussed on writing.  Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+		<course caption="Writing" description="This session will be focussed on writing. Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="xxx." />
-				<group id="2" caption="Unit 1" task="2" alt="xxx." />
-				<group id="3" caption="Unit 2" task="1" alt="xxx." />
-				<group id="4" caption="Unit 2" task="2" alt="xxx." />
-				<group id="5" caption="Unit 3" task="1" alt="xxx." />
-				<group id="6" caption="Unit 3" task="2" alt="xxx." />
+				<group id="1" caption="Unit 1 task 1" task="1" alt="xxx." />
+				<group id="2" caption="Unit 1 task 2" task="2" alt="xxx." />
+				<group id="3" caption="Unit 2 task 1" task="1" alt="xxx." />
+				<group id="4" caption="Unit 2 task 2" task="2" alt="xxx." />
+				<group id="5" caption="Unit 3 task 1" task="1" alt="xxx." />
+				<group id="6" caption="Unit 3 task 2" task="2" alt="xxx." />
 			</groups>
 			<unit class="question-zone">
 				<exercise href="writing/questionzone.xml" caption="Writing eBook" />
