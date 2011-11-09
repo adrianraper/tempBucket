@@ -61,6 +61,10 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return xml.toXMLString();
 		}
 		
+		public function toReadableString(exercise:Exercise):String {
+			throw new Error("This must be overwritten by concrete answer implementation");
+		}
+		
 		/**
 		 * Factory method for creating the correct answer class based on the question type. 
 		 * 

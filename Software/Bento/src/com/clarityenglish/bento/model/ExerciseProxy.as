@@ -132,9 +132,11 @@ package com.clarityenglish.bento.model {
 			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback
 			if (answer.feedback) {
 				// TODO: Add in yourAnswer and correctAnswer substitutions here
+				var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
+				
 				var substitutions:Object = {};
-				substitutions.yourAnswer = answer;
-				substitutions.correctAnswer = "correct answer goes here";
+				substitutions.yourAnswer = answer.toReadableString(exercise);
+				substitutions.correctAnswer = (correctAnswers.length > 0) ? correctAnswers[0].toReadableString(exercise) : "No correct answer";
 				
 				sendNotification(BBNotifications.SHOW_FEEDBACK, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions } );
 			}

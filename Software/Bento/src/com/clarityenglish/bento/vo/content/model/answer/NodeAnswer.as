@@ -16,6 +16,11 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return Model.sourceToNodes(exercise, source);
 		}
 		
+		public override function toReadableString(exercise:Exercise):String {
+			var sourceNodes:Vector.<XML> = getSourceNodes(exercise);
+			return sourceNodes[0].toString();
+		}
+		
 	}
 	
 }

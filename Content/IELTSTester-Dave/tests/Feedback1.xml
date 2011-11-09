@@ -28,7 +28,7 @@
 						<feedback source="gapFillFeedback1" />
 					</answer>
 					
-					<answer value="two">
+					<answer value="two" correct="true">
 					</answer>
 					
 					<answer value="three">
