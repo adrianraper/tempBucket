@@ -56,7 +56,9 @@
 			<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" includeIn="exercise" />
 			<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" includeIn="exercise" />
 			
-			<s:Button label="Pad" />
+			<s:Button id="notepadButton" skinClass="skins.ielts.title.NotepadButtonSkin" label="Notepad" />
+			<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" label="Print" />
+			<s:Button id="recorderButton" skinClass="skins.ielts.title.RecorderButtonSkin" label="Recorder" />
 		</s:VGroup>
 	</s:HGroup>
 </s:Skin>
