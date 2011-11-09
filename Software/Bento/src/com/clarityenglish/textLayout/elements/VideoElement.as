@@ -114,7 +114,7 @@ package com.clarityenglish.textLayout.elements {
 			switch (event.state) {
 				case MediaPlayerState.PLAYING:
 				case MediaPlayerState.PAUSED:
-					if (!_videoDimensionsCalculated) {
+					if (component && !_videoDimensionsCalculated) {
 						if (isAutoWidth())
 							elementWidth = component.width = (component as VideoPlayer).videoObject.videoWidth;
 						

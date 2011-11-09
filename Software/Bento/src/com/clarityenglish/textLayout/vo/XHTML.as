@@ -56,6 +56,15 @@ package com.clarityenglish.textLayout.vo {
 				xml = value;
 		}
 		
+		/**
+		 * Return a clone of this XHTML object.  This includes a deep copy of the embedded XML.
+		 * 
+		 * @return 
+		 */
+		public function clone():XHTML {
+			return new XHTML(_xml.copy(), rootPath);
+		}
+		
 		public function set xml(value:XML):void {
 			if (_xml !== value) {
 				// This is a little bit of a hack, but use string functions to remove the namespace.

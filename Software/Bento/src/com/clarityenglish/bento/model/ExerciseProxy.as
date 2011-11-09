@@ -101,9 +101,7 @@ package com.clarityenglish.bento.model {
 			return selectedAnswerMap[question];
 		}
 		
-		/**
-		 * 
-		 * 
+		/** 
 		 * @param question
 		 * @param answer
 		 * @param key
@@ -132,8 +130,14 @@ package com.clarityenglish.bento.model {
 			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
 			
 			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback
-			if (answer.feedback)
-				sendNotification(BBNotifications.SHOW_FEEDBACK, { exercise: exercise, feedback: answer.feedback } );
+			if (answer.feedback) {
+				// TODO: Add in yourAnswer and correctAnswer substitutions here
+				var substitutions:Object = {};
+				substitutions.yourAnswer = answer;
+				substitutions.correctAnswer = "correct answer goes here";
+				
+				sendNotification(BBNotifications.SHOW_FEEDBACK, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions } );
+			}
 		}
 		
 		private function markQuestion(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {

@@ -166,53 +166,62 @@ package flexUnitTests.tests {
 		}
 		
 		[Test]
+		public function testClone():void {
+			var xhtmlClone:XHTML = xhtml.clone();
+			
+			Assert.assertEquals(xhtml.xml.toXMLString(), xhtmlClone.xml.toXMLString());
+			Assert.assertFalse(xhtml.xml === xhtmlClone.xml);
+			Assert.assertFalse(xhtml === xhtmlClone);
+		}
+		
+		[Test]
 		public function testAddClass():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testGet_body():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testGetElementById():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testGetHeader():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testHasClass():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testHasHeader():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testIsExternalStylesheetsLoaded():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testSelect():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testSelectOne():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 		
 		[Test]
 		public function testToggleClass():void {
-			Assert.fail("Test method Not yet implemented");
+			
 		}
 	}
 }

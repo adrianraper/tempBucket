@@ -1,15 +1,15 @@
 package com.clarityenglish.bento.controller {
-	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
-	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
+	import flash.utils.setTimeout;
 	
 	import mx.core.FlexGlobals;
 	import mx.events.CloseEvent;
@@ -39,9 +39,27 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			feedback = note.getBody().feedback as Feedback;
-			var exercise:Exercise = note.getBody().exercise as Exercise;
+			var xhtml:XHTML = note.getBody().exercise as XHTML;
+			var substitutions:Object = note.getBody().substitutions;
 			
-			if (exercise.selectOne("#" + feedback.source)) {
+			var feedbackNode:XML = xhtml.selectOne("#" + feedback.source);
+			if (feedbackNode) {
+				
+				if (substitutions) {
+					// Since we might change the XHTML during the substitution phase, we need to clone it
+					xhtml = xhtml.clone();
+					
+					// Do string substitutions
+					var xmlString:String = xhtml.xml;
+					
+					for (var find:String in substitutions) {
+						var replace:String = substitutions[find];
+						xmlString = xmlString.replace("{{=" + find + "}}", replace);
+					}
+					
+					xhtml.xml = new XML(xmlString);
+				}
+				
 				// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 				titleWindow = new TitleWindow();
 				titleWindow.title = feedback.title;
@@ -49,7 +67,7 @@ package com.clarityenglish.bento.controller {
 				// Create an XHTMLRichText component and add it to the title window
 				var xhtmlRichText:XHTMLRichText = new XHTMLRichText();
 				xhtmlRichText.width = 300;
-				xhtmlRichText.xhtml = exercise;
+				xhtmlRichText.xhtml = xhtml;
 				xhtmlRichText.nodeId = "#" + feedback.source;
 				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
 				
@@ -61,7 +79,12 @@ package com.clarityenglish.bento.controller {
 				
 				// Listen for the close event so that we can cleanup
 				titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
-				FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+				
+				// Add a keyboard listener so the user can close the feedback window with the keyboard.  This listener needs a brief delay before being
+				// added as otherwise its possible to trigger the feedback window with the same key that closes it, hence closing it instantly.
+				setTimeout(function():void {
+					FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+				}, 300);
 			} else {
 				log.error("Unable to find feedback source {0}", feedback.source);
 			}

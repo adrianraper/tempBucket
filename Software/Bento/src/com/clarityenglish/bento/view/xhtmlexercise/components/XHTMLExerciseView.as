@@ -177,47 +177,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 		}
 		
-		// TODO: Where does this get called from, or is it actually unused???
-		public function showCorrectAnswers():void {
-			for each (var question:Question in exercise.model.questions) {
-				// Get the first correct answer
-				var correctAnswer:Answer;
-				for each (var answer:Answer in question.answers) {
-					if (answer.score > 0) {
-						correctAnswer = answer;
-						break;
-					}
-				}
-				
-				if (correctAnswer) {
-					switch (ClassUtil.getClass(correctAnswer)) {
-						case NodeAnswer:
-							var nodeAnswer:NodeAnswer = correctAnswer as NodeAnswer;
-							for each (var answerNode:XML in nodeAnswer.getSourceNodes(exercise)) {
-								var answerElement:FlowElement = getFlowElement(answerNode);
-								
-								XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
-								XHTML.addClass(answerNode, answer.markingClass);
-								
-								// Refresh the element and update the screen
-								TLFUtil.markFlowElementFormatChanged(answerElement);
-								answerElement.getTextFlow().flowComposer.updateAllControllers();
-							}
-							break;
-						case TextAnswer:
-							var textAnswer:TextAnswer = correctAnswer as TextAnswer;
-							for each (var questionNode:XML in question.getSourceNodes(exercise)) {
-								var inputElement:InputElement = getFlowElement(questionNode) as InputElement;
-								inputElement.value = textAnswer.value;
-							}
-							break;
-						default:
-							throw new Error("Unsupported answer type " + correctAnswer);
-					}
-				}
-			}
-		}
-		
 	}
 
 }

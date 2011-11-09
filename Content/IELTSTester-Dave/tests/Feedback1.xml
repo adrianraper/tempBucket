@@ -23,6 +23,18 @@
 		</style>
 		<script id="model" type="application/xml">
 			<questions>
+				<GapFillQuestion source="input1">
+					<answer value="one">
+						<feedback source="gapFillFeedback1" />
+					</answer>
+					
+					<answer value="two">
+					</answer>
+					
+					<answer value="three">
+					</answer>
+				</GapFillQuestion>
+				
 				<TargetSpottingQuestion>
 					<answer correct="true" source="target1">
 						<feedback source="fb1" title="Correct feedback" />
@@ -69,6 +81,11 @@
 		
 		<section id="body">
 			<p>
+				Here is an input for which possible answers are 'one', 'two' and 'three'.  Each answer has
+				some feedback associated with it: <input id="input1" />
+			</p>
+			
+			<p>
 				<g id="target1">
 					This is a target spotting question linked to feedback (feedback 1) correct
 				</g>
@@ -105,8 +122,16 @@
 			</p>
 		</section>
 		
+		<section id="gapFillFeedback1">
+			This is the feedback for gapfill 1.  It is supposed to test out substitution of
+			values.<br/><br/>
+			<p>Your answer: {{=yourAnswer}}</p>
+			<p>Correct answer: {{=correctAnswer}}</p>
+		</section>
+		
 		<section id="fb1">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			
 		</section>
 		
 		<section id="fb2">
