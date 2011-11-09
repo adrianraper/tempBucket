@@ -7,7 +7,7 @@ package flexUnitTests.tests {
 		
 		[Before]
 		public function setUp():void {
-			exerciseProxy = new ExerciseProxy();
+			//exerciseProxy = new ExerciseProxy();
 		}
 		
 		[After]

@@ -2,14 +2,9 @@ package com.clarityenglish.bento.vo.content {
 	import com.clarityenglish.bento.vo.content.model.Model;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.events.Event;
-	import flash.events.EventDispatcher;
-	import flash.events.IOErrorEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
-	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.utils.UIDUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	
@@ -23,10 +18,19 @@ package com.clarityenglish.bento.vo.content {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		private var _uid:String;
+		
 		private var _model:Model;
 		
 		public function Exercise(value:XML = null, rootPath:String = null) {
 			super(value, rootPath);
+			
+			// Give every Exercise a unique UID so that we can identify them
+			_uid = UIDUtil.createUID();
+		}
+		
+		public function get uid():String {
+			return _uid;
 		}
 		
 		override public function set xml(value:XML):void {

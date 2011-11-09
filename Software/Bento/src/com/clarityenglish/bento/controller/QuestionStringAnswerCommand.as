@@ -23,14 +23,15 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var exercise:Exercise = note.getBody().exercise as Exercise;
+			
 			var question:Question = note.getBody().question as Question;
 			var answerString:String = note.getBody().answerString;
 			var key:Object = note.getBody().key;
 			
 			var textAnswer:TextAnswer = getTextAnswer(question, answerString, exercise.isCaseSensitive());
 			
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
-			exerciseProxy.questionAnswer(exercise, question, textAnswer, key);
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+			exerciseProxy.questionAnswer(question, textAnswer, key);
 		}
 		
 		/**

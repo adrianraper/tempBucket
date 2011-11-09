@@ -33,14 +33,14 @@ package com.clarityenglish.bento.controller {
 			var exercise:Exercise = note.getBody().exercise as Exercise;
 			
 			// Get the marks
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.title = "Marking";
 			
 			var markingView:MarkingView = new MarkingView();
-			markingView.exerciseMark = exerciseProxy.getExerciseMark(exercise);
+			markingView.exerciseMark = exerciseProxy.getExerciseMark();
 			titleWindow.addElement(markingView);
 			
 			// Create and centre the popup

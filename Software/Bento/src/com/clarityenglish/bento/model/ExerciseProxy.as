@@ -18,12 +18,25 @@ package com.clarityenglish.bento.model {
 	
 	public class ExerciseProxy extends Proxy implements IProxy {
 		
-		public static const NAME:String = "ExerciseProxy";
+		/**
+		 * This is a bit of a funny function, but the idea is to give a dynamic NAME (based on the exercise) so instead of making it a constant like in
+		 * most Proxies, it is actually a function.  That means that doing something like facade.retrieveProxy(ExerciseProxy.NAME) will throw a compile
+		 * error, and the developer will work out that in this case it needs to be facade.retrieveProxy(ExerciseProxy.NAME(exercise)).
+		 * 
+		 * @param exercise
+		 * @return 
+		 */
+		public static function NAME(exercise:Exercise):String { return exercise.uid; }
 		
 		/**
 		 * Standard flex logger
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		/**
+		 * The current exercise 
+		 */
+		private var exercise:Exercise;
 		
 		/**
 		 * This maintains a map of the answers that will count towards the exercise score.  If instant marking is turned on this is populated as questions are
@@ -36,17 +49,41 @@ package com.clarityenglish.bento.model {
 		 */
 		private var selectedAnswerMap:Dictionary;
 		
+		/**
+		 * This defines whether or not we are using delayed marking 
+		 */
 		private var delayedMarking:Boolean = false;
 		
-		public function ExerciseProxy() {
-			super(NAME);
+		public function ExerciseProxy(exercise:Exercise) {
+			// Exercise proxies are indexed by the exercise's uid property
+			super(NAME(exercise));
+			
+			this.exercise = exercise;
+		}
+		
+		private function checkExercise():void {
+			if (!exercise)
+				throw new Error("Attempted to call a method in ExerciseProxy when no exercise was set");
+		}
+		
+		public override function onRegister():void {
+			super.onRegister();
 			
 			markableAnswerMap = new Dictionary(true);
-			
 			selectedAnswerMap = new Dictionary(true);
 		}
 		
+		public override function onRemove():void {
+			super.onRemove();
+			
+			exercise = null;
+			markableAnswerMap = null;
+			selectedAnswerMap = null;
+		}
+		
 		public function getMarkableAnswerMap(question:Question):AnswerMap {
+			checkExercise();
+			
 			// If there is no selected answer map yet then create one
 			if (!markableAnswerMap[question])
 				markableAnswerMap[question] = new AnswerMap();
@@ -55,6 +92,8 @@ package com.clarityenglish.bento.model {
 		}
 		
 		public function getSelectedAnswerMap(question:Question):AnswerMap {
+			checkExercise();
+			
 			// If there is no selected answer map yet then create one
 			if (!selectedAnswerMap[question])
 				selectedAnswerMap[question] = new AnswerMap();
@@ -63,13 +102,15 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
-		 * TODO: Need to store the first result (for instant marking)
+		 * 
 		 * 
 		 * @param question
 		 * @param answer
 		 * @param key
 		 */
-		public function questionAnswer(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
+			checkExercise();
+			
 			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 			
 			// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
@@ -96,6 +137,8 @@ package com.clarityenglish.bento.model {
 		}
 		
 		private function markQuestion(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {
+			checkExercise();
+			
 			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
 			
 			if (question.isMutuallyExclusive()) {
@@ -121,7 +164,9 @@ package com.clarityenglish.bento.model {
 		 * @param exercise
 		 * @return 
 		 */
-		public function getCorrectAnswerMap(question:Question, exercise:Exercise):AnswerMap {
+		public function getCorrectAnswerMap(question:Question):AnswerMap {
+			checkExercise();
+			
 			var answerMap:AnswerMap = new AnswerMap();
 			var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
 			
@@ -173,7 +218,9 @@ package com.clarityenglish.bento.model {
 		 * 
 		 * @return 
 		 */
-		public function getExerciseMark(exercise:Exercise):ExerciseMark {
+		public function getExerciseMark():ExerciseMark {
+			checkExercise();
+			
 			// TODO: This assumes instant marking was on for the moment
 			
 			var exerciseMark:ExerciseMark = new ExerciseMark();

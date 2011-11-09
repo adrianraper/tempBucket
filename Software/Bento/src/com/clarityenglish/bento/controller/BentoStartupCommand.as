@@ -16,10 +16,11 @@ package com.clarityenglish.bento.controller {
 			// Register models
 			facade.registerProxy(new ConfigProxy());
 			facade.registerProxy(new XHTMLProxy());
-			facade.registerProxy(new ExerciseProxy());
 			facade.registerProxy(new LoginProxy());
 			facade.registerProxy(new ProgressProxy());
-
+			
+			// This is now done dynamically in XHTMLExerciseMediator
+			// facade.registerProxy(new ExerciseProxy());
 		}
 		
 	}

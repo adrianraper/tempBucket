@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
@@ -20,7 +21,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import spark.components.Group;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
-	public class XHTMLExerciseView extends BentoView {
+	public class XHTMLExerciseView extends BentoView implements IExerciseView {
 		
 		/**
 		 * All the supported sections should be listed here.  They must also be defined below as required or optional skin parts.  The naming
@@ -176,6 +177,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 		}
 		
+		// TODO: Where does this get called from, or is it actually unused???
 		public function showCorrectAnswers():void {
 			for each (var question:Question in exercise.model.questions) {
 				// Get the first correct answer

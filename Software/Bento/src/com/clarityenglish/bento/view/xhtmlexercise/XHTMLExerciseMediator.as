@@ -3,12 +3,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -19,23 +19,34 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public function XHTMLExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 			
-			exerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
+			//exerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
 		}
 		
-		public function get view():XHTMLExerciseView {
-			return viewComponent as XHTMLExerciseView;
+		public function get view():IExerciseView {
+			return viewComponent as IExerciseView;
 		}
 		
 		public override function onRegister():void {
 			super.onRegister();
 			
+			if (!(view is IExerciseView))
+				throw new Error("Attempted to use a view with XHTMLExerciseMediator that did not implement IExerciseView");
+			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+		}
+		
+		protected override function onXHTMLReady(xhtml:XHTML):void {
+			exerciseProxy = new ExerciseProxy(view.exercise);
+			facade.registerProxy(exerciseProxy);
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			
+			facade.removeProxy(ExerciseProxy.NAME(view.exercise));
+			exerciseProxy = null;
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -73,7 +84,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			// Go through the questions marking each of them
 			if (view.exercise.model) {
 				for each (var question:Question in view.exercise.model.questions) {
-					var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question, view.exercise);
+					var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question);
 					view.markAnswerMap(question, answerMap);
 				}
 			}

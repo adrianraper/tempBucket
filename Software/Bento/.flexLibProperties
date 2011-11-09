@@ -129,11 +129,12 @@
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
     <classEntry path="com.clarityenglish.dms.vo.account.Account"/>
     <classEntry path="com.clarityenglish.bento.vo.ExerciseMark"/>
+    <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
   </includeClasses>
   <includeResources>
+    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
-    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="skins/assets/stop.png" sourcePath="skins/assets/stop.png"/>
   </includeResources>
   <namespaceManifests/>

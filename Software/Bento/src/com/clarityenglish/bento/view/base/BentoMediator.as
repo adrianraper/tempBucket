@@ -2,6 +2,7 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	
@@ -46,6 +47,10 @@ package com.clarityenglish.bento.view.base {
 			view.addEventListener(BentoEvent.HREF_CHANGED, onHrefChanged);
 		}
 		
+		protected function onXHTMLReady(xhtml:XHTML):void {
+			
+		}
+		
 		public override function onRemove():void {
 			super.onRemove();
 			
@@ -68,6 +73,7 @@ package com.clarityenglish.bento.view.base {
 					if (note.getBody().href === view.href && note.getBody().href !== currentlyLoadedHref) {
 						view.xhtml = note.getBody().xhtml;
 						currentlyLoadedHref = note.getBody().href;
+						onXHTMLReady(note.getBody().xhtml);
 					}
 					
 					break;
