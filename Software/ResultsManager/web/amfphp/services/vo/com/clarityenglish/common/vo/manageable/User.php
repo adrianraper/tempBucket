@@ -78,6 +78,8 @@ class User extends Manageable {
 		// see Group.php for note about MySQL data types
 		//$this->id = $obj->F_UserID;
 		//$this->userID = $obj->F_UserID;
+		// We hold userID for multi-user purpose, but simple id as part of reportables
+		$this->id = intval($obj->F_UserID);
 		$this->userID = intval($obj->F_UserID);
 		//$this->name = $this->apos_decode($obj->F_UserName);
 		$this->name = $obj->F_UserName;

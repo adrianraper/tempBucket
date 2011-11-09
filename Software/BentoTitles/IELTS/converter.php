@@ -147,7 +147,8 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1317260895296'; // correct mistakes (not R2I)
 	//$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
 	//$exerciseID = '1156153794672'; // Stopgap with splitscreen
-	$exerciseID = '1156153794384'; // For testing customised=true
+	//$exerciseID = '1156153794384'; // For testing customised=true
+	$exerciseID = '1156153794430'; // missing reading text
 	$fromFile = $exerciseFolder.$exerciseID.'.xml';
 	$toFile = $exerciseFolderOut.$exerciseID.'.xml';
 	convertExercise($fromFile, $toFile);

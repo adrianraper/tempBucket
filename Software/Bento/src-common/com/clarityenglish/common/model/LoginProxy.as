@@ -82,8 +82,9 @@ package com.clarityenglish.common.model {
 							//CopyProxy.languageCode = data.languageCode as String;
 							
 							// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
-							_user = new User();
-							_user.buildUser(data.group.manageables[0]);
+							//_user = new User();
+							//_user.buildUser(data.group.manageables[0]);
+							_user = data.group.manageables[0] as User;
 							
 							sendNotification(CommonNotifications.LOGGED_IN, data);
 						}

@@ -72,7 +72,7 @@
 		
 		// AR A temporary constructor
 		public function buildUser(data:Object):void {
-			this.id = data.id;
+			this.id = data.userID;
 			this.fullName = data.name;
 		}
 		/**

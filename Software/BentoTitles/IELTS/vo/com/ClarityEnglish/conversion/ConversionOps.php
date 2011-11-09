@@ -44,18 +44,27 @@ EOD;
 		foreach ($this->exercise->getSections() as $section) {
 			$sectionText = $section->output();
 			$sectionType = $section->getSection();
+			//echo "output section ".$sectionType."=".$sectionText.$newline;
 			$sectionBuild =<<< EOD
 \n<section id="$sectionType">
 	$sectionText
 </section>
 EOD;
 			// It might be nice to format the sectionText - not sure. Or leave Dreamweaver to do this?
+			// BUG. There is something that stops some readingTexts from getting formatted, 
+			// they just disappear after going through the following.
 			//$build .= $sectionBuild; 
 			$dom = new DOMDocument('1.0');
 			$dom->preserveWhiteSpace = false;
 			$dom->formatOutput = true;
-			$dom->loadXML($sectionBuild);
-			$build .= str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML()); 
+			$rc = $dom->loadXML($sectionBuild);
+			if ($rc) {
+				$build .= str_replace('<?xml version="1.0"?'.'>','',$dom->saveXML());
+			} else {
+				// If the XML didn't load for some reason, just output it raw
+				$build .= $sectionBuild; 
+			} 
+			//echo "output section ".$sectionType."=".$build.$newline;
 		}
 		return $build;
 	}

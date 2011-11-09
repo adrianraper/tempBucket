@@ -108,7 +108,7 @@ class Exercise {
 			  		case Exercise::EXERCISE_SECTION_EXAMPLE:
 			  			//$this->example = new Example($child, $this);
 			  			break;
-			  		// Rarely there will be more than one related text (a reading text and a tip for instance)
+			  		// Sometimes there will be more than one related text (a reading text and a tip for instance)
 			  		case Exercise::EXERCISE_SECTION_RELATEDTEXT:
 			  			if (!$this->texts)
 			  				$this->texts = array();
@@ -180,6 +180,7 @@ class Exercise {
 		if ($this->texts) {
 			// Each text is a separate section
 			foreach ($this->texts as $text) {
+				//echo "getSectionText";
 				$sections[]=$text;
 			}
 		}
@@ -227,6 +228,7 @@ class Exercise {
 			$build.=$this->feedbacks->toString();
 		if ($this->texts) {
 			foreach ($this->texts as $text) {
+				//echo "****".$text->toString();
 				$build.=$text->toString();
 			}
 		}

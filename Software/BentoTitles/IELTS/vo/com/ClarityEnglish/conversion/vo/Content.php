@@ -133,6 +133,7 @@ class Content{
 				$buildText = $this->bodyOutput($this->getParent()->getExerciseType());
 			}
 		} else {
+			//echo $newline."Content.output.getExtype=".$this->getParent()->getExerciseType().'--'.$this->getSection().'--'.count($this->getParagraphs());
 			$buildText='';
 			$lastTagType = null;
 			// Images that are going to float top-right need to be output first.
@@ -146,6 +147,7 @@ class Content{
 					$thisTagType = $paragraph->getTagType();
 					$buildText.=$paragraph->output($lastTagType,$thisTagType);
 					$lastTagType = $thisTagType;
+
 				}
 			}		
 		}
@@ -163,7 +165,6 @@ class Content{
 		$patterns[] = '/\& /is';
 		$replacements[] = '&amp; ';
 		$buildText = preg_replace($patterns, $replacements, $buildText);
-		
 		return $buildText;
 	}
 	// Special output functions

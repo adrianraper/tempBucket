@@ -72,26 +72,27 @@ package com.clarityenglish.common.model {
 						error - should this be called status and include info/warning/error objects?
 						progress - this should be structured so that we can directly use it as a data-provider for any charts
 						*/
+						// First need to see if the return has an error
+						if (data.error && data.error.errorNumber>0) {
+							// Who will handle this?
+							sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, data.error);						
+						} else {
+							// Fake data
+							/*
+							data.progressType = "my_summary";
+							data.dataProvider = [
+							{name:'Writing', value:'23'},
+							{name:'Speaking', value:'39'},
+							{name:'Reading', value:'68'},
+							{name:'Listening', value:'65'},
+							{name:'Exam tips', value:'100'}
+							];
+							*/
+							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data.progress);
+						}							
 					} else {
 						// Can't read from the database
 						var error:BentoError = new BentoError(BentoError.ERROR_DATABASE_READING);
-					}
-					if (error) {
-						// Who will handle this?
-						sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, error);
-					} else {
-						// Fake data
-							/*
-							data.mySummary = [
-								{name:'Writing', value:'23'},
-								{name:'Speaking', value:'39'},
-								{name:'Reading', value:'68'},
-								{name:'Listening', value:'65'},
-								{name:'Exam tips', value:'100'}
-							];
-							*/
-							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
-						
 					}
 					break;
 				default:

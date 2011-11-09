@@ -60,7 +60,7 @@ package com.clarityenglish.ielts.view.login {
 		protected function onLoginButtonClick(event:MouseEvent):void {
 			// Trigger the login command
 			if ((event.target)==quickStartButton) {
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password", true));				
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "Adrian Raper", "passwording", true));				
 			} else {
 				// RM process does it like this - and all the code is copied from RM to Bento.com.clarityenglish.common
 				// Dispatch a LoginEvent here

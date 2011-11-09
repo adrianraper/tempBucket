@@ -227,6 +227,8 @@ class BentoService extends AbstractService {
 	 */
 	function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
 		
+		$errorObj = array("errorNumber" => 0);
+		
 		// Before you get progress records, read the menu.xml
 		// TODO. Possibly move this bit into contentOps?
 		// This path is relative to the Bento application, not this script
@@ -235,24 +237,18 @@ class BentoService extends AbstractService {
 		
 		$progress = New Progress();
 		// Each type of progress that we get goes back in data.
+		$progress->type = $progressType;
 		if ($progressType == Progress::PROGRESS_MY_SUMMARY) {
 			$rs = $this->progressOps->getMySummary($userID, $productCode);
-			//$progress->data = $this->progressOps->mergeXMLDataMySummary($rs);
-			
-			$progress->type = Progress::PROGRESS_MY_SUMMARY;
-			$progress->dataProvider = array(
-							(object) array('name' => 'Writing', 'value' => '23'),
-							(object) array('name' => 'Speaking', 'value' => '39'),
-							(object) array('name' => 'Reading', 'value' => '68'),
-							(object) array('name' => 'Listening', 'value' => '65'),
-							(object) array('name' => 'Exam tips', 'value' => '100'),
-							);
+			$progress->dataProvider = $this->progressOps->mergeXMLDataMySummary($rs);
 			
 		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
-		//	a summary at the course level for time spent by me 
-		return $progress;
+		//	a summary at the course level for time spent by me
+		 
+		return array("error" => $errorObj,
+					"progress" => $progress);
 	}
 	/**
 	 * Get the copy XML document
