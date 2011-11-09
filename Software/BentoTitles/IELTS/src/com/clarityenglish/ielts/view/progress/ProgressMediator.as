@@ -59,13 +59,13 @@
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						//view.setMySummaryDataProvider(rs.dataProvider);
+						view.setMySummaryDataProvider(rs.dataProvider);
 					}
 					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
 						//view.setMyDetailsDataProvider(rs.dataProvider);
 					}
 					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
-						//view.setEveryoneSummaryDataProvider(rs.dataProvider);
+						view.setEveryoneSummaryDataProvider(rs.dataProvider);
 					}
 					break;
 				

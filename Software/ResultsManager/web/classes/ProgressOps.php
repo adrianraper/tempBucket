@@ -54,27 +54,10 @@ class ProgressOps {
 		*/
 	}
 	/**
-	 * This method gets progress records and merges with XML at the summary level
+	 * This method gets one user's progress records at the summary level
 	 */
 	function getMySummary($userID, $productCode) {
-		
-		// First get the records from the database
-		$rs = $this->getMySummaryRecords($userID, $productCode);
-		
-		// Next get the menu.xml.
-		// Should we be using contentOps.php with all of its hiddenContent, parseContent etc?
-		// $menu = 
-		
-		// Finally merge and summarise
-		
-		// Return
-		return $rs;
-	}
-	/* 
-	 * v3.5 For progress reports in Bento
-	 */
-	function getMySummaryRecords($userID, $productCode) {
-		
+			
 		$sql = 	<<<EOD
 			SELECT F_CourseID, COUNT(DISTINCT F_ExerciseID) AS ExercisesDone FROM T_Score
 			WHERE F_UserID=?
@@ -86,5 +69,20 @@ EOD;
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
-}
+	/**
+	 * This method gets all users' progress records at the summary level
+	 */
+	function getEveryoneSummary($userID, $rootID, $productCode) {
+			
+		$sql = 	<<<EOD
+			SELECT F_CourseID, COUNT(DISTINCT F_ExerciseID) AS ExercisesDone FROM T_Score
+			WHERE F_UserID != ?
+			AND F_ProductCode = ?
+			GROUP BY F_CourseID
+			ORDER BY F_CourseID;
+EOD;
+		$bindingParams = array($userID, $productCode, $rootID);
+		$rs = $this->db->GetArray($sql, $bindingParams);
+		return $rs;
+	}}
 ?>

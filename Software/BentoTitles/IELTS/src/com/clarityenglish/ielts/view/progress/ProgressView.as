@@ -11,16 +11,21 @@ package com.clarityenglish.ielts.view.progress {
 	public class ProgressView extends BentoView {
 
 		[SkinPart(required="true")]
-		public var compareChart:AnyChartFlex;
+		public var compareChart1:AnyChartFlex;
+		[SkinPart(required="true")]
+		public var compareChart2:AnyChartFlex;
 
 		public var chartTemplatesLoad:Signal = new Signal();
 		private var _fullChartXML:XML;
 		
-		public function setSummaryDataProvider(mySummary:Array, everyoneSummary:Array):void {
+		public function setMySummaryDataProvider(mySummary:Array):void {
 			//coveragePieChart.dataProvider = _dataProvider;
-			compareChart.anychartXML = _fullChartXML;
+			compareChart1.anychartXML = _fullChartXML;
 		}
-		
+		public function setEveryoneSummaryDataProvider(everyoneSummary:Array):void {
+			//coveragePieChart.dataProvider = _dataProvider;
+			compareChart2.anychartXML = _fullChartXML;
+		}		
 		protected override function commitProperties():void {
 			super.commitProperties();		
 		}
@@ -28,7 +33,8 @@ package com.clarityenglish.ielts.view.progress {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
-				case compareChart:
+				case compareChart1:
+				case compareChart2:
 					// Load the chart templates
 					chartTemplatesLoad.dispatch();
 					break;
