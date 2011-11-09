@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -126,6 +126,8 @@
   </p>
 </section>
 
-
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">From the diagram you should be able to tell that you will hear someone describing the layout of a library. </font>Notice that you have to move clockwise from number 13.&nbsp;Questions 13 – 16</p>Look at the areas already marked in the library. What do you think is missing?
+</section>
 </body>
 </bento>

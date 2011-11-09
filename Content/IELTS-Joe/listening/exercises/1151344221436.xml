@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -68,6 +68,8 @@
   <p align="left"><b>16.</b> What nationality is the teacher?<input id="q4"/></p>
 </section>
 
-
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see from the questions that you will hear some details about the course.</font>&nbsp;Question 13You are asked for the name of the course book.&nbsp;Question 14You are asked for the cost of the book. Think about an appropriate figure in pounds.&nbsp;Question 15What do you think the length of the break might be?&nbsp;Question 16What nationality do you think the teacher could be?</p>
+</section>
 </body>
 </bento>

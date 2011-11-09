@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="multiplechoice" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -187,6 +187,8 @@
   <p align="left">For this kind of composition to be effective, as well as linking words and phrases, you also need to use phrases and expressions for refuting arguments so that the reader is clear which side of argument you support.</p>
 </section>
 
-
+<section id="readingText">
+	<p align="left"><font color="#000000">Genetically modified (GM) crops have the potential to increase agricultural productivity, make crops resistant to pests and herbicides and produce foods with higher nutritional values. Despite these benefits, environmentalists have raised a number of objections to the introduction of GM crops and foods. Few of these objections, <font color="#0000ff">(1)</font>, have a solid basis in fact.</font></p>&nbsp;Firstly, environmentalists argue that GM crops are unnatural and that by creating them we are altering the natural world. (2) though, since all modern crops have been manipulated by selective breeding to be more productive than their natural ancestors and are therefore equally unnatural. What genetic modification seeks to do is modify crops in a more planned way than is possible by merely selecting healthier seeds or by producing hybrids of successful plants.&nbsp;A more worrying argument raised by objectors to GM foods is that they could constitute a health risk, for example by causing allergies or even by being toxic. Yet (3), since there have been no recorded cases. (4), because GM foods can have improved nutritional value, they are more likely to be of benefit to the health of the population than a risk.&nbsp;The final objection is strictly environmental. It is argued that crops which are genetically modified to kill the pests which attack them may also kill harmless insects. This, it is claimed, will have a disastrous effect on the wider environment beyond the crops themselves. (5), since GM crops do not require spraying with toxic insecticides, environmental damage such as the indiscriminate killing of insects and the contamination of local soils and rivers is avoided.&nbsp;In conclusion, GM crops offer increased agricultural productivity and foods of higher nutritional value, both of which are essential if the growing world population of the twenty-first century is to be fed. (6) GM crops pose a risk to the environment or our health. (7), these crops have the potential to improve the health of millions throughout the world while causing less environmental damage than standard farming methods used today. I think it essential that, far from being prohibited, GM foods should be encouraged.<p align="left"><font size="2"></font></p>
+</section>
 </body>
 </bento>

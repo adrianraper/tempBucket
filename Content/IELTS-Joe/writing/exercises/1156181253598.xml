@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -90,7 +90,9 @@ Writing Task 2
   <audio controls="compact" class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"/>
 </section>
 
-
+<section id="body">
+	<img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  /><p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" />&nbsp;</p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" />&nbsp;</li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" />&nbsp;</li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
+</section>
 <section id="fb0">
   <p align="left">
     <b>1. Employment Opportunities </b>

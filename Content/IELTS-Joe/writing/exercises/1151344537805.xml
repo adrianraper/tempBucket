@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -123,6 +123,8 @@
   </ol>
 </section>
 
-
+<section id="rt2001">
+	<p align="left">In Unit 1 we saw how static charts do not show changes over time. If you are asked to write a report on a static chart, you will not have to describe trends, but you are expected to make comparisons between values.&nbsp;Here are some ways of making comparison.&nbsp;More films were produced in the Czech Republic than in Bulgaria.&nbsp;The number of films produced in the Czech Republic was double the number of films produced in Bulgaria.&nbsp;Twice as many films were produced in the Czech Republic as in Bulgaria.&nbsp;The number of films produced in the Czech Republic was twice as many as the number produced in Bulgaria. &nbsp;The number of films produced in the Czech Republic was twice as high as the number produced in Bulgaria.</p>
+</section>
 </body>
 </bento>

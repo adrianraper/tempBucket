@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -65,6 +65,8 @@
   </p>
 </section>
 
-
+<section id="rt2001">
+	<p align="left"><font color="#000000">When describing an object we often use relative clauses to give information about its function, construction and so on. These may be defining relative clauses, for example:</font></p>&nbsp;A ballast tank is a tank which holds water for weight.&nbsp;The relative clause gives essential information about the object, so it is a defining relative clause.&nbsp;Or they may be non-defining relative clauses, for example:&nbsp;The carriages, which can carry up to 20 passengers, go up and down a steep slope.&nbsp;The relative clause gives additional information about the object, so it is a non-defining relative clause. Only non-defining relative clauses need to be enclosed in commas.
+</section>
 </body>
 </bento>

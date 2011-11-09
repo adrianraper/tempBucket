@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="dropdown" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -205,7 +205,9 @@
   </p>
 </section>
 
-
+<section id="fb4">
+	<p align="left"><font color="#0000ff"><b>Provided that:</b> This is the correct answer. 'Provided that' means 'as long as' or 'on condition that'.</p><p align="left"><font color="#000000"><b>In case:</b> We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.</font></p><p align="left"><font color="#000000"><b>Unless:</b> Unless means 'if not'.</font></p>
+</section>
 <section id="fb5">
   <p align="left">
     <font color="#0000ff"><b>be introduced:</b> This is the correct answer.</font>

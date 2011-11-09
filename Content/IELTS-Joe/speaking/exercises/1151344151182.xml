@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -61,6 +61,8 @@
   <span id="a11" draggable="true">talking about a topic</span>
 </section>
 
-
+<section id="body">
+	<img class="rightFloat" src="../media/HF_SP_004.jpg" mode="1" id="1001"  /><p align="left"><b>Part 1</b><input id="q1" type="droptarget" /> preparationInformation about work or <input id="q2" type="droptarget" /> and <input id="q3" type="droptarget" />&nbsp;Part 2 <input id="q4" type="droptarget" /> preparationnote-taking and <input id="q5" type="droptarget" />&nbsp;Part 3general preparation<input id="q6" type="droptarget" /></p><p align="left"><font size="2"></font></p>
+</section>
 </body>
 </bento>

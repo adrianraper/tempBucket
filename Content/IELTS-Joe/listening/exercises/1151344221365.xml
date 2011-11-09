@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -62,6 +62,8 @@
   <p align="left">12. recording lectures on tape	<input id="q4"/></p>
 </section>
 
-
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see that you will hear Dr Grant talking about study skills and that he will be giving his opinion on the various methods.</font>&nbsp;Question 9 - 12Think about the various ways these statements can be expressed. For example, 'working on your own' could be 'working in isolation', or 'working independently', or 'working alone' or in this context 'studying alone' etc.</p>
+</section>
 </body>
 </bento>

@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -58,6 +58,8 @@
 		
 </header>
 	
-
+<section id="body">
+	<img class="rightFloat" src="../media/HF_LN_002.jpg" mode="1" id="1001"  /><audio controls="compact" class="leftFloat" src="../media/HF_LN1a.mp3" mode="4" id="1002"  /><p align="left"><font color="#000000"><b>To keep healthy in winter eat:	Source of:</b></font></p>-------------------------------------------------------------------Rice, pasta, potatoes, (1) <input id="q1" />	carbohydratesand cereals-------------------------------------------------------------------Meat, fish, eggs, beans, (2) <input id="q2" />,	proteinmilk, cheese and yoghurt-------------------------------------------------------------------Fruit and vegetables	vitamins &amp; minerals-------------------------------------------------------------------Citrus fruits, (3) <input id="q3" /> &	vitamin Cblackcurrants-------------------------------------------------------------------(4) <input id="q4" />, egg yolks &amp; carrots	vitamin A-------------------------------------------------------------------(5) <input id="q5" /> &amp; wholegrain cereals	zinc-------------------------------------------------------------------Oily fish	(6) <input id="q6" />-------------------------------------------------------------------Nuts &amp; (7) <input id="q7" />	vitamin E<p align="left"><font size="2"></font></p>
+</section>
 </body>
 </bento>

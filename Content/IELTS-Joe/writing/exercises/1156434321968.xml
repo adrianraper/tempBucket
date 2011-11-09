@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-09" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -84,6 +84,8 @@
   <p align="left">Finally, the Statham Messenger's readership was in steady decline throughout the period. From 250,000 in 1980, the number of readers decreased by <font color="#0000ff"><input id="q8" type="droptarget"/> in 1990. This was followed by a further fall of <font color="#0000ff"><input id="q9" type="droptarget"/></font> in 2001.</font></p>
 </section>
 
-
+<section id="rt2001">
+	<p align="left"><font color="#000000">When describing trends, you need to be careful with prepositions. For example, 'a rise of' and 'a rise to' have very different meanings:</font></p>&nbsp;'to rise to' and 'a rise to' refer to the point reached.'to rise by' and 'a rise of' refer to the size of the change.
+</section>
 </body>
 </bento>
