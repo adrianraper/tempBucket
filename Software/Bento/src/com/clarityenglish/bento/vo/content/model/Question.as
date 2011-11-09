@@ -2,6 +2,8 @@ package com.clarityenglish.bento.vo.content.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	
+	import org.davekeen.util.VectorUtil;
+	
 	public class Question {
 		
 		public static const MULTIPLE_CHOICE_QUESTION:String = "MultipleChoiceQuestion";
@@ -63,7 +65,7 @@ package com.clarityenglish.bento.vo.content.model {
 				return 0;
 			
 			// Construct an array of the possible scores sorted in descending order
-			var scores:Array = answers.map(function(answer:Answer, idx:int, vector:Vector.<Answer>):int {
+			var scores:Array = VectorUtil.vectorToArray(answers).map(function(answer:Answer, idx:int, array:Array):int {
 				return answer.score;
 			}).sort(Array.DESCENDING | Array.NUMERIC);
 			

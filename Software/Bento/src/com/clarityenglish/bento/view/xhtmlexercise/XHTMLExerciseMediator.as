@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -36,6 +37,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			bentoProxy.currentExercise = view.exercise;
+			
 			exerciseProxy = new ExerciseProxy(view.exercise);
 			facade.registerProxy(exerciseProxy);
 		}
@@ -44,6 +48,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			super.onRemove();
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			
+			// Clean up after this exercise
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			bentoProxy.currentExercise = null;
 			
 			facade.removeProxy(ExerciseProxy.NAME(view.exercise));
 			exerciseProxy = null;

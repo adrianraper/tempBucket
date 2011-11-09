@@ -229,16 +229,20 @@ package com.clarityenglish.bento.model {
 			for each (var question:Question in exercise.model.questions) {
 				var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
 				
+				// These are the correct and incorrect count for this question
+				var correctCount:uint = 0;
+				var incorrectCount:uint = 0;
+				
 				if (answerMap) {
 					for each (var key:Object in answerMap.keys) {
 						var answer:Answer = answerMap.get(key);
 						
 						switch (answer.markingClass) {
 							case Answer.CORRECT:
-								exerciseMark.correctCount++;
+								correctCount++;
 								break;
 							case Answer.INCORRECT:
-								exerciseMark.incorrectCount++;
+								incorrectCount++;
 								break;
 							case Answer.NEUTRAL:
 								// TODO: Don't know what to do with neutral answers
@@ -246,11 +250,13 @@ package com.clarityenglish.bento.model {
 						}
 					}
 					
-					// Calculate the number of missed questions
-					exerciseMark.missedCount += (question.getMaximumPossibleScore() - exerciseMark.correctCount - exerciseMark.incorrectCount);
+					// Add values to the exercise mark, including calculating the number of missed points
+					exerciseMark.correctCount += correctCount;
+					exerciseMark.incorrectCount += incorrectCount;
+					exerciseMark.missedCount += (question.getMaximumPossibleScore() - correctCount - incorrectCount);
 				} else {
 					// The entire question was missed
-					exerciseMark.missedCount = question.getMaximumPossibleScore();
+					exerciseMark.missedCount += question.getMaximumPossibleScore();
 				}
 			}
 			

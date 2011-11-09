@@ -6,8 +6,7 @@
 						xmlns:tester="com.clarityenglish.ieltstester.view.tester.*"
 						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
 						creationComplete="creationComplete(event)"
-						addedToStage="addedToStage(event)"
-						width="100%" height="100%">
+						addedToStage="addedToStage(event)">
 	
 	<fx:Metadata>
 		[SWF(width=900, height=600)]
@@ -19,6 +18,7 @@
 		<![CDATA[
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
+			import com.clarityenglish.bento.model.BentoProxy;
 			import com.clarityenglish.bento.vo.Href;
 			import com.clarityenglish.common.vo.config.BentoError;
 			
@@ -65,7 +65,10 @@
 			}
 			
 			protected function onMarkingClick(event:MouseEvent):void {
-				facade.sendNotification(BBNotifications.SHOW_MARKING);
+				// Get the current exercise
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				
+				facade.sendNotification(BBNotifications.SHOW_MARKING, { exercise: bentoProxy.currentExercise } );
 			}
 			
 			public function showErrorMessage(error:BentoError):void {
