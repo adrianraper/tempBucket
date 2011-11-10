@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -79,18 +79,18 @@
 
 <section id="body">
   <img class="rightFloat" src="../media/WB_SP_003.jpg" mode="1" id="1001"/>
-  <br/>
+  
   <ol id="questionList">
-    <li id="1">My city is <input id="q1" type="droptarget"/> smaller than the capital.</li>
-    <li id="2">Smaller families are not necessarily <input id="q2" type="droptarget"/> interesting than big ones.</li>
-    <li id="3">My grandmother's life was very <input id="q3" type="droptarget"/> from mine.</li>
-    <li id="4">My village is only slightly <input id="q4" type="droptarget"/> than the nearest town.</li>
-    <li id="5">Children who spend fewer years at school may get <input id="q5" type="droptarget"/> jobs than those who stay on.</li>
-    <li id="6">It is more important to have experience <input id="q6" type="droptarget"/> to have a diploma.</li>
-    <li id="7">We are having a bad winter. The weather is much <input id="q7" type="droptarget"/> than last year.</li>
-    <li id="8">I loved the film. It was the <input id="q8" type="droptarget"/> film I had ever seen.</li>
-    <li id="9">Did people lead simple lives thirty years ago?Yes, my grandmother's life was much <input id="q9" type="droptarget"/> than mine.</li>
-    <li id="10">Would you say people have comfortable lives now?Yes, my life is much <input id="q10" type="droptarget"/> than my parents'.</li>
+    <li id="1">My city is&#xA0;<input id="q1" type="droptarget"/>&#xA0;smaller than the capital.</li>
+    <li id="2">Smaller families are not necessarily&#xA0;<input id="q2" type="droptarget"/>&#xA0;interesting than big ones.</li>
+    <li id="3">My grandmother's life was very&#xA0;<input id="q3" type="droptarget"/>&#xA0;from mine.</li>
+    <li id="4">My village is only slightly&#xA0;<input id="q4" type="droptarget"/>&#xA0;than the nearest town.</li>
+    <li id="5">Children who spend fewer years at school may get&#xA0;<input id="q5" type="droptarget"/>&#xA0;jobs than those who stay on.</li>
+    <li id="6">It is more important to have experience&#xA0;<input id="q6" type="droptarget"/>&#xA0;to have a diploma.</li>
+    <li id="7">We are having a bad winter. The weather is much&#xA0;<input id="q7" type="droptarget"/>&#xA0;than last year.</li>
+    <li id="8">I loved the film. It was the&#xA0;<input id="q8" type="droptarget"/>&#xA0;film I had ever seen.</li>
+    <li id="9">Did people lead simple lives thirty years ago? Yes, my grandmother's life was much&#xA0;<input id="q9" type="droptarget"/>&#xA0;than mine.</li>
+    <li id="10">Would you say people have comfortable lives now?Yes, my life is much&#xA0;<input id="q10" type="droptarget"/>&#xA0;than my parents'.</li>
   </ol>
 </section>
 

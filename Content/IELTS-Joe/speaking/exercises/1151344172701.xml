@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="presentation" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -34,11 +34,13 @@
 </header>
 	
 <section id="body">
-  <video src="../media/Unit08_e5.flv" mode="1" id="1003"/>
+  <video src="../media/Unit08_e5.flv" mode="1" id="1003" autoPlay="false"/>
+  <div id="presentation">
   <p align="left">Listen to the language she uses and think about what you would answer to each of the questions and the kind of language you would use.</p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

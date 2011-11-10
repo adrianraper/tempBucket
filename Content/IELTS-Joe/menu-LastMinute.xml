@@ -18,7 +18,7 @@
 				<exercise id="1234567879" caption="Reading practice paper Pt2" href="reading/media/practice2.pdf" difficulty="2" />
 			</unit>
 			<unit id="1234567879" class="advice-zone">
-				<exercise id="1234567879" href="reading/media/Reading_intro.flv" caption="Watch the teacher giving advice." />
+				<exercise id="1234567879" href="reading/media/Reading_intro.f4v" caption="Watch the teacher giving advice." />
 			</unit>
 			<unit id="1234567879" class="practice-zone" >
 				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/1156153794672.jpg">
@@ -30,11 +30,29 @@
 				<exercise id="1156165919506" group="2" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/cc1_03.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
+				<exercise id="1156165919884" group="2" caption="Sentence completion" href="reading/exercises/1156165919884.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml">
+				  <!--MC - splitscreen TB-->
+				</exercise>
 				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml">
 				  <!--MC - splitscreen QB-->
 				</exercise>
 				<exercise id="1151344537791" group="3" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml">
 				  <!--GF - splitscreen TB-->
+				</exercise>
+				<exercise id="1151344537636" group="3" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344244509" group="3" caption="Matching" href="reading/exercises/1151344244509.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344244341" group="3" caption="Table completion" href="reading/exercises/1151344244341.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344244681" group="3" caption="Diagram completion" href="reading/exercises/1151344244681.xml">
+				  <!--MC - splitscreen QB-->
 				</exercise>
 				<exercise id="1151344244836" group="3" caption="Short answer questions" href="reading/exercises/1151344244836.xml">
 				  <!--MC - splitscreen QB-->
@@ -53,6 +71,15 @@
 				</exercise>
 				<exercise id="1151344259319" group="3" caption="Multiple choice" href="reading/exercises/1151344259319.xml">
 				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344259704" group="3" caption="Yes, No, Not given" href="reading/exercises/1151344259704.xml">
+				  <!--MC - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344259839" group="3" caption="Matching (2)" href="reading/exercises/1151344259839.xml">
+				  <!--GF - splitscreen QB-->
+				</exercise>
+				<exercise id="1151344259757" group="3" caption="Summary completion" href="reading/exercises/1151344259757.xml">
+				  <!--GF - splitscreen QB-->
 				</exercise>
         	</unit>
 		</course>
@@ -76,10 +103,22 @@
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml">
 				  <!--GF - QB-->
 				</exercise>
+				<exercise id="1156153794466" group="1" caption="Table completion" href="listening/exercises/1156153794466.xml">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1156165919258" group="1" caption="Sentence completion" href="listening/exercises/1156165919258.xml">
+				  <!--GF - TB-->
+				</exercise>
 				<exercise id="1156165919813" group="1" caption="Matching" href="listening/exercises/1156165919813.xml">
 				  <!--GF - splitscreen TB-->
 				</exercise>
+				<exercise id="1156957196702" group="2" caption="Monologue" href="listening/exercises/1156957196702.xml">
+				  <!--Targetspotting TB-->
+				</exercise>
 				<exercise id="1156429192269" group="2" caption="Conversation" href="listening/exercises/1156429192269.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344537628" group="2" caption="Purchasing tickets" href="listening/exercises/1151344537628.xml">
 				  <!--GF - TB-->
 				</exercise>
 				<exercise id="1151344537619" group="2" caption="British cinema" href="listening/exercises/1151344537619.xml">
@@ -92,6 +131,24 @@
 				  <!--Targetspotting - TB-->
 				</exercise>
 				<exercise id="1151344259298" group="3" caption="Short answers" href="listening/exercises/1151344259298.xml">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344259537" group="3" caption="Multiple selection (2)" href="listening/exercises/1151344259537.xml">
+				  <!--Targetspotting TB-->
+				</exercise>
+				<exercise id="1151344259715" group="3" caption="Sentence completion" href="listening/exercises/1151344259715.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344259935" group="3" caption="Classification" href="listening/exercises/1151344259935.xml">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1151344221308" group="3" caption="Table completion" href="listening/exercises/1151344221308.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221548" group="3" caption="Form completion" href="listening/exercises/1151344221548.xml">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221436" group="3" caption="Short-answer questions" href="listening/exercises/1151344221436.xml">
 				  <!--GF - QB-->
 				</exercise>
 				<exercise id="1151344221888" group="3" caption="Sentence completion" href="listening/exercises/1151344221888.xml">

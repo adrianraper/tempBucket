@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -68,24 +68,26 @@
 </header>
 	
 <section id="body">
-  <video src="../media/Unit01_e6a.flv" mode="1" id="1003"/>
-  <p align="left">
-    <b>What does Zafir mention?</b>
-    <g id="t1">A.  markets</g>
-    <g id="t2">B.  culture</g>
-    <g id="t3">C.  age</g>
-    <g id="t4">D.  population</g>
-    <g id="t5">E.  size</g>
-    <g id="t6">F.  location</g>
-    <g id="t7">G.  castles or palaces</g>
-    <g id="t8">H.  friendly people</g>
-    <g id="t9">I.  parks and gardens</g>
-    <g id="t10">J.  industries</g>
+  <video src="../media/Unit01_e6a.flv" mode="1" id="1003" autoPlay="false"/>
+  <div id="targetspotting">
+  <p>
+    <b>What does Zafir mention?</b><br/>
+    <g id="t1">A.  markets</g><br/>
+    <g id="t2">B.  culture</g><br/>
+    <g id="t3">C.  age</g><br/>
+    <g id="t4">D.  population</g><br/>
+    <g id="t5">E.  size</g><br/>
+    <g id="t6">F.  location</g><br/>
+    <g id="t7">G.  castles or palaces</g><br/>
+    <g id="t8">H.  friendly people</g><br/>
+    <g id="t9">I.  parks and gardens</g><br/>
+    <g id="t10">J.  industries</g><br/>
     <g id="t11">K.  interesting sites</g>
-  </p>
+ </p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="quiz" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -60,20 +60,26 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_004.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">The water-balanced railway's hydraulic brake, whose main function is to slow the train, helps store energy to pump water.<a id="a1">Defining</a><tab/><a id="a2">Non-defining</a><br/></li>
-    <br/>
-    <li id="q2">A solar cell is a power source which converts sunlight into electricity<a id="a3">Defining</a><tab/><a id="a4">Non-defining</a><br/></li>
-    <br/>
-    <li id="q3">A hydram, which can irrigate fields sixty metres above the water source, is powered by water pressure.<a id="a5">Defining</a><tab/><a id="a6">Non-defining</a><br/></li>
-    <br/>
-    <li id="q4">The water-balanced railway, which is powered by the force of gravity, is an example of sustainable technology.<a id="a7">Defining</a><tab/><a id="a8">Non-defining</a><br/></li>
-    <br/>
-    <li id="q5">Ecologists are scientists who study the relationship between living organisms and their environment.<a id="a9">Defining</a><tab/><a id="a10">Non-defining</a><br/></li>
-    <br/>
-    <li id="q6">Greenpeace is an organisation whose aim is to protect wildlife and the natural environment.<a id="a11">Defining</a><tab/><a id="a12">Non-defining</a><br/></li>
+  
+  <ol id="mchoices">
+    
+    <li id="q1">The water-balanced railway's hydraulic brake, whose main function is to slow the train, helps store energy to pump water.</li>
+	<a id="a1" ><b>Defining</b></a><tab/><a id="a2"><b>Non-defining</b><br/></a>
+    
+	<li id="q2">A solar cell is a power source which converts sunlight into electricity</li>
+	<a id="a3"><b>Defining</b></a><tab/><a id="a4"><b>Non-defining</b><br/></a>
+    
+    <li id="q3">A hydram, which can irrigate fields sixty metres above the water source, is powered by water pressure.</li>
+	<a id="a5"><b>Defining</b></a><tab/><a id="a6"><b>Non-defining</b><br/></a>
+    
+    <li id="q4">The water-balanced railway, which is powered by the force of gravity, is an example of sustainable technology.</li>
+	<a id="a7"><b>Defining</b></a><tab/><a id="a8"><b>Non-defining</b><br/></a>
+    
+    <li id="q5">Ecologists are scientists who study the relationship between living organisms and their environment.</li>
+	<a id="a9"><b>Defining</b></a><tab/><a id="a10"><b>Non-defining</b><br/></a>
+    
+    <li id="q6">Greenpeace is an organisation whose aim is to protect wildlife and the natural environment.</li>
+	<a id="a11"><b>Defining</b></a><tab/><a id="a12"><b>Non-defining</b><br/></a>
   </ol>
 </section>
 

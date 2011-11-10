@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="multiplechoice" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -106,27 +106,27 @@
 	
 <section id="body">
   <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">What does 'which' refer to?<list class="answerList"><li><a id="a1">the carriage</a></li><li><a id="a2">the ballast tank</a></li><li><a id="a3">the water-balanced railway</a></li></list><br/></li>
-    <br/>
-    <li id="q2">What does 'These' refer to?<list class="answerList"><li><a id="a4">the steel tracks</a></li><li><a id="a5">the carriages</a></li><li><a id="a6">the steel cables</a></li></list><br/></li>
-    <br/>
-    <li id="q3">What does 'it' refer to?<list class="answerList"><li><a id="a7">the ballast tank</a></li><li><a id="a8">the top carriage</a></li><li><a id="a9">the reservoir</a></li></list><br/></li>
-    <br/>
-    <li id="q4">What does 'the other one' refer to?<list class="answerList"><li><a id="a10">the lower carriage</a></li><li><a id="a11">the higher carriage</a></li><li><a id="a12">the imbalance</a></li></list><br/></li>
-    <br/>
-    <li id="q5">What does 'them' refer to?<list class="answerList"><li><a id="a13">the carriages</a></li><li><a id="a14">the steel tracks</a></li><li><a id="a15">the steel cables</a></li></list><br/></li>
-    <br/>
-    <li id="q6">What does 'This' refer to<list class="answerList"><li><a id="a16">the drum</a></li><li><a id="a17">the braking system</a></li><li><a id="a18">the computer system</a></li></list><br/></li>
-    <br/>
-    <li id="q7">What does 'which' refer to?<list class="answerList"><li><a id="a19">the hydraulic pump</a></li><li><a id="a20">the braking system</a></li><li><a id="a21">the computer system</a></li></list><br/></li>
-    <br/>
-    <li id="q8">What does 'it' refer to?<list class="answerList"><li><a id="a22">the braking system</a></li><li><a id="a23">the hydraulic pump</a></li><li><a id="a24">the drum</a></li></list><br/></li>
-    <br/>
-    <li id="q9">What does 'this' refer to?<list class="answerList"><li><a id="a25">the carriages reduce speed</a></li><li><a id="a26">the braking system</a></li><li><a id="a27">the gas is compressed</a></li></list><br/></li>
-    <br/>
-    <li id="q10">What does 'This' refer to?<list class="answerList"><li><a id="a28">the braking system</a></li><li><a id="a29">the hydraulic pump</a></li><li><a id="a30">the stored energy</a></li></list><br/></li>
+  <ol id="splitquestionList">
+    
+    <li id="q1">What does 'which' refer to?<list class="answerList"><li><a id="a1">the carriage</a></li><li><a id="a2">the ballast tank</a></li><li><a id="a3">the water-balanced railway</a></li></list></li>
+    
+    <li id="q2">What does 'These' refer to?<list class="answerList"><li><a id="a4">the steel tracks</a></li><li><a id="a5">the carriages</a></li><li><a id="a6">the steel cables</a></li></list></li>
+    
+    <li id="q3">What does 'it' refer to?<list class="answerList"><li><a id="a7">the ballast tank</a></li><li><a id="a8">the top carriage</a></li><li><a id="a9">the reservoir</a></li></list></li>
+    
+    <li id="q4">What does 'the other one' refer to?<list class="answerList"><li><a id="a10">the lower carriage</a></li><li><a id="a11">the higher carriage</a></li><li><a id="a12">the imbalance</a></li></list></li>
+    
+    <li id="q5">What does 'them' refer to?<list class="answerList"><li><a id="a13">the carriages</a></li><li><a id="a14">the steel tracks</a></li><li><a id="a15">the steel cables</a></li></list></li>
+    
+    <li id="q6">What does 'This' refer to<list class="answerList"><li><a id="a16">the drum</a></li><li><a id="a17">the braking system</a></li><li><a id="a18">the computer system</a></li></list></li>
+    
+    <li id="q7">What does 'which' refer to?<list class="answerList"><li><a id="a19">the hydraulic pump</a></li><li><a id="a20">the braking system</a></li><li><a id="a21">the computer system</a></li></list></li>
+    
+    <li id="q8">What does 'it' refer to?<list class="answerList"><li><a id="a22">the braking system</a></li><li><a id="a23">the hydraulic pump</a></li><li><a id="a24">the drum</a></li></list></li>
+    
+    <li id="q9">What does 'this' refer to?<list class="answerList"><li><a id="a25">the carriages reduce speed</a></li><li><a id="a26">the braking system</a></li><li><a id="a27">the gas is compressed</a></li></list></li>
+    
+    <li id="q10">What does 'This' refer to?<list class="answerList"><li><a id="a28">the braking system</a></li><li><a id="a29">the hydraulic pump</a></li><li><a id="a30">the stored energy</a></li></list></li>
   </ol>
 </section>
 
@@ -216,12 +216,13 @@
 </section>
 
 <section id="readingText">
-  <p align="left">The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages to transport passengers up and down a hillside 30 metres in height.</p>
-  <p align="left">
-    <font color="#000000">The carriages are made of timber and steel so that they are light and strong. Underneath each one is a ballast tank, <font color="#0000ff"><b>(1) which</b></font> carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. <font color="#0000ff"><b>(2) These</b></font> go around a large drum at the top of the slope.</font>
+<br/>
+  <p>The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages to transport passengers up and down a hillside 30 metres in height.</p>
+  <p>
+    The carriages are made of timber and steel so that they are light and strong. Underneath each one is a ballast tank,&#xA0;<b>(1) which</b>&#xA0;carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables.&#xA0;<b>(2) These</b>&#xA0;go around a large drum at the top of the slope.
   </p>
-  <p align="left">
-    <font color="#000000">When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir so as to make <font color="#0000ff"><b>(3) it</b></font> slightly heavier than the lower carriage. Due to this imbalance, the top one begins to roll down the hill, pulling <font color="#0000ff"><b>(4) the</b></font>&#xA0;<font color="#0000ff"><b>other one</b></font> up. A computer control system weighs each carriage in order to gauge exactly how much water is needed to make <font color="#0000ff"><b>(5) them</b></font> move. Speed is controlled by means of a braking system built into the drum at the top. <font color="#0000ff"><b>(6) This</b></font> consists of a hydraulic pump, <font color="#0000ff"><b>(7) which</b></font> slows the drum down if <font color="#0000ff"><b>(8) it</b></font> is turning too fast, causing the carriages to reduce speed. Each time <font color="#0000ff"><b>(9) this</b></font> happens, the system compresses gas in special cylinders. As a result, some of the energy of braking is stored. <font color="#0000ff"><b>(10) This</b></font> can later be used to pump a proportion of the water back up to the reservoir. Consequently, some energy is recycled.</font>
+  <p>
+    When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir so as to make&#xA0;<b>(3) it</b>&#xA0;slightly heavier than the lower carriage. Due to this imbalance, the top one begins to roll down the hill, pulling&#xA0;<b>(4) the</b>&#xA0;<b>other one</b>&#xA0;up. A computer control system weighs each carriage in order to gauge exactly how much water is needed to make&#xA0;<b>(5) them</b>&#xA0;move. Speed is controlled by means of a braking system built into the drum at the top.&#xA0;<b>(6) This</b>&#xA0;consists of a hydraulic pump,&#xA0;<b>(7) which</b>&#xA0;slows the drum down if&#xA0;<b>(8) it</b>&#xA0;is turning too fast, causing the carriages to reduce speed. Each time&#xA0;<b>(9) this</b>&#xA0;happens, the system compresses gas in special cylinders. As a result, some of the energy of braking is stored.&#xA0;<b>(10) This</b>&#xA0;can later be used to pump a proportion of the water back up to the reservoir. Consequently, some energy is recycled.
   </p>
   <p align="left">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</p>
   <p align="left">

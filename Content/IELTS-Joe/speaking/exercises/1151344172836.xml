@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -59,11 +59,23 @@
 </header>
 	
 <section id="body">
-  <video src="../media/Unit08_e3.flv" mode="1" id="1003"/>
-  <p align="left">Which of the following does Alexandra mention?<g id="t1">A. telephones</g><g id="t2">B. lifts/elevators</g><g id="t3">C. public transport</g><g id="t4">D. street crossings</g><g id="t5">E. stairs</g>&#xA0;<g id="t6">F. seats</g><g id="t7">G. traffic lights</g><g id="t8">H. doors</g></p>
+
+  <video src="../media/Unit08_e3.flv" mode="1" id="1003" autoPlay="false"/>
+  <div id="targetspotting">
+  <p><b>Which of the following does Alexandra mention?</b><br/>
+  <g id="t1">A. telephones</g><br/>
+  <g id="t2">B. lifts/elevators</g><br/>
+  <g id="t3">C. public transport</g><br/>
+  <g id="t4">D. street crossings</g><br/>
+  <g id="t5">E. stairs</g><br/>
+  <g id="t6">F. seats</g><br/>
+  <g id="t7">G. traffic lights</g><br/>
+  <g id="t8">H. doors</g></p>
   <p align="left">
     <font size="2"/>
+	
   </p>
+  </div>
 </section>
 
 </body>

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -59,11 +59,13 @@
 </header>
 	
 <section id="body">
-  <video src="../media/Unit03_e5.flv" mode="1" id="1003"/>
-  <p align="left">You can travel on <input id="q1"/> or by <input id="q2"/>.You can take some <input id="q3"/> on the <input id="q4"/>.Lots of people <input id="q5"/> by <input id="q6"/>.Or you can just <input id="q7"/> a <input id="q8"/>.</p>
+  <video src="../media/Unit03_e5.flv" mode="1" id="1003" autoPlay="false"/>
+  <div id="gapfillText">
+  <p>You can travel on&#xA0;<input id="q1"/>&#xA0;or by&#xA0;<input id="q2"/>&#xA0;.You can take some&#xA0;<input id="q3"/>&#xA0;on the&#xA0;<input id="q4"/>&#xA0;. Lots of people&#xA0;<input id="q5"/>&#xA0;by&#xA0;<input id="q6"/>. Or you can just&#xA0;<input id="q7"/>&#xA0;a&#xA0;<input id="q8"/>.</p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

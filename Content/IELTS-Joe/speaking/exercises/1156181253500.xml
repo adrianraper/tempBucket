@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="quiz" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -78,29 +78,29 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_SP_003.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">The examiner asks all candidates the same questions. <br/></li>
-    <font face="verdana" size="13" color="#0f157a">
-      <b>
-        <a id="a1">True</a>
-        <tab/>
-        <a id="a2">False</a>
-      </b>
-    </font>
-    <br/>
-    <li id="q2">The candidate has to state his or her full name. <a id="a3">True</a><tab/><a id="a4">False</a><br/></li>
-    <br/>
-    <li id="q3">All three parts of the test are connected to each other. <a id="a5">True</a><tab/><a id="a6">False</a><br/></li>
-    <br/>
-    <li id="q4">The candidate talks on his or her own about a topic of his choice. <a id="a7">True</a><tab/><a id="a8">False</a><br/></li>
-    <br/>
-    <li id="q5">The examiner introduces herself to the candidate. <a id="a9">True</a><tab/><a id="a10">False</a><br/></li>
-    <br/>
-    <li id="q6">The candidate has to produce identification. <a id="a11">True</a><tab/><a id="a12">False</a><br/></li>
-    <br/>
-    <li id="q7">The candidate has a turn to ask questions. <a id="a13">True</a><tab/><a id="a14">False</a><br/></li>
+  
+  <ol id="trueFalse">
+  
+    <li id="q1">The examiner asks all candidates the same questions. </li>
+    <a id="a1"><b>True</b></a><tab/><a id="a2"><b>False</b></a>
+    
+    <li id="q2">The candidate has to state his or her full name. </li>
+	<a id="a3"><b>True</b></a><tab/><a id="a4"><b>False</b></a>
+    
+    <li id="q3">All three parts of the test are connected to each other. </li>
+	<a id="a5"><b>True</b></a><tab/><a id="a6"><b>False</b></a>
+    
+    <li id="q4">The candidate talks on his or her own about a topic of his choice. </li>
+	<a id="a7"><b>True</b></a><tab/><a id="a8"><b>False</b></a>
+    
+    <li id="q5">The examiner introduces herself to the candidate. </li>
+	<a id="a9"><b>True</b></a><tab/><a id="a10"><b>False</b></a>
+    
+    <li id="q6">The candidate has to produce identification. </li>
+	<a id="a11"><b>True</b></a><tab/><a id="a12"><b>False</b></a>
+    
+    <li id="q7">The candidate has a turn to ask questions. </li>
+	<a id="a13"><b>True</b></a><tab/><a id="a14"><b>False</b></a>
   </ol>
 </section>
 

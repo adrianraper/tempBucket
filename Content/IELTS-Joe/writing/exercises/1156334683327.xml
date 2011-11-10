@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -234,109 +234,99 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_011.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#000000">
-      <b>1  Many experts believe that CO2 emissions from industry and vehicles have (&#x2026;) global warming.</b>
-    </font>
-  </p>
-  <g id="t1">A  caused</g>
-  <g id="t2">B  stemmed from</g>
-  <g id="t3">C  brought about</g>
-  <g id="t4">D  led to</g>
-  <g id="t5">E  been caused by</g>
-  <p align="left">
-    <font color="#000000">
-      <b>2  Sea levels have begun to rise (&#x2026;) to global warming.</b>
-    </font>
-  </p>
-  <g id="t6">A  leading</g>
-  <g id="t7">B  owing</g>
-  <g id="t8">C  due</g>
-  <g id="t9">D  giving rise</g>
-  <g id="t10">E  thanks</g>
-  <p align="left">
-    <font color="#000000">
-      <b>3  The destruction of forest habitats has (&#x2026;) many animal species to die out.</b>
-    </font>
-  </p>
-  <g id="t11">A  led</g>
-  <g id="t12">B  resulted in</g>
-  <g id="t13">C  caused</g>
-  <g id="t14">D  brought about</g>
-  <g id="t15">E  given rise to</g>
-  <p align="left">
-    <font color="#000000">
-      <b>4  Marine life in the world's seas is being devastated (&#x2026;) overfishing.</b>
-    </font>
-  </p>
-  <g id="t16">A  due to</g>
-  <g id="t17">B  as a result of</g>
-  <g id="t18">C  leading to</g>
-  <g id="t19">D  giving rise to</g>
-  <g id="t20">E  because of</g>
-  <p align="left">
-    <font color="#000000">
-      <b>5  In many parts of the world, once fertile land is turning into semi-desert (&#x2026;) intensive farming methods.</b>
-    </font>
-  </p>
-  <g id="t21">A  owing to</g>
-  <g id="t22">B  leading to</g>
-  <g id="t23">C  since</g>
-  <g id="t24">D  resulting in</g>
-  <g id="t25">E  on account of</g>
-  <p align="left">
-    <font color="#000000">
-      <b>6  Accidents at sea involving large oil tankers have often (&#x2026;) environmental damage on a huge scale.</b>
-    </font>
-  </p>
-  <g id="t26">A  been due to</g>
-  <g id="t27">B  been caused by</g>
-  <g id="t28">C  given rise to</g>
-  <g id="t29">D  led to</g>
-  <g id="t30">E  stemmed from</g>
-  <p align="left">
-    <font color="#000000">
-      <b>7  The difficulty meteorologists have in making predictions about climate change (&#x2026;) the complexity of global weather systems.</b>
-    </font>
-  </p>
-  <g id="t31">A  results in</g>
-  <g id="t32">B  is due to</g>
-  <g id="t33">C  stems from</g>
-  <g id="t34">D  results from</g>
-  <g id="t35">E  brings about</g>
-  <p align="left">
-    <font color="#000000">
-      <b>8  Public awareness of environmental issues is far greater than it used to be (&#x2026;) energetic campaigning by environmentalists.</b>
-    </font>
-  </p>
-  <g id="t36">A  on account of</g>
-  <g id="t37">B  thanks to</g>
-  <g id="t38">C  as a consequence of</g>
-  <g id="t39">D  resulting in</g>
-  <g id="t40">E  because</g>
-  <p align="left">
-    <font color="#000000">
-      <b>9  Zoos can sometimes help prevent certain species from becoming extinct (&#x2026;) they can breed the animals in captivity.</b>
-    </font>
-  </p>
-  <g id="t41">A  owing to</g>
-  <g id="t42">B  because</g>
-  <g id="t43">C  due to</g>
-  <g id="t44">D  on account of</g>
-  <g id="t45">E  since</g>
-  <p align="left">
-    <font color="#000000">
-      <b>10  Poor air quality in urban areas is known to have (&#x2026;) an increase in breathing disorders such as asthma.</b>
-    </font>
-  </p>
-  <g id="t46">A  stemmed from</g>
-  <g id="t47">B  given rise to</g>
-  <g id="t48">C  resulted in</g>
-  <g id="t49">D  brought about</g>
-  <g id="t50">E  resulted from</g>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <ol id="targetspotting">
+  
+    
+      <li>Many experts believe that CO2 emissions from industry and vehicles have (&#x2026;) global warming.</li>
+    
+  
+  <g id="t1">A. &#xA0;caused</g><br/>
+  <g id="t2">B. &#xA0;stemmed from</g><br/>
+  <g id="t3">C. &#xA0;brought about</g><br/>
+  <g id="t4">D. &#xA0;led to</g><br/>
+  <g id="t5">E. &#xA0;been caused by</g><br/>
+  
+ 
+      <li>  Sea levels have begun to rise (&#x2026;) to global warming.</li>
+    
+  
+  <g id="t6">A.  &#xA0;leading</g><br/>
+  <g id="t7">B.  &#xA0;owing</g><br/>
+  <g id="t8">C.  &#xA0;due</g><br/>
+  <g id="t9">D.  &#xA0;giving rise</g><br/>
+  <g id="t10">E.  &#xA0;thanks</g><br/>
+  
+    
+      <li>  The destruction of forest habitats has (&#x2026;) many animal species to die out.</li>
+    
+  
+  <g id="t11">A.  &#xA0;led</g><br/>
+  <g id="t12">B.  &#xA0;resulted in</g><br/>
+  <g id="t13">C.  &#xA0;caused</g><br/>
+  <g id="t14">D.  &#xA0;brought about</g><br/>
+  <g id="t15">E.  &#xA0;given rise to</g><br/>
+  
+    
+      <li> Marine life in the world's seas is being devastated (&#x2026;) overfishing.</li>
+    
+  
+  <g id="t16">A.  &#xA0;due to</g><br/>
+  <g id="t17">B.  &#xA0;as a result of</g><br/>
+  <g id="t18">C.  &#xA0;leading to</g><br/>
+  <g id="t19">D.  &#xA0;giving rise to</g><br/>
+  <g id="t20">E.  &#xA0;because of</g><br/>
+
+      <li> In many parts of the world, once fertile land is turning into semi-desert (&#x2026;) intensive farming methods.</li>
+    
+  <g id="t21">A.  &#xA0;owing to</g><br/>
+  <g id="t22">B.  &#xA0;leading to</g><br/>
+  <g id="t23">C.  &#xA0;since</g><br/>
+  <g id="t24">D.  &#xA0;resulting in</g><br/>
+  <g id="t25">E.  &#xA0;on account of</g><br/>
+  
+      <li> Accidents at sea involving large oil tankers have often (&#x2026;) environmental damage on a huge scale.</li>
+    
+  
+  <g id="t26">A.  &#xA0;been due to</g><br/>
+  <g id="t27">B.  &#xA0;been caused by</g><br/>
+  <g id="t28">C.  &#xA0;given rise to</g><br/>
+  <g id="t29">D.  &#xA0;led to</g><br/>
+  <g id="t30">E.  &#xA0;stemmed from</g><br/>
+  
+      <li> The difficulty meteorologists have in making predictions about climate change (&#x2026;) the complexity of global weather systems.</li>
+    
+  <g id="t31">A.  &#xA0;results in</g><br/>
+  <g id="t32">B.  &#xA0;is due to</g><br/>
+  <g id="t33">C.  &#xA0;stems from</g><br/>
+  <g id="t34">D.  &#xA0;results from</g><br/>
+  <g id="t35">E.  &#xA0;brings about</g><br/>
+  
+      <li> Public awareness of environmental issues is far greater than it used to be (&#x2026;) energetic campaigning by environmentalists.</li>
+    
+  <g id="t36">A.  &#xA0;on account of</g><br/>
+  <g id="t37">B.  &#xA0;thanks to</g><br/>
+  <g id="t38">C.  &#xA0;as a consequence of</g><br/>
+  <g id="t39">D.  &#xA0;resulting in</g><br/>
+  <g id="t40">E.  &#xA0;because</g><br/>
+  
+      <li> Zoos can sometimes help prevent certain species from becoming extinct (&#x2026;) they can breed the animals in captivity.</li>
+    
+  <g id="t41">A.  &#xA0;owing to</g><br/>
+  <g id="t42">B.  &#xA0;because</g><br/>
+  <g id="t43">C.  &#xA0;due to</g><br/>
+  <g id="t44">D.  &#xA0;on account of</g><br/>
+  <g id="t45">E.  &#xA0;since</g><br/>
+  
+      <li> Poor air quality in urban areas is known to have (&#x2026;) an increase in breathing disorders such as asthma.</li>
+    
+  <g id="t46">A.  &#xA0;stemmed from</g><br/>
+  <g id="t47">B.  &#xA0;given rise to</g><br/>
+  <g id="t48">C.  &#xA0;resulted in</g><br/>
+  <g id="t49">D.  &#xA0;brought about</g><br/>
+  <g id="t50">E.  &#xA0;resulted from</g><br/>
+  
+  
+  </ol>
 </section>
 
 <section id="fb2">

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -55,15 +55,19 @@
   <p align="left">
     <b>What is Dr Grant's opinion on the following points?</b>
   </p>
-  <p align="left"><font color="#0000ff">A	he is in favour</font>B	he has no strong opinion either wayC	he is against</p>
-  <p align="left">9. working on your own	<input id="q1"/></p>
-  <p align="left">10. learning large amounts of factual data	<input id="q2"/></p>
-  <p align="left">11. taking detailed notes during lectures	<input id="q3"/></p>
-  <p align="left">12. recording lectures on tape	<input id="q4"/></p>
+ 
+  <p><i><b>A</b><tab/>	he is in favour</i><br/>
+  <i><b>B</b><tab/>	he has no strong opinion either way</i><br/>
+  <i><b>C</b><tab/>	he is against</i></p>
+  
+<ol id="questionList">
+  <p align="left">9. working on your own	<tab/><tab/><tab/><tab/><input id="q1"/></p>
+  <p align="left">10. learning large amounts of factual data	<tab/><tab/><input id="q2"/></p>
+  <p align="left">11. taking detailed notes during lectures	<tab/><tab/><input id="q3"/></p>
+  <p align="left">12. recording lectures on tape	<tab/><tab/><tab/><input id="q4"/></p>
+  </ol>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see that you will hear Dr Grant talking about study skills and that he will be giving his opinion on the various methods.</font>&nbsp;Question 9 - 12Think about the various ways these statements can be expressed. For example, 'working on your own' could be 'working in isolation', or 'working independently', or 'working alone' or in this context 'studying alone' etc.</p>
-</section>
+
 </body>
 </bento>

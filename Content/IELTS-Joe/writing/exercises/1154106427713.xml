@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="presentation" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -35,12 +35,13 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/HF_AW_011.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Academic Writing Task 2</b>
-    </font>
-  </p>
-  <p align="left"><b>Giving an opinion 2</b>You will ...</p>
+  <div id="presentation">
+    
+      <h1><p>Academic Writing Task 2</p></h1>
+    
+  
+  <p><b>Giving an opinion 2</b></p>
+  <p>You will ...</p>
   <ol>
     <li>look at a student's plan for a writing task and identify	which ideas the student heard in a radio interview.</li>
     <li>match arguments and counter-arguments to make a	plan for a writing task.</li>
@@ -52,6 +53,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -70,7 +70,21 @@
 		
 </header>
 	
-<section id="body"><audio controls="compact" class="leftFloat" src="../media/ST_LN1a.mp3" mode="4" id="1002"/><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Williams Electrical Goods</b></font>Repair Request Form</p><p align="left"><font color="#000000"><b>Name:</b>	Mrs Jane (1) <input id="q1"/></font></p>Address:	(2) <input id="q2"/>, Notting Hill, 	London W11.Telephone:	Home: 7391 3264 	Work: (3) <input id="q3"/>Appliance:	washing machineMake:	(4) <input id="q4"/>Model number:	(5) <input id="q5"/>Date of purchase:	(6) <input id="q6"/> October, 2001
+<section id="body"><audio controls="compact" class="leftFloat" src="../media/ST_LN1a.mp3" mode="4" id="1002"/><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/>
+<div id="gapfillText">
+<h1><p>Williams Electrical Goods</p></h1>
+<h2><p>Repair Request Form</p></h2>
+
+
+<p class="hangingIndent1"><b>Name:</b> <tab/><tab/><tab/>	Mrs Jane (1) <input id="q1"/></p>
+<p class="hangingIndent1"><b>Address:</b><tab/><tab/>(2) <input id="q2"/>, Notting Hill, 	London W11.</p>
+<p class="hangingIndent1"><b>Telephone:</b>	<tab/><tab/>Home: 7391 3264 	</p><tab/><tab/><tab/>Work:(3) <input id="q3"/>
+<p class="hangingIndent1"><b>Appliance:</b>	<tab/><tab/>washing machine</p>
+<p class="hangingIndent1"><b>Make:</b><tab/><tab/><tab/>	(4) <input id="q4"/></p>
+<p class="hangingIndent1"><b>Model number:</b><tab/>	(5) <input id="q5"/></p>
+<p class="hangingIndent1"><b>Date of purchase:</b><tab/>	(6) <input id="q6"/> October, 2001</p>
+</div>
+
 </section>
 
 <section id="rt2001">

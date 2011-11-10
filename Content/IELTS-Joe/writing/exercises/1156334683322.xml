@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -54,19 +54,20 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_005.jpg" mode="1" id="1001"/>
-  <p align="left"><b>1.</b>The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.&#xA0;The water-balanced railway's hydraulic brake <input id="q1"/> main function is to slow the train, helps store energy to pump water.</p>
-  <p align="left"><b>2.</b>A solar cell is a power source. It converts sunlight into electricity.A solar cell is a power source <input id="q2"/> converts sunlight into electricity.</p>
-  <p align="left"><b>3.</b>A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source.A hydram,&#xA0;<input id="q3"/> can irrigate fields sixty metres above the water source, is powered by water pressure.</p>
-  <p align="left"><b>4.</b>The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity.The water-balanced railway,&#xA0;<input id="q4"/> is powered by the force of gravity, is an example of sustainable technology.</p>
-  <p align="left"><b>5.</b>Ecologists are scientists. They study the relationship between living organisms and their environment.Ecologists are scientists&#xA0;<input id="q5"/> study the relationship between living organisms and their environment.</p>
-  <p align="left"><b>6.</b>Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment.Greenpeace is an organisation&#xA0;<input id="q6"/> aim is to protect wildlife and the natural environment.</p>
+  <ol id="questionList">
+  <li>The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.The water-balanced railway's hydraulic brake &#xA0; <input id="q1"/> &#xA0; main function is to slow the train, helps store energy to pump water.</li>
+  
+  <li>A solar cell is a power source. It converts sunlight into electricity.A solar cell is a power source &#xA0; <input id="q2"/> &#xA0; converts sunlight into electricity.</li>
+  <li>A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source.A hydram,&#xA0;<input id="q3"/> &#xA0;can irrigate fields sixty metres above the water source, is powered by water pressure.</li>
+  <li>The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity.The water-balanced railway,&#xA0;<input id="q4"/>&#xA0; is powered by the force of gravity, is an example of sustainable technology.</li>
+  <li>Ecologists are scientists. They study the relationship between living organisms and their environment.Ecologists are scientists&#xA0;<input id="q5"/> &#xA0;study the relationship between living organisms and their environment.</li>
+  <li>Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment. Greenpeace is an organisation&#xA0;<input id="q6"/>&#xA0;aim is to protect wildlife and the natural environment.</li>
   <p align="left">
     <font size="2"/>
   </p>
+  </ol>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font color="#000000">When describing an object we often use relative clauses to give information about its function, construction and so on. These may be defining relative clauses, for example:</font></p>&nbsp;A ballast tank is a tank which holds water for weight.&nbsp;The relative clause gives essential information about the object, so it is a defining relative clause.&nbsp;Or they may be non-defining relative clauses, for example:&nbsp;The carriages, which can carry up to 20 passengers, go up and down a steep slope.&nbsp;The relative clause gives additional information about the object, so it is a non-defining relative clause. Only non-defining relative clauses need to be enclosed in commas.
-</section>
+
 </body>
 </bento>

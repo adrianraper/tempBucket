@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -85,16 +85,16 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/HF_AW_013.jpg" mode="1" id="1001"/>
-  <br/>
+  
   <ol id="questionList">
-    <li id="1">It is unlikely that genetically modified crops will have such a disastrous effect on the environment.Genetically modified crops <input id="q1"/> such a disastrous effect on the environment. (likely)</li>
-    <li id="2">Research into gene therapy will probably provide a cure for certain forms of cancer.<input id="q2"/>, research into gene therapy will provide a cure for certain forms of cancer. (probability)</li>
-    <li id="3">People who eat a fatty diet could very well suffer from heart disease in later life.People who eat a fatty diet <input id="q3"/> from heart disease in later life. (likely)</li>
-    <li id="4">It is possible that a cure for AIDS will be available within the next decade.A cure for AIDS <input id="q4"/> available within the next decade. (just)</li>
-    <li id="5">Viruses buried deep in the Arctic could well be released by a change in the Earth's climate.<input id="q5"/> viruses buried deep in the Arctic will be released by a change in the Earth's climate. (possible)</li>
-    <li id="6">In the future most of the world's population will probably live considerably longer.<input id="q6"/>, most of the world's population will live considerably longer in the future. (likelihood)</li>
-    <li id="7">People are unlikely to stop smoking simply because of the health warnings on cigarette packets.<input id="q7"/> people will stop smoking simply because of the health warnings on cigarette packets. (likely)</li>
-    <li id="8">There is every likelihood that gene therapy will make some hereditary diseases a thing of the past.Gene therapy <input id="q8"/> some hereditary diseases a thing of the past. (well)</li>
+    <li id="1">It is unlikely that genetically modified crops will have such a disastrous effect on the environment.Genetically modified crops&#xA0;<input id="q1"/>&#xA0;such a disastrous effect on the environment. (likely)</li>
+    <li id="2">Research into gene therapy will probably provide a cure for certain forms of cancer.&#xA0;<input id="q2"/>, research into gene therapy will provide a cure for certain forms of cancer. (probability)</li>
+    <li id="3">People who eat a fatty diet could very well suffer from heart disease in later life.People who eat a fatty diet &#xA0;<input id="q3"/>&#xA0;from heart disease in later life. (likely)</li>
+    <li id="4">It is possible that a cure for AIDS will be available within the next decade.A cure for AIDS&#xA0;<input id="q4"/>&#xA0;available within the next decade. (just)</li>
+    <li id="5">Viruses buried deep in the Arctic could well be released by a change in the Earth's climate. &#xA0;<input id="q5"/>&#xA0;viruses buried deep in the Arctic will be released by a change in the Earth's climate. (possible)</li>
+    <li id="6">In the future most of the world's population will probably live considerably longer.&#xA0;<input id="q6"/>, most of the world's population will live considerably longer in the future. (likelihood)</li>
+    <li id="7">People are unlikely to stop smoking simply because of the health warnings on cigarette packets. &#xA0;<input id="q7"/>&#xA0;people will stop smoking simply because of the health warnings on cigarette packets. (likely)</li>
+    <li id="8">There is every likelihood that gene therapy will make some hereditary diseases a thing of the past.Gene therapy&#xA0;<input id="q8"/>&#xA0;some hereditary diseases a thing of the past. (well)</li>
   </ol>
 </section>
 

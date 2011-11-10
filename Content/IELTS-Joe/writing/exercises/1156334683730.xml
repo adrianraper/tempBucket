@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -43,7 +43,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/EN_Task03.jpg" mode="16" id="1004"  />
+	
 		
 		Read the writing task and put the paragraph headings in the appropriate order. When you have finished, listen to a teacher and some students discussing the same writing task and check your answers.
 		
@@ -60,17 +60,14 @@
 
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_009.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="rightFloat" src="../media/EN_WR1aa.mp3" mode="1" id="1002"/>
-  <p align="left">Paragraph 1<input id="q1" type="droptarget"/></p>
-  <p align="left">Paragraph 2<input id="q2" type="droptarget"/></p>
-  <p align="left">Paragraph 3<input id="q3" type="droptarget"/></p>
-  <p align="left">Paragraph 4<input id="q4" type="droptarget"/></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <b>Click to start the audio</b>
-  </p>
+  <audio controls="compact" class="leftFloat" src="../media/EN_WR1aa.mp3" mode="1" id="1002"/>
+  <div id="questionList">
+  <p align="left">Paragraph 1&#xA0;<input id="q1" type="droptarget"/></p>
+  <p align="left">Paragraph 2&#xA0;<input id="q2" type="droptarget"/></p>
+  <p align="left">Paragraph 3&#xA0;<input id="q3" type="droptarget"/></p>
+  <p align="left">Paragraph 4&#xA0;<input id="q4" type="droptarget"/></p>
+  
+  </div>
 </section>
 
 <section id="rt2001">

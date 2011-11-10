@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="quiz" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -103,7 +103,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/TT_Task02.jpg" mode="16" id="1004"  />
+	
 		
 		Click on the icon to read the writing task. Then click the audio icons below to listen to 12 people saying how they feel about banning private cars from city centres. Decide whether each argues for or against.
 		
@@ -113,105 +113,104 @@ Writing Task 2
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_AW_009.jpg" mode="1" id="1001"/>
-  <br/>
+  
   <ol id="questionList">
-    <br/>
+    
     <li id="q1">
       <a id="a1">For</a>
       <tab/>
-      <a id="a2">Against</a>
-      <br/>
+      <a id="a2">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ab.mp3" mode="1" id="1"/>
     <br/>
-    <li id="q2">
+    
+	<li id="q2">
       <a id="a3">For</a>
       <tab/>
-      <a id="a4">Against</a>
-      <br/>
+      <a id="a4">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ac.mp3" mode="1" id="2"/>
     <br/>
-    <li id="q3">
+    
+	<li id="q3">
       <a id="a5">For</a>
       <tab/>
       <a id="a6">Against</a>
-      <br/>
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ad.mp3" mode="1" id="3"/>
     <br/>
+	
     <li id="q4">
       <a id="a7">For</a>
       <tab/>
-      <a id="a8">Against</a>
-      <br/>
+      <a id="a8">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ae.mp3" mode="1" id="4"/>
     <br/>
     <li id="q5">
       <a id="a9">For</a>
       <tab/>
-      <a id="a10">Against</a>
-      <br/>
+      <a id="a10">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1af.mp3" mode="1" id="5"/>
     <br/>
-    <li id="q6">
+    
+	<li id="q6">
       <a id="a11">For</a>
       <tab/>
-      <a id="a12">Against</a>
-      <br/>
-    </li>
+      <a id="a12">Against</a>      
+	  </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ag.mp3" mode="1" id="6"/>
     <br/>
-    <li id="q7">
+    
+	<li id="q7">
       <a id="a13">For</a>
       <tab/>
-      <a id="a14">Against</a>
-      <br/>
+      <a id="a14">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ah.mp3" mode="1" id="7"/>
     <br/>
-    <li id="q8">
+    
+	<li id="q8">
       <a id="a15">For</a>
       <tab/>
-      <a id="a16">Against</a>
-      <br/>
+      <a id="a16">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ai.mp3" mode="1" id="8"/>
     <br/>
-    <li id="q9">
+    
+	<li id="q9">
       <a id="a17">For</a>
       <tab/>
-      <a id="a18">Against</a>
-      <br/>
+      <a id="a18">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1aj.mp3" mode="1" id="9"/>
     <br/>
-    <li id="q10">
+    
+	<li id="q10">
       <a id="a19">For</a>
       <tab/>
-      <a id="a20">Against</a>
-      <br/>
+      <a id="a20">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1ak.mp3" mode="1" id="10"/>
     <br/>
-    <li id="q11">
+    
+	<li id="q11">
       <a id="a21">For</a>
       <tab/>
-      <a id="a22">Against</a>
-      <br/>
+      <a id="a22">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1al.mp3" mode="1" id="11"/>
     <br/>
-    <li id="q12">
+    
+	<li id="q12">
       <a id="a23">For</a>
       <tab/>
-      <a id="a24">Against</a>
-      <br/>
+      <a id="a24">Against</a>      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/TT_WR1am.mp3" mode="1" id="12"/>
-  </ol>
+ 
+ </ol>
 </section>
 
 <section id="fb1">

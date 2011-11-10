@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -66,11 +66,13 @@
 </section>
 
 <section id="body">
-  <video src="../media/Unit03_e3.flv" mode="1" id="1003"/>
-  <p align="left">If you know or you <font color="#0000ff"><input id="q1" type="droptarget"/> two <font color="#0000ff"><input id="q2" type="droptarget"/></font>, then you are not only one person you are two people. If you go <font color="#0000ff"><input id="q3" type="droptarget"/></font> for studying or for travelling or for <font color="#0000ff"><input id="q4" type="droptarget"/></font>. You can <font color="#0000ff"><input id="q5" type="droptarget"/></font> a lot of things, about other <font color="#0000ff"><input id="q6" type="droptarget"/></font>, other languages, <font color="#0000ff"><input id="q7" type="droptarget"/></font>, all over the world. </font></p>
+  <video src="../media/Unit03_e3.flv" mode="1" id="1003" autoPlay="false"/>
+  <div id="gapfillText">
+  <p>If you know or you&#xA0;<input id="q1" type="droptarget"/>&#xA0;two&#xA0;<input id="q2" type="droptarget"/>&#xA0;, then you are not only one person you are two people. If you go&#xA0;<input id="q3" type="droptarget"/>&#xA0;for studying or for travelling or for&#xA0;<input id="q4" type="droptarget"/>&#xA0;. You can&#xA0;<input id="q5" type="droptarget"/>&#xA0;a lot of things, about other&#xA0;<input id="q6" type="droptarget"/>&#xA0;, other languages,&#xA0;<input id="q7" type="droptarget"/>&#xA0;, all over the world. </p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

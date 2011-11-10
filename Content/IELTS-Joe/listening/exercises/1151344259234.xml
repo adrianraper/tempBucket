@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -66,17 +66,19 @@
 <section id="body">
   <audio controls="compact" class="leftFloat" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_003.jpg" mode="1" id="1001"/>
-  <p align="left">
+  <div id="targetspotting">
+  <p>
     <b>7-9  What is wrong with the washing machine?</b>
   </p>
-  <p align="left">
-    <g id="t1">A It leaks.</g>
-    <g id="t2">B One of the hoses is broken.</g>
-    <g id="t3">C It does not rinse the clothes.</g>
-    <g id="t4">D The dial does not move automatically.</g>
-    <g id="t5">E It does not spin the clothes.</g>
-    <g id="t6">F It is too noisy.</g>
+  <p><br/>
+    <g id="t1">A. It leaks.</g><br/>
+    <g id="t2">B. One of the hoses is broken.</g><br/>
+    <g id="t3">C. It does not rinse the clothes.</g><br/>
+    <g id="t4">D. The dial does not move automatically.</g><br/>
+    <g id="t5">E. It does not spin the clothes.</g><br/>
+    <g id="t6">F. It is too noisy.</g>
   </p>
+  </div>
   <p align="left">
     <font size="2"/>
   </p>

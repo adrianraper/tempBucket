@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -121,13 +121,16 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LE_Task01.jpg" mode="16" id="1004"  />Read the report describing the information shown in the bar chart from the previous exercise again and click on all the verbs in the present simple. There are 18 examples. To see the IELTS Writing Task, click on the icon on the right.
+	Read the report describing the information shown in the bar chart from the previous exercise again and click on all the verbs in the present simple. There are 18 examples. To see the IELTS Writing Task, click on the icon on the right.
 		
 		Writing Task 1
 </header>
-	
+
+<section id="noscroll">
+	<img class="rightFloat" src="../media/LE_AW_1n4.jpg" mode="1" id="1003"/>
+</section>
 <section id="body">
-  <img class="rightFloat" src="../media/LE_AW_1n4.jpg" mode="1" id="1003"/>
+  <div id="writing">
   <p align="left">The bar chart <g id="t1">shows</g> the amount of time that 16 to 24-year-olds in England <g id="t2">spend</g> per week on sport and exercise. It <g id="t3">is</g> clear from the chart that young women <g id="t4">are</g> less active in their leisure time than young men.</p>
   <p align="left">There <g id="t5">is</g> a striking difference between the percentages of men and women who <g id="t6">prefer</g> not to participate in sport in their free time. Almost half of young women <g id="t7">devote</g> no time at all to active leisure pursuits while this <g id="t8">applies</g> to only about a quarter of young men. There <g id="t9">is</g> a similar difference between the percentages of very active young people. Almost 1 in 5 men between the ages of 16 and 24 <g id="t10">play</g> sport for 7 or more hours a week. The figure for young women <g id="t11">is</g> only 5 per cent.</p>
   <p align="left">A closer examination of the figures for young people who actually <g id="t12">play</g> sport <g id="t13">reveals</g> that the greatest proportion <g id="t14">dedicate</g> between 1 and 3 hours per week to these pastimes. This <g id="t15">is</g> true for just over a fifth of both men and women.</p>
@@ -135,6 +138,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 <section id="fb1">

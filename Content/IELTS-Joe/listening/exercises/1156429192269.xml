@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -60,24 +60,26 @@
 	
 		
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the following summary. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
 </header>
 	
 <section id="body">
+
   <img class="rightFloat" src="../media/MM_LN_003.jpg" mode="1" id="1001"/>
   <audio controls="compact" class="leftFloat" src="../media/MM_LN2.mp3" mode="4" id="1006"/>
+  <div id="gapfillText">
   <p align="left">
-    <font color="#000000">In recent years, the Internet has changed the way people consume the news. Many (1) <input id="q1"/> have experienced a fall in newspaper circulation, partly because of greater competition for people's leisure time. The majority of readers are now people (2) <input id="q2"/>.</font>
+    <font color="#000000">In recent years, the Internet has changed the way people consume the news. Many (1) <input id="q1"/>&#xA0;have experienced a fall in newspaper circulation, partly because of greater competition for people's leisure time. The majority of readers are now people (2) <input id="q2"/>.</font>
   </p>
   <p align="left">
-    <font color="#000000">It is quicker to access specialised information, for example (3) <input id="q3"/>, on the Internet. Most people no longer want to read (4) <input id="q4"/>. What they prefer is news which is (5) <input id="q5"/>. More people now go to the Internet for this than to (6) <input id="q6"/> even.</font>
+    <font color="#000000">It is quicker to access specialised information, for example (3) <input id="q3"/>, on the Internet. Most people no longer want to read (4) <input id="q4"/>. What they prefer is news which is (5) <input id="q5"/>. More people now go to the Internet for this than to (6) <input id="q6"/>&#xA0;even.</font>
   </p>
   <p align="left">
-    <font color="#000000">The Internet is also a threat to (7) <input id="q7"/> as it is a cheaper and more effective medium for classified advertisements. In addition, the Internet does not incur any (8) <input id="q8"/>.</font>
+    <font color="#000000">The Internet is also a threat to (7) <input id="q7"/>&#xA0;as it is a cheaper and more effective medium for classified advertisements. In addition, the Internet does not incur any (8) <input id="q8"/>.</font>
   </p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

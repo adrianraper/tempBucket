@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -64,7 +64,22 @@
 	Complete the table below.Write the appropriate letters A-I against Questions 1-6.
 </header>
 	
-<section id="body"><img class="leftFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/><p align="left">What does Mark say about each language?</p><p align="left"><b>Language	  Description</b>Cornish	  (1) <input id="q1"/>&#xA0;</p>Manx	  (2) <input id="q2"/>&#xA0;Welsh	  (3) <input id="q3"/>&#xA0;Achumawi	  (4) <input id="q4"/>&#xA0;Trumai	  (5) <input id="q5"/>&#xA0;Catalan	  (6) <input id="q6"/><p align="left"><font size="2"/></p></section>
+<section id="body">
+<img class="leftFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/><br/><audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
+<div id="splitquestionList">
+<p align="left">
+What does Mark say about each language?<br/></p>
+
+<p><b>Language</b><tab/><tab/><b>Description</b></p>
+<p>Cornish<tab/><tab/>(1) <input id="q1"/>&#xA0;</p>
+<p>Manx<tab/><tab/>(2) <input id="q2"/>&#xA0;</p>
+<p>Welsh<tab/><tab/>(3) <input id="q3"/>&#xA0;</p>
+<p>Achumawi<tab/><tab/>(4) <input id="q4"/>&#xA0;</p>
+<p>Trumai<tab/><tab/>(5) <input id="q5"/>&#xA0;</p>
+<p>Catalan<tab/><tab/>(6) <input id="q6"/></p>
+<p align="left"><font size="2"/></p>
+</div>
+</section>
 
 <section id="fb1">
   <p align="left">1. Mark says 'Cornish .... has been extinct since the nineteenth century' and 'extinct' means the same as 'disappeared'.</p>
@@ -95,7 +110,8 @@
   <p align="left">Questions 1-6From your general knowledge you might be able to guess one or two of the answers. However, the most useful thing you can do there is to make yourself familiar with the statements. You should be able to put them into two categories; 'a language that has disappeared' and 'a language that is still spoken' with one statement left that doesn't fit either.</p>
 </section>
 
-<section id="readingText"><p align="left"><font color="#000000"><b>Description A:</b></font></p>It disappeared as the result of an epidemic.Description B:It is spoken by a fifth of the local population.Description C:It is spoken by more children than adults.Description D:It disappeared in the first half of the 20th century.Description E:It has become more widely spoken in recent decades.Description F:It is a compulsory subject in schools.Description G:It disappeared in the 19th century.Description H:It is only spoken in one village.Description I:It is spoken by fewer than a dozen people.<p align="left"><font size="2"/></p></section>
+<section id="readingText">
+<p align="left"><font color="#000000"><b>Description A:</b></font></p><p>It disappeared as the result of an epidemic.</p><p><b>Description B:</b></p><p>It is spoken by a fifth of the local population.Description C:It is spoken by more children than adults.</p><p><b>Description D:</b></p><p>It disappeared in the first half of the 20th century.<p><b>Description E:</b></p>It has become more widely spoken in recent decades.Description F:It is a compulsory subject in schools.</p><p><b>Description G:</b></p><p>It disappeared in the 19th century.</p><p><b>Description H:</b></p><p>It is only spoken in one village.</p><p><b>Description I:</b></p><p>It is spoken by fewer than a dozen people.</p><p align="left"><font size="2"/></p></section>
 
 </body>
 </bento>

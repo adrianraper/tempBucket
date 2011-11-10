@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="presentation" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -35,12 +35,14 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_SP_001.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Part 3</b>
-    </font>
+  <p>
+    
+      <h1>Part 3</h1>
+    
   </p>
-  <p align="left"><b>Two-way discussion</b>You will ...</p>
+  <h2><p>Two-way discussion</p></h2>
+  <div id="presentation">
+  <p>You will ...</p>
   <ol>
     <li>be given an introduction to Part 3 of the speaking test.</li>
     <li>watch a candidate answering a question about working	and studying abroad. </li>
@@ -50,6 +52,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

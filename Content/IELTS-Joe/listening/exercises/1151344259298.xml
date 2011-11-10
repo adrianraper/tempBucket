@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -64,8 +64,13 @@
 <section id="body">
   <audio controls="compact" class="leftFloat" src="../media/ST_LN1c.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList"><tab/><b>10</b>When is the earliest a service engineer is available?<input id="q1"/><tab/><b>11</b>Why is this inconvenient for Jane?<input id="q2"/><tab/><b>12</b>When would be most convenient for Jane?<input id="q3"/><tab/><b>13</b>When do they arrange for the service engineer to see the machine?<input id="q4"/></ol>
+  
+  <ol id="questionList">
+  <li id="10">When is the earliest a service engineer is available?</li><input id="q1"/>
+  <li id="11">Why is this inconvenient for Jane?</li><input id="q2"/>
+  <li id="12">When would be most convenient for Jane?</li><input id="q3"/>
+  <li id="13">When do they arrange for the service engineer to see the machine?</li><input id="q4"/>
+  </ol>
 </section>
 
 </body>

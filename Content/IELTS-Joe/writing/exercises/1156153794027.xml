@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -71,13 +71,15 @@
 </header>
 	
 <section id="noscroll">
+<p><img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/></p>
   <span id="a22" draggable="true">Introduction</span>
   <span id="a15" draggable="true">Development</span>
   <span id="a23" draggable="true">Conclusion</span>
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/>
+  
+  <div id="gapfillText">
   <p align="left">
     <font color="#0000ff">
       <input id="q1" type="droptarget"/>
@@ -147,6 +149,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 <section id="rt2001">

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="dropdown" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -101,22 +101,30 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/TT_Task02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task you looked at in earlier exercises. Complete the composition by choosing the word or phrase which best fits each gap.
+	Read this sample answer to the writing task you looked at in earlier exercises. Complete the composition by choosing the word or phrase which best fits each gap.
 		
 		Writing Task 2
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_AW_012.jpg" mode="1" id="1001"/>
-  <p align="left">Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why <select id="q1"><option>I believe</option><option>I support</option><option>I am in favour of</option></select> this should be done.</p>
-  <p align="left"><select id="q2"><option>The most important reason is</option><option>I am opposed to</option><option>A good exampe of this is</option></select> pollution from car exhausts, which damages people's health causing respiratory diseases such as asthma and bronchitis. At the same time, traffic fumes attack the stonework of historic monuments and buildings, while the vibrations from passing vehicles damage their foundations. This, <select id="q3"><option>for instance</option><option>I agree</option><option>I am against</option></select>, has happened to many old cathedrals in Europe.</p>
-  <p align="left"><select id="q4"><option>A second reason</option><option>The most important reason</option><option>A final reason</option></select> why I am <select id="q5"><option>in favour of</option><option>convinced that</option><option>of the opinion that</option></select> cars being banned is in order to reduce the noise pollution from traffic, which forces people to keep their windows permanently closed and may cause psychological problems including stress and depression among people living in busy streets.</p>
-  <p align="left"><select id="q6"><option>A further reason</option><option>The most important reason</option><option>The final reason</option></select> is that most cities were not designed for motor traffic. <select id="q7"><option>A good example of this is</option><option>Personally, I feel that</option><option>I am strongly of the opinion that</option></select> the historic centre of Valencia, which has narrow streets and few facilities for parking. As a result, traffic moves very slowly and there are frequent traffic jams. Beautiful buildings are spoilt by always having cars parked in front of them and pretty streets become unpleasant due to permanent traffic congestion and exhaust fumes.</p>
-  <p align="left">Finally, <select id="q8"><option>I am sure</option><option>I strongly support</option><option>I am opposed to the idea</option></select> that if cars were banned, people would find other more pleasant ways to move around cities. <select id="q9"><option>For example</option><option>A good example of this is</option><option>A case in point is</option></select>, they would walk or use bicycles as these would once more become safe and enjoyable activities within the city. This in turn would bring about a general improvement in people's health.</p>
-  <p align="left">In conclusion, therefore, <select id="q10"><option>I strongly support the idea</option><option>I am in favour of</option><option>On the grounds</option></select> that traffic should be banned from city centres, as this would enable people to rediscover cities as pleasant and healthy places to live.</p>
+  
+ <div id="dropdown">
+  <p align="left">Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why &#xA0;<select id="q1"><option>I believe</option><option>I support</option><option>I am in favour of</option></select>&#xA0;this should be done.</p>
+  
+  <p align="left"><select id="q2"><option>The most important reason is</option><option>I am opposed to</option><option>A good exampe of this is</option></select>&#xA0;pollution from car exhausts, which damages people's health causing respiratory diseases such as asthma and bronchitis. At the same time, traffic fumes attack the stonework of historic monuments and buildings, while the vibrations from passing vehicles damage their foundations. This,&#xA0;<select id="q3"><option>for instance</option><option>I agree</option><option>I am against</option></select>, has happened to many old cathedrals in Europe.</p>
+  
+  <p align="left"><select id="q4"><option>A second reason</option><option>The most important reason</option><option>A final reason</option></select>&#xA0;why I am&#xA0;<select id="q5"><option>in favour of</option><option>convinced that</option><option>of the opinion that</option></select>&#xA0;cars being banned is in order to reduce the noise pollution from traffic, which forces people to keep their windows permanently closed and may cause psychological problems including stress and depression among people living in busy streets.</p>
+  
+  <p align="left"><select id="q6"><option>A further reason</option><option>The most important reason</option><option>The final reason</option></select>&#xA0;is that most cities were not designed for motor traffic.&#xA0;<select id="q7"><option>A good example of this is</option><option>Personally, I feel that</option><option>I am strongly of the opinion that</option></select>&#xA0;the historic centre of Valencia, which has narrow streets and few facilities for parking. As a result, traffic moves very slowly and there are frequent traffic jams. Beautiful buildings are spoilt by always having cars parked in front of them and pretty streets become unpleasant due to permanent traffic congestion and exhaust fumes.</p>
+  
+  <p align="left">Finally,&#xA0;<select id="q8"><option>I am sure</option><option>I strongly support</option><option>I am opposed to the idea</option></select>&#xA0;that if cars were banned, people would find other more pleasant ways to move around cities.&#xA0;<select id="q9"><option>For example</option><option>A good example of this is</option><option>A case in point is</option></select>, they would walk or use bicycles as these would once more become safe and enjoyable activities within the city. This in turn would bring about a general improvement in people's health.</p>
+  
+  <p align="left">In conclusion, therefore,&#xA0;<select id="q10"><option>I strongly support the idea</option><option>I am in favour of</option><option>On the grounds</option></select>&#xA0;that traffic should be banned from city centres, as this would enable people to rediscover cities as pleasant and healthy places to live.</p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 <section id="fb1">

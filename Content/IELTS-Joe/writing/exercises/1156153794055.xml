@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="presentation" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -35,6 +35,7 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/LE_AW_001.jpg" mode="1" id="1001"/>
+  <div id="presentation">
   <p align="left">
     <font color="#0000ff">
       <b>Static charts 1</b>
@@ -53,6 +54,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 </body>

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -56,7 +56,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/EN_Task03.jpg" mode="16" id="1004"  />
+	
 		
 		Read the sample answer to the writing task from the previous exercise on the right. Complete it with the missing sentences, which are on the left. Write the letter (A-E) in the gap.
 		
@@ -65,20 +65,24 @@
 </header>
 	
 <section id="body">
-  <p align="left">Large numbers of animals and plants are threatened with extinction mainly as a result of human activity. Obviously this constitutes a major environmental disaster in itself since it reduces the biodiversity of our planet. However, it could also give rise to agricultural problems since the disappearance of many insects would affect pollination and pest control. Furthermore, many of the plants used for making medicines would also disappear forever.</p>
-  <p align="left">
-    <font color="#000000">Before suggesting solutions to the problem, we need to examine some of the human activities that are causing the extinction of so many species. The most important cause is almost certainly the destruction of animal and plant habitats, particularly the destruction of forests where so many species live. <b>(Sentence <input id="q1"/>.)</b></font>
+<div id="splitquestionList">
+<br/>
+  <p>Large numbers of animals and plants are threatened with extinction mainly as a result of human activity. Obviously this constitutes a major environmental disaster in itself since it reduces the biodiversity of our planet. However, it could also give rise to agricultural problems since the disappearance of many insects would affect pollination and pest control. Furthermore, many of the plants used for making medicines would also disappear forever.</p>
+  <p><br/>
+    Before suggesting solutions to the problem, we need to examine some of the human activities that are causing the extinction of so many species. The most important cause is almost certainly the destruction of animal and plant habitats, particularly the destruction of forests where so many species live. (Sentence <input id="q1"/>.)
   </p>
-  <p align="left">
-    <font color="#000000">Another significant cause is pollution, which poisons land, rivers and lakes. <b>(Sentence <input id="q2"/>.)</b> A third cause is the hunting of rare species for food, traditional medicines and various animal products which can be sold at high prices to collectors.</font>
+  <p><br/>
+    Another significant cause is pollution, which poisons land, rivers and lakes. (Sentence <input id="q2"/>.) A third cause is the hunting of rare species for food, traditional medicines and various animal products which can be sold at high prices to collectors.
   </p>
-  <p align="left">
-    <font color="#000000">A number of urgent measures need to be taken in order to solve the problem. Firstly, <b>(Sentence <input id="q3"/>.)</b> In addition, local populations should be encouraged to make a living by harvesting the natural products which grow in forests, instead of burning them down in order to grow cash crops such as coffee. As regards pollution, <b>(Sentence <input id="q4"/>.)</b> This should discourage them from polluting again. Finally, <b>(Sentence <input id="q5"/>.)</b></font>
+  <p>
+    A number of urgent measures need to be taken in order to solve the problem. Firstly, (Sentence <input id="q3"/>.) In addition, local populations should be encouraged to make a living by harvesting the natural products which grow in forests, instead of burning them down in order to grow cash crops such as coffee. As regards pollution, (Sentence <input id="q4"/>.) This should discourage them from polluting again. Finally, (Sentence <input id="q5"/>.)
   </p>
   <p align="left">To sum up, this is a problem which cannot be solved until we humans learn to live in harmony with our natural surroundings and to respect them. By preserving natural habitats such as forests, preventing pollution and stopping illegal hunting an environmental disaster could be averted.&#xA0;</p>
+  
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 <section id="fb1">
@@ -105,7 +109,25 @@
   <p align="left">In this unit we have looked at one way of organising a 'problem and solution' composition. The causes of the problem should be discussed in one paragraph and then possible solutions in another, separate paragraph. In order for this composition structure to work, it is best to have at least one solution for each cause. The solutions should be presented in the same order as the causes. We will looked at an alternative structure in Unit 8.</p>
 </section>
 
-<section id="readingText"><p align="left"><font color="#000000"><b>Sentence A:</b></font></p>the hunting of rare species must be banned, and an international agency ought to be set up to prevent the trade in products made from rare species<p align="left"><font color="#000000"><b>Sentence B:</b></font></p>the only effective way to prevent the contamination of natural habitats is to impose heavy fines on those companies that ignore regulations<p align="left"><font color="#000000"><b>Sentence C:</b></font></p>this is partly due to the fact that industry needs the wood and because growing populations need the land for agriculture<p align="left"><font color="#000000"><b>Sentence D:</b></font></p>this leads to the extinction of the species which live there<p align="left"><font color="#000000"><b>Sentence E:</b></font></p>to reduce or stop further deforestation, it is essential that timber for industry should be taken only from renewable forests<p align="left"><font size="2"/></p></section>
+<section id="readingText">
+<br/>
+<p><b>Sentence A:</b></p>
+<p>the hunting of rare species must be banned, and an international agency ought to be set up to prevent the trade in products made from rare species</p>
+
+<p><br/><b>Sentence B:</b></p>
+<p>the only effective way to prevent the contamination of natural habitats is to impose heavy fines on those companies that ignore regulations</p>
+
+<p><br/><b>Sentence C:</b></p>
+<p>this is partly due to the fact that industry needs the wood and because growing populations need the land for agriculture</p>
+
+<p><br/><b>Sentence D:</b></p>
+<p>this leads to the extinction of the species which live there</p>
+
+<p><br/><b>Sentence E:</b></p>
+<p>to reduce or stop further deforestation, it is essential that timber for industry should be taken only from renewable forests</p>
+
+<p align="left"><font size="2"/></p>
+</section>
 
 </body>
 </bento>

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -100,39 +100,40 @@
 </header>
 	
 <section id="body">
-  <video src="../media/Unit03_e2a.flv" mode="16" id="1003"/>
-  <video src="../media/Unit03_e2b.flv" mode="16" id="1004"/>
-  <video src="../media/Unit03_e2c.flv" mode="16" id="1005"/>
-  <p align="left">
-    <b>What reasons does Zenia give for visiting other countries?</b>
-    <g id="t1">A.  see the sights</g>
-    <g id="t2">B.  learn languages</g>
-    <g id="t3">C.  souvenirs</g>
-    <g id="t4">D.  culture</g>
-    <g id="t5">E.  traditions</g>
-    <g id="t6">F.  food</g>
-    <g id="t7">G.  music</g>
-  </p>
-  <p align="left">
-    <b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b>
-    <g id="t8">A.  learning another language</g>
-    <g id="t9">B.  becoming more open-minded</g>
-    <g id="t10">C.  seeing another way of living</g>
-    <g id="t11">D.  meeting people from different countries</g>
-    <g id="t12">E.  discovering the culture</g>
-    <g id="t13">F.  getting better job opportunities</g>
-    <g id="t14">G.  learning to be independent</g>
-  </p>
-  <p align="left">
-    <b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b>
-    <g id="t15">A.  see relatives</g>
-    <g id="t16">B.  emergencies</g>
-    <g id="t17">C.  pleasure</g>
-    <g id="t18">D.  business</g>
-    <g id="t19">E.  able to afford it</g>
-    <g id="t20">F.  study</g>
+  <video src="../media/Unit03_e2a.flv" mode="16" id="1003" autoPlay="false"/>
+  <video src="../media/Unit03_e2b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit03_e2c.flv" mode="16" id="1005" autoPlay="false"/>
+  <div id="targetspotting">
+  <p>
+    <b>What reasons does Zenia give for visiting other countries?</b></p>
+    <g id="t1">A.  see the sights</g><br/>
+    <g id="t2">B.  learn languages</g><br/>
+    <g id="t3">C.  souvenirs</g><br/>
+    <g id="t4">D.  culture</g><br/>
+    <g id="t5">E.  traditions</g><br/>
+    <g id="t6">F.  food</g><br/>
+    <g id="t7">G.  music</g><br/>
+  
+  <p>
+    <b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b></p>
+    <g id="t8">A.  learning another language</g><br/>
+    <g id="t9">B.  becoming more open-minded</g><br/>
+    <g id="t10">C.  seeing another way of living</g><br/>
+    <g id="t11">D.  meeting people from different countries</g><br/>
+    <g id="t12">E.  discovering the culture</g><br/>
+    <g id="t13">F.  getting better job opportunities</g><br/>
+    <g id="t14">G.  learning to be independent</g><br/>
+  
+  <p>
+    <b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b></p>
+    <g id="t15">A.  see relatives</g><br/>
+    <g id="t16">B.  emergencies</g><br/>
+    <g id="t17">C.  pleasure</g><br/>
+    <g id="t18">D.  business</g><br/>
+    <g id="t19">E.  able to afford it</g><br/>
+    <g id="t20">F.  study</g><br/>
     <g id="t21">G.  shopping</g>
-  </p>
+  
   <p align="left">
     <b>Click to watch the video</b>
   </p>
@@ -142,6 +143,7 @@
   <p align="left">
     <b>Click to watch the video</b>
   </p>
+  </div>
 </section>
 
 </body>

@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="quiz" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -79,21 +79,21 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/HF_WT2b.jpg" mode="16" id="1004"  />Read the writing task and then listen to these people talking about gene therapy.Group their comments according to whether they are arguments for or against.
+	Read the writing task and then listen to these people talking about gene therapy.Group their comments according to whether they are arguments for or against.
 		
 		Writing Task 2
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/HF_AW_014.jpg" mode="1" id="1001"/>
-  <br/>
+  
   <ol id="questionList">
-    <br/>
+    
     <li id="q1">
       <a id="a1">For</a>
       <tab/>
       <a id="a2">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ab.mp3" mode="1" id="1"/>
     <br/>
@@ -101,7 +101,7 @@
       <a id="a3">For</a>
       <tab/>
       <a id="a4">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ac.mp3" mode="1" id="2"/>
     <br/>
@@ -109,7 +109,7 @@
       <a id="a5">For</a>
       <tab/>
       <a id="a6">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ad.mp3" mode="1" id="3"/>
     <br/>
@@ -117,7 +117,7 @@
       <a id="a7">For</a>
       <tab/>
       <a id="a8">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ae.mp3" mode="1" id="4"/>
     <br/>
@@ -125,7 +125,7 @@
       <a id="a9">For</a>
       <tab/>
       <a id="a10">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1af.mp3" mode="1" id="5"/>
     <br/>
@@ -133,7 +133,7 @@
       <a id="a11">For</a>
       <tab/>
       <a id="a12">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ag.mp3" mode="1" id="6"/>
     <br/>
@@ -141,7 +141,7 @@
       <a id="a13">For</a>
       <tab/>
       <a id="a14">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ah.mp3" mode="1" id="7"/>
     <br/>
@@ -149,7 +149,7 @@
       <a id="a15">For</a>
       <tab/>
       <a id="a16">Against</a>
-      <br/>
+      
     </li>
     <audio controls="compact" class="leftFloat" src="../media/HF_WR1ai.mp3" mode="1" id="8"/>
   </ol>

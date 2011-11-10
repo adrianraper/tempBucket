@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-11-09" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -70,6 +70,8 @@
 </header>
 	
 <section id="noscroll">
+
+<p><img class="leftFloat" src="../media/WB_WR4.jpg" mode="1" id="1003"/></p>
   <span id="a10" draggable="true">Blanking Press</span>
   <span id="a14" draggable="true">Distribution to Banks</span>
   <span id="a12" draggable="true">Coining Press</span>
@@ -80,7 +82,7 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/WB_WR4.jpg" mode="1" id="1003"/>
+  
   <p align="left">
     <input id="q7" type="droptarget"/>
   </p>
