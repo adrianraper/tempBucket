@@ -59,6 +59,12 @@
 		</s:Group>
 		
 		<s:Group id="bodyGroup" width="100%" height="100%">
+			<s:Rect width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" />
+				</s:fill>
+			</s:Rect>
+			
 			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="16" right="5" bottom="5">
 				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour]}" />
 			</s:Scroller>
