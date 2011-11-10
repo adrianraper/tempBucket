@@ -11,6 +11,13 @@ class Course extends Content {
 	var $units = array();
 	var $author;
 	
+	/*
+	 * Properties for CCB course
+	 */
+	var $contact;
+	var $description;
+	var $userID;
+	var $groupID;
 	/**
 	 * Get the array of objects that make up a report if a report is generated on this Course
 	 */

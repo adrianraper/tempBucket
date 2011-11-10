@@ -4,6 +4,7 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.content.Title;
@@ -16,6 +17,7 @@ package com.clarityenglish.common.model {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.collections.ArrayCollection;
 	import mx.core.Application;
 	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
@@ -40,6 +42,13 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "ProgressProxy";
 		
 		/**
+		 * For holding results in a cache 
+		 */
+		private var _everyoneSummary:Array;
+		private var _mySummary:Array;
+		private var _myDetails:ArrayCollection;
+		
+		/**
 		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
 		 */
 		public function ProgressProxy(data:Object = null) {
@@ -53,12 +62,28 @@ package com.clarityenglish.common.model {
 		 * I don't really like that much - it seems much safer to pass the little that we do need.
 		 * @param number userID 
 		 */
-		public function getProgressData(user:User, account:Account, progress:Progress):void {
+		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
+			
+			// Check cache
+			if (progressType == Progress.PROGRESS_EVERYONE_SUMMARY && _everyoneSummary) {
+				var data:Object = {type:progressType, dataProvider:_everyoneSummary};
+				sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+			}
+			// We could keep other details in the cache as well if we are prepared to update them
+			// from any new data we write.
+			if (progressType == Progress.PROGRESS_MY_SUMMARY && _mySummary) {
+				var data:Object = {type:progressType, dataProvider:_mySummary};
+				sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+			}
+			if (progressType == Progress.PROGRESS_MY_DETAILS && _myDetails) {
+				var data:Object = {type:progressType, dataProvider:_myDetails};
+				sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+			}
 			
 			// Send userID, rootID and productCode. Also say whether you want some or all data to come back.
 			// TODO. user doesn't currently have userID set. Check up on what comes back from login.
-			var menuFile:String = progress.href.currentDir+'/'+progress.href.filename;
-			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progress.type, menuFile ];
+			var menuFile:String = href.currentDir+'/'+href.filename;
+			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, menuFile ];
 			new RemoteDelegate("getProgressData", params, this).execute();
 		}
 		
@@ -79,7 +104,7 @@ package com.clarityenglish.common.model {
 						} else {
 							// Fake data
 							/*
-							data.progressType = "my_summary";
+							data.type = "my_summary";
 							data.dataProvider = [
 							{name:'Writing', value:'23'},
 							{name:'Speaking', value:'39'},
@@ -88,6 +113,14 @@ package com.clarityenglish.common.model {
 							{name:'Exam tips', value:'100'}
 							];
 							*/
+							// Save retrieved data in cache
+							if (data.progress.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
+								_everyoneSummary = data.progress.dataProvider;
+							} else if (data.progress.type == Progress.PROGRESS_MY_SUMMARY) {
+								_mySummary = data.progress.dataProvider;
+							} else if (data.progress.type == Progress.PROGRESS_MY_DETAILS) {
+								_myDetails = data.progress.dataProvider;
+							}
 							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data.progress);
 						}							
 					} else {

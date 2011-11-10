@@ -1,7 +1,11 @@
 ﻿/*
 Simple Command - PureMVC
+ ****
+	NOT USED
+ ****
  */
 package com.clarityenglish.common.controller {
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
@@ -17,10 +21,10 @@ package com.clarityenglish.common.controller {
 		
 		override public function execute(note:INotification):void {
 			
-			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
-			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), note.getBody() as Progress);
+			//var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
+			//var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			//progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), note.getBody().href as Href, note.getBody().type);
 		}
 		
 	}

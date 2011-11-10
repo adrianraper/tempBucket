@@ -55,7 +55,7 @@ package com.clarityenglish.ielts.view {
 					
 					// Inject some data to the login view
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					view.loginView.loginPanel.title = configProxy.getAccount().name;
+					view.loginView.setLicencee(configProxy.getAccount().name);
 					break;
 				
 				case CommonNotifications.LOGGED_IN:

@@ -17,6 +17,15 @@ class Exercise extends Content {
 	// v3.4.1 Editing Clarity Content. Bug #132. Need to know the filename in case it is not the default;
 	var $filename;
 	
+	/*
+	 * Property for Clarity Course Builder
+	 */
+	var $description;	// detail content for exercise
+	var $mtype;			// media type
+	var $mtitle;		// media title
+	var $url;			// media url
+	var $mdesc;			// media description
+	
 	/**
 	 * Return the children (for operations which operate on Content without knowing what kind it is and need to get children)
 	 */

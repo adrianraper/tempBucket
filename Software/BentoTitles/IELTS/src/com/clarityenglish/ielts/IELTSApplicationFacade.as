@@ -2,24 +2,28 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.controller.LoggedInCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.StartupCommand;
-	import com.clarityenglish.common.controller.LoggedInCommand;
-	import com.clarityenglish.ielts.view.login.LoginView;
-	import com.clarityenglish.ielts.view.title.TitleMediator;
-	import com.clarityenglish.ielts.view.title.TitleView;
-	import com.clarityenglish.ielts.view.home.HomeMediator;
-	import com.clarityenglish.ielts.view.home.HomeView;
-	import com.clarityenglish.ielts.view.zone.ZoneMediator;
-	import com.clarityenglish.ielts.view.zone.ZoneView;
-	import com.clarityenglish.ielts.view.progress.ProgressMediator;
-	import com.clarityenglish.ielts.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
+	import com.clarityenglish.ielts.view.home.HomeMediator;
+	import com.clarityenglish.ielts.view.home.HomeView;
+	import com.clarityenglish.ielts.view.login.LoginView;
+	import com.clarityenglish.ielts.view.progress.ProgressMediator;
+	import com.clarityenglish.ielts.view.progress.ProgressView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressScoreMediator;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCompareMediator;
+	import com.clarityenglish.ielts.view.progress.components.ProgressScoreView;
+	import com.clarityenglish.ielts.view.title.TitleMediator;
+	import com.clarityenglish.ielts.view.title.TitleView;
+	import com.clarityenglish.ielts.view.zone.ZoneMediator;
+	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
 	/**
 	* ...
@@ -43,6 +47,8 @@
 			mapView(ProgressView, ProgressMediator);
 			mapView(AccountView, AccountMediator);
 			mapView(ExerciseView, ExerciseMediator);
+			mapView(ProgressScoreView, ProgressScoreMediator);
+			mapView(ProgressCompareView, ProgressCompareMediator);
 			
 			// Register IELTS specific commands
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);

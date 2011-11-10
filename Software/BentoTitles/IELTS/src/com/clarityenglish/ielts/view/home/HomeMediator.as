@@ -28,18 +28,16 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// listen for these signals
+			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
+			// AskDK. It doesn't seem to make much sense to use a signal here
+			// after all we are simply going to trigger the signal in view.partAdded
+			// Why not simply save the signal and just do it here?
 			view.chartTemplatesLoad.add(onChartTemplatesLoad);
-			
-			// Progress data comes in three blocks, and to save time we can choose which block(s) we want from this call
-			var progress:Progress = new Progress();
-			//progress.loadMySummary = true;
-			//progress.loadMyDetails = true;
-			///progress.loadEveryoneSummary = true;
-			progress.type = Progress.PROGRESS_MY_SUMMARY;
-			progress.href = view.href;
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress);
+
+			// Trigger loading of progress data for my summary chart
+			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 		}
 		
 		override public function onRemove():void {
@@ -61,10 +59,6 @@
 			switch (note.getName()) {
 				case BBNotifications.PROGRESS_DATA_LOADED:
 					
-					// Split the data that comes back for the various charts
-					//var progress:Progress = new Progress(note.getBody() as Object);
-					
-					//view.setSummaryDataProvider(progress.mySummary, progress.everyoneSummary);
 					var rs:Object = note.getBody() as Object;
 					// For this mediator, currently only expecting one progress type to come back
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {

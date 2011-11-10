@@ -8,6 +8,7 @@
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
+@namespace compare "com.clarityenglish.ielts.view.progress.components.*";
 @namespace almer "almerblank.flex.spark.components.*";
 @namespace bento "com.clarityenglish.bento.*";
 @namespace tink "ws.tink.spark.containers.*";
@@ -139,6 +140,12 @@ components|AudioPlayer {
 /* Progress view styles */
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
+}
+compare|ProgressScoreView {
+	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
+}
+compare|ProgressCompareView {
+	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
 }
 
 /* Account view styles */

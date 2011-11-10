@@ -106,8 +106,9 @@ package com.clarityenglish.ielts.view.home {
 		 * The data comes from XML template files loaded by ConfigProxy
 		 */
 		public function initCharts(templates:XML):void {
-			// Purely a charting test
+			
 			_fullChartXML = templates;
+			
 		}
 
 	}

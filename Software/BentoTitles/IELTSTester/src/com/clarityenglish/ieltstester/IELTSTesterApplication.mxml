@@ -9,7 +9,7 @@
 						addedToStage="addedToStage(event)">
 	
 	<fx:Metadata>
-		[SWF(width=900, height=600)]
+		[SWF(width=1200, height=800)]
 	</fx:Metadata>
 	
 	<fx:Style source="ieltstester.css" />

@@ -20,7 +20,6 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.ButtonBar;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
-	// To avoid double 
 	[SkinState("home")]
 	[SkinState("zone")]
 	[SkinState("progress")]
@@ -98,13 +97,10 @@ package com.clarityenglish.ielts.view.title {
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
 				case homeView:
-					// The zone and home views run off the same href as the title view, so directly inject it 
-					instance.href = href;
-					break;
 				case zoneView:
+				case progressView:
 					// The zone and home views run off the same href as the title view, so directly inject it 
 					instance.href = href;
-					//instance.course = currentCourse;
 					break;
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;

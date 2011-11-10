@@ -1,17 +1,24 @@
 package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.bento.view.base.BentoView;
-	// AR No longer sharing code with RM - copy it to this project
+	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
-	import com.clarityenglish.common.events.LoginEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
 	import mx.controls.Alert;
+	
 	import spark.components.Button;
+	import mx.containers.Form;
+	import mx.containers.FormHeading;
+	import mx.containers.FormItem;
+	//import spark.components.Form;
+	//import spark.components.FormHeading;
+	//import spark.components.FormItem;
 	import spark.components.Label;
-	import spark.components.TextInput;
 	import spark.components.Panel;
+	import spark.components.TextInput;
 	
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -20,13 +27,16 @@ package com.clarityenglish.ielts.view.login {
 		public var loginButton:Button;
 		
 		[SkinPart]
-		public var loginPanel:Panel;
+		public var loginForm:Form;
 		
 		[SkinPart]
-		public var passwordLabel:Label;
+		public var loginHeading:FormHeading;
 		
 		[SkinPart]
-		public var nameLabel:Label;
+		public var nameItem:FormItem;
+		
+		[SkinPart]
+		public var passwordItem:FormItem;
 		
 		[SkinPart]
 		public var passwordInput:TextInput;
@@ -50,6 +60,16 @@ package com.clarityenglish.ielts.view.login {
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;				
 			}
+		}
+		
+		/**
+		 * Add the institution name from the licence to the screen 
+		 * @param String name
+		 * 
+		 */
+		public function setLicencee(name:String):void {
+			//loginHeading.label = "licenced to: " + name;
+			loginHeading.label = name;
 		}
 		
 		/**

@@ -3,161 +3,126 @@ package com.clarityenglish.ielts.view.progress {
 	import com.anychart.mapPlot.controls.zoomPanel.Slider;
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressScoreView;
 	
+	import flash.events.Event;
+	
+	import mx.collections.ArrayCollection;
+	
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.ButtonBar;
 	import spark.components.Label;
 	
+	[SkinState("score")]
+	[SkinState("compare")]
 	public class ProgressView extends BentoView {
 
-		[SkinPart(required="true")]
-		public var compareChart1:AnyChartFlex;
-		[SkinPart(required="true")]
-		public var compareChart2:AnyChartFlex;
-
-		public var chartTemplatesLoad:Signal = new Signal();
-		private var _fullChartXML:XML;
+		[SkinPart]
+		public var progressNavBar:ButtonBar;
 		
-		public function setMySummaryDataProvider(mySummary:Array):void {
-			//coveragePieChart.dataProvider = _dataProvider;
-			compareChart1.anychartXML = _fullChartXML;
+		[SkinPart]
+		public var progressScoreView:ProgressScoreView;
+
+		[SkinPart]
+		public var progressCompareView:ProgressCompareView;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
+		private var homeIcon:Class;
+		
+		private var _fullChartXML:XML;
+		private var _everyoneSummary:Array;
+		private var _mySummary:Array;
+		private var _myDetails:ArrayCollection;
+		
+		public var mySummaryDataLoaded:Signal = new Signal(Array);
+		public var everyoneSummaryDataLoaded:Signal = new Signal(Array);
+		public var myDetailsDataLoaded:Signal = new Signal(ArrayCollection);
+		
+		// Constructor to let us initialise our states
+		public function ProgressView() {
+			super();
+			
+			// The first one listed will be the default
+			StateUtil.addStates(this, [ "score", "compare" ], true);
 		}
-		public function setEveryoneSummaryDataProvider(everyoneSummary:Array):void {
-			//coveragePieChart.dataProvider = _dataProvider;
-			compareChart2.anychartXML = _fullChartXML;
-		}		
+		
 		protected override function commitProperties():void {
 			super.commitProperties();		
+		}
+		
+		// A common function for all of the progress charts
+		public function initCharts(chartTemplateXML:XML):void {
+			_fullChartXML = chartTemplateXML;
+		}
+		// Holding the progress data for all sub-views
+		// We should send a signal with this data so that IF a view that wants to use it is waiting
+		// it will pick it up and just add it in
+		public function setMySummaryDataProvider(dataProvider:Array):void {
+			_mySummary = dataProvider;
+			mySummaryDataLoaded.dispatch(dataProvider);
+		}
+		public function setEveryoneSummaryDataProvider(dataProvider:Array):void {
+			_everyoneSummary = dataProvider;
+			everyoneSummaryDataLoaded.dispatch(dataProvider);
+		}
+		public function setMyDetailsDataProvider(dataProvider:ArrayCollection):void {
+			_myDetails = dataProvider;
+			myDetailsDataLoaded.dispatch(dataProvider);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
-				case compareChart1:
-				case compareChart2:
-					// Load the chart templates
-					chartTemplatesLoad.dispatch();
+				case progressNavBar:
+					progressNavBar.dataProvider = new ArrayCollection( [
+						{ icon: homeIcon, label: "Your score", data: "score" },
+						{ icon: homeIcon, label: "Compare", data: "compare" },
+					] );
+					
+					progressNavBar.requireSelection = true;
+					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
+				case progressScoreView:
+					if (_myDetails) {
+						instance.setDataProvider(_myDetails);
+					}
+					break;
+				case progressCompareView:
+					// Inject any data you already have into the sub views
+					if (_fullChartXML) {
+						instance.initCharts(_fullChartXML);
+					}
+					if (_mySummary) {
+						instance.setMySummaryDataProvider(_mySummary);
+					}
+					if (_everyoneSummary) {
+						instance.setEveryoneSummaryDataProvider(_everyoneSummary);
+					}
+					break
 			}
 		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
-			
+			switch (instance) {
+				case progressNavBar:
+					progressNavBar.removeEventListener(Event.CHANGE, onNavBarIndexChange);
+					break;
+			}	
 		}
 		
 		/**
-		 * Many settings for the pie chart are completely static and can be initialised here 
-		 * The data comes from XML template files loaded by ConfigProxy
+		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
+		 * 
+		 * @param event
 		 */
-		public function initCharts(templates:XML):void {
-			// Purely a charting test
-			_fullChartXML = templates;
+		protected function onNavBarIndexChange(event:Event):void {
+			// We can set the skin state from the tab bar click
+			currentState = event.target.selectedItem.data;
 		}
-		/*
-		 * Comment for now, just use sample data
-		var _mainSettings:XML = <settings>
-							<animation enabled="True"/>
-						</settings>;
-
-		var _dataPlotSettings:XML = <data_plot_settings default_series_type = "Bar" enable_3d_mode = "true"
-								z_padding = "0.5" z_aspect = "1"
-								z_elevation="45" >
-								<bar_series point_padding="0" group_padding="1" style="filledGradient">
-									<tooltip_settings enabled="true">
-										<format>{"{%YValue}{numDecimals:0}"}</format>
-									</tooltip_settings>
-								</bar_series>
-							</data_plot_settings>;
 		
-		var _chartStyles:XML = <styles>
-					<bar_style name="filledGradient">
-						<fill type="Gradient" opacity="1">
-							<gradient>
-								<key position="0" color="Red"/>
-								<key position="1" color="Purple"/>
-							</gradient>
-						</fill>
-						<states>
-							<hover>
-								<fill type="Gradient" opacity="1">
-									<gradient>
-										<key position="0" color="LightColor(%Color)"/>
-										<key position="1" color="DarkColor(%Color)"/>
-									</gradient>
-								</fill>
-							</hover>
-						</states>
-					</bar_style>
-				</styles>;
-		
-		var _axes:XML = <axes>
-					<y_axis>
-						<title rotation="0">
-							<font family="Verdana" size="10" />
-							<text>Number</text>
-						</title>
-						<labels allow_overlap="True" show_first_label="True" show_last_label="True">
-							<font family="Verdana" size="10" />
-							<format>{ "{%Value}{numDecimals:0}" }</format>
-						</labels>
-						<major_tickmark enabled="true" />
-						<scale minimum="0" mode="Overlay"/>
-						<axis_markers>
-							<lines>
-								<line opacity="0">
-									<label enabled="True" position="Axis" rotation="0">
-										<font family="Verdana" size="10" color="Black" bold="False" />
-										<format>{ "{%Value}{numDecimals:0}" }</format>
-									</label>
-								</line>
-							</lines>
-						</axis_markers>
-					</y_axis>
-					<x_axis>
-						<title enabled="false">
-						</title>
-						<labels enabled="true" >
-							<font family="Verdana" size="10" />
-						</labels>
-					</x_axis>
-				</axes>;
-		
-		var _title:XML = <title enabled="true">
-					<text>Showing the number of times the program has been used each month</text>
-				</title>;
-		
-		var _chartSettings:XML = <chart_settings>
-					<chart_background>
-						<border enabled="false"/>
-					</chart_background>
-					{_title}
-					<legend enabled="true" position="Bottom" ignore_auto_item="true">
-						<title enabled="false">
-						</title>
-						<columns_separator enabled="true"/>
-						<background>
-							<inside_margin left="10" right="10"/>
-						</background>
-						<items></items>
-					</legend>
-					{_axes}
-				</chart_settings>;
-		
-		// Full thing before any dynamic data
-		_fullChartXML = <anychart>
-				{_mainSettings}
-				<charts>
-					<chart plot_type="CategorizedVertical">
-						{_dataPlotSettings }
-						{_chartStyles}
-						{_chartSettings}
-						<data><note>nothing here</note></data>
-					</chart>
-				</charts>
-			</anychart>;
-		*/
-
 	}
-	
 }

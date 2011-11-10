@@ -7,22 +7,28 @@
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
 	
-	<s:layout>
-		<s:VerticalLayout />
-	</s:layout>
+	<!--
+		If you include a VerticalLayout, the horizontalCenter/verticalCenter gets lost
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+	-->
 	
-	<s:Panel id="loginPanel" width="40%" height="50%" horizontalCenter="0" verticalCenter="0" >
-		<s:VGroup left="10" top="10" right="10" bottom="10">
-			<s:HGroup>
-				<s:Label id="nameLabel" text="name" />			
-				<s:TextInput id="nameInput" />				
-			</s:HGroup>
-			<s:HGroup>
-				<s:Label id="passwordLabel" text="password" />			
-				<s:TextInput id="passwordInput" displayAsPassword="true"/>				
-			</s:HGroup>
+	<mx:Form id="loginForm" width="40%" height="50%" 
+			defaultButton="{loginButton}" 
+			indicatorGap="10"
+			horizontalCenter="0" verticalCenter="0" >
+		<mx:FormHeading id="loginHeading" label="licenced to: " />
+		<mx:FormItem id="nameItem" label="login ID">
+			<s:TextInput id="nameInput" width="100%" />				
+		</mx:FormItem>
+		<mx:FormItem id="passwordItem" label="password">
+			<s:TextInput id="passwordInput" width="100%" displayAsPassword="true"/>				
+		</mx:FormItem>
+		<mx:FormItem>
+			<mx:HRule width="200" height="1"/>
 			<s:Button id="loginButton" label="Start" />
 			<s:Button id="quickStartButton" label="Quick start" />
-		</s:VGroup>
-	</s:Panel>
+		</mx:FormItem>
+	</mx:Form>
 </s:Skin>

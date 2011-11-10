@@ -185,12 +185,16 @@ class AccountOps {
 						// This is currently used only from DMS as a search. 
 						// So it makes sense to assume we want to find this word anywhere in the name.
 						// Add in a hack that lets you type in other search stuff too
+						// It would make sense to actually parse this into regular conditions before you send it.
 						if (substr($value,0,2)== 'P:') {
 							$selectBuilder->addWhere("a.F_Prefix = '".substr($value,2)."'");
 						} elseif (substr($value,0,2)== 'R:') {
 							$selectBuilder->addWhere("a.F_RootID = '".substr($value,2)."'");
 						} elseif (substr($value,0,2)== 'D:') {
 							$selectBuilder->addWhere("a.F_ResellerCode = '".substr($value,2)."'");
+						} elseif (substr($value,0,3)== 'PC:') {
+							$selectBuilder->addWhere("t.F_ProductCode = '".substr($value,3)."'");
+							$needsAccountsTable = true;
 						} else {
 							if (stristr($value, '%') === FALSE) {
 								$selectBuilder->addWhere("a.F_Name like '%$value%'");
@@ -438,6 +442,13 @@ EOD;
 			// v3.4 Multi-group users
 			//AbstractService::$log->notice("Created group name=".$account->name.", id=".$group->id.", and user name=".$account->adminUser->name.", id=".$account->adminUser->id);
 			AbstractService::$log->notice("Created group name=".$account->name.", id=".$group->id.", and user name=".$account->adminUser->name.", id=".$account->adminUser->userID);
+			
+			// You need to add a record to T_AccountEmails for this admin user
+			$dbObj = array();
+			$dbObj['F_RootID'] = $account->id;
+			$dbObj['F_AdminUser'] = 1;
+			$dbObj['F_MessageType'] = 31;
+			$this->db->AutoExecute("T_AccountEmails", $dbObj, "INSERT");			
 		}
 		// v3.2 This was not added for new accounts. Generally it is not set for new accounts.
 		if (isset($account->licenceAttributes)) {
@@ -532,6 +543,9 @@ EOD;
 			
 			// Delete any licence attributes
 			$this->db->Execute("DELETE FROM T_LicenceAttributes WHERE F_RootID=?", array($account->id));
+			
+			// and any related emails
+			$this->db->Execute("DELETE FROM T_AccountEmails WHERE F_RootID=?", array($account->id));
 			
 			// And finally delete the account itself
 			$this->db->Execute("DELETE FROM T_AccountRoot WHERE F_RootID=?", array($account->id));
@@ -678,6 +692,7 @@ EOD;
 		// If you don't pass a msgType, return all emails
 		$bindingParams = array($rootID);
 		// Remember that the admin email is NOT stored here, you have to get that from T_User
+		// But there IS a record for the admin user storing rootID messageType and adminUser
 		$sql = "SELECT u.F_Email FROM T_User u, T_AccountRoot a WHERE a.F_RootID=? AND u.F_UserID = a.F_AdminUserID";
 		$rs = $this->db->Execute($sql, $bindingParams); 
 		if ($rs)

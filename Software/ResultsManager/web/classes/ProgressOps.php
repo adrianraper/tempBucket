@@ -65,6 +65,9 @@ class ProgressOps {
 			GROUP BY F_CourseID
 			ORDER BY F_CourseID;
 EOD;
+		// Temporarily use old product code so that you get some data
+		if ($productCode==52)
+			$productCode=12;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
@@ -74,14 +77,16 @@ EOD;
 	 */
 	function getEveryoneSummary($userID, $rootID, $productCode) {
 			
+		// Whilst we would prefer to exclude your scores, that isn't feasible
+		// as the score table is so large.
+		//	-- AND F_UserID != ?
 		$sql = 	<<<EOD
-			SELECT F_CourseID, COUNT(DISTINCT F_ExerciseID) AS ExercisesDone FROM T_Score
-			WHERE F_UserID != ?
-			AND F_ProductCode = ?
+			SELECT F_CourseID, AVG(F_Score) AS Average FROM T_Score
+			WHERE F_ProductCode = ?
 			GROUP BY F_CourseID
 			ORDER BY F_CourseID;
 EOD;
-		$bindingParams = array($userID, $productCode, $rootID);
+		$bindingParams = array($productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}}

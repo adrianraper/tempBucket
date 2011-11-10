@@ -24,22 +24,17 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
-			// This is where we trigger the call to get the progress data
-			// Progress data comes in three blocks, and to save time we can choose which block(s) we want from this call
-			var progress:Progress = new Progress();
-			//progress.loadMySummary = true;
-			//progress.loadMyDetails = true;
-			//progress.loadEveryoneSummary = true;
-			progress.href = view.href;
-			progress.type = Progress.PROGRESS_MY_DETAILS;
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
-			progress.type = Progress.PROGRESS_MY_SUMMARY;
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
-			progress.type = Progress.PROGRESS_EVERYONE_SUMMARY;
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, progress)
+			// This is where we trigger the calls to get the progress data
+			// Do I get problems if triggering three calls at once?
+			// Or is it just that the everyone call takes a very long time?
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 				
-			// listen for these signals
-			view.chartTemplatesLoad.add(onChartTemplatesLoad);
+			// directly call the ConfigProxy to get the template for us
+			// Hopefully this will come back from cache
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.getChartTemplates();
 			
 		}
         
@@ -62,7 +57,7 @@
 						view.setMySummaryDataProvider(rs.dataProvider);
 					}
 					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
-						//view.setMyDetailsDataProvider(rs.dataProvider);
+						view.setMyDetailsDataProvider(rs.dataProvider);
 					}
 					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
 						view.setEveryoneSummaryDataProvider(rs.dataProvider);
@@ -76,16 +71,6 @@
 					view.initCharts(note.getBody() as XML);
 					break;
 			}
-		}
-		/**
-		 * Trigger the loading of the chart templates
-		 *
-		 */
-		private function onChartTemplatesLoad():void {
-			
-			// directly call the ConfigProxy to get the template for us
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.getChartTemplates();
 		}
 		
 	}
