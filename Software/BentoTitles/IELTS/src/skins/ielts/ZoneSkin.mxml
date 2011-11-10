@@ -3,7 +3,9 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
-		xmlns:tink="ws.tink.spark.containers.*" height="100%">
+		xmlns:tink="ws.tink.spark.containers.*"
+		xmlns:flashcomponents="*"
+		height="100%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -14,10 +16,13 @@
 	</s:layout>
 	
 	<s:Group width="30%">
-		<!-- this is for the rotating course selector -->
 		<s:layout>
 			<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
-		</s:layout>		
+		</s:layout>
+		
+		<!-- this is for the rotating course selector -->
+		<flashcomponents:CourseSelectorWidget />
+		
 		<s:Button id="writingCourse" label="Writing" width="100" />
 		<s:Button id="speakingCourse" label="Speaking" width="100" />
 		<s:Button id="readingCourse" label="Reading" width="100" />

@@ -39,6 +39,7 @@ package com.clarityenglish.bento.controller {
 			titleWindow = new TitleWindow();
 			titleWindow.title = "Marking";
 			
+			
 			var markingView:MarkingView = new MarkingView();
 			markingView.exerciseMark = exerciseProxy.getExerciseMark();
 			titleWindow.addElement(markingView);
@@ -46,6 +47,9 @@ package com.clarityenglish.bento.controller {
 			// Create and centre the popup
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
+			
+			// Hide the close button
+			titleWindow.closeButton.visible = false;
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);

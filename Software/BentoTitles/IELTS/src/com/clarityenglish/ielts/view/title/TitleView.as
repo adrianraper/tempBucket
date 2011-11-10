@@ -35,18 +35,6 @@ package com.clarityenglish.ielts.view.title {
 		public var backToMenuButton:Button;
 		
 		[SkinPart]
-		public var forwardButton:Button;
-		
-		[SkinPart]
-		public var backButton:Button;
-		
-		[SkinPart]
-		public var markingButton:Button;
-		
-		[SkinPart]
-		public var feedbackButton:Button;
-		
-		[SkinPart]
 		public var homeView:HomeView;
 		
 		[SkinPart]

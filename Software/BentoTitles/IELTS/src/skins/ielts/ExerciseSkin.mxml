@@ -12,6 +12,18 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
+	<!--<s:VGroup>
+		
+		<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" />
+		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" />
+		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" />
+		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" />
+		
+		<s:Button id="notepadButton" skinClass="skins.ielts.title.NotepadButtonSkin" label="Notepad" />
+		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" label="Print" />
+		<s:Button id="recorderButton" skinClass="skins.ielts.title.RecorderButtonSkin" label="Recorder" />
+	</s:VGroup>-->
+	
 	<view:DynamicView id="dynamicView" width="100%" height="100%" />
 	
 </s:Skin>

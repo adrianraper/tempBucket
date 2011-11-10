@@ -86,6 +86,7 @@ package com.clarityenglish.ielts.view.zone {
 			_courseChanged = true;
 			invalidateProperties();
 		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			

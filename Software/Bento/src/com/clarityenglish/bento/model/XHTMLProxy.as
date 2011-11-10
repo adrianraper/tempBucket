@@ -51,6 +51,11 @@ package com.clarityenglish.bento.model {
 		}
 		
 		public function loadXHTML(href:Href):void {
+			if (!href) {
+				log.error("loadXHTML received a null Href");
+				return;
+			}
+			
 			// If the resource has already been loaded then just return it
 			if (loadedResources[href]) {
 				notifyXHTMLLoaded(href);
