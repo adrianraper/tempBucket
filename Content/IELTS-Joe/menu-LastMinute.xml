@@ -4,23 +4,23 @@
   <head>
     <script id="model" type="application/xml">
       <menu>
-		<course id="1150976390861" caption="Reading" description="This session will be focussed on reading. Reading units are organised thematically using themes commonly found in the IELTS exam. The first six units familiarise the student with the basic test types." >
+		<course id="1150976390861" newid="1287130100000" caption="Reading" description="This session will be focussed on reading. Reading units are organised thematically using themes commonly found in the IELTS exam. The first six units familiarise the student with the basic test types." >
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
 				<group id="3" caption="Unit 3" task="1" alt="xxx." />
 			</groups>
-			<unit id="1234567879" class="question-zone">
-				<exercise id="1234567879" caption="Reading eBook" href="reading/questionzone.xml" />
+			<unit id="1287130110000" class="question-zone">
+				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
 			</unit>
-			<unit id="1234567879" class="exam-practice">
-				<exercise id="1234567879" caption="Reading practice paper Pt1" href="reading/media/practice1.pdf" difficulty="1" />
-				<exercise id="1234567879" caption="Reading practice paper Pt2" href="reading/media/practice2.pdf" difficulty="2" />
+			<unit id="1287130120000" class="exam-practice">
+				<exercise id="1287130120001" caption="Reading practice paper Pt1" href="reading/media/practice1.pdf" difficulty="1" />
+				<exercise id="1287130120002" caption="Reading practice paper Pt2" href="reading/media/practice2.pdf" difficulty="2" />
 			</unit>
-			<unit id="1234567879" class="advice-zone">
-				<exercise id="1234567879" href="reading/media/Reading_intro.f4v" caption="Watch the teacher giving advice." />
+			<unit id="1287130130000" class="advice-zone">
+				<exercise id="1287130130001" href="reading/media/Reading_intro.f4v" caption="Watch the teacher giving advice." />
 			</unit>
-			<unit id="1234567879" class="practice-zone" >
+			<unit id="1287130140000" class="practice-zone" >
 				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/1156153794672.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
@@ -83,7 +83,7 @@
 				</exercise>
         	</unit>
 		</course>
-		<course id="1234567879" caption="Listening" description="xxxx xxxxxxx xxxxx">
+		<course id="1151344537052" newid="1287130200000" caption="Listening" description="xxxx xxxxxxx xxxxx">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -162,7 +162,7 @@
 				</exercise>
             </unit>
 		 </course>
-		<course id="1234567879" caption="Speaking" description="xxxx xxxxxxx xxxxx">
+		<course id="1151344082236" newid="1287130300000" description="xxxx xxxxxxx xxxxx">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -241,7 +241,7 @@
 				</exercise>
 			</unit>
 		</course>
-		<course caption="Writing" description="This session will be focussed on writing. Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+		<course id="1150911222467" newid="1287130400000" caption="Writing" description="This session will be focussed on writing. Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
 			<groups>
 				<group id="1" caption="Unit 1 task 1" task="1" alt="xxx." />
 				<group id="2" caption="Unit 1 task 2" task="2" alt="xxx." />
