@@ -27,31 +27,29 @@
 			// This is where we trigger the calls to get the progress data
 			// Do I get problems if triggering three calls at once?
 			// Or is it just that the everyone call takes a very long time?
+			/*
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
-			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
-			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
-				
-			// directly call the ConfigProxy to get the chart template for us
-			// Hopefully this will come back from cache
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.getChartTemplates();
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
+			*/
 			
 		}
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.PROGRESS_DATA_LOADED,
-				CommonNotifications.CHART_TEMPLATES_LOADED,
+				//BBNotifications.PROGRESS_DATA_LOADED,
+				//CommonNotifications.CHART_TEMPLATES_LOADED,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			
-			switch (note.getName()) {
-				case BBNotifications.PROGRESS_DATA_LOADED:
+			//switch (note.getName()) {
+				//case BBNotifications.PROGRESS_DATA_LOADED:
 					
 					// Split the data that comes back for the various charts
+					/*
 					var rs:Object = note.getBody() as Object;
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
 						view.setMySummaryDataProvider(rs.dataProvider);
@@ -62,15 +60,16 @@
 					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
 						view.setEveryoneSummaryDataProvider(rs.dataProvider);
 					}
-					break;
+					*/
+					//break;
 				
 				// Once the chart templates are loaded, inject them into the view
-				case CommonNotifications.CHART_TEMPLATES_LOADED:
+				//case CommonNotifications.CHART_TEMPLATES_LOADED:
 					
 					// Inject the chart templates back into the view
-					view.initCharts(note.getBody() as XML);
-					break;
-			}
+					//view.initCharts(note.getBody() as XML);
+					//break;
+			//}
 		}
 		
 	}

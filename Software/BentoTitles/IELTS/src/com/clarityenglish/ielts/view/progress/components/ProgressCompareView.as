@@ -4,7 +4,9 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-
+	
+	import mx.collections.ArrayCollection;
+	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Label;
@@ -13,13 +15,45 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		[SkinPart(required="true")]
 		public var compareChart:AnyChartFlex;
-
-		public var mySummaryDataLoaded:Signal = new Signal(Array);
-		public var everyoneSummaryDataLoaded:Signal = new Signal(Array);
-		public var drawChart:Signal = new Signal();
 		
-		private var _fullChartXML:XML;
+		// Use a setter here to do the injection of the dataProvider into the chart XML
+		[Bindable]
+		public function set mySummaryDataProvider(dataProvider:ArrayCollection):void {
+			this._mySummaryDataProvider = dataProvider;
+			if (_fullChartXML) {
+				// TODO. Make this smoother by adding in the data series and redrawing
+				// We have the chart template, inject the data from the data provider
+				for each (var point:Object in dataProvider) {
+					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
+				}
+				compareChart.anychartXML = _fullChartXML;
+			}
+		}
+		public function get mySummaryDataProvider():ArrayCollection {
+			return this._mySummaryDataProvider;
+		}
+		[Bindable]
+		public function set everyoneSummaryDataProvider(dataProvider:ArrayCollection):void {
+			this._everyoneSummaryDataProvider = dataProvider;
+			if (_fullChartXML) {
+				// TODO. Make this smoother by adding in the data series and redrawing
+				// We have the chart template, inject the data from the data provider
+				for each (var point:Object in dataProvider) {
+					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
+				}
+				compareChart.anychartXML = _fullChartXML;
+			}
+		}
+		public function get everyoneSummaryDataProvider():ArrayCollection {
+			return this._everyoneSummaryDataProvider;
+		}
 		
+		private var _mySummaryDataProvider:ArrayCollection;
+		private var _everyoneSummaryDataProvider:ArrayCollection;
+		[Bindable]
+		public var _fullChartXML:XML;
+		
+		/*
 		public function setMySummaryDataProvider(dataProvider:Array):void {
 			// Check that we DO have the template alredy loaded
 			if (_fullChartXML) {
@@ -34,6 +68,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				drawChart.dispatch();
 			}
 		}
+		*/
 		public function setEveryoneSummaryDataProvider(dataProvider:Array):void {
 			// Check that we DO have the template alredy loaded
 			if (_fullChartXML) {
@@ -55,12 +90,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			switch (instance) {
 				case compareChart:
-					// Now we can listen for signals telling us to redraw
-					drawChart.add(onRedrawChart);
-					
-					// and do the first draw
-					onRedrawChart();
-					
 					break;
 			}
 		}
@@ -80,18 +109,8 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// I would like to draw the base chart now with 0 data points
 			// But you can't, as this might be called before the chart is added
-			//compareChart.anychartXML = templates;
-			// So send a signal telling the chart to draw, if it is listening
-			drawChart.dispatch();
-		}
-		/**
-		 * Draw the chart using whatever we have in the XML. 
-		 * 
-		 */
-		private function onRedrawChart():void {
-			if (_fullChartXML) {
-				compareChart.anychartXML = _fullChartXML;
-			}
+			compareChart.anychartXML = templates;
+			
 		}
 		/*
 		 * Comment for now, just sample data

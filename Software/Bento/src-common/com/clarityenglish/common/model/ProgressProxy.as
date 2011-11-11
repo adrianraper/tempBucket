@@ -16,6 +16,7 @@ package com.clarityenglish.common.model {
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
 	import mx.core.Application;
@@ -42,17 +43,23 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "ProgressProxy";
 		
 		/**
-		 * For holding results in a cache 
+		 * A cache of progress types to loaded data sets 
 		 */
-		private var _everyoneSummary:Array;
-		private var _mySummary:Array;
-		private var _myDetails:ArrayCollection;
+		private var loadedResources:Dictionary;		
+		/**
+		 * Whilst data is loading we need to know so that we don't try to load it again
+		 */
+		private var dataLoading:Dictionary;
 		
 		/**
 		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
 		 */
 		public function ProgressProxy(data:Object = null) {
 			super(NAME, data);
+			
+			// For caching and load once control
+			loadedResources = new Dictionary();
+			dataLoading = new Dictionary();
 		}
 		
 		/**
@@ -63,28 +70,36 @@ package com.clarityenglish.common.model {
 		 * @param number userID 
 		 */
 		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
+
+			// If the data has already been loaded then just return it
+			if (loadedResources[progressType]) {
+				notifyDataLoaded(progressType);
+				return;
+			}
 			
-			// Check cache
-			if (progressType == Progress.PROGRESS_EVERYONE_SUMMARY && _everyoneSummary) {
-				var data:Object = {type:progressType, dataProvider:_everyoneSummary};
-				sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
-			}
-			// We could keep other details in the cache as well if we are prepared to update them
-			// from any new data we write.
-			if (progressType == Progress.PROGRESS_MY_SUMMARY && _mySummary) {
-				var data:Object = {type:progressType, dataProvider:_mySummary};
-				sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
-			}
-			if (progressType == Progress.PROGRESS_MY_DETAILS && _myDetails) {
-				var data:Object = {type:progressType, dataProvider:_myDetails};
-				sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
-			}
+			// If the resource is already loading then do nothing
+			for each (var loadingData:String in dataLoading)
+				if (progressType === loadingData)
+					return;
 			
 			// Send userID, rootID and productCode. Also say whether you want some or all data to come back.
-			// TODO. user doesn't currently have userID set. Check up on what comes back from login.
 			var menuFile:String = href.currentDir+'/'+href.filename;
 			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, menuFile ];
 			new RemoteDelegate("getProgressData", params, this).execute();
+			
+			// Maintain a note that we are currently loading this data
+			dataLoading[progressType] = true;
+
+		}
+		
+		/**
+		 * This sends out the notification with the requested data 
+		 * @param progressType
+		 * 
+		 */
+		private function notifyDataLoaded(progressType:String):void {
+			var data:Object = {type:progressType, dataProvider:loadedResources[progressType]};
+			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -92,6 +107,10 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "getProgressData":
 					if (data) {
+						// Take the data loading note out now that we have a result
+						var loadingData:String = data.progress.type;
+						delete dataLoading[loadingData];
+						
 						/*
 						We will get back the following objects in data
 						error - should this be called status and include info/warning/error objects?
@@ -99,9 +118,20 @@ package com.clarityenglish.common.model {
 						*/
 						// First need to see if the return has an error
 						if (data.error && data.error.errorNumber>0) {
+							
+							log.error("loadData received an error");
+
 							// Who will handle this?
-							sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, data.error);						
+							sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, data.error);
+							
 						} else {
+
+							log.info("Successfully loaded data for type {0}", progressType);
+
+							// Put the returned data into the cache and send out the notification
+							loadedResources[progressType] = data.progress.dataProvider as ArrayCollection;
+							notifyDataLoaded(loadingData);
+							
 							// Fake data
 							/*
 							data.type = "my_summary";
@@ -113,15 +143,6 @@ package com.clarityenglish.common.model {
 							{name:'Exam tips', value:'100'}
 							];
 							*/
-							// Save retrieved data in cache
-							if (data.progress.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
-								_everyoneSummary = data.progress.dataProvider;
-							} else if (data.progress.type == Progress.PROGRESS_MY_SUMMARY) {
-								_mySummary = data.progress.dataProvider;
-							} else if (data.progress.type == Progress.PROGRESS_MY_DETAILS) {
-								_myDetails = data.progress.dataProvider;
-							}
-							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data.progress);
 						}							
 					} else {
 						// Can't read from the database

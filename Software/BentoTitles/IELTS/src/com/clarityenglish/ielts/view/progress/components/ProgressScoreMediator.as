@@ -33,11 +33,26 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
+				BBNotifications.PROGRESS_DATA_LOADED,
+				CommonNotifications.CHART_TEMPLATES_LOADED,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);	
+			
+			switch (note.getName()) {
+				// Here we should listen for notification of data_loaded
+				// then it does view.setMySummary
+				case BBNotifications.PROGRESS_DATA_LOADED:
+				
+					// Split the data that comes back for the various charts
+					var rs:Object = note.getBody() as Object;
+					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
+						view.setMyDetailsDataProvider = rs.dataProvider;
+					}
+					break;
+			}
 		}
 		
 		// Whenever you pick up the mySummary data, add it to the chart

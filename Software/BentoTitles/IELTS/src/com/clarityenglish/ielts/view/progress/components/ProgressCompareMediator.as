@@ -25,24 +25,45 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function onRegister():void {
 			super.onRegister();
-			// Listen for the signals coming from the parent view
-			// TODO. How?
-			var progressViewRef:ProgressView = view.document.hostComponent as ProgressView;
-			progressViewRef.mySummaryDataLoaded.add(onMySummaryDataLoaded);
-			progressViewRef.everyoneSummaryDataLoaded.add(onEveryoneSummaryDataLoaded);
-			//view.myDetailsDataLoaded.add(onMyDetailsDataLoaded);
+			
+			// Ask for the progress data you want
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
 
+			// Directly call the ConfigProxy to get the chart template for us
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.getChartTemplates();
+			
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
+				BBNotifications.PROGRESS_DATA_LOADED,
+				CommonNotifications.CHART_TEMPLATES_LOADED,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
-			super.handleNotification(note);	
+			super.handleNotification(note);
+			
+			switch (note.getName()) {
+				// Here we should listen for notification of data_loaded
+				// then it does view.setMySummary
+				case BBNotifications.PROGRESS_DATA_LOADED:
+				
+					// Split the data that comes back for the various charts
+					var rs:Object = note.getBody() as Object;
+					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
+						view.mySummaryDataProvider = rs.dataProvider;
+					}
+					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
+						view.everyoneSummaryDataProvider = rs.dataProvider;
+					}
+					break;
+			}
 		}
 		
+		/*
 		// Whenever you pick up a data, add it to the appropriate chart
 		private function onMySummaryDataLoaded(dataProvider:Array):void {
 			view.setMySummaryDataProvider(dataProvider);
@@ -50,6 +71,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		private function onEveryoneSummaryDataLoaded(dataProvider:Array):void {
 			view.setEveryoneSummaryDataProvider(dataProvider);
 		}
-		
+		*/
 	}
 }
