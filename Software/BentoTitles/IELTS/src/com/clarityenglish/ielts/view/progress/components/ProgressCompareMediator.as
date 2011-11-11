@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
+	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,8 +27,9 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.onRegister();
 			// Listen for the signals coming from the parent view
 			// TODO. How?
-			view.parent.mySummaryDataLoaded.add(onMySummaryDataLoaded);
-			view.parent.everyoneSummaryDataLoaded.add(onEveryoneSummaryDataLoaded);
+			var progressViewRef:ProgressView = view.document.hostComponent as ProgressView;
+			progressViewRef.mySummaryDataLoaded.add(onMySummaryDataLoaded);
+			progressViewRef.everyoneSummaryDataLoaded.add(onEveryoneSummaryDataLoaded);
 			//view.myDetailsDataLoaded.add(onMyDetailsDataLoaded);
 
 		}

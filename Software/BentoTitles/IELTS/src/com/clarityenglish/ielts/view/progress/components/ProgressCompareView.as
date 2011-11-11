@@ -16,6 +16,7 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		public var mySummaryDataLoaded:Signal = new Signal(Array);
 		public var everyoneSummaryDataLoaded:Signal = new Signal(Array);
+		public var drawChart:Signal = new Signal();
 		
 		private var _fullChartXML:XML;
 		
@@ -25,20 +26,24 @@ package com.clarityenglish.ielts.view.progress.components {
 				// TODO. Make this smoother by adding in the data series and redrawing
 				// We have the chart template, inject the data from the data provider
 				for each (var point:Object in dataProvider) {
-					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.name} y={point.value}/>);
+					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
 				}
-				compareChart.anychartXML = _fullChartXML;
+				// Then send a signal telling the chart to draw, if it is listening
+				//if (compareChart)
+				//	compareChart.anychartXML = _fullChartXML;
+				drawChart.dispatch();
 			}
 		}
-		public function setEveryoneSummaryDataProvider(mySummary:Array):void {
+		public function setEveryoneSummaryDataProvider(dataProvider:Array):void {
 			// Check that we DO have the template alredy loaded
 			if (_fullChartXML) {
 				// TODO. Make this smoother by adding in the data series and redrawing
 				// We have the chart template, inject the data from the data provider
-				for each (var point:Object in mySummary) {
-					_fullChartXML.charts.chart.data.series[1].appendChild(<point name={point.name} y={point.value}/>);
+				for each (var point:Object in dataProvider) {
+					_fullChartXML.charts.chart.data.series[1].appendChild(<point name={point.caption} y={point.averageScore}/>);
 				}
-				compareChart.anychartXML = _fullChartXML;
+				// Then send a signal telling the chart to draw, if it is listening
+				drawChart.dispatch();
 			}
 		}
 
@@ -48,6 +53,16 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
+			switch (instance) {
+				case compareChart:
+					// Now we can listen for signals telling us to redraw
+					drawChart.add(onRedrawChart);
+					
+					// and do the first draw
+					onRedrawChart();
+					
+					break;
+			}
 		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
@@ -64,10 +79,22 @@ package com.clarityenglish.ielts.view.progress.components {
 			_fullChartXML = templates;
 			
 			// I would like to draw the base chart now with 0 data points
-			compareChart.anychartXML = templates;
+			// But you can't, as this might be called before the chart is added
+			//compareChart.anychartXML = templates;
+			// So send a signal telling the chart to draw, if it is listening
+			drawChart.dispatch();
+		}
+		/**
+		 * Draw the chart using whatever we have in the XML. 
+		 * 
+		 */
+		private function onRedrawChart():void {
+			if (_fullChartXML) {
+				compareChart.anychartXML = _fullChartXML;
+			}
 		}
 		/*
-		 * Comment for now, just use sample data
+		 * Comment for now, just sample data
 		var _mainSettings:XML = <settings>
 							<animation enabled="True"/>
 						</settings>;

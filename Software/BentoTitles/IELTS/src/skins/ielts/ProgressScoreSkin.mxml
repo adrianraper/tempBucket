@@ -13,11 +13,11 @@
 	</s:layout>
 
 	<s:HGroup width="100%" height="100" >
-		<s:Button id="writingCourse" width="100" />
-		<s:Button id="speakingCourse" width="100" />
-		<s:Button id="readingCourse" width="100" />
-		<s:Button id="listeningCourse" width="100" />
-		<s:Button id="examTipsCourse" width="100" />
+		<s:Button id="writingCourse" label="writing" width="75" />
+		<s:Button id="speakingCourse" label="speaking" width="75" />
+		<s:Button id="readingCourse" label="reading" width="75" />
+		<s:Button id="listeningCourse" label="listening" width="75" />
+		<s:Button id="examTipsCourse" label="exam tips" width="75" />
 	</s:HGroup>	
 	
 	<s:HGroup width="100%" height="100%">

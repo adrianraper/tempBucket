@@ -6,6 +6,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
 	
+	import mx.collections.ArrayCollection;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -26,7 +28,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.onRegister();
 			//view.mySummaryDataLoaded.add(onMySummaryDataLoad);
 			//view.everyoneSummaryDataLoaded.add(onEveryoneSummaryDataLoad);
-			view.myDetailsDataLoaded.add(onMyDetailsDataLoad);
+			//view.myDetailsDataLoaded.add(onMyDetailsDataLoad);
 		}
 		
 		override public function listNotificationInterests():Array {

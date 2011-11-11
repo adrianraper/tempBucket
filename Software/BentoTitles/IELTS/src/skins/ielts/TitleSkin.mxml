@@ -32,7 +32,7 @@
 	</s:transitions>-->
 	
 	<s:Group width="100%" excludeFrom="exercise">
-		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTS')" width="100%" top="13" />
+		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
 		<s:Label text = "Welcome, {hostComponent.user.fullName}. Today is {hostComponent.dateFormatter.format(new Date())}." top="45" right="0" />
 		<s:ButtonBar id="navBar" right="0" height="35" top="0" />
 	</s:Group>

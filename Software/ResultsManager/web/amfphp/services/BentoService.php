@@ -240,13 +240,11 @@ class BentoService extends AbstractService {
 		$progress->type = $progressType;
 		if ($progressType == Progress::PROGRESS_MY_SUMMARY) {
 			$rs = $this->progressOps->getMySummary($userID, $productCode);
-			$progress->dataProvider = $this->progressOps->mergeXMLDataMySummary($rs);
-			
+			$progress->dataProvider = $this->progressOps->mergeXMLAndData($rs);
 		}
 		if ($progressType == Progress::PROGRESS_EVERYONE_SUMMARY) {
-			$rs = $this->progressOps->getEveryoneSummary($userID, $rootID, $productCode);
-			$progress->dataProvider = $this->progressOps->mergeXMLDataEveryoneSummary($rs);
-			
+			$rs = $this->progressOps->getEveryoneSummary($productCode);
+			$progress->dataProvider = $this->progressOps->mergeXMLAndData($rs);
 		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else

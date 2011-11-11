@@ -46,7 +46,7 @@ package com.clarityenglish.ielts.view.home {
 			if (_fullChartXML) {
 				// We have the chart template, inject the data from the data provider
 				for each (var point:Object in mySummary) {
-					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.name} y={point.value}/>);
+					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.value}/>);
 				}
 				coveragePieChart.anychartXML = _fullChartXML;
 			}

@@ -29,8 +29,8 @@ package com.clarityenglish.ielts.view.progress {
 		[SkinPart]
 		public var progressCompareView:ProgressCompareView;
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
-		private var homeIcon:Class;
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
+		private var progressIcon:Class;
 		
 		private var _fullChartXML:XML;
 		private var _everyoneSummary:Array;
@@ -45,7 +45,7 @@ package com.clarityenglish.ielts.view.progress {
 		public function ProgressView() {
 			super();
 			
-			// The first one listed will be the default
+			// The first one listed will be the default - really?
 			StateUtil.addStates(this, [ "score", "compare" ], true);
 		}
 		
@@ -78,8 +78,8 @@ package com.clarityenglish.ielts.view.progress {
 			switch (instance) {
 				case progressNavBar:
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ icon: homeIcon, label: "Your score", data: "score" },
-						{ icon: homeIcon, label: "Compare", data: "compare" },
+						{ icon: progressIcon, label: "Your score", data: "score" },
+						{ icon: progressIcon, label: "Compare", data: "compare" },
 					] );
 					
 					progressNavBar.requireSelection = true;
@@ -114,6 +114,15 @@ package com.clarityenglish.ielts.view.progress {
 			}	
 		}
 		
+		/**
+		 * 
+		 * This shows what state the skin is currently in
+		 * 
+		 * @return string State name 
+		 */
+		protected override function getCurrentSkinState():String {
+			return currentState;
+		}
 		/**
 		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
 		 * 
