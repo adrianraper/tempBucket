@@ -18,7 +18,7 @@
 				<exercise id="1287130120002" caption="Reading practice paper Pt2" href="reading/media/practice2.pdf" difficulty="2" />
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="reading/media/Reading_intro.f4v" caption="Watch the teacher giving advice." />
+				<exercise id="1287130130001" href="reading/media/Reading_intro.flv" caption="Watch the teacher giving advice." />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
 				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/1156153794672.jpg">
@@ -89,17 +89,17 @@
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
 				<group id="3" caption="Unit 3" task="1" alt="xxx." />
 			</groups>
-			<unit id="1234567879" class="question-zone">
-				<exercise id="1234567879" caption="Listening eBook" href="listening/questionzone.xml" />
+			<unit id="1287130210000" class="question-zone">
+				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
 			</unit>
-			<unit id="1234567879" class="exam-practice">
-				<exercise id="1234567879" href="listening/media/practice1.pdf" caption="Listening practice paper Pt1" difficulty="1" />
-				<exercise id="1234567879" href="listening/media/practice2.pdf" caption="Listening practice paper Pt2" difficulty="2" />
+			<unit id="1287130220000" class="exam-practice">
+				<exercise id="1287130220001" href="listening/media/practice1.pdf" caption="Listening practice paper Pt1" difficulty="1" />
+				<exercise id="1287130220002" href="listening/media/practice2.pdf" caption="Listening practice paper Pt2" difficulty="2" />
 			</unit>
-			<unit id="1234567879" class="advice-zone">
-				<exercise id="1234567879" href="listening/media/Listening_intro.flv" caption="Watch the teacher giving advice." />
+			<unit id="1287130230000" class="advice-zone">
+				<exercise id="1287130230001" href="listening/media/Listening_intro.flv" caption="Watch the teacher giving advice." />
 			</unit>
-			<unit id="1234567879" class="practice-zone">
+			<unit id="1287130240000" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml">
 				  <!--GF - QB-->
 				</exercise>
@@ -162,23 +162,23 @@
 				</exercise>
             </unit>
 		 </course>
-		<course id="1151344082236" newid="1287130300000" description="xxxx xxxxxxx xxxxx">
+		<course id="1151344082236" newid="1287130300000" caption="Speaking" description="xxxx xxxxxxx xxxxx">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
 				<group id="3" caption="Unit 3" task="1" alt="xxx." />
 			</groups>
-			<unit id="1234567879" class="question-zone">
-				<exercise id="1234567879" caption="Speaking eBook" href="speaking/questionzone.xml" />
+			<unit id="1287130310000" class="question-zone">
+				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
 			</unit>
-			<unit id="1234567879" class="exam-practice">
-				<exercise id="1234567879" href="speaking/media/practice1.pdf" caption="Speaking practice paper Pt1" difficulty="1" />
-				<exercise id="1234567879" href="speaking/media/practice2.pdf" caption="Speaking practice paper Pt2" difficulty="2" />
+			<unit id="1287130320000" class="exam-practice">
+				<exercise id="1287130320001" href="speaking/media/practice1.pdf" caption="Speaking practice paper Pt1" difficulty="1" />
+				<exercise id="1287130320002" href="speaking/media/practice2.pdf" caption="Speaking practice paper Pt2" difficulty="2" />
 			</unit>
-			<unit id="1234567879" class="advice-zone">
-				<exercise id="1234567879" href="speaking/media/Speaking_intro.flv" caption="Watch the teacher giving advice." />
+			<unit id="1287130330000" class="advice-zone">
+				<exercise id="1287130330001" href="speaking/media/Speaking_intro.flv" caption="Watch the teacher giving advice." />
 			</unit>
-			<unit id="1234567879" class="practice-zone">
+			<unit id="1287130340000" class="practice-zone">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml">
 				  <!--Presentation - TB-->
 				</exercise>
@@ -250,17 +250,17 @@
 				<group id="5" caption="Unit 3 task 1" task="1" alt="xxx." />
 				<group id="6" caption="Unit 3 task 2" task="2" alt="xxx." />
 			</groups>
-			<unit class="question-zone">
-				<exercise href="writing/questionzone.xml" caption="Writing eBook" />
+			<unit id="1287130410000" class="question-zone">
+				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
 			</unit>
-			<unit class="exam-practice">
-				<exercise href="writing/media/practice1.pdf" caption="Writing practice paper Pt1" difficulty="3" />
-				<exercise href="writing/media/practice2.pdf" caption="Writing practice paper Pt2" difficulty="4" />
+			<unit id="1287130420000" class="exam-practice">
+				<exercise id="1287130420001" href="writing/media/practice1.pdf" caption="Writing practice paper Pt1" difficulty="3" />
+				<exercise id="1287130420002" href="writing/media/practice2.pdf" caption="Writing practice paper Pt2" difficulty="4" />
 			</unit>
-			<unit class="advice-zone">
-				<exercise href="writing/media/Writing_intro.flv" caption="Watch the teacher giving advice" />
+			<unit id="1287130430000" class="advice-zone">
+				<exercise id="1287130430001" href="writing/media/Writing_intro.flv" caption="Watch the teacher giving advice" />
 			</unit>
-			<unit class="practice-zone">
+			<unit id="1287130440000" class="practice-zone">
 				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml">
 				  <!--Presentation - TB-->
 				</exercise>
