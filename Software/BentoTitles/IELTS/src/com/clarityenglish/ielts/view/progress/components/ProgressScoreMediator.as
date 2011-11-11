@@ -47,7 +47,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
 					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
-						view.setMyDetailsDataProvider = rs.dataProvider;
+						//view.setMyDetailsDataProvider = rs.dataProvider;
 					}
 					break;
 				

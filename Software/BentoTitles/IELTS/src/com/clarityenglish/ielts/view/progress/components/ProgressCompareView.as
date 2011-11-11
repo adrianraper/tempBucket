@@ -77,7 +77,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					_fullChartXML.charts.chart.data.series[1].appendChild(<point name={point.caption} y={point.averageScore}/>);
 				}
 				// Then send a signal telling the chart to draw, if it is listening
-				drawChart.dispatch();
+				//drawChart.dispatch();
 			}
 		}
 		*/

@@ -1,16 +1,12 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.vo.manageable.User;
-	import com.clarityenglish.ielts.view.zone.ui.ButtonItemRenderer;
 	import com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
-	import mx.controls.SWFLoader;
 	import mx.core.ClassFactory;
 	import mx.core.IDataRenderer;
 	
@@ -18,17 +14,16 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
-	import spark.components.Label;
-	import spark.components.TabBar;
 	import spark.components.VideoPlayer;
+	import spark.core.IDisplayText;
 	
 	public class ZoneView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var courseTitleLabel:Label;
+		public var courseTitleLabel:IDisplayText;
 		
 		[SkinPart(required="true")]
-		public var courseDescriptionLabel:Label;
+		public var courseDescriptionLabel:IDisplayText;
 		
 		[SkinPart(required="true")]
 		public var questionZoneButton:Button;
@@ -108,7 +103,9 @@ package com.clarityenglish.ielts.view.zone {
 				
 				// Option to either have a button that chooses a category then provides a subset of the XML to the dataprovider
 				// or send the whole lot and use tags to display topics.
-				practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
+				
+				//practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
+				
 				// AR. At this point, could I change the dataGroup itemRenderer based on how many exercises there are?
 				/*
 				if (practiceZoneDataGroup.dataProvider.length<=5) {

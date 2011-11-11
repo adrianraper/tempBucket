@@ -5,8 +5,7 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
-		currentState="normal"
-		height="100%">
+		currentState="normal">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -52,27 +51,36 @@
 					</s:filters>
 				</s:SWFLoader>
 				
-				<s:Label id="courseTitleLabel" fontSize="24" />
+				<s:RichText id="courseTitleLabel" fontSize="24" />
 			</s:HGroup>
 			
-			<s:Label id="courseDescriptionLabel" width="100%" />
+			<s:RichText id="courseDescriptionLabel" width="100%" />
 			
 			<tink:Accordion width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" duration="100">
-				<s:NavigatorContent label="Practice zone">
-					<s:Group left="0" right="0" top="10" bottom="10">
-						<!--
-						<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
-							<s:layout>
-								<s:HorizontalLayout />
-							</s:layout>
-						</s:DataGroup>
-						-->
-						<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
-							<s:layout>
-								<s:TileLayout requestedColumnCount="5"/>
-							</s:layout>
-						</s:DataGroup>
-					</s:Group>
+				
+				<s:NavigatorContent label="Practice zone" width="100%">
+					<s:VGroup left="0" right="20" top="10" bottom="10">
+						<s:Group width="100%">
+							<s:Rect width="100%" height="100%">
+								<s:fill>
+									<s:SolidColor color="#E1E1E1" />
+								</s:fill>
+							</s:Rect>
+							
+							<s:VGroup width="100%" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
+								<s:Label text="Unit 1" fontSize="14" fontWeight="bold" />
+								<s:RichText width="100%" text="You will practice short answer questions and tables completion in the context of articles about games." />
+							</s:VGroup>
+						</s:Group>
+						
+						<s:Group left="0" right="0" top="10" bottom="10">
+							<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
+								<!--<s:layout>
+									<s:TileLayout requestedColumnCount="5"/>
+								</s:layout>-->
+							</s:DataGroup>
+						</s:Group>
+					</s:VGroup>
 				</s:NavigatorContent>
 				
 				<s:NavigatorContent label="Advice zone">
@@ -103,17 +111,18 @@
 		</s:BorderContainer>
 	</s:Group>
 	
+	<!-- Popup exercise selector -->
 	<s:Group width="50%" top="85" height="300">
 		<s:Rect width="100%" height="100%" topLeftRadiusX="10" topLeftRadiusY="10" bottomLeftRadiusX="10" bottomLeftRadiusY="10">
 			<s:stroke>
 				<s:SolidColorStroke color="#E4E4E4" />
 			</s:stroke>
 			<s:fill>
-				<s:SolidColor color="#F2F2F2" />
+				<s:SolidColor color="#FFFFFF" />
 			</s:fill>
 		</s:Rect>
 		
-		<s:Label text="Task 2" />
+		<s:RichText text="Task 2" />
 	</s:Group>
 	
 </s:Skin>
