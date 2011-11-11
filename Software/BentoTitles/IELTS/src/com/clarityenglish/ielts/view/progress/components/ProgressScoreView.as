@@ -33,10 +33,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		[SkinPart(required="true")]
 		public var scoreDetails:DataGrid;
 		
-		public function setScoreDetailsDataProvider(scores:ArrayCollection):void {
-			scoreDetails.dataProvider = scores;
-		}
-
+		[Bindable]
+		public var setMyDetailsDataProvider:ArrayCollection;
+		
 		protected override function commitProperties():void {
 			super.commitProperties();		
 		}
@@ -59,7 +58,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partRemoved(partName, instance);
 			
 		}
-		
+
 	}
 	
 }

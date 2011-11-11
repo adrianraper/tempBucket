@@ -17,7 +17,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var compareChart:AnyChartFlex;
 		
 		// Use a setter here to do the injection of the dataProvider into the chart XML
-		[Bindable]
+		//[Bindable]
 		public function set mySummaryDataProvider(dataProvider:ArrayCollection):void {
 			this._mySummaryDataProvider = dataProvider;
 			if (_fullChartXML) {
@@ -26,13 +26,13 @@ package com.clarityenglish.ielts.view.progress.components {
 				for each (var point:Object in dataProvider) {
 					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
 				}
-				compareChart.anychartXML = _fullChartXML;
+				//compareChart.anychartXML = _fullChartXML;
 			}
 		}
 		public function get mySummaryDataProvider():ArrayCollection {
 			return this._mySummaryDataProvider;
 		}
-		[Bindable]
+		//[Bindable]
 		public function set everyoneSummaryDataProvider(dataProvider:ArrayCollection):void {
 			this._everyoneSummaryDataProvider = dataProvider;
 			if (_fullChartXML) {
@@ -41,7 +41,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				for each (var point:Object in dataProvider) {
 					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
 				}
-				compareChart.anychartXML = _fullChartXML;
+				//compareChart.anychartXML = _fullChartXML;
 			}
 		}
 		public function get everyoneSummaryDataProvider():ArrayCollection {
@@ -68,7 +68,6 @@ package com.clarityenglish.ielts.view.progress.components {
 				drawChart.dispatch();
 			}
 		}
-		*/
 		public function setEveryoneSummaryDataProvider(dataProvider:Array):void {
 			// Check that we DO have the template alredy loaded
 			if (_fullChartXML) {
@@ -81,6 +80,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				drawChart.dispatch();
 			}
 		}
+		*/
 
 		protected override function commitProperties():void {
 			super.commitProperties();		
@@ -109,7 +109,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// I would like to draw the base chart now with 0 data points
 			// But you can't, as this might be called before the chart is added
-			compareChart.anychartXML = templates;
+			//compareChart.anychartXML = templates;
 			
 		}
 		/*

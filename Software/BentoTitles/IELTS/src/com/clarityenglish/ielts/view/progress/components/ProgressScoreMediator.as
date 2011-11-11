@@ -26,15 +26,13 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function onRegister():void {
 			super.onRegister();
-			//view.mySummaryDataLoaded.add(onMySummaryDataLoad);
-			//view.everyoneSummaryDataLoaded.add(onEveryoneSummaryDataLoad);
-			//view.myDetailsDataLoaded.add(onMyDetailsDataLoad);
+			
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,
-				CommonNotifications.CHART_TEMPLATES_LOADED,
 			]);
 		}
 		
@@ -52,13 +50,17 @@ package com.clarityenglish.ielts.view.progress.components {
 						view.setMyDetailsDataProvider = rs.dataProvider;
 					}
 					break;
+				
 			}
 		}
 		
+		
+		/*
 		// Whenever you pick up the mySummary data, add it to the chart
 		private function onMyDetailsDataLoad(dataProvider:ArrayCollection):void {
 			view.scoreDetails.dataProvider = dataProvider;
 		}
+		*/
 		
 	}
 }

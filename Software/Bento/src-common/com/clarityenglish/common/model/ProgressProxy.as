@@ -126,10 +126,10 @@ package com.clarityenglish.common.model {
 							
 						} else {
 
-							log.info("Successfully loaded data for type {0}", progressType);
+							log.info("Successfully loaded data for type {0}", loadingData);
 
 							// Put the returned data into the cache and send out the notification
-							loadedResources[progressType] = data.progress.dataProvider as ArrayCollection;
+							loadedResources[loadingData] = data.progress.dataProvider as ArrayCollection;
 							notifyDataLoaded(loadingData);
 							
 							// Fake data

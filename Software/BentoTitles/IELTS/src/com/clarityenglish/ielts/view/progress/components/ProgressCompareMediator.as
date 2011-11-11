@@ -60,6 +60,10 @@ package com.clarityenglish.ielts.view.progress.components {
 						view.everyoneSummaryDataProvider = rs.dataProvider;
 					}
 					break;
+				
+				case CommonNotifications.CHART_TEMPLATES_LOADED:
+					
+					view.initCharts(note.getBody() as XML);
 			}
 		}
 		
