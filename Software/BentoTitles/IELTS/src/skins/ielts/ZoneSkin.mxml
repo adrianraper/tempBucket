@@ -5,95 +5,115 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
+		currentState="normal"
 		height="100%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
 	</fx:Metadata>
 	
-	<s:layout>
-		<s:HorizontalLayout />
-	</s:layout>
+	<s:states>
+		<s:State name="normal" />
+	</s:states>
 	
-	<s:Group width="30%">
+	<s:Group width="100%" height="100%">
 		<s:layout>
-			<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
+			<s:HorizontalLayout />
 		</s:layout>
 		
-		<!-- this is for the rotating course selector -->
-		<flashcomponents:CourseSelectorWidget />
+		<s:Group width="50%">
+			<s:layout>
+				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
+			</s:layout>
+			
+			<!-- this is for the rotating course selector -->
+			<flashcomponents:CourseSelectorWidget />
+			
+			<s:Button id="writingCourse" label="Writing" width="100" />
+			<s:Button id="speakingCourse" label="Speaking" width="100" />
+			<s:Button id="readingCourse" label="Reading" width="100" />
+			<s:Button id="listeningCourse" label="Listening" width="100" />
+			<s:Button id="examTipsCourse" label="Exam tips" width="100" />
+		</s:Group>
 		
-		<s:Button id="writingCourse" label="Writing" width="100" />
-		<s:Button id="speakingCourse" label="Speaking" width="100" />
-		<s:Button id="readingCourse" label="Reading" width="100" />
-		<s:Button id="listeningCourse" label="Listening" width="100" />
-		<s:Button id="examTipsCourse" label="Exam tips" width="100" />
+		<s:BorderContainer width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">
+			<s:layout>
+				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
+			</s:layout>
+			
+			<s:borderStroke>
+				<s:SolidColorStroke color="#E4E4E4" weight="1" />
+			</s:borderStroke>
+			
+			<s:HGroup width="100%">
+				<s:SWFLoader id="courseIcon" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" width="35" height="35">
+					<s:filters>
+						<s:GlowFilter strength="3" blurX="10" blurY="10" color="#AAAAAA" alpha="0.8" />
+					</s:filters>
+				</s:SWFLoader>
+				
+				<s:Label id="courseTitleLabel" fontSize="24" />
+			</s:HGroup>
+			
+			<s:Label id="courseDescriptionLabel" width="100%" />
+			
+			<tink:Accordion width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" duration="100">
+				<s:NavigatorContent label="Practice zone">
+					<s:Group left="0" right="0" top="10" bottom="10">
+						<!--
+						<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
+							<s:layout>
+								<s:HorizontalLayout />
+							</s:layout>
+						</s:DataGroup>
+						-->
+						<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
+							<s:layout>
+								<s:TileLayout requestedColumnCount="5"/>
+							</s:layout>
+						</s:DataGroup>
+					</s:Group>
+				</s:NavigatorContent>
+				
+				<s:NavigatorContent label="Advice zone">
+					<s:VGroup left="0" right="0" top="10" bottom="10">
+						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" width="300" height="200" />
+						<s:Label text="Watch the teacher giving advice..." />
+					</s:VGroup>
+				</s:NavigatorContent>
+				
+				<s:NavigatorContent label="Exam practice">
+					<s:VGroup left="0" right="0" top="10" bottom="10">
+						<s:Label width="100%" text="Practice paper to get you geared up for the real exam." />
+						<s:Button id="examPractice1Button" />
+						<ui:DifficultyRenderer id="examPractice1Difficulty" />
+						<s:Button id="examPractice2Button" />
+						<ui:DifficultyRenderer id="examPractice2Difficulty" />
+					</s:VGroup>
+				</s:NavigatorContent>
+				
+				<s:NavigatorContent label="Question zone">
+					<s:VGroup left="0" right="0" top="10" bottom="10">
+						<s:Label width="100%" text="Read about the possible questions that will arise in the IELTS exam." />
+						<s:Button id="questionZoneButton" label="Click to read" />
+					</s:VGroup>
+				</s:NavigatorContent>
+				
+			</tink:Accordion>
+		</s:BorderContainer>
 	</s:Group>
 	
-	<s:BorderContainer width="70%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">
-		<s:layout>
-			<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
-		</s:layout>
+	<s:Group width="50%" top="85" height="300">
+		<s:Rect width="100%" height="100%" topLeftRadiusX="10" topLeftRadiusY="10" bottomLeftRadiusX="10" bottomLeftRadiusY="10">
+			<s:stroke>
+				<s:SolidColorStroke color="#E4E4E4" />
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#F2F2F2" />
+			</s:fill>
+		</s:Rect>
 		
-		<s:borderStroke>
-			<s:SolidColorStroke color="#E4E4E4" weight="1" />
-		</s:borderStroke>
-		
-		<s:HGroup width="100%">
-			<s:SWFLoader id="courseIcon" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" width="35" height="35">
-				<s:filters>
-					<s:GlowFilter strength="3" blurX="10" blurY="10" color="#AAAAAA" alpha="0.8" />
-				</s:filters>
-			</s:SWFLoader>
-			
-			<s:Label id="courseTitleLabel" fontSize="24" />
-		</s:HGroup>
-		
-		<s:Label id="courseDescriptionLabel" width="100%" />
-		
-		<tink:Accordion width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" duration="100">
-			<s:NavigatorContent label="Practice zone">
-				<s:Group left="0" right="0" top="10" bottom="10">
-					<!--
-					<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
-						<s:layout>
-							<s:HorizontalLayout />
-						</s:layout>
-					</s:DataGroup>
-					-->
-					<s:DataGroup id="practiceZoneDataGroup" width="100%" height="100%">
-						<s:layout>
-							<s:TileLayout requestedColumnCount="5"/>
-						</s:layout>
-					</s:DataGroup>
-				</s:Group>
-			</s:NavigatorContent>
-			
-			<s:NavigatorContent label="Advice zone">
-				<s:VGroup left="0" right="0" top="10" bottom="10">
-					<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" width="300" height="200" />
-					<s:Label text="Watch the teacher giving advice..." />
-				</s:VGroup>
-			</s:NavigatorContent>
-			
-			<s:NavigatorContent label="Exam practice">
-				<s:VGroup left="0" right="0" top="10" bottom="10">
-					<s:Label width="100%" text="Practice paper to get you geared up for the real exam." />
-					<s:Button id="examPractice1Button" />
-					<ui:DifficultyRenderer id="examPractice1Difficulty" />
-					<s:Button id="examPractice2Button" />
-					<ui:DifficultyRenderer id="examPractice2Difficulty" />
-				</s:VGroup>
-			</s:NavigatorContent>
-			
-			<s:NavigatorContent label="Question zone">
-				<s:VGroup left="0" right="0" top="10" bottom="10">
-					<s:Label width="100%" text="Read about the possible questions that will arise in the IELTS exam." />
-					<s:Button id="questionZoneButton" label="Click to read" />
-				</s:VGroup>
-			</s:NavigatorContent>
-			
-		</tink:Accordion>
-	</s:BorderContainer>
-		
+		<s:Label text="Task 2" />
+	</s:Group>
+	
 </s:Skin>

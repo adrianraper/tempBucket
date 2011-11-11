@@ -65,6 +65,9 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="AccountIcon")]
 		private var accountIcon:Class;
 		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="NotepadIcon")]
+		private var notepadIcon:Class;
+		
 		// Constructor to let us initialise our states
 		public function TitleView() {
 			super();
@@ -88,6 +91,7 @@ package com.clarityenglish.ielts.view.title {
 						{ icon: homeIcon, label: "Home", data: "home" },
 						{ icon: progressIcon, label: "My Progress", data: "progress" },
 						{ icon: accountIcon, label: "My Account", data: "account" },
+						{ icon: notepadIcon, label: "Notepad", data: "account" },
 					] );
 					
 					navBar.requireSelection = true;
