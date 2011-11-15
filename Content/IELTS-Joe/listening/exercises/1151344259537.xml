@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -75,18 +75,18 @@
 <section id="body">
   <audio controls="compact" class="leftFloat" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_005.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</b>
-  </p>
-  <p align="left">
-    <g id="t1">A.  Fewer employees are needed.</g>
-    <g id="t2">B.  It is an inexpensive form of publicity.</g>
-    <g id="t3">C.  Small companies can compete with large international ones.</g>
-    <g id="t4">D.  Companies can do business 24 hours a day, 365 days a year.</g>
-    <g id="t5">E.  Far more potential customers have access to your products.</g>
-    <g id="t6">F.  It is easier to adapt products and services to the market.</g>
-    <g id="t7">G.  Information needed by customers can be kept up-to-date.</g>
-  </p>
+  <div id="targetspotting">
+    <h4>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</h4>
+	<p></p>
+  	<p><g id="t1">A.  Fewer employees are needed.</g></p>
+    <p><g id="t2">B.  It is an inexpensive form of publicity.</g></p>
+    <p><g id="t3">C.  Small companies can compete with large international ones.</g></p>
+    <p><g id="t4">D.  Companies can do business 24 hours a day, 365 days a year.</g></p>
+    <p><g id="t5">E.  Far more potential customers have access to your products.</g></p>
+    <p><g id="t6">F.  It is easier to adapt products and services to the market.</g></p>
+    <p><g id="t7">G.  Information needed by customers can be kept up-to-date.</g></p>
+  
+  </div>
 </section>
 
 <section id="fb1">

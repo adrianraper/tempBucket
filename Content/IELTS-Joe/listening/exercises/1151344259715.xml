@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -81,7 +81,20 @@
 		
 </header>
 	
-<section id="body"><audio controls="compact" class="leftFloat" src="../media/ST_LN2b.mp3" mode="4" id="1002"/><img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Setting up a web site</b></font></p><p align="left"><font color="#000000"><b>Step 1.	</b>Find a reliable Internet Service Provider (ISP).</font></p>Step 2.	Acquire (5) <input id="q1"/>Step 3.	Look at (6) <input id="q2"/>Step 4.	Determine what the purpose of the web site is	and who (7) <input id="q3"/>Step 5.	Collect (8) <input id="q4"/>Step 6.	Test on a low specification computer with 	a (9) <input id="q5"/>Step 7.	Test on different configurations of computer	software and server.&#xA0;Step 8.	Set up your web site once but	(10) <input id="q6"/><p align="left"><font size="2"/></p></section>
+<section id="body"><audio controls="compact" class="leftFloat" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
+<img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"/>
+<div id="targetspotting">
+<h1><p>Setting up a web site</p></h1>
+<p><br/><b>Step 1.	</b>&#xA0;Find a reliable Internet Service Provider (ISP).</p>
+<p><b>Step 2.	</b>&#xA0;Acquire (5)&#xA0;<input id="q1"/></p>
+<p><b>Step 3.	</b>&#xA0;Look at (6)&#xA0;<input id="q2"/></p>
+<p><b>Step 4.	</b>&#xA0;Determine what the purpose of the web site is	and who (7)&#xA0;<input id="q3"/></p>
+<p><b>Step 5.	</b>&#xA0;Collect (8) <input id="q4"/></p>
+<p><b>Step 6.	</b>&#xA0;Test on a low specification computer with 	a (9)&#xA0;<input id="q5"/></p>
+<p><b>Step 7.	</b>&#xA0;Test on different configurations of computer	software and server.&#xA0;</p>
+<p><b>Step 8.	</b>&#xA0;Set up your web site once but	(10)&#xA0;<input id="q6"/></p>
+</div>
+</section>
 
 <section id="rt2001">
   <p align="left">You should be able to tell from the title of the flow chart and the information provided that you will hear someone talking about how to set up a web site.</p>

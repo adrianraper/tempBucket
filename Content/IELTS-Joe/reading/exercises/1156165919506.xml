@@ -53,8 +53,8 @@
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/LC_AR_002.JPG" mode="1" id="1001"/>
   
+  <br/>
   <ol id="splitquestionList">
     <li id="1">The truth probably lies between two extremes.</li><input id="q1"/>
     <li id="2">How a theory was disproved.</li><input id="q2"/>
@@ -66,8 +66,11 @@
 </section>
 
 <section id="readingText">
-<h1>Do animals talk?</h1>
 <br/>
+<img class="leftfloat" src="../media/LC_AR_002.JPG" mode="1" id="1001"/>
+
+<h1><p>Do animals talk?</p></h1>
+
 <div id="reading">
 <p class="hangingIndent"><b>A</b>&#xA0;Do any animals naturally have a true language? In order to answer this question, we must compare human language with animal communication. But such a comparison presents a number of perhaps unsolvable problems. Two in particular need to be discussed before we can give a coherent reply to the query, Do animals talk naturally?</p>
 
@@ -96,9 +99,9 @@
 
 
 <p><b>Glossary</b></p>
-   <p class="hangingIndent">1.  puff adder: a large poisonous African snake.</p>
-	<p class="hangingIndent">2.  hyena: a wild dog-like animal native to Africa and Asia.</p>
-	<p class="hangingIndent">3.  Masai tribesman: a member of an African tribe of cattle herders.</p>
+   <p>1.  puff adder: a large poisonous African snake.</p>
+	<p>2.  hyena: a wild dog-like animal native to Africa and Asia.</p>
+	<p>3.  Masai tribesman: a member of an African tribe of cattle herders.</p>
 
 
 <p>The Articulate Mammal, Jean Aitchison, Routledge 1998, pp. 24-26.</p>

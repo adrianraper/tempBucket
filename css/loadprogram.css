@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+html{-webkit-text-size-adjust:none;} 
+
+body {
+	margin: 10px 0 0 0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:center;
+	background-color:#F5F5F5;
+}
+
+#altContent {
+	margin:40px 0 0 0;
+	padding:0;
+	text-align: center;
+}
+
+

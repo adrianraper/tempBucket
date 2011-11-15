@@ -25,14 +25,20 @@
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
 			
-			<!-- this is for the rotating course selector -->
-			<flashcomponents:CourseSelectorWidget />
-			
-			<s:Button id="writingCourse" label="Writing" width="100" />
-			<s:Button id="speakingCourse" label="Speaking" width="100" />
-			<s:Button id="readingCourse" label="Reading" width="100" />
-			<s:Button id="listeningCourse" label="Listening" width="100" />
-			<s:Button id="examTipsCourse" label="Exam tips" width="100" />
+			<!-- this is for the rotating course selector 
+			<flashcomponents:LeftMenu />
+			-->
+			<s:Image id="loader1" source="@Embed(source='assets/leftmenu.png')" width="90%" /> 
+			<s:Group width="100%" height="100%">
+				<s:layout>
+					<s:HorizontalLayout />
+				</s:layout>
+				<s:Button id="writingCourse" label="Writing" width="80" />
+				<s:Button id="speakingCourse" label="Speaking" width="80" />
+				<s:Button id="readingCourse" label="Reading" width="80" />
+				<s:Button id="listeningCourse" label="Listening" width="80" />
+				<s:Button id="examTipsCourse" label="Exam tips" width="80" />
+			</s:Group>
 		</s:Group>
 		
 		<s:BorderContainer width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">

@@ -79,7 +79,7 @@
 
 <section id="readingText">
 <h1>Robomoths</h1>
-<br/>
+
 <div id="reading">
 <p class="hangingIndent"><b>A</b>&#xA0;With rare exceptions, such as bees and silkworms, the insect world is a source of pests rather than of pets or pack animals. In an age of miniaturisation, however, a few researchers are wondering if more insects might be harnessed to the service of man. One is John Hildebrand, a neurobiologist at the University of Arizona. As part of a project run by America's Defence Advanced Research Projects Agency (DARPA), he and his colleagues have been working with the giant sphinx moth to create a "biobot" &#x2013; an animal that can be controlled electronically by a human. They have designed a radio transmitter small enough to attach to a sphinx moth without impairing its ability to fly. The next stage is to add a receiver to tell the moth where to go.</p>
 
@@ -97,6 +97,7 @@
 
 <p class="hangingIndent"><b>H</b>&#xA0;If lepidopteran mine detectors work, they could be the start of a new industry. The rate at which video cameras are being miniaturised means that they, too, may soon be light enough for insects to carry. That would have obvious military applications, even if one countermeasure is obvious, too: surrounding sensitive installations with giant candles.</p>
 
+<p><b>Glossary</b></p>
 <p>1. landmine: a bomb which is hidden in the ground and explodes when a person or vehicle passes over it.</p>
 <p>2. lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</p>
 

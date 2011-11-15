@@ -36,20 +36,60 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var coveragePieChart:AnyChartFlex;
 		
+		private static const chartTemplates:XML = 
+<anychart>
+  <settings>
+    <animation enabled="True" />
+  </settings>
+  <charts>
+    <chart plot_type="CategorizedHorizontal">
+      <data_plot_settings default_series_type="Bar">
+        <bar_series group_padding="0.5">
+          <tooltip_settings enabled="false" />
+          <label_settings enabled="true">
+            <background enabled="false" />
+            <position anchor="Center" valign="Center" halign="Center" />
+            <font color="White" />
+            <format />
+		  </label_settings>
+		</bar_series>
+	  </data_plot_settings>
+	  <data>
+		<series name="Skill" type="Bar" palette="Default">
+		</series>
+	  </data>
+	  <chart_settings>
+		<chart_background enabled="false" />
+		<title enabled="false" />
+		<legend enabled="false" />
+		<axes>
+		  <y_axis enabled="false" position="Opposite">
+			<scale minimum="0" maximum="100" major_interval="50" />
+			<title enabled="false" />
+			<labels enabled="false" />
+		  </y_axis>
+		  <x_axis>
+			<labels>
+				<font size="16" family="Helvetica,Arial" />
+			</labels>
+			<title enabled="false" />
+		  </x_axis>
+		</axes>
+	  </chart_settings>
+	</chart>
+  </charts>
+</anychart>;
 		private var _fullChartXML:XML;
 		
 		public var courseSelect:Signal = new Signal(XML);
-		public var chartTemplatesLoad:Signal = new Signal();
 		
 		public function setSummaryDataProvider(mySummary:Array):void {
-			// Check that we DO have the template loaded
-			if (_fullChartXML) {
-				// We have the chart template, inject the data from the data provider
-				for each (var point:Object in mySummary) {
-					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.value}/>);
-				}
-				coveragePieChart.anychartXML = _fullChartXML;
+			
+			// We have the chart template, inject the data from the data provider
+			for each (var point:Object in mySummary) {
+				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.value}/>);
 			}
+			coveragePieChart.anychartXML = _fullChartXML;
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -81,8 +121,7 @@ package com.clarityenglish.ielts.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case coveragePieChart:
-					// Load the chart templates
-					chartTemplatesLoad.dispatch();
+					initCharts(chartTemplates);
 					break;
 			}
 		}
@@ -102,12 +141,13 @@ package com.clarityenglish.ielts.view.home {
 			}
 		}
 		/**
-		 * Many settings for the pie chart are completely static and can be initialised here 
-		 * The data comes from XML template files loaded by ConfigProxy
+		 * Many settings for the pie chart are completely static and can be initialised/reset here 
 		 */
 		public function initCharts(templates:XML):void {
 			
 			_fullChartXML = templates;
+			// Set the axis label that we couldn't do in the const XML due to data binding
+			_fullChartXML.charts.chart.data_plot_settings.bar_series.label_settings.format = "{%YValue}{numDecimals:0}%";
 			
 		}
 

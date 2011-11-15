@@ -18,7 +18,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		// Use a setter here to do the injection of the dataProvider into the chart XML
 		//[Bindable]
-		public function set mySummaryDataProvider(dataProvider:ArrayCollection):void {
+		public function set mySummaryDataProvider(dataProvider:Array):void {
 			this._mySummaryDataProvider = dataProvider;
 			if (_fullChartXML) {
 				// TODO. Make this smoother by adding in the data series and redrawing
@@ -29,11 +29,11 @@ package com.clarityenglish.ielts.view.progress.components {
 				//compareChart.anychartXML = _fullChartXML;
 			}
 		}
-		public function get mySummaryDataProvider():ArrayCollection {
+		public function get mySummaryDataProvider():Array {
 			return this._mySummaryDataProvider;
 		}
 		//[Bindable]
-		public function set everyoneSummaryDataProvider(dataProvider:ArrayCollection):void {
+		public function set everyoneSummaryDataProvider(dataProvider:Array):void {
 			this._everyoneSummaryDataProvider = dataProvider;
 			if (_fullChartXML) {
 				// TODO. Make this smoother by adding in the data series and redrawing
@@ -44,14 +44,59 @@ package com.clarityenglish.ielts.view.progress.components {
 				//compareChart.anychartXML = _fullChartXML;
 			}
 		}
-		public function get everyoneSummaryDataProvider():ArrayCollection {
+		public function get everyoneSummaryDataProvider():Array {
 			return this._everyoneSummaryDataProvider;
 		}
 		
-		private var _mySummaryDataProvider:ArrayCollection;
-		private var _everyoneSummaryDataProvider:ArrayCollection;
+		private var _mySummaryDataProvider:Array;
+		private var _everyoneSummaryDataProvider:Array;
+		
 		[Bindable]
 		public var _fullChartXML:XML;
+
+		private static const chartTemplates:XML = 
+			<anychart>
+			  <settings>
+				<animation enabled="True" />
+			  </settings>
+			  <charts>
+				<chart plot_type="CategorizedHorizontal">
+				  <data_plot_settings default_series_type="Bar">
+					<bar_series group_padding="0.5">
+					  <tooltip_settings enabled="false" />
+					  <label_settings enabled="true">
+						<background enabled="false" />
+						<position anchor="Center" valign="Center" halign="Center" />
+						<font color="White" />
+						<format />
+					  </label_settings>
+					</bar_series>
+				  </data_plot_settings>
+				  <data>
+					<series name="Skill" type="Bar" palette="Default">
+					</series>
+				  </data>
+				  <chart_settings>
+					<chart_background enabled="false" />
+					<title enabled="false" />
+					<legend enabled="false" />
+					<axes>
+					  <y_axis enabled="false" position="Opposite">
+						<scale minimum="0" maximum="100" major_interval="50" />
+						<title enabled="false" />
+						<labels enabled="false" />
+					  </y_axis>
+					  <x_axis>
+						<labels>
+							<font size="16" family="Helvetica,Arial" />
+						</labels>
+						<title enabled="false" />
+					  </x_axis>
+					</axes>
+				  </chart_settings>
+				</chart>
+			  </charts>
+			</anychart>;
 		
 		/*
 		public function setMySummaryDataProvider(dataProvider:Array):void {
@@ -90,6 +135,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			switch (instance) {
 				case compareChart:
+					initCharts(chartTemplates);
 					break;
 			}
 		}
@@ -100,121 +146,14 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		/**
 		 * Many settings for the pie chart are completely static and can be initialised here 
-		 * The data comes from XML template files loaded by ConfigProxy
 		 */
 		public function initCharts(templates:XML):void {
 			
-			// TODO. You can use the same XML to hold multiple chart templates, pull out just the one you want here
 			_fullChartXML = templates;
-			
-			// I would like to draw the base chart now with 0 data points
-			// But you can't, as this might be called before the chart is added
-			//compareChart.anychartXML = templates;
+			// Set the axis label that we couldn't do in the const XML due to data binding
+			_fullChartXML.charts.chart.data_plot_settings.bar_series.label_settings.format = "{%YValue}{numDecimals:0}%";
 			
 		}
-		/*
-		 * Comment for now, just sample data
-		var _mainSettings:XML = <settings>
-							<animation enabled="True"/>
-						</settings>;
-
-		var _dataPlotSettings:XML = <data_plot_settings default_series_type = "Bar" enable_3d_mode = "true"
-								z_padding = "0.5" z_aspect = "1"
-								z_elevation="45" >
-								<bar_series point_padding="0" group_padding="1" style="filledGradient">
-									<tooltip_settings enabled="true">
-										<format>{"{%YValue}{numDecimals:0}"}</format>
-									</tooltip_settings>
-								</bar_series>
-							</data_plot_settings>;
-		
-		var _chartStyles:XML = <styles>
-					<bar_style name="filledGradient">
-						<fill type="Gradient" opacity="1">
-							<gradient>
-								<key position="0" color="Red"/>
-								<key position="1" color="Purple"/>
-							</gradient>
-						</fill>
-						<states>
-							<hover>
-								<fill type="Gradient" opacity="1">
-									<gradient>
-										<key position="0" color="LightColor(%Color)"/>
-										<key position="1" color="DarkColor(%Color)"/>
-									</gradient>
-								</fill>
-							</hover>
-						</states>
-					</bar_style>
-				</styles>;
-		
-		var _axes:XML = <axes>
-					<y_axis>
-						<title rotation="0">
-							<font family="Verdana" size="10" />
-							<text>Number</text>
-						</title>
-						<labels allow_overlap="True" show_first_label="True" show_last_label="True">
-							<font family="Verdana" size="10" />
-							<format>{ "{%Value}{numDecimals:0}" }</format>
-						</labels>
-						<major_tickmark enabled="true" />
-						<scale minimum="0" mode="Overlay"/>
-						<axis_markers>
-							<lines>
-								<line opacity="0">
-									<label enabled="True" position="Axis" rotation="0">
-										<font family="Verdana" size="10" color="Black" bold="False" />
-										<format>{ "{%Value}{numDecimals:0}" }</format>
-									</label>
-								</line>
-							</lines>
-						</axis_markers>
-					</y_axis>
-					<x_axis>
-						<title enabled="false">
-						</title>
-						<labels enabled="true" >
-							<font family="Verdana" size="10" />
-						</labels>
-					</x_axis>
-				</axes>;
-		
-		var _title:XML = <title enabled="true">
-					<text>Showing the number of times the program has been used each month</text>
-				</title>;
-		
-		var _chartSettings:XML = <chart_settings>
-					<chart_background>
-						<border enabled="false"/>
-					</chart_background>
-					{_title}
-					<legend enabled="true" position="Bottom" ignore_auto_item="true">
-						<title enabled="false">
-						</title>
-						<columns_separator enabled="true"/>
-						<background>
-							<inside_margin left="10" right="10"/>
-						</background>
-						<items></items>
-					</legend>
-					{_axes}
-				</chart_settings>;
-		
-		// Full thing before any dynamic data
-		_fullChartXML = <anychart>
-				{_mainSettings}
-				<charts>
-					<chart plot_type="CategorizedVertical">
-						{_dataPlotSettings }
-						{_chartStyles}
-						{_chartSettings}
-						<data><note>nothing here</note></data>
-					</chart>
-				</charts>
-			</anychart>;
-		*/
 
 	}
 	

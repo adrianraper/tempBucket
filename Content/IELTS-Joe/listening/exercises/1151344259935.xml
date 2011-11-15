@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -70,8 +70,19 @@
 <section id="body">
   <audio controls="compact" class="leftFloat" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_007.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList"><tab/><b>11</b>texts with lots of detailed information<a id="a1">B</a><tab/><a id="a2">G</a><tab/><b>12</b>simple language<a id="a3">B</a><tab/><a id="a4">G</a><tab/><b>13</b>texts and graphics together on the same page<a id="a5">B</a><tab/><a id="a6">G</a><tab/><b>14</b>big pictures<a id="a7">B</a><tab/><a id="a8">G</a><tab/><b>15</b>company details on the first page of a web site<a id="a9">B</a><tab/><a id="a10">G</a></ol>
+  
+  <ol id="trueFalse">
+  <li id="11">texts with lots of detailed information</li>
+  <a id="a1"><b>B</b></a><tab/><a id="a2"><b>G</b></a>
+  <li id="12">simple language</li>
+  <a id="a3"><b>B</b></a><tab/><a id="a4"><b>G</b></a>
+  <li id="13">texts and graphics together on the same page</li>
+  <a id="a5"><b>B</b></a><tab/><a id="a6"><b>G</b></a>
+  <li id="14">big pictures</li>
+  <a id="a7"><b>B</b></a><tab/><a id="a8"><b>G</b></a>
+  <li id="15">company details on the first page of a web site</li>
+  <a id="a9"><b>B</b></a><tab/><a id="a10"><b>G</b></a>
+  </ol>
 </section>
 
 <section id="fb1">
@@ -103,7 +114,7 @@
 </section>
 
 <section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell that you will hear someone giving their opinions about designing a web site.</font>&nbsp;Questions 11-15Think about each of these statements and from your own knowledge of web sites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
+	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell that you will hear someone giving their opinions about designing a web site.</font>Questions 11-15Think about each of these statements and from your own knowledge of web sites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
 </section>
 </body>
 </bento>

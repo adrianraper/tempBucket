@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="proofreading" />
-	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -39,12 +39,10 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_AW_007s.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/HF_AW_007.jpg" mode="16" id="1003"/>
-  <br/>
-  <ol id="questionList"/>
+	<img class="rightFloat" src="../media/HF_AW_007s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/HF_AW_007.jpg" mode="16" id="1003"  /><p align="left">The table shows how the percentages of male and female smokers changed in Britain over <g id="t1">more than</g> three decades and compares trends for six socio-economic groups.<g id="t2">Worryingly</g>, smoking became less common for all groups between 1972 and 1999. However, it is clear that throughout the period there was a much higher proportion of smokers in certain socio-economic groups than others.&nbsp;<g id="t3">As far as</g> overall trends, the figures show a dramatic fall in the proportion of smokers for both sexes. For men the percentage <g id="t4">more than</g> halved over the period and for women it fell by <g id="t5">almost</g> a third. Furthermore, the gap between the proportion of men who smoked and women who smoked narrowed from 10 per cent in 1972 to <g id="t6">about 2</g> per cent in 1999.&nbsp;<g id="t7">Encouragingly</g>, the table clearly shows that smoking remained more prevalent among certain socio-economic groups than others. In 1972, a third of professional men smoked compared to <g id="t8">well over</g> two-thirds of unskilled manual workers. <g id="t9">As regards</g> the former are concerned, the proportion of smokers approximately halved over the period. In comparison, the proportion of unskilled manual workers who smoked fell by <g id="t10">exactly</g> a third.&nbsp;To sum up, we can say that while smoking generally became less popular in Britain over the period, it became increasingly associated with the manual socio-economic groups.</p><p align="left"><font size="2"></font></p>
+		<p align="left">
+		<b>Click to enlarge</b></p>
 </section>
-
 <section id="fb1">
   <p align="left">
     <font color="#000000"> nearly: 1972-1999 is nearly three decades.</font>

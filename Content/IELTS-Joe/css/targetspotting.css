@@ -1,5 +1,5 @@
 * {
-	font-size: 13px;
+	font-size: 12px;
 	font-family: Verdana;
 }
 
@@ -18,34 +18,7 @@ body > header {
 /* Paragraphs have spacing after them */
 
 
-/* Headings */
-h1 {
-	font-family: Arial Black;
-	font-size: 16px;
-	font-weight: bold;
-	
-	padding-bottom: 10px;
-	
-	text-align: left;
-	line-height: 20em
-}
-h2 {
-	font-family: Arial Black;
-	font-size: 11px;
-	color: #707070;
-	padding-left: 15px;
-	padding-bottom: 25em;
-	padding-right: 25px;
-	text-align: left;
-    line-height: 20em
-}
-h4 {
-	font-family: Arial Black;
-	font-size: 13px;
-	padding-left: 15px;
-	padding-bottom: 0px;
-	padding-top: 0px
-}
+
 /* Lists use numbers. */
 
 /* Multiple-choice answers use letters */
@@ -61,6 +34,7 @@ h4 {
 	padding-right: 25px;
 	padding-left: 15px;
 	padding-top: 0;
+	padding-bottom: 18em;
 	font-size:13px;
 	text-align: justify;
 	line-height: 20em
@@ -135,6 +109,34 @@ a.incorrect, input.incorrect {
 
 a.neutral, input.neutral {
 	color: #0000AA !important;
+}
+/* Headings */
+h1 {
+	font-family: Arial Black;
+	font-size: 16px;
+	font-weight: bold;
+	
+	padding-bottom: 10px;
+	
+	text-align: left;
+	line-height: 20em
+}
+h2 {
+	font-family: Arial Black;
+	font-size: 11px;
+	color: #707070;
+	padding-left: 15px;
+	padding-bottom: 25em;
+	padding-right: 25px;
+	text-align: left;
+    line-height: 20em
+}
+h4 {
+	font-family: Arial Black;
+	font-size: 13px;
+	padding-left: 15px;
+	padding-bottom: 0px;
+	padding-top: 0px
 }
 
 #targetspotting {

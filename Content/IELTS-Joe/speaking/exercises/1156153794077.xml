@@ -60,19 +60,16 @@ Watch Part One of an interview with Zenia. Are the following statements true or 
 
 	<div id="floater"><video id="1003" src="../media/Unit01_e3.flv" autoPlay="false"  /></div>
 	<ol id="questionList">
-		<li id="q1">The Examiner introduces herself to the candidate.<br/>
-			<a id="a1" >True</a><tab/>
-			<a id="a2" >False</a>
-		</li>
-		<li id="q2">Zenia has to give the Examiner her full name.<br/><a id="a3" >True</a><tab/><a id="a4" >False</a></li>
-		<li id="q3">Zenia does not need to produce identification.<br/><a id="a5" >True</a><tab/><a id="a6" >False</a></li>
-		<li id="q4">The candidate has a turn to ask questions.<br/><a id="a7" >True</a><tab/><a id="a8" >False</a></li>
-		<li id="q5">The candidate is asked where she comes from.<br/><a id="a9" >True</a><tab/><a id="a10" >False</a></li>
-		<li id="q6">The candidate asks the Examiner her name.<br/><a id="a11" >True</a><tab/><a id="a12" >False</a></li>
-		<li id="q7">Zenia is asked to describe her home town.<br/><a id="a13" >True</a><tab/><a id="q14" >False</a></li>
-		<li id="q8">The Examiner asks Zenia about her family.<br/><a id="a15" >True</a><tab/><a id="a16" >False</a></li>
-		<li id="q9">The candidate is asked where she was born.<br/><a id="a17" >True</a><tab/><a id="a18" >False</a></li>
-		<li id="q10">The Examiner asks Zenia to talk about her life.<br/><a id="a19" >True</a><tab/><a id="aq20" >False</a></li>
+		<li id="q1">The Examiner introduces herself to the candidate.</li><a id="a1" >True</a><tab/><a id="a2" >False</a>
+		<li id="q2">Zenia has to give the Examiner her full name.</li><a id="a3" >True</a><tab/><a id="a4" >False</a>
+		<li id="q3">Zenia does not need to produce identification.</li><a id="a5" >True</a><tab/><a id="a6" >False</a>
+		<li id="q4">The candidate has a turn to ask questions.</li><a id="a7" >True</a><tab/><a id="a8" >False</a>
+		<li id="q5">The candidate is asked where she comes from.</li><a id="a9" >True</a><tab/><a id="a10" >False</a>
+		<li id="q6">The candidate asks the Examiner her name.</li><a id="a11" >True</a><tab/><a id="a12" >False</a>
+		<li id="q7">Zenia is asked to describe her home town.</li><a id="a13" >True</a><tab/><a id="q14" >False</a>
+		<li id="q8">The Examiner asks Zenia about her family.</li><a id="a15" >True</a><tab/><a id="a16" >False</a>
+		<li id="q9">The candidate is asked where she was born.</li><a id="a17" >True</a><tab/><a id="a18" >False</a>
+		<li id="q10">The Examiner asks Zenia to talk about her life.</li><a id="a19" >True</a><tab/><a id="aq20" >False</a>
 	</ol>
 </section>
 <section id="fb1">

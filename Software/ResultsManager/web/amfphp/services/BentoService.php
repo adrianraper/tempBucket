@@ -223,9 +223,6 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param progress. This object tells us what type of progress data to return
-	 *  	loadMySummary:Boolean = false;
-	 *		loadEveryoneSummary:Boolean = false;
-	 *		loadMyDetails:Boolean = false;
 	 */
 	function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
 		
@@ -240,13 +237,19 @@ class BentoService extends AbstractService {
 		$progress = New Progress();
 		// Each type of progress that we get goes back in data.
 		$progress->type = $progressType;
-		if ($progressType == Progress::PROGRESS_MY_SUMMARY) {
-			$rs = $this->progressOps->getMySummary($userID, $productCode);
-			$progress->dataProvider = $this->progressOps->mergeXMLAndData($rs);
-		}
-		if ($progressType == Progress::PROGRESS_EVERYONE_SUMMARY) {
-			$rs = $this->progressOps->getEveryoneSummary($productCode);
-			$progress->dataProvider = $this->progressOps->mergeXMLAndData($rs);
+		switch ($progressType) {
+			case Progress::PROGRESS_MY_SUMMARY:
+				$rs = $this->progressOps->getMySummary($userID, $productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+				break;
+			case Progress::PROGRESS_EVERYONE_SUMMARY:
+				$rs = $this->progressOps->getEveryoneSummary($productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+				break;
+			case Progress::PROGRESS_MY_DETAILS:
+				$rs = $this->progressOps->getMyDetails($productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
+				break;
 		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else

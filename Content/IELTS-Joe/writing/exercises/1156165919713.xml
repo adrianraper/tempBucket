@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="proofreading" />
-	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -41,8 +41,17 @@
 <section id="body">
   <img class="rightFloat" src="../media/Unit02_Write_e7n8_s.jpg" mode="1" id="1003"/>
   <img class="leftFloat" src="../media/Unit02_Write_e7n8.jpg" mode="16" id="1004"/>
-  <br/>
-  <ol id="questionList"/>
+  <p align="left">The chart shows the <g id="t1">number</g> of Internet users among the female population of the United States in 2000 and 2001. As is perhaps to be expected, there was a higher proportion of Internet users among younger age groups than older age groups. This was true for both years, but the trend was slightly less pronounced in 2001 as Internet use <g id="t2">rise</g> steadily across nearly all age groups.</p>
+  <p align="left">
+    <font color="#000000">In 2000, there was a clear <g id="t3">upward</g> trend in the proportion of the female population who used the Internet as age increased. The percentage was at its highest with the 12 to 15-year-olds. Between the ages of 16 and 55, the percentage fell <g id="t4">steady</g>, but from the age of 55 onwards the figures <g id="t5">fluctuated</g>. The percentage for women in the 65+ age group, for example, was less than a third of that for the 46 to 55-year-olds.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Turning to 2001, there was a marked <g id="t6">peak</g> in the proportion of Internet users for nearly all age groups of women. Most notably, the percentage of users in the 65+ age group nearly <g id="t7">tripled</g> and the proportion in the 36 to 55 age groups also rose <g id="t8">sharp</g>. There was a <g id="t9">dramatical</g> increase in the proportion of users in the 16 to 18-year-old age group, reaching almost 100 per cent. Interestingly, however, there was a slight <g id="t10">plunge</g> in the figure for the very youngest age group.</font>
+  </p>
+  <p align="left">Overall, it can be said that, among the female population of the United States, Internet use became more common and more evenly distributed across age groups between 2000 and 2001.</p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
 </section>
 
 <section id="fb1">

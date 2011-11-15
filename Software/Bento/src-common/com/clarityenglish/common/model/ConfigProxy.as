@@ -46,8 +46,6 @@ package com.clarityenglish.common.model {
 		
 		private var _dateFormatter:DateFormatter;
 
-		//private var browserManager:IBrowserManager;
-
 		/**
 		 * Configuration information comes from three sources
 		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products
@@ -121,6 +119,7 @@ package com.clarityenglish.common.model {
 			
 			try {
 				log.info("Open config file: {0}", filename);
+				// Once the system is stable we might drop the cache clearer
 				urlLoader.load(new URLRequest(filename + "?cache=" + new Date().getTime()));
 			} catch (e:SecurityError) {
 				log.error("A SecurityError has occurred for the config file {0}", filename);
@@ -190,10 +189,6 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						config.mergeAccountData(data);
-						// Now that we have that data, load the chart templates
-						// This could have happeneded earlier, but we might need data from Content paths
-						// We don't need to wait for this as it triggers it's own notification.
-						getChartTemplates();
 
 						// At this point we can check to see if the config contains anything that stops us going on
 						// This account doesn't have this title
@@ -232,46 +227,5 @@ package com.clarityenglish.common.model {
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
 		}
 		
-		/**
-		 * If the chart templates have already been loaded, just return them.
-		 * Otherwise load from XML
-		 *
-		 * @param	String	filename
-		 * @return
-		 */
-		public function getChartTemplates():void {
-			
-			// We only want to load these once, so send back if already in memory
-			if (config.chartTemplates) {
-				sendNotification(CommonNotifications.CHART_TEMPLATES_LOADED, config.chartTemplates);
-				return;
-			}
-			
-			/**
-			 * We will read the chart template from 
-			 *  a. the same place as config.xml
-			 *  b. from an assets path listed in config.xml
-			 *  c. ?
-			 */
-			var filename:String = 'chartTemplates.xml';
-			var urlLoader:URLLoader = new URLLoader();
-			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
-			urlLoader.addEventListener(Event.COMPLETE, onChartTemplatesLoadComplete);
-			
-			try {
-				log.info("Open template file: {0}", filename);
-				urlLoader.load(new URLRequest(filename));
-			} catch (e:SecurityError) {
-				log.error("A SecurityError has occurred for the template file {0}", filename);
-			}
-		}
-		
-		public function onChartTemplatesLoadComplete(e:Event):void {
-			
-			// The XML contains sections for each chart with the static information and placeholders for data and titles.
-			config.chartTemplates = new XML(e.target.data);
-			sendNotification(CommonNotifications.CHART_TEMPLATES_LOADED, config.chartTemplates);
-		}
-
 	}
 }

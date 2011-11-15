@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="proofreading" />
-	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -38,8 +38,24 @@
 <section id="body">
   <img class="rightFloat" src="../media/MM_AW_010s.jpg" mode="1" id="1001"/>
   <img class="leftFloat" src="../media/MM_AW_010.jpg" mode="16" id="1002"/>
-  <br/>
-  <ol id="questionList"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The line graph shows the growth in the total global audience for the BBC World Service <g id="t1">during</g> 1994 and 2001. The bar chart compares trends in the number of listeners to this service in five regions of the world. It can be seen that, overall, the World Service audience increased <g id="t2">at</g> this period. However, <g id="t3">in</g> 1999 to 2001, audience growth occurred in only two of the five regions served.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">As regards the total global audience, apart from a fall <g id="t4">to</g> 5 million <g id="t5">on</g> 1998, the number of listeners rose steadily during this period. From 130 million in 1994, it had risen <g id="t6">by</g> 153 million <g id="t7">before</g> 2001. On average, this is a rise of about 3 million listeners per year. However, the bar chart shows significant changes in the way this total audience was distributed between the different world regions.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The vast majority of listeners <g id="t8">had been located</g> in two regions: Africa and the Middle East and Asia and the Pacific. <g id="t9">In</g> 1999 and 2001, these audiences grew <g id="t10">to</g> 10 million and 5 million listeners for the latter. In contrast, audience sizes in Europe and Eurasia decreased steadily <g id="t11">to</g> this period. In 1999, the audience for the <g id="t12">latter</g> was 16 million and for the <g id="t13">former</g> 12 million. By 2001 these figures had fallen <g id="t14">to</g> 2 million and 3 million respectively. The smallest audience of all <g id="t15">had been</g> in the Americas, which remained stable at 9 million listeners throughout the period.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">In conclusion, over the period described, the BBC World Service broadcast to a growing but less widely dispersed audience.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
 </section>
 
 <section id="fb1">

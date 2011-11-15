@@ -10,7 +10,8 @@ class ProgressOps {
 	
 	/**
 	 * 
-	 * This method loads a menu xml file for future use
+	 * This method loads a menu xml file for future use.
+	 * TODO. Is it worth caching somehow?
 	 * @param string $file
 	 */
 	function getMenuXML($file) {
@@ -20,7 +21,7 @@ class ProgressOps {
 	/**
 	 * This method merges the progress records with XML at the summary level
 	 */
-	function mergeXMLAndData($rs) {
+	function mergeXMLAndDataSummary($rs) {
 	
 		// We will return an array, so start building it
 		$build = array();
@@ -61,15 +62,55 @@ class ProgressOps {
 						);
 		}
 		return $build;
-		/*
-			$progress->dataProvider = array(
-							(object) array('name' => 'Writing', 'value' => '23'),
-							(object) array('name' => 'Speaking', 'value' => '39'),
-							(object) array('name' => 'Reading', 'value' => '68'),
-							(object) array('name' => 'Listening', 'value' => '65'),
-							(object) array('name' => 'Exam tips', 'value' => '100'),
-							);
-		*/
+
+	}
+	/**
+	 * This method merges the progress records with XML at the details level
+	 * The rs contains a record(s) for each exercise that has been done.
+	 * Build an XML data provider for the charts that contains everything, done or not.
+	 */
+	function mergeXMLAndDataDetail($rs) {
+	
+		$menu = $this->menu->head->script->menu;
+		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+		
+		// $rs is likely to contain less records than the XML, so loop through rs adding the records
+		// into the XML, then xsl out the whole lot
+		foreach ($rs as $record) {
+			// There should only be one node with a unique exercise ID
+			$exercise = $menu->xpath('.//exercise[@id='.$record['F_ExerciseID'].']');
+			
+			if (count($exercise)>1) {
+				throw new Exception('The menu xml has more than one exercise node with id='.$record['F_ExerciseID']);
+			}
+			// Set the attribute to done for exercises in all units
+			$exercise[0]->addAttribute('done', '1');
+			
+			// And add a score node as a child IF this is a practice-zone exercise
+			$unit = $exercise[0]->xpath('..');
+			if (isset($unit[0]['class']) && $unit[0]['class']=='practice-zone') {
+				$score = $exercise[0]->addChild('score');
+				$score->addAttribute('score',$record['F_Score']);
+				$score->addAttribute('duration',$record['F_Duration']);
+			}
+		}
+		
+		// Fake data
+		$fakeData = <<<XML
+<course caption="Reading">
+	<unit caption="1">
+		<exercise caption="Academic reading passage (1)" done="1">
+			<score score="65" duration="60" />
+		</exercise>
+		<exercise caption="Academic reading passage (2)" done="1">
+			<score score="55" duration="120" />
+		</exercise>
+	</unit>
+</course>
+XML;
+		return $fakeData;
+		//return $menu->asXML();
+		
 	}
 	/**
 	 * This method gets one user's progress records at the summary level
@@ -100,9 +141,6 @@ EOD;
 	 */
 	function getEveryoneSummary($productCode) {
 			
-		// Whilst we would prefer to exclude your scores, that isn't feasible
-		// as the score table is so large.
-		//	-- AND F_UserID != ?
 		// Start working off cached results
 		$sql = 	<<<EOD
 			SELECT F_CourseID, F_AverageScore as AverageScore, F_AverageDuration as AverageDuration, F_Count as Count FROM T_ScoreCache
@@ -115,5 +153,25 @@ EOD;
 		$bindingParams = array($productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
-	}}
+	}
+	/**
+	 * This method gets all the users' progress records for this title
+	 */
+	function getMyDetails($userID, $productCode) {
+			
+		$sql = 	<<<EOD
+			SELECT F_CourseID, F_UnitID, F_ExerciseID, F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed, F_Duration, F_DateStamp 
+			FROM T_Score
+			WHERE F_UserID=?
+			AND F_ProductCode=?
+			ORDER BY F_CourseID, F_UnitID, F_ExerciseID;
+EOD;
+		// Temporarily use old product code so that you get some data
+		if ($productCode==52)
+			$productCode=12;
+		$bindingParams = array($userID, $productCode);
+		$rs = $this->db->GetArray($sql, $bindingParams);
+		return $rs;
+	}
+}
 ?>

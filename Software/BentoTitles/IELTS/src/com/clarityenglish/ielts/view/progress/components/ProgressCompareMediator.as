@@ -30,16 +30,11 @@ package com.clarityenglish.ielts.view.progress.components {
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
 
-			// Directly call the ConfigProxy to get the chart template for us
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.getChartTemplates();
-			
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,
-				CommonNotifications.CHART_TEMPLATES_LOADED,
 			]);
 		}
 		
@@ -61,20 +56,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					}
 					break;
 				
-				case CommonNotifications.CHART_TEMPLATES_LOADED:
-					
-					view.initCharts(note.getBody() as XML);
 			}
-		}
-		
-		/*
-		// Whenever you pick up a data, add it to the appropriate chart
-		private function onMySummaryDataLoaded(dataProvider:Array):void {
-			view.setMySummaryDataProvider(dataProvider);
-		}
-		private function onEveryoneSummaryDataLoaded(dataProvider:Array):void {
-			view.setEveryoneSummaryDataProvider(dataProvider);
-		}
-		*/
+		}	
 	}
 }

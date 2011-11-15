@@ -27,6 +27,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 			
+			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 		}
 		
@@ -40,27 +41,17 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.handleNotification(note);	
 			
 			switch (note.getName()) {
-				// Here we should listen for notification of data_loaded
-				// then it does view.setMySummary
 				case BBNotifications.PROGRESS_DATA_LOADED:
 				
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
 					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
-						//view.setMyDetailsDataProvider = rs.dataProvider;
+						view.setMyDetailsDataProvider = rs.dataProvider;
 					}
 					break;
 				
 			}
 		}
-		
-		
-		/*
-		// Whenever you pick up the mySummary data, add it to the chart
-		private function onMyDetailsDataLoad(dataProvider:ArrayCollection):void {
-			view.scoreDetails.dataProvider = dataProvider;
-		}
-		*/
-		
+			
 	}
 }

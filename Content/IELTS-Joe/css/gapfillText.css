@@ -1,11 +1,11 @@
 * {
-	font-size: 13px;
+	font-size: 12px;
 	font-family: Verdana;
 }
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: normal;
 	color: #000000;
 	
 }
@@ -15,6 +15,7 @@ body > header {
 	padding-top: 12px;
 }
 
+
 /* Paragraphs have spacing after them */
 p {
 	padding-bottom: 12px;
@@ -22,7 +23,6 @@ p {
 
 
 /* Lists use numbers. */
-
 
 
 
@@ -38,7 +38,8 @@ p {
 	padding-right: 25px;
 	padding-left: 15px;
 	padding-top: 12px;
-	font-size: 13px;
+	padding-bottom: 18em;
+	font-size: 12px;
 	text-align: justify;
 	line-height: 20em
 
@@ -122,8 +123,8 @@ h1 {
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20px;
-	padding-bottom: 4px;
-	
+	padding-bottom: 20%;
+	padding-right: 350%;
 	text-align: left;
 	line-height: 20em
 }
@@ -141,9 +142,27 @@ h2 {
 h4 {
 	font-family: Arial Black;
 	font-size: 13px;
-	padding-left: 15px;
 	padding-bottom: 0px;
 	padding-top: 0px
+}
+h5 {
+	font-family: Arial Black;
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 30em;
+	padding-bottom: 10px;
+	
+	text-align: left;
+	line-height: 5em
+}
+h6 {
+	font-family: Arial Black;
+	font-size: 11px;
+	color: #000000;
+	padding-bottom: 0;
+	padding-right: 25px;
+	text-align: left;
+	line-height: 20em
 }
 
 /* Exercise ID and class */
@@ -156,21 +175,50 @@ h4 {
 	text-align: left;
 	line-height: 20em;
 }
+
+.questionList_target {
+	list-style-type: lowerLatin;
+	padding-left: 0px;
+	padding-right: 225%;
+	padding-top: 20em;
+	text-align: left;
+	line-height: 20em;
+}
+
+.bulletList {
+	list-style-type: circle;
+	list-style-position:outside;
+	padding-left: 10px;
+	padding-right: 225%;
+	padding-top: 5em;
+	padding-bottom: 10em;
+	text-align: left;
+	line-height: 20em;
+}
+
+.bulletList li{
+	text-indent: 10%;
+}
+
 #gapfillText{
 	padding-top: 20px;
 	text-align: left;
 	line-height: 20em;
 	padding-right: 225%;
+
 }
 
-#writing{
-	padding-top: 20px;
+#writing {
+	list-style-type: decimal;
+	margin-left: 20px;
+	padding-right: 25em;
+	padding-top: 20em;
 	text-align: justify;
 	line-height: 20em;
-	padding-right: 25em;
 }
+
 .hangingIndent1 {
  	tab-stops: 30px;
  	text-indent: -145em;
  	padding-left: 145em;
-}	
+}

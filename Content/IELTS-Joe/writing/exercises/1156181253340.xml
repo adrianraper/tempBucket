@@ -2,7 +2,7 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="proofreading" />
-	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
 	<style type="text/css">
@@ -41,8 +41,16 @@
 <section id="body">
   <img class="rightFloat" src="../media/TT_AW_007s.jpg" mode="1" id="1003"/>
   <img class="leftFloat" src="../media/TT_AW_007.jpg" mode="16" id="1005"/>
-  <br/>
-  <ol id="questionList"/>
+  <p align="left">The table shows trends in bicycle use in Britain over a twenty-five-year period and compares distances travelled by age group and sex. In general, men travelled <g id="t1">greatest</g> distances by bicycle than women, and the trend over the period was for people to cycle <g id="t2">less and less</g> miles per year.</p>
+  <p align="left">There was a noticeable decline in the distances travelled by nearly all groups. In 1975 the figure for all cyclists was 51 miles per annum. By 2000 this figure had dropped by just over a fifth. The <g id="t3">more</g> marked decline was for girls aged 11-17, who cycled less than half as <g id="t4">much</g> miles in 2000 as in 1975. The only group who cycled <g id="t5">farer</g> in 2000 than in 1975 were male 18 to 59-year-olds.  However, one of the <g id="t6">strikingest</g> changes shown in the table concerns 5 to 10-year-old girls, whose mileage began to increase towards the end of the period. In fact, they cycled twice the <g id="t7">amount</g> of miles in 2000 as in 1975.</p>
+  <p align="left">The figures show that women cycled <g id="t8">much less</g> miles than men. For most age groups, distances cycled by women were not nearly as <g id="t9">many</g> as those cycled by men. The <g id="t10">greater</g> difference can be seen in the 11-17 age group. At this age, boys cycled about four times as <g id="t11">further</g> as girls.</p>
+  <p align="left">However, the fact that in 2000 the <g id="t12">most youngest</g> girls cycled as many miles as boys in the same age group suggests that the trends shown here may change considerably in the future.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to enlarge.</b>
+  </p>
 </section>
 
 <section id="fb1">

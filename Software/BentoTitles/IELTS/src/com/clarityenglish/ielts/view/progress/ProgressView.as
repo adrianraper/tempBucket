@@ -32,17 +32,6 @@ package com.clarityenglish.ielts.view.progress {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
 		private var progressIcon:Class;
 		
-		/*
-		private var _fullChartXML:XML;
-		private var _everyoneSummary:Array;
-		private var _mySummary:Array;
-		private var _myDetails:ArrayCollection;
-		
-		public var mySummaryDataLoaded:Signal = new Signal(Array);
-		public var everyoneSummaryDataLoaded:Signal = new Signal(Array);
-		public var myDetailsDataLoaded:Signal = new Signal(ArrayCollection);
-		*/
-		
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
@@ -55,29 +44,6 @@ package com.clarityenglish.ielts.view.progress {
 			super.commitProperties();		
 		}
 		
-		// A common function for all of the progress charts
-		/*
-		public function initCharts(chartTemplateXML:XML):void {
-			_fullChartXML = chartTemplateXML;
-		}
-		*/
-		// Holding the progress data for all sub-views
-		// We should send a signal with this data so that IF a view that wants to use it is waiting
-		// it will pick it up and just add it in
-		/*
-		public function setMySummaryDataProvider(dataProvider:Array):void {
-			_mySummary = dataProvider;
-			mySummaryDataLoaded.dispatch(dataProvider);
-		}
-		public function setEveryoneSummaryDataProvider(dataProvider:Array):void {
-			_everyoneSummary = dataProvider;
-			everyoneSummaryDataLoaded.dispatch(dataProvider);
-		}
-		public function setMyDetailsDataProvider(dataProvider:ArrayCollection):void {
-			_myDetails = dataProvider;
-			myDetailsDataLoaded.dispatch(dataProvider);
-		}
-		*/
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
@@ -90,24 +56,14 @@ package com.clarityenglish.ielts.view.progress {
 					progressNavBar.requireSelection = true;
 					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
+				
 				case progressScoreView:
-					//if (_myDetails) {
-					//	instance.setDataProvider(_myDetails);
-					//}
-					break;
+					// The score needs to preset a course to start with
+					instance.course = menu.course.(@caption == 'Reading');
+					// keep going with shared stuff
 				case progressCompareView:
-					// Inject any data you already have into the sub views
-					/*
-					if (_fullChartXML) {
-						instance.initCharts(_fullChartXML);
-					}
-					if (_mySummary) {
-						instance.setMySummaryDataProvider(_mySummary);
-					}
-					if (_everyoneSummary) {
-						instance.setEveryoneSummaryDataProvider(_everyoneSummary);
-					}
-					*/
+					// The sub views run off the same href as the progress view, so directly inject it 
+					instance.href = href;
 					break;
 			}
 		}

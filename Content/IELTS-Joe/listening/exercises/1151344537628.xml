@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -74,7 +74,30 @@
 		
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/AC_LN1.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM	</b></font></p><p align="left">Production	HamletDate	(1) <input id="q1"/> September</p>Time	(2) <input id="q2"/> p.m.Seating Area	(3) <input id="q3"/>No. of Tickets	TWOSeat Numbers	(4)  <input id="q4"/>Total Cost		&#xA3; (5) <input id="q5"/><p align="left"><b>CREDIT CARD DETAILS	</b>Card	_ VISA	_ Master Card	X American ExpressName of Cardholder	Mr Richard (6) <input id="q6"/></p>Card No.	(7) <input id="q7"/>Expiry Date	March 2005<p align="left"><b>DELIVERY METHOD	</b>	_ Hold tickets for collection		X Post tickets	Address	(8) <input id="q8"/>, Winchester</p>Contact No.	2719 8832<p align="left"><font size="2"/></p>
+<section id="body">
+<img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"/>
+<audio controls="compact" class="leftFloat" src="../media/AC_LN1.mp3" mode="4" id="1002"/>
+<div id="gapfillText">
+<h1>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM</h1>
+
+<p><br/>Production	Hamlet</p>
+<p class="hangingIndent1">Date	<tab/><tab/><tab/>(1)&#xA0;<input id="q1"/>&#xA0;September</p>
+<p class="hangingIndent1">Time	<tab/><tab/><tab/>(2)&#xA0;<input id="q2"/>&#xA0;p.m.</p>
+<p class="hangingIndent1">Seating Area	<tab/><tab/>(3)&#xA0;<input id="q3"/></p>
+<p class="hangingIndent1">No. of Tickets	<tab/><tab/>TWO</p>
+<p class="hangingIndent1">Seat Numbers	<tab/><tab/>(4)&#xA0;<input id="q4"/></p>
+<p class="hangingIndent1">Total Cost		<tab/><tab/>&#xA3; (5)&#xA0;<input id="q5"/></p>
+<p class="hangingIndent1"><b>CREDIT CARD DETAILS	</b></p>
+<p class="hangingIndent1">Card	<tab/><tab/><tab/><tab/>_ VISA	<br/>_ Master Card	<br/>X American Express</p>
+<p class="hangingIndent1">Name of Cardholder<tab/>	Mr Richard (6)&#xA0;<input id="q6"/></p>
+<p class="hangingIndent1">Card No.	<tab/><tab/>(7)&#xA0;<input id="q7"/></p>
+<p class="hangingIndent1">Expiry Date	<tab/><tab/>March 2005</p>
+<p class="hangingIndent1"><b>DELIVERY METHOD	</b></p>
+<p class="hangingIndent1">	<tab/><tab/><tab/><tab/>_ Hold tickets for collection		<br/>X Post tickets	</p>
+<p class="hangingIndent1">Address	<tab/><tab/>(8)&#xA0;<input id="q8"/>, Winchester</p>
+<p class="hangingIndent1">Contact No.	<tab/><tab/>2719 8832</p>
+<p align="left"><font size="2"/></p>
+</div>
 </section>
 
 <section id="fb1">

@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -80,15 +80,17 @@
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_006s.jpg" mode="1" id="1001"/>
   <img class="leftFloat" src="../media/EN_AW_006.jpg" mode="16" id="1003"/>
-  <p align="left">A modern wind turbine is a very large construction. The tower needs to rise at least 40 metres from the ground <font color="#0000ff"><input id="q1" type="droptarget"/> give the rotor blades enough clearance <font color="#0000ff"><input id="q2" type="droptarget"/></font> rotate safely. The blades are 20 metres from hub to tip. Their pitch can be altered <font color="#0000ff"><input id="q3" type="droptarget"/></font> they can catch the most wind. </font></p>
-  <p align="left"><font size="2"/>At the top of the tower is the nacelle, <input id="q4" type="droptarget"/> streamlined <input id="q5" type="droptarget"/> to prevent the tower from bending in strong winds. Inside <input id="q6" type="droptarget"/> housing, the gearbox converts the 34 r.p.m. rotating speed of the rotor blades to 1500 r.p.m. <input id="q7" type="droptarget"/> the generator drive shaft. This is <input id="q8" type="droptarget"/> that the turbine produces electricity of the right frequency. </p>
-  <p align="left"><font size="2"/>The turbine also has weather sensors, <input id="q9" type="droptarget"/> located at the top of the nacelle. These measure the speed and direction of the wind. This information is sent to the yaw drive, <input id="q10" type="droptarget"/> turns the turbine to face the wind. As a result, the turbine is always positioned to make the best use of the available wind.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="writing">
+  
+  <p>A modern wind turbine is a very large construction. The tower needs to rise at least 40 metres from the ground &#xA0;<input id="q1" type="droptarget"/>&#xA0; give the rotor blades enough clearance &#xA0;<input id="q2" type="droptarget"/>&#xA0; rotate safely. The blades are 20 metres from hub to tip. Their pitch can be altered &#xA0;<input id="q3" type="droptarget"/>&#xA0; they can catch the most wind. </p>
+  <p>At the top of the tower is the nacelle, &#xA0;<input id="q4" type="droptarget"/>&#xA0; streamlined &#xA0;<input id="q5" type="droptarget"/>&#xA0; to prevent the tower from bending in strong winds. Inside &#xA0;<input id="q6" type="droptarget"/>&#xA0; housing, the gearbox converts the 34 r.p.m. rotating speed of the rotor blades to 1500 r.p.m. &#xA0;<input id="q7" type="droptarget"/>&#xA0; the generator drive shaft. This is &#xA0;<input id="q8" type="droptarget"/>&#xA0; that the turbine produces electricity of the right frequency. </p>
+  <p>The turbine also has weather sensors, &#xA0;<input id="q9" type="droptarget"/>&#xA0; located at the top of the nacelle. These measure the speed and direction of the wind. This information is sent to the yaw drive, &#xA0;<input id="q10" type="droptarget"/>&#xA0; turns the turbine to face the wind. As a result, the turbine is always positioned to make the best use of the available wind.</p>
+  
   <p align="left">
     <b>Click to enlarge</b>
   </p>
+  </div>
 </section>
 
 </body>

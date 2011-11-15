@@ -1,12 +1,14 @@
 * {
-	font-size: 13px;
+	font-size: 12px;
 	font-family: Verdana;
+	color:#333333;
 }
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: normal;
 	color: #000000;
+	line-height: 20em;
 	
 }
 
@@ -15,6 +17,7 @@ body > header {
 	padding-top: 12px;
 	padding-bottom: 12px;	
 }
+
 
 /* Paragraphs have spacing after them */
 
@@ -35,14 +38,19 @@ body > header {
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 
+#readingText {
+	background-image: url(reading_bg.jpg); 
+	background-repeat: no-repeat; }
+	
+
 #readingText p {
 	padding-right: 25em;
 	padding-left: 15em;
-	padding-bottom: 10em;
-	padding-top: 0;
-	font-size:13px;
+	padding-bottom: 20em;
+	padding-top: 0em;
+	font-size:12px;
 	text-align: left;
-	line-height: 20em
+	line-height: 22em
 }
 /* A paragraph class for hanging indents that work with numbers */
 
@@ -111,51 +119,79 @@ a.neutral, input.neutral {
 }
 h1 {
 	font-family: Arial Black;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold;
 	padding-top: 20px;
-	padding-bottom: 5em;
+	padding-bottom: 18em;
 	padding-left: 15px;
+	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
-	;
+	
 }
 h2 {
 	font-family: Verdana;
 	font-size: 11px;
 	color: #3B3131;
 	padding-left: 15px;
-	padding-bottom: 25em;
+	padding-top: 0em;
+	padding-bottom: 18em;
 	padding-right: 25em;
 	text-align: left;
     line-height: 20em
 }
-
+h4 {
+	font-family: Arial Black;
+	font-size: 14px;
+	padding-left: 15px;
+	padding-bottom: 6px;
+	padding-top: 10px;
+	
+}
+h7{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-right: 25em;
+	}
+h8{
+	font-family: Arial Black;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 0em;
+	padding-left: 15px;
+	padding-right: 25px;
+	text-align: left;
+	line-height: 20em;
+	padding-right: 25em;
+}
 /* Exercise ID and class */
 #splitquestionList {
 	list-style-type: decimal;
 	padding-left: 20px;
-	margin-left: 20px;
+
 	padding-right: 35px;
-	
 	padding-bottom: 20em;
 	text-align: left;
 	line-height: 20em;
 	}
-#splitquestionList li {
-	padding-bottom: 20em;
-	text-align: left;
-	line-height: 20em;
-
-}
-
+	
+#splitquestionList li{
+	padding-bottom: 20%;
+	}
+	
+#splitquestionList p{
+	padding-left: -15em
 }
 #gapfillText{
 	padding-top: 20em;
 	padding-bottom: 20em;	
-	text-align: justify;
+	text-align: left;
 	line-height: 20em;
-	padding-right: 215%;
+	padding-right: 25em;
 }
 #mchoices {
 	list-style-type: decimal;
@@ -167,6 +203,12 @@ h2 {
 	}
 	
 
+#dragdrop{
+	padding-top: 12px;
+	text-align: justify;
+	line-height: 22em;
+	padding-right: 25px
+}
 
 
 .hangingIndent {
@@ -185,3 +227,8 @@ h2 {
 	padding-left: 50em;
 }
 
+.hangingIndent1 {
+ 	tab-stops: 30px;
+ 	text-indent: -95em;
+ 	padding-left: 95em;
+	}

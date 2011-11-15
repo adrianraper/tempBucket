@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -107,11 +107,22 @@
 <section id="body">
   <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
   <audio controls="compact" class="leftFloat" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
-  <p align="left"><b>Subject                                Level of Course</b>Italian                            One</p>
-  <p align="left"><b>Course Focus                     Course Fee</b>(1) <input id="q1"/>   &#xA3; (2) <input id="q2"/></p>
-  <p align="left"><b>Length of Course               Days Course Runs</b>(3) <input id="q3"/>             (4) <input id="q4"/></p>
-  <p align="left"><b>Time Class Starts              Length of Class</b>(5) <input id="q6"/> p.m.    (6) <input id="q7"/>&#xA0;</p>
-  <p align="left"><b>Maximum Class Size        Start Dates</b>(7) <input id="q8"/>         5th and 7th September</p>
+  <br/>
+  <div id="gapfillText">
+  <p><b>Subject</b><tab/><tab/><tab/><tab/><b>Level of Course</b></p>
+  <p>Italian <tab/><tab/><tab/><tab/><tab/>One</p>
+  
+  <p><b>Course Focus</b><tab/><tab/><tab/><b>Course Fee</b></p>
+  <p>(1) <input id="q1"/><tab/><tab/>&#xA3; (2) <input id="q2"/></p>
+  
+  <p><b>Length of Course<tab/><tab/><tab/>Days Course Runs</b></p>
+  <p>(3) <input id="q3"/> <tab/><tab/><tab/>(4) <input id="q4"/></p>
+  
+  <p><b>Time Class Starts <tab/><tab/><tab/>Length of Class</b></p>
+  <p>(5) <input id="q6"/> p.m. <tab/><tab/>(6) <input id="q7"/></p>
+  <p><b>Maximum Class Size <tab/><tab/><tab/>Start Dates</b></p>
+  <p>(7) <input id="q8"/><tab/><tab/><tab/>5th and 7th September</p>
+  </div>
 </section>
 
 <section id="fb1">
@@ -121,7 +132,7 @@
 </section>
 
 <section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell from looking at the headings in the table and the information already given that you will hear about the details of a course in Italian.</font>&nbsp;Question 1Think about what aspects language courses focus on. Grammar, vocabulary, pronunciation and skills, for example.&nbsp;Question 2You are given the pound sign, so you know that you must listen out for a price in pounds. Do you know how much a pound is worth? Is the course likely to be closer to a hundred pounds or a thousand pounds?&nbsp;Question 3You know you have to listen out for a period of time, so you should be prepared to hear 'weeks' or 'months' or 'days' mentioned.&nbsp;Question 4There are only seven possibilities for each of the gaps here. Remember when the question is this simple there may be some discussion or misunderstanding and you will have to follow the conversation carefully.&nbsp;Question 5Another straightforward question. You just have to listen out for the time.&nbsp;Question 6 In what form is the length of a class usually given?&nbsp;Question 7 What do you think would be the maximum number in a language class? Definitely not over 30.</p>
+	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell from looking at the headings in the table and the information already given that you will hear about the details of a course in Italian.</font> Question 1Think about what aspects language courses focus on. Grammar, vocabulary, pronunciation and skills, for example. Question 2You are given the pound sign, so you know that you must listen out for a price in pounds. Do you know how much a pound is worth? Is the course likely to be closer to a hundred pounds or a thousand pounds? Question 3You know you have to listen out for a period of time, so you should be prepared to hear 'weeks' or 'months' or 'days' mentioned. Question 4There are only seven possibilities for each of the gaps here. Remember when the question is this simple there may be some discussion or misunderstanding and you will have to follow the conversation carefully. Question 5Another straightforward question. You just have to listen out for the time. Question 6 In what form is the length of a class usually given? Question 7 What do you think would be the maximum number in a language class? Definitely not over 30.</p>
 </section>
 </body>
 </bento>

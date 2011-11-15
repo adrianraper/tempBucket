@@ -65,19 +65,20 @@
 </header>
 	
 <section id="body">
-<img class="leftFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/><br/><audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
-<div id="splitquestionList">
-<p align="left">
-What does Mark say about each language?<br/></p>
+<br/>
+<img class="leftFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/>
+<div id="gapfillText">
+
+<p>What does Mark say about each language?<br/></p>
 
 <p><b>Language</b><tab/><tab/><b>Description</b></p>
-<p>Cornish<tab/><tab/>(1) <input id="q1"/>&#xA0;</p>
-<p>Manx<tab/><tab/>(2) <input id="q2"/>&#xA0;</p>
-<p>Welsh<tab/><tab/>(3) <input id="q3"/>&#xA0;</p>
+<p>Cornish<tab/><tab/><tab/>(1) <input id="q1"/>&#xA0;</p>
+<p>Manx<tab/><tab/><tab/>(2) <input id="q2"/>&#xA0;</p>
+<p>Welsh<tab/><tab/><tab/>(3) <input id="q3"/>&#xA0;</p>
 <p>Achumawi<tab/><tab/>(4) <input id="q4"/>&#xA0;</p>
-<p>Trumai<tab/><tab/>(5) <input id="q5"/>&#xA0;</p>
+<p>Trumai<tab/><tab/><tab/>(5) <input id="q5"/>&#xA0;</p>
 <p>Catalan<tab/><tab/>(6) <input id="q6"/></p>
-<p align="left"><font size="2"/></p>
+
 </div>
 </section>
 
@@ -111,7 +112,9 @@ What does Mark say about each language?<br/></p>
 </section>
 
 <section id="readingText">
-<p align="left"><font color="#000000"><b>Description A:</b></font></p><p>It disappeared as the result of an epidemic.</p><p><b>Description B:</b></p><p>It is spoken by a fifth of the local population.Description C:It is spoken by more children than adults.</p><p><b>Description D:</b></p><p>It disappeared in the first half of the 20th century.<p><b>Description E:</b></p>It has become more widely spoken in recent decades.Description F:It is a compulsory subject in schools.</p><p><b>Description G:</b></p><p>It disappeared in the 19th century.</p><p><b>Description H:</b></p><p>It is only spoken in one village.</p><p><b>Description I:</b></p><p>It is spoken by fewer than a dozen people.</p><p align="left"><font size="2"/></p></section>
+<audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
+<br/>
+<p align="left"><font color="#000000"><b>Description A:</b></font></p><p>It disappeared as the result of an epidemic.</p><p><b>Description B:</b></p><p>It is spoken by a fifth of the local population.Description C:It is spoken by more children than adults.</p><p><b>Description D:</b></p><p>It disappeared in the first half of the 20th century.<p><b>Description E:</b></p>It has become more widely spoken in recent decades.</p><p><b>Description F:</b></p><p> It is a compulsory subject in schools.</p><p><b>Description G:</b></p><p>It disappeared in the 19th century.</p><p><b>Description H:</b></p><p>It is only spoken in one village.</p><p><b>Description I:</b></p><p>It is spoken by fewer than a dozen people.</p><p align="left"><font size="2"/></p></section>
 
 </body>
 </bento>

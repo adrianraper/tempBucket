@@ -129,24 +129,10 @@ package com.clarityenglish.common.model {
 							log.info("Successfully loaded data for type {0}", loadingData);
 
 							// Put the returned data into the cache and send out the notification
-							//loadedResources[loadingData] = data.progress.dataProvider as ArrayCollection;
+							//loadedResources[loadingData] = new ArrayCollection(data.progress.dataProvider);
 							loadedResources[loadingData] = data.progress.dataProvider;
-							//notifyDataLoaded(loadingData);
-							trace(data.progress.dataProvider);
-							var data:Object = {type:loadingData, dataProvider:data.progress.dataProvider};
-							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+							notifyDataLoaded(loadingData);
 							
-							// Fake data
-							/*
-							data.type = "my_summary";
-							data.dataProvider = [
-							{name:'Writing', value:'23'},
-							{name:'Speaking', value:'39'},
-							{name:'Reading', value:'68'},
-							{name:'Listening', value:'65'},
-							{name:'Exam tips', value:'100'}
-							];
-							*/
 						}							
 					} else {
 						// Can't read from the database

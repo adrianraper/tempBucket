@@ -7,6 +7,7 @@
 body > header {
 	font-weight: bold;
 	color: #000000;
+	
 }
 
 /* The body should always have a bit of space at the top */
@@ -15,43 +16,142 @@ body > header {
 }
 
 /* Paragraphs have spacing after them */
-p {
-	padding-bottom: 12px;
-}
+
 
 /* Headings */
-h1 {
-	font-family: Arial;
-	font-size: 14px;
+.title1 {
+	font-family: Arial Black;
+	font-size: 18px;
 	font-weight: bold;
-	color: #0000FF;
-	padding-top: 4px;
+	padding-top: 20px;
+	padding-bottom: 8px;
+	padding-left: 15px;
+	text-align: left;
+	line-height: 20em;
+	padding-right:15px
+}
+.title2  {
+	font-family: Arial Black;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 8px;
 	padding-bottom: 4px;
+	padding-left: 15px;
+	text-align: left;
+	line-height: 20em;
+	padding-right:15px
+}
+
+h4 {
+	font-family: Arial Black;
+	font-size: 14px;
+	padding-left: 15px;
+	padding-bottom: 6px;
+	padding-top: 10px;
+	
+}
+h1 {
+	font-family: Arial Black;
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 4px;
+	
+	text-align: left;
+	line-height: 20em;
 }
 h2 {
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: bold;
-	color: #000099;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #707070;
+	
+	padding-bottom: 25em;
+	padding-right: 25px;
+	text-align: left;
+    line-height: 20em
 }
-		
 /* Lists use numbers. */
-#questionList {
+#splitquestionList {
 	list-style-type: decimal;
 	padding-left: 20px;
-	margin-left: 0px;
-	padding-right: 15px;
+	margin-left: 20px;
+	padding-right: 35px;
+	padding-top: 20em;
+	text-align: left;
+	line-height: 20em;
+}
+#gapfillText{
+	padding-top: 20px;
+	text-align: justify;
+	line-height: 20em;
+	padding-right: 215%;
+}
+
+#presentation{
+	padding-top: 20em;
+	text-align: justify;
+	line-height: 20em;
+	padding-right: 215%;
+	
+}
+
+#dropdown{
+	padding-top: 20em;
+	text-align: left;
+	line-height: 25em;
+	padding-right: 25em;
+	padding-left: 23px;
+}
+#trueFalse {
+	list-style-type: decimal;
+	padding-left: 20px;
+	margin-left: 20px;
+	padding-right: 20px;
+	text-align: left;
+	line-height: 20em;
+}	
+#mchoices {
+	list-style-type: decimal;
+	padding-left: 20px;
+	margin-left: 20px;
+	padding-right: 200%;
+	text-align: left;
+	line-height: 20em;
+	}
+ #questionList {
+	list-style-type: decimal;
+	padding-left: 20px;
+	margin-left: 20px;
+	padding-right: 210%;
+	padding-top: 20em;
+	text-align: left;
+	line-height: 20em;
+	}
+#targetspotting {
+	list-style-type: decimal;
+	padding-left: 20px;
+	margin-left: 20px;
+	padding-right: 210%;
+	padding-top: 20em;
+	text-align: left;
+	line-height: 20em;
 }
 /* Multiple-choice answers use letters */
 .answerList {
 	list-style-type: lowerLatin;
 	padding-left: 15px;
 	margin-left: 0px;
+	line-height: 10em;
 }
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
-#readingText p {
-	padding-right: 12px;
+#readingText p.txt {
+	padding-right: 25px;
+	padding-left: 15px;
+	padding-top: 0;
+	font-size:13px;
+	text-align: justify;
+	line-height: 20em
 }
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {

@@ -1,11 +1,11 @@
 * {
-	font-size: 13px;
+	font-size: 12px;
 	font-family: Verdana;
 }
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: normal;
 	color: #000000;
 	
 }
@@ -64,7 +64,8 @@ h4 {
 	padding-right: 25px;
 	padding-left: 15px;
 	padding-top: 12px;
-	font-size: 13px;
+	padding-bottom: 18em;
+	font-size: 12px;
 	text-align: justify;
 	line-height: 20em
 

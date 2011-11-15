@@ -21,7 +21,14 @@
 	</s:HGroup>	
 	
 	<s:HGroup width="100%" height="100%">
-		<s:DataGrid id="scoreDetails" width="70%" height="100%" dataProvider="{hostComponent.setMyDetailsDataProvider}" />
+		<s:DataGrid id="scoreDetails" width="70%" height="100%" dataProvider="{hostComponent.setMyDetailsDataProvider.children()}" >
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn headerText="Name" dataField="@caption" />
+					<s:GridColumn headerText="done" dataField="@done" />					
+				</s:ArrayList>
+			</s:columns>
+		</s:DataGrid>
 		<s:VGroup width="30%" height="100%">
 			<s:Label text="Practice Zone" />
 			<s:Label text="Advice Zone" />

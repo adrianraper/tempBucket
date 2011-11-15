@@ -30,10 +30,6 @@
 			
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
-			// AskDK. It doesn't seem to make much sense to use a signal here
-			// after all we are simply going to trigger the signal in view.partAdded
-			// Why not simply save the signal and just do it here?
-			view.chartTemplatesLoad.add(onChartTemplatesLoad);
 
 			// Trigger loading of progress data for my summary chart
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
@@ -43,13 +39,11 @@
 		override public function onRemove():void {
 			super.onRemove();
 			view.courseSelect.remove(onCourseSelected);
-			view.chartTemplatesLoad.remove(onChartTemplatesLoad);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 					BBNotifications.PROGRESS_DATA_LOADED,
-					CommonNotifications.CHART_TEMPLATES_LOADED,
 				]);
 		}
 		
@@ -66,13 +60,6 @@
 					}
 					break;
 				
-				// Once the chart templates are loaded, inject them into the view
-				case CommonNotifications.CHART_TEMPLATES_LOADED:
-					
-					// Inject the chart templates back into the view
-					view.initCharts(note.getBody() as XML);
-					break;
-				
 			}
 		}
 		
@@ -85,15 +72,5 @@
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 		}
 		
-		/**
-		 * Trigger the loading of the chart templates
-		 *
-		 */
-		private function onChartTemplatesLoad():void {
-			
-			// directly call the ConfigProxy to get the template for us
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.getChartTemplates();
-		}
 	}
 }

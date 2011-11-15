@@ -1,11 +1,11 @@
 * {
-	font-size: 13px;
+	font-size: 12px;
 	font-family: Verdana;
 }
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: ; normal;
 	color: #000000;
 	
 }
@@ -17,38 +17,11 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
+	padding-top: 5em;
 	padding-bottom: 12px;
 }
 
-/* Headings */
-h1 {
-	font-family: Arial Black;
-	font-size: 16px;
-	font-weight: bold;
-	padding-top: 20px;
-	padding-bottom: 4px;
-	padding-left: 15px;
-	text-align: left;
-	line-height: 20em
-}
-h2 {
-	font-family: Arial Black;
-	font-size: 11px;
-	color: #707070;
-	padding-left: 15px;
-	padding-bottom: 25em;
-	padding-right: 25px;
-	text-align: left;
-    line-height: 20em
-}
 
-h4 {
-	font-family: Arial Black;
-	font-size: 13px;
-	padding-left: 15px;
-	padding-bottom: 0px;
-	padding-top: 0px
-}
 /* Lists use numbers. */
 
 
@@ -64,9 +37,10 @@ h4 {
 	padding-right: 25px;
 	padding-left: 15px;
 	padding-top: 12px;
-	font-size: 13px;
-	text-align: justify;
-	line-height: 20em
+	padding-bottom: 18em;
+	font-size: 12px;
+	text-align: left;
+	line-height: 22em
 
 
 }
@@ -103,6 +77,8 @@ a, span[draggable="true"] {
 	border-color: #B5B5B5;
 	border-radius: 12px;
 	background-color: #FFFFFF;
+	
+	
 }
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
@@ -141,6 +117,41 @@ a.incorrect, input.incorrect {
 a.neutral, input.neutral {
 	color: #0000AA !important;
 }
+/* Headings */
+
+	
+}
+h1 {
+	font-family: Arial Black;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 0em;
+	padding-left: 15px;
+	padding-right: 25px;
+	text-align: left;
+	line-height: 20em;
+	
+}
+h2 {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #3B3131;
+	padding-left: 15px;
+	padding-top: 0em;
+	padding-bottom: 0em;
+	padding-right: 25em;
+	text-align: left;
+    line-height: 20em
+}
+h4 {
+	font-family: Arial Black;
+	font-size: 14px;
+	padding-left: 15px;
+	padding-bottom: 6px;
+	padding-top: 10px;
+	
+}
 
  #questionList {
 	list-style-type: decimal;
@@ -153,8 +164,20 @@ a.neutral, input.neutral {
 }
 
 #gapfillText{
-	padding-top: 20px;
+	padding-top: 12px;
 	text-align: justify;
 	line-height: 22em;
-	padding-right: 25em
+	padding-right: 365%
 }
+
+#writing {
+	list-style-type: decimal;
+	margin-left: 20px;
+	padding-right: 25em;
+	padding-top: 20em;
+	text-align: justify;
+	line-height: 20em;
+}
+
+
+	

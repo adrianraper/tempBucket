@@ -89,7 +89,8 @@
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/LE_AR_002.jpg" mode="1" id="1001"/>
+<br/>
+  
   <b/>
   <ol id="splitquestionList">
     <li id="1">Which game company was established in 1858?</li>
@@ -98,13 +99,13 @@
 	<input id="q2"/>
     <li id="3">Who did Milton Bradley produce miniaturised games for?</li>
 	<input id="q3"/>
-    <li id="4">What production technique was dropped at the turn of the last century to make games more affordable?</li>
+	<li id="4">What production technique was dropped at the turn of the last century to make games more affordable?</li>
 	<input id="q4"/>
     <li id="5">What aspect of the late 1940s lifestyle was reflected in the games of that period?</li>
 	<input id="q5"/>
     <li id="6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.</li>
 	<input id="q6"/>
-    <p align="left">List <tab/> <b> FOUR</b> <tab/> materials which have been used to make game pieces.</p> 
+    <p align="left">List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.</p> 
     <li id="7">
       <input id="q7"/>
     </li>
@@ -117,11 +118,15 @@
     <li id="10">
       <input id="q10"/>
     </li>
-  </ol>
+	</ol>
+  
 </section>
 
 <section id="readingText">
-  <h1>BOARD GAMES</h1>
+<br/>
+<img class="leftFloat" src="../media/reading_bg.jpg" mode="1" id="1001"/>
+
+  <h8><p>Board Games</p></h8>
   <h2><p>How it all began</p></h2>
   <p>The first documented board game in America, A Traveler's Tour Through the United States, appeared in 1822. Demand for this new form of pastime was limited, and it wasn't until W. &amp; S.B. Ives successfully marketed the Mansion of Happiness in 1843 that production began to pick up. The McLoughlin Brothers, one of the most successful board game producers of the 19th century, started its business in 1858.</p>
   <p>Strict Victorian mores guided early board game producers. The games were viewed as educational tools, intended to teach children lessons in history, geography, and good moral conduct. Dice were frowned upon, owing to an early Puritan belief that the tiny cubes were "instruments of the Devil". As the century drew to a close, the rules governing board game design eased and inventors were free to create games that were more entertaining and less moralistic, including examples based on baseball, yachting, and horse racing.</p>

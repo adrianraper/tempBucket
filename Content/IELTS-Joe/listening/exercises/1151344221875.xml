@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-10" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -68,11 +68,13 @@
 	
 <section id="body">
   <audio controls="compact" class="leftFloat" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
-  <img class="rightFloat" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
+  <img class="floater" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
+  <div id="questionList">
   <p align="left">13. <input id="q1"/></p>
   <p align="left">14. <input id="q2"/></p>
   <p align="left">15. <input id="q3"/></p>
   <p align="left">16. <input id="q4"/></p>
+  </div>
   <p align="left">
     <font size="2"/>
   </p>
@@ -126,8 +128,6 @@
   </p>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">From the diagram you should be able to tell that you will hear someone describing the layout of a library. </font>Notice that you have to move clockwise from number 13.&nbsp;Questions 13 – 16</p>Look at the areas already marked in the library. What do you think is missing?
-</section>
+
 </body>
 </bento>
