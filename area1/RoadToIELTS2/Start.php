@@ -83,7 +83,7 @@
 		}
 		
 		function onLoad() {
-			thisMovie("orchid").focus();
+			thisMovie("bento").focus();
 		}
 		// *********
 		// *********
@@ -95,12 +95,11 @@
 		if (swfobject.getQueryParamValue("resize")=="true") {;
 			var coordsWidth = "100%"; var coordsHeight = "100%";
 		} else {
-			var coordsWidth = 800; var coordsHeight = 600;
+			var coordsWidth = 1000; var coordsHeight = 600;
 		}
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
-		argList+="<?php if (file_exists(dirname(__FILE__).'/'.$licenceFile)) {echo '&licence='.$licenceFile;} ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
 		
 		// see whether variables have come from command line or, preferentially, session variables
@@ -149,8 +148,8 @@
 			ip: "<?php echo $ip ?>"
 		};
 		var params = {
-			id: "Bento",
-			name: "Bento",
+			id: "bento",
+			name: "bento",
 			allowfullscreen: "true"
 		};
 		// v6.5.5.6 Allow resize screen mode
@@ -160,8 +159,8 @@
 			params.scale="noScale";
 		}
 		var attr = {
-			id: "Bento",
-			name: "Bento"
+			id: "bento",
+			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + "IELTSApplication.swf" + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);

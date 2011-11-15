@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
 	<dbHost>2</dbHost>
 	<productCode>12</productCode>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN*</language>
-	<contentPath>../../../../Content/RoadToIELTS2-Academic/Courses/1150976390861/</contentPath>
-	<remoteDomain>http://claritydevelop/</remoteDomain>
-	<remoteGateway>http://claritydevelop/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://dock.projectbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>BentoService</remoteService>
 </config>
