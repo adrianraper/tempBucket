@@ -44,6 +44,7 @@ package com.clarityenglish.bento.view.base {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 		}
 		
+		[Bindable]
 		public function get href():Href {
 			return _href;
 		}

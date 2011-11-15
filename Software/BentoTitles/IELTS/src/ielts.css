@@ -4,6 +4,7 @@
 @namespace login "com.clarityenglish.ielts.view.login.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
+@namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
@@ -116,12 +117,15 @@ zone|ZoneView tink|Accordion #buttonBar {
 	cornerRadius: 0;
 }
 
-zone|ZoneView #practiceZoneDataGroup almer|SkinnableItemRenderer {
+zoneui|PopoutExerciseSelector {
+	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
+}
+
+zoneui|ImageItemRenderer {
 	skinClass: ClassReference("skins.ielts.zone.ImageItemRendererSkin");
 }
 
-zone|ZoneView #examPractice1Difficulty,
-zone|ZoneView #examPractice2Difficulty {
+zoneui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
 }
 

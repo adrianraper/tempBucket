@@ -3,9 +3,14 @@ package com.clarityenglish.ielts.view.zone.ui {
 	
 	public class DifficultyRenderer extends SkinnableDataRenderer {
 		
-		/**
-		 * This is an example of using binding in the skin (e.g. {hostComponent.data}) to get data into the skin (see ButtonItemRenderer for another method) 
-		 */ 
+		[Bindable]
+		public var difficulty:int;
+		
+		public override function set data(value:Object):void {
+			super.data = value;
+			
+			difficulty = data.@difficulty;
+		}
 		
 	}
 	

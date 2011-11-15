@@ -1,7 +1,10 @@
 package com.clarityenglish.ielts.view.zone.ui {
+	
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
 	import com.clarityenglish.bento.vo.Href;
+	
+	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -34,20 +37,17 @@ package com.clarityenglish.ielts.view.zone.ui {
 		[Embed(source="skins/ielts/assets/ioErrorThumbnail.png")]
 		private static var ioErrorThumbnail:Class;
 		
-		/**
-		 * This is an example of using injection from the component to get data into the skin (see DifficultyRenderer for another method)
-		 */ 
 		public override function set data(value:Object):void {
 			super.data = value;
 			
 			if (data) {
 				var thumbnailSource:Object = (data.@thumbnail.toString() != "") ? href.createRelativeHref(null, data.@thumbnail.toString()).url : defaultExerciseThumbnail;
-				trace(thumbnailSource);
 				image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;
 			} else {
 				image.source = null;
 			}
 		}
+		
 		protected function onComplete(e:Event):void {
 			log.info("onComplete for {0}", e.toString());
 		}

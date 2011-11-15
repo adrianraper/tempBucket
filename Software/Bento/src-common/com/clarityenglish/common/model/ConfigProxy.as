@@ -72,38 +72,8 @@ package com.clarityenglish.common.model {
 			} else {
 				configFile = "config.xml";
 			}
-			// Problems with this. 
-			// Security loading of /Software/ResultsManager/web/config.xml from http://dock.projectbench
-			// also if udp is /area1/RoadToIELTSV2 then it doesn't try to load .swf from same folder as webshare
-			//if (FlexGlobals.topLevelApplication.parameters.userDataPath) {
-			//	var userDataPath:String = FlexGlobals.topLevelApplication.parameters.userDataPath;
-			//} else {
-				//var url:String = FlexGlobals.topLevelApplication.loaderInfo.url;
-				if (FlexGlobals.topLevelApplication.browserManager) {
-					var url:String = FlexGlobals.topLevelApplication.browserManager.url;
-				} else {
-					url = FlexGlobals.topLevelApplication.loaderInfo.url;
-				}
-				var baseFolder:String = url.substr(0, url.lastIndexOf('/'));
-				/*
-				var baseURL:String = FlexGlobals.topLevelApplication.browserManager.base; 
-				var fragment:String = FlexGlobals.topLevelApplication.browserManager.fragment;
-				var fullURL:String = mx.utils.URLUtil.getFullURL(url, url);
-				var port:int = mx.utils.URLUtil.getPort(url);
-				var protocol:String = mx.utils.URLUtil.getProtocol(url);
-				var serverName:String = mx.utils.URLUtil.getServerName(url);
-				var isSecure:Boolean = mx.utils.URLUtil.isHttpsURL(url);
-				trace("fullURL="+fullURL);
-				trace("baseURL="+baseURL);
-				trace("fragment="+fragment);
-				trace("url="+url);
-				*/
-				var userDataPath:String = baseFolder;
-			//}
-			if (userDataPath.substr(0,-1)!='/')
-				userDataPath+='/';
 			
-			getConfigFile(userDataPath + configFile);
+			getConfigFile(configFile);
 		}
 		
 		/**
@@ -151,7 +121,7 @@ package com.clarityenglish.common.model {
 			
 			try {
 				log.info("Open config file: {0}", filename);
-				urlLoader.load(new URLRequest(filename+'?cache=' + new Date()));
+				urlLoader.load(new URLRequest(filename + "?cache=" + new Date().getTime()));
 			} catch (e:SecurityError) {
 				log.error("A SecurityError has occurred for the config file {0}", filename);
 			}

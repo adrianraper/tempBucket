@@ -2,8 +2,10 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer;
+	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
@@ -14,8 +16,10 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
+	import spark.components.List;
 	import spark.components.VideoPlayer;
 	import spark.core.IDisplayText;
+	import spark.events.IndexChangeEvent;
 	
 	public class ZoneView extends BentoView {
 		
@@ -41,7 +45,10 @@ package com.clarityenglish.ielts.view.zone {
 		public var examPractice2Difficulty:IDataRenderer;
 		
 		[SkinPart(required="true")]
-		public var practiceZoneDataGroup:DataGroup;
+		public var unitList:List;
+		
+		[SkinPart(required="true")]
+		public var popoutExerciseSelector:PopoutExerciseSelector;
 		
 		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
@@ -49,6 +56,7 @@ package com.clarityenglish.ielts.view.zone {
 		// This will be the control that is used once it is ready, until then just use 5 buttons
 		//[SkinPart(required="true")]
 		//public var courseSelector:SWFLoader;
+		
 		[SkinPart]
 		public var readingCourse:Button;
 		
@@ -106,6 +114,8 @@ package com.clarityenglish.ielts.view.zone {
 				
 				//practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
 				
+				unitList.dataProvider = new XMLListCollection(_course.groups.group);
+				
 				// AR. At this point, could I change the dataGroup itemRenderer based on how many exercises there are?
 				/*
 				if (practiceZoneDataGroup.dataProvider.length<=5) {
@@ -118,6 +128,7 @@ package com.clarityenglish.ielts.view.zone {
 					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
 				}
 				*/
+				
 				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
 				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
 								
@@ -136,9 +147,17 @@ package com.clarityenglish.ielts.view.zone {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			//trace("partAdded in ZoneView for " + partName);
+			
 			switch (instance) {
-				case practiceZoneDataGroup:
+				case unitList:
+					unitList.addEventListener(IndexChangeEvent.CHANGE, function(e:IndexChangeEvent):void {
+						var groupXML:XML = unitList.selectedItem;
+						
+						popoutExerciseSelector.group = groupXML;
+						popoutExerciseSelector.exercises = _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id);
+					} );
+					break;
+				/*case practiceZoneDataGroup:
 					// Create a signal and listener for the button item renderer
 					var exerciseClick:Signal = new Signal(XML);
 					exerciseClick.add(function(xml:XML):void {
@@ -150,7 +169,7 @@ package com.clarityenglish.ielts.view.zone {
 					//practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
 					practiceZoneDataGroup.itemRenderer = new ClassFactory(ImageItemRenderer);
 					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick, href:href };					
-					break;
+					break;*/
 				case questionZoneButton:
 				case examPractice1Button:
 				case examPractice2Button:

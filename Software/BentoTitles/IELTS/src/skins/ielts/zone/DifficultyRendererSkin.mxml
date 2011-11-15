@@ -7,6 +7,6 @@
 		[HostComponent("com.clarityenglish.ielts.view.zone.ui.DifficultyRenderer")]
 	</fx:Metadata>
 	
-	<s:Label text="Difficulty: {hostComponent.data}" />
+	<s:Label text="Difficulty: {hostComponent.difficulty}" />
 	
 </s:Skin>
