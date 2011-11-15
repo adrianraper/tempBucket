@@ -10,12 +10,15 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.XMLListCollection;
-			import mx.utils.ObjectProxy;
 			
-			protected function onExerciseListChange(e:Event):void {
-				difficultyRenderer.data = exerciseList.selectedItem;
-				trace("Thumbnail: " + exerciseList.selectedItem.toXMLString());
+			import spark.events.ListEvent;
+			
+			protected function onExerciseListItemRollOver(event:ListEvent):void {
+				// On rollover change the thumbnail and difficulty renderers
+				difficultyRenderer.data = event.item;
+				imageItemRenderer.data = event.item;
 			}
+			
 		]]>
 	</fx:Script>
 	
@@ -32,9 +35,9 @@
 		<s:Label text="{hostComponent.group.@caption}" fontSize="18" />
 		
 		<s:HGroup>
-			<ui:ImageItemRenderer id="imageItem" width="180" height="160" href="{hostComponent.href}" data="{exerciseList.selectedItem}" />
+			<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" />
 			
-			<s:List id="exerciseList" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.exercises)}" change="onExerciseListChange(event)">
+			<s:List id="exerciseList" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.exercises)}" itemRollOver="onExerciseListItemRollOver(event)">
 				<s:layout>
 					<s:VerticalLayout gap="4" />
 				</s:layout>

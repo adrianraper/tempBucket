@@ -1,4 +1,6 @@
 ﻿package com.clarityenglish.ielts.view.exercise {
+	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
@@ -20,8 +22,16 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.showMarking.add(onShowMarking);
 		}
-        
+		
+		public override function onRemove():void {
+			super.onRemove();
+			
+			view.showMarking.remove(onShowMarking);
+		}
+		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				
@@ -34,6 +44,11 @@
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		private function onShowMarking():void {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			facade.sendNotification(BBNotifications.SHOW_MARKING, { exercise: bentoProxy.currentExercise } );
 		}
 		
 	}

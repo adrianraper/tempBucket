@@ -9,7 +9,9 @@ package com.clarityenglish.ielts.view.zone.ui {
 		public override function set data(value:Object):void {
 			super.data = value;
 			
-			difficulty = data.@difficulty;
+			if (data) {
+				difficulty = data.@difficulty;
+			}
 		}
 		
 	}

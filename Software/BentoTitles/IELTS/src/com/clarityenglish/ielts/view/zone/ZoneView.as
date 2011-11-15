@@ -109,31 +109,14 @@ package com.clarityenglish.ielts.view.zone {
 				examPractice2Button.label = _course.unit.(@["class"] == "exam-practice").exercise[1].@caption;
 				examPractice2Difficulty.data = _course.unit.(@["class"] == "exam-practice").exercise[1].@difficulty;
 				
-				// Option to either have a button that chooses a category then provides a subset of the XML to the dataprovider
-				// or send the whole lot and use tags to display topics.
-				
-				//practiceZoneDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "practice-zone").exercise);
-				
+				// Give groups as the dataprovider to the unit list
 				unitList.dataProvider = new XMLListCollection(_course.groups.group);
-				
-				// AR. At this point, could I change the dataGroup itemRenderer based on how many exercises there are?
-				/*
-				if (practiceZoneDataGroup.dataProvider.length<=5) {
-					// Change the itemRenderer to one that works well with a small number of items
-					practiceZoneDataGroup.itemRenderer = new ClassFactory(ImageItemRenderer);
-					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
-				} else {
-					// Otherwise go back to the item renderer for many items
-					practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
-					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick };					
-				}
-				*/
 				
 				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
 				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
 								
 				// The course selector control
-				var fakeButtons:Array = [writingCourse, speakingCourse, readingCourse, listeningCourse, examTipsCourse];
+				var fakeButtons:Array = [ writingCourse, speakingCourse, readingCourse, listeningCourse, examTipsCourse ];
 				for each (var thisButton:Button in fakeButtons) {
 					if (thisButton.label == _course.@caption) {
 						thisButton.enabled = false;
@@ -157,19 +140,9 @@ package com.clarityenglish.ielts.view.zone {
 						popoutExerciseSelector.exercises = _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id);
 					} );
 					break;
-				/*case practiceZoneDataGroup:
-					// Create a signal and listener for the button item renderer
-					var exerciseClick:Signal = new Signal(XML);
-					exerciseClick.add(function(xml:XML):void {
-						// Fire the exerciseSelect signal
-						exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, xml.@href));
-					} );
-					
-					// Create the item renderer and inject the signal into it
-					//practiceZoneDataGroup.itemRenderer = new ClassFactory(ButtonItemRenderer);
-					practiceZoneDataGroup.itemRenderer = new ClassFactory(ImageItemRenderer);
-					(practiceZoneDataGroup.itemRenderer as ClassFactory).properties = { exerciseClick: exerciseClick, href:href };					
-					break;*/
+				case popoutExerciseSelector:
+					popoutExerciseSelector.exerciseSelect = exerciseSelect;
+					break;
 				case questionZoneButton:
 				case examPractice1Button:
 				case examPractice2Button:
@@ -228,6 +201,7 @@ package com.clarityenglish.ielts.view.zone {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		}
+		
 	}
 	
 }

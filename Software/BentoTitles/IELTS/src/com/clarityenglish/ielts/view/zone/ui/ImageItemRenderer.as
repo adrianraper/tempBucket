@@ -84,7 +84,8 @@ package com.clarityenglish.ielts.view.zone.ui {
 		}
 		
 		protected function onClick(event:MouseEvent):void {
-			exerciseClick.dispatch(data);
+			if (exerciseClick)
+				exerciseClick.dispatch(data);
 		}
 		
 	}

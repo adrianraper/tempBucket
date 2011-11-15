@@ -158,6 +158,6 @@ account|AccountView {
 }
 
 /* Marking view styles (this overwrites the default skin) */
-marking|MarkingView {
+/*marking|MarkingView {
 	skinClass: ClassReference("skins.ielts.marking.MarkingSkin");
-}
+}*/
