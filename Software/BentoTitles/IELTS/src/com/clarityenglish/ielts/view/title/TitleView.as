@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
@@ -50,6 +51,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		[Bindable]
 		public var user:User;
+		
+		[Bindable]
+		public var configID:String;
 		
 		[Bindable]
 		public var dateFormatter:DateFormatter;

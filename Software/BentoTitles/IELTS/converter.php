@@ -27,8 +27,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=false;
-$batch=true;
+$plainView=true;
+$batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -128,9 +128,9 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	// or just a specific one
 	$courseFolder = '1150976390861';
 	$skillFolder = "writing";
-	$skillFolder = "speaking";
-	$skillFolder = "reading";
-	$skillFolder = "listening";
+	//$skillFolder = "speaking";
+	//$skillFolder = "reading";
+	//$skillFolder = "listening";
 	$exerciseFolder = $titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
 	$exerciseFolderOut = $titleFolderOut.'/'.$skillFolder.'/exercises/';
 	$exerciseURL = '/Content/IELTS-Joe/'.$skillFolder.'/exercises/';
@@ -148,7 +148,8 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1156153794672'; // split screen qbased gapfill with related text
 	//$exerciseID = '1156153794672'; // Stopgap with splitscreen
 	//$exerciseID = '1156153794384'; // For testing customised=true
-	$exerciseID = '1156153794430'; // missing reading text
+	//$exerciseID = '1156153794430'; // missing reading text
+	$exerciseID = '1151344172816'; // missing main content
 	$fromFile = $exerciseFolder.$exerciseID.'.xml';
 	$toFile = $exerciseFolderOut.$exerciseID.'.xml';
 	convertExercise($fromFile, $toFile);

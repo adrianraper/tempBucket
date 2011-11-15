@@ -31,6 +31,7 @@
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
+			view.configID = configProxy.getConfig().configID;
 		}
 		
 		override public function onRemove():void {

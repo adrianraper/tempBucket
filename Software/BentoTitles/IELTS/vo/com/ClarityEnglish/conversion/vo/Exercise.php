@@ -71,6 +71,7 @@ class Exercise {
 				case 'dropdown':
 				case 'presentation':
 				case 'targetspotting':
+				case 'proofreading':
 				case 'errorcorrection':
 					$this->type = strtolower($attr['type']);
 					$this->questionBased = false;

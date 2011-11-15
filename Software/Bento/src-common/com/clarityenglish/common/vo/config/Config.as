@@ -30,6 +30,8 @@ package com.clarityenglish.common.vo.config {
 		public var remoteGateway:String;
 		public var remoteService:String;
 		public var instanceID:Number;
+		// To help with testing
+		public var configID:String;
 		
 		// TODO: Or should this be a BentoError object?
 		public var error:BentoError;
@@ -169,6 +171,14 @@ package com.clarityenglish.common.vo.config {
 			} else {
 				this.remoteService = "BentoService";
 			}
+			
+			// For help with testing
+			if (xml..id.toString()) {
+				this.configID = xml..id.toString();
+			} else {
+				this.configID = '-';
+			}
+			trace("config.xml has id=" + this.configID);
 		}
 		
 		/**

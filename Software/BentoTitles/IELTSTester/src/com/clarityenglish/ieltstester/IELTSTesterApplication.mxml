@@ -24,9 +24,13 @@
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
+			import mx.managers.BrowserManager;
+			import mx.managers.IBrowserManager;
 			
 			import spark.events.IndexChangeEvent;
 
+			public var browserManager:IBrowserManager;
+			
 			[Bindable]
 			private var serverName:String;
 			
@@ -36,6 +40,12 @@
 			
 			protected function creationComplete(event:FlexEvent):void {
 				// What domain are you running in?
+				// Initialise the browser manager to help with capturing events that might take us away from the application
+				// and also let us parse the URL
+				browserManager = BrowserManager.getInstance(); 
+				//browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL); 
+				browserManager.init("", "Testing content");
+				
 				// Running as a debug from Flex actually uses 'URL'
 				// file:///D:/ProjectBench/Software/BentoTitles/IELTSTester/bin-debug/IELTSTesterApplication.html
 				// so you have to just look for part of that. Should work for DK too I think.

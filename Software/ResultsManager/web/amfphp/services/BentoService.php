@@ -167,6 +167,8 @@ class BentoService extends AbstractService {
 			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
 			$user = new User();
 			$user->fromDatabaseObj($userObj);
+			// Hack the name for now
+			$user->fullName = $user->name;
 			
 			// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
 			Session::set('userID', $userObj->F_UserID);

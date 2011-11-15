@@ -36,12 +36,25 @@
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
+			import mx.managers.BrowserManager;
+			import mx.managers.IBrowserManager;
+			
+			public var browserManager:IBrowserManager;
 			
 			override protected function get facade():BentoFacade {
 				return IELTSApplicationFacade.getInstance();
 			}
 			
 			protected function creationComplete(event:FlexEvent):void {
+				
+				// Initialise the browser manager to help with capturing events that might take us away from the application
+				// and also let us parse the URL
+				browserManager = BrowserManager.getInstance(); 
+				//browserManager.addEventListener(BrowserChangeEvent.BROWSER_URL_CHANGE, parseURL); 
+				browserManager.init("", "Road to IELTS V2 DRAFT");
+				//var url:String = browserManager.url;
+				//var fragment:String = browserManager.fragment;
+				
 				// Hardcode some parameters that you expect to come from flashvars
 				//FlexGlobals.topLevelApplication.parameters.rootID=163;
 				FlexGlobals.topLevelApplication.parameters.prefix = "Clarity";

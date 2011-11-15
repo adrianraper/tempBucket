@@ -129,8 +129,11 @@ package com.clarityenglish.common.model {
 							log.info("Successfully loaded data for type {0}", loadingData);
 
 							// Put the returned data into the cache and send out the notification
-							loadedResources[loadingData] = data.progress.dataProvider as ArrayCollection;
-							notifyDataLoaded(loadingData);
+							//loadedResources[loadingData] = data.progress.dataProvider as ArrayCollection;
+							//loadedResources[loadingData] = data.progress.dataProvider;
+							//notifyDataLoaded(loadingData);
+							var data:Object = {type:loadingData, dataProvider:data.progress.dataProvider};
+							sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 							
 							// Fake data
 							/*

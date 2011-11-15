@@ -3,8 +3,9 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.common.vo.manageable.Manageable;
+	import com.clarityenglish.common.vo.manageable.User;
 	
 	import mx.core.Application;
 	import mx.core.FlexGlobals;
@@ -82,9 +83,18 @@ package com.clarityenglish.common.model {
 							//CopyProxy.languageCode = data.languageCode as String;
 							
 							// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
+							// TODO. Although id and name are properties of manageable and thus user in PHP
+							// it seems that it doesn't get set here. It is in manageables[0].inherited data
+							// And id and name are the two key pieces of information I need.
+							_user = data.group.manageables[0] as User;
+							//var manageable:Manageable = data.group.manageables[0] as Manageable;
+							_user.id = user.userID;
+							_user.name = user.fullName;
 							//_user = new User();
 							//_user.buildUser(data.group.manageables[0]);
-							_user = data.group.manageables[0] as User;
+							
+							_group = data.group as Group;
+							//_user = _group.children[0];
 							
 							sendNotification(CommonNotifications.LOGGED_IN, data);
 						}
