@@ -113,16 +113,10 @@ package com.clarityenglish.ielts.view.zone {
 				
 				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
 				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
-								
-				// The course selector control
-				var fakeButtons:Array = [ writingCourse, speakingCourse, readingCourse, listeningCourse, examTipsCourse ];
-				for each (var thisButton:Button in fakeButtons) {
-					if (thisButton.label == _course.@caption) {
-						thisButton.enabled = false;
-					} else {
-						thisButton.enabled = true;
-					}
-				}
+				
+				// Change the course selector
+				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
+				
 				_courseChanged = false;
 			}
 		}
@@ -165,6 +159,39 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		/**
+		 * The user has selected a course using the course selector widget
+		 * 
+		 * @param event
+		 */
+		protected function onCourseSelectorClick(event:Event):void {
+			log.debug("Course selector event received - {0}", event.type);
+			var matchingCourses:XMLList = menu.course.(@caption.toLowerCase() == event.type.toLowerCase());
+			
+			switch (event.type) {
+				case "readingSelected":
+					matchingCourses = menu.course.(@caption == "Reading");
+					break;
+				case "writingSelected":
+					matchingCourses = menu.course.(@caption == "Writing");
+					break;
+				case "listeningSelected":
+					matchingCourses = menu.course.(@caption == "Listening");
+					break;
+				case "speakingSelected":
+					matchingCourses = menu.course.(@caption == "Speaking");
+					break;
+			}
+			
+			
+			if (matchingCourses.length() == 0) {
+				log.error("Unable to find a matching course");
+			} else {
+				courseSelect.dispatch(matchingCourses[0] as XML);
+			}
+		}
+		
+		
+		/**
 		 * The user has selected an exercise
 		 * 
 		 * @param event
@@ -188,10 +215,6 @@ package com.clarityenglish.ielts.view.zone {
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, hrefFilename));
 		}
 		
-		protected function onCourseSelectorClick(event:Event):void {
-			log.debug("DEBUG MESSAGE CLICK - " + event.type);
-		}
-		
 		/**
 		 * The user has clicked a course button in the course selector control
 		 * 
@@ -200,12 +223,9 @@ package com.clarityenglish.ielts.view.zone {
 		protected function onCourseClick(event:MouseEvent):void {
 			// Whilst we are using fake buttons
 			var matchingCourses:XMLList = menu.course.(@caption == event.target.label);
-			//var matchingCourses:XMLList = menu.course.(@caption == event.target.getStyle("title"));
-			//var matchingCourses:XMLList = menu.course.(@caption == 'Reading');
 			
 			if (matchingCourses.length() == 0) {
 				log.error("Unable to find a course with caption {0}", event.target.label);
-				//log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}

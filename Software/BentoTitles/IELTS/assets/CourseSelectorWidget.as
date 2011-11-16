@@ -31,22 +31,18 @@
 		}
 		
 		protected function gotoWriting(e:Event):void {
-			gotoAndPlay(11);
 			dispatchEvent(new Event("writingSelected", true));
 		}
 		
 		protected function gotoListening(e:Event):void {
-			gotoAndPlay(2);
 			dispatchEvent(new Event("listeningSelected", true));
 		}
 		
 		protected function gotoSpeaking(e:Event):void {
-			gotoAndPlay(6);
 			dispatchEvent(new Event("speakingSelected", true));
 		}
 		
 		protected function gotoReading(e:Event):void {
-			gotoAndPlay(10);
 			dispatchEvent(new Event("readingSelected", true));
 		}
 		
