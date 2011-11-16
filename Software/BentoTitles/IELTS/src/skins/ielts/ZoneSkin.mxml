@@ -38,22 +38,20 @@
 	
 	<s:transitions>
 		<s:Transition fromState="normal" toState="exercise_selector">
-			<s:Move target="{popoutExerciseSelector}" xFrom="{width/2}" xTo="0" />
+			<s:Move target="{popoutExerciseSelector}" />
 		</s:Transition>
 		
 		<s:Transition fromState="exercise_selector" toState="normal">
-			<s:Move target="{popoutExerciseSelector}" xFrom="0" xTo="{width/2}" />
+			<s:Move target="{popoutExerciseSelector}" />
 		</s:Transition>
 	</s:transitions>
 	
-	<!-- The popout exercise selector -->
-	<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x="{width / 2}" top="85" height="300" />
-	
 	<s:Group width="100%" height="100%">
 		<s:layout>
-			<s:HorizontalLayout />
+			<s:BasicLayout />
 		</s:layout>
 		
+		<!-- The left hand side -->
 		<s:Group width="50%">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
@@ -66,6 +64,7 @@
 				<s:layout>
 					<s:HorizontalLayout />
 				</s:layout>
+				
 				<s:Button id="writingCourse" label="Writing" width="80" />
 				<s:Button id="speakingCourse" label="Speaking" width="80" />
 				<s:Button id="readingCourse" label="Reading" width="80" />
@@ -74,7 +73,11 @@
 			</s:Group>
 		</s:Group>
 		
-		<s:BorderContainer width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">
+		<!-- The popout exercise selector -->
+		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normal="{width / 2}" x.exercise_selector="0" top="85" height="300" />
+		
+		<!-- The right hand side -->
+		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
