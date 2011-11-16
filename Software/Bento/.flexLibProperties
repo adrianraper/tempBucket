@@ -99,7 +99,6 @@
     <classEntry path="com.clarityenglish.common.controller.LoginCommand"/>
     <classEntry path="com.clarityenglish.common.controller.LogoutCommand"/>
     <classEntry path="com.clarityenglish.common.controller.ProgressDataLoadCommand"/>
-    <classEntry path="com.clarityenglish.common.controller.ProgressLoadCommand"/>
     <classEntry path="com.clarityenglish.common.events.LoginEvent"/>
     <classEntry path="com.clarityenglish.common.events.SearchEvent"/>
     <classEntry path="com.clarityenglish.common.model.ConfigProxy"/>

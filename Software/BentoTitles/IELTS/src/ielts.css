@@ -145,9 +145,11 @@ components|AudioPlayer {
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
+
 compare|ProgressScoreView {
 	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
 }
+
 compare|ProgressCompareView {
 	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
 }

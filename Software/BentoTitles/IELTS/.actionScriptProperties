@@ -26,6 +26,7 @@
           <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="textLayout.swf"/>
         </crossDomainRsls>
       </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="1" path="assets/CourseSelectorWidget.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

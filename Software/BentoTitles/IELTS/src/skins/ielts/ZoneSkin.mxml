@@ -25,10 +25,11 @@
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
 			
-			<!-- this is for the rotating course selector 
-			<flashcomponents:LeftMenu />
-			-->
-			<s:Image id="loader1" source="@Embed(source='assets/leftmenu.png')" width="90%" /> 
+			<!-- this is for the rotating course selector -->
+			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
+			<!--<flashcomponents:LeftMenu />-->
+			
+			<!--<s:Image id="loader1" source="@Embed(source='assets/leftmenu.png')" width="90%" />--> 
 			<s:Group width="100%" height="100%">
 				<s:layout>
 					<s:HorizontalLayout />

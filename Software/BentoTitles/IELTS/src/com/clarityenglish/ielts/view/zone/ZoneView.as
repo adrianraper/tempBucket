@@ -53,9 +53,8 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
 		
-		// This will be the control that is used once it is ready, until then just use 5 buttons
-		//[SkinPart(required="true")]
-		//public var courseSelector:SWFLoader;
+		[SkinPart(required="true")]
+		public var courseSelectorWidget:CourseSelectorWidget;
 		
 		[SkinPart]
 		public var readingCourse:Button;
@@ -148,6 +147,12 @@ package com.clarityenglish.ielts.view.zone {
 				case examPractice2Button:
 					instance.addEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
+				case courseSelectorWidget:
+					courseSelectorWidget.addEventListener("writingSelected", onCourseSelectorClick);
+					courseSelectorWidget.addEventListener("readingSelected", onCourseSelectorClick);
+					courseSelectorWidget.addEventListener("listeningSelected", onCourseSelectorClick);
+					courseSelectorWidget.addEventListener("speakingSelected", onCourseSelectorClick);
+					break;
 				// Fake buttons until course selector is ready
 				case readingCourse:
 				case writingCourse:
@@ -181,6 +186,10 @@ package com.clarityenglish.ielts.view.zone {
 			
 			// Fire the exerciseSelect signal
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, hrefFilename));
+		}
+		
+		protected function onCourseSelectorClick(event:Event):void {
+			log.debug("DEBUG MESSAGE CLICK - " + event.type);
 		}
 		
 		/**
