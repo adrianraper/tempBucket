@@ -63,6 +63,7 @@
 	<meta name="keywords" content="" />
 
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript">
 		// ****
@@ -91,12 +92,10 @@
 		// If I set both to 100%, then IE shows a very small image, FF shows nothing (but the app is running)
 		// If I set a specific height, then it doesn't matter what I put for width
 		var startControl = webShare + "/Software/ResultsManager/web/";
+		
 		// v6.5.5.6 Allow resize screen mode
-		if (swfobject.getQueryParamValue("resize")=="true") {;
-			var coordsWidth = "100%"; var coordsHeight = "100%";
-		} else {
-			var coordsWidth = 1000; var coordsHeight = 600;
-		}
+		var coordsWidth = "100%"; var coordsHeight = "100%";
+		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
@@ -152,18 +151,16 @@
 			name: "bento",
 			allowfullscreen: "true"
 		};
-		// v6.5.5.6 Allow resize screen mode
-		if (swfobject.getQueryParamValue("resize")=="true") {
-			params.scale="showall";
-		} else {
-			params.scale="noScale";
-		}
+		
+		params.scale="noScale";
+		
 		var attr = {
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + "IELTSApplication.swf" + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
+		swffit.fit("altContent");
 	</script>
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />

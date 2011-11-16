@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector")]
@@ -11,6 +12,7 @@
 		<![CDATA[
 			import mx.collections.XMLListCollection;
 			
+			import spark.events.IndexChangeEvent;
 			import spark.events.ListEvent;
 			
 			protected function onExerciseListItemRollOver(event:ListEvent):void {

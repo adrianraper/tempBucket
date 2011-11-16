@@ -12,6 +12,8 @@
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+			
 			import spark.events.IndexChangeEvent;
 			import spark.events.ListEvent;
 			
@@ -25,6 +27,10 @@
 			}
 			
 			protected function onAccordianChange(event:IndexChangeEvent):void {
+				currentState = "normal";
+			}
+			
+			protected function onPopoutExerciseSelected(event:ExerciseEvent):void {
 				currentState = "normal";
 			}
 			
@@ -52,29 +58,17 @@
 		</s:layout>
 		
 		<!-- The left hand side -->
-		<s:Group width="50%">
+		<s:Group width="50%" rollOver="currentState='normal'">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
 			
 			<!-- this is for the rotating course selector -->
 			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
-			
-			<s:Group width="100%" height="100%">
-				<s:layout>
-					<s:HorizontalLayout />
-				</s:layout>
-				
-				<s:Button id="writingCourse" label="Writing" width="80" />
-				<s:Button id="speakingCourse" label="Speaking" width="80" />
-				<s:Button id="readingCourse" label="Reading" width="80" />
-				<s:Button id="listeningCourse" label="Listening" width="80" />
-				<s:Button id="examTipsCourse" label="Exam tips" width="80" />
-			</s:Group>
 		</s:Group>
 		
 		<!-- The popout exercise selector -->
-		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normal="{width / 2}" x.exercise_selector="0" top="85" height="300" />
+		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normal="{width / 2}" x.exercise_selector="0" top="85" height="300" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
 		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">

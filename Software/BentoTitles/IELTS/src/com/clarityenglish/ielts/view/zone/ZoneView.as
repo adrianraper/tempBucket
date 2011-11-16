@@ -56,21 +56,6 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var courseSelectorWidget:CourseSelectorWidget;
 		
-		[SkinPart]
-		public var readingCourse:Button;
-		
-		[SkinPart]
-		public var writingCourse:Button;
-		
-		[SkinPart]
-		public var speakingCourse:Button;
-		
-		[SkinPart]
-		public var listeningCourse:Button;
-		
-		[SkinPart]
-		public var examTipsCourse:Button;		
-		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
@@ -134,7 +119,8 @@ package com.clarityenglish.ielts.view.zone {
 					} );
 					break;
 				case popoutExerciseSelector:
-					popoutExerciseSelector.exerciseSelect = exerciseSelect;
+					//popoutExerciseSelector.exerciseSelect = exerciseSelect;
+					popoutExerciseSelector.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseClick);
 					break;
 				case questionZoneButton:
 				case examPractice1Button:
@@ -146,14 +132,6 @@ package com.clarityenglish.ielts.view.zone {
 					courseSelectorWidget.addEventListener("readingSelected", onCourseSelectorClick, false, 0, true);
 					courseSelectorWidget.addEventListener("listeningSelected", onCourseSelectorClick, false, 0, true);
 					courseSelectorWidget.addEventListener("speakingSelected", onCourseSelectorClick, false, 0, true);
-					break;
-				// Fake buttons until course selector is ready
-				case readingCourse:
-				case writingCourse:
-				case speakingCourse:
-				case listeningCourse:
-				case examTipsCourse:
-					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 			}
 		}
@@ -196,7 +174,7 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 * @param event
 		 */
-		protected function onExerciseClick(event:MouseEvent):void {
+		protected function onExerciseClick(event:Event):void {
 			// Get the appropriate href based on which button was pressed
 			var hrefFilename:String;
 			switch (event.target) {
@@ -209,26 +187,16 @@ package com.clarityenglish.ielts.view.zone {
 				case examPractice2Button:
 					hrefFilename = _course.unit.(@["class"] == "exam-practice").exercise[1].@href;
 					break;
+				case popoutExerciseSelector:
+					hrefFilename = (event as ExerciseEvent).hrefFilename;
+					break;
+				default:
+					log.error("Unable to match event target for exercise selection {0}", event.target);
+					return;
 			}
 			
 			// Fire the exerciseSelect signal
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, hrefFilename));
-		}
-		
-		/**
-		 * The user has clicked a course button in the course selector control
-		 * 
-		 * @param event
-		 */
-		protected function onCourseClick(event:MouseEvent):void {
-			// Whilst we are using fake buttons
-			var matchingCourses:XMLList = menu.course.(@caption == event.target.label);
-			
-			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with caption {0}", event.target.label);
-			} else {
-				courseSelect.dispatch(matchingCourses[0] as XML);
-			}
 		}
 		
 	}

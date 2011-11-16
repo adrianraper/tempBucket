@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.zone.ui {
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.view.zone.ExerciseEvent;
 	
 	import flash.events.MouseEvent;
 	
@@ -8,6 +9,7 @@ package com.clarityenglish.ielts.view.zone.ui {
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
 	
+	[Event(name="exerciseSelected", type="com.clarityenglish.ielts.view.zone.ExerciseEvent")]
 	public class PopoutExerciseSelector extends SkinnableComponent {
 		
 		[SkinPart]
@@ -27,9 +29,6 @@ package com.clarityenglish.ielts.view.zone.ui {
 		
 		[Bindable]
 		public var exercises:XMLList;
-		
-		// This is injected from the parent component
-		public var exerciseSelect:Signal;
 		
 		public function PopoutExerciseSelector() {
 			super();
@@ -56,7 +55,7 @@ package com.clarityenglish.ielts.view.zone.ui {
 		}
 		
 		protected function onExerciseClick(event:MouseEvent):void {
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, exerciseList.selectedItem.@href));
+			dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, exerciseList.selectedItem.@href));
 		}
 		
 	}
