@@ -50,7 +50,7 @@ package com.clarityenglish.ielts.view.home {
             <background enabled="false" />
             <position anchor="Center" valign="Center" halign="Center" />
             <font color="White" />
-            <format />
+            <format>{"{%YValue}{numDecimals:0}%"}</format>
 		  </label_settings>
 		</bar_series>
 	  </data_plot_settings>
@@ -147,7 +147,8 @@ package com.clarityenglish.ielts.view.home {
 			
 			_fullChartXML = templates;
 			// Set the axis label that we couldn't do in the const XML due to data binding
-			_fullChartXML.charts.chart.data_plot_settings.bar_series.label_settings.format = "{%YValue}{numDecimals:0}%";
+			// Just add extra brackets
+			//_fullChartXML.charts.chart.data_plot_settings.bar_series.label_settings.format = "{%YValue}{numDecimals:0}%";
 			
 		}
 
