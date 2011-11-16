@@ -142,10 +142,10 @@ package com.clarityenglish.ielts.view.zone {
 					instance.addEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
 				case courseSelectorWidget:
-					courseSelectorWidget.addEventListener("writingSelected", onCourseSelectorClick);
-					courseSelectorWidget.addEventListener("readingSelected", onCourseSelectorClick);
-					courseSelectorWidget.addEventListener("listeningSelected", onCourseSelectorClick);
-					courseSelectorWidget.addEventListener("speakingSelected", onCourseSelectorClick);
+					courseSelectorWidget.addEventListener("writingSelected", onCourseSelectorClick, false, 0, true);
+					courseSelectorWidget.addEventListener("readingSelected", onCourseSelectorClick, false, 0, true);
+					courseSelectorWidget.addEventListener("listeningSelected", onCourseSelectorClick, false, 0, true);
+					courseSelectorWidget.addEventListener("speakingSelected", onCourseSelectorClick, false, 0, true);
 					break;
 				// Fake buttons until course selector is ready
 				case readingCourse:

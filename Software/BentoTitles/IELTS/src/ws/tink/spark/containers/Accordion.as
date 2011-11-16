@@ -20,15 +20,16 @@ SOFTWARE.
 
 package ws.tink.spark.containers
 {
+	import flash.events.Event;
+	
 	import mx.utils.BitFlagUtil;
 	
 	import spark.components.supportClasses.ButtonBarBase;
 	import spark.effects.easing.IEaser;
+	import spark.events.IndexChangeEvent;
 	
 	import ws.tink.spark.layouts.AccordionLayout;
 	import ws.tink.spark.layouts.supportClasses.INavigatorLayout;
-	
-	import mx.utils.BitFlagUtil;
 	
 	/**
 	 *  An Spark Accordion navigator container has a collection IVisualElements,
@@ -548,8 +549,12 @@ package ws.tink.spark.containers
 					
 					_buttonBarProperties = newButtonBarProperties;
 					
+					buttonBar.requireSelection = true;
+					
 					buttonBar.dataProvider = this;
 					if( accordionLayout ) accordionLayout.buttonBar = buttonBar;
+					
+					buttonBar.addEventListener(IndexChangeEvent.CHANGE, onButtonBarChange);
 					break;
 				}
 				case accordionLayout :
@@ -624,6 +629,8 @@ package ws.tink.spark.containers
 					_buttonBarProperties = newButtonBarProperties;
 					
 					if( accordionLayout ) accordionLayout.buttonBar = null;
+					
+					buttonBar.removeEventListener(IndexChangeEvent.CHANGE, onButtonBarChange);
 					break;
 				}
 				case accordionLayout :
@@ -653,6 +660,10 @@ package ws.tink.spark.containers
 					break;
 				}
 			}
+		}
+		
+		protected function onButtonBarChange(event:IndexChangeEvent):void {
+			dispatchEvent(event.clone());
 		}
 	}
 }
