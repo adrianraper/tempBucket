@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -24,12 +25,16 @@
 			super.onRegister();
 			
 			view.showMarking.add(onShowMarking);
+			view.nextExercise.add(onNextExercise);
+			view.previousExercise.add(onPreviousExercise);
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
 			
 			view.showMarking.remove(onShowMarking);
+			view.nextExercise.remove(onNextExercise);
+			view.previousExercise.remove(onPreviousExercise);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -48,7 +53,17 @@
 		
 		private function onShowMarking():void {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			facade.sendNotification(BBNotifications.SHOW_MARKING, { exercise: bentoProxy.currentExercise } );
+			sendNotification(BBNotifications.SHOW_MARKING, { exercise: bentoProxy.currentExercise } );
+		}
+		
+		private function onNextExercise():void {
+			log.debug("Next exercise");
+			sendNotification(IELTSNotifications.NEXT_EXERCISE);
+		}
+		
+		private function onPreviousExercise():void {
+			log.debug("Previous exercise");
+			sendNotification(IELTSNotifications.PREVIOUS_EXERCISE);
 		}
 		
 	}
