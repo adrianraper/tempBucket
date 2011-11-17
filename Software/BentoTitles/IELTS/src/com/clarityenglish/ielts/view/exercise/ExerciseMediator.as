@@ -58,6 +58,12 @@
 					if (bentoProxy.currentGroupNode) breadcrumb.push(bentoProxy.currentGroupNode.@caption);
 					breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
 					view.exerciseTitle = breadcrumb.join(" > ");
+					
+					trace(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorTop");
+					trace(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorBottom");
+					
+					view.backgroundColorTop = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorTop");
+					view.backgroundColorBottom = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorBottom");
 					break;
 			}
 		}

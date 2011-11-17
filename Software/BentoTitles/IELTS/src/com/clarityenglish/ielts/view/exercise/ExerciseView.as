@@ -29,6 +29,12 @@ package com.clarityenglish.ielts.view.exercise {
 		[Bindable]
 		public var exerciseTitle:String;
 		
+		[Bindable]
+		public var backgroundColorTop:Number;
+		
+		[Bindable]
+		public var backgroundColorBottom:Number;
+		
 		public var showMarking:Signal = new Signal();
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();

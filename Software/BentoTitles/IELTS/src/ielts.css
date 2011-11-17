@@ -132,6 +132,18 @@ zoneui|DifficultyRenderer {
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
+	
+	writingBackgroundColorTop: #7DAB36;
+	writingBackgroundColorBottom: #364A17;
+	
+	readingBackgroundColorTop: #00A2C8;
+	readingBackgroundColorBottom: #005063;
+	
+	speakingBackgroundColorTop: #A93087;
+	speakingBackgroundColorBottom: #4F173F;
+	
+	listeningBackgroundColorTop: #FF6600;
+	listeningBackgroundColorBottom: #7A3100;
 }
 
 components|AudioPlayer {

@@ -19,7 +19,10 @@
 	<!-- Background rectangle -->
 	<s:Rect left="0" right="0" top="0" bottom="0" topRightRadiusX="10" topRightRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10">
 		<s:fill>
-			<s:SolidColor color="#FC6500" />
+			<s:LinearGradient rotation="-90">
+				<s:GradientEntry color="{hostComponent.backgroundColorTop}" />
+				<s:GradientEntry color="{hostComponent.backgroundColorBottom}" />
+			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
 	
