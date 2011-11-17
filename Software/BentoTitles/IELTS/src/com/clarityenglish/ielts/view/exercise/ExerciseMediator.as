@@ -59,9 +59,7 @@
 					breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
 					view.exerciseTitle = breadcrumb.join(" > ");
 					
-					trace(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorTop");
-					trace(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorBottom");
-					
+					// Set the background colours for this course
 					view.backgroundColorTop = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorTop");
 					view.backgroundColorBottom = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorBottom");
 					break;
