@@ -23,18 +23,16 @@ class ProgressOps {
 	 */
 	function mergeXMLAndDataSummary($rs) {
 	
-		// We will return an array, so start building it
-		$build = array();
+		// We will return an XML object, so start building it
+		$build = new SimpleXMLElement('<progress />');
+		
 		//foreach ($this->menu->xpath('//course') as $course) {
 		foreach ($this->menu->head->script->menu->course as $course) {
 			// Get the number of completed exercises from the recordset for this courseID
 			foreach ($rs as $record) {
 				if ($record['F_CourseID']==$course['id']) {
 					// my data gives the number of distinct exercises I have done in this course
-					if (isset($record['Done']))
-						$count = $record['Done'];
-					if (isset($record['Count']))
-						$count = $record['Count'];
+					$count = $record['Count'];
 					$averageScore = $record['AverageScore'];
 					$averageDuration = $record['AverageDuration'];
 					break 1;
@@ -49,17 +47,17 @@ class ProgressOps {
 			$total = count($exercises);
 			// Note that whilst you are mixing up old and new productCodes, you might get values >100%
 			// so just ignore them
-			//$value = floor($count*100/$total);
+			//$coverage = floor($count*100/$total);
 			$coverage = rand(0,100);
 			
-			// Put it all into the return object
-			$build[] = array('caption' => (string) $course['caption'], 
-							'value' => $coverage, 
-							'count' => $count,
-							'of' => $total, 
-							'averageScore' => $averageScore,
-							'averageDuration' => $averageDuration,
-						);
+			// Put it all into a node in the return object
+			$newCourse = $build->addChild('course');
+			$newCourse->addAttribute('caption',(string) $course['caption']);
+			$newCourse->addAttribute('value',(string) $coverage);
+			$newCourse->addAttribute('count',(string) $count);
+			$newCourse->addAttribute('of',(string) $total);
+			$newCourse->addAttribute('averageScore',$averageScore);
+			$newCourse->addAttribute('averageDuration',$averageDuration);
 		}
 		return $build;
 
@@ -75,38 +73,62 @@ class ProgressOps {
 		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
 		// $rs is likely to contain less records than the XML, so loop through rs adding the records
-		// into the XML, then xsl out the whole lot
+		// into the XML
 		foreach ($rs as $record) {
-			// There should only be one node with a unique exercise ID
+			// There should only be one node in menu.xml for each unique exercise ID
 			$exercise = $menu->xpath('.//exercise[@id='.$record['F_ExerciseID'].']');
 			
 			if (count($exercise)>1) {
 				throw new Exception('The menu xml has more than one exercise node with id='.$record['F_ExerciseID']);
-			}
-			// Set the attribute to done for exercises in all units
-			$exercise[0]->addAttribute('done', '1');
-			
-			// And add a score node as a child IF this is a practice-zone exercise
-			$unit = $exercise[0]->xpath('..');
-			if (isset($unit[0]['class']) && $unit[0]['class']=='practice-zone') {
-				$score = $exercise[0]->addChild('score');
-				$score->addAttribute('score',$record['F_Score']);
-				$score->addAttribute('duration',$record['F_Duration']);
+			} else if (count($exercise)<1) {
+				// Whilst we are mixing up old and new IDs, this might happen. Best just ignore the record.
+				//throw new Exception('The menu xml contains no exercise node with id='.$record['F_ExerciseID']);
+			} else {
+				// Set the attribute to done for exercises in all units
+				$exercise[0]->addAttribute('done', '1');
+				
+				// And add a score node as a child IF this is a practice-zone exercise
+				$unit = $exercise[0]->xpath('..');
+				if (isset($unit[0]['class']) && $unit[0]['class']=='practice-zone') {
+					$score = $exercise[0]->addChild('score');
+					$score->addAttribute('score',$record['F_Score']);
+					$score->addAttribute('duration',$record['F_Duration']);
+				}
 			}
 		}
 		
+		// This XML is not good as a dataprovider. It contains too much that is irrelevant (slow to transfer to the client)
+		// and it does not have captions done well.
+		// So transform it using xslt
+		
 		// Fake data
 		$fakeData = <<<XML
-<course caption="Reading">
-	<unit caption="1">
-		<exercise caption="Academic reading passage (1)" done="1">
-			<score score="65" duration="60" />
-		</exercise>
-		<exercise caption="Academic reading passage (2)" done="1">
-			<score score="55" duration="120" />
-		</exercise>
-	</unit>
-</course>
+<progress>
+	<course caption="Reading">
+		<unit caption="question-zone">
+			<exercise caption="Reading eBook" done="1" />
+		</unit>
+		<unit caption="Unit 1">
+			<exercise caption="Academic reading passage (1)" done="1">
+				<score score="65" duration="60" />
+			</exercise>
+			<exercise caption="Academic reading passage (2)" done="1">
+				<score score="55" duration="120" />
+				<score score="56" duration="185" />
+			</exercise>
+		</unit>
+	</course>
+	<course caption="Writing">
+		<unit caption="Unit 1 task 1">
+			<exercise caption="How can I write well?" done="1">
+				<score score="65" duration="60" />
+			</exercise>
+			<exercise caption="Sample answer" done="1">
+				<score score="-1" duration="10" />
+			</exercise>
+		</unit>
+	</course>
+</progress>	
 XML;
 		return $fakeData;
 		//return $menu->asXML();
@@ -122,7 +144,7 @@ XML;
 			SELECT F_CourseID, 
 					ROUND(AVG(IF(F_Score<0, NULL, F_Score))) as AverageScore, 
 					ROUND(AVG(F_Duration)) as AverageDuration, 
-					COUNT(DISTINCT F_ExerciseID) AS Done 
+					COUNT(DISTINCT F_ExerciseID) AS Count 
 			FROM T_Score
 			WHERE F_UserID=?
 			AND F_ProductCode=?

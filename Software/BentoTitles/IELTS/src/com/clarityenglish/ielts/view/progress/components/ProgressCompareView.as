@@ -16,43 +16,31 @@ package com.clarityenglish.ielts.view.progress.components {
 		[SkinPart(required="true")]
 		public var compareChart:AnyChartFlex;
 		
-		// Use a setter here to do the injection of the dataProvider into the chart XML
-		//[Bindable]
-		public function set mySummaryDataProvider(dataProvider:Array):void {
-			this._mySummaryDataProvider = dataProvider;
+		public function setMySummaryDataProvider(dataProvider:XML):void {
 			if (_fullChartXML) {
 				// TODO. Make this smoother by adding in the data series and redrawing
 				// We have the chart template, inject the data from the data provider
-				for each (var point:Object in dataProvider) {
-					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
+				for each (var point:XML in dataProvider.course) {
+					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore}/>);
 				}
-				//compareChart.anychartXML = _fullChartXML;
+				if (compareChart)
+					compareChart.anychartXML = _fullChartXML;
 			}
 		}
-		public function get mySummaryDataProvider():Array {
-			return this._mySummaryDataProvider;
-		}
-		//[Bindable]
-		public function set everyoneSummaryDataProvider(dataProvider:Array):void {
-			this._everyoneSummaryDataProvider = dataProvider;
+		public function setEveryoneSummaryDataProvider(dataProvider:XML):void {
 			if (_fullChartXML) {
 				// TODO. Make this smoother by adding in the data series and redrawing
 				// We have the chart template, inject the data from the data provider
-				for each (var point:Object in dataProvider) {
-					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
+				for each (var point:XML in dataProvider.course) {
+					_fullChartXML.charts.chart.data.series[1].appendChild(<point name={point.@caption} y={point.@averageScore}/>);
 				}
-				//compareChart.anychartXML = _fullChartXML;
+				if (compareChart)
+					compareChart.anychartXML = _fullChartXML;
 			}
 		}
-		public function get everyoneSummaryDataProvider():Array {
-			return this._everyoneSummaryDataProvider;
-		}
 		
-		private var _mySummaryDataProvider:Array;
-		private var _everyoneSummaryDataProvider:Array;
-		
-		[Bindable]
-		public var _fullChartXML:XML;
+		//[Bindable]
+		private var _fullChartXML:XML;
 
 		private static const chartTemplates:XML = 
 			<anychart>
@@ -68,13 +56,13 @@ package com.clarityenglish.ielts.view.progress.components {
 						<background enabled="false" />
 						<position anchor="Center" valign="Center" halign="Center" />
 						<font color="White" />
-						<format />
+						<format>{"{%YValue}{numDecimals:0}%"}</format>
 					  </label_settings>
 					</bar_series>
 				  </data_plot_settings>
 				  <data>
-					<series name="Skill" type="Bar" palette="Default">
-					</series>
+					<series name="You" type="Bar" palette="Default" />
+					<series name="Everyone" type="Bar" palette="Default" />
 				  </data>
 				  <chart_settings>
 					<chart_background enabled="false" />
@@ -98,35 +86,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			  </charts>
 			</anychart>;
 		
-		/*
-		public function setMySummaryDataProvider(dataProvider:Array):void {
-			// Check that we DO have the template alredy loaded
-			if (_fullChartXML) {
-				// TODO. Make this smoother by adding in the data series and redrawing
-				// We have the chart template, inject the data from the data provider
-				for each (var point:Object in dataProvider) {
-					_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.averageScore}/>);
-				}
-				// Then send a signal telling the chart to draw, if it is listening
-				//if (compareChart)
-				//	compareChart.anychartXML = _fullChartXML;
-				drawChart.dispatch();
-			}
-		}
-		public function setEveryoneSummaryDataProvider(dataProvider:Array):void {
-			// Check that we DO have the template alredy loaded
-			if (_fullChartXML) {
-				// TODO. Make this smoother by adding in the data series and redrawing
-				// We have the chart template, inject the data from the data provider
-				for each (var point:Object in dataProvider) {
-					_fullChartXML.charts.chart.data.series[1].appendChild(<point name={point.caption} y={point.averageScore}/>);
-				}
-				// Then send a signal telling the chart to draw, if it is listening
-				//drawChart.dispatch();
-			}
-		}
-		*/
-
 		protected override function commitProperties():void {
 			super.commitProperties();		
 		}
@@ -135,7 +94,8 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			switch (instance) {
 				case compareChart:
-					initCharts(chartTemplates);
+					if (_fullChartXML) 
+						compareChart.anychartXML = _fullChartXML;
 					break;
 			}
 		}
@@ -147,11 +107,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		/**
 		 * Many settings for the pie chart are completely static and can be initialised here 
 		 */
-		public function initCharts(templates:XML):void {
+		public function initCharts():void {
 			
-			_fullChartXML = templates;
-			// Set the axis label that we couldn't do in the const XML due to data binding
-			_fullChartXML.charts.chart.data_plot_settings.bar_series.label_settings.format = "{%YValue}{numDecimals:0}%";
+			_fullChartXML = chartTemplates;
 			
 		}
 

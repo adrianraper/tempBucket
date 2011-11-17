@@ -49,10 +49,10 @@ package com.clarityenglish.ielts.view.progress.components {
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						view.mySummaryDataProvider = rs.dataProvider;
+						view.setMySummaryDataProvider(new XML(rs.dataProvider));
 					}
 					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
-						view.everyoneSummaryDataProvider = rs.dataProvider;
+						view.setEveryoneSummaryDataProvider(new XML(rs.dataProvider));
 					}
 					break;
 				

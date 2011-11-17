@@ -190,6 +190,7 @@ package com.clarityenglish.common.model {
 						*/
 						config.mergeAccountData(data);
 
+						// TODO. This account doesn't have this title error DOESN'T stop us at this point.
 						// At this point we can check to see if the config contains anything that stops us going on
 						// This account doesn't have this title
 						if (config.noSuchTitle())

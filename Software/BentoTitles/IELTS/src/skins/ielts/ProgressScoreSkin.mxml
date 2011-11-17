@@ -21,11 +21,13 @@
 	</s:HGroup>	
 	
 	<s:HGroup width="100%" height="100%">
-		<s:DataGrid id="scoreDetails" width="70%" height="100%" dataProvider="{hostComponent.setMyDetailsDataProvider.children()}" >
+		<!-- Directly link the datagrid to part of the returned XML -->
+		<s:DataGrid id="scoreDetails" width="70%" height="100%" dataProvider="{hostComponent.tableDataProvider}" >
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn headerText="Name" dataField="@caption" />
-					<s:GridColumn headerText="done" dataField="@done" />					
+					<s:GridColumn headerText="Exercise" dataField="@caption" />
+					<s:GridColumn headerText="Score" dataField="@score" />					
+					<s:GridColumn headerText="Time spent" dataField="@duration" />					
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>

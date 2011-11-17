@@ -247,7 +247,7 @@ class BentoService extends AbstractService {
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
 				break;
 			case Progress::PROGRESS_MY_DETAILS:
-				$rs = $this->progressOps->getMyDetails($productCode);
+				$rs = $this->progressOps->getMyDetails($userID, $productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
 				break;
 		}

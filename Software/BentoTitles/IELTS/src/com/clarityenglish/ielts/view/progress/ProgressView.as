@@ -59,11 +59,12 @@ package com.clarityenglish.ielts.view.progress {
 				
 				case progressScoreView:
 					// The score needs to preset a course to start with
-					instance.course = menu.course.(@caption == 'Reading');
+					instance.course = menu.course.(@caption == 'Reading')[0];
 					// keep going with shared stuff
 				case progressCompareView:
 					// The sub views run off the same href as the progress view, so directly inject it 
 					instance.href = href;
+					instance.initCharts();
 					break;
 			}
 		}

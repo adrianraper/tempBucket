@@ -83,11 +83,13 @@ package com.clarityenglish.ielts.view.home {
 		
 		public var courseSelect:Signal = new Signal(XML);
 		
-		public function setSummaryDataProvider(mySummary:Array):void {
+		public function setSummaryDataProvider(mySummary:XML):void {
 			
 			// We have the chart template, inject the data from the data provider
-			for each (var point:Object in mySummary) {
-				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.caption} y={point.value}/>);
+			//for each (var point:Object in mySummary) {
+			var points:XMLList = mySummary.course;
+			for each (var point:XML in points) {
+				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@value}/>);
 			}
 			coveragePieChart.anychartXML = _fullChartXML;
 		}

@@ -26,7 +26,7 @@ package com.clarityenglish.common.vo.progress {
 		
 		public var href:Href;
 		public var type:String;
-		public var dataProvider:Array;
+		public var dataProvider:String;
 		
 		/**
 		 * The constructor lets you set data that has come back from the backside 
