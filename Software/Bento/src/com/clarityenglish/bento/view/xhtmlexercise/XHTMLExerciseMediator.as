@@ -20,7 +20,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public function XHTMLExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 			
-			//exerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME) as ExerciseProxy;
 		}
 		
 		public function get view():IExerciseView {

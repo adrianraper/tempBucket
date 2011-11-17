@@ -63,7 +63,8 @@ package com.clarityenglish.ielts.view {
 					
 					// For now hardcode the menu file
 					configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					view.titleView.href = new Href(Href.XHTML, "menu-LastMinute.xml", configProxy.getContentPath());
+					view.titleView.href = new Href(Href.XHTML, configProxy.getMenuFilename(), configProxy.getContentPath());
+					trace("PATH: " + configProxy.getContentPath());
 					
 					// DK Hardcoded this for the moment as this contains the correct captions and classes for the IELTS zones
 					//view.titleView.href = new Href(Href.XHTML, "menu.xml", "../../../Content/IELTS-Dave");

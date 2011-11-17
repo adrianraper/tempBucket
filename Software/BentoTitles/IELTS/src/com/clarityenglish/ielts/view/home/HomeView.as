@@ -30,7 +30,7 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var listeningCourse:Button;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var examTipsCourse:Button;
 
 		[SkinPart(required="true")]

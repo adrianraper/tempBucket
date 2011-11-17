@@ -227,7 +227,13 @@ package com.clarityenglish.common.vo.config {
 			if (thisTitle.contentLocation) {
 				this.paths.content = thisTitle.contentLocation;
 			}
+			
 			this.paths.content = "../../../Content/IELTS-Joe";
+			
+			// For debug purposes use absolute url.  This breaks progress but allows us to run in the standalone player
+			CONFIG::debug {
+				this.paths.content = "http://dock.projectbench/Content/IELTS-Joe";
+			}
 			
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 

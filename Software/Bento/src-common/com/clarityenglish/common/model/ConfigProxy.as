@@ -100,7 +100,7 @@ package com.clarityenglish.common.model {
 			//	we must have rootID or prefix (prefix is most likely)
 			//	we must have a productCode
 			//  and it isn't nice to send NaN as rootID
-			var dbConfig:Object = {dbHost:config.dbHost, prefix:config.prefix, rootID:config.rootID, productCode:config.productCode};
+			var dbConfig:Object = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
 			var params:Array = [ dbConfig ];
 			new RemoteDelegate("getAccountSettings", params, this).execute();
 			//onDelegateResult("getAccountSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
@@ -142,8 +142,12 @@ package com.clarityenglish.common.model {
 		public function errorHandler(e:IOErrorEvent):void {
 			log.error("Problem loading the config file: {0}", e.text);
 		}
-		
+	
 		// Then methods to get parts of the configuration data
+		public function getMenuFilename():String {
+			return "menu-LastMinute.xml";
+		}
+		
 		public function getContentPath():String {
 			return config.paths.content;
 		}

@@ -57,12 +57,12 @@
 		}
 		
 		private function onNextExercise():void {
-			log.debug("Next exercise");
+			log.debug("The user clicked on next exercise");
 			sendNotification(IELTSNotifications.NEXT_EXERCISE);
 		}
 		
 		private function onPreviousExercise():void {
-			log.debug("Previous exercise");
+			log.debug("The user clicked on previous exercise");
 			sendNotification(IELTSNotifications.PREVIOUS_EXERCISE);
 		}
 		

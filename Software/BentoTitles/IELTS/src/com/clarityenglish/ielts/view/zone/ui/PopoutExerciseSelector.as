@@ -4,13 +4,21 @@ package com.clarityenglish.ielts.view.zone.ui {
 	
 	import flash.events.MouseEvent;
 	
-	import org.osflash.signals.Signal;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	[Event(name="exerciseSelected", type="com.clarityenglish.ielts.view.zone.ExerciseEvent")]
 	public class PopoutExerciseSelector extends SkinnableComponent {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		[SkinPart]
 		public var exerciseList:List;
@@ -55,7 +63,11 @@ package com.clarityenglish.ielts.view.zone.ui {
 		}
 		
 		protected function onExerciseClick(event:MouseEvent):void {
-			dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, exerciseList.selectedItem.@href));
+			if (exerciseList.selectedItem) {
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, exerciseList.selectedItem.@href));
+			} else {
+				log.error("Reached onExerciseClick with null value in exerciseList.selectedItem");
+			}
 		}
 		
 	}
