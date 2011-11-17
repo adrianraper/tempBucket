@@ -1,4 +1,5 @@
 package com.clarityenglish.textLayout.vo {
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.newgonzo.web.css.CSS;
 	
@@ -45,12 +46,12 @@ package com.clarityenglish.textLayout.vo {
 		/**
 		 * This is appended to any filenames so that paths can be relative to the xhtml document 
 		 */
-		public var rootPath:String;
+		public var href:Href;
 		
-		public function XHTML(value:XML = null, rootPath:String = null) {
+		public function XHTML(value:XML = null, href:Href= null) {
 			dispatcher = new EventDispatcher(this);
 			
-			this.rootPath = rootPath;
+			this.href = href;
 			
 			if (value)
 				xml = value;
@@ -62,7 +63,11 @@ package com.clarityenglish.textLayout.vo {
 		 * @return 
 		 */
 		public function clone():XHTML {
-			return new XHTML(_xml.copy(), rootPath);
+			return new XHTML(_xml.copy(), href);
+		}
+		
+		public function get rootPath():String {
+			return href.rootPath;
 		}
 		
 		public function set xml(value:XML):void {

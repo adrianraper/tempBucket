@@ -91,10 +91,10 @@ package com.clarityenglish.bento.model {
 			
 			switch (href.type) {
 				case Href.XHTML:
-					loadedResources[href] = new XHTML(new XML(urlLoader.data), href.rootPath);
+					loadedResources[href] = new XHTML(new XML(urlLoader.data), href);
 					break;
 				case Href.EXERCISE:
-					loadedResources[href] = new Exercise(new XML(urlLoader.data), href.rootPath);
+					loadedResources[href] = new Exercise(new XML(urlLoader.data), href);
 					break;
 			}
 			

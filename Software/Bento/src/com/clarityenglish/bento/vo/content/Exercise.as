@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.vo.content {
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.model.Model;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -22,8 +23,8 @@ package com.clarityenglish.bento.vo.content {
 		
 		private var _model:Model;
 		
-		public function Exercise(value:XML = null, rootPath:String = null) {
-			super(value, rootPath);
+		public function Exercise(value:XML = null, href:Href = null) {
+			super(value, href);
 			
 			// Give every Exercise a unique UID so that we can identify them
 			_uid = UIDUtil.createUID();

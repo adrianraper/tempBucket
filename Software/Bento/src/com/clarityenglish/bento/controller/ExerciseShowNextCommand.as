@@ -33,10 +33,17 @@ package com.clarityenglish.bento.controller {
 				return;
 			}
 			
-			// Determine the next exercise in the sequence
+			// Locate the exercise node in menuXHTML for currentExercise by matching the hrefs
+			var matchingExerciseNodes:XMLList = menuXHTML..exercise.(@href == currentExercise.href.filename);
 			
-			// Locate the exercise node in menuXHTML for currentExercise - how??
-			trace("stop");
+			if (matchingExerciseNodes.length() > 1) {
+				log.error("Unable to find any Exercise nodes in the menu xml matching {0}", currentExercise.href);
+				return;
+			} else if (matchingExerciseNodes.length() == 0) {
+				
+			} else {
+				
+			}
 		}
 		
 	}
