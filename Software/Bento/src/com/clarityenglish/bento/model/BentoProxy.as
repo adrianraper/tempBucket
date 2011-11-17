@@ -2,6 +2,11 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
+	import org.hamcrest.object.nullValue;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -11,6 +16,11 @@ package com.clarityenglish.bento.model {
 	 * @author Dave
 	 */
 	public class BentoProxy extends Proxy implements IProxy {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const NAME:String = "BentoProxy";
 		
@@ -42,6 +52,38 @@ package com.clarityenglish.bento.model {
 				throw new Error("Bento does not currently support running multiple exercises at the same time");
 			
 			_currentExercise = value;
+		}
+		
+		public function getNextExerciseNode():XML {
+			return getExerciseNodeWithOffset(1);
+		}
+		
+		public function getPreviousExerciseNode():XML {
+			return getExerciseNodeWithOffset(-1);
+		}
+		
+		private function getExerciseNodeWithOffset(offset:int):XML {
+			if (!currentExercise) {
+				log.error("Attempt to go to next exercise when there is no current exercise");
+				return null;
+			}
+			
+			// Locate the exercise node in menuXHTML for currentExercise by matching the hrefs
+			var matchingExerciseNodes:XMLList = menuXHTML..exercise.(@href == currentExercise.href.filename);
+			if (matchingExerciseNodes.length() > 1) {
+				throw new Error("Found multiple Exercise nodes in the menu xml matching " + currentExercise.href);
+			} else if (matchingExerciseNodes.length() == 0) {
+				throw new Error("Unable to find any Exercise nodes in the menu xml matching " + currentExercise.href);
+			}
+			
+			var exerciseNode:XML = matchingExerciseNodes[0];
+			var otherExerciseNode:XML = exerciseNode.parent().children()[exerciseNode.childIndex() + 1];
+			
+			// Confirm that the exercise node is in the same parent and that both exercises are in the same group (or neither are in any group)
+			var parentMatch:Boolean = (exerciseNode.parent() === otherExerciseNode.parent());
+			var groupMatch:Boolean = (!exerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (exerciseNode.@group == otherExerciseNode.@group);
+			
+			return (parentMatch && groupMatch) ? otherExerciseNode : null;
 		}
 		
 	}

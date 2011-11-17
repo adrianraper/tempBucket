@@ -14,7 +14,6 @@
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
-		public static const EXERCISE_SHOW:String = "exercise_show";
 		public static const EXERCISE_SHOW_NEXT:String = "exercise_show_next";
 		public static const EXERCISE_SHOW_PREVIOUS:String = "exercise_show_previous";
 		
@@ -22,6 +21,9 @@
 		public static const SHOW_FEEDBACK:String = "show_feedback";
 		public static const SHOW_MARKING:String = "show_marking";
 		
+		// The specific title will want to implement actions on these two notifications
+		public static const EXERCISE_SHOW:String = "exercise_show";
+		public static const EXERCISE_SECTION_FINISHED:String = "exercise_section_finished";
 	}
 	
 }

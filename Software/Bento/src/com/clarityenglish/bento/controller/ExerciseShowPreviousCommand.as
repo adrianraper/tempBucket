@@ -15,7 +15,7 @@ package com.clarityenglish.bento.controller {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class ExerciseShowNextCommand extends SimpleCommand {
+	public class ExerciseShowPreviousCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -26,7 +26,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exerciseNode:XML = bentoProxy.getNextExerciseNode();
+			var exerciseNode:XML = bentoProxy.getPreviousExerciseNode();
 			
 			if (exerciseNode) {
 				sendNotification(BBNotifications.EXERCISE_SHOW, bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exerciseNode.@href));
