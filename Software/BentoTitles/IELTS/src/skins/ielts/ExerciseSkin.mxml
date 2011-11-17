@@ -49,6 +49,9 @@
 	<!-- Exercise -->
 	<view:DynamicView id="dynamicView" left="25" right="25" top="34" bottom="20" />
 	
+	<!-- Title -->
+	<s:Label text="{hostComponent.exerciseTitle}" left="25" top="14" fontSize="13" fontWeight="bold" color="#FFFFFF" />
+	
 	<!-- Right buttons -->
 	<s:HGroup right="32" top="4">
 		<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" />

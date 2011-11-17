@@ -10,12 +10,20 @@
 		public static const PROGRESS_DATA_LOADED:String = "progress_data_loaded";
 		public static const PROGRESS_DATA_LOAD:String = "progress_data_load";
 		
+		// The notifications are sent when the user answers a question
 		public static const QUESTION_NODE_ANSWER:String = "question_node_answer";
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
+		// These notifications are sent when the user clicks the next or previous buttons
 		public static const EXERCISE_SHOW_NEXT:String = "exercise_show_next";
 		public static const EXERCISE_SHOW_PREVIOUS:String = "exercise_show_previous";
+		
+		// These are sent by XHTMLExerciseMediator when exercises start and stop.
+		public static const EXERCISE_START:String = "exercise_start";
+		public static const EXERCISE_STARTED:String = "exercise_started";
+		public static const EXERCISE_STOP:String = "exercise_stop";
+		public static const EXERCISE_STOPPED:String = "exercise_stopped";
 		
 		public static const SHOW_ANSWERS:String = "show_answers";
 		public static const SHOW_FEEDBACK:String = "show_feedback";

@@ -32,6 +32,11 @@ package com.clarityenglish.bento.model {
 			super(NAME);
 		}
 		
+		/**
+		 * This gets the currently playing menu xml file
+		 * 
+		 * @return 
+		 */
 		public function get menuXHTML():XHTML {
 			return _menuXHTML;
 		}
@@ -43,6 +48,12 @@ package com.clarityenglish.bento.model {
 			_menuXHTML = value;
 		}
 		
+		/**
+		 * This gets the exercise the user is currently in.  If there is no exercise (i.e. the user is not currently in an exercise) this will
+		 * return null.
+		 * 
+		 * @return 
+		 */
 		public function get currentExercise():Exercise {
 			return _currentExercise;
 		}
@@ -54,17 +65,15 @@ package com.clarityenglish.bento.model {
 			_currentExercise = value;
 		}
 		
-		public function getNextExerciseNode():XML {
-			return getExerciseNodeWithOffset(1);
-		}
-		
-		public function getPreviousExerciseNode():XML {
-			return getExerciseNodeWithOffset(-1);
-		}
-		
-		private function getExerciseNodeWithOffset(offset:int):XML {
+		/**
+		 * Rhis gets the exercise node in the menu xml matching the exercise the user is currently in.  If there is no exercise
+		 * (i.e. the user is not currently in an exercise) this will return null.
+		 * 
+		 * @return 
+		 */
+		public function get currentExerciseNode():XML {
 			if (!currentExercise) {
-				log.error("Attempt to go to next exercise when there is no current exercise");
+				log.error("Attempt to use current exercise when there is no current exercise");
 				return null;
 			}
 			
@@ -76,17 +85,48 @@ package com.clarityenglish.bento.model {
 				throw new Error("Unable to find any Exercise nodes in the menu xml matching " + currentExercise.href);
 			}
 			
-			var exerciseNode:XML = matchingExerciseNodes[0];
+			return matchingExerciseNodes[0];
+		}
+		
+		public function get currentUnitNode():XML {
+			return currentExerciseNode.parent();
+		}
+		
+		public function get currentCourseNode():XML {
+			return currentUnitNode.parent();
+		}
+		
+		public function get currentGroupNode():XML {
+			if (!currentExerciseNode.hasOwnProperty("@group"))
+				return null;
 			
+			var matchingGroups:XMLList = currentCourseNode.groups[0].group.(@id == currentExerciseNode.@group);
+			return (matchingGroups.length() == 1) ? matchingGroups[0] : null;
+		}
+		
+		public function getNextExerciseNode():XML {
+			return getExerciseNodeWithOffset(1);
+		}
+		
+		public function getPreviousExerciseNode():XML {
+			return getExerciseNodeWithOffset(-1);
+		}
+		
+		private function getExerciseNodeWithOffset(offset:int):XML {
 			// Keep going through potential exercises until we find one with Exercise.showExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section
 			while (!(parentMatch && groupMatch)) {
-				// If the offset is less than 0 then we can't find a matching exercise node so return null
-				if (exerciseNode.childIndex() + offset < 0)
+				// If the offset is less than 0 then we can't find a match
+				if (currentExerciseNode.childIndex() + offset < 0)
 					return null;
 				
-				var otherExerciseNode:XML = exerciseNode.parent().children()[exerciseNode.childIndex() + offset];
-				var parentMatch:Boolean = (exerciseNode.parent() === otherExerciseNode.parent());
-				var groupMatch:Boolean = (!exerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (exerciseNode.@group == otherExerciseNode.@group);
+				var otherExerciseNode:XML = currentExerciseNode.parent().children()[currentExerciseNode.childIndex() + offset];
+				
+				// If there is no matching node then we can't find a match
+				if (!otherExerciseNode)
+					return null;
+				
+				var parentMatch:Boolean = (currentExerciseNode.parent() === otherExerciseNode.parent());
+				var groupMatch:Boolean = (!currentExerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (currentExerciseNode.@group == otherExerciseNode.@group);
 				
 				// If this exercise is valid then return it
 				if (Exercise.showExerciseInMenu(otherExerciseNode))

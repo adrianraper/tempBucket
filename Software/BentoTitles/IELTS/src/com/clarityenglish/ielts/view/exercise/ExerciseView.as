@@ -26,6 +26,9 @@ package com.clarityenglish.ielts.view.exercise {
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
 		
+		[Bindable]
+		public var exerciseTitle:String;
+		
 		public var showMarking:Signal = new Signal();
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();

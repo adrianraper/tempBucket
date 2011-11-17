@@ -15,8 +15,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	
 	public class XHTMLExerciseMediator extends BentoMediator {
 		
-		private var exerciseProxy:ExerciseProxy; 
-		
 		public function XHTMLExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 			
@@ -36,11 +34,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.currentExercise = view.exercise;
+			super.onXHTMLReady(xhtml);
 			
-			exerciseProxy = new ExerciseProxy(view.exercise);
-			facade.registerProxy(exerciseProxy);
+			sendNotification(BBNotifications.EXERCISE_START, view.exercise);
 		}
 		
 		public override function onRemove():void {
@@ -48,12 +44,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 			
-			// Clean up after this exercise
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.currentExercise = null;
-			
-			facade.removeProxy(ExerciseProxy.NAME(view.exercise));
-			exerciseProxy = null;
+			sendNotification(BBNotifications.EXERCISE_STOP, view.exercise);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -77,6 +68,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected function handleQuestionAnswered(note:INotification):void {
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(view.exercise)) as ExerciseProxy;
+			
 			var question:Question = note.getBody().question as Question;
 			var answerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
 			
@@ -88,6 +81,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected function handleShowAnswers(note:INotification):void {
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(view.exercise)) as ExerciseProxy;
+			
 			// Go through the questions marking each of them
 			if (view.exercise.model) {
 				for each (var question:Question in view.exercise.model.questions) {
