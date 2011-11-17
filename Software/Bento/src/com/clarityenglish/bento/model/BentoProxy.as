@@ -77,13 +77,26 @@ package com.clarityenglish.bento.model {
 			}
 			
 			var exerciseNode:XML = matchingExerciseNodes[0];
-			var otherExerciseNode:XML = exerciseNode.parent().children()[exerciseNode.childIndex() + 1];
 			
-			// Confirm that the exercise node is in the same parent and that both exercises are in the same group (or neither are in any group)
-			var parentMatch:Boolean = (exerciseNode.parent() === otherExerciseNode.parent());
-			var groupMatch:Boolean = (!exerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (exerciseNode.@group == otherExerciseNode.@group);
+			// Keep going through potential exercises until we find one with Exercise.showExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section
+			while (!(parentMatch && groupMatch)) {
+				// If the offset is less than 0 then we can't find a matching exercise node so return null
+				if (exerciseNode.childIndex() + offset < 0)
+					return null;
+				
+				var otherExerciseNode:XML = exerciseNode.parent().children()[exerciseNode.childIndex() + offset];
+				var parentMatch:Boolean = (exerciseNode.parent() === otherExerciseNode.parent());
+				var groupMatch:Boolean = (!exerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (exerciseNode.@group == otherExerciseNode.@group);
+				
+				// If this exercise is valid then return it
+				if (Exercise.showExerciseInMenu(otherExerciseNode))
+					return otherExerciseNode;
+				
+				// Increase the magnitude of the offset by one and try again
+				offset += (offset / Math.abs(offset));
+			}
 			
-			return (parentMatch && groupMatch) ? otherExerciseNode : null;
+			return null;
 		}
 		
 	}

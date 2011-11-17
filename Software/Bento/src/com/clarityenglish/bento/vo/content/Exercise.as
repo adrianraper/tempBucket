@@ -95,5 +95,17 @@ package com.clarityenglish.bento.vo.content {
 			return false;
 		}
 		
+		/**
+		 * This is a static function that determines whether an exercise should be displayed in the menu or not.  It runs off the exercise xml node in the menu
+		 * xml, not the exercise file itself.
+		 *  
+		 * @param exerciseNode
+		 * @return 
+		 * 
+		 */
+		public static function showExerciseInMenu(exerciseNode:XML):Boolean {
+			return (!exerciseNode.hasOwnProperty("@enabledFlag") || exerciseNode.@enabledFlag == true);
+		}
+		
 	}
 }

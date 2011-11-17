@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -115,7 +116,14 @@ package com.clarityenglish.ielts.view.zone {
 						var groupXML:XML = unitList.selectedItem;
 						
 						popoutExerciseSelector.group = groupXML;
-						popoutExerciseSelector.exercises = _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id);
+						
+						// Build up a list of exercises we can show
+						var exercises:XMLList = new XMLList();
+						for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
+							if (Exercise.showExerciseInMenu(exerciseNode))
+								exercises += exerciseNode;
+						
+						popoutExerciseSelector.exercises = exercises;
 					} );
 					break;
 				case popoutExerciseSelector:

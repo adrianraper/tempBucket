@@ -154,13 +154,20 @@
 									<element name="exercise" maxOccurs="unbounded"
 										minOccurs="0">
 										<complexType>
-											<attribute name="id" type="string">
+											<attribute name="id"
+												type="string">
 											</attribute>
-											<attribute name="href" type="string">
+											<attribute name="href"
+												type="string">
 											</attribute>
-											<attribute name="caption" type="string">
+											<attribute name="caption"
+												type="string">
 											</attribute>
-											<attribute name="group" type="string">
+											<attribute name="group"
+												type="string">
+											</attribute>
+											<attribute
+												name="enabledFlag" type="boolean" use="optional">
 											</attribute>
 											<anyAttribute></anyAttribute>
 										</complexType>
