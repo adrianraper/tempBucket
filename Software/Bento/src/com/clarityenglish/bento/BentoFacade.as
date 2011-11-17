@@ -56,6 +56,8 @@
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
 			registerCommand(BBNotifications.SHOW_FEEDBACK, ShowFeedbackCommand);
 			registerCommand(BBNotifications.SHOW_MARKING, ShowMarkingCommand);
+			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);
+			//registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);

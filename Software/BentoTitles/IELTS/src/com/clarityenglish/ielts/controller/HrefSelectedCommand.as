@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.controller {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
@@ -22,7 +23,7 @@ package com.clarityenglish.ielts.controller {
 			var href:Href = note.getBody() as Href;
 			switch (href.extension) {
 				case "xml":
-					sendNotification(IELTSNotifications.EXERCISE_SHOW, href);
+					sendNotification(BBNotifications.EXERCISE_SHOW, href);
 					break;
 				case "pdf":
 					sendNotification(IELTSNotifications.PDF_SHOW, href);

@@ -1,10 +1,13 @@
 ﻿package com.clarityenglish.ielts.view.title {
+	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -34,13 +37,21 @@
 			view.configID = configProxy.getConfig().configID;
 		}
 		
+		protected override function onXHTMLReady(xhtml:XHTML):void {
+			super.onXHTMLReady(xhtml);
+			
+			// This is really the 'main' mediator, so this is where we set the menu.xml in BentoProxy
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			bentoProxy.menuXHTML = xhtml;
+		}
+		
 		override public function onRemove():void {
 			super.onRemove();
 		}
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				IELTSNotifications.EXERCISE_SHOW,
+				BBNotifications.EXERCISE_SHOW,
 				IELTSNotifications.COURSE_SHOW,
 			]);
 		}
@@ -49,7 +60,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case IELTSNotifications.EXERCISE_SHOW:
+				case BBNotifications.EXERCISE_SHOW:
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
 					break;
