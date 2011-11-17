@@ -56,45 +56,6 @@ in accordance with the terms of the license agreement accompanying it.
 			super.initializationComplete();
 		}
 		
-		/**
-		 *  @private
-		 */
-		override protected function updateDisplayList(unscaledWidth:Number, unscaleHeight:Number):void
-		{
-			var cr:Number = getStyle("cornerRadius");
-			
-			if (cornerRadius != cr)
-			{
-				cornerRadius = cr;
-				shadow.topRightRadiusX = cornerRadius;
-				shadow.bottomRightRadiusX = cornerRadius;
-				fill.topRightRadiusX = cornerRadius;
-				fill.bottomRightRadiusX = cornerRadius;
-				lowlight.topRightRadiusX = cornerRadius;
-				lowlight.bottomRightRadiusX = cornerRadius;
-				highlight.topRightRadiusX = cornerRadius;
-				highlight.bottomRightRadiusX = cornerRadius;
-				highlightStroke.topRightRadiusX = cornerRadius;
-				highlightStroke.bottomRightRadiusX = cornerRadius;
-				border.topRightRadiusX = cornerRadius;
-				border.bottomRightRadiusX = cornerRadius;
-			}
-			
-			if (hldownstroke1)
-			{
-				hldownstroke1.topRightRadiusX = cornerRadius;
-				hldownstroke1.bottomRightRadiusX = cornerRadius;
-			}
-			if (hldownstroke2)
-			{
-				hldownstroke2.topRightRadiusX = cornerRadius;
-				hldownstroke2.bottomRightRadiusX = cornerRadius;
-			}
-			
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-		}
-		
-		private var cornerRadius:Number = 2;
 	</fx:Script>
 	
 	<!-- states -->
