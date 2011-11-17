@@ -104,6 +104,9 @@ package com.clarityenglish.bento.vo.content {
 		 * 
 		 */
 		public static function showExerciseInMenu(exerciseNode:XML):Boolean {
+			if (!exerciseNode)
+				return false;
+			
 			return (!exerciseNode.hasOwnProperty("@enabledFlag") || exerciseNode.@enabledFlag == true);
 		}
 		

@@ -113,13 +113,15 @@ package com.clarityenglish.bento.model {
 		}
 		
 		private function getExerciseNodeWithOffset(offset:int):XML {
+			var otherExerciseNode:XML;
+			
 			// Keep going through potential exercises until we find one with Exercise.showExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section
 			while (!(parentMatch && groupMatch)) {
 				// If the offset is less than 0 then we can't find a match
 				if (currentExerciseNode.childIndex() + offset < 0)
 					return null;
 				
-				var otherExerciseNode:XML = currentExerciseNode.parent().children()[currentExerciseNode.childIndex() + offset];
+				otherExerciseNode = currentExerciseNode.parent().children()[currentExerciseNode.childIndex() + offset];
 				
 				// If there is no matching node then we can't find a match
 				if (!otherExerciseNode)
@@ -129,7 +131,7 @@ package com.clarityenglish.bento.model {
 				var groupMatch:Boolean = (!currentExerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (currentExerciseNode.@group == otherExerciseNode.@group);
 				
 				// If this exercise is valid then return it
-				if (Exercise.showExerciseInMenu(otherExerciseNode))
+				if (parentMatch && groupMatch && Exercise.showExerciseInMenu(otherExerciseNode))
 					return otherExerciseNode;
 				
 				// Increase the magnitude of the offset by one and try again
