@@ -24,8 +24,8 @@
 				   xmlns:s="library://ns.adobe.com/flex/spark"
 				   xmlns:mx="library://ns.adobe.com/flex/mx"
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="400"
-				   minHeight="21"
+				   minWidth="458"
+				   minHeight="10"
 				   alpha.disabled="0.5">
 
 	<fx:Metadata>
@@ -98,18 +98,18 @@
 
 	<!-- layer 1: shadow -->
 	<!--- @private -->
-	<s:Rect id="shadow" left="-1" right="-1" top="-1" bottom="-1" radiusX="2">
+	<s:Rect id="shadow" left="0" right="0" top="0" bottom="0" radiusX="12">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0x000000" color.down="0xFFFFFF" alpha="0.01" alpha.down="0" />
-				<s:GradientEntry color="0x000000" color.down="0xFFFFFF" alpha="0.07" alpha.down="0.5" />
+				<s:GradientEntry color="0x000000" color.down="0xFFFFFF" alpha="0.1" alpha.down="0" />
+				<s:GradientEntry color="0xCCCCCC" color.down="0xC4C4C4" alpha="0.07" alpha.down="0.5" />
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
 
 	<!-- layer 2: fill -->
 	<!--- @private -->
-	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2">
+	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="12">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF" color.over="0xBBBDBD" color.down="0xAAAAAA" alpha="0.85" />
@@ -120,7 +120,7 @@
 
 	<!-- layer 3: fill lowlight -->
 	<!--- @private -->
-	<s:Rect id="lowlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+	<s:Rect id="lowlight" left="1" right="1" top="1" bottom="1" radiusX="12">
 		<s:fill>
 			<s:LinearGradient rotation="270">
 				<s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
@@ -132,7 +132,7 @@
 
 	<!-- layer 4: fill highlight -->
 	<!--- @private -->
-	<s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+	<s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="12">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF" ratio="0.0" alpha="0.33" alpha.over="0.22" alpha.down="0.12" />
@@ -144,7 +144,7 @@
 
 	<!-- layer 5: highlight stroke (all states except down) -->
 	<!--- @private -->
-	<s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" radiusX="2" excludeFrom="down">
+	<s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" radiusX="12" excludeFrom="down">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
 				<s:GradientEntry color="0xFFFFFF" alpha.over="0.22" />
@@ -155,7 +155,7 @@
 
 	<!-- layer 6: highlight stroke (down state only) -->
 	<!--- @private -->
-	<s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="2" includeIn="down">
+	<s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="12"  includeIn="down">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
 				<s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
@@ -167,7 +167,7 @@
 		</s:stroke>
 	</s:Rect>
 	<!--- @private -->
-	<s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="2" includeIn="down">
+	<s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="12"  includeIn="down">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
 				<s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
@@ -178,11 +178,11 @@
 
 	<!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
 	<!--- @private -->
-	<s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="2">
+	<s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="12">
 		<s:stroke>
 			<s:LinearGradientStroke rotation="90" weight="1">
-				<s:GradientEntry color="0x000000" alpha="0.5625" alpha.down="0.6375" />
-				<s:GradientEntry color="0x000000" alpha="0.75" alpha.down="0.85" />
+				<s:GradientEntry color="0xB3B3B3" alpha="0.5625" alpha.down="0.6375" />
+				<s:GradientEntry color="0xB3B3B3" alpha="0.75" alpha.down="0.85" />
 			</s:LinearGradientStroke>
 		</s:stroke>
 	</s:Rect>
@@ -191,7 +191,7 @@
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 	<s:Label id="labelDisplay"
 			 textAlign="center"
-			 maxDisplayedLines="1"
+			 maxDisplayedLines="3"
 			 horizontalCenter="0"
 			 verticalCenter="1"
 			 verticalAlign="middle"
@@ -202,9 +202,9 @@
 	</s:Label>
 	
 	<!-- layer 9: IELTS course button specific stuff -->
-	<s:SWFLoader source="{getStyle('courseIcon')}" width="40" height="40" />
-	<s:RichText text="{getStyle('title')}" left="40" fontSize="20" />
-	<s:RichText text="{getStyle('description')}" left="40" right="200" top="40" fontSize="12" />
+	<s:SWFLoader source="{getStyle('courseIcon')}" left="20" top="15" width="32" height="32" />
+	<s:RichText text="{getStyle('title')}" left="60" top="22" fontSize="20" />
+	<s:RichText text="{getStyle('description')}" left="60" right="200" top="50" width="59" fontSize="12" />
 	<s:Image source="{getStyle('courseImage')}" right="0" />
 
 </s:SparkButtonSkin>

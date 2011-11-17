@@ -95,14 +95,14 @@
 	</s:Group>
 	
 	<!-- Footer -->
-	<s:Group left="0" right="0" height="35" bottom="0" visible="{titleView.skin.currentState != 'exercise'}">
+	<s:Group left="0" right="0" height="42" bottom="0" visible="{titleView.skin.currentState != 'exercise'}">
 		<s:Rect left="0" right="0" top="0" bottom="0">
 			<s:fill>
 				<s:SolidColor color="#767676" />
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="230" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="10" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="250" top="9" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="25" top="12" />
 	</s:Group>
 		
 </bento:BentoApplication>

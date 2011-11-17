@@ -24,7 +24,7 @@ in accordance with the terms of the license agreement accompanying it.
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="21" minHeight="21" 
+				   minWidth="135" minHeight="21" 
 				   alpha.disabled="0.5">
 	
 	<!-- host component -->
@@ -114,7 +114,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 1: shadow -->
 		<!--- @private -->
-		<s:Rect id="shadow" left="0" right="0" top="0" bottom="0" width="69" height="20" topLeftRadiusX="2" bottomLeftRadiusX="2">
+		<s:Rect id="shadow" left="0" right="0" top="0" bottom="0" width="69" height="20" topLeftRadiusX="12" bottomLeftRadiusX="2">
 			<s:stroke>
 				<s:LinearGradientStroke rotation="90">
 					<s:GradientEntry color="0x000000" 
@@ -131,7 +131,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 2: fill -->
 		<!--- @private -->
-		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" topLeftRadiusX="2" bottomLeftRadiusX="2">
+		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" topLeftRadiusX="12">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF" 
@@ -155,7 +155,7 @@ in accordance with the terms of the license agreement accompanying it.
 		<!--- 
 		@private
 		-->
-		<s:Rect id="lowlight" left="2" right="1" top="2" bottom="2" topLeftRadiusX="2" bottomLeftRadiusX="2">
+		<s:Rect id="lowlight" left="2" right="1" top="2" bottom="2" topLeftRadiusX="12" bottomLeftRadiusX="0">
 			<s:fill>
 				<s:LinearGradient rotation="270">
 					<s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
@@ -167,7 +167,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 4: fill highlight -->
 		<!--- @private -->
-		<s:Rect id="highlight" left="2" right="1" top="2" bottom="2" topLeftRadiusX="2" bottomLeftRadiusX="2">
+		<s:Rect id="highlight" left="2" right="1" top="2" bottom="2" topLeftRadiusX="12" bottomLeftRadiusX="0">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF"
@@ -191,7 +191,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 5: highlight stroke (all states except down) -->
 		<!--- @private -->
-		<s:Rect id="highlightStroke" left="2" right="1" top="2" bottom="2" topLeftRadiusX="2" bottomLeftRadiusX="2"
+		<s:Rect id="highlightStroke" left="2" right="1" top="2" bottom="2" topLeftRadiusX="12" bottomLeftRadiusX="2"
 				excludeFrom="downStates">
 			<s:stroke>
 				<s:LinearGradientStroke rotation="90" weight="1">
@@ -203,7 +203,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 6: highlight stroke (down state only) -->
 		<!--- @private -->
-		<s:Rect id="hldownstroke1" left="2" right="1" top="2" bottom="2" topLeftRadiusX="2"  bottomLeftRadiusX="2"
+		<s:Rect id="hldownstroke1" left="2" right="1" top="2" bottom="2" topLeftRadiusX="12"  bottomLeftRadiusX="0"
 				includeIn="downStates, selectedUpStates, overAndSelected">
 			<s:stroke>
 				<s:LinearGradientStroke rotation="90" weight="1">
@@ -216,7 +216,7 @@ in accordance with the terms of the license agreement accompanying it.
 			</s:stroke>
 		</s:Rect>
 		<!--- @private -->
-		<s:Rect id="hldownstroke2" left="3" right="2" top="3" bottom="3" topLeftRadiusX="2"  bottomLeftRadiusX="2"
+		<s:Rect id="hldownstroke2" left="3" right="2" top="3" bottom="3" topLeftRadiusX="12"  bottomLeftRadiusX="0"
 				includeIn="downStates, selectedUpStates, overAndSelected">
 			<s:stroke>
 				<s:LinearGradientStroke rotation="90" weight="1">
@@ -228,17 +228,17 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
 		<!--- @private -->
-		<s:Rect id="border" left="1" right="0" top="1" bottom="1" topLeftRadiusX="2" bottomLeftRadiusX="2">
+		<s:Rect id="border" left="1" right="0" top="1" bottom="1" topLeftRadiusX="12">
 			<s:stroke>
 				<s:LinearGradientStroke rotation="90" weight="1">
-					<s:GradientEntry color="0x000000" 
+					<s:GradientEntry color="0xE1E1E1" 
 									 alpha="0.5625"
 									 alpha.down="0.6375"
 									 alpha.selectedStates="0.6375" />
-					<s:GradientEntry color="0x000000" 
-									 alpha="0.75" 
-									 alpha.down="0.85"
-									 alpha.selectedStates="0.85" />
+					<s:GradientEntry color="0x00426B" 
+									 alpha="1" 
+									 alpha.down="1"
+									 alpha.selectedStates="1" />
 				</s:LinearGradientStroke>
 			</s:stroke>
 		</s:Rect>
