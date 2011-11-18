@@ -54,16 +54,6 @@ package com.clarityenglish.ielts.view.home {
 		  </label_settings>
 		</bar_series>
 	  </data_plot_settings>
-	  <data >
-		<series name="Skill" type="Bar" palette="R2IV2Palette" >
-		</series>
-	  </data>
-	  <palette name="R2IV2Palette" type="DistinctColors">
-		<item color="#00A2C8" />
-		<item color="#7DAB36" />
-		<item color="#FF6600" />
-		<item color="#A93087" />
-	  </palette>
 	<styles>
 		<bar_style name="Writing">
 			<states>
@@ -71,7 +61,7 @@ package com.clarityenglish.ielts.view.home {
 					<fill enabled="true" type="solid" color="#7DAB36" />
 				</normal>
 				<hover>
-					<fill enabled="true" type="solid" color="aqua" />
+					<fill enabled="true" type="solid" color="#7DAB36" />
 				</hover>
 			</states>
 		</bar_style>
@@ -80,23 +70,33 @@ package com.clarityenglish.ielts.view.home {
 				<normal>
 					<fill enabled="true" type="solid" color="#00A2C8" />
 				</normal>
+				<hover>
+					<fill enabled="true" type="solid" color="#00A2C8" />
+				</hover>
 			</states>
 		</bar_style>
 		<bar_style name="Speaking">
 			<states>
 				<normal>
-					<fill color="#A93087" />
+					<fill enabled="true" type="solid" color="#A93087"  />
 				</normal>
+				<hover>
+					<fill enabled="true" type="solid" color="#A93087" />
+				</hover>
 			</states>
 		</bar_style>
 		<bar_style name="Listening">
 			<states>
 				<normal>
-					<fill color="#FF6600" />
+					<fill enabled="true" type="solid" color="#FF6600" />
 				</normal>
 			</states>
 		</bar_style>
 	</styles>
+	  <data >
+		<series name="Skill" type="Bar" >
+		</series>
+	  </data>
 	  <chart_settings>
 		<chart_background enabled="false" />
 		<title enabled="false" />
