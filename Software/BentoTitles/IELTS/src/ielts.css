@@ -79,28 +79,28 @@ home|HomeView s|Button#writingCourse {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Writing.png");
 	title: "Writing";
-	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+	description: "Practise for the writing tasks you will complete in the writing test.";
 }
 
 home|HomeView s|Button#speakingCourse {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
 	title: "Speaking";
-	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+	description: "Prepare to speak fluently in the speaking test.";
 }
 
 home|HomeView s|Button#readingCourse {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Reading.png");
 	title: "Reading";
-	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+	description: "Familiarise with the kinds of reading material and question types you will see in the reading test.";
 }
 
 home|HomeView s|Button#listeningCourse {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
 	courseImage: Embed(source="skins/ielts/assets/Listening.png");
 	title: "Listening";
-	description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do";
+	description: "Practise the listening skills you need to succeed in the listening test.";
 }
 
 /* Zone view styles */
