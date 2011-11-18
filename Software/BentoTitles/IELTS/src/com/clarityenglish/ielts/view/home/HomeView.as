@@ -54,10 +54,49 @@ package com.clarityenglish.ielts.view.home {
 		  </label_settings>
 		</bar_series>
 	  </data_plot_settings>
-	  <data>
-		<series name="Skill" type="Bar" palette="Default">
+	  <data >
+		<series name="Skill" type="Bar" palette="R2IV2Palette" >
 		</series>
 	  </data>
+	  <palette name="R2IV2Palette" type="DistinctColors">
+		<item color="#00A2C8" />
+		<item color="#7DAB36" />
+		<item color="#FF6600" />
+		<item color="#A93087" />
+	  </palette>
+	<styles>
+		<bar_style name="Writing">
+			<states>
+				<normal>
+					<fill enabled="true" type="solid" color="#7DAB36" />
+				</normal>
+				<hover>
+					<fill enabled="true" type="solid" color="aqua" />
+				</hover>
+			</states>
+		</bar_style>
+		<bar_style name="Reading">
+			<states>
+				<normal>
+					<fill enabled="true" type="solid" color="#00A2C8" />
+				</normal>
+			</states>
+		</bar_style>
+		<bar_style name="Speaking">
+			<states>
+				<normal>
+					<fill color="#A93087" />
+				</normal>
+			</states>
+		</bar_style>
+		<bar_style name="Listening">
+			<states>
+				<normal>
+					<fill color="#FF6600" />
+				</normal>
+			</states>
+		</bar_style>
+	</styles>
 	  <chart_settings>
 		<chart_background enabled="false" />
 		<title enabled="false" />
@@ -89,7 +128,7 @@ package com.clarityenglish.ielts.view.home {
 			//for each (var point:Object in mySummary) {
 			var points:XMLList = mySummary.course;
 			for each (var point:XML in points) {
-				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@value}/>);
+				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@value} style={point.@caption} />);
 			}
 			coveragePieChart.anychartXML = _fullChartXML;
 		}

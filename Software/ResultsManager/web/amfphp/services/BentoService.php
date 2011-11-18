@@ -108,7 +108,7 @@ class BentoService extends AbstractService {
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
-		Session::set('productCode', $productCode);
+		Session::set('productCode', $config['productCode']);
 				
 		/*
 		// Comment until DK has database setup

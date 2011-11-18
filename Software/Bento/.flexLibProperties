@@ -126,8 +126,6 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
-    <classEntry path="com.clarityenglish.dms.vo.account.Account"/>
-    <classEntry path="com.clarityenglish.bento.vo.ExerciseMark"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
   </includeClasses>
   <includeResources>
