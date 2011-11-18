@@ -5,9 +5,9 @@
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: normal;
 	color: #000000;
-	
+	line-height:20em
 }
 
 /* The body should always have a bit of space at the top */
@@ -16,6 +16,10 @@ body > header {
 }
 
 /* Paragraphs have spacing after them */
+p {
+	padding-left:20px;
+	padding-right:20px;
+}
 
 
 
@@ -35,7 +39,7 @@ body > header {
 	padding-left: 15px;
 	padding-top: 0;
 	padding-bottom: 18em;
-	font-size:13px;
+	font-size:12px;
 	text-align: justify;
 	line-height: 20em
 }
@@ -101,7 +105,6 @@ a.selected {
 
 a.correct, input.correct, g.correct {
 	color: #00AA00 !important;
-}
 
 a.incorrect, input.incorrect {
 	color: #AA0000 !important;
@@ -115,9 +118,7 @@ h1 {
 	font-family: Arial Black;
 	font-size: 16px;
 	font-weight: bold;
-	
 	padding-bottom: 10px;
-	
 	text-align: left;
 	line-height: 20em
 }
@@ -139,20 +140,43 @@ h4 {
 	padding-top: 0px
 }
 
+h7{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	padding-left:20px;
+	line-height: 20em;
+	padding-right: 350%;
+	}
 #targetspotting {
 	list-style-type: decimal;
-	
 	margin-left: 20px;
-	padding-right: 210%;
-	padding-top: 20em;
+	padding-right: 270%;
 	text-align: left;
-	line-height: 20em;
+	line-height: 22em;
 }
 #writing {
 	list-style-type: decimal;
 	margin-left: 20px;
-	padding-right: 25em;
+	padding-right: 370%;
 	padding-top: 20em;
-	text-align: justify;
+	text-align: left;
 	line-height: 20em;
 }
+
+#body .rightFloatvideo {
+	float: right;
+	width: 580px;
+	padding-top: 20em;
+	padding-right: 10em;
+	padding-left: 10em;
+	margin-top: 20em;
+	
+}
+floatleft {
+vertical-align:left;
+    	
+	padding: -25px 0 5px 15px;
+    margin: 5px;

@@ -4,7 +4,7 @@
   <head>
     <script id="model" type="application/xml">
       <menu>
-		<course id="1150976390861" newid="1287130100000" caption="Reading" description="This session will be focussed on reading. Reading units are organised thematically using themes commonly found in the IELTS exam. The first six units familiarise the student with the basic test types." >
+		<course id="1287130100000" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -14,35 +14,36 @@
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
 			</unit>
 			<unit id="1287130120000" class="exam-practice">
-				<exercise id="1287130120001" caption="Reading practice paper Pt1" href="reading/media/practice1.pdf" difficulty="1" />
-				<exercise id="1287130120002" caption="Reading practice paper Pt2" href="reading/media/practice2.pdf" difficulty="2" />
+				<exercise id="1287130120001" caption="Reading practice paper part 1" href="reading/pdf/reading_ac_practice1.pdf" difficulty="1" />
+				<exercise id="1287130120002" caption="Reading practice paper part 2" href="reading/pdf/reading_ac_practice2.pdf" difficulty="2" />
+				<exercise id="1287130120003" caption="Reading practice paper part 3" href="reading/pdf/reading_ac_practice3.pdf" difficulty="3" />
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="reading/media/Reading_intro.flv" caption="Watch the teacher giving advice." />
+				<exercise id="1287130130001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the reading test." />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
-				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/1156153794672.jpg">
+				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledflag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/cc1_02.jpg">
+				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/Reading_arp2.jpg" enabledflag="34">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156165919506" group="2" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/cc1_03.jpg">
+				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/Reading_match_infopara.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156165919884" group="2" caption="Sentence completion" href="reading/exercises/1156165919884.xml">
+				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml">
+				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml" thumbnail="reading/thumbnails/Reading_untangling.jpg">
 				  <!--MC - splitscreen TB-->
 				</exercise>
-				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml">
+				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml" thumbnail="reading/thumbnails/Reading_andthen.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344537791" group="3" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml">
+				<exercise id="1151344537791" group="2" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1151344537636" group="3" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml">
+				<exercise id="1151344537636" group="2" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml">
 				  <!--MC - splitscreen QB-->
 				</exercise>
 				<exercise id="1151344244509" group="3" caption="Matching" href="reading/exercises/1151344244509.xml">
@@ -83,7 +84,7 @@
 				</exercise>
         	</unit>
 		</course>
-		<course id="1151344537052" newid="1287130200000" caption="Listening" description="xxxx xxxxxxx xxxxx">
+		<course id="1287130200000" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -91,13 +92,15 @@
 			</groups>
 			<unit id="1287130210000" class="question-zone">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
+				<exercise id="1287130210002" href="listening/ebook/ebook_listening.pdf" caption="Download the eBook in PDF" />
 			</unit>
 			<unit id="1287130220000" class="exam-practice">
-				<exercise id="1287130220001" href="listening/media/practice1.pdf" caption="Listening practice paper Pt1" difficulty="1" />
-				<exercise id="1287130220002" href="listening/media/practice2.pdf" caption="Listening practice paper Pt2" difficulty="2" />
+				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening practice paper part 1" difficulty="1" />
+				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Listening practice paper part 2" difficulty="2" />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" difficulty="3" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
-				<exercise id="1287130230001" href="listening/media/Listening_intro.flv" caption="Watch the teacher giving advice." />
+				<exercise id="1287130230001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." />
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml">
@@ -162,7 +165,7 @@
 				</exercise>
             </unit>
 		 </course>
-		<course id="1151344082236" newid="1287130300000" caption="Speaking" description="xxxx xxxxxxx xxxxx">
+		<course id="1287130300000" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -172,11 +175,11 @@
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
 			</unit>
 			<unit id="1287130320000" class="exam-practice">
-				<exercise id="1287130320001" href="speaking/media/practice1.pdf" caption="Speaking practice paper Pt1" difficulty="1" />
-				<exercise id="1287130320002" href="speaking/media/practice2.pdf" caption="Speaking practice paper Pt2" difficulty="2" />
+			<exercise id="1287130320001" href="" caption="Speaking practice paper part 1" difficulty="1" />
+			<exercise id="1287130320002" href="" caption="Speaking practice paper part 2" difficulty="2" />
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
-				<exercise id="1287130330001" href="speaking/media/Speaking_intro.flv" caption="Watch the teacher giving advice." />
+				<exercise id="1287130330001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the speaking test." />
 			</unit>
 			<unit id="1287130340000" class="practice-zone">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml">
@@ -197,6 +200,9 @@
 				<exercise id="1156153794271" group="1" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml">
 				  <!--Targetspotting - TB-->
 				</exercise>
+				<exercise id="1156153794218" group="1" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml" >
+				<!--Targetspotting - TB-->
+				</exercise>
 				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml">
 				  <!--Presentation - TB-->
 				</exercise>
@@ -214,9 +220,6 @@
 				</exercise>
 				<exercise id="1151344172701" group="2" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml">
 				  <!--Presentation - TB-->
-				</exercise>
-				<exercise id="1156153794218" group="2" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml">
-				  <!--Targetspotting - TB-->
 				</exercise>
 				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml">
 				  <!--Presentation - TB-->
@@ -238,7 +241,7 @@
 				</exercise>
 			</unit>
 		</course>
-		<course id="1150911222467" newid="1287130400000" caption="Writing" description="This session will be focussed on writing. Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+		<course id="1287130400000" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
 			<groups>
 				<group id="1" caption="Unit 1 task 1" task="1" alt="xxx." />
 				<group id="2" caption="Unit 1 task 2" task="2" alt="xxx." />
@@ -250,12 +253,13 @@
 			<unit id="1287130410000" class="question-zone">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
 			</unit>
-			<unit id="1287130420000" class="exam-practice">
-				<exercise id="1287130420001" href="writing/media/practice1.pdf" caption="Writing practice paper Pt1" difficulty="3" />
-				<exercise id="1287130420002" href="writing/media/practice2.pdf" caption="Writing practice paper Pt2" difficulty="4" />
+			<unit id="1287130420000" class="exam-practice" caption="Try the practice papers.">
+				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing practice paper part 1" difficulty="3" />
+				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Writing practice paper part 2" difficulty="4" />
+				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice paper part 3" difficulty="5" />
 			</unit>
 			<unit id="1287130430000" class="advice-zone">
-				<exercise id="1287130430001" href="writing/media/Writing_intro.flv" caption="Watch the teacher giving advice" />
+				<exercise id="1287130430001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the writing test." />
 			</unit>
 			<unit id="1287130440000" class="practice-zone">
 				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml">

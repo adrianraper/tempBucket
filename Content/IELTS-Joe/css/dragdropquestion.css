@@ -5,9 +5,9 @@
 
 /* The main header should always be bold */
 body > header {
-	font-weight: ; normal;
+	font-weight: normal;
 	color: #000000;
-	
+	line-height:20em;
 }
 
 /* The body should always have a bit of space at the top */
@@ -19,6 +19,8 @@ body > header {
 p {
 	padding-top: 5em;
 	padding-bottom: 12px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 
@@ -150,24 +152,32 @@ h4 {
 	padding-left: 15px;
 	padding-bottom: 6px;
 	padding-top: 10px;
-	
 }
-
+h7{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 20px;
+	line-height: 20em;
+	padding-left:20px;
+	}
+	
  #questionList {
 	list-style-type: decimal;
 	padding-left: 20px;
 	margin-left: 20px;
 	padding-right: 210%;
-	padding-top: 20em;
+	padding-top: -25em;
 	text-align: left;
 	line-height: 22em;
 }
 
 #gapfillText{
 	padding-top: 12px;
-	text-align: justify;
+	text-align: left;
 	line-height: 22em;
-	padding-right: 365%
+	padding-right: 375%;
+	
 }
 
 #writing {
@@ -179,5 +189,14 @@ h4 {
 	line-height: 20em;
 }
 
-
+#body .rightFloatvideo {
+	float: right;
+	width: 620px;
 	
+
+	padding-top: 20em;
+	padding-right: 10em;
+	padding-left: 10em;
+	margin-top: 20em;
+	
+}

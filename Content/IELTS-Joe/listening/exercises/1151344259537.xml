@@ -75,8 +75,11 @@
 <section id="body">
   <audio controls="compact" class="leftFloat" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_005.jpg" mode="1" id="1001"/>
-  <div id="targetspotting">
-    <h4>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</h4>
+  
+  
+  
+    <h7><p>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</p></h7>
+	<div id="targetspotting">
 	<p></p>
   	<p><g id="t1">A.  Fewer employees are needed.</g></p>
     <p><g id="t2">B.  It is an inexpensive form of publicity.</g></p>

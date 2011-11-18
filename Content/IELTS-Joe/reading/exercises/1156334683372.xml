@@ -80,7 +80,7 @@
 	
 <section id="body">
 	<img class="leftFloat" src="../media/EN_AR_002.jpg" mode="1" id="1003"  />
-	<p><b>Carbon, Clouds and the Climate</b><br/></p>
+	
 	<ol id="splitquestionList">
 	<li id="1">The present level of carbon in the atmosphere is approximately &#xA0;<input id="q1" />&#xA0;tons.<br/></li>
 	<li id="2">Around 7 billion tons of carbon is released by human activity each year. CO2 from human activity.<br/></li>
@@ -91,7 +91,7 @@
 	<li id="7">The effect of clouds is determined by their&#xA0;<input id="q6" />&#xA0;and their&#xA0;<input id="q7" />.<br/></li>
 	<li id="8">Some clouds encourage cooling because they shade the Earth from the sun's heat.<br/></li>
 	<li id="9">Some clouds encourage warming because they&#xA0;<input id="q8" />.<br/></li>
-	<li id="10">Aerosols can lead to the formation of clouds which are so&#xA0;<input id="q9" />&#xA0;that they can block sunlight for periods of&#xA0;<input id="q10" />.<br/></li>
+	<li id="10">Aerosols can lead to the formation of clouds which are so&#xA0;<input id="q9" />&#xA0;that they can block sunlight for periods of&#xA0;<input id="q10" />.</li>
 	</ol>
 </section>
 <section id="rt2001">
@@ -108,6 +108,9 @@
 	
 	<p>Life has prospered on this planet for nearly four billion years. In that time climate has fluctuated drastically, from ice ages lasting tens of thousands of years to epochs of steamy heat. With each change, sundry species have benefited and flourished. Others adapted, faltered, or died.</p>
 	<p>Now, many experts believe, humans are imperiling their own ecological niche with the threat of global warming. The vaporous by-products of civilization, in the form of greenhouse gases such as carbon dioxide (CO2), have trapped enough heat in the atmosphere to raise Earth's average surface air temperature a half degree Celsius (one degree Fahrenheit) during this century. If the trend continues, it could alter climate patterns worldwide – thawing glaciers, boosting sea levels, scorching plains into deserts, and shifting vegetation zones.</p>
+	
+	  <p><img class="photo1" src="../media/EN_AR_002.1.jpg" mode="1" id="1001"/></p>
+	
 	<p>Or it might not. Global climate depends on combinations of factors interacting in subtle and complex ways that we do not yet fully understand. It is possible that the warming observed during this century may have resulted from natural variations, even though the increase has been much more rapid than what the planet has witnessed over the past hundred centuries.</p>
 	<p>Nonetheless, in 1995, after years of intense study, the Intergovernmental Panel on Climate Change (IPCC), sponsored by the United Nations, concluded tentatively that "the balance of evidence suggests that there is a discernible human influence on global climate." The amount of that influence, the group noted, is unknown because of "uncertainties in key factors," including the degree to which clouds and the oceans affect the rate of temperature change. It may take a decade or more of additional research to resolve those uncertainties.</p>
 	<p>With oceans and clouds, uncertainty is a formidable problem. Oceans serve as a vast "sink" for carbon dioxide, but precisely how they do so is poorly understood. We do know this: Human activity releases approximately 7 billion metric tons of carbon (in the form of CO2) into the atmosphere every year, adding to the 750 billion tons that is already there. Yet only about half of our emissions – 3 billion tons – remains in the air. The rest is taken up by terrestrial and marine plants, buried in ocean sediments, absorbed in seawater, or otherwise sequestered. Of that "missing" amount of carbon, the oceans apparently remove at least 2 billion tons from the atmosphere each year.</p>

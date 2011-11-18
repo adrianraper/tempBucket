@@ -7,7 +7,7 @@
 body > header {
 	font-weight: bold;
 	color: #000000;
-	
+	line-height:20em;
 }
 
 /* The body should always have a bit of space at the top */

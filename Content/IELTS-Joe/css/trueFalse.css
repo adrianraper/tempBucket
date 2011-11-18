@@ -5,9 +5,9 @@
 
 /* The main header should always be bold */
 body > header {
-	font-weight: bold;
+	font-weight: normal;
 	color: #000000;
-	
+	line-height:20em;
 }
 
 /* The body should always have a bit of space at the top */
@@ -18,6 +18,8 @@ body > header {
 /* Paragraphs have spacing after them */
 p {
 	padding-bottom: 12px;
+	padding-left: 20px;
+	padding-right:20px;
 }
 
 /* Headings */
@@ -81,9 +83,21 @@ h4 {
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 25px;
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-top: 37em;
+	padding-right: 35em;
+	padding-left: 25m;
+	margin-top: 20em;
+}
+#body .rightFloatvideo {
+	float: right;
+	width: 580px;
+	padding-top: 20em;
+	padding-right: 10em;
+	padding-left: 10em;
+	margin-top: 20em;
+	
+	
+
 }
 
 /* Links and draggable spans should be blue and not underlined */
@@ -145,9 +159,30 @@ a.neutral, input.neutral {
 
 #trueFalse {
 	list-style-type: decimal;
-	padding-left: 20px;
-	margin-left: 20px;
-	padding-right: 20px;
+	padding-left: 0;
+	padding-right: 270%;
 	text-align: left;
 	line-height: 20em;
+	padding-left: 20px;
 }
+#gapfillTextvideo{
+	padding-top: 20px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 400%;
+	width:400px;
+}
+#questionList {
+	tab-stops: 120px;
+	width:100px;
+}
+#questionList a {
+	color: #3A00FF;
+	font-weight: bold;
+}
+#questionList li {
+	text-indent:10%;
+	padding-left:-25em;
+	width:10%;
+}
+

@@ -120,95 +120,86 @@ Writing Task 2
       <a id="a1">For</a>
       <tab/>
       <a id="a2">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ab.mp3" mode="1" id="1"/>
-    <br/>
+    <tab/>
+    <audio controls="compact"  class="leftFloat" src="../media/TT_WR1ab.mp3" mode="1" id="1"/></li>
     
 	<li id="q2">
       <a id="a3">For</a>
       <tab/>
       <a id="a4">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ac.mp3" mode="1" id="2"/>
-    <br/>
-    
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ac.mp3" mode="1" id="2"/></li>
+   
 	<li id="q3">
       <a id="a5">For</a>
       <tab/>
       <a id="a6">Against</a>
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ad.mp3" mode="1" id="3"/>
-    <br/>
-	
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ad.mp3" mode="1" id="3"/></li>
+    
     <li id="q4">
       <a id="a7">For</a>
       <tab/>
       <a id="a8">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ae.mp3" mode="1" id="4"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ae.mp3" mode="1" id="4"/></li>
+    
     <li id="q5">
       <a id="a9">For</a>
       <tab/>
       <a id="a10">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1af.mp3" mode="1" id="5"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1af.mp3" mode="1" id="5"/></li>
+    
     
 	<li id="q6">
       <a id="a11">For</a>
       <tab/>
       <a id="a12">Against</a>      
-	  </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ag.mp3" mode="1" id="6"/>
-    <br/>
+	  <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ag.mp3" mode="1" id="6"/></li> 
     
 	<li id="q7">
       <a id="a13">For</a>
       <tab/>
       <a id="a14">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ah.mp3" mode="1" id="7"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ah.mp3" mode="1" id="7"/></li>
     
 	<li id="q8">
       <a id="a15">For</a>
       <tab/>
       <a id="a16">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ai.mp3" mode="1" id="8"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ai.mp3" mode="1" id="8"/></li>
     
 	<li id="q9">
       <a id="a17">For</a>
       <tab/>
       <a id="a18">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1aj.mp3" mode="1" id="9"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1aj.mp3" mode="1" id="9"/></li>
     
 	<li id="q10">
       <a id="a19">For</a>
       <tab/>
       <a id="a20">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ak.mp3" mode="1" id="10"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1ak.mp3" mode="1" id="10"/></li>
     
 	<li id="q11">
       <a id="a21">For</a>
       <tab/>
       <a id="a22">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1al.mp3" mode="1" id="11"/>
-    <br/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1al.mp3" mode="1" id="11"/></li>
     
 	<li id="q12">
       <a id="a23">For</a>
       <tab/>
       <a id="a24">Against</a>      
-    </li>
-    <audio controls="compact" class="leftFloat" src="../media/TT_WR1am.mp3" mode="1" id="12"/>
+    <tab/>
+    <audio controls="compact" class="leftFloat" src="../media/TT_WR1am.mp3" mode="1" id="12"/></li>
  
  </ol>
 </section>

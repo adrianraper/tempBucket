@@ -64,7 +64,7 @@
   <audio controls="compact" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
   <ol id="questionList">
   <li id="13"> What is the title of the coursebook used on the course?</li><input id="q1"/>
-  <li id="14"> How much does the coursebook cost?</li> &#xA3; <input id="q2"/>
+  <li id="14"> How much does the coursebook cost?</li> &#xA3;&#xA0;<input id="q2"/>
   <li id="15"> How long is the break?</li><input id="q3"/>
   <li id="16"> What nationality is the teacher?</li><input id="q4"/>
   </ol>

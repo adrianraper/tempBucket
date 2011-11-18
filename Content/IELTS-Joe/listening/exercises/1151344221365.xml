@@ -50,21 +50,21 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
+ 
   <audio controls="compact" class="leftFloat" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
-  <p align="left">
-    <b>What is Dr Grant's opinion on the following points?</b>
-  </p>
+   <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
+   
+ <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
  
   <p><i><b>A</b><tab/>	he is in favour</i><br/>
   <i><b>B</b><tab/>	he has no strong opinion either way</i><br/>
   <i><b>C</b><tab/>	he is against</i></p>
   
 <ol id="questionList">
-  <p align="left">9. working on your own	<tab/><tab/><tab/><tab/><input id="q1"/></p>
-  <p align="left">10. learning large amounts of factual data	<tab/><tab/><input id="q2"/></p>
-  <p align="left">11. taking detailed notes during lectures	<tab/><tab/><input id="q3"/></p>
-  <p align="left">12. recording lectures on tape	<tab/><tab/><tab/><input id="q4"/></p>
+  <p align="left">9. <tab/>working on your own	<tab/><tab/><tab/><tab/><input id="q1"/></p>
+  <p align="left">10. <tab/>learning large amounts of factual data	<tab/><input id="q2"/></p>
+  <p align="left">11. <tab/>taking detailed notes during lectures	<tab/><tab/><input id="q3"/></p>
+  <p align="left">12. <tab/>recording lectures on tape	<tab/><tab/><tab/><input id="q4"/></p>
   </ol>
 </section>
 

@@ -64,13 +64,16 @@
 </header>
 	
 <section id="body">
-  <audio controls="compact" class="leftFloat" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
+
   <img class="rightFloat" src="../media/ST_LN_003.jpg" mode="1" id="1001"/>
-  <div id="targetspotting">
+  <audio controls="compact" class="leftFloat" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
+
+  
+
+  
+    <h7><p>7-9  What is wrong with the washing machine?</p></h7>
+    <div id="targetspotting">
   <p>
-    <b>7-9  What is wrong with the washing machine?</b>
-  </p>
-  <p><br/>
     <g id="t1">A. It leaks.</g><br/>
     <g id="t2">B. One of the hoses is broken.</g><br/>
     <g id="t3">C. It does not rinse the clothes.</g><br/>

@@ -66,14 +66,14 @@
 <audio controls="compact" class="leftFloat" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
 <div id="gapfillText">
 <h1>REGISTRATION FORM</h1>
-<p ><b>Surname</b><tab/><tab/>	(8) 	<input id="q1"/></p>
+<p ><b>Surname</b><tab/><tab/><tab/>	(8) 	<input id="q1"/></p>
 <p class="hangingIndent1"><b>Other Names</b><tab/><tab/>	Karen Louise</p>
-<p class="hangingIndent1"><b>Address</b>	<tab/><tab/>(9) <input id="q2"/>, Eastleigh</p>
-<p class="hangingIndent1"><b>Telephone </b><tab/><tab/>Home: 2380 799414<br/>Work:	(10) <input id="q3"/></p>
-<p class="hangingIndent1"><b>Course</b><tab/><tab/>	Italian Level 1</p>
+<p class="hangingIndent3"><b>Address</b>	<tab/><tab/><tab/>(9) <input id="q2"/>, Eastleigh</p>
+<p class="hangingIndent3"><b>Telephone </b><tab/><tab/><tab/>Home: 2380 799414<br/>Work:	(10) <input id="q3"/></p>
+<p class="hangingIndent1"><b>Course</b><tab/><tab/><tab/>	Italian Level 1</p>
 <p class="hangingIndent1"><b>Course Code	</b><tab/><tab/>(11) <input id="q4"/></p>
-<p class="hangingIndent1"><b>Payment Method</b>	<tab/>Cash	<br/>Cheque	<br/>Credit card	<br/>X MasterCard		   </p>
-<p class="hangingIndent1"><b>VISACard No.</b>	<tab/>(12) <input id="q5"/></p>
+<p class="hangingIndent3"><b>Payment Method</b>	<tab/><tab/>Cash	<br/>Cheque	<br/>Credit card	<br/>X MasterCard		   </p>
+<p class="hangingIndent1"><b>VISACard No.</b>	<tab/><tab/>(12) <input id="q5"/></p>
 <p class="hangingIndent1"><b>Expiry date:</b>	<tab/><tab/>July 2004</p>
 </div>
 </section>

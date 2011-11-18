@@ -7,6 +7,7 @@
 body > header {
 	font-weight: normal;
 	color: #000000;
+	line-height:20em;
 	
 }
 
@@ -19,6 +20,8 @@ body > header {
 /* Paragraphs have spacing after them */
 p {
 	padding-bottom: 12px;
+	padding-left: 20px;
+	padding-right: 20px
 }
 
 /* Headings */
@@ -51,7 +54,14 @@ h4 {
 	padding-top: 0px;
 }
 
-
+h7{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 10px;
+	
+	padding-right: 25em;
+	}
 /* Lists use numbers. */
 
 
@@ -157,7 +167,7 @@ a.neutral, input.neutral {
 	
 }
 #questionList p{
-	padding-left: -15em
+	padding-left: 0em
 }
 #questionList li{
 	text-indent: 10%;

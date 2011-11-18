@@ -91,33 +91,33 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LE_LN_003.jpg" mode="1" id="1001"/>
+  
   <audio controls="compact" class="leftFloat" src="../media/LE_LN2.mp3" mode="4" id="1002"/>
+  
+<img class="rightFloat" src="../media/LE_LN_003.jpg" mode="1" id="1001"/>
 
-  <h7><p>Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</p></h7>
-<br/>
-<p> 
-      <b>Males</b>
+  <h1><p>Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</p></h1>
+
+
+
+      <h4><p>Males</p></h4>
     
-  </p>
   
-    <p>1. <input id="q1"/><tab/><tab/><tab/>57%</p>
-	<p>Snooker/pool/billiards<tab/><tab/>2. <input id="q2"/>%</p>
-	<p>3. <input id="q3"/><tab/><tab/>28%</p>
-	<p>4. <input id="q4"/><tab/><tab/>24%</p>
-	<p>Swimming<tab/><tab/><tab/>5. <input id="q5"/>%</p>
   
-  <p><br/><b>Females</b></p>
-  <p>Walking<tab/><tab/><tab/>43%</p>
-  <p>6. <input id="q6"/>/yoga<tab/><tab/>28%</p>
-  <p>Swimming	<tab/><tab/><tab/>7. <input id="q7"/> %</p>
+    <p>1.&#xA0;<input id="q1"/><tab/><tab/><tab/>57%</p>
+	<p>Snooker/pool/billiards<tab/><tab/>2.&#xA0;<input id="q2"/>%</p>
+	<p>3.&#xA0;<input id="q3"/><tab/><tab/>28%</p>
+	<p>4.&#xA0;<input id="q4"/><tab/><tab/><tab/>24%</p>
+	<p>Swimming<tab/><tab/><tab/><tab/>5.&#xA0;<input id="q5"/>%<br/></p>
+
+  <h4><p>Females</p></h4>
+  <p>Walking<tab/><tab/><tab/><tab/>43%</p>
+  <p>6.&#xA0;<input id="q6"/>/yoga<tab/><tab/><tab/>28%</p>
+  <p>Swimming	<tab/><tab/><tab/><tab/>7.&#xA0;<input id="q7"/> %</p>
   <p>Snooker/pool/billiards<tab/><tab/>7%</p>
-  <p>Cycling	<tab/><tab/><tab/><tab/>8.   <input id="q8"/>&#xA0;%</p>
+  <p>Cycling	<tab/><tab/><tab/><tab/>8.&#xA0;<input id="q8"/>&#xA0;%</p>
   
-  <p align="left">
-    <font size="2"/>
-  </p>
-</section>
+ </section>
 
 <section id="fb1">
   <p align="left">1. Although you have to listen to a lot of information before you get this answer, it's given with the percentage.</p>

@@ -53,21 +53,24 @@
 </header>
 	
 <section id="body">
-  
-  <br/>
   <ol id="splitquestionList">
     <li id="1">The truth probably lies between two extremes.</li><input id="q1"/>
+	<br/>
     <li id="2">How a theory was disproved.</li><input id="q2"/>
+	<br/>
     <li id="3">The problem of defining communication.</li><input id="q3"/>
+	<br/>
     <li id="4">Two theories of the origin of language.</li><input id="q4"/>
+	<br/>
     <li id="5">The difference between animal noises and language.</li><input id="q5"/>
+	<br/>
     <li id="6">Examples of how a particular species communicates.</li><input id="q6"/>
   </ol>
 </section>
 
 <section id="readingText">
-<br/>
-<img class="leftfloat" src="../media/LC_AR_002.JPG" mode="1" id="1001"/>
+<p><img class="photo1" src="../media/LC_AR_002.jpg" mode="1" id="1001"/></p>
+
 
 <h1><p>Do animals talk?</p></h1>
 
@@ -94,18 +97,19 @@
 
 
 <p class="hangingIndent"><b>H</b>&#xA0;The second major problem we face is that it is not always easy to decide what counts as communication in animals. So that, at the very least, cats spitting and rabbits thumping their back legs must be taken into consideration &#x2013; and it isn't at all clear where to stop. It is sometimes suggested that this problem could be solved by concentrating on examples where the animal is intentionally trying to convey information. But such distinctions are difficult to draw, both in humans and animals. If a man smooths down his hair when an attractive woman walks into the room, is this an unconscious response? Or is he doing it intentionally in the hope of catching her attention? In the sea, so-called snapping shrimps can produce loud cracks by closing their claws sharply. Since the cracks can upset naval sonar devices, marine biologists have attempted to discover the circumstances which lead the shrimps to produce them. But no one has yet discovered the significance of the snaps. They may be informative &#x2013; but they may not. There is no way in which we can be sure about making the right decision when it comes to interpreting such a phenomenon.</p>
+</div>
 
 
 
-
-<p><b>Glossary</b></p>
-   <p>1.  puff adder: a large poisonous African snake.</p>
-	<p>2.  hyena: a wild dog-like animal native to Africa and Asia.</p>
-	<p>3.  Masai tribesman: a member of an African tribe of cattle herders.</p>
-
+<h7>Glossary</h7>
+<ol id="splitreadingList">
+	<li>puff adder: a large poisonous African snake.</li>
+	<li>hyena: a wild dog-like animal native to Africa and Asia.</li>
+	<li>Masai tribesman: a member of an African tribe of cattle herders.</li>
+</ol>
 
 <p>The Articulate Mammal, Jean Aitchison, Routledge 1998, pp. 24-26.</p>
-</div>
+
 </section>
 
 <section id="rt2001"><p align="left"><font color="#000000">Questions 1-6 - Matching (information to paragraphs)</font></p>First look through the questions and then skim through the passage to get a general idea of what it's about. It's quite a complex text, but you shouldn't worry if you don't fully understand all the ideas and concepts it discusses. Next, read the first statement in Question 1 and skim quickly through the passage again trying to find the paragraph that expresses the same piece of information. Do the same with the other statements.<p align="left">Notice there are eight paragraphs but only six questions, so there are two paragraphs that don't have matching statements.</p><p align="left"><font color="#000000">Answering the following questions will help you focus on what you're looking for in the text:</font></p><p align="left">Question 1The truth about what, do you think?</p><p align="left">Question 2What do you think the theory was about?</p><p align="left">Question 3How would you define the word 'communication'?</p><p align="left">Question 4How do you think humans acquired language?</p><p align="left">Question 5 What might those differences be?</p><p align="left">Question 6 How many different types of animals do you think are discussed in this paragraph? </p></section>

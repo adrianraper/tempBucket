@@ -89,31 +89,36 @@
 </header>
 	
 <section id="body">
-<br/>
-  
-  <b/>
+
+
   <ol id="splitquestionList">
     <li id="1">Which game company was established in 1858?</li>
 	<input id="q1"/>
+	<br/>
     <li id="2">What game pieces were regarded as extremely immoral before the end of the 19th century?</li>
 	<input id="q2"/>
+	<br/>
     <li id="3">Who did Milton Bradley produce miniaturised games for?</li>
 	<input id="q3"/>
+	<br/>
 	<li id="4">What production technique was dropped at the turn of the last century to make games more affordable?</li>
 	<input id="q4"/>
+	<br/>
     <li id="5">What aspect of the late 1940s lifestyle was reflected in the games of that period?</li>
 	<input id="q5"/>
+	<br/>
     <li id="6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.</li>
 	<input id="q6"/>
-    <p align="left">List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.</p> 
+	<br/>
+    <p align="left">List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.<br/></p>
     <li id="7">
-      <input id="q7"/>
+      <input id="q7"/><br/>
     </li>
     <li id="8">
-      <input id="q8"/>
+      <input id="q8"/><br/>
     </li>
     <li id="9">
-      <input id="q9"/>
+      <input id="q9"/><br/>
     </li>
     <li id="10">
       <input id="q10"/>
@@ -123,17 +128,21 @@
 </section>
 
 <section id="readingText">
-<br/>
-<img class="leftFloat" src="../media/reading_bg.jpg" mode="1" id="1001"/>
 
   <h8><p>Board Games</p></h8>
   <h2><p>How it all began</p></h2>
+  
   <p>The first documented board game in America, A Traveler's Tour Through the United States, appeared in 1822. Demand for this new form of pastime was limited, and it wasn't until W. &amp; S.B. Ives successfully marketed the Mansion of Happiness in 1843 that production began to pick up. The McLoughlin Brothers, one of the most successful board game producers of the 19th century, started its business in 1858.</p>
+  
+  <p><img class="photo1" src="../media/LE_AR_002.jpg" mode="1" id="1001"/></p>
+
+  
   <p>Strict Victorian mores guided early board game producers. The games were viewed as educational tools, intended to teach children lessons in history, geography, and good moral conduct. Dice were frowned upon, owing to an early Puritan belief that the tiny cubes were "instruments of the Devil". As the century drew to a close, the rules governing board game design eased and inventors were free to create games that were more entertaining and less moralistic, including examples based on baseball, yachting, and horse racing.</p>
   <p>
  As the middle class continued to expand, the desire for new leisure activities spurred the board game industry. W. &amp; S.B. Ives, though it had been one of the first American companies to manufacture games, soon faded from the scene. In its place, four firms rose to dominance: the McLoughlin Bros., known for bright-colored, lithographed boxes and game boards; Milton Bradley, the first firm to manufacture compact game boards for Civil War soldiers; Parker Brothers, started in 1888 after George Parker bought the rights to the W. &amp; S.B. Ives company's games; and Selchow and Righter, the firm that obtained the U.S. rights to Parcheesi in 1874.</p>
   <p>By 1900, dozens of companies were producing board games for distribution across the United States. Newspaper publishers even printed full-page game boards in their Sunday papers from time to time. New trends appeared, such as games involving skill and strategy that targeted adult audiences. While the public benefited from the competitive pricing and the wider selection of games that resulted from the increase in production, the colorful lithography that had been the norm during the 19th century fell victim to cost-cutting measures. As the 20th century progressed, game boards became smaller, block letters replaced elaborate lithography and plastic supplanted wood and metal as the material of choice for game pieces.</p>
-  <p>Portrait of an Era</p>
+  
+  <h7><p>Portrait of an Era</p></h7>
   <p>
 		"These were more than just games," says Lee Dennis, one of the foremost game collectors in America and a frequent lecturer on the subject, "they were boxes of history." Advancements in transportation, Presidential elections and military conquests were just some of the events that inspired new board games. Drawing on the influences around them, designers of the '30s and '40s developed themes that reflected the times in which they lived.
 	</p>

@@ -63,7 +63,7 @@
 
 <section id="body">
   <img class="rightFloat" src="../media/LE_SP_002.jpg" mode="1" id="1001"/>
-  <br/>
+
   <ol id="questionList">
     <li id="1">The test is &#xA0;<input id="q1" type="droptarget"/>&#xA0; minutes long.</li>
     <li id="2">There are &#xA0;<input id="q2" type="droptarget"/> &#xA0;to the test.</li>

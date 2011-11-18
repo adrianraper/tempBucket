@@ -103,7 +103,7 @@
 <header>
 	
 		
-		Listen to the recording, which will play automatically, and follow the instructions. <br/>Click on FOUR items A-G.
+Listen to the recording, which will play automatically, and follow the instructions. Click on FOUR items A-G.
 		
 </header>
 	
@@ -112,7 +112,7 @@
   <img class="rightFloat" src="../media/MM_LN_002.jpg" mode="1" id="1001"/>
   <audio controls="compact" class="leftFloat" src="../media/MM_LN1.mp3" mode="4" id="1002"/>
   <div id="targetspotting">
-  <p><b>Questions 1-4 </b></p>
+  <h7>Questions 1-4 </h7>
   <p><b>What FOUR things does the guide say you can see on the first floor?</b></p>
   <p><g id="t1">A. old televisions</g></p>
   <p><g id="t2">B. TV personalities</g></p>
@@ -122,7 +122,7 @@
   <p><g id="t6">F. TV programmes being made</g></p>
   <p><g id="t7">G. TV programmes</g></p>
   
-  <p><br/><b>Questions 5-8 </b></p>
+  <h7>Questions 5-8 </h7>
   <p><b>What FOUR things does the guide say you can do on the second floor?</b></p>
   <p><g id="t8">A. look at old radios</g></p>
   <p><g id="t9">B. look at radio parts</g></p>

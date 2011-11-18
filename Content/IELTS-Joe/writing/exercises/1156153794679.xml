@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -39,14 +39,16 @@
 </header>
 	
 <section id="body">
+<div id="targetspotting">
   <img class="rightFloat" src="../media/LE_AW_7.jpg" mode="1" id="1003"/>
-  <p align="left">The chart <g id="t1">is showing</g> the <g id="t2">numbers</g> of boys and girls in Australia who take part in five different leisure activities. Overall we can say that boys' participation in these activities <g id="t3">was</g> greater than that of girls.</p>
-  <p align="left">It is immediately clear that the most popular leisure time activity among this age group is watching television. Almost all children in Australia <g id="t4">are spending</g> their free time in this way and this is true for both boys and girls. However, in three of the four remaining activities, boys' participation <g id="t5">was</g> significantly greater than that of girls.</p>
-  <p align="left">The next most popular activity is playing computer games. Four out of five boys enjoy these games, compared to almost <g id="t6">three in four</g> girls. Bike riding follows computer games in terms of popularity. Just under three-quarters of boys say they like cycling compared to approximately <g id="t7">a fifth</g> of all girls. The only activity which <g id="t8">has become</g> more popular with girls than with boys is art and craft. Just over 50 per cent of girls enjoy this pastime compared to only about <g id="t9">a quarter</g> of boys.</p>
-  <p align="left">The figures <g id="t10">are seeming</g> to suggest that the stereotypical image of boys being more active and girls more artistic or creative still holds some truth in Australian society.</p>
+  <p align="left">The chart &#xA0;<g id="t1">is showing</g>&#xA0; the &#xA0;<g id="t2">numbers</g>&#xA0; of boys and girls in Australia who take part in five different leisure activities. Overall we can say that boys' participation in these activities &#xA0;<g id="t3">was</g>&#xA0; greater than that of girls.</p>
+  <p align="left">It is immediately clear that the most popular leisure time activity among this age group is watching television. Almost all children in Australia &#xA0;<g id="t4">are spending</g>&#xA0; their free time in this way and this is true for both boys and girls. However, in three of the four remaining activities, boys' participation &#xA0;<g id="t5">was</g>&#xA0; significantly greater than that of girls.</p>
+  <p align="left">The next most popular activity is playing computer games. Four out of five boys enjoy these games, compared to almost &#xA0;<g id="t6">three in four</g>&#xA0; girls. Bike riding follows computer games in terms of popularity. Just under three-quarters of boys say they like cycling compared to approximately &#xA0;<g id="t7">a fifth</g>&#xA0; of all girls. The only activity which &#xA0;<g id="t8">has become</g>&#xA0; more popular with girls than with boys is art and craft. Just over 50 per cent of girls enjoy this pastime compared to only about &#xA0;<g id="t9">a quarter</g>&#xA0; of boys.</p>
+  <p align="left">The figures &#xA0;<g id="t10">are seeming</g>&#xA0; to suggest that the stereotypical image of boys being more active and girls more artistic or creative still holds some truth in Australian society.</p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 <section id="fb1">

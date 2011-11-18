@@ -89,30 +89,30 @@
 	
 <section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
 <div id="gapfillText">
-<p><b>Lecture</b></p>
-<p class="hangingIndent1">Participants:	<tab/><tab/>Lecturer and large group</p>
-<p class="hangingIndent1">What happens:	<tab/>Lecturer talks, students take notes</p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Guide students through course, draw students'	attention to (1) <input id="q1"/></p>
+<h9>Lecture</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Lecturer and large group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Lecturer talks, students take notes</p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Guide students through course, draw students'	attention to (1)&#xA0;<input id="q1"/></p>
 
-<p><b>Seminar</b></p>
-<p class="hangingIndent1">Participants:	<tab/><tab/>Tutor and between (2) <input id="q2"/> students</p>
-<p class="hangingIndent1">What happens:	<tab/>Students present topic, tutor and students	(3) <input id="q3"/>&#xA0;as a group</p>
-<p class="hangingIndent1">Aims:<tab/><tab/><tab/>	Help students to:	(4) <input id="q4"/>, make critical	judgements, form opinions</p>
+<h9>Seminar</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and between (2)&#xA0;<input id="q2"/> students</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students present topic, tutor and students	(3)&#xA0;<input id="q3"/>&#xA0;as a group</p>
+<p class="hangingIndent1">Aims:<tab/><tab/><tab/><tab/>	Help students to:	(4)&#xA0;<input id="q4"/>, make critical	judgements, form opinions</p>
 
-<p><b>Tutorial</b></p>
-<p class="hangingIndent1">Participants:	<tab/><tab/>Tutor and individual student or small group</p>
-<p class="hangingIndent1">What happens:	<tab/>Tutor and students discuss work</p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Give students guidance on their work, help	students with (5) <input id="q5"/></p>
+<h9>Tutorial</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Tutor and students discuss work</p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Give students guidance on their work, help	students with (5)&#xA0;<input id="q5"/></p>
 
-<p><b>Practical Work</b></p>
-<p class="hangingIndent1">Participants:	<tab/><tab/>Individual student or small group</p>
-<p class="hangingIndent1">What happens:	<tab/>Students take part in (6) <input id="q6"/></p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Provide students with practical experience</p>
+<h9>Practical Work</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students take part in (6)&#xA0;<input id="q6"/></p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Provide students with practical experience</p>
 
-<p><b>Independent Study</b></p>
-<p class="hangingIndent1">Participants:	<tab/><tab/>Individual student or small group</p>
-<p class="hangingIndent1">What happens:	<tab/>Students research a subject and then produce written work or (7) <input id="q7"/></p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Help students to develop (8) <input id="q8"/>,	provide opportunity for further study, encourage students to develop their own ideas</p>
+<h9>Independent Study</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students research a subject and then produce written work or (7)&#xA0;<input id="q7"/></p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Help students to develop (8)&#xA0;<input id="q8"/>,	provide opportunity for further study, encourage students to develop their own ideas</p>
 </div>
 </section>
 

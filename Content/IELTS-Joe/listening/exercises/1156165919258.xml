@@ -2,9 +2,9 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -90,7 +90,35 @@
 		
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/LC_LN1.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>How to improve your English outside the classroom</b><font face="_sans" size="12" color="#000000">&#xA0;<font face="verdana" size="13" color="#0000ff"/></font></font>- Make sure you (1) <input id="q1"/>.</p>- Make use of the (2) <input id="q2"/>.- Go to the cinema.- Watch television.- Borrow (3) <input id="q3"/>.- (4) <input id="q4"/> with people of other nationalities.- Join clubs.- Start your own (5) <input id="q5"/>.<p align="left"><font color="#0000ff"><b>Dealing with problem areas</b>&#xA0;</font>Grammar&#xA0;- Select a book from the (6) <input id="q6"/>.</p>- Do grammar exercises regularly.<p align="left"><b>Vocabulary</b><font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>- Select 5 new words a day.- Write them on cards.- (7) <input id="q7"/> whenever you have time to kill.</p><p align="left"><b>Listening</b><font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>- Tape (8) <input id="q8"/> from the radio or TV.</p>- Take notes.- Listen again to check.<p align="left"><font size="2"/></p>
+<section id="body"><img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/LC_LN1.mp3" mode="4" id="1002"/>
+<h5><p>How to improve your English outside the classroom</p></h5>
+<ul class="bulletList">
+	<li>Make sure you (1)&#xA0;<input id="q1"/>.</li>
+	<li>Make use of the (2)&#xA0;<input id="q2"/>.</li>
+	<li>Go to the cinema.- Watch television.- Borrow (3)&#xA0;<input id="q3"/>.</li>
+	<li>(4)&#xA0;<input id="q4"/>&#xA0;with people of other nationalities.</li>
+	<li>Join clubs.</li>
+	<li>Start your own (5)&#xA0;<input id="q5"/>.</li>
+</ul>
+
+<h5>Dealing with problem areas</h5>
+<h6><p>Grammar</p></h6>
+<ul class="bulletList">
+	<li>Select a book from the (6)&#xA0;<input id="q6"/>.</li>
+	<li>Do grammar exercises regularly.</li>
+</ul>
+<h6>Vocabulary</h6>
+<ul class="bulletList">
+	<li>Select 5 new words a day.</li>
+	<li>Write them on cards.</li>
+	<li>(7)&#xA0;<input id="q7"/>&#xA0;whenever you have time to kill.</li>
+</ul>
+<h6>Listening</h6>
+<ul class="bulletList">
+	<li>Tape (8)&#xA0;<input id="q8"/>&#xA0;from the radio or TV.</li>
+	<li>Take notes.</li>
+	<li>Listen again to check.</li>
+</ul>
 </section>
 
 <section id="fb1">
