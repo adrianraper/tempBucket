@@ -1,34 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
 	
-	<!--
-		If you include a VerticalLayout, the horizontalCenter/verticalCenter gets lost
-		<s:layout>
-			<s:VerticalLayout />
-		</s:layout>
-	-->
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
 	
-	<mx:Form id="loginForm" width="40%" height="50%" 
-			defaultButton="{loginButton}" 
-			indicatorGap="10"
-			horizontalCenter="0" verticalCenter="0" >
-		<mx:FormHeading id="loginHeading" label="licenced to: " />
-		<mx:FormItem id="nameItem" label="login ID">
-			<s:TextInput id="nameInput" width="100%" />				
-		</mx:FormItem>
-		<mx:FormItem id="passwordItem" label="password">
-			<s:TextInput id="passwordInput" width="100%" displayAsPassword="true"/>				
-		</mx:FormItem>
-		<mx:FormItem>
-			<mx:HRule width="200" height="1"/>
-			<s:Button id="loginButton" label="Start" />
-			<s:Button id="quickStartButton" label="Quick start" />
-		</mx:FormItem>
-	</mx:Form>
+	<s:VideoPlayer width="411" height="231" source="http://dock.projectbench/Content/IELTS-Joe/reading/media/Reading_intro.flv" />
+	
+	<s:Group width="100%">
+		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
+	</s:Group>
+	
+	<s:Group width="100%" height="100%">
+		<s:Form>
+			<s:FormHeading id="loginHeading" label="Licenced to: " />
+			
+			<s:FormItem label="Login ID">
+				<s:TextInput id="nameInput" width="100%" />
+			</s:FormItem>
+			
+			<s:FormItem label="Password">
+				<s:TextInput id="passwordInput" width="100%" displayAsPassword="true" />
+			</s:FormItem>
+			
+			<s:FormItem>
+				<s:Button id="loginButton" label="Start" />
+				<s:Button id="quickStartButton" label="Quick start" />
+			</s:FormItem>
+		</s:Form>
+		
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" right="0" />
+		
+	</s:Group>
+	
 </s:Skin>

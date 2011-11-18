@@ -4,44 +4,28 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.controls.Alert;
+	import mx.core.ITextInput;
 	
 	import spark.components.Button;
-	import mx.containers.Form;
-	import mx.containers.FormHeading;
-	import mx.containers.FormItem;
-	//import spark.components.Form;
-	//import spark.components.FormHeading;
-	//import spark.components.FormItem;
-	import spark.components.Label;
-	import spark.components.Panel;
+	import spark.components.FormHeading;
 	import spark.components.TextInput;
 	
 	
 	public class LoginView extends BentoView implements LoginComponent {
 		
-		[SkinPart(required = "true")]
+		[SkinPart(required="true")]
 		public var loginButton:Button;
-		
-		[SkinPart]
-		public var loginForm:Form;
 		
 		[SkinPart]
 		public var loginHeading:FormHeading;
 		
-		[SkinPart]
-		public var nameItem:FormItem;
-		
-		[SkinPart]
-		public var passwordItem:FormItem;
-		
-		[SkinPart]
+		[SkinPart(required="true")]
 		public var passwordInput:TextInput;
 		
-		[SkinPart]
+		[SkinPart(required="true")]
 		public var nameInput:TextInput;
 		
 		[SkinPart]
@@ -69,7 +53,8 @@ package com.clarityenglish.ielts.view.login {
 		 */
 		public function setLicencee(name:String):void {
 			//loginHeading.label = "licenced to: " + name;
-			loginHeading.label = name;
+			if (loginHeading)
+				loginHeading.label = name;
 		}
 		
 		/**

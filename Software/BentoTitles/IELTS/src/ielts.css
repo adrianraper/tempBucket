@@ -153,6 +153,10 @@ components|AudioPlayer {
 	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioPlaying");
 }
 
+s|VideoPlayer {
+	skinClass: ClassReference("skins.ielts.videoplayer.VideoPlayerSkin");
+}
+
 /* Progress view styles */
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");

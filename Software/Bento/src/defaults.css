@@ -31,6 +31,14 @@ marking|MarkingView {
 	skinClass: ClassReference("skins.bento.marking.MarkingSkin");
 }
 
+s|VideoPlayer {
+	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
+}
+
+s|TitleWindow {
+	skinClass: ClassReference("skins.bento.FeedbackWindowSkin");
+}
+
 /* This applied to all TextInputs for now, but really it should be only for those in exercises */
 s|TextInput {
 	focusAlpha: 0;
@@ -40,12 +48,4 @@ s|TextInput {
 /* This applied to all DropDownLists for now, but really it should be only for those in exercises */
 s|DropDownList {
 	skinClass: ClassReference("skins.bento.exercise.ExerciseDropDownListSkin");
-}
-
-s|VideoPlayer {
-	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
-}
-
-s|TitleWindow {
-	skinClass: ClassReference("skins.bento.FeedbackWindowSkin");
 }
