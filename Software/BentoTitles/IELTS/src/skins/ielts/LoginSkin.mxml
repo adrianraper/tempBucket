@@ -11,8 +11,6 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:VideoPlayer width="411" height="231" source="http://dock.projectbench/Content/IELTS-Joe/reading/media/Reading_intro.flv" />
-	
 	<s:Group width="100%">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
 	</s:Group>

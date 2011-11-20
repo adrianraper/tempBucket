@@ -19,9 +19,15 @@
 				<exercise id="1287130120003" caption="Reading practice paper part 3" href="reading/pdf/reading_ac_practice3.pdf" difficulty="3" />
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the reading test." />
+				<exercise id="1287130130001a" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
+				<exercise id="1287130130001b" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
+				<exercise id="1287130130001c" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
+				<exercise id="1287130130001d" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
+				<exercise id="1287130130001e" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
+				<exercise id="1287130130001f" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
+				<exercise id="1287130130001g" href="reading/media/Reading_intro.flv" thumbnail="reading/thumbnails/cc1_02.jpg" />
 			</unit>
-			<unit id="1287130140000" class="practice-zone" >
+			<unit id="1287130140000" class="practice-zone">
 				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledflag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>

@@ -2,7 +2,6 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -10,13 +9,11 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
-	import mx.core.ClassFactory;
 	import mx.core.IDataRenderer;
 	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
-	import spark.components.DataGroup;
 	import spark.components.List;
 	import spark.components.VideoPlayer;
 	import spark.core.IDisplayText;
@@ -53,6 +50,9 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
+		
+		[SkinPart(required="true")]
+		public var adviceZoneVideoList:List;
 		
 		[SkinPart(required="true")]
 		public var courseSelectorWidget:CourseSelectorWidget;
@@ -97,8 +97,10 @@ package com.clarityenglish.ielts.view.zone {
 				// Give groups as the dataprovider to the unit list
 				unitList.dataProvider = new XMLListCollection(_course.groups.group);
 				
-				var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
-				adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
+				//var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
+				//adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
+				
+				adviceZoneVideoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
 				
 				// Change the course selector
 				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
