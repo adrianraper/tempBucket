@@ -5,7 +5,7 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
-		currentState="normal">
+		>
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -23,36 +23,38 @@
 			}
 			
 			protected function onUnitChange(event:IndexChangeEvent):void {
-				currentState = "exercise_selector";
+				hostComponent.exerciseSelectorPoppedOut = true;
 			}
 			
 			protected function onAccordianChange(event:IndexChangeEvent):void {
-				currentState = "normal";
+				hostComponent.exerciseSelectorPoppedOut = false;
 			}
 			
 			protected function onPopoutExerciseSelected(event:ExerciseEvent):void {
-				currentState = "normal";
+				hostComponent.exerciseSelectorPoppedOut = false;
 			}
 			
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
 				adviceZoneVideoPlayer.source = hostComponent.href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url;
-				trace(hostComponent.href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url);
 			}
 			
 		]]>
 	</fx:Script>
 	
 	<s:states>
-		<s:State name="normal" />
-		<s:State name="exercise_selector" />
+		<s:State name="reading_normal" stateGroups="normalStates,readingStates" />
+		<s:State name="writing_normal" stateGroups="normalStates,writingStates" />
+		<s:State name="listening_normal" stateGroups="normalStates,listeningStates" />
+		<s:State name="speaking_normal" stateGroups="normalStates,speakingStates" />
+		
+		<s:State name="reading_popped" stateGroups="popoutStates,readingStates" />
+		<s:State name="writing_popped" stateGroups="popoutStates,writingStates" />
+		<s:State name="listening_popped" stateGroups="popoutStates,listeningStates" />
+		<s:State name="speaking_popped" stateGroups="popoutStates,speakingStates" />
 	</s:states>
 	
 	<s:transitions>
-		<s:Transition fromState="normal" toState="exercise_selector">
-			<s:Move target="{popoutExerciseSelector}" />
-		</s:Transition>
-		
-		<s:Transition fromState="exercise_selector" toState="normal">
+		<s:Transition fromState="*" toState="*" interruptionBehavior="stop" autoReverse="true">
 			<s:Move target="{popoutExerciseSelector}" />
 		</s:Transition>
 	</s:transitions>
@@ -63,7 +65,7 @@
 		</s:layout>
 		
 		<!-- The left hand side -->
-		<s:Group width="50%" rollOver="currentState='normal'" top="35">
+		<s:Group width="50%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="35">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
@@ -73,7 +75,7 @@
 		</s:Group>
 		
 		<!-- The popout exercise selector -->
-		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normal="{width / 2}" x.exercise_selector="0" top="85" height="300" exerciseSelected="onPopoutExerciseSelected(event)" />
+		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="85" height="300" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
 		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12">
@@ -86,7 +88,11 @@
 			</s:borderStroke>
 			
 			<s:HGroup width="100%">
-				<s:SWFLoader id="courseIcon" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" width="30" height="30">
+				<s:SWFLoader id="courseIcon" width="30" height="30"
+							 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')"
+							 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')"
+							 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')"
+							 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')">
 					<s:filters>
 						<s:GlowFilter strength="3" blurX="0" blurY="0" color="#AAAAAA" alpha="0.8" />
 					</s:filters>
@@ -188,12 +194,14 @@
 									<fx:Script>
 										<![CDATA[
 											import com.clarityenglish.ielts.view.zone.ExerciseEvent;
-											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
+											
+											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')]
 											private static const writingIcon:Class;
 											
-											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
+											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')]
 											private static const readingIcon:Class;
 											
+											// TODO: EXAM PRACTICE SPEAKING
 											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
 											private static const speakingIcon:Class;
 											
@@ -204,7 +212,7 @@
 												super.data = value;
 												
 												if (data) {
-													switch (outerDocument.hostComponent.course.@["class"].toString()) {
+													switch (outerDocument.hostComponent.courseClass) {
 														case "listening":
 															iconSWFLoader.source = listeningIcon;
 															break;
@@ -217,10 +225,7 @@
 														case "writing":
 															iconSWFLoader.source = writingIcon;
 															break;
-														default:
-															throw new Error("Unknown course " + outerDocument.hostComponent.course.@["class"]);
 													}
-													
 													
 													captionLabel.text = data.@caption;
 												}
@@ -241,14 +246,21 @@
 							</fx:Component>
 						</s:itemRenderer>
 					</s:DataGroup>
-					
 				</s:NavigatorContent>
 				
 				<!-- Question zone -->
-				<s:NavigatorContent label="Question zone">
-					<s:VGroup left="0" right="0" top="10" bottom="10">
-						<s:Label width="100%" text="Read about the possible questions that will arise in the IELTS exam." />
-						<s:Button id="questionZoneButton" label="Click to read" />
+				<s:NavigatorContent label="Question zone" width="100%">
+					<s:VGroup horizontalAlign="center" horizontalCenter="0">
+						<s:SWFLoader width="172" height="245"
+									 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneReading')"
+									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneWriting')"
+									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneListening')"
+									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneSpeaking')" />
+						<s:HGroup horizontalCenter="0" verticalAlign="middle">
+							<s:Button id="questionZoneViewButton" label="View" />
+							<s:Label text="or" />
+							<s:Button id="questionZoneDownloadButton" label="Download PDF" />
+						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
 				

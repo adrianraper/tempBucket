@@ -31,10 +31,13 @@ package com.clarityenglish.ielts.view.zone {
 		public var courseDescriptionLabel:IDisplayText;
 		
 		[SkinPart(required="true")]
-		public var questionZoneButton:Button;
+		public var examPracticeDataGroup:DataGroup;
 		
 		[SkinPart(required="true")]
-		public var examPracticeDataGroup:DataGroup;
+		public var questionZoneViewButton:Button;
+		
+		[SkinPart(required="true")]
+		public var questionZoneDownloadButton:Button;
 		
 		[SkinPart(required="true")]
 		public var unitList:List;
@@ -54,6 +57,8 @@ package com.clarityenglish.ielts.view.zone {
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
+		private var _exerciseSelectorPoppedOut:Boolean;
+		
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
 		
@@ -67,18 +72,22 @@ package com.clarityenglish.ielts.view.zone {
 			_course = value;
 			_courseChanged = true;
 			invalidateProperties();
-		}
-		
-		public function get course():XML {
-			return _course;
-		}
-		
-		protected override function updateViewFromXHTML(xhtml:XHTML):void {
-			super.updateViewFromXHTML(xhtml);
+			invalidateSkinState();
 			
-			// All data is actually being used from course rather than this main document
+			dispatchEvent(new Event("courseChanged"));
 		}
-
+		
+		[Bindable(event="courseChanged")]
+		public function get courseClass():String {
+			return _course.@["class"].toString();
+		}
+		
+		public function set exerciseSelectorPoppedOut(value:Object):void {
+			_exerciseSelectorPoppedOut = value;
+			
+			invalidateSkinState();
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -126,13 +135,14 @@ package com.clarityenglish.ielts.view.zone {
 					} );
 					break;
 				case popoutExerciseSelector:
-					popoutExerciseSelector.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseClick);
-					break;
-				case questionZoneButton:
-					questionZoneButton.addEventListener(MouseEvent.CLICK, onExerciseClick);
-					break;
 				case examPracticeDataGroup:
-					examPracticeDataGroup.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseClick);
+					instance.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+					break;
+				case questionZoneViewButton:
+					questionZoneViewButton.addEventListener(MouseEvent.CLICK, onQuestionZoneViewButtonClick);
+					break;
+				case questionZoneDownloadButton:
+					questionZoneDownloadButton.addEventListener(MouseEvent.CLICK, onQuestionZoneDownloadButtonClick);
 					break;
 				case courseSelectorWidget:
 					courseSelectorWidget.addEventListener("writingSelected", onCourseSelectorClick, false, 0, true);
@@ -181,25 +191,23 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 * @param event
 		 */
-		protected function onExerciseClick(event:Event):void {
-			// Get the appropriate href based on which button was pressed
-			var hrefFilename:String;
-			switch (event.target) {
-				case questionZoneButton:
-					hrefFilename = _course.unit.(@["class"] == "question-zone").exercise[0].@href;
-					break;
-				default:
-					if (event is ExerciseEvent && event.type == ExerciseEvent.EXERCISE_SELECTED) {
-						hrefFilename = (event as ExerciseEvent).hrefFilename;
-					} else {
-						log.error("Unable to match event target for exercise selection {0}", event.target);
-						return;
-					}
-
-			}
-			
+		protected function onExerciseSelected(event:ExerciseEvent):void {
 			// Fire the exerciseSelect signal
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, hrefFilename));
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, event.hrefFilename));
+		}
+		
+		protected function onQuestionZoneViewButtonClick(event:MouseEvent):void {
+			var questionZoneExerciseNode:XML =  _course.unit.(@["class"] == "question-zone").exercise[0];
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneExerciseNode.@href));
+		}
+		
+		protected function onQuestionZoneDownloadButtonClick(event:MouseEvent):void {
+			var questionZoneExerciseNode:XML =  _course.unit.(@["class"] == "question-zone").exercise[0];
+			trace("DOWNLOAD");
+		}
+		
+		protected override function getCurrentSkinState():String {
+			return (_course) ? courseClass + "_" + (_exerciseSelectorPoppedOut ? "popped" : "normal") : super.getCurrentSkinState();
 		}
 		
 	}

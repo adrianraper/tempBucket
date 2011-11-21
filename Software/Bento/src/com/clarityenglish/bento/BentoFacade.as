@@ -71,7 +71,7 @@
 
 			// For use with sessions and scores for progress
 			registerCommand(BBNotifications.SESSION_START, SessionStartCommand);
-			registerCommand(BBNotifications.SESSION_STARTED, SessionStartedCommand);
+			//registerCommand(BBNotifications.SESSION_STARTED, SessionStartedCommand);
 
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
 

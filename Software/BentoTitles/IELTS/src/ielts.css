@@ -117,6 +117,14 @@ zone|ZoneView tink|Accordion #buttonBar {
 	cornerRadius: 0;
 }
 
+zone|ZoneView #questionZoneViewButton {
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
+}
+
+zone|ZoneView #questionZoneDownloadButton {
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
+}
+
 zoneui|PopoutExerciseSelector {
 	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
 }

@@ -55,7 +55,7 @@
 										super.data = value;
 										captionLabel.text = value.@caption;
 										// Check to see if the exercise is disabled.
-										enabled = Exercise.exerciseEnabledInMenu(value as XML);
+										//enabled = Exercise.exerciseEnabledInMenu(value as XML);
 										//trace("set " + value.@caption + " enabled=" + enabled.toString() + "(@eF=" + value.@enabledFlag + ")");
 									}
 								]]>
