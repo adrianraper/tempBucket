@@ -25,8 +25,13 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function onRegister():void {
 			super.onRegister();
-			
+
+			// I want the first thing to be the initChart call
+			trace("progCompareMediator call initCharts");
+			view.initCharts();
+
 			// Ask for the progress data you want
+			trace("progCompareMediator, ask for my_summary and everyone_summary");
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
 
@@ -48,6 +53,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
+					trace("progCompareMediator, got back " + rs.type);
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
 						view.setMySummaryDataProvider(new XML(rs.dataProvider));
 					}

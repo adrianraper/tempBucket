@@ -66,7 +66,7 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
-		 * Rhis gets the exercise node in the menu xml matching the exercise the user is currently in.  If there is no exercise
+		 * This gets the exercise node in the menu xml matching the exercise the user is currently in.  If there is no exercise
 		 * (i.e. the user is not currently in an exercise) this will return null.
 		 * 
 		 * @return 
@@ -115,7 +115,7 @@ package com.clarityenglish.bento.model {
 		private function getExerciseNodeWithOffset(offset:int):XML {
 			var otherExerciseNode:XML;
 			
-			// Keep going through potential exercises until we find one with Exercise.showExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section
+			// Keep going through potential exercises until we find one with Exercise.linkExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section
 			while (!(parentMatch && groupMatch)) {
 				// If the offset is less than 0 then we can't find a match
 				if (currentExerciseNode.childIndex() + offset < 0)
@@ -130,8 +130,8 @@ package com.clarityenglish.bento.model {
 				var parentMatch:Boolean = (currentExerciseNode.parent() === otherExerciseNode.parent());
 				var groupMatch:Boolean = (!currentExerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (currentExerciseNode.@group == otherExerciseNode.@group);
 				
-				// If this exercise is valid then return it
-				if (parentMatch && groupMatch && Exercise.showExerciseInMenu(otherExerciseNode))
+				// If this exercise is valid to link to, then return it
+				if (parentMatch && groupMatch && Exercise.linkExerciseInMenu(otherExerciseNode))
 					return otherExerciseNode;
 				
 				// Increase the magnitude of the offset by one and try again

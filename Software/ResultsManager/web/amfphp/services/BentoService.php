@@ -110,34 +110,6 @@ class BentoService extends AbstractService {
 		Session::set('rootID', $account->id);
 		Session::set('productCode', $config['productCode']);
 				
-		/*
-		// Comment until DK has database setup
-		// Fake the database return for now
-		
-		// Title
-		$title = new Title();
-		$title->id = $productCode;
-		$title->expiryDate = '2012-12-31 00:00:00';
-		$title->licenceStartDate = '2011-01-01-00:00:00';
-		$title->contentLocation = 'RoadToIELTS2-Academic';
-		$title->licenceType = 1;
-		
-		// Account
-		$account = new Account();
-		$account->rootID = 163;
-		$account->prefix = 'DEV';
-		$account->name = 'Clarity DEV account';
-		$account->tacStatus = 2;
-		$account->accountStatus = 1;
-		$account->loginOptions = 2;
-		$account->verified = 'true';
-		$account->selfRegister = 'false';
-		$account->addTitles(array($title));
-		
-		// Misc
-		$configObj = array("databaseVersion" => 7);
-		*/
-		
 		return array("error" => $errorObj, 
 					"config" => $configObj,
 					"account" => $account);
@@ -171,6 +143,7 @@ class BentoService extends AbstractService {
 			$user->fullName = $user->name;
 			
 			// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
+			// Well, above I am using rootID and productCode from sessionVariables...
 			Session::set('userID', $userObj->F_UserID);
 			Session::set('userType', $userObj->F_UserType);
 			
@@ -222,7 +195,7 @@ class BentoService extends AbstractService {
 	 * TODO. Check out authentication. I have added this to beforeFilter exceptions, though it shouldn't be.
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory
-	 *  @param progress. This object tells us what type of progress data to return
+	 *  @param progressType. This object tells us what type of progress data to return
 	 */
 	function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
 		
@@ -231,7 +204,9 @@ class BentoService extends AbstractService {
 		// Before you get progress records, read the menu.xml
 		// TODO. Possibly move this bit into contentOps?
 		// This path is relative to the Bento application, not this script
-		$menuXMLFile = '../../'.$menuXMLFile;
+		// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
+		// if we keep the everyone summary coming from a computed table.
+		//$menuXMLFile = '../../'.$menuXMLFile;
 		$this->progressOps->getMenuXML($menuXMLFile);
 		
 		$progress = New Progress();
@@ -258,6 +233,91 @@ class BentoService extends AbstractService {
 		return array("error" => $errorObj,
 					"progress" => $progress);
 	}
+	/**
+	 * 
+	 * This service call will create a session record for this user in the database.
+	 *  
+	 *  @param userID, rootID, productCode - these are all self-explanatory
+	 *  @param dateNow - used to get client time
+	 */
+	function startSession($userID, $rootID, $productCode, $dateNow) {
+		
+		$errorObj = array("errorNumber" => 0);
+		$progress = New Progress();
+		
+		try {
+			// A successful session start will return a new ID
+			$progress->sessionID = $this->progressOps->startSession($userID, $rootID, $productCode, $dateNow);
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		return array("error" => $errorObj,
+					"progress" => $progress);
+	}
+	/**
+	 * 
+	 * This service call will close the open session record for this user in the database.
+	 *  
+	 *  @param sessionID - key to the table. If this is not available (perhaps to do with closing the browser?)
+	 *  	maybe we can use $userID and $rootID from session variables
+	 *  @param dateNow - used to get client time
+	 */
+	function updateSession($sessionID, $dateNow ) {
+		
+		$errorObj = array("errorNumber" => 0);
+		
+		try {
+			// A successful session stop will not generate an error
+			$rs = $this->progressOps->updateSession($sessionID, $dateNow);
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		return array("error" => $errorObj);
+	}
+	/**
+	 * 
+	 * Currently stopping the session is just the same as updating it.
+	 * Perhaps later we might want to set something to show we have 'correctly' exited.
+	 *  
+	 *  @param sessionID - key to the table. If this is not available (perhaps to do with closing the browser?)
+	 *  	maybe we can use $userID and $rootID from session variables
+	 *  @param dateNow - used to get client time
+	 */
+	function stopSession($sessionID, $dateNow ) {
+		return $this->updateSession($sessionID, $dateNow);
+	}
+	/**
+	 * 
+	 * This service call will create a score record when a user has completed an exercise or activitiy
+	 *  
+	 *  @param userID, rootID, productCode - these are all self-explanatory
+	 *  @param dateNow - used to get client time
+	 */
+	function writeScore($userID, $dateNow, $sessionID, $productCode, $courseID, $unitID, $exerciseID, $score, $correct, $wrong, $skipped, $coverage, $duration) {
+		
+		$errorObj = array("errorNumber" => 0);
+		
+		try {
+			// Write the score record
+			$this->progressOps->insertScore($userID, $dateNow, $sessionID, $productCode, $courseID, $unitID, $exerciseID, $score, $correct, $wrong, $skipped, $coverage, $duration);
+			
+			// and update the session
+			$this->updateSession($sessionID, $dateNow);
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		return array("error" => $errorObj);
+	}
+	
 	/**
 	 * Get the copy XML document
 	 */

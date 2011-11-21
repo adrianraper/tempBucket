@@ -64,7 +64,6 @@ package com.clarityenglish.ielts.view.progress {
 				case progressCompareView:
 					// The sub views run off the same href as the progress view, so directly inject it 
 					instance.href = href;
-					instance.initCharts();
 					break;
 			}
 		}

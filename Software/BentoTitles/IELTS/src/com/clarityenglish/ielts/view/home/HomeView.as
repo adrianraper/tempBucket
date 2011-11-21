@@ -49,7 +49,11 @@ package com.clarityenglish.ielts.view.home {
           <label_settings enabled="true">
             <background enabled="false" />
             <position anchor="Center" valign="Center" halign="Center" />
-            <font color="White" />
+            <font bold="False" color="White">
+              <effects>
+                <drop_shadow enabled="True" opacity="0.5" distance="2" blur_x="1" blur_y="1" />
+              </effects>
+            </font>
             <format>{"{%YValue}{numDecimals:0}%"}</format>
 		  </label_settings>
 		</bar_series>
@@ -128,7 +132,7 @@ package com.clarityenglish.ielts.view.home {
 			//for each (var point:Object in mySummary) {
 			var points:XMLList = mySummary.course;
 			for each (var point:XML in points) {
-				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@value} style={point.@caption} />);
+				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@coverage} style={point.@caption} />);
 			}
 			coveragePieChart.anychartXML = _fullChartXML;
 		}

@@ -23,6 +23,17 @@ package com.clarityenglish.bento.vo.content {
 		
 		private var _model:Model;
 		
+		// The values of enabledFlag come from Orchid
+		public static const EF_MENU_ON:Number = 1;
+		public static const EF_NAVIGATE_ON:Number = 2;
+		public static const EF_RANDOM_ON:Number = 4;
+		public static const EF_DISABLED:Number = 8;
+		public static const EF_EDITED:Number = 16;
+		public static const EF_NONEDITABLE:Number = 32;
+		public static const EF_AUTOPLAY:Number = 64;
+		public static const EF_DISPLAY_OFF:Number = 128; // This means it is a branding exercise in an adaptive test
+		public static const EF_EXIT_AFTER:Number = 256;
+		
 		public function Exercise(value:XML = null, href:Href = null) {
 			super(value, href);
 			
@@ -96,7 +107,24 @@ package com.clarityenglish.bento.vo.content {
 		}
 		
 		/**
-		 * This is a static function that determines whether an exercise should be displayed in the menu or not.  It runs off the exercise xml node in the menu
+		 * This is a static function that determines whether an exercise should be navigable to or not. It runs off the exercise xml node in the menu
+		 * xml, not the exercise file itself.
+		 *  
+		 * @param exerciseNode
+		 * @return 
+		 * 
+		 */
+		public static function linkExerciseInMenu(exerciseNode:XML):Boolean {
+			if (!exerciseNode)
+				return false;
+			
+			// enabledFlag is binary based for backwards compatability
+			// You can link to an exercise if - it is not disabled and it has navigate on.
+			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_NAVIGATE_ON)==Exercise.EF_NAVIGATE_ON &&
+																	!(exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED));
+		}
+		/**
+		 * This is a static function that determines whether an exercise should be displayed in the menu or not. It runs off the exercise xml node in the menu
 		 * xml, not the exercise file itself.
 		 *  
 		 * @param exerciseNode
@@ -107,7 +135,11 @@ package com.clarityenglish.bento.vo.content {
 			if (!exerciseNode)
 				return false;
 			
-			return (!exerciseNode.hasOwnProperty("@enabledFlag") || exerciseNode.@enabledFlag == true);
+			// enabledFlag is binary based for backwards compatability
+			// You can see an exercise on the menu - if it is menuOn and not displayOff.
+			// If it is disabled, you will see it differently and not be able to click it.
+			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON)==Exercise.EF_MENU_ON &&
+																	!(exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF)==Exercise.EF_DISPLAY_OFF));
 		}
 		
 	}

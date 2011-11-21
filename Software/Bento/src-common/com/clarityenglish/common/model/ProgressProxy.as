@@ -82,7 +82,7 @@ package com.clarityenglish.common.model {
 				if (progressType === loadingData)
 					return;
 			
-			// Send userID, rootID and productCode. Also say whether you want some or all data to come back.
+			// Send user details and the URL of the menu to the backend
 			var menuFile:String = href.currentDir+'/'+href.filename;
 			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, menuFile ];
 			new RemoteDelegate("getProgressData", params, this).execute();
@@ -100,6 +100,17 @@ package com.clarityenglish.common.model {
 		private function notifyDataLoaded(progressType:String):void {
 			var data:Object = {type:progressType, dataProvider:loadedResources[progressType]};
 			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+		}
+		
+		/**
+		 * Use the database to record that this user has started using this title 
+		 * @return void
+		 * 
+		 */
+		public function startSession(user:User, account:Account):void {
+			// $userID, $rootID, $productCode, $dateNow
+			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, new Date().getTime() ];
+			new RemoteDelegate("startSession", params, this).execute();			
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

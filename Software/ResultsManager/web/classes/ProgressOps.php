@@ -49,11 +49,12 @@ class ProgressOps {
 			// so just ignore them
 			//$coverage = floor($count*100/$total);
 			$coverage = rand(25,100);
+			$averageScore = rand(25,100);
 			
 			// Put it all into a node in the return object
 			$newCourse = $build->addChild('course');
 			$newCourse->addAttribute('caption',(string) $course['caption']);
-			$newCourse->addAttribute('value',(string) $coverage);
+			$newCourse->addAttribute('coverage',(string) $coverage);
 			$newCourse->addAttribute('count',(string) $count);
 			$newCourse->addAttribute('of',(string) $total);
 			$newCourse->addAttribute('averageScore',$averageScore);
@@ -63,7 +64,7 @@ class ProgressOps {
 
 	}
 	/**
-	 * This method merges the progress records with XML at the details level
+	 * This method merges the progress records with XML at the detail level
 	 * The rs contains a record(s) for each exercise that has been done.
 	 * Build an XML data provider for the charts that contains everything, done or not.
 	 */
@@ -194,6 +195,129 @@ EOD;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
+	}
+	
+	/**
+	 * This method is called to insert a session record when a user starts a program
+	 */
+	function startSession($userID, $rootID, $productCode, $dateNow) {
+
+		// Check that the date is valid
+		$dateStampNow = strtotime($dateNow);
+		if (!$dateStampNow) {
+			$dateStampNow = time();
+			$dateNow = date('Y-m-d H:i:s',$dateStampNow);
+		}
+		$dateSoon = date('Y-m-d H:i:s',strtotime("+15 seconds", $dateStampNow));
+		
+		// CourseID is in the db for backwards compatability, but no longer used. All sessions are across one title.
+		// StartDateStamp is usually sent so that we can record a user's local time. It might be better to send a time-zone if we could.
+		// EndDateStamp and Duration are different views of the same data. It might be better to just focus on Duration.
+		// When you start a session, the minimum duration is 15 seconds.
+		$sql = <<<SQL
+			INSERT INTO T_Session (F_UserID, F_StartDateStamp, F_EndDateStamp, F_Duration, F_RootID, F_ProductCode)
+			VALUES (?, ?, ?, 15, ?, ?)
+SQL;
+
+		// We want to return the newly created F_SessionID (or the SQL error)
+		$bindingParams = array($userID, $dateNow, $dateSoon, $rootID, $productCode);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs) {
+			$sessionID = $this->db->Insert_ID();
+			if ($sessionID) {
+				return $sessionID;
+			} else {
+				// The database probably doesn't support the Insert_ID function
+				throw new Exception("Database can't find auto-increment session id", 100);
+			}
+		} else {
+			return $rs;
+		}
+		
+	}
+	/**
+	 * This method is called to update a session record.
+	 * This is used both when a user exits the program, and regularly whilst the connection is still going.
+	 */
+	function updateSession($sessionID, $dateNow) {
+
+		// Check that the date is valid
+		$dateStampNow = strtotime($dateNow);
+		if (!$dateStampNow)
+			$dateStampNow = time();
+		
+		// Calculate F_Duration as well as setting F_EndDateStamp
+		// We can either do it one call, with different SQL for different databases, or
+		// do two calls and make it common.
+		if (strpos($GLOBALS['dbms'],"mysql")!==false) {
+			$sql = <<<EOD
+				UPDATE T_Session
+				SET F_EndDateStamp=?,
+				F_Duration=TIMESTAMPDIFF(SECOND,F_StartDateStamp,?)
+				WHERE F_SessionID=?
+EOD;
+		} else if (strpos($GLOBALS['dbms'],"sqlite")!==false) {
+			$sql = <<<EOD
+				UPDATE T_Session
+				SET F_EndDateStamp=?,
+				F_Duration=strftime('%s',?) - strftime('%s',F_StartDateStamp)
+				WHERE F_SessionID=?
+EOD;
+		} else {
+			$sql = <<<EOD
+				UPDATE T_Session
+				SET F_EndDateStamp=?,
+				F_Duration=DATEDIFF(s,F_StartDateStamp,?)
+				WHERE F_SessionID=?
+EOD;
+		}
+		$bindingParams = array($dateStampNow, $dateStampNow, $sessionID);
+		$rs = $this->db->Execute($sql);
+		return $rs;
+		
+	}
+	/**
+	 * This method is called to insert a score record 
+	 * @param userID, date, sessionID
+	 * @param productCode, courseID, unitID, itemID - these form the UID
+	 * @param score (%), correct, wrong, skipped
+	 * @param coverage (%)
+	 * @param duration (seconds)
+	 */
+	function insertScore($userID, $dateNow, $sessionID, $productCode, $courseID, $unitID, $exerciseID, $score, $correct, $wrong, $skipped, $coverage, $duration) {
+
+		// Check that the data is valid
+
+		$bindingParams = array(
+				$userID, $dateNow, $sessionID, 
+				$productCode, $courseID, $unitID, $exerciseID,
+				$score, $correct, $wrong, $skipped,
+				$coverage,
+				$duration,
+				 );
+		// Write anonymous records to an ancilliary table that will not slow down reporting
+		if ($userID<1) {
+			$tableName = 'T_ScoreAnonymous';
+		} else {
+			$tableName = 'T_Score';
+		}
+		
+		$sql = <<<SQL
+			INSERT INTO $tableName (
+						F_UserID, F_DateStamp, F_SessionID, 
+						F_ProductCode, F_CourseID, F_UnitID, F_ExerciseID,
+						F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed,
+						F_Duration 
+						) VALUES (
+						?, ?, ?, 
+						?, ?, ?, ?,
+						?, ?, ?, ?,
+						?,
+						? )
+SQL;
+		$rs = $this->db->Execute($sql);
+		return $rs;
+		
 	}
 }
 ?>
