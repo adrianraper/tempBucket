@@ -7,9 +7,11 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.common.vo.progress.Progress;
+	import com.clarityenglish.common.vo.progress.Score;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	import flash.events.Event;
@@ -50,6 +52,16 @@ package com.clarityenglish.common.model {
 		 * Whilst data is loading we need to know so that we don't try to load it again
 		 */
 		private var dataLoading:Dictionary;
+		
+		/**
+		 * sessionID is the key to the session table for this user using this course
+		 */
+		public var sessionID:String;
+		
+		/**
+		 * score is an object used to hold score information
+		 */
+		public var score:Score;
 		
 		/**
 		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
@@ -113,6 +125,39 @@ package com.clarityenglish.common.model {
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
 		
+		/**
+		 * Use the database to record that this user has stopped using this title 
+		 * @return void
+		 * 
+		 */
+		public function stopSession():void {
+			
+			// sessionID is the only key we need, and that is held in this model
+			var params:Array = [ sessionID, new Date().getTime() ];
+			new RemoteDelegate("stopSession", params, this).execute();			
+		}
+		/**
+		 * Use the database to record that the user has done an exercise/activity
+		 * @return void
+		 * 
+		 */
+		public function writeScore(percent:int, correct:uint, wrong:uint, skipped:uint, coverage:uint):void {
+			// $userID, $rootID, $productCode, $dateNow
+			score = new Score();
+			score.score = percent;
+			score.correct = correct;
+			score.wrong = wrong;
+			score.skipped = skipped;
+			score.coverage = coverage;
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;;
+			var config:Config = configProxy.getConfig();
+			var account:Account = configProxy.getAccount();
+			
+			var params:Array = [ configProxy.getUserID(), account.id, (account.titles[0] as Title).id, new Date().getTime(), score ];
+			new RemoteDelegate("writeScore", params, this).execute();			
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
@@ -150,6 +195,30 @@ package com.clarityenglish.common.model {
 						var error:BentoError = new BentoError(BentoError.ERROR_DATABASE_READING);
 					}
 					break;
+				
+				case "startSession":
+					if (data) {
+						sessionID = data.progress['sessionID'] as String;
+						sendNotification(BBNotifications.SESSION_STARTED, data);
+					} else {
+						// Can't write to the database
+						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
+					}
+				case "stopSession":
+					if (data) {
+						sendNotification(BBNotifications.SESSION_STOPPED, data);
+					} else {
+						// Can't write to the database
+						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
+					}
+				case "writeScore":
+					if (data) {
+						sendNotification(BBNotifications.SCORE_WRITTEN, data);
+					} else {
+						// Can't write to the database
+						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
+					}
+					
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}

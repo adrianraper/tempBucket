@@ -97,6 +97,7 @@ package com.clarityenglish.common.model {
 							//_user = _group.children[0];
 							
 							sendNotification(CommonNotifications.LOGGED_IN, data);
+							
 						}
 					} else {
 						// Invalid login

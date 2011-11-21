@@ -6,6 +6,9 @@
 	
 	// For this product
 	$productCode = 52; // RoadToIELTS 2
+	$swfName = 'IELTSApplication.swf';
+	$webShare = '';
+	$startControl = "$webShare/Software/ResultsManager/web/";
 	
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
@@ -67,8 +70,6 @@
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript">
 		// ****
-		// Change this variable along with the above fixed paths
-		var webShare = "";
 		// 
 		// ****
 		function thisMovie(movieName) {
@@ -91,7 +92,9 @@
 		// Running scale, width and height with swfobject is off
 		// If I set both to 100%, then IE shows a very small image, FF shows nothing (but the app is running)
 		// If I set a specific height, then it doesn't matter what I put for width
-		var startControl = webShare + "/Software/ResultsManager/web/";
+		var webShare = "<?php echo $webShare ?>";
+		var startControl = "<?php echo $startControl ?>";
+		var swfName = "<?php echo $swfName ?>";
 		
 		// v6.5.5.6 Allow resize screen mode
 		//var coordsWidth = "100%"; var coordsHeight = "100%";
@@ -101,6 +104,7 @@
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
+		argList+="&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
@@ -160,7 +164,7 @@
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + "IELTSApplication.swf" + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
 		swffit.fit("altContent");
 	</script>
 <!--CSS pop up layout box-->

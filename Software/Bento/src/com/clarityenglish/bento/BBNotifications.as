@@ -10,6 +10,12 @@
 		public static const PROGRESS_DATA_LOADED:String = "progress_data_loaded";
 		public static const PROGRESS_DATA_LOAD:String = "progress_data_load";
 		
+		public static const SESSION_START:String = "session_start";
+		public static const SESSION_STARTED:String = "session_started";
+		public static const SESSION_STOP:String = "session_stop";
+		public static const SESSION_STOPPED:String = "session_stopped";
+		public static const SCORE_WRITTEN:String = "score_written";
+		
 		// The notifications are sent when the user answers a question
 		public static const QUESTION_NODE_ANSWER:String = "question_node_answer";
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";

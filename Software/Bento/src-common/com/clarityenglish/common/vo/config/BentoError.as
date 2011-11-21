@@ -28,6 +28,7 @@ package com.clarityenglish.common.vo.config {
 		public static const ERROR_OUTSIDE_RU_RANGE:uint = 207;
 		
 		public static const ERROR_DATABASE_READING:uint = 100;
+		public static const ERROR_DATABASE_WRITING:uint = 100;
 		
 		public function BentoError(errNum:uint=0) {
 			this.errorNumber = errNum;

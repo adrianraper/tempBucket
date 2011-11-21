@@ -243,11 +243,10 @@ class BentoService extends AbstractService {
 	function startSession($userID, $rootID, $productCode, $dateNow) {
 		
 		$errorObj = array("errorNumber" => 0);
-		$progress = New Progress();
 		
 		try {
 			// A successful session start will return a new ID
-			$progress->sessionID = $this->progressOps->startSession($userID, $rootID, $productCode, $dateNow);
+			$sessionID = $this->progressOps->startSession($userID, $rootID, $productCode, $dateNow);
 			
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
@@ -255,7 +254,7 @@ class BentoService extends AbstractService {
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj,
-					"progress" => $progress);
+					"progress" => $sessionID);
 	}
 	/**
 	 * 
