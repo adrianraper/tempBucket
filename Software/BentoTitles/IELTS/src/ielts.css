@@ -117,6 +117,7 @@ zone|ZoneView tink|Accordion #buttonBar {
 	cornerRadius: 0;
 }
 
+zone|ZoneView #viewButton,
 zone|ZoneView #questionZoneViewButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
