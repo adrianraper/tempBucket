@@ -1,0 +1,177 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace login "com.clarityenglish.ielts.view.login.*";
+@namespace title "com.clarityenglish.ielts.view.title.*";
+@namespace zone "com.clarityenglish.ielts.view.zone.*";
+@namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
+@namespace progress "com.clarityenglish.ielts.view.progress.*";
+@namespace account "com.clarityenglish.ielts.view.account.*";
+@namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace home "com.clarityenglish.ielts.view.home.*";
+@namespace compare "com.clarityenglish.ielts.view.progress.components.*";
+@namespace almer "almerblank.flex.spark.components.*";
+@namespace bento "com.clarityenglish.bento.*";
+@namespace tink "ws.tink.spark.containers.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace components "com.clarityenglish.textLayout.components.*";
+
+@font-face {
+	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+	fontFamily: "HelveticaNeueLtStd";
+	fontWeight: normal;
+	fontAntiAliasType: advanced;
+	fontSharpness: 400;
+	fontThickness: -200;
+}
+
+@font-face {
+	src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+	fontFamily: "HelveticaNeueLtStd";
+	fontWeight: bold;
+	fontAntiAliasType: advanced;
+	fontSharpness: 400;
+	fontThickness: -200;
+}
+
+global {
+	/* This changes the modal popup mask properties */
+	modal-transparency: 0.1;
+	modal-transparency-blur: 0;
+	modal-transparency-color: black;
+	modal-transparency-duration: 200;
+	
+	/* This sets the default font properties */
+	fontFamily: "HelveticaNeueLtStd";
+	fontSize: 12;
+	fontWeight: normal;
+	color: #303030;
+}
+
+/* Login view styles */
+login|LoginView {
+	skinClass: ClassReference("skins.ielts.LoginSkin");
+}
+
+/* Title view styles */
+title|TitleView {
+	skinClass: ClassReference("skins.ielts.TitleSkin");
+}
+
+title|TitleView #navBar {
+	skinClass: ClassReference("skins.ielts.title.NavBarSkin");
+}
+
+title|TitleView #navBar s|ButtonBarButton {
+	
+}
+
+/* Home view styles */
+home|HomeView {
+	skinClass: ClassReference("skins.ielts.HomeSkin");
+}
+
+home|HomeView s|Button {
+	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");
+}
+
+home|HomeView s|Button#writingCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Writing.png");
+	title: "Writing";
+	description: "Practise for the writing tasks you will complete in the writing test.";
+}
+
+home|HomeView s|Button#speakingCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
+	title: "Speaking";
+	description: "Prepare to speak fluently in the speaking test.";
+}
+
+home|HomeView s|Button#readingCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Reading.png");
+	title: "Reading";
+	description: "Familiarise yourself with the kinds of reading material and question types you will see in the reading test.";
+}
+
+home|HomeView s|Button#listeningCourse {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
+	courseImage: Embed(source="skins/ielts/assets/Listening.png");
+	title: "Listening";
+	description: "Practise the listening skills you need to succeed in the listening test.";
+}
+
+/* Zone view styles */
+zone|ZoneView {
+	skinClass: ClassReference("skins.ielts.ZoneSkin");
+}
+
+zone|ZoneView tink|Accordion {
+	skinClass: ClassReference("ws.tink.spark.skins.containers.AccordionSkin");
+}
+
+zone|ZoneView tink|Accordion #buttonBar {
+	skinClass: ClassReference("skins.ielts.zone.ZoneAccordianButtonBarSkin");
+	cornerRadius: 0;
+}
+
+zoneui|PopoutExerciseSelector {
+	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
+}
+
+zoneui|ImageItemRenderer {
+	skinClass: ClassReference("skins.ielts.zone.ImageItemRendererSkin");
+}
+
+zoneui|DifficultyRenderer {
+	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
+}
+
+/* Exercise view styles */
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.ielts.ExerciseSkin");
+	
+	writingBackgroundColorTop: #7DAB36;
+	writingBackgroundColorBottom: #364A17;
+	
+	readingBackgroundColorTop: #00A2C8;
+	readingBackgroundColorBottom: #005063;
+	
+	speakingBackgroundColorTop: #A93087;
+	speakingBackgroundColorBottom: #4F173F;
+	
+	listeningBackgroundColorTop: #FF6600;
+	listeningBackgroundColorBottom: #7A3100;
+}
+
+components|AudioPlayer {
+	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
+	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
+	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioUp");
+	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="AudioPlaying");
+}
+
+/* Progress view styles */
+progress|ProgressView {
+	skinClass: ClassReference("skins.ielts.ProgressSkin");
+}
+
+compare|ProgressScoreView {
+	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
+}
+
+compare|ProgressCompareView {
+	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
+}
+
+/* Account view styles */
+account|AccountView {
+	skinClass: ClassReference("skins.ielts.AccountSkin");
+}
+
+/* Marking view styles (this overwrites the default skin) */
+/*marking|MarkingView {
+	skinClass: ClassReference("skins.ielts.marking.MarkingSkin");
+}*/

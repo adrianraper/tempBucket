@@ -48,7 +48,7 @@ class ProgressOps {
 			// Note that whilst you are mixing up old and new productCodes, you might get values >100%
 			// so just ignore them
 			//$coverage = floor($count*100/$total);
-			$coverage = rand(0,100);
+			$coverage = rand(25,100);
 			
 			// Put it all into a node in the return object
 			$newCourse = $build->addChild('course');

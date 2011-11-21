@@ -77,22 +77,22 @@
 
 <img class="rightFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/>
 <audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
-<div id="gapfillText">
 
-<h7><p>Description A:</p></h7>
-<p>It disappeared as the result of an epidemic. <input id="q1" type="droptarget"/> </p>
-<h7><p>Description B:</p></h7>
-<p>It is spoken by a fifth of the local population.</p>
-<h7><p>Description C:</p></h7>
-<p>It is spoken by more children than adults.</p>
-<h7><p>Description D:</p></h7>
-<p>It disappeared in the first half of the 20th century.</p>
-<h7><p>Description E:</p></h7>
-<p>It has become more widely spoken in recent decades.</p>
-<h7><p>Description F:</p></h7>
-<p> It is a compulsory subject in schools.</p>
-<h7><p>Description G:</p></h7>
-<p>It disappeared in the 19th century.</p>
+<div id="gapfillText">
+<p><b>Description A:</b>&#xA0;It disappeared as the result of an epidemic. </p>
+<input id="q1" type="droptarget"/> 
+<p><b>Description B:</b>&#xA0;It is spoken by a fifth of the local population.</p>
+<input id="q2" type="droptarget"/> 
+<p><b>Description C:</b>&#xA0;It is spoken by more children than adults.</p>
+<input id="q3" type="droptarget"/> 
+<p><b>Description D:</b>&#xA0;It disappeared in the first half of the 20th century.</p>
+<input id="q4" type="droptarget"/> 
+<p><b>Description E:</b>&#xA0;It has become more widely spoken in recent decades.</p>
+<input id="q5" type="droptarget"/> 
+<p><b>Description F:</b>&#xA0;It is a compulsory subject in schools.</p>
+<input id="q6" type="droptarget"/> 
+<p><b>Description G:</b>&#xA0;It disappeared in the 19th century. </p>
+<input id="q7" type="droptarget"/> 
 <h7><p>Description H:</p></h7>
 <p>It is only spoken in one village.</p>
 <h7><p>Description I:</p></h7>
