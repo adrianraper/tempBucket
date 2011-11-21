@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -123,41 +123,41 @@
   <img class="leftFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
   <img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"/>
   <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">First<list class="answerList"><li><a id="a1">Consecutive stages</a></li><li><a id="a2">Concurrent stages</a></li><li><a id="a3">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q2">already<list class="answerList"><li><a id="a46">Consecutive stages</a></li><li><a id="a47">Concurrent stages</a></li><li><a id="a48">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q3">The next stage<list class="answerList"><li><a id="a43">Consecutive stages</a></li><li><a id="a44">Concurrent stages</a></li><li><a id="a45">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q4">either<list class="answerList"><li><a id="a40">Consecutive stages</a></li><li><a id="a41">Concurrent stages</a></li><li><a id="a42">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q5">already<list class="answerList"><li><a id="a37">Consecutive stages</a></li><li><a id="a38">Concurrent stages</a></li><li><a id="a39">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q6">or<list class="answerList"><li><a id="a34">Consecutive stages</a></li><li><a id="a60">Concurrent stages</a></li><li><a id="a36">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q7">then<list class="answerList"><li><a id="a31">Consecutive stages</a></li><li><a id="a32">Concurrent stages</a></li><li><a id="a33">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q8">in turn<list class="answerList"><li><a id="a28">Consecutive stages</a></li><li><a id="a29">Concurrent stages</a></li><li><a id="a30">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q9">If<list class="answerList"><li><a id="a25">Consecutive stages</a></li><li><a id="a26">Concurrent stages</a></li><li><a id="a27">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q10">then<list class="answerList"><li><a id="a22">Consecutive stages</a></li><li><a id="a23">Concurrent stages</a></li><li><a id="a24">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q11">If<list class="answerList"><li><a id="a19">Consecutive stages</a></li><li><a id="a20">Concurrent stages</a></li><li><a id="a21">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q12">otherwise<list class="answerList"><li><a id="a16">Consecutive stages</a></li><li><a id="a17">Concurrent stages</a></li><li><a id="a18">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q13">While<list class="answerList"><li><a id="a13">Consecutive stages</a></li><li><a id="a14">Concurrent stages</a></li><li><a id="a15">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q14">Subsequently<list class="answerList"><li><a id="a10">Consecutive stages</a></li><li><a id="a11">Concurrent stages</a></li><li><a id="a12">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q15">before<list class="answerList"><li><a id="a7">Consecutive stages</a></li><li><a id="a8">Concurrent stages</a></li><li><a id="a9">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q16">Once<list class="answerList"><li><a id="a4">Consecutive stages</a></li><li><a id="a5">Concurrent stages</a></li><li><a id="a6">Alternative stages</a></li></list><br/></li>
-    <br/>
-    <li id="q17">finally<list class="answerList"><li><a id="a49">Consecutive stages</a></li><li><a id="a50">Concurrent stages</a></li><li><a id="a51">Alternative stages</a></li></list><br/></li>
+  <ol id="splitquestionList">
+    
+    <li id="q1">First<list class="answerList"><li><a id="a1">Consecutive stages</a></li><li><a id="a2">Concurrent stages</a></li><li><a id="a3">Alternative stages</a></li></list></li>
+    
+    <li id="q2">already<list class="answerList"><li><a id="a46">Consecutive stages</a></li><li><a id="a47">Concurrent stages</a></li><li><a id="a48">Alternative stages</a></li></list></li>
+   
+    <li id="q3">The next stage<list class="answerList"><li><a id="a43">Consecutive stages</a></li><li><a id="a44">Concurrent stages</a></li><li><a id="a45">Alternative stages</a></li></list></li>
+    
+    <li id="q4">either<list class="answerList"><li><a id="a40">Consecutive stages</a></li><li><a id="a41">Concurrent stages</a></li><li><a id="a42">Alternative stages</a></li></list></li>
+    
+    <li id="q5">already<list class="answerList"><li><a id="a37">Consecutive stages</a></li><li><a id="a38">Concurrent stages</a></li><li><a id="a39">Alternative stages</a></li></list></li>
+   
+    <li id="q6">or<list class="answerList"><li><a id="a34">Consecutive stages</a></li><li><a id="a60">Concurrent stages</a></li><li><a id="a36">Alternative stages</a></li></list></li>
+    
+    <li id="q7">then<list class="answerList"><li><a id="a31">Consecutive stages</a></li><li><a id="a32">Concurrent stages</a></li><li><a id="a33">Alternative stages</a></li></list></li>
+    
+    <li id="q8">in turn<list class="answerList"><li><a id="a28">Consecutive stages</a></li><li><a id="a29">Concurrent stages</a></li><li><a id="a30">Alternative stages</a></li></list></li>
+    
+    <li id="q9">If<list class="answerList"><li><a id="a25">Consecutive stages</a></li><li><a id="a26">Concurrent stages</a></li><li><a id="a27">Alternative stages</a></li></list></li>
+    
+    <li id="q10">then<list class="answerList"><li><a id="a22">Consecutive stages</a></li><li><a id="a23">Concurrent stages</a></li><li><a id="a24">Alternative stages</a></li></list></li>
+    
+    <li id="q11">If<list class="answerList"><li><a id="a19">Consecutive stages</a></li><li><a id="a20">Concurrent stages</a></li><li><a id="a21">Alternative stages</a></li></list></li>
+   
+    <li id="q12">otherwise<list class="answerList"><li><a id="a16">Consecutive stages</a></li><li><a id="a17">Concurrent stages</a></li><li><a id="a18">Alternative stages</a></li></list></li>
+    
+    <li id="q13">While<list class="answerList"><li><a id="a13">Consecutive stages</a></li><li><a id="a14">Concurrent stages</a></li><li><a id="a15">Alternative stages</a></li></list></li>
+    
+    <li id="q14">Subsequently<list class="answerList"><li><a id="a10">Consecutive stages</a></li><li><a id="a11">Concurrent stages</a></li><li><a id="a12">Alternative stages</a></li></list></li>
+    
+    <li id="q15">before<list class="answerList"><li><a id="a7">Consecutive stages</a></li><li><a id="a8">Concurrent stages</a></li><li><a id="a9">Alternative stages</a></li></list></li>
+    
+    <li id="q16">Once<list class="answerList"><li><a id="a4">Consecutive stages</a></li><li><a id="a5">Concurrent stages</a></li><li><a id="a6">Alternative stages</a></li></list></li>
+    
+    <li id="q17">finally<list class="answerList"><li><a id="a49">Consecutive stages</a></li><li><a id="a50">Concurrent stages</a></li><li><a id="a51">Alternative stages</a></li></list></li>
   </ol>
 </section>
 
@@ -213,7 +213,9 @@
 </section>
 
 <section id="readingText">
-	<p align="left">The flow chart shows the steps in the process of publishing academic books.&nbsp;(1) First, the publisher researches the market for popular subjects and reviews titles which (2) already exist in those fields. Based on this research, a publishing project is chosen. (3) The next stage is to find a suitable manuscript. The publisher can (4) either select from manuscripts which have (5) already been submitted, (6) or they can commission authors to write them. Manuscripts are (7) then reviewed by readers. They make recommendations to the commissioning editor, who (8) in turn makes a final selection for the project.</p>&nbsp;(9) If the publisher believes that the project will be a financial success, (10) then the detailed editing process can begin. Style, spelling and punctuation are checked by copy and line editors. (11) If the manuscript needs further correction, it is sent back to the writer, (12) otherwise the book is ready for design and manufacture.&nbsp;(13) While the above creative processes are taking place, a marketing plan is drawn up. (14) Subsequently, advertising and publicity campaigns can generate orders for the book even (15) before it is printed.&nbsp;(16) Once the book has been designed and manufactured, a price is set and the book can be distributed to warehouses and (17) finally to bookshops.<p align="left"><font size="2"></font></p>
+<br/>
+	<p>The flow chart shows the steps in the process of publishing academic books.&#xA0;<b>(1) First</b>, the publisher researches the market for popular subjects and reviews titles which&#xA0;<b>(2) already</b>&#xA0;exist in those fields. Based on this research, a publishing project is chosen.&#xA0;<b>(3) The next stage</b>&#xA0;is to find a suitable manuscript. The publisher can&#xA0;<b>(4) either</b>&#xA0;select from manuscripts which have&#xA0;<b>(5) already</b>&#xA0;been submitted, &#xA0;<b>(6) or</b>&#xA0;they can commission authors to write them. Manuscripts are &#xA0;<b>(7) then</b>&#xA0;reviewed by readers. They make recommendations to the commissioning editor, who&#xA0;<b>(8) in turn</b>&#xA0;makes a final selection for the project.&#xA0;<b>(9) If</b>&#xA0; the publisher believes that the project will be a financial success,&#xA0;<b>(10) then</b>&#xA0;the detailed editing process can begin. Style, spelling and punctuation are checked by copy and line editors.&#xA0;<b>(11) If</b>&#xA0;the manuscript needs further correction, it is sent back to the writer,&#xA0;<b>(12) otherwise</b>&#xA0;the book is ready for design and manufacture. &#xA0;<b>(13) While</b>&#xA0;the above creative processes are taking place, a marketing plan is drawn up.&#xA0;<b>(14) Subsequently</b>, advertising and publicity campaigns can generate orders for the book even (15) before it is printed.&#xA0;<b>(16) Once</b>&#xA0;the book has been designed and manufactured, a price is set and the book can be distributed to warehouses and &#xA0;<b>(17) finally</b>&#xA0;to bookshops.</p>
+	
 </section>
 </body>
 </bento>

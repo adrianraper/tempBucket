@@ -43,6 +43,7 @@ h2 {
 	font-size: 11px;
 	padding-bottom: 25em;
 	padding-right: 25px;
+	padding-left:20px;
 	text-align: left;
     line-height: 20em
 }
@@ -54,16 +55,7 @@ h4 {
 	padding-top: 0px
 }
 
-h5 {
-	font-family: Arial Black;
-	font-size: 16px;
-	font-weight: bold;
-	padding-top: 30em;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	text-align: left;
-	line-height: 5em;
-}
+
 
 h6 {
 	font-family: Arial Black;
@@ -116,7 +108,15 @@ h6 {
 	padding-right: 25em;
 	padding-left: 25m;
 }
-
+#body .leftFloat {
+	float: left;
+	padding-top: 25em;
+	padding-right: 25em;
+	padding-left: 25m;
+}
+#body .leftFloat{
+	float: left:
+}
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
 	color: #3A00FF;
@@ -175,7 +175,7 @@ a.neutral, input.neutral {
 }
 
 #presentation{
-	
+	padding-top: 20px;
 	text-align: left;
 	padding-right: 220%;
 	line-height: 22em;

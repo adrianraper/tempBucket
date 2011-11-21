@@ -81,7 +81,7 @@
   <img class="rightFloat" src="../media/EN_AW_006s.jpg" mode="1" id="1001"/>
   <img class="leftFloat" src="../media/EN_AW_006.jpg" mode="16" id="1003"/>
   
-  <div id="writing">
+  <div id="gapfillText">
   
   <p>A modern wind turbine is a very large construction. The tower needs to rise at least 40 metres from the ground &#xA0;<input id="q1" type="droptarget"/>&#xA0; give the rotor blades enough clearance &#xA0;<input id="q2" type="droptarget"/>&#xA0; rotate safely. The blades are 20 metres from hub to tip. Their pitch can be altered &#xA0;<input id="q3" type="droptarget"/>&#xA0; they can catch the most wind. </p>
   <p>At the top of the tower is the nacelle, &#xA0;<input id="q4" type="droptarget"/>&#xA0; streamlined &#xA0;<input id="q5" type="droptarget"/>&#xA0; to prevent the tower from bending in strong winds. Inside &#xA0;<input id="q6" type="droptarget"/>&#xA0; housing, the gearbox converts the 34 r.p.m. rotating speed of the rotor blades to 1500 r.p.m. &#xA0;<input id="q7" type="droptarget"/>&#xA0; the generator drive shaft. This is &#xA0;<input id="q8" type="droptarget"/>&#xA0; that the turbine produces electricity of the right frequency. </p>

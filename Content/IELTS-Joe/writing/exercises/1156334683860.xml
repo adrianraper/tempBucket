@@ -60,17 +60,17 @@ Writing Task 2
   <br/>
   <ol id="splitquestionList">
     <li id="1">Some species are unable to adapt to the changing climate brought about by global warming.
-	<p><b>Solution</b> &#xA0;<input id="q1"/><br/></p></li>
+	<p class="solution"><b>Solution</b> &#xA0;<input id="q1"/><br/></p></li>
     <li id="2">Overfishing upsets the natural balance of marine life.
-	<p><b>Solution</b> &#xA0;<input id="q2"/><br/></p></li>
+	<p class="solution"><b>Solution</b> &#xA0;<input id="q2"/><br/></p></li>
     <li id="3">Logging to provide timber for industry destroys forests.
-	<p><b>Solution</b> &#xA0;<input id="q3"/><br/></p></li>
+	<p class="solution"><b>Solution</b> &#xA0;<input id="q3"/><br/></p></li>
     <li id="4">Some endangered species are still hunted due to the demand for traditional medicines, ivory, skins and other animal products.
-	<p><b>Solution</b> &#xA0;<input id="q4"/><br/></p></li>
+	<p class="solution"><b>Solution</b> &#xA0;<input id="q4"/><br/></p></li>
     <li id="5">Industry continues to pollute rivers, lakes and coastal areas.
-	<p><b>Solution</b> &#xA0;<input id="q5"/><br/></p></li>
+	<p class="solution"><b>Solution</b> &#xA0;<input id="q5"/><br/></p></li>
     <li id="6">Forests are cleared to provide agricultural land.
-	<p><b>Solution</b> &#xA0;<input id="q6"/><br/></p></li>
+	<p class="solution"><b>Solution</b> &#xA0;<input id="q6"/><br/></p></li>
   </ol>
 </section>
 
@@ -79,19 +79,19 @@ Writing Task 2
 </section>
 
 <section id="readingText">
-<br/><p><b>Solution A:</b></p>
+<br/><h7><p>Solution A:</p></h7>
 <p>There ought to be an international agency to stop the trade in products made from endangered species.</p>
-<p><br/><b>Solution B:</b></p>
+<h7><p>Solution B:</p></h7>
 <p>Companies that pollute must be heavily fined.</p>
-<p><br/><b>Solution C:</b></p>
+<h7><p>Solution C:</p></h7>
 <p>Woodlands should be harvested for natural resources rather than cleared in order to grow cash crops.</p>
-<p><br/><b>Solution D:</b></p>
+<h7><p>Solution D:</p></h7>
 <p>Governments should impose strict limits on fishing.</p>
-<p><br/><b>Solution E:</b></p>
+<h7><p>Solution E:</p></h7>
 <p>Industry ought to only use timber from renewable forests.</p>
-<p><br/><b>Solution F:</b></p>
+<h7><p>Solution F:</p></h7>
 <p>CO2 emissions from vehicles and industry should be reduced and more use made of renewable energy sources such as wind and solar power.</p>
-<p align="left"><font size="2"/></p></section>
+</section>
 
 </body>
 </bento>

@@ -61,7 +61,9 @@
 <section id="body">
   <video src="../media/Unit03_e5.flv" mode="1" id="1003" autoPlay="false"/>
   <div id="gapfillText">
-  <p>You can travel on&#xA0;<input id="q1"/>&#xA0;or by&#xA0;<input id="q2"/>&#xA0;.You can take some&#xA0;<input id="q3"/>&#xA0;on the&#xA0;<input id="q4"/>&#xA0;. Lots of people&#xA0;<input id="q5"/>&#xA0;by&#xA0;<input id="q6"/>. Or you can just&#xA0;<input id="q7"/>&#xA0;a&#xA0;<input id="q8"/>.</p>
+  <p>You can travel on&#xA0;<input id="q1"/>&#xA0;or by&#xA0;<input id="q2"/>&#xA0;.</p>
+  <p>You can take some&#xA0;<input id="q3"/>&#xA0;on the&#xA0;<input id="q4"/>&#xA0;.</p> <p>Lots of people&#xA0;<input id="q5"/>&#xA0;by&#xA0;<input id="q6"/>. </p>
+  <p>Or you can just&#xA0;<input id="q7"/>&#xA0;a&#xA0;<input id="q8"/>.</p>
   <p align="left">
     <font size="2"/>
   </p>

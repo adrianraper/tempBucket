@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -140,36 +140,22 @@
 </header>
 	
 <section id="noscroll">
-  <span id="a18" draggable="true">A</span>
-  <span id="a21" draggable="true">B</span>
-  <span id="a19" draggable="true">C</span>
-  <span id="a27" draggable="true">D</span>
-  <span id="a16" draggable="true">E</span>
-  <span id="a22" draggable="true">F</span>
-  <span id="a28" draggable="true">G</span>
-  <span id="a24" draggable="true">H</span>
-  <span id="a20" draggable="true">I</span>
-  <span id="a17" draggable="true">J</span>
-  <span id="a25" draggable="true">K</span>
-  <span id="a26" draggable="true">L</span>
-  <span id="a23" draggable="true">M</span>
-  <span id="a29" draggable="true">N</span>
-  <span id="a30" draggable="true">O</span>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1aa.mp3" mode="1" id="1003"/>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1ab.mp3" mode="1" id="1004"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ac.mp3" mode="1" id="1005"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ad.mp3" mode="1" id="1006"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ae.mp3" mode="1" id="1007"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1af.mp3" mode="1" id="1008"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ag.mp3" mode="1" id="1009"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ah.mp3" mode="1" id="1010"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ai.mp3" mode="1" id="1011"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1aj.mp3" mode="1" id="1012"/>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1ak.mp3" mode="1" id="1013"/>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1al.mp3" mode="1" id="1014"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1am.mp3" mode="1" id="1015"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1an.mp3" mode="1" id="1016"/>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ao.mp3" mode="1" id="1017"/>
+  <span id="a18" draggable="true">A<audio controls="compact" class="leftFloat" src="../media/LE_AW1aa.mp3" mode="1" id="1003"/></span>
+  <span id="a21" draggable="true">B<audio controls="compact" class="leftFloat" src="../media/LE_AW1ab.mp3" mode="1" id="1004"/></span>
+  <span id="a19" draggable="true">C<audio controls="compact" class="rightFloat" src="../media/LE_AW1ac.mp3" mode="1" id="1005"/></span>
+  <span id="a27" draggable="true">D<audio controls="compact" class="rightFloat" src="../media/LE_AW1ad.mp3" mode="1" id="1006"/></span>
+  <span id="a16" draggable="true">E<audio controls="compact" class="rightFloat" src="../media/LE_AW1ae.mp3" mode="1" id="1007"/></span>
+  <span id="a22" draggable="true">F<audio controls="compact" class="rightFloat" src="../media/LE_AW1af.mp3" mode="1" id="1008"/></span>
+  <span id="a28" draggable="true">G<audio controls="compact" class="rightFloat" src="../media/LE_AW1ag.mp3" mode="1" id="1009"/></span>
+  <span id="a24" draggable="true">H<audio controls="compact" class="rightFloat" src="../media/LE_AW1ah.mp3" mode="1" id="1010"/></span>
+  <span id="a20" draggable="true">I <audio controls="compact" class="rightFloat" src="../media/LE_AW1ai.mp3" mode="1" id="1011"/></span>
+  <span id="a17" draggable="true">J<audio controls="compact" class="rightFloat" src="../media/LE_AW1aj.mp3" mode="1" id="1012"/></span>
+  <span id="a25" draggable="true">K<audio controls="compact" class="leftFloat" src="../media/LE_AW1ak.mp3" mode="1" id="1013"/></span>
+  <span id="a26" draggable="true">L<audio controls="compact" class="leftFloat" src="../media/LE_AW1al.mp3" mode="1" id="1014"/></span>
+  <span id="a23" draggable="true">M <audio controls="compact" class="rightFloat" src="../media/LE_AW1am.mp3" mode="1" id="1015"/></span>
+  <span id="a29" draggable="true">N<audio controls="compact" class="rightFloat" src="../media/LE_AW1an.mp3" mode="1" id="1016"/></span>
+  <span id="a30" draggable="true">O<audio controls="compact" class="rightFloat" src="../media/LE_AW1ao.mp3" mode="1" id="1017"/></span>
+ 
 </section>
 
 <section id="body">

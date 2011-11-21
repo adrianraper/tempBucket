@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -30,7 +30,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/EN_Task02.jpg" mode="16" id="1004"  />
+	
 		
 		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 12. Click on them.
 		
@@ -40,13 +40,16 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_007s.jpg" mode="1" id="1001"/>
-  <p align="left">The diagrams illustrate two methods of using the movement of waves <g id="t1">so that</g> generate electricity.</p>
-  <p align="left">The first method makes use of a float connected to a pump. The float moves up and down with the movement of the waves. This movement is transferred to the pump, <g id="t2">which</g> piston rises and falls inside a cylinder. When the piston rises, water flows from the intake pipe into the storage tank. When <g id="t3">this</g> falls, there is a downward flow of water. <g id="t4">So that</g>, the intake valve closes. <g id="t5">Due</g> to leave the tank, the water must now go out via the outlet pipe. As it does so, it passes through a turbine, <g id="t6">so as</g> to rotate. This movement is then transferred to a generator, <g id="t7">who</g> converts the mechanical energy to electricity.</p>
-  <p align="left">The second method also makes use of a turbine, but in this case <g id="t8">which</g> is surrounded by air inside a chamber. Below this is another chamber, <g id="t9">that</g> is half-submerged in the sea. The water in <g id="t10">a</g> second chamber rises and falls with the movement of the waves. When the water level rises, it pushes air into the top chamber. <g id="t11">So that</g>, a current of air passes through the top chamber and out of an opening in the roof. When the water level falls, air is drawn from the top chamber into the bottom one. Due to <g id="t12">this</g> currents of air, the turbine rotates. As in the first method, the turbine is connected to a generator, which produces electricity.</p>
-  <p align="left">Both devices show how clean, renewable energy sources can be used to create electric power.</p>
+  
+  <div id="targetspotting">
+  <p>The diagrams illustrate two methods of using the movement of waves&#xA0;<g id="t1">so that</g>&#xA0;generate electricity.</p>
+  <p>The first method makes use of a float connected to a pump. The float moves up and down with the movement of the waves. This movement is transferred to the pump, &#xA0;<g id="t2">which</g>&#xA0;piston rises and falls inside a cylinder. When the piston rises, water flows from the intake pipe into the storage tank. When <g id="t3">this</g> falls, there is a downward flow of water.&#xA0;<g id="t4">So that</g>&#xA0;, the intake valve closes.&#xA0;<g id="t5">Due</g>&#xA0;to leave the tank, the water must now go out via the outlet pipe. As it does so, it passes through a turbine,&#xA0;<g id="t6">so as</g>&#xA0;to rotate. This movement is then transferred to a generator, <g id="t7">who</g> converts the mechanical energy to electricity.</p>
+  <p>The second method also makes use of a turbine, but in this case&#xA0;<g id="t8">which</g>&#xA0;is surrounded by air inside a chamber. Below this is another chamber,&#xA0;<g id="t9">that</g>&#xA0;is half-submerged in the sea. The water in <g id="t10">a</g>&#xA0;second chamber rises and falls with the movement of the waves. When the water level rises, it pushes air into the top chamber.&#xA0;<g id="t11">So that</g>&#xA0;, a current of air passes through the top chamber and out of an opening in the roof. When the water level falls, air is drawn from the top chamber into the bottom one. Due to&#xA0;<g id="t12">this</g>&#xA0;currents of air, the turbine rotates. As in the first method, the turbine is connected to a generator, which produces electricity.</p>
+  <p>Both devices show how clean, renewable energy sources can be used to create electric power.</p>
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
 </section>
 
 <section id="fb1">

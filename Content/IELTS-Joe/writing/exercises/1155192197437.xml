@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -46,20 +46,24 @@
 		
 </header>
 	
-<section id="body"><p align="left"><font color="#0000ff"><b>Paragraph 1</b> &#x2013; Introduction</font></p><p align="left"><font color="#0000ff"><b>Paragraph 2</b> &#x2013; Argument 1 + Counter-argument</font></p>GM crops interfere with natureCounter-Argument <input id="q1"/><p align="left"><font color="#0000ff"><b>Paragraph 3</b> &#x2013; Argument 2 + Counter-argument</font></p>GM foods may be bad for our healthCounter-Argument <input id="q2"/><p align="left"><font color="#0000ff"><b>Paragraph 4</b> &#x2013; Argument 3 + Counter-argument</font></p>GM crops may cause ecological damage (e.g. kill harmless insects)&#xA0;Counter-Argument <input id="q3"/><p align="left"><font color="#0000ff"><b>Paragraph 5</b> &#x2013; Conclusion</font></p><p align="left"><font size="2"/></p></section>
+<section id="body">
+<div id="gapfillText">
+<p align="left"><font color="#0000ff">
+<b>Paragraph 1</b> &#x2013; Introduction</font></p><p align="left"><font color="#0000ff"><b>Paragraph 2</b> &#x2013; Argument 1 + Counter-argument</font></p>GM crops interfere with natureCounter-Argument <input id="q1"/><p align="left"><font color="#0000ff"><b>Paragraph 3</b> &#x2013; Argument 2 + Counter-argument</font></p>GM foods may be bad for our healthCounter-Argument <input id="q2"/><p align="left"><font color="#0000ff"><b>Paragraph 4</b> &#x2013; Argument 3 + Counter-argument</font></p>GM crops may cause ecological damage (e.g. kill harmless insects)&#xA0;Counter-Argument <input id="q3"/><p align="left"><font color="#0000ff"><b>Paragraph 5</b> &#x2013; Conclusion</font></p><p align="left"><font size="2"/></p>
+</div>
+</section>
 
 <section id="readingText">
-  <p align="left"><b>Counter-Argument</b>AIncreased agricultural productivity</p>
-  <p align="left"><b>B</b>Greater profits for the agriculture industry</p>
-  <p align="left"><b>C</b>Tampering with nature is nothing new in agriculture</p>
-  <p align="left"><b>D</b>GM crops could be grown in difficult environments such as semi-desert</p>
-  <p align="left"><b>E</b>Farmers of GM crops are less dependent on environmentally harmful insecticides</p>
-  <p align="left"><b>F</b>GM crops last longer in storage</p>
-  <p align="left"><b>G</b>Improved nutritional value of GM foods</p>
-  <p align="left"><b>H</b>Improved flavour and appearance of GM foods</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <h1>Counter-Argument</h1>
+  <p><b>A</b><tab/>Increased agricultural productivity</p>
+  <p><b>B</b><tab/>Greater profits for the agriculture industry</p>
+  <p><b>C</b><tab/>Tampering with nature is nothing new in agriculture</p>
+  <p><b>D</b><tab/>GM crops could be grown in difficult environments such as semi-desert</p>
+  <p><b>E</b><tab/>Farmers of GM crops are less dependent on environmentally harmful insecticides</p>
+  <p><b>F</b><tab/>GM crops last longer in storage</p>
+  <p><b>G</b><tab/>Improved nutritional value of GM foods</p>
+  <p><b>H</b><tab/>Improved flavour and appearance of GM foods</p>
+  
 </section>
 
 <section id="rt2001">

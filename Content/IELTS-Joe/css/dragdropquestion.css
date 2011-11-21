@@ -164,7 +164,7 @@ h7{
 	
  #questionList {
 	list-style-type: decimal;
-	padding-left: 20px;
+	
 	margin-left: 20px;
 	padding-right: 210%;
 	padding-top: -25em;
@@ -176,16 +176,16 @@ h7{
 	padding-top: 12px;
 	text-align: left;
 	line-height: 22em;
-	padding-right: 375%;
+	padding-right: 270%;
 	
 }
 
 #writing {
 	list-style-type: decimal;
 	margin-left: 20px;
-	padding-right: 25em;
+	padding-right: 370%;
 	padding-top: 20em;
-	text-align: justify;
+	text-align: left;
 	line-height: 20em;
 }
 
@@ -200,3 +200,8 @@ h7{
 	margin-top: 20em;
 	
 }
+.hangingIndent1 {
+ 	tab-stops: 30px;
+ 	text-indent: -55px;
+ 	padding-left: 75px;
+}		

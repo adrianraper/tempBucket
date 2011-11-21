@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -86,9 +86,13 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/WB_WR7s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/WB_WR7.jpg" mode="16" id="1003"  /><p align="left">The process of recruiting staff is dealt with by the Human Resources Department, which <input id="q1" /> by other departments when a vacancy needs to <input id="q2" />. The HRD then <input id="q3" /> a job analysis and, based on this, a job description and a job specification <input id="q4" />. When these are ready, the HRD <input id="q5" /> the vacancy and <input id="q6" /> an application form. At the same time, a selection test <input id="q7" /> specifically for the post. If the company is looking to recruit from existing staff, the post can <input id="q8" /> in the company magazine or on notice boards. Otherwise, the vacancy may <input id="q9" /> through employment agencies and in the press. If the company is looking for a particularly talented or experienced person to fill the post, it may even <input id="q10" /> headhunting to find them. &nbsp;Based on information in application forms and CVs, suitable candidates <input id="q11" />. Interviews <input id="q12" /> and candidates take the selection test. The head of the relevant department is the one who eventually <input id="q13" /> the best candidate and unsuccessful candidates <input id="q14" /> in writing. Finally, a contract between the appointee and the company must <input id="q15" /> before they can take up the post.</p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/WB_WR7s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/WB_WR7.jpg" mode="16" id="1003"  />
+	<div id="gapfillText">
+	<p align="left">The process of recruiting staff is dealt with by the Human Resources Department, which&#xA0;<input id="q1" />&#xA0;by other departments when a vacancy needs to &#xA0;<input id="q2" />. The HRD then &#xA0;<input id="q3" />&#xA0;a job analysis and, based on this, a job description and a job specification&#xA0;<input id="q4" />. When these are ready, the HRD&#xA0;<input id="q5" />&#xA0;the vacancy and&#xA0;<input id="q6" />&#xA0;an application form. At the same time, a selection test&#xA0;<input id="q7" />&#xA0;specifically for the post. If the company is looking to recruit from existing staff, the post can&#xA0;<input id="q8" />&#xA0;in the company magazine or on notice boards. Otherwise, the vacancy may&#xA0;<input id="q9" />&#xA0;through employment agencies and in the press. If the company is looking for a particularly talented or experienced person to fill the post, it may even&#xA0;<input id="q10" />&#xA0;headhunting to find them. Based on information in application forms and CVs, suitable candidates&#xA0;<input id="q11" />. Interviews&#xA0;<input id="q12" />&#xA0;and candidates take the selection test. The head of the relevant department is the one who eventually&#xA0;<input id="q13" />&#xA0;the best candidate and unsuccessful candidates&#xA0;<input id="q14" />&#xA0;in writing. Finally, a contract between the appointee and the company must <input id="q15" /> before they can take up the post.</p>
+	<p align="left"><font size="2"></font></p>
 		<p align="left">
 		<b>Click to enlarge</b></p>
+		</div>
 </section>
 <section id="fb0">
   <p align="left">

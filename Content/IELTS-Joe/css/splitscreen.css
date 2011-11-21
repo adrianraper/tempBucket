@@ -41,7 +41,7 @@ img.photo1 {
 	float:left; 
 	width: 380px;
 	height: 194px;
-	padding: 20px 0 15px 0;
+	padding: 20px 100em 15px 15em;
 	}
 
 img.leftFloat {
@@ -58,6 +58,7 @@ img.leftFloat {
 	text-align: left;
 	line-height: 20em;
 }
+
 
 
 /* A paragraph class for hanging indents that work with numbers */
@@ -125,6 +126,7 @@ a.neutral, input.neutral {
 
 	
 }
+/* h1 is used for main titles in splitscreen reading texts when no subtitles are present. */
 h1 {
 	font-family: Arial Black;
 	font-size: 15px;
@@ -166,7 +168,7 @@ h7{
 	padding-left: 15px;
 	padding-right: 25em;
 	}
-/* h8 is used for main titles in exercises */
+/* h8 is used for main titles in exercises when subtitles are present. */
 h8{
 	font-family: Arial Black;
 	font-size: 15px;
@@ -206,6 +208,10 @@ h9{
 	padding-left: -15em;
 	}
 	
+#splitquestionList li {
+	padding-bottom: 20em;
+	}
+	
 #gapfillText{
 	padding-top: 20px;
 	padding-bottom: 20em;
@@ -231,7 +237,7 @@ h9{
 	padding-right: 25px
 }
 #dropdown{
-	padding-top: 20em;
+	padding-top: 20px;
 	text-align: left;
 	line-height: 25em;
 	padding-right: 225%;
@@ -267,3 +273,7 @@ h9{
  	tab-stops: 15px;
  	text-indent: -95em;
 	}
+
+.solution {
+text-indent: 15em;
+}

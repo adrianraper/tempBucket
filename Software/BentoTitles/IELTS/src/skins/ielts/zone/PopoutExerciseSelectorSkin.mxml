@@ -53,10 +53,10 @@
 									public override function set data(value:Object):void {
 										
 										super.data = value;
-										captionLabel.text = data.@caption;
-										// Check to see if the exercise is disabled. Is it enough to disable the component??
-										captionLabel.enabled = (data.hasOwnProperty("@enabledFlag") || 
-																!(data.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED);
+										captionLabel.text = value.@caption;
+										// Check to see if the exercise is disabled.
+										enabled = Exercise.exerciseEnabledInMenu(value as XML);
+										//trace("set " + value.@caption + " enabled=" + enabled.toString() + "(@eF=" + value.@enabledFlag + ")");
 									}
 								]]>
 							</fx:Script>

@@ -95,9 +95,7 @@
     <li id="1">Which game company was established in 1858?</li>
 	<input id="q1"/>
 	<br/>
-    <li id="2">What game pieces were regarded as extremely immoral before the end of the 19th century?</li>
-	<input id="q2"/>
-	<br/>
+    <li id="2">What game pieces were regarded as extremely immoral before the end of the 19th century?<br/><input id="q2"/></li>
     <li id="3">Who did Milton Bradley produce miniaturised games for?</li>
 	<input id="q3"/>
 	<br/>
@@ -134,7 +132,7 @@
   
   <p>The first documented board game in America, A Traveler's Tour Through the United States, appeared in 1822. Demand for this new form of pastime was limited, and it wasn't until W. &amp; S.B. Ives successfully marketed the Mansion of Happiness in 1843 that production began to pick up. The McLoughlin Brothers, one of the most successful board game producers of the 19th century, started its business in 1858.</p>
   
-  <p><img class="photo1" src="../media/LE_AR_002.jpg" mode="1" id="1001"/></p>
+  <div><img class="photo1" src="../media/LE_AR_002.jpg" mode="1" id="1001"/></div>
 
   
   <p>Strict Victorian mores guided early board game producers. The games were viewed as educational tools, intended to teach children lessons in history, geography, and good moral conduct. Dice were frowned upon, owing to an early Puritan belief that the tiny cubes were "instruments of the Devil". As the century drew to a close, the rules governing board game design eased and inventors were free to create games that were more entertaining and less moralistic, including examples based on baseball, yachting, and horse racing.</p>

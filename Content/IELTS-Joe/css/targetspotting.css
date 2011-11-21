@@ -157,6 +157,11 @@ h7{
 	text-align: left;
 	line-height: 22em;
 }
+
+#targetspotting li {
+padding-left: -25px;
+}
+
 #writing {
 	list-style-type: decimal;
 	margin-left: 20px;
@@ -164,6 +169,7 @@ h7{
 	padding-top: 20em;
 	text-align: left;
 	line-height: 20em;
+	
 }
 
 #body .rightFloatvideo {

@@ -30,69 +30,18 @@
 <body>
 	
 <header>
-	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/EN_AW_007.jpg" mode="1" id="1001"/>
+  
   
  <div id="Presentation">
+ <br/>
   <p align="left"><b>The diagram shows two ways of using the energy from ocean waves to generate electricity.</b></p><p>Write a report for a university lecturer describing the information shown below.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  </div>
+    </div>
+  <img class="leftFloat" src="../media/EN_AW_007.jpg" mode="1" id="1001"/>
+
 </section>
 
 </body>

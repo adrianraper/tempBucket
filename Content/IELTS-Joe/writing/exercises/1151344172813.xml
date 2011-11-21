@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -30,69 +30,15 @@
 <body>
 	
 <header>
-	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 </header>
 	
 <section id="body">
+  
+  <p><b>The flow chart below shows the process by which the Hong Kong Post Office chooses artwork for its stamps.</b></p>
+  <p>Write a report for a university lecturer describing the information shown below.</p>
   <img class="leftFloat" src="../media/WB_WR8.jpg" mode="1" id="1001"/>
-  <p align="left"><b>The flow chart below shows the process by which the Hong Kong Post Office chooses artwork for its stamps.</b>Write a report for a university lecturer describing the information shown below.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
 </section>
 
 </body>

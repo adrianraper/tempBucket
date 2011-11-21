@@ -175,6 +175,7 @@ a.neutral, input.neutral {
 #questionList {
 	tab-stops: 120px;
 	width:100px;
+	line-height: 35em;
 }
 #questionList a {
 	color: #3A00FF;
@@ -184,5 +185,6 @@ a.neutral, input.neutral {
 	text-indent:10%;
 	padding-left:-25em;
 	width:10%;
+	
 }
 

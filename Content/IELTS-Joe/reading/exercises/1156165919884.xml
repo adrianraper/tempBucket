@@ -61,10 +61,8 @@
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/LC_AR_003.jpg" mode="1" id="1001"/>
-  
+
   <ol id="splitquestionList">
-  <br/><br/>
     <li id="1">Broca discovered that aphasic patients often have&#xA0;<input id="q1"/>&#xA0;located in the same part of the brain.</li>
     <li id="2">The left half of the body is known to be controlled by the &#xA0;<input id="q2"/>&#xA0;of the brain.</li>
     <li id="3">For most people, the right ear and eye&#xA0;<input id="q3"/>&#xA0;better than the left ear and eye.</li>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
@@ -24,35 +24,64 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="P" correct="true">
-        <feedback source="fb1"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="BR" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="BP" correct="true">
-        <feedback source="fb4"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="R" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="P" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="false"/>
+	  <answer source="a5" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a6" correct="false"/>
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+	  <answer source="a9" correct="true"/>
+	  <answer source="a10" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a13" correct="false"/>
+	  <answer source="a14" correct="false"/>
+	  <answer source="a15" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+	  <answer source="a19" correct="false"/>
+	  <answer source="a20" correct="true"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+	  <answer source="a24" correct="false"/>
+	  <answer source="a25" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="true"/>
+      <answer source="a28" correct="false"/>
+	  <answer source="a29" correct="false"/>
+	  <answer source="a30" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a31" correct="false"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="true"/>
+	  <answer source="a34" correct="false"/>
+	  <answer source="a35" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a36" correct="false"/>
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+	  <answer source="a39" correct="false"/>
+	  <answer source="a40" correct="false"/>
+    </DropDownQuestion>
   </questions>
+  
 </script>
 
 </head>
@@ -66,23 +95,16 @@
 </header>
 	
 <section id="body">
-<div id="gapfillText">
-<p>Classify the following descriptions as referring to:<br/></p>
-<p><b>Rembrandt - R</b></p>
-<p><b>Beckmann - B</b></p>
-<p><b>Picasso - P</b></p>
-<p><b>Both Beckmann and Rembrandt - BR</b></p>
-<p><b>Both Beckmann and Picasso - BP</b></p>
-
-<p><br/><input id="q1"/>&#xA0;revealed the influence of other artists in self-portraits.<br/></p>
-<p><input id="q2"/>&#xA0;often wore curious clothing in self-portraits.<br/></p>
-<p><input id="q3"/>&#xA0;had experiences which had a profound effect on the mood of the self-portraits.<br/></p>
-<p  ><input id="q4"/>&#xA0;painted works in which the artist appears with another person.<br/></p>
-<p  ><input id="q5"/>&#xA0;used fewer colours in later self-portraits.<br/></p>
-<p  ><input id="q6"/> &#xA0;included a wide variety of objects in the self-portraits.<br/></p>
-<p  ><input id="q7"/> &#xA0;created works which may surprise us.<br/></p>
-<p  ><input id="q8"/>&#xA0;looks more self-assured in earlier works<br/></p>
-</div>
+<ol id="dropdown">
+	<li id="1"><select id="q1"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;revealed the influence of other artists in self-portraits.</li>
+	<li id="2"><select id="q2"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;often wore curious clothing in self-portraits.</li>
+	<li id="3"><select id="q3"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&&#xA0;had experiences which had a profound effect on the mood of the self-portraits.</li>
+	<li id="4"><select id="q4"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;painted works in which the artist appears with another person.</li>
+	<li id="5"><select id="q5"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;used fewer colours in later self-portraits.</li>
+	<li id="6"><select id="q6"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;included a wide variety of objects in the self-portraits.</li>
+	<li id="7"><select id="q7"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;created works which may surprise us.</li>
+	<li id="8"><select id="q8"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;looks more self-assured in earlier works.</li>
+</ol>
 </section>
 
 <section id="fb1">

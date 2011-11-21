@@ -98,7 +98,7 @@
       <font color="#000000">: Almost 1 in 2 children have one.<font color="#0000ff"/></font>
     </font>
   </p>
-  <p align="left">
+  <p class="hangingIndent1">
     <font color="#0000ff">
       <input id="q4" type="droptarget"/>
       <font color="#000000">: It is clear that a large proportion of all children, just over 50 per cent, have some kind of equipment in their bedroom and that the percentage is considerably higher for boys.<font color="#0000ff"/></font>

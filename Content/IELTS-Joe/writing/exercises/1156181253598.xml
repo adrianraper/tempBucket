@@ -3,8 +3,8 @@
 <head>
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -63,7 +63,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/TT_WT2b.jpg" mode="16" id="1004"  />
+	
 		
 		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
 		
@@ -72,26 +72,29 @@ Writing Task 2
 </header>
 	
 <section id="noscroll">
-  <span id="a13" draggable="true">Audio A</span>
-  <span id="a17" draggable="true">Audio B</span>
-  <span id="a21" draggable="true">Audio C</span>
-  <span id="a19" draggable="true">Audio D</span>
-  <span id="a12" draggable="true">Audio E</span>
-  <span id="a10" draggable="true">Audio F</span>
-  <span id="a22" draggable="true">Audio G</span>
-  <span id="a15" draggable="true">Audio H</span>
-  <audio controls="compact" class="leftFloat" src="../media/TT_WR1at.mp3" mode="1" id="1011"/>
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1au.mp3" mode="1" id="1012"/>
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1av.mp3" mode="1" id="1013"/>
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"/>
-  <audio controls="compact" class="leftFloat" src="../media/TT_WR1ax.mp3" mode="1" id="1015"/>
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1ay.mp3" mode="1" id="1016"/>
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1az.mp3" mode="1" id="1017"/>
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"/>
+  <span id="a13" draggable="true">Audio A<audio controls="compact" class="leftFloat" src="../media/TT_WR1at.mp3" mode="1" id="1011"/></span>
+  <span id="a17" draggable="true">Audio B<audio controls="compact" class="rightFloat" src="../media/TT_WR1au.mp3" mode="1" id="1012"/></span>
+  <span id="a21" draggable="true">Audio C<audio controls="compact" class="rightFloat" src="../media/TT_WR1av.mp3" mode="1" id="1013"/></span>
+  <span id="a19" draggable="true">Audio D<audio controls="compact" class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"/></span>
+  <span id="a12" draggable="true">Audio E <audio controls="compact" class="leftFloat" src="../media/TT_WR1ax.mp3" mode="1" id="1015"/></span>
+  <span id="a10" draggable="true">Audio F<audio controls="compact" class="rightFloat" src="../media/TT_WR1ay.mp3" mode="1" id="1016"/></span>
+  <span id="a22" draggable="true">Audio G<audio controls="compact" class="rightFloat" src="../media/TT_WR1az.mp3" mode="1" id="1017"/></span>
+  <span id="a15" draggable="true">Audio H <audio controls="compact" class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"/></span>
+  
 </section>
 
 <section id="body">
-	<img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  /><p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" />&nbsp;</p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" />&nbsp;</li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" />&nbsp;</li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  />
+	
+  
+  
+  
+ 
+  
+  
+ 
+	
+	<p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" /></p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" /></li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" /></li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
 </section>
 <section id="fb0">
   <p align="left">

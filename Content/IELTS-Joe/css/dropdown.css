@@ -13,11 +13,15 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
+	
 }
 
 /* Paragraphs have spacing after them */
 p {
 	padding-bottom: 12px;
+	padding-left:20px;
+	padding-right:20px;
+	
 }
 
 /* Headings */
@@ -145,17 +149,16 @@ a.neutral, input.neutral {
 
 #questionList {
 	list-style-type: decimal;
-	padding-left: 20px;
-	margin-left: 20px;
+	
 	padding-right: 20px;
 	padding-top: 20em;
 	text-align: left;
 	line-height: 20em;
 }
 #dropdown{
-	padding-top: 20em;
+	padding-top: 0px;
 	text-align: left;
 	line-height: 25em;
-	padding-right: 225%;
-	padding-left: 23px;
+	padding-right: 270%;
+	
 }
