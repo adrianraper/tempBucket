@@ -53,6 +53,16 @@ login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
 }
 
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+	borderVisible: false;
+	contentBackgroundColor: #E5E5E5;
+}
+
+login|LoginView #loginButton {
+	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
+
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");

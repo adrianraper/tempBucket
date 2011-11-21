@@ -106,49 +106,6 @@
 			<!-- The accordian -->
 			<tink:Accordion width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" duration="100" change="onAccordianChange(event)">
 				
-				<!-- Exam practice -->
-				<s:NavigatorContent label="Exam practice" width="100%">
-					<s:layout>
-						<s:HorizontalLayout />
-					</s:layout>
-					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
-								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
-								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
-								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
-					
-					<s:DataGroup id="examPracticeDataGroup">
-						<s:layout>
-							<s:VerticalLayout paddingTop="40" />
-						</s:layout>
-						<s:itemRenderer>
-							<fx:Component>
-								<s:DataRenderer>
-									<fx:Script>
-										<![CDATA[
-											import com.clarityenglish.ielts.view.zone.ExerciseEvent;
-											
-											public override function set data(value:Object):void {
-												super.data = value;
-												
-												if (data) {
-													viewButton.label = data.@caption;
-												}
-											}
-											
-											protected function onViewButtonClick(event:MouseEvent):void {
-												dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
-											}
-											
-										]]>
-									</fx:Script>
-									<s:Button id="viewButton" click="onViewButtonClick(event)" />
-								</s:DataRenderer>
-							</fx:Component>
-						</s:itemRenderer>
-					</s:DataGroup>
-					
-				</s:NavigatorContent>
-				
 				<!-- Practice zone -->
 				<s:NavigatorContent label="Practice zone" width="100%"  >
 					<s:VGroup left="0" right="20" top="0" bottom="10" gap="20">
@@ -225,10 +182,47 @@
 					</s:VGroup>
 				</s:NavigatorContent>
 				
-
-				
-				
-				
+				<!-- Exam practice -->
+				<s:NavigatorContent label="Exam practice" width="100%">
+					<s:layout>
+						<s:HorizontalLayout />
+					</s:layout>
+					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
+								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
+								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
+								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
+					
+					<s:DataGroup id="examPracticeDataGroup">
+						<s:layout>
+							<s:VerticalLayout paddingTop="40" />
+						</s:layout>
+						<s:itemRenderer>
+							<fx:Component>
+								<s:DataRenderer>
+									<fx:Script>
+										<![CDATA[
+											import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+											
+											public override function set data(value:Object):void {
+												super.data = value;
+												
+												if (data) {
+													viewButton.label = data.@caption;
+												}
+											}
+											
+											protected function onViewButtonClick(event:MouseEvent):void {
+												dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
+											}
+											
+										]]>
+									</fx:Script>
+									<s:Button id="viewButton" click="onViewButtonClick(event)" />
+								</s:DataRenderer>
+							</fx:Component>
+						</s:itemRenderer>
+					</s:DataGroup>
+				</s:NavigatorContent>
 				
 				<!-- Question zone -->
 				<s:NavigatorContent label="Question zone" width="100%">
