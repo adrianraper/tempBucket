@@ -12,7 +12,16 @@
 		<s:HorizontalLayout />
 	</s:layout>
 	
-	<anychart:AnyChartFlex id="coveragePieChart" width="60%" height="50%" />
+	<s:VGroup>
+		<s:Label text="Your progress so far: an overview" fontSize="20" />
+		<s:Spacer height="5" />
+		<s:Label text="The chart below shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." fontSize="12" width="400"/>	
+		
+		<s:VGroup>
+			<anychart:AnyChartFlex id="coveragePieChart" width="600" height="50%" />
+		</s:VGroup>
+		
+	</s:VGroup>
 	
 	<s:VGroup width="50%">
 		<s:Button id="writingCourse" width="100%" />

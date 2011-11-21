@@ -63,7 +63,7 @@
 		</s:layout>
 		
 		<!-- The left hand side -->
-		<s:Group width="50%" rollOver="currentState='normal'">
+		<s:Group width="50%" rollOver="currentState='normal'" top="35">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
@@ -76,7 +76,7 @@
 		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normal="{width / 2}" x.exercise_selector="0" top="85" height="300" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
-		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="8">
+		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
@@ -86,13 +86,13 @@
 			</s:borderStroke>
 			
 			<s:HGroup width="100%">
-				<s:SWFLoader id="courseIcon" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" width="35" height="35">
+				<s:SWFLoader id="courseIcon" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" width="30" height="30">
 					<s:filters>
-						<s:GlowFilter strength="3" blurX="10" blurY="10" color="#AAAAAA" alpha="0.8" />
+						<s:GlowFilter strength="3" blurX="0" blurY="0" color="#AAAAAA" alpha="0.8" />
 					</s:filters>
 				</s:SWFLoader>
 				
-				<s:RichText id="courseTitleLabel" fontSize="24" />
+				<s:RichText id="courseTitleLabel" fontSize="20"  paddingTop="7"/>
 			</s:HGroup>
 			
 			<s:RichText id="courseDescriptionLabel" width="100%" />
@@ -101,8 +101,8 @@
 			<tink:Accordion width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" duration="100" change="onAccordianChange(event)">
 				
 				<!-- Practice zone -->
-				<s:NavigatorContent label="Practice zone" width="100%">
-					<s:VGroup left="0" right="20" top="10" bottom="10" gap="20">
+				<s:NavigatorContent label="Practice zone" width="100%"  >
+					<s:VGroup left="0" right="20" top="0" bottom="10" gap="20">
 						<!-- The unit title and description box -->
 						<s:Group width="100%">
 							<s:Rect width="100%" height="100%">
@@ -112,14 +112,14 @@
 							</s:Rect>
 							
 							<s:VGroup width="100%" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
-								<s:Label id="unitCaption" fontSize="14" fontWeight="bold" />
+								<s:Label id="unitCaption" fontSize="14" fontWeight="bold"  />
 								<s:RichText id="unitDescription" width="100%" />
 							</s:VGroup>
 						</s:Group>
 						
 						<!-- The unit list -->
-						<s:Group left="0" right="0" top="10" bottom="10">
-							<s:List id="unitList" top="0" bottom="0" borderVisible="false" itemRollOver="onUnitItemRollOver(event)" change="onUnitChange(event)">
+						<s:Group left="0" right="0" top="5" bottom="5">
+							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12" itemRollOver="onUnitItemRollOver(event)" change="onUnitChange(event)">
 								<s:layout>
 									<s:TileLayout requestedColumnCount="2" requestedRowCount="6" orientation="columns" columnWidth="250" verticalGap="15" />
 								</s:layout>
@@ -136,7 +136,7 @@
 													}
 												]]>
 											</fx:Script>
-											<s:Label id="captionLabel" fontSize="14" />
+											<s:Label id="captionLabel" fontSize="12" />
 										</s:ItemRenderer>
 									</fx:Component>
 								</s:itemRenderer>
