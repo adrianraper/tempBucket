@@ -172,11 +172,10 @@ package com.clarityenglish.ielts.view.home {
 		 * @param event
 		 */
 		protected function onCourseClick(event:MouseEvent):void {
-			var matchingCourses:XMLList = menu.course.(@caption == event.target.getStyle("title"));
-			//var matchingCourses:XMLList = menu.course.(@caption == 'Reading');
+			var matchingCourses:XMLList = menu.course.(@["class"] == event.target.getStyle("title").toLowerCase());
 			
 			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));
+				log.error("Unable to find a course with caption {0}", event.target.getStyle("title").toLowerCase());
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}

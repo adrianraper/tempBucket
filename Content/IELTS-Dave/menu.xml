@@ -3,7 +3,7 @@
 	<head>
 		<script id="model" type="application/xml">
 			<menu>
-				<course caption="Reading" description="This session will be focussed on reading.  Reading units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+				<course class="reading" caption="Reading" description="This session will be focussed on reading.  Reading units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
 					<unit class="question-zone">
 						<exercise href="reading/questionzone.xml" />
 					</unit>
@@ -21,7 +21,7 @@
 					</unit>
 				</course>
 				
-				<course caption="Writing" description="This session will be focussed on writing.  Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
+				<course class="writing" caption="Writing" description="This session will be focussed on writing.  Writing units are oragnised thematically using themes commonly found in the IELTS exam.  The first six units familiarise the student with the basic test types.">
 					<unit class="question-zone">
 						<exercise href="writing/questionzone.xml" />
 					</unit>

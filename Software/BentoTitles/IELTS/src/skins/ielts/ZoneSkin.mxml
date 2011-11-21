@@ -177,14 +177,71 @@
 				</s:NavigatorContent>
 				
 				<!-- Exam practice -->
-				<s:NavigatorContent label="Exam practice">
-					<s:VGroup left="0" right="0" top="10" bottom="10">
-						<s:Label width="100%" text="Practice paper to get you geared up for the real exam." />
-						<s:Button id="examPractice1Button" />
-						<ui:DifficultyRenderer id="examPractice1Difficulty" />
-						<s:Button id="examPractice2Button" />
-						<ui:DifficultyRenderer id="examPractice2Difficulty" />
-					</s:VGroup>
+				<s:NavigatorContent label="Exam practice" width="100%">
+					<s:DataGroup id="examPracticeDataGroup" horizontalCenter="0">
+						<s:layout>
+							<s:HorizontalLayout gap="40" />
+						</s:layout>
+						<s:itemRenderer>
+							<fx:Component>
+								<s:DataRenderer>
+									<fx:Script>
+										<![CDATA[
+											import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
+											private static const writingIcon:Class;
+											
+											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
+											private static const readingIcon:Class;
+											
+											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
+											private static const speakingIcon:Class;
+											
+											[Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')]
+											private static const listeningIcon:Class;
+											
+											public override function set data(value:Object):void {
+												super.data = value;
+												
+												if (data) {
+													switch (outerDocument.hostComponent.course.@["class"].toString()) {
+														case "listening":
+															iconSWFLoader.source = listeningIcon;
+															break;
+														case "reading":
+															iconSWFLoader.source = readingIcon;
+															break;
+														case "speaking":
+															iconSWFLoader.source = speakingIcon;
+															break;
+														case "writing":
+															iconSWFLoader.source = writingIcon;
+															break;
+														default:
+															throw new Error("Unknown course " + outerDocument.hostComponent.course.@["class"]);
+													}
+													
+													
+													captionLabel.text = data.@caption;
+												}
+											}
+											
+											protected function onViewButtonClick(event:MouseEvent):void {
+												dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
+											}
+											
+										]]>
+									</fx:Script>
+									<s:VGroup width="100" horizontalAlign="center">
+										<s:SWFLoader id="iconSWFLoader" width="100" height="128" />
+										<s:Label id="captionLabel" width="100%" textAlign="center" />
+										<s:Button id="viewButton" label="View" click="onViewButtonClick(event)" />
+									</s:VGroup>
+								</s:DataRenderer>
+							</fx:Component>
+						</s:itemRenderer>
+					</s:DataGroup>
+					
 				</s:NavigatorContent>
 				
 				<!-- Question zone -->

@@ -4,7 +4,7 @@
   <head>
     <script id="model" type="application/xml">
       <menu>
-		<course id="1287130400000" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
+		<course id="1287130400000" class="writing" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
 			<groups>
 				<group id="1" caption="Unit 1 task 1" task="1" alt="xxx." />
 				<group id="2" caption="Unit 1 task 2" task="2" alt="xxx." />
@@ -189,7 +189,7 @@
 				</exercise>
           </unit>
         </course>
-		<course id="1287130300000" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
+		<course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -265,7 +265,7 @@
 				</exercise>
 			</unit>
 		</course>
-		<course id="1287130100000" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
+		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />
@@ -345,7 +345,7 @@
 				</exercise>
         	</unit>
 		</course>
-		<course id="1287130200000" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
+		<course id="1287130200000" class="listening" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
 				<group id="2" caption="Unit 2" task="1" alt="xxx." />

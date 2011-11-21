@@ -8,12 +8,15 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import flashx.textLayout.elements.BreakElement;
+	
 	import mx.collections.XMLListCollection;
 	import mx.core.IDataRenderer;
 	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.DataGroup;
 	import spark.components.List;
 	import spark.components.VideoPlayer;
 	import spark.core.IDisplayText;
@@ -31,16 +34,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var questionZoneButton:Button;
 		
 		[SkinPart(required="true")]
-		public var examPractice1Button:Button;
-		
-		[SkinPart(required="true")]
-		public var examPractice1Difficulty:IDataRenderer;
-		
-		[SkinPart(required="true")]
-		public var examPractice2Button:Button;
-		
-		[SkinPart(required="true")]
-		public var examPractice2Difficulty:IDataRenderer;
+		public var examPracticeDataGroup:DataGroup;
 		
 		[SkinPart(required="true")]
 		public var unitList:List;
@@ -75,6 +69,10 @@ package com.clarityenglish.ielts.view.zone {
 			invalidateProperties();
 		}
 		
+		public function get course():XML {
+			return _course;
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -88,19 +86,14 @@ package com.clarityenglish.ielts.view.zone {
 				courseTitleLabel.text = _course.@caption;
 				courseDescriptionLabel.text = _course.@description;
 				
-				// class is a reserved keyword so have to use @["class"] instead of @class
-				examPractice1Button.label = _course.unit.(@["class"] == "exam-practice").exercise[0].@caption;
-				examPractice1Difficulty.data = _course.unit.(@["class"] == "exam-practice").exercise[0].@difficulty;
-				examPractice2Button.label = _course.unit.(@["class"] == "exam-practice").exercise[1].@caption;
-				examPractice2Difficulty.data = _course.unit.(@["class"] == "exam-practice").exercise[1].@difficulty;
-				
 				// Give groups as the dataprovider to the unit list
 				unitList.dataProvider = new XMLListCollection(_course.groups.group);
 				
-				//var adviceZoneVideoUrl:String = _course.unit.(@["class"] == "advice-zone").exercise[0].@href;
-				//adviceZoneVideoPlayer.source = href.createRelativeHref(null, adviceZoneVideoUrl).url;
-				
+				// Give the advice zone videos as a dataprovider to the advice zone video list
 				adviceZoneVideoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
+				
+				// Give the exam practice exercises as a dataprovider to the exam practice data group
+				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
 				
 				// Change the course selector
 				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
@@ -129,13 +122,13 @@ package com.clarityenglish.ielts.view.zone {
 					} );
 					break;
 				case popoutExerciseSelector:
-					//popoutExerciseSelector.exerciseSelect = exerciseSelect;
 					popoutExerciseSelector.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseClick);
 					break;
 				case questionZoneButton:
-				case examPractice1Button:
-				case examPractice2Button:
-					instance.addEventListener(MouseEvent.CLICK, onExerciseClick);
+					questionZoneButton.addEventListener(MouseEvent.CLICK, onExerciseClick);
+					break;
+				case examPracticeDataGroup:
+					examPracticeDataGroup.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseClick);
 					break;
 				case courseSelectorWidget:
 					courseSelectorWidget.addEventListener("writingSelected", onCourseSelectorClick, false, 0, true);
@@ -157,16 +150,16 @@ package com.clarityenglish.ielts.view.zone {
 			
 			switch (event.type) {
 				case "readingSelected":
-					matchingCourses = menu.course.(@caption == "Reading");
+					matchingCourses = menu.course.(@["class"] == "reading");
 					break;
 				case "writingSelected":
-					matchingCourses = menu.course.(@caption == "Writing");
+					matchingCourses = menu.course.(@["class"] == "writing");
 					break;
 				case "listeningSelected":
-					matchingCourses = menu.course.(@caption == "Listening");
+					matchingCourses = menu.course.(@["class"] == "listening");
 					break;
 				case "speakingSelected":
-					matchingCourses = menu.course.(@caption == "Speaking");
+					matchingCourses = menu.course.(@["class"] == "speaking");
 					break;
 			}
 			
@@ -191,18 +184,14 @@ package com.clarityenglish.ielts.view.zone {
 				case questionZoneButton:
 					hrefFilename = _course.unit.(@["class"] == "question-zone").exercise[0].@href;
 					break;
-				case examPractice1Button:
-					hrefFilename = _course.unit.(@["class"] == "exam-practice").exercise[0].@href;
-					break;
-				case examPractice2Button:
-					hrefFilename = _course.unit.(@["class"] == "exam-practice").exercise[1].@href;
-					break;
-				case popoutExerciseSelector:
-					hrefFilename = (event as ExerciseEvent).hrefFilename;
-					break;
 				default:
-					log.error("Unable to match event target for exercise selection {0}", event.target);
-					return;
+					if (event is ExerciseEvent && event.type == ExerciseEvent.EXERCISE_SELECTED) {
+						hrefFilename = (event as ExerciseEvent).hrefFilename;
+					} else {
+						log.error("Unable to match event target for exercise selection {0}", event.target);
+						return;
+					}
+
 			}
 			
 			// Fire the exerciseSelect signal
