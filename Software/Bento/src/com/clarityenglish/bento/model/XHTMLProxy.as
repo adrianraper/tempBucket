@@ -58,14 +58,20 @@ package com.clarityenglish.bento.model {
 			
 			// If the resource has already been loaded then just return it
 			if (loadedResources[href]) {
+				log.debug("Href already loaded so returning cached copy {0}", href);
 				notifyXHTMLLoaded(href);
 				return;
 			}
 			
 			// If the resource is already loading then do nothing
-			for each (var loadingHref:Href in urlLoaders)
-				if (href === loadingHref)
+			for each (var loadingHref:Href in urlLoaders) {
+				if (href === loadingHref) {
+					log.debug("Href is already loading {0}", href);
 					return;
+				}
+			}
+			
+			log.debug("Loading href {0}", href);
 			
 			// Otherwise load it
 			var urlLoader:URLLoader = new URLLoader();

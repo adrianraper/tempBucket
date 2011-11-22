@@ -55,6 +55,7 @@ package com.clarityenglish.bento.vo {
 		 */
 		public function createRelativeHref(type:String, filename:String):Href {
 			return new Href(type, filename, rootPath);
+			//return new Href(type, filename, currentDir);
 		}
 		
 		public function toString():String {

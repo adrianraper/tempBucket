@@ -27,6 +27,7 @@ package com.clarityenglish.textLayout.util {
 			flowElement.getTextFlow().formatResolver.invalidate(flowElement);
 			flowElement.tlf_internal::formatChanged();
 			flowElement.computedFormat; // Force the format to be recomputed (without this TLF can throw exceptions in certain situations)
+			
 			if (updateAllControllers) flowElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
