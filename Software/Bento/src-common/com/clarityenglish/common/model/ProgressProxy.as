@@ -141,14 +141,16 @@ package com.clarityenglish.common.model {
 		 * @return void
 		 * 
 		 */
-		public function writeScore(percent:int, correct:uint, wrong:uint, skipped:uint, coverage:uint):void {
+		public function writeScore(percent:int, correct:uint, wrong:uint, skipped:uint, coverage:uint, duration:int):void {
 			// $userID, $rootID, $productCode, $dateNow
+			// TODO. This should just be ExerciseMark I think.
 			score = new Score();
 			score.score = percent;
 			score.correct = correct;
 			score.wrong = wrong;
 			score.skipped = skipped;
 			score.coverage = coverage;
+			score.duration = duration;
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;;
 			var config:Config = configProxy.getConfig();

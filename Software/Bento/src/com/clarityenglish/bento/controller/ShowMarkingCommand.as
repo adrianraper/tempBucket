@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.controller {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.vo.content.Exercise;
@@ -39,7 +40,6 @@ package com.clarityenglish.bento.controller {
 			titleWindow = new TitleWindow();
 			titleWindow.title = "Marking";
 			
-			
 			var markingView:MarkingView = new MarkingView();
 			markingView.exerciseMark = exerciseProxy.getExerciseMark();
 			titleWindow.addElement(markingView);
@@ -53,6 +53,12 @@ package com.clarityenglish.bento.controller {
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
+			
+			// Trigger a notification to write the score out
+			var duration:uint = 90;
+			var scoreData:Object = {correct:markingView.exerciseMark.correctCount, wrong:markingView.exerciseMark.incorrectCount, skipped:markingView.exerciseMark.missedCount, duration:duration};
+			sendNotification(BBNotifications.SCORE_WRITE, scoreData);
+			
 		}
 		
 		/**

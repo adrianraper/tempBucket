@@ -16,7 +16,7 @@ package org.davekeen.delegates {
 	
 	public class RemoteDelegate extends EventDispatcher implements IDelegate {
 		
-		private static var disableAppOnCall:Boolean = true;
+		private static var disableAppOnCall:Boolean = false;
 		
 		// PHP Error codes
 		public static const E_ERROR:int = 1;
