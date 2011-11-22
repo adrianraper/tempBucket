@@ -198,10 +198,9 @@
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
 			</unit>
-			<unit id="1287130320000" class="exam-practice">
-			<exercise id="1287130320001" href="" caption="Speaking practice paper part 1" difficulty="1" />
-			<exercise id="1287130320002" href="" caption="Speaking practice paper part 2" difficulty="2" />
-			</unit>
+			
+			<!-- No exam practice for speaking -->
+			
 			<unit id="1287130330000" class="advice-zone">
 				<exercise id="1287130330001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the speaking test." />
 			</unit>

@@ -630,7 +630,8 @@ package ws.tink.spark.layouts
 				_measuredCache.reset();
 				for each( i in indicesInLayout )
 				{
-					_measuredCache.cache( target.getElementAt( indicesInLayout[ i ] ) );
+					if (target.numChildren - 1 > i)
+						_measuredCache.cache( target.getElementAt( indicesInLayout[ i ] ) );
 				}
 			}
 			else if( selectedIndex != -1 )
@@ -1417,6 +1418,10 @@ internal class ButtonLayout extends LayoutBase
 		for( var i:int = 0; i < numElements; i++ )
 		{
 			element = target.getElementAt( i );
+			
+			// Added code so that the visibility of the header is inherited from the visibility of the content
+			element.visible = _parentLayout.target.getElementAt(i).visible;
+			element.includeInLayout = _parentLayout.target.getElementAt(i).includeInLayout;
 			
 			if( matrix ) element.setLayoutMatrix( matrix, true );
 			

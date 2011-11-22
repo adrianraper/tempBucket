@@ -37,24 +37,10 @@
         ]]>
     </fx:Metadata>
     
-    <fx:Script fb:purpose="styling">
-        /* Define the skin elements that should not be colorized. 
-           For toggle button, the graphics are colorized but the label is not. */
-        static private const exclusions:Array = ["labelDisplay"];
-
-        /**
-         * @private
-         */
-        override protected function initializationComplete():void
-        {
-            useChromeColor = true;
-            super.initializationComplete();
-        }
-        
-       /** 
-        * @private
-        */     
-        override public function get colorizeExclusions():Array {return exclusions;}
+    <fx:Script>
+		<![CDATA[
+			
+		]]>
     </fx:Script>
     
     <!-- states -->

@@ -18,9 +18,12 @@ package com.clarityenglish.ielts.view.zone {
 	import spark.components.Button;
 	import spark.components.DataGroup;
 	import spark.components.List;
+	import spark.components.NavigatorContent;
 	import spark.components.VideoPlayer;
 	import spark.core.IDisplayText;
 	import spark.events.IndexChangeEvent;
+	
+	import ws.tink.spark.containers.Accordion;
 	
 	public class ZoneView extends BentoView {
 		
@@ -29,6 +32,21 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart(required="true")]
 		public var courseDescriptionLabel:IDisplayText;
+		
+		[SkinPart]
+		public var accordian:Accordion;
+		
+		[SkinPart(required="true")]
+		public var practiceZoneNavigatorContent:NavigatorContent;
+		
+		[SkinPart(required="true")]
+		public var adviceZoneNavigatorContent:NavigatorContent;
+		
+		[SkinPart(required="true")]
+		public var examPracticeNavigatorContent:NavigatorContent;
+		
+		[SkinPart(required="true")]
+		public var questionZoneNavigatorContent:NavigatorContent;
 		
 		[SkinPart(required="true")]
 		public var examPracticeDataGroup:DataGroup;
@@ -82,6 +100,11 @@ package com.clarityenglish.ielts.view.zone {
 			return _course.@["class"].toString();
 		}
 		
+		[Bindable(event="courseChanged")]
+		public function hasUnit(unitClass:String):Boolean {
+			return (_course) ? _course.unit.(@["class"] == unitClass).length() > 0 : false;
+		}
+		
 		public function set exerciseSelectorPoppedOut(value:Object):void {
 			_exerciseSelectorPoppedOut = value;
 			
@@ -94,6 +117,12 @@ package com.clarityenglish.ielts.view.zone {
 			if (_courseChanged) {
 				courseTitleLabel.text = _course.@caption;
 				courseDescriptionLabel.text = _course.@description;
+				
+				// Only display units with content in the XML - #51 - but this isn't working with Tink's Accordian right now
+				/*practiceZoneNavigatorContent.visible = practiceZoneNavigatorContent.includeInLayout = hasUnit("practice-zone");
+				adviceZoneNavigatorContent.visible = adviceZoneNavigatorContent.includeInLayout = hasUnit("advice-zone");
+				examPracticeNavigatorContent.visible = examPracticeNavigatorContent.includeInLayout = hasUnit("exam-practice");
+				questionZoneNavigatorContent.visible = questionZoneNavigatorContent.includeInLayout = hasUnit("question-zone");*/
 				
 				// Give groups as the dataprovider to the unit list
 				unitList.dataProvider = new XMLListCollection(_course.groups.group);
@@ -184,7 +213,6 @@ package com.clarityenglish.ielts.view.zone {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		}
-		
 		
 		/**
 		 * The user has selected an exercise
