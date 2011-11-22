@@ -206,7 +206,9 @@ class BentoService extends AbstractService {
 		// This path is relative to the Bento application, not this script
 		// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
 		// if we keep the everyone summary coming from a computed table.
-		//$menuXMLFile = '../../'.$menuXMLFile;
+		if (stristr($menuXMLFile, 'http://')===FALSE) {
+			$menuXMLFile = '../../'.$menuXMLFile;
+		}
 		$this->progressOps->getMenuXML($menuXMLFile);
 		
 		$progress = New Progress();

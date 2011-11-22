@@ -45,7 +45,7 @@
 			bentoProxy.menuXHTML = xhtml;
 			
 			// TODO: FOR DEBUG TO GO STRAIGHT INTO A COURSE
-			sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@caption == "Reading")[0]);
+			//sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@caption == "Reading")[0]);
 		}
 		
 		override public function onRemove():void {
