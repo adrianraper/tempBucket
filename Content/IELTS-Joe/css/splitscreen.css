@@ -38,7 +38,6 @@ body > header {
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 
 img.photo1 {
-	float:left; 
 	width: 380px;
 	height: 194px;
 	padding: 20px 100em 15px 15em;
