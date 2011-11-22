@@ -2,6 +2,7 @@ package com.clarityenglish.textLayout.util {
 	import flash.geom.Rectangle;
 	import flash.text.engine.TextLine;
 	
+	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.compose.TextFlowLine;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowGroupElement;
@@ -10,8 +11,6 @@ package com.clarityenglish.textLayout.util {
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.tlf_internal;
-	
-	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	
@@ -27,6 +26,8 @@ package com.clarityenglish.textLayout.util {
 			flowElement.getTextFlow().formatResolver.invalidate(flowElement);
 			flowElement.tlf_internal::formatChanged();
 			flowElement.computedFormat; // Force the format to be recomputed (without this TLF can throw exceptions in certain situations)
+			
+			flowElement.getTextFlow().flowComposer.damage(0, flowElement.getTextFlow().textLength, FlowDamageType.GEOMETRY); // #38
 			
 			if (updateAllControllers) flowElement.getTextFlow().flowComposer.updateAllControllers();
 		}

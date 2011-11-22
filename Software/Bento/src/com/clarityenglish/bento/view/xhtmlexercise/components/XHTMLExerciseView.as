@@ -14,6 +14,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.utils.setTimeout;
+	
+	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
 	
 	import org.davekeen.util.ClassUtil;
