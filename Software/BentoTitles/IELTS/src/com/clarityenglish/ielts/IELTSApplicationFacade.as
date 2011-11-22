@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.controller.LoggedInCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
@@ -15,9 +16,9 @@
 	import com.clarityenglish.ielts.view.login.LoginView;
 	import com.clarityenglish.ielts.view.progress.ProgressMediator;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCompareMediator;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreMediator;
-	import com.clarityenglish.ielts.view.progress.components.ProgressCompareMediator;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
 	import com.clarityenglish.ielts.view.title.TitleView;
@@ -56,7 +57,7 @@
 			
 			// Common ones are done in BentoFacade
 			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
-			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 		}
 		
 	}

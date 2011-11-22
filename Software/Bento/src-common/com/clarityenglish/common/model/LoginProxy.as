@@ -97,7 +97,10 @@ package com.clarityenglish.common.model {
 							_group = data.group as Group;
 							//_user = _group.children[0];
 							
-							// Now that you are are logged in, trigger the session start command
+							// Carry on with the process
+							sendNotification(CommonNotifications.LOGGED_IN, data);
+							
+							// Now that you are logged in, trigger the session start command
 							var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 							var sessionData:Object = {user:_user, account:configProxy.getAccount()};
 							sendNotification(BBNotifications.SESSION_START, sessionData);
