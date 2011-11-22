@@ -2,7 +2,6 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.controller.LoggedInCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
@@ -57,7 +56,7 @@
 			
 			// Common ones are done in BentoFacade
 			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
-			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 		}
 		
 	}

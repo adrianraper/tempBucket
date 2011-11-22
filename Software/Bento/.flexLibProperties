@@ -95,7 +95,6 @@
     <classEntry path="skins.bento.exercise.XHTMLExerciseSkin"/>
     <classEntry path="skins.bento.swfplayer.SWFPlayerSkin"/>
     <classEntry path="com.clarityenglish.common.CommonNotifications"/>
-    <classEntry path="com.clarityenglish.common.controller.LoggedInCommand"/>
     <classEntry path="com.clarityenglish.common.controller.LoginCommand"/>
     <classEntry path="com.clarityenglish.common.controller.LogoutCommand"/>
     <classEntry path="com.clarityenglish.common.controller.ProgressDataLoadCommand"/>

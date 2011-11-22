@@ -25,7 +25,9 @@ class AbstractService {
 		$ADODB_mssql_date_order = 'mdy'; 
 		$ADODB_mssql_mths = array('JAN'=>1,'FEB'=>2,'MAR'=>3,'APR'=>4,'MAY'=>5,'JUN'=>6,'JUL'=>7,'AUG'=>8,'SEP'=>9,'OCT'=>10,'NOV'=>11,'DEC'=>12);
 		
-		// Force all PHP function to work in UTC
+		// Force all PHP datetime functions to work in UTC
+		// Wouldn't it make more sense to work in Asia/Hong_Kong since that is where the server is?
+		//date_default_timezone_set("Asia/Hong_Kong");
 		date_default_timezone_set("UTC");
 		
 		// Small optimization
@@ -33,9 +35,8 @@ class AbstractService {
 		
 		// Persistant connections are faster, but on my setup (XP Pro SP2, SQL Server 2008 Express) this causes sporadic crashes.
 		// Check on the production server to see if it works with that configuration.
-		//$this->db = &ADONewConnection($GLOBALS['db']."?persist");
-		
-		$this->db = &ADONewConnection($GLOBALS['db']);
+		$this->db = &ADONewConnection($GLOBALS['db']."?persist");
+		//$this->db = &ADONewConnection($GLOBALS['db']);
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
 		if ($GLOBALS['dbms'] == 'mysql') {
@@ -76,7 +77,7 @@ class AbstractService {
 	// Authentication & security
 	public function beforeFilter($function_called) {
 		// These functions can be called without logging in
-		// TODO. Too many are going in here - why aren't I validating my login?
+		// TODO. Too many are having to go in here - why aren't I validating my login?
 		if ($function_called == "login" || 
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
@@ -85,6 +86,9 @@ class AbstractService {
 			$function_called == "getCoverage" ||
 			$function_called == "getEveryonesCoverage" ||
 			$function_called == "getAccountSettings" ||
+			$function_called == "startSession" ||
+			$function_called == "stopSession" ||
+			$function_called == "writeScore" ||
 			$function_called == "getCCBContent"
 			) return true;
 		

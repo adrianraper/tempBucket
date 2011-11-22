@@ -59,18 +59,19 @@
 			registerCommand(BBNotifications.EXERCISE_START, ExerciseStartCommand);
 			registerCommand(BBNotifications.EXERCISE_STOP, ExerciseStopCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);
-			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
-			//registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
+			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			// AR Or is LoggedInCommand done in IELTSFacade?
-			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 			//registerCommand(CommonNotifications.LOGGED_OUT, LoggedOutCommand);
 
 			// For use with sessions and scores for progress
 			registerCommand(BBNotifications.SESSION_START, SessionStartCommand);
+			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
+			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
 			
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
 

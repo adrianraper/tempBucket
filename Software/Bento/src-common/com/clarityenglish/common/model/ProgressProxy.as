@@ -198,12 +198,14 @@ package com.clarityenglish.common.model {
 				
 				case "startSession":
 					if (data) {
-						sessionID = data.progress['sessionID'] as String;
+						sessionID = data.sessionID;
 						sendNotification(BBNotifications.SESSION_STARTED, data);
 					} else {
 						// Can't write to the database
 						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
 					}
+					break;
+				
 				case "stopSession":
 					if (data) {
 						sendNotification(BBNotifications.SESSION_STOPPED, data);
@@ -211,6 +213,8 @@ package com.clarityenglish.common.model {
 						// Can't write to the database
 						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
 					}
+					break;
+				
 				case "writeScore":
 					if (data) {
 						sendNotification(BBNotifications.SCORE_WRITTEN, data);
@@ -218,6 +222,7 @@ package com.clarityenglish.common.model {
 						// Can't write to the database
 						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
 					}
+					break;
 					
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);

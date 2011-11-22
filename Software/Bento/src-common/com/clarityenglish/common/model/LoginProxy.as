@@ -2,6 +2,7 @@
 Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.Manageable;
@@ -96,7 +97,10 @@ package com.clarityenglish.common.model {
 							_group = data.group as Group;
 							//_user = _group.children[0];
 							
-							sendNotification(CommonNotifications.LOGGED_IN, data);
+							// Now that you are are logged in, trigger the session start command
+							var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+							var sessionData:Object = {user:_user, account:configProxy.getAccount()};
+							sendNotification(BBNotifications.SESSION_START, sessionData);
 							
 						}
 					} else {

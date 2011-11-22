@@ -14,6 +14,7 @@
 		public static const SESSION_STARTED:String = "session_started";
 		public static const SESSION_STOP:String = "session_stop";
 		public static const SESSION_STOPPED:String = "session_stopped";
+		public static const SCORE_WRITE:String = "score_write";
 		public static const SCORE_WRITTEN:String = "score_written";
 		
 		// The notifications are sent when the user answers a question

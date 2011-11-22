@@ -256,7 +256,7 @@ class BentoService extends AbstractService {
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj,
-					"progress" => $sessionID);
+					"sessionID" => $sessionID);
 	}
 	/**
 	 * 
