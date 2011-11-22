@@ -232,11 +232,9 @@ package com.clarityenglish.common.vo.config {
 			
 			// For debug purposes use absolute url. This breaks progress but allows us to run in the standalone player
 			// It also breaks all exercises!
-			/*
 			CONFIG::debug {
 				this.paths.content = "http://dock.projectbench/Content/IELTS-Joe";
 			}
-			*/
 			
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 
