@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.utils.getDefinitionByName;
@@ -17,6 +18,8 @@ package com.clarityenglish.bento.view {
 	
 	public class DynamicView extends BentoView {
 		
+		public static const DEFAULT_VIEW:String = "com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView";
+		
 		[SkinPart(required="true")]
 		public var contentGroup:Group;
 		
@@ -27,16 +30,10 @@ package com.clarityenglish.bento.view {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			// We know that xhtml is going to be an Exercise so cast it here so we can access extra properties and methods
-			var exercise:Exercise = xhtml as Exercise;
-			
 			// Remove any existing dynamic view
 			while (contentGroup.numChildren > 0)
 				contentGroup.removeElementAt(0);
-			
-			// Determine the dynamic view .  If no view is defined then use the default XHTMLExerciseView.
-			var viewName:String = (exercise.model && exercise.model.view) || "com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView";
-			
+				
 			try {
 				var classReference:Class = getDefinitionByName(viewName) as Class;
 			} catch (e:ReferenceError) {
@@ -57,6 +54,15 @@ package com.clarityenglish.bento.view {
 			} else {
 				log.error("The passed in view was not a BentoView - {0}", viewName);
 			}
+		}
+		
+		public function get viewName():String {
+			var exercise:Exercise = _xhtml as Exercise;
+			
+			if (!exercise)
+				return null;
+			
+			return (exercise.model && exercise.model.view) || DEFAULT_VIEW;
 		}
 		
 	}

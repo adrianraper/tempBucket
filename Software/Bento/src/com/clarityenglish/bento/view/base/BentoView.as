@@ -18,6 +18,7 @@ package com.clarityenglish.bento.view.base {
 	 * @author Dave
 	 */
 	[Event(name="hrefChanged", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
+	[Event(name="xhtmlReady", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
 	public class BentoView extends SkinnableComponent {
 		
 		/**
@@ -69,8 +70,10 @@ package com.clarityenglish.bento.view.base {
 			if (_hrefChanged)
 				dispatchEvent(new BentoEvent(BentoEvent.HREF_CHANGED));
 			
-			if (_xhtmlChanged)
+			if (_xhtmlChanged) {
 				updateViewFromXHTML(_xhtml);
+				dispatchEvent(new BentoEvent(BentoEvent.XHTML_READY));
+			}
 			
 			_hrefChanged = _xhtmlChanged = false;
 		}

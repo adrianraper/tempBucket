@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.exercise {
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
@@ -9,6 +10,8 @@ package com.clarityenglish.ielts.view.exercise {
 	
 	import spark.components.Button;
 	
+	[SkinState("exercise")]
+	[SkinState("other")]
 	public class ExerciseView extends BentoView {
 		
 		[SkinPart]
@@ -49,6 +52,9 @@ package com.clarityenglish.ielts.view.exercise {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case dynamicView:
+					dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { invalidateSkinState(); } );
+					break;
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, function():void { showMarking.dispatch(); } );
 					break;
@@ -59,6 +65,10 @@ package com.clarityenglish.ielts.view.exercise {
 					backButton.addEventListener(MouseEvent.CLICK, function():void { previousExercise.dispatch(); } );
 					break;
 			}
+		}
+		
+		protected override function getCurrentSkinState():String {
+			return (dynamicView.viewName == DynamicView.DEFAULT_VIEW) ? "exercise" : "other";
 		}
 		
 	}
