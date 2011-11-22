@@ -22,8 +22,9 @@
 				unitDescription.text = event.item.@description;
 			}
 			
-			protected function onUnitChange(event:IndexChangeEvent):void {
-				hostComponent.exerciseSelectorPoppedOut = true;
+			protected function onUnitClick(event:MouseEvent):void {
+				if (unitList.selectedItem)
+					hostComponent.exerciseSelectorPoppedOut = true;
 			}
 			
 			protected function onAccordianChange(event:IndexChangeEvent):void {
@@ -125,7 +126,7 @@
 						
 						<!-- The unit list -->
 						<s:Group left="0" right="0" top="5" bottom="5">
-							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12" itemRollOver="onUnitItemRollOver(event)" change="onUnitChange(event)">
+							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12" itemRollOver="onUnitItemRollOver(event)" click="onUnitClick(event)">
 								<s:layout>
 									<s:TileLayout requestedColumnCount="2" requestedRowCount="6" orientation="columns" columnWidth="250" verticalGap="15" />
 								</s:layout>
