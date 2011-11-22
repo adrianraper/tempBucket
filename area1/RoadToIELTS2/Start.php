@@ -97,8 +97,8 @@
 		var swfName = "<?php echo $swfName ?>";
 		
 		// v6.5.5.6 Allow resize screen mode
-		//var coordsWidth = "100%"; var coordsHeight = "100%";
-		var coordsWidth = 950; var coordsHeight = "100%";
+		var coordsWidth = "100%"; var coordsHeight = "100%";
+		//var coordsWidth = 950; var coordsHeight = "100%";
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
