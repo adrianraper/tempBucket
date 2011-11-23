@@ -383,5 +383,13 @@ package com.clarityenglish.common.vo.config {
 		public function outsideRURange():Boolean {
 			return this.error.errorNumber == BentoError.ERROR_OUTSIDE_RU_RANGE;
 		}
+		/**
+		 * This method tests to see if any error has been generated
+		 * @return true if there is any error
+		 * 
+		 */
+		public function anyError():Boolean {
+			return this.error.errorNumber > 0;
+		}
 	}
 }

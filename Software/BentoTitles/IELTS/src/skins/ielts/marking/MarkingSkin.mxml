@@ -7,6 +7,17 @@
 		[HostComponent("com.clarityenglish.bento.view.marking.MarkingView")]
 	</fx:Metadata>
 	
-	<s:Label text="Replace me (see the default skins.bento.marking.MarkingSkin for an example)" />
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:Label text="This is your result..." />
+	<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" />
+	<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" />
+	<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" />
+	
+	<s:Button id="tryAgainButton" label="Try again" />
+	<s:Button id="seeAnswersButton" label="See answers" />
+	<s:Button id="moveForwardButton" label="Move forward" />
 	
 </s:Skin>

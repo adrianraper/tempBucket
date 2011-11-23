@@ -14,6 +14,7 @@
 @namespace bento "com.clarityenglish.bento.*";
 @namespace tink "ws.tink.spark.containers.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace error "com.clarityenglish.common.view.error.*";
 @namespace components "com.clarityenglish.textLayout.components.*";
 
 @font-face {
@@ -195,6 +196,11 @@ account|AccountView {
 }
 
 /* Marking view styles (this overwrites the default skin) */
-/*marking|MarkingView {
+marking|MarkingView {
 	skinClass: ClassReference("skins.ielts.marking.MarkingSkin");
-}*/
+}
+
+/* Error view styles (this overwrites the default skin) */
+error|ErrorView {
+	skinClass: ClassReference("skins.ielts.error.ErrorSkin");
+}

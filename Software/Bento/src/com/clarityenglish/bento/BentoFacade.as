@@ -69,7 +69,6 @@
 			registerCommand(BBNotifications.SESSION_START, SessionStartCommand);
 			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
 			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
-			
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
 
 		}

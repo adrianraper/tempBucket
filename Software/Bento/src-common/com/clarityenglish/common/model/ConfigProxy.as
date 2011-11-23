@@ -197,6 +197,8 @@ package com.clarityenglish.common.model {
 						// TODO. This account doesn't have this title error DOESN'T stop us at this point.
 						// At this point we can check to see if the config contains anything that stops us going on
 						// This account doesn't have this title
+						/* I don't see the value of doing this like this - just grab the error and throw it out
+							Unless you want to only do that for some types of error?
 						if (config.noSuchTitle())
 							var error:BentoError = new BentoError(BentoError.ERROR_NO_SUCH_ACCOUNT);
 						if (config.accountSuspended())
@@ -213,6 +215,9 @@ package com.clarityenglish.common.model {
 							error = new BentoError(BentoError.ERROR_OUTSIDE_IP_RANGE);
 						if (config.outsideRURange())
 							error = new BentoError(BentoError.ERROR_OUTSIDE_RU_RANGE);
+						*/
+						if (config.anyError())
+							var error:BentoError = config.error;
 					} else {
 						// Can't read from the database
 						error = new BentoError(BentoError.ERROR_DATABASE_READING);

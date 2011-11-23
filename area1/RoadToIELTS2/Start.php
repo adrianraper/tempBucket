@@ -67,7 +67,6 @@
 
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript">
 		// ****
 		// 
@@ -98,7 +97,7 @@
 		
 		// v6.5.5.6 Allow resize screen mode
 		var coordsWidth = "100%"; var coordsHeight = "100%";
-		//var coordsWidth = 950; var coordsHeight = "100%";
+		//var coordsWidth = 800; var coordsHeight = 600;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -154,10 +153,16 @@
 		var params = {
 			id: "bento",
 			name: "bento",
-			allowfullscreen: "true"
+			quality: "high",
+			allowfullscreen: "true",
+			scale: "default"
 		};
-		
-		params.scale="noScale";
+
+		//if (coordsWidth=="100%") {
+		//	params.scale="showall";
+		//} else {
+		//	params.scale="noScale";
+		//}
 		
 		var attr = {
 			id: "bento",
@@ -165,15 +170,14 @@
 		};
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit("altContent");
+		swffit.fit('bento', 800, 600, 1500, null, true, true);
 	</script>
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
 
 </head>
 <body onload="onLoad()">
-
-	<div align="center" id="altContent">
+	<div id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

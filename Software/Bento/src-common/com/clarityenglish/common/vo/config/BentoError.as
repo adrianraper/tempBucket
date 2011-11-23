@@ -9,6 +9,7 @@ package com.clarityenglish.common.vo.config {
 	 * The error context is a message that the creator of the error wants to use. It is not translated and is most likely for internal debugging.
 	 * 
 	 */
+	[Bindable]
 	public class BentoError extends Error {
 		/**
 		 * We use numbers as the key, with descriptions and actions
@@ -29,6 +30,8 @@ package com.clarityenglish.common.vo.config {
 		
 		public static const ERROR_DATABASE_READING:uint = 100;
 		public static const ERROR_DATABASE_WRITING:uint = 100;
+		
+		public static const ERROR_UNKNOWN:uint = 1;
 		
 		public function BentoError(errNum:uint=0) {
 			this.errorNumber = errNum;
