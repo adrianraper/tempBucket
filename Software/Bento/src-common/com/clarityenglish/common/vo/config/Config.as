@@ -241,7 +241,7 @@ package com.clarityenglish.common.vo.config {
 			
 			// For debug purposes use absolute url. This breaks progress but allows us to run in the standalone player
 			if (Config.DEVELOPER.name == "DK") {
-				this.paths.content = "http://dock.projectbench/Content/IELTS-Joe";
+				this.paths.content = "http://dock.projectbench/Content/RoadToIELTS2-Academic-30hour";
 			}
 			
 			// You can now adjust the streamingMedia and sharedMedia as necessary

@@ -142,6 +142,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				var answerNode:XML = key as XML;
 				var answerElement:FlowElement = getFlowElement(answerNode);
 				
+				var sourceNodes:Vector.<XML>;
+				
 				// For some questions deselect all other nodes
 				if (question.isMutuallyExclusive()) {
 					for each (var allAnswers:NodeAnswer in question.answers) {
@@ -160,7 +162,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					if (answer is TextAnswer) {
 						answerNode.text = inputElement.value = (answer as TextAnswer).value;
 					} else {
-						var sourceNodes:Vector.<XML> = (answer as NodeAnswer).getSourceNodes(exercise);
+						sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
 						inputElement.dragDrop(sourceNodes[0], sourceNodes[0].toString());
 					}
 				}
@@ -168,7 +170,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				if (answerElement is SelectElement) {
 					var selectElement:SelectElement = answerElement as SelectElement;
 					
-					var sourceNodes:Vector.<XML> = (answer as NodeAnswer).getSourceNodes(exercise);
+					sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
 					selectElement.selectedItem = sourceNodes[0];
 				}
 				
