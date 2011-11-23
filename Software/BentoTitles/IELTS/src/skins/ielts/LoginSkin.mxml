@@ -7,23 +7,23 @@
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
 	
-	<s:VGroup width="100%">
+	<s:VGroup width="100%" top="18">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
-		<s:RichText text="IELTS preparation and practice" color="0x00426B" fontFamily="HelveticaNeueLtStd" fontSize="13" />
+		<s:RichText text="IELTS preparation and practice" color="0x00426B" fontFamily="HelveticaNeueLtStd" fontSize="15" />
 	</s:VGroup>
 	
-	<s:VGroup width="100%" height="100%" top="70">
-		<s:Label text="User login" />
-		
+	<s:VGroup width="100%" height="100%" top="120"  >
+		<s:Label text="User login" fontFamily="HelveticaNeueLtStd" fontSize="20" />
+		<s:Spacer height="3" />
 		<s:Label text="Login ID:" />
 		<s:TextInput id="nameInput" />
 		<s:Label text="This is the ID given to you to start Road to IELTS." />
-		<s:Label text="It looks like this: 1280-8666-1111." />
-		
+		<s:Label text="It looks like this: 1280-8666-1111." color="#666666"/>
+		<s:Spacer height="3" />
 		<s:Label text="Password:" />
 		<s:TextInput id="passwordInput" displayAsPassword="true" />
-		<s:Label id="lostYourPasswordButton" text="Lost your password?" />
-		
+		<s:Label id="lostYourPasswordButton" text="Lost your password?" textDecoration="underline"/>
+		<s:Spacer height="3" />
 		<s:Button id="loginButton" label="Login" />
 		<s:Button id="quickStartButton" label="Quick start" />
 		

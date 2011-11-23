@@ -76,12 +76,12 @@
 		</s:Group>
 		
 		<!-- The popout exercise selector -->
-		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="85" height="300" exerciseSelected="onPopoutExerciseSelected(event)" />
+		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="270" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
-		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12">
+		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="5" bottom="40">
 			<s:layout>
-				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="10" />
+				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="20" />
 			</s:layout>
 			
 			<s:borderStroke>
@@ -99,17 +99,17 @@
 					</s:filters>
 				</s:SWFLoader>
 				
-				<s:RichText id="courseTitleLabel" fontSize="20"  paddingTop="7"/>
+				<s:RichText id="courseTitleLabel" fontSize="20"  paddingTop="7" paddingBottom="10"/>
 			</s:HGroup>
 			
-			<s:RichText id="courseDescriptionLabel" width="100%" />
+			<s:RichText id="courseDescriptionLabel" width="100%"/>
 			
 			<!-- The accordian -->
 			<tink:Accordion id="accordian" width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" duration="100" change="onAccordianChange(event)">
 				
 				<!-- Practice zone -->
 				<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
-					<s:VGroup left="0" right="20" top="0" bottom="10" gap="20">
+					<s:VGroup left="0" right="20" top="0" bottom="0" gap="10">
 						<!-- The unit title and description box -->
 						<s:Group width="100%">
 							<s:Rect width="100%" height="100%">
@@ -155,7 +155,7 @@
 				
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
-					<s:VGroup left="0" right="0" top="10" bottom="10" horizontalAlign="center" verticalAlign="middle">
+					<s:VGroup left="0" right="0" top="0" bottom="5" horizontalAlign="center" verticalAlign="middle">
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" width="411" height="231" />
 						
 						<s:List id="adviceZoneVideoList" width="411" height="40" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
@@ -175,7 +175,7 @@
 												}
 											]]>
 										</fx:Script>
-										<s:Image id="image" width="54" height="30" />
+										<s:Image id="image" width="45" height="25" />
 									</s:ItemRenderer>
 								</fx:Component>
 							</s:itemRenderer>
@@ -186,18 +186,18 @@
 				<!-- Exam practice -->
 				<s:NavigatorContent id="examPracticeNavigatorContent" label="Exam practice" width="100%">
 					<s:layout>
-						<s:HorizontalLayout />
+						<s:HorizontalLayout paddingTop="10" paddingLeft="10"/>
 					</s:layout>
 					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
 								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
 								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
 					
-					<s:DataGroup id="examPracticeDataGroup">
+					<s:DataGroup id="examPracticeDataGroup" >
 						<s:layout>
-							<s:VerticalLayout paddingTop="40" />
+							<s:VerticalLayout paddingTop="50" paddingLeft="20" gap="10"/>
 						</s:layout>
-						<s:itemRenderer>
+						<s:itemRenderer >
 							<fx:Component>
 								<s:DataRenderer>
 									<fx:Script>
@@ -228,15 +228,15 @@
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
 					<s:VGroup horizontalAlign="center" horizontalCenter="0">
-						<s:SWFLoader width="172" height="245"
+						<s:SWFLoader width="122" height="171"
 									 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneReading')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneWriting')"
 									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneListening')"
 									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneSpeaking')" />
-						<s:HGroup horizontalCenter="0" verticalAlign="middle">
-							<s:Button id="questionZoneViewButton" label="View" />
+						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="20" paddingBottom="10" >
+							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="80" height="25" />
 							<s:Label text="or" />
-							<s:Button id="questionZoneDownloadButton" label="Download PDF" />
+							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="130" height="25" />
 						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>

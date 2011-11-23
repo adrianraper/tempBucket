@@ -22,18 +22,18 @@
 	</s:states>
 	
 	<s:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout paddingTop="5" />
 	</s:layout>
 	
 	<s:Group width="100%" excludeFrom="exercise">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
-		<s:Label text = "Welcome, {hostComponent.user.fullName}. Today is {hostComponent.dateFormatter.format(new Date())}. (config={hostComponent.configID})" top="45" right="0" />
+		<s:Label text = "Welcome, {hostComponent.user.fullName}. Today is {hostComponent.dateFormatter.format(new Date())}. (config={hostComponent.configID})" top="50" right="0" />
 		<s:ButtonBar id="navBar" right="0" height="35" top="0" />
 	</s:Group>
 	
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" />
-		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="0" />
+		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="5" />
 	</s:Group>
 	
 	<s:HGroup width="100%" height="100%">
