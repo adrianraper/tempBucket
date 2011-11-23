@@ -56,8 +56,8 @@ package com.clarityenglish.textLayout.elements {
 		
 		public var borderStyle:String = BORDER_STYLE_NONE;
 		public var borderRadius:Number = 0;
-		public var borderColor:Number;
-		private var _borderWidth:Number;
+		public var borderColor:Number = 0;
+		private var _borderWidth:Number = 0;
 		
 		private var originalPaddingLeft:Number = 0;
 		private var originalPaddingRight:Number = 0;

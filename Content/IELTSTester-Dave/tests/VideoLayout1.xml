@@ -6,10 +6,7 @@
 		<![CDATA[
 			.float {
 				float: left;
-				padding-top: 5px;
-				/*border-style: solid;
-				border-width: 5px;
-				border-color: #FF0000;*/
+				padding-top: 14px;
 			}
 		]]>
 		</style>
@@ -24,9 +21,9 @@
 		</header>
 		
 		<section id="body">
-			<div class="float">
+			<p class="float">
 				<video src="media/Unit08_e3.flv" />
-			</div>
+			</p>
 			
 			<p>
 			Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
@@ -36,6 +33,7 @@
 			nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem
 			eum fugiat quo voluptas nulla pariatur
 			</p>
+			
 		</section>
 	</body>
 	
