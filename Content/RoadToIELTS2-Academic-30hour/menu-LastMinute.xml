@@ -357,7 +357,7 @@
 				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" difficulty="3" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
-				<exercise id="1287130230001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." />
+				<exercise id="1287130230001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="listening/thumbnails/Listening_v1.jpg" />
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3">

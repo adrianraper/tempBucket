@@ -168,7 +168,7 @@
 		swffit.fit("altContent");
 	</script>
 <!--CSS pop up layout box-->
-<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+<link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
 
 </head>
 <body onload="onLoad()">
