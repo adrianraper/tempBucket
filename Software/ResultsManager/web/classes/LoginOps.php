@@ -526,28 +526,36 @@ EOD;
 		}
 		
 		// First get the record from T_AccountRoot and T_Accounts
-		$conditions = array("productCode" => $productCode);
-		$accounts = $this->accountOps->getAccounts(array($rootID), $conditions);
+		//$conditions = array("productCode" => $productCode);
+		// Hmm. By reusing AccountOps from RM/DMS we end up getting the whole course.xml, when we really don't want it.
+		// It probably wouldn't really matter except that we end up with contentLocation goverened by config.php in RM/web which is wrong.
+		// Since I have to change something, I might as well make a new method in AccountOps
+		$account = $this->accountOps->getBentoAccount($rootID, $productCode);
 		
-		// It would be an error to have more or less than one account
-		if (count($accounts)==1) {
-			$account = $accounts[0];
-		} else if (count($accounts)>1) {
-			throw new Exception("More than one account with rootID $rootID", 100);
-		} else {
-			throw new Exception("No account with rootID $rootID", 100);
-		}
-		
-		// It would also be an error to have more or less than one title in that account
+		// It would be an error to have more or less than one title in that account
 		if (count($account->titles)>1) {
 			throw new Exception("More than one title with productCode $productCode", 100);
-		} else if (count($accounts)==0) {
+		} else if (count($account->titles)==0) {
 			throw new Exception("No title with productCode $productCode in rootID $rootID", 100);
 		} 
 		
 		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
 		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));
 
+		// Also check whether we want a default content location
+		if (!$account->titles[0]->contentLocation) {
+			$sql = <<< SQL
+					SELECT F_ContentLocation 
+					FROM T_ProductLanguage
+					WHERE F_ProductCode = ?
+					AND F_LanguageCode = ?;
+SQL;
+			$bindingParams = array($productCode, $account->titles[0]->languageCode);
+			$rs = $this->db->Execute($sql, $bindingParams);	
+			if ($rs) 
+				$account->titles[0]->contentLocation = $rs->FetchNextObj()->F_ContentLocation;
+		}
+		
 		return $account;
 	}
 }

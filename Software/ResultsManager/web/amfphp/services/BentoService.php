@@ -73,9 +73,12 @@ class BentoService extends AbstractService {
 	 *
 	 * This call finds the relevant account, keyed on rootID [or prefix].
 	 * Additionally it gets configuration data for this title.
+	 * It is based on the Orchid getRMSettings
+	 * 
 	 * @param config - an object containing the keys to get the account
 	 * rootID, [prefix,] productCode
 	 * dbHost
+	 * 
 	 * @return account - Account object - includes the ONE relevant title and any relevant licence attributes 
 	 * @return config - Miscellaneous information, such as database version 
 	 * @return error - Error object if required 
@@ -83,20 +86,14 @@ class BentoService extends AbstractService {
 	function getAccountSettings($config) {
 	
 		// All errors are caught with an exception handler. This includes expected
-		// errors such as incorrect password, data errors such as no account
+		// errors such as terms and conditions not accepted yet
 		// and unexpected errors such as no database connection.
 		$errorObj = array("errorNumber" => 0);
 		try {
-			// Not sure where the following function should go - AccountOps or LoginOps
-			// For now I will put it in LoginOps
-			/*if (isset($config['rootID'])) 
-				$rootID = $config['rootID'];
-			if (isset($config['prefix'])) 
-				$prefix = $config['prefix'];
-			if (isset($config['productCode'])) 
-				$productCode = $config['productCode'];*/
 			$account = $this->loginOps->getAccountSettings($config);
-						
+
+			// TODO. We will also need the top group ID for this account to help with hiddenContent
+			
 			// We also need some misc stuff.
 			$configObj = array("databaseVersion" => $this->getDatabaseVersion());
 

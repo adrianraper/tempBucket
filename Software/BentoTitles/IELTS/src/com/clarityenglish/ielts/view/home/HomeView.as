@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.home {
 	import com.anychart.AnyChartFlex;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -135,6 +136,7 @@ package com.clarityenglish.ielts.view.home {
 				_fullChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@coverage} style={point.@caption} />);
 			}
 			coveragePieChart.anychartXML = _fullChartXML;
+			
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -143,11 +145,10 @@ package com.clarityenglish.ielts.view.home {
 			// Populate the buttons with the course names
 			//courseTabBar.dataProvider = new XMLListCollection(menu..course);
 			
-			// Get the coverage overview from the backside
-			// This is probably a 'quick' call in usage stats mode rather than full progress
-			
 			// TODO: GO STRAIGHT TO THE READING COURSE SINCE I AM WORKING ON THE ZONE PAGE
-			//readingCourse.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			if (Config.DEVELOPER.name == "DK") {
+				readingCourse.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+			}
 		}
 		
 		protected override function commitProperties():void {

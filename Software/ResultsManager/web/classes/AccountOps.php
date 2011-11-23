@@ -42,6 +42,40 @@ class AccountOps {
 		$this->dmsKey = new RSAKey("a6f945c79fa1db830591618a0178f1ec4076436bd22e2c264de61b114eb78fad", "10001", "8fe751ce63b3b95dc854ad7da51b3953811b560d00d6a1248d91cff6a2976841");
 		$this->orchidPublicKey = new RSAKey("00c2053455fe3c7c7b22a629d53ab2d98a2f46a2c403457da8d044116df9ab43fb", "10001");
 	}
+
+	/**
+	 * Bento specific function to getAccount details as need far less than RM and some RM bits are wrong
+	 */
+	function getBentoAccount($rootID, $productCode) {
+		
+		// Read T_AccountRoot and T_Accounts from database
+		$sql = <<< SQL
+				SELECT r.*, t.* 
+				FROM T_AccountRoot r, T_Accounts t
+				WHERE r.F_RootID = ?
+				AND r.F_RootID = t.F_RootID
+				AND t.F_ProductCode = ?;
+SQL;
+		$bindingParams = array($rootID, $productCode);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// It would be an error to have more or less than one account
+		if ($rs->RecordCount()>1) {
+			throw new Exception("More than one account with rootID $rootID", 100);
+		} elseif ($rs->RecordCount()<1) { 
+			throw new Exception("No account with rootID $rootID", 100);
+		}
+		
+		$dbObj = $rs->FetchNextObj();
+		// Create the account object
+		$account = $this->_createAccountFromObj($dbObj);
+			
+		// And add the title
+		$account->addTitles(array($this->_createTitleFromObj($dbObj)));
+		
+		return $account;
+		
+	}
 	
 	/**
 	 * Get the accounts.  If $accountIDArray is specified then only get those accounts, otherwise get them all.
@@ -733,10 +767,18 @@ EOD;
 	/*
 	 * This method creates a new Account from an AdoDB object returned by FetchNextObject()
 	 */
-	private function _createAccountFromObj($accountObj) {
+	private function _createAccountFromObj($dbObj) {
 		$account = new Account();
-		$account->fromDatabaseObj($accountObj);
+		$account->fromDatabaseObj($dbObj);
 		return $account;
+	}
+	/*
+	 * This method creates a new Title from an AdoDB object returned by FetchNextObject()
+	 */
+	private function _createTitleFromObj($dbObj) {
+		$title = new Title();
+		$title->fromDatabaseObj($dbObj);
+		return $title;
 	}
 	
 	/**

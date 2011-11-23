@@ -48,6 +48,11 @@ package com.clarityenglish.common.vo.config {
 		// For holding chart templates
 		private var _chartTemplates:XML;
 		
+		/** 
+		 * Developer option
+		 */
+		public static const DEVELOPER:Object = {name:"XX"};
+		
 		public function Config() {
 			this.paths = {content: '', streamingMedia: '', sharedMedia: '', brandingMedia: '', accountRepository: ''};
 			//this.licence = new Licence();
@@ -133,6 +138,10 @@ package com.clarityenglish.common.vo.config {
 				this.productCode = xml..productCode.toString();
 			if (xml..action.toString())
 				this.action = xml..action.toString();
+			
+			// Use the config.xml to help with developer options
+			if (xml..developer.toString())
+				Config.DEVELOPER.name = xml..developer.toString();
 			
 			// This is the base content folder, we expect it to be added to with title specific subFolder
 			if (xml..contentPath.toString()) {
@@ -223,16 +232,14 @@ package com.clarityenglish.common.vo.config {
 			var thisTitle:Title = this.account.getTitle();
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
-			// and comes from T_ProductLocation. Its purpose is to allow an account to swap language versions easily for a title.
+			// and comes from a mix of T_ProductLanguage and T_Accounts. 
+			// Its purpose is to allow an account to swap language versions easily for a title.
 			if (thisTitle.contentLocation) {
-				this.paths.content = thisTitle.contentLocation;
+				this.paths.content += thisTitle.contentLocation;
 			}
 			
-			this.paths.content = "../../../Content/IELTS-Joe";
-			
 			// For debug purposes use absolute url. This breaks progress but allows us to run in the standalone player
-			// It also breaks all exercises!
-			CONFIG::debug {
+			if (Config.DEVELOPER.name == "DK") {
 				this.paths.content = "http://dock.projectbench/Content/IELTS-Joe";
 			}
 			
