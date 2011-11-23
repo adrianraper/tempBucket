@@ -96,6 +96,10 @@ package com.clarityenglish.bento.model {
 			return currentUnitNode.parent();
 		}
 		
+		public function get currentMenuNode():XML {
+			return currentCourseNode.parent();
+		}
+		
 		public function get currentGroupNode():XML {
 			if (!currentExerciseNode.hasOwnProperty("@group"))
 				return null;
@@ -139,6 +143,20 @@ package com.clarityenglish.bento.model {
 			}
 			
 			return null;
+		}
+		
+		/**
+		 * We need UID of the current exercise.
+		 * TODO. Should this be in Exercise or ExerciseProxy? 
+		 * @return 
+		 * 
+		 */
+		public function getCurrentExerciseUID():String {
+			var eid:String = currentExerciseNode.@id;			
+			var uid:String = currentUnitNode.@id;			
+			var cid:String = currentCourseNode.@id;			
+			var pid:String = currentMenuNode.@id;
+			return pid+"."+cid+"."+uid+"."+eid;
 		}
 		
 	}

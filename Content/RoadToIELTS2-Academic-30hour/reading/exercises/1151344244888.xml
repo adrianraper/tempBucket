@@ -71,31 +71,21 @@
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/DD_AR_003.jpg" mode="1" id="1001"/>
-<div id="splitquestionList">
-  <p align="left">
-    <b>Which SIX of the following strengths are mentioned?</b>
-  </p><br/>
-  <p>
   
-  
-    <g id="t1">A. It reduces the turbidity of the water.</g><br/>
-    <g id="t2">B. It does not spoil the taste of the water.</g><br/>
-    <g id="t3">C. It is portable.</g><br/>
-    <g id="t4">D. It kills all pathogens.</g><br/>
-    <g id="t5">E. It has a residual effect.</g><br/>
-    <g id="t6">F. It is ideal for keeping water disinfected long term.</g><br/>
-    <g id="t7">G. It needs little maintenance.</g><br/>
-    <g id="t8">H. It is environmentally friendly.</g><br/>
-    <g id="t9">I. It does not pose a health risk.</g><br/>
-    <g id="t10">J. It is energy-efficient.</g><br/>
-    <g id="t11">K. It is a well-proven method.</g>
-	
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  </div>
+<p>Which SIX of the following strengths are mentioned?</p>
+  <ol id="splitquestionList"><list id="answerList">
+    <li><a id="t1">It reduces the turbidity of the water.</a></li>
+    <li><a id="t2">It does not spoil the taste of the water.</a></li>
+    <li><a id="t3">It is portable.</a></li>
+    <li><a id="t4">It kills all pathogens.</a></li>
+    <li><a id="t5">It has a residual effect.</a></li>
+    <li><a id="t6">It is ideal for keeping water disinfected long term.</a></li>
+    <li><a id="t7">It needs little maintenance.</a></li>
+	<li><a id="t8">It is environmentally friendly.</a></li>
+    <li><a id="t9">It does not pose a health risk.</a></li>
+    <li><a id="t10">It is energy-efficient.</a></li>
+    <li><a id="t11">It is a well-proven method.</a></li>
+	</list></ol>
 </section>
 
 <section id="readingText">
@@ -112,13 +102,14 @@
 <h7>Conclusion</h7>
 <p>The UV disinfection system represents a useful water treatment alternative for developing countries. The provision of a simple and inexpensive method for disinfecting drinking water will save the lives of many people &#x2013; particularly the lives of children, who are the most susceptible to diarrheal diseases. In addition, the UV disinfection system can greatly improve the quality of life for rural women by reducing their workloads as well as the number of children they lose to waterborne diseases.</p>
 
-<p><b>Glossary</b></p>
-<p>1. turbidity: the cloudiness of the water. The water needs to be clear in order for the UV light to travel all the way through it during the disinfection process.</p>
-<p>2. tube well: a well made by driving a tube into the earth to a layer of water-bearing rock.</p>
-<p>3. potable: drinkable; fit to drink.</p>
-<p>4. giardia: single-celled organisms which can cause diarrhea.</p>
-<p>5. biomass fuels: plants and plant materials used as fuel.</p>
-
+<h7>Glossary</h7>
+<ol id="splitreadingList">
+<li>turbidity: the cloudiness of the water. The water needs to be clear in order for the UV light to travel all the way through it during the disinfection process.</li>
+<li>tube well: a well made by driving a tube into the earth to a layer of water-bearing rock.</li>
+<li>potable: drinkable; fit to drink.</li>
+<li>giardia: single-celled organisms which can cause diarrhea.</li>
+<li>biomass fuels: plants and plant materials used as fuel.</li>
+</ol>
 <p>Ashok J. Gadgil and Leslie J. Shown, 1st February 1995, Solar Cooking Archive web site.</p>
 </section>
 

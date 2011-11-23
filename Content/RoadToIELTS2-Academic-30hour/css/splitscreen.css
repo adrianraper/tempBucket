@@ -14,7 +14,7 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
-	padding-bottom: 12px;	
+	
 }
 
 
@@ -38,19 +38,20 @@ body > header {
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 
 img.photo1 {
+	float:left; 
 	width: 380px;
 	height: 194px;
-	padding: 20px 100em 15px 15em;
+	padding: 20px  250em 15px 25em;
 	}
 
 img.leftFloat {
 	float:left;
-	padding: 20px 100px 0px 15px;
+	padding: 20px 280px 0px 15px;
 }
 
 #readingText p {
 	padding-right: 25em;
-	padding-left: 15em;
+	padding-left: 25em;
 	padding-bottom: 20em;
 	padding-top: 0em;
 	font-size:12px;
@@ -132,7 +133,7 @@ h1 {
 	font-weight: bold;
 	padding-top: 20px;
 	padding-bottom: 18em;
-	padding-left: 15px;
+	padding-left: 27px;
 	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
@@ -143,7 +144,7 @@ h2 {
 	font-family: Verdana;
 	font-size: 12px;
 	color: #333333;
-	padding-left: 15px;
+	padding-left: 25px;
 	padding-top: 0em;
 	padding-bottom: 18em;
 	padding-right: 25em;
@@ -153,7 +154,7 @@ h2 {
 h4 {
 	font-family: Arial Black;
 	font-size: 14px;
-	padding-left: 15px;
+	padding-left: 25px;
 	padding-bottom: 6px;
 	padding-top: 10px;
 	
@@ -164,7 +165,7 @@ h7{
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 10px;
-	padding-left: 15px;
+	padding-left: 24px;
 	padding-right: 25em;
 	}
 /* h8 is used for main titles in exercises when subtitles are present. */
@@ -174,7 +175,7 @@ h8{
 	font-weight: bold;
 	padding-top: 20px;
 	padding-bottom: 0em;
-	padding-left: 15px;
+	padding-left: 25px;
 	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
@@ -190,16 +191,26 @@ h9{
 	padding-right: 25em;
 	}
 
+/*h10 is used for headings in the exercise portion of a splitscreen exercise when there's a mixture of heading text and questionlist text. */	
+h10{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-left: 25px;
+	}
+
 /* Exercise ID and class */
 #splitquestionList {
 	list-style-type: decimal;
-	padding-left: 30px;
+	padding-left: 25px;
 	padding-right: 35px;
 	padding-top: 20px;
 	padding-bottom: 20em;
 	text-align: left;
 	line-height: 20em;
 	margin: 0 20px 20px 20px;
+	
 	}
 
 #splitquestionList p {
@@ -209,8 +220,22 @@ h9{
 	
 #splitquestionList li {
 	padding-bottom: 20em;
+		padding-left: 0px;
 	}
-	
+
+/*This is for questionLists with photos at the top of the exercise. */
+#splitquestionListP {
+	list-style-type: decimal;
+	padding-left: 25px;
+	padding-right: 35px;
+	padding-top: 0;
+	padding-bottom: 20em;
+	text-align: left;
+	line-height: 20em;
+	margin: 0 20px 20px 20px;
+	}
+
+
 #gapfillText{
 	padding-top: 20px;
 	padding-bottom: 20em;
@@ -236,16 +261,20 @@ h9{
 	padding-right: 25px
 }
 #dropdown{
+	list-style-type: decimal;
+	padding-left: 30px;
+	padding-right: 35px;
 	padding-top: 20px;
+	padding-bottom: 20em;
 	text-align: left;
-	line-height: 25em;
-	padding-right: 225%;
-	padding-left: 23px;
+	line-height: 20em;
+	margin: 0 20px 20px 20px;
 }
 
 .hangingIndent {
  	tab-stops: 30px;
  	text-indent: -15em;
+	
 	}
 
 #reading
@@ -254,7 +283,7 @@ h9{
 }
 #splitreadingList {
 	list-style-type: decimal;
-	padding-left: 35em;
+	padding-left: 40px;
 	padding-right: 35px;
 	padding-bottom: 20em;
 	text-align: left;

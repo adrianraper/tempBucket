@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -138,6 +139,10 @@ package com.clarityenglish.ielts.view.zone {
 				
 				_courseChanged = false;
 			}
+			
+			//if (Config.DEVELOPER.name == "AR") {
+			//	exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, 'reading/exercises/1156153794430.xml'));
+			//}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

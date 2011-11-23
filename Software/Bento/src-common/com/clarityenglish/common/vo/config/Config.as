@@ -12,6 +12,7 @@ package com.clarityenglish.common.vo.config {
 		/**
 		 * Information is held in simple variables for the most part
 		 */
+		// TODO. Many of these are NOT in the config class. They are in user, for instance
 		public var dbHost:Number;
 		public var productCode:uint;
 		public var prefix:String;

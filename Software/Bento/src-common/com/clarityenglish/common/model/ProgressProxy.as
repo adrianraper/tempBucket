@@ -4,6 +4,7 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
@@ -13,6 +14,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.common.vo.progress.Score;
 	import com.clarityenglish.dms.vo.account.Account;
+	import mx.formatters.DateFormatter;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -141,9 +143,10 @@ package com.clarityenglish.common.model {
 		 * @return void
 		 * 
 		 */
-		public function writeScore(percent:int, correct:uint, wrong:uint, skipped:uint, coverage:uint, duration:int):void {
+		public function writeScore(mark:ExerciseMark):void {
 			// $userID, $rootID, $productCode, $dateNow
-			// TODO. This should just be ExerciseMark I think.
+			// TODO. This should just be ExerciseMark I think. And should include UID of the exercise.
+			/*
 			score = new Score();
 			score.score = percent;
 			score.correct = correct;
@@ -151,12 +154,18 @@ package com.clarityenglish.common.model {
 			score.skipped = skipped;
 			score.coverage = coverage;
 			score.duration = duration;
+			*/
 			
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;;
-			var config:Config = configProxy.getConfig();
-			var account:Account = configProxy.getAccount();
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
+			//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;;
+			//var config:Config = configProxy.getConfig();
 			
-			var params:Array = [ configProxy.getUserID(), account.id, (account.titles[0] as Title).id, new Date().getTime(), score ];
+			// We have always passed dates between AS and PHP as strings
+			var dateFormatter:DateFormatter = new DateFormatter();
+			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
+			var dateNow:String = dateFormatter.format(new Date());
+			
+			var params:Array = [ loginProxy.user.id, sessionID, dateNow, mark ];
 			new RemoteDelegate("writeScore", params, this).execute();			
 		}
 		

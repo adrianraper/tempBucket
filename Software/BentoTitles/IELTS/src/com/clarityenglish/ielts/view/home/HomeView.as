@@ -146,7 +146,7 @@ package com.clarityenglish.ielts.view.home {
 			//courseTabBar.dataProvider = new XMLListCollection(menu..course);
 			
 			// TODO: GO STRAIGHT TO THE READING COURSE SINCE I AM WORKING ON THE ZONE PAGE
-			if (Config.DEVELOPER.name == "DK") {
+			if (Config.DEVELOPER.name == "AR") {
 				readingCourse.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 			}
 		}

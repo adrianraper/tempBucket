@@ -138,13 +138,6 @@ package com.clarityenglish.bento.vo.content {
 			// enabledFlag is binary based for backwards compatability
 			// You can see an exercise on the menu - if it is menuOn and not displayOff.
 			// If it is disabled, you will see it differently and not be able to click it.
-			//trace("eF0=" + exerciseNode.@enabledFlag);
-			//trace("eF1=" + (exerciseNode.@enabledFlag & Exercise.EF_MENU_ON).toString());
-			//trace("eF2=" + ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON)==Exercise.EF_MENU_ON).toString());
-			//trace("eF3=" + (exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF).toString());
-			//trace("eF4=" + (!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF)==Exercise.EF_DISPLAY_OFF).toString()));
-			//trace("ef5=" + ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON)==Exercise.EF_MENU_ON &&
-			//	!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF)==Exercise.EF_DISPLAY_OFF)).toString());
 			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON)==Exercise.EF_MENU_ON &&
 																	!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF)==Exercise.EF_DISPLAY_OFF)));
 		}
@@ -160,10 +153,6 @@ package com.clarityenglish.bento.vo.content {
 				return false;
 			
 			// enabledFlag is binary based for backwards compatability
-			//trace("eF0=" + exerciseNode.@enabledFlag);
-			//trace("eF1=" + (exerciseNode.@enabledFlag & Exercise.EF_DISABLED).toString());
-			//trace("eF2=" + ((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED).toString());
-			//trace("testing " + ((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED).toString());
 			return (!exerciseNode.hasOwnProperty("@enabledFlag") || !((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED));
 
 		}

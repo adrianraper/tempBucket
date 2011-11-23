@@ -36,23 +36,49 @@ p {
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 #readingText p {
-	padding-right: 25px;
-	padding-left: 15px;
-	padding-top: 12px;
-	padding-bottom: 18em;
-	font-size: 12px;
+	padding-right: 25em;
+	padding-left: 25em;
+	padding-bottom: 20em;
+	padding-top: 0em;
+	font-size:12px;
 	text-align: left;
-	line-height: 22em
-
-
+	line-height: 20em;
 }
+
+#splitreadingList {
+	list-style-type: decimal;
+	padding-left: 40px;
+	padding-right: 35px;
+	padding-bottom: 20em;
+	text-align: left;
+	line-height: 20em;
+	text-indent: 2em;
+	margin: 0 20px 20px 20px;
+	}
+
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
  	tab-stops: 30px;
  	text-indent: -30px;
  	padding-left: 30px;
+}
+
+.hangingIndentsplitscreen {
+ 	tab-stops: 30px;
+ 	text-indent: -15em;
+	
+	}
+
+#reading
+{
+	padding-left: 17em;
 }		
 
+.Indent {
+ 	tab-stops: 30px;
+ 	text-indent: -15px;
+	
+	}
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
@@ -129,7 +155,7 @@ h1 {
 	font-weight: bold;
 	padding-top: 20px;
 	padding-bottom: 0em;
-	padding-left: 15px;
+	padding-left: 27px;
 	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
@@ -161,12 +187,21 @@ h7{
 	line-height: 20em;
 	padding-left:20px;
 	}
-	
+h8{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-left: 14px;
+	padding-right: 25em;
+	}
+/* h8 is u
+	/* Exercise ID and class */
  #questionList {
 	list-style-type: decimal;
 	
 	margin-left: 20px;
-	padding-right: 210%;
+	padding-right: 280%;
 	padding-top: -25em;
 	text-align: left;
 	line-height: 22em;
@@ -175,8 +210,8 @@ h7{
 #gapfillText{
 	padding-top: 12px;
 	text-align: left;
-	line-height: 22em;
-	padding-right: 270%;
+	line-height: 20em;
+	padding-right: 280%;
 	
 }
 
@@ -189,11 +224,18 @@ h7{
 	line-height: 20em;
 }
 
+#splitdrag{
+	padding-top: 20px;
+	padding-bottom: 20em;
+	padding-left: 0px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 25em;
+}
+}
 #body .rightFloatvideo {
 	float: right;
-	width: 580px;
-	
-
+	width: 760px;
 	padding-top: 20em;
 	padding-right: 10em;
 	padding-left: 10em;
@@ -205,3 +247,19 @@ h7{
  	text-indent: -55px;
  	padding-left: 75px;
 }		
+
+#splitreadingList {
+	list-style-type: decimal;
+	padding-left: 10px;
+	padding-right: 35px;
+	padding-bottom: 20em;
+	text-align: left;
+	line-height: 20em;
+	text-indent: 2em;
+	margin: 0 20px 20px 0;
+	}
+
+	#reading
+{
+	padding-left: 15em;
+}

@@ -29,6 +29,9 @@ package com.clarityenglish.bento.controller {
 			var exerciseProxy:ExerciseProxy = new ExerciseProxy(exercise);
 			facade.registerProxy(exerciseProxy);
 			
+			// Start recording the duration
+			exerciseProxy.startExercise();
+			
 			sendNotification(BBNotifications.EXERCISE_STARTED, exercise);
 		}
 		

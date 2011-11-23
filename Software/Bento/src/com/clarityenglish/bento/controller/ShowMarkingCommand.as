@@ -2,6 +2,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.marking.MarkingView;
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	import flash.display.DisplayObject;
@@ -35,13 +36,14 @@ package com.clarityenglish.bento.controller {
 			
 			// Get the marks
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+			var thisExerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.title = "Marking";
 			
 			var markingView:MarkingView = new MarkingView();
-			markingView.exerciseMark = exerciseProxy.getExerciseMark();
+			markingView.exerciseMark = thisExerciseMark;
 			titleWindow.addElement(markingView);
 			
 			// Create and centre the popup
@@ -55,9 +57,11 @@ package com.clarityenglish.bento.controller {
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
 			// Trigger a notification to write the score out
-			var duration:uint = 90;
-			var scoreData:Object = {correct:markingView.exerciseMark.correctCount, wrong:markingView.exerciseMark.incorrectCount, skipped:markingView.exerciseMark.missedCount, duration:duration};
-			sendNotification(BBNotifications.SCORE_WRITE, scoreData);
+			thisExerciseMark.duration = Math.round(exerciseProxy.duration/1000);
+			thisExerciseMark.setPercent();
+			
+			// TODO. And where can I get the exercise UID
+			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
 			
 		}
 		

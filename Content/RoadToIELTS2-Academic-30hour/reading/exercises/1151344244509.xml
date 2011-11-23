@@ -116,8 +116,9 @@
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"/>
-  <br/>
+ 
+ <div> <img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"/></div>
+  
   <ol id="splitquestionList">
     <p>Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.<br/></p>
     <li id="1">a technical achievement by Nepalese farmers&#xA0;<input id="q1"/><br/></li>
@@ -139,7 +140,7 @@
 <section id="readingText">
   
     
-      <h1>The Mountain Sculptors</h1>
+<h1>The Mountain Sculptors</h1>
     
   <div id="reading">
   <p class="hangingIndent"><b>A</b>&#xA0; The grandest of all human sculptures are, in fact, the work of the planet's poorest people. Unable to find a job or a plot of land in the valley, the most disadvantaged people of the developing world carve mountains to grow their food. The problem with terraced mountainsides is that they hide a cruel irony. While many would agree that mountain farming is a visual success, there is much less accord about its viability. Today, two-thirds of the non-irrigated farmland in developing countries suffers from some degree of limitation on its productivity:  acidity, aridity, salinity or erosion. Ten percent of this land, located on the flanks of mountains, is especially vulnerable to erosion. In many of these lands, where on average people can rely on plots of land measuring only 30 meters by 50 meters, the mountains are under a state of siege.</p>
@@ -162,7 +163,7 @@
   <p class="hangingIndent"><b>K</b>&#xA0;Because of the deforestation of the Himalayas, Nepalese farmers are widely thought to be responsible for the disastrous flooding and sedimentation that afflict the rivers of Bangladesh and India. Yet the reality is more complex.</p>
   <p class="hangingIndent"><b>L</b>&#xA0;Initially, scientists believed that the soil carried away by the rains was lost forever. Yet the terraces are arranged in such a way that the soil washed from one terrace will be captured by the next. Unfortunately, it is generally the poorest farmers who cultivate the highest terraces, and soil lost to them is soil gained for the richer farmers in the lower reaches of the valley.</p>
   
-  <p>Jean-Marc Fleury, IDRC Briefing No. 5, March 2000.</p>
+<p class="hangingIndent">Jean-Marc Fleury, IDRC Briefing No. 5, March 2000.</p>
 </div>
   </section>
 

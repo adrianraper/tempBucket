@@ -54,11 +54,26 @@ package com.clarityenglish.bento.model {
 		 */
 		private var delayedMarking:Boolean = false;
 		
+		/**
+		 * This saves how long since the exercise was started
+		 */
+		private var _startTime:int = 0;
+		
 		public function ExerciseProxy(exercise:Exercise) {
 			// Exercise proxies are indexed by the exercise's uid property
 			super(NAME(exercise));
 			
 			this.exercise = exercise;
+		}
+		
+		/**
+		 * You can set the start time, and see how long it has been going for
+		 */
+		public function startExercise():void {
+			_startTime = new Date().getTime();
+		}
+		public function get duration():int {
+			return new Date().getTime() - _startTime;
 		}
 		
 		private function checkExercise():void {

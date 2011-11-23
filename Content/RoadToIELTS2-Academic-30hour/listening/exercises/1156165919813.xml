@@ -24,36 +24,24 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="G" correct="true">
-        <feedback source="fb1"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="D" correct="true">
-        <feedback source="fb2"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="B" correct="true">
-        <feedback source="fb3"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="I" correct="true">
-        <feedback source="fb4"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="A" correct="true">
-        <feedback source="fb5"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="E" correct="true">
-        <feedback source="fb6"/>
-      </answer>
-    </GapFillQuestion>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a7" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a2" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a1" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a5" correct="true"/>
+    </DragQuestion>
   </questions>
 </script>
 
@@ -65,38 +53,30 @@
 </header>
 	
 	<section id="noscroll">
-  <span id="a1" draggable="true">Cornish</span>
-  <span id="a2" draggable="true">Manx</span>
-  <span id="a3" draggable="true">Welsh</span>
-  <span id="a4" draggable="true">Achumawi</span>
-  <span id="a5" draggable="true">Trumai</span>
-  <span id="a6" draggable="true">Catalan</span>
+  <span id="a1" draggable="true">Description A: It disappeared as the result of an epidemic.</span>
+  <span id="a2" draggable="true">Description B: It is spoken by a fifth of the local population.</span>
+  <span id="a3" draggable="true">Description C: It is spoken by more children than adults.</span>
+  <span id="a4" draggable="true">Description D: It disappeared in the first half of the 20th century.</span>
+  <span id="a5" draggable="true">Description E: It has become more widely spoken in recent decades.</span>
+  <span id="a6" draggable="true">Description F: It is a compulsory subject in schools.</span>
+  <span id="a7" draggable="true">Description G: It disappeared in the 19th century.</span>
+  <span id="a8" draggable="true">Description H: It is only spoken in one village.</span>
+  <span id="a9" draggable="true">Description I: It is spoken by fewer than a dozen people.</span>
 </section>
 
 <section id="body">
 
-<img class="rightFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/>
+<img class="rightFloat" src="../media/_LC_LN_003.JPG" mode="1" id="1001"/>
 <audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
 
 <div id="gapfillText">
-<p><b>Description A:</b>&#xA0;It disappeared as the result of an epidemic. </p>
-<input id="q1" type="droptarget"/> 
-<p><b>Description B:</b>&#xA0;It is spoken by a fifth of the local population.</p>
-<input id="q2" type="droptarget"/> 
-<p><b>Description C:</b>&#xA0;It is spoken by more children than adults.</p>
-<input id="q3" type="droptarget"/> 
-<p><b>Description D:</b>&#xA0;It disappeared in the first half of the 20th century.</p>
-<input id="q4" type="droptarget"/> 
-<p><b>Description E:</b>&#xA0;It has become more widely spoken in recent decades.</p>
-<input id="q5" type="droptarget"/> 
-<p><b>Description F:</b>&#xA0;It is a compulsory subject in schools.</p>
-<input id="q6" type="droptarget"/> 
-<p><b>Description G:</b>&#xA0;It disappeared in the 19th century. </p>
-<input id="q7" type="droptarget"/> 
-<h7><p>Description H:</p></h7>
-<p>It is only spoken in one village.</p>
-<h7><p>Description I:</p></h7>
-<p>It is spoken by fewer than a dozen people.</p><p align="left"><font size="2"/></p>
+<p><b>Cornish</b><tab/><input id="q1" type="droptarget"/> </p>
+<p><b>Manx</b><tab/><input id="q2" type="droptarget"/> </p>
+<p><b>Welsh</b><tab/><input id="q3" type="droptarget"/> </p>
+<p><b>Achumawi</b><tab/><input id="q4" type="droptarget"/> </p>
+<p><b>Trumai</b><tab/><input id="q5" type="droptarget"/> </p>
+<p><b>Catalan</b><tab/><input id="q6" type="droptarget"/> </p>
+
 </div>
 </section>
 

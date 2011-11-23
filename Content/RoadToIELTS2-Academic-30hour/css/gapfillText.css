@@ -8,7 +8,6 @@ body > header {
 	font-weight: normal;
 	color: #000000;
 	line-height:20em;
-	
 }
 
 /* The body should always have a bit of space at the top */
@@ -26,7 +25,6 @@ p {
 
 
 /* Lists use numbers. */
-
 
 
 /* Multiple-choice answers use letters */
@@ -54,8 +52,6 @@ p {
  	text-indent: -30px;
  	padding-left: 30px;
 }		
-
-
 
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
@@ -198,6 +194,7 @@ h7{
 	padding-right: 25em;
 	padding-left: 20px;
 	}
+	
 /* Exercise ID and class */
 #questionList {
 	list-style-type: decimal;
@@ -234,21 +231,15 @@ h7{
 }
 
 #gapfillText{
-	padding-top: 20px;
+	padding-top: 12px;
 	text-align: left;
 	line-height: 22em;
-	padding-right: 270%;
+	padding-right: 280%;
 	
 	
 }
 
-#gapfillTextvideo{
-	padding-top: 0px;
-	text-align: left;
-	line-height: 22em;
-	padding-right: 400%;
-	width:400px;
-}
+
 #writing {
 	list-style-type: decimal;
 	margin-left: 20px;
@@ -280,9 +271,15 @@ h7{
 	padding-right: 25px;
 	padding-left: 25px;
 }
+#body .leftFloat {
+	float: left;
+	padding-top: 25px;
+	padding-right: 25px;
+	padding-left: 25px;
+}
 #body .rightFloatvideo {
 	float: right;
-	width: 580px;
+	width: 760px;
 	padding-top: 20em;
 	padding-right: 10em;
 	padding-left: 10em;
@@ -294,3 +291,18 @@ float: left;
 	padding-top: 37px;
 	padding-right: 50px;
 	padding-left: 25px;
+}
+
+	#gapfillTextvideo{
+	padding-top: 0px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 400%;
+	width:400px;
+}
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} 

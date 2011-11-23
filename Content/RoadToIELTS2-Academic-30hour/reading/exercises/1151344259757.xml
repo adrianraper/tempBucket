@@ -72,7 +72,7 @@
 </section>
 
 <section id="body">
-	<div id="writing">
+	<div id="splitdrag">
 		<p align="left">Why is the belief that complex life forms may well exist on planets other than the Earth so widespread? Firstly, there is the issue of probability. Using the Drake equation, scientists have calculated there to be a million civilisations in (12)&#xA0;<input id="q1" type="droptarget"/>&#xA0;and potentially billions of planets with extraterrestrial life in (13)&#xA0;<input id="q2" type="droptarget"/>. </p>
 		<p>Secondly, since (14)&#xA0;<input id="q3" type="droptarget"/>&#xA0;have been found to survive in (15)&#xA0;<input id="q4" type="droptarget"/>&#xA0;on Earth, it is argued that they are also likely to exist on other planets with similar environments. Finally, (16)&#xA0;<input id="q5" type="droptarget"/>&#xA0;have been discovered which suggest that life forms relatively easily, so it is believed that life must have appeared on innumerable occasions elsewhere in the Universe.</p><p align="left"><font size="2"></font></p>
 </div>
@@ -112,12 +112,13 @@
 	
 	<p align="left">Ever since Copernicus removed our planet from the centre of the Universe and placed it in orbit around the Sun, its status has steadily been downgraded. We have gone from the centre of the Universe to a small, insignificant planet orbiting a small, undistinguished star in an obscure fringe of the Milky Way. This is the "principle of mediocrity", the idea that Earth is one of a very common class of planets, and it's time we got rid of it. Mediocre and commonplace scarcely does justice to the special planet we call home.</p>
 	
-	<p><b>Glossary</b></p>
-	<p >1. supernova: an exploding star.</p>
-	<p>2. tectonic plates: the huge moveable blocks into which the surface of the Earth is divided.</p>
-	<p>3. continental drift: the slow movement of the continents over the surface of the Earth.</p>
-	<p>4. Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun.</p>
-	
+	<h8>Glossary</h8>
+	<ol id="splitreadingList">
+	<li>supernova: an exploding star.</li>
+	<li>tectonic plates: the huge moveable blocks into which the surface of the Earth is divided.</li>
+	<li>continental drift: the slow movement of the continents over the surface of the Earth.</li>
+	<li>Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun.</li>
+	</ol>
 	<p align="left">Peter Ward, New Scientist Magazine, 18th March 2000.</p>
 </section>
 <section id="rt2001">

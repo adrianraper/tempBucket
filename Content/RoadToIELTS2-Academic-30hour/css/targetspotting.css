@@ -153,7 +153,7 @@ h7{
 #targetspotting {
 	list-style-type: decimal;
 	margin-left: 20px;
-	padding-right: 270%;
+	padding-right: 280%;
 	text-align: left;
 	line-height: 22em;
 }
@@ -174,7 +174,7 @@ padding-left: -25px;
 
 #body .rightFloatvideo {
 	float: right;
-	width: 580px;
+	width: 760px;
 	padding-top: 20em;
 	padding-right: 10em;
 	padding-left: 10em;

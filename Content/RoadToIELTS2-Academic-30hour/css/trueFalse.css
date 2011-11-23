@@ -90,7 +90,7 @@ h4 {
 }
 #body .rightFloatvideo {
 	float: right;
-	width: 580px;
+	width:760px;
 	padding-top: 20em;
 	padding-right: 10em;
 	padding-left: 10em;
@@ -160,7 +160,7 @@ a.neutral, input.neutral {
 #trueFalse {
 	list-style-type: decimal;
 	padding-left: 0;
-	padding-right: 270%;
+	padding-right: 280%;
 	text-align: left;
 	line-height: 20em;
 	padding-left: 20px;

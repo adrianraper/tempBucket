@@ -297,7 +297,21 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	function writeScore($userID, $dateNow, $sessionID, $productCode, $courseID, $unitID, $exerciseID, $score, $correct, $wrong, $skipped, $coverage, $duration) {
+	function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
+
+		// Break down the score object
+		$UID = explode('.', $scoreObj['UID']);
+		$productCode = $UID[0];
+		$courseID = $UID[1];
+		$unitID = $UID[2];
+		$exerciseID = $UID[3];
+		
+		$score = $scoreObj['percent'];
+		$correct = $scoreObj['correctCount'];
+		$wrong = $scoreObj['incorrectCount'];
+		$skipped = $scoreObj['missedCount'];
+		$coverage = $scoreObj['coverage'];
+		$duration = $scoreObj['duration'];
 		
 		$errorObj = array("errorNumber" => 0);
 		

@@ -9,6 +9,7 @@ package com.clarityenglish.common.view.login {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
+	import com.clarityenglish.common.vo.config.Config;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -35,11 +36,9 @@ package com.clarityenglish.common.view.login {
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
 			
 			// For debug purposes automatically login as dandelion/password
-			/*
-			CONFIG::debug {
+			if (Config.DEVELOPER.name == "AR") {
 				view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
 			}
-			*/
 		}
         
 		/**

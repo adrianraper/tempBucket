@@ -50,7 +50,7 @@
 </header>
 	
 <section id="body">
-  <br/>
+  
   <ol id="splitquestionList">
   <li id="21">An alternative title for this passage would be &#x2026; </li>
   a.&#xA0;<a id="a1">intelligent moths.</a><br/>
@@ -85,12 +85,14 @@
 <p class="hangingIndent"><b>G</b>&#xA0;It is hard to see if a moth is sticking its tongue out at a range of several hundred metres. But Dr Smith has thought of a way round that. He can sense when a moth is blowing a raspberry by attaching a wire to the muscle that controls the insect's tongue, and using it to transmit a signal via one of Dr Hildebrand's tiny electronic backpacks.</p>
 
 <p class="hangingIndent"><b>H</b>&#xA0;If lepidopteran mine detectors work, they could be the start of a new industry. The rate at which video cameras are being miniaturised means that they, too, may soon be light enough for insects to carry. That would have obvious military applications, even if one countermeasure is obvious, too: surrounding sensitive installations with giant candles.</p>
-
-<p><b>Glossary</b></p>
-<p>1. landmine: a bomb which is hidden in the ground and explodes when a person or vehicle passes over it.</p>
-<p>2. lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</p>
-<p align="left">The Economist, 4th March 2000.</p>
 </div>
+<h7>Glossary</h7>
+<ol id="splitreadingList">
+<li>landmine: a bomb which is hidden in the ground and explodes when a person or vehicle passes over it.</li>
+<li>lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</li>
+</ol>
+
+<p>The Economist, 4th March 2000.</p>
 </section>
 
 <section id="rt2001">

@@ -244,7 +244,7 @@ SQL;
 		// Check that the date is valid
 		$dateStampNow = strtotime($dateNow);
 		if (!$dateStampNow)
-			$dateStampNow = time();
+			$dateNow = date('Y-m-d h:m:s', time());
 		
 		// Calculate F_Duration as well as setting F_EndDateStamp
 		// We can either do it one call, with different SQL for different databases, or
@@ -271,8 +271,8 @@ EOD;
 				WHERE F_SessionID=?
 EOD;
 		}
-		$bindingParams = array($dateStampNow, $dateStampNow, $sessionID);
-		$rs = $this->db->Execute($sql);
+		$bindingParams = array($dateNow, $dateNow, $sessionID);
+		$rs = $this->db->Execute($sql, $bindingParams);
 		return $rs;
 		
 	}
@@ -292,7 +292,7 @@ EOD;
 				$userID, $dateNow, $sessionID, 
 				$productCode, $courseID, $unitID, $exerciseID,
 				$score, $correct, $wrong, $skipped,
-				$coverage,
+				$coverage, 
 				$duration,
 				 );
 		// Write anonymous records to an ancilliary table that will not slow down reporting
@@ -302,20 +302,23 @@ EOD;
 			$tableName = 'T_Score';
 		}
 		
+		// TODO. Until you can add F_Coverage to the table you will have to drop it for now!
 		$sql = <<<SQL
 			INSERT INTO $tableName (
 						F_UserID, F_DateStamp, F_SessionID, 
 						F_ProductCode, F_CourseID, F_UnitID, F_ExerciseID,
 						F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed,
+						F_Coverage, 
 						F_Duration 
 						) VALUES (
 						?, ?, ?, 
 						?, ?, ?, ?,
 						?, ?, ?, ?,
-						?,
-						? )
+						?, 
+						? 
+						)
 SQL;
-		$rs = $this->db->Execute($sql);
+		$rs = $this->db->Execute($sql, $bindingParams);
 		return $rs;
 		
 	}

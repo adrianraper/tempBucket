@@ -53,7 +53,7 @@
 </header>
 	
 <section id="body">
-  <br/>
+  
   <ol id="splitquestionList">
   <li id="7">the position of Jupiter in the Solar System  &#xA0;<input id="q1"/></li>
    <li id="8">the size of the moon  &#xA0;<input id="q2"/></li>
@@ -97,12 +97,13 @@
 	
 	<p align="left">Ever since Copernicus removed our planet from the centre of the Universe and placed it in orbit around the Sun, its status has steadily been downgraded. We have gone from the centre of the Universe to a small, insignificant planet orbiting a small, undistinguished star in an obscure fringe of the Milky Way. This is the "principle of mediocrity", the idea that Earth is one of a very common class of planets, and it's time we got rid of it. Mediocre and commonplace scarcely does justice to the special planet we call home.</p>
 	
-	<p><b>Glossary</b></p>
-	<p>1. supernova: an exploding star.</p>
-	<p>2. tectonic plates: the huge moveable blocks into which the surface of the Earth is divided.</p>
-	<p>3. continental drift: the slow movement of the continents over the surface of the Earth.</p>
-	<p>4. Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun.</p>
-	
+	<h7>Glossary</h7>
+	<ol id="splitreadingList">
+	<li>supernova: an exploding star.</li>
+	<li>tectonic plates: the huge moveable blocks into which the surface of the Earth is divided.</li>
+	<li>continental drift: the slow movement of the continents over the surface of the Earth.</li>
+	<li>Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun.</li>
+	</ol>
 	<p align="left">Peter Ward, New Scientist Magazine, 18th March 2000.</p>
 </section>
 <section id="rt2001">
