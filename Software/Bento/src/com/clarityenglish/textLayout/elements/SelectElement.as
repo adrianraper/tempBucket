@@ -1,11 +1,9 @@
 package com.clarityenglish.textLayout.elements {
-	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import flash.events.Event;
 	
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.collections.XMLListCollection;
-	
-	import net.digitalprimates.collections.VectorListCollection;
 	
 	import spark.components.DropDownList;
 
@@ -34,6 +32,15 @@ package com.clarityenglish.textLayout.elements {
 		tlf_internal override function get defaultTypeName():String
 		{ return "select"; }
 		
+		public function get selectedItem():XML {
+			return (component) ? (component as DropDownList).selectedItem : null;
+		}
+		
+		public function set selectedItem(value:XML):void {
+			if (component)
+				(component as DropDownList).selectedItem = value;
+		}
+		
 		public function createComponent():void {
 			text = getLongestOption() + "____.";
 			
@@ -41,6 +48,9 @@ package com.clarityenglish.textLayout.elements {
 			dropDownList.dataProvider = new XMLListCollection(_options);
 			
 			component = dropDownList;
+			
+			// Duplicate some events on the event mirror so other things can listen to the FlowElement
+			component.addEventListener(Event.CHANGE, function(e:Event):void { getEventMirror().dispatchEvent(e.clone()); } );
 		}
 		
 		private function getLongestOption():String {

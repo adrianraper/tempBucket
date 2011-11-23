@@ -23,45 +23,45 @@
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q2Select" block="q2Block">
-					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="false" source="${#q2Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q2Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q2Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q3Select" block="q3Block">
-					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="true" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="false" source="${#q3Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q3Select > option:nth-child(2)}" />
+					<answer correct="true" source="${#q3Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q4Select" block="q4Block">
-					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="false" source="${#q4Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q4Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q4Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q5Select" block="q5Block">
-					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="false" source="${#q5Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q5Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q5Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q6Select" block="q6Block">
-					<answer correct="true" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="true" source="${#q6Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q6Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q6Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q7Select" block="q7Block">
-					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="false" source="${#q7Select > option:nth-child(1)}" />
+					<answer correct="true" source="${#q7Select > option:nth-child(2)}" />
+					<answer correct="false" source="${#q7Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 				
 				<DropDownQuestion source="q8Select" block="q8Block">
-					<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
-					<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
-					<answer correct="true" source="${#q1Select > option:nth-child(3)}" />
+					<answer correct="false" source="${#q8Select > option:nth-child(1)}" />
+					<answer correct="false" source="${#q8Select > option:nth-child(2)}" />
+					<answer correct="true" source="${#q8Select > option:nth-child(3)}" />
 				</DropDownQuestion>
 			</questions>
 		</script>

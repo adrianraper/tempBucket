@@ -21,7 +21,7 @@ package com.clarityenglish.bento {
 		public function BentoApplication() {
 			// Configure logging
 			var logTarget:TraceTarget = new TraceTarget();
-			logTarget.filters = [ "com.*", "org.*" ];
+			logTarget.filters = [ "com.*", "org.*", "AnswerableBehaviour.*" ];
 			logTarget.level = LogEventLevel.ALL;
 			logTarget.includeDate = false;
 			logTarget.includeTime = false;

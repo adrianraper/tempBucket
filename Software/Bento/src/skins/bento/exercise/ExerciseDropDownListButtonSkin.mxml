@@ -196,7 +196,7 @@
 	
     <!-- layer 8: arrow -->
     <!--- The arrow graphic displayed in the anchor button. -->
-	<s:Group left="0" verticalCenter="0" horizontalCenter="0">
+	<s:Group left="4" verticalCenter="0" horizontalCenter="{hostComponent.label == '' ? 0 : null}">
 		<s:Ellipse y="-0.000976563" width="10.334" height="10.334">
 			<s:fill>
 				<s:SolidColor color="#333333"/>

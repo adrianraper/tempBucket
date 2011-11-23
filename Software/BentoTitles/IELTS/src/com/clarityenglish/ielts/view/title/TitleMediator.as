@@ -6,6 +6,7 @@
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -45,7 +46,9 @@
 			bentoProxy.menuXHTML = xhtml;
 			
 			// TODO: FOR DEBUG TO GO STRAIGHT INTO A COURSE
-			//sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@caption == "Reading")[0]);
+			if (Config.DEVELOPER.name == "DK") {
+				sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@["class"] == "reading")[0]);
+			}
 		}
 		
 		override public function onRemove():void {

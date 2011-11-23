@@ -10,16 +10,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;
-	import com.clarityenglish.textLayout.elements.TextComponentElement;
+	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.utils.setTimeout;
-	
-	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
-	
-	import org.davekeen.util.ClassUtil;
 	
 	import spark.components.Group;
 	
@@ -168,6 +163,13 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 						var sourceNodes:Vector.<XML> = (answer as NodeAnswer).getSourceNodes(exercise);
 						inputElement.dragDrop(sourceNodes[0], sourceNodes[0].toString());
 					}
+				}
+				
+				if (answerElement is SelectElement) {
+					var selectElement:SelectElement = answerElement as SelectElement;
+					
+					var sourceNodes:Vector.<XML> = (answer as NodeAnswer).getSourceNodes(exercise);
+					selectElement.selectedItem = sourceNodes[0];
 				}
 				
 				// Remove any existing classes and add the result class

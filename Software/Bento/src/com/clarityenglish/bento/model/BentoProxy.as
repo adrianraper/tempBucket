@@ -72,6 +72,11 @@ package com.clarityenglish.bento.model {
 		 * @return 
 		 */
 		public function get currentExerciseNode():XML {
+			if (!menuXHTML) {
+				log.error("Attempt to use current exercise when there is no menu xml");
+				return null;
+			}
+			
 			if (!currentExercise) {
 				log.error("Attempt to use current exercise when there is no current exercise");
 				return null;

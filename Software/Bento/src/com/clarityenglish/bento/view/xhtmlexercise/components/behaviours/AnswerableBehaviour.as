@@ -27,6 +27,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		private var clickableAnswerManager:IAnswerManager;
 		private var inputAnswerManager:IAnswerManager;
 		private var errorCorrectionAnswerManager:IAnswerManager;
+		private var dropDownAnswerManager:IAnswerManager;
 		
 		public function AnswerableBehaviour(container:Group) {
 			super(container);
@@ -34,6 +35,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			clickableAnswerManager = new ClickableAnswerManager(container);
 			inputAnswerManager = new InputAnswerManager(container);
 			errorCorrectionAnswerManager = new ErrorCorrectionAnswerManager(container);
+			dropDownAnswerManager = new DropDownAnswerManager(container);
 		}
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void { }
@@ -62,6 +64,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 						errorCorrectionAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
 					case Question.DROP_DOWN_QUESTION:
+						dropDownAnswerManager.onQuestionImportComplete(exercise, question, flowElementXmlBiMap);
 						break;
 					default:
 						log.error("Unknown question type: " + question.type);
@@ -82,6 +85,7 @@ import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 import com.clarityenglish.textLayout.elements.InputElement;
+import com.clarityenglish.textLayout.elements.SelectElement;
 import com.clarityenglish.textLayout.elements.TextComponentElement;
 import com.clarityenglish.textLayout.vo.XHTML;
 
@@ -165,6 +169,48 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true));
+	}
+	
+}
+
+class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
+	
+	public function DropDownAnswerManager(container:Group) {
+		super(container);
+	}
+	
+	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+		// The answers for these questions is defined in the model so we need to set the underlying text here
+		for each (var source:XML in question.getSourceNodes(exercise)) {
+			var selectElement:SelectElement = flowElementXmlBiMap.getFlowElement(source) as SelectElement;
+			if (selectElement) {
+				selectElement.text = getLongestAnswerValue(question.answers);
+				
+				var eventMirror:IEventDispatcher = selectElement.tlf_internal::getEventMirror();
+				if (eventMirror) {
+					eventMirror.addEventListener(Event.CHANGE, Closure.create(this, onAnswerSubmitted, exercise, question, source));
+				}
+			}
+		}
+	}
+	
+	private function onAnswerSubmitted(e:Event, exercise:Exercise, question:Question, selectNode:XML):void {
+		// Since the event actually comes from the overlaid DropDownList we need to use this tomfoolery to get the associated SelectElement
+		var selectElement:SelectElement = e.target.tlf_internal::_element as SelectElement;
+		
+		// Get the Answer that matches the selected <option> node
+		var optionNode:XML = selectElement.selectedItem;
+		for each (var answer:NodeAnswer in question.answers) {
+			for each (var source:XML in answer.getSourceNodes(exercise)) {
+				if (source === optionNode) {
+					// Once we find a matching answer dispatch it
+					container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, selectNode, true));
+					return;
+				}
+			}
+		}
+		
+		log.error("Unable to find a matching answer for option {0}", optionNode.toXMLString());
 	}
 	
 }
@@ -261,7 +307,7 @@ class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManag
 				if (eventMirror) {
 					eventMirror.addEventListener(FlowElementMouseEvent.CLICK, onErrorCorrectionTextClick);
 				} else {
-					log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}]", flowElementXmlBiMap.getFlowElement(source), question);
+					log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}]", inputElement, question);
 				}
 			}
 		}
