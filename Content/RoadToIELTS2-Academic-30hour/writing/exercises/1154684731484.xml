@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true">
+        <feedback source="fb13"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false">
+        <feedback source="fb16"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="false">
+        <feedback source="fb18"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false">
+        <feedback source="fb19"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="true">
+        <feedback source="fb21"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="false">
+        <feedback source="fb22"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="true">
+        <feedback source="fb23"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false">
+        <feedback source="fb24"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b26">
+      <answer source="t26" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b27">
+      <answer source="t27" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b28">
+      <answer source="t28" correct="true">
+        <feedback source="fb28"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b29">
+      <answer source="t29" correct="false">
+        <feedback source="fb29"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b30">
+      <answer source="t30" correct="false">
+        <feedback source="fb30"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b31">
+      <answer source="t31" correct="true">
+        <feedback source="fb31"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b32">
+      <answer source="t32" correct="true">
+        <feedback source="fb32"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b33">
+      <answer source="t33" correct="false">
+        <feedback source="fb33"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b34">
+      <answer source="t34" correct="false">
+        <feedback source="fb34"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b35">
+      <answer source="t35" correct="false">
+        <feedback source="fb35"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read these pieces of advice for Writing Task 2 and decide whether they are things you should do.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/SS_AW_016.jpg" mode="1" id="1001"/>
+  <p align="left"><b>1. What should you do before you start writing?</b><g id="t1">A Analyse the question before you start writing.</g><g id="t2">B Follow the instructions exactly.</g><g id="t3">C Make a plan.</g>&#xA0;<g id="t4">D Spend time brainstorming for ideas before you start writing.</g><g id="t5">E Worry if you are not an expert in the subject.</g><g id="t6">F Write your ideas in the order they occur to you.</g><g id="t7">G Plan to leave time to check your composition for mistakes when you have finished writing.</g></p>
+  <p align="left">
+    <b>2. What should you include in your writing?&#xA0;</b>
+    <g id="t8">A Copy the question and use it in your introduction or conclusion.</g>
+    <g id="t9">B Give examples and evidence to support your arguments.</g>
+    <g id="t10">C Give your personal opinion.</g>
+    <g id="t11">D Include every idea you think of in your brainstorming session in your composition.</g>
+    <g id="t12">E Include jokes in your composition.</g>
+    <g id="t13">F Keep referring back to the question as you are writing.</g>
+    <g id="t14">G Make sure that everything you write is relevant to the question.</g>
+  </p>
+  <p align="left">
+    <b>3. What should you write?</b>
+    <font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>
+    <g id="t15">A Write a conclusion.</g>
+    <g id="t16">B Write a lot of short sentences.</g>
+    <g id="t17">C Write a minimum of 250 words.</g>
+    <g id="t18">D Write a prepared answer.</g>
+    <g id="t19">E Write a rough draft first and then rewrite it.</g>
+    <g id="t20">F Write an introduction.</g>
+    <g id="t21">G Write as legibly as you can.</g>
+  </p>
+  <p align="left">
+    <b>4. What type of language should you use?</b>
+    <font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>
+    <g id="t22">A Use a linking word or phrase between every sentence.</g>
+    <g id="t23">B Use a range of grammatical structures and vocabulary.</g>
+    <g id="t24">C Use colloquial expressions.</g>
+    <g id="t25">D Use contractions.</g>
+    <g id="t26">E Use formal language.</g>
+    <g id="t27">F Use linking words and phrases between sentences and paragraphs where appropriate.</g>
+    <g id="t28">G Use topic sentences in your paragraphs.</g>
+  </p>
+  <p align="left">
+    <b>5. How can you achieve the best results?</b>
+    <font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>
+    <g id="t29">A Make sweeping generalisations.</g>
+    <g id="t30">B Make up examples or evidence.</g>
+    <g id="t31">C Organise your ideas into paragraphs.</g>
+    <g id="t32">D Select the best ideas from your brainstorming session.</g>
+    <g id="t33">E Spend more than 40 minutes on Writing Task 2.</g>
+    <g id="t34">F Start writing as soon as you have read the writing task.</g>
+    <g id="t35">G Try to cover the whole subject in detail.</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Otherwise you may not be answering the question correctly. Underline the keywords of the task and make sure you are clear about what kind of composition it is.</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">It's worth spending a few minutes to make a plan. Examiners expect to read a well organised composition that presents a logical, clearly developed argument.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">If you don't do this you may find yourself searching for ideas halfway through writing. Or even worse, a great idea for the second paragraph may come to you while you've just finishing the conclusion...and then it's too late!</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You are not expected to write as an expert. Task 2 can be answered by anyone with a reasonable level of general knowledge, personal opinions on a wide range of subjects and good organisational skills as a writer.</font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This will result in a very badly organised composition. Plan first, then write.</font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Always give yourself a few minutes at the end to read through and check for careless mistakes, even if you haven't quite finished writing. </font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This is a waste of time and words.</font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Remember that examples give substance to your arguments. </font>
+  </p>
+</section>
+
+<section id="fb11">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You don't have time or enough words to do this. Anyway, not all the points will be worth mentioning. Choose the most important.</font>
+  </p>
+</section>
+
+<section id="fb13">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">It's good to do this in order to make sure that you are answering the question. Keep the keywords of the task in your mind while you're writing.</font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Be careful about this. It's very easy to think that you are answering the question when in fact you are writing things which are not relevant. Don't include things that you happen to know about the subject simply because they are interesting facts. Ask yourself, 'am I answering the questions ?'</font>
+  </p>
+</section>
+
+<section id="fb16">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You can't get a wide range of grammatical structures into your writing, or present intelligent arguments, if you use only very short sentences throughout your composition. However, don't write sentences which are too long either. The reader will find them too difficult to follow.</font>
+  </p>
+</section>
+
+<section id="fb18">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The examiner will understand immediately if you have simply memorised a composition. Even memorised phrases stand out to an experienced examiner. Have confidence in your own abilities and ideas.</font>
+  </p>
+</section>
+
+<section id="fb19">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You won't have time for this.</font>
+  </p>
+</section>
+
+<section id="fb21">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You may write a brilliant composition, but if the examiner can't read your handwriting then you've wasted your time.</font>
+  </p>
+</section>
+
+<section id="fb22">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You can't really write a proper argument without linking words and phrases, but that doesn't mean you should use them between every sentence. Use them only when they are necessary.</font>
+  </p>
+</section>
+
+<section id="fb23">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Using a variety of grammar and vocabulary will win you extra points, but they must be used appropriately.</font>
+  </p>
+</section>
+
+<section id="fb24">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Your writing in both Task 1 and Task 2 should be fairly formal.</font>
+  </p>
+</section>
+
+<section id="fb28">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This helps the reader follow the discussion and shows that you know what each of your paragraphs is about.</font>
+  </p>
+</section>
+
+<section id="fb29">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Don't put forward a point of view unless you can support it with a logical argument and concrete examples.</font>
+  </p>
+</section>
+
+<section id="fb30">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Whatever you make up probably won't be very convincing.</font>
+  </p>
+</section>
+
+<section id="fb31">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This is essential. It helps the reader follow your argument, and shows that you have planned your writing.</font>
+  </p>
+</section>
+
+<section id="fb32">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You don't need to use all of them.</font>
+  </p>
+</section>
+
+<section id="fb33">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Task 1 needs 20 minutes in order to be done properly.</font>
+  </p>
+</section>
+
+<section id="fb34">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You must spend a few minutes analysing the task, collecting ideas and planning.</font>
+  </p>
+</section>
+
+<section id="fb35">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This isn't possible in only 250 words.</font>
+  </p>
+</section>
+
+</body>
+</bento>

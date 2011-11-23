@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Link the the description of what happens in each stage of the IELTS Speaking test to the correct part.
+		
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../media/EN_SP_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000">candidate gives personal information and opinions: <select id="q1" ><option>Part 1</option><option>Part 2</option><option>Part 3</option></select></font></p>&nbsp;candidate speaks for 1-2 minutes: <select id="q2" ><option>Part 2</option><option>Part 3</option><option>Part 1</option></select><p align="left"><font color="#000000">candidate and examiner discuss together: <select id="q3" ><option>Part 3</option><option>Part 1</option><option>Part 2</option></select></font></p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

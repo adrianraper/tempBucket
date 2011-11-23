@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/SS_AW_009as.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/SS_AW_009a.jpg" mode="16" id="1004"/>
+  <img class="leftFloat" src="../media/SS_AW_009bs.jpg" mode="1" id="1005"/>
+  <img class="leftFloat" src="../media/SS_AW_009b.jpg" mode="16" id="1006"/>
+  <p align="left">
+    <b>The bar chart below shows changes in the active membership of religious faiths in the UK between 1970 and 2000.  The pie chart shows how frequently people in Britain attended religious services in 1999.</b>
+  </p>
+  <p align="left">Write a report for a university lecturer describing the information shown below.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+</section>
+
+</body>
+</bento>

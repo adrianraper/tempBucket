@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	IELTS Writing Task 1You should spend about 20 minutes on this task and write at least 150 words.
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/TT_AW_007.jpg" mode="1" id="1003"/>
+  <p align="left">
+    <b>The table shows bicycle use in Britain by age and gender over a twenty-five-year period. Write a report for a university lecturer describing the information shown below.</b>
+  </p>
+  <p align="left"/>
+  <p align="left"/>
+  <p align="left"/>
+  <p align="left"/>
+  <p align="left"/>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="I" correct="true"/>
+      <answer value="G" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="A" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="J" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="F" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="B" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="G" correct="true"/>
+      <answer value="G" correct="true"/>
+	 </GapFillQuestion>
+	<GapFillQuestion source="q7" block="b7">
+      <answer value="40km" correct="true"/>
+      <answer value="forty km" correct="true"/>
+      <answer value="40 kilometers" correct="true"/>
+      <answer value="forty kilometers" correct="true"/>
+      <answer value="40 kilometres" correct="true"/>
+      <answer value="forty kilometres" correct="true"/>
+      <answer value="40 km." correct="true"/>
+      <answer value="forty km." correct="true"/>
+      <answer value="40 kms" correct="true"/>
+      <answer value="forty kms" correct="true"/>
+      <answer value="40 kms." correct="true"/>
+      <answer value="forty kms." correct="true"/>
+      <answer value="40 km" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="11,000 hectares" correct="true"/>
+      <answer value="11000 hectares" correct="true"/>
+      <answer value="eleven thousand hectares" correct="true"/>
+      <answer value="11 thousand hectares" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="2,100m" correct="true"/>
+      <answer value="2100 meters" correct="true"/>
+      <answer value="2,100 metres" correct="true"/>
+      <answer value="2100 metres" correct="true"/>
+      <answer value="2,100 m" correct="true"/>
+      <answer value="2100 m" correct="true"/>
+      <answer value="2,100 m." correct="true"/>
+      <answer value="2100 m." correct="true"/>
+      <answer value="2,100 meters" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="approximately 33,000" correct="true"/>
+      <answer value="approximately 33,000 people" correct="true"/>
+      <answer value="approximately 33000" correct="true"/>
+      <answer value="approximately 33000 people" correct="true"/>
+      <answer value="approximately thirty-three thousand" correct="true"/>
+      <answer value="approximately 33 thousand" correct="true"/>
+      <answer value="approx 33,000" correct="true"/>
+      <answer value="approx 33000" correct="true"/>
+      <answer value="approx thirty-three thousand" correct="true"/>
+      <answer value="approx 33 thousand" correct="true"/>
+      <answer value="approx 33,000 people" correct="true"/>
+      <answer value="approx 33000 people" correct="true"/>
+      <answer value="approx 33 thousand" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="three" correct="true"/>
+      <answer value="3" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="3.2m" correct="true"/>
+      <answer value="3.2 metres" correct="true"/>
+      <answer value="3.2 m" correct="true"/>
+      <answer value="3.2 m." correct="true"/>
+      <answer value="3.2meters" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.
+		
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="splitquestionList">
+    <p>Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.<br/></p>
+    <li id="1">a technical achievement by Nepalese farmers&#xA0;<input id="q1"/><br/></li>
+    <li id="2">the difficulties facing farmers in developing countries&#xA0;<input id="q2"/><br/></li>
+    <li id="3">a more modern method of irrigation&#xA0;<input id="q3"/><br/></li>
+    <li id="4">land use and time of year&#xA0;<input id="q4"/><br/></li>
+    <li id="5">factors which make Nepal worth studying&#xA0;<input id="q5"/><br/></li>
+    <li id="6">the spread of terrace farming&#xA0;<input id="q6"/><br/></li>
+  <p>Questions 7-12. Complete the table on the right. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.<br/></p>
+  <li id="7">Distance from Kathmandu:&#xA0;<input id="q7"/><br/></li>
+  <li id="8">Area:&#xA0;<input id="q8"/><br/></li>
+  <li id="9">Highest elevation:&#xA0;<input id="q9"/><br/></li>
+  <li id="10">Population:&#xA0;<input id="q10"/><br/></li>
+  <li id="11">Harvests per year:From one to&#xA0;<input id="q11"/><br/></li>
+  <li id="12">Maximum annual rainfall:&#xA0;<input id="q12"/><br/></li>
+  </ol>
+</section>
+
+<section id="readingText">
+  
+    
+      <h1>The Mountain Sculptors</h1>
+    
+  <div id="reading">
+  <p class="hangingIndent"><b>A</b>&#xA0; The grandest of all human sculptures are, in fact, the work of the planet's poorest people. Unable to find a job or a plot of land in the valley, the most disadvantaged people of the developing world carve mountains to grow their food. The problem with terraced mountainsides is that they hide a cruel irony. While many would agree that mountain farming is a visual success, there is much less accord about its viability. Today, two-thirds of the non-irrigated farmland in developing countries suffers from some degree of limitation on its productivity:  acidity, aridity, salinity or erosion. Ten percent of this land, located on the flanks of mountains, is especially vulnerable to erosion. In many of these lands, where on average people can rely on plots of land measuring only 30 meters by 50 meters, the mountains are under a state of siege.</p>
+  
+  <p class="hangingIndent"><b>B</b>&#xA0;Nepal is a good example of a country where the limited supply of farmland is under constant and increasing demographic pressure. With the highest mountains in the world, and one of the fastest-growing populations (2.6 percent), the Kingdom of Nepal represents a veritable laboratory for studying the impact of farming on mountains. Few Alpine environments have been so thoroughly shaped by man as the middle ranges of Nepal, located between the peaks of the high Himalayas to the north and the Indian plain to the south.  </p>
+  
+  <p class="hangingIndent"><b>C</b>&#xA0;Since 1989, a team from the International Centre for Integrated Mountain Development (ICIMOD), mainly funded by the Swiss Agency for Development and Cooperation and with support from Canada's International Development Research Centre, has been studying farming in the valley of the Jhikhu River, located 40 kilometers to the east of Kathmandu. The Nepalese team also includes Swiss and Canadian scientists.
+  </p>
+  
+  <p class="hangingIndent"><b>D</b>&#xA0;After 10 years of research, scientists examining this valley of 11,000 hectares, located at altitudes of between 750 and 2,100 meters above sea level and inhabited by approximately 33,000 people, have painted a picture of a land that is on the brink of exhaustion. Experts are full of praise for the skill, the spirit of enterprise and the hard work of the inhabitants of Jhikhu Khola (khola means "river" in Nepalese). But they fear that the increasingly intense exploitation of every square meter of soil will be seen as folly by future generations of archeologists.</p>
+  
+  <p class="hangingIndent"><b>E</b>&#xA0;Traditionally, the low walls that separate the fields have served as footpaths. Yet today it is wise to look carefully where one steps when walking along the walls between the terraces of Jhikhu Khola as one is just as likely to crush a potato plant there as in the middle of the field.</p>
+  
+  <p class="hangingIndent"><b>F</b>&#xA0;Putting these walls to use is just one of the many signs of the intense farming fever that has seized the valley. Traditionally, irrigated terraces were used to grow rice in the rainy season, and then wheat and potatoes when the land dried out. On those terraces that depend exclusively on rainwater, the traditional crops have been millet or corn. In the 1980s, it was common to take only one annual harvest from a plot of land. Yet Bhuban Shrestha, a geographer with ICIMOD, and Sandra Brown from the University of British Columbia have found that the farmers of Jhikhu Khola now take two or three harvests every year. A growing proportion of families are planting as many as four crops in succession on their parcels of land. "What this means," says Hans Schreier of the University of British Columbia, "is that the soil never has a chance to rest for more than three or four days between crops. You have rice, followed by wheat, followed by corn. And this goes on year in and year out. Crops are being harvested so frequently that we must ask ourselves: how long can we keep up this rhythm?"</p>
+  
+  <p class="hangingIndent"><b>G</b>&#xA0;The tremendous energy and drive of the farmers of Jhikhu Khola, whose numbers are growing by 3.1 percent each year, is leading them to cultivate ever more inappropriate soils. Shrestha and Brown calculate that two-thirds of the lands that were cleared between 1972 and 1990 were on slopes with a gradient steeper than 20 percent. Even slopes of 36 to 49 percent that were once covered by trees and brush are now under cultivation. By way of comparison, the slope of a standard department store escalator is between 30 and 35 percent.</p>
+  <p class="hangingIndent"><b>H</b>&#xA0;Most of the valleys of Nepal receive abundant rainfall; the monsoon brings between 1.8 and 3.2 meters of water every year to Jhikhu Khola. Yet Juerg Merz, a Swiss hydrologist, has found that terraces in the higher part of the valley are already suffering from a shortage of water, while those at lower levels will soon face the same threat.</p>
+  <p class="hangingIndent"><b>I</b>&#xA0;The extraordinary system of traditional irrigation is a marvel of engineering.  From the headwaters of the valley, water is fed into the channels from each side of the river. The channels run parallel to the river on its course down into the valley, but their slope is much more gentle, and their relative height above the riverbed becomes greater as it descends. In this way Nepalese farmers have for centuries been able to bring water to the slopes of their mountains without the benefit of pumps.</p>
+  <p class="hangingIndent"><b>J</b>&#xA0;Yet this water supply is no longer enough to sustain today's vegetable crops during the dry season. In the space of a few years, the number of motorized pumps has multiplied. In the 1998-1999 season alone, at least a hundred pumps were installed.</p>
+  <p class="hangingIndent"><b>K</b>&#xA0;Because of the deforestation of the Himalayas, Nepalese farmers are widely thought to be responsible for the disastrous flooding and sedimentation that afflict the rivers of Bangladesh and India. Yet the reality is more complex.</p>
+  <p class="hangingIndent"><b>L</b>&#xA0;Initially, scientists believed that the soil carried away by the rains was lost forever. Yet the terraces are arranged in such a way that the soil washed from one terrace will be captured by the next. Unfortunately, it is generally the poorest farmers who cultivate the highest terraces, and soil lost to them is soil gained for the richer farmers in the lower reaches of the valley.</p>
+  
+  <p>Jean-Marc Fleury, IDRC Briefing No. 5, March 2000.</p>
+</div>
+  </section>
+
+<section id="rt2001">
+	<p align="left">This task describes some of the difficulties facing farmers who grow their crops in some of the world's most mountainous areas and in particular how the farming method known as terrace farming is exhausting the land. A part of Nepal called Jhokhu Khola is describe as a typical example of a place, which face these problems.Read the instructions carefully. This is not matching headings to paragraphs. You must find which paragraph contains a certain piece of information, although the same paragraph will also contain other information as well as this.Question 1In other words, something invented or a system created by the local farmers, which is admired by others.Question 2The key word here is 'developing countries'. No specific country is mentioned in the question.Question 3The key words here are 'more modern'. There must be another paragraph which deals with 'less modern' methods.Question 4 Scan for months or seasons. 'Land use' means what is grown on the land.Question 5'Spread' refers to how widely the method is being used, geographically. </p>
+</section>
+</body>
+</bento>

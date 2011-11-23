@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a8" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a9" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a10" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a11" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a12" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a13" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a14" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	This report describes the process by which coins are minted at the Royal Mint in Britain. Read the report and put the stages of the process in the correct order in the flow chart.
+</header>
+	
+<section id="noscroll">
+  <span id="a10" draggable="true">Blanking Press</span>
+  <span id="a14" draggable="true">Distribution to Banks</span>
+  <span id="a12" draggable="true">Coining Press</span>
+  <span id="a8" draggable="true">Foundry</span>
+  <span id="a9" draggable="true">Rolling Mill</span>
+  <span id="a13" draggable="true">Trial of the Pyx</span>
+  <span id="a11" draggable="true">Annealing and Pickling Plant</span>
+</section>
+
+<section id="body">
+  <img class="leftFloat" src="../media/WB_WR4.jpg" mode="1" id="1003"/>
+  <p align="left">
+    <input id="q7" type="droptarget"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">1. 'The first stage takes place at the foundry.'</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">2. 'The metal is subsequently flattened...in the rolling mill.'</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">3. 'This sheet metal is then fed into the blanking press.'</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">4. 'Prior to this (being stamped with a design) they must be softened and cleaned in the annealing and pickling plant.'</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">5. 'Once this (softening and cleaning) is completed, the blanks go to the coining press.'</font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">6. 'Next, (after being stamped in the coining press) a sample goes through...the Trial of the Pyx.'</font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">7. 'The coins are finally ready for circulation.'</font>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The words and phrases that we can use to indicate consecutive and concurrent stages in a process are often called 'sequence makers'. They help the reader understand the chronological order of a process and you should use them in reports that describe flow charts.</font>
+  </p>
+</section>
+
+</body>
+</bento>

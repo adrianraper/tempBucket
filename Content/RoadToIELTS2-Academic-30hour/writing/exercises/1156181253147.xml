@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="D" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="F" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="E" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="C" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="B" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="A" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		The topic sentences on the left have been removed from the paragraphs on the right. Match each topic sentence to the correct paragraph by writing the appropriate letter (A-F) in the gap at the beginning of each paragraph.
+		
+</header>
+	
+<section id="body">
+  <br/>
+  <ol id="questionList">
+    <li id="1"><input id="q1"/> It is clear from these figures that western European destinations are still very popular with tourists; four out of the top ten are western European countries. France, Spain and the United States are the top three destinations. France had by far the most tourists that year, with 73 million visitors. This was followed by Spain, with almost 52 million, and the USA, with almost 50 million. Other non-European countries in the top ten were China, Canada, Mexico, the Russian Federation and Poland.</li>
+    <li id="2"><input id="q2"/> The most remarkable growth of all was seen in the Russian Federation, with a 17 per cent increase in tourism from one year to the next. Spain followed with an increase of almost 10 per cent. China's tourist numbers also rose significantly, but some countries such as Poland and Mexico had a noticeable drop in tourism over the year.</li>
+    <li id="3"><input id="q3"/> Perhaps surprisingly to some, air travel seems to be the safest way to get around, with a rate of only 0.4 fatalities for every billion passenger kilometres travelled in the UK. The next safest means of transport is bus or coach. Among the most dangerous ways of getting around are walking and cycling. The fatality rate for pedestrians is 62 per billion kilometres. Not surprisingly, however, the motorcycle is the most dangerous means of transport, with an average of 104 fatalities per billion kilometres.</li>
+    <li id="4"><input id="q4"/> For cars the average number of fatalities on British roads halved between 1981 and 1991. The figure for vans was very similar. Walking and cycling also became safer over the same period, although the fall in fatalities was less dramatic. Motorcycling was the only means of transport which actually became more dangerous during that decade.</li>
+    <li id="5"><input id="q5"/> It is clear from the figures that, overall, people who live in the countryside travel more miles than city dwellers. This is particularly true with regard to journeys by car. However, if we consider other means of getting around, such as walking, there is in fact very little difference. The number of miles travelled annually by urban and rural residents by these means is more or less the same.</li>
+    <li id="6"><input id="q6"/> Overall, the number of journeys made per year is almost the same in rural areas as it is in urban areas. However, there are marked differences in the means of transport used for those trips. Not surprisingly, perhaps, rural dwellers use their cars more often than urban dwellers. Similarly, those who live in the city make more trips using forms of transport other than their cars.</li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">1. This paragraph gives information on the relative popularity of different countries as holiday destinations. It doesn't describe any changes.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. This paragraph focuses on changes in the size of the tourist industry from one year to another in a number of different countries.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. This paragraph compares different types of transport in terms of how safe they are, but doesn't refer to changes over time.</p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. This paragraph describes changes in the safety of different forms of transport, and reports that generally they are becoming safer.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">5. The paragraph compares means of transport in rural and urban areas in terms of the number of miles travelled.</p>
+</section>
+
+<section id="fb6">
+  <p align="left">6. This paragraph compares how many trips people made per year using different means of transport in rural and urban areas.</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">We saw in Unit 1 that you can organise your reports by grouping information into paragraphs. Good writers include a topic sentence at the beginning of each paragraph to act as a 'signpost' for the reader. The topic sentence tells the reader what aspect of the table or chart the coming paragraph will deal with. The paragraphs in your reports should include topic sentences of this kind.</p>
+</section>
+
+<section id="readingText">
+  <p align="left"><b>A. </b>The figures show the average number of trips made per year in urban and rural areas in the UK.</p>
+  <p align="left"><b>B.</b> The table compares British rural and urban areas in terms of average distances travelled over the year.</p>
+  <p align="left"><b>C.</b> The table seems to suggest that, for most forms of transport, it is becoming safer to travel about Britain.</p>
+  <p align="left"><b>D.</b> The table shows how the top ten holiday destinations for 1999 were ranked.</p>
+  <p align="left"><b>E.</b> There are clearly large differences between the relative safety of each mode of transport in the UK.</p>
+  <p align="left"><b>F.</b> Tourist numbers grew at very different rates in the world's top ten tourist destinations between 1998 and 1999.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

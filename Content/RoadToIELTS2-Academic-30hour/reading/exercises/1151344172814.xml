@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="monolingual" correct="true"/>
+      <answer value="non-linguists" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="Enquiries from abroad" correct="true"/>
+      <answer value="overseas enquiries" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="a third" correct="true"/>
+      <answer value="the third" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="external translator" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="translation users" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="non-linguists" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="smile or nod" correct="true"/>
+      <answer value="nod or smile" correct="true"/>
+      <answer value="smile or nod" correct="true"/>
+      <answer value="nod or smile" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 9-15. Complete each of the statements on the right with words taken from the passage. Write NO MORE THAN THREE WORDS for each answer.
+		
+</header>
+	
+<section id="body">
+  <br/>
+  <ol id="questionList"><tab/><b>9</b>The majority of executives in small British businesses are <input id="q1"/>.<tab/><b>10</b><input id="q2"/> first prompted Canford Group to use a translation service.<tab/><b>11</b>Foreign orders now account for <input id="q3"/> of Canford Group's business.<tab/><b>12</b>It is recommended that any translation work be done by an <input id="q4"/>.<tab/><b>13</b>Taking notice of the views of <input id="q5"/> can help maintain good standards.<tab/><b>14</b>The case of Peebles Transformers shows that it is possible for <input id="q6"/> to deal successfully with overseas customers.<tab/><b>15</b>When speaking English to a non-native speaker, it is important not to misinterpret a <input id="q7"/>.</ol>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <font color="#0000ff">
+      <b>Mind your language</b>
+    </font>
+  </p>
+  <p align="left">Small businesses are losing out because they have poor linguistic skills. When will they learn that English is not the only international business language?</p>
+  <p align="left">
+    <font color="#0000ff"><b>A</b> In business a lack of linguistic ability can be fatal. Scare stories are legion, but the most poignant involves a UK manufacturer that went bust last year. When the official receivers looked through the paperwork, they found a letter in a filing cabinet, written in German. No-one at the firm had understood it, so it had been filed away with other miscellaneous correspondence. It turned out to be a purchase order big enough to have saved the firm from insolvency.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>B</b>
+      <font color="#000000">  Small businesses need to sit up and take notice. Research shows that only 38% of British companies employing up to 500 people have an executive able to negotiate in another language. The Centre for Information on Language Teaching and Research (CILT) has found that a third of UK exporters miss out on trade opportunities because of poor language skills.<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>C</b>
+      <font color="#000000">  As stories of export success filter through, however, the Department of Trade and Industry (DTI), Training and Enterprise Councils and language schools are reporting increasing interest from small businesses in their training services. "People are realising that if the British are monolingual at higher levels, potential business will go elsewhere," says Reinier Salverda, professor of Dutch at University College London. "More and more people are coming to us," confirms Paul Moran of the Language Training Centre in Liverpool. "They know business is about relationships and contacts and you can't have either if you can't talk your customer's language."<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>D</b>  Moran echoes the beliefs of companies such as Canford Group, a Tyne and Wear mail-order audio equipment supplier, which started receiving a number of enquiries from abroad around eight years ago. The company used a translation agency to produce foreign language versions of its 850-page catalogue and recruited new staff with language skills. "It seemed silly not to be able to convert those overseas enquiries into orders," says Canford chairman Hugh Morgan Williams. The company also joined forces with Sunderland City Council on a scheme to boost linguistic skills within its workforce.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>E</b>
+      <font color="#000000">  But how do you persuade employees to learn a language? "Our employees know it will make their jobs easier and, most importantly, they know it will help them to get on in the company," says Morgan Williams. Getting on means promotion and promotion means more pay. It works. In the last two years, Canford's turnover has risen from &#xA3;12 million to &#xA3;17.5 million. A third of its total turnover is now made up of exports.<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>F</b>  For a company that has so many staff with language skills, it may seem strange that Canford still uses an external translator for its catalogues. But this policy comes recommended by experts in the field. The DTI has seen the alarming consequences of small and medium-size businesses using "cheap, unregulated services" or, worse still, attempting to do the job in-house without having the requisite fluency. If a translator is not bilingual, they should be translating into their native tongue. The DTI recommends translators who belong to a professional body, such as the Institute of Translation and Interpreting, which monitors the qualifications and competence of its members. It also advises companies to appoint someone to buy translation services and recommends listening to feedback from translation users as a means of quality control.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>G</b>  While it helps to learn a few basics of a customer's language, even non-linguists can export, says Moran. When Peebles Transformers of Edinburgh won a contract to supply a Tianhuangping Pumped Storage site in China with six generators, the firm organised a multimedia training package for its staff in Mandarin. It used a local computer-science student, gathered audio- visual material on site and hired a local Chinese employee for translations and voice-overs.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>H </b>
+      <font color="#000000"> If the worst comes to the worst, small businesses have to resort to English but should bear in mind a few ground rules. When dealing with customers, you should avoid colloquialisms and idioms, speak slowly and give the customer time to absorb what has been said. Do not get impatient if you are asked to repeat a phrase. Avoid complex sentence structures including double or phrasal verbs &#x2013; "develop" a proposal, not "work up" a proposal. Finally, don't assume that a smile or nod from a foreign colleague or customer denotes agreement. They might be too polite or too embarrassed to say "I don't understand".<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">John Bloom, Management Today, August 1998.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

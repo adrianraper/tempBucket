@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false">
+        <feedback source="fb24"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b26">
+      <answer source="t26" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b27">
+      <answer source="t27" correct="false">
+        <feedback source="fb27"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b28">
+      <answer source="t28" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b29">
+      <answer source="t29" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b30">
+      <answer source="t30" correct="false">
+        <feedback source="fb30"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b31">
+      <answer source="t31" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b32">
+      <answer source="t32" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b33">
+      <answer source="t33" correct="false">
+        <feedback source="fb33"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b34">
+      <answer source="t34" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b35">
+      <answer source="t35" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b36">
+      <answer source="t36" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b37">
+      <answer source="t37" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b38">
+      <answer source="t38" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b39">
+      <answer source="t39" correct="false">
+        <feedback source="fb39"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b40">
+      <answer source="t40" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Look at the table and complete the sentences by choosing the correct word or phrase for each gap.  There is more than one correct answer in each case.
+</header>
+	
+<section id="noscroll">
+  <img class="leftFloat" src="../media/TT_AW_004a.jpg" mode="1" id="1003"/>
+</section>
+
+<section id="body">
+  <p align="left">
+    <font color="#000000"><b>1</b>  Every year road transport consumed the greatest (&#x2026;) of petroleum.</font>
+  </p>
+  <g id="t21">A  quantity</g>
+  <g id="t22">B  amount</g>
+  <g id="t23">C  proportion</g>
+  <g id="t24">D  number</g>
+  <p align="left">
+    <font color="#000000"><b>2</b>  Petroleum consumption for railways was (&#x2026;) less than for other means of transport.</font>
+  </p>
+  <g id="t25">A  a lot</g>
+  <g id="t26">B  far</g>
+  <g id="t27">C  many</g>
+  <g id="t28">D  much</g>
+  <p align="left">
+    <font color="#000000"><b>3</b>  In 1999 road transport consumed (&#x2026;) petroleum than the previous year.</font>
+  </p>
+  <g id="t29">A  less</g>
+  <g id="t30">B  fewer</g>
+  <g id="t31">C  fewer tonnes of</g>
+  <g id="t32">D  a smaller quantity of</g>
+  <p align="left">
+    <font color="#000000"><b>4</b>  Petroleum consumption by air transport was (&#x2026;) in 1999 than ten years earlier.</font>
+  </p>
+  <g id="t33">A  many more</g>
+  <g id="t34">B  much higher</g>
+  <g id="t35">C  a lot higher</g>
+  <g id="t36">D  far higher</g>
+  <p align="left">
+    <font color="#000000"><b>5</b>  Over the years railway and water transport consumed (&#x2026;) petroleum.</font>
+  </p>
+  <g id="t37">A  less and less</g>
+  <g id="t38">B  smaller and smaller amounts of</g>
+  <g id="t39">C  fewer and fewer</g>
+  <g id="t40">D  fewer and fewer tonnes of</g>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="fb24">
+  <p align="left">1D. Petroleum is uncountable.</p>
+</section>
+
+<section id="fb27">
+  <p align="left">2C. 'Many' is used for countable nouns, while 'less' is used for uncountable nouns. You cannot use the two together.</p>
+</section>
+
+<section id="fb30">
+  <p align="left">3B. 'Few' and 'fewer' cannot be used with uncountable nouns such as 'petroleum'.</p>
+</section>
+
+<section id="fb33">
+  <p align="left">4A. The missing word refers to the noun 'consumption', which is uncountable.</p>
+</section>
+
+<section id="fb39">
+  <p align="left">5C. Petroleum is uncountable. 'Fewer' can be used only with countable nouns.</p>
+</section>
+
+</body>
+</bento>

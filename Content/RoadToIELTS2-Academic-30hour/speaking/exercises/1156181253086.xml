@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a11" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Zafir is asked about the benefits of working or studying in another country. Listen to his answer and complete the summary of what he says.
+</header>
+	
+<section id="noscroll">
+  <span id="a10" draggable="true">abroad</span>
+  <span id="a8" draggable="true">speak</span>
+  <span id="a13" draggable="true">cultures</span>
+  <span id="a12" draggable="true">learn</span>
+  <span id="a11" draggable="true">tourism</span>
+  <span id="a14" draggable="true">traditions</span>
+  <span id="a9" draggable="true">languages</span>
+</section>
+
+<section id="body">
+
+<br/>
+<div class="rightFloatvideo">
+  <video  src="../media/Unit03_e3.flv" mode="1" id="1003" autoPlay="false"/>
+ </div>
+ 
+ <div id="gapfillText">
+  <p>If you know or you&#xA0;<input id="q1" type="droptarget"/>&#xA0;two&#xA0;<input id="q2" type="droptarget"/>&#xA0;, then you are not only one person you are two people. If you go&#xA0;<input id="q3" type="droptarget"/>&#xA0;for studying or for travelling or for&#xA0;<input id="q4" type="droptarget"/>&#xA0;. You can&#xA0;<input id="q5" type="droptarget"/>&#xA0;a lot of things, about other&#xA0;<input id="q6" type="droptarget"/>&#xA0;, other languages,&#xA0;<input id="q7" type="droptarget"/>&#xA0;, all over the world. </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

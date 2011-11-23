@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <script id="model" type="application/xml">
+      <view>
+        <name>com.clarityenglish.bento.view.swfplayer.SWFPlayerView</name>
+        <param name="src" value="ebook/rti2_ebook.swf" />
+      </view>
+    </script>
+  </head>
+</bento>

@@ -1,0 +1,207 @@
+* {
+	font-size: 12px;
+	font-family: Verdana;
+}
+
+/* The main header should always be bold */
+body > header {
+	font-weight: normal;
+	color: #000000;
+	line-height:20em;
+}
+
+/* The body should always have a bit of space at the top */
+#body {
+	padding-top: 12px;
+}
+
+/* Paragraphs have spacing after them */
+p {
+	padding-top: 5em;
+	padding-bottom: 12px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+
+/* Lists use numbers. */
+
+
+/* Multiple-choice answers use letters */
+.answerList {
+	list-style-type: lowerLatin;
+	padding-left: 15px;
+	margin-left: 0px;
+}
+/* Reading text spacing */
+/* I would be happier doing #readingText * {} but that overrides the h1 settings */
+#readingText p {
+	padding-right: 25px;
+	padding-left: 15px;
+	padding-top: 12px;
+	padding-bottom: 18em;
+	font-size: 12px;
+	text-align: left;
+	line-height: 22em
+
+
+}
+/* A paragraph class for hanging indents that work with numbers */
+.hangingIndent {
+ 	tab-stops: 30px;
+ 	text-indent: -30px;
+ 	padding-left: 30px;
+}		
+
+/* This is the image or video floating on the right hand side in many exercises */
+#body .rightFloat {
+	float: right;
+	padding-top: 25px;
+	padding-right: 25px;
+	padding-left: 25px;
+}
+
+/* Links and draggable spans should be blue and not underlined */
+a, span[draggable="true"] {
+	color: #3A00FF;
+	text-decoration: none;
+}
+
+/* Draggable spans in noscroll should be in a bordered filled box */
+#noscroll span[draggable=true] {
+	float: left;
+	color: #0E00AB;
+	padding: 5px 8px -8px 8px;
+	margin-right: 4px;
+	margin-bottom: 0px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #B5B5B5;
+	border-radius: 12px;
+	background-color: #FFFFFF;
+	
+	
+}
+/* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
+/* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
+#noscroll span p {
+	padding-bottom: 0px;
+}
+
+/* Use the custom after-pad property to add a width of 1 _ characters to any input's maximum length */
+input {
+	gap-after-padding: 2;
+}
+
+/* Drag and drop targets always have the same gap text underneath them */
+input[type="droptarget"] {
+	gap-text: "__.__";
+}
+
+/* Color classes */
+.blue {
+	color: #3A00FF;
+}
+
+/* Classes for showing selections and results */
+a.selected {
+	text-decoration: underline;
+}
+
+a.correct, input.correct, g.correct {
+	color: #00AA00 !important;
+}
+
+a.incorrect, input.incorrect {
+	color: #AA0000 !important;
+}
+
+a.neutral, input.neutral {
+	color: #0000AA !important;
+}
+/* Headings */
+
+	
+}
+h1 {
+	font-family: Arial Black;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 0em;
+	padding-left: 15px;
+	padding-right: 25px;
+	text-align: left;
+	line-height: 20em;
+	
+}
+h2 {
+	font-family: Verdana;
+	font-size: 11px;
+	color: #3B3131;
+	padding-left: 15px;
+	padding-top: 0em;
+	padding-bottom: 0em;
+	padding-right: 25em;
+	text-align: left;
+    line-height: 20em
+}
+h4 {
+	font-family: Arial Black;
+	font-size: 14px;
+	padding-left: 15px;
+	padding-bottom: 6px;
+	padding-top: 10px;
+}
+h7{
+	font-family: Arial Black;
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 20px;
+	line-height: 20em;
+	padding-left:20px;
+	}
+	
+ #questionList {
+	list-style-type: decimal;
+	
+	margin-left: 20px;
+	padding-right: 210%;
+	padding-top: -25em;
+	text-align: left;
+	line-height: 22em;
+}
+
+#gapfillText{
+	padding-top: 12px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 270%;
+	
+}
+
+#writing {
+	list-style-type: decimal;
+	margin-left: 20px;
+	padding-right: 370%;
+	padding-top: 20em;
+	text-align: left;
+	line-height: 20em;
+}
+
+#body .rightFloatvideo {
+	float: right;
+	width: 580px;
+	
+
+	padding-top: 20em;
+	padding-right: 10em;
+	padding-left: 10em;
+	margin-top: 20em;
+	
+}
+.hangingIndent1 {
+ 	tab-stops: 30px;
+ 	text-indent: -55px;
+ 	padding-left: 75px;
+}		

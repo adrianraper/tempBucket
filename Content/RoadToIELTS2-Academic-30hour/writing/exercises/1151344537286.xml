@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a11" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a12" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a13" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a14" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a15" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a15" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a17" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a12" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a17" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a12" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Look carefully at the charts and complete the sentences by putting the correct word or phrase into each gap. You may use each word or phrase more than once.
+		
+</header>
+	
+<section id="noscroll">
+  <span id="a19" draggable="true">classical concert goers</span>
+  <span id="a14" draggable="true">rock/pop concert goers</span>
+  <span id="a11" draggable="true">men</span>
+  <span id="a16" draggable="true">country/folk concert goers</span>
+  <span id="a18" draggable="true">NZ adults</span>
+  <span id="a13" draggable="true">women</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/AC_AW_004s.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/AC_AW_004.jpg" mode="16" id="1004"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">Over the four-week period shown in the charts, <input id="q1" type="droptarget"/> accounted for 55 per cent of all adult jazz concert-goers.</li>
+    <li id="2">5 per cent of <input id="q2" type="droptarget"/> attended pop/rock concerts.</li>
+    <li id="3"><input id="q3" type="droptarget"/> accounted for two-fifths of all pop/rock concert goers.</li>
+    <li id="4">About three-fifths of <input id="q4" type="droptarget"/> were men.</li>
+    <li id="5">Approximately half of <input id="q5" type="droptarget"/> were men.</li>
+    <li id="6">The ratio of men to women was almost equal among <input id="q6" type="droptarget"/>.</li>
+    <li id="7">Nearly two-thirds of <input id="q7" type="droptarget"/> were women.</li>
+    <li id="8">Only 2 per cent of <input id="q8" type="droptarget"/> attended jazz concerts.</li>
+    <li id="9">The percentage of adults who went to jazz concerts was half that of adults who attended <input id="q9" type="droptarget"/>.</li>
+    <li id="10">Only a very small minority of <input id="q10" type="droptarget"/> went to these musical performances.</li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">1. The pie chart for Jazz tells us this.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. The bar chart gives us this information.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. The pie chart for Rock and pop concerts tell us that 41 per cent of rock and pop concert-goers were women. This is about two-fifths. </p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. 58 per cent is about three-fifths.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">5. 52 per cent of people who attended country and folk concerts were men.</p>
+</section>
+
+<section id="fb6">
+  <p align="left">6. The percentage for women and the percentage for men was almost balanced.</p>
+</section>
+
+<section id="fb7">
+  <p align="left">7. 63 per cent of all classical concert-goers were women, which is just over two-thirds.</p>
+</section>
+
+<section id="fb8">
+  <p align="left">8. The bar chart tells us this.</p>
+</section>
+
+<section id="fb9">
+  <p align="left">9. 2 per cent attended jazz concerts, while 4 per cent attended classical concerts.</p>
+</section>
+
+<section id="fb10">
+  <p align="left">10. No type of concert attracted more than 5 per cent of the adult population. The vast majority of adults did not attend any of these events.</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">In Unit 1 we looked at different ways of referring to proportions represented in a chart. We saw that we can use percentages, fractions and ratios. For examples, '25 per cent', 'a quarter' and '1 in 4' can all be used to describe the same proportion. Whichever way you use, it is important that you make it clear to the reader exactly what each figure you include in your report refers to.</p>
+</section>
+
+</body>
+</bento>

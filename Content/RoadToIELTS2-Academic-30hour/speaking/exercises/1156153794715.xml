@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a7" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a11" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Fill the gaps by dragging down the appropriate words.
+</header>
+	
+<section id="noscroll">
+  <span id="a8" draggable="true">3 parts</span>
+  <span id="a11" draggable="true">Part 1</span>
+  <span id="a9" draggable="true">communicate</span>
+  <span id="a10" draggable="true">1 to 2</span>
+  <span id="a12" draggable="true">Parts 2 and 3</span>
+  <span id="a7" draggable="true">11 to 14</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/LE_SP_002.jpg" mode="1" id="1001"/>
+
+  <ol id="questionList">
+    <li id="1">The test is &#xA0;<input id="q1" type="droptarget"/>&#xA0; minutes long.</li>
+    <li id="2">There are &#xA0;<input id="q2" type="droptarget"/> &#xA0;to the test.</li>
+    <li id="3">The test assesses your ability to &#xA0;<input id="q3" type="droptarget"/>&#xA0; in English.</li>
+    <li id="4">You talk on a particular topic for&#xA0; <input id="q4" type="droptarget"/>&#xA0; minutes.</li>
+    <li id="5">In &#xA0;<input id="q5" type="droptarget"/> &#xA0;you answer general questions about yourself and your life.</li>
+    <li id="6"><input id="q6" type="droptarget"/> &#xA0;are linked by a common theme.</li>
+  </ol>
+</section>
+
+</body>
+</bento>

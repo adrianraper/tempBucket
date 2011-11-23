@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and the sample answer. 
+		
+		Writing Task 1
+</header>
+	
+<section id="noscroll">
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"/>
+</section>
+
+</body>
+</bento>

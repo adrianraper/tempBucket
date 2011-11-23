@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="255"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="walking" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="45" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="playing football" correct="true"/>
+      <answer value="football" correct="true"/>
+      <answer value="playing soccer" correct="true"/>
+      <answer value="soccer" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="cycling" correct="true"/>
+      <answer value="bicycling" correct="true"/>
+      <answer value="riding a bicycle" correct="true"/>
+      <answer value="riding a bike" correct="true"/>
+      <answer value="riding bicycle" correct="true"/>
+      <answer value="riding bike" correct="true"/>
+      <answer value="riding bicycles" correct="true"/>
+      <answer value="riding bikes" correct="true"/>
+      <answer value="bike ridng" correct="true"/>
+      <answer value="bicycle riding" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="17" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="keep-fit" correct="true"/>
+      <answer value="keep fit" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="21" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="11" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Complete the table below. Write NO MORE THAN THREE WORDS OR A NUMBER in each gap.
+		
+</header>
+	
+<section id="body">
+  
+  <audio controls="compact" class="leftFloat" src="../media/LE_LN2.mp3" mode="4" id="1002"/>
+  
+<img class="rightFloat" src="../media/LE_LN_003.jpg" mode="1" id="1001"/>
+
+  <h1><p>Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</p></h1>
+
+
+
+      <h4><p>Males</p></h4>
+    
+  
+  
+    <p>1.&#xA0;<input id="q1"/><tab/><tab/><tab/>57%</p>
+	<p>Snooker/pool/billiards<tab/><tab/>2.&#xA0;<input id="q2"/>%</p>
+	<p>3.&#xA0;<input id="q3"/><tab/><tab/>28%</p>
+	<p>4.&#xA0;<input id="q4"/><tab/><tab/><tab/>24%</p>
+	<p>Swimming<tab/><tab/><tab/><tab/>5.&#xA0;<input id="q5"/>%<br/></p>
+
+  <h4><p>Females</p></h4>
+  <p>Walking<tab/><tab/><tab/><tab/>43%</p>
+  <p>6.&#xA0;<input id="q6"/>/yoga<tab/><tab/><tab/>28%</p>
+  <p>Swimming	<tab/><tab/><tab/><tab/>7.&#xA0;<input id="q7"/> %</p>
+  <p>Snooker/pool/billiards<tab/><tab/>7%</p>
+  <p>Cycling	<tab/><tab/><tab/><tab/>8.&#xA0;<input id="q8"/>&#xA0;%</p>
+  
+ </section>
+
+<section id="fb1">
+  <p align="left">1. Although you have to listen to a lot of information before you get this answer, it's given with the percentage.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. Simon says quite clearly that 45 percent of young men play these games and Brenda repeats the percentage too.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. Brenda asks Simon where football comes in the list of most popular activities and he says third and also gives the percentage. So you are helped twice here and they also continue to talk about football afterwards.</p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. We hear the words 'cycling', 'bicycle' and 'cycle' mentioned here, so there are lots of clues given.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font color="#000000">5. This was given very quickly but clearly &#x2013; 'Swimming, at 17 per cent'.</font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">6. When Simon said 'the second most popular activity' you would have been prepared for the answer to follow. However there should be a hyphen between keep and fit.</p>
+</section>
+
+<section id="fb7">
+  <p align="left">7. Simon gives the answer in reply to Brenda's question 'What about swimming?' and the word swimming is repeated in case you missed this.</p>
+</section>
+
+<section id="fb8">
+  <p align="left">8. You hear the word 'cycling' first and then you know you have to listen.</p>
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="306"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+      <answer source="a3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+      <answer source="a4" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+      <answer source="a6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+      <answer source="a16" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a21" correct="false"/>
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Click on the correct letters A-D.
+		
+</header>
+	
+<section id="body">
+  <audio controls="compact" class="leftFloat" src="../media/TT_LN1.mp3" mode="4" id="1002"/>
+  <img class="rightFloat" src="../media/TT_LN_e1.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/TT_LN_e2.jpg" mode="1" id="1004"/>
+  <img class="leftFloat" src="../media/TT_LN_e3.jpg" mode="1" id="1005"/>
+  <img class="leftFloat" src="../media/TT_LN_e4.jpg" mode="1" id="1006"/>
+  <img class="leftFloat" src="../media/TT_LN_e5.jpg" mode="1" id="1007"/>
+  <img class="leftFloat" src="../media/TT_LN_e6.jpg" mode="1" id="1008"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">
+			 When Sarah wakes up, what time is it in Hong Kong?<list class="answerList"><li><a id="a1">Pic A</a></li><li><a id="a2">Pic B</a></li><li><a id="a3">Pic C</a></li><li><a id="a4">Pic D</a></li></list><br/></li>
+    <br/>
+    <li id="q2">What time is the plane due to arrive at Heathrow?<list class="answerList"><li><a id="a5">Pic A</a></li><li><a id="a6">Pic B</a></li><li><a id="a7">Pic C</a></li><li><a id="a8">Pic D</a></li></list><br/></li>
+    <br/>
+    <li id="q3">What does Peter decide to order for breakfast?<list class="answerList"><li><a id="a9">Pic A</a></li><li><a id="a10">Pic B</a></li><li><a id="a11">Pic C</a></li><li><a id="a12">Pic D</a></li></list><br/></li>
+    <br/>
+    <li id="q4">What does Sarah plan to have for breakfast?<list class="answerList"><li><a id="a13">Pic A</a></li><li><a id="a14">Pic B</a></li><li><a id="a15">Pic C</a></li><li><a id="a16">Pic D</a></li></list><br/></li>
+    <br/>
+    <li id="q5">What does Peter's suitcase look like?<list class="answerList"><li><a id="a17">Pic A</a></li><li><a id="a18">Pic B</a></li><li><a id="a19">Pic C</a></li><li><a id="a20">Pic D</a></li></list><br/></li>
+    <br/>
+    <li id="q6">What does Sarah's brother look like?<list class="answerList"><li><a id="a21">Pic A</a></li><li><a id="a22">Pic B</a></li><li><a id="a23">Pic C</a></li><li><a id="a24">Pic D</a></li></list><br/></li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">1. Peter said 'ten fifteen'.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. Peter said 'ten past five'.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. Peter says he is having a cheese omelette with tomatoes, grilled sausages and breakfast potatoes.</p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. Sarah says she's going to have the noodles and that they come with chicken.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">5. Peter says his suitcase is an old grey one with lots of stickers and that it doesn't have a label.</p>
+</section>
+
+<section id="fb6">
+  <p align="left">6. Sarah says her brother is wearing glasses and that he doesn't have a beard or moustache any more.</p>
+</section>
+
+</body>
+</bento>

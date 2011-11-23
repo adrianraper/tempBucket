@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="true"/>
+      <answer source="a4" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 17-18. Choose the appropriate letters A-D.
+		
+</header>
+	
+<section id="body">
+  <br/>
+  <ol id="splitquestionList">
+  <li id="21">An alternative title for this passage would be &#x2026; </li>
+  a.&#xA0;<a id="a1">intelligent moths.</a><br/>
+  b.&#xA0;<a id="a2">new developments in microelectronics.</a><br/>
+  c.&#xA0;<a id="a3">new ways to harness nature for human work.</a><br/>
+  d.&#xA0;<a id="a4">recent discoveries in lepidopteran behaviour.</a><br/>
+  <li id="22">This passage has probably been taken from &#x2026;</li>
+  a.&#xA0;<a id="a5">a journal of neurobiology.</a><br/>
+  b.&#xA0;<a id="a6">a popular science magazine.</a><br/>
+  c.&#xA0;<a id="a7">a formal research report.</a><br/>
+  d.&#xA0;<a id="a8">a wildlife magazine.</a>
+  
+  </ol>
+</section>
+
+<section id="readingText">
+<h1>Robomoths</h1>
+
+<div id="reading">
+<p class="hangingIndent"><b>A</b>&#xA0;With rare exceptions, such as bees and silkworms, the insect world is a source of pests rather than of pets or pack animals. In an age of miniaturisation, however, a few researchers are wondering if more insects might be harnessed to the service of man. One is John Hildebrand, a neurobiologist at the University of Arizona. As part of a project run by America's Defence Advanced Research Projects Agency (DARPA), he and his colleagues have been working with the giant sphinx moth to create a "biobot" &#x2013; an animal that can be controlled electronically by a human. They have designed a radio transmitter small enough to attach to a sphinx moth without impairing its ability to fly. The next stage is to add a receiver to tell the moth where to go.</p>
+
+<p class="hangingIndent"><b>B</b>&#xA0;Moths may not be that bright, but Dr Hildebrand believes they can be manipulated in rather the same way as a donkey is by dangling a carrot in front of its head. The "carrot" he proposes is a sex pheromone &#x2013; a mixture of chemicals that female sphinx moths give off to attract males. It is potent stuff. Previous research has shown that a few molecules are enough to attract a male's attention, and that, given a favourable wind, an amorous male can find a mate who is several kilometres away.</p>
+
+<p class="hangingIndent"><b>C</b>&#xA0;One of the team's ideas is to fit male sphinx moths with small, radio-controlled pheromone dispensers. A moth's pheromone-detectors are its antennae. It can work out where pheromone molecules are coming from by comparing the signals from each antenna, in the same way that a person works out the direction of a sound by comparing signals from each ear. A moth's senses could be subverted by puffing suitable molecules from a dispenser to steer it towards a chosen target.</p>
+
+<p class="hangingIndent"><b>D</b>&#xA0;That is a rather crude approach. Dr Hildebrand hopes to be more subtle. He has spent much of his career examining how a moth's nervous system responds to the pheromone, and he thinks he knows enough to steer a moth directly, without the need for the chemicals themselves. He plans to do it by attaching electrodes to the nerves involved and stimulating them appropriately &#x2013; turning the moth into a genuine, radio-controlled biobot.</p>
+
+<p class="hangingIndent"><b>E</b>&#xA0;That would be an interesting demonstration of mankind's powers over nature. Could it also be useful? Brian Smith and his colleagues at Ohio State University have recently shown that sphinx moths can be manipulated like dogs as well as donkeys. Pavlov's early experiments on reflexes trained dogs to salivate at the sound of a bell, by ringing one every time they were fed with meat. Dr Smith's team has mimicked Pavlov by training moths to stick their tongues out in response to a chemical called cyclohexanone, which was puffed at them while they were fed sugared water.</p>
+
+<p class="hangingIndent"><b>F</b>&#xA0;The reason that this trick might be useful &#x2013; and the reason for DARPA's interest &#x2013; is that cyclohexanone is a volatile component of TNT, an explosive often used in landmines. By releasing a swarm of trained moths over a minefield, and observing where they stuck their tongues out, it should be possible to locate mines without risk either to people or to expensive mine-detecting machinery.</p>
+
+<p class="hangingIndent"><b>G</b>&#xA0;It is hard to see if a moth is sticking its tongue out at a range of several hundred metres. But Dr Smith has thought of a way round that. He can sense when a moth is blowing a raspberry by attaching a wire to the muscle that controls the insect's tongue, and using it to transmit a signal via one of Dr Hildebrand's tiny electronic backpacks.</p>
+
+<p class="hangingIndent"><b>H</b>&#xA0;If lepidopteran mine detectors work, they could be the start of a new industry. The rate at which video cameras are being miniaturised means that they, too, may soon be light enough for insects to carry. That would have obvious military applications, even if one countermeasure is obvious, too: surrounding sensitive installations with giant candles.</p>
+
+<p><b>Glossary</b></p>
+<p>1. landmine: a bomb which is hidden in the ground and explodes when a person or vehicle passes over it.</p>
+<p>2. lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</p>
+<p align="left">The Economist, 4th March 2000.</p>
+</div>
+</section>
+
+<section id="rt2001">
+  <p align="left">The two questions in this exercise are 'summary' questions, in that they refer to the text as a whole.</p>
+  <p align="left">Question 17Choose a title that suits the whole passage, not just certain sections or information it contains. What news is the writer reporting?</p>
+  <p align="left">Question 18Consider the style and tone of this passage. How serious is it? Is there any humour in the passage? Are there any references or footnotes of the kind that often appear in academic journals? What is the overall subject matter? Would non-specialists understand it?</p>
+</section>
+
+</body>
+</bento>

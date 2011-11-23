@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="false">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false">
+        <feedback source="fb15"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="false">
+        <feedback source="fb18"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false">
+        <feedback source="fb19"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="false">
+        <feedback source="fb22"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="false">
+        <feedback source="fb23"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false">
+        <feedback source="fb24"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b26">
+      <answer source="t26" correct="false">
+        <feedback source="fb26"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b27">
+      <answer source="t27" correct="false">
+        <feedback source="fb27"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b28">
+      <answer source="t28" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b29">
+      <answer source="t29" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b30">
+      <answer source="t30" correct="false">
+        <feedback source="fb30"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b31">
+      <answer source="t31" correct="false">
+        <feedback source="fb31"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b32">
+      <answer source="t32" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b33">
+      <answer source="t33" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b34">
+      <answer source="t34" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b35">
+      <answer source="t35" correct="false">
+        <feedback source="fb35"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b36">
+      <answer source="t36" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b37">
+      <answer source="t37" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b38">
+      <answer source="t38" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b39">
+      <answer source="t39" correct="false">
+        <feedback source="fb39"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b40">
+      <answer source="t40" correct="false">
+        <feedback source="fb40"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b41">
+      <answer source="t41" correct="false">
+        <feedback source="fb41"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b42">
+      <answer source="t42" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b43">
+      <answer source="t43" correct="false">
+        <feedback source="fb43"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b44">
+      <answer source="t44" correct="false">
+        <feedback source="fb44"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b45">
+      <answer source="t45" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b46">
+      <answer source="t46" correct="false">
+        <feedback source="fb46"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b47">
+      <answer source="t47" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b48">
+      <answer source="t48" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b49">
+      <answer source="t49" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b50">
+      <answer source="t50" correct="false">
+        <feedback source="fb50"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences by choosing the correct word or phrase for each gap. There is more than one correct answer in each case.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/EN_AW_011.jpg" mode="1" id="1001"/>
+  <ol id="targetspotting">
+  
+    
+      <li>Many experts believe that CO2 emissions from industry and vehicles have (&#x2026;) global warming.</li>
+    
+  
+  <g id="t1">A. &#xA0;caused</g><br/>
+  <g id="t2">B. &#xA0;stemmed from</g><br/>
+  <g id="t3">C. &#xA0;brought about</g><br/>
+  <g id="t4">D. &#xA0;led to</g><br/>
+  <g id="t5">E. &#xA0;been caused by</g><br/>
+  
+ 
+      <li>  Sea levels have begun to rise (&#x2026;) to global warming.</li>
+    
+  
+  <g id="t6">A.  &#xA0;leading</g><br/>
+  <g id="t7">B.  &#xA0;owing</g><br/>
+  <g id="t8">C.  &#xA0;due</g><br/>
+  <g id="t9">D.  &#xA0;giving rise</g><br/>
+  <g id="t10">E.  &#xA0;thanks</g><br/>
+  
+    
+      <li>  The destruction of forest habitats has (&#x2026;) many animal species to die out.</li>
+    
+  
+  <g id="t11">A.  &#xA0;led</g><br/>
+  <g id="t12">B.  &#xA0;resulted in</g><br/>
+  <g id="t13">C.  &#xA0;caused</g><br/>
+  <g id="t14">D.  &#xA0;brought about</g><br/>
+  <g id="t15">E.  &#xA0;given rise to</g><br/>
+  
+    
+      <li> Marine life in the world's seas is being devastated (&#x2026;) overfishing.</li>
+    
+  
+  <g id="t16">A.  &#xA0;due to</g><br/>
+  <g id="t17">B.  &#xA0;as a result of</g><br/>
+  <g id="t18">C.  &#xA0;leading to</g><br/>
+  <g id="t19">D.  &#xA0;giving rise to</g><br/>
+  <g id="t20">E.  &#xA0;because of</g><br/>
+
+      <li> In many parts of the world, once fertile land is turning into semi-desert (&#x2026;) intensive farming methods.</li>
+    
+  <g id="t21">A.  &#xA0;owing to</g><br/>
+  <g id="t22">B.  &#xA0;leading to</g><br/>
+  <g id="t23">C.  &#xA0;since</g><br/>
+  <g id="t24">D.  &#xA0;resulting in</g><br/>
+  <g id="t25">E.  &#xA0;on account of</g><br/>
+  
+      <li> Accidents at sea involving large oil tankers have often (&#x2026;) environmental damage on a huge scale.</li>
+    
+  
+  <g id="t26">A.  &#xA0;been due to</g><br/>
+  <g id="t27">B.  &#xA0;been caused by</g><br/>
+  <g id="t28">C.  &#xA0;given rise to</g><br/>
+  <g id="t29">D.  &#xA0;led to</g><br/>
+  <g id="t30">E.  &#xA0;stemmed from</g><br/>
+  
+      <li> The difficulty meteorologists have in making predictions about climate change (&#x2026;) the complexity of global weather systems.</li>
+    
+  <g id="t31">A.  &#xA0;results in</g><br/>
+  <g id="t32">B.  &#xA0;is due to</g><br/>
+  <g id="t33">C.  &#xA0;stems from</g><br/>
+  <g id="t34">D.  &#xA0;results from</g><br/>
+  <g id="t35">E.  &#xA0;brings about</g><br/>
+  
+      <li> Public awareness of environmental issues is far greater than it used to be (&#x2026;) energetic campaigning by environmentalists.</li>
+    
+  <g id="t36">A.  &#xA0;on account of</g><br/>
+  <g id="t37">B.  &#xA0;thanks to</g><br/>
+  <g id="t38">C.  &#xA0;as a consequence of</g><br/>
+  <g id="t39">D.  &#xA0;resulting in</g><br/>
+  <g id="t40">E.  &#xA0;because</g><br/>
+  
+      <li> Zoos can sometimes help prevent certain species from becoming extinct (&#x2026;) they can breed the animals in captivity.</li>
+    
+  <g id="t41">A.  &#xA0;owing to</g><br/>
+  <g id="t42">B.  &#xA0;because</g><br/>
+  <g id="t43">C.  &#xA0;due to</g><br/>
+  <g id="t44">D.  &#xA0;on account of</g><br/>
+  <g id="t45">E.  &#xA0;since</g><br/>
+  
+      <li> Poor air quality in urban areas is known to have (&#x2026;) an increase in breathing disorders such as asthma.</li>
+    
+  <g id="t46">A.  &#xA0;stemmed from</g><br/>
+  <g id="t47">B.  &#xA0;given rise to</g><br/>
+  <g id="t48">C.  &#xA0;resulted in</g><br/>
+  <g id="t49">D.  &#xA0;brought about</g><br/>
+  <g id="t50">E.  &#xA0;resulted from</g><br/>
+  
+  
+  </ol>
+</section>
+
+<section id="fb2">
+  <p align="left">This is used to mention a cause, not a result.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">This is used to mention a cause, not a result.</p>
+</section>
+
+<section id="fb6">
+  <p align="left">This is used to mention a result,  but 'global warming' is the cause.</p>
+</section>
+
+<section id="fb9">
+  <p align="left">This is used to mention a result,  but 'global warming' is the cause.</p>
+</section>
+
+<section id="fb12">
+  <p align="left">
+    <font color="#000000">This needs to be followed by a noun phrase or gerund: 'Resulted in many species dying out.'</font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <font color="#000000">This needs to be followed by a noun phrase: 'Brought about the extinction of many species.'</font>
+  </p>
+</section>
+
+<section id="fb15">
+  <p align="left">This needs to be followed by a noun phrase or gerund.</p>
+</section>
+
+<section id="fb18">
+  <p align="left">This is used to mention a result, but 'overfishing' is the cause of the problem.</p>
+</section>
+
+<section id="fb19">
+  <p align="left">This is used to mention a result, but 'overfishing' is the cause of the problem.</p>
+</section>
+
+<section id="fb22">
+  <p align="left">This is used to mention a result, but these farming methods are the cause of the problem.</p>
+</section>
+
+<section id="fb23">
+  <p align="left">
+    <font color="#000000">This needs to be followed by a whole verb phrase: 'since farmers use intensive farming methods'.</font>
+  </p>
+</section>
+
+<section id="fb24">
+  <p align="left">This is used to mention a result, but these farming methods are the cause of the problem.</p>
+</section>
+
+<section id="fb26">
+  <p align="left">'Due to' introduces the cause, you need an expression which introduces the result.</p>
+</section>
+
+<section id="fb27">
+  <p align="left">You need an expression which introduces the result.</p>
+</section>
+
+<section id="fb30">
+  <p align="left">'Stem from' introduces the cause, you need an expression which introduces the result.</p>
+</section>
+
+<section id="fb31">
+  <p align="left">This introduces the result. You need an expression which introduces the cause of the problem.</p>
+</section>
+
+<section id="fb35">
+  <p align="left">This introduces the result. You need an expression which introduces the cause of the problem.</p>
+</section>
+
+<section id="fb39">
+  <p align="left">This introduces the result. You need an expression which introduces the cause of the problem.</p>
+</section>
+
+<section id="fb40">
+  <p align="left">
+    <font color="#000000">This needs to be followed by 'of' or a whole verb phrase: 'because environmentalists have campaigned.'</font>
+  </p>
+</section>
+
+<section id="fb41">
+  <p align="left">This needs to be followed by a noun, noun phrase or gerund.</p>
+</section>
+
+<section id="fb43">
+  <p align="left">This needs to be followed by a noun, noun phrase or gerund.</p>
+</section>
+
+<section id="fb44">
+  <p align="left">This needs to be followed by a noun, noun phrase or gerund.</p>
+</section>
+
+<section id="fb46">
+  <p align="left">This expression introduces the cause, not the result.</p>
+</section>
+
+<section id="fb50">
+  <p align="left">This expression introduces the cause, not the result.</p>
+</section>
+
+</body>
+</bento>

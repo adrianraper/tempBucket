@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a11" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a17" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	This description of a wind turbine for generating electricity is missing some words. Look carefully at the diagram and put the words and phrases in the correct gaps. Think carefully about the relationships between clauses which show cause and result and purpose.
+</header>
+	
+<section id="noscroll">
+  <span id="a14" draggable="true">which is</span>
+  <span id="a15" draggable="true">so as</span>
+  <span id="a19" draggable="true">which are</span>
+  <span id="a13" draggable="true">so that</span>
+  <span id="a17" draggable="true">for</span>
+  <span id="a16" draggable="true">this</span>
+  <span id="a11" draggable="true">in order to</span>
+  <span id="a18" draggable="true">so</span>
+  <span id="a12" draggable="true">to</span>
+  <span id="a20" draggable="true">which</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/EN_AW_006s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/EN_AW_006.jpg" mode="16" id="1003"/>
+  
+  <div id="gapfillText">
+  
+  <p>A modern wind turbine is a very large construction. The tower needs to rise at least 40 metres from the ground &#xA0;<input id="q1" type="droptarget"/>&#xA0; give the rotor blades enough clearance &#xA0;<input id="q2" type="droptarget"/>&#xA0; rotate safely. The blades are 20 metres from hub to tip. Their pitch can be altered &#xA0;<input id="q3" type="droptarget"/>&#xA0; they can catch the most wind. </p>
+  <p>At the top of the tower is the nacelle, &#xA0;<input id="q4" type="droptarget"/>&#xA0; streamlined &#xA0;<input id="q5" type="droptarget"/>&#xA0; to prevent the tower from bending in strong winds. Inside &#xA0;<input id="q6" type="droptarget"/>&#xA0; housing, the gearbox converts the 34 r.p.m. rotating speed of the rotor blades to 1500 r.p.m. &#xA0;<input id="q7" type="droptarget"/>&#xA0; the generator drive shaft. This is &#xA0;<input id="q8" type="droptarget"/>&#xA0; that the turbine produces electricity of the right frequency. </p>
+  <p>The turbine also has weather sensors, &#xA0;<input id="q9" type="droptarget"/>&#xA0; located at the top of the nacelle. These measure the speed and direction of the wind. This information is sent to the yaw drive, &#xA0;<input id="q10" type="droptarget"/>&#xA0; turns the turbine to face the wind. As a result, the turbine is always positioned to make the best use of the available wind.</p>
+  
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

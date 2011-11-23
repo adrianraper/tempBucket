@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc timed="150"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="computer terminals" correct="true"/>
+      <answer value="PC terminals" correct="true"/>
+      <answer value="computers" correct="true"/>
+      <answer value="PCs" correct="true"/>
+      <answer value="personal computers" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="photocopiers" correct="true"/>
+      <answer value="copiers" correct="true"/>
+      <answer value="photocopy machines" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="dictionaries" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="exam papers" correct="true"/>
+      <answer value="public exams" correct="true"/>
+      <answer value="university exams" correct="true"/>
+      <answer value="British exams" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 13-16. Complete the labels on the diagram below. Write ONE OR TWO WORDS for each answer.
+		
+</header>
+	
+<section id="body">
+
+ <img class="rightFloat" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
+ 
+  <br/>
+  <ol id="questionList">
+  <li id="13"><input id="q1"/></li>
+  <li id="14"><input id="q2"/></li>
+  <li id="15"><input id="q3"/></li>
+  <li id="16"><input id="q4"/></li>
+  </ol>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">13. Dr Grant says that the computer terminals are past the service desk, on the left.</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">14. Dr Grant says the photocopiers are next to the lifts.</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">15. Dr Grant says that just past the dictionaries is the collection of atlases.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">16. Dr Grant says that the exam papers are to the left of the entrance.</font>
+  </p>
+</section>
+
+
+</body>
+</bento>

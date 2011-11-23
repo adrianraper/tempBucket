@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a6" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a7" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Here are two possible plans for a composition discussing the causes of a problem and suggesting solutions. Some of the paragraph headings have been removed from the plans. Complete each plan by matching an appropriate heading to the paragraphs that do not have one.
+</header>
+	
+<section id="noscroll">
+  <span id="a9" draggable="true">Cause 2 and Solutions</span>
+  <span id="a6" draggable="true">Cause 1, Cause 2, Cause 3</span>
+  <span id="a7" draggable="true">Solution 1, Solution 2, Solution 3</span>
+  <span id="a8" draggable="true">Cause 1 and Solutions</span>
+  <span id="a10" draggable="true">Cause 3 and Solutions</span>
+</section>
+
+<section id="body">
+	<img class="rightFloat" src="../media/WB_AW_014.jpg" mode="1" id="1001"  /><p align="left"><b>Plan 1</b>Paragraph 1 – Introduction</p>Paragraph 2 – <input id="q1" type="droptarget" />Paragraph 3 – <input id="q2" type="droptarget" />Paragraph 4 – Conclusion&nbsp;Plan 2Paragraph 1 – IntroductionParagraph 2 – <input id="q3" type="droptarget" />Paragraph 3 – <input id="q4" type="droptarget" />Paragraph 4 – <input id="q5" type="droptarget" />Paragraph 5 – Conclusion<p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

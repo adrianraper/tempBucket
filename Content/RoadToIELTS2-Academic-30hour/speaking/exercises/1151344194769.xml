@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Speculation
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/SS_SP_005.jpg" mode="1" id="1001"/><p align="left"><font color="#000000">You may be asked to speculate on future developments. What is important here is not to have a prepared answer, but to have phrases to help you speculate. Here are some phrases to use when speculating on future developments:</font></p>- Maybe - Perhaps- I hope- It would be good if......- We can't tell<p align="left"><font color="#0000ff"><b>Strategies</b></font></p><p align="left">1.Practise speculating on your own when, for example, you listen to the news. What might happen? How much can you foretell? What are the various possibilities?</p><ol><li>Practise comparing different versions of the news, or different aspects of your life. Get used to the phrases we use for these functions.</li></ol><p align="left"><font size="2"/></p></section>
+
+</body>
+</bento>

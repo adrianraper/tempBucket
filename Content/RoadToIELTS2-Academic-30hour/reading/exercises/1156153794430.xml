@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Aboriginal" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="Buka women" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="coconut shells" correct="true"/>
+      <answer value="two coconut shells" correct="true"/>
+      <answer value="2 coconut shells" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="Guatemala" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="pin and balls" correct="true"/>
+      <answer value="a pin and balls" correct="true"/>
+      <answer value="a wooden pin and balls" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="T" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="Inuit" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="G" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="farmers" correct="true"/>
+      <answer value="Kelantanese farmers" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="paper" correct="true"/>
+      <answer value="glazed paper" correct="true"/>
+      <answer value="glazed colored paper" correct="true"/>
+      <answer value="glazed coloured paper" correct="true"/>
+      <answer value="colored paper" correct="true"/>
+      <answer value="coloured paper" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the passage on the left and complete the table on the right. Write NO MORE THAN THREE WORDS from the passage or in the Format section, the letters (I) - Individuals, (T) - Team or (G) - Whole Group.
+		
+</header>
+	
+<section id="body">
+<div id="gapfillText">
+
+
+<h9>Infinity Marbles</h9>
+<p class="hangingIndent1">Country: <tab/>Australia</p>
+<p class="hangingIndent1">Players: <tab/>1.&#xA0;<input id="q1"/>&#xA0;children</p>
+<p class="hangingIndent1">Equipment: <tab/>marbles</p>
+<p class="hangingIndent1">Format: <tab/>I<br/></p>
+
+<h9>Salan Lanai</h9>
+<p class="hangingIndent1">Country: <tab/>New Guinea</p>
+<p class="hangingIndent1">Players: <tab/>2.&#xA0;<input id="q2"/></p>
+<p class="hangingIndent1">Equipment: <tab/>3.&#xA0;<input id="q3"/></p>
+<p class="hangingIndent1">Format: <tab/>G<br/></p>
+
+<h9>Pin</h9>
+<p class="hangingIndent1">Country: <tab/>4.&#xA0;<input id="q4"/></p>
+<p class="hangingIndent1">Players: <tab/>Indian children</p>
+<p class="hangingIndent1">Equipment: <tab/>5.&#xA0;<input id="q5"/></p>
+<p class="hangingIndent1">Format: <tab/>6.&#xA0;<input id="q6"/><br/></p>
+
+<h9>Muk</h9>
+<p class="hangingIndent1">Country: <tab/>Canada </p>
+<p class="hangingIndent1">Players: <tab/>7.&#xA0;<input id="q7"/>&#xA0;children and their families</p>
+<p class="hangingIndent1">Equipment: <tab/>none</p>
+<p class="hangingIndent1">Format: <tab/>8.&#xA0;<input id="q8"/><br/></p>
+
+<h9>Kite-flying</h9>
+<p class="hangingIndent1">Country: <tab/>Malaysia</p>
+<p class="hangingIndent1">Players: <tab/>9.&#xA0;<input id="q9"/></p>
+<p class="hangingIndent1">Equipment:  <tab/>10.&#xA0; <input id="q10"/> &#xA0;kites with bamboo frames</p>
+<p class="hangingIndent1">Format: <tab/>I</p>
+
+</div>
+</section>
+
+<section id="readingText">
+	<h1>Pastimes and Games of Native People around the World</h1>
+	
+	<p>A culture's pastimes and games reflect more than recreation. In order to appreciate and understand indigenous peoples, one must understand the function and significance of their material culture.</p>
+	<h7><p>Infinity Marbles</p></h7>
+	<p>Played by Australian Aboriginal children and has an interesting no-loser twist. Two players sit facing each other, cross-legged, about 10 feet apart. Each player has a small cluster of marbles on the ground directly in front of him. The players take turns attempting to hit the other person's marbles by rolling one of their own marbles. An astute observer described the game in the following way: "When a 'shot' was successful, the hit marbles were delivered to the successful shooter, who placed them with his others. (If not successful, the marble remains where it stopped.) As a result, this game could go on ad infinitum, as one cluster diminished in size and consequently became harder to hit while the other cluster became easier because of its increased size."</p>
+	
+	  <p><img class="photo1" src="../media/LE_AR_003.jpg" mode="1" id="1001"/></p>
+
+	<h7><p>Salan Lanai</p></h7>
+	<p>Played in New Guinea by Buka women while the food was being cooked. For this game of giving and sharing, the players sat in a circle with two coconut shells in front of each of them. In rhythm with a song, each woman picked up one shell in each hand and moved them one place to her left. Thus the coconut shell that started in front of the left hand was placed in front of the right hand of the person on the left, and the coconut shell that started in front of the right hand was placed in front of her own left hand. This continuous rhythmic picking up and clunking down of shells often continued until the food was cooked. The number of times the coconuts were passed around the completed circle was sometimes used to tell when certain foods were ready.</p>
+	<h7><p>Pin</p></h7>
+	<p>A game of cooperation played by Indian children in Guatemala. A wooden pin is set up at a moderate distance from a throwing line. (The group can decide the length.) The object is for the team to work together to get the first ball that is rolled (lead ball) to touch the pin without knocking the pin over. The first player rolls his ball and the subsequent team members try to roll their balls so that they nudge the lead ball closer to the pin. The game is won when the lead ball is touching the pin. If the pin is knocked over, the player who knocked it over starts a new game by rolling the first ball.</p>
+	<h7><p>Muk</p></h7>
+	<p>In the Canadian Arctic, Inuit children and their families play Muk (Silence), which centers around laughter. Players begin by sitting in a circle. One player moves into the middle of the circle. S/he then chooses another player, who must say "Muk" and then remain silent and straight-faced. The person in the middle uses comical expressions and gestures (no sound) to try to "break the muk." The player to break the muk (the person who laughs) is dubbed with a comical name and replaces the person in the middle.</p>
+	<h7><p>Kite-flying</p></h7>
+	<p>A popular seasonal sport in Kelantan, Malaysia for centuries. After the rice harvest, when the hot arid winds blow, farmers gather on the stubble of the rice plains to match their kites in inter-village contests. These elaborate kites, known as wau, measure up to two meters across and soar up to 152 meters. Made of glazed colored paper and mounted on a bamboo frame, with a bow-shaped device fixed to the neck, they emit a humming sound when aloft. Wau may resemble fish, swallows, cats and even frogs, but the moon kite, wau bulan, is the most popular and elaborate with its distinctive crescent-shaped tail. Kelantanese contestants who have the highest-flying and most belligerent kites are the winners.</p>
+	<p>Excerpts from Pastimes and Games of Native Peoples Around the World, produced by the Indigenous Peoples Steering Committee, Amnesty International USA, from the Indigenous People's Rights Resource Notebook.</p>
+</section>
+<section id="rt2001">
+  <p align="left">Questions 1-10 - Table completionDon't spend too much time on this exercise. Examine the whole table before you begin reading so that you know how it is organised. Look carefully at the column headings and at the information that has already been filled in. Decide what kind of information is required in each gap and then scan the text quickly to find the answers. You will find the information you need in the same order as the questions, so follow the question numbers.</p>
+  <p align="left">Questions 1, 2, 7 and 9Do you think numbers are missing from these questions, or some other kind of information?</p>
+  <p align="left">Question 4Be careful here! You might think that you can get this answer by using this information in the 'Players' point, but in fact you'll have to read the text to find it.</p>
+  <p align="left">Questions 6 and 8Make sure you follow the instructions for these two questions.</p>
+</section>
+
+</body>
+</bento>

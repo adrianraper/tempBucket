@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a17" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a21" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a22" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q11" block="b11">
+      <answer source="a23" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q12" block="b12">
+      <answer source="a24" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+Look at the chart and complete the report with the correct words or figures. 
+</header>
+	
+<section id="noscroll">
+  <span id="a17" draggable="true">a fifth</span>
+  <span id="a24" draggable="true">almost halved</span>
+  <span id="a13" draggable="true">22 per cent</span>
+  <span id="a18" draggable="true">strongly disagreed</span>
+  <span id="a15" draggable="true">7 per cent</span>
+  <span id="a22" draggable="true">latter</span>
+  <span id="a14" draggable="true">43 per cent</span>
+  <span id="a20" draggable="true">strongly agreed</span>
+  <span id="a19" draggable="true">disagreed</span>
+  <span id="a21" draggable="true">former</span>
+  <span id="a16" draggable="true">10 per cent</span>
+  <span id="a23" draggable="true">a third</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/LC_AW_007.jpg" mode="1" id="1003"/>
+  <p align="left">In 2000, when asked if e-mail helps them communicate with people they would not otherwise be able to connect with, <font color="#0000ff"><input id="q1" type="droptarget"/> of e-mail users agreed and another <font color="#0000ff"><input id="q2" type="droptarget"/></font> agreed strongly. Only <font color="#0000ff"><input id="q3" type="droptarget"/></font> responded that they disagreed and <font color="#0000ff"><input id="q4" type="droptarget"/></font> that they disagreed strongly. Just under <font color="#0000ff"><input id="q5" type="droptarget"/></font> were not sure either way. By 2001 opinions had changed dramatically. The percentage of those who <font color="#0000ff"><input id="q6" type="droptarget"/></font> halved, while the proportion who <font color="#0000ff"><input id="q7" type="droptarget"/></font> fell by just over a quarter. Correspondingly, the percentage of those who agreed or <font color="#0000ff"><input id="q8" type="droptarget"/></font> rose. The <font color="#0000ff"><input id="q9" type="droptarget"/></font> rose slightly by only 3 per cent, but the <font color="#0000ff"><input id="q10" type="droptarget"/></font> rose by just under <font color="#0000ff"><input id="q11" type="droptarget"/></font>. The fact that the percentage of those who neither agreed nor disagreed had <font color="#0000ff"><input id="q12" type="droptarget"/></font> by 2001 suggests that people had begun to realise the potential of the medium.</font></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001"><p align="left"><font color="#000000">Another way to describe rising and falling trends is by using verbs or expressions, which derive from fractions, for example:</font></p>x doubled in 2000,y halved in 2001,z rose by a third in 2002.
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false">
+        <feedback source="fb6"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false">
+        <feedback source="fb7"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false">
+        <feedback source="fb8"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false">
+        <feedback source="fb9"/>
+      </answer>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false">
+        <feedback source="fb10"/>
+      </answer>
+    </DropDownQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/AC_Task01.jpg" mode="16" id="1004"  />Read the writing task and look carefully at the bar chart. Complete the report by choosing the word, phrase or number which best fits each gap.
+
+Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/AC_AW_002s.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/AC_AW_002.jpg" mode="16" id="1004"/>
+  <p align="left">The chart compares the attendance of Canadians of different <select id="q1"><option>ages</option><option>incomes</option><option>interests</option></select> at live arts performances. There is clearly a strong relationship between age and the sort of events people attend.</p>
+  <p align="left">The figures show that <select id="q2"><option>almost half</option><option>half</option><option>just over half</option></select> of Canadian teenagers frequently go to live arts events and that they are almost <select id="q3"><option>twice</option><option>half</option><option>three times</option></select> as likely to attend such performances as Canadians who are 60 or over. Not surprisingly, the greatest difference in attendance figures is for <select id="q4"><option>pop concerts</option><option>theatrical performances</option><option>opera</option></select>. The 15 to 19 age group is almost <select id="q5"><option>five times</option><option>twice</option><option>ten times</option></select> as likely as the over 60s to attend such concerts. Likewise, the proportion of Canadians who go to theatre, opera and <select id="q6"><option>dance</option><option>symphonic or classical music</option><option>choral music</option></select> performances falls as age increases.</p>
+  <p align="left">In contrast, the proportion who go to classical and choral music performances rises as age increases. Approximately <select id="q7"><option>1 in 10</option><option>1 in 4</option><option>1 in 3</option></select> Canadians who are 60 or over go to classical concerts. This percentage is almost <select id="q8"><option>twice as high</option><option>as high</option><option>three times as high</option></select> as that for teenagers.</p>
+  <p align="left">Attendance rates vary the least for theatre and opera performances. Only about <select id="q9"><option>a fifth</option><option>a tenth</option><option>a quarter</option></select> of all age groups attend the theatre frequently. Similarly, a very small <select id="q10"><option>percentage</option><option>quantity</option><option>number</option></select> of any age group go to the opera regularly.</p>
+  <p align="left">In summary, audiences at Canadian performing arts events seem to be mainly young people attending plays or pop concerts.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">1. The title says 'by age group'.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. 47.2 per cent, which is almost half.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. 47.2 per cent for teenagers compared to almost 25 per cent for the oldest age group.</p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. It's not surprising that pop concerts are much more popular with younger age groups.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">5. Compare just over 7 per cent for the over-60s to nearly 35 per cent for teenagers.</p>
+</section>
+
+<section id="fb6">
+  <p align="left">6. As with pop music, dance performances are more popular with younger people.</p>
+</section>
+
+<section id="fb7">
+  <p align="left">7. 8.3 per cent, which is approximately 1 in 10.</p>
+</section>
+
+<section id="fb8">
+  <p align="left">8. Compare just over 8 per cent for the over-60s with just over 5 per cent for teenagers.</p>
+</section>
+
+<section id="fb9">
+  <p align="left">9. The percentages range from about 17 per cent for the over-60s to about 22 per cent for teenagers, which is about a fifth.</p>
+</section>
+
+<section id="fb10">
+  <p align="left">10. We don't normally use 'quantity' to refer to people.</p>
+  <p align="left">In fact, the chart doesn't tell us the actual numbers involved. We don't know if the numbers are small or large.</p>
+</section>
+
+</body>
+</bento>

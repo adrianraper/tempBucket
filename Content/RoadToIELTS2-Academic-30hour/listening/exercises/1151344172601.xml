@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="226"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+      <answer source="a3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+      <answer source="a5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Click the correct letters a-c.
+		
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/WB_LN_004.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/WB_LN_004a.jpg" mode="1" id="1004"/>
+  <audio controls="compact" class="leftFloat" src="../media/WB_LN2a.mp3" mode="4" id="1002"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">What percentage of the working population nowadays are women?<list class="answerList"><li><a id="a1">less than 20%</a></li><li><a id="a2">between 21% and 50%</a></li><li><a id="a3">more than 50%</a></li></list><br/></li>
+    <br/>
+    <li id="q2">Nowadays the average female manager's salary is between ...<list class="answerList"><li><a id="a4">&#xA3;25,000&#x2013;&#xA3;29,000.</a></li><li><a id="a5">&#xA3;30,000&#x2013;&#xA3;34,000.</a></li><li><a id="a6">&#xA3;35,000&#x2013;&#xA3;39,000.</a></li></list><br/></li>
+    <br/>
+    <li id="q3">What is the principal reason for women going out to work?<list class="answerList"><li><a id="a7">They do not want to depend on other people for money.</a></li><li><a id="a8">They can no longer depend on husbands to support them.</a></li><li><a id="a9">They find life more expensive.</a></li></list><br/></li>
+    <br/>
+    <li id="q4">Changes in attitudes in the 1960s and '70s meant that more young women ...<list class="answerList"><li><a id="a10">were able to take office jobs.</a></li><li><a id="a11">went into temporary employment.</a></li><li><a id="a12">received a university education.</a></li></list><br/></li>
+    <br/>
+    <li id="q5">Which pie chart shows the proportion of men and women who are expected to start businesses in 2010?<list class="answerList"><li><a id="a13">Chart A</a></li><li><a id="a14">Chart B</a></li><li><a id="a15">Chart C</a></li></list><br/></li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">1. Mary says that now women make up just over half of all employees. In other words more than 50%.</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">2. Mary says that the average annual salary for a female manager is &#xA3;32,000. In other words between &#xA3;30,000 and &#xA3;34,000. </font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">3. Mary says they want to be financially independent which means the same as not wanting to depend on other people for money.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">4. Mary says that in the late '60s and early '70s girls started going to university. In other words received a university education.</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">5. Mary says women will be responsible for approximately half of all new business start-ups and this is illustrated by the 50/50 split on the pie chart.</font>
+  </p>
+</section>
+
+</body>
+</bento>

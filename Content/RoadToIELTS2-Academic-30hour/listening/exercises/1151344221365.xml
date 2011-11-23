@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="150"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="A" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="C" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="C" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="B" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 9-12. Write the appropriate letters A-C against questions 9-12.
+		
+</header>
+	
+<section id="body">
+ 
+  <audio controls="compact" class="leftFloat" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
+   <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
+   
+ <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
+ 
+  <p><i><b>A</b><tab/>	he is in favour</i><br/>
+  <i><b>B</b><tab/>	he has no strong opinion either way</i><br/>
+  <i><b>C</b><tab/>	he is against</i></p>
+  
+<ol id="questionList">
+  <p align="left">9. <tab/>working on your own	<tab/><tab/><tab/><tab/><input id="q1"/></p>
+  <p align="left">10. <tab/>learning large amounts of factual data	<tab/><input id="q2"/></p>
+  <p align="left">11. <tab/>taking detailed notes during lectures	<tab/><tab/><input id="q3"/></p>
+  <p align="left">12. <tab/>recording lectures on tape	<tab/><tab/><tab/><input id="q4"/></p>
+  </ol>
+</section>
+
+
+</body>
+</bento>

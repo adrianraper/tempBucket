@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+    <marking/>
+    <feedback groupbased="true" wrongonly="false" scorebased="true"/>
+    <buttons/>
+    <exercise/>
+    <misc splitscreen="true"/>
+  </settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a15" correct="false"/>
+      <answer source="a16" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a3" correct="true"/>
+      <answer source="a4" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		Read the composition and find all the examples of modal verbs and other expressions the writer has used to express probability. Decide whether each is a modal verb or other expression by clicking on a or b on the right.
+		
+</header>
+	
+<section id="body">
+  
+  <ol id="splitquestionList">
+    
+    <li id="q1">'are likely to'?<list class="answerList"><li><a id="a15">Modal verbs for expressing probability</a></li><li><a id="a16">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q2">'could well'?<list class="answerList"><li><a id="a1">Modal verbs for expressing probability</a></li><li><a id="a2">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q3">'may'?<list class="answerList"><li><a id="a3">Modal verbs for expressing probability</a></li><li><a id="a4">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q4">'might just'?<list class="answerList"><li><a id="a5">Modal verbs for expressing probability</a></li><li><a id="a6">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q5">'it is quite possible that'?<list class="answerList"><li><a id="a7">Modal verbs for expressing probability</a></li><li><a id="a8">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q6">'it is highly unlikely that'?<list class="answerList"><li><a id="a9">Modal verbs for expressing probability</a></li><li><a id="a10">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q7">'In all probability'?<list class="answerList"><li><a id="a11">Modal verbs for expressing probability</a></li><li><a id="a12">Other words and expressions for expressing probability</a></li></list></li>
+    
+    <li id="q8">'may well'?<list class="answerList"><li><a id="a13">Modal verbs for expressing probability</a></li><li><a id="a14">Other words and expressions for expressing probability</a></li></list></li>
+  </ol>
+</section>
+
+<section id="fb0">
+  <p align="left">
+    <b>Modal verbs for expressing probability</b>
+  </p>
+  <p align="left">2. could well</p>
+  <p align="left">3. may</p>
+  <p align="left">4. might just</p>
+  <p align="left">8. may well</p>
+  <p align="left"/>
+  <p align="left">
+    <b>Other words and expressions for expressing probability</b>
+  </p>
+  <p align="left">1. are likely to</p>
+  <p align="left">5. it is quite possible that</p>
+  <p align="left">6. it is highly unlikely that</p>
+  <p align="left">7. in all probability</p>
+</section>
+
+<section id="readingText">
+<br/>
+	<p>The benefits that genetically modified (GM) crops&#xA0;<b>(1) are likely to</b>&#xA0;bring have been well publicised by the biotechnology industry. However, recently environmentalists have raised important objections to the introduction of GM crops and foods which make it essential to proceed in this area with extreme caution.</p>
+	
+	<p>The first objection to GM crops is that they are unnatural. Biotechnologists argue that farming methods have always been unnatural since they involve selective breeding and methods of cross-pollination. However, this argument is unacceptable because genetic modification involves a totally new approach where genes from different species are introduced into a plant's composition. These permanent genetic alterations&#xA0;<b>(2) could well</b>&#xA0;have disastrous consequences which are impossible to predict.Another issue which provokes disagreement is the extent to which GM foods pose a health risk. Supporters of GM foods point out that so far no major health problems have arisen as a result of them. On the other hand, many people remain unconvinced as this technology is in its infancy, and there are real fears that GM foods &#xA0;<b>(3) may</b>&#xA0;cause allergies and that some &#xA0;<b>(4) might just</b>&#xA0;prove to be poisonous or toxic in some way. A final area of disagreement concerns the environment. Some crops have been genetically modified to kill the pests which attack them. Advocates of these modifications point out that this avoids the need for indiscriminate spraying of crops. However, this point of view is unjustifiable as &#xA0;<b>(5) it is quite possible that</b>&#xA0;GM crops will also kill harmless or beneficial insects indiscriminately. What is more, due to cross-pollination,&#xA0;<b>(6) it is highly unlikely that</b>&#xA0;modified genes will remain confined to the new crops.&#xA0;<b>(7) In all probability</b>, the genes which kill insects will eventually escape into the wild plant population, thereby causing an environmental disaster. In conclusion, while GM crops&#xA0;<b>(8) may well</b>&#xA0;help raise food production in a hungry world, they do so at great risk to human and environmental health. I believe that GM foods should not be prohibited, but that much tighter controls should be put in place for their development, testing and marketing to ensure that they are completely safe.</p>
+	
+</section>
+</body>
+</bento>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="false"/>
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Look at the ideas from the previous exercise again. Look at each of the solutions below and click on the problem it relates it.
+		
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/WB_AW_013.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">Legislation to limit working hours<list class="answerList"><li><a id="a1">Increased workloads and tighter deadlines</a></li><li><a id="a2">Rapid pace of technological change in the workplace</a></li><li><a id="a3">Lack of job security</a></li></list><br/></li>
+    <br/>
+    <li id="q2">Avoidance of unnecessary change<list class="answerList"><li><a id="a4">Increased workloads and tighter deadlines</a></li><li><a id="a5">Rapid pace of technological change in the workplace</a></li><li><a id="a6">Lack of job security</a></li></list><br/></li>
+    <br/>
+    <li id="q3">Provision of training and support for new technology<list class="answerList"><li><a id="a7">Increased workloads and tighter deadlines</a></li><li><a id="a8">Rapid pace of technological change in the workplace</a></li><li><a id="a9">Lack of job security</a></li></list><br/></li>
+    <br/>
+    <li id="q4">Greater commitment from employers<list class="answerList"><li><a id="a10">Increased workloads and tighter deadlines</a></li><li><a id="a11">Rapid pace of technological change in the workplace</a></li><li><a id="a12">Lack of job security</a></li></list><br/></li>
+    <br/>
+    <li id="q5">Realistic workloads and deadlines agreed on by management and employees<list class="answerList"><li><a id="a13">Increased workloads and tighter deadlines</a></li><li><a id="a14">Rapid pace of technological change in the workplace</a></li><li><a id="a15">Lack of job security</a></li></list><br/></li>
+    <br/>
+    <li id="q6">More legal protection to ensure job security<list class="answerList"><li><a id="a16">Increased workloads and tighter deadlines</a></li><li><a id="a17">Rapid pace of technological change in the workplace</a></li><li><a id="a18">Lack of job security</a></li></list><br/></li>
+  </ol>
+</section>
+
+</body>
+</bento>

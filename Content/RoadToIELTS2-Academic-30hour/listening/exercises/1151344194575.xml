@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc timed="210"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="A" correct="true"/>
+      <answer value="a" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="C" correct="true"/>
+      <answer value="c" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="A" correct="true"/>
+      <answer value="a" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="B" correct="true"/>
+      <answer value="b" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="B" correct="true"/>
+      <answer value="b" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-5. Listen to the recording, which will play automatically, and follow the instructions. Write the appropriate letters A-C against Questions 1-5.
+		
+</header>
+	
+<section id="body">
+  <audio controls="compact" class="leftFloat" src="../media/SS_LN2a.mp3" mode="4" id="1001"/>
+  <img class="rightFloat" src="../media/SS_LN_004.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">a rise in life expectancy	<input id="q1"/></li>
+    <li id="2">a growing percentage of old people in the population	<input id="q2"/></li>
+    <li id="3">a longer working life	<input id="q3"/></li>
+    <li id="4">greater dependence on private pension funds	<input id="q4"/></li>
+    <li id="5">family responsibility for the care of the elderly	<input id="q5"/></li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">1. The lecturer describes a rise in life expectancy as exciting and a wonderful opportunity. These are very positive adjectives.</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">2. The lecturer says she sees problems for societies with ageing populations and talks about drawbacks. Drawbacks are disadvantages or problems and so negative.</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">3. The lecturer says she strongly supports people being able to retire when it suits them, therefore working for longer.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">4. The lecturer says that people will have to organise their own pensions but she doesn't say what she thinks about this.</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">5. The lecturer says it's unlikely that old people will be cared for at home but she doesn't express an opinion on this.</font>
+  </p>
+</section>
+
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell from the question and the points given that you will hear someone expressing their opinion on the consequences of an ageing population.</font>&nbsp;Questions 1 - 5You will be unable to predict what the speaker's opinions are but you need to check you know what the A, B and C represent and that you know what to listen out for. Think about other ways of expressing the points as well. For example, 'a rise in life expectancy' could be expressed as 'increase in life expectancy'.</p>
+</section>
+</body>
+</bento>

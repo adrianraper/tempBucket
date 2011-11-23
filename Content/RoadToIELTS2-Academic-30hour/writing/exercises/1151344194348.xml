@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false"/>
+		<exercise hiddentargets="true" proofreading="true"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/SS_WT1.jpg" mode="16" id="1004"  />
+		
+		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 15. Click on them.
+		
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/SS_AW_009as.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/SS_AW_009a.jpg" mode="16" id="1004"/>
+  <img class="leftFloat" src="../media/SS_AW_009bs.jpg" mode="1" id="1005"/>
+  <img class="leftFloat" src="../media/SS_AW_009b.jpg" mode="16" id="1006"/>
+  <p align="left">The bar chart compares the size of the active membership of different religious faiths in the UK and shows <g id="t1">increases</g> in membership numbers between 1970 and 2000. The pie chart gives an indication of how often adults in Britain participated in religious services <g id="t2">at</g> 1999.</p>
+  <p align="left">A first glance at the bar chart shows that the Christian faith <g id="t3">has had</g> by far the largest membership throughout the thirty years, but also that this membership declined <g id="t4">sharp</g> over the period. From 9.5 <g id="t5">thousand</g> in 1970, membership had fallen to two-thirds of that figure by 2000. Similarly, active membership of the Jewish faith fell by approximately a <g id="t6">third</g> during this time.</p>
+  <p align="left">Other faiths, however, <g id="t7">rose</g> their membership during the three decades. The most <g id="t8">dramatical</g> rise was in the number of active Muslims. Membership in 2000, <g id="t9">who</g> rose <g id="t10">by</g> around two-thirds of a million, was five times as <g id="t11">higher</g> as it had been in 1970. The number of active Buddhists also rose fivefold during this period. Sikhs and other faiths quadrupled their active membership, while the number of active Hindus <g id="t12">halved</g>.</p>
+  <p align="left">The pie chart shows the active membership of all faiths as <g id="t13">an amount</g> of the adult population of Britain. Only just <g id="t14">under</g> 1 in 10 said that they attended services on a weekly basis. Nearly half said they practically never attended religious services.</p>
+  <p align="left">However, despite the low numbers of active membership, only a tenth of those questioned reported that they had no religion. This suggests that although the <g id="t15">minority</g> of adults in Britain do not attend services, they do still hold some kind of religious belief.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">changes: Not all changes over the period were increases.</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">in</p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">had: The chart does not show present situation, so present perfect is not appropriate here.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">sharply: The adverb is needed here, to describe the verb 'decline'.</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">million</p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">quarter: From 120,000 to 95,000.</font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">increased: Rise is an intransitive verb. It does not take an object.</font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">dramatic: The correct form of the adjective is 'dramatic'.</font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">which: The pronoun refers to the word 'membership', not to individuals.</font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">to: From 130,000 to 665,000.</font>
+  </p>
+</section>
+
+<section id="fb11">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">high: The structure is 'as + adjective + as'. The comparative form is not used.</font>
+  </p>
+</section>
+
+<section id="fb12">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">doubled: From 80,000 to 165,000.</font>
+  </p>
+</section>
+
+<section id="fb13">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">a proportion: In this case, the proportion is a percentage.</font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">over: 12% is just over 1 in 10.</font>
+  </p>
+</section>
+
+<section id="fb15">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">majority: 48% say that they practically never attend services, and 10% say they have no religion.</font>
+  </p>
+</section>
+
+<section id="fb16">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">under: 12% is just over 1 in 10.</font>
+  </p>
+</section>
+
+</body>
+</bento>

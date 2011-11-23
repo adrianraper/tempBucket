@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking overwriteanswers="true"/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise dragtimes="1"/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a30" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a31" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a32" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a33" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a34" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a35" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a36" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a36" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a37" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a37" correct="true"/>
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="true"/>
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a38" correct="true"/>
+      <answer source="a39" correct="true"/>
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="true"/>
+      <answer source="a43" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q11" block="b11">
+      <answer source="a39" correct="true"/>
+      <answer source="a38" correct="true"/>
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="true"/>
+      <answer source="a43" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q12" block="b12">
+      <answer source="a40" correct="true"/>
+      <answer source="a38" correct="true"/>
+      <answer source="a39" correct="true"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="true"/>
+      <answer source="a43" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q13" block="b13">
+      <answer source="a41" correct="true"/>
+      <answer source="a38" correct="true"/>
+      <answer source="a39" correct="true"/>
+      <answer source="a40" correct="true"/>
+      <answer source="a42" correct="true"/>
+      <answer source="a43" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q14" block="b14">
+      <answer source="a42" correct="true"/>
+      <answer source="a38" correct="true"/>
+      <answer source="a39" correct="true"/>
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a43" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q15" block="b15">
+      <answer source="a43" correct="true"/>
+      <answer source="a38" correct="true"/>
+      <answer source="a39" correct="true"/>
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q16" block="b16">
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q17" block="b17">
+      <answer source="a45" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q18" block="b18">
+      <answer source="a46" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q19" block="b19">
+      <answer source="a47" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q20" block="b20">
+      <answer source="a48" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q21" block="b21">
+      <answer source="a49" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a50" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q22" block="b22">
+      <answer source="a50" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a51" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q23" block="b23">
+      <answer source="a51" correct="true"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="true"/>
+      <answer source="a48" correct="true"/>
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q24" block="b24">
+      <answer source="a52" correct="true"/>
+      <answer source="a53" correct="true"/>
+      <answer source="a54" correct="true"/>
+      <answer source="a55" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q25" block="b25">
+      <answer source="a53" correct="true"/>
+      <answer source="a52" correct="true"/>
+      <answer source="a54" correct="true"/>
+      <answer source="a55" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q26" block="b26">
+      <answer source="a54" correct="true"/>
+      <answer source="a52" correct="true"/>
+      <answer source="a53" correct="true"/>
+      <answer source="a55" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q27" block="b27">
+      <answer source="a55" correct="true"/>
+      <answer source="a52" correct="true"/>
+      <answer source="a53" correct="true"/>
+      <answer source="a54" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q28" block="b28">
+      <answer source="a56" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Linking words and phrases can be used for a variety of purposes. Drag each expression below into the correct group according to how it is used. One example has been done for you in each category.
+</header>
+	
+<section id="noscroll">
+  <span id="a44" draggable="true">despite</span>
+  <span id="a36" draggable="true">thirdly</span>
+  <span id="a43" draggable="true">therefore</span>
+  <span id="a38" draggable="true">as a result of this</span>
+  <span id="a46" draggable="true">however</span>
+  <span id="a31" draggable="true">furthermore</span>
+  <span id="a47" draggable="true">in contrast</span>
+  <span id="a32" draggable="true">in addition</span>
+  <span id="a40" draggable="true">for this reason</span>
+  <span id="a53" draggable="true">including</span>
+  <span id="a30" draggable="true">firstly</span>
+  <span id="a50" draggable="true">whereas</span>
+  <span id="a29" draggable="true">finally</span>
+  <span id="a41" draggable="true">in consequence</span>
+  <span id="a39" draggable="true">consequently</span>
+  <span id="a51" draggable="true">while</span>
+  <span id="a54" draggable="true">like</span>
+  <span id="a37" draggable="true">what is more</span>
+  <span id="a49" draggable="true">on the other hand</span>
+  <span id="a52" draggable="true">for instance</span>
+  <span id="a35" draggable="true">secondly</span>
+  <span id="a42" draggable="true">so</span>
+  <span id="a48" draggable="true">in spite of</span>
+  <span id="a45" draggable="true">even though</span>
+  <span id="a34" draggable="true">moreover</span>
+  <span id="a56" draggable="true">to sum up</span>
+  <span id="a55" draggable="true">such as</span>
+  <span id="a33" draggable="true">lastly</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/LE_AW_013.jpg" mode="1" id="1001"/>
+  <p align="left"><b>Listing Points</b>first of all, <input id="q1" type="droptarget"/>, <input id="q2" type="droptarget"/>, <input id="q3" type="droptarget"/>,&#xA0;<input id="q4" type="droptarget"/>, <input id="q5" type="droptarget"/>, <input id="q6" type="droptarget"/>,&#xA0;<input id="q7" type="droptarget"/>,&#xA0;<input id="q8" type="droptarget"/>, <input id="q9" type="droptarget"/></p>
+  <p align="left"><b>Expressing Result</b>as a result, <input id="q10" type="droptarget"/>, <input id="q11" type="droptarget"/>, <input id="q12" type="droptarget"/>, <input id="q13" type="droptarget"/>, <input id="q14" type="droptarget"/>, <input id="q15" type="droptarget"/></p>
+  <p align="left"><b>Expressing Contrast</b>although, <input id="q16" type="droptarget"/>, <input id="q17" type="droptarget"/>, <input id="q18" type="droptarget"/>, <input id="q19" type="droptarget"/>, <input id="q20" type="droptarget"/>, <input id="q21" type="droptarget"/>, <input id="q22" type="droptarget"/>, <input id="q23" type="droptarget"/></p>
+  <p align="left"><b>Giving Examples</b>for example, <input id="q24" type="droptarget"/>, <input id="q25" type="droptarget"/>, <input id="q26" type="droptarget"/>, <input id="q27" type="droptarget"/></p>
+  <p align="left"><b>Drawing Conclusions</b>in conclusion, <input id="q28" type="droptarget"/></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">It is important to use linking words and phrases in this type of composition so that the reader can follow the logical steps of your argument easily.</p>
+</section>
+
+</body>
+</bento>
