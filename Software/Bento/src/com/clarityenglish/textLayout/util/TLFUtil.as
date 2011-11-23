@@ -62,10 +62,10 @@ package com.clarityenglish.textLayout.util {
 				var atomBounds:Rectangle = textLine.getAtomBounds(position);
 				atomBounds.offset(textLine.x, textLine.y);
 				
-				atomBounds.x = Math.floor(atomBounds.x);
-				atomBounds.y = Math.floor(atomBounds.y);
-				atomBounds.width = Math.ceil(atomBounds.width);
-				atomBounds.height = Math.ceil(atomBounds.height);
+				atomBounds.x = Math.round(atomBounds.x);
+				atomBounds.y = Math.round(atomBounds.y);
+				atomBounds.width = Math.round(atomBounds.width);
+				atomBounds.height = Math.round(atomBounds.height);
 				
 				return atomBounds;
 			}

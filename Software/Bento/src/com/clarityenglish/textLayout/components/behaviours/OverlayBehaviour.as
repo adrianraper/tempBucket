@@ -65,7 +65,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 					if (!isNaN(bounds.width)) componentElement.getComponent().width = bounds.width;
 					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height;
 					componentElement.getComponent().x = bounds.x;
-					componentElement.getComponent().y = bounds.y;
+					componentElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
 					
 					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
 					componentElement.getComponent().visible = !componentElement.hideChrome;
