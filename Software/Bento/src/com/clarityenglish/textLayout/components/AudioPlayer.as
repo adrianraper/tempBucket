@@ -9,6 +9,7 @@ package com.clarityenglish.textLayout.components {
 	import flash.utils.Timer;
 	
 	import mx.core.UIComponent;
+	import mx.events.FlexEvent;
 	
 	import spark.components.mediaClasses.ScrubBar;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -46,6 +47,8 @@ package com.clarityenglish.textLayout.components {
 		
 		public var controls:String;
 		
+		public var autoplay:Boolean;
+		
 		/**
 		 * A timer for updating the scrub bar as the sound plays 
 		 */
@@ -77,8 +80,16 @@ package com.clarityenglish.textLayout.components {
 		private static var soundChannel:SoundChannel;
 		
 		public function AudioPlayer() {
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
 			scrubBarTimer = new Timer(500, 0);
 			scrubBarTimer.addEventListener(TimerEvent.TIMER, onScrubBarTimer);
+		}
+		
+		protected function onAddedToStage(event:Event):void {
+			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
+			if (autoplay) play();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -140,7 +151,6 @@ package com.clarityenglish.textLayout.components {
 				scrubBar.maximum = duration;
 			}
 		}
-		
 		
 		/**
 		 * When the sound has loaded we can get the actual duration 

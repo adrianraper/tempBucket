@@ -21,6 +21,8 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _controls:String;
 		
+		private var _autoplay:Boolean;
+		
 		public function AudioElement() {
 			super();
 		}
@@ -31,6 +33,11 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function set controls(value:String):void {
 			_controls = value;
+		}
+		
+		public function set autoplay(value:String):void {
+			// autoplay="autoplay" and autoplay="" are both 'on' values in HTML5 syntax so set autoplay if its anything but null
+			_autoplay = (value != null);
 		}
 		
 		protected override function get abstract():Boolean {
@@ -45,6 +52,7 @@ package com.clarityenglish.textLayout.elements {
 			component = new AudioPlayer();
 			(component as AudioPlayer).src = _src;
 			(component as AudioPlayer).controls = _controls;
+			(component as AudioPlayer).autoplay = _autoplay;
 			
 			component.addEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 		}

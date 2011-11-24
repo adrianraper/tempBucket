@@ -17,7 +17,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		
 		public function XHTMLExerciseMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
-			
 		}
 		
 		public function get view():IExerciseView {
