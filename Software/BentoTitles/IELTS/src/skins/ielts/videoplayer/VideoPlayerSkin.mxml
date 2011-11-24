@@ -20,7 +20,14 @@
 	  @playerversion AIR 1.5
 	  @productversion Flex 4
 -->
-<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabledStates="0.5" chromeColor.fullScreenStates="0xCCCCCC">
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+			 xmlns:s="library://ns.adobe.com/flex/spark"
+			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+			 alpha.disabledStates="0.5"
+			 chromeColor.fullScreenStates="0xCCCCCC"
+			 rollOver="onRollOver(event)"
+			 rollOut="onRollOut(event)">
+	
 	<!-- A chrome color of 0xCCCCCC in the fullScreenStates means we ignore the chromeColor property
 		 all together as 0xCCCCCC is essentially just a no-op color transform -->
 
@@ -34,14 +41,20 @@
 
 	<fx:Script fb:purpose="styling">
 		<![CDATA[
+			import caurina.transitions.Tweener;
 			/* Define the skin elements that should not be colorized. */
 			static private const exclusions:Array = ["videoDisplay", "playPauseButton", "scrubBar", "currentTimeDisplay", "timeDivider", "durationDisplay", "volumeBar", "fullScreenButton"];
+			
+			private var hideControlsTimer:Timer;
 			
 			/**
 			 * @private
 			 */
 			override protected function initializationComplete():void {
 				useChromeColor = true;
+				hideControlsTimer = new Timer(1500, 1);
+				hideControlsTimer.addEventListener(TimerEvent.TIMER, onTimer, false, 0, true);
+				
 				super.initializationComplete();
 			}
 			
@@ -61,6 +74,24 @@
 				
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
 			}
+			
+			protected function onRollOver(event:MouseEvent):void {
+				hideControlsTimer.stop();
+				
+				Tweener.removeTweens(controls);
+				Tweener.addTween(controls, { alpha: 1, time: 0.3 } );
+			}
+			
+			protected function onRollOut(event:MouseEvent):void {
+				hideControlsTimer.reset();
+				hideControlsTimer.start();
+			}
+			
+			protected function onTimer(event:TimerEvent):void {
+				Tweener.removeTweens(controls);
+				Tweener.addTween(controls, { alpha: 0, time: 0.6 } );
+			}
+			
 		]]>
 
 	</fx:Script>
@@ -137,7 +168,7 @@
 							top.fullScreenStates="0" />
 
 			<!-- video player controls -->
-			<s:Group left="0" right="0" height="37" bottom="0" bottom.fullScreenStates="150">
+			<s:Group id="controls" left="0" right="0" height="37" bottom="0" bottom.fullScreenStates="150">
 				
 				<!-- background for scrubbar + the currentTime/duration -->
 				<s:Rect radiusX="2" radiusY="2" left.normalStates="0" right.normalStates="0" top.normalStates="0" bottom.normalStates="0" x.fullScreenStates="{playerControls.x}" y.fullScreenStates="{playerControls.y}" width.fullScreenStates="{playerControls.width}" height.fullScreenStates="{playerControls.height}">

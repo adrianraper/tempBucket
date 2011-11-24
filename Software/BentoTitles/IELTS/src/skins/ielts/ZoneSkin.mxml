@@ -37,6 +37,11 @@
 			
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
 				adviceZoneVideoPlayer.source = hostComponent.href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url;
+				
+				// #63
+				callLater(function():void {
+					adviceZoneVideoPlayer.play();
+				});
 			}
 			
 		]]>
