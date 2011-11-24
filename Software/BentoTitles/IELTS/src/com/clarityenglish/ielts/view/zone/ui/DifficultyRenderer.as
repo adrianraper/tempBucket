@@ -26,12 +26,12 @@ package com.clarityenglish.ielts.view.zone.ui {
 		
 		private var _selectedColour:Number;
 		
-		public function set courseClass(value:String):void {
-			_selectedColour = getStyle(value + "Color");
-		}
+		public var courseClass:String;
 		
 		public override function set data(value:Object):void {
 			super.data = value;
+			
+			_selectedColour = getStyle(courseClass + "Color");
 			
 			chilli1.fillColour = chilli2.fillColour = chilli3.fillColour = 0x303030;
 			

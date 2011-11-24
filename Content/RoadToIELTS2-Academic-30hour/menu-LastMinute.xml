@@ -17,9 +17,9 @@
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
 			</unit>
 			<unit id="1287130420000" class="exam-practice" caption="Try the practice papers.">
-				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing practice paper part 1" difficulty="3" />
-				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Writing practice paper part 2" difficulty="4" />
-				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice paper part 3" difficulty="5" />
+				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing practice paper part 1" difficulty="1" />
+				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Writing practice paper part 2" difficulty="2" />
+				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice paper part 3" difficulty="3" />
 			</unit>
 			<unit id="1287130430000" class="advice-zone">
 				<exercise id="1287130430001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the writing test." thumbnail="writing/thumbnails/Writing_statchart.jpg" />

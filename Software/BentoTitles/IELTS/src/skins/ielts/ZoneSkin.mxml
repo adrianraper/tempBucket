@@ -218,7 +218,12 @@
 											
 										]]>
 									</fx:Script>
+									<s:layout>
+										<s:VerticalLayout />
+									</s:layout>
+									
 									<s:Button id="viewButton" click="onViewButtonClick(event)" />
+									<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />
 								</s:DataRenderer>
 							</fx:Component>
 						</s:itemRenderer>
