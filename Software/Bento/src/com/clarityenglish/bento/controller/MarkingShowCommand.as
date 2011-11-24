@@ -20,7 +20,7 @@ package com.clarityenglish.bento.controller {
 	
 	import spark.components.TitleWindow;
 	
-	public class ShowMarkingCommand extends SimpleCommand {
+	public class MarkingShowCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -57,12 +57,13 @@ package com.clarityenglish.bento.controller {
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
 			// Trigger a notification to write the score out
-			thisExerciseMark.duration = Math.round(exerciseProxy.duration/1000);
+			thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
 			thisExerciseMark.setPercent();
 			
 			// TODO. And where can I get the exercise UID
 			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
 			
+			sendNotification(BBNotifications.MARKING_SHOWN, exercise);
 		}
 		
 		/**

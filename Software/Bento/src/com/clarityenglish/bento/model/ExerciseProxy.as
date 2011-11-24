@@ -50,14 +50,14 @@ package com.clarityenglish.bento.model {
 		private var selectedAnswerMap:Dictionary;
 		
 		/**
-		 * This defines whether or not we are using delayed marking 
+		 * A flag to track whether or not the exercise has been marked 
 		 */
-		private var delayedMarking:Boolean = false;
+		private var _exerciseMarked:Boolean = false;
 		
 		/**
 		 * This saves how long since the exercise was started
 		 */
-		private var _startTime:int = 0;
+		private var _startTime:Number = 0;
 		
 		public function ExerciseProxy(exercise:Exercise) {
 			// Exercise proxies are indexed by the exercise's uid property
@@ -72,8 +72,22 @@ package com.clarityenglish.bento.model {
 		public function startExercise():void {
 			_startTime = new Date().getTime();
 		}
+		
 		public function get duration():int {
 			return new Date().getTime() - _startTime;
+		}
+		
+		public function get exerciseMarked():Boolean {
+			return _exerciseMarked;
+		}
+		
+		/**
+		 * Determine if this is a delayed marking exercise from the settings
+		 * 
+		 * @return 
+		 */
+		private function get delayedMarking():Boolean {
+			return exercise.model.getSettingParam("delayedMarking");
 		}
 		
 		private function checkExercise():void {
@@ -128,7 +142,7 @@ package com.clarityenglish.bento.model {
 			
 			// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
 			if (!delayedMarking)
-				markQuestion(exercise, question, answer, key);
+				markQuestion(question, answer, key);
 			
 			// Get the answer map for this question
 			var answerMap:AnswerMap = getSelectedAnswerMap(question);
@@ -156,7 +170,7 @@ package com.clarityenglish.bento.model {
 			}
 		}
 		
-		private function markQuestion(exercise:Exercise, question:Question, answer:Answer, key:Object = null):void {
+		private function markQuestion(question:Question, answer:Answer, key:Object = null):void {
 			checkExercise();
 			
 			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
@@ -241,7 +255,12 @@ package com.clarityenglish.bento.model {
 		public function getExerciseMark():ExerciseMark {
 			checkExercise();
 			
-			// TODO: This assumes instant marking was on for the moment
+			// Set the exercise as marked
+			_exerciseMarked = true;
+			
+			// If we are using delayed marking then mark all selected questions now
+			if (delayedMarking)
+				markSelectedQuestions();
 			
 			var exerciseMark:ExerciseMark = new ExerciseMark();
 			
@@ -256,7 +275,7 @@ package com.clarityenglish.bento.model {
 				if (answerMap) {
 					for each (var key:Object in answerMap.keys) {
 						var answer:Answer = answerMap.get(key);
-						
+						 
 						switch (answer.markingClass) {
 							case Answer.CORRECT:
 								correctCount++;
@@ -282,6 +301,23 @@ package com.clarityenglish.bento.model {
 			}
 			
 			return exerciseMark;
+		}
+		
+		/**
+		 * Mark the questions that are currently selected.  Used in delayed marking exercises.
+		 */
+		private function markSelectedQuestions():void {
+			for (var questionObj:Object in selectedAnswerMap) {
+				var question:Question = questionObj as Question;
+				var answerMap:AnswerMap = selectedAnswerMap[question];
+				
+				for each (var key:Object in answerMap.keys) {
+					var answer:Answer = answerMap.get(key);
+					
+					markQuestion(question, answer, key);
+					sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question } );
+				}
+			}
 		}
 		
 	}

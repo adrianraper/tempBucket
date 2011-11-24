@@ -32,9 +32,11 @@
 		public static const EXERCISE_STOP:String = "exercise_stop";
 		public static const EXERCISE_STOPPED:String = "exercise_stopped";
 		
+		public static const MARKING_SHOW:String = "marking_show";
+		public static const MARKING_SHOWN:String = "marking_shown";
+		
 		public static const SHOW_ANSWERS:String = "show_answers";
 		public static const SHOW_FEEDBACK:String = "show_feedback";
-		public static const SHOW_MARKING:String = "show_marking";
 		
 		// The specific title will want to implement actions on these two notifications
 		public static const EXERCISE_SHOW:String = "exercise_show";

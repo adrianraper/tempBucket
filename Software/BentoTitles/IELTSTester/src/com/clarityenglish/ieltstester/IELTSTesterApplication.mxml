@@ -78,7 +78,7 @@
 				// Get the current exercise
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				
-				facade.sendNotification(BBNotifications.SHOW_MARKING, { exercise: bentoProxy.currentExercise } );
+				facade.sendNotification(BBNotifications.MARKING_SHOW, { exercise: bentoProxy.currentExercise } );
 			}
 			
 			public function showErrorMessage(error:BentoError):void {

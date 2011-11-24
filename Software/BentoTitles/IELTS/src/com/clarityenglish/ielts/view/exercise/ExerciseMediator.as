@@ -1,12 +1,10 @@
 ﻿package com.clarityenglish.ielts.view.exercise {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.ielts.IELTSNotifications;
-	import com.clarityenglish.textLayout.vo.XHTML;
-	
-	import flash.utils.setInterval;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -22,6 +20,10 @@
 		
 		private function get view():ExerciseView {
 			return viewComponent as ExerciseView;
+		}
+		
+		private function getExerciseProxy(exercise:Exercise):ExerciseProxy {
+			return facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy; 
 		}
 		
 		override public function onRegister():void {
@@ -43,6 +45,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.EXERCISE_STARTED,
+				BBNotifications.MARKING_SHOWN,
 			]);
 		}
 		
@@ -62,13 +65,18 @@
 					// Set the background colours for this course
 					view.backgroundColorTop = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "Color");
 					view.backgroundColorBottom = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "ColorDark");
+					
+					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
+					break;
+				case BBNotifications.MARKING_SHOWN:
+					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
 					break;
 			}
 		}
 		
 		private function onShowMarking():void {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			sendNotification(BBNotifications.SHOW_MARKING, { exercise: bentoProxy.currentExercise } );
+			sendNotification(BBNotifications.MARKING_SHOW, { exercise: bentoProxy.currentExercise } );
 		}
 		
 		private function onNextExercise():void {

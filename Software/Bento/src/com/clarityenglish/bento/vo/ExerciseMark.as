@@ -30,7 +30,7 @@ package com.clarityenglish.bento.vo {
 		 */
 		public function setPercent():void {
 			var totalQ:uint =  correctCount + incorrectCount + missedCount;
-			if (totalQ<=0) {
+			if (totalQ <= 0) {
 				// Historically we have always used -1 to indicate an unmarked exercise
 				percent = -1;
 			} else {

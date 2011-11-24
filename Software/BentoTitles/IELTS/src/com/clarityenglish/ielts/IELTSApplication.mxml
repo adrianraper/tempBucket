@@ -30,6 +30,9 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import caurina.transitions.Tweener;
+			import caurina.transitions.properties.DisplayShortcuts;
+			
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
 			import com.clarityenglish.common.vo.config.BentoError;
@@ -46,6 +49,7 @@
 			}
 			
 			protected function creationComplete(event:FlexEvent):void {
+				DisplayShortcuts.init();
 				
 				// Initialise the browser manager to help with capturing events that might take us away from the application
 				// and also let us parse the URL

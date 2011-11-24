@@ -38,16 +38,26 @@
 	</complexType>
 
 	<complexType name="modelType">
-		<sequence maxOccurs="1" minOccurs="0">
+		<choice maxOccurs="unbounded" minOccurs="0">
 			<element name="view" type="tns:viewType" maxOccurs="1"
 				minOccurs="0">
 			</element>
-			<element name="questions" type="tns:questionsType" maxOccurs="1"
-				minOccurs="0">
+			<element name="questions" type="tns:questionsType"
+				maxOccurs="1" minOccurs="0">
 			</element>
 			<element name="menu" type="tns:menuType" maxOccurs="1"
-				minOccurs="0"></element>
-		</sequence>
+				minOccurs="0">
+			</element>
+			<element name="settings" maxOccurs="1" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="param" type="tns:paramType"
+							maxOccurs="unbounded" minOccurs="0">
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
 		<attribute name="id">
 			<simpleType>
 				<restriction base="string">
@@ -126,12 +136,7 @@
 		<sequence>
 			<element name="name" type="string" maxOccurs="1" minOccurs="1">
 			</element>
-			<element name="param">
-				<complexType>
-					<attribute name="name" type="string"></attribute>
-					<attribute name="value" type="string"></attribute>
-				</complexType>
-			</element>
+			<element name="param" type="tns:paramType"></element>
 		</sequence>
 	</complexType>
 
@@ -193,5 +198,10 @@
 	<complexType name="groupType">
 		<attribute name="id" type="string" use="required"></attribute>
         <attribute name="caption" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="paramType">
+        <attribute name="name" type="string"></attribute>
+        <attribute name="value" type="string"></attribute>
 	</complexType>
 </schema>

@@ -29,8 +29,17 @@ package com.clarityenglish.bento.vo.content.model {
 			return xml.view.name.toString();
 		}
 		
-		public function getViewParam(paramName:String):String {
-			return xml.view.param.(@name == paramName).@value.toString();
+		public function getViewParam(paramName:String):* {
+			// TODO: These params need to be similar to getSettingParam
+			return xml.view.param.(@name == paramName).@value;
+		}
+		
+		public function getSettingParam(paramName:String):* {
+			var value:* = (xml.hasOwnProperty("settings") && xml.settings.param.(@name == paramName).length() > 0) ? xml.settings.param.(@name == paramName).@value : null;
+			
+			if (value == "true") return true;
+			if (value == "false") return false;
+			return value;
 		}
 		
 		/**
