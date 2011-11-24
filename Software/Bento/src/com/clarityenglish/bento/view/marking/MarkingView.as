@@ -76,6 +76,9 @@ package com.clarityenglish.bento.view.marking {
 		
 		protected function onMoveForwardButton(event:MouseEvent):void {
 			dispatchEvent(new MarkingEvent(MarkingEvent.MOVE_FORWARD));
+			
+			// Send a close event which will shut the popup (if the view is running in a popup)
+			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
 	}

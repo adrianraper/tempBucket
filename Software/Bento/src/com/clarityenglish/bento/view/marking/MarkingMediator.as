@@ -61,7 +61,8 @@
 		}
 		
 		protected function onMoveForward(event:Event):void {
-			trace("move forward");
+			log.debug("The user clicked on next exercise");
+			sendNotification(BBNotifications.EXERCISE_SHOW_NEXT);
 		}
 		
 	}
