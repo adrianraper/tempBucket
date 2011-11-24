@@ -81,6 +81,11 @@ package com.clarityenglish.ielts.view.zone {
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
 		
+		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
+		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
+		[Bindable]
+		public static var horribleHackCourseClass:String;
+		
 		/**
 		 * This can be called from outside the view to make the view display a different course
 		 * 
@@ -94,11 +99,14 @@ package com.clarityenglish.ielts.view.zone {
 			invalidateSkinState();
 			
 			dispatchEvent(new Event("courseChanged"));
+			
+			// This is a horrible hack
+			horribleHackCourseClass = courseClass;
 		}
 		
 		[Bindable(event="courseChanged")]
 		public function get courseClass():String {
-			return _course.@["class"].toString();
+			return (_course) ? _course.@["class"].toString() : null;
 		}
 		
 		[Bindable(event="courseChanged")]

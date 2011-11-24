@@ -25,7 +25,7 @@
                    xmlns:s="library://ns.adobe.com/flex/spark" 
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="30" 
-                   alpha.disabled="0.5">
+                   alpha.disabled="0.5" xmlns:zone="skins.ielts.zone.*">
 
     <!-- host component -->
     <fx:Metadata>
@@ -39,6 +39,7 @@
     
     <fx:Script>
 		<![CDATA[
+			import com.clarityenglish.ielts.view.zone.ZoneView;
 			
 		]]>
     </fx:Script>
@@ -67,7 +68,7 @@
 			<s:HorizontalLayout verticalAlign="middle" />
 		</s:layout>
 		
-		<s:Label id="labelDisplay" maxDisplayedLines="1" fontWeight="bold" color.up="#303030" color.selectedStates="#0000FF" />
+		<s:Label id="labelDisplay" maxDisplayedLines="1" fontWeight="bold" color.up="#303030" color.selectedStates="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" />
 		
 		<s:Line width="100%">
 			<s:stroke>
@@ -75,6 +76,7 @@
 			</s:stroke>
 		</s:Line>
 		
-		<s:SWFLoader source.unselectedStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ShowIcon')" source.selectedStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='HideIcon')" />
+		<zone:HideIcon courseColor="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" courseColorDark="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" includeIn="selectedStates" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ShowIcon')" includeIn="unselectedStates" />
 	</s:Group>
 </s:SparkButtonSkin>
