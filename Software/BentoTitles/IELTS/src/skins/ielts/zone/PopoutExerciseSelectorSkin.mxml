@@ -24,8 +24,6 @@
 		]]>
 	</fx:Script>
 	
-
-
 	<!-- drop shadow -->
 	<s:Rect left="0" top="0" right="0" bottom="0" >
 		<s:filters>
@@ -96,7 +94,7 @@
 			</s:List>
 		</s:HGroup>
 		
-		<ui:DifficultyRenderer id="difficultyRenderer" />		
+		<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
 	</s:VGroup>
 	
 </s:Skin>

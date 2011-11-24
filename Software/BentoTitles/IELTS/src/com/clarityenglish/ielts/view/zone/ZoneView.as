@@ -158,12 +158,8 @@ package com.clarityenglish.ielts.view.zone {
 						// Build up a list of exercises we can show (includes disabled ones)
 						var exercises:XMLList = new XMLList();
 						for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
-							if (Exercise.showExerciseInMenu(exerciseNode)) {
-								//trace("show " + exerciseNode.@caption + " in menu");
+							if (Exercise.showExerciseInMenu(exerciseNode))
 								exercises += exerciseNode;
-							//} else {
-								//trace("block " + exerciseNode.@caption + " from menu");
-							}
 						
 						popoutExerciseSelector.exercises = exercises;
 					} );

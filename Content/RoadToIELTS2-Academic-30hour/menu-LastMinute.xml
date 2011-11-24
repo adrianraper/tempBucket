@@ -25,7 +25,7 @@
 				<exercise id="1287130430001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the writing test." thumbnail="writing/thumbnails/Writing_statchart.jpg" />
 			</unit>
 			<unit id="1287130440000" class="practice-zone">
-				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3">
+				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="2">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml" thumbnail="writing/thumbnails/Writing_statchart.jpg" enabledFlag="3">
@@ -279,16 +279,16 @@
 				<exercise id="1287130130001" href="listening/media/set1_listening1.flv" caption="Watch the teacher giving advice on how to do well in the reading test." />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
-				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledFlag="3">
+				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledFlag="3" difficulty="0">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/Reading_arp2.jpg" enabledFlag="3">
+				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/Reading_arp2.jpg" enabledFlag="3" difficulty="1">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/Reading_match_infopara.jpg" enabledFlag="3">
+				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/Reading_match_infopara.jpg" enabledFlag="3" difficulty="2">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml" thumbnail="reading/thumbnails/Reading_sencomp.jpg" enabledFlag="3">
+				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml" thumbnail="reading/thumbnails/Reading_sencomp.jpg" enabledFlag="3" difficulty="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml" thumbnail="reading/thumbnails/Reading_untangling.jpg" enabledFlag="3">

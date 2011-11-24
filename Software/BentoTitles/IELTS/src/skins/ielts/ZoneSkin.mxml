@@ -76,7 +76,7 @@
 		</s:Group>
 		
 		<!-- The popout exercise selector -->
-		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="270" exerciseSelected="onPopoutExerciseSelected(event)" />
+		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="270" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
 		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="5" bottom="40">

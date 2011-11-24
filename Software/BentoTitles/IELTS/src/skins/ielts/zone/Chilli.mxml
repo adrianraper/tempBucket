@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public function set fillColour(colour:Number):void {
+				solidColor.color = colour;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Path winding="nonZero" data="M0.978027 1.60059C0.978027 1.60059 -0.42627 1.04395 0.130371 2.07813 0.130371 2.07813 3.50537 8.57813 9.56006 7.44141 9.56006 7.44141 17.2788 5.45117 17.0405 3.30273 17.0405 3.30273 16.9604 2.50781 17.6772 2.18945 18.3921 1.87109 20.2202
+			2.35156 20.3804 0.203125 20.3804 0.203125 20.3804 -0.195313 19.9819 0.123047 19.9819 0.123047 18.8394 1.76563 17.5972 1.1543L16.2437 0.995117C16.2437 0.995117 15.396 0.211914 13.3804 0.756836 9.88037 1.70313 9.25537 5.32813 0.978027 1.60059Z" >
+		<s:fill>
+			<s:SolidColor id="solidColor" color="#303030" />
+		</s:fill>
+	</s:Path>
+	
+</s:Group>

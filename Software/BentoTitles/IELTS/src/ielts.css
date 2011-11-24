@@ -47,6 +47,19 @@ global {
 	fontSize: 12;
 	fontWeight: normal;
 	color: #303030;
+	
+	/* Course colours are used all over the place, so set them globally */
+	writingColor: #7DAB36;
+	writingColorDark: #364A17;
+	
+	readingColor: #00A2C8;
+	readingColorDark: #005063;
+	
+	speakingColor: #A93087;
+	speakingColorDark: #4F173F;
+	
+	listeningColor: #FF6600;
+	listeningColorDark: #7A3100;
 }
 
 /* Login view styles */
@@ -152,18 +165,6 @@ zoneui|DifficultyRenderer {
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
-	
-	writingBackgroundColorTop: #7DAB36;
-	writingBackgroundColorBottom: #364A17;
-	
-	readingBackgroundColorTop: #00A2C8;
-	readingBackgroundColorBottom: #005063;
-	
-	speakingBackgroundColorTop: #A93087;
-	speakingBackgroundColorBottom: #4F173F;
-	
-	listeningBackgroundColorTop: #FF6600;
-	listeningBackgroundColorBottom: #7A3100;
 }
 
 components|AudioPlayer {

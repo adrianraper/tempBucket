@@ -60,8 +60,8 @@
 					view.exerciseTitle = breadcrumb.join(" > ");
 					
 					// Set the background colours for this course
-					view.backgroundColorTop = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorTop");
-					view.backgroundColorBottom = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "BackgroundColorBottom");
+					view.backgroundColorTop = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "Color");
+					view.backgroundColorBottom = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "ColorDark");
 					break;
 			}
 		}

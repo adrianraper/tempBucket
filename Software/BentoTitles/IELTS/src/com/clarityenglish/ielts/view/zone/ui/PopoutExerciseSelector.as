@@ -38,6 +38,9 @@ package com.clarityenglish.ielts.view.zone.ui {
 		[Bindable]
 		public var exercises:XMLList;
 		
+		[Bindable]
+		public var courseClass:String;
+		
 		public function PopoutExerciseSelector() {
 			super();
 		}
