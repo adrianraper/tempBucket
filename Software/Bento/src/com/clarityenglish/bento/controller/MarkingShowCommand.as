@@ -60,7 +60,7 @@ package com.clarityenglish.bento.controller {
 			thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
 			thisExerciseMark.setPercent();
 			
-			// TODO. And where can I get the exercise UID
+			// TODO. And where can I get the exercise UID?
 			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
 			
 			sendNotification(BBNotifications.MARKING_SHOWN, exercise);

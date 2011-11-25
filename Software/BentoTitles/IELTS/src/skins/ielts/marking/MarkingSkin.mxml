@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		minWidth="400" minHeight="300" width="50%" height="50%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.marking.MarkingView")]
 	</fx:Metadata>
-	
+
+	<fx:Script>
+		<![CDATA[
+			//import com.clarityenglish.bento.vo.ExerciseMark;
+			//private function getCorrectPercent(exerciseMark:ExerciseMark):uint {
+			//	return Math.round(exerciseMark.correctCount * 100 / exerciseMark.totalQuestions);
+			//}
+		]]>
+	</fx:Script>
+
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
+	<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.percent}% in this exercise." />
+	<s:Group id="correctGroup" left="10%" width="90%" height="40" >			
+		<s:Rect percentWidth="{hostComponent.exerciseMark.percent}" height="100%">
+			<s:fill>
+				<s:SolidColor color="#F5D767" />
+			</s:fill>
+		</s:Rect>
+		<s:Label left="10" top="10" text="{hostComponent.exerciseMark.correctCount} Correct" />
+	</s:Group>
+	<s:Spacer height="10" />
+	<s:Group id="incorrectGroup" left="10%" width="90%" height="40" >			
+		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" height="100%">
+			<s:fill>
+				<s:SolidColor color="#FF0767" />
+			</s:fill>
+		</s:Rect>
+		<s:Label left="10" top="10" text="{hostComponent.exerciseMark.incorrectCount} Wrong" />
+	</s:Group>
+	<s:Label id="missedCount" text="{hostComponent.exerciseMark.missedCount} Missed" />
 	
-	<s:Label text="This is your result..." />
-	<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" />
-	<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" />
-	<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" />
-	
-	<s:Button id="tryAgainButton" label="Try again" />
-	<s:Button id="seeAnswersButton" label="See answers" />
-	<s:Button id="moveForwardButton" label="Move forward" />
+	<s:HGroup width="100%">
+		<s:Spacer width="50%" />
+		<s:Button id="tryAgainButton" label="Start again" />
+		<s:Spacer width="50%" />
+		<s:Button id="seeAnswersButton" label="See answers" />
+		<s:Spacer width="50%" />
+		<s:Button id="moveForwardButton" label="Forward" />		
+		<s:Spacer width="50%" />
+	</s:HGroup>
 	
 </s:Skin>

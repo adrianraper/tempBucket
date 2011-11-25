@@ -10,6 +10,7 @@ package com.clarityenglish.bento.vo {
 		public var missedCount:int = 0;
 		
 		public var percent:int = 0;
+		public var incorrectPercent:int = 0;
 		
 		public var coverage:int = 0;
 		
@@ -29,15 +30,24 @@ package com.clarityenglish.bento.vo {
 		 * 
 		 */
 		public function setPercent():void {
-			var totalQ:uint =  correctCount + incorrectCount + missedCount;
-			if (totalQ <= 0) {
+			if (totalQuestions <= 0) {
 				// Historically we have always used -1 to indicate an unmarked exercise
 				percent = -1;
 			} else {
-				percent = Math.round(100 * correctCount / totalQ);
+				percent = Math.round(100 * correctCount / totalQuestions);
 			}
 		}
-		
+		public function setIncorrectPercent():void {
+			if (totalQuestions <= 0) {
+				// Historically we have always used -1 to indicate an unmarked exercise
+				incorrectPercent = -1;
+			} else {
+				incorrectPercent = Math.round(100 * incorrectCount / totalQuestions);
+			}
+		}
+		public function get totalQuestions():uint {
+			return correctCount + incorrectCount + missedCount;			
+		}
 	}
 	
 }

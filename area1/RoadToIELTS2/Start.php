@@ -170,14 +170,15 @@
 		};
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', 800, 600, 1500, null, true, true);
+		swffit.fit('bento', 800, 600, 1200, null, true, true);
 	</script>
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
 
 </head>
 <body onload="onLoad()">
-	<div id="altContent">
+
+	<div align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

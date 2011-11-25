@@ -519,7 +519,7 @@ EOD;
 		// Query the database
 		// Kind of silly, but bento is usually keyed on prefix and getAccounts always works on rootID
 		// so add an extra call if you don't currently know the rootID
-		if (!($rootID) || is_numeric($rootID)) {
+		if (is_numeric($rootID)) {
 			$rootID = (int) $this->accountOps->getAccountRootID($prefix);
 			if (!$rootID)
 				throw new Exception("No prefix for rootID=$rootID", 100);
