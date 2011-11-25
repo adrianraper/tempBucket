@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.vo.ExerciseMark;
@@ -55,12 +56,14 @@ package com.clarityenglish.bento.controller {
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
-			
-			// Trigger a notification to write the score out
+
+			// Add more data to the exerciseMark ready to send it as a score
 			thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
 			thisExerciseMark.setPercent();
-			
-			// TODO. And where can I get the exercise UID?
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
+
+			// Trigger a notification to write the score out
 			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
 			
 			sendNotification(BBNotifications.MARKING_SHOWN, exercise);

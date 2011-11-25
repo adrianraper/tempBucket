@@ -19,6 +19,16 @@ package com.clarityenglish.ielts.view.progress.components {
 		//[Bindable]
 		private var _fullChartXML:XML;
 
+		private static const _writingBright:String = '#7DAB36';
+		private static const _writingDull:String = '#364A17';
+		private static const _readingBright:String = '#00A2C8';
+		private static const _readingDull:String = '#005063';
+		private static const _listeningBright:String = '#FF6600';
+		private static const _listeningDull:String = '#7A3100';
+		private static const _speakingBright:String = '#A93087';
+		private static const _speakingDull:String = '#4F173F';
+		private static const _opacityDull:String = '0.9';
+		
 		private static const chartTemplates:XML = 
 			<anychart>
 			  <settings>
@@ -26,76 +36,103 @@ package com.clarityenglish.ielts.view.progress.components {
 			  </settings>
 			  <charts>
 				<chart plot_type="CategorizedVertical">
-				  <data_plot_settings default_series_type="Bar" enable_3d_mode="true" z_aspect="2">
-					<bar_series group_padding="0.5">
-					  <tooltip_settings enabled="false" />
-					  <label_settings enabled="true">
+				  <data_plot_settings default_series_type="Bar" enable_3d_mode="true" z_padding="0.5" z_aspect="1" z_elevation="45" >
+					<bar_series group_padding="0.9" >
+						<tooltip_settings enabled="true">
+							<font render_as_html="True" family="Helvetica,Arial" size="12" />
+							<format>{"<p align='center'>{%Series.Name}<br/>{%YValue}{numDecimals:0}%</p>"}</format>
+						</tooltip_settings>
+					  <label_settings enabled="false">
 						<background enabled="false" />
 						<position anchor="Center" valign="Center" halign="Center" />
-						<font color="White" />
 						<format>{"{%YValue}{numDecimals:0}%"}</format>
 					  </label_settings>
 					</bar_series>
 				  </data_plot_settings>
 				<styles>
-					<bar_style name="Writing">
+					<bar_style name="Writing0">
 						<states>
 							<normal>
-								<fill enabled="true" type="solid" color="#7DAB36" />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color="#7DAB36" />
-							</hover>
-						</states>
-					</bar_style>
-					<bar_style name="Reading">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color="#00A2C8" />
+								<fill enabled="true" type="solid" color={_writingBright} />
 							</normal>
 						</states>
 					</bar_style>
-					<bar_style name="Speaking">
+					<bar_style name="Writing1">
 						<states>
 							<normal>
-								<fill enabled="true" type="solid" color="#A93087"  />
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingDull} />
+							</normal>
+						</states>
+					</bar_style>
+					<bar_style name="Reading0">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</normal>
+						</states>
+					</bar_style>
+					<bar_style name="Reading1">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingDull} />
+							</normal>
+						</states>
+					</bar_style>
+					<bar_style name="Speaking0">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</normal>
+						</states>
+					</bar_style>
+					<bar_style name="Speaking1">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingDull} />
 							</normal>
 						</states>
 					</bar_style>
 					<bar_style name="Listening0">
 						<states>
 							<normal>
-								<fill enabled="true" type="solid" color="#FF6600" />
+								<fill enabled="true" type="solid" color={_listeningBright} />
 							</normal>
 						</states>
 					</bar_style>
 					<bar_style name="Listening1">
 						<states>
 							<normal>
-								<fill enabled="true" type="solid" color="#66FF00" />
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningDull} />
 							</normal>
 						</states>
 					</bar_style>
 				</styles>
 				  <data>
-					<series name="You" type="Bar" palette="Default" />
-					<series name="Everyone" type="Bar" palette="Default" />
+					<series name="You" type="Bar" palette="Default">
+						<animation type="ScaleXYCenter" duration="1" />
+					</series>
+					<series name="Everyone" type="Bar" palette="Default">
+						<animation duration="1" interpolation_type="Elastic" />
+					</series>
 				  </data>
 				  <chart_settings>
 					<chart_background enabled="false" />
 					<title enabled="false" />
 					<legend enabled="false" />
 					<axes>
-					  <y_axis enabled="true">
-						<scale minimum="0" maximum="100" major_interval="50" />
-						<title enabled="true" >
-							<text>Average score %</text>
-						</title>
-						<labels enabled="true">
-							<format>{"{%YValue}{numDecimals:0}%"}</format>
-						</labels>
-					  </y_axis>
-					  <x_axis>
+							<y_axis>
+								<title rotation="90">
+									<font family="Verdana" size="10" />
+									<text>Average score%</text>
+								</title>
+								<labels allow_overlap="true" show_first_label="true" show_last_label="true">
+									<font family="Verdana" size="10" />
+									<format>{"{%Value}{numDecimals:0}"}</format>
+								</labels>
+								<major_tickmark enabled="true" />
+								<scale minimum="0" maximum="100" major_interval="20" mode="Overlay"/>
+							</y_axis>
+						<x_axis>
 						<labels>
 							<font size="16" family="Helvetica,Arial" />
 						</labels>

@@ -144,21 +144,8 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function writeScore(mark:ExerciseMark):void {
-			// $userID, $rootID, $productCode, $dateNow
-			// TODO. This should just be ExerciseMark I think. And should include UID of the exercise.
-			/*
-			score = new Score();
-			score.score = percent;
-			score.correct = correct;
-			score.wrong = wrong;
-			score.skipped = skipped;
-			score.coverage = coverage;
-			score.duration = duration;
-			*/
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
-			//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;;
-			//var config:Config = configProxy.getConfig();
 			
 			// We have always passed dates between AS and PHP as strings
 			var dateFormatter:DateFormatter = new DateFormatter();

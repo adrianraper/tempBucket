@@ -40,16 +40,9 @@ class ProgressOps {
 			}
 			// And count the number of exercises that are in the menu for this course
 			$course->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
-			// But this syntax seems to find all exercises in all courses, not just the current one
-			// Need to add the relative path indicator '.'
-			//$exercises = $course->xpath('//xmlns:exercise');
 			$exercises = $course->xpath('.//xmlns:exercise');
 			$total = count($exercises);
-			// Note that whilst you are mixing up old and new productCodes, you might get values >100%
-			// so just ignore them
-			//$coverage = floor($count*100/$total);
-			$coverage = rand(25,100);
-			$averageScore = rand(25,100);
+			$coverage = floor($count*100/$total);
 			
 			// Put it all into a node in the return object
 			$newCourse = $build->addChild('course');
@@ -152,9 +145,6 @@ XML;
 			GROUP BY F_CourseID
 			ORDER BY F_CourseID;
 EOD;
-		// Temporarily use old product code so that you get some data
-		if ($productCode==52)
-			$productCode=12;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
@@ -171,30 +161,29 @@ EOD;
 			ORDER BY F_CourseID;
 EOD;
 		// Temporarily use old product code so that you get some data
-		if ($productCode==52)
-			$productCode=12;
+		//if ($productCode==52)
+		//	$productCode=12;
 		$bindingParams = array($productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
 	/**
-	 * This method gets all the users' progress records for this title
+	 * This method gets all this users' progress records for this title
 	 */
 	function getMyDetails($userID, $productCode) {
 			
-		$sql = 	<<<EOD
-			SELECT F_CourseID, F_UnitID, F_ExerciseID, F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed, F_Duration, F_DateStamp 
-			FROM T_Score
-			WHERE F_UserID=?
-			AND F_ProductCode=?
-			ORDER BY F_CourseID, F_UnitID, F_ExerciseID;
-EOD;
-		// Temporarily use old product code so that you get some data
-		if ($productCode==52)
-			$productCode=12;
+		$score = new Score();
+		$sql = 	<<<SQL
+			SELECT s.*
+			FROM T_Score as s
+			WHERE s.F_UserID=?
+			AND s.F_ProductCode=?
+			ORDER BY s.F_CourseID, s.F_UnitID, s.F_ExerciseID;
+SQL;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
+		
 	}
 	
 	/**
@@ -277,50 +266,22 @@ EOD;
 		
 	}
 	/**
-	 * This method is called to insert a score record 
-	 * @param userID, date, sessionID
-	 * @param productCode, courseID, unitID, itemID - these form the UID
-	 * @param score (%), correct, wrong, skipped
-	 * @param coverage (%)
-	 * @param duration (seconds)
+	 * This method is called to insert a score record to the database 
 	 */
-	function insertScore($userID, $dateNow, $sessionID, $productCode, $courseID, $unitID, $exerciseID, $score, $correct, $wrong, $skipped, $coverage, $duration) {
+	function insertScore($score) {
 
-		// Check that the data is valid
-
-		$bindingParams = array(
-				$userID, $dateNow, $sessionID, 
-				$productCode, $courseID, $unitID, $exerciseID,
-				$score, $correct, $wrong, $skipped,
-				$coverage, 
-				$duration,
-				 );
 		// Write anonymous records to an ancilliary table that will not slow down reporting
-		if ($userID<1) {
+		if ($score->userID < 1) {
 			$tableName = 'T_ScoreAnonymous';
 		} else {
 			$tableName = 'T_Score';
 		}
-		
-		// TODO. Until you can add F_Coverage to the table you will have to drop it for now!
-		$sql = <<<SQL
-			INSERT INTO $tableName (
-						F_UserID, F_DateStamp, F_SessionID, 
-						F_ProductCode, F_CourseID, F_UnitID, F_ExerciseID,
-						F_Score, F_ScoreCorrect, F_ScoreWrong, F_ScoreMissed,
-						F_Coverage, 
-						F_Duration 
-						) VALUES (
-						?, ?, ?, 
-						?, ?, ?, ?,
-						?, ?, ?, ?,
-						?, 
-						? 
-						)
-SQL;
-		$rs = $this->db->Execute($sql, $bindingParams);
-		return $rs;
-		
+
+		$dbObj = $score->toAssocArray();
+		$rc = $this->db->AutoExecute($tableName, $dbObj, "INSERT");
+		if (!$rc)
+			throw new Exception($this->db->ErrorMsg(), $this->db->ErrorNo());
+				
 	}
 }
 ?>

@@ -21,6 +21,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.ph
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Progress.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.php");
 
 // v3.4 To allow the account root information to be passed back to RM
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
@@ -299,28 +300,34 @@ class BentoService extends AbstractService {
 	 */
 	function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
 
-		// Break down the score object
 		$UID = explode('.', $scoreObj['UID']);
-		$productCode = $UID[0];
-		$courseID = $UID[1];
-		$unitID = $UID[2];
-		$exerciseID = $UID[3];
 		
-		$score = $scoreObj['percent'];
-		$correct = $scoreObj['correctCount'];
-		$wrong = $scoreObj['incorrectCount'];
-		$skipped = $scoreObj['missedCount'];
-		$coverage = $scoreObj['coverage'];
-		$duration = $scoreObj['duration'];
+		// Manipulate the score object from Bento into PHP format
+		// TODO Surely we shoud be trying to keep the format the same!
+		$score = new Score();
+		$score->productCode = $UID[0];
+		$score->courseID = $UID[1];
+		$score->unitID = $UID[2];
+		$score->exerciseID = $UID[3];
+		
+		$score->score = $scoreObj['percent'];
+		$score->scoreCorrect = $scoreObj['correctCount'];
+		$score->scoreWrong = $scoreObj['incorrectCount'];
+		$score->scoreMissed = $scoreObj['missedCount'];
+		$score->duration = $scoreObj['duration'];
+		
+		$score->dateStamp = $dateNow;
+		$score->sessionID = $sessionID;
+		$score->userID = $userID;
 		
 		$errorObj = array("errorNumber" => 0);
 		
 		try {
 			// Write the score record
-			$this->progressOps->insertScore($userID, $dateNow, $sessionID, $productCode, $courseID, $unitID, $exerciseID, $score, $correct, $wrong, $skipped, $coverage, $duration);
+			$this->progressOps->insertScore($score);
 			
 			// and update the session
-			$this->updateSession($sessionID, $dateNow);
+			$this->progressOps->updateSession($sessionID, $dateNow);
 			
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 

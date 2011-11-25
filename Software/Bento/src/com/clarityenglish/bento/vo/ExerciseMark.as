@@ -37,14 +37,23 @@ package com.clarityenglish.bento.vo {
 				percent = Math.round(100 * correctCount / totalQuestions);
 			}
 		}
+		/**
+		 * A clumsy way to get the incorrect count as a percentage to the marking window.
+		 * I am sure this can go at some point. 
+		 * 
+		 */
 		public function setIncorrectPercent():void {
 			if (totalQuestions <= 0) {
-				// Historically we have always used -1 to indicate an unmarked exercise
-				incorrectPercent = -1;
+				incorrectPercent = 0;
 			} else {
 				incorrectPercent = Math.round(100 * incorrectCount / totalQuestions);
 			}
 		}
+		/**
+		 * A getter used in the marking window, again rather clumsy 
+		 * @return 
+		 * 
+		 */
 		public function get totalQuestions():uint {
 			return correctCount + incorrectCount + missedCount;			
 		}
