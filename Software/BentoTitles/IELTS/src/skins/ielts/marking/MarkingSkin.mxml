@@ -21,8 +21,7 @@
 	<s:layout>
 		<s:VerticalLayout paddingTop="15" />
 	</s:layout>
-	<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.percent}% in this exercise." fontSize="12" paddingLeft="20" />
-
+	<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" paddingLeft="20" />
 	
 	<s:Group id="correctGroup" left="10%" width="90%" height="30" >		
 

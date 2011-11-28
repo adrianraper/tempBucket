@@ -29,6 +29,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -46,8 +47,14 @@ package com.clarityenglish.ielts.view.progress.components {
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
 					trace("progScoreMediator, got back " + rs.type);
-					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
-						view.dataProvider = new XML(rs.dataProvider);
+					switch (rs.type) {
+						case Progress.PROGRESS_MY_DETAILS:
+							view.dataProvider = new XML(rs.dataProvider);
+							break;
+						case Progress.PROGRESS_MY_SUMMARY:
+							view.summaryData = new XML(rs.dataProvider);
+							break;
+						default:
 					}
 					break;
 				

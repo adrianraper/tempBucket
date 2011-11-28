@@ -18,7 +18,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import spark.components.DataGrid;
 	import spark.components.Label;
 	
-	public class ProgressScoreView extends BentoView {
+	public class ProgressCoverageView extends BentoView {
 		
 		[SkinPart(required="true")]
 		public var writingCourse:Button;
@@ -35,8 +35,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		[SkinPart(required="true")]
 		public var examTipsCourse:Button;
 		
-		[SkinPart(required="true")]
-		public var scoreDetails:DataGrid;
+		//[SkinPart(required="true")]
+		//public var scoreDetails:DataGrid;
 		
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
@@ -102,8 +102,8 @@ package com.clarityenglish.ielts.view.progress.components {
 				case listeningCourse:
 				case examTipsCourse:
 					break;
-				case scoreDetails:
-					break;
+				//case scoreDetails:
+				//	break;
 			}
 		}
 		

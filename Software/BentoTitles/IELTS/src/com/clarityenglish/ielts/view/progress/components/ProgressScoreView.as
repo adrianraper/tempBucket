@@ -41,6 +41,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
 
+		[Bindable]
+		public var summaryData:XML;
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
@@ -67,6 +70,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// Another set of data is for showing coverage
 		}
+
 		/**
 		 * This can be called from outside the view to make the view display a different course
 		 * 

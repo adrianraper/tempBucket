@@ -14,14 +14,14 @@ package com.clarityenglish.ielts.view.progress.components {
 	/**
 	 * A Mediator
 	 */
-	public class ProgressScoreMediator extends BentoMediator implements IMediator {
+	public class ProgressCoverageMediator extends BentoMediator implements IMediator {
 		
-		public function ProgressScoreMediator(mediatorName:String, viewComponent:BentoView) {
+		public function ProgressCoverageMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():ProgressScoreView {
-			return viewComponent as ProgressScoreView;
+		private function get view():ProgressCoverageView {
+			return viewComponent as ProgressCoverageView;
 		}
 		
 		override public function onRegister():void {
@@ -45,7 +45,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
-					trace("progScoreMediator, got back " + rs.type);
+					trace("progCoverageMediator, got back " + rs.type);
 					if (rs.type == Progress.PROGRESS_MY_DETAILS) {
 						view.dataProvider = new XML(rs.dataProvider);
 					}

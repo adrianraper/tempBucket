@@ -8,16 +8,19 @@
 	
 	<fx:Script>
 		<![CDATA[
-			private var _dataProvider:Object;
-			public function set dataProvider(value:Object):void {
-				_dataProvider = value;
-			}
+			//private var _dataProvider:Object;
+			//public function set dataProvider(value:Object):void {
+			//	_dataProvider = value;
+			//}
 		]]>
 	</fx:Script>
 	
-	<s:VGroup id="progressBar" width="90%" height="30" >		
-		<s:Label horizontalAlign="right" text="Writing - average score {_dataProvider.averageScore}%" color="#213606" fontSize="16" />
-		<s:Rect percentWidth="{_dataProvider.averageScore}" height="100%" >
+	<s:VGroup id="progressBar" width="90%" height="30" >
+		<s:HGroup>
+			<s:Spacer width="100%" />
+			<s:Label text="Writing - average score {dataProvider.averageScore}%" color="#213606" fontSize="16" />			
+		</s:HGroup>
+		<s:Rect percentWidth="{dataProvider.averageScore}" height="100%" >
 			<s:fill>
 				<s:SolidColor color="#CCED9A" />
 			</s:fill>

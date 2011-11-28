@@ -21,7 +21,7 @@
 		<s:Button id="examTipsCourse" label="exam tips" width="75" />
 	</s:HGroup>	
 	
-	<ui:ProgressBar width="100%" height="20" dataProvider="{hostComponent.summaryDataProvider}" />
+	<ui:ProgressBarSkin width="100%" height="20" dataProvider="{hostComponent.summaryData}" />
 	
 	<s:HGroup width="100%" height="100%">
 		<s:DataGrid id="scoreDetails" width="70%" height="100%" dataProvider="{hostComponent.tableDataProvider}" >

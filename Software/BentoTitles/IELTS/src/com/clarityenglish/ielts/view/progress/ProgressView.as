@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.progress {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreView;
 	
 	import flash.events.Event;
@@ -41,8 +42,31 @@ package com.clarityenglish.ielts.view.progress {
 		[SkinPart]
 		public var progressCoverageView:ProgressCoverageView;
 		
+		// Until assets.swf contains icons for the progress tabs, just use progress one
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
-		private var progressIcon:Class;
+		private var coverageIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
+		private var compareIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
+		private var analysisIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
+		private var scoreIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon")]
+		private var readingIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon")]
+		private var writingIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon")]
+		private var speakingIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon")]
+		private var listeningIcon:Class;
+		
 		
 		// Constructor to let us initialise our states
 		public function ProgressView() {
@@ -61,10 +85,10 @@ package com.clarityenglish.ielts.view.progress {
 			switch (instance) {
 				case progressNavBar:
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ icon: progressIcon, label: "My coverage", data: "coverage" },
-						{ icon: progressIcon, label: "Compare", data: "compare" },
-						{ icon: progressIcon, label: "Analyse", data: "analysis" },
-						{ icon: progressIcon, label: "My scores", data: "score" },
+						{ icon: coverageIcon, label: "My coverage", data: "coverage" },
+						{ icon: compareIcon, label: "Compare", data: "compare" },
+						{ icon: analysisIcon, label: "Analyse", data: "analysis" },
+						{ icon: scoreIcon, label: "My scores", data: "score" },
 					] );
 					
 					progressNavBar.requireSelection = true;
@@ -82,7 +106,7 @@ package com.clarityenglish.ielts.view.progress {
 					] );
 					
 					progressKeyBar.requireSelection = true;
-					progressKeyBar.addEventListener(Event.CHANGE, onKeyBarIndexChange);
+					//progressKeyBar.addEventListener(Event.CHANGE, onKeyBarIndexChange);
 					break;
 				
 				case progressScoreView:
