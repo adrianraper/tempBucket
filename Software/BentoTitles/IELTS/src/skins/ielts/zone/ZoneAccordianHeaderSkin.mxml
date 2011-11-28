@@ -68,7 +68,7 @@
 			<s:HorizontalLayout verticalAlign="middle" />
 		</s:layout>
 		
-		<s:Label id="labelDisplay" maxDisplayedLines="1" fontWeight="bold" color.up="#303030" color.selectedStates="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" />
+		<s:Label id="labelDisplay" maxDisplayedLines="1" fontWeight="bold" fontSize="14" color.up="#303030" color.selectedStates="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" />
 		
 		<s:Line width="100%">
 			<s:stroke>
