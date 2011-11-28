@@ -67,19 +67,25 @@ class ProgressOps {
 		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
 		// $rs is likely to contain less records than the XML, so loop through rs adding the records
-		// into the XML
+		// into the XML. Though there will be duplicates in $rs
 		foreach ($rs as $record) {
 			// There should only be one node in menu.xml for each unique exercise ID
-			$exercise = $menu->xpath('.//exercise[@id='.$record['F_ExerciseID'].']');
+			$exercise = $menu->xpath('.//xmlns:exercise[@id="'.$record['F_ExerciseID'].'"]');
 			
 			if (count($exercise)>1) {
+				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
 				throw new Exception('The menu xml has more than one exercise node with id='.$record['F_ExerciseID']);
 			} else if (count($exercise)<1) {
-				// Whilst we are mixing up old and new IDs, this might happen. Best just ignore the record.
+				// Whilst we are mixing up old and new IDs, this might happen. Just ignore the record.
 				//throw new Exception('The menu xml contains no exercise node with id='.$record['F_ExerciseID']);
 			} else {
 				// Set the attribute to done for exercises in all units
-				$exercise[0]->addAttribute('done', '1');
+				// TODO. It would be almost cost free to count them and could be used in Flex charts?
+				if ($exercise[0]['done']) {
+					$exercise[0]['done'] += 1; 
+				} else {
+					$exercise[0]->addAttribute('done', 1);
+				}
 				
 				// And add a score node as a child IF this is a practice-zone exercise
 				$unit = $exercise[0]->xpath('..');
@@ -93,9 +99,17 @@ class ProgressOps {
 		
 		// This XML is not good as a dataprovider. It contains too much that is irrelevant (slow to transfer to the client)
 		// and it does not have captions done well.
-		// So transform it using xslt
-		
+		// So transform it using xslt.
+		// BUT, since it is exactly the same XML as we are already using on the client, it will be easier to merge.
+		// So just transfer the whole thing. If this ever looked like being a problem, we could presumably find a way to xslt so that it is 
+		// just a shell with IDs and our new information.
+
 		// Fake data
+/*		
+-- Create a fake record for writing eBook
+insert into T_Score values
+('27639', '2011-11-24 18:57:10', '1287130410001', '50', '1287130410000', '180', '0', '0', '0', '2227356', NULL, '1287130400000', '52', null);
+*/	
 		$fakeData = <<<XML
 <progress>
 	<course caption="Reading">
@@ -124,8 +138,8 @@ class ProgressOps {
 	</course>
 </progress>	
 XML;
-		return $fakeData;
-		//return $menu->asXML();
+		//return $fakeData;
+		return $menu->asXML();
 		
 	}
 	/**
@@ -172,7 +186,7 @@ EOD;
 	 */
 	function getMyDetails($userID, $productCode) {
 			
-		$score = new Score();
+		//$score = new Score();
 		$sql = 	<<<SQL
 			SELECT s.*
 			FROM T_Score as s

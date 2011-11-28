@@ -8,7 +8,9 @@ package com.clarityenglish.ielts.view.progress.components {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.HierarchicalData;
 	import mx.collections.XMLListCollection;
+	import mx.controls.AdvancedDataGrid;
 	
 	import org.osflash.signals.Signal;
 	
@@ -54,11 +56,12 @@ package com.clarityenglish.ielts.view.progress.components {
 			// You want to get 
 			//	a) the node for the current course (_course.@caption)
 			//	b) only records that have a score
-			var buildXML:XMLList = value.course.(@caption=='Writing').unit.exercise.score;
+			var buildXML:XMLList = value.course.(@["class"]=='writing').unit.exercise.score;
 			// Then add the caption from the exercise to the score to make it easy to display in the grid
 			// If the grid can do sort of subheading, then I could do something similar with the unit name too
 			for each (var score:XML in buildXML) {
 				score.@caption = score.parent().@caption;
+				score.@unitCaption = value.course.(@["class"]=='writing').groups.group.(@id==score.parent().@group).@caption;
 			}
 			tableDataProvider = new XMLListCollection(buildXML);
 			
