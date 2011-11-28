@@ -17,36 +17,80 @@
 		]]>
 	</fx:Script>
 
+
 	<s:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout paddingTop="15" />
 	</s:layout>
-	<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.percent}% in this exercise." />
-	<s:Group id="correctGroup" left="10%" width="90%" height="40" >			
-		<s:Rect percentWidth="{hostComponent.exerciseMark.percent}" height="100%">
+	<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.percent}% in this exercise." fontSize="12" paddingLeft="20" />
+
+	
+	<s:Group id="correctGroup" left="10%" width="90%" height="30" >		
+
+		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" height="100%" left="28" >
 			<s:fill>
-				<s:SolidColor color="#F5D767" />
+				<s:SolidColor color="#CCED9A" />
 			</s:fill>
 		</s:Rect>
-		<s:Label left="10" top="10" text="{hostComponent.exerciseMark.correctCount} Correct" />
+		<s:Group>
+			<s:Rect height="31" width="8" left="20" >
+				<s:fill>
+					<s:SolidColor color="#7F7F7F" />
+				</s:fill>
+			</s:Rect>
+		</s:Group>		
+		<s:Label left="35" top="10" text="{hostComponent.exerciseMark.correctCount} Correct" color="#213606" fontSize="16" />
 	</s:Group>
 	<s:Spacer height="10" />
-	<s:Group id="incorrectGroup" left="10%" width="90%" height="40" >			
-		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" height="100%">
+	
+
+	
+	<s:Group id="incorrectGroup" left="10%" width="90%" height="30" >			
+			
+		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" left="28" >
 			<s:fill>
-				<s:SolidColor color="#FF0767" />
+				<s:SolidColor color="#ED8287" />
 			</s:fill>
 		</s:Rect>
-		<s:Label left="10" top="10" text="{hostComponent.exerciseMark.incorrectCount} Wrong" />
+		<s:Group>
+			<s:Rect height="31" width="8" left="20" >
+				<s:fill>
+					<s:SolidColor color="#7F7F7F" />
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+			<s:Label left="35" top="10" text="{hostComponent.exerciseMark.incorrectCount} Wrong" color="#330C23" fontSize="16" />
 	</s:Group>
-	<s:Label id="missedCount" text="{hostComponent.exerciseMark.missedCount} Missed" />
+		<s:Spacer height="10" />
 	
-	<s:HGroup width="100%">
+	
+	<s:Group id="missedCount" left="10%" width="90%" height="30" >
+			
+			<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" top="0" left="28" >
+				<s:fill>
+					<s:SolidColor color="#94D5F0" />
+				</s:fill>
+			</s:Rect>
+			
+			<s:Rect height="31" width="8" left="20" >
+				<s:fill>
+					<s:SolidColor color="#7F7F7F" />
+				</s:fill>
+			</s:Rect>
+		<s:Group>
+			<s:Label left="35" top="10" text="{hostComponent.exerciseMark.missedCount} Missed" color="#0C3040" fontSize="16"/>
+			
+		</s:Group>
+		</s:Group>
+	
+	<s:Spacer height="10" />
+	
+	<s:HGroup width="90%">
 		<s:Spacer width="50%" />
-		<s:Button id="tryAgainButton" label="Start again" />
+		<s:Button id="tryAgainButton" label="Start again" fontSize="14" width="140" height="38" />
 		<s:Spacer width="50%" />
-		<s:Button id="seeAnswersButton" label="See answers" />
+		<s:Button id="seeAnswersButton" label="See answers" fontSize="14" width="140" height="38" />
 		<s:Spacer width="50%" />
-		<s:Button id="moveForwardButton" label="Forward" />		
+		<s:Button id="moveForwardButton" label="Forward" fontSize="14" width="140" height="38" />		
 		<s:Spacer width="50%" />
 	</s:HGroup>
 	

@@ -237,13 +237,13 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
-					<s:VGroup horizontalAlign="center" horizontalCenter="0">
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="10">
 						<s:SWFLoader width="122" height="171"
 									 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneReading')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneWriting')"
 									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneListening')"
 									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneSpeaking')" />
-						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="20" paddingBottom="10" >
+						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10" >
 							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="80" height="25" />
 							<s:Label text="or" />
 							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="130" height="25" />
