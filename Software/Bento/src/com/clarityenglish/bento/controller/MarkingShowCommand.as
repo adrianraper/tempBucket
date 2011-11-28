@@ -59,7 +59,7 @@ package com.clarityenglish.bento.controller {
 
 			// Add more data to the exerciseMark ready to send it as a score
 			thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
-			thisExerciseMark.setPercent();
+			thisExerciseMark.setCorrectPercent();
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
 

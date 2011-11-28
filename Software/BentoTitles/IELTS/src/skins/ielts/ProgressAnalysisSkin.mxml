@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ns1="com.anychart.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView")]
+	</fx:Metadata>
+	
+	<s:layout>
+		<s:HorizontalLayout />
+	</s:layout>
+
+	<s:VGroup width="50%" height="100%" >
+		<s:Label text="What is your average score in each unit?" />
+		<ns1:AnyChartFlex id="analysisChart1" width="100%" />		
+	</s:VGroup>
+	<s:VGroup width="50%" height="100%" >
+		<s:Label text="How long have you spent working on each unit?" />
+		<ns1:AnyChartFlex id="analysisChart2" width="100%" />		
+	</s:VGroup>
+	
+</s:Skin>

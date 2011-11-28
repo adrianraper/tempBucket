@@ -9,8 +9,9 @@ package com.clarityenglish.bento.vo {
 		
 		public var missedCount:int = 0;
 		
-		public var percent:int = 0;
+		public var correctPercent:int = 0;
 		public var incorrectPercent:int = 0;
+		public var missedPercent:int = 0;
 		
 		public var coverage:int = 0;
 		
@@ -29,12 +30,12 @@ package com.clarityenglish.bento.vo {
 		 * A percentage calculated from the other figures 
 		 * 
 		 */
-		public function setPercent():void {
+		public function setCorrectPercent():void {
 			if (totalQuestions <= 0) {
 				// Historically we have always used -1 to indicate an unmarked exercise
-				percent = -1;
+				correctPercent = -1;
 			} else {
-				percent = Math.round(100 * correctCount / totalQuestions);
+				correctPercent = Math.round(100 * correctCount / totalQuestions);
 			}
 		}
 		/**
@@ -47,6 +48,18 @@ package com.clarityenglish.bento.vo {
 				incorrectPercent = 0;
 			} else {
 				incorrectPercent = Math.round(100 * incorrectCount / totalQuestions);
+			}
+		}
+		/**
+		 * A clumsy way to get the missed count as a percentage to the marking window.
+		 * I am sure this can go at some point. 
+		 * 
+		 */
+		public function setMissedPercent():void {
+			if (totalQuestions <= 0) {
+				missedPercent = 0;
+			} else {
+				missedPercent = Math.round(100 * missedCount / totalQuestions);
 			}
 		}
 		/**

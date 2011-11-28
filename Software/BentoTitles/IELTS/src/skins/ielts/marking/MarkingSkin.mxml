@@ -26,7 +26,7 @@
 	
 	<s:Group id="correctGroup" left="10%" width="90%" height="30" >		
 
-		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" height="100%" left="28" >
+		<s:Rect percentWidth="{hostComponent.exerciseMark.correctPercent}" height="100%" left="28" >
 			<s:fill>
 				<s:SolidColor color="#CCED9A" />
 			</s:fill>
@@ -65,7 +65,7 @@
 	
 	<s:Group id="missedCount" left="10%" width="90%" height="30" >
 			
-			<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" top="0" left="28" >
+			<s:Rect percentWidth="{hostComponent.exerciseMark.missedPercent}" top="0" left="28" >
 				<s:fill>
 					<s:SolidColor color="#94D5F0" />
 				</s:fill>
