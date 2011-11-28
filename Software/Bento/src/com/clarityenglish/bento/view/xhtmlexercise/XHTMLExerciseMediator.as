@@ -50,6 +50,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			return super.listNotificationInterests().concat([
 				BBNotifications.QUESTION_ANSWERED,
 				BBNotifications.SHOW_ANSWERS,
+				BBNotifications.MARKING_SHOWN,
 			]);
 		}
 		
@@ -62,6 +63,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					break;
 				case BBNotifications.SHOW_ANSWERS:
 					handleShowAnswers(note);
+					break;
+				case BBNotifications.MARKING_SHOWN:
+					view.setExerciseMarked();
 					break;
 			}
 		}
@@ -101,9 +105,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			// Dispatch the appropriate notitification depending on whether the answer is a NodeAnswer or a String
 			if (answerOrString is NodeAnswer) {
-				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { exercise: view.exercise, question: event.question, nodeAnswer: event.answerOrString, key: event.key } );
+				sendNotification(BBNotifications.QUESTION_NODE_ANSWER, { exercise: view.exercise, question: event.question, nodeAnswer: event.answerOrString, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled") } );
 			} else if (answerOrString is String) {
-				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { exercise: view.exercise, question: event.question, answerString: event.answerOrString, key: event.key } );
+				sendNotification(BBNotifications.QUESTION_STRING_ANSWER, { exercise: view.exercise, question: event.question, answerString: event.answerOrString, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled") } );
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}

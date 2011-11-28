@@ -19,6 +19,7 @@
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
 			import com.clarityenglish.bento.model.BentoProxy;
+			import com.clarityenglish.bento.model.ExerciseProxy;
 			import com.clarityenglish.bento.vo.Href;
 			import com.clarityenglish.common.vo.config.BentoError;
 			
@@ -77,12 +78,19 @@
 			protected function onMarkingClick(event:MouseEvent):void {
 				// Get the current exercise
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				
 				facade.sendNotification(BBNotifications.MARKING_SHOW, { exercise: bentoProxy.currentExercise } );
 			}
 			
 			public function showErrorMessage(error:BentoError):void {
 				log.error("Received error {0}", error);
+			}
+			
+			protected function onMarkingShownClick(event:MouseEvent):void {
+				// Get the current exercise
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+				exerciseProxy.getExerciseMark(); // this marks the exercise as marked
+				facade.sendNotification(BBNotifications.MARKING_SHOWN, bentoProxy.currentExercise);
 			}
 			
 		]]>
@@ -105,6 +113,7 @@
 		
 		<s:Spacer width="100%" />
 		
+		<s:Button label="Disable interaction" click="onMarkingShownClick(event)"/>
 		<s:Button label="Marking" click="onMarkingClick(event)"/>
 		<s:Button label="Show correct answers" click="onShowAnswersClick(event)"/>
 	</s:HGroup>

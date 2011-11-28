@@ -22,6 +22,9 @@ package com.clarityenglish.textLayout.elements {
 		public function TextComponentElement() {
 			super();
 			
+			// Hide the text underneath the input
+			textAlpha = 0;
+			
 			// #15
 			breakOpportunity = BreakOpportunity.NONE;
 		}
@@ -36,6 +39,10 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function get hideChrome():Boolean {
 			return _hideChrome;
+		}
+		
+		public function set enabled(value:Boolean):void {
+			component.enabled = value;
 		}
 		
 		public function hasComponent():Boolean {

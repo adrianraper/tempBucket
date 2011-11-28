@@ -91,6 +91,7 @@ import com.clarityenglish.textLayout.vo.XHTML;
 
 import flash.events.Event;
 import flash.events.IEventDispatcher;
+import flash.events.MouseEvent;
 
 import flashx.textLayout.elements.FlowElement;
 import flashx.textLayout.elements.TextFlow;
@@ -236,6 +237,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
 					eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
+					eventMirror.addEventListener(MouseEvent.CLICK, Closure.create(this, onAnswerClicked, exercise, question, source));
 				}
 			}
 		}
@@ -280,6 +282,23 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			answerOrString = inputElement.enteredValue;
 		
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
+	}
+	
+	/**
+	 * This is a special case; if an input is disabled then we want to answer the question on a click instead of a value commit.  This is because
+	 * once marking has taken place all the inputs will be disabled, but clicking on them should still show feedback.
+	 * 
+	 * @param e
+	 * @param exercise
+	 * @param question
+	 * @param inputNode
+	 */
+	private function onAnswerClicked(e:Event, exercise:Exercise, question:Question, inputNode:XML):void {
+		// This is only relevant for a disabled node
+		if (!XHTML.hasClass(inputNode, "disabled"))
+			return;
+		
+		onAnswerSubmitted(e, exercise, question, inputNode);
 	}
 	
 }

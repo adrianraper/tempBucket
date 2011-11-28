@@ -26,9 +26,10 @@ package com.clarityenglish.bento.controller {
 			var question:Question = note.getBody().question as Question;
 			var nodeAnswer:NodeAnswer = note.getBody().nodeAnswer;
 			var key:Object = note.getBody().key;
+			var disabled:Boolean = note.getBody().disabled;
 			
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			exerciseProxy.questionAnswer(question, nodeAnswer, key);
+			exerciseProxy.questionAnswer(question, nodeAnswer, key, disabled);
 		}
 		
 	}

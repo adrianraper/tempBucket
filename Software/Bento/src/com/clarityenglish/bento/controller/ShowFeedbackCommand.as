@@ -73,21 +73,27 @@ package com.clarityenglish.bento.controller {
 				
 				titleWindow.addElement(xhtmlRichText);
 				
-				// Create and centre the popup
-				PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
-				PopUpManager.centerPopUp(titleWindow);
-				
-				// Listen for the close event so that we can cleanup
-				titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
-				
-				// Add a keyboard listener so the user can close the feedback window with the keyboard.  This listener needs a brief delay before being
-				// added as otherwise its possible to trigger the feedback window with the same key that closes it, hence closing it instantly.
-				setTimeout(function():void {
-					FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
-				}, 300);
+				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
+				// a neater way to do this, but this works and doesn't seem to do any harm.
+				setTimeout(addPopupWindow, 150);
 			} else {
 				log.error("Unable to find feedback source {0}", feedback.source);
 			}
+		}
+		
+		private function addPopupWindow():void {
+			// Create and centre the popup
+			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+			PopUpManager.centerPopUp(titleWindow);
+			
+			// Listen for the close event so that we can cleanup
+			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
+			
+			// Add a keyboard listener so the user can close the feedback window with the keyboard.  This listener needs a brief delay before being
+			// added as otherwise its possible to trigger the feedback window with the same key that closes it, hence closing it instantly.
+			setTimeout(function():void {
+				FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+			}, 300);
 		}
 		
 		protected function onCssParsed(event:Event):void {

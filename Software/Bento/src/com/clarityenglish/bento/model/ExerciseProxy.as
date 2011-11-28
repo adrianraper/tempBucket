@@ -8,6 +8,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -134,32 +135,36 @@ package com.clarityenglish.bento.model {
 		 * @param question
 		 * @param answer
 		 * @param key
+		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  This is used when things happen after marking has been shown.
 		 */
-		public function questionAnswer(question:Question, answer:Answer, key:Object = null):void {
+		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false):void {
 			checkExercise();
 			
-			log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
+			if (!disabled) {
+				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
+				
+				// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
+				if (!delayedMarking)
+					markQuestion(question, answer, key);
+				
+				// Get the answer map for this question
+				var answerMap:AnswerMap = getSelectedAnswerMap(question);
+				
+				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
+				// can only have one answer at a time in the map.
+				if (question.isMutuallyExclusive())
+					answerMap.clear();
+				
+				// Add the answer
+				answerMap.put(key, answer);
+				
+				// Send a notification to say the question has been answered
+				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
+			}
 			
-			// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
-			if (!delayedMarking)
-				markQuestion(question, answer, key);
-			
-			// Get the answer map for this question
-			var answerMap:AnswerMap = getSelectedAnswerMap(question);
-			
-			// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
-			// can only have one answer at a time in the map.
-			if (question.isMutuallyExclusive())
-				answerMap.clear();
-			
-			// Add the answer
-			answerMap.put(key, answer);
-			
-			// Send a notification to say the question has been answered
-			sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
-			
-			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback
-			if (answer.feedback) {
+			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback.  If delayed marking is on
+			// we only show feedback once the exercise has been marked.
+			if (answer.feedback && (!delayedMarking || exerciseMarked)) {
 				// Create substitutions where appropriate
 				var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
 				var substitutions:Object = {};

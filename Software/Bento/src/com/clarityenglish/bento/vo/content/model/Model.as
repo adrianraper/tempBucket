@@ -1,7 +1,7 @@
 package com.clarityenglish.bento.vo.content.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
-	import com.newgonzo.web.css.CSS;
+	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 
 	public class Model {
 		
@@ -65,6 +65,31 @@ package com.clarityenglish.bento.vo.content.model {
 			}
 			
 			return results;
+		}
+		
+		/**
+		 * This method gets all source nodes relevant to the exercise.  This will be any bit of XHTML that is linked to a question or answer.
+		 * In Bento this is used to determine which bits need to be turned off when marking is complete.
+		 * 
+		 * @return 
+		 */
+		public function getAllSourceNodes():Vector.<XML> {
+			var sourceNodes:Vector.<XML> = new Vector.<XML>;
+			
+			// Get all nodes relevant to the exercise model.  This should include all inputs, dropdowns, drag sources, etc
+			for each (var question:Question in exercise.model.questions) {
+				var questionSourceNodes:Vector.<XML> = question.getSourceNodes(exercise);
+				if (questionSourceNodes) sourceNodes = sourceNodes.concat(questionSourceNodes);
+				
+				for each (var answer:Answer in question.answers) {
+					if (answer is NodeAnswer) {
+						var answerSourceNodes:Vector.<XML> = (answer as NodeAnswer).getSourceNodes(exercise);
+						if (answerSourceNodes) sourceNodes = sourceNodes.concat(answerSourceNodes);
+					}
+				}
+			}
+			
+			return sourceNodes;
 		}
 		
 		/**

@@ -79,8 +79,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				// draggable="true" is only allowed on FlowLeafElements
 				if (draggableFlowElement is FlowLeafElement) {
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode));
-					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, onRollOver);
-					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, onRollOut);
+					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
+					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));
 				} else {
 					log.error("draggable='true' is only valid on leaf elements - " + draggableFlowElement);
 				}
@@ -93,6 +93,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var ds:DragSource = new DragSource();
 				ds.addData((e.flowElement as FlowLeafElement).text, "text");
 				ds.addData(draggableNode, "node");
+				
+				// If the node has the 'disabled' class then it is not draggable
+				if (XHTML.hasClass(draggableNode, "disabled"))
+					return;
 				
 				DragManager.doDrag(dragInitiator, ds, e.originalEvent, dragImage, 0, 0, 0.8);
 				
@@ -126,12 +130,20 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			}
 		}
 		
-		protected function onRollOver(event:FlowElementMouseEvent):void {
+		protected function onRollOver(e:FlowElementMouseEvent, draggableNode:XML):void {
+			// If the node has the 'disabled' class then it is not draggable
+			if (XHTML.hasClass(draggableNode, "disabled"))
+				return;
+			
 			if (draggableIconId == -1)
 				draggableIconId = container.cursorManager.setCursor(draggableIcon, 2, draggableIconOffsetX, draggableIconOffsetY);
 		}
 		
-		protected function onRollOut(event:FlowElementMouseEvent):void {
+		protected function onRollOut(e:FlowElementMouseEvent, draggableNode:XML):void {
+			// If the node has the 'disabled' class then it is not draggable
+			if (XHTML.hasClass(draggableNode, "disabled"))
+				return;
+			
 			container.cursorManager.removeCursor(draggableIconId);
 			draggableIconId = -1;
 		}

@@ -161,7 +161,8 @@ package com.clarityenglish.bento.model {
 			var uid:String = currentUnitNode.@id;			
 			var cid:String = currentCourseNode.@id;			
 			var pid:String = currentMenuNode.@id;
-			return pid+"."+cid+"."+uid+"."+eid;
+			
+			return pid + "." + cid + "." + uid + "." + eid;
 		}
 		
 	}

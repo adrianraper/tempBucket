@@ -14,17 +14,12 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
-	
 }
-
 
 /* Paragraphs have spacing after them */
 
-
-
 /* Lists use numbers. */
 
-}
 /* Multiple-choice answers use letters */
 .answerList {
 	list-style-type: lowerLatin;
@@ -42,7 +37,7 @@ img.photo1 {
 	width: 380px;
 	height: 194px;
 	padding: 20px  250em 15px 25em;
-	}
+}
 
 img.leftFloat {
 	float:left;
@@ -59,16 +54,14 @@ img.leftFloat {
 	line-height: 20em;
 }
 
-
-
 /* A paragraph class for hanging indents that work with numbers */
 
-}		
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
 	color: #3A00FF;
 	text-decoration: none;
 }
+
 /* Draggable spans in noscroll should be in a bordered filled box */
 #noscroll span[draggable=true] {
 	float: left;
@@ -82,6 +75,7 @@ a, span[draggable="true"] {
 	border-radius: 12px;
 	background-color: #FFFFFF;
 }
+
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
@@ -124,8 +118,6 @@ a.neutral, input.neutral {
 
 /* Headings */
 
-	
-}
 /* h1 is used for main titles in splitscreen reading texts when no subtitles are present. */
 h1 {
 	font-family: Arial Black;
@@ -139,6 +131,7 @@ h1 {
 	line-height: 20em;
 	
 }
+
 /* h2 is used for subtitles in reading texts and exercises */
 h2 {
 	font-family: Verdana;
@@ -151,6 +144,7 @@ h2 {
 	text-align: left;
     line-height: 20em
 }
+
 h4 {
 	font-family: Arial Black;
 	font-size: 14px;
@@ -159,17 +153,19 @@ h4 {
 	padding-top: 10px;
 	
 }
+
 /* h7 is used for section headings in the reading text portion of a splitscreen exercise */
-h7{
+h7 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 10px;
 	padding-left: 24px;
 	padding-right: 25em;
-	}
+}
+	
 /* h8 is used for main titles in exercises when subtitles are present. */
-h8{
+h8 {
 	font-family: Arial Black;
 	font-size: 15px;
 	font-weight: bold;
@@ -181,24 +177,25 @@ h8{
 	line-height: 20em;
 	padding-right: 25em;
 }
+
 /* h9 is used for section headings in the exercise portion of a splitscreen gapfill text-based exercise */
-h9{
+h9 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	margin-top: 10px;
 	padding-left: -95px;
 	padding-right: 25em;
-	}
+}
 
-/*h10 is used for headings in the exercise portion of a splitscreen exercise when there's a mixture of heading text and questionlist text. */	
-h10{
+/* h10 is used for headings in the exercise portion of a splitscreen exercise when there's a mixture of heading text and questionlist text. */	
+h10 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 20px;
 	padding-left: 25px;
-	}
+}
 
 /* Exercise ID and class */
 #splitquestionList {
@@ -210,18 +207,17 @@ h10{
 	text-align: left;
 	line-height: 20em;
 	margin: 0 20px 20px 20px;
-	
-	}
+}
 
 #splitquestionList p {
 	font-weight: normal;
 	padding-left: -15em;
-	}
+}
 	
 #splitquestionList li {
 	padding-bottom: 20em;
-		padding-left: 0px;
-	}
+	padding-left: 0px;
+}
 
 /*This is for questionLists with photos at the top of the exercise. */
 #splitquestionListP {
@@ -233,10 +229,9 @@ h10{
 	text-align: left;
 	line-height: 20em;
 	margin: 0 20px 20px 20px;
-	}
+}
 
-
-#gapfillText{
+#gapfillText {
 	padding-top: 20px;
 	padding-bottom: 20em;
 	padding-left: 112px;
@@ -244,6 +239,7 @@ h10{
 	line-height: 20em;
 	padding-right: 25em;
 }
+
 #mchoices {
 	list-style-type: decimal;
 	padding-left: 20px;
@@ -251,16 +247,16 @@ h10{
 	padding-right: 200%;
 	text-align: left;
 	line-height: 20em;
-	}
-	
+}
 
-#dragdrop{
+#dragdrop {
 	padding-top: 12px;
 	text-align: justify;
 	line-height: 22em;
 	padding-right: 25px
 }
-#dropdown{
+
+#dropdown {
 	list-style-type: decimal;
 	padding-left: 30px;
 	padding-right: 35px;
@@ -274,13 +270,12 @@ h10{
 .hangingIndent {
  	tab-stops: 30px;
  	text-indent: -15em;
-	
-	}
+}
 
-#reading
-{
+#reading {
 	padding-left: 17em;
 }
+
 #splitreadingList {
 	list-style-type: decimal;
 	padding-left: 40px;
@@ -290,9 +285,9 @@ h10{
 	line-height: 20em;
 	text-indent: 2em;
 	margin: 0 20px 20px 20px;
-	}
-#glossary
-{
+}
+
+#glossary {
 	padding-left: 50em;
 }
 
@@ -300,8 +295,8 @@ h10{
 	padding-left: 1px;
  	tab-stops: 15px;
  	text-indent: -95em;
-	}
+}
 
 .solution {
-text-indent: 15em;
+	text-indent: 15em;
 }

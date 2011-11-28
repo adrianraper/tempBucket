@@ -11,6 +11,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
+	import com.clarityenglish.textLayout.elements.TextComponentElement;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -130,6 +131,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				XHTML.addClass(answerNode, Answer.SELECTED);
 				
 				// Refresh the element and update the screen
+				// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 				TLFUtil.markFlowElementFormatChanged(answerElement);
 				answerElement.getTextFlow().flowComposer.updateAllControllers();
 				break;
@@ -179,8 +181,44 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				XHTML.addClass(answerNode, answer.markingClass);
 				
 				// Refresh the element and update the screen
+				// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 				TLFUtil.markFlowElementFormatChanged(answerElement);
 				answerElement.getTextFlow().flowComposer.updateAllControllers();
+			}
+		}
+		
+		/**
+		 * When an exercise has been marked, various things (i.e. drags, inputs, etc) become non-interactive.
+		 * 
+		 * @param value 
+		 */
+		public function setExerciseMarked():void {
+			// Get all the source node
+			var sourceNodes:Vector.<XML> = exercise.model.getAllSourceNodes();
+			
+			// Combine those with all draggable nodes
+			var draggableNodes:Array = exercise.select("*[draggable=true]");
+			if (draggableNodes) {
+				sourceNodes = sourceNodes.concat(Vector.<XML>(draggableNodes));
+			}
+			
+			// Now go through either adding or removing the disabled class as required.  There may be duplication in the sourceNodes vector,
+			// but that doesn't matter as addClass and removeClass will do nothing unless it needs to.
+			for each (var node:XML in sourceNodes) {
+				var flowElement:FlowElement = getFlowElement(node);
+				
+				if (flowElement) {
+					XHTML.addClass(node, "disabled");
+					
+					if (flowElement is TextComponentElement)
+						(flowElement as TextComponentElement).enabled = false;
+					
+					// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
+					TLFUtil.markFlowElementFormatChanged(flowElement);
+					flowElement.getTextFlow().flowComposer.updateAllControllers();
+				} else {
+					log.error("Cannot find flow element");
+				}
 			}
 		}
 		

@@ -13,6 +13,7 @@ package com.clarityenglish.textLayout.elements {
 	
 	import spark.components.Button;
 	import spark.components.TextInput;
+	import flashx.textLayout.elements.FlowElement;
 
 	use namespace tlf_internal;
 	
@@ -49,9 +50,6 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function InputElement() {
 			super();
-			
-			// Hide the text underneath the input
-			textAlpha = 0;
 		}
 		
 		protected override function get abstract():Boolean {

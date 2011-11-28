@@ -20,7 +20,9 @@
 		<script id="model" type="application/xml">
 			<questions>
 				<MultipleChoiceQuestion block="q1Block">
-					<answer correct="true" source="q1True" />
+					<answer correct="true" source="q1True">
+						<feedback source="gapFillFeedback1" />
+					</answer>
 					<answer correct="false" source="q1False" />
 				</MultipleChoiceQuestion>
 			
@@ -121,6 +123,13 @@
 					<p><a id="q9True">True</a><tab/><a id="q9False">False</a></p>
 				</li>
 			</ol>
+		</section>
+		
+		<section id="gapFillFeedback1">
+			This is the feedback for gapfill 1.  It is supposed to test out substitution of
+			values.<br/><br/>
+			<p>Your answer: {{=yourAnswer}}</p>
+			<p>Correct answer: {{=correctAnswer}}</p>
 		</section>
 	</body>
 	
