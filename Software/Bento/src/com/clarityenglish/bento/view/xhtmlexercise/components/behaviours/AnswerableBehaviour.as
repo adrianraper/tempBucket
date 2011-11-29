@@ -311,17 +311,20 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 }
 
 /**
- * Manager for error correction questions
+ * Manager for error correction questions.  This is basically exactly the same as a gapfill with some extra functionality to show the input
+ * on click, so this manager extends the InputAnswerManager in order to inherit its functionality.
  * 
  * @author Dave
  */
-class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManager {
+class ErrorCorrectionAnswerManager extends InputAnswerManager implements IAnswerManager {
 	
 	public function ErrorCorrectionAnswerManager(container:Group) {
 		super(container);
 	}
 	
-	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+	override public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+		super.onQuestionImportComplete(exercise, question, flowElementXmlBiMap)
+		
 		for each (var source:XML in question.getSourceNodes(exercise)) {
 			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 			if (inputElement) {
@@ -346,7 +349,6 @@ class ErrorCorrectionAnswerManager extends AnswerManager implements IAnswerManag
 			// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
 			(e.flowElement as TextComponentElement).hideChrome = false;
 			
-			// TODO: This no longer works :(
 			var tf:TextFlow = e.flowElement.getTextFlow();
 			tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
 		}
