@@ -24,10 +24,10 @@
 	</s:VGroup>
 	
 	<s:VGroup width="100%">
-		<s:Button id="writingCourse" width="100%" />
-		<s:Button id="speakingCourse" width="100%" />
-		<s:Button id="readingCourse" width="100%" />
-		<s:Button id="listeningCourse" width="100%" />
+		<s:Button id="writingCourseButton" width="100%" />
+		<s:Button id="speakingCourseButton" width="100%" />
+		<s:Button id="readingCourseButton" width="100%" />
+		<s:Button id="listeningCourseButton" width="100%" />
 	</s:VGroup>		
 	
 </s:Skin>

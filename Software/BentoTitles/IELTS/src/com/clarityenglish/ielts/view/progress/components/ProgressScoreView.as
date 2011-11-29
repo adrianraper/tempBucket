@@ -22,19 +22,19 @@ package com.clarityenglish.ielts.view.progress.components {
 	public class ProgressScoreView extends BentoView {
 		
 		[SkinPart]
-		public var writingCourse:Button;
+		public var writingCourseButton:Button;
 		[SkinPart]
-		public var speakingCourse:Button;
+		public var speakingCourseButton:Button;
 		[SkinPart]
-		public var readingCourse:Button;
+		public var readingCourseButton:Button;
 		[SkinPart]
-		public var listeningCourse:Button;
+		public var listeningCourseButton:Button;
 		
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
 		
 		[SkinPart(required="true")]
-		public var scoreDetails:DataGrid;
+		public var scoreDetailsDataGrid:DataGrid;
 		
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
@@ -44,6 +44,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
+		
+		public var courseSelect:Signal = new Signal(XML);
 		
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
@@ -59,7 +61,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			//	b) only records that have a score
 			var buildXML:XMLList = value.course.(@["class"]=='writing').unit.exercise.score;
 			// Then add the caption from the exercise to the score to make it easy to display in the grid
-			// If the grid can do sort of subheading, then I could do something similar with the unit name too
+			// If the grid can do some sort of subheading, then I could do something similar with the unit name too
 			for each (var score:XML in buildXML) {
 				score.@caption = score.parent().@caption;
 				score.@unitCaption = value.course.(@["class"]=='writing').groups.group.(@id==score.parent().@group).@caption;
@@ -79,19 +81,18 @@ package com.clarityenglish.ielts.view.progress.components {
 			_courseChanged = true;
 			invalidateProperties();
 		}
+		public function get course():XML {
+			return _course;
+		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			if (_courseChanged) {
 				
 				// Update the components of the view that change their data
-				if (progressBar) {
-					progressBar.courseClass = _course.@["class"];
-					progressBar.data = {averageScore:49};
-				}
-				if (scoreDetails) {
-					// reset the data provider with the current course, how?
-					// tableDataProvider = part of dataProvider.
+				if (progressBar && course && summaryData) {
+					progressBar.courseClass = course.@["class"];
+					progressBar.data = {averageScore:summaryData.@averageScore};
 				}
 				
 				_courseChanged = false;
@@ -105,20 +106,20 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
-				case writingCourse:
-				case readingCourse:
-				case speakingCourse:
-				case listeningCourse:
-				//case examTipsCourse:
+				case writingCourseButton:
+				case readingCourseButton:
+				case speakingCourseButton:
+				case listeningCourseButton:
+				//case examTipsCourseButton:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					// listen to a signal from button component here
 					break;
-				case scoreDetails:
+				case scoreDetailsDataGrid:
 					break;
 				
 				case progressBar:
 					//progressBar.data = {averageScore:49};
-					progressBar.courseClass = 'reading';
+					//progressBar.courseClass = 'reading';
 					break;
 			}
 		}
@@ -134,16 +135,14 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * @param event
 		 */
 		protected function onCourseClick(event:MouseEvent):void {
-			// Whilst we are using fake buttons
-			var matchingCourses:XMLList = menu.course.(@caption == event.target.label);
-			//var matchingCourses:XMLList = menu.course.(@caption == event.target.getStyle("title"));
-			//var matchingCourses:XMLList = menu.course.(@caption == 'Reading');
+
+			var matchingCourses:XMLList = menu.course.(@["class"] == event.target.label.toLowerCase());
 			
 			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with class {0}", event.target.label);
-				//log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));
+				log.error("Unable to find a course with class {0}", event.target.label.toLowerCase());
 			} else {
 				course = matchingCourses[0] as XML;
+				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		}
 

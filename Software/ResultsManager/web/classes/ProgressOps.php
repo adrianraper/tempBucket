@@ -110,6 +110,7 @@ class ProgressOps {
 insert into T_Score values
 ('27639', '2011-11-24 18:57:10', '1287130410001', '50', '1287130410000', '180', '0', '0', '0', '2227356', NULL, '1287130400000', '52', null);
 */	
+/*
 		$fakeData = <<<XML
 <progress>
 	<course caption="Reading">
@@ -139,6 +140,7 @@ insert into T_Score values
 </progress>	
 XML;
 		//return $fakeData;
+*/
 		return $menu->asXML();
 		
 	}

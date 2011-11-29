@@ -20,19 +20,19 @@ package com.clarityenglish.ielts.view.home {
 	public class HomeView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var readingCourse:Button;
+		public var readingCourseButton:Button;
 		
 		[SkinPart(required="true")]
-		public var writingCourse:Button;
+		public var writingCourseButton:Button;
 		
 		[SkinPart(required="true")]
-		public var speakingCourse:Button;
+		public var speakingCourseButton:Button;
 		
 		[SkinPart(required="true")]
-		public var listeningCourse:Button;
+		public var listeningCourseButton:Button;
 		
 		[SkinPart]
-		public var examTipsCourse:Button;
+		public var examTipsCourseButton:Button;
 
 		[SkinPart(required="true")]
 		public var coveragePieChart:AnyChartFlex;
@@ -159,11 +159,11 @@ package com.clarityenglish.ielts.view.home {
 			super.partAdded(partName, instance);
 			//trace("partAdded in HomeView for " + partName);
 			switch (instance) {
-				case readingCourse:
-				case writingCourse:
-				case speakingCourse:
-				case listeningCourse:
-				case examTipsCourse:
+				case readingCourseButton:
+				case writingCourseButton:
+				case speakingCourseButton:
+				case listeningCourseButton:
+				case examTipsCourseButton:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case coveragePieChart:
