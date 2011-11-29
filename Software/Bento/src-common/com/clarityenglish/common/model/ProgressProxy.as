@@ -14,7 +14,6 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.common.vo.progress.Score;
 	import com.clarityenglish.dms.vo.account.Account;
-	import mx.formatters.DateFormatter;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -25,12 +24,14 @@ package com.clarityenglish.common.model {
 	import mx.collections.ArrayCollection;
 	import mx.core.Application;
 	import mx.core.FlexGlobals;
+	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.UIDUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -153,7 +154,26 @@ package com.clarityenglish.common.model {
 			var dateNow:String = dateFormatter.format(new Date());
 			
 			var params:Array = [ loginProxy.user.id, sessionID, dateNow, mark ];
-			new RemoteDelegate("writeScore", params, this).execute();			
+			new RemoteDelegate("writeScore", params, this).execute();
+			
+			// TODO. Decide if we want to update our local cache of my progress with each new score
+			// or do you want to just get it afresh from the database. The former I suppose.
+			if (loadedResources[Progress.PROGRESS_MY_DETAILS]) {
+				
+				// Get the cached records
+				var currentRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
+				
+				// what is the UID of this record?
+				var uid:Object = UIDUtil.UID(mark.UID);
+				
+				// build the new score node
+				var newScoreNode:XML = <score score={mark.correctPercent} duration={mark.duration} />;
+				
+				// insert into the cache
+				var thisExercise:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0];
+				if (thisExercise) 
+					currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+			}
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

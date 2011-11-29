@@ -180,7 +180,7 @@ package com.clarityenglish.ielts.view.home {
 			var matchingCourses:XMLList = menu.course.(@["class"] == event.target.getStyle("title").toLowerCase());
 			
 			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with caption {0}", event.target.getStyle("title").toLowerCase());
+				log.error("Unable to find a course with class {0}", event.target.getStyle("title").toLowerCase());
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}

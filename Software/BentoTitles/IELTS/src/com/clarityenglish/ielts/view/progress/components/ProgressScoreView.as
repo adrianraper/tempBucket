@@ -91,6 +91,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				}
 				if (scoreDetails) {
 					// reset the data provider with the current course, how?
+					// tableDataProvider = part of dataProvider.
 				}
 				
 				_courseChanged = false;
@@ -110,6 +111,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				case listeningCourse:
 				//case examTipsCourse:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
+					// listen to a signal from button component here
 					break;
 				case scoreDetails:
 					break;
