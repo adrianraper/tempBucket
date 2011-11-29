@@ -106,7 +106,7 @@
 	
 <section id="body">
   
-  <audio controls="compact" class="leftFloat" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
+  <audio controls="compact" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
   
   <div id="gapfillText">

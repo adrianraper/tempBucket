@@ -82,15 +82,15 @@
 	<img class="leftFloat" src="../media/EN_AR_002.jpg" mode="1" id="1003"  />
 	
 	<ol id="splitquestionList">
-	<li id="1">The present level of carbon in the atmosphere is approximately &#xA0;<input id="q1" />&#xA0;tons.<br/></li>
-	<li id="2">Around 7 billion tons of carbon is released by human activity each year. CO2 from human activity.<br/></li>
-	<li id="3">Approximately&#xA0;<input id="q2" />&#xA0;of human emissions of CO2 do not stay in the atmosphere, but are absorbed in various ways.<br/></li>
-	<li id="4"><input id="q3" />&#xA0;absorb some CO2.<br/></li>
-	<li id="5">Some is absorbed by&#xA0;<input id="q4" />. Some is buried in ocean sediments. Some is absorbed in seawater.<br/></li>
-	<li id="6">The oceans seem to absorb in excess of&#xA0;<input id="q5" />&#xA0;of CO2.<br/></li>
-	<li id="7">The effect of clouds is determined by their&#xA0;<input id="q6" />&#xA0;and their&#xA0;<input id="q7" />.<br/></li>
-	<li id="8">Some clouds encourage cooling because they shade the Earth from the sun's heat.<br/></li>
-	<li id="9">Some clouds encourage warming because they&#xA0;<input id="q8" />.<br/></li>
+	<li id="1">The present level of carbon in the atmosphere is approximately &#xA0;<input id="q1" />&#xA0;tons.</li>
+	<li id="2">Around 7 billion tons of carbon is released by human activity each year. CO2 from human activity.</li>
+	<li id="3">Approximately&#xA0;<input id="q2" />&#xA0;of human emissions of CO2 do not stay in the atmosphere, but are absorbed in various ways.</li>
+	<li id="4"><input id="q3" />&#xA0;absorb some CO2.</li>
+	<li id="5">Some is absorbed by&#xA0;<input id="q4" />. Some is buried in ocean sediments. Some is absorbed in seawater.</li>
+	<li id="6">The oceans seem to absorb in excess of&#xA0;<input id="q5" />&#xA0;of CO2.</li>
+	<li id="7">The effect of clouds is determined by their&#xA0;<input id="q6" />&#xA0;and their&#xA0;<input id="q7" />.</li>
+	<li id="8">Some clouds encourage cooling because they shade the Earth from the sun's heat.</li>
+	<li id="9">Some clouds encourage warming because they&#xA0;<input id="q8" />.</li>
 	<li id="10">Aerosols can lead to the formation of clouds which are so&#xA0;<input id="q9" />&#xA0;that they can block sunlight for periods of&#xA0;<input id="q10" />.</li>
 	</ol>
 </section>

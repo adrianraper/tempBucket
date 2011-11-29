@@ -90,8 +90,12 @@
 		
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/LC_LN1.mp3" mode="4" id="1002"/>
+<section id="body">
+<img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"/>
+<audio controls="compact"  src="../media/LC_LN1.mp3" mode="4" id="1002"/>
 <h5><p>How to improve your English outside the classroom</p></h5>
+
+
 <ul class="bulletList">
 	<li>Make sure you (1)&#xA0;<input id="q1"/>.</li>
 	<li>Make use of the (2)&#xA0;<input id="q2"/>.</li>
@@ -119,6 +123,7 @@
 	<li>Take notes.</li>
 	<li>Listen again to check.</li>
 </ul>
+
 </section>
 
 <section id="fb1">

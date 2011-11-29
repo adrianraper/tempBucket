@@ -122,12 +122,21 @@
 <section id="body">
   <img class="leftFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
   <img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"/>
-  <br/>
-  <ol id="splitquestionList">
+  
+  <ol id="targetspotting">
     
-    <li id="q1">First<list class="answerList"><li><a id="a1">Consecutive stages</a></li><li><a id="a2">Concurrent stages</a></li><li><a id="a3">Alternative stages</a></li></list></li>
+    <li id="q1">First
+	<list class="answerList">
+	<li><a id="a1">Consecutive stages</a></li>
+	<li><a id="a2">Concurrent stages</a></li>
+	<li><a id="a3">Alternative stages</a></li>
+	</list></li>
     
-    <li id="q2">already<list class="answerList"><li><a id="a46">Consecutive stages</a></li><li><a id="a47">Concurrent stages</a></li><li><a id="a48">Alternative stages</a></li></list></li>
+    <li id="q2">already<list class="answerList">
+	<li><a id="a46">Consecutive stages</a></li>
+	<li><a id="a47">Concurrent stages</a></li>
+	<li><a id="a48">Alternative stages</a></li>
+	</list></li>
    
     <li id="q3">The next stage<list class="answerList"><li><a id="a43">Consecutive stages</a></li><li><a id="a44">Concurrent stages</a></li><li><a id="a45">Alternative stages</a></li></list></li>
     

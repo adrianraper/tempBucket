@@ -53,15 +53,15 @@
 </header>
 	
 	<section id="noscroll">
-  <span id="a1" draggable="true">Description A: It disappeared as the result of an epidemic.</span>
-  <span id="a2" draggable="true">Description B: It is spoken by a fifth of the local population.</span>
-  <span id="a3" draggable="true">Description C: It is spoken by more children than adults.</span>
-  <span id="a4" draggable="true">Description D: It disappeared in the first half of the 20th century.</span>
-  <span id="a5" draggable="true">Description E: It has become more widely spoken in recent decades.</span>
-  <span id="a6" draggable="true">Description F: It is a compulsory subject in schools.</span>
-  <span id="a7" draggable="true">Description G: It disappeared in the 19th century.</span>
-  <span id="a8" draggable="true">Description H: It is only spoken in one village.</span>
-  <span id="a9" draggable="true">Description I: It is spoken by fewer than a dozen people.</span>
+  <span id="a1" draggable="true">It disappeared as the result of an epidemic.</span>
+  <span id="a2" draggable="true">It is spoken by a fifth of the local population.</span>
+  <span id="a3" draggable="true">It is spoken by more children than adults.</span>
+  <span id="a4" draggable="true">It disappeared in the first half of the 20th century.</span>
+  <span id="a5" draggable="true">It has become more widely spoken in recent decades.</span>
+  <span id="a6" draggable="true">It is a compulsory subject in schools.</span>
+  <span id="a7" draggable="true">It disappeared in the 19th century.</span>
+  <span id="a8" draggable="true">It is only spoken in one village.</span>
+  <span id="a9" draggable="true">It is spoken by fewer than a dozen people.</span>
 </section>
 
 <section id="body">
@@ -70,13 +70,14 @@
 <audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
 
 <div id="gapfillText">
-<p><b>Cornish</b><tab/><input id="q1" type="droptarget"/> </p>
-<p><b>Manx</b><tab/><input id="q2" type="droptarget"/> </p>
-<p><b>Welsh</b><tab/><input id="q3" type="droptarget"/> </p>
-<p><b>Achumawi</b><tab/><input id="q4" type="droptarget"/> </p>
-<p><b>Trumai</b><tab/><input id="q5" type="droptarget"/> </p>
-<p><b>Catalan</b><tab/><input id="q6" type="droptarget"/> </p>
-
+<ol id="questionList">
+	<li id="1">Cornish<tab/><tab/><input id="q1" type="droptarget"/></li>
+	<li id="2">Manx<tab/><tab/><input id="q2" type="droptarget"/></li>
+	<li id="3">Welsh<tab/><tab/><input id="q3" type="droptarget"/></li>
+	<li id="4">Achumawi<tab/><tab/><input id="q4" type="droptarget"/></li>
+	<li id="5">Trumai<tab/><tab/><input id="q5" type="droptarget"/></li>
+	<li id="6">Catalan<tab/><tab/><input id="q6" type="droptarget"/></li>
+</ol>
 </div>
 </section>
 

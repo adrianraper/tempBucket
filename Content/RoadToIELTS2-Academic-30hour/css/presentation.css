@@ -20,7 +20,7 @@ p {
 	
 	padding-left:20px;
 	padding-right:20px;
-	padding-bottom: 20em;
+
 }
 
 p .firstline {
@@ -54,7 +54,15 @@ h4 {
 	padding-bottom: 0px;
 	padding-top: 0px
 }
-
+/* h5 is first bolded description line for exercises which have no headings*/
+ h5{
+	font-family: Arial Black;
+	font-size:12px;
+	font-weight: bold;
+	padding-left: 20px;
+	padding-bottom: 15px;
+	padding-top: 30px;
+}
 
 
 h6 {
@@ -66,6 +74,19 @@ h6 {
 	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
+}
+/* h8 is for main title/heading following by <h2> subtitle */
+h8{
+	font-family: Arial Black;
+	font-size: 15px;
+	font-weight: bold;
+	padding-top: 20px;
+	padding-bottom: 0em;
+	padding-left: 20px;
+	padding-right: 25px;
+	text-align: left;
+	line-height: 20em;
+	padding-right: 25em;
 }
 /* Lists use numbers. */
 
@@ -175,13 +196,15 @@ a.neutral, input.neutral {
 }
 
 #presentation{
-	padding-top: 20px;
 	text-align: left;
 	padding-right: 220%;
 	line-height: 22em;
 	padding-right: 280%;
 }
-
+#presentation p{
+	padding-bottom: 20em;
+	}
+	
 #presentation li{
 padding-left: -25em;
 }

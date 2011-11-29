@@ -35,13 +35,12 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_SP_001.jpg" mode="1" id="1001"/>
-  <p>
+  <div id="presentation">
     
       <h1>Part 3</h1>
-    
-  </p>
-  <h2><p>Two-way discussion</p></h2>
-  <div id="presentation">
+    <p><b>Two-way discussion</b></p>
+	
+  
   <p>You will ...</p>
   <ol>
     <li>be given an introduction to Part 3 of the speaking test.</li>

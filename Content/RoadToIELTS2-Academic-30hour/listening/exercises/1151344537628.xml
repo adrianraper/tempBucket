@@ -75,7 +75,7 @@
 </header>
 	
 <section id="body">
-<audio controls="compact" class="leftFloat" src="../media/AC_LN1.mp3" mode="4" id="1002"/>
+<audio controls="compact" src="../media/AC_LN1.mp3" mode="4" id="1002"/>
 
 <img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"/>
 
@@ -99,7 +99,6 @@
 <p class="hangingIndent1">	<tab/><tab/><tab/><tab/><tab/><tab/>_ Hold tickets for collection		<br/>X Post tickets	</p>
 <p class="hangingIndent1">Address	<tab/><tab/><tab/><tab/>(8)&#xA0;<input id="q8"/>, Winchester</p>
 <p class="hangingIndent1">Contact No.	<tab/><tab/><tab/><tab/>2719 8832</p>
-<p align="left"><font size="2"/></p>
 </div>
 </section>
 

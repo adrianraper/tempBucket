@@ -35,12 +35,12 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_AW_008.jpg" mode="1" id="1001"/>
-  
+   <div id="presentation">
     
-    <h1><p>Academic Writing Task 2</p></h1>
-    
- <div id="presentation">
-  <p><b>Giving an opinion</b></p>
+    <h1>Academic Writing Task 2</h1>
+      <p><b>Giving an opinion</b></p>
+
+
   <p>You will ...</p>
   <ol>
     <li>listen and group arguments for or against.</li>

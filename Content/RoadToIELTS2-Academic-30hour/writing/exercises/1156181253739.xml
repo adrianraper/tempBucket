@@ -23,7 +23,83 @@
 	</script>
 	
 <script id="model" type="application/xml">
-  <questions/>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true">
+        <feedback source="fb13"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+	  <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
 </script>
 
 </head>
@@ -41,12 +117,12 @@
   <img class="rightFloat" src="../media/TT_AW_015.jpg" mode="1" id="1001"/>
   
   <div id="targetspotting">
-  <p align="left">The growth of tourism means that nowadays most countries have a tourist industry and for many countries it is an essential sector of their economy. <g id="t1">However</g>, like any major industry, tourism may have some drawbacks, I strongly <g id="t2">oppose</g> that it rarely benefits countries. On the <g id="t3">contrast</g>, I am <g id="t4">in favour of</g>, for a number of reasons, the vast majority of countries derive great benefit from it.</p>
-  <p><g id="t5">Another</g> reason is that tourism provides regular employment for many local people who might otherwise be unemployed. They can find work in restaurants or hotels, or with tourist agencies as guides or drivers, for example, and earn regular wages. This, <g id="t6">on the other hand</g>, means that they may be able to save money and improve their standard of living.</p>
-  <p>The <g id="t7">main</g> reason is that tourists spend money in the country and this allows local businesses <g id="t8">as</g> restaurants, bars and taxi companies to flourish. In turn, other businesses, food suppliers or petrol stations, <g id="t9">including</g>, may be established in order to provide services to support the companies which cater for tourists. In other words, the whole economy of the region develops.</p>
-  <p>A <g id="t10">final</g> reason is that in order for tourists to be able to visit remote areas, roads, airports and hotels have to be built and local people also benefit by being able to use these new facilities. Furthermore, when communications improve, it becomes possible for other industries to move into the area, bringing with them more employment opportunities and increased prosperity.</p>
-  <p>A <g id="t11">second</g> reason why I am <g id="t12">against</g> tourism is that visitors from outside bring fresh ideas and different ways of doing things to the local community. <g id="t13">For example</g>, local people may learn from tourists. <g id="t14">In contrast</g>, visitors learn about the local people and culture, and return home with a deeper understanding of the host country.</p>
-  <p>In conclusion, I firmly <g id="t15">support</g> that governments should encourage tourism because of the opportunities it offers for ordinary people to improve their quality of life.</p>
+  <p align="left">The growth of tourism means that nowadays most countries have a tourist industry and for many countries it is an essential sector of their economy.&#xA0;<g id="t1">However</g>, like any major industry, tourism may have some drawbacks, I strongly&#xA0;<g id="t2">oppose</g>&#xA0;that it rarely benefits countries. On the&#xA0;<g id="t3">contrast</g>, I am&#xA0;<g id="t4">in favour of</g>, for a number of reasons, the vast majority of countries derive great benefit from it.</p>
+  <p><g id="t5">Another</g>&#xA0;reason is that tourism provides regular employment for many local people who might otherwise be unemployed. They can find work in restaurants or hotels, or with tourist agencies as guides or drivers, for example, and earn regular wages. This,&#xA0;<g id="t6">on the other hand</g>, means that they may be able to save money and improve their standard of living.</p>
+  <p>The&#xA0;<g id="t7">main</g>&#xA0;reason is that tourists spend money in the country and this allows local businesses&#xA0;<g id="t8">as</g>&#xA0;restaurants, bars and taxi companies to flourish. In turn, other businesses, food suppliers or petrol stations,&#xA0;<g id="t9">including</g>, may be established in order to provide services to support the companies which cater for tourists. In other words, the whole economy of the region develops.</p>
+  <p>A&#xA0;<g id="t10">final</g>&#xA0;reason is that in order for tourists to be able to visit remote areas, roads, airports and hotels have to be built and local people also benefit by being able to use these new facilities. Furthermore, when communications improve, it becomes possible for other industries to move into the area, bringing with them more employment opportunities and increased prosperity.</p>
+  <p>A&#xA0;<g id="t11">second</g>&#xA0;reason why I am&#xA0;<g id="t12">against</g> &#xA0;tourism is that visitors from outside bring fresh ideas and different ways of doing things to the local community.&#xA0;<g id="t13">For example</g>, local people may learn from tourists.&#xA0;<g id="t14">In contrast</g>, visitors learn about the local people and culture, and return home with a deeper understanding of the host country.</p>
+  <p>In conclusion, I firmly&#xA0;<g id="t15">support</g>&#xA0;that governments should encourage tourism because of the opportunities it offers for ordinary people to improve their quality of life.</p>
   <p align="left">
     <font size="2"/>
   </p>

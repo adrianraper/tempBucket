@@ -93,8 +93,12 @@ Writing Task 2
   
   
  
-	
-	<p align="left"><b>1.	Employment Opportunities</b>	<input id="q1" type="droptarget" />	<input id="q2" type="droptarget" /></p><ol><li>Business and the local economy	<input id="q3" type="droptarget" />	<input id="q4" type="droptarget" /></li><li>Infrastructure, facilities and the environment	<input id="q5" type="droptarget" />	<input id="q6" type="droptarget" /></li><li>Local customs and culture	<input id="q7" type="droptarget" />	<input id="q8" type="droptarget" /></li></ol><p align="left"><font size="2"></font></p>
+	<ol id="questionList">
+	<li>Employment Opportunities&#xA0;<input id="q1" type="droptarget" />&#xA0;<input id="q2" type="droptarget" /></li>
+	<li>Business and the local economy&#xA0;<input id="q3" type="droptarget" />&#xA0;<input id="q4" type="droptarget" /></li>
+	<li>Infrastructure, facilities and the environment&#xA0;<input id="q5" type="droptarget" />&#xA0;<input id="q6" type="droptarget" /></li>
+	<li>Local customs and culture&#xA0;<input id="q7" type="droptarget" />&#xA0;<input id="q8" type="droptarget" /></li></ol>
+	<p align="left"><font size="2"></font></p>
 </section>
 <section id="fb0">
   <p align="left">

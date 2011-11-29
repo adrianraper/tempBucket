@@ -52,17 +52,20 @@
 <section id="body">
   
   <ol id="splitquestionList">
-  <li id="21">An alternative title for this passage would be &#x2026; </li>
-  a.&#xA0;<a id="a1">intelligent moths.</a><br/>
-  b.&#xA0;<a id="a2">new developments in microelectronics.</a><br/>
-  c.&#xA0;<a id="a3">new ways to harness nature for human work.</a><br/>
-  d.&#xA0;<a id="a4">recent discoveries in lepidopteran behaviour.</a><br/>
-  <li id="22">This passage has probably been taken from &#x2026;</li>
-  a.&#xA0;<a id="a5">a journal of neurobiology.</a><br/>
-  b.&#xA0;<a id="a6">a popular science magazine.</a><br/>
-  c.&#xA0;<a id="a7">a formal research report.</a><br/>
-  d.&#xA0;<a id="a8">a wildlife magazine.</a>
-  
+  <li id="21">An alternative title for this passage would be &#x2026; 
+ <list class="answerList">
+ <li><a id="a1">intelligent moths.</a></li>
+  <li><a id="a2">new developments in microelectronics.</a></li>
+  <li><a id="a3">new ways to harness nature for human work.</a></li>
+  <li><a id="a4">recent discoveries in lepidopteran behaviour.</a></li>
+  </list></li>
+  <li id="22">This passage has probably been taken from &#x2026;
+  <list class="answerList">
+  <li><a id="a5">a journal of neurobiology.</a></li>
+  <li><a id="a6">a popular science magazine.</a></li>
+  <li><a id="a7">a formal research report.</a></li>
+  <li><a id="a8">a wildlife magazine.</a></li>
+  </list></li>
   </ol>
 </section>
 

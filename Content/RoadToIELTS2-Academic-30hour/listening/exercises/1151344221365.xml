@@ -51,14 +51,14 @@
 	
 <section id="body">
  
-  <audio controls="compact" class="leftFloat" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
+  <audio controls="compact" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
    <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
    
  <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
  
-  <p><i><b>A</b><tab/>	he is in favour</i><br/>
-  <i><b>B</b><tab/>	he has no strong opinion either way</i><br/>
-  <i><b>C</b><tab/>	he is against</i></p>
+  <p><b>A</b><tab/>	he is in favour</p>
+  <p><b>B</b><tab/>	he has no strong opinion either way</p>
+  <p><b>C</b><tab/>	he is against</p>
   
 <ol id="questionList">
   <p align="left">9. <tab/>working on your own	<tab/><tab/><tab/><tab/><input id="q1"/></p>

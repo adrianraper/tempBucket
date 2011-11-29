@@ -17,7 +17,6 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-bottom: 12px;
 	padding-left: 20px;
 	padding-right:20px;
 }
@@ -162,9 +161,17 @@ a.neutral, input.neutral {
 	padding-left: 0;
 	padding-right: 280%;
 	text-align: left;
-	line-height: 20em;
+	line-height: 22em;
 	padding-left: 20px;
 }
+#trueFalse a {
+	color: #3A00FF;
+	font-weight: bold;
+}
+#trueFalse p{
+padding-bottom: 12px;
+}
+
 #gapfillTextvideo{
 	padding-top: 20px;
 	text-align: left;
@@ -185,6 +192,8 @@ a.neutral, input.neutral {
 	text-indent:10%;
 	padding-left:-25em;
 	width:10%;
-	
 }
 
+#questionList p{
+padding-bottom: 12px;
+}

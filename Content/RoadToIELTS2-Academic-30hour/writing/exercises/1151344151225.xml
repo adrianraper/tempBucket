@@ -23,7 +23,78 @@
 	</script>
 	
 <script id="model" type="application/xml">
-  <questions/>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+	    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true">
+        <feedback source="fb13"/>
+      </answer>
+    </TargetSpottingQuestion>
+	   <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
 </script>
 
 </head>
@@ -37,7 +108,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/HF_AW_016.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/HF_AW_016.jpg" mode="1" id="1001"  /> 
 	<div  id="targetspotting">
 	<p align="left">The main aim of gene therapy until now has been to cure or prevent diseases which may in part have a genetic origin.&#xA0;<g id="t1">In contrast</g>, outside its medical applications, this area of science has a range of other possibilities, some of which are controversial. One&#xA0;<g id="t2">opposition</g>&#xA0;to gene therapy concerns the long-term consequences genetic manipulation is&#xA0;<g id="t3">possible</g>&#xA0;to have. Some of the techniques used in gene therapy involve artificially altered human genes being passed down from one generation to another. It is argued that these genes&#xA0;<g id="t4">must</g>&#xA0;well mutate in unexpected ways, and might even cause new and possibly worse diseases in the future. This&#xA0;<g id="t5">belief</g>, however, is unconvincing, since all new medical techniques involve some degree of uncertainty. While it is&#xA0;<g id="t6">well</g>&#xA0;possible that there will be some undesirable side effects, the potential benefits, particularly the eradication of crippling hereditary diseases, make the risks worthwhile. Another reason why some people oppose gene therapy has to do with individual consent. There is&#xA0;<g id="t7">very</g>&#xA0;likelihood that some parents will want to take advantage of gene therapy in order to enhance their children's characteristics, such as hair colour or even intelligence. Opponents of gene therapy argue that parents would be doing this without the consent of either their children or the future generations who would be affected.&#xA0;<g id="t8">Consequently</g>, it is&#xA0;<g id="t9">absolutely</g>&#xA0;unlikely that parents would choose to alter their children in ways which the children themselves would not want. A final objection is that some governments just&#xA0;<g id="t10">could</g>&#xA0;try to use gene therapy to create a kind of 'super-race' of people who are physically and intellectually superior, but lacking in individual character. This argument,&#xA0;<g id="t11">indeed</g>, is unjustifiable for two reasons. Firstly, in&#xA0;<g id="t12">every</g>&#xA0;probability, it would be impossible to practise genetic manipulation on such a massive scale. Secondly, there is&#xA0;<g id="t13">small</g>&#xA0;evidence to suggest that a person's personality is determined by genetics alone.&#xA0;<g id="t14">However</g>, people will always acquire their individuality from their upbringing and education rather than solely from their genetic make-up. In conclusion, I believe that gene therapy has a number of interesting possibilities, not just in curing diseases, but also in allowing parents to ensure that their children enjoy the advantages of growing up to be healthy and intelligent.</p><p align="left"><font size="2"></font></p>
 	</div>

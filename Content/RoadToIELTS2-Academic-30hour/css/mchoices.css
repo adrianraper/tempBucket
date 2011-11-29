@@ -17,7 +17,6 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-bottom: 12px;
 		padding-left:20px;
 	padding-right:20px;
 	
@@ -153,3 +152,6 @@ a.neutral, input.neutral {
 	text-align: left;
 	line-height: 20em;
 	}
+#mchoices{
+padding-bottom: 12px;
+}

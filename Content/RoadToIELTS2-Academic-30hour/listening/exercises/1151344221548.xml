@@ -63,7 +63,7 @@
 </header>
 	
 <section id="body"><img class="rightFloat" src="../media/ED_LN_003.jpg" mode="1" id="1001"/>
-<audio controls="compact" class="leftFloat" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
+<audio controls="compact" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
 <div id="gapfillText">
 <h1>REGISTRATION FORM</h1>
 <p ><b>Surname</b><tab/><tab/><tab/>	(8) 	<input id="q1"/></p>

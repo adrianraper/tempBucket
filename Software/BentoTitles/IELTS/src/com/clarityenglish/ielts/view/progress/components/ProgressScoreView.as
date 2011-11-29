@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.view.progress.ui.ProgressBarRenderer;
 	
 	import flash.events.MouseEvent;
 	
@@ -30,7 +31,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var listeningCourse:Button;
 		
 		[SkinPart(required="true")]
-		public var progressBar:Label;
+		public var progressBar:ProgressBarRenderer;
 		
 		[SkinPart(required="true")]
 		public var scoreDetails:DataGrid;
@@ -52,9 +53,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * 
 		 */
 		public function set dataProvider(value:XML):void {
-			// One set of data is for putting detailed records in a table
+			// The data is for putting detailed records in a table
 			// You want to get 
-			//	a) the node for the current course (_course.@caption)
+			//	a) the node for the current course (_course.@class)
 			//	b) only records that have a score
 			var buildXML:XMLList = value.course.(@["class"]=='writing').unit.exercise.score;
 			// Then add the caption from the exercise to the score to make it easy to display in the grid
@@ -65,7 +66,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			}
 			tableDataProvider = new XMLListCollection(buildXML);
 			
-			// Another set of data is for showing coverage
 		}
 
 		/**
@@ -84,8 +84,15 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.commitProperties();
 			if (_courseChanged) {
 				
-				// Display the data for this course
-				// ????
+				// Update the components of the view that change their data
+				if (progressBar) {
+					progressBar.courseClass = _course.@["class"];
+					progressBar.data = {averageScore:49};
+				}
+				if (scoreDetails) {
+					// reset the data provider with the current course, how?
+				}
+				
 				_courseChanged = false;
 			}
 		}
@@ -102,8 +109,14 @@ package com.clarityenglish.ielts.view.progress.components {
 				case speakingCourse:
 				case listeningCourse:
 				//case examTipsCourse:
+					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case scoreDetails:
+					break;
+				
+				case progressBar:
+					//progressBar.data = {averageScore:49};
+					progressBar.courseClass = 'reading';
 					break;
 			}
 		}
@@ -125,7 +138,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			//var matchingCourses:XMLList = menu.course.(@caption == 'Reading');
 			
 			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with caption {0}", event.target.label);
+				log.error("Unable to find a course with class {0}", event.target.label);
 				//log.error("Unable to find a course with caption {0}", event.target.getStyle("title"));
 			} else {
 				course = matchingCourses[0] as XML;

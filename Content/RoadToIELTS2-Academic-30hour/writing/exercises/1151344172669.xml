@@ -23,7 +23,69 @@
 	</script>
 	
 <script id="model" type="application/xml">
-  <questions/>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+
+  </questions>
 </script>
 
 </head>
@@ -57,77 +119,77 @@
 <section id="fb1">
   <p align="left">
     <b>is used -&gt; </b>
-    <font color="#0000ff"><b>uses</b><b>:</b> 'the Hong Kong Post Office' is the subject of this verb in active voice.</font>
+    <font color="#0000ff"><b>uses</b><b>:</b>&#xA0;'the Hong Kong Post Office' is the subject of this verb in active voice.</font>
   </p>
 </section>
 
 <section id="fb2">
   <p align="left">
     <b>are involved -&gt; </b>
-    <font color="#0000ff"><b>involve</b><b>:</b> 'The first stages' is the subject of this verb in active voice.</font>
+    <font color="#0000ff"><b>involve</b><b>:</b>&#xA0;'The first stages' is the subject of this verb in active voice.</font>
   </p>
 </section>
 
 <section id="fb3">
   <p align="left">
     <b>invited -&gt; </b>
-    <font color="#0000ff"><b>invited</b><b>:</b> Passive is needed here.</font>
+    <font color="#0000ff"><b>invited</b><b>:</b>&#xA0;Passive is needed here.</font>
   </p>
 </section>
 
 <section id="fb4">
   <p align="left">
     <b>simultaneously -&gt; </b>
-    <font color="#0000ff"><b>subsequently</b><b>:</b> 'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.</font>
+    <font color="#0000ff"><b>subsequently</b><b>:</b>&#xA0;'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.</font>
   </p>
 </section>
 
 <section id="fb5">
   <p align="left">
     <b>Prior to this -&gt; </b>
-    <font color="#0000ff"><b>At this stage</b><b>:</b> 'Prior to this' means 'before'.</font>
+    <font color="#0000ff"><b>At this stage</b><b>:</b>&#xA0;'Prior to this' means 'before'.</font>
   </p>
 </section>
 
 <section id="fb6">
   <p align="left">
     <b>or -&gt; </b>
-    <font color="#0000ff"><b>either</b><b>:</b> 'Either' introduces the first alternative.</font>
+    <font color="#0000ff"><b>either</b><b>:</b>&#xA0;'Either' introduces the first alternative.</font>
   </p>
 </section>
 
 <section id="fb7">
   <p align="left">
     <b>In case -&gt; </b>
-    <font color="#0000ff"><b>If</b><b>:</b> 'In case' does not have exactly the same meaning as 'if'.</font>
+    <font color="#0000ff"><b>If</b><b>:</b>&#xA0;'In case' does not have exactly the same meaning as 'if'.</font>
   </p>
 </section>
 
 <section id="fb8">
   <p align="left">
     <b>commissioned -&gt; </b>
-    <font color="#0000ff"><b>be commissioned</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'. </font>
+    <font color="#0000ff"><b>be commissioned</b><b>:</b>&#xA0;This verb is in passive voice in the future form, 'will be + past participle'. </font>
   </p>
 </section>
 
 <section id="fb9">
   <p align="left">
     <b>choose -&gt; </b>
-    <font color="#0000ff"><b>be chosen</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'.</font>
+    <font color="#0000ff"><b>be chosen</b><b>:</b>&#xA0;This verb is in passive voice in the future form, 'will be + past participle'.</font>
   </p>
 </section>
 
 <section id="fb10">
   <p align="left">
     <b>Before -&gt; </b>
-    <font color="#0000ff"><b>Once</b><b>:</b> 'Once' here means 'as soon as'.</font>
+    <font color="#0000ff"><b>Once</b><b>:</b>&#xA0;'Once' here means 'as soon as'.</font>
   </p>
 </section>
 
 <section id="fb11">
   <p align="left">
     <b>be chosen -&gt; </b>
-    <font color="#0000ff"><b>choose</b><b>:</b> This verb is in passive voice in the future form, 'will be + past participle'.</font>
+    <font color="#0000ff"><b>choose</b><b>:</b>&#xA0;This verb is in passive voice in the future form, 'will be + past participle'.</font>
   </p>
   <p align="left"/>
 </section>
@@ -135,7 +197,7 @@
 <section id="fb12">
   <p align="left">
     <b>sending -&gt; </b>
-    <font color="#0000ff"><b>sent</b><b>:</b> The 'is' here is part of the passive verb. Present continuous is not appropriate here.</font>
+    <font color="#0000ff"><b>sent</b><b>:</b>&#xA0;The 'is' here is part of the passive verb. Present continuous is not appropriate here.</font>
   </p>
 </section>
 

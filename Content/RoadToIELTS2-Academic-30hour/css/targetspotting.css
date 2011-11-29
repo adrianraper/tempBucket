@@ -1,13 +1,14 @@
 * {
 	font-size: 12px;
 	font-family: Verdana;
+	color:#333333;
 }
 
 /* The main header should always be bold */
 body > header {
 	font-weight: normal;
 	color: #000000;
-	line-height:20em
+	line-height:22em
 }
 
 /* The body should always have a bit of space at the top */
@@ -17,8 +18,8 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-left:20px;
-	padding-right:20px;
+padding-left:20px;
+padding-right:20px;
 }
 
 
@@ -28,10 +29,12 @@ p {
 /* Multiple-choice answers use letters */
 .answerList {
 	list-style-type: lowerLatin;
-	padding-left: 15px;
+	padding-left: 0em;
+	padding-top: 0em;
 	margin-left: 0px;
-	line-height: 10em;
+	line-height: 20em;
 }
+
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 #readingText p.txt {
@@ -105,8 +108,9 @@ a.selected {
 
 a.correct, input.correct, g.correct {
 	color: #00AA00 !important;
+}
 
-a.incorrect, input.incorrect {
+a.incorrect, input.incorrect, g.incorrect {
 	color: #AA0000 !important;
 }
 
@@ -144,24 +148,44 @@ h7{
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
-	padding-top: 15px;
+	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left:20px;
 	line-height: 20em;
 	padding-right: 350%;
 	}
+
+/* This is for any clickable lists in targetspotting exercises. */
 #targetspotting {
-	list-style-type: decimal;
-	margin-left: 20px;
+	margin-left: 0px;
 	padding-right: 280%;
 	text-align: left;
 	line-height: 22em;
 }
-
-#targetspotting li {
+#targetspotting li{
 padding-left: -25px;
 }
 
+#targetspotting p{
+	
+	
+	padding-bottom: 20em;
+}
+
+#questionList {
+	list-style-type: decimal;
+	padding-left: 20px;
+	padding-right: 280%;
+	padding-top: 20px;
+	padding-bottom: 20em;
+	text-align: left;
+	line-height: 20em;
+	margin: 0 20px 20px 20px;
+	}
+
+#questionList li{
+padding-left: 15px;
+}
 #writing {
 	list-style-type: decimal;
 	margin-left: 20px;

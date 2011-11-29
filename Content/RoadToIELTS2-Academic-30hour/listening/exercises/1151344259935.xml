@@ -68,7 +68,7 @@
 </header>
 	
 <section id="body">
-  <audio controls="compact" class="leftFloat" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
+  <audio controls="compact" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_007.jpg" mode="1" id="1001"/>
   
   <ol id="trueFalse">

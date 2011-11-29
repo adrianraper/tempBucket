@@ -57,7 +57,7 @@ Watch Part One of an interview with Zenia. Are the following statements true or 
 </header>
 	
 <section id="body">
-<br/><br/>
+
 <div class="rightFloatvideo">
 <video  id="1003" src="../media/Unit01_e3.flv" autoPlay="false"  />
 </div>
@@ -73,7 +73,7 @@ Watch Part One of an interview with Zenia. Are the following statements true or 
 		<li id="q7">Zenia is asked to describe her home town.</li><a id="a13" >True</a><tab/><a id="q14" >False</a>
 		<li id="q8">The Examiner asks Zenia about her family.</li><a id="a15" >True</a><tab/><a id="a16" >False</a>
 		<li id="q9">The candidate is asked where she was born.</li><a id="a17" >True</a><tab/><a id="a18" >False</a>
-		<li id="q10">The Examiner asks Zenia to talk about her life.</li><a id="a19" >True</a><tab/><a id="aq20" >False</a>
+		<li id="q10">The Examiner asks Zenia to talk about her life.</li><a id="a19" >True</a><tab/><a id="a20" >False</a>
 	</ol>
 	
 </section>

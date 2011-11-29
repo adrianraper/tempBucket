@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.zone.ui {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+	import com.clarityenglish.ielts.view.zone.ui.DifficultyRenderer;
 	
 	import flash.events.MouseEvent;
 	
@@ -8,6 +9,8 @@ package com.clarityenglish.ielts.view.zone.ui {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	
+	import skins.ielts.zone.DifficultyRendererSkin;
 	
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;

@@ -71,10 +71,10 @@
 </header>
 	
 <section id="body">
-  
-<p>Which SIX of the following strengths are mentioned?</p>
-  <ol id="splitquestionList"><list id="answerList">
-    <li><a id="t1">It reduces the turbidity of the water.</a></li>
+<div class="splitexerciseText"><p><b>Which SIX of the following strengths are mentioned?</b></p></div>
+    <ol id="targetspotting">
+    <list class="answerList">
+	<li><a id="t1">It reduces the turbidity of the water.</a></li>
     <li><a id="t2">It does not spoil the taste of the water.</a></li>
     <li><a id="t3">It is portable.</a></li>
     <li><a id="t4">It kills all pathogens.</a></li>
@@ -84,8 +84,8 @@
 	<li><a id="t8">It is environmentally friendly.</a></li>
     <li><a id="t9">It does not pose a health risk.</a></li>
     <li><a id="t10">It is energy-efficient.</a></li>
-    <li><a id="t11">It is a well-proven method.</a></li>
-	</list></ol>
+    <li><a id="t11">It is a well-proven method.</a></li></list>
+	</ol>
 </section>
 
 <section id="readingText">

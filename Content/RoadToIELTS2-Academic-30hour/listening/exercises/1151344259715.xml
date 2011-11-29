@@ -81,19 +81,17 @@
 		
 </header>
 	
-<section id="body"><audio controls="compact" class="leftFloat" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
+<section id="body"><audio controls="compact" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
 <img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"/>
-<div id="targetspotting">
 <h1><p>Setting up a web site</p></h1>
-<p><br/><b>Step 1.	</b>&#xA0;Find a reliable Internet Service Provider (ISP).</p>
-<p><b>Step 2.	</b>&#xA0;Acquire (5)&#xA0;<input id="q1"/></p>
-<p><b>Step 3.	</b>&#xA0;Look at (6)&#xA0;<input id="q2"/></p>
-<p class="hangingIndent2"><b>Step 4.	</b>&#xA0;Determine what the purpose of the web site is	and who (7)&#xA0;<input id="q3"/></p>
-<p><b>Step 5.	</b>&#xA0;Collect (8) <input id="q4"/></p>
-<p><b>Step 6.	</b>&#xA0;Test on a low specification computer with 	a (9)&#xA0;<input id="q5"/></p>
-<p><b>Step 7.	</b>&#xA0;Test on different configurations of computer	software and server.&#xA0;</p>
-<p><b>Step 8.	</b>&#xA0;Set up your web site once but	(10)&#xA0;<input id="q6"/></p>
-</div>
+<p class="hangingIndent2"><b>Step 1</b>&#xA0;Find a reliable Internet Service Provider (ISP).</p>
+<p class="hangingIndent2"><b>Step 2</b>&#xA0;Acquire (5)&#xA0;<input id="q1"/></p>
+<p class="hangingIndent2"><b>Step 3</b>&#xA0;Look at (6)&#xA0;<input id="q2"/></p>
+<p class="hangingIndent2"><b>Step 4</b>&#xA0;Determine what the purpose of the web site is	and who (7)&#xA0;<input id="q3"/></p>
+<p class="hangingIndent2"><b>Step 5</b>&#xA0;Collect (8) <input id="q4"/></p>
+<p class="hangingIndent2"><b>Step 6</b>&#xA0;Test on a low specification computer with 	a (9)&#xA0;<input id="q5"/></p>
+<p class="hangingIndent2"><b>Step 7</b>&#xA0;Test on different configurations of computer	software and server.&#xA0;</p>
+<p class="hangingIndent2"><b>Step 8</b>&#xA0;Set up your web site once but	(10)&#xA0;<input id="q6"/></p>
 </section>
 
 <section id="rt2001">

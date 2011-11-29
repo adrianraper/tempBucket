@@ -6,7 +6,8 @@
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
-@namespace progressui "com.clarityenglish.ielts.view.progress.components.*";
+@namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
+@namespace progressui "com.clarityenglish.ielts.view.progress.ui.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
@@ -183,21 +184,26 @@ s|VideoPlayer {
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
-progressui|ProgressScoreView {
-	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
-}
-progressui|ProgressCompareView {
-	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
-}
-progressui|ProgressCoverageView {
-	skinClass: ClassReference("skins.ielts.ProgressCoverageSkin");
-}
-progressui|ProgressAnalysisView {
-	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
-}
 
 progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
+}
+
+progresscomponents|ProgressScoreView {
+	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
+}
+progresscomponents|ProgressCompareView {
+	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
+}
+progresscomponents|ProgressCoverageView {
+	skinClass: ClassReference("skins.ielts.ProgressCoverageSkin");
+}
+progresscomponents|ProgressAnalysisView {
+	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
+}
+
+progressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.ielts.progress.ProgressBarRendererSkin");
 }
 
 /* Account view styles */

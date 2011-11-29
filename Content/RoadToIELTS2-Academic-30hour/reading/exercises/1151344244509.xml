@@ -117,24 +117,31 @@
 	
 <section id="body">
  
- <div> <img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"/></div>
+ <div><img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"/></div>
   
-  <ol id="splitquestionList">
-    <p>Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.<br/></p>
-    <li id="1">a technical achievement by Nepalese farmers&#xA0;<input id="q1"/><br/></li>
-    <li id="2">the difficulties facing farmers in developing countries&#xA0;<input id="q2"/><br/></li>
-    <li id="3">a more modern method of irrigation&#xA0;<input id="q3"/><br/></li>
-    <li id="4">land use and time of year&#xA0;<input id="q4"/><br/></li>
-    <li id="5">factors which make Nepal worth studying&#xA0;<input id="q5"/><br/></li>
-    <li id="6">the spread of terrace farming&#xA0;<input id="q6"/><br/></li>
-  <p>Questions 7-12. Complete the table on the right. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.<br/></p>
-  <li id="7">Distance from Kathmandu:&#xA0;<input id="q7"/><br/></li>
-  <li id="8">Area:&#xA0;<input id="q8"/><br/></li>
-  <li id="9">Highest elevation:&#xA0;<input id="q9"/><br/></li>
-  <li id="10">Population:&#xA0;<input id="q10"/><br/></li>
-  <li id="11">Harvests per year:From one to&#xA0;<input id="q11"/><br/></li>
-  <li id="12">Maximum annual rainfall:&#xA0;<input id="q12"/><br/></li>
+
+    <div class="splitexerciseText"><p>Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.</p></div>
+	<div class="splitquestionList">
+	<ol class="splitquestionList">
+	<li id="1">a technical achievement by Nepalese farmers<br/><input id="q1"/></li>
+    <li id="2">the difficulties facing farmers in developing countries<br/><input id="q2"/></li>
+    <li id="3">a more modern method of irrigation<br/><input id="q3"/></li>
+    <li id="4">land use and time of year<br/><input id="q4"/></li>
+    <li id="5">factors which make Nepal worth studying<br/><input id="q5"/></li>
+    <li id="6">the spread of terrace farming<br/><input id="q6"/></li></ol>
+	</div>
+	
+  <div class="splitexerciseText"><p>Questions 7-12. Complete the table on the right. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.</p><p><b>Jhikhu Khola Valley, Nepal - Key Facts</b></p></div>
+	<div class="splitquestionList">
+	<ol class="splitquestionList" start="7">
+  <li>Distance from Kathmandu:<br/><input id="q7"/></li>
+  <li>Area:<br/><input id="q8"/></li>
+  <li>Highest elevation:<br/><input id="q9"/></li>
+  <li>Population:<br/><input id="q10"/></li>
+  <li>Harvests per year:From one to<br/><input id="q11"/></li>
+  <li>Maximum annual rainfall:<br/><input id="q12"/></li>
   </ol>
+  </div>
 </section>
 
 <section id="readingText">

@@ -17,7 +17,7 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-bottom: 12px;
+	
 	padding-left:20px;
 	padding-right:20px;
 	
@@ -206,6 +206,10 @@ h7{
 	line-height: 20em;
 }
 
+#questionList p {
+padding-bottom: 12px;
+}
+
 .questionList_target {
 	list-style-type: lowerLatin;
 	padding-left: 0px;
@@ -221,13 +225,14 @@ h7{
 	padding-left: 10px;
 	padding-right: 225%;
 	padding-top: 5em;
-	padding-bottom: 10em;
+	padding-bottom: 15em;
 	text-align: left;
-	line-height: 20em;
+	line-height: 22em;
 }
 
 .bulletList li{
 	text-indent: 10%;
+	
 }
 
 #gapfillText{
@@ -235,10 +240,10 @@ h7{
 	text-align: left;
 	line-height: 22em;
 	padding-right: 280%;
-	
-	
 }
-
+#gapfillText p{
+padding-bottom: 12px;
+}
 
 #writing {
 	list-style-type: decimal;
@@ -246,9 +251,11 @@ h7{
 	padding-right: 25em;
 	padding-top: 20em;
 	text-align: left;
-	line-height: 20em;
+	line-height: 22em;
 }
-
+#writing {
+padding-bottom: 12px;
+}
 .hangingIndent1 {
  	tab-stops: 30px;
  	text-indent: -220em;
@@ -258,6 +265,7 @@ h7{
  	tab-stops: 30px;
  	text-indent: -50px;
  	padding-left: 70px;
+	line-height: 22em;
 }		
 .hangingIndent3{
 	tab-stops: 30px;

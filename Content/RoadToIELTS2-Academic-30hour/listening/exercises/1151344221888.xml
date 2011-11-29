@@ -87,7 +87,7 @@
 		
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
+<section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/><audio controls="compact" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
 <div id="gapfillText">
 <h9>Lecture</h9>
 <p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Lecturer and large group</p>

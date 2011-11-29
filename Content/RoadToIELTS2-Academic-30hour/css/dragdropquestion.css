@@ -7,7 +7,7 @@
 body > header {
 	font-weight: normal;
 	color: #000000;
-	line-height:20em;
+	line-height:22em;
 }
 
 /* The body should always have a bit of space at the top */
@@ -17,8 +17,6 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-top: 5em;
-	padding-bottom: 12px;
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -45,16 +43,7 @@ p {
 	line-height: 20em;
 }
 
-#splitreadingList {
-	list-style-type: decimal;
-	padding-left: 40px;
-	padding-right: 35px;
-	padding-bottom: 20em;
-	text-align: left;
-	line-height: 20em;
-	text-indent: 2em;
-	margin: 0 20px 20px 20px;
-	}
+
 
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -97,7 +86,7 @@ a, span[draggable="true"] {
 #noscroll span[draggable=true] {
 	float: left;
 	color: #0E00AB;
-	padding: 5px 8px -8px 8px;
+	padding: 8px 8px 4px 8px;
 	margin-right: 4px;
 	margin-bottom: 0px;
 	border-style: solid;
@@ -191,29 +180,36 @@ h8{
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
-	padding-top: 10px;
-	padding-left: 14px;
+	padding-top: 25px;
+	padding-left: 20px;
 	padding-right: 25em;
 	}
 /* h8 is u
 	/* Exercise ID and class */
  #questionList {
 	list-style-type: decimal;
-	
-	margin-left: 20px;
+	padding-left: 0px;
 	padding-right: 280%;
-	padding-top: -25em;
+	padding-top: 0em;
 	text-align: left;
 	line-height: 22em;
+}
+#questionList p{
+	padding-bottom: 12px;
+	}
+#questionList li{
+padding-bottom: 12px;
 }
 
 #gapfillText{
 	padding-top: 12px;
 	text-align: left;
-	line-height: 20em;
+	line-height: 22em;
 	padding-right: 280%;
-	
 }
+#gapfilledText p{
+	padding-bottom: 12px;
+	}
 
 #writing {
 	list-style-type: decimal;
@@ -221,17 +217,15 @@ h8{
 	padding-right: 370%;
 	padding-top: 20em;
 	text-align: left;
-	line-height: 20em;
-}
-
-#splitdrag{
-	padding-top: 20px;
-	padding-bottom: 20em;
-	padding-left: 0px;
-	text-align: left;
 	line-height: 22em;
-	padding-right: 25em;
 }
+#writing li{
+padding-left: -25px;
+}
+#writing p{
+	padding-bottom: 12px;
+	}
+
 }
 #body .rightFloatvideo {
 	float: right;
@@ -259,7 +253,3 @@ h8{
 	margin: 0 20px 20px 0;
 	}
 
-	#reading
-{
-	padding-left: 15em;
-}

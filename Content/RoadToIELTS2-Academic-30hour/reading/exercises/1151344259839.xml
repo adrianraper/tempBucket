@@ -24,21 +24,22 @@
 	
 <script id="model" type="application/xml">
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="D" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="H" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="A" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="F" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="C" correct="true"/>
-    </GapFillQuestion>
+         <DragQuestion source="q1" block="b1">
+      <answer source="a4" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a1" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a6" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a3" correct="true"/>
+    </DragQuestion>
+    
   </questions>
 </script>
 
@@ -51,15 +52,27 @@
 		Questions 7-11. The reading passage describes a number of cause and effect relationships. Match each cause (Questions 7-11) with its effect (A-H). Write the appropriate letters A-H. There are more effects than causes, so you will not use them all.
 		
 </header>
+	<section id="noscroll">
 	
+  <span id="a1" draggable="true">a clearer atmosphere</span>
+  <span id="a2" draggable="true">a good mix of metals</span>
+  <span id="a3" draggable="true">the presence of heavy elements</span>
+  <span id="a4" draggable="true">fewer collisions with the Earth</span>
+  <span id="a5" draggable="true">the stability of the Earth's orbit</span>
+  <span id="a6" draggable="true">the existence of liquid water</span>
+  <span id="a7" draggable="true">continental drift</span>
+  <span id="a8" draggable="true">the stability of the Earth's climate</span>
+
+
+</section>
 <section id="body">
   
   <ol id="splitquestionList">
-  <li id="7">the position of Jupiter in the Solar System  &#xA0;<input id="q1"/></li>
-   <li id="8">the size of the moon  &#xA0;<input id="q2"/></li>
-   <li id="9">the formation of limestone  &#xA0;<input id="q3"/></li>
-   <li id="10">the distance of the Earth from the Sun  &#xA0;<input id="q4"/></li>
-   <li id="11">the Earth's position in the Galaxy  &#xA0;<input id="q5"/></li>
+  <li id="7">the position of Jupiter in the Solar System<br/><input id="q1" type="droptarget"/></li>
+   <li id="8">the size of the moon<br/><input id="q2" type="droptarget"/></li>
+   <li id="9">the formation of limestone<br/><input id="q3" type="droptarget"/></li>
+   <li id="10">the distance of the Earth from the Sun<br/><input id="q4" type="droptarget"/></li>
+   <li id="11">the Earth's position in the Galaxy<br/><input id="q5" type="droptarget"/></li>
    </ol>
 </section>
 

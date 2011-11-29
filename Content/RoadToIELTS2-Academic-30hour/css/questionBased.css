@@ -19,7 +19,6 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-bottom: 12px;
 	padding-left: 20px;
 	padding-right: 20px
 }
@@ -159,17 +158,21 @@ a.neutral, input.neutral {
 
 #questionList {
 	list-style-type: decimal;
-	padding-left: 20px;
-	margin-left: 20px;
+	padding-left: 0px;
+	
 	padding-right: 220%;
 	text-align: left;
-	line-height: 20em;
-	
+	line-height: 22em;
+		
 }
 #questionList p{
-	padding-left: 0em
+	padding-bottom: 12px;
 }
 #questionList li{
+	padding-left:15px;
+}
+#questionList input{
 	text-indent: 10%;
+	tab-stops: 190em;
 	
 }

@@ -234,13 +234,24 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected function onQuestionZoneViewButtonClick(event:MouseEvent):void {
-			var questionZoneExerciseNode:XML =  _course.unit.(@["class"] == "question-zone").exercise[0];
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneExerciseNode.@href));
+			// Question Zone can have more than one exercise (eBook and pdf), so dangerous to assume order
+			// Also a bit dubious, but can we base it on the file type?
+			//var questionZoneExerciseNode:XML =  _course.unit.(@["class"] == "question-zone").exercise[0];
+			for each (var questionZoneEBookNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
+				if (questionZoneEBookNode.@href.indexOf(".xml")>0) 
+					break;
+			}
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
 		}
 		
 		protected function onQuestionZoneDownloadButtonClick(event:MouseEvent):void {
-			var questionZoneExerciseNode:XML =  _course.unit.(@["class"] == "question-zone").exercise[0];
-			trace("DOWNLOAD");
+			// as above for file type
+			for each (var questionZonePDFNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
+				if (questionZonePDFNode.@href.indexOf(".pdf")>0) 
+					break;
+			}
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZonePDFNode.@href));
+			trace("DOWNLOAD eBook pdf");
 		}
 		
 		protected override function getCurrentSkinState():String {
