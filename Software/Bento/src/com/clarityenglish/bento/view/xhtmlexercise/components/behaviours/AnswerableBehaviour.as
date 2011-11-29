@@ -87,11 +87,13 @@ import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 import com.clarityenglish.textLayout.elements.InputElement;
 import com.clarityenglish.textLayout.elements.SelectElement;
 import com.clarityenglish.textLayout.elements.TextComponentElement;
+import com.clarityenglish.textLayout.util.TLFUtil;
 import com.clarityenglish.textLayout.vo.XHTML;
 
 import flash.events.Event;
 import flash.events.IEventDispatcher;
 import flash.events.MouseEvent;
+import flash.utils.setTimeout;
 
 import flashx.textLayout.elements.FlowElement;
 import flashx.textLayout.elements.TextFlow;
@@ -273,6 +275,11 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				var source:String = inputElement.droppedNode.@id;
 				answerOrString = new NodeAnswer(<Answer score="0" source={source} />);
 			}
+			
+			// TODO: THIS ISN'T UPDATING THE DISPLAY, I HAVE NO IDEA WHY.  IT WORKS IF THE SPAN ISN'T IN A FLOAT :(
+			XHTML.addClass(inputElement.droppedNode, "disabled");
+			TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
+			inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
 		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we

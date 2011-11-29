@@ -93,6 +93,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var ds:DragSource = new DragSource();
 				ds.addData((e.flowElement as FlowLeafElement).text, "text");
 				ds.addData(draggableNode, "node");
+				ds.addData(e.flowElement, "flowElement");
 				
 				// If the node has the 'disabled' class then it is not draggable
 				if (XHTML.hasClass(draggableNode, "disabled"))
@@ -103,7 +104,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				// If doDrag decided that we have started a drag, we want to draw the drag area into the dragImage and make it visible
 				if (DragManager.isDragging) {
 					// First get the bounds of the draggable flow leaf element
-					var elementBounds:Rectangle = TLFUtil.getFlowLeafElementBounds(e.flowElement as FlowLeafElement);
+					var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(e.flowElement as FlowLeafElement);
 					
 					// Convert the element bounds from their original coordinate space to the container coordinate space
 					var containingBlock:RenderFlow = e.flowElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;

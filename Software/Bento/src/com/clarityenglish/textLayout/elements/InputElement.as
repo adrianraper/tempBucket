@@ -2,6 +2,7 @@ package com.clarityenglish.textLayout.elements {
 	import flash.events.Event;
 	
 	import flashx.textLayout.compose.FlowDamageType;
+	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
 	
@@ -13,7 +14,6 @@ package com.clarityenglish.textLayout.elements {
 	
 	import spark.components.Button;
 	import spark.components.TextInput;
-	import flashx.textLayout.elements.FlowElement;
 
 	use namespace tlf_internal;
 	
@@ -44,9 +44,10 @@ package com.clarityenglish.textLayout.elements {
 		private var _gapText:String;
 		
 		/**
-		 * If the input was populated by drag and drop, this is the node that was dropped 
+		 * If the input was populated by drag and drop, this is the node and flow element that was dropped 
 		 */
-		private var _droppedNode:XML;
+		private var _droppedNode:XML;		
+		private var _droppedFlowElement:FlowElement;
 		
 		public function InputElement() {
 			super();
@@ -76,6 +77,10 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function get droppedNode():XML {
 			return _droppedNode;
+		}
+		
+		public function get droppedFlowElement():FlowElement {
+			return _droppedFlowElement;
 		}
 		
 		/**
@@ -191,7 +196,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		protected function onDropDrop(event:DragEvent):void {
-			dragDrop(event.dragSource.dataForFormat("node") as XML, event.dragSource.dataForFormat("text").toString());
+			dragDrop(event.dragSource.dataForFormat("node") as XML, event.dragSource.dataForFormat("flowElement") as FlowElement, event.dragSource.dataForFormat("text").toString());
 			
 			if (event.dragSource.hasFormat("text")) {
 				// TODO: This works, but basically we are forcing a complete update which isn't really necessary...
@@ -200,14 +205,15 @@ package com.clarityenglish.textLayout.elements {
 				
 				getEventMirror().dispatchEvent(new DragEvent(DragEvent.DRAG_COMPLETE));
 				
-				// Dispatch a value commit, so the question gets marked at this point
+				// Dispatch a value commit, so if we are using instant marking the question will get marked at this point
 				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 			}
 		}
 			
-		public function dragDrop(node:XML, text:String):void {
+		public function dragDrop(node:XML, flowElement:FlowElement, text:String):void {
 			if (node) {
 				_droppedNode = node;
+				_droppedFlowElement = flowElement;
 			}
 			
 			if (text) {

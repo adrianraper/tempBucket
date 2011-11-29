@@ -59,7 +59,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public function getElementBounds():Rectangle {
-			return TLFUtil.getFlowLeafElementBounds(this);
+			return TLFUtil.getFlowElementBounds(this);
 		}
 		
 		/**

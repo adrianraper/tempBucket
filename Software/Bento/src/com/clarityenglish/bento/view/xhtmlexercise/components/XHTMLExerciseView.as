@@ -1,6 +1,8 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.marking.events.MarkingEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
@@ -15,7 +17,14 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.geom.Rectangle;
+	
 	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.FlowLeafElement;
+	import flashx.textLayout.elements.TextFlow;
+	
+	import mx.controls.SWFLoader;
+	import mx.core.mx_internal;
 	
 	import spark.components.Group;
 	
@@ -150,8 +159,13 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				if (question.isMutuallyExclusive()) {
 					for each (var allAnswers:NodeAnswer in question.answers) {
 						for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
+							var otherSourceElement:FlowElement = getFlowElement(otherSource);
+							
+							// This is used by MarkableIconsBehaviour
+							answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, otherSourceElement));
+							
 							XHTML.removeClasses(otherSource, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
-							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
+							TLFUtil.markFlowElementFormatChanged(otherSourceElement);
 						}
 					}
 				}
@@ -165,7 +179,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 						answerNode.text = inputElement.value = (answer as TextAnswer).value;
 					} else {
 						sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
-						inputElement.dragDrop(sourceNodes[0], sourceNodes[0].toString());
+						
+						// TODO: This is not putting the flow element into the input; right now this has no impact as the flow element here is used
+						// during a live drag and drop and its not possible to drag after marking.  However, keep an eye on this in case things change
+						// in the future.
+						inputElement.dragDrop(sourceNodes[0], null, sourceNodes[0].toString());
 					}
 				}
 				
@@ -173,8 +191,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					var selectElement:SelectElement = answerElement as SelectElement;
 					
 					sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
-					selectElement.selectedItem = sourceNodes[0];
+					if (sourceNodes) {
+						selectElement.selectedItem = sourceNodes[0];
+					} else {
+						log.error("Unable to find a correct answer for dropdown {0}", selectElement);
+					}
 				}
+				
+				// This is used by MarkableIconsBehaviour
+				answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_MARKED, answerElement, answer.markingClass));
 				
 				// Remove any existing classes and add the result class
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
@@ -217,7 +242,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					TLFUtil.markFlowElementFormatChanged(flowElement);
 					flowElement.getTextFlow().flowComposer.updateAllControllers();
 				} else {
-					log.error("Cannot find flow element");
+					log.error("Cannot find flow element for {0}", node);
 				}
 			}
 		}

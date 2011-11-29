@@ -80,22 +80,21 @@ h2 {
 	text-align: left;
 	line-height: 20em;
 }
-#gapfillText{
+#gapfillText {
 	padding-top: 20px;
 	text-align: justify;
 	line-height: 20em;
 	padding-right: 215%;
 }
 
-#presentation{
+#presentation {
 	padding-top: 20em;
 	text-align: justify;
 	line-height: 20em;
 	padding-right: 215%;
-	
 }
 
-#dropdown{
+#dropdown {
 	padding-top: 20em;
 	text-align: left;
 	line-height: 25em;

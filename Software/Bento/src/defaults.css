@@ -10,6 +10,20 @@
 @namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
 @namespace error "com.clarityenglish.common.view.error.*";
 
+global {
+	correctIcon: Embed(source="skins/assets/correctIcon.png");
+	correctIconWidth: 16;
+	correctIconHeight: 17;
+	
+	incorrectIcon: Embed(source="skins/assets/incorrectIcon.png");
+	incorrectIconWidth: 16;
+	incorrectIconHeight: 17;
+	
+	missedIcon: Embed(source="skins/assets/missedIcon.png");
+	missedIconWidth: 16;
+	missedIconHeight: 17;
+}
+
 components|XHTMLExerciseView {
 	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseSkin");
 }

@@ -57,6 +57,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 				componentElement.getComponent().setStyle("fontSize", componentElement.computedFormat.fontSize);
 				componentElement.getComponent().setStyle("color", componentElement.computedFormat.color);
 				
+				// Position and size the component in line with its underlying text
 				var bounds:Rectangle = componentElement.getElementBounds();
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container

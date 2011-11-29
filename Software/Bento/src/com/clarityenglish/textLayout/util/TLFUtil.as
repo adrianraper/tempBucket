@@ -32,9 +32,13 @@ package com.clarityenglish.textLayout.util {
 			if (updateAllControllers) flowElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
-		public static function getFlowLeafElementBounds(flowLeafElement:FlowLeafElement):Rectangle {
+		public static function getFlowElementBounds(flowElement:FlowElement):Rectangle {
 			// First determine the absolute start and end locations within the TextFlow of this FlowLeafElement
-			var startPosition:int = flowLeafElement.getAbsoluteStart();
+			var startPosition:int = flowElement.getAbsoluteStart();
+			
+			// Get the flow leaf element (this is either already the flowElement or we use findElement to find it)
+			var flowLeafElement:FlowLeafElement = (flowElement is FlowLeafElement) ? flowElement as FlowLeafElement : flowElement.getTextFlow().findLeaf(startPosition);
+			
 			var endPosition:int = (flowLeafElement.getNextLeaf()) ? flowLeafElement.getNextLeaf().getAbsoluteStart() : flowLeafElement.getTextFlow().textLength;
 			endPosition--;
 			
@@ -52,7 +56,7 @@ package com.clarityenglish.textLayout.util {
 			var textFlowLine:TextFlowLine = textFlow.flowComposer.findLineAtPosition(absolutePosition);
 			if (!textFlowLine) return null;
 			
-			var textLine:TextLine = textFlowLine.getTextLine(true);
+			var textLine:TextLine = textFlowLine.getTextLine(false);
 			if (!textLine) return null;
 			
 			var position:int = absolutePosition - flowLeafElement.getParagraph().getAbsoluteStart();

@@ -22,8 +22,6 @@ padding-left:20px;
 padding-right:20px;
 }
 
-
-
 /* Lists use numbers. */
 
 /* Multiple-choice answers use letters */
@@ -46,6 +44,7 @@ padding-right:20px;
 	text-align: justify;
 	line-height: 20em
 }
+
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
  	tab-stops: 30px;
@@ -80,6 +79,7 @@ a, span[draggable="true"] {
 	border-radius: 12px;
 	background-color: #FFFFFF;
 }
+
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
@@ -117,6 +117,7 @@ a.incorrect, input.incorrect, g.incorrect {
 a.neutral, input.neutral {
 	color: #0000AA !important;
 }
+
 /* Headings */
 h1 {
 	font-family: Arial Black;
@@ -126,6 +127,7 @@ h1 {
 	text-align: left;
 	line-height: 20em
 }
+
 h2 {
 	font-family: Arial Black;
 	font-size: 11px;
@@ -136,6 +138,7 @@ h2 {
 	text-align: left;
     line-height: 20em
 }
+
 h4 {
 	font-family: Arial Black;
 	font-size: 13px;
@@ -144,7 +147,7 @@ h4 {
 	padding-top: 0px
 }
 
-h7{
+h7 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
@@ -153,7 +156,8 @@ h7{
 	padding-left:20px;
 	line-height: 20em;
 	padding-right: 350%;
-	}
+}
+
 
 /* This is for any clickable lists in targetspotting exercises. */
 #targetspotting {
@@ -163,7 +167,7 @@ h7{
 	line-height: 22em;
 }
 #targetspotting li{
-padding-left: -25px;
+	padding-left: -25px;
 }
 
 #targetspotting p{
@@ -193,7 +197,6 @@ padding-left: 15px;
 	padding-top: 20em;
 	text-align: left;
 	line-height: 20em;
-	
 }
 
 #body .rightFloatvideo {
@@ -203,10 +206,10 @@ padding-left: 15px;
 	padding-right: 10em;
 	padding-left: 10em;
 	margin-top: 20em;
-	
 }
+
 floatleft {
-vertical-align:left;
-    	
+	vertical-align:left;   	
 	padding: -25px 0 5px 15px;
     margin: 5px;
+}

@@ -58,7 +58,7 @@ package com.clarityenglish.textLayout.elements {
 		 * @return 
 		 */
 		public function getElementBounds():Rectangle {
-			var bounds:Rectangle = TLFUtil.getFlowLeafElementBounds(this);
+			var bounds:Rectangle = TLFUtil.getFlowElementBounds(this);
 			bounds.width = (component.initialized) ? component.width : NaN;
 			bounds.height = (component.initialized) ? component.height : NaN;
 			
