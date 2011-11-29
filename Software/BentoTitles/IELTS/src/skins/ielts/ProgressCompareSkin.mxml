@@ -12,8 +12,7 @@
 		<s:VerticalLayout />
 	</s:layout>
 
-	<s:Label text="A recap of your progress..." />
-	<s:Label text="Well done, you have " />
+	<s:Label text="Your average score compared against everyone else..." />
 	<ns1:AnyChartFlex id="compareChart" width="600" height="300" />
 	
 </s:Skin>

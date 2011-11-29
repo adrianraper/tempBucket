@@ -37,6 +37,7 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var coveragePieChart:AnyChartFlex;
 		
+		// Note that the colours are in ielts.css as constants.
 		private static const chartTemplates:XML = 
 <anychart>
   <settings>

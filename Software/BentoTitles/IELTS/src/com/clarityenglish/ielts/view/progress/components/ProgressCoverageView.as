@@ -20,24 +20,6 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	public class ProgressCoverageView extends BentoView {
 		
-		[SkinPart(required="true")]
-		public var writingCourse:Button;
-		
-		[SkinPart(required="true")]
-		public var readingCourse:Button;
-		
-		[SkinPart(required="true")]
-		public var speakingCourse:Button;
-		
-		[SkinPart(required="true")]
-		public var listeningCourse:Button;
-		
-		[SkinPart(required="true")]
-		public var examTipsCourse:Button;
-		
-		//[SkinPart(required="true")]
-		//public var scoreDetails:DataGrid;
-		
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
 
@@ -96,14 +78,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
-				case writingCourse:
-				case readingCourse:
-				case speakingCourse:
-				case listeningCourse:
-				case examTipsCourse:
-					break;
-				//case scoreDetails:
-				//	break;
 			}
 		}
 		

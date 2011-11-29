@@ -20,20 +20,17 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	public class ProgressScoreView extends BentoView {
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var writingCourse:Button;
-		
-		[SkinPart(required="true")]
-		public var readingCourse:Button;
-		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var speakingCourse:Button;
-		
-		[SkinPart(required="true")]
+		[SkinPart]
+		public var readingCourse:Button;
+		[SkinPart]
 		public var listeningCourse:Button;
 		
 		[SkinPart(required="true")]
-		public var examTipsCourse:Button;
+		public var progressBar:Label;
 		
 		[SkinPart(required="true")]
 		public var scoreDetails:DataGrid;
@@ -104,7 +101,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				case readingCourse:
 				case speakingCourse:
 				case listeningCourse:
-				case examTipsCourse:
+				//case examTipsCourse:
 					break;
 				case scoreDetails:
 					break;

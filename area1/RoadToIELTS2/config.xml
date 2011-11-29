@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
-	<developer>ARHome</developer>
+	<developer>AR</developer>
 	<dbHost>2</dbHost>
-	<productCode>12</productCode>
+	<productCode>52</productCode>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />

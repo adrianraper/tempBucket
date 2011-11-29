@@ -13,19 +13,6 @@
 		<s:VerticalLayout />
 	</s:layout>
 
-	<s:HGroup width="100%" height="100" >
-		<s:Button id="writingCourse" label="writing" width="75" />
-		<s:Button id="speakingCourse" label="speaking" width="75" />
-		<s:Button id="readingCourse" label="reading" width="75" />
-		<s:Button id="listeningCourse" label="listening" width="75" />
-		<s:Button id="examTipsCourse" label="exam tips" width="75" />
-	</s:HGroup>	
-	
-	<s:HGroup width="100%" height="100%">
-		<s:Label text="Practice Zone" />
-		<s:Label text="Question Zone" />
-		<s:Label text="Advice Zone" />
-		<s:Label text="Exam Practice" />
-	</s:HGroup>
+	<s:Label text="This is the coverage screen" />
 
 </s:Skin>

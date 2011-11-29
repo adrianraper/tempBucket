@@ -27,8 +27,8 @@ package com.clarityenglish.ielts.view.progress {
 		[SkinPart]
 		public var progressNavBar:ButtonBar;
 		
-		[SkinPart]
-		public var progressKeyBar:ButtonBar;
+		//[SkinPart]
+		//public var progressKeyBar:ButtonBar;
 		
 		[SkinPart]
 		public var progressScoreView:ProgressScoreView;
@@ -43,6 +43,7 @@ package com.clarityenglish.ielts.view.progress {
 		public var progressCoverageView:ProgressCoverageView;
 		
 		// Until assets.swf contains icons for the progress tabs, just use progress one
+		// But I don't need any icons for this bar!
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
 		private var coverageIcon:Class;
 		
@@ -54,7 +55,7 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
 		private var scoreIcon:Class;
-		
+		/*
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon")]
 		private var readingIcon:Class;
 		
@@ -66,7 +67,7 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon")]
 		private var listeningIcon:Class;
-		
+		*/
 		
 		// Constructor to let us initialise our states
 		public function ProgressView() {
@@ -96,27 +97,27 @@ package com.clarityenglish.ielts.view.progress {
 					break;
 				
 				// 1) Can I hijack buttonBar for this?
-				// 2) Shoud it be in the individual state skins?
-				case progressKeyBar:
-					progressKeyBar.dataProvider = new ArrayCollection( [
-						{ icon: writingIcon, label: "Writing", data: "writing" },
-						{ icon: speakingIcon, label: "Speaking", data: "speaking" },
-						{ icon: readingIcon, label: "Reading", data: "reading" },
-						{ icon: listeningIcon, label: "Listening", data: "listening" },
-					] );
-					
-					progressKeyBar.requireSelection = true;
-					//progressKeyBar.addEventListener(Event.CHANGE, onKeyBarIndexChange);
-					break;
+				// 2) Shoud it be in the individual state skins? YES, I think so
+				//case progressKeyBar:
+				//	progressKeyBar.dataProvider = new ArrayCollection( [
+				//		{ icon: writingIcon, label: "Writing", data: "writing" },
+				//		{ icon: speakingIcon, label: "Speaking", data: "speaking" },
+				//		{ icon: readingIcon, label: "Reading", data: "reading" },
+				//		{ icon: listeningIcon, label: "Listening", data: "listening" },
+				//	] );
+				//	
+				//	progressKeyBar.requireSelection = true;
+				//	progressKeyBar.addEventListener(Event.CHANGE, onKeyBarIndexChange);
+				//	break;
 				
 				case progressScoreView:
 				case progressCoverageView:
-					// These views need to preset a course to start with
+					// These sub views need to preset a course to start with
 					instance.course = menu.course.(@["class"]=='writing')[0];
 					// keep going with shared stuff
 				case progressCompareView:
 				case progressAnalysisView:
-					// The sub views run off the same href as the progress view, so directly inject it 
+					// All the sub views run off the same href as the progress view, so directly inject it 
 					instance.href = href;
 					break;
 			}

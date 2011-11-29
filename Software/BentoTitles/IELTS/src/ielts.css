@@ -6,7 +6,7 @@
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
-@namespace progressui "com.clarityenglish.ielts.view.progress.ui.*";
+@namespace progressui "com.clarityenglish.ielts.view.progress.components.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
@@ -183,26 +183,21 @@ s|VideoPlayer {
 progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
-progress|ProgressView s|Button#listeningCourse {
-	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
-	courseImage: Embed(source="skins/ielts/assets/Listening.png");
-	title: "Listening";
-	description: "Practise the listening skills you need to succeed in the listening test.";
-}
-progress|ProgressScoreView {
+progressui|ProgressScoreView {
 	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
 }
-progress|ProgressCompareView {
+progressui|ProgressCompareView {
 	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
 }
-progress|ProgressCoverageView {
+progressui|ProgressCoverageView {
 	skinClass: ClassReference("skins.ielts.ProgressCoverageSkin");
 }
-progress|ProgressAnalysisView {
+progressui|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
 }
-progressui|ProgressBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarSkin");
+
+progress|ProgressView #progressNavBar {
+	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
 }
 
 /* Account view styles */

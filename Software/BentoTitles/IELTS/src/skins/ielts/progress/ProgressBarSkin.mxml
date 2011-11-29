@@ -12,15 +12,16 @@
 			//public function set dataProvider(value:Object):void {
 			//	_dataProvider = value;
 			//}
+			// <s:Label text="Writing - average score {dataProvider.averageScore}%" color="#213606" fontSize="16" />
 		]]>
 	</fx:Script>
 	
 	<s:VGroup id="progressBar" width="90%" height="30" >
 		<s:HGroup>
 			<s:Spacer width="100%" />
-			<s:Label text="Writing - average score {dataProvider.averageScore}%" color="#213606" fontSize="16" />			
+			<s:Label text="Writing - average score 39%" color="#213606" fontSize="16" />			
 		</s:HGroup>
-		<s:Rect percentWidth="{dataProvider.averageScore}" height="100%" >
+		<s:Rect percentWidth="39" height="100%" >
 			<s:fill>
 				<s:SolidColor color="#CCED9A" />
 			</s:fill>

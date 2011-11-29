@@ -13,15 +13,16 @@
 		<s:VerticalLayout />
 	</s:layout>
 
-	<s:HGroup width="100%" height="100" >
-		<s:Button id="writingCourse" label="writing" width="75" />
-		<s:Button id="speakingCourse" label="speaking" width="75" />
-		<s:Button id="readingCourse" label="reading" width="75" />
-		<s:Button id="listeningCourse" label="listening" width="75" />
-		<s:Button id="examTipsCourse" label="exam tips" width="75" />
-	</s:HGroup>	
+	<s:HGroup id="progressCourseBar" width="100%" height="100%">
+		<s:Button label="Writing" id="writingCourse" width="75" height="25" />
+		<s:Button label="Speaking" id="speakingCourse" width="75" height="25" />
+		<s:Button label="Reading" id="readingCourse" width="75" height="25" />
+		<s:Button label="Listening" id="listeningCourse" width="75" height="25" />
+	</s:HGroup>
 	
-	<ui:ProgressBarSkin width="100%" height="20" dataProvider="{hostComponent.summaryData}" />
+	<s:Label id="progressBar" text="Writing - average score 39%" />
+	
+	<!-- <ui:ProgressBarSkin width="100%" height="20" dataProvider="{hostComponent.summaryData}"  />-->
 	
 	<s:HGroup width="100%" height="100%">
 		<s:DataGrid id="scoreDetails" width="70%" height="100%" dataProvider="{hostComponent.tableDataProvider}" >
@@ -34,17 +35,6 @@
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>
-		<s:VGroup width="30%" height="100%">
-			<s:Label text="Practice Zone" />
-			<s:Label text="Advice Zone" />
-			<s:Label text="Question Zone" />
-			<s:Label text="Exam Practice" />
-		</s:VGroup>
 	</s:HGroup>
-	<fx:Script>
-		<![CDATA[
-			import mx.collections.HierarchicalData;
-		]]>
-	</fx:Script>
 
 </s:Skin>
