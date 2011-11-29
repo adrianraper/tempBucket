@@ -17,15 +17,11 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	
 	padding-left:20px;
 	padding-right:20px;
-	
 }
 
-
 /* Lists use numbers. */
-
 
 /* Multiple-choice answers use letters */
 .answerList {
@@ -33,6 +29,7 @@ p {
 	padding-left: 15px;
 	margin-left: 0px;
 }
+
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 #readingText p {
@@ -43,9 +40,8 @@ p {
 	font-size: 12px;
 	text-align: justify;
 	line-height: 20em
-
-
 }
+
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
  	tab-stops: 30px;
@@ -72,6 +68,7 @@ a, span[draggable="true"] {
 	border-radius: 12px;
 	background-color: #FFFFFF;
 }
+
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
@@ -122,6 +119,7 @@ h1 {
 	text-align: left;
 	line-height: 20em
 }
+
 h2 {
 	font-family: Verdana;
 	font-size: 12px;
@@ -141,6 +139,7 @@ h4 {
 	padding-top: 0px;
 	padding-left:20px;
 }
+
 h5 {
 	font-family: Arial Black;
 	font-size: 16px;
@@ -151,6 +150,7 @@ h5 {
 	text-align: left;
 	line-height: 5em;
 }
+
 h6 {
 	font-family: Arial Black;
 	font-size: 11px;
@@ -162,7 +162,7 @@ h6 {
 	padding-left:20px;
 }
 
-h7{
+h7 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
@@ -170,9 +170,9 @@ h7{
 	line-height: 20em;
 	padding-right: 350%;
 	padding-left:20px
-	}
-	
-	h8{
+}
+
+h8 {
 	font-family: Arial Black;
 	font-size: 15px;
 	font-weight: bold;
@@ -185,7 +185,7 @@ h7{
 	padding-right: 25em;
 }
 
-	h9{
+h9 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
@@ -193,12 +193,11 @@ h7{
 	padding-bottom: 5px;
 	padding-right: 25em;
 	padding-left: 20px;
-	}
-	
+}
+
 /* Exercise ID and class */
 #questionList {
 	list-style-type: decimal;
-	
 	padding-left: 0px;
 	padding-right: 225%;
 	padding-top: 20em;
@@ -207,7 +206,7 @@ h7{
 }
 
 #questionList p {
-padding-bottom: 12px;
+	padding-bottom: 12px;
 }
 
 .questionList_target {
@@ -230,19 +229,19 @@ padding-bottom: 12px;
 	line-height: 22em;
 }
 
-.bulletList li{
+.bulletList li {
 	text-indent: 10%;
-	
 }
 
-#gapfillText{
+#gapfillText {
 	padding-top: 12px;
 	text-align: left;
 	line-height: 22em;
 	padding-right: 280%;
 }
+
 #gapfillText p{
-padding-bottom: 12px;
+	padding-bottom: 12px;
 }
 
 #writing {
@@ -253,25 +252,30 @@ padding-bottom: 12px;
 	text-align: left;
 	line-height: 22em;
 }
+
 #writing {
-padding-bottom: 12px;
+	padding-bottom: 12px;
 }
+
 .hangingIndent1 {
  	tab-stops: 30px;
  	text-indent: -220em;
  	padding-left: 240em;
 }
+
 .hangingIndent2 {
  	tab-stops: 30px;
  	text-indent: -50px;
  	padding-left: 70px;
 	line-height: 22em;
-}		
+}
+
 .hangingIndent3{
 	tab-stops: 30px;
  	text-indent: -171px;
  	padding-left: 192px;
 }
+
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
@@ -279,12 +283,14 @@ padding-bottom: 12px;
 	padding-right: 25px;
 	padding-left: 25px;
 }
+
 #body .leftFloat {
 	float: left;
 	padding-top: 25px;
 	padding-right: 25px;
 	padding-left: 25px;
 }
+
 #body .rightFloatvideo {
 	float: right;
 	width: 760px;
@@ -295,13 +301,13 @@ padding-bottom: 12px;
 }
 
 img.floatleft {
-float: left;
+	float: left;
 	padding-top: 37px;
 	padding-right: 50px;
 	padding-left: 25px;
 }
 
-	#gapfillTextvideo{
+#gapfillTextvideo{
 	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
@@ -313,4 +319,4 @@ img.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
-} 
+}

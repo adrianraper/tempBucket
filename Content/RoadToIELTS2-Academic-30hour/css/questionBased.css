@@ -14,7 +14,6 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
-
 }
 
 /* Paragraphs have spacing after them */
@@ -34,6 +33,7 @@ h1 {
 	text-align: left;
 	line-height: 20em
 }
+
 h2 {
 	font-family: Arial Black;
 	font-size: 11px;
@@ -53,17 +53,15 @@ h4 {
 	padding-top: 0px;
 }
 
-h7{
+h7 {
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 10px;
-	
 	padding-right: 25em;
-	}
+}
+
 /* Lists use numbers. */
-
-
 
 /* Multiple-choice answers use letters */
 .answerList {
@@ -71,6 +69,7 @@ h7{
 	padding-left: 15px;
 	margin-left: 0px;
 }
+
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 #readingText p {
@@ -81,9 +80,8 @@ h7{
 	font-size: 13px;
 	text-align: justify;
 	line-height: 20em
-
-
 }
+
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
  	tab-stops: 30px;
@@ -118,6 +116,7 @@ a, span[draggable="true"] {
 	border-radius: 12px;
 	background-color: #FFFFFF;
 }
+
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
@@ -165,14 +164,16 @@ a.neutral, input.neutral {
 	line-height: 22em;
 		
 }
-#questionList p{
+
+#questionList p {
 	padding-bottom: 12px;
 }
-#questionList li{
+
+#questionList li {
 	padding-left:15px;
 }
-#questionList input{
+
+#questionList input {
 	text-indent: 10%;
 	tab-stops: 190em;
-	
 }
