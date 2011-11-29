@@ -90,7 +90,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			if (view.exercise.model) {
 				for each (var question:Question in view.exercise.model.questions) {
 					var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question);
-					view.markAnswerMap(question, answerMap);
+					view.markAnswerMap(question, answerMap, true);
 				}
 			}
 		}
