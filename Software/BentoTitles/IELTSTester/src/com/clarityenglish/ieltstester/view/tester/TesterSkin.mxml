@@ -3,7 +3,9 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:view="com.clarityenglish.bento.view.*"
 		xmlns:sparkTree="com.sparkTree.*"
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:exercise="skins.bento.exercise.*"
+		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ieltstester.view.tester.TesterView")]
@@ -18,6 +20,7 @@
 	<mx:HDividedBox width="100%" height="100%" >
 		<sparkTree:Tree id="menuTree" width="30%" height="100%" />
 		<view:DynamicView id="dynamicView" width="70%" height="100%" />
+		<!--<components:XHTMLExerciseView id="dynamicView" width="70%" height="100%" />-->
 	</mx:HDividedBox>
 	
 </s:Skin>

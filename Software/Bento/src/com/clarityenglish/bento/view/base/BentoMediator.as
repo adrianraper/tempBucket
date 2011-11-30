@@ -13,7 +13,7 @@ package com.clarityenglish.bento.view.base {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-
+	
 	/**
 	 * Bento components (designed to automatically add and remove their associated mediators) should extend this class.
 	 * It is *vital* that child classes do not override getMediatorName and let Bento take care of this automatically.
@@ -44,7 +44,7 @@ package com.clarityenglish.bento.view.base {
 			super.onRegister();
 			
 			// Add event listeners to the view
-			view.addEventListener(BentoEvent.HREF_CHANGED, onHrefChanged);
+			view.addEventListener(BentoEvent.HREF_CHANGED, onHrefChanged, false, 0, true);
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {
@@ -56,6 +56,8 @@ package com.clarityenglish.bento.view.base {
 			
 			// Remove event listeners from the view
 			view.removeEventListener(BentoEvent.HREF_CHANGED, onHrefChanged);
+			
+			currentlyLoadedHref = null;
 		}
 		
 		public override function listNotificationInterests():Array {

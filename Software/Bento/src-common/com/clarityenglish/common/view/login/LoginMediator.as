@@ -6,6 +6,7 @@ package com.clarityenglish.common.view.login {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
@@ -35,11 +36,15 @@ package com.clarityenglish.common.view.login {
 			
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
 			
+			// Inject some data to the login view
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.setLicencee(configProxy.getAccount().name);
+			
 			// For debug purposes automatically login as dandelion/password
 			if (Config.DEVELOPER.name == "AR") {
 				view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
 			} else if (Config.DEVELOPER.name == "DK") {
-				view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
+				//view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
 			}
 		}
         
@@ -77,6 +82,7 @@ package com.clarityenglish.common.view.login {
 				case CommonNotifications.COPY_LOADED:
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 					view.setCopyProvider(copyProvider);
+					
 					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
 					view.clearData();
 					break;
@@ -86,7 +92,6 @@ package com.clarityenglish.common.view.login {
 		}
 		
 		private function onLogin(e:LoginEvent):void {
-			// Trigger a notification to react to this event
 			sendNotification(CommonNotifications.LOGIN, e);
 		}
 

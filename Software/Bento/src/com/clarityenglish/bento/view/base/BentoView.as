@@ -5,6 +5,7 @@ package com.clarityenglish.bento.view.base {
 	
 	import flash.events.Event;
 	
+	import mx.core.mx_internal;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -33,6 +34,8 @@ package com.clarityenglish.bento.view.base {
 		private var _xhtmlChanged:Boolean;
 
 		public function BentoView() {
+			super();
+			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 		}
@@ -43,13 +46,16 @@ package com.clarityenglish.bento.view.base {
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			_href = null;
+			_xhtml = null;
 		}
 		
 		[Bindable]
 		public function get href():Href {
 			return _href;
 		}
-
+		
 		public function set href(value:Href):void {
 			_href = value;
 			_hrefChanged = true;

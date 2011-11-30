@@ -23,13 +23,14 @@ package com.clarityenglish.bento.controller {
 			
 			var exercise:Exercise = note.getBody() as Exercise;
 			
-			// Clean up after this exercise
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.currentExercise = null;
 			
-			facade.removeProxy(ExerciseProxy.NAME(exercise));
-			
-			sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
+			// Stop the current exercise (if there is one) and clean up
+			if (bentoProxy.currentExercise) {
+				bentoProxy.currentExercise = null;
+				facade.removeProxy(ExerciseProxy.NAME(exercise));
+				sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
+			}
 		}
 		
 	}

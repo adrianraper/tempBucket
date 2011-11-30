@@ -104,12 +104,6 @@ package com.clarityenglish.ielts.view.title {
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
-				case homeView:
-				case zoneView:
-				case progressView:
-					// The zone and home views run off the same href as the title view, so directly inject it 
-					instance.href = href;
-					break;
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;
 					break;

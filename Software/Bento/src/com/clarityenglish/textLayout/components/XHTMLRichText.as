@@ -58,6 +58,17 @@ package com.clarityenglish.textLayout.components {
 		
 		public function XHTMLRichText() {
 			super();
+			
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+		}
+		
+		protected function onRemovedFromStage(event:Event):void {
+			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			_xhtml = null;
+			_behaviours = null;
+			_flowElementXmlBiMap = null;
+			_css = null;
 		}
 		
 		/**
@@ -135,6 +146,8 @@ package com.clarityenglish.textLayout.components {
 		 * @param event
 		 */
 		protected function onExternalStylesLoaded(event:Event):void {
+			_xhtml.removeEventListener(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
+			
 			_xhtmlChanged = true;
 			invalidateProperties();
 		}
@@ -158,8 +171,15 @@ package com.clarityenglish.textLayout.components {
 					
 					renderFlow.removeEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
 					renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
-					
+				}
+				
+				if (_flowElementXmlBiMap) {
+					_flowElementXmlBiMap.clear();
 					_flowElementXmlBiMap = null;
+				}
+				
+				if (_css) {
+					_css.clear();
 					_css = null;
 				}
 				

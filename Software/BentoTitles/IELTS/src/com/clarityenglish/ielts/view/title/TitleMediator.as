@@ -41,14 +41,10 @@
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
 			
-			// This is really the 'main' mediator, so this is where we set the menu.xml in BentoProxy
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.menuXHTML = xhtml;
-			
 			// TODO: FOR DEBUG TO GO STRAIGHT INTO A COURSE
-			if (Config.DEVELOPER.name == "DK") {
-				sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@["class"] == "reading")[0]);
-			}
+			//if (Config.DEVELOPER.name == "DK") {
+			//	sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@["class"] == "reading")[0]);
+			//}
 		}
 		
 		override public function onRemove():void {

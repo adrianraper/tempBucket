@@ -5,11 +5,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.common.vo.manageable.Manageable;
 	import com.clarityenglish.common.vo.manageable.User;
-	
-	import mx.core.Application;
-	import mx.core.FlexGlobals;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;

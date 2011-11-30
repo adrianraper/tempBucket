@@ -11,6 +11,7 @@
 	import com.clarityenglish.common.controller.*;
 	
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -19,6 +20,7 @@
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.patterns.facade.Facade;
+	import org.puremvc.as3.utilities.statemachine.StateMachine;
 	
 	/**
 	* ...
@@ -33,7 +35,7 @@
 		
 		private var mediatorClassByViewClass:Dictionary = new Dictionary();
 		
-		private var mediatorInstanceByView:Dictionary = new Dictionary();
+		private var mediatorInstanceByView:Dictionary = new Dictionary(true);
 		
 		private var mediatorNameByInstance:Dictionary = new Dictionary();
 		
@@ -51,6 +53,8 @@
 			mapView(MarkingView, MarkingMediator);
 			
 			// Map built in commands
+			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
+			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
@@ -110,6 +114,21 @@
 				delete mediatorNameByInstance[mediator];
 				delete mediatorInstanceByView[viewComponent];
 			}
+		}
+		
+		/**
+		 * This takes all notifications and doubles them to be sent to the FSM.  Not really sure if this is best practices but the alternative is to manually list
+		 * everything the state machine is interested in and redispatch StateMachine.ACTION events for each of them, which quickly get annoying and outweighs the
+		 * convenience of having XML defined states.
+		 * 
+		 * @param	notificationName
+		 * @param	body
+		 * @param	type
+		 */
+		override public function sendNotification(notificationName:String, body:Object = null, type:String = null):void {
+			super.sendNotification(notificationName, body, type);
+			
+			if (notificationName != StateMachine.ACTION) sendNotification(StateMachine.ACTION, null, notificationName);
 		}
 		
 	}

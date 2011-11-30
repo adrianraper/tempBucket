@@ -95,6 +95,7 @@ package com.clarityenglish.ielts.view.zone {
 		public function set course(value:XML):void {
 			_course = value;
 			_courseChanged = true;
+			
 			invalidateProperties();
 			invalidateSkinState();
 			

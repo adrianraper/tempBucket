@@ -9,6 +9,7 @@
 	 */
 	public interface LoginComponent extends IEventDispatcher, CopyReceiver {
 		function showInvalidLogin():void;
+		function setLicencee(name:String):void;
 		function clearData():void;
 	}
 	
