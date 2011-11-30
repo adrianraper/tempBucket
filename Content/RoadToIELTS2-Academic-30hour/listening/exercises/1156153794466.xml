@@ -23,6 +23,10 @@
 	</script>
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="walking" correct="true">
@@ -105,41 +109,35 @@
         <p>1.<input id="q1"/></p>
         <p>Snooker/pool/billiards</p>
         <p>3.&#xA0;<input id="q3"/></p>
-        <p>This is the text1</p>
-        <p>This is the text1</p>
-        <p>This is the text1</p>
+        <p>4.&#xA0;<input id="q4"/></p>
+        <p>Swimming</p>
+        <p></p>
+		<p><b>Females</b></p>
+		<p>Walking</p>
+		<p>6.&#xA0;<input id="q6"/>/yoga</p>
+		<p>Swimming</p>
+		<p>Snooker/pool/billiards</p>
+		<p>Cycling</p>
     </div>
+
     <div id="content1">
         <p> </p>
         <p>57%</p>
 		<p>2.&#xA0;<input id="q2"/>%</p>
-		<p>This is the text2</p>
+		<p>28%</p>
+		<p>24%</p>
+		<p>5.&#xA0;<input id="q5"/>%</p>
+		<p></p>
+		<p></p>
+		<p>43%</p>
+		<p>28%</p>
+		<p>7.&#xA0;<input id="q7"/> %</p>
+		<p>7%</p>
+		<p>8.&#xA0;<input id="q8"/>&#xA0;%</p>
     </div>
 </div>
 
-  
-  
-  
-  
-<div id="gapfillText">
 
-      <h4><p>Males</p></h4>
-    
-  
-  
-    <p>1.&#xA0;<input id="q1"/><tab/><tab/><tab/><tab/><tab/>57%</p>
-	<p>Snooker/pool/billiards<tab/><tab/>2.&#xA0;<input id="q2"/>%<br/></p>
-	<p>3.&#xA0;<input id="q3"/><tab/><tab/>28%</p>
-	<p>4.&#xA0;<input id="q4"/><tab/><tab/><tab/>24%</p>
-	<p>Swimming<tab/><tab/><tab/><tab/>5.&#xA0;<input id="q5"/>%<br/></p>
-
-  <h4><p>Females</p></h4>
-  <p>Walking<tab/><tab/><tab/><tab/>43%</p>
-  <p>6.&#xA0;<input id="q6"/>/yoga<tab/><tab/><tab/>28%</p>
-  <p>Swimming	<tab/><tab/><tab/><tab/>7.&#xA0;<input id="q7"/> %</p>
-  <p>Snooker/pool/billiards<tab/><tab/>7%</p>
-  <p>Cycling	<tab/><tab/><tab/><tab/>8.&#xA0;<input id="q8"/>&#xA0;%</p>
-  </div>
  </section>
 
 <section id="fb1">

@@ -5,14 +5,14 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	
+
 	<s:layout>
 		<s:HorizontalLayout />
 	</s:layout>
 	
-	<s:Button id="writingCourse" label="writing" width="75" />
-	<s:Button id="speakingCourse" label="speaking" width="75" />
-	<s:Button id="readingCourse" label="reading" width="75" />
-	<s:Button id="listeningCourse" label="listening" width="75" />
+	<s:Button id="writingCourseButton" label="Writing" width="75" />
+	<s:Button id="speakingCourseButton" label="Speaking" width="75" />
+	<s:Button id="readingCourseButton" label="Reading" width="75" />
+	<s:Button id="listeningCourseButton" label="Listening" width="75" />
 
 </s:Group>

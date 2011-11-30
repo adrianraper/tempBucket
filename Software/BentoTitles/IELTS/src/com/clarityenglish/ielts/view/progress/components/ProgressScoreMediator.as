@@ -52,10 +52,10 @@ package com.clarityenglish.ielts.view.progress.components {
 					trace("progScoreMediator, got back " + rs.type);
 					switch (rs.type) {
 						case Progress.PROGRESS_MY_DETAILS:
-							view.dataProvider = new XML(rs.dataProvider);
+							view.detailDataProvider = new XML(rs.dataProvider);
 							break;
 						case Progress.PROGRESS_MY_SUMMARY:
-							view.summaryData = new XML(rs.dataProvider);
+							view.summaryDataProvider = new XML(rs.dataProvider);
 							break;
 						default:
 					}
@@ -67,7 +67,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * Trigger the change of a course to get the progress details
 		 *
 		 */
-		private function onCourseSelected(course:XML):void {
+		private function onCourseSelected(courseClass:String):void {
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 		}			
 	}

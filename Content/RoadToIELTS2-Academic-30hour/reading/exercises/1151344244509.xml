@@ -12,17 +12,11 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="I" correct="true"/>
@@ -120,7 +114,8 @@
  <div><img class="leftFloat" src="../media/DD_AR_002.jpg" mode="1" id="1001"/></div>
   
 
-    <div class="splitexerciseText"><p>Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.</p></div>
+    <div class="splitexerciseText"><p><b>Questions 1-6. </b></p>
+	<p>The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.</p></div>
 	<div class="splitquestionList">
 	<ol class="splitquestionList">
 	<li id="1">a technical achievement by Nepalese farmers<br/><input id="q1"/></li>
@@ -131,17 +126,31 @@
     <li id="6">the spread of terrace farming<br/><input id="q6"/></li></ol>
 	</div>
 	
-  <div class="splitexerciseText"><p>Questions 7-12. Complete the table on the right. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.</p><p><b>Jhikhu Khola Valley, Nepal - Key Facts</b></p></div>
-	<div class="splitquestionList">
-	<ol class="splitquestionList" start="7">
-  <li>Distance from Kathmandu:<br/><input id="q7"/></li>
-  <li>Area:<br/><input id="q8"/></li>
-  <li>Highest elevation:<br/><input id="q9"/></li>
-  <li>Population:<br/><input id="q10"/></li>
-  <li>Harvests per year:From one to<br/><input id="q11"/></li>
-  <li>Maximum annual rainfall:<br/><input id="q12"/></li>
-  </ol>
-  </div>
+  <div class="splitexerciseText"><p><b>Questions 7-12. </b></p>
+  <p>Complete the table on the right. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.</p><p>Jhikhu Khola Valley, Nepal - Key Facts</p></div>
+	
+	<div id="matching">
+    <div id="m1">
+	<ol>
+	<li>Distance from Kathmandu:</li>
+	<li>Area:</li>
+	<li>Highest elevation:</li>
+	<li>Population:</li>
+	<li>Harvests per year:</li>
+	<li>Maximum annual rainfall:</li>
+	</ol>
+	 </div>
+	  
+    <div id="m2">
+	<p><input id="q7"/></p>
+	<p><input id="q8"/></p>
+	<p><input id="q9"/></p>
+	<p><input id="q10"/></p>
+	<p>From one to&#xA0;<input id="q11"/></p>
+	<p><input id="q12"/></p>
+	 </div>
+</div>
+
 </section>
 
 <section id="readingText">

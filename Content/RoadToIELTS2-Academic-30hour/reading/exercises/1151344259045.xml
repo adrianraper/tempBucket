@@ -11,18 +11,13 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
      <DragQuestion source="q1" block="b1">
       <answer source="a9" correct="true"/>
@@ -77,14 +72,14 @@
 <section id="body">
   
   <ol id="splitquestionList">
-    <li id="1">Paragraph A&#xA0;<input id="q1" type="droptarget"/></li>
-    <li id="2">Paragraph B&#xA0;<input id="q2" type="droptarget"/></li>
-    <li id="3">Paragraph C&#xA0;<input id="q3" type="droptarget"/></li>
-    <li id="4">Paragraph D&#xA0;<input id="q4" type="droptarget"/></li>
-    <li id="5">Paragraph E&#xA0;<input id="q5" type="droptarget"/></li>
-    <li id="6">Paragraph F&#xA0;<input id="q6" type="droptarget"/></li>
-    <li id="7">Paragraph G&#xA0;<input id="q7" type="droptarget"/></li>
-    <li id="8">Paragraph H&#xA0;<input id="q8" type="droptarget"/></li>
+    <li id="1">Paragraph A<tab/><input id="q1" type="droptarget"/></li>
+    <li id="2">Paragraph B<tab/><input id="q2" type="droptarget"/></li>
+    <li id="3">Paragraph C<tab/><input id="q3" type="droptarget"/></li>
+    <li id="4">Paragraph D<tab/><input id="q4" type="droptarget"/></li>
+    <li id="5">Paragraph E<tab/><input id="q5" type="droptarget"/></li>
+    <li id="6">Paragraph F<tab/><input id="q6" type="droptarget"/></li>
+    <li id="7">Paragraph G<tab/><input id="q7" type="droptarget"/></li>
+    <li id="8">Paragraph H<tab/><input id="q8" type="droptarget"/></li>
   </ol>
 </section>
 

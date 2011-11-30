@@ -9,10 +9,16 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Group;
 	import spark.components.Label;
+	import spark.components.supportClasses.SkinnableComponent;
 	
 	public class ProgressCompareView extends BentoView {
 
+		// I don't need to refer to this skin part at all, so is there any point defining it?
+		//[SkinPart(required="true")]
+		//public var courseKeyComponent:SkinnableComponent;
+		
 		[SkinPart(required="true")]
 		public var compareChart:AnyChartFlex;
 		

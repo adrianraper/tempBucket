@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.progress.ui.ProgressBarRenderer;
+	import com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 	
 	import flash.events.MouseEvent;
 	
@@ -15,20 +16,16 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	import org.osflash.signals.Signal;
 	
+	import skins.ielts.progress.ProgressCourseBarSkin;
+	
 	import spark.components.Button;
 	import spark.components.DataGrid;
 	import spark.components.Label;
 	
 	public class ProgressScoreView extends BentoView {
 		
-		[SkinPart]
-		public var writingCourseButton:Button;
-		[SkinPart]
-		public var speakingCourseButton:Button;
-		[SkinPart]
-		public var readingCourseButton:Button;
-		[SkinPart]
-		public var listeningCourseButton:Button;
+		[SkinPart(required="true")]
+		public var progressCourseBar:ProgressCourseBarComponent;
 		
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
@@ -39,13 +36,15 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
 
-		[Bindable]
-		public var summaryData:XML;
+		public var chartDataProvider:XML;
+		
+		public var _summaryData:XML;
+		public var _detailData:XML;
 		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
-		public var courseSelect:Signal = new Signal(XML);
+		public var courseSelect:Signal = new Signal(String);
 		
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
@@ -54,17 +53,30 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * @param XML value
 		 * 
 		 */
-		public function set dataProvider(value:XML):void {
+		public function set detailDataProvider(value:XML):void {
+			_detailData = value;
+		}
+		public function get detailDataProvider():XML {
+			return _detailData;
+		}
+		public function set summaryDataProvider(value:XML):void {
+			_summaryData = value;
+		}
+		public function get summaryDataProvider():XML {
+			return _summaryData;
+		}
+		
+		private function selectCourseData(courseClass:String):void {
 			// The data is for putting detailed records in a table
 			// You want to get 
 			//	a) the node for the current course (_course.@class)
 			//	b) only records that have a score
-			var buildXML:XMLList = value.course.(@["class"]=='writing').unit.exercise.score;
+			var buildXML:XMLList = detailDataProvider.course.(@["class"]==courseClass).unit.exercise.score;
 			// Then add the caption from the exercise to the score to make it easy to display in the grid
 			// If the grid can do some sort of subheading, then I could do something similar with the unit name too
 			for each (var score:XML in buildXML) {
 				score.@caption = score.parent().@caption;
-				score.@unitCaption = value.course.(@["class"]=='writing').groups.group.(@id==score.parent().@group).@caption;
+				score.@unitCaption = detailDataProvider.course.(@["class"]==courseClass).groups.group.(@id==score.parent().@group).@caption;
 			}
 			tableDataProvider = new XMLListCollection(buildXML);
 			
@@ -90,9 +102,14 @@ package com.clarityenglish.ielts.view.progress.components {
 			if (_courseChanged) {
 				
 				// Update the components of the view that change their data
-				if (progressBar && course && summaryData) {
+				if (progressBar && course && summaryDataProvider) {
 					progressBar.courseClass = course.@["class"];
-					progressBar.data = {averageScore:summaryData.@averageScore};
+					progressBar.data = {dataProvider:summaryDataProvider};
+				}
+				// BUG. First time in, detailDataProvider is likely to not be set
+				// This is where having bindable variables would help.
+				if (scoreDetailsDataGrid && course && detailDataProvider) {
+					selectCourseData(course.@["class"]);
 				}
 				
 				_courseChanged = false;
@@ -106,43 +123,40 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
-				case writingCourseButton:
-				case readingCourseButton:
-				case speakingCourseButton:
-				case listeningCourseButton:
-				//case examTipsCourseButton:
-					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
-					// listen to a signal from button component here
-					break;
-				case scoreDetailsDataGrid:
-					break;
 				
-				case progressBar:
-					//progressBar.data = {averageScore:49};
-					//progressBar.courseClass = 'reading';
+				case progressCourseBar:
+					instance.courseSelect.add(onCourseSelect);
 					break;
+
 			}
 		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
 			
+			switch (instance) {
+				case progressCourseBar:
+					instance.courseSelect.remove(onCourseSelect);
+					break;
+			}
+			
 		}
 		
 		/**
-		 * The user has clicked a course button 
+		 * The user has changed the course to be displayed
 		 * 
-		 * @param event
+		 * @param String course class name
 		 */
-		protected function onCourseClick(event:MouseEvent):void {
+		public function onCourseSelect(courseClass:String):void {
 
-			var matchingCourses:XMLList = menu.course.(@["class"] == event.target.label.toLowerCase());
+			//var matchingCourses:XMLList = menu.course.(@["class"] == event.target.label.toLowerCase());
+			var matchingCourses:XMLList = menu.course.(@["class"] == courseClass);
 			
 			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with class {0}", event.target.label.toLowerCase());
+				log.error("Unable to find a course with class {0}", courseClass);
 			} else {
 				course = matchingCourses[0] as XML;
-				courseSelect.dispatch(matchingCourses[0] as XML);
+				courseSelect.dispatch(courseClass);
 			}
 		}
 

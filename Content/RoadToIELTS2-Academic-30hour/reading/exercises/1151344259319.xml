@@ -12,17 +12,11 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons feedback="false"/>
-		<exercise/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
-	
+
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
       <answer source="a1" correct="false"/>

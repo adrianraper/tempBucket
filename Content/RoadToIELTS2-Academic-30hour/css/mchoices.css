@@ -17,8 +17,9 @@ body > header {
 
 /* Paragraphs have spacing after them */
 p {
-	padding-left:20px;
+		padding-left:20px;
 	padding-right:20px;
+	
 }
 
 /* Headings */
@@ -32,7 +33,6 @@ h1 {
 	text-align: left;
 	line-height: 20em
 }
-
 h2 {
 	font-family: Arial Black;
 	font-size: 11px;
@@ -51,7 +51,6 @@ h4 {
 	padding-bottom: 0px;
 	padding-top: 0px
 }
-
 /* Lists use numbers. */
 
 /* Multiple-choice answers use letters */
@@ -60,7 +59,6 @@ h4 {
 	padding-left: 15px;
 	margin-left: 0px;
 }
-
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 #readingText p {
@@ -71,8 +69,9 @@ h4 {
 	font-size: 13px;
 	text-align: justify;
 	line-height: 20em
-}
 
+
+}
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
  	tab-stops: 30px;
@@ -133,15 +132,15 @@ a.selected {
 	text-decoration: underline;
 }
 
-a.correct, input.correct, g.correct, select.correct {
+a.correct, input.correct, g.correct {
 	color: #00AA00 !important;
 }
 
-a.incorrect, input.incorrect, g.incorrect, select.incorrect {
+a.incorrect, input.incorrect {
 	color: #AA0000 !important;
 }
 
-a.neutral, input.neutral, g.neutral, select.neutral {
+a.neutral, input.neutral {
 	color: #0000AA !important;
 }
 
@@ -152,8 +151,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding-right: 280%;
 	text-align: left;
 	line-height: 20em;
-}
-
-#mchoices {
-	padding-bottom: 12px;
+	}
+#mchoices{
+padding-bottom: 12px;
 }

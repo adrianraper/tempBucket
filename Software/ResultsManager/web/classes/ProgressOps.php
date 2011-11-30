@@ -46,6 +46,7 @@ class ProgressOps {
 			
 			// Put it all into a node in the return object
 			$newCourse = $build->addChild('course');
+			$newCourse->addAttribute('class', strtolower($course['caption']));
 			$newCourse->addAttribute('caption',(string) $course['caption']);
 			$newCourse->addAttribute('coverage',(string) $coverage);
 			$newCourse->addAttribute('count',(string) $count);

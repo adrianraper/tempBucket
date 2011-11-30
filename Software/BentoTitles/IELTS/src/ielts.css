@@ -205,7 +205,14 @@ progresscomponents|ProgressAnalysisView {
 progressui|ProgressBarRenderer {
 	skinClass: ClassReference("skins.ielts.progress.ProgressBarRendererSkin");
 }
-
+progressui|ProgressCourseBarComponent {
+	skinClass: ClassReference("skins.ielts.progress.ProgressCourseBarSkin");
+}
+/* Not picking up. That was because a group can't have a skin class
+progresscomponents|CompareView s|Group#courseKeyGroup {
+	skinClass: ClassReference("skins.ielts.progress.CourseKeyGroupSkin");
+}
+*/
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");

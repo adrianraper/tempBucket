@@ -9,16 +9,19 @@
 	</fx:Metadata>
 	
 	<s:layout>
-		<s:HorizontalLayout />
+		<s:VerticalLayout />
 	</s:layout>
 
-	<s:VGroup width="50%" height="100%" >
-		<s:Label text="What is your average score in each unit?" />
-		<ns1:AnyChartFlex id="analysisChart1" width="100%" />		
-	</s:VGroup>
-	<s:VGroup width="50%" height="100%" >
-		<s:Label text="How long have you spent working on each unit?" />
-		<ns1:AnyChartFlex id="analysisChart2" width="100%" />		
-	</s:VGroup>
+	<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="100" />
+	<s:HGroup width="100%" height="100%" >
+		<s:VGroup width="50%" height="100%" >
+			<s:Label text="What is your average score in each unit?" />
+			<ns1:AnyChartFlex id="analysisScoreChart" width="100%" />		
+		</s:VGroup>
+		<s:VGroup width="50%" height="100%" >
+			<s:Label text="How long have you spent working on each unit?" />
+			<ns1:AnyChartFlex id="analysisTimeChart" width="100%" />		
+		</s:VGroup>		
+	</s:HGroup>
 	
 </s:Skin>

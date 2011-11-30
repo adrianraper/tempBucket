@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<s:layout>
+		<s:HorizontalLayout />
+	</s:layout>
+	
+	<s:Label text="Key" width="100" height="100" />
+	<s:Rect id="writingRect" left="100" right="0" top="0" bottom="0" width="20" height="20" radiusX="3" radiusY="3">
+		<s:fill>
+			<s:SolidColor color="{getStyle('writingColor') || 0x00FF00}" />
+		</s:fill>
+	</s:Rect>
+	<s:Label text="Writing" />
+	<s:Spacer width="20" />
+	<s:Rect id="speakingRect" left="200" right="0" top="0" bottom="0" width="20" height="20" radiusX="3" radiusY="3">
+		<s:fill>
+			<s:SolidColor color="{getStyle('speakingColor')}" />
+		</s:fill>
+	</s:Rect>
+	<s:Label text="Speaking" />
+	<s:Spacer width="20" />
+	<s:Rect id="readingRect" left="0" right="0" top="0" bottom="0" width="20" height="20" radiusX="3" radiusY="3">
+		<s:fill>
+			<s:SolidColor color="{getStyle('readingColor')}" />
+		</s:fill>
+	</s:Rect>
+	<s:Label text="Reading" />
+	<s:Spacer width="20" />
+	<s:Rect id="listeningRect" left="0" right="0" top="0" bottom="0" width="20" height="20" radiusX="3" radiusY="3">
+		<s:fill>
+			<s:SolidColor color="{getStyle('listeningColor')}" />
+		</s:fill>
+	</s:Rect>
+	<s:Label text="Listening" />
+	<s:Spacer width="20" />
+	
+</s:Skin>

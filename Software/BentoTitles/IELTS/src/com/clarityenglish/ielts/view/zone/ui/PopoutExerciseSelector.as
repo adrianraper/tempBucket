@@ -63,7 +63,7 @@ package com.clarityenglish.ielts.view.zone.ui {
 			
 			switch (instance) {
 				case exerciseList:
-					exerciseList.addEventListener(MouseEvent.CLICK, onExerciseClick);
+					exerciseList.removeEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
 			}
 		}

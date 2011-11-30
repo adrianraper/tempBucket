@@ -13,12 +13,7 @@
 		<s:VerticalLayout />
 	</s:layout>
 
-	<s:HGroup id="progressCourseBar" width="100%" height="100">
-		<s:Button label="Writing" id="writingCourseButton" width="75" height="25" />
-		<s:Button label="Speaking" id="speakingCourseButton" width="75" height="25" />
-		<s:Button label="Reading" id="readingCourseButton" width="75" height="25" />
-		<s:Button label="Listening" id="listeningCourseButton" width="75" height="25" />
-	</s:HGroup>
+	<ui:ProgressCourseBarComponent id="progressCourseBar" width="100%" height="100" />
 	
 	<ui:ProgressBarRenderer id="progressBar" width="100%" height="100" />
 	

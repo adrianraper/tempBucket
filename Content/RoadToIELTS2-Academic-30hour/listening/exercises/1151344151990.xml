@@ -23,6 +23,10 @@
 	</script>
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="bread" correct="true"/>

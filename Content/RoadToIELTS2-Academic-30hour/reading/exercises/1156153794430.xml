@@ -78,39 +78,73 @@
 </header>
 	
 <section id="body">
-<div id="gapfillText">
+<div id="outer">
+    <div id="content">
+        <p><b>Infinity Marbles</b></p>
+        <p>Country:</p>
+        <p>Players: </p>
+        <p>Equipment:</p>
+        <p>Format:</p>
+        <p></p>
+        <p><b>Salan Lanai</b></p>
+		<p>Country:</p>
+        <p>Players: </p>
+        <p>Equipment:</p>
+        <p>Format:</p>
+		<p></p>
+		<p><b>Pin</b></p>
+		 <p>Country:</p>
+        <p>Players: </p>
+        <p>Equipment:</p>
+        <p>Format:</p>
+		<p></p>
+		<p><b>Muk</b></p>
+		 <p>Country:</p>
+        <p>Players: </p>
+        <p>Equipment:</p>
+        <p>Format:</p>
+		<p></p>
+		<p><b>Kite-flying</b></p>
+		 <p>Country:</p>
+        <p>Players: </p>
+        <p>Equipment:</p>
+		<p></p>
+        <p>Format:</p>
+    </div>
 
-
-<h9>Infinity Marbles</h9>
-<p class="hangingIndent1">Country: <tab/>Australia</p>
-<p class="hangingIndent1">Players: <tab/>1.&#xA0;<input id="q1"/>&#xA0;children</p>
-<p class="hangingIndent1">Equipment: <tab/>marbles</p>
-<p class="hangingIndent1">Format: <tab/>I<br/></p>
-
-<h9>Salan Lanai</h9>
-<p class="hangingIndent1">Country: <tab/>New Guinea</p>
-<p class="hangingIndent1">Players: <tab/>2.&#xA0;<input id="q2"/></p>
-<p class="hangingIndent1">Equipment: <tab/>3.&#xA0;<input id="q3"/></p>
-<p class="hangingIndent1">Format: <tab/>G<br/></p>
-
-<h9>Pin</h9>
-<p class="hangingIndent1">Country: <tab/>4.&#xA0;<input id="q4"/></p>
-<p class="hangingIndent1">Players: <tab/>Indian children</p>
-<p class="hangingIndent1">Equipment: <tab/>5.&#xA0;<input id="q5"/></p>
-<p class="hangingIndent1">Format: <tab/>6.&#xA0;<input id="q6"/><br/></p>
-
-<h9>Muk</h9>
-<p class="hangingIndent1">Country: <tab/>Canada </p>
-<p class="hangingIndent1">Players: <tab/>7.&#xA0;<input id="q7"/>&#xA0;children and their families</p>
-<p class="hangingIndent1">Equipment: <tab/>none</p>
-<p class="hangingIndent1">Format: <tab/>8.&#xA0;<input id="q8"/><br/></p>
-
-<h9>Kite-flying</h9>
-<p class="hangingIndent1">Country: <tab/>Malaysia</p>
-<p class="hangingIndent1">Players: <tab/>9.&#xA0;<input id="q9"/></p>
-<p class="hangingIndent1">Equipment:  <tab/>10.&#xA0; <input id="q10"/> &#xA0;kites with bamboo frames</p>
-<p class="hangingIndent1">Format: <tab/>I</p>
-
+    <div id="content1">
+        <p> </p>
+        <p>Australia<br/>
+		1.&#xA0;<input id="q1"/>&#xA0;children<br/>
+		marbles<br/>
+		I</p>
+		<p></p>
+		<p></p>
+		<p>New Guinea</p>
+		<p>2.&#xA0;<input id="q2"/></p>
+		<p>3.&#xA0;<input id="q3"/></p>
+		<p>G</p>
+		<p></p>
+		<p></p>
+		<p>4.&#xA0;<input id="q4"/></p>
+		<p>Indian children</p>
+		<p>5.&#xA0;<input id="q5"/></p>
+		<p>6.&#xA0;<input id="q6"/></p>
+		<p></p>
+		<p></p>
+		<p>Canada </p>
+		<p>7.&#xA0;<input id="q7"/>&#xA0;children and their families</p>
+		<p>none</p>
+		<p>8.&#xA0;<input id="q8"/></p>
+		<p></p>
+		<p></p>
+		<p>Malaysia</p>
+		<p>9.&#xA0;<input id="q9"/></p>
+		<p>10.&#xA0; <input id="q10"/> &#xA0;kites </p>
+		<p>with bamboo frames</p>
+		<p>I</p>
+		
+    </div>
 </div>
 </section>
 

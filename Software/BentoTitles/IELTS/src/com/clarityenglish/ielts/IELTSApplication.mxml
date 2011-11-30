@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bento:BentoApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
-					    xmlns:s="library://ns.adobe.com/flex/spark" 
-					    xmlns:mx="library://ns.adobe.com/flex/mx"
-					    xmlns:bento="com.clarityenglish.bento.*"
+						xmlns:s="library://ns.adobe.com/flex/spark" 
+						xmlns:mx="library://ns.adobe.com/flex/mx"
+						xmlns:bento="com.clarityenglish.bento.*"
 						xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*"
 						xmlns:login="com.clarityenglish.ielts.view.login.*"
 						xmlns:menu="com.clarityenglish.ielts.view.title.*"
@@ -13,7 +13,7 @@
 						currentState="loading"
 						addedToStage="onAddedToStage(event)"
 						>
-						<!--width="100%" height="100%"-->
+	<!--width="100%" height="100%"-->
 	
 	<fx:Metadata>
 		[SWF(width="1000", height="700")]
@@ -30,6 +30,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 			import caurina.transitions.Tweener;
 			import caurina.transitions.properties.DisplayShortcuts;
 			
@@ -43,6 +44,8 @@
 			import mx.managers.IBrowserManager;
 			
 			public var browserManager:IBrowserManager;
+			
+			private var com_clarityenglish_ielts_view_progress_ui_ProgressCourseBarComponent_obj:com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 			
 			override protected function get facade():BentoFacade {
 				return IELTSApplicationFacade.getInstance();
@@ -108,5 +111,5 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="250" top="9" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="25" top="12" />
 	</s:Group>
-		
+	
 </bento:BentoApplication>

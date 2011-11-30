@@ -13,15 +13,15 @@ package com.clarityenglish.ielts.view.progress.components {
 	public class ProgressAnalysisView extends BentoView {
 
 		[SkinPart(required="true")]
-		public var analysisChart1:AnyChartFlex;
+		public var analysisScoreChart:AnyChartFlex;
 		
 		[SkinPart(required="true")]
-		public var analysisChart2:AnyChartFlex;
+		public var analysisTimeChart:AnyChartFlex;
 		
-		//[Bindable]
-		private var _fullChart1XML:XML;
-		private var _fullChart2XML:XML;
+		private var _scoreChartXML:XML;
+		private var _durationChartXML:XML;
 
+		// TODO. These are all set in ielts.css if you can get at that from this view?
 		private static const _writingBright:String = '#7DAB36';
 		private static const _writingDull:String = '#364A17';
 		private static const _readingBright:String = '#00A2C8';
@@ -35,127 +35,68 @@ package com.clarityenglish.ielts.view.progress.components {
 		private static const chartTemplates:XML = 
 			<anychart>
 			  <settings>
-				<animation enabled="True" />
+				<animation enabled="False" duration="1" interpolation_type="Quadratic" show_mode="Together" />
 			  </settings>
 			  <charts>
-				<chart plot_type="PieChart">
-				  <data_plot_settings default_series_type="Bar" enable_3d_mode="true" z_padding="0.5" z_aspect="1" z_elevation="45" >
-					<bar_series group_padding="0.9" >
-						<tooltip_settings enabled="true">
-							<font render_as_html="True" family="Helvetica,Arial" size="12" />
-							<format>{"<p align='center'>{%Series.Name}<br/>{%YValue}{numDecimals:0}%</p>"}</format>
-						</tooltip_settings>
-					  <label_settings enabled="false">
-						<background enabled="false" />
-						<position anchor="Center" valign="Center" halign="Center" />
-						<format>{"{%YValue}{numDecimals:0}%"}</format>
-					  </label_settings>
-					</bar_series>
+				<chart plot_type="Pie">
+				  <data_plot_settings enable_3d_mode="true" >
+					<pie_series>
+						<label_settings enabled="true">
+							<background enabled="false" />
+							<position anchor="Center" valign="Center" halign="Center" padding="20" />
+							<font color="White">
+							  <effects>
+								<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
+							  </effects>
+							</font>
+						</label_settings>
+						 <marker_settings enabled="true">
+							<marker type="None" />
+							<states>
+							  <hover>
+								<marker type="Circle" anchor="CenterTop" />
+							  </hover>
+							</states>
+						  </marker_settings>
+					</pie_series>
 				  </data_plot_settings>
-				<styles>
-					<bar_style name="Writing0">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Writing1">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingDull} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Reading0">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Reading1">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingDull} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Speaking0">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Speaking1">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingDull} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Listening0">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</normal>
-						</states>
-					</bar_style>
-					<bar_style name="Listening1">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningDull} />
-							</normal>
-						</states>
-					</bar_style>
-				</styles>
 				  <data>
-					<series name="You" type="Bar" palette="Default">
-						<animation type="ScaleXYCenter" duration="1" />
-					</series>
-					<series name="Everyone" type="Bar" palette="Default">
-						<animation duration="1" interpolation_type="Elastic" />
-					</series>
+					<series name="You" type="Pie" palette="R2IV2" />
 				  </data>
 				  <chart_settings>
 					<chart_background enabled="false" />
 					<title enabled="false" />
 					<legend enabled="false" />
-					<axes>
-							<y_axis>
-								<title rotation="90">
-									<font family="Verdana" size="10" />
-									<text>Average score%</text>
-								</title>
-								<labels allow_overlap="true" show_first_label="true" show_last_label="true">
-									<font family="Verdana" size="10" />
-									<format>{"{%Value}{numDecimals:0}"}</format>
-								</labels>
-								<major_tickmark enabled="true" />
-								<scale minimum="0" maximum="100" major_interval="20" mode="Overlay"/>
-							</y_axis>
-						<x_axis>
-						<labels>
-							<font size="16" family="Helvetica,Arial" />
-						</labels>
-						<title enabled="false" />
-					  </x_axis>
-					</axes>
 				  </chart_settings>
+				  <palettes>
+					<palette name="R2IV2" type="DistinctColors" color_count="Auto">
+						<item color={_writingBright}/>
+						<item color={_speakingBright}/>
+						<item color={_readingBright}/>
+						<item color={_listeningBright}/>
+					</palette>
+				  </palettes>
 				</chart>
 			  </charts>
 			</anychart>;
-
-		public function setMySummaryDataProvider(dataProvider:XML):void {
-			if (_fullChart1XML) {
-				// TODO. Make this smoother by adding in the data series and redrawing
-				// We have the chart template, inject the data from the data provider
+		
+		public function setDataProvider(dataProvider:XML):void {
+			if (_scoreChartXML) {
+				// BUG. Need to clear out points before you add them in
 				for each (var point:XML in dataProvider.course) {
-					_fullChart1XML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption+'0'} />);
+					_scoreChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption} />);
 				}
-				if (analysisChart1) {
-					analysisChart1.anychartXML = _fullChart1XML;
+				if (analysisScoreChart) {
+					analysisScoreChart.anychartXML = _scoreChartXML;
+				}
+			}
+			if (_durationChartXML) {
+				// TODO. Pick up total duration instead of average
+				for each (point in dataProvider.course) {
+					_durationChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageDuration} style={point.@caption} />);
+				}
+				if (analysisTimeChart) {
+					analysisTimeChart.anychartXML = _durationChartXML;
 				}
 			}
 		}
@@ -167,10 +108,14 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
-				case analysisChart1:
-				case analysisChart2:
-					if (_fullChart1XML && _fullChart2XML) { 
-						instance.anychartXML = _fullChart1XML;
+				case analysisScoreChart:
+					if (_scoreChartXML) { 
+						analysisScoreChart.anychartXML = _scoreChartXML;
+					}
+					break;
+				case analysisTimeChart:
+					if (_durationChartXML) { 
+						analysisTimeChart.anychartXML = _durationChartXML;
 					}
 					break;
 			}
@@ -185,7 +130,12 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function initCharts():void {
 			trace("ProgressAnalysisView.initCharts");
-			_fullChart1XML = chartTemplates;
+			_scoreChartXML = new XML(chartTemplates.toString());
+			_durationChartXML = new XML(chartTemplates.toString());
+			
+			// customise the label settings
+			_scoreChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}%"}</format>);
+			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}sec"}</format>);
 			
 		}
 

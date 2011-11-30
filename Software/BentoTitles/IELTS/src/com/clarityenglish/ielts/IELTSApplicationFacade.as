@@ -18,8 +18,12 @@
 	import com.clarityenglish.ielts.view.login.LoginView;
 	import com.clarityenglish.ielts.view.progress.ProgressMediator;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisMediator;
+	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCompareMediator;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCoverageMediator;
+	import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreMediator;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
@@ -51,6 +55,8 @@
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);
 			mapView(ProgressCompareView, ProgressCompareMediator);
+			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
+			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
 			// Register IELTS specific commands
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);

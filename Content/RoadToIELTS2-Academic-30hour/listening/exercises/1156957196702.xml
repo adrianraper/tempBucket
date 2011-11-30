@@ -23,6 +23,10 @@
 	</script>
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true">

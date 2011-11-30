@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.progress.ui {
 	import almerblank.flex.spark.components.SkinnableDataRenderer;
 	
+	import mx.graphics.SolidColor;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -17,11 +18,14 @@ package com.clarityenglish.ielts.view.progress.ui {
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		[SkinPart(required="true")]
-		public var comment:Label;
+		public var commentLabel:Label;
 		
 		[SkinPart(required="true")]
-		public var overallProgressIndicator:Rect;
+		public var overallProgressRect:Rect;
 
+		[SkinPart(required="true")]
+		public var solidColour:SolidColor;
+		
 		private var _selectedColour:Number;
 		
 		public var courseClass:String;
@@ -32,9 +36,11 @@ package com.clarityenglish.ielts.view.progress.ui {
 			_selectedColour = getStyle(courseClass + "Color");
 			
 			if (data) {
-				comment.text = courseClass + " - average score " + new Number(data.averageScore) + "%";
-				overallProgressIndicator.percentWidth = new Number(data.averageScore);
-				//overallProgressIndicator.color = _selectedColour;
+				var course:XML = (data.dataProvider as XML).course.(@["class"]==courseClass)[0];;
+				trace("progressBarRenderer courseClass = " + courseClass + " score=" + course.@averageScore + " colour=" + _selectedColour);
+				commentLabel.text = courseClass + " - average score " + new Number(course.@averageScore) + "%";
+				overallProgressRect.percentWidth = new Number(course.@averageScore);
+				solidColour.color = _selectedColour;
 			}
 		}
 		
