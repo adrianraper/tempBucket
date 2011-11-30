@@ -45,6 +45,8 @@ package com.clarityenglish.bento.model {
 			if (_menuXHTML != null && value != null)
 				throw new Error("Bento does not support multiple menu.xml files in a single execution");
 			
+			log.debug("Set menuXHTML in BentoProxy");
+			
 			_menuXHTML = value;
 		}
 		

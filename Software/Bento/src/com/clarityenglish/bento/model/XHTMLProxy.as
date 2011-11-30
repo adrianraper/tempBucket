@@ -73,7 +73,7 @@ package com.clarityenglish.bento.model {
 			
 			log.debug("Loading href {0}", href);
 			
-			// Otherwise load it
+			// Load it!
 			var urlLoader:URLLoader = new URLLoader();
 			urlLoader.addEventListener(Event.COMPLETE, onXHTMLLoadComplete);
 			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onXHTMLLoadError);
@@ -85,6 +85,15 @@ package com.clarityenglish.bento.model {
 		}
 		
 		private function notifyXHTMLLoaded(href:Href):void {
+			if (href.type == Href.MENU_XHTML) {
+				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				if (!bentoProxy.menuXHTML) {
+					bentoProxy.menuXHTML = loadedResources[href];
+					sendNotification(BBNotifications.MENU_XHTML_LOADED);
+				}
+			}
+			
 			sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
 		}
 		
@@ -96,6 +105,7 @@ package com.clarityenglish.bento.model {
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
 			switch (href.type) {
+				case Href.MENU_XHTML:
 				case Href.XHTML:
 					loadedResources[href] = new XHTML(new XML(urlLoader.data), href);
 					break;

@@ -54,7 +54,6 @@ package com.clarityenglish.common.model {
 		 * 
 		 * Get it in the above order as, in theory, each could override the previous, though in practice this doesn't happen.
 		 */
-		
 		public function ConfigProxy(data:Object = null) {
 			super(NAME, data);
 			
@@ -62,16 +61,6 @@ package com.clarityenglish.common.model {
 			_dateFormatter.formatString = "D MMMM YYYY";
 			
 			config = new Config();
-			
-			// You might have passed a special config file as a paramter. If not, use a default name and path.
-			// The path should actually be the same folder as the start page, /area1/RoadToIELTS2
-			if (FlexGlobals.topLevelApplication.parameters.configFile) {
-				var configFile:String = FlexGlobals.topLevelApplication.parameters.configFile;
-			} else {
-				configFile = "config.xml";
-			}
-			
-			getConfigFile(configFile);
 		}
 		
 		/**
@@ -112,7 +101,7 @@ package com.clarityenglish.common.model {
 		 * @param	filename
 		 * @return
 		 */
-		public function getConfigFile(filename:String = null):void {
+		public function loadConfig(filename:String = null):void {
 			var urlLoader:URLLoader = new URLLoader();
 			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
 			urlLoader.addEventListener(Event.COMPLETE, onConfigLoadComplete);
@@ -136,7 +125,6 @@ package com.clarityenglish.common.model {
 			
 			// Next stage is to get data from the database
 			getApplicationParameters();
-			
 		}
 		
 		public function errorHandler(e:IOErrorEvent):void {

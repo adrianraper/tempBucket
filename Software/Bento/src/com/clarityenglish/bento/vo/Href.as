@@ -3,6 +3,7 @@ package com.clarityenglish.bento.vo {
 	public class Href {
 		
 		public static const XHTML:String = "xhtml";
+		public static const MENU_XHTML:String = "menu_xhtml";
 		public static const EXERCISE:String = "exercise";
 		
 		public var type:String;
