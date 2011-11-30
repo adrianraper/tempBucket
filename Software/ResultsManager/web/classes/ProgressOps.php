@@ -35,6 +35,8 @@ class ProgressOps {
 					$count = $record['Count'];
 					$averageScore = $record['AverageScore'];
 					$averageDuration = $record['AverageDuration'];
+					if (isset($record['TotalDuration']))
+						$totalDuration = $record['TotalDuration'];
 					break 1;
 				}
 			}
@@ -53,6 +55,7 @@ class ProgressOps {
 			$newCourse->addAttribute('of',(string) $total);
 			$newCourse->addAttribute('averageScore',$averageScore);
 			$newCourse->addAttribute('averageDuration',$averageDuration);
+			$newCourse->addAttribute('duration',$totalDuration);
 		}
 		return $build;
 
@@ -111,39 +114,22 @@ class ProgressOps {
 insert into T_Score values
 ('27639', '2011-11-24 18:57:10', '1287130410001', '50', '1287130410000', '180', '0', '0', '0', '2227356', NULL, '1287130400000', '52', null);
 */	
-/*
-		$fakeData = <<<XML
-<progress>
-	<course caption="Reading">
-		<unit caption="question-zone">
-			<exercise caption="Reading eBook" done="1" />
-		</unit>
-		<unit caption="Unit 1">
-			<exercise caption="Academic reading passage (1)" done="1">
-				<score score="65" duration="60" />
-			</exercise>
-			<exercise caption="Academic reading passage (2)" done="1">
-				<score score="55" duration="120" />
-				<score score="56" duration="185" />
-			</exercise>
-		</unit>
-	</course>
-	<course caption="Writing">
-		<unit caption="Unit 1 task 1">
-			<exercise caption="How can I write well?" done="1">
-				<score score="65" duration="60" />
-			</exercise>
-			<exercise caption="Sample answer" done="1">
-				<score score="-1" duration="10" />
-			</exercise>
-		</unit>
-	</course>
-</progress>	
-XML;
-		//return $fakeData;
-*/
+
 		return $menu->asXML();
 		
+	}
+	/**
+	 * 
+	 * Take an exercise record and return is a bookmark XML
+	 * @param recordset $rs
+	 */
+	function formatBookmark($rs) {
+		$score = new Score();
+		$score->fromDatabaseObj($rs);
+		$bookmark = new SimpleXMLElement('<bookmark />');
+		$bookmark->addAttribute('uid', $score->getUID());
+		$bookmark->addAttribute('date', $score->dateStamp);
+		return $bookmark->asXML();		
 	}
 	/**
 	 * This method gets one user's progress records at the summary level
@@ -155,7 +141,8 @@ XML;
 			SELECT F_CourseID, 
 					ROUND(AVG(IF(F_Score<0, NULL, F_Score))) as AverageScore, 
 					ROUND(AVG(F_Duration)) as AverageDuration, 
-					COUNT(DISTINCT F_ExerciseID) AS Count 
+					COUNT(DISTINCT F_ExerciseID) AS Count, 
+					SUM(F_Duration) AS TotalDuration 
 			FROM T_Score
 			WHERE F_UserID=?
 			AND F_ProductCode=?
@@ -189,13 +176,30 @@ EOD;
 	 */
 	function getMyDetails($userID, $productCode) {
 			
-		//$score = new Score();
 		$sql = 	<<<SQL
 			SELECT s.*
 			FROM T_Score as s
 			WHERE s.F_UserID=?
 			AND s.F_ProductCode=?
 			ORDER BY s.F_CourseID, s.F_UnitID, s.F_ExerciseID;
+SQL;
+		$bindingParams = array($userID, $productCode);
+		$rs = $this->db->GetArray($sql, $bindingParams);
+		return $rs;
+		
+	}
+	/**
+	 * This method gets the user's last record
+	 */
+	function getMyLastExercise($userID, $productCode) {
+			
+		$sql = 	<<<SQL
+			SELECT s.*
+			FROM T_Score as s
+			WHERE s.F_UserID=?
+			AND s.F_ProductCode=?
+			ORDER BY s.F_DateStamp DESC
+			LIMIT 1;
 SQL;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);

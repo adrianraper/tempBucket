@@ -21,10 +21,33 @@ class Score {
 	public $scoreWrong;
 	public $scoreMissed;
 	public $duration;
+	public $uid;
 	
 	function Score() {
 	}
 	
+	public function setUID($value) {
+		$UIDArray = explode('.', $value);
+		if (count($UIDArray)>0)
+			$this->productCode = $UIDArray[0];
+		if (count($UIDArray)>1)
+			$this->courseID = $UIDArray[1];
+		if (count($UIDArray)>2)
+			$this->unitID = $UIDArray[2];
+		if (count($UIDArray)>3)
+			$this->exerciseID = $UIDArray[3];
+		$this->uid = $this->getUID();
+	}
+	public function getUID() {
+		$build = $this->productCode;
+		if (isset($this->courseID))
+			$build .= '.'.$this->courseID;
+		if (isset($this->unitID))
+			$build .= '.'.$this->unitID;
+		if (isset($this->exerciseID))
+			$build .= '.'.$this->exerciseID;
+		return $build; 
+	}
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
 	 */

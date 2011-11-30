@@ -225,13 +225,20 @@ class BentoService extends AbstractService {
 				$rs = $this->progressOps->getMyDetails($userID, $productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
 				break;
+				
+			case Progress::PROGRESS_MY_BOOKMARK:
+				// Pick up the last exercise done as a bookmark.
+				$rs = $this->progressOps->getMyLastExercise($userID, $productCode);
+				$progress->dataProvider = $this->progressOps->formatBookmark($rs);
+				break;
 		}
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
 		//	a summary at the course level for time spent by me
 		 
 		return array("error" => $errorObj,
-					"progress" => $progress);
+					"progress" => $progress
+		);
 	}
 	/**
 	 * 
@@ -300,15 +307,18 @@ class BentoService extends AbstractService {
 	 */
 	function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
 
-		$UID = explode('.', $scoreObj['UID']);
 		
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we shoud be trying to keep the format the same!
 		$score = new Score();
+		$score->setUID($scoreObj['UID']);
+		/*
+		$UID = explode('.', $scoreObj['UID']);
 		$score->productCode = $UID[0];
 		$score->courseID = $UID[1];
 		$score->unitID = $UID[2];
 		$score->exerciseID = $UID[3];
+		*/
 		
 		$score->score = $scoreObj['percent'];
 		$score->scoreCorrect = $scoreObj['correctCount'];

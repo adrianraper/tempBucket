@@ -15,10 +15,7 @@ package com.clarityenglish.common.vo.progress {
 		public static const PROGRESS_MY_SUMMARY:String = "progress_my_summary";
 		public static const PROGRESS_EVERYONE_SUMMARY:String = "progress_everyone_summary";
 		public static const PROGRESS_MY_DETAILS:String = "progress_my_details";
-		
-		//public var loadMySummary:Boolean = false;
-		//public var loadEveryoneSummary:Boolean = false;
-		//public var loadMyDetails:Boolean = false;
+		public static const PROGRESS_MY_BOOKMARK:String = "progress_my_bookmark";
 		
 		private var _mySummary:Array;
 		private var _everyoneSummary:Array;
@@ -34,9 +31,6 @@ package com.clarityenglish.common.vo.progress {
 		 * 
 		 */
 		public function Progress(data:Object = null) {
-			//if (data.type == PROGRESS_MY_SUMMARY) {
-			//	mySummary = data.dataProvider;
-			//}
 		}
 		
 		/**

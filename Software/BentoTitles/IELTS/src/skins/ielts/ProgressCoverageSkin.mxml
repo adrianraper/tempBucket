@@ -13,6 +13,20 @@
 		<s:VerticalLayout />
 	</s:layout>
 
-	<s:Label text="This is the coverage screen" />
+	<ui:ProgressCourseBarComponent id="progressCourseBar" width="100%" height="100" />
+	
+	<ui:ProgressBarRenderer id="progressBar" width="100%" height="100" />
+	
+	<s:HGroup width="100%" height="100%" >
+		<s:List id="practiceZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
+				dataProvider="{hostComponent.practiceZoneDataProvider}" 
+				labelField="@caption" />
+		<s:List id="questionZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
+				dataProvider="{hostComponent.questionZoneDataProvider}" />
+		<s:List id="adviceZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
+				dataProvider="{hostComponent.adviceZoneDataProvider}" />
+		<s:List id="examPracticeZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
+				dataProvider="{hostComponent.examPracticeDataProvider}" />		
+	</s:HGroup>
 
 </s:Skin>

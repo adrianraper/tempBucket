@@ -12,6 +12,7 @@ class Progress {
 	const PROGRESS_MY_SUMMARY = "progress_my_summary";
 	const PROGRESS_EVERYONE_SUMMARY = "progress_everyone_summary";
 	const PROGRESS_MY_DETAILS = "progress_my_details";
+	const PROGRESS_MY_BOOKMARK = "progress_my_bookmark";
 
 	public $href;
 	public $type;

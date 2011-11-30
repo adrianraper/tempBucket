@@ -91,9 +91,8 @@ package com.clarityenglish.ielts.view.progress.components {
 				}
 			}
 			if (_durationChartXML) {
-				// TODO. Pick up total duration instead of average
 				for each (point in dataProvider.course) {
-					_durationChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageDuration} style={point.@caption} />);
+					_durationChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@duration} style={point.@caption} />);
 				}
 				if (analysisTimeChart) {
 					analysisTimeChart.anychartXML = _durationChartXML;
