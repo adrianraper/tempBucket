@@ -104,12 +104,13 @@ package com.clarityenglish.ielts.view.title {
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
+				/* THIS IS NOW DONE IN THE MEDIATORS OF EACH VIEW; JUST CONFIRM IT WORKS BEFORE DELETING
 				case homeView:
 				case zoneView:
 				case progressView:
 					// The zone and home views run off the same href as the title view, so directly inject it 
 					instance.href = href;
-					break;
+					break;*/
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;
 					break;

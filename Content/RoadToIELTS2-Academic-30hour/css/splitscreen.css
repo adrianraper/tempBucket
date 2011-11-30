@@ -116,15 +116,15 @@ a.selected {
 	text-decoration: underline;
 }
 
-a.correct, input.correct, g.correct {
+a.correct, input.correct, g.correct, select.correct {
 	color: #00AA00 !important;
 }
 
-a.incorrect, input.incorrect {
+a.incorrect, input.incorrect, g.incorrect, select.incorrect {
 	color: #AA0000 !important;
 }
 
-a.neutral, input.neutral {
+a.neutral, input.neutral, g.neutral, select.neutral {
 	color: #0000AA !important;
 }
 

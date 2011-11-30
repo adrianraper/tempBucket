@@ -33,7 +33,7 @@
 		
 		private var mediatorClassByViewClass:Dictionary = new Dictionary();
 		
-		private var mediatorInstanceByView:Dictionary = new Dictionary();
+		private var mediatorInstanceByView:Dictionary = new Dictionary(true);
 		
 		private var mediatorNameByInstance:Dictionary = new Dictionary();
 		

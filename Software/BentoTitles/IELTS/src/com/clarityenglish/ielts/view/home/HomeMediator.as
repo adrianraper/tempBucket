@@ -1,11 +1,8 @@
 ﻿package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
@@ -30,10 +27,14 @@
 			
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
-
+			
+			// This view runs of the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			
 			// Trigger loading of progress data for my summary chart
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY); 
 		}
 		
 		override public function onRemove():void {

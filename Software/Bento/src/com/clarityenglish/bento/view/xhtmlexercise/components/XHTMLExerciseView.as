@@ -147,7 +147,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 		}
 		
-		public function markAnswerMap(question:Question, answerMap:AnswerMap):void {
+		public function markAnswerMap(question:Question, answerMap:AnswerMap, isShowAnswers:Boolean = false):void {
 			for each (var key:Object in answerMap.keys) {
 				var answer:Answer = answerMap.get(key);
 				var answerNode:XML = key as XML;
@@ -155,13 +155,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				
 				var sourceNodes:Vector.<XML>;
 				
+				// If we are in show answers then clear any existing icons for this question (MarkableIconsBehaviour)
+				if (isShowAnswers) answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, answerElement));
+				
 				// For some questions deselect all other nodes
 				if (question.isMutuallyExclusive()) {
 					for each (var allAnswers:NodeAnswer in question.answers) {
 						for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
 							var otherSourceElement:FlowElement = getFlowElement(otherSource);
 							
-							// This is used by MarkableIconsBehaviour
+							// Remove any icon for this answer (MarkableIconsBehaviour)
 							answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, otherSourceElement));
 							
 							XHTML.removeClasses(otherSource, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
@@ -199,7 +202,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				}
 				
 				// This is used by MarkableIconsBehaviour
-				answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_MARKED, answerElement, answer.markingClass));
+				if (isShowAnswers) {
+					// The tick/cross rules when showing answers is slightly different; we tick something you got right, otherwise we do nothing
+					if (XHTML.hasClass(answerNode, "selected") && answer.markingClass == Answer.CORRECT) {
+						answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_MARKED, answerElement, answer.markingClass));
+					}
+				} else {
+					// Otherwise the tick/cross reflects the marking class
+					answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_MARKED, answerElement, answer.markingClass));
+				}
 				
 				// Remove any existing classes and add the result class
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );

@@ -33,7 +33,7 @@ package com.clarityenglish.bento.view {
 			// Remove any existing dynamic view
 			while (contentGroup.numChildren > 0)
 				contentGroup.removeElementAt(0);
-				
+			
 			try {
 				var classReference:Class = getDefinitionByName(viewName) as Class;
 			} catch (e:ReferenceError) {

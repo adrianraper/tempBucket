@@ -1,4 +1,5 @@
 package com.clarityenglish.ieltstester.view.tester {
+	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.vo.Href;
@@ -19,7 +20,7 @@ package com.clarityenglish.ieltstester.view.tester {
 		public var menuTree:Tree;
 		
 		[SkinPart(required="true")]
-		public var dynamicView:BentoView;
+		public var dynamicView:DynamicView;
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

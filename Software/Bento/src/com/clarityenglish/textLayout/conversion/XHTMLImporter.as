@@ -34,7 +34,7 @@ package com.clarityenglish.textLayout.conversion {
 		 * The default stylesheet implemented by browsers
 		 */ 
 		[Embed(source="/com/clarityenglish/textLayout/conversion/xhtmldefaults.css", mimeType="application/octet-stream")]
-		private var defaultCss:Class;
+		private static var defaultCss:Class;
 
 		/**
 		 * as3csslib 
@@ -61,6 +61,8 @@ package com.clarityenglish.textLayout.conversion {
 		}
 		
 		public function importToRenderFlow(xhtml:XHTML, node:XML):RenderFlow {
+			if (css) css.clear();
+			
 			flowElementXmlBiMap = new FlowElementXmlBiMap();
 			css = parseCss(xhtml);
 			

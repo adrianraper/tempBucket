@@ -18,6 +18,10 @@
 		]]>
 		</style>
 		<script id="model" type="application/xml">
+			<settings>
+				<param name="delayedMarking" value="true" />
+			</settings>
+			
 			<questions>
 				<MultipleChoiceQuestion block="q1Block">
 					<answer correct="true" source="q1True">

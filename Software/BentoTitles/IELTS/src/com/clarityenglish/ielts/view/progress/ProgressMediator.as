@@ -1,10 +1,7 @@
 ﻿package com.clarityenglish.ielts.view.progress {
-	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.vo.progress.Progress;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -23,7 +20,11 @@
 		}
 		
 		override public function onRegister():void {
-			super.onRegister();		
+			super.onRegister();
+			
+			// This view runs of the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
 		}
         
 		override public function listNotificationInterests():Array {

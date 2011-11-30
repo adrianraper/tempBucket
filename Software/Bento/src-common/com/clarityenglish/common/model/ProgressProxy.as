@@ -153,7 +153,7 @@ package com.clarityenglish.common.model {
 			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
 			var dateNow:String = dateFormatter.format(new Date());
 			
-			var params:Array = [ loginProxy.user.id, sessionID, dateNow, mark ];
+			var params:Array = [ /*loginProxy.user.id, sessionID, dateNow, mark*/ ];
 			new RemoteDelegate("writeScore", params, this).execute();
 			
 			// TODO. Decide if we want to update our local cache of my progress with each new score

@@ -14,13 +14,11 @@ package com.clarityenglish.textLayout.conversion {
 		
 		private var flowElementToXmlMap:Dictionary;
 		
-		private var xmlToFlowElementXmlVector:Vector.<XML>, xmlToFlowElementFlowElementVector:Vector.<FlowElement>;
+		private var xmlToFlowElementXmlVector:Vector.<XML>;
+		private var xmlToFlowElementFlowElementVector:Vector.<FlowElement>;
 		
 		public function FlowElementXmlBiMap() {
-			flowElementToXmlMap = new Dictionary();
-			
-			xmlToFlowElementXmlVector = new Vector.<XML>();
-			xmlToFlowElementFlowElementVector = new Vector.<FlowElement>();
+			clear();
 		}
 		
 		public function add(flowElement:FlowElement, xml:XML):void {
@@ -37,6 +35,12 @@ package com.clarityenglish.textLayout.conversion {
 		public function getFlowElement(xml:XML):FlowElement {
 			var idx:int = xmlToFlowElementXmlVector.indexOf(xml);
 			return (idx < 0) ? null : xmlToFlowElementFlowElementVector[idx];
+		}
+		
+		public function clear():void {
+			flowElementToXmlMap = new Dictionary(true);
+			xmlToFlowElementXmlVector = new Vector.<XML>();
+			xmlToFlowElementFlowElementVector = new Vector.<FlowElement>();
 		}
 		
 	}

@@ -29,7 +29,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			if (!(view is IExerciseView))
 				throw new Error("Attempted to use a view with XHTMLExerciseMediator that did not implement IExerciseView");
 			
-			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered, false, 0, true);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -41,7 +41,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public override function onRemove():void {
 			super.onRemove();
 			
-			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 			
 			sendNotification(BBNotifications.EXERCISE_STOP, view.exercise);
 		}
@@ -90,7 +90,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			if (view.exercise.model) {
 				for each (var question:Question in view.exercise.model.questions) {
 					var answerMap:AnswerMap = exerciseProxy.getCorrectAnswerMap(question);
-					view.markAnswerMap(question, answerMap);
+					view.markAnswerMap(question, answerMap, true);
 				}
 			}
 		}

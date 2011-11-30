@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
@@ -27,12 +28,17 @@
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);
 			view.exerciseSelect.add(onExerciseSelect);
+			
+			// This view runs of the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.exerciseSelect.removeAll();
+			view.courseSelect.remove(onCourseSelected);
+			view.exerciseSelect.remove(onExerciseSelect);
 		}
         
 		override public function listNotificationInterests():Array {

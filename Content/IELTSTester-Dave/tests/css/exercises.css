@@ -62,14 +62,14 @@ a.selected {
 	/*background-color: #FBDA8B !important;*/
 }
 
-a.correct, input.correct, g.correct {
+a.correct, input.correct, g.correct, select.correct {
 	color: #00AA00 !important;
 }
 
-a.incorrect, input.incorrect {
+a.incorrect, input.incorrect, select.incorrect {
 	color: #AA0000 !important;
 }
 
-a.neutral, input.neutral {
+a.neutral, input.neutral, select.neutral {
 	color: #0000AA !important;
 }

@@ -75,6 +75,7 @@
 			public function showErrorMessage(error:BentoError):void {
 				trace("want to handle the error " + error.errorNumber); 
 			}
+			
 		]]>
 	</fx:Script>
 	

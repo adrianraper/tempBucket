@@ -24,6 +24,10 @@ package com.clarityenglish.bento.controller {
 			var exercise:Exercise = note.getBody() as Exercise;
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			
+			if (bentoProxy.currentExercise)
+				sendNotification(BBNotifications.EXERCISE_STOP, bentoProxy.currentExercise);
+			
 			bentoProxy.currentExercise = exercise;
 			
 			var exerciseProxy:ExerciseProxy = new ExerciseProxy(exercise);

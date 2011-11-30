@@ -93,6 +93,10 @@
 				facade.sendNotification(BBNotifications.MARKING_SHOWN, bentoProxy.currentExercise);
 			}
 			
+			protected function onRunGC(event:MouseEvent):void {
+				System.gc();
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -113,6 +117,7 @@
 		
 		<s:Spacer width="100%" />
 		
+		<s:Button label="Run GC" click="onRunGC(event)"/>
 		<s:Button label="Disable interaction" click="onMarkingShownClick(event)"/>
 		<s:Button label="Marking" click="onMarkingClick(event)"/>
 		<s:Button label="Show correct answers" click="onShowAnswersClick(event)"/>
