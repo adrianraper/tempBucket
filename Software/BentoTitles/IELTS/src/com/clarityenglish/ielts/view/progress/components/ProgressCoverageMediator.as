@@ -27,9 +27,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 
-			// listen for this signal
-			view.courseSelect.add(onCourseSelected);
-			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
@@ -67,12 +64,5 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 			}
 		}
-		/**
-		 * Trigger the change of a course to get the progress details
-		 *
-		 */
-		private function onCourseSelected(courseClass:String):void {
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
-		}			
 	}
 }

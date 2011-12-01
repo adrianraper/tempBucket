@@ -3,11 +3,20 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*"
+		xmlns:skins="skins.ielts.progress.*"
 		xmlns:ns1="com.anychart.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressCoverageView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.XMLListCollection;
+			
+			
+		]]>
+	</fx:Script>
 	
 	<s:layout>
 		<s:VerticalLayout />
@@ -18,15 +27,28 @@
 	<ui:ProgressBarRenderer id="progressBar" width="100%" height="100" />
 	
 	<s:HGroup width="100%" height="100%" >
-		<s:List id="practiceZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
-				dataProvider="{hostComponent.practiceZoneDataProvider}" 
-				labelField="@caption" />
-		<s:List id="questionZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
+		<!-- HELP. Why does using getStyle here give a run-time crash (anonymous function in setup...)
+			Other skins use it identically -->
+		<skins:CoverageExerciseSkin id="practiceZoneCoverage"
+				caption="Practice zone"
+				dataProvider="{new XMLListCollection(hostComponent.practiceZoneDataProvider)}"  />
+		<skins:CoverageExerciseSkin id="questionZoneCoverage"
+				caption="Question zone"
 				dataProvider="{hostComponent.questionZoneDataProvider}" />
-		<s:List id="adviceZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
+		<skins:CoverageExerciseSkin id="adviceZoneCoverage"
+				caption="Advice zone"
 				dataProvider="{hostComponent.adviceZoneDataProvider}" />
-		<s:List id="examPracticeZoneList" alternatingItemColors="[#FFFFFF, #999999]" rollOverColor="#CC6600" 
-				dataProvider="{hostComponent.examPracticeDataProvider}" />		
+		<skins:CoverageExerciseSkin id="examPracticeCoverage"
+				caption="Exam practice"
+				dataProvider="{hostComponent.examPracticeDataProvider}" />
+		<!--
+				courseColor="{getStyle(hostComponent.courseClass + 'Color')}"
+				courseColorDark="{getStyle(hostComponent.courseClass + 'ColorDark')}"
+		-->
+		<!-- Can you do this so that detailDataProvider can simply be bindable itself? 
+			I get internal build errors if I mix up single and double quotes
+				dataProvider="{new XMLListCollection(hostComponent.detailDataProvider.course.(@["class"]==hostComponent.courseClass).unit.(@["class"]=='exam-practice').exercise}"
+		-->
 	</s:HGroup>
 
 </s:Skin>

@@ -20,6 +20,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	import spark.components.Button;
 	import spark.components.DataGrid;
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
 	
@@ -32,19 +33,19 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var progressBar:ProgressBarRenderer;
 		
 		[SkinPart(required="true")]
-		public var practiceZoneList:List;
+		public var practiceZoneCoverage:Group;
 		
 		[SkinPart(required="true")]
-		public var questionZoneList:List;
+		public var questionZoneCoverage:Group;
 		
 		[SkinPart(required="true")]
-		public var adviceZoneList:List;
+		public var adviceZoneCoverage:Group;
 		
 		[SkinPart(required="true")]
-		public var examPracticeZoneList:List;
+		public var examPracticeCoverage:Group;
 		
 		[Bindable]
-		public var practiceZoneDataProvider:XMLListCollection;
+		public var practiceZoneDataProvider:XMLList;
 
 		[Bindable]
 		public var questionZoneDataProvider:XMLListCollection;
@@ -55,14 +56,17 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public var examPracticeDataProvider:XMLListCollection;
 		
+		// Internal store for the full dataProvider
 		public var _summaryData:XML;
 		public var _detailData:XML;
 		
 		// TODO. Highlight the last exercise done somehow
 		public var bookmark:XML;
 		
-		private var _course:XML;
+		//private var _course:XML;
+		private var _courseClass:String;
 		private var _courseChanged:Boolean;
+		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
@@ -73,8 +77,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * @param XML value
 		 * 
 		 */
+		[Bindable]
 		public function set detailDataProvider(value:XML):void {
 			_detailData = value;
+			_dataChanged = true;
+			invalidateProperties();
 		}
 		public function get detailDataProvider():XML {
 			return _detailData;
@@ -86,58 +93,46 @@ package com.clarityenglish.ielts.view.progress.components {
 			return _summaryData;
 		}
 		
-		private function selectCourseData(courseClass:String):void {
-			// The data is for putting detailed records in a set of lists
-			// You want to get 
-			//	a) the node for the current course (_course.@class)
-			//	b) only records for the current unit
-			for each (var unitNode:XML in detailDataProvider.course.(@["class"]==courseClass).unit) {
-				switch (unitNode.@["class"]) {
-					case 'practice-zone':
-						practiceZoneDataProvider = new XMLListCollection(unitNode.exercise);
-						break;
-					case 'question-zone':
-						questionZoneDataProvider = new XMLListCollection(unitNode.exercise);
-						break;
-					case 'advice-zone':
-						adviceZoneDataProvider = new XMLListCollection(unitNode.exercise);
-						break;
-					case 'exam-practice':
-						examPracticeDataProvider = new XMLListCollection(unitNode.exercise);
-						break;
-				}
-			}
-			
-		}
 		/**
 		 * This can be called from outside the view to make the view display a different course
 		 * 
 		 * @param XML A course node from the menu
 		 * 
 		 */
-		public function set course(value:XML):void {
-			_course = value;
+		public function set courseClass(value:String):void {
+			_courseClass = value;
 			_courseChanged = true;
 			invalidateProperties();
 		}
-		public function get course():XML {
-			return _course;
+		[Bindable]
+		public function get courseClass():String {
+			return _courseClass;
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			if (_courseChanged) {
+			if (_courseChanged || _dataChanged) {
 				
 				// Update the components of the view that change their data
-				if (progressBar && course && summaryDataProvider) {
-					progressBar.courseClass = course.@["class"];
+				if (progressBar && courseClass && summaryDataProvider) {
+					//progressBar.courseClass = course.@["class"];
+					progressBar.courseClass = courseClass;
 					// BUG. For this view I want to show coverage summary. For score view I want average score.
 					progressBar.data = {dataProvider:summaryDataProvider};
 				}
-				_courseChanged = false;
+				if (courseClass && detailDataProvider) {
+					focusCourse(courseClass);
+					//selectCourseData(course.@["class"]);
+				}
+				
+				_courseChanged = _dataChanged = false;
 			}
 		}
 		
+		/**
+		 * If there are any settings that the 'charts' need
+		 * 
+		 */
 		public function initCharts():void {
 			
 		}
@@ -150,6 +145,10 @@ package com.clarityenglish.ielts.view.progress.components {
 					instance.courseSelect.add(onCourseSelect);
 					break;
 
+				// Use one of the 'charts' to initialise for all
+				case practiceZoneCoverage:
+					initCharts();
+					break;
 			}
 		}
 		
@@ -163,23 +162,48 @@ package com.clarityenglish.ielts.view.progress.components {
 			}
 			
 		}
+		/**
+		 * This method uses the current course class to take the full dataProvider and 
+		 * split it for each component in the view 
+		 * @param String courseClass
+		 * 
+		 */
+		private function focusCourse(courseClass:String = null):void {
+			if (!courseClass)
+				courseClass = _courseClass;
+
+			if (detailDataProvider) {
+				for each (var unitNode:XML in detailDataProvider.course.(@["class"]==courseClass).unit) {
+					switch (unitNode.@["class"].toString()) {
+						case 'practice-zone':
+							// Because we need to get captions from the group node, send the whole
+							// course node as the practice zone data provider
+							//practiceZoneDataProvider = new XMLList(unitNode.parent());
+							practiceZoneDataProvider = new XMLList(unitNode.exercise);
+							break;
+						case 'question-zone':
+							questionZoneDataProvider = new XMLListCollection(unitNode.exercise);
+							break;
+						case 'advice-zone':
+							adviceZoneDataProvider = new XMLListCollection(unitNode.exercise);
+							break;
+						case 'exam-practice':
+							examPracticeDataProvider = new XMLListCollection(unitNode.exercise);
+							break;
+					}
+				}
+			}			
+		}
 		
 		/**
 		 * The user has changed the course to be displayed
 		 * 
 		 * @param String course class name
 		 */
-		public function onCourseSelect(courseClass:String):void {
+		public function onCourseSelect(newCourseClass:String):void {
 
-			//var matchingCourses:XMLList = menu.course.(@["class"] == event.target.label.toLowerCase());
-			var matchingCourses:XMLList = menu.course.(@["class"] == courseClass);
+			courseClass = newCourseClass;
 			
-			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with class {0}", courseClass);
-			} else {
-				course = matchingCourses[0] as XML;
-				courseSelect.dispatch(courseClass);
-			}
 		}
 
 	}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark" 
+			 xmlns:mx="library://ns.adobe.com/flex/mx">
+		<fx:Declarations>
+			<!-- Place non-visual elements (e.g., services, value objects) here -->
+		</fx:Declarations>
+		<fx:Script>
+			<![CDATA[
+				import mx.collections.XMLListCollection;
+				
+				[Bindable]
+				public var dataProvider:XMLListCollection;
+				
+				public var caption:String;
+				
+				[Bindable]
+				public var courseColor:Number;
+				
+				[Bindable]
+				public var courseColorDark:Number;
+
+				// HELP. Can't do normal binding due to runtime error:
+				// warning: unable to bind to property 'caption' on class 'XML' (class is not an IEventDispatcher)
+				override protected function initializationComplete():void {
+					coverageHeadingLabel.text = caption;
+					super.initializationComplete();
+				}
+			]]>
+		</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" />
+	</s:layout>
+	
+	<s:Label id="coverageHeadingLabel" />
+	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#CC6600" 
+			dataProvider="{dataProvider}" 
+			itemRenderer="skins.ielts.progress.CoverageExerciseRendererSkin" />
+	
+</s:Group>

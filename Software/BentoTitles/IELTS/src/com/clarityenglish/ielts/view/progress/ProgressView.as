@@ -83,7 +83,9 @@ package com.clarityenglish.ielts.view.progress {
 				case progressScoreView:
 				case progressCoverageView:
 					// These sub views need to preset a course to start with
-					instance.course = menu.course.(@["class"]=='writing')[0];
+					// Which should be the one that we were looking at in ZoneView, if any
+					//instance.course = menu.course.(@["class"]=='writing')[0];
+					instance.courseClass = 'writing';
 					// keep going with shared stuff
 				case progressCompareView:
 				case progressAnalysisView:

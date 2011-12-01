@@ -41,8 +41,10 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var _summaryData:XML;
 		public var _detailData:XML;
 		
-		private var _course:XML;
+		//private var _course:XML;
+		private var _courseClass:String;
 		private var _courseChanged:Boolean;
+		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
@@ -55,6 +57,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function set detailDataProvider(value:XML):void {
 			_detailData = value;
+			_dataChanged = true;
+			invalidateProperties();
 		}
 		public function get detailDataProvider():XML {
 			return _detailData;
@@ -66,53 +70,39 @@ package com.clarityenglish.ielts.view.progress.components {
 			return _summaryData;
 		}
 		
-		private function selectCourseData(courseClass:String):void {
-			// The data is for putting detailed records in a table
-			// You want to get 
-			//	a) the node for the current course (_course.@class)
-			//	b) only records that have a score
-			var buildXML:XMLList = detailDataProvider.course.(@["class"]==courseClass).unit.exercise.score;
-			// Then add the caption from the exercise to the score to make it easy to display in the grid
-			// If the grid can do some sort of subheading, then I could do something similar with the unit name too
-			for each (var score:XML in buildXML) {
-				score.@caption = score.parent().@caption;
-				score.@unitCaption = detailDataProvider.course.(@["class"]==courseClass).groups.group.(@id==score.parent().@group).@caption;
-			}
-			tableDataProvider = new XMLListCollection(buildXML);
-			
-		}
-
 		/**
 		 * This can be called from outside the view to make the view display a different course
 		 * 
 		 * @param XML A course node from the menu
 		 * 
 		 */
-		public function set course(value:XML):void {
-			_course = value;
+		public function set courseClass(value:String):void {
+			_courseClass = value;
 			_courseChanged = true;
 			invalidateProperties();
 		}
-		public function get course():XML {
-			return _course;
+		[Bindable]
+		public function get courseClass():String {
+			return _courseClass;
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			if (_courseChanged) {
+			if (_courseChanged || _dataChanged) {
 				
 				// Update the components of the view that change their data
-				if (progressBar && course && summaryDataProvider) {
-					progressBar.courseClass = course.@["class"];
+				if (progressBar && courseClass && summaryDataProvider) {
+					//progressBar.courseClass = course.@["class"];
+					progressBar.courseClass = courseClass;
+					// BUG. For this view I want to show coverage summary. For score view I want average score.
 					progressBar.data = {dataProvider:summaryDataProvider};
 				}
-				// BUG. First time in, detailDataProvider is likely to not be set
-				// This is where having bindable variables would help.
-				if (scoreDetailsDataGrid && course && detailDataProvider) {
-					selectCourseData(course.@["class"]);
+				if (courseClass && detailDataProvider) {
+					focusCourse(courseClass);
+					//selectCourseData(course.@["class"]);
 				}
 				
-				_courseChanged = false;
+				_courseChanged = _dataChanged = false;
 			}
 		}
 		
@@ -128,6 +118,10 @@ package com.clarityenglish.ielts.view.progress.components {
 					instance.courseSelect.add(onCourseSelect);
 					break;
 
+				// Use one of the 'charts' to initialise for all
+				case scoreDetailsDataGrid:
+					initCharts();
+					break;
 			}
 		}
 		
@@ -143,23 +137,37 @@ package com.clarityenglish.ielts.view.progress.components {
 		}
 		
 		/**
+		 * This method uses the current course class to take the full dataProvider and 
+		 * split it for each component in the view 
+		 * @param String courseClass
+		 * 
+		 */
+		private function focusCourse(courseClass:String = null):void {
+			if (!courseClass)
+				courseClass = _courseClass;
+			
+			if (detailDataProvider) {
+				var buildXML:XMLList = detailDataProvider.course.(@["class"]==courseClass).unit.exercise.score;
+				// Then add the caption from the exercise to the score to make it easy to display in the grid
+				// If the grid can do some sort of subheading, then I could do something similar with the unit name too
+				for each (var score:XML in buildXML) {
+					score.@caption = score.parent().@caption;
+					score.@unitCaption = detailDataProvider.course.(@["class"]==courseClass).groups.group.(@id==score.parent().@group).@caption;
+				}
+				tableDataProvider = new XMLListCollection(buildXML);
+			}			
+		}
+		
+		/**
 		 * The user has changed the course to be displayed
 		 * 
 		 * @param String course class name
 		 */
-		public function onCourseSelect(courseClass:String):void {
-
-			//var matchingCourses:XMLList = menu.course.(@["class"] == event.target.label.toLowerCase());
-			var matchingCourses:XMLList = menu.course.(@["class"] == courseClass);
+		public function onCourseSelect(newCourseClass:String):void {
 			
-			if (matchingCourses.length() == 0) {
-				log.error("Unable to find a course with class {0}", courseClass);
-			} else {
-				course = matchingCourses[0] as XML;
-				courseSelect.dispatch(courseClass);
-			}
+			courseClass = newCourseClass;
+			
 		}
-
 	}
 	
 }
