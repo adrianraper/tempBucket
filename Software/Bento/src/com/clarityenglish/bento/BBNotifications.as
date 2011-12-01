@@ -26,6 +26,7 @@
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
 		// These notifications are sent when the user clicks the next or previous buttons
+		public static const EXERCISE_RESTART:String = "exercise_restart";
 		public static const EXERCISE_SHOW_NEXT:String = "exercise_show_next";
 		public static const EXERCISE_SHOW_PREVIOUS:String = "exercise_show_previous";
 		

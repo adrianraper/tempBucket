@@ -4,6 +4,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.config.Config;
@@ -54,6 +55,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.EXERCISE_SHOW,
+				BBNotifications.EXERCISE_RESTART,
 				BBNotifications.EXERCISE_SECTION_FINISHED,
 				IELTSNotifications.COURSE_SHOW,
 			]);
@@ -66,6 +68,12 @@
 				case BBNotifications.EXERCISE_SHOW:
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
+					break;
+				case BBNotifications.EXERCISE_RESTART:
+					// Restart an exercise by showing a clone of the current Href.  This will have the same effect as starting a new exercise
+					// as the view will see that the Href is a new instance, hence resetting everything (but ultimately loading the same xml).
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					view.showExercise(bentoProxy.currentExercise.href.clone());
 					break;
 				case BBNotifications.EXERCISE_SECTION_FINISHED:
 					view.showExercise(null);

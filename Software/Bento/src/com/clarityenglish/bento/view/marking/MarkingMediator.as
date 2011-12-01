@@ -53,7 +53,7 @@
 		}
 		
 		protected function onTryAgain(event:Event):void {
-			trace("try again");
+			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
 		protected function onSeeAnswers(event:Event):void {

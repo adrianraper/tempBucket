@@ -11,7 +11,6 @@
 	import com.clarityenglish.common.controller.*;
 	
 	import flash.utils.Dictionary;
-	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;

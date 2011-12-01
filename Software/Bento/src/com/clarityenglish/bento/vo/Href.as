@@ -59,6 +59,10 @@ package com.clarityenglish.bento.vo {
 			//return new Href(type, filename, currentDir);
 		}
 		
+		public function clone():Href {
+			return new Href(type, filename, currentDir);
+		}
+		
 		public function toString():String {
 			return "[Href type=" + type + " filename=" + filename + " currentDir=" + currentDir + "]";
 		}

@@ -258,7 +258,8 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		// If there is a dropped node then match it up to an answer if possible
 		if (inputElement.droppedNode) {
 			for each (var nodeAnswer:NodeAnswer in question.answers) {
-				if (nodeAnswer.getSourceNodes(exercise).indexOf(inputElement.droppedNode) > -1) {
+				var answerSourceNodes:Vector.<XML> = nodeAnswer.getSourceNodes(exercise);
+				if (answerSourceNodes && answerSourceNodes.indexOf(inputElement.droppedNode) > -1) {
 					// If the dropped node matches any of the source nodes then this is the matching answer
 					answerOrString = nodeAnswer;
 					break;

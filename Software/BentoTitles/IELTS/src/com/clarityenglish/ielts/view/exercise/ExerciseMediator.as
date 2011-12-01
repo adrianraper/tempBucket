@@ -29,6 +29,7 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.startAgain.add(onStartAgain);
 			view.showMarking.add(onShowMarking);
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
@@ -37,6 +38,7 @@
 		public override function onRemove():void {
 			super.onRemove();
 			
+			view.startAgain.remove(onStartAgain);
 			view.showMarking.remove(onShowMarking);
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
@@ -72,6 +74,10 @@
 					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
 					break;
 			}
+		}
+		
+		private function onStartAgain():void {
+			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
 		private function onShowMarking():void {
