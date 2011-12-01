@@ -1,19 +1,26 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
+	import com.clarityenglish.bento.view.xhtmlexercise.events.DictionaryEvent;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.events.RenderFlowMouseEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.engine.TextLine;
+	import flash.ui.Keyboard;
 	
 	import flashx.textLayout.compose.TextFlowLine;
 	import flashx.textLayout.elements.TextFlow;
 	
+	import mx.utils.StringUtil;
+	
 	import org.davekeen.util.PointUtil;
+	import org.hamcrest.number.IsCloseToMatcher;
 	
 	import spark.components.Group;
 	
@@ -22,7 +29,14 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function DictionaryBehaviour(container:Group) {
 			super(container);
 			
-			container.addEventListener(RenderFlowMouseEvent.RENDER_FLOW_CLICK, onRenderFlowClick, false, 0, true);
+			// Listen for clicks on the render flow
+			container.addEventListener(Event.REMOVED_FROM_STAGE, onContainerRemovedFromStage)
+			container.addEventListener(RenderFlowMouseEvent.RENDER_FLOW_CLICK, onRenderFlowClick);
+		}
+		
+		protected function onContainerRemovedFromStage(event:Event):void {
+			container.removeEventListener(Event.REMOVED_FROM_STAGE, onContainerRemovedFromStage)
+			container.removeEventListener(RenderFlowMouseEvent.RENDER_FLOW_CLICK, onRenderFlowClick);
 		}
 		
 		public function onCreateChildren():void { }
@@ -58,14 +72,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 							// If the click is within the atom bounds then we have found an atom within the word
 							var atomBounds:Rectangle = textLine.getAtomBounds(j);
 							if (atomBounds.contains(tlClickPoint.x, tlClickPoint.y)) {
-
-								var absoluteIdx:int = textFlowLine.absoluteStart - textFlowLine.paragraph.parentRelativeStart + j;
+								// Determine the relative position of this atom within the paragraph
+								var relativeIdx:int = textFlowLine.absoluteStart - textFlowLine.paragraph.getAbsoluteStart() + j;
 								
 								try {
-									var word:String = textFlowLine.paragraph.getText(textFlowLine.paragraph.findPreviousWordBoundary(absoluteIdx), textFlowLine.paragraph.findNextWordBoundary(absoluteIdx));
-									trace("You clicked on: " + word);
+									// Get the word and send it to the outside world as an event on the container
+									var word:String = StringUtil.trim(textFlowLine.paragraph.getText(textFlowLine.paragraph.findPreviousWordBoundary(relativeIdx), textFlowLine.paragraph.findNextWordBoundary(relativeIdx)));
+									log.debug("User ctrl-clicked on the word '{0}'", word);
+									
+									container.dispatchEvent(new DictionaryEvent(DictionaryEvent.WORD_CLICK, word, true));
 								} catch (e:Error) {
-									log.error(e.message);
+									log.error(e.getStackTrace());
 								}
 							}
 						}

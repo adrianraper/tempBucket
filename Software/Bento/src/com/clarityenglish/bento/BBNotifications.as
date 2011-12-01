@@ -25,6 +25,9 @@
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
+		// Dictionary behaviour
+		public static const WORD_CLICK:String = "word_click";
+		
 		// These notifications are sent when the user clicks the next or previous buttons
 		public static const EXERCISE_RESTART:String = "exercise_restart";
 		public static const EXERCISE_SHOW_NEXT:String = "exercise_show_next";

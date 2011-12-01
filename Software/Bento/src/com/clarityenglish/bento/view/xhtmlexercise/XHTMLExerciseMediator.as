@@ -4,6 +4,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.DictionaryEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
@@ -30,6 +31,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				throw new Error("Attempted to use a view with XHTMLExerciseMediator that did not implement IExerciseView");
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered, false, 0, true);
+			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -42,6 +44,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			super.onRemove();
 			
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
 			
 			sendNotification(BBNotifications.EXERCISE_STOP, view.exercise);
 		}
@@ -111,6 +114,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}
+		}
+		
+		protected function onWordClick(event:DictionaryEvent):void {
+			sendNotification(BBNotifications.WORD_CLICK, event.word);
 		}
 		
 	}
