@@ -10,7 +10,7 @@
 		<s:HorizontalLayout />
 	</s:layout>
 	
-	<s:Button id="writingCourseButton" label="Writing" width="75" />
+	<s:Button id="writingCourseButton" label="Writing" width="300" />
 	<s:Button id="speakingCourseButton" label="Speaking" width="75" />
 	<s:Button id="readingCourseButton" label="Reading" width="75" />
 	<s:Button id="listeningCourseButton" label="Listening" width="75" />
