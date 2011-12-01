@@ -68,8 +68,11 @@
 </header>
 	
 <section id="body">
+<div id="outer">
+<div class="rightFloatvideo">
   <video src="../media/Unit01_e6b.flv" mode="1" id="1003" autoPlay="false"/>
-  <div id="targetspotting">
+  </div>
+  <div id="content">
   <p>
     <b>What does Alexandra mention?</b><br/>
     <g id="t1">A.  markets</g><br/>
@@ -87,6 +90,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
   </div>
 </section>
 

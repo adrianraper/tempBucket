@@ -59,13 +59,13 @@
 </header>
 	
 <section id="body">
-
+<div id="outer">
 <div class="rightFloatvideo">
 
   <video src="../media/Unit01_e4.flv" mode="1" id="1003" autoPlay="false"/>
   </div>
   
-  <div id="targetspotting">
+  <div id="content">
   <p>
     <b>Which of the following does she mention?</b><br/>
     <g id="t1">A.  size</g><br/>
@@ -80,6 +80,7 @@
   <p align="left">
     <font size="2"/>
   </p>
+  </div>
   </div>
 </section>
 

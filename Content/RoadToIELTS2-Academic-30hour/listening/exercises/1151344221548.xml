@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc timed="170"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -66,11 +58,12 @@
 		
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/ED_LN_003.jpg" mode="1" id="1001"/>
+<section id="body">
+<img class="rightFloat" src="../media/ED_LN_003.jpg" mode="1" id="1001"/>
 <audio controls="compact" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
-<div id="gapfillText">
-<h1>REGISTRATION FORM</h1>
-<p ><b>Surname</b><tab/><tab/><tab/>	(8) 	<input id="q1"/></p>
+<h1><p>REGISTRATION FORM</p></h1>
+<div id="gapfillTable">
+<p><b>Surname</b><tab/><tab/><tab/>	(8) 	<input id="q1"/></p>
 <p class="hangingIndent1"><b>Other Names</b><tab/><tab/>	Karen Louise</p>
 <p class="hangingIndent3"><b>Address</b>	<tab/><tab/><tab/>(9) <input id="q2"/>, Eastleigh</p>
 <p class="hangingIndent3"><b>Telephone </b><tab/><tab/><tab/>Home: 2380 799414<br/>Work:	(10) <input id="q3"/></p>

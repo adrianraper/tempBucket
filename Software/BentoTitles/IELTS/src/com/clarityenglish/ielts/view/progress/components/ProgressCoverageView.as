@@ -65,7 +65,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		//private var _course:XML;
 		private var _courseClass:String;
-		private var _courseChanged:Boolean;
+		private var _courseClassChanged:Boolean;
 		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
@@ -101,7 +101,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function set courseClass(value:String):void {
 			_courseClass = value;
-			_courseChanged = true;
+			_courseClassChanged = true;
 			invalidateProperties();
 		}
 		[Bindable]
@@ -111,7 +111,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			if (_courseChanged || _dataChanged) {
+			if (_courseClassChanged || _dataChanged) {
 				
 				// Update the components of the view that change their data
 				if (progressBar && courseClass && summaryDataProvider) {
@@ -125,7 +125,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					//selectCourseData(course.@["class"]);
 				}
 				
-				_courseChanged = _dataChanged = false;
+				_courseClassChanged = _dataChanged = false;
 			}
 		}
 		

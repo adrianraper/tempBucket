@@ -118,6 +118,8 @@ a, span[draggable="true"] {
 	border-radius: 12px;
 	background-color: #FFFFFF;
 }
+
+
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
@@ -166,13 +168,38 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 		
 }
 #questionList p{
-	padding-bottom: 12px;
+	padding-bottom: 0px;
 }
 #questionList li{
 	padding-left:15px;
+	line-height: 30em;
 }
 #questionList input{
 	text-indent: 10%;
 	tab-stops: 190em;
 	
+}
+
+
+/*This is for Speaking Unit 3 watch another candidate */
+#video2{
+position:absolute;
+
+    width:500px;
+}
+#v1{
+position:relative;
+    padding-top: 25px;
+	padding-left: -25px;
+    height: 500px;
+    width:400px;
+    line-height:30em;
+}
+#body .rightFloatvideo {
+	float: right;
+	width:760px;
+	padding-top: 0em;
+	padding-right: 10em;
+	padding-left: 100px;
+	margin-top: 0em;
 }

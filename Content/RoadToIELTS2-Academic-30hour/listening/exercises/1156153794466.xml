@@ -4,7 +4,7 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/bernardgapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -23,10 +23,6 @@
 	</script>
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="walking" correct="true">
@@ -102,42 +98,25 @@
 
   <h1><p>Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</p></h1>
 
+<div id="gapfillTable">
 
-<div id="outer">
-    <div id="content">
-        <p><b>Male</b></p>
-        <p>1.<input id="q1"/></p>
-        <p>Snooker/pool/billiards</p>
-        <p>3.&#xA0;<input id="q3"/></p>
-        <p>4.&#xA0;<input id="q4"/></p>
-        <p>Swimming</p>
-        <p></p>
-		<p><b>Females</b></p>
-		<p>Walking</p>
-		<p>6.&#xA0;<input id="q6"/>/yoga</p>
-		<p>Swimming</p>
-		<p>Snooker/pool/billiards</p>
-		<p>Cycling</p>
-    </div>
+      <h4><p>Males</p></h4>
+    
+  
+  
+    <p>1.&#xA0;<input id="q1"/><tab/><tab/><tab/>57%</p>
+	<p>Snooker/pool/billiards<tab/><tab/>2.&#xA0;<input id="q2"/>%</p>
+	<p>3.&#xA0;<input id="q3"/><tab/><tab/>28%</p>
+	<p>4.&#xA0;<input id="q4"/><tab/><tab/><tab/>24%</p>
+	<p>Swimming<tab/><tab/><tab/><tab/>5.&#xA0;<input id="q5"/>%<br/></p>
 
-    <div id="content1">
-        <p> </p>
-        <p>57%</p>
-		<p>2.&#xA0;<input id="q2"/>%</p>
-		<p>28%</p>
-		<p>24%</p>
-		<p>5.&#xA0;<input id="q5"/>%</p>
-		<p></p>
-		<p></p>
-		<p>43%</p>
-		<p>28%</p>
-		<p>7.&#xA0;<input id="q7"/> %</p>
-		<p>7%</p>
-		<p>8.&#xA0;<input id="q8"/>&#xA0;%</p>
-    </div>
-</div>
-
-
+  <h4><p>Females</p></h4>
+  <p>Walking<tab/><tab/><tab/><tab/>43%</p>
+  <p>6.&#xA0;<input id="q6"/>/yoga<tab/><tab/><tab/>28%</p>
+  <p>Swimming	<tab/><tab/><tab/><tab/>7.&#xA0;<input id="q7"/> %</p>
+  <p>Snooker/pool/billiards<tab/><tab/>7%</p>
+  <p>Cycling	<tab/><tab/><tab/><tab/>8.&#xA0;<input id="q8"/>&#xA0;%</p>
+  </div>
  </section>
 
 <section id="fb1">

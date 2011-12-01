@@ -82,7 +82,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		public function setDataProvider(dataProvider:XML):void {
 			if (_scoreChartXML) {
-				// WARNING. It is possible for a the mediator of a different view (coverage say) to still be loading
+				// WARNING. It is possible for the mediator of a different view (coverage say) to still be loading
 				// and firing notifications to get data. The notifications will be picked up by us too and end up here.
 				// So you need to remove data points before you add them again.
 				for (var i:int=0; i < _scoreChartXML.charts.chart.data.series[0].point.length(); i++) {

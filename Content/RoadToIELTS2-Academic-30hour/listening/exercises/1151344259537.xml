@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="true" marking="true"/>
-		<exercise/>
-		<misc timed="150"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -82,7 +74,7 @@
   
   
   
-    <h7><p>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</p></h7>
+    <p><b>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</b></p>
 	
 	<ol id="targetspotting">
 		<list class="answerList"><li><g id="t1">Fewer employees are needed.</g></li>

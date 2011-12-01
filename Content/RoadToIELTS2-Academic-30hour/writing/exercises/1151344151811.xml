@@ -12,17 +12,12 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking instant="true"/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="false"/>
-		<exercise hiddentargets="true" proofreading="true"/>
-		<misc/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions/>
 </script>
 

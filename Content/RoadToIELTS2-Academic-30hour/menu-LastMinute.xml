@@ -297,43 +297,43 @@
 				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml" thumbnail="reading/thumbnails/Reading_andthen.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344537791" group="2" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml" enabledFlag="3">
+				<exercise id="1151344537791" group="2" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml" thumbnail="reading/thumbnails/Reading_selfport.jpg" enabledFlag="3">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1151344537636" group="2" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml" enabledFlag="3">
+				<exercise id="1151344537636" group="2" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml" thumbnail="reading/thumbnails/Reading_awc.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244509" group="3" caption="Matching" href="reading/exercises/1151344244509.xml" enabledFlag="3">
+				<exercise id="1151344244509" group="3" caption="Matching" href="reading/exercises/1151344244509.xml" thumbnail="reading/thumbnails/Reading_matching1.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244681" group="3" caption="Diagram completion" href="reading/exercises/1151344244681.xml" enabledFlag="3">
+				<exercise id="1151344244681" group="3" caption="Diagram completion" href="reading/exercises/1151344244681.xml" thumbnail="reading/thumbnails/Reading_diagcomp.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244836" group="3" caption="Short answer questions" href="reading/exercises/1151344244836.xml" enabledFlag="3">
+				<exercise id="1151344244836" group="3" caption="Short answer questions" href="reading/exercises/1151344244836.xml" thumbnail="reading/thumbnails/Reading_saq1.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244784" group="3" caption="Sentence completion" href="reading/exercises/1151344244784.xml" enabledFlag="3">
+				<exercise id="1151344244784" group="3" caption="Sentence completion" href="reading/exercises/1151344244784.xml" thumbnail="reading/thumbnails/Reading_sencomp2.jpg" enabledFlag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244888" group="3" caption="Multiple selection" href="reading/exercises/1151344244888.xml" enabledFlag="3">
+				<exercise id="1151344244888" group="3" caption="Multiple selection" href="reading/exercises/1151344244888.xml" thumbnail="reading/thumbnails/Reading_ms.jpg" enabledFlag="3">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1151344259045" group="3" caption="Matching (1)" href="reading/exercises/1151344259045.xml" enabledFlag="3">
+				<exercise id="1151344259045" group="3" caption="Matching (1)" href="reading/exercises/1151344259045.xml" thumbnail="reading/thumbnails/Reading_matching2.jpg" enabledFlag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259264" group="3" caption="Classification" href="reading/exercises/1151344259264.xml" enabledFlag="3">
+				<exercise id="1151344259264" group="3" caption="Classification" href="reading/exercises/1151344259264.xml" thumbnail="reading/thumbnails/Reading_classification.jpg" enabledFlag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259319" group="3" caption="Multiple choice" href="reading/exercises/1151344259319.xml" enabledFlag="3">
+				<exercise id="1151344259319" group="3" caption="Multiple choice" href="reading/exercises/1151344259319.xml" thumbnail="reading/thumbnails/Reading_mc.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259704" group="3" caption="Yes, No, Not given" href="reading/exercises/1151344259704.xml" enabledFlag="3">
+				<exercise id="1151344259704" group="3" caption="Yes, No, Not given" href="reading/exercises/1151344259704.xml" thumbnail="reading/thumbnails/Reading_ynng.jpg" enabledFlag="3">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259839" group="3" caption="Matching (2)" href="reading/exercises/1151344259839.xml" enabledFlag="3">
+				<exercise id="1151344259839" group="3" caption="Matching (2)" href="reading/exercises/1151344259839.xml" thumbnail="reading/thumbnails/Reading_matching3.jpg" enabledFlag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259757" group="3" caption="Summary completion" href="reading/exercises/1151344259757.xml" enabledFlag="3">
+				<exercise id="1151344259757" group="3" caption="Summary completion" href="reading/exercises/1151344259757.xml" thumbnail="reading/thumbnails/Reading_sc.jpg" enabledFlag="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
         	</unit>

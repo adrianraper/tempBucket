@@ -13,6 +13,7 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
+	
 }
 
 /* Paragraphs have spacing after them */
@@ -199,6 +200,8 @@ h8{
 	}
 #questionList li{
 padding-bottom: 12px;
+padding-left: 15px;
+line-height: 30em;
 }
 
 #gapfillText{
@@ -225,16 +228,15 @@ padding-left: -25px;
 #writing p{
 	padding-bottom: 12px;
 	}
-
+/* This is only for video floating */
 }
 #body .rightFloatvideo {
 	float: right;
-	width: 760px;
-	padding-top: 20em;
+	width:760px;
+	padding-top: 0em;
 	padding-right: 10em;
-	padding-left: 10em;
-	margin-top: 20em;
-	
+	padding-left: 100px;
+	margin-top: 0em;
 }
 .hangingIndent1 {
  	tab-stops: 30px;
@@ -253,3 +255,36 @@ padding-left: -25px;
 	margin: 0 20px 20px 0;
 	}
 
+/*This is for Speaking Unit 2 Watch a candidate (1) */
+#video2{
+position: absolute;
+    padding-top: 20px;
+	padding-left: -20px;
+    width:500px;
+
+}
+#v1{
+padding-top: 45px;
+position:relative;
+    height: 350px;
+    width:700px;
+    line-height:22em;
+
+}
+/*This is for Writing Unit1 Dealing with numbers */
+#wrapper{
+}
+#g1{ 
+padding-left:100px;
+}
+#g1.img{
+padding-left:50px;
+}
+#g2{
+}
+#g3{
+}
+#g4{
+}
+#g5{
+}

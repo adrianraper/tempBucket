@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc timed="140"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -70,10 +62,10 @@
   <img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-  <li id="10">When is the earliest a service engineer is available?</li><input id="q1"/>
-  <li id="11">Why is this inconvenient for Jane?</li><input id="q2"/>
-  <li id="12">When would be most convenient for Jane?</li><input id="q3"/>
-  <li id="13">When do they arrange for the service engineer to see the machine?</li><input id="q4"/>
+  <li id="10">When is the earliest a service engineer is available?<br/><input id="q1"/></li>
+  <li id="11">Why is this inconvenient for Jane?<br/><input id="q2"/></li>
+  <li id="12">When would be most convenient for Jane?<br/><input id="q3"/></li>
+  <li id="13">When do they arrange for the service engineer to see the machine?<br/><input id="q4"/></li>
   </ol>
 </section>
 

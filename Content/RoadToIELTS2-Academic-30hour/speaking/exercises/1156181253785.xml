@@ -59,8 +59,12 @@
 </header>
 	
 <section id="body">
+<div id="video2">
+<div class="rightFloatvideo">
   <video src="../media/Unit03_e5.flv" mode="1" id="1003" autoPlay="false"/>
-  <ol id="questionList">
+  </div>
+  <div id="v1">
+  <ol>
   <li>You can travel on&#xA0;<input id="q1"/>&#xA0;or by&#xA0;<input id="q2"/>&#xA0;.</li>
   <li>You can take some&#xA0;<input id="q3"/>&#xA0;on the&#xA0;<input id="q4"/>&#xA0;.</li> 
   <li>Lots of people&#xA0;<input id="q5"/>&#xA0;by&#xA0;<input id="q6"/>. </li>
@@ -69,6 +73,8 @@
     <font size="2"/>
   </p>
   </ol>
+  </div>
+  </div>
 </section>
 
 </body>

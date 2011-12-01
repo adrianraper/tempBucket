@@ -12,22 +12,13 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc timed="190"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
-
-  <questions>
+   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="Italian conversation" correct="true"/>
       <answer value="conversational Italian" correct="true"/>
@@ -35,18 +26,21 @@
       <answer value="oral Italian" correct="true"/>
       <answer value="speaking Italian" correct="true">
         <feedback source="fb1"/>
-      </answer>
+		</answer>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q2" block="b2">
       <answer value="90" correct="true"/>
       <answer value="ninety" correct="true"/>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q3" block="b3">
       <answer value="12 weeks" correct="true"/>
       <answer value="twelve weeks" correct="true"/>
       <answer value="3 months" correct="true"/>
       <answer value="three months" correct="true"/>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q4" block="b4">
       <answer value="Tuesday Thursday" correct="true"/>
       <answer value="Tuesdays Thursdays" correct="true"/>
@@ -69,12 +63,14 @@
       <answer value="Tue + Thur" correct="true"/>
       <answer value="Thur + Tue" correct="true"/>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q5" block="b5">
       <answer value="Thursday" correct="true"/>
       <answer value="Thursdays" correct="true"/>
       <answer value="Thur" correct="true"/>
       <answer value="Thurs" correct="true"/>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q6" block="b6">
       <answer value="6.15" correct="true"/>
       <answer value="06.15" correct="true"/>
@@ -83,18 +79,21 @@
       <answer value="six fifteen" correct="true"/>
       <answer value="quarter past six" correct="true"/>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q7" block="b7">
       <answer value="2 hours" correct="true"/>
       <answer value="two hours" correct="true"/>
       <answer value="2 hrs" correct="true"/>
       <answer value="two hrs" correct="true"/>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q8" block="b8">
       <answer value="15" correct="true"/>
       <answer value="15 students" correct="true"/>
       <answer value="fifteen" correct="true"/>
       <answer value="fifteen students" correct="true"/>
     </GapFillQuestion>
+	
   </questions>
 </script>
 
@@ -113,9 +112,9 @@
   <audio controls="compact" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
   
-  <div id="gapfillText">
+  <div id="gapfillTable">
   <p><b>Subject</b><tab/><tab/><tab/><tab/><b>Level of Course</b></p>
-  <p>Italian <tab/><tab/><tab/><tab/>One</p>
+  <p>Italian<tab/><tab/><tab/><tab/>One</p>
   
   <p><b>Course Focus</b><tab/><tab/><tab/><b>Course Fee</b></p>
   <p>(1) <input id="q1"/><tab/><tab/>&#xA3; (2) <input id="q2"/></p>
@@ -132,7 +131,7 @@
 
 <section id="fb1">
   <p align="left">
-    <font face="verdana" size="13" color="#000000">1. The admin officer says that the emphasis is on 'conversation' and emphasis is similar in meaning to focus. </font>
+    1. The admin officer says that the emphasis is on 'conversation' and emphasis is similar in meaning to focus. 
   </p>
 </section>
 

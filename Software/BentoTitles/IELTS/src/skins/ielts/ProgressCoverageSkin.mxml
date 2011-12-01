@@ -47,7 +47,7 @@
 		-->
 		<!-- Can you do this so that detailDataProvider can simply be bindable itself? 
 			I get internal build errors if I mix up single and double quotes
-				dataProvider="{new XMLListCollection(hostComponent.detailDataProvider.course.(@["class"]==hostComponent.courseClass).unit.(@["class"]=='exam-practice').exercise}"
+				dataProvider="{new XMLListCollection(hostComponent.detailDataProvider.course.(@['class']==hostComponent.courseClass).unit.(@['class']=='exam-practice').exercise}"
 		-->
 	</s:HGroup>
 

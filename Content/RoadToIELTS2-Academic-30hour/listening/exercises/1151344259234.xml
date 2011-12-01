@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking instant="false"/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="true" marking="true"/>
-		<exercise/>
-		<misc timed="115"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -73,7 +65,7 @@
 
   
  
-    <h7><p>7-9  What is wrong with the washing machine?</p></h7>
+	<p><b>7-9  What is wrong with the washing machine?</b></p>
 	 <ol id="targetspotting">
 		<list class="answerList"><li><g id="t1">It leaks.</g></li>
 	    <li><g id="t2">One of the hoses is broken.</g></li>

@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="false"/>
-		<exercise/>
-		<misc timed="224"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -86,7 +78,7 @@
 
 <h1><p>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM</p></h1>
 
-<div id="gapfillText">
+<div id="gapfillTable">
 <p class="hangingIndent1">Production	<tab/><tab/><tab/><tab/>Hamlet</p>
 <p class="hangingIndent1">Date	<tab/><tab/><tab/><tab/>(1)&#xA0;<input id="q1"/>&#xA0;September</p>
 <p class="hangingIndent1">Time	<tab/><tab/><tab/><tab/>(2)&#xA0;<input id="q2"/>&#xA0;p.m.</p>

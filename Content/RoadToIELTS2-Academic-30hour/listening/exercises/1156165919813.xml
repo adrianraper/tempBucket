@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc splitscreen="true" timed="255"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -78,7 +70,7 @@
 	<li id="1">Cornish<tab/><tab/><input id="q1" type="droptarget"/></li>
 	<li id="2">Manx<tab/><tab/><input id="q2" type="droptarget"/></li>
 	<li id="3">Welsh<tab/><tab/><input id="q3" type="droptarget"/></li>
-	<li id="4">Achumawi<tab/><tab/><input id="q4" type="droptarget"/></li>
+	<li id="4">Achumawi<tab/><input id="q4" type="droptarget"/></li>
 	<li id="5">Trumai<tab/><tab/><input id="q5" type="droptarget"/></li>
 	<li id="6">Catalan<tab/><tab/><input id="q6" type="droptarget"/></li>
 </ol>

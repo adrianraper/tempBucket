@@ -82,21 +82,17 @@ h4 {
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 37em;
-	padding-right: 35em;
+	padding-top: 25em;
+	padding-right: 25em;
 	padding-left: 25m;
-	margin-top: 20em;
 }
 #body .rightFloatvideo {
 	float: right;
 	width:760px;
-	padding-top: 20em;
+	padding-top: 0em;
 	padding-right: 10em;
-	padding-left: 10em;
-	margin-top: 20em;
-	
-	
-
+	padding-left: 100px;
+	margin-top: 0em;
 }
 
 /* Links and draggable spans should be blue and not underlined */
@@ -196,4 +192,27 @@ padding-bottom: 12px;
 
 #questionList p{
 padding-bottom: 12px;
+}
+/*This is for Speaking Unit 1 The speaking test (2) */
+#outer{
+position:absolute;
+    padding-top: 20px;
+	 width:1200px;
+}
+
+#content{
+position:absolute;
+    height: 700px;
+    width:400px;
+    line-height:22em;
+	padding-left: -45px;
+}
+
+#video{
+	float: right;
+	width:760px;
+	display: inline;
+	padding-right: 20px;
+
+	margin-top: 0em;
 }

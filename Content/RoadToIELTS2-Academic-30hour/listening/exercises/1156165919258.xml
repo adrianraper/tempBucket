@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc timed="243"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -106,7 +98,7 @@
 	<li>Go to the cinema.- Watch television.- Borrow (3)&#xA0;<input id="q3"/>.</li>
 	<li>(4)&#xA0;<input id="q4"/>&#xA0;with people of other nationalities.</li>
 	<li>Join clubs.</li>
-	<li>Start your own (5)&#xA0;<input id="q5"/>.</li>
+	<li>Start your own (5)&#xA0;<input id="q5"/>.<br/></li>
 </ul>
 
 <h5>Dealing with problem areas</h5>

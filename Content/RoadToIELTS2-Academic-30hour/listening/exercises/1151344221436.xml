@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc timed="150"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -67,10 +59,10 @@
   <img class="rightFloat" src="../media/ED_LN_004.jpg" mode="1" id="1001"/>
   <audio controls="compact" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
   <ol id="questionList">
-  <li id="13"> What is the title of the coursebook used on the course?</li><input id="q1"/>
-  <li id="14"> How much does the coursebook cost?</li> &#xA3;&#xA0;<input id="q2"/>
-  <li id="15"> How long is the break?</li><input id="q3"/>
-  <li id="16"> What nationality is the teacher?</li><input id="q4"/>
+  <li id="13"> What is the title of the coursebook used on the course?<br/><input id="q1"/></li>
+  <li id="14"> How much does the coursebook cost?<br/><input id="q2"/></li>
+  <li id="15"> How long is the break?<br/><input id="q3"/></li>
+  <li id="16"> What nationality is the teacher?<br/><input id="q4"/></li>
   </ol>
 </section>
 

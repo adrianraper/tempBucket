@@ -57,13 +57,14 @@ Watch Part One of an interview with Zenia. Are the following statements true or 
 </header>
 	
 <section id="body">
-
-<div class="rightFloatvideo">
+<div id="outer">
+	<div id="video">
 <video  id="1003" src="../media/Unit01_e3.flv" autoPlay="false"  />
 </div>
 
 
-	<ol id="trueFalse">
+<div id="content">
+	<ol >
 		<li id="q1">The Examiner introduces herself to the candidate.</li><a id="a1" >True</a><tab/><a id="a2" >False</a>
 		<li id="q2">Zenia has to give the Examiner her full name.</li><a id="a3" >True</a><tab/><a id="a4" >False</a>
 		<li id="q3">Zenia does not need to produce identification.</li><a id="a5" >True</a><tab/><a id="a6" >False</a>
@@ -75,7 +76,9 @@ Watch Part One of an interview with Zenia. Are the following statements true or 
 		<li id="q9">The candidate is asked where she was born.</li><a id="a17" >True</a><tab/><a id="a18" >False</a>
 		<li id="q10">The Examiner asks Zenia to talk about her life.</li><a id="a19" >True</a><tab/><a id="a20" >False</a>
 	</ol>
-	
+	</div>
+
+	</div>
 </section>
 <section id="fb1">
 	<p align="left">1. When you give your name to someone this is an introduction.</p>

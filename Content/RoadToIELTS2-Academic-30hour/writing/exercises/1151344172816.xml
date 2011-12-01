@@ -12,17 +12,12 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise dragtimes="1"/>
-		<misc/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
     <DragQuestion source="q1" block="b1">
       <answer source="a8" correct="true">

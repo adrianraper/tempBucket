@@ -168,7 +168,7 @@ h7{
 	font-weight: bold;
 	padding-top: 20px;
 	line-height: 20em;
-	padding-right: 350%;
+	padding-right: 0%;
 	padding-left:20px
 	}
 	
@@ -234,6 +234,15 @@ padding-bottom: 12px;
 	text-indent: 10%;
 	
 }
+#gapfillTable{
+	padding-top: 12px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 280%;
+}
+#gapfillTable p{
+padding-bottom: 12px;
+}
 
 #gapfillText{
 	padding-top: 12px;
@@ -242,7 +251,7 @@ padding-bottom: 12px;
 	padding-right: 280%;
 }
 #gapfillText p{
-padding-bottom: 12px;
+padding-bottom: 20em;
 }
 
 #writing {
@@ -260,6 +269,7 @@ padding-bottom: 12px;
  	tab-stops: 30px;
  	text-indent: -220em;
  	padding-left: 240em;
+	line-height: 20px;
 }
 .hangingIndent2 {
  	tab-stops: 30px;
@@ -287,13 +297,12 @@ padding-bottom: 12px;
 }
 #body .rightFloatvideo {
 	float: right;
-	width: 760px;
-	padding-top: 20em;
+	width:760px;
+	padding-top: 0em;
 	padding-right: 10em;
-	padding-left: 10em;
-	margin-top: 20em;
+	padding-left: 100px;
+	margin-top: 0em;
 }
-
 img.floatleft {
 float: left;
 	padding-top: 37px;
@@ -314,3 +323,60 @@ img.center {
     margin-left: auto;
     margin-right: auto;
 } 
+
+/*This is for Listening Unit 1 Table completion */
+#outer{
+	position:relative;
+	padding-top: 100px;
+   padding-left: -22em;
+    width:500px;
+}
+#content{
+position:absolute;
+    height: 300px;
+    width:220px;
+    line-height:22em;
+}
+#content1{
+position:absolute;
+   height:300px;
+   width:220px;
+   line-height:22em;
+}
+
+/*This is for Speaking Unit 1 watch a video (2) */
+#video2{
+position:absolute;
+   
+    width:500px;
+}
+#v1{
+position:relative;
+padding-top: 25px;
+    height: 700px;
+    width:400px;
+    line-height:22em;
+}
+
+/* This class is used for column layout in Listening, Unit 3, Sentence completion. */
+#outersencomp{
+	position:relative;
+	padding-top: 70px;
+   padding-left: -22em;
+    width:700px;
+}
+#contentsencomp{
+	position:absolute;
+	float: left;
+    height: 300px;
+    width:100px;
+	line-height: 30px;
+}
+
+#content1sencomp{
+   position:absolute;
+   float: left;
+   height:300px;
+   width:500px;
+   line-height: 30px;
+}

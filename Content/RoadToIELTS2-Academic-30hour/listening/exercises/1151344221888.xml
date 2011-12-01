@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc timed="190"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -92,7 +84,7 @@
 </header>
 	
 <section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/><audio controls="compact" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
-<div id="gapfillText">
+<div id="gapfillTable">
 <h9>Lecture</h9>
 <p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Lecturer and large group</p>
 <p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Lecturer talks, students take notes</p>

@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc timed="191"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>

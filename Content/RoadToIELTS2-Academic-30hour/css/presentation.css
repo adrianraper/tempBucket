@@ -226,13 +226,28 @@ padding-left: -25em;
  	tab-stops: 30px;
  	text-indent: -26px;
  	padding-left: 46px;
-}
-
-
-
-
-	
-	
+}	
 .listSpacing {
 line-height : 50em;
+}
+/* This is for speaking unit3 watch a candidate (3) */
+#watching{
+    padding-top: 20px;
+	padding-left: -20px;
+    width:500px;
+}
+#w1{
+    height: 700px;
+    width:600px;
+    line-height:22em;
+}
+#body .rightFloatvideo {
+
+	float: right;
+	width:760px;
+
+	padding-top: 0em;
+	padding-right: 10em;
+	padding-left: 100px;
+	margin-top: 0em;
 }

@@ -12,15 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc timed="267"/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
 <settings>
@@ -33,6 +25,7 @@
         <feedback source="fb1"/>
       </answer>
     </GapFillQuestion>
+	
     <GapFillQuestion source="q2" block="b2">
       <answer value="A" correct="true">
         <feedback source="fb2"/>
@@ -85,13 +78,15 @@
 
   <img class="rightFloat" src="../media/AC_LN_003.jpg" mode="1" id="1001"/>
   <audio controls="compact"  src="../media/AC_LN2.mp3" mode="4" id="1002"/>
- <ol id="questionList">
+
+
     <p><b>A</b><tab/>	in the period up to 1950<br/>
     <b>B</b><tab/>	in the period between 1951 and 1984<br/>
     <b>C</b><tab/>	in the period after 1984</p>
- 
-  
 
+
+  
+   <ol id="questionList">
   <li id="1">cinema attendance fell<tab/><tab/><tab/><tab/><tab/><tab/><input id="q1"/></li>
   <li id="2"> cinema admissions reached a peak<tab/><tab/><tab/><tab/><input id="q2"/></li>
   <li id="3"> multi-screen cinemas were introduced<tab/><tab/><tab/><tab/><input id="q3"/></li>

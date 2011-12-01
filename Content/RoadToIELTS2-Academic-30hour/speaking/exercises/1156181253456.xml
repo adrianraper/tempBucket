@@ -100,10 +100,14 @@
 </header>
 	
 <section id="body">
+<div id="watching">
+<div class="rightFloatvideo1">
   <video src="../media/Unit03_e2a.flv" mode="16" id="1003" autoPlay="false"/>
   <video src="../media/Unit03_e2b.flv" mode="16" id="1004" autoPlay="false"/>
   <video src="../media/Unit03_e2c.flv" mode="16" id="1005" autoPlay="false"/>
-  <div id="targetspotting">
+  </div>
+  
+  <div id="w1">
   <p>
     <b>What reasons does Zenia give for visiting other countries?</b></p>
     <g id="t1">A.  see the sights</g><br/>
@@ -113,7 +117,7 @@
     <g id="t5">E.  traditions</g><br/>
     <g id="t6">F.  food</g><br/>
     <g id="t7">G.  music</g><br/>
-  
+  <br/><br/><br/><br/>
   <p>
     <b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b></p>
     <g id="t8">A.  learning another language</g><br/>
@@ -123,7 +127,7 @@
     <g id="t12">E.  discovering the culture</g><br/>
     <g id="t13">F.  getting better job opportunities</g><br/>
     <g id="t14">G.  learning to be independent</g><br/>
-  
+  <br/><br/><br/><br/>
   <p>
     <b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b></p>
     <g id="t15">A.  see relatives</g><br/>
@@ -138,6 +142,7 @@
   <p align="left">
   
   </p>
+  </div>
   </div>
 </section>
 
