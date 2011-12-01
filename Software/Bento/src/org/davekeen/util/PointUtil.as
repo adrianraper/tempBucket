@@ -1,5 +1,6 @@
 package org.davekeen.util {
 	import flash.display.DisplayObject;
+	import flash.display.Graphics;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -29,6 +30,11 @@ package org.davekeen.util {
 		public static function convertRectangleCoordinateSpace(rectangle:Rectangle, oldSpace:DisplayObject, newSpace:DisplayObject):Rectangle {
 			var newOrigin:Point = convertPointCoordinateSpace(new Point(rectangle.x, rectangle.y), oldSpace, newSpace);
 			return new Rectangle(newOrigin.x, newOrigin.y, rectangle.width, rectangle.height);
+		}
+		
+		public static function highlight(graphics:Graphics, rectangle:Rectangle):void {
+			graphics.lineStyle(1, 0xFF0000, 1);
+			graphics.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		}
 		
 	}

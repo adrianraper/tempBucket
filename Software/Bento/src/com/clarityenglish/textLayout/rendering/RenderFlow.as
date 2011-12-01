@@ -1,10 +1,12 @@
 package com.clarityenglish.textLayout.rendering {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.events.RenderFlowEvent;
+	import com.clarityenglish.textLayout.events.RenderFlowMouseEvent;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -34,6 +36,7 @@ package com.clarityenglish.textLayout.rendering {
 	
 	[Event(name="renderFlowUpdateComplete", type="com.clarityenglish.textLayout.events.RenderFlowEvent")]
 	[Event(name="textFlowCleared", type="com.clarityenglish.textLayout.events.RenderFlowEvent")]
+	[Event(name="renderFlowClick", type="com.clarityenglish.textLayout.events.RenderFlowMouseEvent")]
 	public class RenderFlow extends UIComponent {
 		
 		/**
@@ -94,6 +97,8 @@ package com.clarityenglish.textLayout.rendering {
 				log.error("No TextFlow in RenderFlow onAddedToStage");
 				return;
 			}
+			
+			addEventListener(MouseEvent.CLICK, onClick, false, 0, true);
 		}
 		
 		protected override function measure():void {
@@ -278,6 +283,10 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
+		protected function onClick(event:MouseEvent):void {
+			dispatchEvent(new RenderFlowMouseEvent(RenderFlowMouseEvent.RENDER_FLOW_CLICK, _textFlow, event));
+		}
+		
 		/**
 		 * When the RenderFlow is removed from the stage remove all listeners and nullify everything so that it can be garbage collected
 		 *
@@ -286,6 +295,8 @@ package com.clarityenglish.textLayout.rendering {
 		private function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			removeEventListener(MouseEvent.CLICK, onClick);
 			
 			childRenderFlows = null;
 			containingBlock = null;

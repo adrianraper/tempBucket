@@ -185,9 +185,10 @@ progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
 
+/* TODO: Adrian forgot to commit this skin file so I have temporarily commented it so I can keep working
 progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.ProgressNavBarSkin");
-}
+}*/
 
 progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");

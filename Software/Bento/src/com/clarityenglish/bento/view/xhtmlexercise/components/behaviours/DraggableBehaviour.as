@@ -62,8 +62,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 		}
 		
-		/*public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
-		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 			for each (var draggableNode:XML in xhtml.xml..*.(hasOwnProperty("@draggable") && @draggable == "true")) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
