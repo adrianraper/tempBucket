@@ -1,15 +1,9 @@
 package com.clarityenglish.textLayout.elements {
-	import com.clarityenglish.textLayout.util.TLFUtil;
-	
-	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
-	import flash.geom.Rectangle;
-	import flash.net.URLRequest;
 	import flash.system.Security;
+	import flash.utils.Dictionary;
 	
-	import flashx.textLayout.elements.InlineGraphicElementStatus;
-	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.formats.FormatValue;
 	import flashx.textLayout.tlf_internal;
 	
@@ -34,6 +28,9 @@ package com.clarityenglish.textLayout.elements {
 		private var _autoPlay:Boolean = true;
 		
 		private var _videoDimensionsCalculated:Boolean;
+		
+		// This is a weak dictionary with a single key that statically tracks the currently playing video without making a GC root
+		private static var _currentlyPlayingVideoPlayerDictionary:Dictionary;
 		
 		public function VideoElement() {
 			super();
@@ -110,7 +107,7 @@ package com.clarityenglish.textLayout.elements {
 		 * 
 		 * @param event
 		 */
-		private function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {	
+		private function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			switch (event.state) {
 				case MediaPlayerState.PLAYING:
 				case MediaPlayerState.PAUSED:
@@ -127,6 +124,31 @@ package com.clarityenglish.textLayout.elements {
 					}
 					break;
 			}
+			
+			// #76 - only one video should play at once
+			if (event.state == MediaPlayerState.PLAYING) {
+				if (currentlyPlayingVideoPlayer)
+					currentlyPlayingVideoPlayer.stop();
+				
+				currentlyPlayingVideoPlayer = getComponent() as VideoPlayer;
+			}
+		}
+		
+		/**
+		 * A funky way to statically store a VideoPlayer without making a reference and breaking GC
+		 * 
+		 * @param value
+		 */
+		private static function set currentlyPlayingVideoPlayer(value:VideoPlayer):void {
+			_currentlyPlayingVideoPlayerDictionary = new Dictionary(true);
+			_currentlyPlayingVideoPlayerDictionary[value] = true;
+		}
+		
+		private static function get currentlyPlayingVideoPlayer():VideoPlayer {
+			for (var videoPlayer:* in _currentlyPlayingVideoPlayerDictionary)
+				return videoPlayer as VideoPlayer;
+			
+			return null;
 		}
 		
 		private function onYouTubeComplete(event:Event):void {

@@ -4,6 +4,11 @@
 		<script id="model" type="application/xml">
 			<menu>
 				<course caption="XHTML test exercises" id="0">
+					<unit caption="Memory leaks" id="2">
+						<exercise id="300" caption="MemoryLeak1" href="tests/MemoryLeak1.xml" />
+						<exercise id="301" caption="MemoryLeak2" href="tests/MemoryLeak2.xml" />
+					</unit>
+					
 					<unit caption="Tests" id="0">
 						<exercise id="125" caption="VideoLayout1" href="tests/VideoLayout1.xml" />
 						<exercise id="124" caption="Feedback1" href="tests/Feedback1.xml" />
