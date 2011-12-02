@@ -22,17 +22,17 @@ package com.clarityenglish.ielts.view.progress.components {
 		private var _durationChartXML:XML;
 
 		// TODO. These are all set in ielts.css if you can get at that from this view?
-		private static const _writingBright:String = '#7DAB36';
-		private static const _writingDull:String = '#364A17';
-		private static const _readingBright:String = '#00A2C8';
-		private static const _readingDull:String = '#005063';
-		private static const _listeningBright:String = '#FF6600';
-		private static const _listeningDull:String = '#7A3100';
-		private static const _speakingBright:String = '#A93087';
-		private static const _speakingDull:String = '#4F173F';
-		private static const _opacityDull:String = '0.9';
+		private const _writingBright:String = '#7DAB36';
+		private const _writingDull:String = '#364A17';
+		private const _readingBright:String = '#00A2C8';
+		private const _readingDull:String = '#005063';
+		private const _listeningBright:String = '#FF6600';
+		private const _listeningDull:String = '#7A3100';
+		private const _speakingBright:String = '#A93087';
+		private const _speakingDull:String = '#4F173F';
+		private const _opacityDull:String = '0.9';
 		
-		private static const chartTemplates:XML = 
+		private const chartTemplates:XML = 
 			<anychart>
 			  <settings>
 				<animation enabled="False" duration="1" interpolation_type="Quadratic" show_mode="Together" />
@@ -85,11 +85,17 @@ package com.clarityenglish.ielts.view.progress.components {
 				// WARNING. It is possible for the mediator of a different view (coverage say) to still be loading
 				// and firing notifications to get data. The notifications will be picked up by us too and end up here.
 				// So you need to remove data points before you add them again.
-				for (var i:int=0; i < _scoreChartXML.charts.chart.data.series[0].point.length(); i++) {
+				// The following works in <point> is the only node in series.
+				_scoreChartXML.charts.chart.data.series[0].setChildren(new XMLList());
+				/*
+				var numberOfPoints:int = _scoreChartXML.charts.chart.data.series[0].point.length();
+				for (var i:int=0; i < numberOfPoints; i++) {
 					delete _scoreChartXML.charts.chart.data.series[0].point[i]; 
 				}
-				for (i=0; i < _durationChartXML.charts.chart.data.series[0].point.length(); i++) {
-					delete _durationChartXML.charts.chart.data.series[0].point[i]; 
+				*/
+				var numberOfPoints:int = _durationChartXML.charts.chart.data.series[0].point.length();
+				for (var i:int=0; i < numberOfPoints; i++) {
+					delete _durationChartXML.charts.chart.data.series[0].point[0]; 
 				}
 				
 				for each (var point:XML in dataProvider.course) {

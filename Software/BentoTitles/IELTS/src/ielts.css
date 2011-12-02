@@ -185,10 +185,9 @@ progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
 
-/* TODO: Adrian forgot to commit this skin file so I have temporarily commented it so I can keep working
 progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.ProgressNavBarSkin");
-}*/
+}
 
 progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
@@ -209,11 +208,13 @@ progressui|ProgressBarRenderer {
 progressui|ProgressCourseBarComponent {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCourseBarSkin");
 }
-/* Not picking up. That was because a group can't have a skin class
-progresscomponents|CompareView s|Group#courseKeyGroup {
-	skinClass: ClassReference("skins.ielts.progress.CourseKeyGroupSkin");
+progressui|CoverageExerciseComponent {
+	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");
 }
-*/
+progressui|CoverageUnitComponent {
+	skinClass: ClassReference("skins.ielts.progress.CoverageUnitComponentSkin");
+}
+
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");

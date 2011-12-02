@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.progress.ui.CoverageUnitComponent")]
+	</fx:Metadata>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" />
+	</s:layout>
+	
+	<s:Label id="coverageHeadingLabel" text="{hostComponent.caption}" />
+	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#CC6600" 
+			dataProvider="{hostComponent.listDataProvider}" 
+			itemRenderer="skins.ielts.progress.CoverageUnitRenderer" />
+	
+</s:Skin>

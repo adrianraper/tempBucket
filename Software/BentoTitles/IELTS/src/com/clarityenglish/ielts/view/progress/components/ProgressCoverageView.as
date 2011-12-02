@@ -4,6 +4,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.view.progress.ui.CoverageExerciseComponent;
+	import com.clarityenglish.ielts.view.progress.ui.CoverageUnitComponent;
 	import com.clarityenglish.ielts.view.progress.ui.ProgressBarRenderer;
 	import com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 	
@@ -33,19 +35,19 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var progressBar:ProgressBarRenderer;
 		
 		[SkinPart(required="true")]
-		public var practiceZoneCoverage:Group;
+		public var practiceZoneCoverage:CoverageUnitComponent;
 		
 		[SkinPart(required="true")]
-		public var questionZoneCoverage:Group;
+		public var questionZoneCoverage:CoverageExerciseComponent;
 		
 		[SkinPart(required="true")]
-		public var adviceZoneCoverage:Group;
+		public var adviceZoneCoverage:CoverageExerciseComponent;
 		
 		[SkinPart(required="true")]
-		public var examPracticeCoverage:Group;
+		public var examPracticeCoverage:CoverageExerciseComponent;
 		
 		[Bindable]
-		public var practiceZoneDataProvider:XMLList;
+		public var practiceZoneDataProvider:XML;
 
 		[Bindable]
 		public var questionZoneDataProvider:XMLListCollection;
@@ -69,6 +71,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
+		
+		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
+		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
+		[Bindable]
+		public static var horribleHackCourseClass:String;
 		
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
@@ -102,6 +109,10 @@ package com.clarityenglish.ielts.view.progress.components {
 		public function set courseClass(value:String):void {
 			_courseClass = value;
 			_courseClassChanged = true;
+			
+			// This is a horrible hack
+			horribleHackCourseClass = courseClass;
+		
 			invalidateProperties();
 		}
 		[Bindable]
@@ -178,8 +189,8 @@ package com.clarityenglish.ielts.view.progress.components {
 						case 'practice-zone':
 							// Because we need to get captions from the group node, send the whole
 							// course node as the practice zone data provider
-							//practiceZoneDataProvider = new XMLList(unitNode.parent());
-							practiceZoneDataProvider = new XMLList(unitNode.exercise);
+							practiceZoneDataProvider = unitNode.parent();
+							//practiceZoneDataProvider = new XMLList(unitNode.exercise);
 							break;
 						case 'question-zone':
 							questionZoneDataProvider = new XMLListCollection(unitNode.exercise);

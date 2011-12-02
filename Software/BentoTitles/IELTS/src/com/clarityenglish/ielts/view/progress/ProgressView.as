@@ -38,21 +38,7 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[SkinPart]
 		public var progressCoverageView:ProgressCoverageView;
-		
-		// Until assets.swf contains icons for the progress tabs, just use progress one
-		// But I don't need any icons for this bar!
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
-		private var coverageIcon:Class;
-		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
-		private var compareIcon:Class;
-		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
-		private var analysisIcon:Class;
-		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
-		private var scoreIcon:Class;
-		
+
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
