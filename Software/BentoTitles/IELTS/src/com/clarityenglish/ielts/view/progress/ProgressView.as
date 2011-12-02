@@ -70,10 +70,10 @@ package com.clarityenglish.ielts.view.progress {
 			switch (instance) {
 				case progressNavBar:
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ icon: coverageIcon, label: "My coverage", data: "coverage" },
-						{ icon: compareIcon, label: "Compare", data: "compare" },
-						{ icon: analysisIcon, label: "Analyse", data: "analysis" },
-						{ icon: scoreIcon, label: "My scores", data: "score" },
+						{ label: "My coverage", data: "coverage" },
+						{ label: "Compare", data: "compare" },
+						{ label: "Analyse", data: "analysis" },
+						{ label: "My scores", data: "score" },
 					] );
 					
 					progressNavBar.requireSelection = true;
