@@ -109,7 +109,7 @@
 				<s:SolidColor color="#767676" />
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="250" top="9" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="120" top="9" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="25" top="12" />
 	</s:Group>
 	

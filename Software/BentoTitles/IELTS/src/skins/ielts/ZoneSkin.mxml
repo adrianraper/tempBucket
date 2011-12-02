@@ -160,10 +160,10 @@
 				
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
-					<s:VGroup left="0" right="0" top="0" bottom="5" horizontalAlign="center" verticalAlign="middle">
-						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" width="411" height="231" />
+					<s:VGroup left="0" right="0" top="0" bottom="10" horizontalAlign="left" verticalAlign="middle">
+						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" width="500" height="277" left="3" />
 						
-						<s:List id="adviceZoneVideoList" width="411" height="40" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
+						<s:List id="adviceZoneVideoList" width="510" height="40" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
 							<s:layout>
 								<s:HorizontalLayout />
 							</s:layout>
@@ -180,7 +180,7 @@
 												}
 											]]>
 										</fx:Script>
-										<s:Image id="image" width="45" height="25" />
+										<s:Image id="image" width="68" height="38" />
 									</s:ItemRenderer>
 								</fx:Component>
 							</s:itemRenderer>
