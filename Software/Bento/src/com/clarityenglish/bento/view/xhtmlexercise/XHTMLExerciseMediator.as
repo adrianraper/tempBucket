@@ -43,6 +43,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		public override function onRemove():void {
 			super.onRemove();
 			
+			// #71
+			view.stopAllAudio();
+			
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
 			
@@ -74,7 +77,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					view.stopAllAudio();
 					break;
 				case BBNotifications.EXERCISE_STARTED:
-				case BBNotifications.EXERCISE_STOPPED:
 					view.stopAllAudio();
 					break;
 			}
