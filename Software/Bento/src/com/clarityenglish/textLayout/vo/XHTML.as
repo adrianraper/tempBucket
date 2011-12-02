@@ -242,13 +242,13 @@ package com.clarityenglish.textLayout.vo {
 		}
 		
 		/**
-		 * Return the node (in the body) with the given id.  If more than one node exists with the same id the first one is returned.
+		 * Return the node with the given id.  If more than one node exists with the same id the first one is returned.
 		 * 
 		 * @return 
 		 */
 		[Bindable(event="xmlChange")]
 		public function getElementById(id:String):XML {
-			var nodes:XMLList = _xml.body..*.(hasOwnProperty("@id") && @id == id);
+			var nodes:XMLList = _xml..*.(hasOwnProperty("@id") && @id == id);
 			return (nodes.length() > 0) ? nodes[0] : null;
 		}
 		

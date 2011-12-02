@@ -1,8 +1,13 @@
 package com.clarityenglish.ielts.view {
 	import com.clarityenglish.bento.BBStates;
+	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -76,12 +81,65 @@ package com.clarityenglish.ielts.view {
 					view.currentState = "loading";
 					break;
 				case BBStates.STATE_LOGIN:
-					view.currentState = "login";
+					// If there is no direct login display the login state
+					// TODO: This should be moved into Bento instead of IELTS
+					if (!handleDirectLogin()) view.currentState = "login";
 					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";
+					
+					handleDirectStart();
 					break;
 			}
+		}
+		
+		private function handleDirectLogin():Boolean {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var directLogin:LoginEvent = configProxy.getDirectLogin();
+			if (directLogin) {
+				// If direct start login is on then log straight in without changing to the login state
+				sendNotification(CommonNotifications.LOGIN, directLogin);
+				return true;
+			}
+			
+			return false;
+		}
+		
+		/**
+		 * Handle the various options for direct start.  IELTS supports:
+		 * 
+		 * courseClass
+		 * 
+		 * @return 
+		 */
+		private function handleDirectStart():Boolean {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var directStart:Object = configProxy.getDirectStart();
+			
+			if (!directStart) return false;
+			
+			// If courseClass is defined go straight into a course
+			if (directStart.courseClass) {
+				var course:XML = bentoProxy.menuXHTML.selectOne("script#model > menu > course[class=" + directStart.courseClass + "]");
+				
+				if (course) {
+					sendNotification(IELTSNotifications.COURSE_SHOW, course);
+					return true;
+				}
+			}
+			
+			// If exerciseId is defined go straight into an exercise
+			if (directStart.exerciseId) {
+				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseId);
+				
+				if (exercise) {
+					var href:Href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
+					sendNotification(IELTSNotifications.HREF_SELECTED, href);
+				}
+			}
+			
+			return false;
 		}
 	
 	}

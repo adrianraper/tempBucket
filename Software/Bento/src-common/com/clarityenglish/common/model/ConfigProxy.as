@@ -5,6 +5,7 @@ package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -155,6 +156,31 @@ package com.clarityenglish.common.model {
 		
 		public function getDateFormatter():DateFormatter {
 			return _dateFormatter;
+		}
+		
+		/**
+		 * Direct login is implemented here.  If a LoginEvent is returned then the application should log straight in without showing a login screen.
+		 * 
+		 * @return 
+		 */
+		public function getDirectLogin():LoginEvent {
+			if (Config.DEVELOPER.name == "DK" || Config.DEVELOPER.name == "AR") {
+				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
+			}
+			
+			return null;
+		}
+		
+		/**
+		 * Direct start is implemented here.  This will be implemented by the titles, so there are no rules about what kind of object should be returned
+		 * from this method.  This is to allow any kind of direct starting (which may depend on the structure of the title).
+		 * 
+		 * @return 
+		 */
+		public function getDirectStart():Object {
+			//return { courseClass: "writing" };
+			//return { exerciseId: "1156153794671" };
+			return null;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

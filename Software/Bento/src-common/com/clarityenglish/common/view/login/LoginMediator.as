@@ -39,13 +39,6 @@ package com.clarityenglish.common.view.login {
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
-			
-			// For debug purposes automatically login as dandelion/password
-			if (Config.DEVELOPER.name == "AR") {
-				view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
-			} else if (Config.DEVELOPER.name == "DK") {
-				//view.dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "dandelion", "password"));
-			}
 		}
         
 		/**
@@ -58,8 +51,8 @@ package com.clarityenglish.common.view.login {
 		 */
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-					CommonNotifications.INVALID_LOGIN,
-					CommonNotifications.COPY_LOADED,
+				CommonNotifications.INVALID_LOGIN,
+				CommonNotifications.COPY_LOADED,
 			]);
 		}
 
