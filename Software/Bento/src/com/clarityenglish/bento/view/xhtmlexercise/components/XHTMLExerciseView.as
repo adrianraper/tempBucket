@@ -10,6 +10,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
+	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
@@ -114,6 +115,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
 				}
 			}
+		}
+		
+		public function stopAllAudio():void {
+			AudioPlayer.stopAllAudio();
 		}
 		
 		public function selectAnswerMap(question:Question, answerMap:AnswerMap):void {

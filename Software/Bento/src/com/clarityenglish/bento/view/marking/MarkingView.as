@@ -65,6 +65,9 @@ package com.clarityenglish.bento.view.marking {
 		
 		protected function onTryAgainButton(event:MouseEvent):void {
 			dispatchEvent(new MarkingEvent(MarkingEvent.TRY_AGAIN));
+			
+			// Send a close event which will shut the popup (if the view is running in a popup)
+			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
 		protected function onSeeAnswersButton(event:MouseEvent):void {

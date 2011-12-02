@@ -54,6 +54,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				BBNotifications.QUESTION_ANSWERED,
 				BBNotifications.SHOW_ANSWERS,
 				BBNotifications.MARKING_SHOWN,
+				BBNotifications.EXERCISE_START,
 			]);
 		}
 		
@@ -69,6 +70,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					break;
 				case BBNotifications.MARKING_SHOWN:
 					view.setExerciseMarked();
+					view.stopAllAudio();
+					break;
+				case BBNotifications.EXERCISE_START:
+					view.stopAllAudio();
 					break;
 			}
 		}

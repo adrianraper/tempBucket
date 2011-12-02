@@ -111,6 +111,14 @@ package com.clarityenglish.textLayout.components {
 			}
 		}
 		
+		public static function stopAllAudio():void {
+			if (soundChannel) {
+				// Stop any currently playing sound, and dispatch a SOUND_COMPLETE event so that the previous audio player changes from PLAYING to the appropriate state
+				soundChannel.stop();
+				soundChannel.dispatchEvent(new Event(Event.SOUND_COMPLETE));
+			}
+		}
+		
 		/**
 		 * This deals with a click on the compact player, where everything happens on a single clickable image
 		 * 

@@ -34,6 +34,7 @@
 				<s:SolidColor color="{courseColor}" />
 			</s:fill>
 		</s:Rect>
+		
 		<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
 			<s:stroke>
 				<s:SolidColorStroke color="0x000000" weight="1"/>
