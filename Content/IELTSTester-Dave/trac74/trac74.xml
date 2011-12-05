@@ -21,10 +21,7 @@
 			
 			p .column2 {
 				display: block;
-				margin-left: 51px;
-				border-style: solid;
-				border-width: 1px;
-				border-color: #B5B5B5;
+				margin-left: 50px;
 			}
 		]]>
 		</style>
