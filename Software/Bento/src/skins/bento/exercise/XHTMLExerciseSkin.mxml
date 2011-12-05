@@ -15,6 +15,14 @@
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.MarkableIconsBehaviour;
 			import com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour;
+			
+			import mx.events.FlexMouseEvent;
+			
+			protected function onScrollerMouseWheelChanging(event:FlexMouseEvent):void {
+				// #66
+				event.delta = event.delta / Math.abs(event.delta) * 32;
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -55,7 +63,7 @@
 				</s:fill>
 			</s:Rect>
 			
-			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5">
+			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="5" right="5" bottom="5" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
 				<components:XHTMLRichText id="readingTextRichText" top="5" left="5" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, DictionaryBehaviour]}" />
 			</s:Scroller>
 		</s:Group>
@@ -67,7 +75,7 @@
 				</s:fill>
 			</s:Rect>
 			
-			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="16" right="5" bottom="5">
+			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="5" left="16" right="5" bottom="5" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
 				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, DictionaryBehaviour]}" />
 			</s:Scroller>
 		</s:Group>
