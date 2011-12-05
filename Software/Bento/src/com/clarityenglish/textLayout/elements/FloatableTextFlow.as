@@ -26,6 +26,7 @@ package com.clarityenglish.textLayout.elements {
 		public static const POSITION_ABSOLUTE:String = "absolute"; // TODO: not yet implemented
 		
 		public static const DISPLAY_INLINE:String = "inline"; // TODO: not yet implemented
+		public static const DISPLAY_BLOCK:String = "block"; // TODO: not yet implemented
 		
 		public static const OVERFLOW_VISIBLE:String = "visible"; // TODO: not yet implemented
 		public static const OVERFLOW_HIDDEN:String = "hidden"; // TODO: not yet implemented

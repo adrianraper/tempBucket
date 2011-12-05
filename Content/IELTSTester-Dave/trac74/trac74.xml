@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="css/exercises.css" type="text/css" />
+		<style type="text/css">
+		<![CDATA[			
+			h2 {
+				font-size: 16px;
+				padding-bottom: 40px;
+			}
+			
+			p {
+				padding-bottom: 5px;
+			}
+			
+			p .column1 {
+				float: left;
+				width: 100px;
+				font-weight: bold;
+			}
+			
+			p .column2 {
+				display: block;
+				margin-left: 100px;
+			}
+		]]>
+		</style>
+		
+		<script id="model" type="application/xml">
+		</script>
+
+	</head>
+	
+	<body>
+
+		<header>
+			Testing horizontal alignment (trac74)
+		</header>
+		
+		<section id="body">
+			<h2>Setting up a web site</h2>
+			
+			<p>
+				<span class="column1">Step 1</span>
+				<span class="column2">Determine what the purpose of the website is and who to contact in order to purchase an account Determine what the purpose of Find a reliable Internet Service Provider (ISP)</span>
+			</p>
+			
+			<p>
+				<span class="column1">Step 2</span>
+				<span class="column2">Aquire (5) <input /></span>
+			</p>
+			
+			<p>
+				<span class="column1">Step 3</span>
+				<span class="column2">Look at (6) <input /></span>
+			</p>
+			
+			<p>
+				<span class="column1">Step 4</span>
+				<span class="column2">Determine what the purpose of the website is and who to contact in order to purchase an account Determine what the purpose of the website is and who to contact in order to purchase an account</span>
+			</p>
+		</section>
+	</body>
+</bento>

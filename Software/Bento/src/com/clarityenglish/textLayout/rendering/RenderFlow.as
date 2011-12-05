@@ -124,6 +124,12 @@ package com.clarityenglish.textLayout.rendering {
 						break;
 				}
 				
+				// Implement width for block level elements
+				if (childRenderFlow._textFlow.display == FloatableTextFlow.DISPLAY_BLOCK) {
+					calculatedWidth = width;
+					if (childRenderFlow._textFlow.marginLeft) calculatedWidth -= childRenderFlow._textFlow.marginLeft;
+				}
+				
 				var calculatedHeight:Number;
 				switch (childRenderFlow._textFlow.heightType) {
 					case FloatableTextFlow.SIZE_FIXED:
@@ -149,36 +155,6 @@ package com.clarityenglish.textLayout.rendering {
 				matchPlaceholderToSize();
 				
 				drawBorderAndBackground();
-			}
-		}
-		
-		/**
-		 * Draw the border based of the padding and margin properties.  In fact TLF doesn't implement any margins, only padding, so everything is converted to padding
-		 * within FloatableTextFlow and then we perform calculations here in order to draw the border in the middle of the padding/margin (which is really all padding!)
-		 * 
-		 * Also draw any background colour as the rectangle fill.
-		 */
-		private function drawBorderAndBackground():void {
-			var hasBorder:Boolean = (_textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE);
-			var hasBackgroundColor:Boolean = (_textFlow.backgroundColor != null);
-			
-			graphics.clear();
-			
-			if (inlineGraphicElementPlaceholder && (hasBorder || hasBackgroundColor)) {
-				var borderX:Number = _textFlow.marginLeft + _textFlow.borderWidth / 2;
-				var borderY:Number = _textFlow.marginTop + _textFlow.borderWidth / 2;
-				var borderWidth:Number = inlineGraphicElementPlaceholder.width - _textFlow.marginLeft - _textFlow.marginRight - _textFlow.borderWidth;
-				var borderHeight:Number = inlineGraphicElementPlaceholder.height - _textFlow.marginTop - _textFlow.marginBottom - _textFlow.borderWidth;
-				
-				graphics.lineStyle(_textFlow.borderWidth, _textFlow.borderColor, (hasBorder) ? 1 : 0);
-				
-				if (hasBackgroundColor)
-					graphics.beginFill(_textFlow.backgroundColor);
-				
-				graphics.drawRoundRect(borderX, borderY, borderWidth, borderHeight, _textFlow.borderRadius, _textFlow.borderRadius);
-				
-				if (hasBackgroundColor)
-					graphics.endFill();
 			}
 		}
 		
@@ -231,6 +207,36 @@ package com.clarityenglish.textLayout.rendering {
 		}
 		
 		/**
+		 * Draw the border based of the padding and margin properties.  In fact TLF doesn't implement any margins, only padding, so everything is converted to padding
+		 * within FloatableTextFlow and then we perform calculations here in order to draw the border in the middle of the padding/margin (which is really all padding!)
+		 * 
+		 * Also draw any background colour as the rectangle fill.
+		 */
+		private function drawBorderAndBackground():void {
+			var hasBorder:Boolean = (_textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE);
+			var hasBackgroundColor:Boolean = (_textFlow.backgroundColor != null);
+			
+			graphics.clear();
+			
+			if (inlineGraphicElementPlaceholder && (hasBorder || hasBackgroundColor)) {
+				var borderX:Number = _textFlow.marginLeft + _textFlow.borderWidth / 2;
+				var borderY:Number = _textFlow.marginTop + _textFlow.borderWidth / 2;
+				var borderWidth:Number = inlineGraphicElementPlaceholder.width - _textFlow.marginLeft - _textFlow.marginRight - _textFlow.borderWidth;
+				var borderHeight:Number = inlineGraphicElementPlaceholder.height - _textFlow.marginTop - _textFlow.marginBottom - _textFlow.borderWidth;
+				
+				graphics.lineStyle(_textFlow.borderWidth, _textFlow.borderColor, (hasBorder) ? 1 : 0);
+				
+				if (hasBackgroundColor)
+					graphics.beginFill(_textFlow.backgroundColor);
+				
+				graphics.drawRoundRect(borderX, borderY, borderWidth, borderHeight, _textFlow.borderRadius, _textFlow.borderRadius);
+				
+				if (hasBackgroundColor)
+					graphics.endFill();
+			}
+		}
+		
+		/**
 		 * Go through the child RenderFlows ensuring that they are positioned over their placeholder IGEs
 		 * 
 		 * @param event
@@ -243,9 +249,12 @@ package com.clarityenglish.textLayout.rendering {
 						var pos:Point = childRenderFlow.inlineGraphicElementPlaceholder.graphic.localToGlobal(new Point(0, 0));
 						pos = globalToLocal(pos);
 						
-						// If we are using relative positioning apply the transform
-						if (childRenderFlow._textFlow.position == FloatableTextFlow.POSITION_RELATIVE)
-							pos.offset(childRenderFlow._textFlow.left, childRenderFlow._textFlow.top);
+						switch (childRenderFlow._textFlow.position) {
+							case FloatableTextFlow.POSITION_RELATIVE:
+								// If we are using relative positioning apply the transform
+								pos.offset(childRenderFlow._textFlow.left, childRenderFlow._textFlow.top);
+								break;
+						}
 						
 						// Apply the position to the child
 						childRenderFlow.x = pos.x;
@@ -283,6 +292,11 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
+		/**
+		 * Dispatch click events on the render flow for any observer to react to.  For example, this is used in the DictionaryBehaviour.
+		 * 
+		 * @param event
+		 */
 		protected function onClick(event:MouseEvent):void {
 			dispatchEvent(new RenderFlowMouseEvent(RenderFlowMouseEvent.RENDER_FLOW_CLICK, _textFlow, event));
 		}
