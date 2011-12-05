@@ -225,11 +225,15 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
  */
 class InputAnswerManager extends AnswerManager implements IAnswerManager {
 	
+	private var flowElementXmlBiMap:FlowElementXmlBiMap;
+	
 	public function InputAnswerManager(container:Group) {
 		super(container);
 	}
 	
 	public function onQuestionImportComplete(exercise:Exercise, question:Question, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+		this.flowElementXmlBiMap = flowElementXmlBiMap;
+		
 		// The answers for these questions is defined in the model so we need to set the underlying text here
 		for each (var source:XML in question.getSourceNodes(exercise)) {
 			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
@@ -278,9 +282,9 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			}
 			
 			// TODO: THIS ISN'T UPDATING THE DISPLAY, I HAVE NO IDEA WHY.  IT WORKS IF THE SPAN ISN'T IN A FLOAT :(
-			//XHTML.addClass(inputElement.droppedNode, "disabled");
-			//TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
-			//inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+			/*XHTML.addClass(inputElement.droppedNode, "disabled");
+			TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
+			inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();*/
 		}
 		
 		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we

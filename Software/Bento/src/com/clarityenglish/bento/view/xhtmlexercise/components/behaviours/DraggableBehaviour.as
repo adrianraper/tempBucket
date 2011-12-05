@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -11,7 +12,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import flash.ui.Mouse;
 	
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
@@ -20,7 +20,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.core.DragSource;
+	import mx.core.IUIComponent;
 	import mx.core.UIComponent;
+	import mx.events.DragEvent;
 	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
 	
@@ -29,6 +31,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	import spark.components.Group;
 	import spark.components.Image;
+	import spark.components.TextInput;
 	
 	public class DraggableBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
@@ -62,8 +65,34 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 		}
 		
+		/**
+		 * Draggable nodes are nodes that explicitly have the draggable attribute set on them, or (potentially) inputs that are droptargets - this is to allow
+		 * drags from one input to another.
+		 * 
+		 * @param xhtml
+		 * @return 
+		 */
+		private function getDraggableNodes(xhtml:XHTML):XMLList {
+			return xhtml.xml..*.((hasOwnProperty("@draggable") && @draggable == "true") || (name() == "input" && hasOwnProperty("@type") && @type == "droptarget"));
+		}
+		
+		private function canDrag(draggableNode:XML, draggableFlowElement:FlowElement):Boolean {
+			if (!draggableNode || !draggableFlowElement) return false;
+			
+			// If the node is an input element with nothing dragged into it then nothing can be dragged out of it
+			if (draggableFlowElement is InputElement)
+				if (!(draggableFlowElement as InputElement).droppedNode)
+					return false;
+			
+			// If the node has the 'disabled' class then it is not draggable
+			if (XHTML.hasClass(draggableNode, "disabled"))
+				return false;
+			
+			return true;
+		}
+		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
-			for each (var draggableNode:XML in xhtml.xml..*.(hasOwnProperty("@draggable") && @draggable == "true")) {
+			for each (var draggableNode:XML in getDraggableNodes(xhtml)) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
 				
 				// This is kind of a hack, but it might be alright just for the moment; if the node is mapped to a FloatableTextFlow
@@ -76,7 +105,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				
 				// draggable="true" is only allowed on FlowLeafElements
 				if (draggableFlowElement is FlowLeafElement) {
-					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode));
+					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));
 				} else {
@@ -85,17 +114,23 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			}
 		}
 		
-		private function onFlowElementMouseMove(e:FlowElementMouseEvent, draggableNode:XML):void {
+		private function onFlowElementMouseMove(e:FlowElementMouseEvent, draggableNode:XML, draggableFlowElement:FlowElement):void {
 			if (!DragManager.isDragging) {
-				var dragInitiator:* = container; // This isn't really correct
+				//var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
+				var dragInitiator:IUIComponent = container;
 				var ds:DragSource = new DragSource();
+				
+				if (!canDrag(draggableNode, draggableFlowElement)) return;
+				
+				if (draggableFlowElement is InputElement) {
+					var inputElement:InputElement = draggableFlowElement as InputElement;
+					draggableFlowElement = inputElement.droppedFlowElement;
+					draggableNode = inputElement.droppedNode;
+				}
+				
 				ds.addData((e.flowElement as FlowLeafElement).text, "text");
 				ds.addData(draggableNode, "node");
-				ds.addData(e.flowElement, "flowElement");
-				
-				// If the node has the 'disabled' class then it is not draggable
-				if (XHTML.hasClass(draggableNode, "disabled"))
-					return;
+				ds.addData(draggableFlowElement, "flowElement");
 				
 				DragManager.doDrag(dragInitiator, ds, e.originalEvent, dragImage, 0, 0, 0.8);
 				
@@ -130,21 +165,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		protected function onRollOver(e:FlowElementMouseEvent, draggableNode:XML):void {
-			// If the node has the 'disabled' class then it is not draggable
-			if (XHTML.hasClass(draggableNode, "disabled"))
-				return;
+			if (!canDrag(draggableNode, e.flowElement)) return;
 			
 			if (draggableIconId == -1)
 				draggableIconId = container.cursorManager.setCursor(draggableIcon, 2, draggableIconOffsetX, draggableIconOffsetY);
 		}
 		
 		protected function onRollOut(e:FlowElementMouseEvent, draggableNode:XML):void {
-			// If the node has the 'disabled' class then it is not draggable
-			if (XHTML.hasClass(draggableNode, "disabled"))
-				return;
-			
-			container.cursorManager.removeCursor(draggableIconId);
-			draggableIconId = -1;
+			if (draggableIconId >= 0) {
+				container.cursorManager.removeCursor(draggableIconId);
+				draggableIconId = -1;
+			}
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }

@@ -247,7 +247,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			// but that doesn't matter as addClass and removeClass will do nothing unless it needs to.
 			for each (var node:XML in sourceNodes) {
 				var flowElement:FlowElement = getFlowElement(node);
-				
+				trace(flowElement);
 				if (flowElement) {
 					XHTML.addClass(node, "disabled");
 					

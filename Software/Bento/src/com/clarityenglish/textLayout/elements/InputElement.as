@@ -1,5 +1,9 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
+	
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.events.TextEvent;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
@@ -173,13 +177,17 @@ package com.clarityenglish.textLayout.elements {
 				case TYPE_DROPTARGET:
 					component = new TextInput();
 					
+					// It is not possible to type into a drop target or select any text within it
+					(component as TextInput).editable = (component as TextInput).selectable = false;
+					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, function(e:FlexEvent):void {
 						e.target.focusManager.setFocus(e.target.focusManager.getNextFocusManagerComponent());
 					});
 					
 					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
-					component.addEventListener(DragEvent.DRAG_DROP, onDropDrop);
+					component.addEventListener(DragEvent.DRAG_DROP, onDragDrop);
+					component.addEventListener(DragEvent.DRAG_COMPLETE, onDragComplete);
 					break;
 				case TYPE_BUTTON:
 					throw new Error("Button type not yet implemented");
@@ -188,22 +196,20 @@ package com.clarityenglish.textLayout.elements {
 			
 			updateComponentFromValue();
 		}
-			
+		
 		private function onDragEnter(event:DragEvent):void {
 			var dropTarget:IUIComponent = IUIComponent(event.currentTarget);
 			DragManager.acceptDragDrop(dropTarget);
 			DragManager.showFeedback(DragManager.COPY);
 		}
 		
-		protected function onDropDrop(event:DragEvent):void {
+		protected function onDragDrop(event:DragEvent):void {
 			dragDrop(event.dragSource.dataForFormat("node") as XML, event.dragSource.dataForFormat("flowElement") as FlowElement, event.dragSource.dataForFormat("text").toString());
 			
 			if (event.dragSource.hasFormat("text")) {
 				// TODO: This works, but basically we are forcing a complete update which isn't really necessary...
 				getTextFlow().flowComposer.damage(0, getTextFlow().textLength, FlowDamageType.GEOMETRY);
 				getTextFlow().flowComposer.updateAllControllers();
-				
-				getEventMirror().dispatchEvent(new DragEvent(DragEvent.DRAG_COMPLETE));
 				
 				// Dispatch a value commit, so if we are using instant marking the question will get marked at this point
 				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
@@ -223,6 +229,10 @@ package com.clarityenglish.textLayout.elements {
 				// Bypass the gapText and gapAfterPadding properties by setting text on the superclass 
 				super.text = value;
 			}
+		}
+		
+		protected function onDragComplete(event:DragEvent):void {
+			trace("DRAG COMPLETE!!!!!");
 		}
 		
 		private function updateComponentFromValue():void {
