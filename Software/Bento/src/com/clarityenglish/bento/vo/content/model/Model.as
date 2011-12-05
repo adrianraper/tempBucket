@@ -34,6 +34,10 @@ package com.clarityenglish.bento.vo.content.model {
 			return xml.view.param.(@name == paramName).@value;
 		}
 		
+		public function hasSettingParam(paramName:String):Boolean {
+			return (xml.hasOwnProperty("settings") && xml.settings.param.(@name == paramName).length() > 0);
+		}
+		
 		public function getSettingParam(paramName:String):* {
 			var value:* = (xml.hasOwnProperty("settings") && xml.settings.param.(@name == paramName).length() > 0) ? xml.settings.param.(@name == paramName).@value : null;
 			

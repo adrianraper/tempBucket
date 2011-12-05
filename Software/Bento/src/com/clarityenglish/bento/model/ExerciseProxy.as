@@ -7,7 +7,9 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	
+	import flash.events.TimerEvent;
 	import flash.utils.Dictionary;
+	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
@@ -60,6 +62,8 @@ package com.clarityenglish.bento.model {
 		 */
 		private var _startTime:Number = 0;
 		
+		private var autoMarkTimer:Timer;
+		
 		public function ExerciseProxy(exercise:Exercise) {
 			// Exercise proxies are indexed by the exercise's uid property
 			super(NAME(exercise));
@@ -72,6 +76,24 @@ package com.clarityenglish.bento.model {
 		 */
 		public function startExercise():void {
 			_startTime = new Date().getTime();
+			
+			// If the exercise has an auto timer complete setting then start a timer
+			if (exercise.model.hasSettingParam("autoMarkTimeout")) {
+				var autoMarkTimerDelay:int = exercise.model.getSettingParam("autoMarkTimeout");
+				
+				autoMarkTimer = new Timer(autoMarkTimerDelay * 1000, 1);
+				autoMarkTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onAutoTimerComplete);
+				autoMarkTimer.start();
+			}
+		}
+		
+		/**
+		 * If the auto marking timeout completes then show marking
+		 * 
+		 * @param event
+		 */
+		protected function onAutoTimerComplete(event:TimerEvent):void {
+			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
 		}
 		
 		public function get duration():int {
@@ -105,6 +127,12 @@ package com.clarityenglish.bento.model {
 		
 		public override function onRemove():void {
 			super.onRemove();
+			
+			if (autoMarkTimer) {
+				autoMarkTimer.stop();
+				autoMarkTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, onAutoTimerComplete);
+				autoMarkTimer = null;
+			}
 			
 			exercise = null;
 			markableAnswerMap = null;
