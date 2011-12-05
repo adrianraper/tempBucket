@@ -231,8 +231,22 @@ package com.clarityenglish.textLayout.elements {
 			}
 		}
 		
+		/**
+		 * If DRAG_COMPLETE is invoked with feedback of NONE it means that the content has been dropped outside of a valid target.  This may mean
+		 * we want to clear the gapfill.  Note that this is called on the drag initiator (i.e. the gapfill the user dragged from) unlike the other
+		 * onDrag methods in InputElement which are called on the drag target.
+		 * 
+		 * @param event
+		 */
 		protected function onDragComplete(event:DragEvent):void {
-			trace("DRAG COMPLETE!!!!!");
+			if (DragManager.getFeedback() == DragManager.NONE) {
+				// TODO: This isn't quite right; I need to determine how exactly this works with instant marking
+				_droppedFlowElement = null;
+				_droppedNode = null;
+				text = "";
+				value = "";
+				(component as TextInput).text = "";
+			}
 		}
 		
 		private function updateComponentFromValue():void {

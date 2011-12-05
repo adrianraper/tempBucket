@@ -9,6 +9,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -116,8 +117,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		private function onFlowElementMouseMove(e:FlowElementMouseEvent, draggableNode:XML, draggableFlowElement:FlowElement):void {
 			if (!DragManager.isDragging) {
-				//var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
-				var dragInitiator:IUIComponent = container;
+				// The drag initiator is either a TextInput if we are dragging from one to another, or the container otherwise
+				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
 				var ds:DragSource = new DragSource();
 				
 				if (!canDrag(draggableNode, draggableFlowElement)) return;
@@ -144,7 +145,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, container);
 					
 					// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
-					var containerPoint:Point = container.globalToContent(new Point(e.originalEvent.stageX, e.originalEvent.stageY));
+					var containerPoint:Point = (dragInitiator as UIComponent).globalToContent(new Point(e.originalEvent.stageX, e.originalEvent.stageY));
 					dragImage.x = containerPoint.x - elementBounds.width / 2;
 					dragImage.y = containerPoint.y - elementBounds.height / 2;
 					
