@@ -10,18 +10,21 @@
 			}
 			
 			p {
-				padding-bottom: 5px;
+				display: block;
 			}
 			
 			p .column1 {
 				float: left;
-				width: 100px;
+				width: 50px;
 				font-weight: bold;
 			}
 			
 			p .column2 {
 				display: block;
-				margin-left: 100px;
+				margin-left: 51px;
+				border-style: solid;
+				border-width: 1px;
+				border-color: #B5B5B5;
 			}
 		]]>
 		</style>
@@ -44,17 +47,17 @@
 				<span class="column1">Step 1</span>
 				<span class="column2">Determine what the purpose of the website is and who to contact in order to purchase an account Determine what the purpose of Find a reliable Internet Service Provider (ISP)</span>
 			</p>
-			
+			<br/>
 			<p>
 				<span class="column1">Step 2</span>
 				<span class="column2">Aquire (5) <input /></span>
 			</p>
-			
+			<br/>
 			<p>
 				<span class="column1">Step 3</span>
 				<span class="column2">Look at (6) <input /></span>
 			</p>
-			
+			<br/>
 			<p>
 				<span class="column1">Step 4</span>
 				<span class="column2">Determine what the purpose of the website is and who to contact in order to purchase an account Determine what the purpose of the website is and who to contact in order to purchase an account</span>
