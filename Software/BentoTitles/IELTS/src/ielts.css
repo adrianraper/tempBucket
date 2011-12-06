@@ -105,28 +105,28 @@ home|HomeView s|Button#writingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Writing.png");
 	title: "Writing";
-	description: "Practise for the writing tasks you will complete in the writing test.";
+	description: "Prepare for the two sections of the writing test";
 }
 
 home|HomeView s|Button#speakingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
 	title: "Speaking";
-	description: "Prepare to speak fluently in the speaking test.";
+	description: "Learn how to succeed in the three parts of the speaking test";
 }
 
 home|HomeView s|Button#readingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Reading.png");
 	title: "Reading";
-	description: "Familiarise with the kinds of reading material and question types you will see in the reading test.";
+	description: "Familiarise yourself with the question types in the reading test";
 }
 
 home|HomeView s|Button#listeningCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
 	courseImage: Embed(source="skins/ielts/assets/Listening.png");
 	title: "Listening";
-	description: "Practise the listening skills you need to succeed in the listening test.";
+	description: "Develop your listening skills as you practise for the listening test";
 }
 
 /* Zone view styles */
