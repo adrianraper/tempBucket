@@ -11,6 +11,7 @@
 			
 			p {
 				display: block;
+				padding-bottom: 30px;
 			}
 			
 			p .column1 {
