@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="quiz" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		For each question, look carefully at the table and then choose the line graph which shows the same trend. Click on Graph A or Graph B as appropriate.
+		
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/HF_WR1b1.jpg" mode="1" id="1030"/>
+  <img class="rightFloat" src="../media/HF_WR1b1a.jpg" mode="16" id="1031"/>
+  <img class="rightFloat" src="../media/HF_WR1b1b.jpg" mode="16" id="1032"/>
+  <img class="leftFloat" src="../media/HF_WR1b2.jpg" mode="1" id="1040"/>
+  <img class="leftFloat" src="../media/HF_WR1b2a.jpg" mode="16" id="1041"/>
+  <img class="leftFloat" src="../media/HF_WR1b2b.jpg" mode="16" id="1042"/>
+  <img class="leftFloat" src="../media/HF_WR1b3.jpg" mode="1" id="1050"/>
+  <img class="leftFloat" src="../media/HF_WR1b3a.jpg" mode="16" id="1051"/>
+  <img class="leftFloat" src="../media/HF_WR1b3b.jpg" mode="16" id="1052"/>
+  <img class="leftFloat" src="../media/HF_WR1b4.jpg" mode="1" id="1060"/>
+  <img class="leftFloat" src="../media/HF_WR1b4a.jpg" mode="16" id="1061"/>
+  <img class="leftFloat" src="../media/HF_WR1b4b.jpg" mode="16" id="1062"/>
+  <img class="leftFloat" src="../media/HF_WR1b5.jpg" mode="1" id="1070"/>
+  <img class="leftFloat" src="../media/HF_WR1b5a.jpg" mode="16" id="1071"/>
+  <img class="leftFloat" src="../media/HF_WR1b5b.jpg" mode="16" id="1072"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">
+      <br/>
+    </li>
+    <font face="verdana" size="13" color="#0f157a">
+      <b>
+        <a id="a1">Graph A</a>
+        <tab/>
+        <a id="a2">Graph B</a>
+      </b>
+    </font>
+    <br/>
+    <li id="q2">
+      <br/>
+    </li>
+    <font face="verdana" size="13" color="#0f157a">
+      <b>
+        <a id="a3">Graph A</a>
+        <tab/>
+        <a id="a4">Graph B</a>
+      </b>
+    </font>
+    <br/>
+    <li id="q3">
+      <br/>
+    </li>
+    <font face="verdana" size="13" color="#0f157a">
+      <b>
+        <a id="a5">Graph A</a>
+        <tab/>
+        <a id="a6">Graph B</a>
+      </b>
+    </font>
+    <br/>
+    <li id="q4">
+      <br/>
+    </li>
+    <font face="verdana" size="13" color="#0f157a">
+      <b>
+        <a id="a7">Graph A</a>
+        <tab/>
+        <a id="a8">Graph B</a>
+      </b>
+    </font>
+    <br/>
+    <li id="q5">
+      <br/>
+    </li>
+    <font face="verdana" size="13" color="#0f157a">
+      <b>
+        <a id="a9">Graph A</a>
+        <tab/>
+        <a id="a10">Graph B</a>
+      </b>
+    </font>
+  </ol>
+</section>
+
+<section id="rt2001">
+  <p align="left">Like charts, tables of figures can show trends and patterns and you should comment on these in your report. It is important to spend a few minutes examining the figures, looking for such trends. It can sometimes be helpful if you try to imagine parts of the table as a line graph showing increases and decreases.</p>
+</section>
+
+</body>
+</bento>

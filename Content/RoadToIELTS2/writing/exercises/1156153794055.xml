@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LE_AW_001.jpg" mode="1" id="1001"/>
+  <div id="presentation">
+  
+    
+      <h1>Static charts 1</h1>
+    
+  
+  <p align="left">You will ...</p>
+  <ol>
+    <li>read a report and complete it with the missing	information.</li>
+    <li>match different kinds of charts that show the same	information.</li>
+    <li>listen and match percentages, fractions and ratios	to charts.</li>
+    <li>identify verbs in the present simple in a report.</li>
+    <li>complete a report with verbs in the past simple. </li>
+    <li>write a report based on a static chart.</li>
+    <li>correct mistakes in a sample report.</li>
+  </ol>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

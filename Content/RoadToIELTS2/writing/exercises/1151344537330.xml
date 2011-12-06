@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+      <answer source="a3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+      <answer source="a4" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+      <answer source="a6" correct="false">
+        <feedback source="fb6"/>
+      </answer>
+      <answer source="a7" correct="false">
+        <feedback source="fb7"/>
+      </answer>
+      <answer source="a8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a9" correct="false">
+        <feedback source="fb9"/>
+      </answer>
+      <answer source="a10" correct="false">
+        <feedback source="fb10"/>
+      </answer>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+      <answer source="a16" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="false"/>
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a21" correct="false"/>
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
+      <answer source="a28" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="true"/>
+      <answer source="a31" correct="false"/>
+      <answer source="a32" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a33" correct="false"/>
+      <answer source="a34" correct="false"/>
+      <answer source="a35" correct="true"/>
+      <answer source="a36" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a37" correct="false"/>
+      <answer source="a38" correct="true"/>
+      <answer source="a39" correct="false"/>
+      <answer source="a40" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Many of the ideas in the composition that you read in the last exercise can be expressed in different ways. Here are some of the ideas from the composition and a few extra ones. Complete the sentences by choosing the best linking word or phrase for each gap (...).
+		
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/AC_AW_009.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">State-owned museums generally suffer from rising costs. ..., many are reluctant to introduce admission charges.<list class="answerList"><li><a id="a1">Whereas</a></li><li><a id="a2">However</a></li><li><a id="a3">Although</a></li><li><a id="a4">In spite of</a></li></list><br/></li>
+    <br/>
+    <li id="q2">... admission fees mean that a country's national heritage is only available to those who can afford to pay for it, free entrance makes it accessible to everyone.<list class="answerList"><li><a id="a5">While</a></li><li><a id="a6">However</a></li><li><a id="a7">In spite of</a></li><li><a id="a8">Despite</a></li></list><br/></li>
+    <br/>
+    <li id="q3">... the fact that many people make a special trip to visit free museums, a lot of people visit them on impulse.<list class="answerList"><li><a id="a9">While</a></li><li><a id="a10">However</a></li><li><a id="a11">Despite</a></li><li><a id="a12">Although</a></li></list><br/></li>
+    <br/>
+    <li id="q4">Entrance fees mean that museums are under pressure to entertain the public, ... free admission and state funding allow a museum to be more serious.<list class="answerList"><li><a id="a13">though</a></li><li><a id="a14">although</a></li><li><a id="a15">in spite of</a></li><li><a id="a16">whereas</a></li></list><br/></li>
+    <br/>
+    <li id="q5">... museums are popular attractions, they do not always receive sufficient funds.<list class="answerList"><li><a id="a17">Although</a></li><li><a id="a18">However</a></li><li><a id="a19">Despite</a></li><li><a id="a20">Nevertheless</a></li></list><br/></li>
+    <br/>
+    <li id="q6">Museums try to maximise the number of visitors ... this leads to overcrowding at times.<list class="answerList"><li><a id="a21">whereas</a></li><li><a id="a22">even though</a></li><li><a id="a23">in spite of</a></li><li><a id="a24">despite</a></li></list><br/></li>
+    <br/>
+    <li id="q7">Museums should be free for children and students. ..., adults should pay an admission fee.<list class="answerList"><li><a id="a25">However</a></li><li><a id="a26">Even though</a></li><li><a id="a27">Despite</a></li><li><a id="a28">Whereas</a></li></list><br/></li>
+    <br/>
+    <li id="q8">Some governments regard museums as part of the education system. ..., for many visitors visiting them is first and foremost a leisure activity<list class="answerList"><li><a id="a29">Despite</a></li><li><a id="a30">Nevertheless</a></li><li><a id="a31">Although</a></li><li><a id="a32">Whereas</a></li></list><br/></li>
+    <br/>
+    <li id="q9">... the increasing popularity of museums, taxpayers are generally unwilling to have their money spent on them.<list class="answerList"><li><a id="a33">Nevertheless</a></li><li><a id="a34">Although</a></li><li><a id="a35">In spite of</a></li><li><a id="a36">While</a></li></list><br/></li>
+    <br/>
+    <li id="q10">Some museums reflect mainstream culture, ... others are very specialist.<list class="answerList"><li><a id="a37">even though</a></li><li><a id="a38">while</a></li><li><a id="a39">in spite of</a></li><li><a id="a40">despite</a></li></list><br/></li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">1. 'Whereas' and 'Although' join two clauses together, but this sentence only has one clause. 'In spite of' is always followed by a gerund or a noun.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. 'However' can't be used to connect two clauses in this way. 'In spite of' and 'Despite' are always followed by a gerund or a noun.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font color="#000000">3. a, d: Notice the words 'the fact that' after the gap. </font>
+  </p>
+  <p align="left">
+    <font color="#000000">b: 'However' can't be used to connect two clauses in this way.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. What's missing here is a connector that shows contrast rather than concession.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font color="#000000">5. b: 'However' can't be used to connect two clauses in this way.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">c: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">d: 'Nevertheless' is used in the same way as 'However'. It can't be used to connect two clauses in this way.</font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <font color="#000000">6. a: 'Whereas' is used to show contrast rather than concession.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">c, d: 'In spite of' and 'Despite' need to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <font color="#000000">7. b, d: 'However' and 'Whereas' are used to connect two clauses together, but this sentence only has one clause. Notice the full stop after the word 'students'.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">c: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <font color="#000000">8. a: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">b, d: 'Although' and 'Whereas' are used to connect two clauses together, but this sentence only has one clause. Notice the full stop after the word 'system'.</font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <font color="#000000">9. a: 'Nevertheless' is used in the same way as 'However'. It can't be used to connect two clauses in this way.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">b: 'Although' has to be followed by a subject + verb clause: although museums are popular...</font>
+  </p>
+  <p align="left">
+    <font color="#000000">d: 'while' has to be followed by a subject + verb clause: while museums are popular...</font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <font color="#000000">10. a: The missing connector is one which shows contrast rather than concession.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">c: 'In spite of' and 'Despite' need to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">Choosing the correct linking word or phrases depends partly on the meaning of the sentence and partly on the grammar of the sentence. You should pay careful attention to both.</p>
+</section>
+
+</body>
+</bento>

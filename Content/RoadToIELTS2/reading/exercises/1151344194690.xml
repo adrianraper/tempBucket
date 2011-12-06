@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true" wrongonly="false"/>
+		<buttons/>
+		<exercise samelengthgaps="true"/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="BT" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="C" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="B" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="TC" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="BT" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="C" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="TC" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Using the passage on the left, classify the characteristics on the right. You may use any answer more than once.
+		
+</header>
+	
+<section id="body">
+  <br/>
+  <ol id="questionList">
+    <li id="1">shared decision making	<input id="q1"/></li>
+    <li id="2">individual anonymity	<input id="q2"/></li>
+    <li id="3">no agriculture	<input id="q3"/></li>
+    <li id="4">settled communities	<input id="q4"/></li>
+    <li id="5">no formal social ranks	<input id="q5"/></li>
+    <li id="6">use of slaves	<input id="q6"/></li>
+    <li id="7">two or more social groupings	<input id="q7"/></li>
+  </ol>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <font color="#0000ff">
+      <b>Bands, Tribes and Chiefdoms</b>
+    </font>
+  </p>
+  <p align="left">Bands are the tiniest societies, consisting typically of 5 to 80 people, most or all of them close relatives by birth or by marriage. In effect, a band is an extended family or several related extended families. Today, bands still living autonomously are almost confined to the most remote parts of New Guinea and Amazonia, but within modern times there were many others that have only recently fallen under state control or been assimilated or exterminated. All those modern bands are or were nomadic hunter-gatherers rather than settled food producers. Probably all humans lived in bands until at least 40,000 years ago, and most still did as recently as 11,000 years ago.</p>
+  <p align="left">
+    <font color="#000000">Bands lack many institutions that we take for granted in our own society. They have no permanent single base of residence. The band's land is used jointly by the whole group, instead of being partitioned among subgroups or individuals. There is no regular economic specialization, except by age and sex: all able-bodied individuals forage for food. There are no formal institutions, such as laws, police, and treaties, to resolve conflicts within and between bands. Band organization is often described as 'egalitarian': there is no formalized social stratification into upper and lower classes, no formalized or hereditary leadership, and no formalized monopolies of information and decision making. However, the term 'egalitarian' should not be taken to mean that all band members are equal in prestige and contribute equally to decisions. Rather, the term merely means that any band 'leadership' is informal and acquired through qualities such as personality, strength, intelligence, and fighting skills.</font>
+  </p>
+  <p align="left">Our closest animal relatives, the gorillas and chimpanzees and bonobos of Africa, also live in bands. All humans presumably did so too, until improved technology for extracting food allowed some hunter-gatherers to settle in permanent dwellings in some resource-rich areas. The band is the political, economic, and social organization that we have inherited from our millions of years of evolutionary history. Our development beyond it all took place within the last few tens of thousands of years.</p>
+  <p align="left">
+    <font color="#000000">The first of those stages beyond the band is termed the tribe, which differs in being larger (typically comprising hundreds rather than dozens of people) and having fixed settlements. A tribe also differs in that it consists of more than one formally recognized kinship group, termed clans, which exchange marriage partners. Land belongs to a particular clan, not to the whole tribe. However, the number of people in a tribe is still low enough that everyone knows everyone else by name and relationships.</font>
+  </p>
+  <p align="left">Despite all of these differences between bands and tribes, many similarities remain. Tribes still have an informal, 'egalitarian' system of government. Information and decision making are both communal. Tribes also share with bands an 'egalitarian' social system, without ranked lineages or classes. Not only is status not inherited; no member of a traditional tribe or band can become disproportionately wealthy by his or her own efforts, because each individual has debts and obligations to many others.</p>
+  <p align="left">
+    <font color="#000000">Like bands, tribes lack a bureaucracy, police force, and taxes. Their economy is based on reciprocal exchanges between individuals or families, rather than on a redistribution of tribute paid to some central authority. Economic specialization is slight: full-time crafts specialists are lacking, and every able-bodied adult participates in growing, gathering, or hunting food. Since tribes thus lack economic specialists, they also lack slaves, because there are no specialized menial jobs for a slave to perform.</font>
+  </p>
+  <p align="left">Although a few bands and tribes survive today on remote and ecologically marginal lands outside state control, fully independent chiefdoms had disappeared by the early twentieth century, because they tended to occupy prime land coveted by states. However, as of A.D. 1492, chiefdoms were still widespread over much of the eastern United States, in productive areas of South and Central America and sub-Saharan Africa that had not yet been subsumed under native states, and in all of Polynesia.</p>
+  <p align="left">As regards population size, chiefdoms were considerably larger than tribes, ranging from several thousand to several tens of thousands of people. That size created serious potential for internal conflict because, for any person living in a chiefdom, the vast majority of other people in the chiefdom were neither closely related by blood or marriage nor known by name. With the rise of chiefdoms around 7,500 years ago, people had to learn, for the first time in history, how to encounter strangers regularly without attempting to kill them.</p>
+  <p align="left">Part of the solution to that problem was for one person, the chief, to exercise a monopoly on the right to use force. A chief held a recognized office, filled by hereditary right. Instead of the decentralized anarchy of a village meeting, the chief was a permanent centralized authority, made all significant decisions, and had a monopoly on critical information.</p>
+  <p align="left">A chiefdom's large population in a small area required plenty of food, obtained by food production in most cases, by hunting-gathering in a few especially rich areas. The food surpluses generated by some people, regulated to the rank of commoners, went to feed the chiefs, their families, bureaucrats, and craft specialists, who variously made canoes, adzes, or spittoons or worked as bird catchers or tattooers. Furthermore, since chiefs required menial servants as well as specialized craftspeople, chiefdoms differed from tribes in having many jobs that could be filled by slaves, typically obtained by capture in raids.</p>
+  <p align="left">Guns, Germs and Steel, Jared Diamond, Vintage 1998, pp. 267-275.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+	<p align="left"><font face="verdana" size="13" color="#000000">As with all classification exercises, once you've skimmed the text to get a general idea of its content and organisation, you should look carefully at the classifications and the letters that represent each one. The classifications in this case refer to different types of social grouping. Although there are no headings, the text is clearly divided into sections, which deal with each type of social group in turn.</font>&nbsp;If you find that a description applies to 'bands', check if it also applies to tribes. The same is also true of 'chiefdoms'.&nbsp;Remember that the questions obviously don't follow the order of the text, so you should do the task in an organised, logical way. For each question, skim over the text from the beginning looking for words or phrases that match the description.</p>
+</section>
+</body>
+</bento>

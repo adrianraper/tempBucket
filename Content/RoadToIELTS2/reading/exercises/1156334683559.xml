@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback neutral="true"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/EN_AR_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Untangling the science of climate</b></font>Read an article about global warming.</p><p align="left"><font color="#0000ff"><b>And then there were none</b></font>Read an article discussing animal extinctions.</p><p align="left"><font color="#000000"><b>Question types: </b></font></p>You will attempt two question types.<u><g id="t1">Diagram completion</g></u><u><g id="t2">True, False, Not given</g></u><p align="left"><font size="2"/></p></section>
+
+<section id="fb1">
+  <p align="left">
+    <b>Diagram Completion</b>
+  </p>
+  <p align="left"/>
+  <p align="left">Occasionally you are asked to use the information given in the text to complete labels on a diagram. This will be a visual summary of a part of the text, with gapped labels that you have to fill.</p>
+  <p align="left"/>
+  <p align="left">Spend some time looking carefully at the diagram. It will usually have a title, which should help you recognise which section of the text it refers to. The numbered gaps follow the order in which information is given in the text, so this should help you find the right words.</p>
+  <p align="left"/>
+  <p align="left">As always, read the instructions carefully. Usually you are asked to complete the diagram with words taken from the passage. There will be a word limit for each gap, so make sure you check what it is. As with short answers and sentence completion, the words you need to complete a gap will be found close together in the same sentence.</p>
+  <p align="left"/>
+  <p align="left">Read the labels in the diagram and then scan the relevant section of the text for those words, or words that mean the same.</p>
+  <p align="left"/>
+  <p align="left">At least one of the gaps will probably be a number and the phrase before the gap, as well as the drawing, will give you clues as to what kind of number is required, such as speed, height or temperature. Also, look out for units of measurement, such as kilometers, kilogrammes or hours after the gap.</p>
+  <p align="left"/>
+  <p align="left">Finally, as with all gap-filling exercises, you should make sure that the words you choose fit grammatically.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <b>True/False/Not Given</b>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">(Factual information)</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"/>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Sometimes you're given a list of statements and asked if they are true or false. It's important to remember that you should answer true or false according to the information in the text, not according to what you happen to know about the subject.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"/>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">First read through the statements, underlining key words. These need very careful reading to avoid common traps. Read each one a couple of times so that you understand the logic. Often, a statement which appears to say the same as the text in fact states the opposite, simply through a change of word order. Other common traps are with words which express quantity or degree, such as 'the most', 'all', 'completely' and 'everyone'. For example, the text might say 'most people agreed to the plan', while the statement says 'everyone agreed to the plan'. In this case the statement is false. Any kind of comparison, 'more likely', 'less expensive', or 'as old as' for example, also needs very careful reading.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"/>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Remember that probably at least one of the statements will fall into the 'Not Given' category. Many students have some difficulty understanding the difference between 'Not Given' and 'False'. A 'False' statement actually contradicts what is said in the text, whereas a 'Not Given' statement states information beyond that given in the text, and we cannot know if it is true or not. The difference will become clearer to you if you try writing a few of your own 'False' and 'Not Given' statements for a text you've read.</font>
+  </p>
+</section>
+
+</body>
+</bento>

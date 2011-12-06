@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a9" correct="true"/>
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+      <answer source="a16" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="false"/>
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
+      <answer source="a28" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a29" correct="true"/>
+      <answer source="a30" correct="false"/>
+      <answer source="a31" correct="false"/>
+      <answer source="a32" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a33" correct="true"/>
+      <answer source="a34" correct="false"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
+      <answer source="a40" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q11" block="b11">
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="false"/>
+      <answer source="a43" correct="false"/>
+      <answer source="a44" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q12" block="b12">
+      <answer source="a45" correct="true"/>
+      <answer source="a46" correct="false"/>
+      <answer source="a47" correct="false"/>
+      <answer source="a48" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q13" block="b13">
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="false"/>
+      <answer source="a51" correct="false"/>
+      <answer source="a52" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q14" block="b14">
+      <answer source="a53" correct="true"/>
+      <answer source="a54" correct="false"/>
+      <answer source="a55" correct="false"/>
+      <answer source="a56" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read this sample answer to the writing task in the previous exercise. Complete the composition by choosing the word or phrase which best fits each gap.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LE_AW_017.jpg" mode="1" id="1001"/>
+  <p align="left">The growing popularity of home computers has brought about the biggest single change in the way we spend our free time since the invention of television. This development is viewed by many people as a mixed blessing.</p>
+  <p align="left">
+    <font color="#000000">Having a computer at home has undoubted advantages. <select id="q1"><option>Firstly</option><option>As a result</option><option>In addition</option><option>However</option></select>, through the Internet we can make contact with many more people <select id="q2"><option>than</option><option>who</option><option>that</option><option>as</option></select> we would normally meet in our everyday lives: people from other parts of the world and people with similar interests to our own. <select id="q3"><option>Moreover</option><option>Despite this</option><option>For instance</option><option>Therefore</option></select>, it gives us the possibility of sharing information and interests with others more easily than in the past through the use of e-mail and chat programs. <select id="q4"><option>Finally</option><option>Consequently</option><option>In contrast</option><option>To sum up</option></select>, some people believe that computer games are <select id="q5"><option>more stimulating</option><option>stimulating</option><option>very stimulating</option><option>as stimulating</option></select> for our brains than, <select id="q6"><option>for instance</option><option>such as</option><option>therefore</option><option>however</option></select>, watching television because they improve our reactions and our ability to think logically.</font>
+  </p>
+  <p align="left"><select id="q7"><option>On the other hand</option><option>What is more</option><option>In addition</option><option>Therefore</option></select>, like television, personal computers tend to isolate us from the world just outside our front door. We may speak to friends and neighbours <select id="q8"><option>less</option><option>more</option><option>fewer</option><option>little</option></select> because we are busy playing computer games indoors. <select id="q9"><option>What is more</option><option>In consequence</option><option>Lastly</option><option>As a result of this</option></select>, there is evidence that we are not as <select id="q10"><option>healthy</option><option>health</option><option>healthier</option><option>healthiest</option></select> as we used to be due to the sedentary lifestyle that computers encourage us to lead. Lastly, some psychologists argue that computer games are addictive, which means that some people may be distracted from doing more important things, <select id="q11"><option>such as</option><option>as</option><option>whereas</option><option>as well as</option></select> spending time on their studies or with their family.</p>
+  <p align="left"><select id="q12"><option>In conclusion</option><option>Firstly</option><option>Consequently</option><option>Lastly</option></select>, I believe that computers are useful in the home, as long as we use them as a tool, <select id="q13"><option>for example</option><option>including</option><option>such as</option><option>as well as</option></select>, to communicate with friends or find information. <select id="q14"><option>However</option><option>Although</option><option>Consequently</option><option>Moreover</option></select>, they may be harmful when they become our main source of entertainment.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font color="#000000">This is just a sample composition - the composition you wrote may be very different, and better!</font>
+  </p>
+</section>
+
+</body>
+</bento>

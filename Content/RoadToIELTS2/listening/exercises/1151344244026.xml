@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="local British group" correct="true"/>
+      <answer value="local group" correct="true"/>
+      <answer value="British group" correct="true"/>
+      <answer value="group from Britain" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="fund-raising events" correct="true"/>
+      <answer value="a fund-raising event" correct="true"/>
+      <answer value="fund-raising event" correct="true"/>
+      <answer value="fund raising events" correct="true"/>
+      <answer value="a fund raising event" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="VWI merchandise" correct="true"/>
+      <answer value="merchandise" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="6%" correct="true"/>
+      <answer value="six %" correct="true"/>
+      <answer value="6 per cent" correct="true"/>
+      <answer value="six per cent" correct="true"/>
+      <answer value="6 percent" correct="true"/>
+      <answer value="six percent" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="a regular donation" correct="true"/>
+      <answer value="a donation" correct="true"/>
+      <answer value="regular donation" correct="true"/>
+      <answer value="a regular contribution" correct="true"/>
+      <answer value="a contribution" correct="true"/>
+      <answer value="regular contribution" correct="true"/>
+      <answer value="a donation regularly" correct="true"/>
+      <answer value="a contribution regularly" correct="true"/>
+      <answer value="donation regularly" correct="true"/>
+      <answer value="contribution regularly" correct="true"/>
+      <answer value="regular donations" correct="true"/>
+      <answer value="regular contributions" correct="true"/>
+      <answer value="donations" correct="true"/>
+      <answer value="contributions" correct="true"/>
+      <answer value="donations regularly" correct="true"/>
+      <answer value="contribution regularly" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="volunteer" correct="true"/>
+      <answer value="VWI volunteer" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 10-15. Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		
+</header>
+	
+<section id="body"><audio controls="compact" class="leftFloat" src="../media/DD_LN1c.mp3" mode="4" id="1002"/><img class="rightFloat" src="../media/DD_LN_004.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Voluntary Workers International</b></font></p><p align="left"><b>How can you help?</b>- Become a volunteer overseas.- Become part of a (10) <input id="q1"/> promoting VWI's work.</p>- Organise or take part in (11) <input id="q2"/> e.g. marathons and sponsored hikes.- Purchase (12) <input id="q3"/> e.g. music, toys and T-shirts.- Shop at stores which donate (13) <input id="q4"/> of the money you spend to VWI.- Make (14) <input id="q5"/>.- Sponsor a (15) <input id="q6"/>.
+</section>
+
+</body>
+</bento>

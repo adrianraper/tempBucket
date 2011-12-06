@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	You should spend about 20 minutes on this task. You should write at least 150 words.
+</header>
+	
+<section id="body">
+  
+  
+ <div id="Presentation">
+
+  <h5><p>The diagram shows two ways of using the energy from ocean waves to generate electricity.</p></h5>
+  <p>Write a report for a university lecturer describing the information shown below.</p>
+    </div>
+  <img class="leftFloat" src="../media/EN_AW_007.jpg" mode="1" id="1001"/>
+
+</section>
+
+</body>
+</bento>

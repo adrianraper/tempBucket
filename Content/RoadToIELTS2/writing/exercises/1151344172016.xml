@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and the sample answer. 
+		
+		Writing Task 1
+</header>
+	
+<section id="noscroll">
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"/>
+  
+  <div id="presentation">
+  <p>The flow chart shows the steps in the process of publishing academic books.</p>
+  <p>First, the publisher researches the market for popular subjects and reviews titles which already exist in those fields. Based on this research, a publishing project is chosen. The next stage is to find a suitable manuscript. The publisher can either select from manuscripts authors to write them. Manuscripts are then reviewed by readers. They make recommendations to the commissioning editor, who in turn makes a final selection for the project.</p>
+  <p>If the publisher believes that the project will be a financial success, then the detailed editing process can begin. Style, spelling and punctuation are checked by copy and line editors. If the manuscript needs further correction, it is sent back to the writer, otherwise the book is ready for design and manufacture.</p>
+  <p>While the above creative processes are taking place, a marketing plan is drawn up. Subsequently, advertising and publicity campaigns can generate orders for the book even before it is printed.</p>
+  <p>Once the book has been designed and manufactured, a price is set and the book can be distributed to warehouses and finally to bookshops.</p>
+  </div>
+</section>
+
+</body>
+</bento>

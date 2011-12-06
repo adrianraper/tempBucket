@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="According" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="a little bit" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="foretell" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="just imagine" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="could" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="I believe" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="less" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="hope that" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="more bikes" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="for example" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	The examiner asks: "How do you think city life will change in the next few decades?" Watch the very different but equally acceptable answers from Zafir and Alexandra. Fill in the missing words.
+</header>
+	
+<section id="body">
+  <video src="../media/Unit09_e5a.flv" mode="16" id="1005"/>
+  <video src="../media/Unit09_e5b.flv" mode="16" id="1006"/>
+  <p align="left"><font color="#0000ff"><b>Zafir</b></font><input id="q1"/> to what we have today, I mean technology, everything we are seeing every day, I think it's <input id="q2"/> difficult just to <input id="q3"/> what's going to happen tomorrow, not in a few decades. And that's because things are going very fast and life is changing very fast. And <input id="q4"/> before ten years, I think nobody <input id="q5"/> imagine what we are having nowadays &#x2013; what we live or what we see.</p>
+  <p align="left"><font color="#0000ff"><b>Alexandra</b></font>Not much, <input id="q6"/>. I hope, though, that we will have <input id="q7"/> concentration of cars and buses in the centres of the cities. I <input id="q8"/> some programme will be developed that will push the people to use <input id="q9"/>, or special roads will be built for the people who can travel on roller skates <input id="q10"/>. Maybe the roads for pedestrians will be better.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+</section>
+
+</body>
+</bento>

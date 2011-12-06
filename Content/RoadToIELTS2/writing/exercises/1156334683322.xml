@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="whose" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="which" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="which" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="which" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="who" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="whose" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Relative clauses can be used to make one sentence from two. In each case below, complete the sentence by adding the relative pronoun.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/EN_AW_005.jpg" mode="1" id="1001"/>
+  <ol id="questionList">
+  <li>The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.The water-balanced railway's hydraulic brake &#xA0; <input id="q1"/> &#xA0; main function is to slow the train, helps store energy to pump water.</li>
+  
+  <li>A solar cell is a power source. It converts sunlight into electricity.A solar cell is a power source &#xA0; <input id="q2"/> &#xA0; converts sunlight into electricity.</li>
+  <li>A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source.A hydram,&#xA0;<input id="q3"/> &#xA0;can irrigate fields sixty metres above the water source, is powered by water pressure.</li>
+  <li>The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity.The water-balanced railway,&#xA0;<input id="q4"/>&#xA0; is powered by the force of gravity, is an example of sustainable technology.</li>
+  <li>Ecologists are scientists. They study the relationship between living organisms and their environment.Ecologists are scientists&#xA0;<input id="q5"/> &#xA0;study the relationship between living organisms and their environment.</li>
+  <li>Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment. Greenpeace is an organisation&#xA0;<input id="q6"/>&#xA0;aim is to protect wildlife and the natural environment.</li>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </ol>
+</section>
+
+
+</body>
+</bento>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a9" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a13" correct="true"/>
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a10" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a11" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a13" correct="true"/>
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a12" correct="true"/>
+      <answer source="a10" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a14" correct="true"/>
+      <answer source="a10" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a15" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a16" correct="true"/>
+      <answer source="a10" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the report describing the information shown in the diagram from the previous exercise again, and find words and phrases that are used to express purpose and cause and result. There are 4 examples of each. Drag each to the appropriate column below.
+		
+</header>
+	
+<section id="noscroll">
+  <span id="a9" draggable="true">to</span>
+  <span id="a11" draggable="true">so that</span>
+  <span id="a13" draggable="true">so as to</span>
+  <span id="a14" draggable="true">As a result</span>
+  <span id="a16" draggable="true">Consequently</span>
+  <span id="a15" draggable="true">in order to</span>
+  <span id="a12" draggable="true">causing</span>
+  <span id="a10" draggable="true">Due to</span>
+</section>
+
+
+<section id="body">
+
+<img class="rightFloat" src="../media/EN_AW_002s.jpg" mode="1" id="1001"/>
+<img class="leftFloat" src="../media/EN_AW_002.jpg" mode="16" id="1003"/>
+<div id="gapfillText">
+<p><b>Purpose</b><tab/>*<tab/><b>Cause and Result</b></p>
+<p><input id="q1" type="droptarget"/>&#xA0;<tab/>*<tab/><input id="q2" type="droptarget"/></p>
+<p><input id="q3" type="droptarget"/>&#xA0;<tab/>*<tab/><input id="q4" type="droptarget"/></p>
+<p><input id="q5" type="droptarget"/>&#xA0;<tab/>*<tab/><input id="q6" type="droptarget"/></p>
+<p><input id="q7" type="droptarget"/>&#xA0;<tab/>*<tab/><input id="q8" type="droptarget"/></p>
+
+<p>The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages&#xA0;<b>to</b>&#xA0;transport passengers up and down a hillside 30 metres in height.</p>
+
+<p>The carriages are made of timber and steel&#xA0;<b>so that</b>&#xA0;they are light and strong. Underneath each one is a ballast tank, which carries up to 1600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. These go around a large drum at the top of the slope.</p>
+
+<p>When one carriage is at the top of the hill, the other is at the bottom. The ballast tank underneath the top carriage is filled with water from a reservoir&#xA0;<b>so as to</b>&#xA0;make it slightly heavier than the lower carriage.&#xA0;<b>Due to</b>&#xA0;this imbalance, the top one begins to roll down the hill, pulling the other one up. A computer control system weighs each carriage&#xA0;<b>in order to</b>&#xA0;gauge exactly how much water is needed to make them move. Speed is controlled by means of a braking system built into the drum at the top. This consists of a hydraulic pump, which slows the drum down if it is turning too fast,&#xA0;<b>causing</b>&#xA0;the carriages to reduce speed. Each time this happens, the system compresses gas in special cylinders.&#xA0;<b>As a result</b>&#xA0;, some of the energy of braking is stored. This can later be used to pump a proportion of the water back up to the reservoir. &#xA0;<b>Consequently</b>&#xA0;, some energy is recycled.</p>
+
+<p align="left">The water-balanced railway is an excellent example of how renewable energy sources can be used to power a transport system.</p><p align="left"><font size="2"/></p>
+		<p align="left"><b>Click to enlarge</b></p>
+		</div>
+</section>
+
+<section id="rt2001">
+  <p align="left">If you are asked to write a report describing a process or how something works, you need to be able to identify and explain the stages in a process, or the functions of the various parts of the device and the relationships between them. These include relationships of cause and result, and purpose. There are some useful words and phrases you can use to express such relationships.</p>
+</section>
+
+</body>
+</bento>

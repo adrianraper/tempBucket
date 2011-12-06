@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a9" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a10" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a11" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a12" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a13" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a14" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a15" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a16" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the labels on the diagram below. Choose your answers from the box.There are more words/phrases than labels, so you will not use them all.
+</header>
+	
+<section id="noscroll">
+  <span id="a10" draggable="true">crust</span>
+  <span id="a17" draggable="true">silicates</span>
+  <span id="a13" draggable="true">asthenosphere</span>
+  <span id="a18" draggable="true">continents</span>
+  <span id="a11" draggable="true">upper mantle</span>
+  <span id="a19" draggable="true">cratons</span>
+  <span id="a14" draggable="true">lower mantle</span>
+  <span id="a20" draggable="true">magnetic field</span>
+  <span id="a12" draggable="true">lithosphere</span>
+  <span id="a15" draggable="true">outer core</span>
+  <span id="a9" draggable="true">hydrosphere</span>
+  <span id="a16" draggable="true">inner core</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/EN_LN_003.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/EN_LN2.mp3" mode="4" id="1002"/>
+  <p align="left">1. <font color="#0000ff"><input id="q1" type="droptarget"/></font></p>
+  <ol>
+    <li>
+      <input id="q2" type="droptarget"/>
+    </li>
+    <li>
+      <input id="q3" type="droptarget"/>
+    </li>
+    <li>
+      <input id="q4" type="droptarget"/>
+    </li>
+    <li>
+      <input id="q5" type="droptarget"/>
+    </li>
+    <li>
+      <input id="q6" type="droptarget"/>
+    </li>
+    <li>
+      <input id="q7" type="droptarget"/>
+    </li>
+    <li>
+      <input id="q8" type="droptarget"/>
+    </li>
+  </ol>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">1. This is the first term the lecturer mentions. Also, she says that the hydosphere is the layer of water that 'covers almost three-quarters of the Earth's surface' and the line indicator in the diagram is pointing to the top of the Earth.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. This is the second term mentioned. Also the lecturer says 'the crust forms the rocky surface of the Earth' and the diagram indicators are pointing to what looks like rocks and the top of the earth.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. The lecturer says that the upper mantle is below the crust.</p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. The lecturer says that the crust and the upper mantle make up the lithosphere.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">5. The lecturer says that the asthenosphere is between the upper mantle and the lower mantle, so if you have identified the upper mantle this is quite straightforward.</p>
+</section>
+
+<section id="fb6">
+  <p align="left">6. If you missed the lecturer saying that the upper mantle and lower mantle are separated by another layer you are given more help. The lecturer says that the lower mantle extends to a depth of about 2,900 kilometres and this figure is on the diagram.</p>
+</section>
+
+<section id="fb7">
+  <p align="left">7. The lecturer says that the outer core is liquid and this is labelled on the diagram. Also she says it is about 2,200 kilometres thick and if you add that to the 2,900 kilometres given on the diagram you get the 5,100 kilometres also given.</p>
+</section>
+
+<section id="fb8">
+  <p align="left">8. The lecturer says that the inner core is solid and this is given on the diagram.</p>
+</section>
+
+</body>
+</bento>

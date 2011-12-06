@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/LC_Task01b.jpg" mode="16" id="1004"  />
+		
+		Read this sample answer to the writing task in Exercise 7 and find the mistakes. There are 10 and they may be factual, grammatical or lexical errors. Click on them.
+		
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/Unit02_Write_e7n8_s.jpg" mode="1" id="1003"/>
+  <img class="leftFloat" src="../media/Unit02_Write_e7n8.jpg" mode="16" id="1004"/>
+  <p align="left">The chart shows the <g id="t1">number</g> of Internet users among the female population of the United States in 2000 and 2001. As is perhaps to be expected, there was a higher proportion of Internet users among younger age groups than older age groups. This was true for both years, but the trend was slightly less pronounced in 2001 as Internet use <g id="t2">rise</g> steadily across nearly all age groups.</p>
+  <p align="left">
+    <font color="#000000">In 2000, there was a clear <g id="t3">upward</g> trend in the proportion of the female population who used the Internet as age increased. The percentage was at its highest with the 12 to 15-year-olds. Between the ages of 16 and 55, the percentage fell <g id="t4">steady</g>, but from the age of 55 onwards the figures <g id="t5">fluctuated</g>. The percentage for women in the 65+ age group, for example, was less than a third of that for the 46 to 55-year-olds.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Turning to 2001, there was a marked <g id="t6">peak</g> in the proportion of Internet users for nearly all age groups of women. Most notably, the percentage of users in the 65+ age group nearly <g id="t7">tripled</g> and the proportion in the 36 to 55 age groups also rose <g id="t8">sharp</g>. There was a <g id="t9">dramatical</g> increase in the proportion of users in the 16 to 18-year-old age group, reaching almost 100 per cent. Interestingly, however, there was a slight <g id="t10">plunge</g> in the figure for the very youngest age group.</font>
+  </p>
+  <p align="left">Overall, it can be said that, among the female population of the United States, Internet use became more common and more evenly distributed across age groups between 2000 and 2001.</p>
+  <p align="left">
+    <b>Click to enlarge</b>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font color="#000000"><b>percentage</b>: The vertical axis shows percentages.</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font color="#000000"><b>rose</b>: The past simple tense is needed.</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font color="#000000"><b>downward</b>: Older age groups use the Internet less.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <font color="#000000"><b>steadily</b>: The adverb is needed.</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font color="#000000"><b>plunged</b>: The figures fell dramatically.</font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <font color="#000000"><b>increase</b>: A peak is a rise to the highest point followed by a fall.</font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <font color="#000000"><b>doubled</b>: From 18 per cent to nearly 30 per cent.</font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <font color="#000000"><b>sharply</b>: The adverb is needed, not the adjective.</font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <font color="#000000"><b>dramatic</b>: This is the correct form of the adjective.</font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <font color="#000000"><b>fall</b>: A plunge can never be described as 'slight'.</font>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking instant="true"/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc splitscreen="true"/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the passage on the left. Choose TWO letters A-E for each question on the right.
+		
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/Education_006.jpg" mode="1" id="1001"/>
+  <p align="left"><b>1	</b>Where has tomato mosaic tobamovirus been found?<g id="t1">A.  in clouds</g><g id="t2">B.  in Antarctic ice</g><g id="t3">C.  in sterile conditions</g><g id="t4">D.  in Arctic ice</g><g id="t5">E.  in coastal areas</g></p>
+  <p align="left"><b>2</b>	Scientists know that the tomato mosaic tobamovirus &#x2026;</p>
+  <g id="t6">A.  destroys organisms.</g>
+  <g id="t7">B.  comes in different varieties.</g>
+  <g id="t8">C.  is still infectious after being frozen.</g>
+  <g id="t9">D.  causes epidemics every 20 years.</g>
+  <g id="t10">E.  is found in many places.</g>
+  <p align="left"><b>3</b>	The tomato mosaic tobamovirus'sstrong protein coat helps it &#x2026;</p>
+  <g id="t11">A.  evolve and change.</g>
+  <g id="t12">B.  cause infections.</g>
+  <g id="t13">C.  survive extreme conditions.</g>
+  <g id="t14">D.  amplify its genetic material.</g>
+  <g id="t15">E.  move from one place to another.</g>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="readingText">
+	<p align="left"><font color="#0000ff"><b>Back from the dead</b></font>&nbsp;Prehistoric viruses are lying dormant in the polar ice caps – and a bout of warm weather could release them into the atmosphere, sparking new epidemics. This chilling warning follows the discovery, for the first time, of an ancient virus in Arctic ice.</p>&nbsp;The virus, found deep within the Greenland icepack, is known as a tomato mosaic tobamovirus (ToMV), a common plant pathogen. The discovery suggests that other viruses, such as ancient strains of flu, polio and smallpox, may also be entombed and could make a comeback. "We don't know the survival rate, or how often they get back into the environment. But it certainly is possible," says Tom Starmer of Syracuse University in New York.&nbsp;Starmer's colleagues Scott Rogers and John Castello of the State University of New York in Syracuse had earlier found ToMV in clouds and fog. The virus can survive in such environments because it belongs to a family with particularly tough protein coats. "Since it's widespread, moves in the atmosphere and is very stable, we deduced that we would find it in the Arctic ice," says Rogers.&nbsp;So under sterile conditions, the researchers examined four cores containing ice between 500 and 140 000 years old from three sites in Greenland. To prevent contamination, they first disinfected the outside of each core using ultraviolet light, then searched the inner core for RNA from the tomato pathogen using the polymerase chain reaction (PCR). Sure enough, the telltale RNA was present. What's more, sequencing revealed 15 strains of the virus (Polar Biology, vol 22, p 207).&nbsp;The frozen viruses were probably still infectious. PCR destroys organisms as it amplifies their genetic material, so the researchers can't be sure the viruses had retained the protein coats that help them invade cells. But Castello says they probably needed their coats to survive for hundreds of years in the ice.&nbsp;The team says that a brief rise in temperature could unleash the entombed viruses. "The ice is melting constantly around the poles," says Rogers. If released, they could cause outbreaks of disease. "If you've got these things lying in the ice for a thousand years or more and their usual host has not had to deal with them, this may be a source of epidemics," says Alvin Smith, a virologist at Oregon State University in Corvallis. He has already found evidence that caliciviruses, which can cause diarrhoea, periodically re-emerge from the oceans, causing new infections.&nbsp;The findings may answer some puzzling questions, Smith adds. Viruses evolve fast, continually changing their protein coats. Yet identical caliciviruses have appeared at 20-year intervals on opposite sides of the US, he says. "How did these viruses stay the same for so long? Where have they been hanging out?" He thinks they might have spent years trapped in polar ice before re-emerging to strike again.&nbsp;Such exchanges could put a spanner in the works of viral evolution studies. Castello says that instead of representing the endpoint of steady evolution, modern populations of viruses might be a complex mishmash of highly evolved ones and others that have taken a holiday from evolution in cold storage. "Perhaps they are actually ancient populations that have been recycled over and over again," he says. "How can you do evolutionary studies if that's true?"&nbsp;The New York team plans to use other techniques to find out if viruses in other cores are still viable. As well as Arctic ice, they will look at ice from Antarctica that is up to 400 000 years old.&nbsp;Glossary1 RNA: ribonucleic acid. RNA is present in all living cells and plays an important role in protein synthesis. In certain viruses RNA, rather than DNA, carries the genetic information.2 polymerase chain reaction (PCR): a technique for making an unlimited number of copies of any pieces of DNA.3 sequencing: determining the order of nucleotides in a DNA or RNA molecule.&nbsp;Matt Walker, New Scientist, 4th September 1999.<p align="left"><font size="2"></font></p>
+</section>
+<section id="rt2001">
+	<p align="left">Questions 1-3 - Multiple choiceThe quickest way to tackle this exercise is to decide which are the key words in the questions and then skim to find those same words, or synonyms, in the passage. Once you've found them, read the whole sentence carefully. Remember, just because one of the choices contains words from the passage doesn't mean that it will be correct. And don't forget, you have to choose two correct options for each question.&nbsp;Question 1You need to look for places where the virus has already been found, not for places where scientists believe it may possibly exist, or places where it might be found in the future.&nbsp;Question 2Look for what scientists know for sure, not what they assume to be true, or think may probably be true.&nbsp;Question 3Find the phrase 'protein coat' in the passage and read the relevant sections very carefully.</p>
+</section>
+</body>
+</bento>

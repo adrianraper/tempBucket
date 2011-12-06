@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="E-mail address" correct="true"/>
+      <answer value="Email address" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="Your nationality" correct="true"/>
+      <answer value="Nationality" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="Diplomas" correct="true"/>
+      <answer value="Certificates" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="Certificates" correct="true"/>
+      <answer value="Diplomas" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="PC skills" correct="true"/>
+      <answer value="Computer skills" correct="true"/>
+      <answer value="Foreign languages spoken" correct="true"/>
+      <answer value="Foreign languages" correct="true"/>
+      <answer value="Languages spoken" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="Foreign languages spoken" correct="true"/>
+      <answer value="PC skills" correct="true"/>
+      <answer value="Computer skills" correct="true"/>
+      <answer value="Foreign languages" correct="true"/>
+      <answer value="Languages spoken" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="Work experience" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="Job title" correct="true"/>
+      <answer value="Title of job" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS for each answer.
+		
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/WB_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/WB_LN1a.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>Layout of a Curriculum Vitae</b></font></p><p align="left"><font color="#000000"><b>Section 1:	Personal Information</b></font></p>	Name	Home address	Telephone number	(1) <input id="q1"/>	Date of Birth	Place of Birth	(2) <input id="q2"/><p align="left"><font color="#000000"><b>Section 2:	Education &amp; Qualifications</b></font></p>(dates)	University Degrees	(3) <input id="q3"/>&#xA0;	(4) <input id="q4"/>(dates)	Secondary School	A-levels	GCSEs<p align="left"><font color="#000000"><b>Section 3:	Skills</b></font></p>Examples:	Driving	(5) <input id="q5"/>	Typing	(6) <input id="q6"/><p align="left"><font color="#000000"><b>Section 4:</b>	(7) <input id="q7"/></font></p>(dates)	(8) <input id="q8"/>	Company	Address	Duties<p align="left"><font color="#000000"><b>Section 5:	Activities</b></font></p>	Hobbies and interests<p align="left"><font size="2"/></p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">1. Address is already given as 'home address' above. What other kind of address is there?</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">3. Mary is not talking about one specific diploma but diplomas in general. </font>
+  </p>
+</section>
+
+</body>
+</bento>

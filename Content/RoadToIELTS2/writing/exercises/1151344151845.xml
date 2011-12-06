@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+      <answer source="a3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="false">
+        <feedback source="fb4"/>
+      </answer>
+      <answer source="a5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+      <answer source="a6" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/HF_AW_006.jpg" mode="16" id="1004"  />
+		
+		Complete the report on the left by choosing the phrase which best fits each gap. <br/>Click on a, b or c on the right for questions 1-5 as appropriate.
+		
+
+Click to see table
+</header>
+	
+<section id="body">
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">Which of the following phrases best fits in Gap 1?<list class="answerList"><li><a id="a1">With regard to the kind of injury sustained</a></li><li><a id="a2">With regard to sprains and strains</a></li><li><a id="a3">With regard to fractured bones</a></li></list><br/></li>
+    <br/>
+    <li id="q2">Which of the following phrases best fits in Gap 2?<list class="answerList"><li><a id="a4">As for the difference between injures</a></li><li><a id="a5">As for the legs</a></li><li><a id="a6">As for the part of the body injured</a></li></list><br/></li>
+    <br/>
+    <li id="q3">Which of the following phrases best fits in Gap 3?<list class="answerList"><li><a id="a7">Regarding sports facilities</a></li><li><a id="a8">Regarding the place where injuries took place</a></li><li><a id="a9">Regarding injuries in the home</a></li></list><br/></li>
+    <br/>
+    <li id="q4">Which of the following phrases best fits in Gap 4?<list class="answerList"><li><a id="a10">As regards men</a></li><li><a id="a11">As regards men's injuires</a></li><li><a id="a12">As regards gender</a></li></list><br/></li>
+    <br/>
+    <li id="q5">Which of the following best fits in Gap 5?<list class="answerList"><li><a id="a13">as far as the place where the injury took place is concerned</a></li><li><a id="a14">as far as the kind of injury is concerned</a></li><li><a id="a15">as far as the part of the body injured is concerned</a></li></list><br/></li>
+  </ol>
+</section>
+
+<section id="fb1">
+  <p align="left">1. This sentence mentions the most common types of injury.</p>
+</section>
+
+<section id="fb2">
+  <p align="left">2. This sentence is about where on the body most injuries occur.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">3. This sentence is about the most common places for injuries to occur.</p>
+</section>
+
+<section id="fb4">
+  <p align="left">4. This section of the report compares men and women.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">5. This sentence compares men and women in terms of the location they had their injuries.</p>
+</section>
+
+<section id="readingText">
+  <p align="left">The tables show the most common types of injury in Canada during a single year, where they happened, and the proportion of men and women who sustained these injuries.</p>
+  <p align="left">
+    <font color="#0000ff">(1), sprains and strains were by far the most common, followed by fractures to bones. (2), it is clear that, overall, the legs and feet were the most common locations for injuries. (3), it is perhaps not surprising that the home and sports facilities were the most common settings.</font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">(4), there seems to be no consistent pattern which associates types of injury with men or women. However, (5), it is noticeable that for men the most common places were sports facilities while for women it was the home.</font>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">In your report you will have to describe a number of different trends or patterns that are shown in the table or chart. It is important that you let the reader know when you have finished dealing with one aspect of the figures and are about to deal with another aspect. There are certain 'signpost' expressions, which good writers use in order to achieve this, for example, 'concerning' or 'regarding'. When you use these expressions, make sure you follow them with appropriate sentence structure.</p>
+</section>
+
+</body>
+</bento>

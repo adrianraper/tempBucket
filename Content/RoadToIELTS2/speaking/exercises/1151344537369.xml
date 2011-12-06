@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the following advice for students taking Part 1 of the Speaking exam.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/AC_SP_002.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font color="#0000ff">
+      <b>IELTS Speaking Part 1 </b>
+    </font>
+  </p>
+  <p align="left">As you get into the more general questions in Part 1, you should find yourself relaxing. Sit comfortably. Be positive, interesting and friendly.</p>
+  <p align="left">Your life is unique. Don't be afraid to talk about it. Information about your past, present and future will help the examiner make an assessment, and will create a positive impression of you as an interesting and informed person.</p>
+  <p align="left">Take advantage of each question. Avoid long complex sentence structures. Answer simply, but give examples and details. These will show you have something to say, and show that you are an interesting person.</p>
+  <p align="left"><font color="#0000ff"><b>Strategies</b></font>Ways to answer - how much should I say?</p>
+  <p align="left">The examiner is there to help you maximise your skills. The examiner is not an interrogator, and you are not required to give "correct" answers to all the questions. It is your ability to have an intelligent discussion that is being judged. All of us say things like "hmm, well, I'm not sure about that", "What do you mean?", "oh, I've never though about that before", "do you mean X or Y?". Learn ways to converse naturally.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

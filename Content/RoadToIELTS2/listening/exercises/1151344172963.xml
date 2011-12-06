@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="in part-time jobs" correct="true"/>
+      <answer value="part time jobs" correct="true"/>
+      <answer value="part-time jobs" correct="true"/>
+      <answer value="in part-time employment" correct="true"/>
+      <answer value="in part time jobs" correct="true"/>
+      <answer value="part time" correct="true"/>
+      <answer value="part-time" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="service industries" correct="true"/>
+      <answer value="the service industry" correct="true"/>
+      <answer value="service industries" correct="true"/>
+      <answer value="the service industries" correct="true"/>
+      <answer value="services" correct="true"/>
+      <answer value="the services" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="their husbands" correct="true"/>
+      <answer value="husbands" correct="true"/>
+      <answer value="husband" correct="true"/>
+      <answer value="their husband" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="their husbands" correct="true"/>
+      <answer value="40" correct="true"/>
+      <answer value="aged forty" correct="true"/>
+      <answer value="aged 40" correct="true"/>
+      <answer value="aged over forty" correct="true"/>
+      <answer value="aged over 40" correct="true"/>
+      <answer value="over forty" correct="true"/>
+      <answer value="over 40" correct="true"/>
+      <answer value="forty" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="fifties" correct="true"/>
+      <answer value="50s" correct="true"/>
+      <answer value="50's" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="their house" correct="true"/>
+      <answer value="their home" correct="true"/>
+      <answer value="the house" correct="true"/>
+      <answer value="the home" correct="true"/>
+      <answer value="their houses" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="aged over forty" correct="true"/>
+      <answer value="40" correct="true"/>
+      <answer value="aged forty" correct="true"/>
+      <answer value="aged 40" correct="true"/>
+      <answer value="aged over forty" correct="true"/>
+      <answer value="aged over 40" correct="true"/>
+      <answer value="over forty" correct="true"/>
+      <answer value="over 40" correct="true"/>
+      <answer value="forty" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 6-12. Listen to the recording, which will play automatically, and follow the instructions. Complete the sentences below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/WB_LN_005.jpg" mode="1" id="1001"/>
+  <audio controls="compact" class="leftFloat" src="../media/WB_LN2b.mp3" mode="4" id="1002"/>
+  <br/>
+  <ol id="questionList"><tab/><b>6</b>Compared to men, women are more prepared to work <input id="q1"/>.<tab/><b>7</b>The growth in <input id="q2"/> has led to an increase in the rate of female employment.<tab/><b>8</b>Female managers often have higher incomes than <input id="q3"/>.<tab/><b>9</b>Female managers often employ <input id="q4"/> in their companies.<tab/><b>10</b>Husbands of female managers often retire in their <input id="q5"/>.<tab/><b>11</b>Men and women sometimes reverse roles, with men looking after <input id="q6"/>.<tab/><b>12</b>The people who have greatest difficulty in role reversal are <input id="q7"/>.</ol>
+</section>
+
+<section id="fb1">
+  <p align="left">6. Mary says that women are willing to go into part-time work. In other words, more prepared to work part time.</p>
+</section>
+
+</body>
+</bento>

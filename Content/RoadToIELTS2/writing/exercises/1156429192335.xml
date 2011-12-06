@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="dropdown" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q8" block="b8">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q9" block="b9">
+      <answer source="a25" correct="true"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q10" block="b10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q11" block="b11">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q12" block="b12">
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q13" block="b13">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q14" block="b14">
+      <answer source="a40" correct="true"/>
+      <answer source="a41" correct="false"/>
+      <answer source="a42" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q15" block="b15">
+      <answer source="a43" correct="true"/>
+      <answer source="a44" correct="false"/>
+      <answer source="a45" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q16" block="b16">
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="false"/>
+      <answer source="a48" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q17" block="b17">
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="false"/>
+      <answer source="a51" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q18" block="b18">
+      <answer source="a52" correct="true"/>
+      <answer source="a53" correct="false"/>
+      <answer source="a54" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q19" block="b19">
+      <answer source="a55" correct="true"/>
+      <answer source="a56" correct="false"/>
+      <answer source="a57" correct="false"/>
+    </DropDownQuestion>
+    <DropDownQuestion source="q20" block="b20">
+      <answer source="a58" correct="true"/>
+      <answer source="a59" correct="false"/>
+      <answer source="a60" correct="false"/>
+    </DropDownQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read this sample answer to the writing task in the previous exercise.  Complete the composition by choosing the word or phrase which best fits each gap.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/MM_AW_016.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The media's freedom of expression is an essential safeguard in a free society. However, it is often suggested that there should be limits to the media's right to report on the private lives of public figures. <select id="q1"><option>There</option><option>They</option><option>These</option></select> are a number of arguments both in favour of and against <select id="q2"><option>this</option><option>that</option><option>such</option></select> view.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Firstly, it is argued that politicians should not be the objects of media scrutiny outside <select id="q3"><option>their</option><option>its</option><option>whose</option></select> work and that the media should not report information about <select id="q4"><option>them</option><option>themselves</option><option>it</option></select>, such as details of their relationships, <select id="q5"><option>which</option><option>this</option><option>it</option></select> is generally considered private. However, the counter-argument is that there are some politicians <select id="q6"><option>who</option><option>they</option><option>which</option></select> use privacy laws to cover up embarrassing information, for example, when they have accepted gifts in return for using <select id="q7"><option>their</option><option>this</option><option>such</option></select> influence. In other words, it is sometimes in the public interest for the media to investigate politicians' private lives to uncover and deter <select id="q8"><option>such</option><option>whose</option><option>these</option></select> corruption.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">A further argument is that the media is more interested in making money than in telling the truth. Stories of scandals involving well-known people increase newspaper circulation and attract larger television audiences. An example of <select id="q9"><option>this</option><option>it</option><option>them</option></select> is gossip magazines <select id="q10"><option>that</option><option>they</option><option>these</option></select> invent stories about members of royal families, <select id="q11"><option>whose</option><option>their</option><option>which</option></select> private lives are often treated like public property. However, <select id="q12"><option>those</option><option>they</option><option>these</option></select> who disagree with <select id="q13"><option>this</option><option>that</option><option>their</option></select> view point out that most well-known public figures make their living from being in the public eye, so <select id="q14"><option>they</option><option>these</option><option>those</option></select> should accept the inconveniences as well as the benefits <select id="q15"><option>this</option><option>which</option><option>such</option></select> brings.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">A final argument is that when the media reports on famous people's private relationships, it often puts <select id="q16"><option>these</option><option>this</option><option>whose</option></select> relationships under so much pressure that they fail. On the other hand, opponents of <select id="q17"><option>this</option><option>such</option><option>whose</option></select> argument say that many celebrities promote <select id="q18"><option>themselves</option><option>them</option><option>those</option></select> by publicising their private affairs in the media, and only complain about an invasion of privacy when problems arise.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">In conclusion, I believe that public figures have to expect some media scrutiny of their private lives. In the case of entertainment or sports celebrities, <select id="q19"><option>this</option><option>which</option><option>such</option></select> reflects a market for stories about them, <select id="q20"><option>which</option><option>that</option><option>it</option></select> is part of being famous and earning large amounts of money. In the case of politicians, it is the media's duty to examine and report on the behaviour of people in positions of power.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

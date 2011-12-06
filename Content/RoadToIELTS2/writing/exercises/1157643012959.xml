@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../media/SS_AW_013f.jpg" mode="1" id="1001"  /><p align="left"><b>Advances in medicine and health care mean that increasing numbers of people are living to a very old age. This creates a number of social problems, but at the same time has some positive effects on society.</b></p><p align="left"><b><g id="t1">A</g></b>  People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations. Yet few of us consider the physical, mental and emotional problems associated with living to a very old age.&nbsp;<g id="t2">B</g>  As individuals, we all welcome the greater longevity that improved health care grants us. However, the consequences for society of an ageing population are not so desirable. Who will take care of the increasing numbers of elderly people with poor health and failing mental faculties? How will the state cope with the financial burden of so many people drawing pensions? There are a number of ways in which governments must act in order to deal with these problems effectively.&nbsp;<g id="t3">C</g>  Improved health care and a better diet have helped increase life expectancy around the world. Most of us welcome the idea that we will live longer, but what are the consequences of an ageing population for society as a whole? In fact, this development has both advantages and disadvantages for society.</p><p align="left"><font size="2"></font></p>
+</section>
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The keywords of the task include 'social' and 'society'. This introduction makes no mention of the effects that an ageing population has on wider society. Also, it doesn't seem that the writer is going to discuss the benefits this situation may bring.</font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">It seems that the writer is going to deal only with the problems that society will face. There is no mention here of the benefits. This kind of 'advantages and disadvantages' composition must be balanced.</font>
+  </p>
+</section>
+
+</body>
+</bento>

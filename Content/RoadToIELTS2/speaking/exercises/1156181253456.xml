@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="true"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Watch Zenia being interviewed and decide which of the following she mentions.
+</header>
+	
+<section id="body">
+<div id="watching">
+<div class="rightFloatvideo1">
+  <video src="../media/Unit03_e2a.flv" mode="16" id="1003" autoPlay="false"/>
+  <video src="../media/Unit03_e2b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit03_e2c.flv" mode="16" id="1005" autoPlay="false"/>
+  </div>
+  
+  <div id="w1">
+  <p>
+    <b>What reasons does Zenia give for visiting other countries?</b></p>
+    <g id="t1">A.  see the sights</g><br/>
+    <g id="t2">B.  learn languages</g><br/>
+    <g id="t3">C.  souvenirs</g><br/>
+    <g id="t4">D.  culture</g><br/>
+    <g id="t5">E.  traditions</g><br/>
+    <g id="t6">F.  food</g><br/>
+    <g id="t7">G.  music</g><br/>
+  <br/><br/><br/><br/>
+  <p>
+    <b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b></p>
+    <g id="t8">A.  learning another language</g><br/>
+    <g id="t9">B.  becoming more open-minded</g><br/>
+    <g id="t10">C.  seeing another way of living</g><br/>
+    <g id="t11">D.  meeting people from different countries</g><br/>
+    <g id="t12">E.  discovering the culture</g><br/>
+    <g id="t13">F.  getting better job opportunities</g><br/>
+    <g id="t14">G.  learning to be independent</g><br/>
+  <br/><br/><br/><br/>
+  <p>
+    <b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b></p>
+    <g id="t15">A.  see relatives</g><br/>
+    <g id="t16">B.  emergencies</g><br/>
+    <g id="t17">C.  pleasure</g><br/>
+    <g id="t18">D.  business</g><br/>
+    <g id="t19">E.  able to afford it</g><br/>
+    <g id="t20">F.  study</g><br/>
+    <g id="t21">G.  shopping</g>
+  
+
+  <p align="left">
+  
+  </p>
+  </div>
+  </div>
+</section>
+
+</body>
+</bento>

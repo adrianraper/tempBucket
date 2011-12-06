@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="the main points" correct="true"/>
+      <answer value="most important points" correct="true"/>
+      <answer value="the important points" correct="true"/>
+      <answer value="the key points" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="5 - 15" correct="true"/>
+      <answer value="five - fifteen" correct="true"/>
+      <answer value="5 to 15" correct="true"/>
+      <answer value="five to fifteen" correct="true"/>
+      <answer value="5 and 15" correct="true"/>
+      <answer value="five and fifteen" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="discuss it" correct="true"/>
+      <answer value="discuss topic" correct="true"/>
+      <answer value="discuss the topic" correct="true"/>
+      <answer value="talk about it" correct="true"/>
+      <answer value="talk about topic" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="understand arguments" correct="true"/>
+      <answer value="understand the arguments" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="any study problems" correct="true"/>
+      <answer value="their study problems" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="workshops" correct="true"/>
+      <answer value="workshop" correct="true"/>
+      <answer value="a workshop" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="give a presentation" correct="true"/>
+      <answer value="give presentation" correct="true"/>
+      <answer value="do a presentation" correct="true"/>
+      <answer value="do presentation" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="their research skills" correct="true"/>
+      <answer value="research skills" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-8. Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/><audio controls="compact" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
+<div id="gapfillTable">
+<h9>Lecture</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Lecturer and large group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Lecturer talks, students take notes</p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Guide students through course, draw students'	attention to (1)&#xA0;<input id="q1"/></p>
+
+<h9>Seminar</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and between (2)&#xA0;<input id="q2"/> students</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students present topic, tutor and students	(3)&#xA0;<input id="q3"/>&#xA0;as a group</p>
+<p class="hangingIndent1">Aims:<tab/><tab/><tab/><tab/>	Help students to:	(4)&#xA0;<input id="q4"/>, make critical	judgements, form opinions</p>
+
+<h9>Tutorial</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Tutor and students discuss work</p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Give students guidance on their work, help	students with (5)&#xA0;<input id="q5"/></p>
+
+<h9>Practical Work</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students take part in (6)&#xA0;<input id="q6"/></p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Provide students with practical experience</p>
+
+<h9>Independent Study</h9>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students research a subject and then produce written work or (7)&#xA0;<input id="q7"/></p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Help students to develop (8)&#xA0;<input id="q8"/>,	provide opportunity for further study, encourage students to develop their own ideas</p>
+</div>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">1. Dr Grant says that one of the aims of the lectures is to help students focus on the main points of the course. 'Help students focus' means the same as 'draw their attention'.</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">3. Dr Grant says they have a group discussion. The gap required a verb not a noun so you had to change the form.</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">5. Dr Grant says that tutorials give students 'assistance' with study problems and 'assistance' means the same as 'help'.</font>
+  </p>
+</section>
+
+
+</body>
+</bento>

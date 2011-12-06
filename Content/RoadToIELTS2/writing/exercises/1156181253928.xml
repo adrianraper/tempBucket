@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	You should spend about 40 minutes on this task. You should write at least 250 words.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/TT_AW_014.jpg" mode="1" id="1001"/>
+  
+ <div id="presentation">
+  <p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+  <p>
+    <b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it.  However, tourism rarely benefits the countries which tourists visit.</b>
+  </p>
+  <p >
+    <b>To what extent do you agree or disagree?</b>
+  </p>
+  <p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

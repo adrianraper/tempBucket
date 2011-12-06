@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../media/MM_SP_001.jpg" mode="1" id="1001"  /><p align="left"><font face="verdana" size="13" color="#0000ff"><b>The Speaking Test Part 2: Dealing with the topic</b></font></p>&nbsp;You will read advice for candidates in Part 2 of the speaking test, including a review of how to behave in the speaking test.&nbsp;You will watch a candidate dealing with the Part 2 topic and the questions that followed, and will think about what advice you would give the candidate. You will then watch two more candidates deal with the same topic.&nbsp;You will think about the follow-up question and giving reasons for your answer.&nbsp;Finally, you will study the link between Part 2 and Part 3 of the speaking test. You will watch three candidates talking about the news.
+</section>
+</body>
+</bento>

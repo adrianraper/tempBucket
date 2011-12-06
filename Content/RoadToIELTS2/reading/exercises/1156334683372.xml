@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-10" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="750 billion" correct="true"/>
+      <answer value="750b" correct="true"/>
+      <answer value="750,000,000,000" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="half" correct="true"/>
+      <answer value="1/2" correct="true"/>
+      <answer value="50%" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="Terrestrial plants" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="marine plants" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="two billion tons" correct="true"/>
+      <answer value="2 billion tons" correct="true"/>
+      <answer value="2,000,000,000 tons" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="altitude" correct="true"/>
+      <answer value="density" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="density" correct="true"/>
+      <answer value="altitude" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="trap heat" correct="true"/>
+      <answer value="trap outgoing heat" correct="true"/>
+      <answer value="can trap heat" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="dense and shiny" correct="true"/>
+      <answer value="shiny and dense" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="weeks" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Complete the labels on the diagram on the right, using NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.
+		
+</header>
+	
+<section id="body">
+	<img class="leftFloat" src="../media/EN_AR_002.jpg" mode="1" id="1003"  />
+	
+	<ol id="splitquestionList">
+	<li id="1">The present level of carbon in the atmosphere is approximately &#xA0;<input id="q1" />&#xA0;tons.</li>
+	<li id="2">Around 7 billion tons of carbon is released by human activity each year. CO2 from human activity.</li>
+	<li id="3">Approximately&#xA0;<input id="q2" />&#xA0;of human emissions of CO2 do not stay in the atmosphere, but are absorbed in various ways.</li>
+	<li id="4"><input id="q3" />&#xA0;absorb some CO2.</li>
+	<li id="5">Some is absorbed by&#xA0;<input id="q4" />. Some is buried in ocean sediments. Some is absorbed in seawater.</li>
+	<li id="6">The oceans seem to absorb in excess of&#xA0;<input id="q5" />&#xA0;of CO2.</li>
+	<li id="7">The effect of clouds is determined by their&#xA0;<input id="q6" />&#xA0;and their&#xA0;<input id="q7" />.</li>
+	<li id="8">Some clouds encourage cooling because they shade the Earth from the sun's heat.</li>
+	<li id="9">Some clouds encourage warming because they&#xA0;<input id="q8" />.</li>
+	<li id="10">Aerosols can lead to the formation of clouds which are so&#xA0;<input id="q9" />&#xA0;that they can block sunlight for periods of&#xA0;<input id="q10" />.</li>
+	</ol>
+</section>
+<section id="rt2001">
+	<p align="left">Questions 1-10 - Diagram completionFirst of all you should study the diagram carefully. The information you need to complete the labels can be found in a relatively small section of the passage. In fact, you only really need to read two paragraphs to do this exercise. Skim through the passage quickly to find these two paragraphs and then read them again more carefully to find the answers.</p>
+	<p>Remember that the numbered gaps follow the order of the information in the passage.</p>
+	<p>Questions 1, 2 and 5 What is missing here? A word or phrase, or a number? </p>
+	<p>Questions 3 and 4What can you see here in the diagram?</p>
+	<p>Questions 6, 7 and 8What quality of clouds could affect the climate, do you think?</p>
+	<p>Questions 9 and 10Your knowledge of grammar and general context should help you decide what kind of words or information is missing here.</p>
+</section>
+<section id="readingText">
+
+	<h1>Untangling the science of climate</h1>
+	
+	<p>Life has prospered on this planet for nearly four billion years. In that time climate has fluctuated drastically, from ice ages lasting tens of thousands of years to epochs of steamy heat. With each change, sundry species have benefited and flourished. Others adapted, faltered, or died.</p>
+	<p>Now, many experts believe, humans are imperiling their own ecological niche with the threat of global warming. The vaporous by-products of civilization, in the form of greenhouse gases such as carbon dioxide (CO2), have trapped enough heat in the atmosphere to raise Earth's average surface air temperature a half degree Celsius (one degree Fahrenheit) during this century. If the trend continues, it could alter climate patterns worldwide – thawing glaciers, boosting sea levels, scorching plains into deserts, and shifting vegetation zones.</p>
+	
+	  <div><img class="photo1" src="../media/EN_AR_002.1.jpg" mode="1" id="1001"/></div>
+	
+	<p>Or it might not. Global climate depends on combinations of factors interacting in subtle and complex ways that we do not yet fully understand. It is possible that the warming observed during this century may have resulted from natural variations, even though the increase has been much more rapid than what the planet has witnessed over the past hundred centuries.</p>
+	<p>Nonetheless, in 1995, after years of intense study, the Intergovernmental Panel on Climate Change (IPCC), sponsored by the United Nations, concluded tentatively that "the balance of evidence suggests that there is a discernible human influence on global climate." The amount of that influence, the group noted, is unknown because of "uncertainties in key factors," including the degree to which clouds and the oceans affect the rate of temperature change. It may take a decade or more of additional research to resolve those uncertainties.</p>
+	<p>With oceans and clouds, uncertainty is a formidable problem. Oceans serve as a vast "sink" for carbon dioxide, but precisely how they do so is poorly understood. We do know this: Human activity releases approximately 7 billion metric tons of carbon (in the form of CO2) into the atmosphere every year, adding to the 750 billion tons that is already there. Yet only about half of our emissions – 3 billion tons – remains in the air. The rest is taken up by terrestrial and marine plants, buried in ocean sediments, absorbed in seawater, or otherwise sequestered. Of that "missing" amount of carbon, the oceans apparently remove at least 2 billion tons from the atmosphere each year.</p>
+	<p>This raises a number of compelling but so far unanswerable questions: How, exactly, does seawater interact with the air above it to remove CO2? How much more carbon can the seas hold, and what level of global warming would it take to alter their capacity? And how much has the oceans' ability to soak up and store heat delayed climate change?</p>
+	<p>The role of clouds and airborne suspended particles called aerosols is no easier to factor into models. Clouds shade Earth's surface, promoting cooling, but depending on their altitude, density, and other conditions, they can also trap outgoing heat, promoting warming. Aerosols are equally tricky. Some encourage water vapor in the air to condense into tiny droplets. The resulting clouds are dense and shiny, shading the surface for weeks. Similarly, smoke particles block sunlight until they precipitate out of the air. The combined effect can be sizable: The volcanic eruption of Mount Pinatubo in 1991 in the Philippines blew a colossal amount of sulfates into the stratosphere, causing a worldwide drop in temperatures that lasted two years. Thus, ironically, our own pollution, mainly from combustion of sulfur-bearing coal and oil, may temporarily have spared us some effects of global warming.</p>
+	<p>Curt Suplee, National Geographic, May 1998, pp. 44-47.</p>
+</section>
+</body>
+</bento>

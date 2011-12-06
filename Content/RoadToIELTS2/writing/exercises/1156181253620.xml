@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="the busiest" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="more quickly" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="the most rapid" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="greater" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="more important" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Look carefully at the table and complete the report by filling each gap with the correct form of the adjective or adverb given in brackets.
+</header>
+	
+<section id="noscroll">
+  <img class="rightFloat" src="../media/TT_AW_006.jpg" mode="1" id="1003"/>
+</section>
+
+<section id="body">
+  <p align="left">
+    <font color="#0000ff">
+      <b>Traffic growth at selected major airports in Europe</b>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#000000">Over the thirty-year period shown in the table, London Heathrow Airport was <input id="q1"/> (busy) in terms of passenger numbers. However, other European airports grew much <input id="q2"/> (quickly). Charles de Gaulle Airport in Paris experienced <input id="q3"/> (rapid) growth of all, with passenger traffic in the year 2000 over twenty times <input id="q4"/> (great) than it had been in 1970. Other airports, such as Amsterdam Schiphol Airport and Madrid Barajas Airport, became <input id="q5"/> (important) in the 1990s. Passenger traffic at these airports approximately doubled over the decade.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

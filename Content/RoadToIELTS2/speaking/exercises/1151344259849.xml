@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the advice below.
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/ST_SP_003.jpg" mode="1" id="1001"/><p align="left">Part 1 will consist of your giving information and opinions. The topic you talk about in Part 2 will be the sort of thing everybody can say something about, eg the media, pollution, or technology.</p><p align="left">Now look at the task our candidates are next asked to do.</p><p align="left"><font color="#000000"><b>Describe the technological device that you find most useful.</b>&#xA0;<b>You should say:</b></font></p>- why you got it- what you use it for- what advantages and disadvantages it has and- explain how it has changed your lifestyle<p align="left">What device would you choose to talk about and how would you answer the questions about it? Think about answering these questions before moving on to see what Alexandra said.</p></section>
+
+</body>
+</bento>

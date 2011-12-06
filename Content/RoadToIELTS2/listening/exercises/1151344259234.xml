@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 7-9. Listen to the recording, which will play automatically, and follow the instructions. Click THREE letters A-F.
+		
+</header>
+	
+<section id="body">
+  <audio controls="compact" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
+  <img class="rightFloat" src="../media/ST_LN_003.jpg" mode="1" id="1001"/>
+
+  
+ 
+	<p><b>7-9  What is wrong with the washing machine?</b></p>
+	 <ol id="targetspotting">
+		<list class="answerList"><li><g id="t1">It leaks.</g></li>
+	    <li><g id="t2">One of the hoses is broken.</g></li>
+    	<li><g id="t3">It does not rinse the clothes.</g></li>
+    	<li><g id="t4">The dial does not move automatically.</g></li>
+    	<li><g id="t5">It does not spin the clothes.</g></li>
+    	<li><g id="t6">It is too noisy.</g></li></list>
+  </ol>
+ </section>
+
+<section id="fb2">
+  <p align="left">B. Jane mentions that one of the hoses might not be connected properly. She doesn't say that it is broken.</p>
+</section>
+
+<section id="fb3">
+  <p align="left">C. Jane says the machines gets as far as rinsing and then gets stuck. So it does rinse the clothes. </p>
+</section>
+
+<section id="fb4">
+  <p align="left">D. Jane says the machine gets as far as rinsing and then gets stuck and she has to move the dial herself.</p>
+</section>
+
+<section id="fb5">
+  <p align="left">E. Jane says she has to move the dial for the machine to spin the clothes but the machine still does the spinning.</p>
+</section>
+
+</body>
+</bento>

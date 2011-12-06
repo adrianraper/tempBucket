@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="true"/>
+      <answer source="a3" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="false"/>
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+      <answer source="a8" correct="false">
+        <feedback source="fb8"/>
+      </answer>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="false">
+        <feedback source="fb13"/>
+      </answer>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a25" correct="false"/>
+      <answer source="a26" correct="true"/>
+      <answer source="a27" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q11">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q12">
+      <answer source="a34" correct="true"/>
+      <answer source="a35" correct="false"/>
+      <answer source="a36" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q13">
+      <answer source="a37" correct="false"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q14">
+      <answer source="a40" correct="false"/>
+      <answer source="a41" correct="true"/>
+      <answer source="a42" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q15">
+      <answer source="a43" correct="false"/>
+      <answer source="a44" correct="true"/>
+      <answer source="a45" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task on the left and look at the list of ideas on the right that a group of IELTS students produced. Decide whether each idea is an argument for an international language, an argument against or an idea which is irrelevant to the task.
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/LC_AW_022.JPG" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">Cost of teaching everyone the language <list class="answerList"><li><a id="a1">Argument for</a></li><li><a id="a2">Argument against</a></li><li><a id="a3">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q2">Diversification of language into dialects <list class="answerList"><li><a id="a4">Argument for</a></li><li><a id="a5">Argument against</a></li><li><a id="a6">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q3">Help international trade <list class="answerList"><li><a id="a7">Argument for</a></li><li><a id="a8">Argument against</a></li><li><a id="a9">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q4">Improve international co-operation and understanding <list class="answerList"><li><a id="a10">Argument for</a></li><li><a id="a11">Argument against</a></li><li><a id="a12">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q5">Interpreters and translators would lose their jobs <list class="answerList"><li><a id="a13">Argument for</a></li><li><a id="a14">Argument against</a></li><li><a id="a15">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q6">Make international travel easier <list class="answerList"><li><a id="a16">Argument for</a></li><li><a id="a17">Argument against</a></li><li><a id="a18">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q7">Many languages already have a large number of words in common <list class="answerList"><li><a id="a19">Argument for</a></li><li><a id="a20">Argument against</a></li><li><a id="a21">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q8">Many people enjoy learning new languages <list class="answerList"><li><a id="a22">Argument for</a></li><li><a id="a23">Argument against</a></li><li><a id="a24">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q9">Might not be used <list class="answerList"><li><a id="a25">Argument for</a></li><li><a id="a26">Argument against</a></li><li><a id="a27">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q10">Reduce nationalism <list class="answerList"><li><a id="a28">Argument for</a></li><li><a id="a29">Argument against</a></li><li><a id="a30">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q11">Reduce the amount of translation work needed <list class="answerList"><li><a id="a31">Argument for</a></li><li><a id="a32">Argument against</a></li><li><a id="a33">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q12">Simplify electronic communication <list class="answerList"><li><a id="a34">Argument for</a></li><li><a id="a35">Argument against</a></li><li><a id="a36">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q13">There are about 6,000 languages spoken in the world today <list class="answerList"><li><a id="a37">Argument for</a></li><li><a id="a38">Argument against</a></li><li><a id="a39">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q14">World would lose cultural diversity <list class="answerList"><li><a id="a40">Argument for</a></li><li><a id="a41">Argument against</a></li><li><a id="a42">Irrelevant idea</a></li></list><br/></li>
+    <br/>
+    <li id="q15">Would kill less widely-spoken languages <list class="answerList"><li><a id="a43">Argument for</a></li><li><a id="a44">Argument against</a></li><li><a id="a45">Irrelevant idea</a></li></list><br/></li>
+  </ol>
+</section>
+
+<section id="fb7">
+  <p align="left">7. This might make learning a new language a little easier for some people, but it is not itself an advantage that an international language would bring.</p>
+</section>
+
+<section id="fb8">
+  <p align="left">8. This might be true, but it is neither an advantage nor a disadvantage of having an 'international language'.</p>
+</section>
+
+<section id="fb13">
+  <p align="left">13. Although you might be able to use this fact to support an argument, on its own it is neither an advantage nor a disadvantage.</p>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <b>Writing Task 2</b>
+  </p>
+  <p align="left">You should spend about 40 minutes on this task.</p>
+  <p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+  <p align="left">
+    <b>An international language would remove one of the main differences which separates people of different nationalities and this would lead to greater international understanding and co-operation.  There should be one international language which everyone agrees to learn and speak.</b>
+  </p>
+  <p align="left">
+    <b>To what extent do you agree or disagree?</b>
+  </p>
+  <p align="left">You should write at least 250 words.</p>
+  <p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/EN_AW_008.jpg" mode="1" id="1001"/>
+  
+ 
+      <h1><p>Academic Writing Task 2</p></h1>
+    
+	<div id="presentation">
+  <p align="left"><b>Problem and solution 1</b></p>You will ...
+  <ol>
+    <li>analyse a writing task and match paragraph headings to	paragraphs.</li>
+    <li>organize notes into paragraphs.</li>
+    <li>complete a composition with words and phrases used to	express cause and effect and to suggest solutions.</li>
+    <li>complete sentences expressing cause and effect with	appropriate words and phrases.</li>
+    <li>listen and group comments according to whether they	are causes of the problem or possible solutions to the	problem.</li>
+  </ol>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback groupbased="true"/>
+		<buttons feedback="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+      <answer source="a4" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a21" correct="false"/>
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		In Part 1 of the test, you will be giving opinions and information about yourself. Look at Dimitris talking and listen to what information you can pick up about him.
+</header>
+	
+<section id="body">
+  <video src="../media/Unit010_e2.flv" mode="1" id="1003"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">What is his nationality?<list class="answerList"><li><a id="a1">Albanian</a></li><li><a id="a2">Afghan</a></li><li><a id="a3">Athenian</a></li><li><a id="a4">Greek</a></li></list><br/></li>
+    <br/>
+    <li id="q2">Does he work or study?<list class="answerList"><li><a id="a5">he works part time</a></li><li><a id="a6">he is a university student</a></li><li><a id="a7">he is studying to prepare for university</a></li><li><a id="a8">he works full-time</a></li></list><br/></li>
+    <br/>
+    <li id="q3">Why does he want to follow one particular course of study?<list class="answerList"><li><a id="a9">he wants to be an athlete</a></li><li><a id="a10">he wants to help athletes do better</a></li><li><a id="a11">he wants to help old people get better</a></li><li><a id="a12">he wants to help injured athletes</a></li></list><br/></li>
+    <br/>
+    <li id="q4">How does Dimitris prefer to study?<list class="answerList"><li><a id="a13">from books</a></li><li><a id="a14">by asking questions</a></li><li><a id="a15">from lectures</a></li><li><a id="a16">through doing</a></li></list><br/></li>
+    <br/>
+    <li id="q5">What interests him most about physiotherapy?<list class="answerList"><li><a id="a17">the anatomy of the body</a></li><li><a id="a18">what to do about the injury</a></li><li><a id="a19">the different types of injury</a></li><li><a id="a20">how the athletes hurt themselves</a></li></list><br/></li>
+    <br/>
+    <li id="q6">How will his studies affect his life?<list class="answerList"><li><a id="a21">he will get a good job</a></li><li><a id="a22">he will live with sportsmen</a></li><li><a id="a23">he will have a lot to do with sport</a></li><li><a id="a24">he will heal people</a></li></list><br/></li>
+  </ol>
+</section>
+
+</body>
+</bento>

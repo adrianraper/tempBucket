@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a46" correct="true"/>
+      <answer source="a47" correct="false"/>
+      <answer source="a48" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a43" correct="true"/>
+      <answer source="a44" correct="false"/>
+      <answer source="a45" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a40" correct="false"/>
+      <answer source="a41" correct="false"/>
+      <answer source="a42" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a37" correct="true"/>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a34" correct="false"/>
+      <answer source="a60" correct="false"/>
+      <answer source="a36" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a31" correct="true"/>
+      <answer source="a32" correct="false"/>
+      <answer source="a33" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a28" correct="true"/>
+      <answer source="a29" correct="false"/>
+      <answer source="a30" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a25" correct="false"/>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a22" correct="true"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q11">
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q12">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q13">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q14">
+      <answer source="a10" correct="true"/>
+      <answer source="a11" correct="false"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q15">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q16">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q17">
+      <answer source="a49" correct="true"/>
+      <answer source="a50" correct="false"/>
+      <answer source="a51" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the report from the last exercise again and decide if the highlighted words and phrases are used to show consecutive, concurrent or alternative stages in the process.
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"/>
+  
+  <ol id="targetspotting">
+    
+    <li id="q1">First
+	<list class="answerList">
+	<li><a id="a1">Consecutive stages</a></li>
+	<li><a id="a2">Concurrent stages</a></li>
+	<li><a id="a3">Alternative stages</a></li>
+	</list></li>
+    
+    <li id="q2">already<list class="answerList">
+	<li><a id="a46">Consecutive stages</a></li>
+	<li><a id="a47">Concurrent stages</a></li>
+	<li><a id="a48">Alternative stages</a></li>
+	</list></li>
+   
+    <li id="q3">The next stage<list class="answerList"><li><a id="a43">Consecutive stages</a></li><li><a id="a44">Concurrent stages</a></li><li><a id="a45">Alternative stages</a></li></list></li>
+    
+    <li id="q4">either<list class="answerList"><li><a id="a40">Consecutive stages</a></li><li><a id="a41">Concurrent stages</a></li><li><a id="a42">Alternative stages</a></li></list></li>
+    
+    <li id="q5">already<list class="answerList"><li><a id="a37">Consecutive stages</a></li><li><a id="a38">Concurrent stages</a></li><li><a id="a39">Alternative stages</a></li></list></li>
+   
+    <li id="q6">or<list class="answerList"><li><a id="a34">Consecutive stages</a></li><li><a id="a60">Concurrent stages</a></li><li><a id="a36">Alternative stages</a></li></list></li>
+    
+    <li id="q7">then<list class="answerList"><li><a id="a31">Consecutive stages</a></li><li><a id="a32">Concurrent stages</a></li><li><a id="a33">Alternative stages</a></li></list></li>
+    
+    <li id="q8">in turn<list class="answerList"><li><a id="a28">Consecutive stages</a></li><li><a id="a29">Concurrent stages</a></li><li><a id="a30">Alternative stages</a></li></list></li>
+    
+    <li id="q9">If<list class="answerList"><li><a id="a25">Consecutive stages</a></li><li><a id="a26">Concurrent stages</a></li><li><a id="a27">Alternative stages</a></li></list></li>
+    
+    <li id="q10">then<list class="answerList"><li><a id="a22">Consecutive stages</a></li><li><a id="a23">Concurrent stages</a></li><li><a id="a24">Alternative stages</a></li></list></li>
+    
+    <li id="q11">If<list class="answerList"><li><a id="a19">Consecutive stages</a></li><li><a id="a20">Concurrent stages</a></li><li><a id="a21">Alternative stages</a></li></list></li>
+   
+    <li id="q12">otherwise<list class="answerList"><li><a id="a16">Consecutive stages</a></li><li><a id="a17">Concurrent stages</a></li><li><a id="a18">Alternative stages</a></li></list></li>
+    
+    <li id="q13">While<list class="answerList"><li><a id="a13">Consecutive stages</a></li><li><a id="a14">Concurrent stages</a></li><li><a id="a15">Alternative stages</a></li></list></li>
+    
+    <li id="q14">Subsequently<list class="answerList"><li><a id="a10">Consecutive stages</a></li><li><a id="a11">Concurrent stages</a></li><li><a id="a12">Alternative stages</a></li></list></li>
+    
+    <li id="q15">before<list class="answerList"><li><a id="a7">Consecutive stages</a></li><li><a id="a8">Concurrent stages</a></li><li><a id="a9">Alternative stages</a></li></list></li>
+    
+    <li id="q16">Once<list class="answerList"><li><a id="a4">Consecutive stages</a></li><li><a id="a5">Concurrent stages</a></li><li><a id="a6">Alternative stages</a></li></list></li>
+    
+    <li id="q17">finally<list class="answerList"><li><a id="a49">Consecutive stages</a></li><li><a id="a50">Concurrent stages</a></li><li><a id="a51">Alternative stages</a></li></list></li>
+  </ol>
+</section>
+
+<section id="fb0">
+  <p align="left">
+    <b>Consecutive Stages</b>
+  </p>
+  <p align="left">- after this</p>
+  <p align="left">- afterwards</p>
+  <p align="left">- beforehand</p>
+  <p align="left">- before this</p>
+  <p align="left">- next</p>
+  <p align="left">- later</p>
+  <p align="left">- prior to</p>
+  <p align="left">- First</p>
+  <p align="left">- The next stage</p>
+  <p align="left">- already</p>
+  <p align="left">- then</p>
+  <p align="left">- in turn</p>
+  <p align="left">- Subsequently</p>
+  <p align="left">- before</p>
+  <p align="left">- Once</p>
+  <p align="left">- finally</p>
+  <p align="left"/>
+  <p align="left">
+    <b>Concurrent Stages</b>
+  </p>
+  <p align="left">- at the same time</p>
+  <p align="left">- at this stage</p>
+  <p align="left">- in the meantime</p>
+  <p align="left">- meanwhile</p>
+  <p align="left">- simultaneously</p>
+  <p align="left">- While</p>
+  <p align="left">
+    <b/>
+  </p>
+  <p align="left">
+    <b>Alternative Stages</b>
+  </p>
+  <p align="left">- alternatively</p>
+  <p align="left">- instead</p>
+  <p align="left">- on the other hand</p>
+  <p align="left">- either</p>
+  <p align="left">- or</p>
+  <p align="left">- If</p>
+  <p align="left">- otherwise</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Stages in a process may be consecutive when one stage follows another, or concurrent when two or more things happen at the same time. In some processes there are alternative stages, where the process may follow one route or another. Look carefully at the flow chart and identify where these stages are. There are some useful words and phrases for describing the relationships between different stages in a process and you should try to use them appropriately.</font>
+  </p>
+</section>
+
+<section id="readingText">
+<br/>
+	<p>The flow chart shows the steps in the process of publishing academic books.&#xA0;<b>(1) First</b>, the publisher researches the market for popular subjects and reviews titles which&#xA0;<b>(2) already</b>&#xA0;exist in those fields. Based on this research, a publishing project is chosen.&#xA0;<b>(3) The next stage</b>&#xA0;is to find a suitable manuscript. The publisher can&#xA0;<b>(4) either</b>&#xA0;select from manuscripts which have&#xA0;<b>(5) already</b>&#xA0;been submitted, &#xA0;<b>(6) or</b>&#xA0;they can commission authors to write them. Manuscripts are &#xA0;<b>(7) then</b>&#xA0;reviewed by readers. They make recommendations to the commissioning editor, who&#xA0;<b>(8) in turn</b>&#xA0;makes a final selection for the project.&#xA0;<b>(9) If</b>&#xA0; the publisher believes that the project will be a financial success,&#xA0;<b>(10) then</b>&#xA0;the detailed editing process can begin. Style, spelling and punctuation are checked by copy and line editors.&#xA0;<b>(11) If</b>&#xA0;the manuscript needs further correction, it is sent back to the writer,&#xA0;<b>(12) otherwise</b>&#xA0;the book is ready for design and manufacture. &#xA0;<b>(13) While</b>&#xA0;the above creative processes are taking place, a marketing plan is drawn up.&#xA0;<b>(14) Subsequently</b>, advertising and publicity campaigns can generate orders for the book even (15) before it is printed.&#xA0;<b>(16) Once</b>&#xA0;the book has been designed and manufactured, a price is set and the book can be distributed to warehouses and &#xA0;<b>(17) finally</b>&#xA0;to bookshops.</p>
+	
+</section>
+</body>
+</bento>

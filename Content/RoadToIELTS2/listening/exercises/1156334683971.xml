@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Eamonn" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="17 Warringah Road" correct="true"/>
+      <answer value="17, Warringah Road" correct="true"/>
+      <answer value="17, Warringah Rd" correct="true"/>
+      <answer value="17, Warringah Rd." correct="true"/>
+      <answer value="17 Warringah Rd" correct="true"/>
+      <answer value="17 Warringah Rd." correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="9807 2366" correct="true"/>
+      <answer value="98072366" correct="true"/>
+      <answer value="980 723 66" correct="true"/>
+      <answer value="98 07 23 66" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="a white tiger" correct="true"/>
+      <answer value="white tiger" correct="true"/>
+      <answer value="the white tiger" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="Claire" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="1997" correct="true"/>
+      <answer value="97" correct="true"/>
+      <answer value="'97" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="200" correct="true"/>
+      <answer value="2 hundred" correct="true"/>
+      <answer value="two hundred" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="4085 1388 1019 0242" correct="true"/>
+      <answer value="4085138810190242" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the form below.Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/EN_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/EN_LN1.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>ADOPT AN ANIMAL - GIFT APPLICATION FORM</b></font></p><p align="left"><font color="#000000"><b>PURCHASER&#x2019;S DETAILS</b></font></p>Name	Mr <input id="q1"/> KennedyAddress	<input id="q2"/>, ManlyDaytime Phone No.	<input id="q3"/>E-mail	ekennedy@conectup.comAnimal for Adoption	<input id="q4"/>&#xA0;<p align="left"><font color="#000000"><b>RECIPIENT&#x2019;S DETAILS</b></font></p>Name	<input id="q5"/> KennedyAddress	as aboveDaytime Phone No	as aboveDate of Birth	18th June <input id="q6"/>Adoption Package	2Amount Due ($)	<input id="q7"/>Method of Payment	Cash	Cheque	Credit Card  X	VISA  X		MasterCard	Card No. <input id="q8"/>	Expiry date: November 2004<p align="left"><font size="2"/></p>
+</section>
+
+<section id="rt2001">
+  <p align="left">You should be able to see from the form that you will need to listen for names, an address, the name of an animal, a date and some numbers.</p>
+  <p align="left">Questions 1-8Make sure you are familiar with the form and you know where to put the information you hear.</p>
+</section>
+
+</body>
+</bento>

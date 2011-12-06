@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<script id="settings" type="application/xml">
+		<settings>
+		<marking/>
+		<feedback wrongonly="false"/>
+		<buttons feedback="false" marking="false"/>
+		<exercise/>
+		<misc/>
+	</settings>
+	</script>
+	
+<script id="model" type="application/xml">
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Conversational techniques required for Part 3. Read the techniques you need to learn and watch the videos.
+		
+</header>
+	
+<section id="body">
+  <video src="../media/Unit09_e2a.flv" mode="16" id="1003"/>
+  <video src="../media/Unit09_e2b.flv" mode="16" id="1004"/>
+  <p align="left">1.	Learn to give reasons for your opinions.</p>
+  <ol>
+    <li>Learn strategies for when you don't understand the	question.</li>
+    <li>Learn what to do when you don't know the answer.</li>
+    <li>Learn how to cover up gaps in your vocabulary.</li>
+  </ol>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+  <p align="left">
+    <b>Click to watch the video</b>
+  </p>
+</section>
+
+</body>
+</bento>

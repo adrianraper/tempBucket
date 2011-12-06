@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="F" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="D" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="E" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="A" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="B" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="C" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read the writing task about the causes of animal and plant extinction. Look at a list of problems on the right, and possible solutions on the left. Match them by writing the letters of the solutions (A-K) below the problems.
+
+Writing Task 2
+</header>
+	
+<section id="body">
+  
+  <ol id="splitquestionList">
+    <li id="1">Some species are unable to adapt to the changing climate brought about by global warming.
+	<p><b>Solution</b> &#xA0;<input id="q1"/><br/></p></li>
+    <li id="2">Overfishing upsets the natural balance of marine life.
+	<p><b>Solution</b> &#xA0;<input id="q2"/><br/></p></li>
+    <li id="3">Logging to provide timber for industry destroys forests.
+	<p ><b>Solution</b> &#xA0;<input id="q3"/><br/></p></li>
+    <li id="4">Some endangered species are still hunted due to the demand for traditional medicines, ivory, skins and other animal products.
+	<p ><b>Solution</b> &#xA0;<input id="q4"/><br/></p></li>
+    <li id="5">Industry continues to pollute rivers, lakes and coastal areas.
+	<p><b>Solution</b> &#xA0;<input id="q5"/><br/></p></li>
+    <li id="6">Forests are cleared to provide agricultural land.
+	<p ><b>Solution</b> &#xA0;<input id="q6"/><br/></p></li>
+  </ol>
+</section>
+
+<section id="rt2001">
+  <p align="left">This exercise will give you some ideas for the writing task. Remember, for every cause you mention in paragraph two, you should suggest at least one corresponding solution in paragraph three. One way to make suggestions is to use modal verbs such as 'should', 'ought to' and 'must', but there are also some other useful phrases you can use - look back at the earlier exercises if you can't remember them.</p>
+</section>
+
+<section id="readingText">
+<h7><p>Solution A:</p></h7>
+<p>There ought to be an international agency to stop the trade in products made from endangered species.</p>
+<h7><p>Solution B:</p></h7>
+<p>Companies that pollute must be heavily fined.</p>
+<h7><p>Solution C:</p></h7>
+<p>Woodlands should be harvested for natural resources rather than cleared in order to grow cash crops.</p>
+<h7><p>Solution D:</p></h7>
+<p>Governments should impose strict limits on fishing.</p>
+<h7><p>Solution E:</p></h7>
+<p>Industry ought to only use timber from renewable forests.</p>
+<h7><p>Solution F:</p></h7>
+<p>CO2 emissions from vehicles and industry should be reduced and more use made of renewable energy sources such as wind and solar power.</p>
+</section>
+
+</body>
+</bento>

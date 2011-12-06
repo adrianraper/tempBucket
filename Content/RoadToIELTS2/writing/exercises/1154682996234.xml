@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a11" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		The sentences 1-10 below suggest ways of dealing with the problem of youth unemployment, which is the topic of the writing task in the next exercise. Complete the sentences by putting the correct phrase or clause into each gap.
+		
+</header>
+	
+<section id="noscroll">
+  <span id="a20" draggable="true">help young people find the right course of higher education and a job which suits them</span>
+  <span id="a19" draggable="true">young people can continue learning instead of being unemployed when they leave school</span>
+  <span id="a17" draggable="true">they have more of an incentive to leave home and look for a job</span>
+  <span id="a13" draggable="true">encouraging them to take on more young people</span>
+  <span id="a18" draggable="true">encourage job mobility among the young</span>
+  <span id="a12" draggable="true">make school leavers more attractive to potential employers</span>
+  <span id="a14" draggable="true">prepare themselves better for jobs in the new economy</span>
+  <span id="a16" draggable="true">help them start up their own businesses</span>
+  <span id="a11" draggable="true">they can choose courses and careers that they are suited for</span>
+  <span id="a15" draggable="true">providing young people with practical work experience</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/WB_AW_018.jpg" mode="1" id="1001"/>
+  <p align="left">1. Schools should provide students with more individual careers advice and guidance so that <font color="#0000ff"><input id="q1" type="droptarget"/>. </font></p>
+  <p align="left">2. Secondary school education needs to be more practical so as to <font color="#0000ff"><input id="q2" type="droptarget"/>.</font></p>
+  <p align="left">3. The government should give subsidies to companies which employ school leavers with the aim of <font color="#0000ff"><input id="q3" type="droptarget"/>.</font></p>
+  <p align="left">4. In order to <font color="#0000ff"><input id="q4" type="droptarget"/>, young people should stay in education longer.</font></p>
+  <p align="left">5. There need to be more youth training schemes for <font color="#0000ff"><input id="q5" type="droptarget"/>.</font></p>
+  <p align="left">6. Young people should be given grants to <font color="#0000ff"><input id="q6" type="droptarget"/>.</font></p>
+  <p align="left">7. Parents should not give so much money to their children so that <font color="#0000ff"><input id="q7" type="droptarget"/>.</font></p>
+  <p align="left">8. So as to <font color="#0000ff"><input id="q8" type="droptarget"/>, governments should make subsidised housing available for young people from other towns.</font></p>
+  <p align="left">9. More places should be created in higher and further education so that <font color="#0000ff"><input id="q9" type="droptarget"/>.</font></p>
+  <p align="left">10. In order to <font color="#0000ff"><input id="q10" type="droptarget"/>, schools need properly trained careers advisers.</font></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>
