@@ -135,6 +135,13 @@ package com.clarityenglish.common.vo.config {
 				this.paths.content = "/Content";
 			}
 			
+			// Name of the menu file (called courseFile to fit in with Orchid)
+			if (xml..courseFile.toString()) {
+				this.paths.menuFilename = xml..courseFile.toString();
+			} else {
+				this.paths.menuFilename = "menu.xml";
+			}
+			
 			if (xml..streamingMedia.toString()) this.paths.streamingMedia = xml..streamingMedia.toString();
 			if (xml..sharedMedia.toString()) this.paths.sharedMedia = xml..sharedMedia.toString();
 			

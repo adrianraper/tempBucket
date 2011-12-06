@@ -153,7 +153,7 @@ package com.clarityenglish.common.model {
 			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
 			var dateNow:String = dateFormatter.format(new Date());
 			
-			var params:Array = [ /*loginProxy.user.id, sessionID, dateNow, mark*/ ];
+			var params:Array = [ loginProxy.user.id, sessionID, dateNow, mark ];
 			new RemoteDelegate("writeScore", params, this).execute();
 			
 			// TODO. Decide if we want to update our local cache of my progress with each new score
@@ -173,6 +173,8 @@ package com.clarityenglish.common.model {
 				var thisExercise:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0];
 				if (thisExercise) 
 					currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+				
+				// TODO. If you wanted to update mySummary details, can you calculate that from the myDetails cache?
 			}
 		}
 		

@@ -134,7 +134,8 @@ package com.clarityenglish.common.model {
 	
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
-			return "menu-LastMinute.xml";
+			//return "menu-Academic-LastMinute.xml";
+			return config.paths.menuFilename;
 		}
 		
 		public function getContentPath():String {

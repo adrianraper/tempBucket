@@ -85,14 +85,9 @@ package com.clarityenglish.ielts.view.progress.components {
 				// WARNING. It is possible for the mediator of a different view (coverage say) to still be loading
 				// and firing notifications to get data. The notifications will be picked up by us too and end up here.
 				// So you need to remove data points before you add them again.
-				// The following works in <point> is the only node in series.
+				// The following works if <point> is the only node in series.
 				_scoreChartXML.charts.chart.data.series[0].setChildren(new XMLList());
-				/*
-				var numberOfPoints:int = _scoreChartXML.charts.chart.data.series[0].point.length();
-				for (var i:int=0; i < numberOfPoints; i++) {
-					delete _scoreChartXML.charts.chart.data.series[0].point[i]; 
-				}
-				*/
+				// Or this works to just delete the first node x times.
 				var numberOfPoints:int = _durationChartXML.charts.chart.data.series[0].point.length();
 				for (var i:int=0; i < numberOfPoints; i++) {
 					delete _durationChartXML.charts.chart.data.series[0].point[0]; 

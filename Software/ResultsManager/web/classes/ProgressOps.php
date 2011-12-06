@@ -15,7 +15,12 @@ class ProgressOps {
 	 * @param string $file
 	 */
 	function getMenuXML($file) {
-		$this->menu = simplexml_load_file($file);
+		// Getting issues with this on some servers
+		// simplexml_load_file(): php_network_getaddresses: getaddrinfo failed: Name or service not known
+		// So try a fileget and load the xml from string.
+		//$this->menu = simplexml_load_file($file);
+		$fileContents = file_get_contents($file);
+		$this->menu = simplexml_load_string($fileContents);
 	}
 	
 	/**
