@@ -88,16 +88,14 @@
 		}
 		// *********
 		// *********
-		// Running scale, width and height with swfobject is off
-		// If I set both to 100%, then IE shows a very small image, FF shows nothing (but the app is running)
-		// If I set a specific height, then it doesn't matter what I put for width
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
 		
 		// v6.5.5.6 Allow resize screen mode
-		var coordsWidth = "100%"; var coordsHeight = "100%";
-		//var coordsWidth = 800; var coordsHeight = 600;
+		var coordsWidth = "100%"; var coordsHeight = "100%"; 
+		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
+		var coordsMinHeight = "600"; var coordsMaxHeight = null;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -157,27 +155,19 @@
 			allowfullscreen: "true",
 			scale: "default"
 		};
-
-		//if (coordsWidth=="100%") {
-		//	params.scale="showall";
-		//} else {
-		//	params.scale="noScale";
-		//}
-		
 		var attr = {
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', 800, 600, 1200, null, true, true);
+		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
 	</script>
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
 
 </head>
 <body onload="onLoad()">
-
 	<div align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
