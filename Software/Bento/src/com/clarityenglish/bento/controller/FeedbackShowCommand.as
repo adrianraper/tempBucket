@@ -24,7 +24,7 @@ package com.clarityenglish.bento.controller {
 	
 	import spark.components.TitleWindow;
 	
-	public class ShowFeedbackCommand extends SimpleCommand {
+	public class FeedbackShowCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -62,6 +62,7 @@ package com.clarityenglish.bento.controller {
 				
 				// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 				titleWindow = new TitleWindow();
+				titleWindow.styleName = "feedbackTitleWindow";
 				titleWindow.title = feedback.title;
 				
 				// Create an XHTMLRichText component and add it to the title window

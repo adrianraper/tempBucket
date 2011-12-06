@@ -86,7 +86,7 @@
     <classEntry path="org.davekeen.util.StateUtil"/>
     <classEntry path="org.flexlayouts.layouts.FlowLayout"/>
     <classEntry path="skins.bento.DynamicViewSkin"/>
-    <classEntry path="skins.bento.FeedbackWindowSkin"/>
+    <classEntry path="skins.bento.BentoTitleWindowSkin"/>
     <classEntry path="skins.bento.VideoPlayerSkin"/>
     <classEntry path="skins.bento.components.AudioPlayerSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseDropDownListButtonSkin"/>

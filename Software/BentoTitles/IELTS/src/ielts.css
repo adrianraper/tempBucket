@@ -229,3 +229,12 @@ marking|MarkingView {
 error|ErrorView {
 	skinClass: ClassReference("skins.ielts.error.ErrorSkin");
 }
+
+/* Popups */
+s|TitleWindow.markingTitleWindow {
+	skinClass: ClassReference("skins.ielts.titlewindows.MarkingTitleWindowSkin");
+}
+
+s|TitleWindow.feedbackTitleWindow {
+	skinClass: ClassReference("skins.ielts.titlewindows.FeedbackTitleWindowSkin");
+}

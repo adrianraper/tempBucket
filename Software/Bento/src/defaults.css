@@ -55,7 +55,7 @@ s|VideoPlayer {
 }
 
 s|TitleWindow {
-	skinClass: ClassReference("skins.bento.FeedbackWindowSkin");
+	skinClass: ClassReference("skins.bento.BentoTitleWindowSkin");
 }
 
 /* This applied to all TextInputs for now, but really it should be only for those in exercises */
