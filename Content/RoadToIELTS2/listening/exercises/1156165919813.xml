@@ -63,9 +63,9 @@
 <section id="body">
 
 <img class="rightFloat" src="../media/_LC_LN_003.JPG" mode="1" id="1001"/>
-<audio controls="compact" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020"/>
+<audio controls="hidden" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
 
-<div id="gapfillText">
+
 <ol id="questionList">
 	<li id="1">Cornish<tab/><tab/><input id="q1" type="droptarget"/></li>
 	<li id="2">Manx<tab/><tab/><input id="q2" type="droptarget"/></li>
@@ -74,7 +74,7 @@
 	<li id="5">Trumai<tab/><tab/><input id="q5" type="droptarget"/></li>
 	<li id="6">Catalan<tab/><tab/><input id="q6" type="droptarget"/></li>
 </ol>
-</div>
+
 </section>
 
 <section id="fb1">

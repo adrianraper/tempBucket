@@ -115,7 +115,7 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/LE_LN_002.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/LE_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
+  <audio controls="hidden" class="leftFloat" src="../media/LE_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
   <ol id="questionList">
   <p>Which&#xA0;<b>THREE</b>&#xA0;types of restaurant does the speaker recommend?</p>
   <li id="1"><input id="q1"/></li>

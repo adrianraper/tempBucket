@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.zone {
 	import mx.core.IDataRenderer;
 	
 	import org.osflash.signals.Signal;
+	import org.osmf.events.DynamicStreamEvent;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	
@@ -294,6 +295,9 @@ package com.clarityenglish.ielts.view.zone {
 				adviceZoneVideoPlayer.play();
 			});
 			
+		}
+		protected function onDynamicVideoEvent(e:DynamicStreamEvent):void {
+			trace(e.toString());
 		}
 	}
 	

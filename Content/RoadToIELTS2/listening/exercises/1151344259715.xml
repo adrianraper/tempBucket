@@ -77,7 +77,8 @@
 		
 </header>
 	
-<section id="body"><audio controls="compact" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
+<section id="body">
+<audio controls="hidden" autoplay="true" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
 <img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"/>
 
 <h1><p>Setting up a web site</p></h1>

@@ -8,7 +8,6 @@
 						<exercise id="300" caption="MemoryLeak1" href="tests/MemoryLeak1.xml" />
 						<exercise id="301" caption="MemoryLeak2" href="tests/MemoryLeak2.xml" />
 					</unit>
-					
 					<unit caption="Tests" id="0">
 						<exercise id="125" caption="VideoLayout1" href="tests/VideoLayout1.xml" />
 						<exercise id="124" caption="Feedback1" href="tests/Feedback1.xml" />
@@ -37,7 +36,7 @@
 						<exercise id="118" caption="FixedHeight" href="tests/FixedHeight.xml" />
 						<exercise id="119" caption="xhtmlfail" href="tests/xhtmlfail.xml" />
 					</unit>
-					<unit caption="Problems" id="1">
+					<unit caption="Trac problems" id="1">
 						<exercise id="1001" caption="trac7" href="trac7/1156153794715.xml" />
 						<exercise id="1002" caption="trac5" href="trac5/1156153794170.xml" />
 						<exercise id="1003" caption="trac8" href="trac8/1317260895296.xml" />
@@ -48,6 +47,16 @@
 						<exercise id="1007" caption="trac48" href="trac48/1156153794672.xml" />
 						<exercise id="1008" caption="trac18" href="trac18/1156153794077.xml" />
 						<exercise id="1009" caption="trac74" href="trac74/trac74.xml" />
+						<exercise id="1010" caption="trac46" href="trac46/trac46.xml" />
+						<exercise id="1011" caption="trac93" href="trac93/trac93.xml" />
+						<exercise id="1012" caption="trac85" href="trac85/trac85.xml" />
+						<exercise id="1013" caption="trac86" href="trac86/trac86.xml" />
+						<exercise id="1014" caption="trac94" href="trac94/trac94.xml" />
+						<exercise id="1015" caption="trac87_1" href="trac87_1/trac87_1.xml" />
+						<exercise id="1016" caption="trac87_2" href="trac87_2/trac87_2.xml" />
+						<exercise id="1017" caption="trac28" href="trac28/trac28.xml" />
+						<exercise id="1018" caption="trac95" href="trac95/trac95.xml" />
+						<exercise id="1019" caption="trac97" href="trac97/trac97.xml" />
 					</unit>
 				</course>
 			</menu>

@@ -109,8 +109,7 @@
 			<s:dataProvider>
 				<s:ArrayCollection>
 					<fx:Object label="Test cases" filename="menu.xml" currentDir="http://{serverName}/Content/IELTSTester-Dave" />
-					<fx:Object label="Leisure (old)" filename="menu.xml" currentDir="http://{serverName}/Content/RoadToIELTS2-Academic" />
-					<fx:Object label="Last minute" filename="menu-LastMinute.xml" currentDir="http://{serverName}/Content/IELTS-Joe" />
+					<fx:Object label="Last minute" filename="menu-Academic-LastMinute.xml" currentDir="http://{serverName}/Content/RoadToIELTS2" />
 				</s:ArrayCollection>
 			</s:dataProvider>
 		</s:ButtonBar>

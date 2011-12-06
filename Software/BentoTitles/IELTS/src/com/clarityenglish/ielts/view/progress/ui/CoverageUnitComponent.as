@@ -33,7 +33,20 @@ package com.clarityenglish.ielts.view.progress.ui {
 		public function set dataProvider(value:XML):void {
 
 			if (value) {
-				listDataProvider = new XMLListCollection(value.groups.group);
+				var listDP:XMLList= new XMLList();
+				var newNode:XML = new XML();
+				var newItem:XML = new XML();
+				var builder:XML = new XML();
+				builder = <list />;
+				for each (var group:XML in value.groups.group) {
+					newNode = <group caption={group.@caption} />;
+					for each (var exercise:XML in value.unit.(@["class"]=='practice-zone').exercise.(@["group"]==group.@id)) {
+						newItem = <exercise caption={exercise.@caption} done={exercise.@done} />;
+						newNode.appendChild(newItem);
+					}
+					builder.appendChild(newNode);
+				}
+				listDataProvider = new XMLListCollection(builder.list);
 			}
 			
 		}

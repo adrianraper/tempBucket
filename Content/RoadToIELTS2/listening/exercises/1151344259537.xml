@@ -69,7 +69,7 @@
 </header>
 	
 <section id="body">
-  <audio controls="compact" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" autoplay="true" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_005.jpg" mode="1" id="1001"/>
   
   

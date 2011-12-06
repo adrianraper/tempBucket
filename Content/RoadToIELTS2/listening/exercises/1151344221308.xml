@@ -109,7 +109,7 @@
 	
 <section id="body">
   
-  <audio controls="compact" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" autoplay="true" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
   
   <div id="gapfillTable">
@@ -123,7 +123,7 @@
   <p>(3) <input id="q3"/> <tab/><tab/><tab/>(4) <input id="q4"/></p>
   
   <p><b>Time Class Starts <tab/><tab/><tab/>Length of Class</b></p>
-  <p>(5) <input id="q6"/> p.m. <tab/><tab/>(6) <input id="q7"/></p>
+  <p>(5) <input id="q6"/>&#xA0;p.m. <tab/><tab/>(6) <input id="q7"/></p>
   <p><b>Maximum Class Size <tab/><tab/>Start Dates</b></p>
   <p>(7) <input id="q8"/><tab/><tab/>5th and 7th September</p>
   </div>

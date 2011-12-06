@@ -26,22 +26,36 @@
 	
 	<s:HGroup left="10" horizontalCenter="middle" >
 		<s:Label id="captionLabel" height="24" horizontalCenter="middle" />
-		<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
-			<s:stroke>
-				<s:SolidColorStroke color="0x000000" weight="1"/>
-			</s:stroke>
-			<s:fill>
-				<s:SolidColor color="{courseColor}" />
-			</s:fill>
-		</s:Rect>
-		
-		<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
-			<s:stroke>
-				<s:SolidColorStroke color="0x000000" weight="1"/>
-			</s:stroke>
-			<s:fill>
-				<s:SolidColor color="0xFFFFFF" />
-			</s:fill>
-		</s:Rect>
+		<s:List id="exerciseIndicatorList" width="100%" height="40" horizontalScrollPolicy="off" borderVisible="false" >
+			<s:layout>
+				<s:HorizontalLayout />
+			</s:layout>
+			
+			<s:itemRenderer>
+				<fx:Component>
+					<s:ItemRenderer>
+						<fx:Script>
+							<![CDATA[
+								import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
+								override public function set data(value:Object):void {
+									super.data = value;
+									
+									var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
+									exerciseIndicator.color = (Number(data.@count)>0) ? courseColor : 0xFFFFFF;
+								}
+							]]>
+						</fx:Script>
+						<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
+							<s:stroke>
+								<s:SolidColorStroke color="0x000000" weight="1"/>
+							</s:stroke>
+							<s:fill>
+								<s:SolidColor id="exerciseIndicator" />
+							</s:fill>
+						</s:Rect>
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>
 	</s:HGroup>
 </s:ItemRenderer>

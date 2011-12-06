@@ -66,7 +66,7 @@
 		
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" src="../media/ST_LN1a.mp3" mode="4" id="1002"/>
+<section id="body"><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/><audio controls="hidden" sutoplay="true" src="../media/ST_LN1a.mp3" mode="4" id="1002"/>
 
 <h8><p>Williams Electrical Goods</p></h8>
 <h2><p>Repair Request Form</p></h2>

@@ -69,7 +69,7 @@
 	<!-- underline -->
 	<s:Line left="0" right="0" bottom="1">
 		<s:stroke>
-			<s:SolidColorStroke color="#000000" weight="1" alpha="0.6" />
+			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" />
 		</s:stroke>
 	</s:Line>
 	
