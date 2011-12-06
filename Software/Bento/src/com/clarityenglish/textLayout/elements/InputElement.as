@@ -53,6 +53,8 @@ package com.clarityenglish.textLayout.elements {
 		private var _droppedNode:XML;		
 		private var _droppedFlowElement:FlowElement;
 		
+		private var disableValueCommitEvent:Boolean;
+		
 		public function InputElement() {
 			super();
 		}
@@ -95,7 +97,10 @@ package com.clarityenglish.textLayout.elements {
 		public function set value(value:String):void {
 			_value = value;
 			
+			// #98 - don't dispatch any events when the value is being set programatically so that feedback can't be fired on show answers
+			disableValueCommitEvent = true;
 			updateComponentFromValue();
+			disableValueCommitEvent = false;
 		}
 		
 		/**
@@ -172,7 +177,7 @@ package com.clarityenglish.textLayout.elements {
 					});
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
-					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void { getEventMirror().dispatchEvent(e.clone()); } );
+					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void { if (!disableValueCommitEvent) getEventMirror().dispatchEvent(e.clone()); } );
 					break;
 				case TYPE_DROPTARGET:
 					component = new TextInput();
