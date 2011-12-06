@@ -7,6 +7,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	
 	public interface IExerciseView extends IEventDispatcher {
 		
+		function set courseCaption(value:String):void;
 		function get exercise():Exercise;
 		function selectAnswerMap(question:Question, answerMap:AnswerMap):void;
 		function markAnswerMap(question:Question, answerMap:AnswerMap, isShowAnswers:Boolean = false):void

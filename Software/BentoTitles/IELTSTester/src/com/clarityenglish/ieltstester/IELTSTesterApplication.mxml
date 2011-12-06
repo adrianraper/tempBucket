@@ -73,6 +73,7 @@
 			
 			protected function onShowAnswersClick(event:Event):void {
 				facade.sendNotification(BBNotifications.ANSWERS_SHOW);
+				onMarkingShownClick(null);
 			}
 			
 			protected function onMarkingClick(event:MouseEvent):void {

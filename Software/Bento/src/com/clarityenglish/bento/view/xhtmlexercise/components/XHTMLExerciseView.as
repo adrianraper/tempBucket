@@ -71,6 +71,12 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var readingTextRichText:XHTMLRichText;
 		
+		[Bindable]
+		public var courseCaption:String;
+		
+		[Bindable]
+		public var atLeastOneSelectedAnswerHasFeedback:Boolean;
+		
 		/**
 		 * Since this view can only be driven by an Exercise provide a helper to typecast it
 		 * 
@@ -220,6 +226,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				// Remove any existing classes and add the result class
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
 				XHTML.addClass(answerNode, answer.markingClass);
+				
+				// #102
+				if (isShowAnswers && answer.feedback) atLeastOneSelectedAnswerHasFeedback = true;
 				
 				// Refresh the element and update the screen
 				// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.

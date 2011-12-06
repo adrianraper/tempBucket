@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.exercise {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import org.osflash.signals.Signal;
@@ -35,11 +36,22 @@ package com.clarityenglish.ielts.view.exercise {
 		[Bindable]
 		public var exerciseTitle:String;
 		
-		[Bindable]
-		public var backgroundColorTop:Number;
+		private var _courseCaption:String;
 		
-		[Bindable]
-		public var backgroundColorBottom:Number;
+		public function set courseCaption(value:String):void {
+			_courseCaption = value;
+			dispatchEvent(new Event("courseCaptionChanged"));
+		}
+		
+		[Bindable(event="courseCaptionChanged")]
+		public function get backgroundColorTop():Number {
+			return getStyle(_courseCaption.toLowerCase() + "Color")
+		}
+		
+		[Bindable(event="courseCaptionChanged")]
+		public function get backgroundColorBottom():Number {
+			return getStyle(_courseCaption.toLowerCase() + "ColorDark")
+		}
 		
 		public var startAgain:Signal = new Signal();
 		public var showMarking:Signal = new Signal();

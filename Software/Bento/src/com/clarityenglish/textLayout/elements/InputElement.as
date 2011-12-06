@@ -205,7 +205,9 @@ package com.clarityenglish.textLayout.elements {
 		private function onDragEnter(event:DragEvent):void {
 			var dropTarget:IUIComponent = IUIComponent(event.currentTarget);
 			DragManager.acceptDragDrop(dropTarget);
-			DragManager.showFeedback(DragManager.COPY);
+			
+			// If we are dragging to ourselves don't show the green icon, but still allow it (so we can catch it in onDragComplete)
+			DragManager.showFeedback((dropTarget !== event.dragInitiator) ? DragManager.COPY : DragManager.NONE);
 		}
 		
 		protected function onDragDrop(event:DragEvent):void {
@@ -244,14 +246,17 @@ package com.clarityenglish.textLayout.elements {
 		 * @param event
 		 */
 		protected function onDragComplete(event:DragEvent):void {
-			if (DragManager.getFeedback() == DragManager.NONE) {
-				// TODO: This isn't quite right; I need to determine how exactly this works with instant marking
-				_droppedFlowElement = null;
-				_droppedNode = null;
-				text = "";
-				value = "";
-				(component as TextInput).text = "";
-			}
+			// If the item is dragged from itself to itself then do nothing
+			if (event.relatedObject === getComponent())
+				return;
+			
+			// #101 states than no matter what the source will be cleared so no need to check for DragManager.NONE - if (DragManager.getFeedback() == DragManager.NONE) {
+			// TODO: There is still a bug with the ticks and crosses not being removed
+			_droppedFlowElement = null;
+			_droppedNode = null;
+			text = "";
+			value = "";
+			(component as TextInput).text = "";
 		}
 		
 		private function updateComponentFromValue():void {

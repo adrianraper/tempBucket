@@ -6,7 +6,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.DictionaryEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
-	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
@@ -73,10 +72,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					handleShowAnswers(note);
 					break;
 				case BBNotifications.MARKING_SHOWN:
-					view.setExerciseMarked();
-					view.stopAllAudio();
+					handleMarkingShown(note);
 					break;
 				case BBNotifications.EXERCISE_STARTED:
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
+					
 					view.stopAllAudio();
 					break;
 			}
@@ -105,6 +106,14 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					view.markAnswerMap(question, answerMap, true);
 				}
 			}
+		}
+		
+		protected function handleMarkingShown(note:INotification):void {
+			// Set the exercise marked (this will disable interaction)
+			view.setExerciseMarked();
+			
+			// Stop all audio
+			view.stopAllAudio();
 		}
 		
 		/**

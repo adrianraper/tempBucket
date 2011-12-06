@@ -64,9 +64,7 @@
 					breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
 					view.exerciseTitle = breadcrumb.join(" > ");
 					
-					// Set the background colours for this course
-					view.backgroundColorTop = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "Color");
-					view.backgroundColorBottom = view.getStyle(bentoProxy.currentCourseNode.@caption.toLowerCase() + "ColorDark");
+					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
 					
 					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
 					break;
