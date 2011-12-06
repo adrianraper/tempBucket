@@ -8,6 +8,8 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	
 	import flashx.textLayout.elements.BreakElement;
 	
@@ -15,6 +17,8 @@ package com.clarityenglish.ielts.view.zone {
 	import mx.core.IDataRenderer;
 	
 	import org.osflash.signals.Signal;
+	import org.osmf.net.DynamicStreamingItem;
+	import org.osmf.net.DynamicStreamingResource;
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
@@ -259,6 +263,38 @@ package com.clarityenglish.ielts.view.zone {
 			return (_course) ? courseClass + "_" + (_exerciseSelectorPoppedOut ? "popped" : "normal") : super.getCurrentSkinState();
 		}
 		
+		// Called from the skin when a dynamic streaming video set is selected
+		public function onAdviceZoneVideoRSSSelect(url:String):void {
+			var urlLoader:URLLoader = new URLLoader();
+			urlLoader.addEventListener(Event.COMPLETE, onAdviceZoneVideoRSSLoadComplete);
+			urlLoader.load(new URLRequest(url));
+		}
+		protected function onAdviceZoneVideoRSSLoadComplete(e:Event):void {
+			
+			var dynamicList:XML = new XML(e.target.data);
+			
+			// Build the mxml component
+			//var host:String = "rtmp://streaming.clarityenglish.com:1935/cfx/st/";
+			var host:String = dynamicList.channel.host.toString();
+			var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+			dynamicSource.urlIncludesFMSApplicationInstance = true;
+			dynamicSource.streamType = dynamicList.channel.type.toString();
+			var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
+			for each (var stream:XML in dynamicList.channel.item) {
+				var streamName:String = stream.streamName;
+				var bitrate:Number = stream.bitrate;
+				var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
+				streamItems.push(streamingItem);
+			}
+			dynamicSource.streamItems = streamItems; 
+			adviceZoneVideoPlayer.source = dynamicSource;
+			
+			// #63
+			callLater(function():void {
+				adviceZoneVideoPlayer.play();
+			});
+			
+		}
 	}
 	
 }
