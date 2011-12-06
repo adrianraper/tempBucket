@@ -1,1 +1,0 @@
-dbHost=2&content=/Content&database=SQLServer&scripting=PHP&mainMovies=/Software/Common&interfaceMovies=/Software/RoadToIELTS&dbPath=Database&help=/Software/RoadToIELTS/Help/help.htm&sharedMedia=/Software/AuthorPlus/SharedMedia&end=1

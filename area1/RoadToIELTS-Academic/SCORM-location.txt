@@ -1,1 +1,0 @@
-content=http://www.clarityenglish.com/Content&dbHost=2&mainMovies=http://www.clarityenglish.com/Software/Common&interfaceMovies=http://www.clarityenglish.com/Software/RoadToIELTS&sharedMedia=http://www.clarityenglish.com/Software/AuthorPlus/sharedMedia&help=http://www.clarityenglish.com/Software/AuthorPlus/Help/help.htm#openWindow&scripting=PHP&database=SQLServer&end=1
