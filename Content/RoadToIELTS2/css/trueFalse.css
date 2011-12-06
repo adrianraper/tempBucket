@@ -194,25 +194,32 @@ padding-bottom: 12px;
 padding-bottom: 12px;
 }
 /*This is for Speaking Unit 1 The speaking test (2) */
+
 #outer{
-position:absolute;
-    padding-top: 20px;
-	 width:1200px;
+
+position: absolute;
+    width:500px;
+}
 }
 
 #content{
-position:absolute;
+
+position:relative;
+padding-top:25px;
+padding-left: -25px;
     height: 700px;
     width:400px;
     line-height:22em;
-	padding-left: -45px;
 }
 
 #video{
-	float: right;
-	width:760px;
-	display: inline;
-	padding-right: 20px;
 
+	float: right;
+	width:100%;
+
+	padding-top: 0em;
+	padding-right: 0em;
+	padding-left: 500px;
 	margin-top: 0em;
+}
 }

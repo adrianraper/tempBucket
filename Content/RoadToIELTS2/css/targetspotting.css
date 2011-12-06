@@ -106,6 +106,10 @@ a.selected {
 	text-decoration: underline;
 }
 
+g.selected {
+	text-decoration: underline;
+}
+
 a.correct, input.correct, g.correct, select.correct {
 	color: #00AA00 !important;
 }
@@ -177,7 +181,7 @@ padding-left: -25px;
 	list-style-type: decimal;
 	padding-left: 20px;
 	padding-right: 280%;
-	padding-top: 20px;
+	padding-top: 0px;
 	padding-bottom: 20em;
 	text-align: left;
 	line-height: 20em;
@@ -209,7 +213,6 @@ padding-left: 15px;
 }
 
 #body .rightFloatvideo1 {
-
 	float: right;
 	width:760px;
 	height: 900px;

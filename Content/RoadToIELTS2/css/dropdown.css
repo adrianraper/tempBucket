@@ -170,3 +170,19 @@ padding-bottom: 12px;
 #dropdown p{
 padding-bottom: 12px;
 }
+
+#dropdown li{
+padding-left:-25px;
+}
+/* this is for writing unit 1 Linking words and phrases (1) */
+#wrapper{
+	position:absolute;
+
+    width:1000px;
+}
+#part1{
+Position: relative;
+padding-top: 10px;
+padding-left: -20px;
+line-height:22em;
+}

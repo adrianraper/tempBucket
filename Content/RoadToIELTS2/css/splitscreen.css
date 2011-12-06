@@ -1,6 +1,7 @@
 * {
 	font-size: 12px;
 	font-family: Verdana;
+	
 }
 
 /* The main header should always be bold */
@@ -13,12 +14,15 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
+	
 }
+
 
 /* Paragraphs have spacing after them */
 p {
 	
 }
+
 
 /* Lists use numbers. */
 
@@ -35,19 +39,19 @@ p {
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 /* photo1 is for photos in a splitscreen exercise in which the photo is sandwiched between two sections of text. */
 img.photo1 {
-	float: left; 
+	float:left; 
 	width: 380px;
 	height: 194px;
 	padding: 0px  250em 0px 25px;
-}
-
+	}
+	
 /* photo2 is for photos in a splitscreen exercise in which the photo appears at the top of the reading text section. */
 img.photo2 {
-	float: left; 
+	float:left; 
 	width: 380px;
 	height: 194px;
 	padding: 20px  250em 0px 25px;
-}
+	}
 
 img.leftFloat {
 	float:left;
@@ -74,6 +78,7 @@ img.leftFloat {
 	line-height: 22em;
 }
 
+
 /* A paragraph class for hanging indents that work with numbers */
 	
 /* Links and draggable spans should be blue and not underlined */
@@ -81,7 +86,6 @@ a, span[draggable="true"] {
 	color: #3A00FF;
 	text-decoration: none;
 }
-
 /* Draggable spans in noscroll should be in a bordered filled box */
 #noscroll span[draggable=true] {
 	float: left;
@@ -95,7 +99,6 @@ a, span[draggable="true"] {
 	border-radius: 12px;
 	background-color: #FFFFFF;
 }
-
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
@@ -151,7 +154,6 @@ h1 {
 	line-height: 20em;
 	
 }
-
 /* h2 is used for subtitles in reading texts and exercises */
 h2 {
 	font-family: Verdana;
@@ -162,9 +164,8 @@ h2 {
 	padding-bottom: 18em;
 	padding-right: 25em;
 	text-align: left;
-    line-height: 20em
+    line-height: 20em;
 }
-
 h4 {
 	font-family: Arial Black;
 	font-size: 14px;
@@ -172,28 +173,25 @@ h4 {
 	padding-bottom: 6px;
 	padding-top: 10px;
 }
-
 /* h5 is used for question headings (when no image) in the questionList portion of a splitscreen exercise */
- h5 {
+ h5{
 	font-family: Arial Black;
 	font-size:13px;
 	padding-left: 20px;
 	padding-bottom: 15px;
 	padding-top: 20px;
 }
-
 /* h7 is used for section headings in the reading text portion of a splitscreen exercise */
-h7 {
+h7{
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 10px;
 	padding-left: 24px;
 	padding-right: 25em;
-}
-
+	}
 /* h8 is used for main titles in exercises when subtitles are present. */
-h8 {
+h8{
 	font-family: Arial Black;
 	font-size: 15px;
 	font-weight: bold;
@@ -205,25 +203,24 @@ h8 {
 	line-height: 20em;
 	padding-right: 25em;
 }
-
 /* h9 is used for section headings in the exercise portion of a splitscreen gapfill text-based exercise */
-h9 {
+h9{
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	margin-top: 10px;
 	padding-left: -95px;
 	padding-right: 25em;
-}
+	}
 
 /*h10 is used for headings in the exercise portion of a splitscreen exercise when there's a mixture of heading text and questionlist text. */	
-h10 {
+h10{
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 20px;
 	padding-left: 25px;
-}
+	}
 
 /* h11 is used as the main title of splitscreen text when a photo is placed above it. Example: Reading, Unit 1, Matching (information to paragraphs) */
 h11 {
@@ -236,8 +233,8 @@ h11 {
 	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
+	
 }
-
 /* Exercise ID and class */
 #splitquestionList {
 	list-style-type: decimal;
@@ -248,12 +245,12 @@ h11 {
 	text-align: left;
 	line-height: 22em;
 	margin: 0 20px 20px 20px;
-}
-
+	}
+	
 #splitquestionList li {
 	padding-bottom: 30px;
 	padding-left: 0px;
-}
+	}
 
 .splitquestionList {
 	list-style-type: decimal;
@@ -264,11 +261,11 @@ h11 {
 	text-align: left;
 	line-height: 30em;
 	margin: 0 20px 20px 20px;
-}
+	}
 	
 .splitquestionList li {
-	padding-left: 0px;
-}
+		padding-left: 0px;
+	}
 
 #targetspotting {
 	list-style-type: decimal;
@@ -279,8 +276,7 @@ h11 {
 	text-align: left;
 	line-height: 22em;
 	margin: 0 20px 20px 20px;
-}
-
+	}
 /*This is for questionLists with photos at the top of the exercise. */
 #splitquestionListP {
 	list-style-type: decimal;
@@ -291,9 +287,10 @@ h11 {
 	text-align: left;
 	line-height: 22em;
 	margin: 0 20px 20px 20px;
-}
+	}
 
-#gapfillText {
+
+#gapfillText{
 	padding-top: 20px;
 	padding-bottom: 20em;
 	padding-left: 112px;
@@ -301,7 +298,6 @@ h11 {
 	line-height: 22em;
 	padding-right: 25em;
 }
-
 #mchoices {
 	list-style-type: decimal;
 	padding-left: 20px;
@@ -309,16 +305,16 @@ h11 {
 	padding-right: 200%;
 	text-align: left;
 	line-height: 22em;
-}
+	}
+	
 
-#dragdrop {
+#dragdrop{
 	padding-top: 12px;
 	text-align: justify;
 	line-height: 22em;
-	padding-right: 25px
+	padding-right: 25px;
 }
-
-#dropdown {
+#dropdown{
 	list-style-type: decimal;
 	padding-left: 30px;
 	padding-right: 35px;
@@ -337,7 +333,6 @@ h11 {
 #reading {
 	padding-left: 17em;
 }
-
 #splitreadingList {
 	list-style-type: decimal;
 	padding-left: 20px;
@@ -357,34 +352,31 @@ h11 {
 	padding-left: 1px;
  	tab-stops: 15px;
  	text-indent: -95em;
-}
+	}
 
-#splitdrag {
+#splitdrag{
 	padding-top: 20px;
 	padding-left: 15px;
 	padding-right: 25em;
 }
-
-#splitdrag p {
+#splitdrag p{
 	padding-bottom: 20em;
 	text-align: left;
 	line-height: 22em;
 }
-
-#splitreadingList li {
-	padding-left: 20px;
-	line-height: 20px;
+#splitreadingList li{
+padding-left: 20px;
+line-height: 20px;
 }
 
 /*This is for reading Academic reading passage (2)  */
-#outer {
+#outer{
 	position:absolute;
     padding-top: 0px;
 	padding-left: 0px;
     width:500px;
 }
-
-#content {
+#content{
 	position:relative;
 	padding-left:15px;
 	padding-top: 20px;
@@ -392,30 +384,28 @@ h11 {
     width:120px;
     line-height:22em;
 }
-
-#content1 {
-	padding-top: 20px;
-	padding-left: 130px; 
+#content1{
+padding-top: 20px;
+padding-left: 130px; 
 	position:relative;
-	height:700px;
-	width: 500px;
-	line-height:22em;
+   height:700px;
+   width: 500px;
+   line-height:22em;
 }
 
 /*This is for reading Unit 3 Matching  */
-#matching {
+#matching{
+   
 	padding-left: -10px;
     width:600px;
 }
-
-#m1 {
-	height: 160px;
-	width:240px;
-	line-height:22em;
+#m1{
+    height: 160px;
+    width:240px;
+    line-height:22em;
 }
-
-#m2 {
-	height:160px;
-	width: 250px;
-	line-height:22em;
+#m2{
+   height:160px;
+   width: 250px;
+   line-height:22em;
 }

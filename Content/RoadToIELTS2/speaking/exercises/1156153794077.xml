@@ -21,17 +21,12 @@
 		}
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc/>
-	</settings>
-	</script>
+	
 	<br/>
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
 <questions>
 	<MultipleChoiceQuestion block="q1">
 		<answer source="a1" correct="true"/>
@@ -58,8 +53,9 @@ Watch Part One of an interview with Zenia. Are the following statements true or 
 	
 <section id="body">
 <div id="outer">
+
 	<div id="video">
-<video  id="1003" src="../media/Unit01_e3.flv" autoPlay="false"  />
+<video  id="1003" src="../media/Unit01_e3.flv"  autoPlay="false"  />
 </div>
 
 

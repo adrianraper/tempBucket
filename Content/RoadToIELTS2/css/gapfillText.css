@@ -273,9 +273,9 @@ padding-bottom: 12px;
 }
 .hangingIndent2 {
  	tab-stops: 30px;
- 	text-indent: -50px;
- 	padding-left: 70px;
-	line-height: 22em;
+ 	text-indent: -73px;
+ 	padding-left: 95px;
+	line-height: 30em;
 }		
 .hangingIndent3{
 	tab-stops: 30px;
@@ -285,7 +285,7 @@ padding-bottom: 12px;
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 25px;
+	padding-top: 10px;
 	padding-right: 25px;
 	padding-left: 25px;
 }
@@ -326,21 +326,24 @@ img.center {
 
 /*This is for Listening Unit 1 Table completion */
 #outer{
-	position:relative;
+	position:absolute;
 	padding-top: 100px;
    padding-left: -22em;
     width:500px;
 }
 #content{
-position:absolute;
-    height: 300px;
+position:relative;
+padding-top:120px;
+    height: 400px;
     width:220px;
     line-height:22em;
 }
 #content1{
-position:absolute;
-   height:300px;
-   width:220px;
+position:relative;
+padding-left:200px;
+padding-top:120px;
+   height:400px;
+   width:320px;
    line-height:22em;
 }
 
@@ -360,23 +363,27 @@ padding-top: 25px;
 
 /* This class is used for column layout in Listening, Unit 3, Sentence completion. */
 #outersencomp{
-	position:relative;
-	padding-top: 70px;
+	position:static;
+	padding-top: 25px;
    padding-left: -22em;
-    width:700px;
+    width:auto;
 }
 #contentsencomp{
-	position:absolute;
+	position:fixed;
 	float: left;
     height: 300px;
     width:100px;
 	line-height: 30px;
+	top: 0;
+	left: 20px;
 }
 
 #content1sencomp{
-   position:absolute;
+   position:relative;
+padding-top:70px;
+   left: -20px;
    float: left;
-   height:300px;
-   width:500px;
+   height:900px;
+	width: 800px;
    line-height: 30px;
 }

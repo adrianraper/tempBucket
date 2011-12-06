@@ -4,7 +4,7 @@
 		<script id="model" type="application/xml">
 			<view>
 				<name>com.clarityenglish.bento.view.swfplayer.SWFPlayerView</name>
-				<param name="src" value="media/u8_ebook.swf" />
+				<param name="src" value="ebook/rti2_ebook_speaking.swf" />
 			</view>
 		</script>
 	</head>

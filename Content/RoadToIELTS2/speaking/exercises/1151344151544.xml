@@ -12,17 +12,12 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="true" marking="true"/>
-		<exercise/>
-		<misc/>
-	</settings>
-	</script>
+	
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="false"/>

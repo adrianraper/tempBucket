@@ -57,13 +57,13 @@
 <section id="body">
 
   <ol id="splitquestionList">
-    <li id="1">Broca discovered that aphasic patients often have&#xA0;<input id="q1"/>&#xA0;located in the same part of the brain.</li>
-    <li id="2">The left half of the body is known to be controlled by the &#xA0;<input id="q2"/>&#xA0;of the brain.</li>
-    <li id="3">For most people, the right ear and eye&#xA0;<input id="q3"/>&#xA0;better than the left ear and eye.</li>
-    <li id="4">After surgery, patients suffering from epilepsy are only able to use&#xA0;<input id="q4"/>&#xA0;to describe what is happening in their left visual field.</li>
-    <li id="5">In photographs produced by the PET technique,&#xA0;<input id="q5"/>&#xA0;of the brain appear less brightly.</li>
-    <li id="6">Sign aphasia is a condition associated with&#xA0;<input id="q6"/>&#xA0;people.</li>
-    <li id="7">It seems that the left hemisphere of the brain deals with the&#xA0;<input id="q7"/>&#xA0;of language rather than the physical acts involved in speech.</li>
+    <li class="splitquestionList">Broca discovered that aphasic patients often have&#xA0;<input id="q1"/>&#xA0;located in the same part of the brain.</li>
+    <li>The left half of the body is known to be controlled by the &#xA0;<input id="q2"/>&#xA0;of the brain.</li>
+    <li>For most people, the right ear and eye&#xA0;<input id="q3"/>&#xA0;better than the left ear and eye.</li>
+    <li>After surgery, patients suffering from epilepsy are only able to use&#xA0;<input id="q4"/>&#xA0;to describe what is happening in their left visual field.</li>
+    <li>In photographs produced by the PET technique,&#xA0;<input id="q5"/>&#xA0;of the brain appear less brightly.</li>
+    <li>Sign aphasia is a condition associated with&#xA0;<input id="q6"/>&#xA0;people.</li>
+    <li>It seems that the left hemisphere of the brain deals with the&#xA0;<input id="q7"/>&#xA0;of language rather than the physical acts involved in speech.</li>
   </ol>
   
 </section>
