@@ -24,8 +24,8 @@
 		]]>
 	</fx:Script>
 	
-	<s:HGroup left="10">
-		<s:Label id="captionLabel"  />
+	<s:HGroup left="10" horizontalCenter="middle" >
+		<s:Label id="captionLabel" height="24" horizontalCenter="middle" />
 		<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
 			<s:stroke>
 				<s:SolidColorStroke color="0x000000" weight="1"/>

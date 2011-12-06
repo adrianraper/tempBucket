@@ -21,7 +21,7 @@
 		<s:DataGrid id="scoreDetailsDataGrid" width="70%" height="100%" dataProvider="{hostComponent.tableDataProvider}" >
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn headerText="Unit" dataField="@unitCaption" />
+					<s:GridColumn headerText="Unit" dataField="@unitCaption"  />
 					<s:GridColumn headerText="Exercise" dataField="@caption" />
 					<s:GridColumn headerText="Score" dataField="@score" />
 					<s:GridColumn headerText="Time spent" dataField="@duration" />
@@ -29,5 +29,6 @@
 			</s:columns>
 		</s:DataGrid>
 	</s:HGroup>
-
+	
+		
 </s:Skin>

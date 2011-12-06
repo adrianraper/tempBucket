@@ -17,22 +17,20 @@
 				captionLabel.text = data.@caption;
 				
 				var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color'); 
-				fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xFFFFFF;
+				fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xB3B3B3;
 				
 			}
 			
 		]]>
 	</fx:Script>
 	
+	
 	<s:Group left="10">
 		<s:Rect left="2" top="2" width="8" height="8" radiusX="2" radiusY="2">
-			<s:stroke>
-				<s:SolidColorStroke color="0x000000" weight="1"/>
-			</s:stroke>
 			<s:fill>
 				<s:SolidColor id="fillColor" />
 			</s:fill>
 		</s:Rect>
-		<s:Label id="captionLabel" left="20" />
+		<s:Label id="captionLabel" left="20" height="24" />
 	</s:Group>
 </s:ItemRenderer>

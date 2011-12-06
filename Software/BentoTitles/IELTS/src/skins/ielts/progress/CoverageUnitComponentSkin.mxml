@@ -11,7 +11,7 @@
 	</s:layout>
 	
 	<s:Label id="coverageHeadingLabel" text="{hostComponent.caption}" />
-	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#CC6600" 
+	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%" 
 			dataProvider="{hostComponent.listDataProvider}" 
 			itemRenderer="skins.ielts.progress.CoverageUnitRenderer" />
 	
