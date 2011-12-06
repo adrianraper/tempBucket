@@ -57,7 +57,7 @@
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
-			registerCommand(BBNotifications.SHOW_FEEDBACK, ShowFeedbackCommand);
+			registerCommand(BBNotifications.FEEDBACK_SHOW, FeedbackShowCommand);
 			registerCommand(BBNotifications.MARKING_SHOW, MarkingShowCommand);
 			registerCommand(BBNotifications.EXERCISE_START, ExerciseStartCommand);
 			registerCommand(BBNotifications.EXERCISE_STOP, ExerciseStopCommand);

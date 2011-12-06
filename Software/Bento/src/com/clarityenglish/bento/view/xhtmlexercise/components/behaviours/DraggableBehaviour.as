@@ -8,11 +8,14 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.DisplayObject;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.ui.Mouse;
+	import flash.ui.MouseCursor;
+	import flash.ui.MouseCursorData;
 	
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowLeafElement;
@@ -23,7 +26,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import mx.core.DragSource;
 	import mx.core.IUIComponent;
 	import mx.core.UIComponent;
-	import mx.events.DragEvent;
 	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
 	
@@ -32,7 +34,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	import spark.components.Group;
 	import spark.components.Image;
-	import spark.components.TextInput;
 	
 	public class DraggableBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
@@ -40,8 +41,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		private static var draggableIcon:Class;
 		private static var draggableIconOffsetX:Number = -8;
 		private static var draggableIconOffsetY:Number = -3;
-		
-		private var draggableIconId:int = -1;
+		private static var cursorData:MouseCursorData;
 		
 		private var dragImage:Image;
 
@@ -168,15 +168,22 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		protected function onRollOver(e:FlowElementMouseEvent, draggableNode:XML):void {
 			if (!canDrag(draggableNode, e.flowElement)) return;
 			
-			if (draggableIconId == -1)
-				draggableIconId = container.cursorManager.setCursor(draggableIcon, 2, draggableIconOffsetX, draggableIconOffsetY);
+			if (!cursorData) {
+				cursorData = new MouseCursorData();
+				cursorData.hotSpot = new Point(-draggableIconOffsetX, -draggableIconOffsetY);
+				var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>(1, true);
+				var frame1Bitmap:Bitmap = new draggableIcon();
+				bitmapDatas[0] = frame1Bitmap.bitmapData;
+				cursorData.data = bitmapDatas;
+				cursorData.frameRate = 1;
+				Mouse.registerCursor("handCursor", cursorData);
+			}
+			
+			Mouse.cursor = "handCursor";
 		}
 		
 		protected function onRollOut(e:FlowElementMouseEvent, draggableNode:XML):void {
-			if (draggableIconId >= 0) {
-				container.cursorManager.removeCursor(draggableIconId);
-				draggableIconId = -1;
-			}
+			Mouse.cursor = MouseCursor.AUTO;
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }

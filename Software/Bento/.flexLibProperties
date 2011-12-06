@@ -8,7 +8,7 @@
     <classEntry path="com.clarityenglish.bento.controller.BentoStartupCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.QuestionNodeAnswerCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.QuestionStringAnswerCommand"/>
-    <classEntry path="com.clarityenglish.bento.controller.ShowFeedbackCommand"/>
+    <classEntry path="com.clarityenglish.bento.controller.FeedbackShowCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.MarkingShowCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.XHTMLLoadCommand"/>
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>

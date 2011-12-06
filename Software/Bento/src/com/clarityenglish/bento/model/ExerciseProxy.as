@@ -199,7 +199,7 @@ package com.clarityenglish.bento.model {
 				substitutions.yourAnswer = answer.toReadableString(exercise);
 				substitutions.correctAnswer = (correctAnswers.length > 0) ? correctAnswers[0].toReadableString(exercise) : "";
 				
-				sendNotification(BBNotifications.SHOW_FEEDBACK, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions } );
+				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: answer.feedback, substitutions: substitutions } );
 			}
 		}
 		

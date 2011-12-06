@@ -58,7 +58,7 @@ package com.clarityenglish.bento.controller {
 			// If we reached here then no answer was matched so create a new one, including the unmatched feedback if there was any
 			var xmlString:String = "";
 			xmlString += "<answer value='" + answerString + "'>";
-			if (question.unmatchedFeedback) xmlString += "<feedback source='" + question.unmatchedFeedback + "' />";
+			if (question.unmatchedFeedbackSource) xmlString += "<feedback source='" + question.unmatchedFeedbackSource + "' />";
 			xmlString += "</answer>";
 			
 			return new TextAnswer(new XML(xmlString));

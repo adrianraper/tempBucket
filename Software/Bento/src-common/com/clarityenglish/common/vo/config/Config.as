@@ -51,7 +51,7 @@ package com.clarityenglish.common.vo.config {
 		/**
 		 * Developer option
 		 */
-		public static const DEVELOPER:Object = {name: "XX"};
+		public static var DEVELOPER:Object = { name: "XX" };
 		
 		public function Config() {
 			this.paths = {content: '', streamingMedia: '', sharedMedia: '', brandingMedia: '', accountRepository: ''};

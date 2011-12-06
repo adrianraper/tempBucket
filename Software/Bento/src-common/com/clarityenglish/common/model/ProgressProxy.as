@@ -145,7 +145,6 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function writeScore(mark:ExerciseMark):void {
-			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
 			
 			// We have always passed dates between AS and PHP as strings
@@ -153,7 +152,8 @@ package com.clarityenglish.common.model {
 			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
 			var dateNow:String = dateFormatter.format(new Date());
 			
-			var params:Array = [ loginProxy.user.id, sessionID, dateNow, mark ];
+			var params:Array = [ (loginProxy.user) ? loginProxy.user.id : null, sessionID, dateNow, mark ];
+			
 			new RemoteDelegate("writeScore", params, this).execute();
 			
 			// TODO. Decide if we want to update our local cache of my progress with each new score

@@ -57,7 +57,7 @@
 		}
 		
 		protected function onSeeAnswers(event:Event):void {
-			facade.sendNotification(BBNotifications.SHOW_ANSWERS);
+			facade.sendNotification(BBNotifications.ANSWERS_SHOW);
 		}
 		
 		protected function onMoveForward(event:Event):void {

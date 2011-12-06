@@ -42,8 +42,9 @@
 		public static const MARKING_SHOW:String = "marking_show";
 		public static const MARKING_SHOWN:String = "marking_shown";
 		
-		public static const SHOW_ANSWERS:String = "show_answers";
-		public static const SHOW_FEEDBACK:String = "show_feedback";
+		public static const ANSWERS_SHOW:String = "answers_show";
+		
+		public static const FEEDBACK_SHOW:String = "feedback_show";
 		
 		// The specific title will want to implement actions on these two notifications
 		public static const EXERCISE_SHOW:String = "exercise_show";

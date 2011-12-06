@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<developer>DK</developer>
-	<courseFile>menu-Academic-LastMinute.xml</courseFile>
 	<dbHost>2</dbHost>
 	<productCode>52</productCode>
 	<streamingMedia />

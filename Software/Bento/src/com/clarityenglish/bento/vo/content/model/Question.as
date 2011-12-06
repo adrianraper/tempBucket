@@ -37,8 +37,8 @@ package com.clarityenglish.bento.vo.content.model {
 			return xml.@source.toString()
 		}
 		
-		public function get unmatchedFeedback():String {
-			return xml.hasOwnProperty("@unmatchedFeedback") ? xml.@unmatchedFeedback : null; 
+		public function get unmatchedFeedbackSource():String {
+			return xml.hasOwnProperty("@unmatchedFeedbackSource") ? xml.@unmatchedFeedbackSource : null; 
 		}
 		
 		public function get answers():Vector.<Answer> {

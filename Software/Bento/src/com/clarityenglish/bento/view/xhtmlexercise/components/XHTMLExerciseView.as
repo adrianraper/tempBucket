@@ -191,7 +191,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 						// TODO: This is not putting the flow element into the input; right now this has no impact as the flow element here is used
 						// during a live drag and drop and its not possible to drag after marking.  However, keep an eye on this in case things change
 						// in the future.
-						inputElement.dragDrop(sourceNodes[0], null, sourceNodes[0].toString());
+						if (sourceNodes) inputElement.dragDrop(sourceNodes[0], null, sourceNodes[0].toString());
 					}
 				}
 				
@@ -247,7 +247,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			// but that doesn't matter as addClass and removeClass will do nothing unless it needs to.
 			for each (var node:XML in sourceNodes) {
 				var flowElement:FlowElement = getFlowElement(node);
-				trace(flowElement);
+				
 				if (flowElement) {
 					XHTML.addClass(node, "disabled");
 					
