@@ -11,7 +11,7 @@
 		</style>
 		<script id="model" type="application/xml">
 			<questions>
-				<GapFillQuestion source="q1Input" block="q1Block">
+				<GapFillQuestion source="q1Input" block="q1Block" unmatchedFeedback="wrongFeedback">
 					<answer correct="neutral" value="xxx" />
 					<answer correct="true" value="us" />
 					<answer correct="false" value="them">
@@ -93,6 +93,10 @@
 			values.<br/><br/>
 			<p>Your answer: {{=yourAnswer}}</p>
 			<p>Correct answer: {{=correctAnswer}}</p>
+		</section>
+		
+		<section id="wrongFeedback">
+			You got it wrong, fool!
 		</section>
 	</body>
 	

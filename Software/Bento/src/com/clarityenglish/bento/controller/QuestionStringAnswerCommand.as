@@ -2,6 +2,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
+	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	import com.newgonzo.commons.utils.StringUtil;
 	
@@ -54,7 +55,13 @@ package com.clarityenglish.bento.controller {
 				}
 			}
 			
-			return new TextAnswer(<Answer value={answerString} />);
+			// If we reached here then no answer was matched so create a new one, including the unmatched feedback if there was any
+			var xmlString:String = "";
+			xmlString += "<answer value='" + answerString + "'>";
+			if (question.unmatchedFeedback) xmlString += "<feedback source='" + question.unmatchedFeedback + "' />";
+			xmlString += "</answer>";
+			
+			return new TextAnswer(new XML(xmlString));
 		}
 		
 	}

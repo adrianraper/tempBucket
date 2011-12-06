@@ -92,12 +92,13 @@
 
 	<complexType name="sourceQuestionType">
 		<sequence>
-			<element name="answer" type="tns:answerType" maxOccurs="unbounded"
-				minOccurs="0">
+			<element name="answer" type="tns:answerType"
+				maxOccurs="unbounded" minOccurs="0">
 			</element>
 		</sequence>
 		<attribute name="source" type="string"></attribute>
 		<attribute name="block" type="string"></attribute>
+		<attribute name="unmatchedFeedback" type="string"></attribute>
 	</complexType>
 
 	<complexType name="answerType">
