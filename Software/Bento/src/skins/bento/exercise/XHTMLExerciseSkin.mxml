@@ -38,9 +38,10 @@
 				<s:SolidColor color="#F5D767" />
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="10" top="10" />
-		<components:XHTMLRichText id="headerRichText" top="13" left="30" right="320" bottom="13" maxWidth="650" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, DictionaryBehaviour]}" />
-		
+
+		<components:XHTMLRichText id="headerRichText" top="13" left="38" right="16" bottom="13" maxWidth="680" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, DictionaryBehaviour]}" />
+		<s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" />
+	
 		<s:Group right="0" width="320" height="100%" visible="{hostComponent.atLeastOneSelectedAnswerHasFeedback}">
 			<s:Rect width="100%" height="100%">
 				<s:fill>
@@ -80,7 +81,7 @@
 			</s:Scroller>
 		</s:Group>
 			
-		<s:Group id="bodyGroup" width="100%" height="100%" minHeight="52" >
+		<s:Group id="bodyGroup" width="100%" height="100%" minHeight="52" left="50" >
 			<s:Rect width="100%" height="100%">
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" />

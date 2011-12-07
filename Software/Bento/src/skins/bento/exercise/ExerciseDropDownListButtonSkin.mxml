@@ -96,14 +96,14 @@
     
     <!-- layer 2: fill -->
     <!--- @private -->
-    <s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2">
+    <s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2" height="30" >
         <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0xFFFFFF" 
                                color.over="0xBBBDBD" 
                                color.down="0xAAAAAA" 
                                alpha="0.85" />
-                <s:GradientEntry color="0xD8D8D8" 
+                <s:GradientEntry color="0xF2F2F2" 
                                color.over="0x9FA0A1" 
                                color.down="0x929496" 
                                alpha="0.85" />
@@ -125,7 +125,7 @@
     
     <!-- layer 4: fill highlight -->
     <!--- @private -->
-    <s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+    <s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="2" >
         <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0xFFFFFF"
@@ -184,10 +184,10 @@
     <s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="2">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x000000" 
+                <s:GradientEntry color="999999" 
                                alpha="0.5625"
                                alpha.down="0.6375" />
-                <s:GradientEntry color="0x000000" 
+                <s:GradientEntry color="999999" 
                                alpha="0.75" 
                                alpha.down="0.85" />
             </s:LinearGradientStroke>
