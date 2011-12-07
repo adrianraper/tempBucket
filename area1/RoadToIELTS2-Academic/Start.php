@@ -94,6 +94,7 @@
 		
 		// v6.5.5.6 Allow resize screen mode
 		var coordsWidth = "100%"; var coordsHeight = "100%"; 
+		//var coordsWidth = "990"; var coordsHeight = "600"; 
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
 		var coordsMinHeight = "600"; var coordsMaxHeight = null;
 		
@@ -153,22 +154,21 @@
 			name: "bento",
 			quality: "high",
 			allowfullscreen: "true",
-			scale: "default"
+			align: "center",
+			scale: "exactFit"
 		};
 		var attr = {
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
+		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
+		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, false, false);
+		//swffit.configure({hCenter: true});
 	</script>
-<!--CSS pop up layout box-->
-<link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
-
 </head>
 <body onload="onLoad()">
-	<div align="center" id="altContent">
+	<div style="text-align:center" id="bento">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
