@@ -23,6 +23,7 @@
 			import com.clarityenglish.bento.vo.Href;
 			import com.clarityenglish.common.vo.config.BentoError;
 			
+			import mx.controls.Alert;
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			import mx.managers.BrowserManager;
@@ -86,6 +87,18 @@
 				log.error("Received error {0}", error);
 			}
 			
+			protected function onMarkAndShowExerciseFeedbackClick(event:MouseEvent):void {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+				
+				exerciseProxy.getExerciseMark(); // this marks the exercise as marked
+				
+				if (!exerciseProxy.hasExerciseFeedback()) Alert.show("This exercise has no exercise feedback", "IELTSTester");
+				exerciseProxy.showExerciseFeedback();
+				
+				facade.sendNotification(BBNotifications.MARKING_SHOWN, bentoProxy.currentExercise); // disable further answering
+			}
+			
 			protected function onMarkingShownClick(event:MouseEvent):void {
 				// Get the current exercise
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -118,6 +131,7 @@
 		<s:Spacer width="100%" />
 		
 		<s:Button label="Run GC" click="onRunGC(event)"/>
+		<s:Button label="Mark and show exercise feedback" click="onMarkAndShowExerciseFeedbackClick(event)"/>
 		<s:Button label="Disable interaction" click="onMarkingShownClick(event)"/>
 		<s:Button label="Marking" click="onMarkingClick(event)"/>
 		<s:Button label="Show correct answers" click="onShowAnswersClick(event)"/>

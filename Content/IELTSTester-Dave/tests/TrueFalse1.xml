@@ -22,11 +22,11 @@
 				<param name="delayedMarking" value="true" />
 				
 				<feedback>
-					<feedback min="0%" source="sbf0-20" />
-					<feedback min="20%" source="sbf21-40" />
-					<feedback min="40%" source="sbf41-60" />
-					<feedback min="60%" source="sbf61-80" />
-					<feedback min="80%" source="sbfDefault" />
+					<feedback min="100%" source="sbf100" />
+					<feedback min="60%" source="sbf60-99" />
+					<feedback min="40%" source="sbf40-59" />
+					<feedback min="20%" source="sbf20-39" />
+					<feedback source="sbf0-19" />
 				</feedback>
 			</settings>
 			
@@ -144,11 +144,11 @@
 			<p>Correct answer: {{=correctAnswer}}</p>
 		</section>
 		
-		<section id="sbf0-20">You got less 0% - 20%</section>
-		<section id="sbf21-40">You got less 21% - 40%</section>
-		<section id="sbf41-60">You got less 41% - 60%</section>
-		<section id="sbf61-80">You got less 61% - 80%</section>
-		<section id="sbfDefault">Unmatched (i.e. 81% - 100%)</section>
+		<section id="sbf100">100%</section>
+		<section id="sbf60-99">60% - 99%</section>
+		<section id="sbf40-59">40% - 59%</section>
+		<section id="sbf20-39">20% - 39%</section>
+		<section id="sbf0-19">Unmatched (i.e. 0% - 19%)</section>
 		
 	</body>
 	

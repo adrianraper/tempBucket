@@ -102,7 +102,7 @@ package com.clarityenglish.bento.controller {
 			
 			xhtmlRichText.removeEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
 			
-			var style:CSSComputedStyle = xhtmlRichText.css.style(<feedback class={"feedback titlebar " + feedback.answer.markingClass} />);
+			var style:CSSComputedStyle = xhtmlRichText.css.style(<feedback class={"feedback titlebar " + ((feedback.answer) ? feedback.answer.markingClass : "")} />);
 			if (style.backgroundColor) titleWindow.setStyle("popUpBarColor", style.backgroundColor);
 			if (style.opacity) titleWindow.setStyle("popUpBarAlpha", style.opacity);
 			if (style.color) titleWindow.setStyle("popUpBarTextColor", style.color);

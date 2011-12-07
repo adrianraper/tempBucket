@@ -5,6 +5,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
+	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	
 	import flash.events.TimerEvent;
@@ -56,6 +57,11 @@ package com.clarityenglish.bento.model {
 		 * A flag to track whether or not the exercise has been marked 
 		 */
 		private var _exerciseMarked:Boolean = false;
+		
+		/**
+		 * An exercise can only be marked once; once it has been marked the mark is stored here 
+		 */
+		private var _exerciseMark:ExerciseMark;
 		
 		/**
 		 * This saves how long since the exercise was started
@@ -288,14 +294,16 @@ package com.clarityenglish.bento.model {
 		public function getExerciseMark():ExerciseMark {
 			checkExercise();
 			
+			// An exercise can only be marked once - if its already been marked then return the cached mark
+			if (_exerciseMarked) return _exerciseMark;
+			
 			// Set the exercise as marked
 			_exerciseMarked = true;
 			
 			// If we are using delayed marking then mark all selected questions now
-			if (delayedMarking)
-				markSelectedQuestions();
+			if (delayedMarking) markSelectedQuestions();
 			
-			var exerciseMark:ExerciseMark = new ExerciseMark();
+			_exerciseMark = new ExerciseMark();
 			
 			// Go through the questions
 			for each (var question:Question in exercise.model.questions) {
@@ -324,16 +332,16 @@ package com.clarityenglish.bento.model {
 					}
 					
 					// Add values to the exercise mark, including calculating the number of missed points
-					exerciseMark.correctCount += correctCount;
-					exerciseMark.incorrectCount += incorrectCount;
-					exerciseMark.missedCount += (question.getMaximumPossibleScore() - correctCount - incorrectCount);
+					_exerciseMark.correctCount += correctCount;
+					_exerciseMark.incorrectCount += incorrectCount;
+					_exerciseMark.missedCount += (question.getMaximumPossibleScore() - correctCount - incorrectCount);
 				} else {
 					// The entire question was missed
-					exerciseMark.missedCount += question.getMaximumPossibleScore();
+					_exerciseMark.missedCount += question.getMaximumPossibleScore();
 				}
 			}
 			
-			return exerciseMark;
+			return _exerciseMark;
 		}
 		
 		/**
@@ -349,6 +357,42 @@ package com.clarityenglish.bento.model {
 					
 					markQuestion(question, answer, key);
 					sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question } );
+				}
+			}
+		}
+		
+		public function hasExerciseFeedback():Boolean {
+			return exercise.model.getExerciseFeedback().length > 0;
+		}
+		
+		public function showExerciseFeedback():void {
+			if (!_exerciseMarked || !_exerciseMark) {
+				log.error("Attemped to show exercise feedback before an exercise was marked");
+				return;
+			}
+			
+			// Get the exercise feedback and sort it into descending order by min (this means the first matched feedback will be the most restrictive)
+			var exerciseFeedbacks:Vector.<Feedback> = exercise.model.getExerciseFeedback();
+			exerciseFeedbacks.sort(function(a:Feedback, b:Feedback):Number {
+				var aMin:Number = a.min;
+				var bMin:Number = b.min;
+				
+				if (aMin > bMin) {
+					return -1;
+				} else if (aMin < bMin) {
+					return 1;
+				}
+				
+				return 0;
+			});
+			
+			// Get the exercise score as a percentage (if there are no questions you get 100%)
+			var percent:Number = (_exerciseMark.totalQuestions > 0) ? Math.round(_exerciseMark.correctCount / _exerciseMark.totalQuestions * 100) : 100;
+			for each (var feedback:Feedback in exerciseFeedbacks) {
+				if (percent >= feedback.min) {
+					// Found it, so show feedback
+					sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: feedback /*, substitutions: substitutions*/ } );
+					return;
 				}
 			}
 		}

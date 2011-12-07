@@ -20,12 +20,12 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		}
 		
 		/**
-		 * This is used in score based feedback
+		 * This is used in score based feedback.  If min is not defined the default is 0 (which matches all scores)
 		 * 
 		 * @return 
 		 */
 		public function get min():Number {
-			if (!xml.hasOwnProperty("@min")) return 100;
+			if (!xml.hasOwnProperty("@min")) return 0;
 			
 			var percentString:String = xml.@min.toString();
 			return new Number(percentString.substr(0, percentString.length - 1));
