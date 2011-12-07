@@ -18,7 +18,6 @@
 
 	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%" borderVisible="false"
 			dataProvider="{hostComponent.dataProvider}" fontWeight="normal"
-			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer"
-			borderVisible="false" />
+			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer"/>
 	
 </s:Skin>
