@@ -39,6 +39,10 @@
 		public static const EXERCISE_STOP:String = "exercise_stop";
 		public static const EXERCISE_STOPPED:String = "exercise_stopped";
 		
+		// This notification is sent when the user clicks the print button
+		public static const EXERCISE_PRINT:String = "exercise_print";
+		public static const EXERCISE_PRINTED:String = "exercise_printed";
+		
 		public static const MARKING_SHOW:String = "marking_show";
 		public static const MARKING_SHOWN:String = "marking_shown";
 		

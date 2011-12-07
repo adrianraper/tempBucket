@@ -33,6 +33,7 @@
 			view.showMarking.add(onShowMarking);
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
+			view.printExercise.add(onPrintExercise);
 		}
 		
 		public override function onRemove():void {
@@ -48,6 +49,7 @@
 			return super.listNotificationInterests().concat([
 				BBNotifications.EXERCISE_STARTED,
 				BBNotifications.MARKING_SHOWN,
+				BBNotifications.EXERCISE_PRINTED,
 			]);
 		}
 		
@@ -71,7 +73,15 @@
 				case BBNotifications.MARKING_SHOWN:
 					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
 					break;
+				case BBNotifications.EXERCISE_PRINTED:
+					trace("exericse printed");
+					break;
 			}
+		}
+		
+		private function onPrintExercise():void {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			sendNotification(BBNotifications.EXERCISE_PRINT, { exercise: bentoProxy.currentExercise } );
 		}
 		
 		private function onStartAgain():void {

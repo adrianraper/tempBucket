@@ -18,6 +18,7 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import org.osflash.signals.Signal;
 	import org.osmf.events.DynamicStreamEvent;
+	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	
@@ -296,8 +297,8 @@ package com.clarityenglish.ielts.view.zone {
 			});
 			
 		}
-		protected function onDynamicVideoEvent(e:DynamicStreamEvent):void {
-			trace(e.toString());
+		public function vpMediaPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {
+			trace("videoPlayer is " + event.state);
 		}
 	}
 	

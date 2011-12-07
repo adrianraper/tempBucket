@@ -63,6 +63,7 @@
 			registerCommand(BBNotifications.EXERCISE_STOP, ExerciseStopCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
+			registerCommand(BBNotifications.EXERCISE_PRINT, ExercisePrintCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
