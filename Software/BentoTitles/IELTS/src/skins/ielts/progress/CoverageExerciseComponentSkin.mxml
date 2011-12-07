@@ -13,6 +13,7 @@
 	<s:Label id="coverageHeadingLabel" text="{hostComponent.caption}" />
 	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%"
 			dataProvider="{hostComponent.dataProvider}" 
-			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer" />
+			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer"
+			borderVisible="false" />
 	
 </s:Skin>
