@@ -106,6 +106,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		protected function onFlowElementMarked(event:MarkingOverlayEvent):void {
+			// Ensure there is only ever one icon per flow element
+			if (flowElementIcons[event.flowElement]) flowElementIcons[event.flowElement].removeComponent();
+			
 			flowElementIcons[event.flowElement] = new FlowElementIcon(event.flowElement, event.markingClass);
 		}
 		

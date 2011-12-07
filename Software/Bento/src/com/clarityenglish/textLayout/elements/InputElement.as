@@ -1,9 +1,7 @@
 package com.clarityenglish.textLayout.elements {
-	import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	
 	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.events.TextEvent;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
@@ -257,6 +255,7 @@ package com.clarityenglish.textLayout.elements {
 			text = "";
 			value = "";
 			(component as TextInput).text = "";
+			getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, this));
 		}
 		
 		private function updateComponentFromValue():void {
