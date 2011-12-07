@@ -128,6 +128,52 @@
 			<!-- The accordian -->
 			<tink:Accordion id="accordian" width="100%" height="100%" creationPolicy="all" borderVisible="false" contentBackgroundAlpha="0" easer="{sineEasing}" duration="500" change="onAccordianChange(event)">
 				
+				<!-- Question zone -->
+				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="10">
+						<s:SWFLoader width="122" height="171"
+									 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneReading')"
+									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneWriting')"
+									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneListening')"
+									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneSpeaking')" />
+						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10" >
+							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="80" height="25" />
+							<s:Label text="or" />
+							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="130" height="25" />
+						</s:HGroup>
+					</s:VGroup>
+				</s:NavigatorContent>
+				
+				<!-- Advice zone -->
+				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
+					<s:VGroup left="0" right="0" top="0" bottom="10" horizontalAlign="left" verticalAlign="middle">
+						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" scaleMode="none" left="3" />
+						
+						<s:List id="adviceZoneVideoList" width="510" height="40" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
+							<s:layout>
+								<s:HorizontalLayout />
+							</s:layout>
+							
+							<s:itemRenderer>
+								<fx:Component>
+									<s:ItemRenderer>
+										<fx:Script>
+											<![CDATA[
+												override public function set data(value:Object):void {
+													super.data = value;
+													
+													image.source = outerDocument.hostComponent.href.createRelativeHref(null, data.@thumbnail).url;
+												}
+											]]>
+										</fx:Script>
+										<s:Image id="image" width="68" height="38" />
+									</s:ItemRenderer>
+								</fx:Component>
+							</s:itemRenderer>
+						</s:List>
+					</s:VGroup>
+				</s:NavigatorContent>
+	
 				<!-- Practice zone -->
 				<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
 					<s:VGroup left="0" right="20" top="0" bottom="0" gap="10">
@@ -171,36 +217,6 @@
 								
 							</s:List>
 						</s:Group>
-					</s:VGroup>
-				</s:NavigatorContent>
-				
-				<!-- Advice zone -->
-				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
-					<s:VGroup left="0" right="0" top="0" bottom="10" horizontalAlign="left" verticalAlign="middle">
-						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" scaleMode="none" left="3" />
-						
-						<s:List id="adviceZoneVideoList" width="510" height="40" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
-							<s:layout>
-								<s:HorizontalLayout />
-							</s:layout>
-							
-							<s:itemRenderer>
-								<fx:Component>
-									<s:ItemRenderer>
-										<fx:Script>
-											<![CDATA[
-												override public function set data(value:Object):void {
-													super.data = value;
-													
-													image.source = outerDocument.hostComponent.href.createRelativeHref(null, data.@thumbnail).url;
-												}
-											]]>
-										</fx:Script>
-										<s:Image id="image" width="68" height="38" />
-									</s:ItemRenderer>
-								</fx:Component>
-							</s:itemRenderer>
-						</s:List>
 					</s:VGroup>
 				</s:NavigatorContent>
 				
@@ -250,23 +266,7 @@
 						</s:itemRenderer>
 					</s:DataGroup>
 				</s:NavigatorContent>
-				
-				<!-- Question zone -->
-				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="10">
-						<s:SWFLoader width="122" height="171"
-									 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneReading')"
-									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneWriting')"
-									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneListening')"
-									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneSpeaking')" />
-						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10" >
-							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="80" height="25" />
-							<s:Label text="or" />
-							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="130" height="25" />
-						</s:HGroup>
-					</s:VGroup>
-				</s:NavigatorContent>
-				
+								
 			</tink:Accordion>
 		</s:BorderContainer>
 	</s:Group>
