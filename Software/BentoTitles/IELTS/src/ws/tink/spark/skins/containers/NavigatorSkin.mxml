@@ -109,7 +109,7 @@ SOFTWARE.
 	<s:Rect id="background" left="1" right="1" top="1" bottom="1" >
 		<s:fill>
 			<!--- Defines the color of the background. The default color is 0xFFFFFF. -->
-			<s:SolidColor id="bgFill" color="0xFF0000" />
+			<s:SolidColor id="bgFill" color="0xED1E79" />
 		</s:fill>
 	</s:Rect>
 	

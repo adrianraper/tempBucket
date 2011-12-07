@@ -61,6 +61,24 @@ ButtonBarFirstButtonSkin and ButtonBarMiddleButtonSkin classes.
 		<s:layout>
 			<s:ButtonBarHorizontalLayout gap="-1"/>
 		</s:layout>
+		
+		<!-- UP SKIN-->
+		<s:Rect radiusX="8" radiusY="8" width="120" height="30" includeIn="up" >
+			<s:stroke>
+				<s:Stroke color="#999999" alpha="1"/>
+			</s:stroke> 
+			<s:fill> 
+				<s:LinearGradient rotation="90"> 
+					<s:entries>  
+						<s:GradientEntry ratio="0" alpha="1" color="#EE9819"/>
+						<s:GradientEntry ratio="1" alpha="1" color="#FAE38F"/>
+						<s:GradientEntry ratio="0" alpha="1" color="#FFFFFF"/>
+						<s:GradientEntry ratio="1" alpha="0" color="#FFFFFF"/> 
+					</s:entries> 
+				</s:LinearGradient> 
+			</s:fill> 
+		</s:Rect>
+
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ButtonBarButton/>
