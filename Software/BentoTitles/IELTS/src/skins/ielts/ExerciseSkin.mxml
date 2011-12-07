@@ -79,7 +79,12 @@
 	
 	<!-- Right buttons -->
 	<s:HGroup right="32" top="4" includeIn="exercise">
-		<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" />
+		
+		<s:Group>
+			<s:Button id="feedbackButton" skinClass="skins.ielts.title.FeedbackButtonSkin" label="Feedback" visible="false" />
+			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" />
+		</s:Group>
+		
 		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" />
 		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" />
 		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" />

@@ -180,7 +180,11 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectStart():Object {
 			//return { courseClass: "writing" };
-			//return { exerciseId: "1156153794671" };
+			
+			/*if (Config.DEVELOPER.name == "DK") {
+				return { exerciseId: "1156181253997" };
+			}*/
+			
 			return null;
 		}
 		

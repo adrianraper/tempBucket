@@ -20,6 +20,14 @@
 		<script id="model" type="application/xml">
 			<settings>
 				<param name="delayedMarking" value="true" />
+				
+				<feedback>
+					<feedback min="0%" source="sbf0-20" />
+					<feedback min="20%" source="sbf21-40" />
+					<feedback min="40%" source="sbf41-60" />
+					<feedback min="60%" source="sbf61-80" />
+					<feedback min="80%" source="sbfDefault" />
+				</feedback>
 			</settings>
 			
 			<questions>
@@ -135,6 +143,12 @@
 			<p>Your answer: {{=yourAnswer}}</p>
 			<p>Correct answer: {{=correctAnswer}}</p>
 		</section>
+		
+		<section id="sbf0-20">You got less 0% - 20%</section>
+		<section id="sbf21-40">You got less 21% - 40%</section>
+		<section id="sbf41-60">You got less 41% - 60%</section>
+		<section id="sbf61-80">You got less 61% - 80%</section>
+		<section id="sbfDefault">Unmatched (i.e. 81% - 100%)</section>
 		
 	</body>
 	

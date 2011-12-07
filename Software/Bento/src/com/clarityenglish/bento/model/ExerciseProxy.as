@@ -242,7 +242,7 @@ package com.clarityenglish.bento.model {
 			if (correctAnswers.length == 0)
 				return answerMap;
 			
-			// 2. Get the target nodes (these are the keys in the answer map)
+			// 2. Get the target nodes (these will be the keys in the answer map)
 			var targetNodes:Vector.<XML> = (question.isSelectable()) ? (correctAnswers[0] as NodeAnswer).getSourceNodes(exercise) : question.getSourceNodes(exercise);
 			
 			// 3. Remove any correct answers from the target nodes and correct answers
@@ -263,10 +263,10 @@ package com.clarityenglish.bento.model {
 			
 				// For each question
 				for each (var targetNode:XML in targetNodes) {
-					// 3. Get the answer currently in this target node
+					// 4. Get the answer currently in this target node
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					
-					// 4. If the current answer is empty or incorrect then add it to the answer map
+					// 5. If the current answer is empty or incorrect then add it to the answer map
 					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
 						answerMap.put(targetNode, correctAnswers[0]);
 						correctAnswers.shift();

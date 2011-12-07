@@ -19,6 +19,18 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return xml.@title || "Feedback";
 		}
 		
+		/**
+		 * This is used in score based feedback
+		 * 
+		 * @return 
+		 */
+		public function get min():Number {
+			if (!xml.hasOwnProperty("@min")) return 100;
+			
+			var percentString:String = xml.@min.toString();
+			return new Number(percentString.substr(0, percentString.length - 1));
+		}
+		
 		public function get answer():Answer {
 			return _answer;
 		}

@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.vo.content.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
+	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 
 	public class Model {
@@ -11,6 +12,8 @@ package com.clarityenglish.bento.vo.content.model {
 		
 		private var _questions:Vector.<Question>;
 		
+		private var _exerciseFeedback:Vector.<Feedback>;
+		
 		public function Model(exercise:Exercise, xml:XML) {
 			this.exercise = exercise;
 			this.xml = xml;
@@ -19,6 +22,12 @@ package com.clarityenglish.bento.vo.content.model {
 			_questions = new Vector.<Question>();
 			for each (var questionNode:XML in xml.questions.*)
 				_questions.push(Question.create(questionNode, exercise));
+			
+			// Create any exercise feedback
+			_exerciseFeedback = new Vector.<Feedback>();
+			for each (var feedbackNode:XML in xml.settings.feedback.feedback)
+				_exerciseFeedback.push(new Feedback(feedbackNode));
+				
 		}
 		
 		public function get questions():Vector.<Question> {
@@ -30,7 +39,7 @@ package com.clarityenglish.bento.vo.content.model {
 		}
 		
 		public function getViewParam(paramName:String):* {
-			// TODO: These params need to be similar to getSettingParam
+			// TODO: These params need to be parsed and typecast similar to getSettingParam
 			return xml.view.param.(@name == paramName).@value;
 		}
 		
@@ -44,6 +53,10 @@ package com.clarityenglish.bento.vo.content.model {
 			if (value == "true") return true;
 			if (value == "false") return false;
 			return value;
+		}
+		
+		public function getExerciseFeedback():Vector.<Feedback> {
+			return _exerciseFeedback;
 		}
 		
 		/**
