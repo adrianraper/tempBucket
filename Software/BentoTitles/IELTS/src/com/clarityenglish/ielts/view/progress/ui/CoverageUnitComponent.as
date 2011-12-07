@@ -46,7 +46,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 					}
 					builder.appendChild(newNode);
 				}
-				listDataProvider = new XMLListCollection(builder.list);
+				listDataProvider = new XMLListCollection(builder.group);
 			}
 			
 		}

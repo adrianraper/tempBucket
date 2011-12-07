@@ -190,7 +190,6 @@ package com.clarityenglish.ielts.view.progress.components {
 							// Because we need to get captions from the group node, send the whole
 							// course node as the practice zone data provider
 							practiceZoneDataProvider = unitNode.parent();
-							//practiceZoneDataProvider = new XMLList(unitNode.exercise);
 							break;
 						case 'question-zone':
 							questionZoneDataProvider = new XMLListCollection(unitNode.exercise);

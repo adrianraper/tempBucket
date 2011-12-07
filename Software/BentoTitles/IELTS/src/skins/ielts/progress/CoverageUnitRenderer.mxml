@@ -8,6 +8,8 @@
 		<![CDATA[
 			import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
 			
+			import mx.collections.XMLListCollection;
+			
 			[Bindable]
 			private var courseColor:Number;
 			
@@ -17,8 +19,8 @@
 				
 				courseColor = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color'); 
 				//fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xFFFFFF;
-				
 				captionLabel.text = data.@caption;
+				exerciseIndicatorList.dataProvider = new XMLListCollection(data.exercise);
 			}
 			
 		]]>
@@ -26,31 +28,30 @@
 	
 	<s:HGroup left="10" horizontalCenter="middle" >
 		<s:Label id="captionLabel" height="24" horizontalCenter="middle" />
-		<s:List id="exerciseIndicatorList" width="100%" height="40" horizontalScrollPolicy="off" borderVisible="false" >
+		<s:List id="exerciseIndicatorList" width="100%" height="40" horizontalScrollPolicy="off" 
+				contentBackgroundAlpha="0" borderVisible="false" >
 			<s:layout>
 				<s:HorizontalLayout />
 			</s:layout>
-			
 			<s:itemRenderer>
 				<fx:Component>
-					<s:ItemRenderer>
+					<s:ItemRenderer autoDrawBackground="false">
 						<fx:Script>
 							<![CDATA[
 								import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
 								override public function set data(value:Object):void {
 									super.data = value;
 									
-									var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
-									exerciseIndicator.color = (Number(data.@count)>0) ? courseColor : 0xFFFFFF;
+									var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color'); 
+									fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xB3B3B3;
+									
+									this.toolTip = data.@caption;
 								}
 							]]>
 						</fx:Script>
-						<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
-							<s:stroke>
-								<s:SolidColorStroke color="0x000000" weight="1"/>
-							</s:stroke>
+						<s:Rect id="exerciseIndicator" left="2" top="2" width="8" height="8" radiusX="2" radiusY="2">
 							<s:fill>
-								<s:SolidColor id="exerciseIndicator" />
+								<s:SolidColor id="fillColor" />
 							</s:fill>
 						</s:Rect>
 					</s:ItemRenderer>

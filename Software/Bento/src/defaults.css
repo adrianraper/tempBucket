@@ -68,3 +68,10 @@ s|TextInput {
 s|DropDownList {
 	skinClass: ClassReference("skins.bento.exercise.ExerciseDropDownListSkin");
 }
+
+mx|ToolTip {
+	fontFamily: "HelveticaNeueLtStd";
+	fontSize: 13;
+	color: #FFFFFF;
+	backgroundColor: #000000;
+}
