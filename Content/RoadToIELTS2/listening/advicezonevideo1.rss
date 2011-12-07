@@ -6,6 +6,12 @@
 	<type>recorded</type>
 	<item>
 		<title>low quality</title>
+		<streamName>RoadToIELTS2/listening/media/listening_advice_411w_150</streamName>
+		<bitrate>150</bitrate>
+		<width>411</width>
+	</item>
+	<item>
+		<title>medium quality</title>
 		<streamName>RoadToIELTS2/listening/media/listening_advice_411w_700</streamName>
 		<bitrate>700</bitrate>
 		<width>411</width>

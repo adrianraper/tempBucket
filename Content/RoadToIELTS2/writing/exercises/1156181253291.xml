@@ -60,7 +60,8 @@
 </section>
 
 <section id="body">
-  <audio controls="compact" class="rightFloat" src="../media/TT_WR1aa.mp3" mode="1" id="1004"/>
+
+  <audio controls="compact" class="leftFloat" src="../media/TT_WR1aa.mp3" mode="1" id="1004"/>
   <img class="rightFloat" src="../media/TT_AW_010.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">

@@ -75,26 +75,26 @@
   
   <ol id="trueFalse">
   
-    <li id="q1">The examiner asks all candidates the same questions. </li>
-    <a id="a1"><b>True</b></a><tab/><a id="a2"><b>False</b></a>
+    <li id="q1">The examiner asks all candidates the same questions. <br/>
+    <a id="a1"><b>True</b></a><tab/><a id="a2"><b>False</b></a></li>
     
-    <li id="q2">The candidate has to state his or her full name. </li>
-	<a id="a3"><b>True</b></a><tab/><a id="a4"><b>False</b></a>
+    <li id="q2">The candidate has to state his or her full name. <br/>
+	<a id="a3"><b>True</b></a><tab/><a id="a4"><b>False</b></a></li>
     
-    <li id="q3">All three parts of the test are connected to each other. </li>
-	<a id="a5"><b>True</b></a><tab/><a id="a6"><b>False</b></a>
+    <li id="q3">All three parts of the test are connected to each other. <br/>
+	<a id="a5"><b>True</b></a><tab/><a id="a6"><b>False</b></a></li>
     
-    <li id="q4">The candidate talks on his or her own about a topic of his choice. </li>
-	<a id="a7"><b>True</b></a><tab/><a id="a8"><b>False</b></a>
+    <li id="q4">The candidate talks on his or her own about a topic of his choice. <br/>
+	<a id="a7"><b>True</b></a><tab/><a id="a8"><b>False</b></a></li>
     
-    <li id="q5">The examiner introduces herself to the candidate. </li>
-	<a id="a9"><b>True</b></a><tab/><a id="a10"><b>False</b></a>
+    <li id="q5">The examiner introduces herself to the candidate. <br/>
+	<a id="a9"><b>True</b></a><tab/><a id="a10"><b>False</b></a></li>
     
-    <li id="q6">The candidate has to produce identification. </li>
-	<a id="a11"><b>True</b></a><tab/><a id="a12"><b>False</b></a>
+    <li id="q6">The candidate has to produce identification. <br/>
+	<a id="a11"><b>True</b></a><tab/><a id="a12"><b>False</b></a></li>
     
-    <li id="q7">The candidate has a turn to ask questions. </li>
-	<a id="a13"><b>True</b></a><tab/><a id="a14"><b>False</b></a>
+    <li id="q7">The candidate has a turn to ask questions. <br/>
+	<a id="a13"><b>True</b></a><tab/><a id="a14"><b>False</b></a></li>
   </ol>
 </section>
 

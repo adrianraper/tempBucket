@@ -58,11 +58,12 @@
 <section id="body">
   <img class="rightFloat" src="../media/ED_LN_004.jpg" mode="1" id="1001"/>
   <audio controls="hidden" autoplay="true" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
+  
   <div id="questionList">
-  <p>13. What is the title of the coursebook used on the course?<br/><input id="q1"/></p>
-  <p>14. How much does the coursebook cost?<br/><input id="q2"/></p>
-  <p>15. How long is the break?<br/><input id="q3"/></p>
-  <p>16. What nationality is the teacher?<br/><input id="q4"/></p>
+  <p class="hanging">13. What is the title of the coursebook used on the course?<br/><input id="q1"/></p>
+  <p class="hanging">14. How much does the coursebook cost?<br/><input id="q2"/></p>
+  <p class="hanging">15. How long is the break?<br/><input id="q3"/></p>
+  <p class="hanging">16. What nationality is the teacher?<br/><input id="q4"/></p>
   </div>
 </section>
 

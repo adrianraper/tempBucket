@@ -10,7 +10,7 @@
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
-    		 */			
+    	 */			
 	]]>
 	
 	</style>
@@ -20,82 +20,75 @@
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="Italian" correct="true"/>
-      <answer value="an Italian" correct="true"/>
-      <answer value="an Italian restaurant" correct="true"/>
-      <answer value="Italian restaurant" correct="true"/>
-      <answer value="an Indian restaurant" correct="true"/>
-      <answer value="Indian restaurant" correct="true"/>
-      <answer value="a French restaurant" correct="true"/>
-      <answer value="French restaurant" correct="true"/>
-      <answer value="an Indian" correct="true"/>
-      <answer value="Indian" correct="true"/>
-      <answer value="a French" correct="true"/>
-      <answer value="French" correct="true">
+    <GapFillQuestion source="{#q1,#q2,#q3}" block="b1" unmatchedFeedbackSource="fb123" >
+      <answer value="Italian" correct="true">
         <feedback source="fb1"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="Indian" correct="true"/>
-      <answer value="an Indian" correct="true"/>
-      <answer value="an Indian restaurant" correct="true"/>
-      <answer value="Indian restaurant" correct="true"/>
-      <answer value="a French restaurant" correct="true"/>
-      <answer value="French restaurant" correct="true"/>
-      <answer value="an Italian restaurant" correct="true"/>
-      <answer value="Italian restaurant" correct="true"/>
-      <answer value="an Italian" correct="true"/>
-      <answer value="Italian" correct="true"/>
-      <answer value="a French" correct="true"/>
-      <answer value="French" correct="true">
-        <feedback source="fb2"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="French" correct="true"/>
-      <answer value="a French" correct="true"/>
-      <answer value="a French restaurant" correct="true"/>
-      <answer value="French restaurant" correct="true"/>
-      <answer value="an Italian restaurant" correct="true"/>
-      <answer value="Italian restaurant" correct="true"/>
-      <answer value="an Indian restaurant" correct="true"/>
-      <answer value="Indian restaurant" correct="true"/>
-      <answer value="an Italian" correct="true"/>
-      <answer value="Italian" correct="true"/>
-      <answer value="an Indian" correct="true"/>
+      </answer>      
       <answer value="Indian" correct="true">
+        <feedback source="fb2"/>
+      </answer>      
+      <answer value="French" correct="true" >
         <feedback source="fb3"/>
-      </answer>
+      </answer>      
+      <answer value="an Italian" correct="true">
+        <feedback source="fb1"/>
+      </answer>      
+      <answer value="an Italian restaurant" correct="true">
+        <feedback source="fb1"/>
+      </answer>      
+      <answer value="Italian restaurant" correct="true">
+        <feedback source="fb1"/>
+      </answer>      
+      <answer value="an Indian restaurant" correct="true">
+        <feedback source="fb2"/>
+      </answer>      
+      <answer value="Indian restaurant" correct="true">
+        <feedback source="fb2"/>
+      </answer>      
+      <answer value="an Indian" correct="true">
+        <feedback source="fb2"/>
+      </answer>      
+      <answer value="a French restaurant" correct="true">
+        <feedback source="fb3"/>
+      </answer>      
+      <answer value="French restaurant" correct="true">
+        <feedback source="fb3"/>
+      </answer>      
+      <answer value="a French" correct="true">
+        <feedback source="fb3"/>
+      </answer>      
     </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="Food Express" correct="true"/>
-      <answer value="Burger Bar" correct="true"/>
-      <answer value="The Burger Bar" correct="true">
-        <feedback source="fb4"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="Burger Bar" correct="true"/>
-      <answer value="The Burger Bar" correct="true"/>
+    <GapFillQuestion source="{#q4,#q5}" block="b2" unmatchedFeedbackSource="fb45" >
       <answer value="Food Express" correct="true">
-        <feedback source="fb5"/>
+        <feedback source="fb45"/>
+      </answer>      
+      <answer value="Burger Bar" correct="true">
+        <feedback source="fb45"/>
+      </answer>      
+      <answer value="The Burger Bar" correct="true">
+        <feedback source="fb45"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="a fire" correct="true"/>
-      <answer value="a log fire" correct="true"/>
-      <answer value="a fire inside" correct="true">
+    <GapFillQuestion source="q6" block="b6" unmatchedFeedbackSource="fb6">
+      <answer value="a fire" correct="true">
+        <feedback source="fb6"/>
+      </answer>      
+      <answer value="a log fire" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+      <answer value="a fire inside" correct="true" >
         <feedback source="fb6"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="a live band" correct="true"/>
+    <GapFillQuestion source="q7" block="b7" unmatchedFeedbackSource="fb7">
+      <answer value="a live band" correct="true">
+        <feedback source="fb7"/>
+      </answer>
       <answer value="a live group" correct="true">
         <feedback source="fb7"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
+    <GapFillQuestion source="q8" block="b8" unmatchedFeedbackSource="fb8">
       <answer value="in Park Road" correct="true">
         <feedback source="fb8"/>
       </answer>
@@ -117,18 +110,18 @@
   <img class="rightFloat" src="../media/LE_LN_002.jpg" mode="1" id="1001"/>
   <audio controls="hidden" class="leftFloat" src="../media/LE_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
   <ol id="questionList">
-  <p>Which&#xA0;<b>THREE</b>&#xA0;types of restaurant does the speaker recommend?</p>
+  Which THREE types of restaurant does the speaker recommend?
   <li id="1"><input id="q1"/></li>
   <li id="2"><input id="q2"/></li>
   <li id="3"><input id="q3"/><br/></li>
-  <p>Which&#xA0;<b>TWO</b>&#xA0;places in the High Street sell vegetarian takeaway food?</p>
+  Which TWO places in the High Street sell vegetarian takeaway food?
 	<li id="4"><input id="q4"/></li>
 	<li id="5"><input id="q5"/><br/></li>
-	<p>What does 'The White Swan' have in winter?</p>
+	What does 'The White Swan' have in winter?
 	<li id="6"><input id="q6"/><br/></li>
-  <p>What can you see in 'The George' on a Saturday?</p>
+  What can you see in 'The George' on a Saturday?
 	<li id="7"><input id="q7"/><br/></li>
-  <p>Where is the 'The Cellar'?</p>
+  Where is the 'The Cellar'?
     <li id="8"><input id="q8"/></li>
   </ol>
 </section>
@@ -145,12 +138,13 @@
   <p align="left">3. The speaker says the French restaurant is very good despite being expensive.</p>
 </section>
 
-<section id="fb4">
-  <p align="left">4. The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
+<section id="fb123">
+  <p align="left">The speaker talks about three good types of restaurant. One has reasonable prices and good food, one is the best food for miles around, and one is good despite being expensive.</p>
+  <p>Your answer: {{=yourAnswer}}</p>
 </section>
 
-<section id="fb5">
-  <p align="left">5. The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
+<section id="fb45">
+  <p align="left">The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
 </section>
 
 <section id="fb6">

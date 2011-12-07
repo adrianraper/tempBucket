@@ -18,10 +18,9 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
- 	<param name="autoMarkTimeout" value="10" />
 </settings>
   <questions>
-    <GapFillQuestion source="{#q1Block input}" block="q1block">
+    <GapFillQuestion source="{#q1,#q2,#q3}" block="q1block">
       <answer value="Italian" correct="true"/>
       <answer value="an Italian" correct="true"/>
       <answer value="an Italian restaurant" correct="true"/>
@@ -72,20 +71,18 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/LE_LN_002.jpg" mode="1" id="1001"/>
-  <audio src="../media/LE_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
-  <ol id="questionList">
   <p>Which&#xA0;<b>THREE</b>&#xA0;types of restaurant does the speaker recommend?</p>
-  <div id="q1Block">
+  <ol class="questionList" >
   <li id="1"><input id="q1"/></li>
   <li id="2"><input id="q2"/></li>
   <li id="3"><input id="q3"/></li>
-  </div>
+	</ol>
   <br/>
   <p>Which&#xA0;<b>TWO</b>&#xA0;places in the High Street sell vegetarian takeaway food?</p>
-  <div id="q4Block">
+  <ol class="questionList" >
 	<li id="4"><input id="q4"/></li>
 	<li id="5"><input id="q5"/></li>
-  </div>
+	</ol>
   <br/>
   <p>What does 'The White Swan' have in winter?</p>
 	<li id="6"><input id="q6"/><br/></li>

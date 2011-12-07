@@ -62,10 +62,10 @@
   <img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-  <li id="10">When is the earliest a service engineer is available?<br/><input id="q1"/></li>
-  <li id="11">Why is this inconvenient for Jane?<br/><input id="q2"/></li>
-  <li id="12">When would be most convenient for Jane?<br/><input id="q3"/></li>
-  <li id="13">When do they arrange for the service engineer to see the machine?<br/><input id="q4"/></li>
+  <p class="hanging">10. When is the earliest a service engineer is available?<br/><input id="q1"/></p>
+  <p class="hanging">11. Why is this inconvenient for Jane?<br/><input id="q2"/></p>
+  <p class="hanging">12.When would be most convenient for Jane?<br/><input id="q3"/></p>
+  <p class="hanging">13. When do they arrange for the service engineer to see the machine?<br/><input id="q4"/></p>
   </ol>
 </section>
 

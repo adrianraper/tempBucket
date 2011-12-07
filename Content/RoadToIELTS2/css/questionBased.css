@@ -14,7 +14,6 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
-
 }
 
 /* Paragraphs have spacing after them */
@@ -91,12 +90,18 @@ h7{
  	padding-left: 30px;
 }		
 
+/* This is for the hanging indent for paragraph questionList on Listening 3 Short-answer questions
+																						*/
+.hanging {
+	text-indent: -25px;
+ 	padding-left: 45px;
+}
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 25px;
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 
 /* Links and draggable spans should be blue and not underlined */
@@ -161,14 +166,16 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 #questionList {
 	list-style-type: decimal;
 	padding-left: 0px;
-	
 	padding-right: 220%;
 	text-align: left;
 	line-height: 22em;
 		
 }
+/* This affects the question spacing for Listening 3 Short-answer question 
+														Listening 3 Labelling a diagram
+														*/
 #questionList p{
-	padding-bottom: 0px;
+	padding-bottom: 20px;
 }
 #questionList li{
 	padding-left:15px;
@@ -183,12 +190,12 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 
 /*This is for Speaking Unit 3 watch another candidate */
 #video2{
-position:absolute;
-
+	position:absolute;
     width:500px;
 }
+
 #v1{
-position:relative;
+	position:relative;
     padding-top: 25px;
 	padding-left: -25px;
     height: 500px;

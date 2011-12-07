@@ -79,7 +79,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the passage on the left. Using NO MORE THAN THREE WORDS from the passage, answer the questions on the right.
+	</div>
 </header>
 	
 <section id="body">

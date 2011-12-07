@@ -111,11 +111,12 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 }
 
 /* Headings */
+/* This heading affects the heading in Listening 1 Table completion */
 h1 {
 	font-family: Arial Black;
 	font-size: 16px;
 	font-weight: bold;
-	padding-top: 10px;
+	padding-top: 0px;
 	padding-bottom: 20%;
 	padding-right: 300%;
 	padding-left:20px;
@@ -134,6 +135,7 @@ h2 {
     line-height: 20em
 }
 
+/* This h4 affects the heading for Listening 3 Classification */
 h4 {
 	font-family: Arial Black;
 	font-size: 13px;
@@ -141,16 +143,20 @@ h4 {
 	padding-top: 0px;
 	padding-left:20px;
 }
+
+/* This h5 affects the heading for Listening 1 Sentence completion */
 h5 {
 	font-family: Arial Black;
 	font-size: 16px;
 	font-weight: bold;
-	padding-top: 30em;
+	padding-top: 20em;
 	padding-bottom: 10px;
 	padding-left:20px;
 	text-align: left;
 	line-height: 5em;
 }
+
+/* This h5 affects the section heading for Listening 1 Sentence completion */
 h6 {
 	font-family: Arial Black;
 	font-size: 11px;
@@ -172,11 +178,12 @@ h7{
 	padding-left:20px
 	}
 	
+	/* This h8 affects the heading for Listening 3 Form completion */
 	h8{
 	font-family: Arial Black;
 	font-size: 15px;
 	font-weight: bold;
-	padding-top: 20px;
+	padding-top: 0px;
 	padding-bottom: 0em;
 	padding-left: 20px;
 	padding-right: 25px;
@@ -185,11 +192,12 @@ h7{
 	padding-right: 25em;
 }
 
+/* This h9 affects the heading for Listening 3 Sentence completion */
 	h9{
 	font-family: Arial Black;
 	font-size: 13px;
 	font-weight: bold;
-	padding-top: 15px;
+	padding-top: 0px;
 	padding-bottom: 5px;
 	padding-right: 25em;
 	padding-left: 20px;
@@ -235,7 +243,7 @@ padding-bottom: 12px;
 	
 }
 #gapfillTable{
-	padding-top: 12px;
+	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
 	padding-right: 280%;
@@ -245,7 +253,7 @@ padding-bottom: 12px;
 }
 
 #gapfillText{
-	padding-top: 12px;
+	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
 	padding-right: 280%;
@@ -285,15 +293,15 @@ padding-bottom: 12px;
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 10px;
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 #body .leftFloat {
 	float: left;
-	padding-top: 25px;
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 #body .rightFloatvideo {
 	float: right;

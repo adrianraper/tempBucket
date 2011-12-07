@@ -19,61 +19,27 @@
 </settings>
   <questions>
     <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="false"/>
-      <answer source="a2" correct="false"/>
-      <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="false"/>
-	  <answer source="a5" correct="false"/>
+      <answer correct="false" source="${#q1 > option:nth-child(1)}" />
+      <answer correct="false" source="${#q1 > option:nth-child(2)}" />
+      <answer correct="true" source="${#q1 > option:nth-child(3)}" />
+	  <answer correct="false" source="${#q1 > option:nth-child(4)}" />
+	  <answer correct="false" source="${#q1 > option:nth-child(5)}" />
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
-      <answer source="a6" correct="false"/>
-      <answer source="a7" correct="false"/>
-      <answer source="a8" correct="false"/>
-	  <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="false"/>
+      <answer correct="false" source="${#q2 > option:nth-child(1)}" />
+      <answer correct="false" source="${#q2 > option:nth-child(2)}" />
+      <answer correct="false" source="${#q2 > option:nth-child(3)}" />
+	  <answer correct="true" source="${#q2 > option:nth-child(4)}" />
+	  <answer correct="false" source="${#q2 > option:nth-child(5)}" />
     </DropDownQuestion>
     <DropDownQuestion source="q3" block="b3">
-      <answer source="a11" correct="false"/>
-      <answer source="a12" correct="true"/>
-      <answer source="a13" correct="false"/>
-	  <answer source="a14" correct="false"/>
-	  <answer source="a15" correct="false"/>
+      <answer correct="false" source="a11" />
+      <answer correct="true" source="a12" />
+      <answer correct="false" source="a13" />
+	  <answer correct="false" source="a14" />
+	  <answer correct="false" source="a15" />
     </DropDownQuestion>
-    <DropDownQuestion source="q4" block="b4">
-      <answer source="a16" correct="false"/>
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="false"/>
-	  <answer source="a19" correct="false"/>
-	  <answer source="a20" correct="true"/>
-    </DropDownQuestion>
-    <DropDownQuestion source="q5" block="b5">
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="false"/>
-	  <answer source="a24" correct="false"/>
-	  <answer source="a25" correct="false"/>
-    </DropDownQuestion>
-    <DropDownQuestion source="q6" block="b6">
-      <answer source="a26" correct="false"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="false"/>
-	  <answer source="a29" correct="false"/>
-	  <answer source="a30" correct="false"/>
-    </DropDownQuestion>
-    <DropDownQuestion source="q7" block="b7">
-      <answer source="a31" correct="false"/>
-      <answer source="a32" correct="false"/>
-      <answer source="a33" correct="true"/>
-	  <answer source="a34" correct="false"/>
-	  <answer source="a35" correct="false"/>
-    </DropDownQuestion>
-    <DropDownQuestion source="q8" block="b8">
-      <answer source="a36" correct="false"/>
-      <answer source="a37" correct="true"/>
-      <answer source="a38" correct="false"/>
-	  <answer source="a39" correct="false"/>
-	  <answer source="a40" correct="false"/>
-    </DropDownQuestion>
+
   </questions>
   
 </script>
@@ -91,13 +57,8 @@
 <section id="body">
 <ol id="dropdown">
 	<li id="1"><select id="q1"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;revealed the influence of other artists in self-portraits.</li>
-	<li id="2"><select id="q2"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;often wore curious clothing in self-portraits.</li>
-	<li id="3"><select id="q3"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;had experiences which had a profound effect on the mood of the self-portraits.</li>
-	<li id="4"><select id="q4"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;painted works in which the artist appears with another person.</li>
-	<li id="5"><select id="q5"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;used fewer colours in later self-portraits.</li>
-	<li id="6"><select id="q6"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;included a wide variety of objects in the self-portraits.</li>
-	<li id="7"><select id="q7"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;created works which may surprise us.</li>
-	<li id="8"><select id="q8"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;looks more self-assured in earlier works.</li>
+	<li id="2"><select id="q2"><option class="o1">Rembrandt</option><option class="o2">Beckmann</option><option class="o3">Picasso</option><option class="o4">Both Beckmann and Rembrandt</option><option class="o5">Both Beckmann and Picasso</option></select>&#xA0;often wore curious clothing in self-portraits.</li>
+	<li id="3"><select id="q3"><option id="a11">Rembrandt</option><option id="a12">Beckmann</option><option id="a13">Picasso</option><option id="a14">Both Beckmann and Rembrandt</option><option id="a15">Both Beckmann and Picasso</option></select>&#xA0;had experiences which had a profound effect on the mood of the self-portraits.</li>
 </ol>
 </section>
 

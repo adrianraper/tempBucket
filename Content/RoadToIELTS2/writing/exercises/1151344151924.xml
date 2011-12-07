@@ -81,16 +81,26 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/HF_AW_014.jpg" mode="1" id="1001"/>
+  <div id="audio">
+  <p> <audio controls="compact" class="leftFloat" src="../media/HF_WR1ab.mp3" mode="1" id="1"/></p>
+  <p><audio controls="compact" class="leftFloat" src="../media/HF_WR1ac.mp3" mode="1" id="2"/></p>
+  <p><audio controls="compact" class="leftFloat" src="../media/HF_WR1ad.mp3" mode="1" id="3"/></p>
+  <p><audio controls="compact" class="leftFloat" src="../media/HF_WR1ae.mp3" mode="1" id="4"/></p>
+  <p><audio controls="compact" class="leftFloat" src="../media/HF_WR1af.mp3" mode="1" id="5"/></p>
+  <p><audio controls="compact" class="leftFloat" src="../media/HF_WR1ag.mp3" mode="1" id="6"/></p>
+  <p><audio controls="compact" class="leftFloat" src="../media/HF_WR1ah.mp3" mode="1" id="7"/></p>
+  <p> <audio controls="compact" class="leftFloat" src="../media/HF_WR1ai.mp3" mode="1" id="8"/></p>
+  </div>
   
-  <ol id="questionList">
+    <div id="questiondiv">
+  <ol>
     
     <li id="q1">
       <a id="a1">For</a>
       <tab/>
       <a id="a2">Against</a>
 	  <tab/>
-      <audio controls="compact" class="leftFloat" src="../media/HF_WR1ab.mp3" mode="1" id="1"/>
-    </li>
+     </li>
     
     
     <li id="q2">
@@ -98,7 +108,7 @@
       <tab/>
       <a id="a4">Against</a>
 	  <tab/>
-       <audio controls="compact" class="leftFloat" src="../media/HF_WR1ac.mp3" mode="1" id="2"/>
+       
     </li>
    
     
@@ -107,7 +117,7 @@
       <tab/>
       <a id="a6">Against</a>
 	  <tab/>
-       <audio controls="compact" class="leftFloat" src="../media/HF_WR1ad.mp3" mode="1" id="3"/>
+       
     </li>
    
    
@@ -116,7 +126,7 @@
       <tab/>
       <a id="a8">Against</a>
 	<tab/>
-      <audio controls="compact" class="leftFloat" src="../media/HF_WR1ae.mp3" mode="1" id="4"/>
+      
     </li>
     
     
@@ -125,7 +135,7 @@
       <tab/>
       <a id="a10">Against</a>
 	  <tab/>
-      <audio controls="compact" class="leftFloat" src="../media/HF_WR1af.mp3" mode="1" id="5"/>
+      
     </li>
     
     
@@ -134,7 +144,7 @@
       <tab/>
       <a id="a12">Against</a>
 	  <tab/>
-       <audio controls="compact" class="leftFloat" src="../media/HF_WR1ag.mp3" mode="1" id="6"/>
+       
     </li>
    
    
@@ -143,7 +153,7 @@
       <tab/>
       <a id="a14">Against</a>
 	  <tab/>
-        <audio controls="compact" class="leftFloat" src="../media/HF_WR1ah.mp3" mode="1" id="7"/>
+     
     </li>
   
     
@@ -152,10 +162,11 @@
       <tab/>
       <a id="a16">Against</a>
 	  <tab/>
-      <audio controls="compact" class="leftFloat" src="../media/HF_WR1ai.mp3" mode="1" id="8"/>
+     
     </li>
     
   </ol>
+  </div>
 </section>
 
 <section id="fb1">

@@ -57,17 +57,17 @@
 	
 <section id="body">
   
-  <ol id="splitquestionList" >
+  <div id="splitquestionList" >
  
-  <li id="9"><input id="q1"/>&#xA0;have imitated and adapted animal experiments carried out by another researcher.</li>
-  <li id="10"><input id="q2"/>&#xA0;have experimented with animals' responses to sounds.</li>
-  <li id="11"><input id="q3"/>&#xA0;have designed electronic equipment for moths.</li>
-  <li id="12"><input id="q4"/>&#xA0;have successfully attached an electronic receiver to a moth.</li>
-  <li id="13"><input id="q5"/>&#xA0; have examined the effects of chemicals on the behaviour of moths.</li>
-  <li id="14"><input id="q6"/>&#xA0;have used moths to locate landmines.</li>
-  <li id="15"><input id="q7"/>&#xA0;have been trying to develop methods to direct moths.</li>
-  <li id="16"><input id="q8"/>&#xA0;have successfully trained moths.</li>
-  </ol>
+  <p class="hangingIndent2">9.&#xA0;&#xA0;&#xA0;<input id="q1"/>&#xA0;have imitated and adapted animal experiments carried out by another researcher.</p>
+  <p>10.&#xA0;<input id="q2"/>&#xA0;have experimented with animals' responses to sounds.</p>
+  <p>11.&#xA0;<input id="q3"/>&#xA0;have designed electronic equipment for moths.</p>
+  <p>12.&#xA0;<input id="q4"/>&#xA0;have successfully attached an electronic receiver to a moth.</p>
+  <p>13.&#xA0;<input id="q5"/>&#xA0; have examined the effects of chemicals on the behaviour of moths.</p>
+  <p>14.&#xA0;<input id="q6"/>&#xA0;have used moths to locate landmines.</p>
+  <p>15.&#xA0;<input id="q7"/>&#xA0;have been trying to develop methods to direct moths.</p>
+  <p>16.&#xA0;<input id="q8"/>&#xA0;have successfully trained moths.</p>
+  </div>
   
 </section>
 

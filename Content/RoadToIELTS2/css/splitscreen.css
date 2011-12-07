@@ -1,7 +1,6 @@
 * {
 	font-size: 12px;
 	font-family: Verdana;
-	
 }
 
 /* The main header should always be bold */
@@ -14,15 +13,11 @@ body > header {
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
-	
 }
-
 
 /* Paragraphs have spacing after them */
 p {
-	
 }
-
 
 /* Lists use numbers. */
 
@@ -79,7 +74,7 @@ img.leftFloat {
 }
 
 
-/* A paragraph class for hanging indents that work with numbers */
+
 	
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
@@ -166,13 +161,16 @@ h2 {
 	text-align: left;
     line-height: 20em;
 }
+
+/* h4 is used for section headings in questionList Reading 3 Matching */
 h4 {
 	font-family: Arial Black;
-	font-size: 14px;
-	padding-left: 25px;
+	font-size: 12px;
+	padding-left: 0px;
 	padding-bottom: 6px;
 	padding-top: 10px;
 }
+
 /* h5 is used for question headings (when no image) in the questionList portion of a splitscreen exercise */
  h5{
 	font-family: Arial Black;
@@ -181,6 +179,7 @@ h4 {
 	padding-bottom: 15px;
 	padding-top: 20px;
 }
+
 /* h7 is used for section headings in the reading text portion of a splitscreen exercise */
 h7{
 	font-family: Arial Black;
@@ -203,6 +202,7 @@ h8{
 	line-height: 20em;
 	padding-right: 25em;
 }
+
 /* h9 is used for section headings in the exercise portion of a splitscreen gapfill text-based exercise */
 h9{
 	font-family: Arial Black;
@@ -252,20 +252,13 @@ h11 {
 	padding-left: 0px;
 	}
 
-.splitquestionList {
-	list-style-type: decimal;
-	padding-left: 15px;
-	padding-right: 35px;
-	padding-top: 5em;
-	padding-bottom: 5em;
-	text-align: left;
-	line-height: 30em;
-	margin: 0 20px 20px 20px;
-	}
-	
-.splitquestionList li {
-		padding-left: 0px;
-	}
+/* This class is for Reading 3 Matching */
+.matchinglist{
+padding-top:10px;
+padding-left:15px;
+padding-bottom:10px;
+}
+/*-------------------------------------------------------*/
 
 #targetspotting {
 	list-style-type: decimal;
@@ -277,6 +270,7 @@ h11 {
 	line-height: 22em;
 	margin: 0 20px 20px 20px;
 	}
+	
 /*This is for questionLists with photos at the top of the exercise. */
 #splitquestionListP {
 	list-style-type: decimal;
@@ -289,7 +283,6 @@ h11 {
 	margin: 0 20px 20px 20px;
 	}
 
-
 #gapfillText{
 	padding-top: 20px;
 	padding-bottom: 20em;
@@ -298,6 +291,7 @@ h11 {
 	line-height: 22em;
 	padding-right: 25em;
 }
+
 #mchoices {
 	list-style-type: decimal;
 	padding-left: 20px;
@@ -307,7 +301,6 @@ h11 {
 	line-height: 22em;
 	}
 	
-
 #dragdrop{
 	padding-top: 12px;
 	text-align: justify;
@@ -325,10 +318,7 @@ h11 {
 	margin: 0 20px 20px 20px;
 }
 
-.hangingIndent {
- 	tab-stops: 30px;
- 	text-indent: -15em;
-}
+
 
 #reading {
 	padding-left: 17em;
@@ -347,13 +337,23 @@ h11 {
 #glossary {
 	padding-left: 50em;
 }
-
+/* A paragraph class for hanging indents that work with numbers */
+.hangingIndent {
+ 	tab-stops: 30px;
+ 	text-indent: -15em;
+}
 .hangingIndent1 {
 	padding-left: 1px;
  	tab-stops: 15px;
  	text-indent: -95em;
 	}
-
+/* This hanging indent is used for numbering question Reading 3 Classification */
+.hangingIndent2{
+	padding-left: 23px;
+ 	text-indent: -23em;
+}
+/*----------------------------------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------*/
 #splitdrag{
 	padding-top: 20px;
 	padding-left: 15px;
@@ -395,7 +395,6 @@ padding-left: 130px;
 
 /*This is for reading Unit 3 Matching  */
 #matching{
-   
 	padding-left: -10px;
     width:600px;
 }

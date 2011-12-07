@@ -125,15 +125,15 @@ h8{
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 25em;
-	padding-right: 25em;
-	padding-left: 25m;
+	padding-top: 20em;
+	padding-right: 20em;
+	padding-left: 20m;
 }
 #body .leftFloat {
 	float: left;
-	padding-top: 25em;
-	padding-right: 25em;
-	padding-left: 25m;
+	padding-top: 20em;
+	padding-right: 20em;
+	padding-left: 20m;
 }
 #body .leftFloat{
 	float: left:

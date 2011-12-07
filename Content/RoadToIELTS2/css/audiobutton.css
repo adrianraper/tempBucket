@@ -18,7 +18,7 @@ body > header {
 /* Paragraphs have spacing after them */
 p {
 	padding-left: 20px;
-	padding-right:20px;
+	padding-right:25px;
 }
 
 /* Headings */
@@ -82,18 +82,12 @@ h4 {
  	padding-left: 30px;
 }		
 
-/* This is for the hanging indent for paragraph questionList on Listening 3 Classification
-																						*/
-.hanging {
-	text-indent: -25px;
- 	padding-left: 45px;
-}
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 20em;
-	padding-right: 20em;
-	padding-left: 20m;
+	padding-top: 25em;
+	padding-right: 25em;
+	padding-left: 25m;
 }
 #body .rightFloatvideo {
 	float: right;
@@ -167,7 +161,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding-right: 280%;
 	text-align: left;
 	line-height: 22em;
-	padding-left: 0px;
+	padding-left: 20px;
 }
 
 #trueFalse a {
@@ -176,12 +170,8 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 }
 
 #trueFalse p{
-	padding-bottom: 20px;
+padding-bottom: 12px;
 }
-#trueFalse li{
-padding-left:20px;
-}
-
 
 #gapfillTextvideo{
 	padding-top: 20px;
@@ -220,37 +210,38 @@ position: absolute;
 }
 
 #content{
-position:relative;
-padding-top:25px;
-    height: 700px;
-    width:500px;
-    line-height:22em;
+	position:relative;
+	padding-top:25px;
 	padding-left: -25px;
+    height: 700px;
+    width:400px;
+    line-height:22em;
 }
 
 #video{
 	float: right;
-	width:720px;
+	width:100%;
 	padding-top: 0em;
 	padding-right: 0em;
-	padding-left: 0px;
+	padding-left: 500px;
 	margin-top: 0em;
 }
 
 /* This is for the audio buttons layout for Writing Unit 1 Arguments "for or againist" */
 
+
 #audio{
 position:relative;
 height: 400px;
-padding-left:-4px;
+padding-left:0px;
 line-height:29.7px;
-padding-top:25px;
+padding-top:5px;
 }
 
 #questiondiv{
 heigh: 400px;
 position:relative;
 line-height:30px;
-padding-left: 8px;
-padding-top: 30px;
+padding-left: 20px;
+padding-top: 10px;
 }

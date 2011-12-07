@@ -56,9 +56,9 @@ padding-right:20px;
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
-	padding-top: 25px;
-	padding-right: 25px;
-	padding-left: 25px;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 
 /* Links and draggable spans should be blue and not underlined */
@@ -193,9 +193,7 @@ padding-left: 15px;
 }
 #writing {
 	list-style-type: decimal;
-	margin-left: 20px;
 	padding-right: 370%;
-	padding-top: 20em;
 	text-align: left;
 	line-height: 20em;
 	
@@ -212,6 +210,7 @@ padding-left: 15px;
 	margin-top: 0em;
 }
 
+/* This is the video div for Writing Unit3 Watch a candidate*/
 #body .rightFloatvideo1 {
 	float: right;
 	width:760px;
@@ -247,9 +246,8 @@ padding-left:-20px;
     width:500px;
 }
 #w1{
-
-
     height: 700px;
     width:500px;
     line-height:22em;
 }
+

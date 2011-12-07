@@ -64,6 +64,12 @@ package com.clarityenglish.bento.controller {
 			pdf.setFont( defaultFont, 11 );				
 			pdf.addCell(156, 10, "Printing your exercise", 0, 0, 'R');
 
+			// Take a snapshot of a container and output that. Start with the rubric
+			// Make new view, infinite height, XHTMLExerciseView, not on screen
+			// Get the mediator here and call a function on that to do this. 
+			// facade.retrieveMediator(xxxx).getViewComponent();
+			// get the xhtmlexerciseview from the mediator, set height to infinite, this might flash the scroll bars, but might work 
+				
 			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";
 			pdf.save(Method.REMOTE, pdfURL, Download.ATTACHMENT);
