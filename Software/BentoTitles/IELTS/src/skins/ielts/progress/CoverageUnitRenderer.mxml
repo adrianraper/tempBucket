@@ -26,9 +26,9 @@
 		]]>
 	</fx:Script>
 	
-	<s:HGroup left="10" horizontalCenter="middle" >
-		<s:Label id="captionLabel" height="24" horizontalCenter="middle" />
-		<s:List id="exerciseIndicatorList" width="100%" height="40" horizontalScrollPolicy="off" 
+	<s:HGroup left="10" horizontalCenter="left" right="10" >
+		<s:Label id="captionLabel" height="24" paddingTop="8" />
+		<s:List id="exerciseIndicatorList" width="100%" height="24" horizontalScrollPolicy="off" 
 				contentBackgroundAlpha="0" borderVisible="false" >
 			<s:layout>
 				<s:HorizontalLayout />
@@ -49,7 +49,7 @@
 								}
 							]]>
 						</fx:Script>
-						<s:Rect id="exerciseIndicator" left="2" top="2" width="8" height="8" radiusX="2" radiusY="2">
+						<s:Rect id="exerciseIndicator" left="5" top="8" width="8" height="8" radiusX="2" radiusY="2" >
 							<s:fill>
 								<s:SolidColor id="fillColor" />
 							</s:fill>

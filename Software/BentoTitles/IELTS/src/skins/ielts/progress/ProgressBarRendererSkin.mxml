@@ -6,12 +6,12 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 
-	<s:VGroup width="90%" height="30" >
+	<s:VGroup width="90%" height="40" top="0">
 		<s:HGroup>
 			<s:Spacer width="100%" />
 			<s:Label id="commentLabel" color="#303030" fontSize="16" />			
 		</s:HGroup>
-		<s:Rect id="overallProgressRect" percentWidth="10" height="100%" >
+		<s:Rect id="overallProgressRect" percentWidth="90" height="100%" radiusX="0.4" radiusY="0.4" >
 			<s:fill>
 				<s:SolidColor id="solidColour" color="#CCED9A"  />
 			</s:fill>

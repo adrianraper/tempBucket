@@ -24,8 +24,8 @@
 
 	<ui:ProgressCourseBarComponent id="progressCourseBar" width="100%" height="100" left="200" />
 	
-	<ui:ProgressBarRenderer id="progressBar" width="100%" height="100" />
-	
+	<ui:ProgressBarRenderer id="progressBar" width="100%" height="40" />
+
 	<s:HGroup width="100%" height="100%" >
 		<ui:CoverageUnitComponent id="practiceZoneCoverage"
 									  caption="Practice zone" 

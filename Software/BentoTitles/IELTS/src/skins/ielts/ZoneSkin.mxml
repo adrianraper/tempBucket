@@ -149,7 +149,7 @@
 					<s:VGroup left="0" right="0" top="0" bottom="10" horizontalAlign="left" verticalAlign="middle">
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoPlay="false" scaleMode="none" left="3" />
 						
-						<s:List id="adviceZoneVideoList" width="510" height="40" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
+						<s:List id="adviceZoneVideoList" width="411" height="231" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
 							<s:layout>
 								<s:HorizontalLayout />
 							</s:layout>
