@@ -107,6 +107,11 @@
 				facade.sendNotification(BBNotifications.MARKING_SHOWN, bentoProxy.currentExercise);
 			}
 			
+			protected function onPrint(event:MouseEvent):void {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				facade.sendNotification(BBNotifications.EXERCISE_PRINT, bentoProxy.currentExercise.href);
+			}
+			
 			protected function onRunGC(event:MouseEvent):void {
 				System.gc();
 			}
@@ -130,6 +135,7 @@
 		
 		<s:Spacer width="100%" />
 		
+		<s:Button label="Print" click="onPrint(event)"/>
 		<s:Button label="Run GC" click="onRunGC(event)"/>
 		<s:Button label="Mark and show exercise feedback" click="onMarkAndShowExerciseFeedbackClick(event)"/>
 		<s:Button label="Disable interaction" click="onMarkingShownClick(event)"/>

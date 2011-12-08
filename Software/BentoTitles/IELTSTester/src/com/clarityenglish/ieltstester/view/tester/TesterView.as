@@ -14,7 +14,7 @@ package com.clarityenglish.ieltstester.view.tester {
 	
 	public class TesterView extends BentoView {
 		
-		private static const STARTING_CAPTION:String = "trac97";
+		private static const STARTING_CAPTION:String = "trac15";
 		
 		[SkinPart(required="true")]
 		public var menuTree:Tree;

@@ -97,7 +97,8 @@
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {
 			//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			sendNotification(BBNotifications.EXERCISE_PRINT, { view: dynamicView } );
+			//sendNotification(BBNotifications.EXERCISE_PRINT, { view: dynamicView } );
+			sendNotification(BBNotifications.EXERCISE_PRINT, dynamicView.href);
 		}
 		
 		private function onStartAgain():void {

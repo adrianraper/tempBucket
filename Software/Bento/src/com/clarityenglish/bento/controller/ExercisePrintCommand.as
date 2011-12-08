@@ -1,16 +1,15 @@
 package com.clarityenglish.bento.controller {
-	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.DynamicView;
-	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
-	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
-	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.Href;
 	
+	import flash.display.DisplayObject;
 	import flash.utils.ByteArray;
 	
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.managers.PopUpManager;
+	import mx.managers.PopUpManagerChildList;
 	
 	import org.alivepdf.display.Display;
 	import org.alivepdf.fonts.CoreFont;
@@ -21,15 +20,14 @@ package com.clarityenglish.bento.controller {
 	import org.alivepdf.layout.Mode;
 	import org.alivepdf.layout.Orientation;
 	import org.alivepdf.layout.Position;
+	import org.alivepdf.layout.Resize;
 	import org.alivepdf.layout.Size;
 	import org.alivepdf.layout.Unit;
 	import org.alivepdf.pdf.PDF;
 	import org.alivepdf.saving.Download;
 	import org.alivepdf.saving.Method;
 	import org.davekeen.util.ClassUtil;
-	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-	import org.puremvc.as3.interfaces.IView;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	public class ExercisePrintCommand extends SimpleCommand {
@@ -43,6 +41,45 @@ package com.clarityenglish.bento.controller {
 		private var imageHeaderStream:Class;
 
 		public override function execute(note:INotification):void {
+			super.execute(note);
+			
+			var href:Href = note.getBody() as Href;
+			
+			var pdf:PDF = new PDF(Orientation.PORTRAIT, Unit.MM, Size.A4);
+			pdf.setDisplayMode(Display.FULL_PAGE, Layout.SINGLE_PAGE);
+			
+			var defaultFont:IFont = new CoreFont(FontFamily.HELVETICA);
+			pdf.setFont(defaultFont, 11);
+			
+			var dynamicView:DynamicView = new DynamicView();
+			dynamicView.href = href;
+			dynamicView.width = Size.A4.dimensions[0];
+			dynamicView.scaleX = dynamicView.scaleY = 0.85;
+			
+			PopUpManager.addPopUp(dynamicView, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+			PopUpManager.centerPopUp(dynamicView);
+			
+			// TODO: This somehow needs to wait for everything to be drawn
+			
+			// Create a new page and get going
+			pdf.addPage();
+			
+			// Put a header graphic on the page
+			var imageHeader:ByteArray = new imageHeaderStream() as ByteArray;
+			pdf.addImageStream(imageHeader, ColorSpace.DEVICE_RGB, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), -10, -10, 210);
+			
+			// Chop the page into seperate images 
+			pdf.addImage(dynamicView);
+			
+			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
+			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";
+			pdf.save(Method.REMOTE, pdfURL, Download.ATTACHMENT);
+			
+			// Then close
+			pdf.end();
+		}
+		
+		/*public override function execute(note:INotification):void {
 			super.execute(note);
 			
 			//var exercise:Exercise = note.getBody().exercise as Exercise;
@@ -87,7 +124,7 @@ package com.clarityenglish.bento.controller {
 			pdf.end();
 
 			sendNotification(BBNotifications.EXERCISE_PRINTED);
-		}
+		}*/
 		
 	}
 	

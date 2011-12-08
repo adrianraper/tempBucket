@@ -84,7 +84,7 @@ package com.clarityenglish.bento.model {
 			_startTime = new Date().getTime();
 			
 			// If the exercise has an auto timer complete setting then start a timer
-			if (exercise.model.hasSettingParam("autoMarkTimeout")) {
+			if (exercise.model && exercise.model.hasSettingParam("autoMarkTimeout")) {
 				var autoMarkTimerDelay:int = exercise.model.getSettingParam("autoMarkTimeout");
 				
 				autoMarkTimer = new Timer(autoMarkTimerDelay * 1000, 1);

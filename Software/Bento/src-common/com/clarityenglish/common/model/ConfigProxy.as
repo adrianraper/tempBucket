@@ -181,9 +181,9 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			//return { courseClass: "writing" };
 			
-			/*if (Config.DEVELOPER.name == "DK") {
-				return { exerciseId: "1156181253997" };
-			}*/
+			if (Config.DEVELOPER.name == "DK") {
+				return { exerciseId: "1156181253915" };
+			}
 			
 			return null;
 		}
