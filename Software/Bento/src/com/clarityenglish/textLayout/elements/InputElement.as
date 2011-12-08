@@ -249,7 +249,6 @@ package com.clarityenglish.textLayout.elements {
 				return;
 			
 			// #101 states than no matter what the source will be cleared so no need to check for DragManager.NONE - if (DragManager.getFeedback() == DragManager.NONE) {
-			// TODO: There is still a bug with the ticks and crosses not being removed
 			_droppedFlowElement = null;
 			_droppedNode = null;
 			text = "";

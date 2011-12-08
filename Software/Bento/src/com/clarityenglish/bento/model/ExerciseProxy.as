@@ -262,34 +262,21 @@ package com.clarityenglish.bento.model {
 			
 			// 3. Remove any correct answers from the target nodes and correct answers
 			if (targetNodes) {
-				targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
+				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
-						// Remove the correct answer
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
+							// Remove the correct answer
 							correctAnswers.splice(idx, 1);
-							return true;
-						}
-						
-						if (selectedAnswer.synonymGroup) {
-							for each (var possibleAnswer:Answer in question.answers) {
-								if (possibleAnswer.synonymGroup == selectedAnswer.synonymGroup && possibleAnswer !== selectedAnswer) {
-									var possibleAnswerIdx:int = correctAnswers.indexOf(possibleAnswer);
-									if (possibleAnswerIdx > -1) {
-										trace("REMOVING");
-										correctAnswers.splice(possibleAnswerIdx, 1);
-										return true;
-									}
-								}
-							}
+							return false;
 						}
 					}
 					
-					return false;
+					return true;
 				});
-			
+				
 				// For each question
 				for each (var targetNode:XML in targetNodes) {
 					// 4. Get the answer currently in this target node
@@ -297,8 +284,22 @@ package com.clarityenglish.bento.model {
 					
 					// 5. If the current answer is empty or incorrect then add it to the answer map
 					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
-						answerMap.put(targetNode, correctAnswers[0]);
+						var correctAnswer:Answer = correctAnswers[0]
+						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
+						
+						// Remove other answers from the same synonym group (#97)
+						if (correctAnswer.synonymGroup) {
+							correctAnswers = correctAnswers.filter(function(remainingCorrectAnswer:Answer, idx:int, vector:Vector.<Answer>):Boolean {
+								if (remainingCorrectAnswer.synonymGroup == correctAnswer.synonymGroup && remainingCorrectAnswer !== correctAnswer) {
+									var idx:int = correctAnswers.indexOf(remainingCorrectAnswer);
+									if (idx > -1) return false;
+								}
+								
+								return true;
+							});
+						}
+						
 					}	
 				}
 			} else {
@@ -348,9 +349,8 @@ package com.clarityenglish.bento.model {
 								incorrectCount++;
 								break;
 							case Answer.NEUTRAL:
-								// TODO: Don't know what to do with neutral answers
 								// !!! Neutral questions don't go towards any counts (i.e. neither correct, incorrect nor missed)
-								throw new Error("Check with Adrian what to do in this situation");
+								break;
 						}
 					}
 					
