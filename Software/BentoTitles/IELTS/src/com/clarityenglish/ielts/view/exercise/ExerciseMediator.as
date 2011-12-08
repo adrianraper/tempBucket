@@ -33,6 +33,7 @@
 			super.onRegister();
 			
 			view.startAgain.add(onStartAgain);
+			view.showFeedback.add(onShowFeedback);
 			view.showMarking.add(onShowMarking);
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
@@ -43,9 +44,11 @@
 			super.onRemove();
 			
 			view.startAgain.remove(onStartAgain);
+			view.showFeedback.remove(onShowFeedback);
 			view.showMarking.remove(onShowMarking);
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
+			view.printExercise.remove(onPrintExercise);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -75,6 +78,9 @@
 					break;
 				case BBNotifications.MARKING_SHOWN:
 					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
+					
+					// If there is exercise feedback then show the exercise feedback button
+					view.feedbackButton.visible = getExerciseProxy(note.getBody() as Exercise).hasExerciseFeedback();
 					break;
 				case BBNotifications.EXERCISE_PRINTED:
 					trace("exericse printed");
@@ -91,7 +97,13 @@
 			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
+		private function onShowFeedback():void {
+			log.debug("The user clicked on feedback");
+			sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
+		}
+		
 		private function onShowMarking():void {
+			log.debug("The user clicked on marking");
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			sendNotification(BBNotifications.MARKING_SHOW, { exercise: bentoProxy.currentExercise } );
 		}

@@ -57,6 +57,7 @@ package com.clarityenglish.ielts.view.exercise {
 		}
 		
 		public var startAgain:Signal = new Signal();
+		public var showFeedback:Signal = new Signal();
 		public var showMarking:Signal = new Signal();
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
@@ -77,6 +78,9 @@ package com.clarityenglish.ielts.view.exercise {
 					break;
 				case startAgainButton:
 					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { startAgain.dispatch(); } );
+					break;
+				case feedbackButton:
+					feedbackButton.addEventListener(MouseEvent.CLICK, function():void { showFeedback.dispatch(); } );
 					break;
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, function():void { showMarking.dispatch(); } );

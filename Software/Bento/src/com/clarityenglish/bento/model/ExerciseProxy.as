@@ -99,7 +99,7 @@ package com.clarityenglish.bento.model {
 		 * @param event
 		 */
 		protected function onAutoTimerComplete(event:TimerEvent):void {
-			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
+			if (!_exerciseMarked) sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
 		}
 		
 		public function get duration():int {
@@ -227,6 +227,15 @@ package com.clarityenglish.bento.model {
 					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
 				}
 			}
+			
+			// If a correct answer is given then make all the other answers in the same synonym group incorrect (#97)
+			if (answer.markingClass == Answer.CORRECT && answer.synonymGroup) {
+				for each (var possibleAnswer:Answer in question.answers) {
+					if (possibleAnswer.synonymGroup == answer.synonymGroup && possibleAnswer !== answer) {
+						possibleAnswer.correct = false;
+					}
+				}
+			}
 		}
 		
 		/**
@@ -257,10 +266,24 @@ package com.clarityenglish.bento.model {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
+						// Remove the correct answer
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
 							correctAnswers.splice(idx, 1);
 							return true;
+						}
+						
+						if (selectedAnswer.synonymGroup) {
+							for each (var possibleAnswer:Answer in question.answers) {
+								if (possibleAnswer.synonymGroup == selectedAnswer.synonymGroup && possibleAnswer !== selectedAnswer) {
+									var possibleAnswerIdx:int = correctAnswers.indexOf(possibleAnswer);
+									if (possibleAnswerIdx > -1) {
+										trace("REMOVING");
+										correctAnswers.splice(possibleAnswerIdx, 1);
+										return true;
+									}
+								}
+							}
 						}
 					}
 					
@@ -362,13 +385,21 @@ package com.clarityenglish.bento.model {
 		}
 		
 		public function hasExerciseFeedback():Boolean {
-			return exercise.model.getExerciseFeedback().length > 0;
+			return (getExerciseFeedback() != null);
 		}
 		
 		public function showExerciseFeedback():void {
+			var exerciseFeedback:Feedback = getExerciseFeedback();
+			
+			if (exerciseFeedback) {
+				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback /*, substitutions: substitutions*/ } );
+			}
+		}
+		
+		private function getExerciseFeedback():Feedback {
 			if (!_exerciseMarked || !_exerciseMark) {
-				log.error("Attemped to show exercise feedback before an exercise was marked");
-				return;
+				log.error("Attemped to get exercise feedback before an exercise was marked");
+				return null;
 			}
 			
 			// Get the exercise feedback and sort it into descending order by min (this means the first matched feedback will be the most restrictive)
@@ -387,14 +418,14 @@ package com.clarityenglish.bento.model {
 			});
 			
 			// Get the exercise score as a percentage (if there are no questions you get 100%)
-			var percent:Number = (_exerciseMark.totalQuestions > 0) ? Math.round(_exerciseMark.correctCount / _exerciseMark.totalQuestions * 100) : 100;
+			var percent:Number = (_exerciseMark.totalQuestions > 0) ?  _exerciseMark.correctPercent : 100;
 			for each (var feedback:Feedback in exerciseFeedbacks) {
 				if (percent >= feedback.min) {
-					// Found it, so show feedback
-					sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: feedback /*, substitutions: substitutions*/ } );
-					return;
+					return feedback;
 				}
 			}
+			
+			return null;
 		}
 		
 	}

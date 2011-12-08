@@ -2,6 +2,8 @@ package com.clarityenglish.bento.vo.content.model.answer {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	
+	import org.hamcrest.object.nullValue;
+	
 	public class Answer {
 		
 		public static const SELECTED:String = "selected";
@@ -53,8 +55,16 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return (xml.hasOwnProperty("@correct") && xml.@correct == "neutral") ? NEUTRAL : INCORRECT;
 		}
 		
+		public function get synonymGroup():String {
+			return (xml.hasOwnProperty("@synonymGroup")) ? xml.@synonymGroup.toString() : null;
+		}
+		
 		public function get feedback():Feedback {
 			return _feedback;
+		}
+		
+		public function set correct(value:Boolean):void {
+			xml.@correct = value;
 		}
 		
 		public function toXMLString():String {

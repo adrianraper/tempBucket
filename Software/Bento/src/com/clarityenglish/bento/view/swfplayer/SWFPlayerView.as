@@ -9,6 +9,7 @@ package com.clarityenglish.bento.view.swfplayer {
 	import flash.system.SecurityDomain;
 	
 	import mx.controls.SWFLoader;
+	import flash.events.Event;
 	
 	public class SWFPlayerView extends BentoView {
 		
@@ -38,6 +39,12 @@ package com.clarityenglish.bento.view.swfplayer {
 			
 			swfLoader.loaderContext = context;    
 			swfLoader.load(url);
+		}
+		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			
+			swfLoader.unloadAndStop();
 		}
 		
 	}

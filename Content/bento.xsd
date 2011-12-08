@@ -145,6 +145,7 @@
 		</attribute>
 		<attribute name="source" type="string"></attribute>
 		<attribute name="value" type="string"></attribute>
+		<attribute name="synonymGroup" type="string"></attribute>
 	</complexType>
 
 	<complexType name="nosourceQuestionType">

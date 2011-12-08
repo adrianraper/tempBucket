@@ -167,7 +167,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				var sourceNodes:Vector.<XML>;
 				
 				// If we are in show answers then clear any existing icons for this question (MarkableIconsBehaviour)
-				if (isShowAnswers) answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, answerElement));
+				if (isShowAnswers && answerElement) answerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, answerElement));
 				
 				// For some questions deselect all other nodes
 				if (question.isMutuallyExclusive()) {

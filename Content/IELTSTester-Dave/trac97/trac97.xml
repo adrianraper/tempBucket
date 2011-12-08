@@ -2,62 +2,39 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="css/questionBased.css" type="text/css" />
+	<link rel="stylesheet" href="../tests/css/exercises.css" type="text/css" />
 	<style type="text/css">
-	
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
-    	 */			
+		 */
+		 
+		 input {
+		 	width: 100px;
+		 }
 	]]>
-	
 	</style>
+	
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<!--  <param name="delayedMarking" value="true" />-->
 </settings>
-  <questions>
-    <GapFillQuestion source="{#q1,#q2,#q3}" block="q1block">
-      <answer value="Italian" correct="true"/>
-      <answer value="an Italian" correct="true"/>
-      <answer value="an Italian restaurant" correct="true"/>
-      <answer value="Italian restaurant" correct="true"/>
-      <answer value="an Indian restaurant" correct="true"/>
-      <answer value="Indian restaurant" correct="true"/>
-      <answer value="a French restaurant" correct="true"/>
-      <answer value="French restaurant" correct="true"/>
-      <answer value="an Indian" correct="true"/>
-      <answer value="Indian" correct="true"/>
-      <answer value="a French" correct="true"/>
-      <answer value="French" correct="true" />
-    </GapFillQuestion>
-    <GapFillQuestion source="{#q4Block input}" block="b4">
-      <answer value="Food Express" correct="true"/>
-      <answer value="Burger Bar" correct="true"/>
-      <answer value="The Burger Bar" correct="true">
-        <feedback source="fb4"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="a fire" correct="true"/>
-      <answer value="a log fire" correct="true"/>
-      <answer value="a fire inside" correct="true">
-        <feedback source="fb6"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="a live band" correct="true"/>
-      <answer value="a live group" correct="true">
-        <feedback source="fb7"/>
-      </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="in Park Road" correct="true">
-        <feedback source="fb8"/>
-      </answer>
+   <questions>
+    <GapFillQuestion source="{input}" block="b1">
+    	<answer value="1" correct="true" synonymGroup="numbers" />
+    	<answer value="2" correct="true" synonymGroup="numbers" />
+    	<answer value="3" correct="true" synonymGroup="numbers" />
+    	
+    	<answer value="a" correct="true" synonymGroup="letters" />
+    	<answer value="b" correct="true" synonymGroup="letters" />
+    	<answer value="c" correct="true" synonymGroup="letters" />
+    	
+    	<answer value="$" correct="true" synonymGroup="symbols" />
+    	<answer value="%" correct="true" synonymGroup="symbols" />
+    	<answer value="^" correct="true" synonymGroup="symbols" />
     </GapFillQuestion>
   </questions>
 </script>
@@ -65,65 +42,14 @@
 </head>
 <body>
 	
-<header>
-	Listen to the recording, which will play automatically, and follow the instructions. Write NO MORE THAN THREE WORDS for each answer in the gaps below.
-</header>
+<header>Synonym groups</header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LE_LN_002.jpg" mode="1" id="1001"/>
-  <p>Which&#xA0;<b>THREE</b>&#xA0;types of restaurant does the speaker recommend?</p>
-  <ol class="questionList" >
-  <li id="1"><input id="q1"/></li>
-  <li id="2"><input id="q2"/></li>
-  <li id="3"><input id="q3"/></li>
-	</ol>
-  <br/>
-  <p>Which&#xA0;<b>TWO</b>&#xA0;places in the High Street sell vegetarian takeaway food?</p>
-  <ol class="questionList" >
-	<li id="4"><input id="q4"/></li>
-	<li id="5"><input id="q5"/></li>
-	</ol>
-  <br/>
-  <p>What does 'The White Swan' have in winter?</p>
-	<li id="6"><input id="q6"/><br/></li>
-  <p>What can you see in 'The George' on a Saturday?</p>
-	<li id="7"><input id="q7"/><br/></li>
-  <p>Where is the 'The Cellar'?</p>
-    <li id="8"><input id="q8"/></li>
-  </ol>
+	<p>Enter a number (1,2,3), a letter (a,b,c) and a symbol ($,%,^)</p>
+	<br />
+	<input id="input1" /><br/>
+	<input id="input2" /><br/>
+	<input id="input3" /><br/>
 </section>
-
-<section id="fb1">
-  <p align="left">1. The speaker says the Italian restaurant is a popular place and that their prices are reasonable and their pasta sauces are good.</p>
-</section>
-
-<section id="fb2">
-  <p align="left">2. The speaker says they do the 'best food for miles' and that she really recommends one of their dishes, their chicken tikka.</p>
-</section>
-
-<section id="fb3">
-  <p align="left">3. The speaker says the French restaurant is very good despite being expensive.</p>
-</section>
-
-<section id="fb4">
-  <p align="left">4. The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
-</section>
-
-<section id="fb5">
-  <p align="left">5. The speaker says that the best vegetarian food is takeaway food and then goes on to name the places where you can buy it.</p>
-</section>
-
-<section id="fb6">
-  <p align="left">6. The speaker says they light a fire in winter.</p>
-</section>
-
-<section id="fb7">
-  <p align="left">7. The speaker says that on Saturday nights 'The George' has a live band.</p>
-</section>
-
-<section id="fb8">
-  <p align="left">8. The speaker says it's in Park Road.</p>
-</section>
-
 </body>
 </bento>
