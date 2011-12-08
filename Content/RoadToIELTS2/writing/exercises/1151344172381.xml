@@ -111,14 +111,16 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the report from the last exercise again and decide if the highlighted words and phrases are used to show consecutive, concurrent or alternative stages in the process.
+	</div>
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/WB_WR3.jpg" mode="16" id="1003"/>
+  <img class="rightFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/_WB_WR3.jpg" mode="16" id="1003"/>
   
-  <ol id="targetspotting">
+  <ol id="splitquestionList">
     
     <li id="q1">First
 	<list class="answerList">

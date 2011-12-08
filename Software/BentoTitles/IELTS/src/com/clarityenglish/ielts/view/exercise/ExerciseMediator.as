@@ -2,9 +2,12 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	
+	import flash.display.DisplayObject;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -79,9 +82,9 @@
 			}
 		}
 		
-		private function onPrintExercise():void {
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			sendNotification(BBNotifications.EXERCISE_PRINT, { exercise: bentoProxy.currentExercise } );
+		private function onPrintExercise(dynamicView:DynamicView):void {
+			//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			sendNotification(BBNotifications.EXERCISE_PRINT, { view: dynamicView } );
 		}
 		
 		private function onStartAgain():void {
@@ -103,5 +106,12 @@
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
 		}
 		
+		/**
+		 * For printing using snapshots of the DisplayObjects
+		 * 
+		 */
+		public function printRubric():DisplayObject {
+			return view.dynamicView;
+		}
 	}
 }

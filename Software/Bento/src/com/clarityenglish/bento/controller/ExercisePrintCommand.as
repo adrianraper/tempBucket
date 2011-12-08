@@ -2,6 +2,9 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.view.DynamicView;
+	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	import flash.utils.ByteArray;
@@ -24,7 +27,9 @@ package com.clarityenglish.bento.controller {
 	import org.alivepdf.saving.Download;
 	import org.alivepdf.saving.Method;
 	import org.davekeen.util.ClassUtil;
+	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.interfaces.IView;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	public class ExercisePrintCommand extends SimpleCommand {
@@ -40,9 +45,10 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var exercise:Exercise = note.getBody().exercise as Exercise;
-			
-			var exerciseProxy:ExerciseProxy = new ExerciseProxy(exercise);
+			//var exercise:Exercise = note.getBody().exercise as Exercise;
+			//var exerciseProxy:ExerciseProxy = new ExerciseProxy(exercise);
+			//var mediatorName:String = note.getBody().mediatorName;
+			var view:DynamicView = note.getBody().view as DynamicView;
 			
 			// Build a pdf of the exercise
 			trace("starting to build the pdf");
@@ -67,8 +73,11 @@ package com.clarityenglish.bento.controller {
 			// Take a snapshot of a container and output that. Start with the rubric
 			// Make new view, infinite height, XHTMLExerciseView, not on screen
 			// Get the mediator here and call a function on that to do this. 
-			// facade.retrieveMediator(xxxx).getViewComponent();
+			
+			//var myMediator:IMediator = facade.retrieveMediator(mediatorName);
+			//var exerciseView:XHTMLExerciseView = myMediator.getViewComponent() as XHTMLExerciseView;
 			// get the xhtmlexerciseview from the mediator, set height to infinite, this might flash the scroll bars, but might work 
+			pdf.addImage(view);
 				
 			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";

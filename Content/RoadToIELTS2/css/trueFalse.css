@@ -86,7 +86,7 @@ h4 {
 																						*/
 .hanging {
 	text-indent: -25px;
- 	padding-left: 45px;
+ 	padding-left: 40px;
 }
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
@@ -163,7 +163,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 
 #trueFalse {
 	list-style-type: decimal;
-	padding-left: 0;
+	padding-left: 0px;
 	padding-right: 280%;
 	text-align: left;
 	line-height: 22em;
@@ -229,13 +229,13 @@ padding-top:25px;
 }
 
 #video{
-	float: right;
-	width:720px;
-	padding-top: 0em;
+	
+	padding-top: 10em;
 	padding-right: 0em;
-	padding-left: 0px;
+	padding-left: 520px;
 	margin-top: 0em;
 }
+
 
 /* This is for the audio buttons layout for Writing Unit 1 Arguments "for or againist" */
 
@@ -251,6 +251,6 @@ padding-top:25px;
 heigh: 400px;
 position:relative;
 line-height:30px;
-padding-left: 8px;
+padding-left: 12px;
 padding-top: 30px;
 }

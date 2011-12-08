@@ -153,22 +153,23 @@
 			id: "bento",
 			name: "bento",
 			quality: "high",
-			allowfullscreen: "true",
-			align: "center",
-			scale: "exactFit"
+			allowfullscreen: "true",			
+			salign: "tc",
+			scale: "noscale"
 		};
 		var attr = {
+			align: "middle",
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, false, false);
-		//swffit.configure({hCenter: true});
+		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
 	</script>
+		
 </head>
 <body onload="onLoad()">
-	<div style="text-align:center" id="bento">
+	<div id="bento">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

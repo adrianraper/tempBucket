@@ -77,7 +77,7 @@
 <section id="body">
 
   <img class="rightFloat" src="../media/AC_LN_003.jpg" mode="1" id="1001"/>
-  <audio controls="hidden"  autoplay="true" src="../media/AC_LN2.mp3" mode="4" id="1002"/>
+  <audio controls="hidden"  loop="1" autoplay="true" src="../media/AC_LN2.mp3" mode="4" id="1002"/>
 
 
     <p><b>A</b><tab/>	in the period up to 1950<br/>

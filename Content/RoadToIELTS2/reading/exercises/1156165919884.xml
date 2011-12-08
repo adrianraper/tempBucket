@@ -51,7 +51,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Complete each of the statements on the right (Questions 1-7) with words taken from the passage on the left. Write NO MORE THAN THREE WORDS for each answer.
+	</div>
 </header>
 	
 <section id="body">

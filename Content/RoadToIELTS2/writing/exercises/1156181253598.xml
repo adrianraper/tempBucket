@@ -63,18 +63,18 @@
 		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
 		
 
-Writing Task 2
+
 </header>
 	
 <section id="noscroll">
-  <span id="a13" draggable="true">Audio A<audio controls="compact" class="leftFloat" src="../media/TT_WR1at.mp3" mode="1" id="1011"/></span>
-  <span id="a17" draggable="true">Audio B<audio controls="compact" class="rightFloat" src="../media/TT_WR1au.mp3" mode="1" id="1012"/></span>
-  <span id="a21" draggable="true">Audio C<audio controls="compact" class="rightFloat" src="../media/TT_WR1av.mp3" mode="1" id="1013"/></span>
-  <span id="a19" draggable="true">Audio D<audio controls="compact" class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"/></span>
-  <span id="a12" draggable="true">Audio E <audio controls="compact" class="leftFloat" src="../media/TT_WR1ax.mp3" mode="1" id="1015"/></span>
-  <span id="a10" draggable="true">Audio F<audio controls="compact" class="rightFloat" src="../media/TT_WR1ay.mp3" mode="1" id="1016"/></span>
-  <span id="a22" draggable="true">Audio G<audio controls="compact" class="rightFloat" src="../media/TT_WR1az.mp3" mode="1" id="1017"/></span>
-  <span id="a15" draggable="true">Audio H <audio controls="compact" class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"/></span>
+  <span id="a13" draggable="true">Audio A<audio controls="compact"  src="../media/TT_WR1at.mp3" mode="1" id="1011"/></span>
+  <span id="a17" draggable="true">Audio B<audio controls="compact"  src="../media/TT_WR1au.mp3" mode="1" id="1012"/></span>
+  <span id="a21" draggable="true">Audio C<audio controls="compact"  src="../media/TT_WR1av.mp3" mode="1" id="1013"/></span>
+  <span id="a19" draggable="true">Audio D<audio controls="compact"  src="../media/TT_WR1aw.mp3" mode="1" id="1014"/></span>
+  <span id="a12" draggable="true">Audio E <audio controls="compact"  src="../media/TT_WR1ax.mp3" mode="1" id="1015"/></span>
+  <span id="a10" draggable="true">Audio F<audio controls="compact"  src="../media/TT_WR1ay.mp3" mode="1" id="1016"/></span>
+  <span id="a22" draggable="true">Audio G<audio controls="compact"  src="../media/TT_WR1az.mp3" mode="1" id="1017"/></span>
+  <span id="a15" draggable="true">Audio H <audio controls="compact"  src="../media/TT_WR1ba.mp3" mode="1" id="1018"/></span>
   
 </section>
 

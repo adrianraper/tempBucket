@@ -65,7 +65,7 @@
 <section id="body">
 
  <img class="rightFloat" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" autoplay="true" class="leftFloat" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
  
   
   <div id="questionList">

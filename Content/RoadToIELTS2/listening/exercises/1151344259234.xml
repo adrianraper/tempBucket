@@ -60,14 +60,15 @@
 </header>
 	
 <section id="body">
-  <audio controls="hidden" autoplay="true" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_003.jpg" mode="1" id="1001"/>
 
   
  
 	<p><b>7-9  What is wrong with the washing machine?</b></p>
 	 <ol id="targetspotting">
-		<list class="answerList"><li><g id="t1">It leaks.</g></li>
+		<list class="answerList">
+		<li><g id="t1">It leaks.</g></li>
 	    <li><g id="t2">One of the hoses is broken.</g></li>
     	<li><g id="t3">It does not rinse the clothes.</g></li>
     	<li><g id="t4">The dial does not move automatically.</g></li>

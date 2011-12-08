@@ -61,6 +61,16 @@ padding-right:20px;
 	padding-left: 20px;
 }
 
+img.floatRightClear { 
+    float: right; 
+	display:block;
+}
+
+img.below { 
+    float: right; 
+  display:block;
+}
+
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
 	color: #3A00FF;
@@ -179,7 +189,7 @@ padding-left: -25px;
 
 #questionList {
 	list-style-type: decimal;
-	padding-left: 20px;
+	padding-left: 0px;
 	padding-right: 280%;
 	padding-top: 0px;
 	padding-bottom: 20em;
@@ -191,6 +201,7 @@ padding-left: -25px;
 #questionList li{
 padding-left: 15px;
 }
+
 #writing {
 	list-style-type: decimal;
 	padding-right: 370%;

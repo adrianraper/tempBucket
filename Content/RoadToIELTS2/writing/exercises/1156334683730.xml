@@ -43,7 +43,7 @@
 		Read the writing task and put the paragraph headings in the appropriate order. When you have finished, listen to a teacher and some students discussing the same writing task and check your answers.
 		
 		
-		Writing Task 2
+		
 </header>
 	
 <section id="noscroll">
@@ -55,8 +55,10 @@
 
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_009.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/EN_WR1aa.mp3" mode="1" id="1002"/>
+  
   <div id="questionList">
+  <p><audio controls="compact"  src="../media/EN_WR1aa.mp3" mode="1" id="1002"/></p>
+ 
   <p align="left">Paragraph 1&#xA0;<input id="q1" type="droptarget"/></p>
   <p align="left">Paragraph 2&#xA0;<input id="q2" type="droptarget"/></p>
   <p align="left">Paragraph 3&#xA0;<input id="q3" type="droptarget"/></p>

@@ -76,8 +76,9 @@
 	
 <header>
 	
-		
+			<div id="instruction">
 		Do the statements on the right agree with the views of the writer of the passage on the left?
+		</div>
 		
 </header>
 	

@@ -76,9 +76,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Do the statements on the right agree with the information given in the reading passage on the left? TRUE - if the statement is true according to the passage; FALSE - if the statement is false according to the passage; NOT GIVEN - if the information is not given in the passage.
-		
+		</div>
 </header>
 	
 <section id="body">

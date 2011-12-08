@@ -92,7 +92,7 @@
 	
 <section id="body">
   
-  <audio controls="hidden"  src="../media/LE_LN2.mp3" mode="4" id="1002" autoPlay="true"/>
+  <audio controls="hidden"  loop="1" src="../media/LE_LN2.mp3" mode="4" id="1002" autoPlay="true"/>
   
 <img class="rightFloat" src="../media/LE_LN_003.jpg" mode="1" id="1001"/>
 

@@ -74,7 +74,7 @@
 
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_006s.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/EN_AW_006.jpg" mode="16" id="1003"/>
+  <img class="leftFloat" src="../media/_EN_AW_006.jpg" mode="16" id="1003"/>
   
   <div id="gapfillText">
   
@@ -82,9 +82,7 @@
   <p>At the top of the tower is the nacelle, &#xA0;<input id="q4" type="droptarget"/>&#xA0; streamlined &#xA0;<input id="q5" type="droptarget"/>&#xA0; to prevent the tower from bending in strong winds. Inside &#xA0;<input id="q6" type="droptarget"/>&#xA0; housing, the gearbox converts the 34 r.p.m. rotating speed of the rotor blades to 1500 r.p.m. &#xA0;<input id="q7" type="droptarget"/>&#xA0; the generator drive shaft. This is &#xA0;<input id="q8" type="droptarget"/>&#xA0; that the turbine produces electricity of the right frequency. </p>
   <p>The turbine also has weather sensors, &#xA0;<input id="q9" type="droptarget"/>&#xA0; located at the top of the nacelle. These measure the speed and direction of the wind. This information is sent to the yaw drive, &#xA0;<input id="q10" type="droptarget"/>&#xA0; turns the turbine to face the wind. As a result, the turbine is always positioned to make the best use of the available wind.</p>
   
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
+ 
   </div>
 </section>
 

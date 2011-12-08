@@ -306,21 +306,13 @@ class BentoService extends AbstractService {
 	 *  @param dateNow - used to get client time
 	 */
 	function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
-
 		
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we shoud be trying to keep the format the same!
 		$score = new Score();
 		$score->setUID($scoreObj['UID']);
-		/*
-		$UID = explode('.', $scoreObj['UID']);
-		$score->productCode = $UID[0];
-		$score->courseID = $UID[1];
-		$score->unitID = $UID[2];
-		$score->exerciseID = $UID[3];
-		*/
 		
-		$score->score = $scoreObj['percent'];
+		$score->score = $scoreObj['correctPercent'];
 		$score->scoreCorrect = $scoreObj['correctCount'];
 		$score->scoreWrong = $scoreObj['incorrectCount'];
 		$score->scoreMissed = $scoreObj['missedCount'];

@@ -16,31 +16,66 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	
 </settings>
   <questions>
-    <DropDownQuestion source="q1" block="b1">
-      <answer correct="false" source="${#q1 > option:nth-child(1)}" />
-      <answer correct="false" source="${#q1 > option:nth-child(2)}" />
-      <answer correct="true" source="${#q1 > option:nth-child(3)}" />
-	  <answer correct="false" source="${#q1 > option:nth-child(4)}" />
-	  <answer correct="false" source="${#q1 > option:nth-child(5)}" />
-    </DropDownQuestion>
-    <DropDownQuestion source="q2" block="b2">
-      <answer correct="false" source="${#q2 > option:nth-child(1)}" />
-      <answer correct="false" source="${#q2 > option:nth-child(2)}" />
-      <answer correct="false" source="${#q2 > option:nth-child(3)}" />
-	  <answer correct="true" source="${#q2 > option:nth-child(4)}" />
-	  <answer correct="false" source="${#q2 > option:nth-child(5)}" />
-    </DropDownQuestion>
-    <DropDownQuestion source="q3" block="b3">
-      <answer correct="false" source="a11" />
-      <answer correct="true" source="a12" />
-      <answer correct="false" source="a13" />
-	  <answer correct="false" source="a14" />
-	  <answer correct="false" source="a15" />
-    </DropDownQuestion>
-
-  </questions>
+  	<DropDownQuestion source="q1Select" block="q1Block">
+		<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q1Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+	<DropDownQuestion source="q2Select" block="q2Block">
+		<answer correct="false" source="${#q2Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(3)}" />
+		<answer correct="true" source="${#q2Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q3Select" block="q3Block">
+		<answer correct="false" source="${#q3Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q3Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+  	<DropDownQuestion source="q4Select" block="q4Block">
+		<answer correct="false" source="${#q4Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(4)}" />
+		<answer correct="true" source="${#q4Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+ 	<DropDownQuestion source="q5Select" block="q5Block">
+		<answer correct="true" source="${#q5Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q6Select" block="q6Block">
+		<answer correct="false" source="${#q6Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q6Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+    <DropDownQuestion source="q7Select" block="q7Block">
+		<answer correct="false" source="${#q7Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q7Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+    <DropDownQuestion source="q8Select" block="q8Block">
+		<answer correct="false" source="${#q8Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q8Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q8Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q8Select > option:nth-child(4)}" />
+		<answer correct="false" source="${#q8Select > option:nth-child(5)}" />
+	</DropDownQuestion>
+</questions>
   
 </script>
 
@@ -49,16 +84,69 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read the passage on the left. Write the appropriate letters in the gaps on the right. You may use any answer more than once.
-		
+		</div>
 </header>
 	
 <section id="body">
 <ol id="dropdown">
-	<li id="1"><select id="q1"><option>Rembrandt</option><option>Beckmann</option><option>Picasso</option><option>Both Beckmann and Rembrandt</option><option>Both Beckmann and Picasso</option></select>&#xA0;revealed the influence of other artists in self-portraits.</li>
-	<li id="2"><select id="q2"><option class="o1">Rembrandt</option><option class="o2">Beckmann</option><option class="o3">Picasso</option><option class="o4">Both Beckmann and Rembrandt</option><option class="o5">Both Beckmann and Picasso</option></select>&#xA0;often wore curious clothing in self-portraits.</li>
-	<li id="3"><select id="q3"><option id="a11">Rembrandt</option><option id="a12">Beckmann</option><option id="a13">Picasso</option><option id="a14">Both Beckmann and Rembrandt</option><option id="a15">Both Beckmann and Picasso</option></select>&#xA0;had experiences which had a profound effect on the mood of the self-portraits.</li>
+	<li id="q1Block"><select id="q1Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;revealed the influence of other artists in self-portraits.</li>
+	<li id="q2Block"><select id="q2Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;often wore curious clothing in self-portraits.</li>
+	<li id="q3Block"><select id="q3Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;had experiences which had a profound effect on the mood of the self-portraits.</li>
+	<li id="q4Block"><select id="q4Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;painted works in which the artist appears with another person.</li>
+	<li id="q5Block"><select id="q5Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;used fewer colours in later self-portraits.</li>
+	<li id="q6Block"><select id="q6Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;included a wide variety of objects in the self-portraits.</li>
+	<li id="q7Block"><select id="q7Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;created works which may surprise us.</li>
+	<li id="q8Block"><select id="q8Select">
+		<option>Rembrandt</option>
+		<option>Beckmann</option>
+		<option>Picasso</option>
+		<option>Both Beckmann and Rembrandt</option>
+		<option>Both Beckmann and Picasso</option>
+		</select>&#xA0;looks more self-assured in earlier works.</li>
 </ol>
 </section>
 

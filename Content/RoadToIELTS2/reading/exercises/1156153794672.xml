@@ -104,6 +104,7 @@
     <li id="6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.<br/><input id="q6"/></li>
 	
     <p>List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.</p>
+	
     <li id="7">
       <input id="q7"/>
     </li>

@@ -63,7 +63,7 @@
 <section id="body">
 
 <img class="rightFloat" src="../media/_LC_LN_003.JPG" mode="1" id="1001"/>
-<audio controls="hidden" class="leftFloat" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
+<audio controls="hidden"  loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
 
 
 <ol id="questionList">

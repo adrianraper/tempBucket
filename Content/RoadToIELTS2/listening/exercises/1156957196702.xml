@@ -106,7 +106,7 @@ Listen to the recording, which will play automatically, and follow the instructi
 <section id="body">
 
   <img class="rightFloat" src="../media/MM_LN_002.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" autoplay="true" class="leftFloat" src="../media/MM_LN1.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/MM_LN1.mp3" mode="4" id="1002"/>
  
  <h7><p>Questions 1-4</p></h7>
   

@@ -56,8 +56,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Do the statements on the right agree with the views of the writer of the passage? YES - the statement agrees with the views of the writer; NO - the statement contradicts the views of the writer; NOT GIVEN - it is impossible to say what the writer thinks about this.
+		</div>
 		
 </header>
 	

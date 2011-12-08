@@ -58,7 +58,7 @@
 </header>
 	
 <section id="body">
-  <audio controls="hidden" autoplay="true" class="leftFloat" src="../media/ST_LN1c.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ST_LN1c.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">

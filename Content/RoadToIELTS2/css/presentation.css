@@ -98,6 +98,7 @@ h8{
 	padding-left: 15px;
 	margin-left: 0px;
 }
+
 /* Reading text spacing */
 /* I would be happier doing #readingText * {} but that overrides the h1 settings */
 #readingText p {
@@ -135,9 +136,8 @@ h8{
 	padding-right: 20em;
 	padding-left: 20m;
 }
-#body .leftFloat{
-	float: left:
-}
+
+
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
 	color: #3A00FF;

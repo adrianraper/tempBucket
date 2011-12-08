@@ -66,17 +66,18 @@
 <header>
 	Look at the pie chart and complete the report by filling each gap with the past simple of the verb given in brackets.
 </header>
-	<section id="noscroll">
-	<img class="rightFloat" src="../media/Unit01_Write_e5.jpg" mode="1" id="1003"/>
-</section>
+	
+	
+
 <section id="body">
   <div id="gapfillText">
-  <p align="left">
-    <font color="#000000">In 1961 people in the UK mostly&#xA0;<input id="q1"/>&#xA0;(watch) television or&#xA0;<input id="q2"/>&#xA0;(listen) to the radio in their leisure time. On average they&#xA0;<input id="q3"/>&#xA0;(spend) almost half of their free time on these activities. After that&#xA0;<input id="q4"/>&#xA0;(come) other unspecified pastimes, which <input id="q5"/> (take up) about an hour and a quarter a day. People&#xA0;<input id="q6"/>&#xA0;(not seem) to socialise a great deal, as this&#xA0;<input id="q7"/>&#xA0;(account) for only 35 minutes in a typical day. People&#xA0;<input id="q8"/>&#xA0;(eat) out,&#xA0;<input id="q9"/>&#xA0;(go) to the cinema or&#xA0;<input id="q10"/>&#xA0;(entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="q11"/> (play) sports or&#xA0;<input id="q12"/>&#xA0;(walk) for an average of only 9 minutes a day.</font>
+  <p>
+    In 1961 people in the UK mostly&#xA0;<input id="q1"/>&#xA0;(watch) television or&#xA0;<input id="q2"/>&#xA0;(listen) to the radio in their leisure time. On average they&#xA0;<input id="q3"/>&#xA0;(spend) almost half of their free time on these activities. After that&#xA0;<input id="q4"/>&#xA0;(come) other unspecified pastimes, which <input id="q5"/> (take up) about an hour and a quarter a day. People&#xA0;<input id="q6"/>&#xA0;(not seem) to socialise a great deal, as this&#xA0;<input id="q7"/>&#xA0;(account) for only 35 minutes in a typical day. People&#xA0;<input id="q8"/>&#xA0;(eat) out,&#xA0;<input id="q9"/>&#xA0;(go) to the cinema or&#xA0;<input id="q10"/>&#xA0;(entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="q11"/> (play) sports or&#xA0;<input id="q12"/>&#xA0;(walk) for an average of only 9 minutes a day.
   </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <img class="leftFloat" src="../media/Unit01_Write_e5.jpg" mode="1" id="1003"/>
+  
+  
   </div>
 </section>
 

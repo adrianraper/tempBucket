@@ -60,7 +60,7 @@ package com.clarityenglish.ielts.view.exercise {
 		public var showMarking:Signal = new Signal();
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
-		public var printExercise:Signal = new Signal();
+		public var printExercise:Signal = new Signal(DynamicView);
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -88,7 +88,7 @@ package com.clarityenglish.ielts.view.exercise {
 					backButton.addEventListener(MouseEvent.CLICK, function():void { previousExercise.dispatch(); } );
 					break;
 				case printButton:
-					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(); } );
+					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
 					break;
 			}
 		}

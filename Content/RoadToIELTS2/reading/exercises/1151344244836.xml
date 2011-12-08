@@ -71,9 +71,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 1-7. Using NO MORE THAN THREE WORDS OR A NUMBER from the passage, answer the questions on the right.
-		
+		</div>
 </header>
 	
 <section id="body">

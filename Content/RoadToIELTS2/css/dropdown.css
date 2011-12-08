@@ -148,9 +148,8 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 
 #questionList {
 	list-style-type: decimal;
-	
+	padding-top:25px;
 	padding-right: 20px;
-	
 	text-align: left;
 	line-height: 20em;
 }

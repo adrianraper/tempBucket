@@ -136,35 +136,35 @@
 	
 <section id="noscroll">
   <span id="a18" draggable="true">Audio A</span>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1aa.mp3" mode="1" id="1003"/>
+  <audio controls="compact"  src="../media/LE_AW1aa.mp3" mode="1" id="1003"/>
   <span id="a21" draggable="true">Audio B</span>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1ab.mp3" mode="1" id="1004"/>
+  <audio controls="compact"  src="../media/LE_AW1ab.mp3" mode="1" id="1004"/>
   <span id="a19" draggable="true">Audio C</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ac.mp3" mode="1" id="1005"/>
+  <audio controls="compact"  src="../media/LE_AW1ac.mp3" mode="1" id="1005"/>
   <span id="a27" draggable="true">Audio D</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ad.mp3" mode="1" id="1006"/>
+  <audio controls="compact"  src="../media/LE_AW1ad.mp3" mode="1" id="1006"/>
   <span id="a16" draggable="true">Audio E</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ae.mp3" mode="1" id="1007"/>
+  <audio controls="compact"  src="../media/LE_AW1ae.mp3" mode="1" id="1007"/>
   <span id="a22" draggable="true">Audio F</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1af.mp3" mode="1" id="1008"/>
+  <audio controls="compact"  src="../media/LE_AW1af.mp3" mode="1" id="1008"/>
   <span id="a28" draggable="true">Audio G</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ag.mp3" mode="1" id="1009"/>
+  <audio controls="compact"  src="../media/LE_AW1ag.mp3" mode="1" id="1009"/>
   <span id="a24" draggable="true">Audio H</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ah.mp3" mode="1" id="1010"/>
+  <audio controls="compact"  src="../media/LE_AW1ah.mp3" mode="1" id="1010"/>
   <span id="a20" draggable="true">Audio I</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ai.mp3" mode="1" id="1011"/>
+  <audio controls="compact"  src="../media/LE_AW1ai.mp3" mode="1" id="1011"/>
   <span id="a17" draggable="true">Audio J</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1aj.mp3" mode="1" id="1012"/>
+  <audio controls="compact"  src="../media/LE_AW1aj.mp3" mode="1" id="1012"/>
   <span id="a25" draggable="true">Audio K</span>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1ak.mp3" mode="1" id="1013"/>
+  <audio controls="compact"  src="../media/LE_AW1ak.mp3" mode="1" id="1013"/>
   <span id="a26" draggable="true">Audio L</span>
-  <audio controls="compact" class="leftFloat" src="../media/LE_AW1al.mp3" mode="1" id="1014"/>
+  <audio controls="compact"  src="../media/LE_AW1al.mp3" mode="1" id="1014"/>
   <span id="a23" draggable="true">Audio M</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1am.mp3" mode="1" id="1015"/>
+  <audio controls="compact"  src="../media/LE_AW1am.mp3" mode="1" id="1015"/>
   <span id="a29" draggable="true">Audio N</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1an.mp3" mode="1" id="1016"/>
+  <audio controls="compact"  src="../media/LE_AW1an.mp3" mode="1" id="1016"/>
   <span id="a30" draggable="true">Audio O</span>
-  <audio controls="compact" class="rightFloat" src="../media/LE_AW1ao.mp3" mode="1" id="1017"/>
+  <audio controls="compact"  src="../media/LE_AW1ao.mp3" mode="1" id="1017"/>
  
 </section>
 

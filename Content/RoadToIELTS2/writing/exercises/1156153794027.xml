@@ -66,7 +66,7 @@
 </header>
 	
 <section id="noscroll">
-<p><img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/></p>
+
   <span id="a22" draggable="true">Introduction</span>
   <span id="a15" draggable="true">Development</span>
   <span id="a23" draggable="true">Conclusion</span>
@@ -133,9 +133,10 @@
     <font color="#0000ff"><input id="q12" type="droptarget"/>: We could infer from these figures that children today spend a lot of their free time in their bedrooms.<font color="#0000ff"/></font>
   </p>
   
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+<img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/>
+    
+ 
   </div>
 </section>
 

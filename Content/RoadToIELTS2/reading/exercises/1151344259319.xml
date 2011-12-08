@@ -38,28 +38,29 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 17-18. Choose the appropriate letters A-D.
+		</div>
 		
 </header>
 	
 <section id="body">
   
   <ol id="splitquestionList">
-  <li id="21">An alternative title for this passage would be &#x2026; 
- <list class="answerList">
+  <p>17. An alternative title for this passage would be &#x2026; </p>
+ <list class="answerList1">
  <li><a id="a1">intelligent moths.</a></li>
   <li><a id="a2">new developments in microelectronics.</a></li>
   <li><a id="a3">new ways to harness nature for human work.</a></li>
   <li><a id="a4">recent discoveries in lepidopteran behaviour.</a></li>
-  </list></li>
-  <li id="22">This passage has probably been taken from &#x2026;
-  <list class="answerList">
+  </list>
+  <p>18. This passage has probably been taken from &#x2026;</p>
+  <list class="answerList1">
   <li><a id="a5">a journal of neurobiology.</a></li>
   <li><a id="a6">a popular science magazine.</a></li>
   <li><a id="a7">a formal research report.</a></li>
   <li><a id="a8">a wildlife magazine.</a></li>
-  </list></li>
+  </list>
   </ol>
 </section>
 

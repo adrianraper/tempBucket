@@ -71,7 +71,7 @@
 </header>
 	
 <section id="body">
-<audio controls="hidden" autoplay="true" src="../media/AC_LN1.mp3" mode="4" id="1002"/>
+<audio controls="hidden" loop="1" autoplay="true" src="../media/AC_LN1.mp3" mode="4" id="1002"/>
 
 <img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"/>
 
@@ -80,15 +80,15 @@
 
 <div id="gapfillTable">
 <p class="hangingIndent1">Production	<tab/><tab/><tab/><tab/>Hamlet</p>
-<p class="hangingIndent1">Date	<tab/><tab/><tab/><tab/>(1)&#xA0;<input id="q1"/>&#xA0;September</p>
-<p class="hangingIndent1">Time	<tab/><tab/><tab/><tab/>(2)&#xA0;<input id="q2"/>&#xA0;p.m.</p>
-<p class="hangingIndent1">Seating Area	<tab/><tab/><tab/>(3)&#xA0;<input id="q3"/></p>
+<p class="hangingIndent1">Date	<tab/><tab/><tab/><tab/><tab/>(1)&#xA0;<input id="q1"/>&#xA0;September</p>
+<p class="hangingIndent1">Time	<tab/><tab/><tab/><tab/><tab/>(2)&#xA0;<input id="q2"/>&#xA0;p.m.</p>
+<p class="hangingIndent1">Seating Area	<tab/><tab/><tab/><tab/>(3)&#xA0;<input id="q3"/></p>
 <p class="hangingIndent1">No. of Tickets	<tab/><tab/><tab/>TWO</p>
 <p class="hangingIndent1">Seat Numbers	<tab/><tab/><tab/>(4)&#xA0;<input id="q4"/></p>
 <p class="hangingIndent1">Total Cost		<tab/><tab/><tab/><tab/>&#xA3; (5)&#xA0;<input id="q5"/></p>
 <h7>CREDIT CARD DETAILS</h7>
-<p class="hangingIndent1">Card	<tab/><tab/><tab/><tab/>_ VISA	<br/>_ Master Card	<br/>X American Express</p>
-<p class="hangingIndent1">Name of Cardholder<tab/><tab/>	Mr Richard (6)&#xA0;<input id="q6"/></p>
+<p class="hangingIndent1">Card	<tab/><tab/><tab/><tab/><tab/>_ VISA	<br/>_ Master Card	<br/>X American Express</p>
+<p class="hangingIndent1">Name of Cardholder<tab/><tab/><tab/>	Mr Richard (6)&#xA0;<input id="q6"/></p>
 <p class="hangingIndent1">Card No.	<tab/><tab/><tab/><tab/>(7)&#xA0;<input id="q7"/></p>
 <p class="hangingIndent1">Expiry Date	<tab/><tab/><tab/><tab/>March 2005</p>
 <h7>DELIVERY METHOD</h7>

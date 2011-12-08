@@ -4,7 +4,7 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -19,42 +19,42 @@
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
-    <MultipleChoiceQuestion block="q1">
+    <DropDownQuestion source="q1" block="b1">
       <answer source="a1" correct="false"/>
       <answer source="a2" correct="false"/>
       <answer source="a3" correct="true"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q2">
+    </DropDownQuestion>
+    <DropDownQuestion source="q2" block="b2">
       <answer source="a4" correct="false"/>
       <answer source="a5" correct="true"/>
       <answer source="a6" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q3">
+    </DropDownQuestion>
+    <DropDownQuestion source="q3" block="b3">
       <answer source="a7" correct="true"/>
       <answer source="a8" correct="false"/>
       <answer source="a9" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q4">
+    </DropDownQuestion>
+    <DropDownQuestion source="q4" block="b4">
       <answer source="a10" correct="false"/>
       <answer source="a11" correct="false"/>
       <answer source="a12" correct="true"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q5">
+    </DropDownQuestion>
+    <DropDownQuestion source="q5" block="b5">
       <answer source="a13" correct="false"/>
       <answer source="a14" correct="true"/>
       <answer source="a15" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q6">
+    </DropDownQuestion>
+    <DropDownQuestion source="q6" block="b6">
       <answer source="a16" correct="true"/>
       <answer source="a17" correct="false"/>
       <answer source="a18" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q7">
+    </DropDownQuestion>
+    <DropDownQuestion source="q7" block="b7">
       <answer source="a19" correct="false"/>
       <answer source="a20" correct="false"/>
       <answer source="a21" correct="true"/>
-    </MultipleChoiceQuestion>
-  </questions>
+    </DropDownQuestion>
+	 </questions>
 </script>
 
 </head>
@@ -68,125 +68,21 @@
 </header>
 	
 <section id="body">
- 
-  <ol id="splitquestionList">
-   
-    <li id="q1">
-      <list class="answerList">
-        <li>
-          <a id="a1">nevertheless</a>
-        </li>
-        <li>
-          <a id="a2">despite this</a>
-        </li>
-        <li>
-          <a id="a3">however</a>
-        </li>
-      </list>
-      
-    </li>
-   
-    <li id="q2">
-      <list class="answerList">
-        <li>
-          <a id="a4">In fact, quite the opposite is true</a>
-        </li>
-        <li>
-          <a id="a5">This argument is not convincing</a>
-        </li>
-        <li>
-          <a id="a6">There is little evidence to support this</a>
-        </li>
-      </list>
-      
-    </li>
-    
-    <li id="q3">
-      <list class="answerList">
-        <li>
-          <a id="a7">there is little evidence to support this idea</a>
-        </li>
-        <li>
-          <a id="a8">all the evidence shows the opposite to be true</a>
-        </li>
-        <li>
-          <a id="a9">none of the evidence supports this idea</a>
-        </li>
-      </list>
-      
-    </li>
-    
-    <li id="q4">
-      <list class="answerList">
-        <li>
-          <a id="a10">In contrast</a>
-        </li>
-        <li>
-          <a id="a11">However</a>
-        </li>
-        <li>
-          <a id="a12">In fact</a>
-        </li>
-      </list>
-     
-    </li>
-    
-    <li id="q5">
-      <list class="answerList">
-        <li>
-          <a id="a13">In contrast</a>
-        </li>
-        <li>
-          <a id="a14">On the contrary</a>
-        </li>
-        <li>
-          <a id="a15">Indeed</a>
-        </li>
-      </list>
-      
-    </li>
-    
-    <li id="q6">
-      <list class="answerList">
-        <li>
-          <a id="a16">I am unconvinced that</a>
-        </li>
-        <li>
-          <a id="a17">It is impossible that</a>
-        </li>
-        <li>
-          <a id="a18">Who could believe that</a>
-        </li>
-      </list>
-      
-    </li>
-    
-    <li id="q7">
-      <list class="answerList">
-        <li>
-          <a id="a19">Nevertheless</a>
-        </li>
-        <li>
-          <a id="a20">However</a>
-        </li>
-        <li>
-          <a id="a21">Indeed</a>
-        </li>
-      </list>
-      
-    </li>
-  </ol>
+<img class="rightFloat" src="../media/TT_AW_012.jpg" mode="1" id="1001"/>
+
+  <div id="dropdown">
+ 	<p>Genetically modified (GM) crops have the potential to increase agricultural productivity, make crops resistant to pests and herbicides and produce foods with higher nutritional values. Despite these benefits, environmentalists have raised a number of objections to the introduction of GM crops and foods. Few of these objections, &#xA0;<select id="q1"><option id="a1">I nevertheless</option><option id="a2">despite this</option><option id="a3">however</option></select>, have a solid basis in fact.</p>
+	
+	<p>Firstly, environmentalists argue that GM crops are unnatural and that by creating them we are altering the natural world. &#xA0;<select id="q2"><option id="a4">In fact, quite the opposite is true</option><option id="a5">This argument is not convincing</option><option id="a6">There is little evidence to support this</option></select>&#xA0;though, since all modern crops have been manipulated by selective breeding to be more productive than their natural ancestors and are therefore equally unnatural. What genetic modification seeks to do is modify crops in a more planned way than is possible by merely selecting healthier seeds or by producing hybrids of successful plants. A more worrying argument raised by objectors to GM foods is that they could constitute a health risk, for example by causing allergies or even by being toxic. Yet&#xA0;<select id="q3"><option id="a7">there is little evidence to support this idea</option><option id="a8">all the evidence shows the opposite to be true</option><option id="a9">none of the evidence supports this idea</option></select>, since there have been no recorded cases.&#xA0;<select id="q4"><option id="a10">n contrast</option><option id="a11">However</option><option id="a12">In fact</option></select>, because GM foods can have improved nutritional value, they are more likely to be of benefit to the health of the population than a risk.The final objection is strictly environmental. It is argued that crops which are genetically modified to kill the pests which attack them may also kill harmless insects. This, it is claimed, will have a disastrous effect on the wider environment beyond the crops themselves.&#xA0;<select id="q5"><option id="a13">In contrast</option><option id="a14">On the contrary</option><option id="a15">Indeed</option></select>, since GM crops do not require spraying with toxic insecticides, environmental damage such as the indiscriminate killing of insects and the contamination of local soils and rivers is avoided. In conclusion, GM crops offer increased agricultural productivity and foods of higher nutritional value, both of which are essential if the growing world population of the twenty-first century is to be fed.&#xA0;<select id="q6"><option id="a16">I am unconvinced that</option><option id="a17">It is impossible that</option><option id="a18">Who could believe that</option></select>&#xA0;GM crops pose a risk to the environment or our health.&#xA0;<select id="q7"><option id="a19">Nevertheless</option><option id="a20">However</option><option id="a21">Indeed</option></select>, these crops have the potential to improve the health of millions throughout the world while causing less environmental damage than standard farming methods used today. I think it essential that, far from being prohibited, GM foods should be encouraged.</p>
+
+</div>
+
 </section>
 
 <section id="rt2001">
   <p align="left">For this kind of composition to be effective, as well as linking words and phrases, you also need to use phrases and expressions for refuting arguments so that the reader is clear which side of argument you support.</p>
 </section>
 
-<section id="readingText">
-<br/>
-	<p>Genetically modified (GM) crops have the potential to increase agricultural productivity, make crops resistant to pests and herbicides and produce foods with higher nutritional values. Despite these benefits, environmentalists have raised a number of objections to the introduction of GM crops and foods. Few of these objections, &#xA0;<b>(1)</b>, have a solid basis in fact.</p>
-	
-	<p>Firstly, environmentalists argue that GM crops are unnatural and that by creating them we are altering the natural world. &#xA0;<b>(2)</b>&#xA0;though, since all modern crops have been manipulated by selective breeding to be more productive than their natural ancestors and are therefore equally unnatural. What genetic modification seeks to do is modify crops in a more planned way than is possible by merely selecting healthier seeds or by producing hybrids of successful plants. A more worrying argument raised by objectors to GM foods is that they could constitute a health risk, for example by causing allergies or even by being toxic. Yet&#xA0;<b>(3)</b>, since there have been no recorded cases.&#xA0;<b>(4)</b>, because GM foods can have improved nutritional value, they are more likely to be of benefit to the health of the population than a risk.The final objection is strictly environmental. It is argued that crops which are genetically modified to kill the pests which attack them may also kill harmless insects. This, it is claimed, will have a disastrous effect on the wider environment beyond the crops themselves.&#xA0;<b>(5)</b>, since GM crops do not require spraying with toxic insecticides, environmental damage such as the indiscriminate killing of insects and the contamination of local soils and rivers is avoided. In conclusion, GM crops offer increased agricultural productivity and foods of higher nutritional value, both of which are essential if the growing world population of the twenty-first century is to be fed.&#xA0;<b>(6)</b>&#xA0;GM crops pose a risk to the environment or our health.&#xA0;<b>(7)</b>, these crops have the potential to improve the health of millions throughout the world while causing less environmental damage than standard farming methods used today. I think it essential that, far from being prohibited, GM foods should be encouraged.</p>
-</section>
+
 </body>
 </bento>

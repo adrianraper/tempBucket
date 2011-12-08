@@ -59,7 +59,7 @@
 <section id="body">
 
 <img class="rightFloat" src="../media/MM_LN_003.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" autoplay="true" src="../media/MM_LN2.mp3" mode="4" id="1006"/>
+  <audio controls="hidden" loop="1" autoplay="true" src="../media/MM_LN2.mp3" mode="4" id="1006"/>
     
 	
   <div id="gapfillText">

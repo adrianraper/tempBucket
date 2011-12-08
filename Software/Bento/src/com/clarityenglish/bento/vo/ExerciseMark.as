@@ -27,38 +27,18 @@ package com.clarityenglish.bento.vo {
 		}
 		
 		/**
-		 * A percentage calculated from the other figures 
+		 * A percentage calculated from the other figures. Very clumsy method. 
 		 * 
 		 */
-		public function setCorrectPercent():void {
+		public function convertPercentages():void {
 			if (totalQuestions <= 0) {
 				// Historically we have always used -1 to indicate an unmarked exercise
 				correctPercent = -1;
-			} else {
-				correctPercent = Math.round(100 * correctCount / totalQuestions);
-			}
-		}
-		/**
-		 * A clumsy way to get the incorrect count as a percentage to the marking window.
-		 * I am sure this can go at some point. 
-		 * 
-		 */
-		public function setIncorrectPercent():void {
-			if (totalQuestions <= 0) {
 				incorrectPercent = 0;
-			} else {
-				incorrectPercent = Math.round(100 * incorrectCount / totalQuestions);
-			}
-		}
-		/**
-		 * A clumsy way to get the missed count as a percentage to the marking window.
-		 * I am sure this can go at some point. 
-		 * 
-		 */
-		public function setMissedPercent():void {
-			if (totalQuestions <= 0) {
 				missedPercent = 0;
 			} else {
+				correctPercent = Math.round(100 * correctCount / totalQuestions);
+				incorrectPercent = Math.round(100 * incorrectCount / totalQuestions);
 				missedPercent = Math.round(100 * missedCount / totalQuestions);
 			}
 		}
@@ -67,7 +47,7 @@ package com.clarityenglish.bento.vo {
 		 * @return 
 		 * 
 		 */
-		public function get totalQuestions():uint {
+		public function get totalQuestions():int {
 			return correctCount + incorrectCount + missedCount;			
 		}
 	}

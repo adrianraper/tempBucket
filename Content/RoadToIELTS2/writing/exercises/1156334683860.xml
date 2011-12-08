@@ -45,10 +45,11 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read the writing task about the causes of animal and plant extinction. Look at a list of problems on the right, and possible solutions on the left. Match them by writing the letters of the solutions (A-K) below the problems.
+</div>
 
-Writing Task 2
+
 </header>
 	
 <section id="body">

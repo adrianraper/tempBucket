@@ -104,9 +104,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 1-6. The reading passage has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 on the right? You need only write ONE letter for each answer.
-		
+		</div>
 </header>
 	
 <section id="body">

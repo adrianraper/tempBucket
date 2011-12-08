@@ -41,11 +41,8 @@
 	</s:Group>
 	<s:Spacer height="10" />
 	
-
-	
 	<s:Group id="incorrectGroup" left="10%" width="90%" height="30" >			
-			
-		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" left="28" >
+		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" height="100%" left="28" >
 			<s:fill>
 				<s:SolidColor color="#ED8287" />
 			</s:fill>
@@ -59,12 +56,11 @@
 		</s:Group>
 			<s:Label left="35" top="10" text="{hostComponent.exerciseMark.incorrectCount} Wrong" color="#330C23" fontSize="16" />
 	</s:Group>
-		<s:Spacer height="10" />
-	
+	<s:Spacer height="10" />
 	
 	<s:Group id="missedCount" left="10%" width="90%" height="30" >
 			
-			<s:Rect percentWidth="{hostComponent.exerciseMark.missedPercent}" top="0" left="28" >
+			<s:Rect percentWidth="{hostComponent.exerciseMark.missedPercent}" height="100%" left="28" >
 				<s:fill>
 					<s:SolidColor color="#94D5F0" />
 				</s:fill>

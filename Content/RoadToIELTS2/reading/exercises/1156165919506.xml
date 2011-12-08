@@ -43,7 +43,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	The reading passage on the left has eight paragraphs A-H. Which paragraphs concentrate on the information on the right? Write the appropriate letters (A-H) in gaps 1-6. You need only write ONE letter for each answer.
+	</div>
 </header>
 	
 <section id="body">
