@@ -74,7 +74,14 @@
 					
 					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
 					
-					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
+					// #108
+					if ((note.getBody() as Exercise).model.questions.length == 0) {
+						view.markingButton.visible = false;
+						view.startAgainButton.visible = false;
+					} else {
+						view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
+						view.startAgainButton.visible = true;
+					}
 					break;
 				case BBNotifications.MARKING_SHOWN:
 					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
