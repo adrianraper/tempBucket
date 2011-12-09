@@ -182,7 +182,7 @@ package com.clarityenglish.common.model {
 			//return { courseClass: "writing" };
 			
 			if (Config.DEVELOPER.name == "DK") {
-				return { exerciseId: "1156181253915" };
+				return { exerciseId: "1156181253997" };
 			}
 			
 			return null;

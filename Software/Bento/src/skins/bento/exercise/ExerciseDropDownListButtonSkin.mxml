@@ -169,6 +169,7 @@
             </s:LinearGradientStroke>
         </s:stroke>
     </s:Rect>
+	
     <!--- @private -->
     <s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="2" includeIn="down">
         <s:stroke>
