@@ -63,7 +63,7 @@
         <code>itemDestructionPolicy</code> property to <code>none</code>.</p>
     -->
     <s:PopUpAnchor id="popUp" displayPopUp.normal="false" displayPopUp.open="true" includeIn="open"
-        left="0" right="0" top="0" bottom="0" itemDestructionPolicy="auto"
+        left="0" right="0" top="-1" bottom="0" itemDestructionPolicy="auto"
         popUpPosition="below" popUpWidthMatchesAnchorWidth="true">
         
         <!--- 
@@ -110,7 +110,7 @@
     <!---  The default skin is DropDownListButtonSkin. 
             @copy spark.components.supportClasses.DropDownListBase#openButton
             @see spark.skins.spark.DropDownListButtonSkin -->
-    <s:Button id="openButton" left="0" right="0" top="-2" bottom="-2" focusEnabled="false" tabEnabled="false"
+    <s:Button id="openButton" left="0" right="0" top="-3" bottom="-1" focusEnabled="false" tabEnabled="false"
         skinClass="skins.bento.exercise.ExerciseDropDownListButtonSkin" label="{hostComponent.selectedItem.toString()}" />  
         
     <!--- @copy spark.components.DropDownList#labelDisplay -->
