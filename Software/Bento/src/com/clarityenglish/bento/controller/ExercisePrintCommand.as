@@ -52,6 +52,7 @@ package com.clarityenglish.bento.controller {
 			pdf.setFont(defaultFont, 11);
 			
 			var dynamicView:DynamicView = new DynamicView();
+			dynamicView.media = "print";
 			dynamicView.href = href;
 			dynamicView.width = Size.A4.dimensions[0];
 			dynamicView.scaleX = dynamicView.scaleY = 0.85;

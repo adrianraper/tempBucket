@@ -26,6 +26,7 @@ global {
 
 components|XHTMLExerciseView {
 	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseSkin");
+	printingSkinClass: ClassReference("skins.bento.exercise.XHTMLExercisePrintingSkin");
 }
 
 tlfcomponents|AudioPlayer {

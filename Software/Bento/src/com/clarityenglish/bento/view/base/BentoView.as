@@ -6,6 +6,7 @@ package com.clarityenglish.bento.view.base {
 	import flash.events.Event;
 	
 	import mx.core.mx_internal;
+	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -27,17 +28,42 @@ package com.clarityenglish.bento.view.base {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		/**
+		 * The Href that this view is running off 
+		 */
 		private var _href:Href;
 		private var _hrefChanged:Boolean = false;
 		
+		/**
+		 * The XHTML file loaded from the Href 
+		 */
 		protected var _xhtml:XHTML;
 		private var _xhtmlChanged:Boolean;
-
+		
+		public var media:String = "screen";
+		
 		public function BentoView() {
 			super();
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			addEventListener(FlexEvent.PREINITIALIZE, onPreinitialize, false, 0, true);
+		}
+		
+		/**
+		 * We may need to change the skin based on the media type
+		 * 
+		 * @param event
+		 */
+		protected function onPreinitialize(event:FlexEvent):void {
+			removeEventListener(FlexEvent.PREINITIALIZE, onPreinitialize);
+			
+			switch (media) {
+				case "print":
+					setStyle("skinClass", getStyle("printingSkinClass"));
+					break;
+			}
+			
 		}
 		
 		protected function onAddedToStage(event:Event):void {

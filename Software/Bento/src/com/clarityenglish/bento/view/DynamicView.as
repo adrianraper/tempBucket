@@ -15,6 +15,7 @@ package com.clarityenglish.bento.view {
 	
 	import spark.components.Group;
 	import spark.components.supportClasses.Skin;
+	import mx.events.FlexEvent;
 	
 	public class DynamicView extends BentoView {
 		
@@ -23,7 +24,11 @@ package com.clarityenglish.bento.view {
 		[SkinPart(required="true")]
 		public var contentGroup:Group;
 		
-		public function DynamicView() {
+		protected override function onPreinitialize(event:FlexEvent):void {
+			super.onPreinitialize(event);
+			
+			// It doesn't matter what media type we are using; dynamic skins *always* use DynamicViewSkin so override anything already set
+			// in onPreinitialize in BentoView here.
 			setStyle("skinClass", DynamicViewSkin);
 		}
 		
@@ -47,6 +52,7 @@ package com.clarityenglish.bento.view {
 				// Create the new view and add it.  For the moment just use the default XHTMLExerciseView, but this will be definable in the XML
 				var bentoView:BentoView = view as BentoView;
 				bentoView.percentWidth = bentoView.percentHeight = 100;
+				bentoView.media = media;
 				bentoView.href = href;
 				contentGroup.addElement(bentoView);
 			} else if (!view) {

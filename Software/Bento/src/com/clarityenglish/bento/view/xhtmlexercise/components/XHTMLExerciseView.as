@@ -1,6 +1,5 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.marking.events.MarkingEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
@@ -18,14 +17,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.geom.Rectangle;
-	
 	import flashx.textLayout.elements.FlowElement;
-	import flashx.textLayout.elements.FlowLeafElement;
-	import flashx.textLayout.elements.TextFlow;
-	
-	import mx.controls.SWFLoader;
-	import mx.core.mx_internal;
 	
 	import spark.components.Group;
 	
