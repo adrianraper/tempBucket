@@ -217,7 +217,7 @@
                 <!--- @copy spark.components.Panel#titleDisplay -->
                 
 				<s:Label id="titleDisplay" maxDisplayedLines="1"
-                         left="9" right="36" top="1" bottom="0" minHeight="30"
+                         left="20" right="36" top="3" bottom="0" minHeight="30"
                          verticalAlign="middle" fontSize="14" fontWeight="bold" color="{getStyle('popUpBarTextColor') || 0xFFFFFF}" />
                 
                 <!-- layer 4: moveArea -->

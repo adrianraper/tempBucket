@@ -25,7 +25,7 @@
 	</fx:Script>
 	
 	<!-- drop shadow -->
-	<s:Rect left="0" top="0" right="0" bottom="0" >
+	<s:Rect left="0" top="0" right="0" bottom="0" topLeftRadiusX="10" topLeftRadiusY="10" bottomLeftRadiusX="10" bottomLeftRadiusY="10" >
 		<s:filters>
 			<s:DropShadowFilter 
 				blurX="6" blurY="6" 

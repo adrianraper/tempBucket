@@ -23,7 +23,9 @@
 		
 	<s:SWFLoader width="21" height="21" left="100"
 				 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" />
-	<s:Button id="writingCourseButton" label="Writing" width="90" />
+	<s:Button id="writingCourseButton" label="Writing" width="90"
+			  color.down="#DD143F"
+			  color="#000000"/>
 	
 	<s:SWFLoader width="21" height="21" left="100"
 					 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')" />

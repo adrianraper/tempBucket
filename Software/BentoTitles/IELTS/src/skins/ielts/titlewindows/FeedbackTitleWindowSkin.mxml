@@ -23,7 +23,7 @@
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" blendMode="normal" mouseEnabled="false"
-    minWidth="76" minHeight="76" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5" xmlns:titlewindows="skins.ielts.titlewindows.*">
+    minWidth="360" minHeight="170" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5" xmlns:titlewindows="skins.ielts.titlewindows.*">
     
     <fx:Metadata>
         <![CDATA[ 
@@ -75,15 +75,15 @@
          */
         override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
         {
-            if (getStyle("borderVisible") == true)
+            if (getStyle("borderVisible") == false)
             {
-                border.visible = true;
-                background.left = background.top = background.right = background.bottom = 1;
-                contents.left = contents.top = contents.right = contents.bottom = 1;
+                border.visible = false;
+                background.left = background.top = background.right = background.bottom = 0;
+                contents.left = contents.top = contents.right = contents.bottom = 0;
             }
             else
             {
-                border.visible = false;
+                border.visible = true;
                 background.left = background.top = background.right = background.bottom = 0;
                 contents.left = contents.top = contents.right = contents.bottom = 0;
             }
@@ -100,10 +100,10 @@
             {
                 cornerRadius = cr;
                 
-                dropShadow.tlRadius = cornerRadius;
-                dropShadow.trRadius = cornerRadius;
-                dropShadow.blRadius = withControls ? cornerRadius : 0;
-                dropShadow.brRadius = withControls ? cornerRadius : 0;
+                dropShadow.tlRadius = 20;
+                dropShadow.trRadius = 20;
+                dropShadow.blRadius = withControls ? cornerRadius : 20;
+                dropShadow.brRadius = withControls ? cornerRadius : 20;
                 
                 setPartCornerRadii(topMaskRect, withControls); 
                 setPartCornerRadii(border, withControls); 
@@ -125,10 +125,10 @@
          */  
         private function setPartCornerRadii(target:Rect, includeBottom:Boolean):void
         {            
-            target.topLeftRadiusX = cornerRadius;
-            target.topRightRadiusX = cornerRadius;
-            target.bottomLeftRadiusX = includeBottom ? cornerRadius : 0;
-            target.bottomRightRadiusX = includeBottom ? cornerRadius : 0;
+            target.topLeftRadiusX = 20;
+            target.topRightRadiusX = 20;
+            target.bottomLeftRadiusX = includeBottom ? cornerRadius : 20;
+            target.bottomRightRadiusX = includeBottom ? cornerRadius : 20;
         }
         
         private var cornerRadius:Number;
@@ -145,8 +145,8 @@
     </s:states>
     
     <!--- drop shadow can't be hittable so it stays sibling of other graphics @private-->
-    <s:RectangularDropShadow id="dropShadow" blurX="20" blurY="20" alpha="0.32" 
-                             alpha.inactiveGroup="0.22" distance="11"  distance.inactiveGroup="7"
+    <s:RectangularDropShadow id="dropShadow" blurX="10" blurY="10" alpha="0.32" 
+                             alpha.inactiveGroup="0.22" distance="5"  distance.inactiveGroup="7"
                              angle="90" color="0x000000" left="0" top="0" right="0" bottom="0"/>
     
     <!--- drop shadow can't be hittable so all other graphics go in this group -->
@@ -174,7 +174,7 @@
         </s:Group>
         
         <!--- layer 1: border @private -->
-        <s:Rect id="border" left="0" right="0" top="0" bottom="0" >
+        <s:Rect id="border" left="0" right="0" top="0" bottom="0" topLeftRadiusY="20" topRightRadiusX="20" >
             <s:stroke>
                 <!--- Defines the TitleWindowSkin class's border stroke. The default value is 1. -->
                 <s:SolidColorStroke id="borderStroke" weight="1" />
@@ -183,10 +183,10 @@
         
         <!-- layer 2: background fill -->
         <!--- Defines the appearance of the TitleWindowSkin class's background. -->
-        <s:Rect id="background" left="1" top="1" right="1" bottom="1">
+        <s:Rect id="background" left="1" top="1" right="1" bottom="1" >
             <s:fill>
                 <!--- Defines the TitleWindowSkin class's background fill. The default color is 0xFFFFFF. -->
-                <s:SolidColor id="backgroundFill" color="#FFFFFF"/>
+                <s:SolidColor id="backgroundFill" color="#FFFFFF" />
             </s:fill>
         </s:Rect>
         
@@ -200,22 +200,22 @@
             <s:Group id="topGroup" mask="{topGroupMask}">
                 
                 <!--- layer 0: title bar fill @private -->
-                <s:Rect id="tbFill" left="0" right="0" top="0" bottom="1">
+                <s:Rect id="tbFill" left="0" right="0" top="0" bottom="1" height="43" topLeftRadiusY="20" topRightRadiusY="20" >
                     <s:fill>
                         <s:LinearGradient rotation="90">
-                            <s:GradientEntry color="0xD2D2D2"
-                                             color.inactiveGroup="0xEAEAEA"/>
-                            <s:GradientEntry color="0x9A9A9A"
-                                             color.inactiveGroup="0xCECECE"/>
+                            <s:GradientEntry color="0x333333"
+                                             color.inactiveGroup="0x333333"/>
+                            <s:GradientEntry color="0x3B3B3B"
+                                             color.inactiveGroup="0x3B3B3B"/>
                         </s:LinearGradient>
                     </s:fill>
                 </s:Rect>
                 
 				<!--- Feedback icon -->
-				<titlewindows:FeedbackIcon left="0" top="0" />
+				<titlewindows:FeedbackIcon left="15" top="15" width="23" height="18" />
 				
                 <!--- layer 1: title bar highlight @private -->
-                <s:Rect id="tbHilite" left="0" right="0" top="0" bottom="0">
+                <s:Rect id="tbHilite" left="0" right="0" top="0" bottom="0" >
                     <!--<s:stroke>
                         <s:LinearGradientStroke rotation="90" weight="1">
                             <s:GradientEntry color="0xE6E6E6" />
@@ -230,9 +230,6 @@
                         </s:LinearGradient>
                     </s:fill>-->
 					
-					<s:fill>
-						<s:SolidColor color="{getStyle('popUpBarColor') || 0x0000FF}" alpha="0.2" />
-					</s:fill>
                 </s:Rect>
                 
                 <!--- layer 2: title bar divider @private -->
@@ -245,8 +242,8 @@
                 <!-- layer 3: text -->
                 <!--- @copy spark.components.Panel#titleDisplay -->
                 <s:Label id="titleDisplay" maxDisplayedLines="1"
-                         left="9" right="36" top="1" bottom="0" minHeight="30"
-                         verticalAlign="middle" fontWeight="bold" color="{getStyle('popUpBarTextColor') || 0x000000}" />
+                         left="50" right="36" top="10" bottom="0" minHeight="30"
+                         verticalAlign="middle" fontWeight="bold" color="0xFFFFFF" fontSize="14" />
                 
                 <!-- layer 4: moveArea -->
                 <!--- @copy spark.components.TitleWindow#moveArea -->
@@ -254,7 +251,7 @@
                 
                 <!--- @copy spark.components.TitleWindow#closeButton -->
                 <s:Button id="closeButton" skinClass="spark.skins.spark.TitleWindowCloseButtonSkin"
-                          width="15" height="15" right="7" top="7" />
+                          width="15" height="15" right="15" top="15" />
             </s:Group>
             
             <!--
@@ -290,7 +287,7 @@
                     </s:Rect>
                     
                     <!-- layer 2: control bar fill -->
-                    <s:Rect left="1" right="1" top="2" bottom="1">
+                    <s:Rect left="1" right="1" top="2" bottom="1" >
                         <s:fill>
                             <s:LinearGradient rotation="90">
                                 <s:GradientEntry color="0xEDEDED"/>

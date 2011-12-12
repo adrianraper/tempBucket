@@ -5,6 +5,7 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
+		minWidth="540" minHeight="520" 
 		>
 	<!-- host component -->
 	<fx:Metadata>
@@ -89,7 +90,7 @@
 		<!-- The left hand side -->
 		<s:Group width="50%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="35">
 			<s:layout>
-				<s:VerticalLayout paddingLeft="60" paddingRight="20" paddingTop="10" paddingBottom="10" />
+				<s:VerticalLayout paddingLeft="50" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
 			
 			<!-- this is for the rotating course selector -->
@@ -100,7 +101,7 @@
 		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="320" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
-		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="5" bottom="40">
+		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="5" bottom="40" minWidth="510" minHeight="520">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="10" paddingBottom="20" />
 			</s:layout>
@@ -130,26 +131,27 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="10">
-						<s:SWFLoader width="122" height="171"
-									 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneReading')"
-									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneWriting')"
-									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneListening')"
-									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionZoneSpeaking')" />
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="15">
+						<s:SWFLoader width="450" height="210"
+									 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
+									 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
+									 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
+									 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
 						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10" >
-							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="80" height="25" />
+							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="90" height="30"  />
 							<s:Label text="or" />
-							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="130" height="25" />
+							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="150" height="30" left="50" />
+
 						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
 				
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
-					<s:VGroup left="0" right="0" top="0" bottom="10" horizontalAlign="left" verticalAlign="middle">
+					<s:VGroup left="0" right="0" top="10" bottom="10" horizontalAlign="left" verticalAlign="middle">
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" autoPlay="false" scaleMode="letterbox" />
-						
-						<s:List id="adviceZoneVideoList" width="411" height="231" horizontalScrollPolicy="off" 
+
+							<s:List id="adviceZoneVideoList" width="460" height="231" horizontalScrollPolicy="off" 
 								borderVisible="false" change="onAdviceZoneVideoSelect(event)">
 							<s:layout>
 								<s:HorizontalLayout />
@@ -224,16 +226,16 @@
 				<!-- Exam practice -->
 				<s:NavigatorContent id="examPracticeNavigatorContent" label="Exam practice" width="100%">
 					<s:layout>
-						<s:HorizontalLayout paddingTop="20" paddingLeft="25"/>
+						<s:HorizontalLayout/>
 					</s:layout>
 					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
 								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
 								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
 					
-					<s:DataGroup id="examPracticeDataGroup" >
+					<s:DataGroup id="examPracticeDataGroup" width="300" >
 						<s:layout>
-							<s:VerticalLayout paddingTop="10" paddingLeft="35" gap="0" />
+							<s:VerticalLayout gap="0" />
 						</s:layout>
 						<s:itemRenderer >
 							<fx:Component>
@@ -246,7 +248,7 @@
 												super.data = value;
 												
 												if (data) {
-													viewButton.label = data.@caption;
+													examPracticeViewButton.label = data.@caption;
 												}
 											}
 											
@@ -260,7 +262,7 @@
 										<s:VerticalLayout />
 									</s:layout>
 									
-									<s:Button id="viewButton" click="onViewButtonClick(event)" />
+									<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="230" height="30" textAlignLast="left" />
 									<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />
 								</s:DataRenderer>
 							</fx:Component>

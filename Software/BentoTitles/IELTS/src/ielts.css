@@ -143,12 +143,18 @@ zone|ZoneView tink|Accordion #buttonBar {
 	cornerRadius: 0;
 }
 
-zone|ZoneView #viewButton,
+zone|ZoneView #examPracticeViewButton {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeViewButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
+}
+
 zone|ZoneView #questionZoneViewButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
 zone|ZoneView #questionZoneDownloadButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneDownloadButtonSkin");
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
 }
 
@@ -201,12 +207,23 @@ progresscomponents|ProgressCoverageView {
 progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
 }
-
 progressui|ProgressBarRenderer {
 	skinClass: ClassReference("skins.ielts.progress.ProgressBarRendererSkin");
 }
 progressui|ProgressCourseBarComponent {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCourseBarSkin");
+}
+progressui|ProgressCourseBarComponent #writingCourseButton {
+	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
+}
+progressui|ProgressCourseBarComponent #speakingCourseButton {
+	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
+}
+progressui|ProgressCourseBarComponent #readingCourseButton {
+	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
+}
+progressui|ProgressCourseBarComponent #listeningCourseButton {
+	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
 }
 progressui|CoverageExerciseComponent {
 	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");
@@ -223,6 +240,18 @@ account|AccountView {
 /* Marking view styles (this overwrites the default skin) */
 marking|MarkingView {
 	skinClass: ClassReference("skins.ielts.marking.MarkingSkin");
+}
+
+marking|MarkingView #tryAgainButton {
+	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
+}
+
+marking|MarkingView #seeAnswersButton {	
+	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
+}
+
+marking|MarkingView #moveForwardButton {	
+	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
 }
 
 /* Error view styles (this overwrites the default skin) */

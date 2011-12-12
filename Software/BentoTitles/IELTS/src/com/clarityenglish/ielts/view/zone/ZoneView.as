@@ -79,6 +79,23 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var courseSelectorWidget:CourseSelectorWidget;
 		
+		private var _courseCaption:String;
+		
+		public function set courseCaption(value:String):void {
+			_courseCaption = value;
+			dispatchEvent(new Event("courseCaptionChanged"));
+		}
+		
+		[Bindable(event="courseCaptionChanged")]
+		public function get backgroundColorTop():Number {
+			return getStyle(_courseCaption.toLowerCase() + "Color")
+		}
+		
+		[Bindable(event="courseCaptionChanged")]
+		public function get backgroundColorBottom():Number {
+			return getStyle(_courseCaption.toLowerCase() + "ColorDark")
+		}
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
