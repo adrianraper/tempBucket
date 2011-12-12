@@ -40,8 +40,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void { }
 		
-		/*public function onClick(event:MouseEvent, textFlow:TextFlow):void { }*/
-		
 		public function onCreateChildren():void { }
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {

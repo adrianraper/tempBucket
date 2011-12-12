@@ -54,32 +54,47 @@
 						<element name="param" type="tns:paramType"
 							maxOccurs="unbounded" minOccurs="0">
 						</element>
-						<element name="feedback" maxOccurs="1" minOccurs="0">
+						<element name="feedback" maxOccurs="1"
+							minOccurs="0">
 							<complexType>
 								<sequence>
-									<element name="feedback" maxOccurs="unbounded" minOccurs="0">
-                                        <complexType>
-                                        	<attribute name="min">
-                                        		<simpleType>
-                                        			<restriction
-                                        				base="string">
-                                        				<pattern
-                                        					value="(^[0-9]{0,2}?|^(100)?)%$">
-                                        				</pattern>
-                                        			</restriction>
-                                        		</simpleType>
-                                        	</attribute>
-                                        	<attribute
-                                        		name="source"
-                                        		type="string">
-                                        	</attribute>
-                                        </complexType>
+									<element name="feedback"
+										maxOccurs="unbounded" minOccurs="0">
+										<complexType>
+											<attribute name="min">
+												<simpleType>
+													<restriction
+														base="string">
+														<pattern
+															value="(^[0-9]{0,2}?|^(100)?)%$">
+														</pattern>
+													</restriction>
+												</simpleType>
+											</attribute>
+											<attribute name="source"
+												type="string">
+											</attribute>
+										</complexType>
 									</element>
 								</sequence>
-							</complexType></element>
+							</complexType>
+						</element>
 					</choice>
 				</complexType>
 			</element>
+			<element name="popups" maxOccurs="1" minOccurs="0">
+				<complexType>
+					<sequence>
+						<element name="popup" maxOccurs="unbounded" minOccurs="0">
+							<complexType>
+								<attribute name="click" type="string">
+								</attribute>
+								<attribute name="source"
+									type="string">
+								</attribute>
+							</complexType></element>
+					</sequence>
+				</complexType></element>
 		</choice>
 		<attribute name="id">
 			<simpleType>

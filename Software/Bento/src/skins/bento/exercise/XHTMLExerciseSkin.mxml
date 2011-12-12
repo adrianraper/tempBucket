@@ -15,6 +15,7 @@
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DictionaryBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.MarkableIconsBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.PopupableBehaviour;
 			import com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour;
 			
 			import mx.events.FlexMouseEvent;
@@ -40,7 +41,7 @@
 			</s:fill>
 		</s:Rect>
 		
-		<components:XHTMLRichText id="headerRichText" top="13" left="38" right="16" bottom="13" maxWidth="680" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, DictionaryBehaviour]}" />
+		<components:XHTMLRichText id="headerRichText" top="13" left="38" right="16" bottom="13" maxWidth="680" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 		<s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" />
 		
 		<s:Group right="0" width="320" height="100%" visible="{hostComponent.atLeastOneSelectedAnswerHasFeedback}">
@@ -62,7 +63,7 @@
 			</s:fill>
 		</s:Rect>
 		
-		<components:XHTMLRichText id="noscrollRichText" top="8" left="10" right="16" bottom="8" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, DictionaryBehaviour]}" />
+		<components:XHTMLRichText id="noscrollRichText" top="8" left="10" right="16" bottom="8" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 	</s:Group>
 	
 	<s:Group width="100%" height="100%">
@@ -78,7 +79,7 @@
 			</s:Rect>
 			
 			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="10" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-				<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, DictionaryBehaviour]}" />
+				<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 			</s:Scroller>
 		</s:Group>
 		
@@ -90,7 +91,7 @@
 			</s:Rect>
 			
 			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, DictionaryBehaviour]}" />
+				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 			</s:Scroller>
 		</s:Group>		
 	</s:Group>

@@ -38,6 +38,10 @@ package com.clarityenglish.bento.vo.content.model {
 			return xml.view.name.toString();
 		}
 		
+		public function get popups():XMLList {
+			return xml.popups.popup;
+		}
+		
 		public function getViewParam(paramName:String):* {
 			// TODO: These params need to be parsed and typecast similar to getSettingParam
 			return xml.view.param.(@name == paramName).@value;

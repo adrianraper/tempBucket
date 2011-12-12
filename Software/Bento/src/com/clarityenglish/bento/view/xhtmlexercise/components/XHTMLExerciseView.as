@@ -22,6 +22,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import spark.components.Group;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
+	[Event(name="feedbackShow", type="com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent")]
 	public class XHTMLExerciseView extends BentoView implements IExerciseView {
 		
 		/**
