@@ -609,6 +609,7 @@ package com.clarityenglish.textLayout.conversion {
 			if (xmlToParse.hasOwnProperty("@width")) videoElement.width = xmlToParse.@width.toString();
 			if (xmlToParse.hasOwnProperty("@height")) videoElement.height = xmlToParse.@height.toString();
 			if (xmlToParse.hasOwnProperty("@autoPlay")) videoElement.autoPlay = (xmlToParse.@autoPlay.toString().toLowerCase() == "true");
+			if (xmlToParse.hasOwnProperty("@fullScreenDisabled")) videoElement.fullScreenDisabled = (xmlToParse.@fullScreenDisabled.toString().toLowerCase() == "true");
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);

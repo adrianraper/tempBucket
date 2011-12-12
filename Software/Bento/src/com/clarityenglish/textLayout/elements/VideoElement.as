@@ -8,6 +8,7 @@ package com.clarityenglish.textLayout.elements {
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.controls.SWFLoader;
+	import mx.events.FlexEvent;
 	
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.media.MediaPlayerState;
@@ -26,6 +27,8 @@ package com.clarityenglish.textLayout.elements {
 		private var _src:String;
 		
 		private var _autoPlay:Boolean = true;
+		
+		private var _fullScreenDisabled:Boolean = false;
 		
 		private var _videoDimensionsCalculated:Boolean;
 		
@@ -62,6 +65,10 @@ package com.clarityenglish.textLayout.elements {
 			_autoPlay = value;
 		}
 		
+		public function set fullScreenDisabled(value:Boolean):void {
+			_fullScreenDisabled = value;
+		}
+		
 		public function createComponent():void {
 			switch(getVideoType()) {
 				case NORMAL:
@@ -74,6 +81,11 @@ package com.clarityenglish.textLayout.elements {
 					videoPlayer.autoPlay = _autoPlay;
 					
 					component = videoPlayer;
+					
+					// #113
+					videoPlayer.addEventListener(FlexEvent.CREATION_COMPLETE, function(creationCompleteEvent:Event):void {
+						videoPlayer.fullScreenButton.enabled = !_fullScreenDisabled;
+					}, false, 0, true);
 					
 					// Working around #22 (which seems to be http://bugs.adobe.com/jira/browse/SDK-26331, even though that is supposed to be fixed)
 					videoPlayer.addEventListener(Event.ADDED_TO_STAGE, function(addedToStageEvent:Event):void {
