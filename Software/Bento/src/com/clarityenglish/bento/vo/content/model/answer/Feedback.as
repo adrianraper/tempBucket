@@ -19,6 +19,14 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return xml.@title || "Feedback";
 		}
 		
+		public function get width():Number {
+			return xml.@width || NaN;
+		}
+		
+		public function get height():Number {
+			return xml.@height || NaN;
+		}
+		
 		/**
 		 * This is used in score based feedback.  If min is not defined the default is 0 (which matches all scores)
 		 * 

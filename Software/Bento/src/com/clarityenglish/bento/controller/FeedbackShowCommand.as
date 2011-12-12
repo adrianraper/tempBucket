@@ -67,7 +67,11 @@ package com.clarityenglish.bento.controller {
 				
 				// Create an XHTMLRichText component and add it to the title window
 				var xhtmlRichText:XHTMLRichText = new XHTMLRichText();
-				xhtmlRichText.width = 300;
+				
+				// Default to 300 width, variable height unless defined otherwise in the XML
+				xhtmlRichText.width = (isNaN(feedback.width)) ? 300 : feedback.width;
+				if (!isNaN(feedback.height)) xhtmlRichText.height = feedback.height;
+				
 				xhtmlRichText.xhtml = xhtml;
 				xhtmlRichText.nodeId = "#" + feedback.source;
 				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);

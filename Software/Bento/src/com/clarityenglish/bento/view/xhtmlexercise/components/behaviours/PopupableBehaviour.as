@@ -9,7 +9,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.IEventDispatcher;
-	import flash.net.sendToURL;
 	
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.TextFlow;
@@ -42,7 +41,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					if (flowElement) {
 						var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
 						if (eventMirror) {
-							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onClick, popupNode.@source.toString()));
+							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onClick, popupNode.@source, popupNode.@width, popupNode.@height));
 						} else {
 							log.error("Attempt to bind a click handler to non-leaf element {0}", flowElement);
 						}
@@ -53,9 +52,12 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
-		private function onClick(e:FlowElementMouseEvent, source:String):void {
-			var feedback:Feedback = new Feedback(<feedback source={source} />);
-			container.dispatchEvent(new FeedbackEvent(FeedbackEvent.FEEDBACK_SHOW, feedback, true));
+		private function onClick(e:FlowElementMouseEvent, source:String, width:String = null, height:String = null):void {
+			var feedbackNode:XML = <feedback source={source} />
+			if (width) feedbackNode.@width = width;
+			if (height) feedbackNode.@height = height;			
+			
+			container.dispatchEvent(new FeedbackEvent(FeedbackEvent.FEEDBACK_SHOW, new Feedback(feedbackNode), true));
 		}
 		
 	}
