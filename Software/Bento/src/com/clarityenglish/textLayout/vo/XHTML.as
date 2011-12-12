@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.vo {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.newgonzo.commons.utils.StringUtil;
 	import com.newgonzo.web.css.CSS;
 	
 	import flash.events.Event;
@@ -282,7 +283,7 @@ package com.clarityenglish.textLayout.vo {
 			if (!hasClass(node, classString)) {
 				var classes:Array = node.@["class"].toString().split(" ");
 				classes.push(classString);
-				node.@["class"] = classes.join(" ");
+				node.@["class"] = StringUtil.trim(classes.join(" "));
 			}
 		}
 		
@@ -298,9 +299,9 @@ package com.clarityenglish.textLayout.vo {
 			if (hasClass(node, classString)) {
 				var classes:Array = node.@["class"].toString().split(" ");
 				classes = classes.filter(function(className:String, index:int, array:Array):Boolean {
-					return className != classString;
-				});
-				node.@["class"] = classes.join(" ");
+					return className != "" && className != classString;
+				});	
+				node.@["class"] = StringUtil.trim(classes.join(" "));
 			}
 		}
 		
@@ -313,6 +314,7 @@ package com.clarityenglish.textLayout.vo {
 			if (classString.indexOf(" ") >= 0)
 				throw new Error("Only a single class can be manipulated at a time");
 			
+			throw new Error("Not implemented");
 		}
 		
 		/**

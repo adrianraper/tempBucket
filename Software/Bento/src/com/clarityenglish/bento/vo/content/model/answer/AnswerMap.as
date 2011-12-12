@@ -23,6 +23,10 @@ package com.clarityenglish.bento.vo.content.model.answer {
 			return map.get(key) as Answer;
 		}
 		
+		public function remove(key:Object):Answer {
+			return map.remove(key) as Answer;
+		}
+		
 		public function containsKey(key:Object):Boolean {
 			return map.containsKey(key);
 		}

@@ -130,12 +130,12 @@ package com.clarityenglish.textLayout.stylesheets {
 			// This is for the special formatting types such as linkNormalFormat, etc and listMarkerFormat, etc. I probably want to translate these into a:hover and stuff
 			if (element is FlowElement) { 
 				switch (userFormat) {
-					case "linkNormalFormat":
-					case "linkHoverFormat":
+					/*case "linkHoverFormat":*/
 					case "linkActiveFormat":
+					case "linkNormalFormat":
 						// This isn't quite right - we still need to cache and we should be able to edit this with pseudo-selectors like a:hover, etc, but it kind of works
 						// for the moment
-						return applyStyle(element.format, element);
+						return applyStyle(element.format, element, userFormat);
 					case "listMarkerFormat":
 						// It should also be possible to style this using CSS
 						return element.listMarkerFormat;

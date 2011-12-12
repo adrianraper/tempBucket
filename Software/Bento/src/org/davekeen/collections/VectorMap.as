@@ -54,6 +54,29 @@ package org.davekeen.collections {
 		}
 		
 		/**
+		 * Remove the value with the given key
+		 * 
+		 * @param key
+		 * @return The removed object if it existed, or null otherwise
+		 */
+		public function remove(key:Object):Object {
+			if (key == null)
+				throw new Error("Attempted to remove an entry in the map with a null key");
+			
+			var idx:int = _keys.indexOf(key);
+			if (idx >= 0) {
+				var object:Object = get(key);
+				
+				_keys.splice(idx, 1);
+				_values.splice(idx, 1);
+				
+				return object;
+			}
+			
+			return null;
+		}
+		
+		/**
 		 * Return the list of keys
 		 *  
 		 * @return 

@@ -184,13 +184,18 @@ package com.clarityenglish.bento.model {
 				// Get the answer map for this question
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
 				
+				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
+				
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
-				if (question.isMutuallyExclusive())
-					answerMap.clear();
+				if (question.isMutuallyExclusive()) answerMap.clear();
 				
-				// Add the answer
-				answerMap.put(key, answer);
+				if (question.isSelectable()) {
+					if (!didKeyAlreadyExist) answerMap.put(key, answer);
+				} else {
+					// Add the answer
+					answerMap.put(key, answer);
+				}
 				
 				// Send a notification to say the question has been answered
 				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );

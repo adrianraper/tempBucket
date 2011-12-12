@@ -124,20 +124,18 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			if (!question.isSelectable())
 				return;
 			
+			// Always deselect all nodes so we are selecting from a blank state (ExerciseProxy will take care of mutual exclusiveness, etc)
+			for each (var allAnswers:NodeAnswer in question.answers) {
+				for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
+					XHTML.removeClass(otherSource, Answer.SELECTED);
+					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource), true); // TODO: Again, this is crazy inefficient
+				}
+			}
+			
 			for each (var key:Object in answerMap.keys) {
 				var answer:Answer = answerMap.get(key);
 				var answerNode:XML = key as XML;
 				var answerElement:FlowElement = getFlowElement(answerNode);
-				
-				// For some questions deselect all other nodes
-				if (question.isMutuallyExclusive()) {
-					for each (var allAnswers:NodeAnswer in question.answers) {
-						for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
-							XHTML.removeClass(otherSource, Answer.SELECTED);
-							TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
-						}
-					}
-				}
 				
 				// Add the selected class
 				XHTML.addClass(answerNode, Answer.SELECTED);
