@@ -127,10 +127,12 @@ package com.clarityenglish.textLayout.elements {
 			
 			// #76 - only one video should play at once
 			if (event.state == MediaPlayerState.PLAYING) {
-				if (currentlyPlayingVideoPlayer)
-					currentlyPlayingVideoPlayer.stop();
+				if (currentlyPlayingVideoPlayer) currentlyPlayingVideoPlayer.stop();
 				
 				currentlyPlayingVideoPlayer = getComponent() as VideoPlayer;
+			} else if (event.state == MediaPlayerState.PAUSED) {
+				// #109
+				currentlyPlayingVideoPlayer = null;
 			}
 		}
 		
