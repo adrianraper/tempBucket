@@ -90,7 +90,7 @@
 		<!-- The left hand side -->
 		<s:Group width="50%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="35">
 			<s:layout>
-				<s:VerticalLayout paddingLeft="50" paddingRight="20" paddingTop="10" paddingBottom="10" />
+				<s:VerticalLayout paddingLeft="30" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
 			
 			<!-- this is for the rotating course selector -->
@@ -224,9 +224,9 @@
 				</s:NavigatorContent>
 				
 				<!-- Exam practice -->
-				<s:NavigatorContent id="examPracticeNavigatorContent" label="Exam practice" width="100%">
+				<s:NavigatorContent id="examPracticeNavigatorContent" label="Exam practice" width="100%" >
 					<s:layout>
-						<s:HorizontalLayout/>
+						<s:HorizontalLayout paddingTop="10"/>
 					</s:layout>
 					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
@@ -235,7 +235,7 @@
 					
 					<s:DataGroup id="examPracticeDataGroup" width="300" >
 						<s:layout>
-							<s:VerticalLayout gap="0" />
+							<s:VerticalLayout paddingLeft="14" gap="0" />
 						</s:layout>
 						<s:itemRenderer >
 							<fx:Component>
