@@ -70,6 +70,7 @@
 					
 					// Determine the exercise title
 					var breadcrumb:Array = [];
+					breadcrumb.push(bentoProxy.currentCourseNode.@caption);
 					if (bentoProxy.currentGroupNode) breadcrumb.push(bentoProxy.currentGroupNode.@caption);
 					breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
 					view.exerciseTitle = breadcrumb.join(" > ");
