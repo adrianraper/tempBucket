@@ -62,6 +62,7 @@ package com.clarityenglish.ielts.view.exercise {
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
+		public var startDynamicView:Signal = new Signal(DynamicView);
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -74,7 +75,9 @@ package com.clarityenglish.ielts.view.exercise {
 			
 			switch (instance) {
 				case dynamicView:
-					dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { invalidateSkinState(); } );
+					// Dynamic views should have a start and stop command just like other exercises
+					//dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { invalidateSkinState(); } );
+					dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { startDynamicView.dispatch(dynamicView); } );
 					break;
 				case startAgainButton:
 					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { startAgain.dispatch(); } );

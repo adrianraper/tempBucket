@@ -32,12 +32,14 @@ package com.clarityenglish.bento.view.swfplayer {
 			var url:String = href.createRelativeHref(null, src).url;
 			
 			// #107
+			// The following has no impact. Also noticed that if you leave video running and leave the Question Zone
+			// video keeps playing. This is very bad, and perhaps solving that will solve this too.
 			//swfLoader.loadForCompatibility = true;
-			var context:LoaderContext = new LoaderContext();
+			// var context:LoaderContext = new LoaderContext();
 			//context.securityDomain = SecurityDomain.;
-			context.applicationDomain = new ApplicationDomain();
+			// context.applicationDomain = new ApplicationDomain();
+			// swfLoader.loaderContext = context;
 			
-			swfLoader.loaderContext = context;    
 			swfLoader.load(url);
 		}
 		

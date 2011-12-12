@@ -237,8 +237,12 @@ EOD;
 				// Check if the product has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
 				// It seems that copyOps not yet loaded? But this should do it as required, right?
 				if ($loginObj->ProductExpiryDate && ($loginObj->ProductExpiryDate > '2038')) $loginObj->ProductExpiryDate = '2038-01-01';
+				// v3.4 We ask people to look at usage stats in the email sent 2 weeks after other titles expired.
+				// But usually RM is set to expire at the same time. Easiest fix is to allow RM login for 2 weeks after it's expiry
+				// but then (ideally) limit access to usage stats. Not sure how to do that bit, so just let them in anyway.
+						//(strtotime($loginObj->ProductExpiryDate) < strtotime(date("Y-m-d"))))
 				if ($loginObj->ProductExpiryDate && 
-						(strtotime($loginObj->ProductExpiryDate) < strtotime(date("Y-m-d"))))
+						(strtotime($loginObj->ProductExpiryDate) < strtotime("-3 weeks")))
 					//throw new Exception($this->copyOps->getCopyForId("productExpiredError", array("date" => $loginObj->ProductExpiryDate, "EN")));
 					throw new Exception("Your Results Manager expired on ".date("d M Y", strtotime($loginObj->ProductExpiryDate)));
 				

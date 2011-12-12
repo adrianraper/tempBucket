@@ -19,13 +19,21 @@ class Model {
 			$this->setParent($parent);
 			$this->type = $parent->getType();
 		}
-			
+
 		$xmlstr = <<<XML
 <script id="model" type="application/xml">
 </script>
 XML;
 		$this->model = new SimpleXMLElement($xmlstr);
+		
+		// TODO. For R2I just add delayed marking for everything as easy to then remove.
+		$this->model->addChild('settings');
+		$this->model->settings->addChild('param');
+		$this->model->settings->param->addAttribute('name', 'delayedMarking');
+		$this->model->settings->param->addAttribute('value', 'true');
+		
 	}
+	
 	// Get ready for questions in the model
 	function prepareQuestions() {
 		// check to see if the questions node already exists
@@ -47,16 +55,18 @@ XML;
 					// We need to find the id of the drag that matches this and use that rather than duplicate the answer.
 					$thisAnswerText = $answer->getAnswer();
 					//echo "\ntry to match $thisAnswerText";
-					foreach ($this->getParent()->noscroll->getFields() as $dragField) {
-						//echo "\nlook at field ".$dragField->getID();
-						foreach ($dragField->getAnswers() as $dragAnswer) {
-							//echo "\ncompare $thisAnswerText and ".$dragAnswer->getAnswer();
-							if ($dragAnswer->getAnswer()==$thisAnswerText) {
-								$matchingID = $dragField->getID();
-								//echo "match $matchingID so quit loops";
-								continue 2;
-							} else {
-								//echo 'not match';
+					if ($this->getParent()->noscroll) {
+						foreach ($this->getParent()->noscroll->getFields() as $dragField) {
+							//echo "\nlook at field ".$dragField->getID();
+							foreach ($dragField->getAnswers() as $dragAnswer) {
+								//echo "\ncompare $thisAnswerText and ".$dragAnswer->getAnswer();
+								if ($dragAnswer->getAnswer()==$thisAnswerText) {
+									$matchingID = $dragField->getID();
+									//echo "match $matchingID so quit loops";
+									continue 2;
+								} else {
+									//echo 'not match';
+								}
 							}
 						}
 					}
@@ -135,7 +145,6 @@ XML;
 				// Ideally we would match to make sure they are the same
 				//$newQ->addAttribute('block','b'.$question->getID());
 				foreach ($question->getFields() as $field) {
-					$newQ->addAttribute('block','b'.$field->group);
 					// You can have multiple answers per field
 					// they should all have the same group id
 					$newQ->addAttribute('block','b'.$field->group);
@@ -412,6 +421,7 @@ XML;
 		// The following works but doesn't use any white space, so tough to read and edit
 		// Stackoverflow suggests going via DOM to get pretty printing
 		//return str_replace('<?xml version="1.0"?'.'>','',$this->model->asXML());
+		global $newline;
 		$dom = new DOMDocument('1.0');
 		$dom->preserveWhiteSpace = false;
 		$dom->formatOutput = true;

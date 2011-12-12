@@ -17,6 +17,9 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+ 	<feedback>
+		<feedback source="fb0" />
+	</feedback>
 </settings>
   <questions>
     <DropDownQuestion source="q1" block="b1">

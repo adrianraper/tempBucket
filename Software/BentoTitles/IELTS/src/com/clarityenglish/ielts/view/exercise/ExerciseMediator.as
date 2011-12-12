@@ -38,6 +38,7 @@
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
+			view.startDynamicView.add(onStartDynamicView);
 		}
 		
 		public override function onRemove():void {
@@ -49,6 +50,7 @@
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
+			view.startDynamicView.remove(onStartDynamicView);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -126,6 +128,10 @@
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
 		}
 		
+		private function onStartDynamicView(dynamicView:DynamicView):void {
+			view.invalidateSkinState();
+			sendNotification(BBNotifications.DYNAMICVIEW_START, { href: view.href });
+		}
 		/**
 		 * For printing using snapshots of the DisplayObjects
 		 * 

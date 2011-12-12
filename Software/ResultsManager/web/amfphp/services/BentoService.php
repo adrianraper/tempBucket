@@ -312,10 +312,17 @@ class BentoService extends AbstractService {
 		$score = new Score();
 		$score->setUID($scoreObj['UID']);
 		
-		$score->score = $scoreObj['correctPercent'];
 		$score->scoreCorrect = $scoreObj['correctCount'];
 		$score->scoreWrong = $scoreObj['incorrectCount'];
 		$score->scoreMissed = $scoreObj['missedCount'];
+		
+		$totalQuestions = $score->scoreCorrect + $score->scoreWrong + $score->scoreMissed;
+		if ($totalQuestions>0) {
+			$score->score = intval(100 * $score->scoreCorrect / $totalQuestions);
+		} else {
+			$score->score=-1;
+		}
+		
 		$score->duration = $scoreObj['duration'];
 		
 		$score->dateStamp = $dateNow;

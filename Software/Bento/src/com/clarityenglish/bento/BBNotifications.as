@@ -40,6 +40,12 @@
 		public static const EXERCISE_STOP:String = "exercise_stop";
 		public static const EXERCISE_STOPPED:String = "exercise_stopped";
 		
+		// These are sent by DynamicMediator when dynamic views start and stop.
+		public static const DYNAMICVIEW_START:String = "dynamicview_start";
+		public static const DYNAMICVIEW_STOP:String = "dynamicview_stop";
+		public static const DYNAMICVIEW_STARTED:String = "dynamicview_started";
+		public static const DYNAMICVIEW_STOPPED:String = "dynamicview_stopped";
+		
 		// This notification is sent when the user clicks the print button
 		public static const EXERCISE_PRINT:String = "exercise_print";
 		public static const EXERCISE_PRINTED:String = "exercise_printed";

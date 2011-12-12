@@ -27,7 +27,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=true;
+$plainView=false;
 $batch=false;
 if ($plainView) {
 	header ('Content-Type: text/plain');
@@ -43,9 +43,9 @@ if ($plainView) {
 
 // Get the file
 $contentFolder = dirname(__FILE__).'/../../../Content';
-$titleFolder = $contentFolder.'/RoadToIELTS-Academic';
+$titleFolder = $contentFolder.'/RoadToIELTS-General';
 //$titleFolderOut = $contentFolder.'/RoadToIELTS2-Academic';
-$titleFolderOut = $contentFolder.'/IELTS-Joe';
+$titleFolderOut = $contentFolder.'/RoadToIELTS2-General';
 
 // Add an extra loop to do all folders at once
 $topFolder = $titleFolder.'/Courses';
@@ -126,14 +126,14 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	
 } else {
 	// or just a specific one
-	$courseFolder = '1150976390861';
-	$skillFolder = "writing";
+	$courseFolder = '1151344537052';
+	//$skillFolder = "writing";
 	//$skillFolder = "speaking";
 	//$skillFolder = "reading";
-	//$skillFolder = "listening";
+	$skillFolder = "listening";
 	$exerciseFolder = $titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
 	$exerciseFolderOut = $titleFolderOut.'/'.$skillFolder.'/exercises/';
-	$exerciseURL = '/Content/IELTS-Joe/'.$skillFolder.'/exercises/';
+	$exerciseURL = '/Content/RoadToIELTS2-General/'.$skillFolder.'/exercises/';
 	//$exerciseID = '1156153794194';
 	//$exerciseID = '1156153794055'; // presentation
 	//$exerciseID = '1156153794170'; // drag and drop
@@ -149,7 +149,8 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1156153794672'; // Stopgap with splitscreen
 	//$exerciseID = '1156153794384'; // For testing customised=true
 	//$exerciseID = '1156153794430'; // missing reading text
-	$exerciseID = '1151344172816'; // missing main content
+	//$exerciseID = '1151344172816'; // missing main content
+	$exerciseID = '1151344537628'; // warning from GT conversion
 	$fromFile = $exerciseFolder.$exerciseID.'.xml';
 	$toFile = $exerciseFolderOut.$exerciseID.'.xml';
 	convertExercise($fromFile, $toFile);

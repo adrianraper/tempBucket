@@ -35,7 +35,6 @@ package com.clarityenglish.bento.view {
 				
 			}
 		}
-		
 	}
 	
 }

@@ -72,7 +72,7 @@ EOD;
 		// Components that go in the head
 		$exerciseType = strtolower($this->exercise->getType());
 		
-		// Settings
+		// TODO. Settings. Need to move into the model at some point.
 		$settings = strtolower($this->exercise->getSettings());
 		
 		// Model (questions and answers)
@@ -93,9 +93,6 @@ EOD;
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		$settings
-	</script>
 	$model
 </head>
 EOD;

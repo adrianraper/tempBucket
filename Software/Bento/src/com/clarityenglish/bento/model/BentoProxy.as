@@ -159,6 +159,12 @@ package com.clarityenglish.bento.model {
 		 * 
 		 */
 		public function getCurrentExerciseUID():String {
+			
+			if (!currentExercise) {
+				log.error("Attempt to use current exercise UID when there is no current exercise");
+				return "";
+			}
+			
 			var eid:String = currentExerciseNode.@id;			
 			var uid:String = currentUnitNode.@id;			
 			var cid:String = currentCourseNode.@id;			
