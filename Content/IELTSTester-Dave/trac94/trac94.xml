@@ -1,132 +1,80 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion-from" content="draganddrop" />
-	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<!-- <link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" /> -->
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+		* {
+			font-size: 13px;
+			font-family: Verdana;
+		}
+		
+		body > header {
+			font-weight: normal;
+			color: #333333;
+		}
+		
+		#noscroll span[draggable=true] {
+			float: left;
+			color: #0E00AB;
+			padding: 5px 8px;
+			margin-right: 4px;
+			margin-bottom: 8px;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #B5B5B5;
+			border-radius: 12px;
+			background-color: #FFFFFF;
+		}
+		
+		audio {
+			border-width: 1px;
+			border-color: #FF0000;
+			border-style: solid;
+		}
+		
 	]]>
 	</style>
 	
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	
 </settings>
-  <questions>
-    <DragQuestion source="q1" block="b1">
-      <answer source="a12" correct="true"/>
-      <answer source="a11" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
-      <answer source="a13" correct="true"/>
-      <answer source="a16" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a16" correct="true"/>
-      <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a20" correct="true"/>
-      <answer source="a19" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
-      <answer source="a24" correct="true"/>
-      <answer source="a23" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-    </DragQuestion>
-  </questions>
 </script>
 
 </head>
 <body>
 	
-<header>
-	
-		
-		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
-		
-
-Writing Task 2
-</header>
+<header>Layout in floats</header>
 	
 <section id="noscroll">
-  <span id="a13" draggable="true">Audio A<audio controls="compact" class="leftFloat" src="../media/TT_WR1at.mp3" mode="1" id="1011"/></span>
-  <span id="a17" draggable="true">Audio B<audio controls="compact" class="rightFloat" src="../media/TT_WR1au.mp3" mode="1" id="1012"/></span>
-  <span id="a21" draggable="true">Audio C<audio controls="compact" class="rightFloat" src="../media/TT_WR1av.mp3" mode="1" id="1013"/></span>
-  <span id="a19" draggable="true">Audio D<audio controls="compact" class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"/></span>
+  <span id="a13" draggable="true">
+  	Audio A
+  	<!-- <img src="smiley.jpg" /> -->
+  	<audio controls="compact" src="LE_AW1aa.mp3" />
+  </span>
+  
+  <span id="a17" draggable="true">
+  	Audio B
+  	<!-- <img src="smiley.jpg" /> -->
+  	<audio controls="compact" src="LE_AW1aa.mp3" />
+  </span>
+  
+  <span id="a21" draggable="true">
+  	Audio C
+  	<!-- <img src="smiley.jpg" /> -->
+  	<audio controls="compact" src="LE_AW1aa.mp3" />
+  </span>
+  
+  <!-- <span id="a19" draggable="true">Audio D<audio controls="compact" class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"/></span>
   <span id="a12" draggable="true">Audio E <audio controls="compact" class="leftFloat" src="../media/TT_WR1ax.mp3" mode="1" id="1015"/></span>
   <span id="a10" draggable="true">Audio F<audio controls="compact" class="rightFloat" src="../media/TT_WR1ay.mp3" mode="1" id="1016"/></span>
   <span id="a22" draggable="true">Audio G<audio controls="compact" class="rightFloat" src="../media/TT_WR1az.mp3" mode="1" id="1017"/></span>
-  <span id="a15" draggable="true">Audio H <audio controls="compact" class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"/></span>
-  
+  <span id="a15" draggable="true">Audio H <audio controls="compact" class="rightFloat" src="../media/TT_WR1ba.mp3" mode="1" id="1018"/></span>  -->
 </section>
 
 <section id="body">
-	<img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  />
-	
-  
-  
-  
- 
-  
-  
- 
-	<ol id="questionList">
-	<li>Employment Opportunities&#xA0;<input id="q1" type="droptarget" />&#xA0;<input id="q2" type="droptarget" /></li>
-	<li>Business and the local economy&#xA0;<input id="q3" type="droptarget" />&#xA0;<input id="q4" type="droptarget" /></li>
-	<li>Infrastructure, facilities and the environment&#xA0;<input id="q5" type="droptarget" />&#xA0;<input id="q6" type="droptarget" /></li>
-	<li>Local customs and culture&#xA0;<input id="q7" type="droptarget" />&#xA0;<input id="q8" type="droptarget" /></li></ol>
-	<p align="left"><font size="2"></font></p>
-</section>
-<section id="fb0">
-  <p align="left">
-    <b>1. Employment Opportunities </b>
-  </p>
-  <p align="left">- More and better job opportunities for locals</p>
-  <p align="left">- Tourist industry only offers locals menial, badly-paid, seasonal jobs</p>
-  <p align="left">
-    <b/>
-  </p>
-  <p align="left">
-    <b>2. Business and the local economy </b>
-  </p>
-  <p align="left">- Local businesses flourish</p>
-  <p align="left">- If holiday company is often foreign-owned, little money may reach local economy</p>
-  <p align="left"/>
-  <p align="left">
-    <b>3. Infrastructure, facilities and the environment</b>
-  </p>
-  <p align="left">- Tourist facilities may cause environmental damage </p>
-  <p align="left">- Locals as well as tourists benefit from improved infrastructure</p>
-  <p align="left"/>
-  <p align="left">
-    <b>4.  Local customs and culture</b>
-  </p>
-  <p align="left">- Local customs and traditions may not be respected</p>
-  <p align="left">
-    <font color="#000000">- Locals and tourists learn about each other&#x2019;s cultures</font>
-  </p>
-</section>
-
-<section id="rt2001">
-  <p align="left">This exercise will help you with ideas for the writing task. You'll have to choose which ideas you want to use as some won't support your opinion. When you have finished this exercise, you can decide whether you want to write a balanced 'for and against' composition or a 'one-sided' composition that gives your personal opinion and only discusses the arguments that support it.</p>
 </section>
 
 </body>

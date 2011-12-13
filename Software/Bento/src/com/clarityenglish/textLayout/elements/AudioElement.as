@@ -1,17 +1,9 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.textLayout.components.AudioPlayer;
-	import com.clarityenglish.textLayout.util.TLFUtil;
 	
-	import flash.geom.Rectangle;
-	import flash.utils.setInterval;
-	
-	import flashx.textLayout.elements.InlineGraphicElementStatus;
-	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.events.FlexEvent;
-	
-	import spark.components.supportClasses.SkinnableComponent;
 
 	use namespace tlf_internal;
 	
@@ -61,8 +53,8 @@ package com.clarityenglish.textLayout.elements {
 			if (component) {
 				component.removeEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 				
-				// TODO: I have no idea why, but suddenly these are all returning 0 (except when debugging they show the correct values...).  This is causing text to flow over the audio
-				// player component.
+				// TODO: I have no idea why, but suddenly these are all returning 0 (except when debugging they show the correct values...).  This is causing text to flow over the
+				// audio player component.
 				elementWidth = component.width;
 				elementHeight = component.height;
 				

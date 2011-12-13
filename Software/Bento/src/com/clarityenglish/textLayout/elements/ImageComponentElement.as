@@ -10,8 +10,6 @@ package com.clarityenglish.textLayout.elements {
 	
 	import mx.core.UIComponent;
 	
-	import spark.components.Group;
-	
 	use namespace tlf_internal;
 	
 	public class ImageComponentElement extends InlineGraphicElement {
@@ -59,8 +57,11 @@ package com.clarityenglish.textLayout.elements {
 		 */
 		public function getElementBounds():Rectangle {
 			var bounds:Rectangle = TLFUtil.getFlowElementBounds(this);
-			bounds.width = (component.initialized) ? component.width : NaN;
-			bounds.height = (component.initialized) ? component.height : NaN;
+			
+			if (bounds) {
+				bounds.width = (component.initialized) ? component.width : NaN;
+				bounds.height = (component.initialized) ? component.height : NaN;
+			}
 			
 			return bounds;
 		}

@@ -31,10 +31,10 @@ package com.clarityenglish.textLayout.components.behaviours {
 			// Get all the elements that we will overlay
 			if (floatableTextFlow) {
 				return [ ].concat(
-					   floatableTextFlow.getElementsByClass(InputElement),
-					   floatableTextFlow.getElementsByClass(SelectElement),
-					   floatableTextFlow.getElementsByClass(VideoElement),
-					   floatableTextFlow.getElementsByClass(AudioElement));
+					floatableTextFlow.getElementsByClass(InputElement),
+					floatableTextFlow.getElementsByClass(SelectElement),
+					floatableTextFlow.getElementsByClass(VideoElement),
+					floatableTextFlow.getElementsByClass(AudioElement));
 			}
 			
 			return null;
