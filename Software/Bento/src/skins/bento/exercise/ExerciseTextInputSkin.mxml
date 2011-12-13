@@ -69,7 +69,8 @@
 	<!-- underline -->
 	<s:Line left="0" right="0" bottom="1">
 		<s:stroke>
-			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" />
+			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8"
+								color.disabledStates="#DD143F"/>
 		</s:stroke>
 	</s:Line>
 	

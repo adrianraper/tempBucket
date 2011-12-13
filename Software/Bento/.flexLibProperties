@@ -90,7 +90,6 @@
     <classEntry path="skins.bento.VideoPlayerSkin"/>
     <classEntry path="skins.bento.components.AudioPlayerSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseDropDownListButtonSkin"/>
-    <classEntry path="skins.bento.exercise.ExerciseDropDownListSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseTextInputSkin"/>
     <classEntry path="skins.bento.exercise.XHTMLExerciseSkin"/>
     <classEntry path="skins.bento.swfplayer.SWFPlayerSkin"/>

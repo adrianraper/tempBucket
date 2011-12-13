@@ -17,28 +17,28 @@
 			<s:SolidColor color="{getStyle('writingColor') || 0x00FF00}" />
 		</s:fill>
 	</s:Rect>
-	<s:Label text="Writing" paddingTop="10"/>
+	<s:Label text="Writing" paddingTop="7"/>
 	<s:Spacer width="30" />
 	<s:Rect id="speakingRect" left="200" right="0" top="0" bottom="0" width="20" height="20" radiusX="6" radiusY="6">
 		<s:fill>
 			<s:SolidColor color="{getStyle('speakingColor')}" />
 		</s:fill>
 	</s:Rect>
-	<s:Label text="Speaking" paddingTop="10"/>
+	<s:Label text="Speaking" paddingTop="7"/>
 	<s:Spacer width="30" />
 	<s:Rect id="readingRect" left="0" right="0" top="0" bottom="0" width="20" height="20" radiusX="6" radiusY="6">
 		<s:fill>
 			<s:SolidColor color="{getStyle('readingColor')}" />
 		</s:fill>
 	</s:Rect>
-	<s:Label text="Reading" paddingTop="10"/>
+	<s:Label text="Reading" paddingTop="7"/>
 	<s:Spacer width="30" />
 	<s:Rect id="listeningRect" left="0" right="0" top="0" bottom="0" width="20" height="20" radiusX="6" radiusY="6">
 		<s:fill>
 			<s:SolidColor color="{getStyle('listeningColor')}" />
 		</s:fill>
 	</s:Rect>
-	<s:Label text="Listening" paddingTop="10" />
+	<s:Label text="Listening" paddingTop="7" />
 	<s:Spacer width="30" />
 	
 </s:Skin>

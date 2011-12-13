@@ -93,18 +93,17 @@
         <s:State name="down" />
         <s:State name="disabled" />
     </s:states>
-    
     <!-- layer 2: fill -->
     <!--- @private -->
-    <s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2" height="30" >
+    <s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="4"  >
         <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0xFFFFFF" 
-                               color.over="0xBBBDBD" 
+                               color.over="0xC9C9C9" 
                                color.down="0xAAAAAA" 
                                alpha="0.85" />
                 <s:GradientEntry color="0xF2F2F2" 
-                               color.over="0x9FA0A1" 
+                               color.over="0xC9C9C9" 
                                color.down="0x929496" 
                                alpha="0.85" />
             </s:LinearGradient>
@@ -113,19 +112,19 @@
     
     <!-- layer 3: fill lowlight -->
     <!--- @private -->
-    <s:Rect id="lowlight" left="1" right="1" top="1" bottom="1" radiusX="2">
+    <s:Rect id="lowlight" left="1" right="1" top="1" bottom="1" radiusX="4">
         <s:fill>
             <s:LinearGradient rotation="270">
-                <s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
-                <s:GradientEntry color="0x000000" ratio="0.48" alpha="0.0099" />
-                <s:GradientEntry color="0x000000" ratio="0.48001" alpha="0" />
+                <s:GradientEntry color="0xC9C9C9" ratio="0.0" alpha="0.0627" />
+                <s:GradientEntry color="0xC9C9C9" ratio="0.48" alpha="0.0099" />
+                <s:GradientEntry color="0xC9C9C9" ratio="0.48001" alpha="0" />
             </s:LinearGradient>
         </s:fill>
     </s:Rect>
     
     <!-- layer 4: fill highlight -->
     <!--- @private -->
-    <s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="2" >
+    <s:Rect id="highlight" left="1" right="1" top="1" bottom="1" radiusX="4" >
         <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0xFFFFFF"
@@ -147,7 +146,7 @@
     
     <!-- layer 5: highlight stroke (all states except down) -->
     <!--- @private -->
-    <s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" excludeFrom="down" radiusX="2">
+    <s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" excludeFrom="down" radiusX="4">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0xFFFFFF" alpha.over="0.22" />
@@ -158,7 +157,7 @@
     
     <!-- layer 6: highlight stroke (down state only) -->
     <!--- @private -->
-    <s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="2" includeIn="down">
+    <s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="4" includeIn="down" >
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
@@ -171,7 +170,7 @@
     </s:Rect>
 	
     <!--- @private -->
-    <s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="2" includeIn="down">
+    <s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="4" includeIn="down">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
@@ -182,14 +181,12 @@
     
     <!-- layer 7: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
     <!--- @private -->
-    <s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="2">
+    <s:Rect id="border" left="0" right="0" top="0" bottom="0" radiusX="4">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="999999" 
-                               alpha="0.5625"
+                <s:GradientEntry color="0x999999" 
                                alpha.down="0.6375" />
-                <s:GradientEntry color="999999" 
-                               alpha="0.75" 
+                <s:GradientEntry color="0x999999" 
                                alpha.down="0.85" />
             </s:LinearGradientStroke>
         </s:stroke>
@@ -197,14 +194,14 @@
 	
     <!-- layer 8: arrow -->
     <!--- The arrow graphic displayed in the anchor button. -->
-	<s:Group left="4" verticalCenter="0" horizontalCenter="{hostComponent.label == '' ? 0 : null}">
-		<s:Ellipse y="-0.000976563" width="10.334" height="10.334">
+	<s:Group left="10" verticalCenter="0" horizontalCenter="{hostComponent.label == '' ? 0 : null}" >
+		<s:Ellipse y="-0.000976563" width="11" height="11" top="5" bottom="5">
 			<s:fill>
 				<s:SolidColor color="#333333"/>
 			</s:fill>
 		</s:Ellipse>
 		
-	    <s:Path id="arrow" data="M5.16602 3.2793L8.00781 3.2793 6.58691 5.73828 5.16504 8.19922 3.74707 5.73828 2.32813 3.2793 5.16602 3.2793Z">
+	    <s:Path id="arrow" top="8" left="2.7" data="M5.16602 3.2793L8.00781 3.2793 6.58691 5.73828 5.16504 8.19922 3.74707 5.73828 2.32813 3.2793 5.16602 3.2793Z">
 	        <s:fill>
 	             <s:SolidColor color="#FFFFFF" />
 	        </s:fill>
