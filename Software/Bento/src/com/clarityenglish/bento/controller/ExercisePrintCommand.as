@@ -78,8 +78,11 @@ package com.clarityenglish.bento.controller {
 			var pdfViewHeight:Number = maxTableWidth * viewAspectRatio;
 			
 			// Chop the page into seperate images 
+			
+			//pdf.addPage();
 			//pdf.addImage(dynamicView, null, 10,	50, pdfViewWidth, pdfViewHeight);
-			pdf.addMultiPageImage(dynamicView);
+			
+			pdf.addMultiPageImage(dynamicView, null, 10, 0, pdfViewWidth, pdfViewHeight);
 			
 			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";
