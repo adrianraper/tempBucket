@@ -55,7 +55,7 @@ package com.clarityenglish.bento.controller {
 			dynamicView.media = "print";
 			dynamicView.href = href;
 			dynamicView.width = Size.A4.dimensions[0];
-			dynamicView.scaleX = dynamicView.scaleY = 0.85;
+			dynamicView.scaleX = dynamicView.scaleY = 1;
 			
 			PopUpManager.addPopUp(dynamicView, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(dynamicView);
@@ -69,8 +69,19 @@ package com.clarityenglish.bento.controller {
 			var imageHeader:ByteArray = new imageHeaderStream() as ByteArray;
 			pdf.addImageStream(imageHeader, ColorSpace.DEVICE_RGB, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), -10, -10, 210);
 			
+			// Look at ratios and shrinkage
+			var viewWidth:Number = dynamicView.width;
+			var viewHeight:Number = dynamicView.height;
+			var viewAspectRatio:Number = viewHeight / viewWidth;
+			// The PDF is measured in mm, the chart in pixels. But this number is not just mm. Why not?
+			var pdfChartScaling:Number = 1;
+			var maxWidth:Number = 180; var maxHeight:Number = 100;
+			var maxTableWidth:Number = 160; var maxTableHeight:Number = 25;
+			var pdfViewWidth:Number = maxTableWidth;
+			var pdfViewHeight:Number = maxTableWidth * viewAspectRatio;
+			
 			// Chop the page into seperate images 
-			pdf.addImage(dynamicView);
+			pdf.addImage(dynamicView, null, 10,	50, pdfViewWidth, pdfViewHeight);
 			
 			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";

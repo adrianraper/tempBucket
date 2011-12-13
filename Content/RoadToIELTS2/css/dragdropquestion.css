@@ -218,6 +218,7 @@ line-height: 30em;
 
 #gapfillText p{
 	padding-bottom: 12px;
+	max-width:10px;
 	}
 
 #writing {

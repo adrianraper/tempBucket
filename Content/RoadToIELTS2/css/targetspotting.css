@@ -60,7 +60,10 @@ padding-right:20px;
 	padding-right: 20px;
 	padding-left: 20px;
 }
-
+#body .leftFloat{
+float:left;
+padding-top:0px;
+}
 img.floatRightClear { 
     float: right; 
 	display:block;
@@ -171,9 +174,10 @@ h7{
 
 /* This is for any clickable lists in targetspotting exercises. */
 #targetspotting {
+padding-top:10px;
 	margin-left: 0px;
 	padding-right: 280%;
-	padding-bottom: 20px;
+	padding-bottom: 0px;
 	text-align: left;
 	line-height: 22em;
 }
