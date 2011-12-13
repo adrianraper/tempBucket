@@ -28,6 +28,15 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		}
 		
 		/**
+		 * By default all feedback is modal, unless modal="false" is specified in the XML
+		 * 
+		 * @return 
+		 */
+		public function get modal():Boolean {
+			return (xml.hasOwnProperty("@modal") && xml.@modal.toString() == "false") ? false : true;
+		}
+		
+		/**
 		 * This is used in score based feedback.  If min is not defined the default is 0 (which matches all scores)
 		 * 
 		 * @return 

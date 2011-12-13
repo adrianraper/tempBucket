@@ -87,10 +87,15 @@
 					<sequence>
 						<element name="popup" maxOccurs="unbounded" minOccurs="0">
 							<complexType>
-								<attribute name="click" type="string">
+								<attribute name="click" type="string" use="required">
 								</attribute>
 								<attribute name="source"
-									type="string">
+									type="string" use="required">
+								</attribute>
+								<attribute name="width" type="int" use="optional">
+								</attribute>
+								<attribute name="height"
+									type="int" use="optional">
 								</attribute>
 							</complexType></element>
 					</sequence>
