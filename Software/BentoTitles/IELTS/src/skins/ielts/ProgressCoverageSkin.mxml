@@ -12,8 +12,6 @@
 	
 	<fx:Script>
 		<![CDATA[
-			// import mx.collections.XMLListCollection;
-			
 			
 		]]>
 	</fx:Script>

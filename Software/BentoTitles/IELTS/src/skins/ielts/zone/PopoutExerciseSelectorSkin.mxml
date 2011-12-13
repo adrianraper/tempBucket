@@ -57,7 +57,10 @@
 		<s:Label text="{hostComponent.group.@caption}" fontSize="18" />
 		
 		<s:HGroup>
-			<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" />
+			<s:VGroup width="200" >
+				<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" />
+				<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
+			</s:VGroup>
 			
 			<s:List id="exerciseList" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.exercises)}" itemRollOver="onExerciseListItemRollOver(event)">
 				<s:layout>
@@ -94,7 +97,6 @@
 			</s:List>
 		</s:HGroup>
 		
-		<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
 	</s:VGroup>
 	
 </s:Skin>

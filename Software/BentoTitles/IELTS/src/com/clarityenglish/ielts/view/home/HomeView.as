@@ -46,7 +46,7 @@ package com.clarityenglish.ielts.view.home {
   <charts>
     <chart plot_type="CategorizedHorizontal">
       <data_plot_settings default_series_type="Bar">
-        <bar_series group_padding="0.5">
+        <bar_series group_padding="0.5" style="AquaLight">
           <tooltip_settings enabled="false" />
           <label_settings enabled="true">
             <background enabled="false" />

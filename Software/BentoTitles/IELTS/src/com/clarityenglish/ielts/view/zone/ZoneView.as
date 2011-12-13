@@ -162,6 +162,11 @@ package com.clarityenglish.ielts.view.zone {
 				
 				// Give the advice zone videos as a dataprovider to the advice zone video list
 				adviceZoneVideoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
+				// And initialise the list to load the first video
+				// HELP. Not working to trigger the list change event.
+				if (adviceZoneVideoList.dataProvider && adviceZoneVideoList.dataProvider.length > 0) {
+					adviceZoneVideoList.selectedIndex = 0;
+				}
 				
 				// Give the exam practice exercises as a dataprovider to the exam practice data group
 				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
@@ -307,6 +312,7 @@ package com.clarityenglish.ielts.view.zone {
 			}
 			dynamicSource.streamItems = streamItems; 
 			adviceZoneVideoPlayer.source = dynamicSource;
+			adviceZoneVideoPlayer.autoPlay = true;
 			
 			// #63
 			callLater(function():void {

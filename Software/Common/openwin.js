@@ -16,7 +16,7 @@ xx.focus();
 }
 function openKeyFactsVideoPlayer(page) {
 var url = "/Content/RoadToIELTS2/" + page;	
-var w = 400; var h = 233; 
+var w = 431; var h = 249; 
 var lp = (screen.width) ? (screen.width-w)/2 : 0;var tp = (screen.height) ? (screen.height-h)/2 : 0;var t = ',top='+tp+',left='+lp;var ow = this.window.open(url, "KeyFactsVideo", "toolbar=no,menubar=no,location=no,status=no,scrollbars=no,resizable=no,width="+w+",height="+h+t);
 ow.focus();
 } 

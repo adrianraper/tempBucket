@@ -138,10 +138,9 @@
 									 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
 									 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
 						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10" >
-							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="90" height="30"  />
+							<s:Button id="questionZoneViewButton" label="View" fontSize="12" width="90" height="30" />							  
 							<s:Label text="or" />
 							<s:Button id="questionZoneDownloadButton" label="Download PDF" fontSize="12" width="150" height="30" left="50" />
-
 						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
@@ -149,10 +148,10 @@
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
 					<s:VGroup left="0" right="0" top="10" bottom="10" horizontalAlign="left" verticalAlign="middle">
-						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" autoPlay="false" scaleMode="letterbox" />
+						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" />
 
-							<s:List id="adviceZoneVideoList" width="460" height="231" horizontalScrollPolicy="off" 
-								borderVisible="false" change="onAdviceZoneVideoSelect(event)">
+						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
+								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
 							<s:layout>
 								<s:HorizontalLayout />
 							</s:layout>
@@ -166,10 +165,21 @@
 													super.data = value;
 													
 													image.source = outerDocument.hostComponent.href.createRelativeHref(null, data.@thumbnail).url;
+													
+													if (this.selected) {
+														imageBorder.visible = true;
+													} else {
+														imageBorder.visible = false;
+													}
 												}
 											]]>
 										</fx:Script>
-										<s:Image id="image" width="68" height="38" />
+										<s:Rect id="imageBorder" width="72" height="42" top="-2" left="-2" >
+											<s:fill>
+												<s:SolidColor color="0xFF0000" />
+											</s:fill>
+										</s:Rect>
+										<s:Image id="image" width="68" height="38" top="0" left="0"/>
 									</s:ItemRenderer>
 								</fx:Component>
 							</s:itemRenderer>
