@@ -110,16 +110,16 @@
     <!---  The default skin is DropDownListButtonSkin. 
             @copy spark.components.supportClasses.DropDownListBase#openButton
             @see spark.skins.spark.DropDownListButtonSkin -->
-    <s:Button id="openButton" left="0" right="0" top="-3" bottom="-1" focusEnabled="false" tabEnabled="false"
+    <s:Button id="openButton" left="0" right="0" top="-5" bottom="-1" focusEnabled="false" tabEnabled="false"
         skinClass="skins.bento.exercise.ExerciseDropDownListButtonSkin" label="{hostComponent.selectedItem.toString()}" excludeFrom="disabled" />  
         
     <!--- @copy spark.components.DropDownList#labelDisplay -->
     <s:Label id="labelDisplay" verticalAlign="middle" maxDisplayedLines="1" 
         mouseEnabled="false" mouseChildren="false"
-        left="21" top="0" bottom="0" verticalCenter="0" /> 
+        left="27" left.disabled="0" top="0" bottom="0" verticalCenter="0" /> 
 
 	<!-- underline -->
-	<s:Line left="21" width="{labelDisplay.width}" bottom="1" includeIn="disabled">
+	<s:Line left="0" width="100%" bottom="1" includeIn="disabled">
 		<s:stroke>
 			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" />
 		</s:stroke>
