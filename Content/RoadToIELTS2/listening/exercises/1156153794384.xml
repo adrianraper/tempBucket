@@ -17,7 +17,8 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" autoMarkTimeOut="10"/>
+ 	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="245" />
 </settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
@@ -115,7 +116,7 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/LE_LN_002.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" loop="1" class="leftFloat" src="../media/LE_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
+  <audio controls="hidden" loop="1" src="../media/LE_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
   <ol id="questionList">
   Which THREE types of restaurant does the speaker recommend?
   <li id="1"><input id="q1"/></li>

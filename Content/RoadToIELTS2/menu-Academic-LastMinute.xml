@@ -6,9 +6,9 @@
       <menu id="52">
 		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" alt="xxx." />
-				<group id="3" caption="Unit 3" task="1" alt="xxx." />
+				<group id="1" caption="Unit 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Unit 2" task="1" description="xxx." />
+				<group id="3" caption="Unit 3" task="1" description="xxx." />
 			</groups>
 			<unit id="1287130110000" class="question-zone">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
@@ -20,21 +20,19 @@
 				<exercise id="1287130120003" caption="Reading practice paper part 3" href="reading/pdf/reading_ac_practice3.pdf" difficulty="3" />
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="reading/thumbnails/reading_keyfacts.jpg" />
-				<exercise id="1287130130002" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="reading/thumbnails/reading_advice.jpg" />
-				<exercise id="1287130130003" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="reading/thumbnails/reading_advice.jpg" />
+				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
-				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledFlag="3">
+				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledFlag="3" difficulty="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/Reading_arp2.jpg" enabledFlag="3">
+				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/Reading_arp2.jpg" enabledFlag="3" difficulty="3">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/Reading_match_infopara.jpg" enabledFlag="3">
+				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/Reading_match_infopara.jpg" enabledFlag="3" difficulty="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml" thumbnail="reading/thumbnails/Reading_sencomp.jpg" enabledFlag="3">
+				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml" thumbnail="reading/thumbnails/Reading_sencomp.jpg" enabledFlag="3" difficulty="3">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml" thumbnail="reading/thumbnails/Reading_untangling.jpg" enabledFlag="3">
@@ -86,9 +84,9 @@
 		</course>
 		<course id="1287130200000" class="listening" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" alt="xxx." />
-				<group id="3" caption="Unit 3" task="1" alt="xxx." />
+				<group id="1" caption="Unit 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Unit 2" task="1" description="xxx." />
+				<group id="3" caption="Unit 3" task="1" description="xxx." />
 			</groups>
 			<unit id="1287130210000" class="question-zone">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
@@ -100,8 +98,8 @@
 				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" difficulty="3" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
-				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="listening/thumbnails/listening_keyfacts.jpg" />
-				<exercise id="1287130230002" href="listening/advicezonevideo2.rss" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="listening/thumbnails/listening_advice.jpg" />
+				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
+
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3">
@@ -168,21 +166,21 @@
 		 </course>
 		 <course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" alt="xxx." />
-				<group id="3" caption="Unit 3" task="1" alt="xxx." />
+				<group id="1" caption="Unit 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Unit 2" task="1" description="xxx." />
+				<group id="3" caption="Unit 3" task="1" description="xxx." />
 			</groups>
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
 				<exercise id="1287130310002" caption="Download PDF" href="speaking/ebook/ebook_speaking.pdf" />	
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
-				<exercise id="1287130330001" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
-				<exercise id="1287130330002" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="speaking/thumbnails/speaking_advice.jpg" />
-				<exercise id="1287130330003" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="speaking/thumbnails/speaking_coping.jpg" />
-				<exercise id="1287130330004" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" />
-				<exercise id="1287130330005" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" />
-				<exercise id="1287130330006" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" />
+				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" />
+				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" />
+				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: Coping with nerves" thumbnail="speaking/thumbnails/speaking_coping.jpg" />
+				<exercise id="1287130330004" href="speaking/advicezonevideo4.rss" caption="Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
+				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Speaking section 1" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" />
+				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Speaking section 2" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" />
 			</unit>
 			<unit id="1287130340000" class="practice-zone">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" thumbnail="speaking/thumbnails/Speaking_intro1.jpg" enabledFlag="3">
@@ -246,12 +244,12 @@
 		</course>
 		 <course id="1287130400000" class="writing" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
 			<groups>
-				<group id="1" caption="Unit 1 task 1" task="1" alt="xxx." />
-				<group id="2" caption="Unit 1 task 2" task="2" alt="xxx." />
-				<group id="3" caption="Unit 2 task 1" task="1" alt="xxx." />
-				<group id="4" caption="Unit 2 task 2" task="2" alt="xxx." />
-				<group id="5" caption="Unit 3 task 1" task="1" alt="xxx." />
-				<group id="6" caption="Unit 3 task 2" task="2" alt="xxx." />
+				<group id="1" caption="Unit 1 task 1" task="1" description="xxx." />
+				<group id="2" caption="Unit 1 task 2" task="2" description="xxx." />
+				<group id="3" caption="Unit 2 task 1" task="1" description="xxx." />
+				<group id="4" caption="Unit 2 task 2" task="2" description="xxx." />
+				<group id="5" caption="Unit 3 task 1" task="1" description="xxx." />
+				<group id="6" caption="Unit 3 task 2" task="2" description="xxx." />
 			</groups>
 			<unit id="1287130410000" class="question-zone">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
@@ -263,10 +261,12 @@
 				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice paper part 3" difficulty="3" />
 			</unit>
 			<unit id="1287130430000" class="advice-zone">
-				<exercise id="1287130430001" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the writing test." thumbnail="writing/thumbnails/writing_keyfacts.jpg" />
-				<exercise id="1287130430002" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="writing/thumbnails/writing_advice.jpg" />
-				<exercise id="1287130430003" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" />
-				<exercise id="1287130430004" href="listening/media/listening_advice.flv" caption="Watch the teacher giving advice on how to do well in the listening test.." thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
+				<exercise id="1287130430001" href="listening/media/listening_advice.flv" caption="What the examiner is looking for" thumbnail="writing/thumbnails/writing_keyfacts.jpg" />
+				<exercise id="1287130430002" href="listening/media/listening_advice.flv" caption="Advice: Writing task 2" thumbnail="writing/thumbnails/writing_advice.jpg" />
+				<exercise id="1287130430003" href="listening/media/listening_advice.flv" caption="Advice" thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" />
+				<exercise id="1287130430004" href="listening/media/listening_advice.flv" caption="Tutorial: Writing Task 1" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
+				<exercise id="1287130430004" href="listening/media/listening_advice.flv" caption="Tutorial: Writing Task 2" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
+
 			</unit>
 			<unit id="1287130440000" class="practice-zone">
 				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="2">

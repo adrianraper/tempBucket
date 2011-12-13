@@ -17,26 +17,39 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="255" />
 </settings>
 
   <questions>
     <DragQuestion source="q1" block="b1">
-      <answer source="a7" correct="true"/>
+      <answer source="a7" correct="true">
+	  <feedback source="fb1"/>
+	  </answer>
     </DragQuestion>
     <DragQuestion source="q2" block="b2">
-      <answer source="a4" correct="true"/>
+      <answer source="a4" correct="true">
+	  <feedback source="fb2"/>
+	  </answer>
     </DragQuestion>
     <DragQuestion source="q3" block="b3">
-      <answer source="a2" correct="true"/>
+      <answer source="a2" correct="true">
+	  <feedback source="fb3"/>
+	  </answer>
     </DragQuestion>
     <DragQuestion source="q4" block="b4">
-      <answer source="a9" correct="true"/>
+      <answer source="a9" correct="true">
+	  <feedback source="fb4"/>
+	  </answer>
     </DragQuestion>
     <DragQuestion source="q5" block="b5">
-      <answer source="a1" correct="true"/>
+      <answer source="a1" correct="true">
+	  <feedback source="fb5"/>
+	  </answer>
     </DragQuestion>
     <DragQuestion source="q6" block="b6">
-      <answer source="a5" correct="true"/>
+      <answer source="a5" correct="true">
+	  <feedback source="fb6"/>
+	  </answer>
     </DragQuestion>
   </questions>
 </script>
@@ -45,9 +58,11 @@
 <body>
 	
 <header>
-	Complete the table below.Write the appropriate letters A-I against Questions 1-6.
-</header>
-	
+<div id="instruction">
+	Complete the table below by dragging down the pieces of information to match the languages they describe.
+	</div>
+	</header>
+
 	<section id="noscroll">
   <span id="a1" draggable="true">It disappeared as the result of an epidemic.</span>
   <span id="a2" draggable="true">It is spoken by a fifth of the local population.</span>
@@ -62,8 +77,8 @@
 
 <section id="body">
 
-<img class="rightFloat" src="../media/_LC_LN_003.JPG" mode="1" id="1001"/>
-<audio controls="hidden"  loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
+<img class="rightFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/>
+<audio controls="hidden" loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
 
 
 <ol id="questionList">
@@ -78,32 +93,32 @@
 </section>
 
 <section id="fb1">
-  <p align="left">1. Mark says 'Cornish .... has been extinct since the nineteenth century' and 'extinct' means the same as 'disappeared'.</p>
+  <p>1. Mark says 'Cornish .... has been extinct since the nineteenth century' and 'extinct' means the same as 'disappeared'.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. Mark says Manx 'died out in the 1940s' and 'died out' means the same as disappeared.</p>
+  <p>2. Mark says Manx 'died out in the 1940s' and 'died out' means the same as disappeared.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. The speaker says 'about one person in five' which means the same as 'a fifth'.</p>
+  <p>3. The speaker says 'about one person in five' which means the same as 'a fifth'.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. The speaker says 'only about ten old people still speak Achumawi', which is fewer than a dozen.</p>
+  <p>4. The speaker says 'only about ten old people still speak Achumawi', which is fewer than a dozen.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. The speaker says that some Western explorers brought a flu virus to the Trumai people and that there were only 10 people who survived and so their language disappeared.</p>
+  <p>5. The speaker says that some Western explorers brought a flu virus to the Trumai people and that there were only 10 people who survived and so their language disappeared.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. The speaker says that Catalan is 'actually spoken by more people today than in the 1970s' so therefore it is more widely spoken now.</p>
+  <p>6. The speaker says that Catalan is 'actually spoken by more people today than in the 1970s' so therefore it is more widely spoken now.</p>
 </section>
 
 <section id="rt2001">
-  <p align="left">You should be able to tell from the question asked and the headings in the tables and the content of the tables that you are going to hear people talking about endangered languages.</p>
-  <p align="left">Questions 1-6From your general knowledge you might be able to guess one or two of the answers. However, the most useful thing you can do there is to make yourself familiar with the statements. You should be able to put them into two categories; 'a language that has disappeared' and 'a language that is still spoken' with one statement left that doesn't fit either.</p>
+  <p>You should be able to tell from the question asked and the headings in the tables and the content of the tables that you are going to hear people talking about endangered languages.</p>
+  <p>Questions 1-6From your general knowledge you might be able to guess one or two of the answers. However, the most useful thing you can do there is to make yourself familiar with the statements. You should be able to put them into two categories; 'a language that has disappeared' and 'a language that is still spoken' with one statement left that doesn't fit either.</p>
 </section>
 
 

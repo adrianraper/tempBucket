@@ -4,35 +4,56 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#part2{
+	Position: relative;
+	padding-top: 10px;
+	line-height:22em;
+	}
+
+	#part2 li{
+	padding-right: 200%;
+	}
+
+	#part2 p{
+	text-indent: -34px;
+	padding-left: 8px;
+	padding-right: 200%;
+	padding-bottom: 12px;
+	}
+	
 	</style>
 	
 	
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="150" />
 </settings>
 
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="A" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="C" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="C" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
-  </questions>
+  	 <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="true"/>
+      <answer source="a3" correct="false"/>
+    </DropDownQuestion>
+	  	 <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="false"/>
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </DropDownQuestion>
+ 	<DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true"/>
+      <answer source="a9" correct="false"/>
+    </DropDownQuestion>
+  	<DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </DropDownQuestion>
+   </questions>
 </script>
 
 </head>
@@ -41,7 +62,7 @@
 <header>
 	
 		
-		Questions 9-12. Write the appropriate letters A-C against questions 9-12.
+		Questions 9-12. Click to choose the appropriate answer.
 		
 </header>
 	
@@ -52,16 +73,29 @@
    
  <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
  
-  <p><b>A</b><tab/>	he is in favour</p>
-  <p><b>B</b><tab/>	he has no strong opinion either way</p>
-  <p><b>C</b><tab/>	he is against</p>
-  
-<ol id="questionList">
-  <p align="left">9. <tab/>working on your own	<tab/><tab/><tab/><tab/><input id="q1"/></p>
-  <p align="left">10. <tab/>learning large amounts of factual data	<tab/><input id="q2"/></p>
-  <p align="left">11. <tab/>taking detailed notes during lectures	<tab/><tab/><input id="q3"/></p>
-  <p align="left">12. <tab/>recording lectures on tape	<tab/><tab/><tab/><input id="q4"/></p>
+<div id="wrapper">
+
+ <div id="part2"> 
+<ol>
+  <p>9.<tab/>working on your own<tab/><tab/><tab/><tab/>
+  		<select id="q1"><option id="a1">he is in favour</option>
+		<option id="a2">he has no strong opinion either way</option>
+		<option id="a3">he is against</option></select></p>
+  <p>10.<tab/>learning large amounts of factual data<tab/>
+  		<select id="q2"><option id="a4">he is in favour</option>
+		<option id="a5">he has no strong opinion either way</option>
+		<option id="a6">he is against</option></select></p>
+  <p>11.<tab/>taking detailed notes during lectures<tab/><tab/>
+  		<select id="q3"><option id="a7">he is in favour</option>
+		<option id="a8">he has no strong opinion either way</option>
+		<option id="a9">he is against</option></select></p>
+  <p>12.<tab/>recording lectures on tape<tab/><tab/><tab/>
+  		<select id="q4"><option id="a10">he is in favour</option>
+		<option id="a11">he has no strong opinion either way</option>
+		<option id="a12">he is against</option></select></p>
   </ol>
+  </div>
+  </div>
 </section>
 
 

@@ -6,17 +6,38 @@
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	
+#outertabcomp{
+	position:absolute;
+	padding-top: 0px;
+   padding-left: 0em;
+    width:500px;
+}
+
+#table1{
+position:relative;
+padding-left:-3px;
+padding-top: 35px;
+    height: 400px;
+    width:220px;
+    line-height:30em;
+}
+
+#table2{
+position:relative;
+padding-left:202px;
+padding-top:35px;
+   height:400px;
+   width:500px;
+   line-height:30em;
+}
 	</style>
 	
 	
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="190" />
 </settings>
    <questions>
     <GapFillQuestion source="q1" block="b1">
@@ -76,8 +97,6 @@
       <answer value="06.15" correct="true"/>
       <answer value="6:15" correct="true"/>
       <answer value="06:15" correct="true"/>
-      <answer value="six fifteen" correct="true"/>
-      <answer value="quarter past six" correct="true"/>
     </GapFillQuestion>
 	
     <GapFillQuestion source="q7" block="b7">
@@ -89,9 +108,7 @@
 	
     <GapFillQuestion source="q8" block="b8">
       <answer value="15" correct="true"/>
-      <answer value="15 students" correct="true"/>
       <answer value="fifteen" correct="true"/>
-      <answer value="fifteen students" correct="true"/>
     </GapFillQuestion>
 	
   </questions>
@@ -112,20 +129,34 @@
   <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
   <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
   
-  <div id="gapfillTable">
-  <p><b>Subject</b><tab/><tab/><tab/><tab/><b>Level of Course</b></p>
-  <p>Italian<tab/><tab/><tab/><tab/>One</p>
+  <div id="outertabcomp">
   
-  <p><b>Course Focus</b><tab/><tab/><tab/><b>Course Fee</b></p>
-  <p>(1) <input id="q1"/><tab/><tab/>&#xA3; (2) <input id="q2"/></p>
+  <div id="table1">
+  <p><b>Subject</b></p>
+  <p>Italian</p>
+  <p><b>Course Focus</b></p>
+  <p>(1)&#xA0;<input id="q1"/></p>
+  <p><b>Length of Course</b></p>
+  <p>(3)&#xA0;<input id="q3"/></p>
+  <p><b>Time Class Starts</b></p>
+  <p>(5)&#xA0;<input id="q6"/>&#xA0;p.m.</p>
+  <p><b>Maximum Class Size</b></p>
+  <p>(7)&#xA0;<input id="q8"/>&#xA0;students</p>
+  </div>
   
-  <p><b>Length of Course<tab/><tab/><tab/>Days Course Runs</b></p>
-  <p>(3) <input id="q3"/> <tab/><tab/><tab/>(4) <input id="q4"/></p>
+  <div id="table2">
+  <p><b>Level of Course</b></p>
+  <p>One</p>
+  <p><b>Course Fee</b></p>
+  <p>(2)&#xA0;&#xA3;<input id="q2"/></p>
+  <p><b>Days Course Runs</b></p>
+  <p>(4)&#xA0;<input id="q4"/></p>
+  <p><b>Length of Class</b></p>
+  <p>(6)&#xA0;<input id="q7"/></p>
+  <p><b>Start Dates</b></p>
+  <p>5th and 7th September</p>
+  </div>
   
-  <p><b>Time Class Starts <tab/><tab/><tab/>Length of Class</b></p>
-  <p>(5) <input id="q6"/>&#xA0;p.m. <tab/><tab/>(6) <input id="q7"/></p>
-  <p><b>Maximum Class Size <tab/><tab/>Start Dates</b></p>
-  <p>(7) <input id="q8"/><tab/><tab/>5th and 7th September</p>
   </div>
 </section>
 

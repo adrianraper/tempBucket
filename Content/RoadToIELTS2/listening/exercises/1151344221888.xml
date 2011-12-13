@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="190" />
 </settings>
 
   <questions>
@@ -87,29 +88,29 @@
 <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
 <div id="gapfillTable">
 <h9>Lecture</h9>
-<p class="hangingIndent1">Participants:	<tab/><tab/><tab/><tab/>Lecturer and large group</p>
-<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Lecturer talks, students take notes</p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Guide students through course, draw students'	attention to (1)&#xA0;<input id="q1"/></p>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Lecturer and large group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/>Lecturer talks, students take notes</p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Guide students through course, draw students'	attention to (1)&#xA0;<input id="q1"/></p>
 
 <h9>Seminar</h9>
-<p class="hangingIndent1">Participants:	<tab/><tab/><tab/><tab/>Tutor and between (2)&#xA0;<input id="q2"/> students</p>
-<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students present topic, tutor and students	(3)&#xA0;<input id="q3"/>&#xA0;as a group</p>
-<p class="hangingIndent1">Aims:<tab/><tab/><tab/><tab/>	Help students to:	(4)&#xA0;<input id="q4"/>, make critical	judgements, form opinions</p>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and between (2)&#xA0;<input id="q2"/> students</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/>Students present topic, tutor and students	(3)&#xA0;<input id="q3"/>&#xA0;as a group</p>
+<p class="hangingIndent1">Aims:<tab/><tab/><tab/>Help students to:	(4)&#xA0;<input id="q4"/>, make critical	judgements, form opinions</p>
 
 <h9>Tutorial</h9>
-<p class="hangingIndent1">Participants:	<tab/><tab/><tab/><tab/>Tutor and individual student or small group</p>
-<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Tutor and students discuss work</p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Give students guidance on their work, help	students with (5)&#xA0;<input id="q5"/></p>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/>Tutor and students discuss work</p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Give students guidance on their work, help	students with (5)&#xA0;<input id="q5"/></p>
 
 <h9>Practical Work</h9>
-<p class="hangingIndent1">Participants:	<tab/><tab/><tab/><tab/>Individual student or small group</p>
-<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students take part in (6)&#xA0;<input id="q6"/></p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Provide students with practical experience</p>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/>Students take part in (6)&#xA0;<input id="q6"/></p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Provide students with practical experience</p>
 
 <h9>Independent Study</h9>
-<p class="hangingIndent1">Participants:	<tab/><tab/><tab/><tab/>Individual student or small group</p>
-<p class="hangingIndent1">What happens:	<tab/><tab/><tab/>Students research a subject and then produce written work or (7)&#xA0;<input id="q7"/></p>
-<p class="hangingIndent1">Aims:	<tab/><tab/><tab/><tab/>Help students to develop (8)&#xA0;<input id="q8"/>,	provide opportunity for further study, encourage students to develop their own ideas</p>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Individual student or small group</p>
+<p class="hangingIndent1">What happens:	<tab/><tab/>Students research a subject and then produce written work or (7)&#xA0;<input id="q7"/></p>
+<p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Help students to develop (8)&#xA0;<input id="q8"/>,	provide opportunity for further study, encourage students to develop their own ideas</p>
 </div>
 </section>
 

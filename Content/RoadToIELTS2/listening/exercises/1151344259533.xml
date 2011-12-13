@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="210" />
 </settings>
 
   <questions>
@@ -72,13 +73,14 @@
 <h2><p>Repair Request Form</p></h2>
 
 <div id="gapfillTable">
-<p class="hangingIndent1"><b>Name:</b> <tab/><tab/><tab/>	Mrs Jane (1) <input id="q1"/></p>
-<p class="hangingIndent1"><b>Address:</b><tab/><tab/><tab/>(2) <input id="q2"/>, Notting Hill, 	London W11.</p>
-<p class="hangingIndent1"><b>Telephone:</b>	<tab/><tab/><tab/>Home: 7391 3264 	</p><tab/><tab/><tab/><tab/>Work:(3) <input id="q3"/>
+<p class="hangingIndent1"><b>Name:</b> <tab/><tab/><tab/>	Mrs Jane (1)&#xA0;<input id="q1"/></p>
+<p class="hangingIndent1"><b>Address:</b><tab/><tab/><tab/>(2)&#xA0;<input id="q2"/>, Notting Hill, 	London W11.</p>
+<p class="hangingIndent1"><b>Telephone:</b>	<tab/><tab/><tab/>Home: 7391 3264</p> 	
+<p class="hangingIndent1"><tab/><tab/><tab/><tab/>Work: (3)&#xA0;<input id="q3"/></p>
 <p class="hangingIndent1"><b>Appliance:</b>	<tab/><tab/><tab/>washing machine</p>
-<p class="hangingIndent1"><b>Make:</b><tab/><tab/><tab/>	(4) <input id="q4"/></p>
-<p class="hangingIndent1"><b>Model number:</b><tab/><tab/>	(5) <input id="q5"/></p>
-<p class="hangingIndent1"><b>Date of purchase:</b><tab/><tab/>	(6) <input id="q6"/> October, 2001</p>
+<p class="hangingIndent1"><b>Make:</b><tab/><tab/><tab/>	(4)&#xA0;<input id="q4"/></p>
+<p class="hangingIndent1"><b>Model number:</b><tab/><tab/>	(5)&#xA0;<input id="q5"/></p>
+<p class="hangingIndent1"><b>Date of purchase:</b><tab/><tab/>	(6)&#xA0;<input id="q6"/>&#xA0;October, 2001</p>
 </div>
 
 </section>

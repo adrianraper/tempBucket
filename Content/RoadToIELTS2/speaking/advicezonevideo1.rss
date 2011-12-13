@@ -6,19 +6,19 @@
 	<type>recorded</type>
 	<item>
 		<title>low quality</title>
-		<streamName>RoadToIELTS2/listening/media/listening_advice_1</streamName>
+		<streamName>RoadToIELTS2/speaking/media/speaking_advice_1</streamName>
 		<bitrate>150</bitrate>
 		<width>411</width>
 	</item>
 	<item>
 		<title>medium quality</title>
-		<streamName>RoadToIELTS2/listening/media/listening_advice_2</streamName>
+		<streamName>RoadToIELTS2/speaking/media/speaking_advice_2</streamName>
 		<bitrate>700</bitrate>
 		<width>411</width>
 	</item>
 	<item>
 		<title>high quality</title>
-		<streamName>RoadToIELTS2/listening/media/listening_advice_3</streamName>
+		<streamName>RoadToIELTS2/speaking/media/speaking_advice_3</streamName>
 		<bitrate>1200</bitrate>
 		<width>822</width>
 	</item>

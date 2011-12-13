@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="110" />
 </settings>
 
   <questions>
@@ -61,7 +62,7 @@
   
   <div id="questionList">
   <p class="hanging">13. What is the title of the coursebook used on the course?<br/><input id="q1"/></p>
-  <p class="hanging">14. How much does the coursebook cost?<br/><input id="q2"/></p>
+  <p class="hanging">14. How much does the coursebook cost?<br/>&#xA3;<input id="q2"/></p>
   <p class="hanging">15. How long is the break?<br/><input id="q3"/></p>
   <p class="hanging">16. What nationality is the teacher?<br/><input id="q4"/></p>
   </div>

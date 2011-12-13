@@ -6,17 +6,16 @@
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	.underline {
+	text-decoration: underline;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="224" />
 </settings>
 
   <questions>
@@ -87,12 +86,12 @@
 <p class="hangingIndent1">Seat Numbers	<tab/><tab/><tab/>(4)&#xA0;<input id="q4"/></p>
 <p class="hangingIndent1">Total Cost		<tab/><tab/><tab/><tab/>&#xA3; (5)&#xA0;<input id="q5"/></p>
 <h7>CREDIT CARD DETAILS</h7>
-<p class="hangingIndent1">Card	<tab/><tab/><tab/><tab/><tab/>_ VISA	<br/>_ Master Card	<br/>X American Express</p>
+<p class="hangingIndent1">Card	<tab/><tab/><tab/><tab/><tab/>_ VISA	<br/><tab/><tab/>_ Master Card	<br/><tab/><tab/><span class="underline">X</span>&#xA0;American Express</p>
 <p class="hangingIndent1">Name of Cardholder<tab/><tab/><tab/>	Mr Richard (6)&#xA0;<input id="q6"/></p>
 <p class="hangingIndent1">Card No.	<tab/><tab/><tab/><tab/>(7)&#xA0;<input id="q7"/></p>
 <p class="hangingIndent1">Expiry Date	<tab/><tab/><tab/><tab/>March 2005</p>
 <h7>DELIVERY METHOD</h7>
-<p class="hangingIndent1">	<tab/><tab/><tab/><tab/><tab/><tab/>_ Hold tickets for collection		<br/>X Post tickets	</p>
+<p class="hangingIndent1">	<tab/><tab/><tab/><tab/><tab/>_ Hold tickets for collection		<br/><tab/><tab/><span class="underline">X</span>&#xA0;Post tickets</p>
 <p class="hangingIndent1">Address	<tab/><tab/><tab/><tab/>(8)&#xA0;<input id="q8"/>, Winchester</p>
 <p class="hangingIndent1">Contact No.	<tab/><tab/><tab/><tab/>2719 8832</p>
 </div>

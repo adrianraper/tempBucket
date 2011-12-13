@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="180" />
 </settings>
 
   <questions>
@@ -83,13 +84,13 @@
 
 <h1><p>Setting up a web site</p></h1>
 <p class="hangingIndent2"><b>Step 1</b><tab/>Find a reliable Internet Service Provider (ISP).</p>
-<p class="hangingIndent2"><b>Step 2</b><tab/>Acquire (5)&#xA0;<input id="q1"/></p>
-<p class="hangingIndent2"><b>Step 3</b><tab/>Look at (6)&#xA0;<input id="q2"/></p>
-<p class="hangingIndent2"><b>Step 4</b><tab/>Determine what the purpose of the website is and who (7)&#xA0;<input id="q3"/></p>
-<p class="hangingIndent2"><b>Step 5</b><tab/>Collect (8)&#xA0;<input id="q4"/></p>
-<p class="hangingIndent2"><b>Step 6</b><tab/>Test on a low specification computer with a(9)&#xA0;<input id="q5"/></p>
-<p class="hangingIndent2"><b>Step 7</b><tab/>Test on different configurations of computer software and server.&#xA0;</p>
-<p class="hangingIndent2"><b>Step 8</b><tab/>Set up your website once but (10)&#xA0;<input id="q6"/></p>
+<p class="hangingIndent2"><b>Step 2</b><tab/>Acquire (5)&#xA0;<input id="q1"/>.</p>
+<p class="hangingIndent2"><b>Step 3</b><tab/>Look at (6)&#xA0;<input id="q2"/>.</p>
+<p class="hangingIndent2"><b>Step 4</b><tab/>Determine what the purpose of the website is and who (7)&#xA0;<input id="q3"/>.</p>
+<p class="hangingIndent2"><b>Step 5</b><tab/>Collect (8)&#xA0;<input id="q4"/>.</p>
+<p class="hangingIndent2"><b>Step 6</b><tab/>Test on a low specification computer with a (9)&#xA0;<input id="q5"/>.</p>
+<p class="hangingIndent2"><b>Step 7</b><tab/>Test on different configurations of computer software and server.</p>
+<p class="hangingIndent2"><b>Step 8</b><tab/>Set up your website once but (10)&#xA0;<input id="q6"/>.</p>
 </section>
 
 <section id="rt2001">

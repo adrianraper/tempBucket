@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="150" />
 </settings>
 
   <questions>
@@ -65,7 +66,7 @@
 <section id="body">
 
  <img class="rightFloat" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
  
   
   <div id="questionList">

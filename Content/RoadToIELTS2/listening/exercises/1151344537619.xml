@@ -4,7 +4,7 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,50 +17,66 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="267" />
 </settings>
 
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="B" correct="true">
-        <feedback source="fb1"/>
+   <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="true"/>
+      <answer source="a3" correct="false">
+	  <feedback source="fb1"/>
       </answer>
-    </GapFillQuestion>
-	
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="A" correct="true">
-        <feedback source="fb2"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="true"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="false">
+	  <feedback source="fb2"/>
       </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="C" correct="true">
-        <feedback source="fb3"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q3" block="b3">
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="true">
+	  <feedback source="fb3"/>
       </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="B" correct="true">
-        <feedback source="fb4"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q4" block="b4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false">
+	  <feedback source="fb4"/>
       </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="C" correct="true">
-        <feedback source="fb5"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q5" block="b5">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true">
+	  <feedback source="fb5"/>
       </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="C" correct="true">
-        <feedback source="fb6"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q6" block="b6">
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="true">
+	  <feedback source="fb6"/>
       </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="A" correct="true">
-        <feedback source="fb7"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false">
+	  <feedback source="fb7"/>
       </answer>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="C" correct="true">
-        <feedback source="fb8"/>
+    </DropDownQuestion>
+	 <DropDownQuestion source="q8" block="b8">
+      <answer source="a22" correct="false"/>
+      <answer source="a23" correct="false"/>
+      <answer source="a24" correct="true">
+	  <feedback source="fb8"/>
       </answer>
-    </GapFillQuestion>
+    </DropDownQuestion>
   </questions>
 </script>
 
@@ -70,7 +86,7 @@
 <header>
 	
 		
-		Listen to the recording, which will play automatically, and follow the instructions. Write the appropriate letters A-C against Questions 1-8. According to the speaker, when did the following take place?
+		Listen to the recording, which will play automatically, and follow the instructions. According to the speaker, when did the following take place? For each question, click to choose the appropriate answer.
 		
 </header>
 	
@@ -78,27 +94,45 @@
 
   <img class="rightFloat" src="../media/AC_LN_003.jpg" mode="1" id="1001"/>
   <audio controls="hidden"  loop="1" autoplay="true" src="../media/AC_LN2.mp3" mode="4" id="1002"/>
+ <div id="wrapper">
 
-
-    <p><b>A</b><tab/>	in the period up to 1950<br/>
-    <b>B</b><tab/>	in the period between 1951 and 1984<br/>
-    <b>C</b><tab/>	in the period after 1984</p>
-
-
-  
-   <ol id="questionList">
-  <li id="1">cinema attendance fell<tab/><tab/><tab/><tab/><tab/><tab/><input id="q1"/></li>
-  <li id="2"> cinema admissions reached a peak<tab/><tab/><tab/><tab/><input id="q2"/></li>
-  <li id="3"> multi-screen cinemas were introduced<tab/><tab/><tab/><tab/><input id="q3"/></li>
-  <li id="4"> films mainly of interest to men were shown<tab/><tab/><tab/><input id="q4"/></li>
-  <li id="5"> cinemas were built at out-of-town sites<tab/><tab/><tab/><tab/><input id="q5"/></li>
-  <li id="6"> cinema-goers were given access to free car parks	<tab/><tab/><input id="q6"/></li>
-  <li id="7"> cinemas were built in easy reach of public transport	<tab/><tab/><input id="q7"/></li>
-  <li id="8"> cinemas began to target younger audiences	<tab/><tab/><tab/><input id="q8"/></li>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  </ol>
+ <div id="part1">
+  <ol> 
+  <li>cinema attendance fell<tab/><tab/><tab/><tab/><tab/><tab/>
+  		<select id="q1"><option id="a1">in the period up to 1950</option>
+		<option id="a2">in the period between 1951 and 1984</option>
+		<option id="a3">in the period after 1984</option></select><br/></li>
+  <li>cinema admissions reached a peak<tab/><tab/><tab/><tab/>
+  		<select id="q2"><option id="a4">in the period up to 1950</option>
+		<option id="a5">in the period between 1951 and 1984</option>
+		<option id="a6">in the period after 1984</option></select><br/></li>
+  <li>multi-screen cinemas were introduced<tab/><tab/><tab/><tab/>
+  		<select id="q3"><option id="a7">in the period up to 1950</option>
+		<option id="a8">in the period between 1951 and 1984</option>
+		<option id="a9">in the period after 1984</option></select><br/></li>
+  <li>films mainly of interest to men were shown<tab/><tab/><tab/>
+  		<select id="q4"><option id="a10">in the period up to 1950</option>
+		<option id="a11">in the period between 1951 and 1984</option>
+		<option id="a12">in the period after 1984</option></select><br/></li>
+  <li>cinemas were built at out-of-town sites<tab/><tab/><tab/><tab/>
+  		<select id="q5"><option id="a13">in the period up to 1950</option>
+		<option id="a14">in the period between 1951 and 1984</option>
+		<option id="a15">in the period after 1984</option></select><br/></li>
+  <li>cinema-goers were given access to free car parks<tab/><tab/>
+  		<select id="q6"><option id="a16">in the period up to 1950</option>
+		<option id="a17">in the period between 1951 and 1984</option>
+		<option id="a18">in the period after 1984</option></select><br/></li>
+  <li>cinemas were built in easy reach of public transport<tab/><tab/>
+  		<select id="q7"><option id="a19">in the period up to 1950</option>
+		<option id="a20">in the period between 1951 and 1984</option>
+		<option id="a21">in the period after 1984</option></select><br/></li>
+  <li>cinemas began to target younger audiences<tab/><tab/><tab/>
+  		<select id="q8"><option id="a22">in the period up to 1950</option>
+		<option id="a23">in the period between 1951 and 1984</option>
+		<option id="a24">in the period after 1984</option></select><br/></li>
+   </ol>
+   </div>
+   </div>
 </section>
 
 <section id="fb1">

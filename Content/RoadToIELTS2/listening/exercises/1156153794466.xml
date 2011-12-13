@@ -12,17 +12,12 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc timed="255"/>
-	</settings>
-	</script>
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="255" />
+</settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="walking" correct="true">

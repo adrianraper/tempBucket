@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="255" />
 </settings>
 
   <questions>
@@ -99,14 +100,13 @@
 <header>
 	
 		
-Listen to the recording, which will play automatically, and follow the instructions. Click on FOUR items A-G.
-		
+Listen to the recording, which will play automatically, and follow the instructions. For each set of questions, click on FOUR items A-G.		
 </header>
 	
 <section id="body">
 
   <img class="rightFloat" src="../media/MM_LN_002.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/MM_LN1.mp3" mode="4" id="1002"/>
+  <audio controls="hidden" loop="1" autoplay="true" src="../media/MM_LN1.mp3" mode="4" id="1002"/>
  
  <h7><p>Questions 1-4</p></h7>
   
