@@ -27,13 +27,15 @@ package com.clarityenglish.bento.view {
 			if (!xhtml is Exercise)
 				throw new Error("Dynamic view was invoked on something that was not an Exercise");
 			
-			sendNotification(BBNotifications.EXERCISE_START, xhtml);
+			// As long as this dynamic view isn't for the purpose of printing send an EXERCISE_START notification
+			if (view.media != "print") sendNotification(BBNotifications.EXERCISE_START, xhtml);
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
 			
-			sendNotification(BBNotifications.EXERCISE_STOP);
+			// As long as this dynamic view isn't for the purpose of printing send an EXERCISE_STOP notification
+			if (view.media != "print") sendNotification(BBNotifications.EXERCISE_STOP);
 		}
 		
 		public override function listNotificationInterests():Array {
