@@ -58,6 +58,8 @@
 						<exercise id="1017" caption="trac28" href="trac28/trac28.xml" />
 						<exercise id="1018" caption="trac95" href="trac95/trac95.xml" />
 						<exercise id="1019" caption="trac97" href="trac97/trac97.xml" />
+						<exercise id="1020" caption="trac74_2" href="trac74_2/trac74_2.xml" />
+						<exercise id="1021" caption="trac106" href="trac106/trac106.xml" />
 					</unit>
 				</course>
 			</menu>
