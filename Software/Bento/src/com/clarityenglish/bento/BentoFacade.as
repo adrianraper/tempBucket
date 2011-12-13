@@ -65,8 +65,6 @@
 			registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_FEEDBACK, ExerciseShowFeedbackCommand);
 			registerCommand(BBNotifications.EXERCISE_PRINT, ExercisePrintCommand);
-			registerCommand(BBNotifications.DYNAMICVIEW_START, DynamicViewStartCommand);
-			// registerCommand(BBNotifications.DYNAMICVIEW_STOP, DynamicViewStopCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);

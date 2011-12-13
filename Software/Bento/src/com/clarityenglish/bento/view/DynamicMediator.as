@@ -1,6 +1,9 @@
 package com.clarityenglish.bento.view {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -18,8 +21,19 @@ package com.clarityenglish.bento.view {
 			super.onRegister();
 		}
 		
+		protected override function onXHTMLReady(xhtml:XHTML):void {
+			super.onXHTMLReady(xhtml);
+			
+			if (!xhtml is Exercise)
+				throw new Error("Dynamic view was invoked on something that was not an Exercise");
+			
+			sendNotification(BBNotifications.EXERCISE_START, xhtml);
+		}
+		
 		public override function onRemove():void {
 			super.onRemove();
+			
+			sendNotification(BBNotifications.EXERCISE_STOP);
 		}
 		
 		public override function listNotificationInterests():Array {

@@ -35,12 +35,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 		}
 		
-		protected override function onXHTMLReady(xhtml:XHTML):void {
-			super.onXHTMLReady(xhtml);
-			
-			sendNotification(BBNotifications.EXERCISE_START, view.exercise);
-		}
-		
 		public override function onRemove():void {
 			super.onRemove();
 			
@@ -50,8 +44,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 			view.removeEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
-			
-			sendNotification(BBNotifications.EXERCISE_STOP, view.exercise);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -60,7 +52,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				BBNotifications.ANSWERS_SHOW,
 				BBNotifications.MARKING_SHOWN,
 				BBNotifications.EXERCISE_STARTED,
-				BBNotifications.EXERCISE_STOPPED,
 			]);
 		}
 		

@@ -22,7 +22,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var exercise:Exercise = note.getBody() as Exercise;
-			
+						
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			if (bentoProxy.currentExercise)
@@ -35,6 +35,8 @@ package com.clarityenglish.bento.controller {
 			
 			// Start recording the duration
 			exerciseProxy.startExercise();
+			
+			log.info("Exercise started - " + exercise.href);
 			
 			sendNotification(BBNotifications.EXERCISE_STARTED, exercise);
 		}

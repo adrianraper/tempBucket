@@ -39,6 +39,9 @@ package com.clarityenglish.ielts.view.exercise {
 		[Bindable]
 		public var exerciseTitle:String;
 		
+		[Bindable]
+		public var hasQuestions:Boolean;
+		
 		private var _courseCaption:String;
 		
 		public function set courseCaption(value:String):void {
@@ -62,7 +65,6 @@ package com.clarityenglish.ielts.view.exercise {
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
-		public var startDynamicView:Signal = new Signal(DynamicView);
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -75,9 +77,7 @@ package com.clarityenglish.ielts.view.exercise {
 			
 			switch (instance) {
 				case dynamicView:
-					// Dynamic views should have a start and stop command just like other exercises
-					//dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { invalidateSkinState(); } );
-					dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { startDynamicView.dispatch(dynamicView); } );
+					dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { invalidateSkinState(); } );
 					break;
 				case startAgainButton:
 					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { startAgain.dispatch(); } );

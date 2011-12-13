@@ -38,7 +38,6 @@
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
-			view.startDynamicView.add(onStartDynamicView);
 		}
 		
 		public override function onRemove():void {
@@ -50,7 +49,6 @@
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
-			view.startDynamicView.remove(onStartDynamicView);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -78,13 +76,7 @@
 					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
 					
 					// #108
-					if ((note.getBody() as Exercise).model.questions.length == 0) {
-						view.markingButton.visible = false;
-						view.startAgainButton.visible = false;
-					} else {
-						view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
-						view.startAgainButton.visible = true;
-					}
+					view.hasQuestions = ((note.getBody() as Exercise).model.questions.length > 0);
 					break;
 				case BBNotifications.MARKING_SHOWN:
 					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
@@ -93,18 +85,17 @@
 					view.feedbackButton.visible = getExerciseProxy(note.getBody() as Exercise).hasExerciseFeedback();
 					break;
 				case BBNotifications.EXERCISE_PRINTED:
-					trace("exericse printed");
+					trace("exercise printed");
 					break;
 			}
 		}
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {
-			//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			//sendNotification(BBNotifications.EXERCISE_PRINT, { view: dynamicView } );
 			sendNotification(BBNotifications.EXERCISE_PRINT, dynamicView.href);
 		}
 		
 		private function onStartAgain():void {
+			log.debug("The user clicked on start again");
 			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
@@ -129,16 +120,5 @@
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
 		}
 		
-		private function onStartDynamicView(dynamicView:DynamicView):void {
-			view.invalidateSkinState();
-			sendNotification(BBNotifications.DYNAMICVIEW_START, { href: view.href });
-		}
-		/**
-		 * For printing using snapshots of the DisplayObjects
-		 * 
-		 */
-		public function printRubric():DisplayObject {
-			return view.dynamicView;
-		}
 	}
 }

@@ -21,12 +21,12 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var exercise:Exercise = note.getBody() as Exercise;
-			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			// Stop the current exercise (if there is one) and clean up
 			if (bentoProxy.currentExercise) {
+				var exercise:Exercise = bentoProxy.currentExercise;
+				
 				bentoProxy.currentExercise = null;
 				facade.removeProxy(ExerciseProxy.NAME(exercise));
 				sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
