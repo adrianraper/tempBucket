@@ -76,6 +76,7 @@
 					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
 					
 					// #108
+					if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
 					view.hasQuestions = ((note.getBody() as Exercise).model.questions.length > 0);
 					break;
 				case BBNotifications.MARKING_SHOWN:
