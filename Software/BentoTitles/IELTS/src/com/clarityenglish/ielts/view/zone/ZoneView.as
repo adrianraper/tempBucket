@@ -2,22 +2,16 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import flashx.textLayout.elements.BreakElement;
-	
 	import mx.collections.XMLListCollection;
-	import mx.core.IDataRenderer;
 	
 	import org.osflash.signals.Signal;
-	import org.osmf.events.DynamicStreamEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
@@ -162,11 +156,6 @@ package com.clarityenglish.ielts.view.zone {
 				
 				// Give the advice zone videos as a dataprovider to the advice zone video list
 				adviceZoneVideoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
-				// And initialise the list to load the first video
-				// HELP. Not working to trigger the list change event.
-				if (adviceZoneVideoList.dataProvider && adviceZoneVideoList.dataProvider.length > 0) {
-					adviceZoneVideoList.selectedIndex = 0;
-				}
 				
 				// Give the exam practice exercises as a dataprovider to the exam practice data group
 				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
@@ -176,10 +165,6 @@ package com.clarityenglish.ielts.view.zone {
 				
 				_courseChanged = false;
 			}
-			
-			//if (Config.DEVELOPER.name == "AR") {
-			//	exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, 'reading/exercises/1156153794430.xml'));
-			//}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -267,7 +252,7 @@ package com.clarityenglish.ielts.view.zone {
 			// Also a bit dubious, but can we base it on the file type?
 			//var questionZoneExerciseNode:XML =  _course.unit.(@["class"] == "question-zone").exercise[0];
 			for each (var questionZoneEBookNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
-				if (questionZoneEBookNode.@href.indexOf(".xml")>0) 
+				if (questionZoneEBookNode.@href.indexOf(".xml") > 0) 
 					break;
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
@@ -276,7 +261,7 @@ package com.clarityenglish.ielts.view.zone {
 		protected function onQuestionZoneDownloadButtonClick(event:MouseEvent):void {
 			// as above for file type
 			for each (var questionZonePDFNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
-				if (questionZonePDFNode.@href.indexOf(".pdf")>0) 
+				if (questionZonePDFNode.@href.indexOf(".pdf") > 0) 
 					break;
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZonePDFNode.@href));
@@ -294,7 +279,6 @@ package com.clarityenglish.ielts.view.zone {
 			urlLoader.load(new URLRequest(url));
 		}
 		protected function onAdviceZoneVideoRSSLoadComplete(e:Event):void {
-			
 			var dynamicList:XML = new XML(e.target.data);
 			
 			// Build the mxml component
@@ -314,10 +298,10 @@ package com.clarityenglish.ielts.view.zone {
 			adviceZoneVideoPlayer.source = dynamicSource;
 			adviceZoneVideoPlayer.autoPlay = true;
 			
-			// #63
-			callLater(function():void {
+			// #63 - overidden by #119
+			/*callLater(function():void {
 				adviceZoneVideoPlayer.play();
-			});
+			});*/
 			
 		}
 		public function vpMediaPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {

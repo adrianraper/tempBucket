@@ -42,10 +42,6 @@
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
 			
-			// TODO: FOR DEBUG TO GO STRAIGHT INTO A COURSE
-			//if (Config.DEVELOPER.name == "DK") {
-			//	sendNotification(IELTSNotifications.COURSE_SHOW, xhtml..course.(@["class"] == "reading")[0]);
-			//}
 		}
 		
 		override public function onRemove():void {
