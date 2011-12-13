@@ -5,9 +5,9 @@ class DBDetails {
 			case 2:
 			default:
 				$this->driver = "mysql"; 
-				$this->host = "claritydevelop";  
-				$this->user = "root"; 
-				$this->password = "Sunshine1787"; 
+				$this->host = "localhost";  
+				$this->user = "clarity"; 
+				$this->password = "clarity"; 
 				$this->dbname  = "rack80829";
 				break;
 	}
