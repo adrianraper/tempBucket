@@ -51,20 +51,20 @@
 <section id="noscroll">
   <span id="a13" draggable="true">
   	Audio A
-  	<!-- <img src="smiley.jpg" /> -->
-  	<audio controls="compact" src="LE_AW1aa.mp3" />
+  	<img src="smiley.jpg" />
+  	<!-- <audio controls="compact" src="LE_AW1aa.mp3" /> -->
   </span>
   
   <span id="a17" draggable="true">
   	Audio B
-  	<!-- <img src="smiley.jpg" /> -->
-  	<audio controls="compact" src="LE_AW1aa.mp3" />
+  	<img src="smiley.jpg" />
+  	<!-- <audio controls="compact" src="LE_AW1aa.mp3" /> -->
   </span>
   
   <span id="a21" draggable="true">
   	Audio C
-  	<!-- <img src="smiley.jpg" /> -->
-  	<audio controls="compact" src="LE_AW1aa.mp3" />
+  	<img src="smiley.jpg" />
+  	<!-- <audio controls="compact" src="LE_AW1aa.mp3" /> -->
   </span>
   
   <!-- <span id="a19" draggable="true">Audio D<audio controls="compact" class="rightFloat" src="../media/TT_WR1aw.mp3" mode="1" id="1014"/></span>
