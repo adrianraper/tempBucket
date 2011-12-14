@@ -37,6 +37,7 @@
 
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.ielts.view.zone.ZoneView;
 			
 			[Bindable]
 			public var courseColor:Number;
@@ -78,8 +79,8 @@
     <s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4">
         <s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="{courseColor}" ratio="0.33" />
-				<s:GradientEntry color="#006982"
+				<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" ratio="0.33" />
+				<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"
 								 ratio="0.66"/>
 			</s:LinearGradient>
 		</s:fill>

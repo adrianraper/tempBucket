@@ -163,7 +163,7 @@ p .column2 {
 
 /* h1 is used for main titles in splitscreen reading texts when no subtitles are present. */
 h1 {
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -189,7 +189,7 @@ h2 {
 
 /* h4 is used for section headings in questionList Reading 3 Matching */
 h4 {
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 12px;
 	padding-left: 0px;
 	padding-bottom: 6px;
@@ -198,7 +198,7 @@ h4 {
 
 /* h5 is used for question headings (when no image) in the questionList portion of a splitscreen exercise */
  h5{
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size:13px;
 	padding-left: 20px;
 	padding-bottom: 15px;
@@ -207,7 +207,7 @@ h4 {
 
 /* h7 is used for section headings in the reading text portion of a splitscreen exercise ie Glossary */
 h7{
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 10px;
@@ -216,7 +216,7 @@ h7{
 	}
 /* h8 is used for main titles in exercises when subtitles are present. */
 h8{
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -230,7 +230,7 @@ h8{
 
 /* h9 is used for section headings in the exercise portion of a splitscreen gapfill text-based exercise */
 h9{
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 13px;
 	font-weight: bold;
 	margin-top: 10px;
@@ -240,7 +240,7 @@ h9{
 
 /*h10 is used for headings in the exercise portion of a splitscreen exercise when there's a mixture of heading text and questionlist text. */	
 h10{
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -249,7 +249,7 @@ h10{
 
 /* h11 is used as the main title of splitscreen text when a photo is placed above it. Example: Reading, Unit 1, Matching (information to paragraphs) */
 h11 {
-	font-family: Arial Black;
+	font-family: Arial;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 0px;

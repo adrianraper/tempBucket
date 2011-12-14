@@ -171,8 +171,15 @@ package com.clarityenglish.common.model {
 				
 				// insert into the cache
 				var thisExercise:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0];
-				if (thisExercise) 
+				if (thisExercise) {
+					if (thisExercise.@done) {
+						thisExercise.@done++;
+					} else {
+						thisExercise.@done = 1;
+					}
 					currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
+				}
 				
 				// TODO. If you wanted to update mySummary details, can you calculate that from the myDetails cache?
 			}

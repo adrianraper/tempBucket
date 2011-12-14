@@ -40,7 +40,10 @@
 			}
 			
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
+				// Too much happening here, shift to the view/mediator
+				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);
 				
+				/*
 				// #81 If the href is not a simple video file, it might be a dynamic streaming list
 				var videoSource:String = hostComponent.href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url;
 				
@@ -55,7 +58,7 @@
 						adviceZoneVideoPlayer.play();
 					});
 				}
-				
+				*/
 			}
 			
 		]]>
@@ -146,8 +149,12 @@
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone">
 					<s:VGroup left="0" right="0" top="10" bottom="10" horizontalAlign="left" verticalAlign="middle">
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" />
-						<s:Image source="@Embed(source='skins/ielts/assets/advicezone_video.png')" visible="{adviceZoneVideoList.selectedItem == null}" includeInLayout="{adviceZoneVideoList.selectedItem == null}" />
-
+						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
+						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
+						<!-- 
+						<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{adviceZoneVideoList.selectedItem == null}" includeInLayout="{adviceZoneVideoList.selectedItem == null}" />
+						<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{adviceZoneVideoList.selectedItem == null}" includeInLayout="{adviceZoneVideoList.selectedItem == null}" />
+						-->
 						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
 								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
 							<s:layout>

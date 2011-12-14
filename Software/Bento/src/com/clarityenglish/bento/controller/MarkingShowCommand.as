@@ -52,21 +52,20 @@ package com.clarityenglish.bento.controller {
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
-			
 			// Hide the close button
 			titleWindow.closeButton.visible = false;
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 
+			// The score is written in ExerciseStopCommand now
 			// Add more data to the exerciseMark ready to send it as a score
-			thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
-			//thisExerciseMark.convertPercentages();
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
+			//thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
+			//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			//thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
 
 			// Trigger a notification to write the score out
-			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
+			//sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
 			
 			sendNotification(BBNotifications.MARKING_SHOWN, exercise);
 		}

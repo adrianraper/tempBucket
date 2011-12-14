@@ -13,6 +13,7 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
+	import org.osmf.events.TimeEvent;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	
@@ -97,6 +98,7 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
+		public var videoSelected:Signal = new Signal(Href);
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -205,6 +207,16 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
+		protected override function partRemoved(partName:String, instance:Object):void {
+			super.partRemoved(partName, instance);
+			// HELP. I want to know when the video player is removed. But this is never triggered. 
+			log.info("removing ZoneView " + instance);
+			switch (instance) {
+				case adviceZoneVideoPlayer:
+					log.info("removing video player");
+					break;
+			}
+		}		
 		/**
 		 * The user has selected a course using the course selector widget
 		 * 
@@ -265,47 +277,19 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZonePDFNode.@href));
-			trace("DOWNLOAD eBook pdf");
+			//trace("DOWNLOAD eBook pdf");
 		}
 		
 		protected override function getCurrentSkinState():String {
 			return (_course) ? courseClass + "_" + (_exerciseSelectorPoppedOut ? "popped" : "normal") : super.getCurrentSkinState();
 		}
 		
-		// Called from the skin when a dynamic streaming video set is selected
-		public function onAdviceZoneVideoRSSSelect(url:String):void {
-			var urlLoader:URLLoader = new URLLoader();
-			urlLoader.addEventListener(Event.COMPLETE, onAdviceZoneVideoRSSLoadComplete);
-			urlLoader.load(new URLRequest(url));
-		}
-		protected function onAdviceZoneVideoRSSLoadComplete(e:Event):void {
-			var dynamicList:XML = new XML(e.target.data);
-			
-			// Build the mxml component
-			//var host:String = "rtmp://streaming.clarityenglish.com:1935/cfx/st/";
-			var host:String = dynamicList.channel.host.toString();
-			var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
-			dynamicSource.urlIncludesFMSApplicationInstance = true;
-			dynamicSource.streamType = dynamicList.channel.type.toString();
-			var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
-			for each (var stream:XML in dynamicList.channel.item) {
-				var streamName:String = stream.streamName;
-				var bitrate:Number = stream.bitrate;
-				var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
-				streamItems.push(streamingItem);
-			}
-			dynamicSource.streamItems = streamItems; 
-			adviceZoneVideoPlayer.source = dynamicSource;
-			adviceZoneVideoPlayer.autoPlay = true;
-			
-			// #63 - overidden by #119
-			/*callLater(function():void {
-				adviceZoneVideoPlayer.play();
-			});*/
-			
-		}
-		public function vpMediaPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {
-			trace("videoPlayer is " + event.state);
+		/**
+		 * Called to start playing a video, and record this in the progress 
+		 * 
+		 */
+		public function adviceZoneVideoSelected(filename:String):void {
+			videoSelected.dispatch(href.createRelativeHref(null, filename));
 		}
 	}
 	

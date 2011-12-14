@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.model {
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -154,7 +155,6 @@ package com.clarityenglish.bento.model {
 		
 		/**
 		 * We need UID of the current exercise.
-		 * TODO. Should this be in Exercise or ExerciseProxy? 
 		 * @return 
 		 * 
 		 */
@@ -169,6 +169,34 @@ package com.clarityenglish.bento.model {
 			var uid:String = currentUnitNode.@id;			
 			var cid:String = currentCourseNode.@id;			
 			var pid:String = currentMenuNode.@id;
+			
+			return pid + "." + cid + "." + uid + "." + eid;
+		}
+		/**
+		 * Get the UID of any exercise from its href
+		 * @return 
+		 * 
+		 */
+		public function getExerciseUID(href:Href):String {
+			
+			if (!href) {
+				log.error("Attempt to get exercise UID from an empty href");
+				return "";
+			}
+
+			var matchingExerciseNodes:XMLList = menuXHTML..exercise.(@href == href.filename);
+			if (matchingExerciseNodes.length() > 1) {
+				throw new Error("Found multiple Exercise nodes in the menu xml matching " + href);
+			} else if (matchingExerciseNodes.length() == 0) {
+				throw new Error("Unable to find any Exercise nodes in the menu xml matching " + href);
+			}
+
+			var thisNode:XML = matchingExerciseNodes[0];
+			
+			var eid:String = thisNode.@id;			
+			var uid:String = thisNode.parent().@id;			
+			var cid:String = thisNode.parent().parent().@id;			
+			var pid:String = thisNode.parent().parent().parent().@id;
 			
 			return pid + "." + cid + "." + uid + "." + eid;
 		}
