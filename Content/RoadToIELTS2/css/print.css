@@ -18,9 +18,10 @@ body > header {
 	color: #000000;
 	background-color: #F5D767;
 	padding: 20px;
+	margin-bottom: 10px;
 }
 
-h1, h2, h3, h4, h5, h6, h7, h8 {
+h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11 {
 	font-weight: bold;
 }
 
@@ -37,15 +38,11 @@ h6, h6 > p {
 }
 
 h7, h7 > p,
-h8, h8 > p {
+h8, h8 > p,
+h9, h9 > p,
+h10, h10 > p,
+h11, h11 > p {
 	font-size: 15px !important;
-}
-
-/* Multiple-choice answers use letters */
-.answerList {
-	list-style-type: lowerLatin;
-	padding-left: 15px;
-	margin-left: 0px;
 }
 
 /* Reading text spacing */
@@ -55,7 +52,7 @@ h8, h8 > p {
 }
 
 /* Links and draggable spans should be blue and not underlined */
-a, span[draggable="true"] {
+a {
 	color: #3A00FF;
 	text-decoration: none;
 }

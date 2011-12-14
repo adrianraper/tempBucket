@@ -79,15 +79,19 @@ package com.clarityenglish.bento.vo.content.model {
 			} else {
 				// If more than one answer is possible we calculate the highest score we can possibly get
 				// Count how many answers there are for the question
-				var numAnswers:int = getSourceNodes(exercise).length;
+				var sourceNodes:Vector.<XML> = getSourceNodes(exercise);
 				
-				// The maximum possible score is therefore the first numAnswers elements of the scores array summed
-				// TODO: This assumes we can only use each answer once
-				var sum:int = 0;
-				for (var n:uint = 0; n < numAnswers; n++)
-					sum += scores[n];
-				
-				return sum;
+				if (sourceNodes) {
+					var numAnswers:int = sourceNodes.length;
+					
+					// The maximum possible score is therefore the first numAnswers elements of the scores array summed
+					// TODO: This assumes we can only use each answer once
+					var sum:int = 0;
+					for (var n:uint = 0; n < numAnswers; n++)
+						sum += scores[n];
+					
+					return sum;
+				}
 			}
 			
 			return 0; // dummy
