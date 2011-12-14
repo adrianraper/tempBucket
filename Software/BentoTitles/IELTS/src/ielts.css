@@ -11,6 +11,7 @@
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
+@namespace homeui "com.clarityenglish.ielts.view.home.ui.*";
 @namespace compare "com.clarityenglish.ielts.view.progress.components.*";
 @namespace almer "almerblank.flex.spark.components.*";
 @namespace bento "com.clarityenglish.bento.*";
@@ -127,6 +128,10 @@ home|HomeView s|Button#listeningCourseButton {
 	courseImage: Embed(source="skins/ielts/assets/Listening.png");
 	title: "Listening";
 	description: "Develop your listening skills as you practise for the listening test";
+}
+
+homeui|CourseBarRenderer {
+	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
 }
 
 /* Zone view styles */

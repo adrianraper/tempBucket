@@ -48,6 +48,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,
+				BBNotifications.COURSE_SELECTED,
 			]);
 		}
 		
@@ -73,17 +74,15 @@ package com.clarityenglish.ielts.view.progress.components {
 					}
 					break;
 				
+				case BBNotifications.COURSE_SELECTED:
+					view.courseClass = note.getBody() as String;
+					break;
+				
 			}
 		}
 		
 		private function onCourseSelect(courseClass:String):void {
-			view.courseClass = courseClass;
-			
-			// Update the value in the main model. But it is ProgressView I really need to update it in
-			// so that it can get injected into any other subview.
-			// Can I do it with a signal from here to ProgressView? No.
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.currentCourseClass = courseClass;
+			sendNotification(BBNotifications.COURSE_SELECT, courseClass);
 		}
 	}
 }

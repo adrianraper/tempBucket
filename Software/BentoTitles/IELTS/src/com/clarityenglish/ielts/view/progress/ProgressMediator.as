@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.ielts.view.progress {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -31,12 +32,18 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				BBNotifications.COURSE_SELECTED,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
+			switch (note.getName()) {
+				case BBNotifications.COURSE_SELECTED:
+					view.currentCourseClass = note.getBody() as String;
+					break;
+				
+			}
 			
 		}
 		

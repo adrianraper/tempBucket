@@ -57,7 +57,8 @@
 					var rs:Object = note.getBody() as Object;
 					// For this mediator, currently only expecting one progress type to come back
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						view.setSummaryDataProvider(new XML(rs.dataProvider));
+						//view.setSummaryDataProvider(new XML(rs.dataProvider));
+						view.dataProvider = new XML(rs.dataProvider);
 					}
 					break;
 				

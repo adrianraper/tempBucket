@@ -209,14 +209,13 @@ package com.clarityenglish.ielts.view.zone {
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
-			// HELP. I want to know when the video player is removed. But this is never triggered. 
-			log.info("removing ZoneView " + instance);
-			switch (instance) {
-				case adviceZoneVideoPlayer:
-					log.info("removing video player");
-					break;
-			}
+			// I want to know when the video player is removed. But this is never triggered.
+			
 		}		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			log.info("removing ZoneView ");			
+		}
 		/**
 		 * The user has selected a course using the course selector widget
 		 * 

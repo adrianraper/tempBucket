@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[		
+		]]>
+	</fx:Script>
+	
+		<s:Label id="commentLabel" color="#303030" fontSize="14" width="80" />			
+			<s:Rect top="0" left="90" height="30" percentWidth="100" radiusX="8" radiusY="8" >
+				<s:fill>
+					<s:SolidColor id="backColour" color="{getStyle('ColorDark')}" />
+				</s:fill>
+			</s:Rect>
+			<s:Rect top="0" left="90" height="30" id="overallProgressRect" percentWidth="0" radiusX="8" radiusY="8" >
+				<s:fill>
+					<s:SolidColor id="solidColour" color="#CCED9A"  />
+				</s:fill>
+			</s:Rect>
+
+</s:Group>

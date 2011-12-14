@@ -20,6 +20,9 @@
 		public static const SCORE_WRITE:String = "score_write";
 		public static const SCORE_WRITTEN:String = "score_written";
 		
+		public static const COURSE_SELECT:String = "course_select";
+		public static const COURSE_SELECTED:String = "course_selected";
+		
 		// The notifications are sent when the user answers a question
 		public static const QUESTION_NODE_ANSWER:String = "question_node_answer";
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";

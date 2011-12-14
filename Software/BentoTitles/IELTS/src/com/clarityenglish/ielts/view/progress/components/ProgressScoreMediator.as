@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
@@ -8,6 +9,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	import mx.collections.ArrayCollection;
 	
+	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -27,17 +29,28 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 
-			// listen for this signal
-			//view.courseSelect.add(onCourseSelected);
+			log.info("onRegister for ProgressScoreMediator");
 			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
+			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_BOOKMARK);
+
+			// Listen for course changing signal
+			view.courseSelect.add(onCourseSelect);
+
+		}
+
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.courseSelect.remove(onCourseSelect);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,
+				BBNotifications.COURSE_SELECTED,
 			]);
 		}
 		
@@ -49,7 +62,6 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
-					trace("progScoreMediator, got back " + rs.type);
 					switch (rs.type) {
 						case Progress.PROGRESS_MY_DETAILS:
 							view.detailDataProvider = new XML(rs.dataProvider);
@@ -61,14 +73,15 @@ package com.clarityenglish.ielts.view.progress.components {
 					}
 					break;
 				
+				case BBNotifications.COURSE_SELECTED:
+					view.courseClass = note.getBody() as String;
+					break;
+				
 			}
 		}
-		/**
-		 * Trigger the change of a course to get the progress details
-		 *
-		 */
-		private function onCourseSelected(courseClass:String):void {
-			// sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
-		}			
+		
+		private function onCourseSelect(courseClass:String):void {
+			sendNotification(BBNotifications.COURSE_SELECT, courseClass);
+		}
 	}
 }

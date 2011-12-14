@@ -166,7 +166,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function onCourseSelect(newCourseClass:String):void {
 			
-			courseClass = newCourseClass;
+			courseSelect.dispatch(newCourseClass);
 			
 		}
 	}

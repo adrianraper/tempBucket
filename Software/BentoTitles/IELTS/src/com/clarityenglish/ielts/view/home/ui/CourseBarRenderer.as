@@ -1,4 +1,4 @@
-package com.clarityenglish.ielts.view.progress.ui {
+package com.clarityenglish.ielts.view.home.ui {
 	import almerblank.flex.spark.components.SkinnableDataRenderer;
 	
 	import caurina.transitions.Tweener;
@@ -12,7 +12,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 	import spark.components.Label;
 	import spark.primitives.Rect;
 		
-	public class ProgressBarRenderer extends SkinnableDataRenderer {
+	public class CourseBarRenderer extends SkinnableDataRenderer {
 		
 		/**
 		 * Standard flex logger
@@ -33,30 +33,26 @@ package com.clarityenglish.ielts.view.progress.ui {
 		
 		public var courseClass:String;
 	
-		public var type:String;
-		
-		public override function set data(value:Object):void {
-			super.data = value;
+		public function set dataProvider(value:XML):void {
 			
-			if (data) {
-				var course:XML = (data.dataProvider as XML).course.(@["class"]==courseClass)[0];
-				solidColour.color = getStyle(courseClass + "Color");;
-				backColour.color = getStyle(courseClass + "ColorDark");;
+			if (value) {
+				var course:XML = value.course.(@["class"]==courseClass)[0];
+				solidColour.color = getStyle(courseClass + "Color");
+				backColour.color = getStyle(courseClass + "ColorDark");
+				commentLabel.text = properCase(courseClass);
 				
-				// Is this for coverge or score?
-				if (type == 'coverage') {
-					commentLabel.text = courseClass + " - overall coverage " + new Number(course.@coverage) + "%";
-					var percentValue:Number = new Number(course.@coverage);
-				} else {
-					commentLabel.text = courseClass + " - average score " + new Number(course.@averageScore) + "%";
-					percentValue = new Number(course.@averageScore);
-				}
+				var percentValue:Number = new Number(course.@coverage);
 				
 				// Tween it
 				Tweener.removeTweens(overallProgressRect, percentWidth);
 				Tweener.addTween(overallProgressRect, {percentWidth:percentValue, time:2, delay:0, transition:"easeOutSine"});
 				
 			}
+		}
+		
+		// If I need this anywhere else, put it in a StringUtil class
+		private function properCase(word:String):String {
+			return word.charAt(0).toUpperCase()+word.substr(1).toLowerCase();
 		}
 		
 	}

@@ -12,6 +12,7 @@ package com.clarityenglish.ielts.view.progress {
 	
 	import mx.collections.ArrayCollection;
 	
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
@@ -40,7 +41,7 @@ package com.clarityenglish.ielts.view.progress {
 		public var progressCoverageView:ProgressCoverageView;
 
 		public var currentCourseClass:String;
-		
+
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
@@ -50,7 +51,14 @@ package com.clarityenglish.ielts.view.progress {
 		}
 		
 		protected override function commitProperties():void {
-			super.commitProperties();		
+			super.commitProperties();	
+			
+			// We can't rely on partAdded due to caching, so do the injection here too
+			if (progressScoreView)
+				progressScoreView.courseClass = currentCourseClass;
+			if (progressCoverageView)
+				progressCoverageView.courseClass = currentCourseClass;
+
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -106,9 +114,6 @@ package com.clarityenglish.ielts.view.progress {
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
 			currentState = event.target.selectedItem.data;
-			
-			// HELP. I want to get currentCourseClass from bentoProxy again at this point.
-			// The mediator did this when it first registered.
 			
 		}
 		
