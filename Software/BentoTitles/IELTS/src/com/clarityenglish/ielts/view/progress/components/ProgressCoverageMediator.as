@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
@@ -8,6 +9,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	import mx.collections.ArrayCollection;
 	
+	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -32,6 +34,15 @@ package com.clarityenglish.ielts.view.progress.components {
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_BOOKMARK);
 
+			// Listen for course changing signal
+			view.courseSelect.add(onCourseSelect);
+
+		}
+
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.courseSelect.remove(onCourseSelect);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -63,6 +74,16 @@ package com.clarityenglish.ielts.view.progress.components {
 					break;
 				
 			}
+		}
+		
+		private function onCourseSelect(courseClass:String):void {
+			view.courseClass = courseClass;
+			
+			// Update the value in the main model. But it is ProgressView I really need to update it in
+			// so that it can get injected into any other subview.
+			// Can I do it with a signal from here to ProgressView? No.
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			bentoProxy.currentCourseClass = courseClass;
 		}
 	}
 }

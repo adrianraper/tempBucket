@@ -39,6 +39,8 @@ package com.clarityenglish.ielts.view.progress {
 		[SkinPart]
 		public var progressCoverageView:ProgressCoverageView;
 
+		public var currentCourseClass:String;
+		
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
@@ -68,11 +70,8 @@ package com.clarityenglish.ielts.view.progress {
 				
 				case progressScoreView:
 				case progressCoverageView:
-					// These sub views need to preset a course to start with
-					// Which should be the one that we were looking at in ZoneView, if any
-					//instance.course = menu.course.(@["class"]=='writing')[0];
-					instance.courseClass = 'writing';
-					// keep going with shared stuff
+					// Just two views use currentCourseClass
+					instance.courseClass = currentCourseClass;
 				case progressCompareView:
 				case progressAnalysisView:
 					// All the sub views run off the same href as the progress view, so directly inject it 
@@ -107,6 +106,10 @@ package com.clarityenglish.ielts.view.progress {
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
 			currentState = event.target.selectedItem.data;
+			
+			// HELP. I want to get currentCourseClass from bentoProxy again at this point.
+			// The mediator did this when it first registered.
+			
 		}
 		
 	}

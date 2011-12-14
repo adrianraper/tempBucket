@@ -22,9 +22,11 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// This view runs of the menu xml so inject it here
+			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			view.currentCourseClass = bentoProxy.currentCourseClass;
+
 		}
         
 		override public function listNotificationInterests():Array {

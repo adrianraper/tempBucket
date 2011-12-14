@@ -184,6 +184,7 @@ package com.clarityenglish.ielts.view.home {
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
+
 		}
 		/**
 		 * Many settings for the pie chart are completely static and can be initialised/reset here 

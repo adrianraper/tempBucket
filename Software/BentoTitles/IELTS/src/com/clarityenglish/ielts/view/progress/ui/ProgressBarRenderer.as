@@ -30,16 +30,26 @@ package com.clarityenglish.ielts.view.progress.ui {
 		
 		public var courseClass:String;
 		
+		public var type:String;
+		
 		public override function set data(value:Object):void {
 			super.data = value;
 			
 			_selectedColour = getStyle(courseClass + "Color");
 			
 			if (data) {
-				var course:XML = (data.dataProvider as XML).course.(@["class"]==courseClass)[0];;
-				trace("progressBarRenderer courseClass = " + courseClass + " score=" + course.@averageScore + " colour=" + _selectedColour);
-				commentLabel.text = courseClass + " - average score " + new Number(course.@averageScore) + "%";
-				overallProgressRect.percentWidth = new Number(course.@averageScore);
+				var course:XML = (data.dataProvider as XML).course.(@["class"]==courseClass)[0];
+				
+				// Is this for coverge or score?
+				if (type == 'coverage') {
+					trace("progressBarRenderer courseClass = " + courseClass + " score=" + course.@averageScore + " colour=" + _selectedColour);
+					commentLabel.text = courseClass + " - overall coverage " + new Number(course.@coverage) + "%";
+					overallProgressRect.percentWidth = new Number(course.@coverage);
+				} else {
+					trace("progressBarRenderer courseClass = " + courseClass + " score=" + course.@averageScore + " colour=" + _selectedColour);
+					commentLabel.text = courseClass + " - average score " + new Number(course.@averageScore) + "%";
+					overallProgressRect.percentWidth = new Number(course.@averageScore);
+				}
 				solidColour.color = _selectedColour;
 			}
 		}

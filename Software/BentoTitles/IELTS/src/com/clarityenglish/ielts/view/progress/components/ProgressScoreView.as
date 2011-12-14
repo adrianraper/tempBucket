@@ -95,6 +95,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					//progressBar.courseClass = course.@["class"];
 					progressBar.courseClass = courseClass;
 					// BUG. For this view I want to show coverage summary. For score view I want average score.
+					progressBar.type = "score";
 					progressBar.data = {dataProvider:summaryDataProvider};
 				}
 				if (courseClass && detailDataProvider) {

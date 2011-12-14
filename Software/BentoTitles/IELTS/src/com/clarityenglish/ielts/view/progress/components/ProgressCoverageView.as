@@ -74,6 +74,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
+		// The horribleness comes from referring to this view from a renderer in the skin, so although we already have
+		// a decent courseClass in this view, we keep this name. I think.
 		[Bindable]
 		public static var horribleHackCourseClass:String;
 		
@@ -129,6 +131,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					//progressBar.courseClass = course.@["class"];
 					progressBar.courseClass = courseClass;
 					// BUG. For this view I want to show coverage summary. For score view I want average score.
+					progressBar.type = "coverage";
 					progressBar.data = {dataProvider:summaryDataProvider};
 				}
 				if (courseClass && detailDataProvider) {
@@ -155,7 +158,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				case progressCourseBar:
 					instance.courseSelect.add(onCourseSelect);
 					break;
-
+					
 				// Use one of the 'charts' to initialise for all
 				case practiceZoneCoverage:
 					initCharts();
@@ -165,13 +168,13 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
-			
 			switch (instance) {
+				
 				case progressCourseBar:
 					instance.courseSelect.remove(onCourseSelect);
 					break;
 			}
-			
+					
 		}
 		/**
 		 * This method uses the current course class to take the full dataProvider and 
@@ -212,10 +215,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function onCourseSelect(newCourseClass:String):void {
 
-			courseClass = newCourseClass;
+			courseSelect.dispatch(newCourseClass);
 			
 		}
-
 	}
 	
 }
