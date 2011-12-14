@@ -14,6 +14,7 @@ package com.clarityenglish.common.vo.config {
 		// TODO. Many of these are NOT in the config class. They are in user, for instance
 		public var dbHost:Number;
 		public var productCode:uint;
+		public var productVersion:String;
 		public var prefix:String;
 		public var rootID:Number
 		public var username:String;
@@ -124,6 +125,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..dbHost.toString())	this.dbHost = xml..dbHost.toString();
 			if (xml..productCode.toString()) this.productCode = xml..productCode.toString();
 			if (xml..action.toString()) this.action = xml..action.toString();
+			if (xml..productVersion.toString()) this.productVersion = xml..productVersion.toString();
 			
 			// Use the config.xml to help with developer options
 			if (xml..developer.toString()) Config.DEVELOPER.name = xml..developer.toString();
