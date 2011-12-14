@@ -37,6 +37,7 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
 			view.configID = configProxy.getConfig().configID;
+			view.productVersion = configProxy.getConfig().productVersion || "fullVersion";
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {

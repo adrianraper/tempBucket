@@ -60,6 +60,8 @@ package com.clarityenglish.ielts.view.title {
 		
 		private var currentExerciseHref:Href;
 		
+		private var _productVersion:String;
+		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
 		private var homeIcon:Class;
 		
@@ -72,6 +74,15 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="NotepadIcon")]
 		private var notepadIcon:Class;
 		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		private var fullVersionLogo:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
+		private var tenHourLogo:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
+		private var lastMinuteLogo:Class;
+		
 		// Constructor to let us initialise our states
 		public function TitleView() {
 			super();
@@ -79,6 +90,29 @@ package com.clarityenglish.ielts.view.title {
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "account" ], true);
 		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+				dispatchEvent(new Event("productVersionChanged"));
+			}
+		}
+		
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionLogo():Class {
+			switch (_productVersion) {
+				case "fullVersion":
+					return fullVersionLogo;
+				case "lastMinute":
+					return lastMinuteLogo;
+				case "tenHour":
+					return tenHourLogo;
+			}
+			
+			return null;
+		}
+		
+		//public function set productVersion:String;
 		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
