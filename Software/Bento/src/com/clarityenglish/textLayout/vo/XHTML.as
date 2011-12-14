@@ -145,7 +145,7 @@ package com.clarityenglish.textLayout.vo {
 			isLoadingStyleLinks = true;
 			
 			// Get all the link elements referencing external stylesheets
-			var linkNodes:XMLList = _xml.head.link.(@rel == "stylesheet");
+			var linkNodes:XMLList = _xml.head.link.(@rel == "stylesheet" && (!hasOwnProperty("@media") || @media != "print"));
 			
 			if (linkNodes.length() == 0) {
 				externalStyleSheetsLoaded = true;

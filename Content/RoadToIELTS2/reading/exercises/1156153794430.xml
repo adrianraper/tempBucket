@@ -5,6 +5,7 @@
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*

@@ -20,41 +20,12 @@ body > header {
 	padding: 20px;
 }
 
-/* Paragraphs have spacing after them */
-
-
-/* Headings */
-/*h1 {
-	font-family: Arial Black;
-	font-size: 16px;
-	font-weight: bold;
-	padding-top: 20px;
-	padding-bottom: 4px;
-	padding-left: 15px;
-	text-align: left;
-}
-
-h2 {
-	font-family: Arial Black;
-	font-size: 11px;
-	color: #707070;
-	padding-left: 15px;
-	padding-bottom: 25em;
-	padding-right: 25px;
-	text-align: left;
-}
-
-h4 {
-	font-family: Arial Black;
-	font-size: 13px;
-	padding-left: 15px;
-	padding-bottom: 0px;
-	padding-top: 0px
-}*/
-
 h1, h2, h3, h4, h5, h6, h7, h8 {
-	font-family: Arial Black;
 	font-weight: bold;
+}
+
+h1, h1 > p {
+	font-size: 18px !important;
 }
 
 h2, h2 > p,
@@ -67,7 +38,7 @@ h6, h6 > p {
 
 h7, h7 > p,
 h8, h8 > p {
-	font-size: 18px !important;
+	font-size: 15px !important;
 }
 
 /* Multiple-choice answers use letters */
