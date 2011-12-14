@@ -115,7 +115,7 @@ package com.clarityenglish.ielts.view.home {
 		  </y_axis>
 		  <x_axis>
 			<labels>
-				<font size="16" family="Helvetica,Arial" />
+				<font size="16" bold="True" family="Helvetica" />
 			</labels>
 			<title enabled="false" />
 		  </x_axis>

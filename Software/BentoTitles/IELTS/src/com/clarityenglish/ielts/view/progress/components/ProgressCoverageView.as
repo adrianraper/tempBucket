@@ -128,15 +128,12 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 				// Update the components of the view that change their data
 				if (progressBar && courseClass && summaryDataProvider) {
-					//progressBar.courseClass = course.@["class"];
 					progressBar.courseClass = courseClass;
-					// BUG. For this view I want to show coverage summary. For score view I want average score.
 					progressBar.type = "coverage";
 					progressBar.data = {dataProvider:summaryDataProvider};
 				}
 				if (courseClass && detailDataProvider) {
 					focusCourse(courseClass);
-					//selectCourseData(course.@["class"]);
 				}
 				
 				_courseClassChanged = _dataChanged = false;
