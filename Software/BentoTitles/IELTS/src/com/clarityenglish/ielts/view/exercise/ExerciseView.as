@@ -41,6 +41,9 @@ package com.clarityenglish.ielts.view.exercise {
 		
 		[Bindable]
 		public var hasQuestions:Boolean;
+			
+		[Bindable]
+		public var hasPrintStylesheet:Boolean;
 		
 		private var _courseCaption:String;
 		

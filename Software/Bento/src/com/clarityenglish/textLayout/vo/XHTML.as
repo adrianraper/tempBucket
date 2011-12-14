@@ -134,6 +134,10 @@ package com.clarityenglish.textLayout.vo {
 			return externalStyleSheetsLoaded;
 		}
 		
+		public function hasPrintStylesheet():Boolean {
+			return (_xml.head.link.(@rel == "stylesheet" && hasOwnProperty("@media") && @media == "print")).length() > 0;
+		}
+		
 		/**
 		 * Exercise XML files can contain <link> nodes referencing external stylesheets.  We want to load those link nodes and replace them
 		 * with <style> nodes containing the contents of the link. 
