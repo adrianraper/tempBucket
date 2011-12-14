@@ -9,7 +9,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 	
 	import spark.components.Label;
 	import spark.primitives.Rect;
-	
+		
 	public class ProgressBarRenderer extends SkinnableDataRenderer {
 		
 		/**
@@ -29,7 +29,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 		private var _selectedColour:Number;
 		
 		public var courseClass:String;
-		
+	
 		public var type:String;
 		
 		public override function set data(value:Object):void {

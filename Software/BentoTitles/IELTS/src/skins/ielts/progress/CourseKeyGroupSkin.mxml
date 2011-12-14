@@ -10,6 +10,7 @@
 		<s:HorizontalLayout />
 	</s:layout>
 	
+	<s:HGroup width="100%">
 	<s:Label text="Key" width="100" height="100" fontWeight="bold" paddingLeft="10" paddingTop="10"/>
 
 	<s:Rect id="writingRect" left="100" right="0" top="0" bottom="0" width="20" height="20" radiusX="6" radiusY="6">
@@ -40,5 +41,5 @@
 	</s:Rect>
 	<s:Label text="Listening" paddingTop="7" />
 	<s:Spacer width="30" />
-	
+	</s:HGroup>	
 </s:Skin>

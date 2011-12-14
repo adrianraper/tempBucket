@@ -96,12 +96,9 @@
 	</s:Group>
 	
 	<!-- Footer text -->
-	<s:HGroup left="25" right="25" bottom="2" includeIn="exercise">
-		<s:Label text="Copyright © 1993-2011.  All Rights Reserved." color="#FFFFFF" fontSize="11" />
+	<s:HGroup left="25" right="25" bottom="3" includeIn="exercise">
 		<s:Spacer width="100%" />
-		<s:Label text="Site map" color="#FFFFFF" fontSize="11" />
-		<s:Label text="|" color="#FFFFFF" fontSize="11" />
-		<s:Label text="Terms and conditions" color="#FFFFFF" fontSize="11" />
+		<s:Label text="Data © The British Council 2006-2011. Software © Clarity Language Consultants Ltd, 2011. All rights reserved." color="#FFFFFF" fontSize="11" />
 	</s:HGroup>
 	
 </s:Skin>

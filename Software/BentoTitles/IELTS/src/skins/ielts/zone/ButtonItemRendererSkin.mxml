@@ -8,5 +8,4 @@
 	</fx:Metadata>
 	
 	<s:Button id="button" />
-	
 </s:Skin>

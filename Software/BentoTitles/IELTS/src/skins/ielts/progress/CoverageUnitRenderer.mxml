@@ -26,7 +26,7 @@
 		]]>
 	</fx:Script>
 	
-	<s:HGroup left="10" horizontalCenter="left" right="10" >
+	<s:HGroup left="10" horizontalCenter="left" right="10" width="100%" >
 		<s:Label id="captionLabel" height="24" paddingTop="8" />
 		<s:List id="exerciseIndicatorList" width="100%" height="24" horizontalScrollPolicy="off" 
 				contentBackgroundAlpha="0" borderVisible="false" >

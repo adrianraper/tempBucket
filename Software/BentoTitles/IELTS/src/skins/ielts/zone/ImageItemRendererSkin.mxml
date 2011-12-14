@@ -7,6 +7,14 @@
 		[HostComponent("com.clarityenglish.ielts.view.zone.ui.ImageItemRenderer")]
 	</fx:Metadata>
 	
+	<s:states>
+		<s:State name="reading" stateGroups="normalStates,readingStates" />
+		<s:State name="writing" stateGroups="normalStates,writingStates" />
+		<s:State name="listening" stateGroups="normalStates,listeningStates" />
+		<s:State name="speaking" stateGroups="normalStates,speakingStates" />
+	</s:states>
+	<s:Image source.reading="@Embed(source='skins/ielts/assets/Reading_unit1.png')" visible="true" />
 	<s:Image id="image" />
-	
+
+
 </s:Skin>

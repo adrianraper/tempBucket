@@ -50,7 +50,7 @@ package com.clarityenglish.ielts.view.home {
           <tooltip_settings enabled="false" />
           <label_settings enabled="true">
             <background enabled="false" />
-            <position anchor="Center" valign="Center" halign="Center" />
+            <position anchor="bottom" valign="Center" halign="Center" />
             <font bold="False" color="White">
               <effects>
                 <drop_shadow enabled="True" opacity="0.5" distance="2" blur_x="1" blur_y="1" />
