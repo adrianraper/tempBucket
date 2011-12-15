@@ -37,14 +37,17 @@
 	Now listen to the same section of Dimitris's interview. What aspects of his town does he mention? Fill the gaps.
 </header>
 <section id="body">
-<div id="video2">
-<div class="rightFloatvideo">
-  <video src="../media/Unit01_e5.flv" mode="1" id="1003" autoPlay="false"/></div>
+
+
+<div id="video">
+  <video src="../media/Unit01_e5.flv" mode="1" id="1003" autoPlay="false"/>
+</div>
   
-<div id="v1">
+<div id="content">
   <p>When Dimitris is talking about Athens, his home town, he mentions a lot of&#xA0;<input id="q1"/>&#xA0;and lots of&#xA0;<input id="q2"/>.</p>
   </div>
-  </div>
+  
+ 
 </section>
 
 <section id="fb1">

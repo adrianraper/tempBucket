@@ -29,11 +29,11 @@
 </header>
 	
 <section id="body">
-<div id="watching">
-<div class="rightFloatvideo">
+<div id="outer">
+<div id="video">
   <video src="../media/Unit08_e5.flv" mode="1" id="1003" autoPlay="false"/>
   </div>
-  <div id="w1">
+  <div id="content">
   <p align="left">Listen to the language she uses and think about what you would answer to each of the questions and the kind of language you would use.</p>
   <p align="left">
     <font size="2"/>

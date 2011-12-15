@@ -66,14 +66,19 @@
 	
 <section id="body">
   <img class="leftFloat" src="../media/DD_WR1.jpg" mode="1" id="1001"/>
-  <br/>
   <ol id="splitquestionList">
     <li id="1">Walls &#x2013; used also as&#xA0;<input id="q1"/>.</li>
+	<p class="linespace"></p>
     <li id="2">Irrigated terraces &#x2013; traditionally&#xA0;<input id="q2"/> , wheat and potatoes grown here.</li>
+	<p class="linespace"></p>
     <li id="3">Non-irrigated terraces &#x2013; traditionally&#xA0;<input id="q3"/>&#xA0;grown here.</li>
+	<p class="linespace"></p>
     <li id="4">The steepest slopes now cultivated have gradients of up to&#xA0;<input id="q4"/>.</li>
+	<p class="linespace"></p>
     <li id="5">Irrigation channels &#x2013; carry water from the&#xA0;<input id="q5"/>&#xA0;further up the valley.</li>
+	<p class="linespace"></p>
     <li id="6">Lowest terraces &#x2013; used mainly by&#xA0;<input id="q6"/>.</li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

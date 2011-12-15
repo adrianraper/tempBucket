@@ -13,8 +13,6 @@
 		<s:State name="listening" stateGroups="normalStates,listeningStates" />
 		<s:State name="speaking" stateGroups="normalStates,speakingStates" />
 	</s:states>
-	<s:Image source.reading="@Embed(source='skins/ielts/assets/Reading_unit1.png')" visible="true" />
 	<s:Image id="image" />
-
 
 </s:Skin>

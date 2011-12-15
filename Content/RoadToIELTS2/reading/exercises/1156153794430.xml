@@ -7,13 +7,12 @@
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
 	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	.hangingindenttable {
+	padding-left: 31px;
+ 	text-indent: -124em;
+	}
 	</style>
-	
+		
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -66,132 +65,46 @@
 <body>
 	
 <header>
-	
-		<div id="instruction">
+<div id="instruction">	
 		Read the passage on the left and complete the table on the right. Write NO MORE THAN THREE WORDS from the passage or in the Format section, the letters (I) - Individuals, (T) - Team or (G) - Whole Group.
-		</div>
+</div>
 </header>
 	
 <section id="body">
-<h7>Infinity Marbles</h7>
+<div id="gapfillText">
 
-<p>
-	<span class="column1">Country:</span>
-	<span class="column2">Australia</span>
-</p>
 
-<p>
-	<span class="column1">Players:</span>
-	<span class="column2">1.&#xA0;<input id="q1"/>&#xA0;children</span>
-</p>
+<h9>Infinity Marbles</h9>
+<p class="hangingindenttable">Country:<tab/><tab/>Australia</p>
+<p class="hangingindenttable">Players:<tab/><tab/>(1)&#xA0;<input id="q1"/>&#xA0;children</p>
+<p class="hangingindenttable">Equipment:<tab/><tab/>marbles</p>
+<p class="hangingindenttable">Format:<tab/><tab/>I<br/></p>
 
-<p>
-	<span class="column1">Equipment:</span>
-	<span class="column2">marbles</span>
-</p>
+<h9>Salan Lanai</h9>
+<p class="hangingindenttable">Country:<tab/><tab/>New Guinea</p>
+<p class="hangingindenttable">Players:<tab/><tab/>(2)&#xA0;<input id="q2"/></p>
+<p class="hangingindenttable">Equipment:<tab/><tab/>(3)&#xA0;<input id="q3"/></p>
+<p class="hangingindenttable">Format:<tab/><tab/>G<br/></p>
 
-<p>
-	<span class="column1">Format:</span>
-	<span class="column2">I</span>
-</p>
-<br/>
+<h9>Pin</h9>
+<p class="hangingindenttable">Country:<tab/><tab/>(4)&#xA0;<input id="q4"/></p>
+<p class="hangingindenttable">Players:<tab/><tab/>Indian children</p>
+<p class="hangingindenttable">Equipment:<tab/><tab/>(5)&#xA0;<input id="q5"/></p>
+<p class="hangingindenttable">Format:<tab/><tab/>(6)&#xA0;<input id="q6"/><br/></p>
 
-<h7><p>Salan Lanai</p></h7>
+<h9>Muk</h9>
+<p class="hangingindenttable">Country:<tab/><tab/>Canada </p>
+<p class="hangingindenttable">Players:<tab/><tab/>(7)&#xA0;<input id="q7"/>&#xA0;children and their families</p>
+<p class="hangingindenttable">Equipment:<tab/><tab/>none</p>
+<p class="hangingindenttable">Format:<tab/><tab/>(8)&#xA0;<input id="q8"/><br/></p>
 
-<p>
-	<span class="column1">Country:</span>
-	<span class="column2">New Guinea</span>
-</p>
+<h9>Kite-flying</h9>
+<p class="hangingindenttable">Country:<tab/><tab/>Malaysia</p>
+<p class="hangingindenttable">Players:<tab/><tab/>(9)&#xA0;<input id="q9"/></p>
+<p class="hangingindenttable">Equipment:<tab/><tab/>(10)&#xA0;<input id="q10"/>&#xA0;kites with bamboo frames</p>
+<p class="hangingindenttable">Format:<tab/><tab/>I</p>
 
-<p>
-	<span class="column1">Players:</span>
-	<span class="column2">2.&#xA0;<input id="q2"/></span>
-</p>
-
-<p>
-	<span class="column1">Equipment:</span>
-	<span class="column2">3.&#xA0;<input id="q3"/></span>
-</p>
-
-<p>
-	<span class="column1">Format:</span>
-	<span class="column2">G</span>
-</p>
-<br/>
-
-<h7><p>Pin</p></h7>
-
-<p>
-	<span class="column1">Country:</span>
-	<span class="column2">4.&#xA0;<input id="q4"/></span>
-</p>
-
-<p>
-	<span class="column1">Players:</span>
-	<span class="column2">Indian children</span>
-</p>
-
-<p>
-	<span class="column1">Equipment:</span>
-	<span class="column2">5.&#xA0;<input id="q5"/></span>
-</p>
-
-<p>
-	<span class="column1">Format:</span>
-	<span class="column2">6.&#xA0;<input id="q6"/></span>
-</p>
-<br/>
-
-<h7><p>Muk</p></h7>
-
-<p>
-	<span class="column1">Country:</span>
-	<span class="column2">Canada</span>
-</p>
-
-<p>
-	<span class="column1">Country:</span>
-	<span class="column2">Canada</span>
-</p>
-
-<p>
-	<span class="column1">Players:</span>
-	<span class="column2">7.&#xA0;<input id="q7"/>&#xA0;children and their families</span>
-</p>
-
-<p>
-	<span class="column1">Equipment:</span>
-	<span class="column2">none</span>
-</p>
-
-<p>
-	<span class="column1">Format:</span>
-	<span class="column2">8.&#xA0;<input id="q8"/></span>
-</p>
-<br/>
-
-<h7><p>Kite-flying</p></h7>
-
-<p>
-	<span class="column1">Country:</span>
-	<span class="column2">Malaysia</span>
-</p>
-
-<p>
-	<span class="column1">Players:</span>
-	<span class="column2">9.&#xA0;<input id="q9"/></span>
-</p>
-
-<p>
-	<span class="column1">Equipment:</span>
-	<span class="column2">10.&#xA0;<input id="q10"/>&#xA0;kites with bamboo frames</span>
-</p>
-
-<p>
-	<span class="column1">Format:</span>
-	<span class="column2">I</span>
-</p>
-		
+</div>
 </section>
 
 <section id="readingText">

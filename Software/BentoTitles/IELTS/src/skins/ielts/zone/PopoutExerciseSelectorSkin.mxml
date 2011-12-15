@@ -20,6 +20,11 @@
 				difficultyRenderer.data = event.item;
 				imageItemRenderer.data = event.item;
 			}
+			protected function onExerciseListItemRollOut(event:ListEvent):void {
+				// On rollout change back to the default
+				difficultyRenderer.data = null;
+				imageItemRenderer.data = null;
+			}
 			
 		]]>
 	</fx:Script>
@@ -58,11 +63,12 @@
 		
 		<s:HGroup>
 			<s:VGroup width="200" >
-				<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" />
+				<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" />
 				<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
 			</s:VGroup>
 			
-			<s:List id="exerciseList" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.exercises)}" itemRollOver="onExerciseListItemRollOver(event)">
+			<s:List id="exerciseList" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.exercises)}" 
+					itemRollOver="onExerciseListItemRollOver(event)" itemRollOut="onExerciseListItemRollOut(event)">
 				<s:layout>
 					<s:VerticalLayout gap="8" />
 				</s:layout>
@@ -80,13 +86,15 @@
 										// Check to see if the exercise is disabled.
 										enabled = Exercise.exerciseEnabledInMenu(value as XML);
 										//trace("set " + value.@caption + " enabled=" + enabled.toString() + "(@eF=" + value.@enabledFlag + ")");
+										var courseColor:Number = getStyle(outerDocument.hostComponent.courseClass + 'Color'); 
+										fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xB3B3B3;
 									}
 								]]>
 							</fx:Script>
 							<s:Group left="10">
 								<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
 									<s:fill>
-										<s:SolidColor color="#7DAB36" />
+										<s:SolidColor id="fillColor" />
 									</s:fill>
 								</s:Rect>
 								<s:Label id="captionLabel" left="20" fontSize="12" />

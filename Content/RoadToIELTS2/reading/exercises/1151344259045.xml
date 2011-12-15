@@ -52,7 +52,7 @@
 <header>
 	
 		<div id="instruction">
-		Questions 1-8. The reading passage has eight paragraphs A-H. Choose the most suitable headings for paragraphs A-H from the list of headings on the right. Write the appropriate numbers (i-xi). There are more headings than paragraphs, so you will not use them all.
+		Questions 1-8. The reading passage has eight paragraphs A-H. Choose the most suitable headings for paragraphs A-H and drag them down to the appropriate gaps on the right. There are more headings than paragraphs, so you will not use them all.
 		</div>
 		
 </header>
@@ -70,17 +70,26 @@
   <span id="a10" draggable="true">Smith's work with dogs and donkeys</span>
   <span id="a11" draggable="true">A crude approach to steering</span>
 </section>
+
 <section id="body">
-  
+ <img class="leftFloat" src="../media/RD__MTG01_001.jpg" mode="1" id="1003"  />
   <ol id="splitquestionList">
     <li id="1">Paragraph A<tab/><input id="q1" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="2">Paragraph B<tab/><input id="q2" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="3">Paragraph C<tab/><input id="q3" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="4">Paragraph D<tab/><input id="q4" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="5">Paragraph E<tab/><input id="q5" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="6">Paragraph F<tab/><input id="q6" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="7">Paragraph G<tab/><input id="q7" type="droptarget"/></li>
+	<p class="linespace"></p>
     <li id="8">Paragraph H<tab/><input id="q8" type="droptarget"/></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

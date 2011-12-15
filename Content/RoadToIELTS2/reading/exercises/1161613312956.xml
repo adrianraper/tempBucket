@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="brain scanners" correct="true"/>
+      <answer value="powerful brain scanners" correct="true"/>
+      <answer value="a brain scanner" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="additional region" correct="true"/>
+      <answer value="extra area" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="division of labour" correct="true"/>
+      <answer value="division of labor" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="reptiles" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="primates" correct="true"/>
+      <answer value="other primates" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	Complete the summary on the right using NO MORE THAN THREE WORDS from the passage on the left for each answer. Write your answers in the gaps.
+	</div>
+</header>
+	
+<section id="body">
+<div id="splitquestionList">
+  <p>Research using <input id="q1"/> has shown that male and female brains process language in very different ways. One of the main differences is that the female brain has an <input id="q2"/> to deal with speech. Scientists believe this may be due to evolution. One theory is that the parts of the brain responsible for language evolved differently in men and women because of the <input id="q3"/> that existed in prehistoric times. Men spent a great deal of their time hunting and therefore did not have much need to communicate. Women, in contrast, spent their time with their children and other women so the ability to process language was far more important.  Researchers have also discovered that the sexes use different brain structures when expressing emotions. Men make greater use of a part of the brain similar to a structure found in <input id="q4"/>, whereas women tend to use a structure found only in <input id="q5"/>.</p>
+  </div>
+</section>
+
+<section id="readingText">
+
+<h1>Men and women: minds apart</h1>
+  
+  <p>An alien from outer space could be forgiven for thinking that men and women belong to separate species. The two types of Homo sapiens not only look different, they behave differently. Their likes and dislikes, their mental strengths and weaknesses and general psychological make-up appear to be quite distinct.</p>
+  
+  <p>Now scientists are beginning to find that the most sexual part of the human body is the brain and it is inherently different in men and women. Scientific literature contains abundant evidence that males and females, even when little boys and girls, fall into distinct behavioural stereotypes. But with the advent of ever more powerful brain scanners, it seems these distinctions are the result of physical differences in the chemistry and neural circuitry of the brain that are laid down at birth.</p>
+  
+  <p>In psychological tests, men, on average, perform better at certain spatial tasks that involve mentally rotating an object in space. It could explain why they are supposedly better at parking cars. Women are more perceptive and perform consistently better at quickly matching objects in their field of view.</p>
+  
+  <p>If you ask a typical man to navigate, he will do it by orienting himself in relation to which way he is facing and whether it is a right turn or a left. Women tend to do it by remembering landmarks on a route. Psychologists say that men are better than women in target-directed motor skills (men would say they are just better at playing darts), whereas women are stronger in precision manual tasks, psychobabble for the sort of skills needed in sewing.</p>
+
+  <p>This may all sound horribly sexist and deterministic, but there is now convincing scientific evidence to show that although cultural influences are important, it is the type of brain we are born with that determines the differences in the psychology of the sexes. Even in old age, distinctions persist: men become grumpier, women more forgetful.</p>
+
+  <p>"You cannot get away from it," says Professor George Fink, director of the Medical Research Council's brain metabolism unit in Edinburgh. "The concept that the male and female brain are the same at birth died a long time ago. There is plenty of evidence on the anatomy of the human brain that there are major differences between the sexes."</p>
+
+  <p>These differences first became apparent during the study of dyslexia, the inability to read or write accurately. "Dyslexia is very rare in women and common in men and so for the past 20 years or so people have been trying to establish whether this is due to sex differences in the brain and it probably is," Fink says.</p>
+
+  <p>A husband and wife team at Yale Medical School in America produced some of the strongest evidence showing a physical difference between the brains of men and women when it came to dealing with language. Sally and Bennett Shaywitz put groups of men and women in a brain scanner and subjected them to a battery of language tests. One experiment, for instance, required the subjects to match words that rhymed. The scanner showed that men only used parts of the left side of the brain that are known to be involved in language, but the women used an additional region behind the right eyebrow.</p>
+
+  <p>This could explain why women who suffer brain damage to the front of their heads can lose their ability to speak. More men than women, on the other hand, suffer total speech loss when only the left side of the brain is damaged. Women, therefore, seem better protected than men against accidental loss of speech, caused, say, by a stroke, because the female brain has two areas rather than just one involved in language.</p>
+
+  <p>Sally Shaywitz is loath to put too much meaning into this but she admits that a plausible although "highly speculative" explanation for why speech is split between two areas of the female brain may go back to our distant evolutionary history. Perhaps, she says, speech was more important for women thousands of years ago and as a result women evolved the safety measure of an extra area that could still function if the other failed.</p>
+
+  <p>Some biologists are coming round to the idea that the differences between the male and female brain are the result of a division of labour in prehistoric society. The reasoning is that men were responsible for hunting large game, which involved team work and planning &#x2013; but not much conversation &#x2013; and navigating over long distances with the vital need to throw a spear accurately. Women, the argument continues, stayed nearer to base camp and formed closer emotional ties with their children and each other, which allowed language to develop as a sort of extension of the desire to gossip.</p>
+
+  <p>Again using brain scanners, scientists have shown that when dealing with emotions men tend to use a part of their brain called the temporal limbic system, a structure that in evolutionary terms is very old, because something similar exists in reptiles. Women, however, show greater activity in the cingulate gyrus, a "higher" part of the brain that we share only with other primates. The bottom line is that men are emotional reptiles &#x2013; they tend to lash out when upset &#x2013; whereas women are like monkeys: they sit down and chat about it.</p>
+
+  <p>Fink says that the scientific evidence so far is not strong enough to form the basis of any changes in social policy, although he thinks that one day it might, provided they are done to help redress any natural imbalances rather than enhancing them by imposing discrimination. "This research does not mean to say that culture and education cannot make a big difference, because the power of the human brain is its ability to be plastic and to develop new skills."</p>
+
+  <p>All scientists who study male and female brains emphasise that the differences are not categorical: some men fall into the female range and vice versa. Fink says: "The good thing is that it is not clear cut."</p>
+
+  <p>Steve Connor, The Sunday Times.</p>
+</section>
+
+</body>
+</bento>

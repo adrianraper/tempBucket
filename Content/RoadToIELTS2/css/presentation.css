@@ -29,7 +29,7 @@ p .firstline {
 
 /* Headings */
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	
@@ -39,7 +39,7 @@ h1 {
 	line-height: 20em
 }
 h2 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	padding-bottom: 25em;
 	padding-right: 25px;
@@ -48,7 +48,7 @@ h2 {
     line-height: 20em
 }
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	padding-left: 15px;
 	padding-bottom: 0px;
@@ -56,7 +56,7 @@ h4 {
 }
 /* h5 is first bolded description line for exercises which have no headings*/
  h5{
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size:12px;
 	font-weight: bold;
 	padding-left: 20px;
@@ -66,7 +66,7 @@ h4 {
 
 
 h6 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	color: #000000;
 	padding-bottom: 0;
@@ -77,7 +77,7 @@ h6 {
 }
 /* h8 is for main title/heading following by <h2> subtitle */
 h8{
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -199,7 +199,7 @@ a.neutral, input.neutral {
 	text-align: left;
 	padding-right: 220%;
 	line-height: 22em;
-	padding-right: 280%;
+	padding-right: 380%;
 }
 #presentation p{
 	padding-bottom: 20em;
@@ -230,24 +230,26 @@ padding-left: -25em;
 .listSpacing {
 line-height : 50em;
 }
-/* This is for speaking unit3 watch a candidate (3) */
-#watching{
-    padding-top: 20px;
-	padding-left: -20px;
+/* video div */
+#outer{
+position: absolute;
     width:500px;
 }
-#w1{
-    height: 700px;
-    width:600px;
+
+#content{
+position:relative;
+padding-top:25px;
+    height: 100px;
+    width:500px;
     line-height:22em;
+	padding-left: 0px;
 }
-#body .rightFloatvideo {
 
-	float: right;
-	width:760px;
-
-	padding-top: 0em;
-	padding-right: 10em;
-	padding-left: 100px;
+#video{
+	
+	padding-top: 10em;
+	padding-right: 0em;
+	padding-left: 520px;
 	margin-top: 0em;
+}
 }

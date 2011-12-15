@@ -31,20 +31,46 @@ package com.clarityenglish.ielts.view.zone.ui {
 		public var exerciseClick:Signal;
 		public var href:Href;
 		
+		public var courseClass:String;
+		
 		[Embed(source="skins/ielts/assets/defaultExerciseThumbnail.png")]
 		private static var defaultExerciseThumbnail:Class;
 		
 		[Embed(source="skins/ielts/assets/ioErrorThumbnail.png")]
 		private static var ioErrorThumbnail:Class;
 		
+		[Embed(source="skins/ielts/assets/Reading_thumbnail.png")] 
+		private static var readingThumbnail:Class;
+		[Embed(source="skins/ielts/assets/Writing_thumbnail.png")]
+		private static var writingThumbnail:Class;
+		[Embed(source='skins/ielts/assets/Listening_thumbnail.png')] 
+		private static var listeningThumbnail:Class;
+		[Embed(source='skins/ielts/assets/Speaking_thumbnail.png')]
+		private static var speakingThumbnail:Class;
+
 		public override function set data(value:Object):void {
 			super.data = value;
 			
+			switch (courseClass) {
+				case "reading":
+					var thumbnailSource:Object = readingThumbnail;
+					break;
+				case "writing":
+					thumbnailSource = writingThumbnail;
+					break;
+				case "speaking":
+					thumbnailSource = speakingThumbnail;
+					break;
+				case "listening":
+					thumbnailSource = listeningThumbnail;
+					break;
+				default:
+					thumbnailSource = defaultExerciseThumbnail;						
+			}
 			if (data) {
-				var thumbnailSource:Object = (data.@thumbnail.toString() != "") ? href.createRelativeHref(null, data.@thumbnail.toString()).url : defaultExerciseThumbnail;
-				image.source = href.createRelativeHref(null, data.@thumbnail.toString()).url;
+				image.source = (data.@thumbnail.toString() != "") ? href.createRelativeHref(null, data.@thumbnail.toString()).url : thumbnailSource;
 			} else {
-				image.source = null;
+				image.source = thumbnailSource;
 			}
 		}
 		

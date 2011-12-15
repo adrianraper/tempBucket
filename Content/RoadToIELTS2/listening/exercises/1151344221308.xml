@@ -122,10 +122,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">
 		Questions 1-7. Listen to the recording, which will play automatically, and follow the instructions. Complete the table below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+</div>		
 </header>
 	
 <section id="body">
@@ -165,7 +164,7 @@
 </section>
 
 <section id="fb1">
-  <p align="left">
+  <p class="feedbacktext">
     1. The admin officer says that the emphasis is on 'conversation' and emphasis is similar in meaning to focus. 
   </p>
 </section>

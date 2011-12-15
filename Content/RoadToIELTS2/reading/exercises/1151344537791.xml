@@ -85,11 +85,12 @@
 <header>
 	
 		<div id="instruction">
-		Read the passage on the left. Write the appropriate letters in the gaps on the right. You may use any answer more than once.
+		Read the passage on the left. Click to choose the appropriate answers on the right.
 		</div>
 </header>
 	
 <section id="body">
+<img class="leftFloat" src="../media/RD_SIS_001.jpg" mode="1" id="1003"  />
 <ol id="dropdown">
 	<li id="q1Block"><select id="q1Select">
 		<option>Rembrandt</option>
@@ -98,6 +99,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;revealed the influence of other artists in self-portraits.</li>
+		<p class="linespace"></p>
 	<li id="q2Block"><select id="q2Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -105,6 +107,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;often wore curious clothing in self-portraits.</li>
+		<p class="linespace"></p>
 	<li id="q3Block"><select id="q3Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -112,6 +115,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;had experiences which had a profound effect on the mood of the self-portraits.</li>
+		<p class="linespace"></p>
 	<li id="q4Block"><select id="q4Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -119,6 +123,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;painted works in which the artist appears with another person.</li>
+		<p class="linespace"></p>
 	<li id="q5Block"><select id="q5Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -126,6 +131,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;used fewer colours in later self-portraits.</li>
+		<p class="linespace"></p>
 	<li id="q6Block"><select id="q6Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -133,6 +139,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;included a wide variety of objects in the self-portraits.</li>
+		<p class="linespace"></p>
 	<li id="q7Block"><select id="q7Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -140,6 +147,7 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;created works which may surprise us.</li>
+		<p class="linespace"></p>
 	<li id="q8Block"><select id="q8Select">
 		<option>Rembrandt</option>
 		<option>Beckmann</option>
@@ -147,20 +155,21 @@
 		<option>Both Beckmann and Rembrandt</option>
 		<option>Both Beckmann and Picasso</option>
 		</select>&#xA0;looks more self-assured in earlier works.</li>
+		<p class="linespace"></p>
 </ol>
 </section>
 
 <section id="fb1">
-  <p  >The passage tells us that Picasso was influenced by the artists Van Gogh, Gauguin, Toulouse-Lautrec and Cezanne.</p>
+  <p>The passage tells us that Picasso was influenced by the artists Van Gogh, Gauguin, Toulouse-Lautrec and Cezanne.</p>
 </section>
 
 <section id="fb4">
-  <p  >Both Beckmann and Picasso produced paintings where they appeared with their wives.</p>
+  <p>Both Beckmann and Picasso produced paintings where they appeared with their wives.</p>
 </section>
 
 <section id="rt2001">
-  <p  >Questions 1-8 - ClassificationMake sure you're clear about which letters and combinations of letters are used for each category. The text is clearly divided into sections dealing with each artist in turn, so you need to skim through each section looking for key words and phrases or synonyms of key words and phrases used in the questions.</p>
-  <p  >Notice that the artist Beckmann is also grouped with Rembrandt and Picasso to form two of the categories. Each time you find something that applies to Beckmann, you should look through the sections on Rembrandt or Picasso and decide if it also applies to them. Similarly, when you find something that applies to Rembrandt or Picasso, you should check whether it also applies to Beckmann.</p>
+  <p>Questions 1-8 - ClassificationMake sure you're clear about which letters and combinations of letters are used for each category. The text is clearly divided into sections dealing with each artist in turn, so you need to skim through each section looking for key words and phrases or synonyms of key words and phrases used in the questions.</p>
+  <p>Notice that the artist Beckmann is also grouped with Rembrandt and Picasso to form two of the categories. Each time you find something that applies to Beckmann, you should look through the sections on Rembrandt or Picasso and decide if it also applies to them. Similarly, when you find something that applies to Rembrandt or Picasso, you should check whether it also applies to Beckmann.</p>
 </section>
 
 <section id="readingText">

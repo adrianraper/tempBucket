@@ -24,7 +24,7 @@ p {
 
 /* Headings */
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -34,7 +34,7 @@ h1 {
 	line-height: 20em
 }
 h2 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	color: #707070;
 	padding-left: 15px;
@@ -45,7 +45,7 @@ h2 {
 }
 
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	padding-left: 15px;
 	padding-bottom: 0px;

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/WB_WTG01.jpg" mode="16" id="1004"  />Read the writing task from the previous exercise again and answer the questions. In most cases, there is more than one correct answer.
+
+
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../media/WB_GW_003.jpg" mode="1" id="1001"  />
+	
+	<ol id="questionList">
+	
+	<li>Which of the following openings are the most appropriate for this letter?
+	<list class="answerList">
+	<li><g id="t1">I am writing to apply for the position of part-time bookshop assistant as advertised in The Post on Monday, 12th December.</g></li>
+	<li><g id="t2">I'm writing about your ad for a shop assistant.</g></li>
+	<li><g id="t3">I read with interest your advertisement in The Post on Monday, 12th December and I would like to apply for the position of part-time bookshop assistant.</g></li>
+	<li><g id="t4">I saw your job in the paper and I want to apply.</g></li>
+	<li><g id="t5">I've always wanted a job in a shop so when I saw your advert in the paper on Monday, I decided to apply.</g></li>
+	<li><g id="t6">I would like to express my interest in the position of part-time bookshop assistant as advertised in The Post on Monday, 12th December.</g></li>
+	</list></li>
+	<p class="linespace"></p>
+	<li>Which is the best way to refer to your CV?
+	<list class="answerList">
+	<li><g id="t7">Read my CV for more details.</g></li>
+	<li><g id="t8">You can check all this by looking at my CV.</g></li>
+	<li><g id="t9">have a look at my CV and you'll see that ...</g></li>
+	<li><g id="t10">As you can see from my CV, ...</g></li>
+	<li><g id="t11">Please find enclosed my CV.</g></li>
+	<li><g id="t12">Anyway, it's all in my CV so you can see for yourself.</g></li>
+	</list></li>
+	<p class="linespace"></p>
+	<li>Which is the best way to refer to your experience?
+	<list class="answerList">
+	<li><g id="t13">I've worked in loads of bookshops before.</g></li>
+	<li><g id="t14">I have three years' experience in the retail industry.</g></li>
+	<li><g id="t15">I have simply years of experience.</g></li>
+	<li><g id="t16">I've got lots of experience in this business already.</g></li>
+	<li><g id="t17">You'll be amazed at how experienced I am!</g></li>
+	<li><g id="t18">I have considerable experience in sales.</g></li>
+	</list></li>
+	<p class="linespace"></p>
+	<li>Which is the best way to express your availability for interview?
+	<list class="answerList">
+	<li><g id="t19">I'm free all the time.</g></li>
+	<li><g id="t20">I can come for an interview at a moment's notice.</g></li>
+	<li><g id="t21">I can make it to an interview any time.</g></li>
+	<li><g id="t22">Any time that suits you is fine by me.</g></li>
+	<li><g id="t23">I am available for an interview at your convenience.</g></li>
+	<li><g id="t24">I can have an interview whenever you like.</g></li>
+	</list></li>
+	<p class="linespace"></p>
+	</ol>
+</section>
+</body>
+</bento>

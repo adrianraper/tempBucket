@@ -43,7 +43,7 @@
 <header>
 	
 		<div id="instruction">
-		Questions 7-11. The reading passage describes a number of cause and effect relationships. Match each cause (Questions 7-11) with its effect (A-H). Write the appropriate letters A-H. There are more effects than causes, so you will not use them all.
+		Questions 7-11. The reading passage describes a number of cause and effect relationships. Drag down the appropriate effect to match each cause (Questions 7-11). There are more effects than causes, so you will not use them all.
 		</div>
 		
 </header>
@@ -61,14 +61,30 @@
 
 </section>
 <section id="body">
-  
+    <img class="leftFloat" src="../media/RD_MTG2_001.jpg" mode="1" id="1003"  />
   <div id="splitquestionList">
-  <p class="hangingIndent2">7. the position of Jupiter in the Solar System<br/><input id="q1" type="droptarget"/></p>
-   <p class="hangingIndent2">8. the size of the moon<br/><input id="q2" type="droptarget"/></p>
-   <p class="hangingIndent2">9. the formation of limestone<br/><input id="q3" type="droptarget"/></p>
-   <p class="hangingIndent2">10. the distance of the Earth from the Sun<br/><input id="q4" type="droptarget"/></p>
-  <p class="hangingIndent2">11. the Earth's position in the Galaxy<br/><input id="q5" type="droptarget"/></p>
-   </div>
+  
+  
+  <p class="hangingIndent2">7.<tab/>the position of Jupiter in the Solar System<br/>
+  <input id="q1" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <p class="hangingIndent2">8.<tab/>the size of the moon<br/>
+  <input id="q2" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <p class="hangingIndent2">9.<tab/>the formation of limestone<br/>
+  <input id="q3" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <p class="hangingIndent2">10.<tab/>the distance of the Earth from the Sun<br/>
+  <input id="q4" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <p class="hangingIndent2">11.<tab/>the Earth's position in the Galaxy<br/>
+  <input id="q5" type="droptarget"/></p>
+  <p class="linespace"></p>
+  </div>
 </section>
 
 <section id="readingText">

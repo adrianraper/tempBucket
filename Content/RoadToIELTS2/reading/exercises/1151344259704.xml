@@ -71,46 +71,49 @@
 	<li><a id="a16">Yes</a></li>
 	<li><a id="a17">No</a></li>
 	<li><a id="a18">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q2">All forms of life are extremely rare outside our Galaxy.
 	<list class="answerList">
 	<li><a id="a1">Yes</a></li>
 	<li><a id="a2">No</a></li>
 	<li><a id="a3">Not given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q3">Microbial life will not necessarily evolve into intelligent life forms.
 	<list class="answerList">
 	<li><a id="a4">Yes</a></li>
 	<li><a id="a5">No</a></li>
 	<li><a id="a6">Not given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q4">Scientists have overestimated the possibility of complex extraterrestrial life forms.
 	<list class="answerList">
 	<li><a id="a7">Yes</a></li>
 	<li><a id="a8">No</a></li>
 	<li><a id="a9">Not given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q5">Venus could once have had primitive, microbial life forms.
 	<list class="answerList">
 	<li><a id="a10">Yes</a></li>
 	<li><a id="a11">No</a></li>
 	<li><a id="a12">Not given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q6">The Earth is an unusual planet.
 	<list class="answerList">
 	<li><a id="a13">Yes</a></li>
 	<li><a id="a14">No</a></li>
 	<li><a id="a15">Not given</a></li>
 	</list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
 <section id="readingText">
-	<h8>No place like home</h8>
+  <img class="photo1" src="../media/RD_YNN_001.jpg" mode="1" id="1003"  />
+
+	<h8><p>No place like home</p></h8>
 	
 	<h2><p>Intelligent life on other planets is rarer than you think, says Peter Ward</p></h2>
 	

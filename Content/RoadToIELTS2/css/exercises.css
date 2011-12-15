@@ -20,7 +20,7 @@ body > header {
 
 /* Headings */
 .title1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 18px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -31,7 +31,7 @@ body > header {
 	padding-right:15px
 }
 .title2  {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 8px;
@@ -43,7 +43,7 @@ body > header {
 }
 
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 14px;
 	padding-left: 15px;
 	padding-bottom: 6px;
@@ -51,7 +51,7 @@ h4 {
 	
 }
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20px;

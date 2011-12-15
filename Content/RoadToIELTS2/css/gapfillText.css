@@ -113,7 +113,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 /* Headings */
 /* This heading affects the heading in Listening 1 Table completion */
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 0px;
@@ -137,7 +137,7 @@ h2 {
 
 /* This h4 affects the heading for Listening 3 Classification */
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	padding-bottom: 20px;
 	padding-top: 0px;
@@ -146,7 +146,7 @@ h4 {
 
 /* This h5 affects the heading for Listening 1 Sentence completion */
 h5 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20em;
@@ -158,7 +158,7 @@ h5 {
 
 /* This h5 affects the section heading for Listening 1 Sentence completion */
 h6 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	color: #000000;
 	padding-bottom: 0;
@@ -170,7 +170,7 @@ h6 {
 
 /* This h7 is session heading for Listening 2 Purchasing tickets */
 h7{
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -181,7 +181,7 @@ h7{
 	
 	/* This h8 affects the heading for Listening 3 Form completion */
 	h8{
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 0px;
@@ -195,7 +195,7 @@ h7{
 
 /* This h9 affects the heading for Listening 3 Sentence completion */
 	h9{
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 0px;
@@ -209,7 +209,7 @@ h7{
 	list-style-type: decimal;
 	
 	padding-left: 0px;
-	padding-right: 225%;
+	padding-right: 380%;
 	padding-top: 20em;
 	text-align: left;
 	line-height: 20em;
@@ -258,7 +258,7 @@ padding-left:0px;
 	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
-	padding-right: 280%;
+	padding-right: 380%;
 }
 #gapfillText p{
 padding-bottom: 20em;
@@ -276,10 +276,9 @@ padding-bottom: 20em;
 padding-bottom: 12px;
 }
 .hangingIndent1 {
- 	tab-stops: 30px;
- 	text-indent: -225em;
- 	padding-left: 240em;
-	line-height: 20px;
+ 	padding-left: 190px;
+	text-indent: -175px	;
+ 	line-height: 20px;
 }
 .hangingIndent2 {
  	tab-stops: 30px;
@@ -306,7 +305,6 @@ padding-bottom: 12px;
 	padding-left: 0px;
 }
 #body .rightFloatvideo {
-	float: right;
 	width:760px;
 	padding-top: 0em;
 	padding-right: 10em;
@@ -334,43 +332,30 @@ img.center {
     margin-right: auto;
 } 
 
-/*This is for Listening Unit 1 Table completion */
+
+/* video div */
 #outer{
-	position:absolute;
-	padding-top: 100px;
-   padding-left: 0em;
+position: relative;
     width:500px;
-}
-#content{
-position:relative;
-padding-left:-3px;
-padding-top: 100px;
-    height: 400px;
-    width:220px;
-    line-height:22em;
-}
-#content1{
-position:relative;
-padding-left:202px;
-padding-top:100px;
-   height:400px;
-   width:320px;
-   line-height:22em;
 }
 
-/*This is for Speaking Unit 1 watch a video (2) */
-#video2{
-position:absolute;
-   
-    width:500px;
-}
-#v1{
+#content{
 position:relative;
-padding-top: 25px;
-    height: 700px;
+padding-top:25px;
+    height: 300px;
     width:400px;
     line-height:22em;
+	padding-left: 0px;
 }
+
+#video{
+	
+	padding-top: 20em;
+	padding-right: 0em;
+	padding-left: 520px;
+	margin-top: 0em;
+}
+
 
 /* This class is used for column layout in Listening, Unit 3, Sentence completion. */
 #outersencomp{
@@ -399,3 +384,14 @@ padding-top:70px;
    line-height: 30px;
 }
 
+#instruction{
+	padding-left:0px;
+	padding-right: 160%;
+}
+
+/*Formatting used for feedback text without numbering. */
+.feedbacktext {
+	margin: 0 0 0 0;
+	padding: 20px 0px 20px 0px;
+	line-height: 22em;
+	}

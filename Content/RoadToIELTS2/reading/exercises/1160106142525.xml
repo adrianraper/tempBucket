@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	The seminars described in the passage on the left cover a number of areas in the feature film production process. Choose the appropriate letters on the right (A-L).
+	</div>
+</header>
+	
+<section id="body">
+<img class="leftFloat" src="../media/RD_SSS_001.jpg" mode="1" id="1001"/>
+  <div id="splitquestionList">
+  <p>
+    <b>Which SIX areas are covered in the seminars?</b>
+  </p>
+
+    <list class="answerList">    
+    <li><a id="t1">producing</a></li>
+    <li><a id="t2">acting</a></li>
+   	<li><a id="t3">scriptwriting</a></li>
+   	<li><a id="t4">casting</a></li>
+  	<li><a id="t5">directing</a></li>
+   	<li><a id="t6">stunts</a></li>
+    <li><a id="t7">production design</a></li>
+    <li><a id="t8">digital film effects</a></li>
+    <li><a id="t9">art direction</a></li>
+    <li><a id="t10">music</a></li>
+    <li><a id="t11">editing</a></li>
+    <li><a id="t12">sound design</a></li>
+ </list>
+ </div>
+</section>
+
+<section id="readingText">
+<h1>SummerSkill Sydney</h1>
+<p>Interested in film? Ever wondered what it's like to go on set? Thinking of a career in the film industry? If so, SummerSkill at the Australian Film Television and Radio School (AFTRS) is the place to be.</p>
+<p>This week-long series of seminars is a comprehensive, intensive and, above all, entertaining program designed to give you the full picture on the feature film production process.</p>
+<p>The AFTRS is the national creative centre for professional training in film, television and radio production and has played an integral part in the outstanding growth of the Australian film and broadcasting industries. SummerSkill is your opportunity to be a part of the AFTRS tradition of creative excellence.</p>
+<p>SummerSkill is a unique opportunity for you to discover the bright ideas of Australia's leading filmmakers as well as the art and tools of creating for the big screen.</p>
+<p>So come along, be part of it!</p>
+<h7>SummerSkill Sydney<br/>
+FEATURE FILM PRODUCTION</h7>
+<h2><p>From Concept to Screen</p></h2>
+<p>A comprehensive series of seminars suitable for film enthusiasts and aspiring professionals, presented by leading industry practitioners. Each seminar includes: lecture, screening/s, discussion &#x2013; question and answer.</p>
+<h7>MONDAY<br/>
+30am - 12.30pm</h7>
+<p>In this seminar the writer's craft will be examined from premise to screenplay. Storytelling will be explored as the pivotal point of audience interest. Story, character, action and theme will be discussed using examples from Australian and overseas productions.</p>
+<p>Lecturer Louis Nowra: Map of the Human Heart; Radiance; The Matchmaker (co-writer); Heaven's Burning; Cosi.</p>
+<h7>TUESDAY<br/>
+2.00pm - 5.00pm</h7>
+<p>This seminar will examine the many roles a director plays. Not only is the director required to be the artistic interpreter but &#x2013; as the visionary, the conductor and the anchor &#x2013; she or he must also hold the team together.
+</p>
+<p>Lecturer Peter Duncan: Passion; A little Bit of Soul; Children of the Revolution. Graduate of AFTRS.</p>
+<h7>WEDNESDAY<br/>
+2.30pm-3.30pm</h7>
+<p>The action of explosives and armoury is used to thrill and excite the audience. But what really happens behind the scenes? What kind of people jump off clifftops?
+</p>
+<p>Lecturer Grant Page: Mission Impossible II; Chuck's Finn; The Lighthorsemen; Mad Max 1 and 3.</p>
+<h7>THURSDAY<br/>
+2.00pm-5.00pm</h7>
+<p>Today's blockbuster movies dazzle audiences with spectacular scenes, yet the best effects are the ones that you don't know are there. Just how much is added to movies through computer effects wizardry? See the process broken down.
+</p>
+<p>Lecturer Sarah Dowland: Fastgate series II and III; Willfull. Film Producer at Animal Logic.</p>
+<h7>FRIDAY<br/>
+2.30pm-3.30pm</h7>
+<p>This seminar is designed to demystify the art of composition for the screen through the appreciation of some of the great scores of the past and by examining the processes and technical skills now available to composers.</p>
+<p>Lecturer Edward Primrose: Composer/conductor in concert hall, opera, theatre, dance, radio, TV and film, Australia and overseas. Founding Artistic Director of Camera Camerata.
+</p>
+
+<h7>4.00pm-7.00pm</h7>
+<p>This seminar will examine the creative audio concept.  Sound &#x2013; atmosphere, effects, dialogue, crowd and music &#x2013; will be broken down, demonstrated and discussed.</p>
+<p>Lecturer Andrew Plain: Bootmen; In Too Deep (US); Siam Sunset; Passion; Praise; Oscar and Lucinda.
+</p>
+<p>'SummerSkill Sydney' brochure, Australian Film Television and Radio School website.</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">This exercise is straightforward and the text is reasonably easy. You shouldn't spend too much time on this exercise. Skim through the text looking for key words.</p>
+</section>
+
+</body>
+</bento>

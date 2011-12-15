@@ -6,11 +6,28 @@
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#outertabcomp1{
+		position:absolute;
+		padding-top: 100px;
+	   	padding-left: 0em;
+		width:500px;
+	}
+	#contenttabcomp1{
+		position:relative;
+		padding-left:-3px;
+		padding-top: 100px;
+		height: 400px;
+		width:220px;
+		line-height:22em;
+	}
+	#content1tabcomp1{
+		position:relative;
+		padding-left:202px;
+		padding-top:100px;
+ 	    height:400px;
+		width:320px;
+		line-height:22em;
+	}
 	</style>
 	
 <script id="model" type="application/xml">
@@ -79,10 +96,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">	
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the table below. Write NO MORE THAN THREE WORDS OR A NUMBER in each gap.
-		
+</div>
 </header>
 	
 <section id="body">
@@ -93,10 +109,10 @@
 
   <h1><p>Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</p></h1>
 
-  <div id="outer">
+  <div id="outertabcomp1">
 
   
-  <div id="content">
+  <div id="contenttabcomp1">
   <p><b>Males</b></p>
   <p>1.&#xA0;<input id="q1"/></p>
   <p>Snooker/pool/billiards</p>
@@ -112,7 +128,7 @@
   <p>Cycling</p>
   </div>
   
-  <div id="content1">
+  <div id="content1tabcomp1">
   <p></p>
   <p>57%</p>
   <p>2.&#xA0;<input id="q2"/>%</p>

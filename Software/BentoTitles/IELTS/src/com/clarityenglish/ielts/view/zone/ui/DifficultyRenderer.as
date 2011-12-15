@@ -24,14 +24,14 @@ package com.clarityenglish.ielts.view.zone.ui {
 		[SkinPart(required="true")]
 		public var chilli3:Chilli;
 		
-		private var _selectedColour:Number;
+		//private var _selectedColour:Number;
 		
 		public var courseClass:String;
 		
 		public override function set data(value:Object):void {
 			super.data = value;
 			
-			_selectedColour = getStyle(courseClass + "Color");
+			var _selectedColour:Number = getStyle(courseClass + "Color");
 			
 			chilli1.fillColour = chilli2.fillColour = chilli3.fillColour = 0x303030;
 			

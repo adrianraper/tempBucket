@@ -42,23 +42,6 @@
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
 				// Too much happening here, shift to the view/mediator
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);
-				
-				/*
-				// #81 If the href is not a simple video file, it might be a dynamic streaming list
-				var videoSource:String = hostComponent.href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url;
-				
-				if (videoSource.indexOf("rss")>0 || videoSource.indexOf("xml")>0) {
-					
-					hostComponent.onAdviceZoneVideoRSSSelect(videoSource);
-
-				} else {
-					adviceZoneVideoPlayer.source = videoSource;
-					// #63
-					callLater(function():void {
-						adviceZoneVideoPlayer.play();
-					});
-				}
-				*/
 			}
 			
 		]]>

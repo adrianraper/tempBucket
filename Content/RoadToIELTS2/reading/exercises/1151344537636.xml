@@ -86,24 +86,25 @@
   <ol id="splitquestionList">
     
     <li id="q1">The study of ancient cultures is an essential part of any Western education.<list class="answerList"><li><a id="a1">Yes</a></li><li><a id="a2">No</a></li><li><a id="a3">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q2">We cannot take it for granted that people from different cultures think in the same way.<list class="answerList"><li><a id="a4">Yes</a></li><li><a id="a5">No</a></li><li><a id="a6">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q3">What makes a culture worth studying is the way it contrasts with other cultures.<list class="answerList"><li><a id="a7">Yes</a></li><li><a id="a8">No</a></li><li><a id="a9">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q4">Even today we can understand how the Egyptian workers who built the Pyramids must have thought and felt.<list class="answerList"><li><a id="a10">Yes</a></li><li><a id="a11">No</a></li><li><a id="a12">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q5">Studying ancient cultures helps give us a deeper understanding of our own.<list class="answerList"><li><a id="a13">Yes</a></li><li><a id="a14">No</a></li><li><a id="a15">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q6">It is difficult to compare critically the artistic achievements of different cultures.<list class="answerList"><li><a id="a16">Yes</a></li><li><a id="a17">No</a></li><li><a id="a18">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q7">Only those who accept a culture's values truly belong to that culture.<list class="answerList"><li><a id="a19">Yes</a></li><li><a id="a20">No</a></li><li><a id="a21">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q8">The generalizations we make about ancient cultures are mostly mistaken.<list class="answerList"><li><a id="a22">Yes</a></li><li><a id="a23">No</a></li><li><a id="a24">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q9">The works of a culture's most influential and successful members accurately reflect the values held by the whole society.<list class="answerList"><li><a id="a25">Yes</a></li><li><a id="a26">No</a></li><li><a id="a27">Not given</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q10">The truth is we do not know much about ordinary people in ancient cultures.<list class="answerList"><li><a id="a28">Yes</a></li><li><a id="a29">No</a></li><li><a id="a30">Not given</a></li></list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
@@ -112,7 +113,8 @@
 </section>
 
 <section id="readingText">
-<h1>Why Study Ancient World Cultures?</h1>
+<img class="photo1" src="../media/RD_AWC_001.jpg" mode="1" id="1001"/>
+<h1><p>Why Study Ancient World Cultures?</p></h1>
 <p>Why study ancient cultures? You might feel that the question is moot: students &#xA0;<i>do</i>&#xA0; study and &#xA0;<i>will</i>&#xA0; study ancient cultures; such study is an expected part of a tradition of intellectual development. The response to the &#xA0;<i>why</i>&#xA0; of the initial question is a matter of tradition, if not fact. A study of the Roman Empire, a reading of Greek philosophy and literature, a look at the Pyramids of Egypt &#x2013; these are all accepted parts of a Western education, aren't they? Probably so: even today, in the plurality of approaches to the study of history and to the study of cultures, people talk about Plato or Dante or Krishna or Mohammed. At this point, you might ask yourself these two additional questions:  Do we study these cultures because, to some extent, all cultures share certain characteristics? Does our own culture reflect aspects of these other cultures?The answer to the first of the two questions has historically been found in a discussion of universality. The danger in looking for universals consists in reformulating other, possibly alien, views to fit our own. We must always guard against the assumption that other people think as we do &#x2013; or that they should.The differences among cultures are of greatest interest here, and reading about ancient cultures is thus reading about other people whose lives were surely different from our own. The social organization of Socrates' Athens &#x2013; where a gimpy-legged man could hobble around interrogating citizens at will &#x2013; differs profoundly from today's world beset with modern media whereby people rarely get to see or literally hear their critics. How can we today understand the psychology of the thousands of Egyptian workers who, apparently unquestioningly, spent their lives dragging great blocks of stone across burning sands in the construction of staggering pyramidal edifices whose completion took many lifetimes?  Interestingly, these differences may help us better to see &#x2013; and know &#x2013; the limits of our culture and the limits of our language and experience.</p>
 <p>The problem with the second question lies in its formulation. What is a culture after all? This paper proceeds under the assumption that there is some sort of definition to the word &#xA0;<i>culture</i>. Most people would ascribe an abstract value to culture &#x2013; that which produces &#xA0;<i>good</i>&#xA0; art, &#xA0;<i>great</i>&#xA0; literature, etc. Yet the criteria of quality are scarcely international or inter-cultural: a revered "classical" work on the sitar resists comparison to a Mozart symphony beyond the statement that both are considered great cultural achievements in the context of their home cultures. Is, then, culture something that can be taught, or are its constituent parts more sweeping and pervasive than what can be learned from books or lectures? Answers to this second question already exist in the form of canons and reading lists, though there is much discussion today about what makes up those reading lists and about the assumptions concerning what should or should not fit on such lists.</p>
 <p >Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</p>

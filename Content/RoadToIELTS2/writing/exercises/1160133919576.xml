@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	Read the writing task on the left and answer the questions on the right. There may be more than one corect answer.
+	</div>
+</header>
+	
+<section id="body">
+<ol id="splitquestionList">
+
+  <li>Who do you have to write to?
+  <list class="answerList">
+  <li><g id="t1">the editor of a newspaper</g></li>
+  <li><g id="t2">a prospective employer</g></li>
+  <li><g id="t3">a shop assistant</g></li>
+  <li><g id="t4">an interviewer</g></li>
+  </list></li>
+  <p class="linespace"></p>
+  <li>How well do you know the person youare writing to?
+  <list class="answerList">
+  <li><g id="t5">A.  You are friends.</g></li>
+  <li><g id="t6">B.  You have only just met them.</g></li>
+  <li><g id="t7">C.  You have never met them.</g></li>
+  </list></li>
+  <p class="linespace"></p>
+  <li>What style of letter should you write?
+  <list class="answerList">
+  <li><g id="t8">A.  formal</g></li>
+  <li><g id="t9">B.  informal</g></li>
+  </list></li>
+  <p class="linespace"></p>
+  <li>What do you have to do in this letter?
+  <list class="answerList">
+  <li><g id="t10">A.  request information</g></li>
+  <li><g id="t11">B.  explain a situation</g></li>
+  <li><g id="t12">C.  make arrangements</g></li>
+  <li><g id="t13">D.  make an application</g></li>
+  <li><g id="t14">E.  request action</g></li>
+  </list></li>
+  <p class="linespace"></p>
+  <li>How many points do you have tocover in this letter?
+  <list class="answerList">
+  <li><g id="t15">A.  one</g></li>
+  <li><g id="t16">B.  two</g></li>
+  <li><g id="t17">C.  three</g></li>
+  <li><g id="t18">D.  four</g></li>
+  <li><g id="t19">E.  five</g></li>
+  </list></li>
+  <p class="linespace"></p>
+  <li>Which of the following would it be appropriate to write about in this letter?
+    <list class="answerList">
+  <li><g id="t20">A.  where you saw the advertisement</g></li>
+  <li><g id="t21">B.  your previous jobs in a similar field</g></li>
+  <li><g id="t22">C.  the reason you would like the job</g></li>
+  <li><g id="t23">D.  the reason you left your last job</g></li>
+  <li><g id="t24">E.  your qualifications</g></li>
+  <li><g id="t25">F.  your daily routine</g></li>
+  </list></li>
+  
+</ol>
+</section>
+
+<section id="readingText">
+  <h1>Writing Task 1</h1>
+  
+  <p align="left">You should spend about 20 minutes on this task.</p>
+  <p align="left">
+    <b>You have seen an advertisement in your local newspaper for a part-time shop assistant in a bookshop.</b>
+  </p>
+  <p align="left">
+    <b>Write a letter of application to the manager of the bookshop. Write about your experience and qualifications and say why you would like the job. Also state when you would be available for an interview.</b>
+  </p>
+  <p align="left">You should write at least 150 words.</p>
+  <p align="left">You do NOT need to write your own address.</p>
+  <p align="left">
+    <font color="#000000">Begin your letter as follows:</font>
+  </p>
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Remember to ask yourself questions like these whenever you write a letter.</font>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="regional press" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="working practices" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="high labour input" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="capital-intensive" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="editing" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="single keying system" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="photographic paper bromides" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="plates" correct="true"/>
+      <answer value="the plates" correct="true"/>
+      <answer value="the printing plates" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="offset lithography" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="rubber blanket" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	Complete the summary on the right using NO MORE THAN THREE WORDS from the passage on the left for each answer.
+	</div>
+</header>
+	
+<section id="body">
+<img class="leftFloat" src="../media/RD_TP_001.jpg" mode="1" id="1001"/>
+<div id="splitquestionList">
+  <p align="left">Computer technology, first used by the <input id="q1"/>, has had a major effect on the&#xA0;<input id="q2"/>&#xA0;of the newspaper industry. In the past, the typesetting process required a&#xA0;<input id="q3"/>&#xA0;and printing was very&#xA0;<input id="q4"/>. Production costs have since fallen due to the use of advanced computer systems for both&#xA0;<input id="q5"/>&#xA0;and producing newspapers. Journalists now use the&#xA0;<input id="q6"/>&#xA0;to input their material directly into a computer. Pages are laid out on screen before being transferred to&#xA0;<input id="q7"/>&#xA0;or film, from which&#xA0;<input id="q8"/>&#xA0;for the printing press are made. Using a technique known as <input id="q9"/>, the images on these are then transferred to a&#xA0;<input id="q10"/>&#xA0;and from there on to the paper.</p>
+</div>
+</section>
+
+<section id="readingText">
+	<h8>The Written Word</h8>
+	<h2><p>The Press</p></h2>
+	<h7>National newspapers</h7>
+	<p>National newspapers cater for a wealth of tastes and interests. They are often described as either 'qualities' or 'tabloids', depending on their format, style and content. Quality newspapers – broadsheet in format – cater for those readers who want detailed information on a wide range of news and current affairs. Tabloid papers tend to appeal to those who want to read shorter, entertaining stories with more human interest, and they generally contain a larger number of pictures. Many newspapers are now printed at least partly in colour. At the weekend, some produce colour supplements and separate sections with features on anything and everything from leisure activities, travel, books, food and wine to in-depth news analysis and financial matters. While newspapers are almost always financially independent of any political party, they often express pronounced views and show obvious political leanings in their editorial comments, which may derive from proprietorial and other non-party influences</p>
+	<p>Of the individual newspaper titles, The Times is perhaps the best known. It is the oldest surviving national daily newspaper, dating from 1785, and has enjoyed world-wide influence and authority throughout its history. Like its competitors in the broadsheet market, it offers comprehensive coverage of important home, overseas and business news, the law, politics, sport, science and the arts. The top-selling quality daily newspaper, The Daily Telegraph, has a broadly-based readership in terms of sex, age and geography and is rather conservative in political direction. The Guardian, with a relatively small circulation, has traditionally been more liberal in outlook. The Independent, the most recent surviving addition to the quality market, devotes more coverage to international news than its competitors. The Financial Times is the principal paper for business and financial coverage and has a considerable international readership. The mid-market tabloid press includes The Daily Mail and The Express, both of which have substantial circulations in the 1-2 million range. The popular tabloids include The Sun and The Mirror, which have the highest circulations among the daily national newspapers as a whole, and The Daily Star, which is a smaller competitor</p>
+	<h7>New Technology</h7>
+	<p>Computer-based technology has been spearheaded by the regional press and has had a profound impact on the way newspapers are produced and printed. This has led to major changes in working practices throughout the industry. Previously, large-volume production needed a high labour input for typesetting, and printing was done in huge, capital-intensive works. Publishers have been able to reduce these production costs in recent years by using advanced computer systems for editing and production processes.The single keying system allows journalists and advertising staff to input copy directly into a computer terminal, and then transfer it electronically into columns of type. Many newspapers arrange page layouts on screen and output full pages to photographic paper bromides or film, which are then used to make plates for the printing press. A number of newspapers still output columns in bromide format from the computerised typesetting operation; these are then pasted up into pages before being sent to the camera room for negatives to be produced, from which the plates are made. Most newspapers are printed by offset lithography, a method by which the printed image is transferred, or offset, from the printing plate to a rubber blanket and then on to the paper.</p>
+	<p>The Media in Britain, Foreign and Commonwealth Office.</p>
+</section>
+
+<section id="rt2001">
+	<p align="left">This text is a brief introduction to the newspaper industry in Britain. There's a lot of information here that you don't need for the exercise, so the first thing you should do is read the summary, ignoring the gaps, and find the relevant section in the text to concentrate on. Can you find the right section? Question 1You're looking for who first used this technology. Question 2Who or what was most influenced by this change? Question 3What was needed for this technique? Question 4What kind of word or phrase fits here grammatically? Question 5You're looking for another important process in newspaper production. Question 6The definite article 'the' before the gap should tell you that this is the name of a technique. Question 7You're looking for an alternative to 'film'. There are two possible answers. Question 8What kind of word fits here grammatically? Question 9Again, you need the name of a technique. Don't worry if you don't know what it means. Question 10Search for the word transferred in the text and the answer is close by. </p><p align="left"><font size="2"></font></p>
+</section>
+</body>
+</bento>

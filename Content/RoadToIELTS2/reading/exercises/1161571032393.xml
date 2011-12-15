@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		<div id="instruction">
+		Questions 1-5. Read the text on the left and answer the questions 1-5 on the right. There are TWO correct answers for each question.
+		</div>
+</header>
+	
+<section id="body">
+<img class="leftFloat" src="../media/RD_SGT_001.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
+  <li>Maasai women are responsible for &#x2026;
+  <list class="answerList">
+  	<li><a id="t1">fetching water.</a></li>
+  	<li><a id="t2">rearing cattle.</a></li>
+  	<li><a id="t3">finding new grazing land.</a></li>
+  	<li><a id="t4">selling cattle.</a></li>
+  	<li><a id="t5">building houses.</a></li>
+  </list></li>
+  <p class="linespace"></p>
+
+  <li>Which of the following have recently gained value within the Maasai community?
+  <list class="answerList">  
+  	<li><a id="t6">land</a></li>
+	<li><a id="t7">cattle</a></li>
+  	<li><a id="t8">homes</a></li>
+  	<li><a id="t9">vegetables and grains</a></li>
+  	<li><a id="t10">water</a></li>
+  </list></li>
+  <p class="linespace"></p>
+
+  <li>Traditional Maasai houses &#x2026;
+  <list class="answerList">  
+  	<li><a id="t11">are owned by men.</a></li>
+  	<li><a id="t12">are built only on high ground.</a></li>
+  	<li><a id="t13">are not suitable for permanent use.</a></li>
+  	<li><a id="t14">are built entirely of mud.</a></li>
+  	<li><a id="t15">require frequent repair.</a></li>
+  </list></li>
+  <p class="linespace"></p>
+
+ <li>The design of the new Maasai house aims to &#x2026;
+ <list class="answerList">  
+  	<li><a id="t16">improve sanitation.</a></li>
+  	<li><a id="t17">improve indoor air quality.</a></li>
+  	<li><a id="t18">reduce accidents.</a></li>
+  	<li><a id="t19">prevent water getting in.</a></li>
+  	<li><a id="t20">allow more light in.</a></li>
+  </list></li>
+  <p class="linespace"></p>
+  
+  <li>Intermediate Technology Development Group aims to provide the Maasai with &#x2026;
+  <list class="answerList">  
+  	<li><a id="t21">free housing.</a></li>
+  	<li><a id="t22">subsidised housing.</a></li>
+  	<li><a id="t23">financial advice.</a></li>
+  	<li><a id="t24">running water.</a></li>
+  	<li><a id="t25">training in technology.</a></li>
+  </list></li>
+  <p class="linespace"></p>
+  </ol>
+</section>
+
+<section id="readingText">
+
+	<h1>Smoke gets in your throat</h1>
+
+  	<p>The semi-nomadic lifestyle of the Maasai is under threat from market forces. Nick Hall describes how Maasai women are developing new housing options of their own.</p>
+  
+  	<p>A Maasai woman may walk five, ten or even twenty miles a day to collect water for her family. But when the rains begin she is still not able to relax. This is the time when she will work hardest on her house, repairing leaking roofs and crumbling walls.</p>
+  	
+	<p>The Maasai are pastoralists, grazing their cattle over the plains which border Kenya and Tanzania. The status of a Maasai man is directly related to the number and quality of the cattle he owns which, traditionally, he would never sell. A Maasai woman, however, has control over housing. When she marries, her first task is to build her own house, helped by other women in the homestead. This house belongs to her and no-one may enter without her permission. Throughout her life she will build a new house every ten years or so.</p>
+  	
+	<p>But life for pastoralists is changing. During the colonial period attempts were made to persuade the Maasai to swap their traditional cattle-centred life for one based on cash. Group ranches were set up to tempt them to make money from their animals. After independence in the 1960s the World Bank put pressure on the Government to step up this process as a way of bringing the Maasai into the money-earning community.</p>
+  
+  	<p>The Kenyan Government was already embarrassed at the 'primitive' label which had been attached to the Maasai. It did not suit its self-image as an emerging nation that the Maasai &#x2013; who have always fascinated Westerners &#x2013; should be considered a quaint relic from a time before capitalism.</p>
+  
+  	<p>Some Kenyans saw the opportunity to make a great deal of money. In 1986 the Government began to subdivide the group ranches into individual farms. Mysteriously, the best land often went to people with political connections, some of whom were not even Maasai. This land was often sold on to big landowners at increasing profit.</p>
+  
+  	<p>To begin with most Maasai did not realize the importance of what was happening. It did not take long, however, before it began to dawn on them that they would no longer be able to move about as before &#x2013; and neither would their cattle. Traditionally, Maasai land and homes had no value &#x2013; the one because it was available to all and the other because it needed only the labour of the women. Now they were becoming more valuable than their most prized possession, cattle. It was a startling reversal, involving every area of their lives.</p>
+  	
+	<p>Generally speaking, the Maasai are not poor in the way that slum dwellers are poor. They do not have permanent homes or running water, but they are independent, self-sufficient and proud. They certainly do not consider themselves disadvantaged and their lives are well-adapted to the conditions in which they live.</p>
+  	
+	<p>During the rainy season the Maasai live in homesteads &#x2013; enkang &#x2013; built usually on high ground, migrating during the dry season to temporary camps on the low- lying plains. After five to ten years they abandon their houses and build new ones.</p>
+  	
+	<p>Even so, a house designed to be lived in for part of the year is not going to be adequate as a permanent home. The walls tend to crack, for example, and women complain of having to get up in the middle of the night to bung up leaks. As the Maasai are supplementing their traditional diet of milk, meat and blood with tea, vegetables and grains, the women need to spend much more time cooking. This makes the old-style houses dangerously smoky. In February 1993 a study established that indoor air pollution in the form of carbon monoxide and particulates in Maasai rural housing was high &#x2013; the highest ever recorded.</p>
+  	
+	<p>Maasai are now spending more and more time at home. The men cannot travel away with the cattle for such long periods and the women do not need to move to find somewhere else to live. Their houses have simply become too small for the needs of all the people who have to use them.</p>
+  
+  	<p>In the early 1990s women's groups from the Kajiado District &#x2013; traditionally a Maasai area &#x2013; identified a need for better housing as their main concern. Maasai women wanted to adjust their traditional housing to their new situation.</p>
+  
+  	<p>Intermediate Technology Development Group (ITDG) suggested adding a thin, watertight ferro-cement coating on top of the wattle, mud and ash roof. The roof design includes guttering to channel rainwater into a catchment container. However, it is not easy to alter one aspect of design in isolation. The new roof worked extremely well and rain could not get in; but neither could the smoke get out. ITDG had immediately to consider a new design of chimney. The way forward was obviously by consultation. A design workshop was held with representatives of 14 of the women's groups in August 1991 so that their views could be incorporated. ITDG is also helping to strengthen the women's capacity to raise and organise their own funds, and runs training sessions in the new technology for artisans.</p>
+  
+  	<p>Women are still the most active in making the Maasai home, although men are realizing its importance and becoming increasingly involved. Maasai women have always been independent and used to working together to help each other. If this community spirit can be mobilized to learn new skills and the Maasai can become aware of some of the technological options open to them, they will be in a good position to face the challenges of the new century.</p>
+  
+  <p>Nick Hall, New Internationalist, Issue 276.</p>
+
+</section>
+
+<section id="rt2001">
+  <p>This text is about the Maasai people of Kenya and Tanzania and describes how their lives have changed in recent years. These changes have meant that the Maasai have had to redesign their traditional housing. The strange title might give you a clue as to why they needed to do so.</p>
+  <p>Remember that for this exercise, two of the alternative answers for each question are correct and you must find both answers in order to get the mark.</p>
+  <p>If you have already skimmed the text for its general content and organisation, you should recognise which part each question refers to. Read through all the alternatives carefully. Some of the answers are perhaps not what you might expect.</p>
+  <p>
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

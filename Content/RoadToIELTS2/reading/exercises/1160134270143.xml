@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	The three voluntary organsations have a number of features in common.Choose the appropriate letters on the right (A-H).
+	</div>
+</header>
+	
+<section id="body">
+<img class="leftFloat" src="../media/RD_MS_002.jpg" mode="1" id="1001"/>
+<div id="splitquestionList">
+  <p><b>Which FOUR of the following features do they have in common?</b></p>
+  <list class="answerList">    
+ <li><a id="t1">They work in co-operation with local people.</a></li>
+ <li><a id="t2">They have a language requirement for some projects.</a></li>
+ <li><a id="t3">They provide training for all volunteers.</a></li>
+ <li><a id="t4">They specify a minimum age limit for volunteers.</a></li>
+ <li><a id="t5">They run a variety of projects.</a></li>
+ <li><a id="t6">They accept volunteers of all nationalities.</a></li>
+ <li><a id="t7">They run projects throughout the year.</a></li>
+ <li><a id="t8">They require volunteers to pay to participate in a project.</a></li>
+ </list>
+  </div>
+</section>
+
+<section id="readingText">
+<h1>International development projects</h1>
+
+<h7><p>Operations Crossroads Africa</p></h7>
+<p>Founded in 1957, Operations Crossroads Africa sends people to work on community-initiated development projects in Africa and Brazil. Crossroads has projects in 10-12 Africa countries and Brazil each summer. Over 10,000 people have participated in Crossroads since its inception, and it was the model for the Peace Corps.</p>
+
+<p>200 volunteers are recruited annually onto four types of project: agriculture/reforestation; construction/community development; community health/medical; education/training (including women's development). Volunteers work 5-6 hours a day. Projects are six weeks long and are in rural villages. The work groups (8-10 volunteers per group) then travel for one week in the host country. All groups work with local counterparts. The programmes run from mid-June to mid- August.</p>
+
+<p>Volunteers are aged between 17 and 35. knowledge of French is preferred for francophone countries and Portuguese for Brazil and Guinea Bissau. Participants in community health/medical projects must be science, nursing, pre-med majors or in nursing, medical or public health programmes. Applicants of any nationality are welcomed. Participants must attend a 3-day orientation in New York prior to departure, paying their own way to New York, participation fee and all other expenses.</p>
+   
+<h7>Global Citizens Network</h7>
+<p>GCN is a non-profit organization that sends teams of volunteers to rural communities around the world. Projects are determined by the villages that GCN is in partnership with and are aimed at promoting cross-cultural understanding. The projects vary but have included building a health clinic, teaching in a primary school and developing ecotourism.</p>
+
+<p>Volunteers are not required to have special skills but some knowledge of Spanish would be helpful for Guatemala and the Yucatan. The minimum age is 18 unless accompanied by a parent or guardian. Trips last one, two or three weeks only, all year round. Volunteers pay a contribution which ranges from US$550 to US$1,600 depending on the programme.</p>
+
+<p>The cost of transportation to the programme is also at the volunteer's expense. Accommodation is provided. Volunteers are drawn from throughout the world but mainly from the US and Canada.</p>
+
+<p>Returned volunteers who are interested can also apply to be team leaders for other GCN trips. Potential team leaders have to be recommended by their own team leader and attend a training session. Team leaders can be any nationality and, although the position is unpaid, airfares and most in-country expenses will be paid.</p>
+
+<h7>Visions in Action</h7>
+<p>Visions in Action is an international non-profit organization founded in 1988 out of the conviction that there is much that individuals can learn from, and contribute to, the developing world by working as part of a community of volunteers committed to achieving social justice in an urban setting. Visions volunteers work side-by-side with host country nationals, allowing a genuine understanding of the country's needs to emerge.</p>
+
+<p>60-80 volunteers per year work in indigenous or expatriate organisations as development journalists, community workers, project managers, low-income housing facilitators and healthcare assistants, etc. Placements are available in the following sectors: agriculture, appropriate technology, children, communication/journalism, education, environment/natural resources, food/nutrition, family planning, health, housing, human rights/law, mental or physical disabilities, natural science, refugees/relief, small business, social science, women and youth in South Africa, Zimbabwe, Uganda, Burkina Faso, Tanzania, and Mexico.</p>
+  
+<p>All programmes last for one year, with the exception of South Africa and Mexico, which have six-month and one-year options. Applicants may be of any nationality, but they must have a college degree or equivalent work experience. Programmes begin at various times in the year. The average cost of participating in a programme is $5,000. Volunteers must pay for all their costs. The programme fee includes housing, medical insurance and work visas.</p>
+
+<p>Abridged book extracts relating to 'Global Citizens Network' (page 36), 'Operation Crossroads Africa' (pages 44-45), and 'Visions in Action' (pages 213-214) from Directory of International Voluntary Work by Louise Whetter and Victoria Pybus, Seventh Edition, Vacation Work Publications.</p>
+</section> 
+
+<section id="rt2001">
+  <p align="left">You must choose statements from the list that are true for ALL THREE organisations. Some of the statements may not be true for any; some may be true for one or two, but not all three.</p>
+  <p align="left">AThis means that residents of the host country work together with volunteers.</p>
+  <p align="left">B In other words, volunteers must be able to speak a foreign language.</p>
+  <p align="left">C'Training' could include any kind of preparation or instruction before or during the project.</p>
+  <p align="left">D'Minimum age' means the youngest age allowed for volunteers.</p>
+  <p align="left">E In other words, they run different kinds of projects.</p>
+  <p align="left">F Do volunteers come from all over the World, or must they be of a certain nationality?</p>
+  <p align="left">GDo projects run all year round, or only during certain seasons or months?</p>
+  <p align="left">HIs there a fee that volunteers have to pay in order to participate? Search for any mention of money.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

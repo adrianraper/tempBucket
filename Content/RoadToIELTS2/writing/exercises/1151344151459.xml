@@ -64,9 +64,9 @@
 </header>
 	
 <section id="body">
-  
+      <img class="leftFloat" src="../media/WR_EP1_001.jpg" mode="1" id="1003"  />
   <ol id="splitquestionList">
-    
+
     <li id="q1">'are likely to'?<list class="answerList"><li><a id="a15">Modal verbs for expressing probability</a></li><li><a id="a16">Other words and expressions for expressing probability</a></li></list></li>
     
     <li id="q2">'could well'?<list class="answerList"><li><a id="a1">Modal verbs for expressing probability</a></li><li><a id="a2">Other words and expressions for expressing probability</a></li></list></li>

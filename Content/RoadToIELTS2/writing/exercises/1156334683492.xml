@@ -147,7 +147,9 @@
 </header>
 	
 <section id="body">
+
 <div id="questionList">
+<img class="rightFloat" src="../media/WR_OIIP_001.jpg" mode="1" id="1001"/>
   <p align="left">Sleeplessness<tab/><tab/><tab/><tab/><select id="q1"><option id="a1">What the problem is and its effects</option><option id="a2">Causes of the problem</option><option id="a3">Possible solutions to the problem</option><option id="a4">Possible results of solutions</option></select></p>
   
   <p align="left"><font size="2"/>Stress<tab/><tab/><tab/><tab/><tab/><select id="q2"><option id="a5">What the problem is and its effects</option><option id="a6">Causes of the problem</option><option id="a7">Possible solutions to the problem</option><option id="a8">Possible results of solutions</option></select></p>

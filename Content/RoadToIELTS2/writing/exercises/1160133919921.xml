@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="at" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="for" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="for" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="in" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="for" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="in" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="in" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="for" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="to" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="of" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="by" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="for" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="with" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q14" block="b14">
+      <answer value="at" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q15" block="b15">
+      <answer value="in" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q16" block="b16">
+      <answer value="from" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences with the correct preposition.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/WB_GW_006.jpg" mode="1" id="1001"/>
+  
+  <ol id="questionList">
+    <li id="1">I am a student <input id="q1"/> the University of Manchester.</li>
+	<p class="linespace"></p>
+    <li id="2">I have been working <input id="q2"/> a mobile phone company since I left school.</li>
+	<p class="linespace"></p>
+    <li id="3">I am writing to apply <input id="q3"/> the position of security guard.</li>
+	<p class="linespace"></p>
+    <li id="4">I am particularly interested <input id="q4"/> working at your city branch.</li>
+	<p class="linespace"></p>
+    <li id="5">I am available <input id="q5"/> interview during morning hours.</li>
+	<p class="linespace"></p>
+    <li id="6">I have five years' experience <input id="q6"/> the field of education.</li>
+	<p class="linespace"></p>
+    <li id="7">I have a diploma <input id="q7"/> hotel management.</li>
+	<p class="linespace"></p>
+    <li id="8">I was responsible <input id="q8"/> the final product.</li>
+	<p class="linespace"></p>
+    <li id="9">I look forward <input id="q9"/> hearing from you.</li>
+	<p class="linespace"></p>
+    <li id="10">I was in charge <input id="q10"/> the sales department for three years.</li>
+	<p class="linespace"></p>
+    <li id="11">This was followed <input id="q11"/> two years overseas.</li>
+	<p class="linespace"></p>
+    <li id="12">I am currently studying <input id="q12"/> a master's degree.</li>
+	<p class="linespace"></p>
+    <li id="13">I mainly deal <input id="q13"/> our overseas clients.</li>
+	<p class="linespace"></p>
+    <li id="14">I can attend an interview <input id="q14"/> your earliest convenience.</li>
+	<p class="linespace"></p>
+    <li id="15">I am writing in response to the advertisement you placed <input id="q15"/> the Daily Record on Saturday, 15th September. </li>
+	<p class="linespace"></p>
+    <li id="16">As you can see <input id="q16"/> my CV, I am a fully-qualified nurse.</li>
+	<p class="linespace"></p>
+  </ol>
+</section>
+
+</body>
+</bento>

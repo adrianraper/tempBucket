@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true">
+        <feedback source="fb13"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+	  <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true">
+        <feedback source="fb14"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/WB_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 15. Click on them.
+
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/WB_GW_008.jpg" mode="1" id="1001"/>
+  <div id="targetspotting">
+  <p align="left">Dear&#xA0;<g id="t1">Sir</g>, </p>
+  <p align="left">I am writing to apply&#xA0;<g id="t2">to</g>&#xA0;the position of receptionist at the Grand Hotel as&#xA0;<g id="t3">advertising</g>&#xA0;in The Post&#xA0;<g id="t4">in</g>&#xA0;Monday, 23rd June.</p>
+  <p align="left">As you&#xA0;<g id="t5">could</g>&#xA0;see from my CV, I have three years' experience as a receptionist. I worked&#xA0;<g id="t6">in</g>&#xA0;a dentist for a year and this was followed&#xA0;<g id="t7">for</g>&#xA0;two years in a law firm. In both posts I was responsible&#xA0;<g id="t8">of</g>&#xA0;making appointments and dealing with waiting patients or clients.</p>
+  <p align="left">You will also see that I have recently completed a customer care course and that I am currently studying for a distance learning degree&#xA0;<g id="t9">about</g>&#xA0;tourism.</p>
+  <p align="left">I have always wanted to work&#xA0;<g id="t10">at</g>&#xA0;the tourist industry and I am particularly&#xA0;<g id="t11">interesting</g>&#xA0;in working at your hotel because I believe it to be one of the best&#xA0;<g id="t12">of</g>&#xA0;the city. I also think it would be an excellent starting place for a career&#xA0;<g id="t13">at</g>&#xA0;tourism.</p>
+  <p align="left">I am available for interview at your convenience and I look forward to&#xA0;<g id="t14">hear</g>&#xA0;from you.</p>
+  <p align="left">Yours&#xA0;<g id="t15">sincerely</g>,</p>
+  <p align="left">Peter Evans</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <b>Sir -&gt; </b>
+    <font color="#0000ff">
+      <b>Sir/Madam</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <b>to -&gt; </b>
+    <font color="#0000ff">
+      <b>for</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <b>advertising -&gt; </b>
+    <font color="#0000ff">
+      <b>advertised</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <b>in -&gt; </b>
+    <font color="#0000ff">
+      <b>on</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <b>could -&gt; </b>
+    <font color="#0000ff">
+      <b>can</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <b>in -&gt; </b>
+    <font color="#0000ff">
+      <b>for</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <b>for -&gt; </b>
+    <font color="#0000ff">
+      <b>by</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <b>of -&gt; </b>
+    <font color="#0000ff">
+      <b>for</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <b>about -&gt; </b>
+    <font color="#0000ff">
+      <b>in</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <b>at -&gt; </b>
+    <font color="#0000ff">
+      <b>in</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb11">
+  <p align="left">
+    <b>interesting -&gt; </b>
+    <font color="#0000ff">
+      <b>interested</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb12">
+  <p align="left">
+    <b>of -&gt; </b>
+    <font color="#0000ff">
+      <b>in</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb13">
+  <p align="left">
+    <b>at -&gt; </b>
+    <font color="#0000ff">
+      <b>in</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <b>hear -&gt; </b>
+    <font color="#0000ff">
+      <b>hearing</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb15">
+  <p align="left">
+    <b>sincerely -&gt; </b>
+    <font color="#0000ff">
+      <b>faithfully</b>
+    </font>
+  </p>
+</section>
+
+</body>
+</bento>

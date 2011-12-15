@@ -23,7 +23,7 @@ p {
 
 /* Headings */
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -34,7 +34,7 @@ h1 {
 }
 
 h2 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	color: #707070;
 	padding-left: 15px;
@@ -45,7 +45,7 @@ h2 {
 }
 
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	padding-left: 15px;
 	padding-bottom: 0px;
@@ -253,4 +253,14 @@ position:relative;
 line-height:30px;
 padding-left: 12px;
 padding-top: 30px;
+}
+
+/* This class is used to add line spacing between question items. */
+.linespace {
+	line-height: 12px;
+	}
+
+#instruction{
+	padding-left:0px;
+	padding-right: 100%;
 }

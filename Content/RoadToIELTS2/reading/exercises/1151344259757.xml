@@ -67,9 +67,13 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/RD_MTG3_001.jpg" mode="1" id="1003"  />
 	<div id="splitdrag">
-		<p>Why is the belief that complex life forms may well exist on planets other than the Earth so widespread? Firstly, there is the issue of probability. Using the Drake equation, scientists have calculated there to be a million civilisations in (12)&#xA0;<input id="q1" type="droptarget"/>&#xA0;and potentially billions of planets with extraterrestrial life in (13)&#xA0;<input id="q2" type="droptarget"/>.</p>
-		<p>Secondly, since (14)&#xA0;<input id="q3" type="droptarget"/>&#xA0;have been found to survive in (15)&#xA0;<input id="q4" type="droptarget"/>&#xA0;on Earth, it is argued that they are also likely to exist on other planets with similar environments. Finally, (16)&#xA0;<input id="q5" type="droptarget"/>&#xA0;have been discovered which suggest that life forms relatively easily, so it is believed that life must have appeared on innumerable occasions elsewhere in the Universe.</p>
+		<p><b>Questions 12 - 16</b><br/>
+		Why is the belief that complex life forms may well exist on planets other than the Earth so widespread? Firstly, there is the issue of probability. Using the Drake equation, scientists have calculated there to be a million civilisations in (12)&#xA0;<input id="q1" type="droptarget"/>&#xA0;and potentially billions of planets with extraterrestrial life in (13)&#xA0;<input id="q2" type="droptarget"/>.
+		</p>
+		<p>Secondly, since (14)&#xA0;<input id="q3" type="droptarget"/>&#xA0;have been found to survive in (15)&#xA0;<input id="q4" type="droptarget"/>&#xA0;on Earth, it is argued that they are also likely to exist on other planets with similar environments. Finally, (16)&#xA0;<input id="q5" type="droptarget"/>&#xA0;have been discovered which suggest that life forms relatively easily, so it is believed that life must have appeared on innumerable occasions elsewhere in the Universe.
+		</p>
 </div>
 		
 </section>

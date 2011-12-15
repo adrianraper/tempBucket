@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="four" correct="true"/>
+      <answer value="4" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="1903" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="the stock exchange" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="50" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="two or more" correct="true"/>
+      <answer value="2 or more" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="Germany" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="two to four" correct="true"/>
+      <answer value="2 to 4" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="various occupations" correct="true"/>
+      <answer value="occupations" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="1898" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="52" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		<div id="instruction">
+		Using NO MORE THAN THREE WORDS, A DATE OR A NUMBER from the passage, answer the questions on the right.
+		</div>
+</header>
+	
+<section id="body">
+<div id="splitquestionList">
+<p><b>Name of Game:</b><tab/><tab/><b>Totem</b></p>
+<p>Date of Manufacture:<tab/>1873</p>
+<p>Country of Manufacture:<tab/>US</p>
+<p>Total Number of Cards:<tab/>37</p>
+<p>Number of Players:<tab/>(1)&#xA0;<input id="q1"/></p>
+<p>Theme of Game:<tab/><tab/>wild animals and birds</p>
+<p></p>
+<p><b>Name of Game:</b><tab/><tab/><b>PIT</b></p>
+<p>Date of Manufacture:<tab/>(2)&#xA0;<input id="q2"/></p>
+<p>Country of Manufacture:<tab/>US</p>
+<p>Total Number of Cards:<tab/>63</p>
+<p>Number of Players:<tab/>three to six</p>
+<p>Theme of Game:<tab/><tab/>(3)&#xA0;<input id="q3"/></p>
+<p></p>
+<p><b>Name of Game:</b><tab/><tab/><b>Game of Rebellion</b></p>
+<p>Date of Manufacture:<tab/>early 20th century</p>
+<p>Country of Manufacture:<tab/>US</p>
+<p>Total Number of Cards:<tab/>(4)&#xA0;<input id="q4"/></p>
+<p>Number of Players:<tab/>(5)&#xA0;<input id="q5"/></p>
+<p>Theme of Game:<tab/><tab/>the American Civil War</p>
+<p></p>
+
+<p><b>Name of Game:</b><tab/><tab/><b>Black Peter</b></p>
+<p>Date of Manufacture:<tab/>1970s</p>
+<p>Country of Manufacture:<tab/>(6)&#xA0;<input id="q6"/></p>
+<p>Total Number of Cards:<tab/>25</p>
+<p>Number of Players:<tab/>(7)&#xA0;<input id="q7"/></p>
+<p>Theme of Game:<tab/><tab/>(8)&#xA0;<input id="q8"/></p>
+<p></p>
+</div>
+</section>
+
+<section id="readingText">
+<img class="photo2" src="../media/RD_GOPC_001.jpg" mode="1" id="1001"/>
+
+	<h1><p>University of Waterloo, Ontario, Canada</p></h1>
+	<h7>The Museum and Archive of Games </h7>
+	
+	<h7>Games on Playing Cards</h7>
+	<p>Because of the flexibility of a playing card deck during use and the small space in which decks can be stored, it is not surprising that game manufacturers selected a playing card format for some games as early as the 19th century. It seems the possibilities for adaptation to the playing card format are endless. Thus, the Museum Collection houses a number of games in playing card format.</p>
+	<h7>Totem</h7>
+	<p>This game was made by West and Lee, Worcester, Massachusetts (US) in 1873. There are 37 cards with round corners and plain backs. The single card with a picture of a lion is the "totem card". There are four "suits" of 9 cards each – domestic fowls, domestic animals, wild animals, wild birds. Cards are valued from 20 to 100. The 20, 40, 60, 80 cards have a picture and some information about a bird or animal. One card in each suit lists the other cards in the suit and this card is worth 100 points. This is a "trick taking" game for four people. The intent of the game is to acquire the "totem" card and the most points during the game. Typical of games during this period, there is an <i>educational component</i>, in that as one plays the game, one can learn about the animals and birds from the information on the cards!</p>
+	<h7>PIT</h7>
+	<p>Parker Brothers (US) first introduced this game in 1903. The museum purchased its copy in 1979. The "pit" in question is of course "the stock exchange". In keeping with the stock exchange theme, there are 63 cards representing seven different commodities available on the exchange. Each commodity is pictured on 9 cards – wheat, barley, corn, rye, oats, hay, flax. The commodity cards show a picture of the "exchange" in action, a point value for the card, and the name of the commodity. Also, like the stock exchange, there are two cards representing buyers. One card is the "bull" – the aggressive buyer. The second card is the "bear" – the conservative buyer. The game is for three to six players.</p>
+	<h7>Game of Rebellion</h7>
+	<p>Purchased by the Museum in 1982, this game was produced by Heyer Brothers, Boston, Massachusetts (US) sometime in the early years of the 20th century. The subject matter of the game is the American Civil War. The game is for two or more players. There are 50 cards and 7 counters. The cards are divided into 3 "suits" – red, blue, black – which have significance in the play of the game. On each card, the name of a prominent political or military personage of the time appears, or the name of a city which was the scene of a battle.</p>
+	<h7>Black Peter</h7>
+	<p>This deck of playing cards was intended for the use of children and was provided to passengers aboard Lufthansa Airline flights. Manufactured by Bielefelder Spielkarten, Bestell, Germany in the 1970s, the deck was donated to the Museum in 1977. There are 25 cards used for the game. Peter is a "chimney sweep" on a single card. Twelve pairs of other cards illustrate people in various occupations – shoemaker, baker, bricklayer, painter, carpenter, miller, chef, blacksmith, etc. The instructions indicate that the game is for two to four players.</p>
+	<h7>Game of Poems</h7>
+	<p>Donated to the Museum in 1981, this game was first produced in 1898. It was produced by the Cincinnati Game Company (Ohio, US), and designated as an Educational Game. There are 52 cards. On the back of each card is a stylized photograph of Henry Wadsworth Longfellow's home in an ornate oval frame. The deck is divided into 4 literary sections, based upon nationality of a poet – that is – American, Irish, English, Scottish. These sections are known in the game as "classes" and the "class designation" appears in the upper left corner of each card. "Classes" are subdivided into "books". Thus, the 52 card deck is divided into 4 groups of 13 cards each – one for each English speaking country. Each 13-card group includes 1 card representing that group's country, and 12 cards subdivided into 4 "books" (or 4 poets) with 3 cards in each "book", each featuring selections from the works of a poet. Each card includes a drawing suggested by the poetic work, and a quotation from a poem.</p>
+	
+	<h7>Glossary</h7>
+	<ol id="splitreadingList">
+	<li>Henry Wadsworth Longfellow: (1807-82) American poet.</li>
+	</ol>
+	
+	<p>The Museum and Archive of Games, University of Waterloo, Ontario, Canada.</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This exercise shouldn't take you more than a few minutes. Examine the table carefully so that you understand what kind of information is missing and then scan the text until you find it. Use the section headings to help you.</font>
+  </p>
+</section>
+
+</body>
+</bento>

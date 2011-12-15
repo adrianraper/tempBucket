@@ -95,14 +95,14 @@
 </header>
 	
 <section id="body">
-<div id="watching">
+<div id="outer">
 <div class="rightFloatvideo1">
   <video src="../media/Unit03_e2a.flv" mode="16" id="1003" autoPlay="false"/>
   <video src="../media/Unit03_e2b.flv" mode="16" id="1004" autoPlay="false"/>
   <video src="../media/Unit03_e2c.flv" mode="16" id="1005" autoPlay="false"/>
   </div>
   
-  <div id="w1">
+  <div id="content1">
   <p>
     <b>What reasons does Zenia give for visiting other countries?</b></p>
     <g id="t1">A.  see the sights</g><br/>
@@ -122,7 +122,7 @@
     <g id="t12">E.  discovering the culture</g><br/>
     <g id="t13">F.  getting better job opportunities</g><br/>
     <g id="t14">G.  learning to be independent</g><br/>
-  <br/><br/><br/><br/>
+  <br/><br/><br/>
   <p>
     <b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b></p>
     <g id="t15">A.  see relatives</g><br/>

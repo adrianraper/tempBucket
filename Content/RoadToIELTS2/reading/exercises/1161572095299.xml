@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="multiplechoice" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="false"/>
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a19" correct="false"/>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="true"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	Questions 10-16. Read the passage and look at the statements on the right. Choose TRUE - if the statement is true; FALSE - if the statement is false; NOT GIVEN - if the information is not given in the passage.
+	</div>
+</header>
+	
+<section id="body">
+   <img class="leftFloat" src="../media/RD_TFN_001.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
+     
+    <li id="q1">Male status in Maasai culture is linked to the ownership of cattle.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q2">Cattle were regularly sold in traditional Maasai communities.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q3">The colonial administration tried to integrate the Maasai into the market economy.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q4">Traditionally Enkangs are occupied all year round.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q5">A high proportion of Maasai suffer from breathing problems caused by indoor air pollution.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q6">Vegetables are not part of the traditional Maasai diet.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q7">Ferro-cement can be used to make water containers.<list class="answerList"><li><a id="a19">True</a></li><li><a id="a20">False</a></li><li><a id="a21">Not given</a></li></list> </li>
+	 <p class="linespace"></p>
+  </ol>
+</section>
+
+<section id="readingText">
+
+	<h1>Smoke gets in your throat</h1>
+
+  	<p>The semi-nomadic lifestyle of the Maasai is under threat from market forces. Nick Hall describes how Maasai women are developing new housing options of their own.</p>
+  
+  	<p>A Maasai woman may walk five, ten or even twenty miles a day to collect water for her family. But when the rains begin she is still not able to relax. This is the time when she will work hardest on her house, repairing leaking roofs and crumbling walls.</p>
+  	
+	<p>The Maasai are pastoralists, grazing their cattle over the plains which border Kenya and Tanzania. The status of a Maasai man is directly related to the number and quality of the cattle he owns which, traditionally, he would never sell. A Maasai woman, however, has control over housing. When she marries, her first task is to build her own house, helped by other women in the homestead. This house belongs to her and no-one may enter without her permission. Throughout her life she will build a new house every ten years or so.</p>
+  	
+	<p>But life for pastoralists is changing. During the colonial period attempts were made to persuade the Maasai to swap their traditional cattle-centred life for one based on cash. Group ranches were set up to tempt them to make money from their animals. After independence in the 1960s the World Bank put pressure on the Government to step up this process as a way of bringing the Maasai into the money-earning community.</p>
+  
+  	<p>The Kenyan Government was already embarrassed at the 'primitive' label which had been attached to the Maasai. It did not suit its self-image as an emerging nation that the Maasai &#x2013; who have always fascinated Westerners &#x2013; should be considered a quaint relic from a time before capitalism.</p>
+  
+  	<p>Some Kenyans saw the opportunity to make a great deal of money. In 1986 the Government began to subdivide the group ranches into individual farms. Mysteriously, the best land often went to people with political connections, some of whom were not even Maasai. This land was often sold on to big landowners at increasing profit.</p>
+  
+  	<p>To begin with most Maasai did not realize the importance of what was happening. It did not take long, however, before it began to dawn on them that they would no longer be able to move about as before &#x2013; and neither would their cattle. Traditionally, Maasai land and homes had no value &#x2013; the one because it was available to all and the other because it needed only the labour of the women. Now they were becoming more valuable than their most prized possession, cattle. It was a startling reversal, involving every area of their lives.</p>
+  	
+	<p>Generally speaking, the Maasai are not poor in the way that slum dwellers are poor. They do not have permanent homes or running water, but they are independent, self-sufficient and proud. They certainly do not consider themselves disadvantaged and their lives are well-adapted to the conditions in which they live.</p>
+  	
+	<p>During the rainy season the Maasai live in homesteads &#x2013; enkang &#x2013; built usually on high ground, migrating during the dry season to temporary camps on the low- lying plains. After five to ten years they abandon their houses and build new ones.</p>
+  	
+	<p>Even so, a house designed to be lived in for part of the year is not going to be adequate as a permanent home. The walls tend to crack, for example, and women complain of having to get up in the middle of the night to bung up leaks. As the Maasai are supplementing their traditional diet of milk, meat and blood with tea, vegetables and grains, the women need to spend much more time cooking. This makes the old-style houses dangerously smoky. In February 1993 a study established that indoor air pollution in the form of carbon monoxide and particulates in Maasai rural housing was high &#x2013; the highest ever recorded.</p>
+  	
+	<p>Maasai are now spending more and more time at home. The men cannot travel away with the cattle for such long periods and the women do not need to move to find somewhere else to live. Their houses have simply become too small for the needs of all the people who have to use them.</p>
+  
+  	<p>In the early 1990s women's groups from the Kajiado District &#x2013; traditionally a Maasai area &#x2013; identified a need for better housing as their main concern. Maasai women wanted to adjust their traditional housing to their new situation.</p>
+  
+  	<p>Intermediate Technology Development Group (ITDG) suggested adding a thin, watertight ferro-cement coating on top of the wattle, mud and ash roof. The roof design includes guttering to channel rainwater into a catchment container. However, it is not easy to alter one aspect of design in isolation. The new roof worked extremely well and rain could not get in; but neither could the smoke get out. ITDG had immediately to consider a new design of chimney. The way forward was obviously by consultation. A design workshop was held with representatives of 14 of the women's groups in August 1991 so that their views could be incorporated. ITDG is also helping to strengthen the women's capacity to raise and organise their own funds, and runs training sessions in the new technology for artisans.</p>
+  
+  	<p>Women are still the most active in making the Maasai home, although men are realizing its importance and becoming increasingly involved. Maasai women have always been independent and used to working together to help each other. If this community spirit can be mobilized to learn new skills and the Maasai can become aware of some of the technological options open to them, they will be in a good position to face the challenges of the new century.</p>
+  
+  <p>Nick Hall, New Internationalist, Issue 276.</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">Remember that these questions follow the order that information is given in the text.</p>
+  <p align="left">Question 10Scan quickly for the word 'status' in the text.</p>
+  <p align="left">Question 11The key word here is 'regularly'.</p>
+  <p align="left">Question 12What do you think 'market economy' means? Scan the text for 'colonial administration' to find the answer.</p>
+  <p align="left">Question 13You should be able to guess from the question what 'Enkangs' are.</p>
+  <p align="left">Question 14The information in this statement is very specific. Does this match information given in the text?</p>
+  <p align="left">Question 15Scan quickly for any mention of food and drink.</p>
+  <p align="left">Question 16Which section mentions building materials? Answer according to the information in the text. You can probably make water containers out of almost anything, but what does the text say?</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

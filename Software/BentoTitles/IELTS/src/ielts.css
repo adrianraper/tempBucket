@@ -150,10 +150,12 @@ zone|ZoneView tink|Accordion #buttonBar {
 
 zone|ZoneView #viewButton,
 zone|ZoneView #questionZoneViewButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
 zone|ZoneView #questionZoneDownloadButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
 }
 

@@ -30,7 +30,7 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="46" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" top="66" />
 		
-		<s:Label text = "Welcome, {hostComponent.user.fullName}. Today is {hostComponent.dateFormatter.format(new Date())}. (config={hostComponent.configID})" top="50" right="0" />
+		<s:Label text = "Welcome, {hostComponent.user.fullName}. Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="50" right="0" />
 		<s:ButtonBar id="navBar" right="0" height="35" top="0" />
 	</s:Group>
 	

@@ -24,7 +24,7 @@ p {
 
 /* Headings */
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -34,7 +34,7 @@ h1 {
 	line-height: 20em;
 }
 h2 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	color: #707070;
 	padding-left: 15px;
@@ -45,7 +45,7 @@ h2 {
 }
 
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	padding-left: 15px;
 	padding-bottom: 0px;
@@ -53,7 +53,7 @@ h4 {
 }
 
 h7{
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 10px;
@@ -101,6 +101,13 @@ h7{
 	padding-top: 20px;
 	padding-right: 20px;
 	padding-left: 20px;
+}
+
+#body .lefttFloat {
+	float: left;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 /* Links and draggable spans should be blue and not underlined */
@@ -165,7 +172,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 #questionList {
 	list-style-type: decimal;
 	padding-left: 0px;
-	padding-right: 220%;
+	padding-right: 380%;
 	text-align: left;
 	line-height: 22em;
 		
@@ -178,7 +185,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 }
 #questionList li{
 	padding-left:15px;
-	line-height: 30em;
+	line-height: 22em;
 }
 #questionList input{
 	text-indent: 10%;
@@ -187,25 +194,41 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 }
 
 
-/*This is for Speaking Unit 3 watch another candidate */
-#video2{
-	position:absolute;
+/* video div */
+#outer{
+position: absolute;
     width:500px;
 }
 
-#v1{
-	position:relative;
-    padding-top: 25px;
-	padding-left: -25px;
-    height: 500px;
+#content{
+position:relative;
+padding-top:30px;
+    height: 150px;
     width:400px;
-    line-height:30em;
+    line-height:22em;
+	padding-left: -25px;
 }
-#body .rightFloatvideo {
-	float: right;
-	width:760px;
-	padding-top: 0em;
-	padding-right: 10em;
-	padding-left: 100px;
+
+#video{
+	
+	padding-top: 20em;
+	padding-right: 0em;
+	padding-left: 520px;
 	margin-top: 0em;
+}
+/* -----------------------------------------------------------------------------------*/
+.linespace {
+	line-height: 0px;
+	}
+	
+/*Formatting used for feedback text without numbering. */
+.feedbacktext {
+	margin: 0 0 0 0;
+	padding: 0px 0px 0px 0px;
+	line-height: 22em;
+	}
+	
+#instruction{
+	padding-left:0px;
+	padding-right: 160%;
 }

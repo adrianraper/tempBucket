@@ -25,7 +25,7 @@ p {
 
 /* Headings */
 h1 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 20px;
@@ -35,7 +35,7 @@ h1 {
 	line-height: 20em
 }
 h2 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 11px;
 	color: #707070;
 	padding-left: 15px;
@@ -46,7 +46,7 @@ h2 {
 }
 
 h4 {
-	font-family: Arial Black;
+	font-family: Verdana;
 	font-size: 13px;
 	padding-left: 15px;
 	padding-bottom: 0px;
@@ -151,7 +151,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding-top:25px;
 	padding-right: 20px;
 	text-align: left;
-	line-height: 20em;
+	line-height: 22em;
 }
 #questionList li{
 padding-left: -25px;
@@ -164,7 +164,7 @@ padding-bottom: 12px;
 	padding-top: 0px;
 	text-align: left;
 	line-height: 25em;
-	padding-right: 280%;
+	padding-right: 380%;
 }
 #dropdown p{
 padding-bottom: 12px;
@@ -185,3 +185,23 @@ padding-top: 10px;
 padding-left: -20px;
 line-height:22em;
 }
+
+#part1 li{
+	padding-right: 200%;
+}
+
+#part1 p{
+	padding-right: 200%;
+}
+
+#instruction{
+	padding-left:0px;
+	padding-right: 160%;
+}
+
+/*Formatting used for feedback text without numbering. */
+.feedbacktext {
+	margin: 0 0 0 0;
+	padding: 20px 0px 20px 50px;
+	line-height: 22em;
+	}

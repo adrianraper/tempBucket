@@ -23,7 +23,7 @@
       <answer source="a2" correct="true"/>
       <answer source="a3" correct="false"/>
     </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q2">
+	<MultipleChoiceQuestion block="q2">
       <answer source="a4" correct="true"/>
       <answer source="a5" correct="false"/>
       <answer source="a6" correct="false"/>
@@ -90,68 +90,69 @@
 	 <li><a id="a2">False</a></li>
 	 <li><a id="a3">Not Given</a></li>
 	 </list></li>
-	 
+	 <p class="linespace"></p>
     <li id="q2">According to some experts, the variety of living organisms on Earth may almost be halved over the next fifty years.
 	<list class="answerList">
 	<li><a id="a4">True</a></li>
 	<li><a id="a5">False</a></li>
 	<li><a id="a6">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q3">Scientists are not certain that the ivory-billed woodpecker is extinct in the wild.
 	<list class="answerList">
 	<li><a id="a7">True</a></li>
 	<li><a id="a8">False</a></li>
 	<li><a id="a9">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q4">A greater proportion of plant species than bird species may become extinct.
 	<list class="answerList">
 	<li><a id="a10">True</a></li>
 	<li><a id="a11">False</a></li>
 	<li><a id="a12">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q5">No species of primate have yet become extinct.
 	<list class="answerList">
 	<li><a id="a13">True</a></li>
 	<li><a id="a14">False</a></li>
 	<li><a id="a15">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q6">Most insects are pests for the agricultural industry.
 	<list class="answerList">
 	<li><a id="a16">True </a></li>
 	<li><a id="a17">False</a></li>
 	<li><a id="a18">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q7">Regions with a large variety of species are less able to cope with environmental changes.
 	<list class="answerList">
 	<li><a id="a19">True</a></li>
 	<li><a id="a20">False</a></li>
 	<li><a id="a21">Not Given</a></li>
 	</list></li>
-   
+   	<p class="linespace"></p>
     <li id="q8">'Keystone' species are the most endangered.
 	<list class="answerList">
 	<li><a id="a22">True</a></li>
 	<li><a id="a23">False</a></li>
 	<li><a id="a24">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q9">The importance of a species may not be known until it is too late.<list class="answerList">
 	<li><a id="a25">True</a></li>
 	<li><a id="a26">False</a></li>
 	<li><a id="a27">Not Given</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q10">Fires have caused a large number of extinctions.
 	<list class="answerList">
 	<li><a id="a28">True</a></li>
 	<li><a id="a29">False</a></li>
 	<li><a id="a30">Not Given</a></li>
 	</list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

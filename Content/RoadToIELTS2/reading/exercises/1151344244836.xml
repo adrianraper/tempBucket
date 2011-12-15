@@ -77,22 +77,32 @@
 </header>
 	
 <section id="body">
-  
+
   <ol id="splitquestionList">
     <li id="1">What do two thirds of the world's population not have at home?<br/><input id="q1"/></li>
+	<p class="linespace"></p>
     <li id="2">What feature of the UV water disinfection system ensures safe use by operators?<br/><input id="q2"/></li>
+	<p class="linespace"></p>
     <li id="3">What causes water to flow through the UV system?<br/><input id="q3"/></li>
+	<p class="linespace"></p>
     <li id="4">How much water does the unit treat every minute?<br/><input id="q4"/></li>
+	<p class="linespace"></p>
     <li id="5">Where is the UV system becoming increasingly accepted as a water treatment method?<br/><input id="q5"/></li>
+	<p class="linespace"></p>
     <li id="6">Name a source of safe, untreated drinking water which can be found in some countries.<br/><input id="q6"/></li>
+	<p class="linespace"></p>
     <li id="7">Apart from children, who will particularly benefit from a cheap but effective water treatment technique?<br/><input id="q7"/></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
 
 
 <section id="readingText">
-<h8>To Drink Without Risk:</h8>
+
+  <img class="photo1" src="../media/RD_SAQ_001.jpg" mode="1" id="1003"  />
+  
+<h8><p>To Drink Without Risk:</p></h8>
 <h2><p>The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries</p></h2>
 
 

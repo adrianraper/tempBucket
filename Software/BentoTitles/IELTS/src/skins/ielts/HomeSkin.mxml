@@ -19,9 +19,9 @@
 		<s:Label text="The chart below shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." fontSize="12" width="84%"/>	
 		
 		<s:VGroup width="100%">
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="reading" id="readingCoverageBar" width="90%" />
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="listening" id="listeningCoverageBar" width="80%" />
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="speaking" id="speakingCoverageBar" width="70%" />
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="reading" id="readingCoverageBar" width="85%" />
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="listening" id="listeningCoverageBar" width="85%" />
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="speaking" id="speakingCoverageBar" width="85%" />
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="writing" id="writingCoverageBar" width="85%" />
 		</s:VGroup>
 		

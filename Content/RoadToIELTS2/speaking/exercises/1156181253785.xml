@@ -54,11 +54,13 @@
 </header>
 	
 <section id="body">
-<div id="video2">
-<div class="rightFloatvideo">
+<div id="outer">
+
+<div id="video">
   <video src="../media/Unit03_e5.flv" mode="1" id="1003" autoPlay="false"/>
   </div>
-  <div id="v1">
+  
+  <div id="content">
   <ol>
   <li>You can travel on&#xA0;<input id="q1"/>&#xA0;or by&#xA0;<input id="q2"/>&#xA0;.</li>
   <li>You can take some&#xA0;<input id="q3"/>&#xA0;on the&#xA0;<input id="q4"/>&#xA0;.</li> 

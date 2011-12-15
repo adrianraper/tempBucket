@@ -12,16 +12,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="false" marking="true"/>
-		<exercise/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
-	
+		
 <script id="model" type="application/xml">
   <questions>
     <TargetSpottingQuestion>
@@ -66,11 +57,13 @@
 <header>
 	
 		<div id="instruction">
-		The writer points out a number of strengths of the UV water disinfection system.
+		The writer points out a number of strengths of the UV water disinfection system. Read the passage on the left and answer the question on the right.
 		</div>
 </header>
 	
 <section id="body">
+<img class="leftFloat" src="../media/RD_MS_001.jpg" mode="1" id="1003"  />
+
 <div id="splitquestionList">
 <p><b>Which SIX of the following strengths are mentioned?</b></p>
     <list class="answerList">    
@@ -85,6 +78,7 @@
     <li><a id="t9">It does not pose a health risk.</a></li>
     <li><a id="t10">It is energy-efficient.</a></li>
     <li><a id="t11">It is a well-proven method.</a></li>
+	<p class="linespace"></p>
 	</list>
 	</div>
 </section>
