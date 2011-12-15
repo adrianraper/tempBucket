@@ -23,10 +23,21 @@ class SimpleXMLElementEx extends SimpleXMLElement {
     
 }
 
-$simpleXml = simplexml_load_file("RoadToIELTS2/reading/exercises/1156153794672.xml", "SimpleXMLElementEx");
+if (!isset($_GET["u"]) || !isset($_GET["b"])) exit(0);
+
+// Get the url and base path from the get request parameters
+$url = base64_decode($_GET["u"]);
+$basePath = base64_decode($_GET["b"]);
+
+// Do some basic sanitization to protect against directory traversal
+// TODO: This could also match against a regular expression for URLs with an .xml suffix
+$url = preg_replace("..", "", $url);
+$basePath = preg_replace("..", "", $basePath);
+
+$simpleXml = simplexml_load_file($url, "SimpleXMLElementEx");
 
 $baseElement = $simpleXml->head->insertChildFirst("base");
-$baseElement = $simpleXml->head->base["href"] = "RoadToIELTS2/reading/exercises/";
+$baseElement = $simpleXml->head->base["href"] = $basePath."/";
 
 $simpleXml->body["onload"] = "window.print()";
 

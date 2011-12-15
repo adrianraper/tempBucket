@@ -1,26 +1,16 @@
 package com.clarityenglish.bento.controller {
-	import com.clarityenglish.alivepdf.pdf.PDF;
-	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
-	import flash.display.DisplayObject;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
+	import flash.net.navigateToURL;
 	
-	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	import mx.managers.PopUpManager;
-	import mx.managers.PopUpManagerChildList;
+	import mx.utils.Base64Encoder;
 	
-	import org.alivepdf.display.Display;
-	import org.alivepdf.fonts.CoreFont;
-	import org.alivepdf.fonts.FontFamily;
-	import org.alivepdf.fonts.IFont;
-	import org.alivepdf.layout.Layout;
-	import org.alivepdf.layout.Orientation;
-	import org.alivepdf.layout.Size;
-	import org.alivepdf.layout.Unit;
-	import org.alivepdf.saving.Download;
-	import org.alivepdf.saving.Method;
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -33,7 +23,25 @@ package com.clarityenglish.bento.controller {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public override function execute(note:INotification):void {
+			var href:Href = note.getBody() as Href;
 			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
+			var urlRequest:URLRequest = new URLRequest(configProxy.getConfig().remoteGateway + "services/print.php");
+			
+			var urlVariables:URLVariables = new URLVariables();
+			var encoder:Base64Encoder = new Base64Encoder();
+			
+			encoder.encode(href.url);
+			urlVariables.u = encoder.toString();
+			
+			encoder.encode(href.rootPath);
+			urlVariables.b = encoder.toString();
+			
+			urlRequest.data = urlVariables;
+			urlRequest.method = URLRequestMethod.GET;
+			
+			navigateToURL(urlRequest, "_blank");
 		}
 		
 		/*[Embed(source="/skins/assets/StatsYellowHeader.png", mimeType="application/octet-stream")]
