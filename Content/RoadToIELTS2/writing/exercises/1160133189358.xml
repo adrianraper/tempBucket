@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	You should spend about 20 minutes on this task. You should write at least 150 words.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LC_GW_006.jpg" mode="1" id="1001"/>
+  <div id="presentation">
+  <p align="left">
+    <b>One of your penfriends is going to emigrate to Australia in a few months. They want to improve their English before they leave and have asked for your advice.</b>
+  </p>
+  <p align="left">
+    <b>Write a letter to your penfriend and give them advice on how to improve their speaking, listening and vocabulary.</b>
+  </p>
+  <p align="left">You do NOT need to write your own address.</p>
+  <p align="left">
+    <font color="#000000">Begin your letter as follows:</font>
+  </p>
+  <p align="left">Dear...,</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

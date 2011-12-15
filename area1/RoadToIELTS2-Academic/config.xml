@@ -4,6 +4,7 @@
 	<developer>AR</developer>
 	<dbHost>2</dbHost>
 	<productCode>52</productCode>
+	<productVersion>lastMinute</productVersion>
 	<courseFile>menu-Academic-LastMinute.xml</courseFile>
 	<streamingMedia />
 	<sharedMedia />

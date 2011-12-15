@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="I'd find out" correct="true"/>
+      <answer value="I would find out" correct="true"/>
+      <answer value="what I'd do is find out" correct="true"/>
+      <answer value="what I would do is find out" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="better choose" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="I don't think" correct="true"/>
+      <answer value="I do not think" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="I wouldn't choose" correct="true"/>
+      <answer value="I would not choose" correct="true"/>
+      <answer value="what I wouldn't do is choose" correct="true"/>
+      <answer value="what I would not do is choose" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="advise you to" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="you should avoid" correct="true"/>
+      <answer value="you ought to avoid" correct="true"/>
+      <answer value="you had better avoid" correct="true"/>
+      <answer value="you'd better avoid" correct="true"/>
+      <answer value="I'd avoid" correct="true"/>
+      <answer value="I would avoid" correct="true"/>
+      <answer value="what I'd avoid is" correct="true"/>
+      <answer value="what I would avoid is" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="if I were you" correct="true"/>
+      <answer value="if I was you" correct="true"/>
+      <answer value="if I were in your position" correct="true"/>
+      <answer value="if I was in your position" correct="true"/>
+      <answer value="if I were in your shoes" correct="true"/>
+      <answer value="if I was in your shoes" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="better not enrol" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="advise you to" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="if I were you" correct="true"/>
+      <answer value="if I was you" correct="true"/>
+      <answer value="if I were in your position" correct="true"/>
+      <answer value="if I was in your position" correct="true"/>
+      <answer value="if I were in your shoes" correct="true"/>
+      <answer value="if I was in your shoes" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete each sentence with a phrase for giving advice.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LC_GW_005.jpg" mode="1" id="1001"/>
+  
+  <ol id="questionList">
+    <li id="1">Find out about the school's methodology.If I were you,&#xA0;<input id="q1"/>&#xA0;about the school's methodology.</li>
+	<p class="linespace"></p>
+    <li id="2">Choose the school carefully.You'd&#xA0;<input id="q2"/>&#xA0;the school carefully.</li>
+	<p class="linespace"></p>
+    <li id="3">Don't enrol in a class with over 20 students.&#xA0;<input id="q3"/>&#xA0;you should enrol in a class with over 20 students.</li>
+	<p class="linespace"></p>
+    <li id="4">Don't choose a short, intensive course.If I were you,&#xA0;<input id="q4"/>&#xA0;a short, intensive course.</li>
+	<p class="linespace"></p>
+    <li id="5">Ask if the teachers are native speakers.I'd&#xA0;<input id="q5"/>&#xA0;ask if the teachers are native speakers.</li>
+	<p class="linespace"></p>
+    <li id="6">Avoid mixed ability classes.I think&#xA0;<input id="q6"/>&#xA0;mixed ability classes.</li>
+	<p class="linespace"></p>
+    <li id="7">Don't choose a school that uses old-fashioned teaching methods.I wouldn't choose a school that uses old-fashioned teaching methods&#xA0;<input id="q7"/>.</li>
+	<p class="linespace"></p>
+    <li id="8">Don't enrol in a class with fewer than six students.You'd&#xA0;<input id="q8"/>&#xA0;in a class with fewer than six students.</li>
+	<p class="linespace"></p>
+    <li id="9">Don't do an intensive course.I wouldn't&#xA0;<input id="q9"/>&#xA0;do an intensive course.</li>
+	<p class="linespace"></p>
+    <li id="10">Find out what the maximum class size is.The first thing I'd do&#xA0;<input id="q10"/>&#xA0;is find out what the maximum class size is.</li>
+  </ol>
+</section>
+
+</body>
+</bento>

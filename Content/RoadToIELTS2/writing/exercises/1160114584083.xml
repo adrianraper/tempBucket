@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+  
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/MM_WTG01.jpg" mode="16" id="1004"  />
+		
+		Read the letter from the previous exercise again and find all the adjectives the writer uses to praise the radio series. Click on them.
+
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/MM_GW_005.jpg" mode="1" id="1001"/>
+  <div id="targetspotting">
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">I am writing to thank you for your<g id="t1">fabulous</g> series 'A Hundred Years of Radio'.</p>
+  <p align="left">My whole family thoroughly enjoyed each of the <g id="t2">excellent</g> broadcasts in the series, so much so that on Thursday evenings we would all rush home expressly to listen to them. My youngest son, who is only twelve, is not usually interested in radio programmes but even he enjoyed them. In fact, he found them <g id="t3">invaluable</g> as he has been doing a project on the history of radio at school.</p>
+  <p align="left">I must say we particularly enjoyed the <g id="t4">fascinating</g> narration by George Pickering and his <g id="t5">insightful</g> comments, as well as all the <g id="t6">wonderful</g> recordings from the early days of radio. The <g id="t7">original</g> and <g id="t8">creative</g> style of the series was also extremely <g id="t9">impressive</g>.</p>
+  <p align="left">We would very much like to know whether you are planning to air more <g id="t10">stimulating</g> programmes of this kind in the future. If so, we would appreciate it if you could inform us in advance so that we do not miss them.</p>
+  <p align="left">Thank you once again.</p>
+  <p align="left">Yours faithfully,</p>
+  <p align="left">Mrs M. Alty</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The examiner will be looking for your ability to use a range of vocabulary. It is easy to use a variety of adjectives in a letter like this.</font>
+  </p>
+</section>
+
+</body>
+</bento>

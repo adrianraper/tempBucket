@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a14" correct="true"/>
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a16" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a17" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a17" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a19" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a20" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a22" correct="true"/>
+      <answer source="a21" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q11" block="b11">
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q12" block="b12">
+      <answer source="a24" correct="true"/>
+      <answer source="a23" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Here are the notes that a student made for the writing task in the previous exercise. Put each point under the correct paragraph heading to make a plan for the letter.
+
+</header>
+	<img class="rightFloat" src="../media/LC_WTG01.jpg" mode="16" id="1004"  />
+<section id="noscroll">
+  <span id="a20" draggable="true">No more than 20 in a class</span>
+  <span id="a14" draggable="true">Good idea to go to language school</span>
+  <span id="a18" draggable="true">Find out class size</span>
+  <span id="a19" draggable="true">10 to 15 good number</span>
+  <span id="a22" draggable="true">Study over longer period</span>
+  <span id="a13" draggable="true">Few points to consider</span>
+  <span id="a24" draggable="true">Hope this is useful</span>
+  <span id="a23" draggable="true">Drop me a line for more advice</span>
+  <span id="a21" draggable="true">Think about intensity</span>
+  <span id="a17" draggable="true">Choose school with group work and speaking practice</span>
+  <span id="a15" draggable="true">Ask about methodology</span>
+  <span id="a16" draggable="true">Sitting in rows/doing written exercise is boring; no oral practice</span>
+</section>
+
+<section id="body">
+<img class="rightFloat" src="../media/LC_GW_003.jpg" mode="1" id="1001"/>
+<div id="gapfillText">
+<h7>Paragraph 1 - Opening paragraph</h7>
+<p><input id="q1" type="droptarget"/><br/>
+<input id="q2" type="droptarget"/></p>
+
+<h7>Paragraph 2 - Advice on teaching methods</h7>
+<p><input id="q3" type="droptarget"/><br/>
+<input id="q4" type="droptarget"/><br/>
+<input id="q5" type="droptarget"/></p>
+
+<h7>Paragraph 3 - Advice on number of students in class</h7>
+<p><input id="q6" type="droptarget"/><br/>
+<input id="q7" type="droptarget"/><br/>
+<input id="q8" type="droptarget"/></p>
+
+<h7>Paragraph 4 - Advice on number of hours a week</h7>
+<p><input id="q9" type="droptarget"/><br/>
+<input id="q10" type="droptarget"/></p>
+
+<h7>Paragraph 5 - Closing paragraph</h7>
+<p><input id="q11" type="droptarget"/><br/>
+<input id="q12" type="droptarget"/></p>
+
+</div>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Before you begin writing, it's a good idea to brainstorm some ideas and just jot them down. You can then organise them into paragraphs.</font>
+  </p>
+  
+</section>
+
+</body>
+</bento>

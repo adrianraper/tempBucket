@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="the" correct="true"/>
+      <answer value="your" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="his" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="an" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="Their" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="a" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="our" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="a" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="her" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="a" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="my" correct="true"/>
+      <answer value="our" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q14" block="b14">
+      <answer value="the" correct="true"/>
+      <answer value="your" correct="true"/>
+      <answer value="an" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the sentences with an appropriate article or possessive adjective.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/MM_GW_004.jpg" mode="1" id="1001"/>
+
+  <ol id="questionList">
+    <li id="1">I am writing to congratulate you on&#xA0;<input id="q1"/>&#xA0;excellent coverage of the cricket yesterday.</li>
+	<p class="linespace"></p>
+    <li id="2">Your foreign correspondent Stephen Pennington is an exceptional journalist. I would very much like to see more of&#xA0;<input id="q2"/>&#xA0;informative articles in your newspaper.</li>
+	<p class="linespace"></p>
+    <li id="3">It is years since I last read such&#xA0;<input id="q3"/>&#xA0;insightful article on this subject.</li>
+	<p class="linespace"></p>
+    <li id="4">It was with great sadness that I watched&#xA0;<input id="q4"/>&#xA0;last of your fascinating documentaries last night.</li>
+	<p class="linespace"></p>
+    <li id="5">I would like to congratulate you on the high standard of your journalists.&#xA0;<input id="q5"/>&#xA0;professionalism and dedication is a credit to your newspaper.</li>
+	<p class="linespace"></p>
+    <li id="6">I have never written&#xA0;<input id="q6"/>&#xA0;letter to a newspaper before but feel I have to write to congratulate you on yesterday's excellent editorial.</li>
+    <li id="7">My family and I depend on your channel for&#xA0;<input id="q7"/>&#xA0;evening entertainment.</li>
+	<p class="linespace"></p>
+    <li id="8">I would like to know if Matt Drew,&#xA0;<input id="q8"/>&#xA0;hilarious disc jockey who presented the breakfast show last week, will be given a programme of his own in the near future.</li>
+	<p class="linespace"></p>
+    <li id="9">Congratulations on your recent documentary series. I thoroughly enjoyed it and did not miss&#xA0;<input id="q9"/>&#xA0;single episode.</li>
+	<p class="linespace"></p>
+    <li id="10">Anna Elbourn is a wonderful interviewer. I have thoroughly enjoyed all of&#xA0;<input id="q10"/>&#xA0;talk shows and am very much looking forward to next season's series.</li>
+	<p class="linespace"></p>
+    <li id="11">I am writing to thank you for&#xA0;<input id="q11"/>&#xA0;invaluable financial advice you published in last month's edition of your magazine.</li>
+	<p class="linespace"></p>
+    <li id="12">I particularly enjoyed the article on Internet shopping and would like to know if you are planning to introduce&#xA0;<input id="q12"/>&#xA0;regular column on e-business.</li>
+	<p class="linespace"></p>
+    <li id="13">I would like to express&#xA0;<input id="q13"/>&#xA0;heartfelt gratitude to everyone at your newspaper for the hard work they have put into the campaign to raise money for our local hospital.</li>
+	<p class="linespace"></p>
+    <li id="14">I am writing in response to&#xA0;<input id="q14"/>&#xA0;article about animal rights in today's edition of your newspaper, which, I have to say, is one of the most powerful pieces of journalism I have ever read.</li>
+	<p class="linespace"></p>
+  </ol>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">An article or possessive adjective is needed in each of the sentences.</font>
+  </p>
+</section>
+
+</body>
+</bento>

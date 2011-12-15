@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a11" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a15" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a16" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/LC_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by dragging the correct word or phrase into each gap.
+
+</header>
+	
+<section id="noscroll">
+  <span id="a10" draggable="true">I think</span>
+  <span id="a12" draggable="true">you should</span>
+  <span id="a9" draggable="true">I'd</span>
+  <span id="a14" draggable="true">ought to</span>
+  <span id="a15" draggable="true">better</span>
+  <span id="a13" draggable="true">I were you</span>
+  <span id="a11" draggable="true">advise you to</span>
+  <span id="a16" draggable="true">I don't think</span>
+</section>
+
+<section id="body">
+
+  <img class="rightFloat" src="../media/LC_GW_007.jpg" mode="1" id="1001"/>
+  <div id="gapfillText">
+  <p>Dear Maria,</p>
+ 
+ <p>You must be really excited about moving to Sydney. How are all the preparations going? In your letter you ask if I've got any advice about how to improve your English before you leave. Well, I've given it some thought and here are a few ideas.</p>
+  
+  <p>Speaking is probably going to be the most useful skill so, if I were you,&#xA0;<input id="q1" type="droptarget"/>&#xA0;try and speak in English as much as possible. And &#xA0;<input id="q2" type="droptarget"/>&#xA0;you should do a short, intensive oral course before you go too if you have time. I wouldn't&#xA0;<input id="q3" type="droptarget"/>&#xA0;buy one of those language courses on tape though because they're expensive and you don't get the opportunity to interact with other people.
+  </p>
+  <p>As for your listening skills,&#xA0;<input id="q4" type="droptarget"/>&#xA0;tune into English language programmes on television and the radio whenever you can. Also, don't forget that lots of Australian, British and American web sites have audio that you can listen to so I'd make the most of the Internet if&#xA0;<input id="q5" type="droptarget"/>&#xA0;.</p>
+  <p>Browsing the Internet will also help extend your vocabulary, but you&#xA0;<input id="q6" type="droptarget"/>&#xA0;read books, newspapers and magazines as well. You'd &#xA0;<input id="q7" type="droptarget"/>&#xA0;get a good English-English dictionary too.&#xA0;<input id="q8" type="droptarget"/>&#xA0;you should throw away your bilingual one, but only use it when you really have to!</p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Well, I have to get back to work now. If you need any more advice, don't hesitate to get in touch.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Love,</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Miranda</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>

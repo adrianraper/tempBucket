@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2011-12-09" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="the" correct="true"/>
+      <answer value="your" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="inspiring" correct="true"/>
+      <answer value="inspired" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="his" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="valuable" correct="true"/>
+      <answer value="invaluable" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="my" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="fascinating" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="informative" correct="true"/>
+      <answer value="informed" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="impressive" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="an" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="powerful" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q14" block="b14">
+      <answer value="his" correct="true"/>
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q15" block="b15">
+      <answer value="the" correct="true"/>
+      <answer value="your" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q16" block="b16">
+      <answer value="his" correct="true"/>
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q17" block="b17">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q18" block="b18">
+      <answer value="insightful" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q19" block="b19">
+      <answer value="the" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q20" block="b20">
+      <answer value="a" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/MM_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with a suitable word. Where a word is given after a gap, use it to form an adjective. Fill the other gaps with an appropriate article or possessive adjective.
+
+
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/MM_GW_007.jpg" mode="1" id="1001"/>
+  
+  <div id="gapfillText">
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">
+    <font color="#000000">I am writing to thank you for&#xA0;<input id="q1"/>&#xA0;<input id="q2"/>&#xA0;(inspire) series of articles by Paul Hodgson on&#xA0;<input id="q3"/>&#xA0;pressures of modern life. I only wish I had had&#xA0;<input id="q4"/>&#xA0;benefit of&#xA0;<input id="q5"/>&#xA0;<input id="q6"/>&#xA0;(value) insights ten years ago before&#xA0;<input id="q7"/>&#xA0;son was born as it might have saved me a few heartaches.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">I believe Hodgson's&#xA0;<input id="q8"/>&#xA0;(fascinate) articles are among&#xA0;<input id="q9"/>&#xA0;most&#xA0;<input id="q10"/>&#xA0;(inform) I have ever read. This&#xA0;<input id="q11"/>&#xA0;(impress) standard of journalism is sadly lacking in most newspapers today. Hodgson is not only&#xA0;<input id="q12"/>&#xA0;eloquent and&#xA0;<input id="q13"/>&#xA0;(power) writer, but it is also quite obvious that he undertakes painstaking research. I particularly enjoyed&#xA0;<input id="q14"/>&#xA0;article 'Life with television' in yesterday's edition of&#xA0;<input id="q15"/>&#xA0;newspaper. I found&#xA0;<input id="q16"/>&#xA0;ideas on&#xA0;<input id="q17"/>&#xA0;influence of television on family life both thought- provoking and extremely&#xA0;<input id="q18"/>&#xA0;(insight).</font>
+  </p>
+  <p align="left">I would very much like to see more of Hodgson's articles in&#xA0;<input id="q19"/> future, and sincerely hope that he will soon have&#xA0;<input id="q20"/>&#xA0;regular column in the Post.</p>
+  <p align="left">Yours faithfully,</p>
+  <p align="left">Dora Ninian</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  </div>
+</section>
+
+</body>
+</bento>
