@@ -15,26 +15,28 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-  <questions/>
 </script>
 
 </head>
 <body>
 	
 <header>
-	
-		
-		Practice for Part 2 of the IELTS Speaking test – Giving Reasons
+<div id="instruction">		
+		Practice for Section 2 of the IELTS Speaking test – Giving Reasons
+</div>
 </header>
 <section id="body"><img class="rightFloat" src="../media/WB_SP_002.jpg" mode="1" id="1001"/>
 <div id="presentation">
 <p>Your answers will be fuller and more interesting if you can support them with reasons and examples. In daily life, practise giving yourself reasons for what you do and what you think.</p>
-<p class="hangingIndent2">eg. Why am I buying this ice-cream?<br/>
-It's very hot today. <br/>
-I want to reward myself for working hard this morning. <br/>     It looks delicious on the TV ad.  <br/>    I'm rather thirsty.</p>
+
+<ul color="#7935AB">
+	<p color="#000000">For example:</p>
+	<li>Why am I buying this ice-cream?</li>
+	<li>It's very hot today.</li>
+	<li>I want to reward myself for working hard this morning.</li>
+	<li>It looks delicious on the TV ad.</li>
+	<li>I'm rather thirsty.</li>
+</ul>
 <p>Learn to&#xA0;<b>give reasons</b>&#xA0;for your statements and opinions.Learn phrases like:</p>- The reason I like ... is ... <br/>- The reason for this is ...<br/>- One of the important things about this is ...<br/>- What I like about ... is ...<br/>- Because of this, ...<br/>- This means that ...<br/>- As I see it, ...
 
 <h5><p>Pros and Cons &#x2013; Advantages and Disadvantages</p></h5>

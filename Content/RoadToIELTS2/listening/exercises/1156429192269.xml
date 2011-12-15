@@ -54,7 +54,9 @@
 <body>
 	
 <header>
-			Listen to the recording, which will play automatically, and follow the instructions. Complete the following summary. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+<div id="instruction">
+Listen to the recording, which will play automatically, and follow the instructions. Complete the following summary. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+</div>
 </header>
 	
 <section id="body">

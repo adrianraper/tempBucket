@@ -35,6 +35,7 @@
 			// Trigger loading of progress data for my summary chart
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY); 
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS); 
 		}
 		
 		override public function onRemove():void {
@@ -54,13 +55,19 @@
 			switch (note.getName()) {
 				case BBNotifications.PROGRESS_DATA_LOADED:
 					
+					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
-					// For this mediator, currently only expecting one progress type to come back
-					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						//view.setSummaryDataProvider(new XML(rs.dataProvider));
-						view.dataProvider = new XML(rs.dataProvider);
+					switch (rs.type) {
+						case Progress.PROGRESS_MY_DETAILS:
+							// How should this merge with menu - or can it just replace it?
+							var detailDataProvider:XML = new XML(rs.dataProvider);
+							break;
+						
+						case Progress.PROGRESS_MY_SUMMARY:
+							view.dataProvider = new XML(rs.dataProvider);
+							break;
+						default:
 					}
-					break;
 				
 			}
 		}

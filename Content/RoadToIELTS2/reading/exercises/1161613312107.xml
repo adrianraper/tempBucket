@@ -74,6 +74,7 @@
 </header>
 	
 <section id="body">
+  <img class="leftFloat" src="../media/RD_CLS_001.jpg" mode="1" id="1001"/>
 <div id="menandwomendropdown">
   <p id="q1Block">5.<tab/><select id="q1Select">
 	<option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;become increasingly bad-tempered in later life.</p>

@@ -50,10 +50,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">	
 		Questions 13-16. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+</div>		
 </header>
 	
 <section id="body">

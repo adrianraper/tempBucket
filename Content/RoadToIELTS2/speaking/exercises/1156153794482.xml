@@ -34,7 +34,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Now listen to the same section of Dimitris's interview. What aspects of his town does he mention? Fill the gaps.
+</div>
 </header>
 <section id="body">
 
@@ -51,7 +53,7 @@
 </section>
 
 <section id="fb1">
-  <p align="left">He isn't talking about construction he is taking about homes and offices.</p>
+  <p class="feedbacktext">He isn't talking about construction he is taking about homes and offices.</p>
 </section>
 
 </body>

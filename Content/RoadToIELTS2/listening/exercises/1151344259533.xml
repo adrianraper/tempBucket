@@ -61,10 +61,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">	
 		Questions 1-6. Listen to the recording, which will play automatically, and follow the instructions. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+</div>		
 </header>
 	
 <section id="body"><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/><audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1a.mp3" mode="4" id="1002"/>

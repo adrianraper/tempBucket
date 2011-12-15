@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="quiz" />
+	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+	
+<script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="false">
+        <feedback source="fb2"/>
+      </answer>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+<div id="instruction">
+	Beside each chart there are two icons. Click on each of these and decide which displays the same information as the main chart. When you have decided, click on Chart A or Chart B as appropriate.
+</div>
+</header>
+	
+<section id="body">
+
+<div class="wrapperbox">
+
+	<div class="questionbox">
+		<img class="imagebox1" src="../media/Unit01_Write_e2.4q.jpg" mode="1" id="1012"/>
+ 	</div>
+		
+	<div class="questionbox">
+	  	<img class="imagebox" src="../media/Unit01_Write_e2.4a.jpg" mode="16" id="1013"/>
+  		<tab/>
+		<img class="imagebox" src="../media/Unit01_Write_e2.4b.jpg" mode="16" id="1014"/>
+	</div>
+	<div class="questionbox"><tab/><tab/><tab/><tab/><a id="a1"><b>Chart A</b></a><tab/><tab/><tab/><tab/><tab/><tab/><tab/><tab/><a id="a2"><b>Chart B</b></a></div>	
+
+</div>
+
+</section>
+
+<section id="fb1">
+  <p class="feedbacktext">There are two pie charts here because in the bar chart on the left the percentages referred to two different age groups.</p>
+</section>
+
+<section id="fb2">
+  <p class="feedbacktext">The percentage in the bar chart on the left referred to two different age groups, for example 31 per cent of 16 to 24 year olds. This pie chart has mixed the age groups together to form a whole, so now the percentages don't refer to anything.</p>
+</section>
+
+<section id="rt2001">
+  <p align="left">The information for the writing task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart. </p>
+</section>
+
+</body>
+</bento>

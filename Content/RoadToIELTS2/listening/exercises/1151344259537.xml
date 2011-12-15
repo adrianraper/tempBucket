@@ -63,10 +63,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">
 		Questions 1-4. Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters A-G.
-		
+</div>		
 </header>
 	
 <section id="body">
@@ -79,44 +78,44 @@
 	
 	<ol id="targetspotting">
 		<list class="answerList">
-		<li><g id="t1">Fewer employees are needed.</g></li>
-    <li><g id="t2">It is an inexpensive form of publicity.</g></li>
-    <li><g id="t3">Small companies can compete with large international ones.</g></li>
-    <li><g id="t4">Companies can do business 24 hours a day, 365 days a year.</g></li>
-    <li><g id="t5">Far more potential customers have access to your products.</g></li>
-    <li><g id="t6">It is easier to adapt products and services to the market.</g></li>
-    <li><g id="t7">Information needed by customers can be kept up-to-date.</g></li></list>
+			<li><a id="t1">Fewer employees are needed.</a></li>
+    		<li><a id="t2">It is an inexpensive form of publicity.</a></li>
+    		<li><a id="t3">Small companies can compete with large international ones.</a></li>
+    		<li><a id="t4">Companies can do business 24 hours a day, 365 days a year.</a></li>
+    		<li><a id="t5">Far more potential customers have access to your products.</a></li>
+    		<li><a id="t6">It is easier to adapt products and services to the market.</a></li>
+    		<li><a id="t7">Information needed by customers can be kept up-to-date.</a></li></list>
 	</ol>
   
   
 </section>
 
 <section id="fb1">
-  <p align="left">A. The speaker says that you don't have to employ a professional programmer. In other words, you don't need to employ additional staff. She does not say anything about being able to reduce staff.</p>
+  <p class="feedbacktext">A. The speaker says that you don't have to employ a professional programmer. In other words, you don't need to employ additional staff. She does not say anything about being able to reduce staff.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">B. The speaker says that it's a 'comparatively low-cost way to advertise' and 'low-cost' has a similar meaning to 'inexpensive'.</p>
+  <p class="feedbacktext">B. The speaker says that it's a 'comparatively low-cost way to advertise' and 'low-cost' has a similar meaning to 'inexpensive'.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">C. The speaker says that the web sites of small companies need not be any different to those of larger companies and so they can be just as impressive. In other words, just as competitive.</p>
+  <p class="feedbacktext">C. The speaker says that the web sites of small companies need not be any different to those of larger companies and so they can be just as impressive. In other words, just as competitive.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">D. The speaker does not mention this.</p>
+  <p class="feedbacktext">D. The speaker does not mention this.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">E. The speaker says that a web site gives a much greater number of customers the possibility of buying the products and that people anywhere in the world can find out about these products.</p>
+  <p class="feedbacktext">E. The speaker says that a web site gives a much greater number of customers the possibility of buying the products and that people anywhere in the world can find out about these products.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">F. The speaker says its easier to revise and update the web pages not the products and services.</p>
+  <p class="feedbacktext">F. The speaker says its easier to revise and update the web pages not the products and services.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">G. The speaker says that you can quickly and easily change the information on your web site and keep customers informed. In other words keep them up-to-date.</p>
+  <p class="feedbacktext">G. The speaker says that you can quickly and easily change the information on your web site and keep customers informed. In other words keep them up-to-date.</p>
 </section>
 
 <section id="rt2001">

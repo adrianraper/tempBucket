@@ -59,7 +59,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Alexandra mentions 7 aspects of her home town. Listen to her and click on the things she talks about.
+</div>
 </header>
 	
 <section id="body">
@@ -68,23 +70,22 @@
   <video src="../media/Unit01_e6b.flv" mode="1" id="1003" autoPlay="false"/>
   </div>
   <div id="content">
-  <p>
-    <b>What does Alexandra mention?</b><br/>
-    <g id="t1">A.  markets</g><br/>
-    <g id="t2">B.  culture</g><br/>
-    <g id="t3">C.  age</g><br/>
-    <g id="t4">D.  population</g><br/>
-    <g id="t5">E.  size</g><br/>
-    <g id="t6">F.  location</g><br/>
-    <g id="t7">G.  castles or palaces</g><br/>
-    <g id="t8">H.  friendly people</g><br/>
-    <g id="t9">I.  parks and gardens</g><br/>
-    <g id="t10">J.  industries</g><br/>
-    <g id="t11">K.  interesting sites</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p><b>What does Alexandra mention?</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t1">markets</a></li>
+    		<li><a id="t2">culture</a></li>
+    		<li><a id="t3">age</a></li>
+    		<li><a id="t4">population</a></li>
+    		<li><a id="t5">size</a></li>
+    		<li><a id="t6">location</a></li>
+    		<li><a id="t7">castles or palaces</a></li>
+    		<li><a id="t8">friendly people</a></li>
+    		<li><a id="t9">parks and gardens</a></li>
+    		<li><a id="t10">industries</a></li>
+    		<li><a id="t11">interesting sites</a></li>
+		</list>
+	</ol>
   </div>
   </div>
 </section>

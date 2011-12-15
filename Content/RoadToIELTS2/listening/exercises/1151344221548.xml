@@ -51,10 +51,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Questions 8-12. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+</div>		
 </header>
 	
 <section id="body">

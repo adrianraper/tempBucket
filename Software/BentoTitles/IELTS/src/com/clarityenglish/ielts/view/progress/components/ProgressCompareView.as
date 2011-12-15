@@ -15,16 +15,13 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	public class ProgressCompareView extends BentoView {
 
-		// I don't need to refer to this skin part at all, so is there any point defining it?
-		//[SkinPart(required="true")]
-		//public var courseKeyComponent:SkinnableComponent;
-		
 		[SkinPart(required="true")]
 		public var compareChart:AnyChartFlex;
 		
 		//[Bindable]
 		private var _fullChartXML:XML;
 
+		// see ielts.css
 		private static const _writingBright:String = '#7DAB36';
 		private static const _writingDull:String = '#364A17';
 		private static const _readingBright:String = '#00A2C8';
@@ -45,8 +42,8 @@ package com.clarityenglish.ielts.view.progress.components {
 				  <data_plot_settings default_series_type="Bar" enable_3d_mode="true" z_padding="0.5" z_aspect="1" z_elevation="45" >
 					<bar_series group_padding="0.9" >
 						<tooltip_settings enabled="true">
-							<font render_as_html="True" family="Helvetica,Arial" size="12" />
-							<format>{"<p align='center'>{%Series.Name}<br/>{%YValue}{numDecimals:0}%</p>"}</format>
+							<font family="Helvetica,Arial" size="12" />
+							<format>{"{%SeriesName} {%YValue}{numDecimals:0}%"}</format>
 						</tooltip_settings>
 					  <label_settings enabled="false">
 						<background enabled="false" />
@@ -128,7 +125,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					<axes>
 							<y_axis>
 								<title rotation="90">
-									<font family="Verdana" size="10" />
+									<font family="Helvetica,Arial" bold="true" size="11" />
 									<text>Average score%</text>
 								</title>
 								<labels allow_overlap="true" show_first_label="true" show_last_label="true">
@@ -140,7 +137,7 @@ package com.clarityenglish.ielts.view.progress.components {
 							</y_axis>
 						<x_axis>
 						<labels>
-							<font size="16" family="Helvetica,Arial" />
+							<font size="14" family="Helvetica,Arial" bold="true" />
 						</labels>
 						<title enabled="false" />
 					  </x_axis>

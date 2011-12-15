@@ -72,10 +72,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Questions 5-10. Listen to the recording, which will play automatically, and follow the instructions. Complete the flow chart below. Write NO MORE THAN THREE WORDS for each answer.
-		
+</div>		
 </header>
 	
 <section id="body">

@@ -98,9 +98,9 @@
 <body>
 	
 <header>
-	
-		
-Listen to the recording, which will play automatically, and follow the instructions. For each set of questions, click on FOUR items A-G.		
+<div id="instruction">		
+Listen to the recording, which will play automatically, and follow the instructions. For each set of questions, click on FOUR items A-G.
+</div>
 </header>
 	
 <section id="body">
@@ -113,126 +113,99 @@ Listen to the recording, which will play automatically, and follow the instructi
   <p><b>What FOUR things does the guide say you can see on the first floor?</b></p>
 	<ol id="targetspotting">
 		<list class="answerList">
-		<li><g id="t1">old televisions</g></li>
-  		<li><g id="t2">TV personalities</g></li>
-		<li><g id="t3">news stories about TV stars</g></li>
-		<li><g id="t4">objects used in TV programmes</g></li>
-		<li><g id="t5">historical moments on screen</g></li>
-		<li><g id="t6">TV programmes being made</g></li>
-		<li><g id="t7">TV programmes</g></li></list>
+		<li><a id="t1">old televisions</a></li>
+  		<li><a id="t2">TV personalities</a></li>
+		<li><a id="t3">news stories about TV stars</a></li>
+		<li><a id="t4">objects used in TV programmes</a></li>
+		<li><a id="t5">historical moments on screen</a></li>
+		<li><a id="t6">TV programmes being made</a></li>
+		<li><a id="t7">TV programmes</a></li></list>
 	</ol>
   
   <h7>Questions 5-8 </h7>
   <p><b>What FOUR things does the guide say you can do on the second floor?</b></p>
   <ol id="targetspotting">
 	<list class="answerList">
-	<li><g id="t8">look at old radios</g></li>
-  	<li><g id="t9">look at radio parts</g></li>
-	<li><g id="t10">meet famous disc jockeys</g></li>
-	<li><g id="t11">see life-size models of radio personalities</g></li>
-  	<li><g id="t12">listen to radio broadcasts</g></li>
-  	<li><g id="t13">watch a radio drama as it is being aired</g></li>
-	<li><g id="t14">play a role in radio drama</g></li>
+	<li><a id="t8">look at old radios</a></li>
+  	<li><a id="t9">look at radio parts</a></li>
+	<li><a id="t10">meet famous disc jockeys</a></li>
+	<li><a id="t11">see life-size models of radio personalities</a></li>
+  	<li><a id="t12">listen to radio broadcasts</a></li>
+  	<li><a id="t13">watch a radio drama as it is being aired</a></li>
+	<li><a id="t14">play a role in radio drama</a></li>
   </list>
   </ol>
+  <p class="linespace"></p>
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <b>A. Correct. </b>
-  </p>
-  <p align="left">The guide says that you will see some of the first TV sets ever produced. In other words 'old televisions'.</p>
+  <p class="feedbacktext"><b>A. Correct.</b><br/>
+  The guide says that you will see some of the first TV sets ever produced. In other words 'old televisions'.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <b>B. Incorrect. </b>
-  </p>
-  <p align="left">The guide says that when you come to the hall of fame you can read newspaper clippings about famous television personalities, not see them in person.</p>
+  <p class="feedbacktext"><b>B. Incorrect.</b><br/>
+  The guide says that when you come to the hall of fame you can read newspaper clippings about famous television personalities, not see them in person.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <b>C. Correct. </b>
-  </p>
-  <p align="left">The guide says that you can read newspaper clippings about famous television personalities. Newspaper clippings are articles cut out of newspapers and the phrase 'famous television personalities' means the same as 'TV stars'.</p>
+  <p class="feedbacktext"><b>C. Correct.</b><br/>
+  The guide says that you can read newspaper clippings about famous television personalities. Newspaper clippings are articles cut out of newspapers and the phrase 'famous television personalities' means the same as 'TV stars'.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <b>D. Incorrect.</b>
-  </p>
-  <p align="left">The guide does not mention memorabilia or 'objects used in TV programme'.</p>
+  <p class="feedbacktext"><b>D. Incorrect.</b><br/>
+  The guide does not mention memorabilia or 'objects used in TV programme'.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <b>E. Correct. </b>
-  </p>
-  <p align="left">The guide says that you can relive some of the most memorable events in television history. In other words, 'historical moments'.</p>
+  <p class="feedbacktext"><b>E. Correct.</b><br/>
+  The guide says that you can relive some of the most memorable events in television history. In other words, 'historical moments'.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <b>F. Incorrect.</b>
-  </p>
-  <p align="left">The guide says you can watch programmes from the archives, not programmes in the making.</p>
+  <p class="feedbacktext"><b>F. Incorrect.</b><br/>
+  The guide says you can watch programmes from the archives, not programmes in the making.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <b>G. Correct. </b>
-  </p>
-  <p align="left">The guide says 'you can select a show from the last fifty years of television and sit back and watch it'. A TV show is the same as a TV programme. </p>
+  <p class="feedbacktext"><b>G. Correct.</b><br/>
+  The guide says 'you can select a show from the last fifty years of television and sit back and watch it'. A TV show is the same as a TV programme. </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <b>A. Incorrect. </b>
-  </p>
-  <p align="left">The guide does not say you can see old radios but the old kits of radio parts that you could buy to make a radio yourself.</p>
+  <p class="feedbacktext"><b>A. Incorrect.</b><br/>
+  The guide does not say you can see old radios but the old kits of radio parts that you could buy to make a radio yourself.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <b>B. Correct. </b>
-  </p>
-  <p align="left">The guide says you can see the kits that you could buy to make your own radios. A kit is a set of parts ready to be put together.</p>
+  <p class="feedbacktext"><b>B. Correct.</b><br/>
+  The guide says you can see the kits that you could buy to make your own radios. A kit is a set of parts ready to be put together.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">
-    <b>C. Incorrect. </b>
-  </p>
-  <p align="left">The guide says you will pass through a hall of radio fame where you can see waxworks of famous disc jockeys not meet them in person.</p>
+  <p class="feedbacktext"><b>C. Incorrect.</b><br/>
+  The guide says you will pass through a hall of radio fame where you can see waxworks of famous disc jockeys not meet them in person.</p>
 </section>
 
 <section id="fb11">
-  <p align="left">
-    <b>D. Correct. </b>
-  </p>
-  <p align="left">The guide says that you can see 'waxworks of famous disc jockeys'. Waxworks are models and disc jockeys are radio personalities.</p>
+  <p class="feedbacktext"><b>D. Correct.</b><br/>
+  The guide says that you can see 'waxworks of famous disc jockeys'. Waxworks are models and disc jockeys are radio personalities.</p>
 </section>
 
 <section id="fb12">
-  <p align="left">
-    <b>E. Correct. </b>
-  </p>
-  <p align="left">The guide says you can listen to programmes in the Listening Room. A radio programme is the same as a radio broadcast.</p>
+  <p class="feedbacktext"><b>E. Correct.</b><br/>
+  The guide says you can listen to programmes in the Listening Room. A radio programme is the same as a radio broadcast.</p>
 </section>
 
 <section id="fb13">
-  <p align="left">
-    <b>F. Correct. </b>
-  </p>
-  <p align="left">The guide says that you can watch 'live broadcasts in progress'. In other words, you can watch programmes as they are being aired.</p>
+  <p class="feedbacktext"><b>F. Correct.</b><br/>
+  The guide says that you can watch 'live broadcasts in progress'. In other words, you can watch programmes as they are being aired.</p>
 </section>
 
 <section id="fb14">
-  <p align="left">
-    <b>G. Incorrect. </b>
-  </p>
-  <p align="left">The guide doesn't mention radio dramas. He says you can watch live broadcasts but not take part in them.</p>
+  <p class="feedbacktext"><b>G. Incorrect.</b><br/>
+  The guide doesn't mention radio dramas. He says you can watch live broadcasts but not take part in them.</p>
 </section>
 
 </body>

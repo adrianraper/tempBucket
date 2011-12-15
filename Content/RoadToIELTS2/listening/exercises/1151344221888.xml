@@ -22,9 +22,15 @@
 
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="the main points" correct="true"/>
-      <answer value="most important points" correct="true"/>
-      <answer value="the important points" correct="true"/>
+      <answer value="the main points" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+      <answer value="most important points" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+      <answer value="the important points" correct="true">
+        <feedback source="fb1"/>
+      </answer>
       <answer value="the key points" correct="true">
         <feedback source="fb1"/>
       </answer>
@@ -38,10 +44,18 @@
       <answer value="five and fifteen" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="discuss it" correct="true"/>
-      <answer value="discuss topic" correct="true"/>
-      <answer value="discuss the topic" correct="true"/>
-      <answer value="talk about it" correct="true"/>
+      <answer value="discuss it" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+      <answer value="discuss topic" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+      <answer value="discuss the topic" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+      <answer value="talk about it" correct="true">
+        <feedback source="fb3"/>
+      </answer>
       <answer value="talk about topic" correct="true">
         <feedback source="fb3"/>
       </answer>
@@ -51,7 +65,9 @@
       <answer value="understand the arguments" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="any study problems" correct="true"/>
+      <answer value="any study problems" correct="true">
+	          <feedback source="fb5"/>
+      </answer>
       <answer value="their study problems" correct="true">
         <feedback source="fb5"/>
       </answer>
@@ -78,10 +94,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Questions 1-8. Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+</div>		
 </header>
 	
 <section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/>
@@ -115,21 +130,15 @@
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">1. Dr Grant says that one of the aims of the lectures is to help students focus on the main points of the course. 'Help students focus' means the same as 'draw their attention'.</font>
-  </p>
+  <p class="feedbacktext">1. Dr Grant says that one of the aims of the lectures is to help students focus on the main points of the course. 'Help students focus' means the same as 'draw their attention'.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">3. Dr Grant says they have a group discussion. The gap required a verb not a noun so you had to change the form.</font>
-  </p>
+  <p class="feedbacktext">3. Dr Grant says they have a group discussion. The gap required a verb not a noun so you had to change the form.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">5. Dr Grant says that tutorials give students 'assistance' with study problems and 'assistance' means the same as 'help'.</font>
-  </p>
+  <p class="feedbacktext">5. Dr Grant says that tutorials give students 'assistance' with study problems and 'assistance' means the same as 'help'.</p>
 </section>
 
 

@@ -54,10 +54,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Questions 7-9. Listen to the recording, which will play automatically, and follow the instructions. Click THREE letters A-F.
-		
+</div>		
 </header>
 	
 <section id="body">
@@ -69,29 +68,29 @@
 	<p><b>7-9  What is wrong with the washing machine?</b></p>
 	 <ol id="targetspotting">
 		<list class="answerList">
-		<li><g id="t1">It leaks.</g></li>
-	    <li><g id="t2">One of the hoses is broken.</g></li>
-    	<li><g id="t3">It does not rinse the clothes.</g></li>
-    	<li><g id="t4">The dial does not move automatically.</g></li>
-    	<li><g id="t5">It does not spin the clothes.</g></li>
-    	<li><g id="t6">It is too noisy.</g></li></list>
+		<li><a id="t1">It leaks.</a></li>
+	    <li><a id="t2">One of the hoses is broken.</a></li>
+    	<li><a id="t3">It does not rinse the clothes.</a></li>
+    	<li><a id="t4">The dial does not move automatically.</a></li>
+    	<li><a id="t5">It does not spin the clothes.</a></li>
+    	<li><a id="t6">It is too noisy.</a></li></list>
   </ol>
  </section>
 
 <section id="fb2">
-  <p align="left">B. Jane mentions that one of the hoses might not be connected properly. She doesn't say that it is broken.</p>
+  <p class="feedbacktext">B. Jane mentions that one of the hoses might not be connected properly. She doesn't say that it is broken.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">C. Jane says the machines gets as far as rinsing and then gets stuck. So it does rinse the clothes. </p>
+  <p class="feedbacktext">C. Jane says the machines gets as far as rinsing and then gets stuck. So it does rinse the clothes. </p>
 </section>
 
 <section id="fb4">
-  <p align="left">D. Jane says the machine gets as far as rinsing and then gets stuck and she has to move the dial herself.</p>
+  <p class="feedbacktext">D. Jane says the machine gets as far as rinsing and then gets stuck and she has to move the dial herself.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">E. Jane says she has to move the dial for the machine to spin the clothes but the machine still does the spinning.</p>
+  <p class="feedbacktext">E. Jane says she has to move the dial for the machine to spin the clothes but the machine still does the spinning.</p>
 </section>
 
 </body>

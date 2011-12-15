@@ -60,10 +60,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Questions 9-12. Click to choose the appropriate answer.
-		
+</div>
 </header>
 	
 <section id="body">

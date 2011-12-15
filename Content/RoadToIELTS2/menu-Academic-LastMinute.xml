@@ -207,7 +207,7 @@
 				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml" enabledFlag="3">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172405" group="2" caption="Practice for Part 2" href="speaking/exercises/1151344172405.xml" enabledFlag="3">
+				<exercise id="1151344172405" group="2" caption="Practice for Section 2" href="speaking/exercises/1151344172405.xml" enabledFlag="3">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1151344172961" group="2" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml" enabledFlag="3">
@@ -225,7 +225,7 @@
 				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml" enabledFlag="3">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253123" group="3" caption="Tips for Part 3" href="speaking/exercises/1156181253123.xml" enabledFlag="3">
+				<exercise id="1156181253123" group="3" caption="Tips for Section 3" href="speaking/exercises/1156181253123.xml" enabledFlag="3">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1156181253456" group="3" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml" enabledFlag="3">
@@ -275,7 +275,16 @@
 				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml" thumbnail="writing/thumbnails/Writing_statchart.jpg" enabledFlag="3">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156153794786" group="1" caption="Understanding static charts" href="writing/exercises/1156153794786.xml" enabledFlag="3">
+				<exercise id="1156153794787" group="1" caption="Understanding static charts (1)" href="writing/exercises/1156153794787.xml" enabledFlag="3">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="3">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="3">
+				  <!--T/F-->
+				</exercise>
+				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="3">
 				  <!--T/F-->
 				</exercise>
 				<exercise id="1156153794241" group="1" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml" enabledFlag="3">

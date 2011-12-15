@@ -22,59 +22,91 @@
 
   <questions>
    <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="false"/>
-      <answer source="a2" correct="true"/>
+      <answer source="a1" correct="false">
+	  	<feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="true">
+	  	<feedback source="fb1"/>
+      </answer>
       <answer source="a3" correct="false">
-	  <feedback source="fb1"/>
+	  	<feedback source="fb1"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q2" block="b2">
-      <answer source="a4" correct="true"/>
-      <answer source="a5" correct="false"/>
+      <answer source="a4" correct="true">
+	  	<feedback source="fb2"/>
+      </answer>
+      <answer source="a5" correct="false">
+	  	<feedback source="fb2"/>
+      </answer>
       <answer source="a6" correct="false">
-	  <feedback source="fb2"/>
+	  	<feedback source="fb2"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q3" block="b3">
-      <answer source="a7" correct="false"/>
-      <answer source="a8" correct="false"/>
+      <answer source="a7" correct="false">
+	  	<feedback source="fb3"/>
+      </answer>
+      <answer source="a8" correct="false">
+	  	<feedback source="fb3"/>
+      </answer>
       <answer source="a9" correct="true">
-	  <feedback source="fb3"/>
+	  	<feedback source="fb3"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q4" block="b4">
-      <answer source="a10" correct="false"/>
-      <answer source="a11" correct="true"/>
+      <answer source="a10" correct="false">
+	  	<feedback source="fb4"/>
+      </answer>
+      <answer source="a11" correct="true">
+	  	<feedback source="fb4"/>
+      </answer>
       <answer source="a12" correct="false">
-	  <feedback source="fb4"/>
+	  	<feedback source="fb4"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q5" block="b5">
-      <answer source="a13" correct="false"/>
-      <answer source="a14" correct="false"/>
+      <answer source="a13" correct="false">
+	  	<feedback source="fb5"/>
+      </answer>
+      <answer source="a14" correct="false">
+	  	<feedback source="fb5"/>
+      </answer>
       <answer source="a15" correct="true">
-	  <feedback source="fb5"/>
+	  	<feedback source="fb5"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q6" block="b6">
-      <answer source="a16" correct="false"/>
-      <answer source="a17" correct="false"/>
+      <answer source="a16" correct="false">
+	  	<feedback source="fb6"/>
+      </answer>
+      <answer source="a17" correct="false">
+	  	<feedback source="fb6"/>
+      </answer>
       <answer source="a18" correct="true">
-	  <feedback source="fb6"/>
+	  	<feedback source="fb6"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q7" block="b7">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="false"/>
+      <answer source="a19" correct="true">
+	  	<feedback source="fb7"/>
+      </answer>	  
+      <answer source="a20" correct="false">
+	  	<feedback source="fb7"/>
+      </answer>
       <answer source="a21" correct="false">
-	  <feedback source="fb7"/>
+	  	<feedback source="fb7"/>
       </answer>
     </DropDownQuestion>
 	 <DropDownQuestion source="q8" block="b8">
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="false"/>
+      <answer source="a22" correct="false">
+	  	<feedback source="fb8"/>
+      </answer>
+      <answer source="a23" correct="false">
+	  	<feedback source="fb8"/>
+      </answer>
       <answer source="a24" correct="true">
-	  <feedback source="fb8"/>
+	  	<feedback source="fb8"/>
       </answer>
     </DropDownQuestion>
   </questions>
@@ -84,10 +116,9 @@
 <body>
 	
 <header>
-	
-		
-		Listen to the recording, which will play automatically, and follow the instructions. According to the speaker, when did the following take place? For each question, click to choose the appropriate answer.
-		
+<div id="instruction">
+Listen to the recording, which will play automatically, and follow the instructions. According to the speaker, when did the following take place? For each question, click to choose the appropriate answer.
+</div>		
 </header>
 	
 <section id="body">
@@ -136,35 +167,35 @@
 </section>
 
 <section id="fb1">
-  <p align="left">1. The lecturer says that audiences shrank which means the same as 'cinema attendance fell', reaching an all-time low in 1984.</p>
+  <p class="feedbacktext">1. The lecturer says that audiences shrank which means the same as 'cinema attendance fell', reaching an all-time low in 1984.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. The lecturer says that during this period 'cinema attendance was at its height' which means the same as reaching a peak.</p>
+  <p class="feedbacktext">2. The lecturer says that during this period 'cinema attendance was at its height' which means the same as reaching a peak.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. The lecturer says that the first multiplex cinema, which he describes as having five or more screens, was opened in 1985.</p>
+  <p class="feedbacktext">3. The lecturer says that the first multiplex cinema, which he describes as having five or more screens, was opened in 1985.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. The lecturer says that the films during this period featured explicit sex and were designed to appeal to young adults, particularly males.</p>
+  <p class="feedbacktext">4. The lecturer says that the films during this period featured explicit sex and were designed to appeal to young adults, particularly males.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. The lecturer says that multiplex cinemas were constructed outside city areas. If you were not sure when the multiplex cinemas were built, you were given another clue as he says they were successful for similar reasons to that of the cinemas in the 1930s and 40s.</p>
+  <p class="feedbacktext">5. The lecturer says that multiplex cinemas were constructed outside city areas. If you were not sure when the multiplex cinemas were built, you were given another clue as he says they were successful for similar reasons to that of the cinemas in the 1930s and 40s.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. The lecturer says that multiplex cinemas of the 1990s were often constructed in shopping complexes with free parking.</p>
+  <p class="feedbacktext">6. The lecturer says that multiplex cinemas of the 1990s were often constructed in shopping complexes with free parking.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">7. The lecturer says that the super cinemas of the 1930s and 1940s were located on bus routes which means they were within easy reach of public transport.</p>
+  <p class="feedbacktext">7. The lecturer says that the super cinemas of the 1930s and 1940s were located on bus routes which means they were within easy reach of public transport.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">8. The lecturer states that in recent decades an attempt has been made to screen films aimed specifically at children, which means the same as targetting younger audiences. </p>
+  <p class="feedbacktext">8. The lecturer states that in recent decades an attempt has been made to screen films aimed specifically at children, which means the same as targetting younger audiences. </p>
 </section>
 
 

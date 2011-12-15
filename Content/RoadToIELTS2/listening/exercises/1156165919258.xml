@@ -22,7 +22,9 @@
 
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="do the homework" correct="true"/>
+      <answer value="do the homework" correct="true">
+	     <feedback source="fb1"/>
+      </answer>
       <answer value="do your homework" correct="true">
         <feedback source="fb1"/>
       </answer>
@@ -33,43 +35,52 @@
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="videos" correct="true"/>
+      <answer value="videos" correct="true">
+        <feedback source="fb3"/>
+      </answer>
       <answer value="video cassettes" correct="true">
         <feedback source="fb3"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="Make friends" correct="true"/>
-      <answer value="make friends" correct="true"/>
-      <answer value="Spend your time" correct="true"/>
-      <answer value="spend your time" correct="true"/>
-      <answer value="Spend some time" correct="true"/>
-      <answer value="spend some time" correct="true"/>
-      <answer value="Spend more time" correct="true"/>
-      <answer value="spend more time" correct="true">
+      <answer value="Make friends" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+      <answer value="Spend your time" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+      <answer value="Spend some time" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+      <answer value="Spend more time" correct="true">
         <feedback source="fb4"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="conversation club" correct="true"/>
+      <answer value="conversation club" correct="true">
+        <feedback source="fb5"/>
+      </answer>
       <answer value="English conversation club" correct="true">
         <feedback source="fb5"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
-      <answer value="list" correct="true"/>
+      <answer value="list" correct="true">
+        <feedback source="fb6"/>
+      </answer>
       <answer value="book list" correct="true">
         <feedback source="fb6"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="Test yourself" correct="true"/>
-      <answer value="test yourself" correct="true">
+      <answer value="Test yourself" correct="true">
         <feedback source="fb7"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
-      <answer value="news" correct="true"/>
+      <answer value="news" correct="true">
+        <feedback source="fb8"/>
+      </answer>	  
       <answer value="the news" correct="true">
         <feedback source="fb8"/>
       </answer>
@@ -81,10 +92,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS for each answer.
-		
+</div>		
 </header>
 	
 <section id="body">
@@ -96,7 +106,9 @@
 <ul class="bulletList">
 	<li>Make sure you (1)&#xA0;<input id="q1"/>.</li>
 	<li>Make use of the (2)&#xA0;<input id="q2"/>.</li>
-	<li>Go to the cinema.- Watch television.- Borrow (3)&#xA0;<input id="q3"/>.</li>
+	<li>Go to the cinema.</li>
+	<li>Watch television.</li>
+	<li>Borrow (3)&#xA0;<input id="q3"/>.</li>
 	<li>(4)&#xA0;<input id="q4"/>&#xA0;with people of other nationalities.</li>
 	<li>Join clubs.</li>
 	<li>Start your own (5)&#xA0;<input id="q5"/>.<br/></li>
@@ -124,37 +136,35 @@
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font color="#000000">1. The speaker says 'Firstly' followed by 'your homework! Please do it!'</font>
-  </p>
+  <p class="feedbacktext">1. The speaker says 'Firstly' followed by 'your homework! Please do it!'</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. The speaker says 'Secondly, the library. Do make the most of it.'</p>
+  <p class="feedbacktext">2. The speaker says 'Secondly, the library. Do make the most of it.'</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. The speaker says 'take out videos' and 'take out' is similar in meaning to 'borrow'.</p>
+  <p class="feedbacktext">3. The speaker says 'take out videos' and 'take out' is similar in meaning to 'borrow'.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. You have to listen carefully after the speaker says 'Make friends' because the exact words are not given.</p>
+  <p class="feedbacktext">4. You have to listen carefully after the speaker says 'Make friends' because the exact words are not given.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. The speaker says 'set up your own conversation club' and 'set up' has a similar meaning to 'start'.</p>
+  <p class="feedbacktext">5. The speaker says 'set up your own conversation club' and 'set up' has a similar meaning to 'start'.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. The speaker says 'choose one of the grammar books from the list' and 'choose' has a similar meaning to 'select'.</p>
+  <p class="feedbacktext">6. The speaker says 'choose one of the grammar books from the list' and 'choose' has a similar meaning to 'select'.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">7. The speaker says 'whenever you're travelling on a bus or sitting around waiting' which means the same as 'having time to kill', so you should have been prepared to hear his suggestion.</p>
+  <p class="feedbacktext">7. The speaker says 'whenever you're travelling on a bus or sitting around waiting' which means the same as 'having time to kill', so you should have been prepared to hear his suggestion.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">8. The speaker says you can 'record' the news which means the same as 'tape' the news.</p>
+  <p class="feedbacktext">8. The speaker says you can 'record' the news which means the same as 'tape' the news.</p>
 </section>
 
 </body>

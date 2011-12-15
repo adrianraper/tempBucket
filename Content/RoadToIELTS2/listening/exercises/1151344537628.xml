@@ -20,8 +20,12 @@
 
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="7" correct="true"/>
-      <answer value="07" correct="true"/>
+      <answer value="7" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+      <answer value="07" correct="true">
+        <feedback source="fb1"/>
+      </answer>
       <answer value="7th" correct="true">
         <feedback source="fb1"/>
       </answer>
@@ -31,7 +35,9 @@
       <answer value="eight" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="circle" correct="true"/>
+      <answer value="circle" correct="true">
+        <feedback source="fb3"/>
+      </answer>
       <answer value="the circle" correct="true">
         <feedback source="fb3"/>
       </answer>
@@ -63,10 +69,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+</div>		
 </header>
 	
 <section id="body">
@@ -98,11 +103,11 @@
 </section>
 
 <section id="fb1">
-  <p align="left">DEFAULT The 7th is his second choice but the date he asked for first was unavailable.</p>
+  <p class="feedbacktext">The 7th is his second choice but the date he asked for first was unavailable.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">DEFAULT He says 'I'll go for the circle' meaning he would like tickets in the circle.</p>
+  <p class="feedbacktext">He says 'I'll go for the circle' meaning he would like tickets in the circle.</p>
 </section>
 
 </body>
