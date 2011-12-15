@@ -65,6 +65,11 @@ global {
 	listeningColorDark: #7A3100;
 }
 
+/* Account view styles */
+account|AccountView #saveChangesButton {
+	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
+}
+
 /* Login view styles */
 login|LoginView {
 	skinClass: ClassReference("skins.ielts.LoginSkin");
@@ -78,6 +83,10 @@ login|LoginView s|TextInput {
 
 login|LoginView #loginButton {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
+
+login|LoginView #quickStartButton {
+	skinClass: ClassReference("skins.ielts.login.QuickStartButtonSkin");
 }
 
 /* Title view styles */

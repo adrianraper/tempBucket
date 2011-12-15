@@ -9,32 +9,37 @@
 	
 	<s:VGroup width="100%" top="18">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
-		<s:RichText text="IELTS preparation and practice" color="0x00426B" fontFamily="HelveticaNeueLtStd" fontSize="15" />
+		<s:RichText text="IELTS preparation and practice" color="0x00426B" fontFamily="HelveticaNeueLtStd" fontSize="15"  />
 	</s:VGroup>
 	
 	<s:VGroup width="100%" height="100%" top="120" left="30"  >
 		<s:Label text="User login" fontFamily="HelveticaNeueLtStd" fontSize="20" />
-		<s:Spacer height="3" />
-		<s:Rect left="100" right="0" top="200" bottom="0" width="100%" height="2" >
+		<s:Rect left="100" right="0" top="0" bottom="0" width="300" height="1" >
 			<s:fill>
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
+		<s:Spacer height="3" />
 
-		<s:Label text="Login ID:" />
-		<s:TextInput id="nameInput" />
+		<s:Label text="Login ID:" fontWeight="bold" />
+		<s:TextInput id="nameInput" width="200" />
 		<s:Label text="This is the ID given to you to start Road to IELTS." />
 		<s:Label text="It looks like this: 1280-8666-1111." color="#666666"/>
+		<s:Spacer height="5" />
+		<s:Label text="Password:" fontWeight="bold" />
+		<s:TextInput id="passwordInput" displayAsPassword="true" width="200"/>
+		<s:Group>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/forgotpassword.png')"/>
+		<s:Label id="lostYourPasswordButton" text="Lost your password?" color="#666666" paddingTop="6" paddingLeft="27" />
+		</s:Group>
 		<s:Spacer height="3" />
-		<s:Label text="Password:" />
-		<s:TextInput id="passwordInput" displayAsPassword="true" />
-		<s:Label id="lostYourPasswordButton" text="Lost your password?" textDecoration="underline"/>
-		<s:Spacer height="3" />
-		<s:Button id="loginButton" label="Login" />
+		<s:HGroup>
 		<s:Button id="quickStartButton" label="Quick start" />
+		<s:Button id="loginButton" label="Login" />
+		</s:HGroup>
 		
 	</s:VGroup>
 	
-	<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="70" right="30" />
+	<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="90" right="70" />
 	
 </s:Skin>

@@ -10,8 +10,8 @@
 		<![CDATA[		
 		]]>
 	</fx:Script>
-			
-				<s:Rect top="0" left="0" height="40" percentWidth="70" radiusX="8" radiusY="8" >
+			<s:Group width="80%">
+				<s:Rect top="0" left="0" height="40" percentWidth="100" radiusX="8" radiusY="8" >
 					<s:fill>
 						<s:SolidColor id="backColour" color="{getStyle('ColorDark')}" />
 					</s:fill>
@@ -24,7 +24,7 @@
 				</s:Rect>
 	</s:VGroup>
 				<s:Label id="commentLabel" color="#303030" fontSize="12" width="200" paddingTop="44" />
-
+			</s:Group>
 
 	
 </s:Group>
