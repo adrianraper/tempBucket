@@ -72,6 +72,7 @@
     <s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4">
         <s:fill>
 			<s:LinearGradient rotation="90">
+
 				<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" ratio="0.33" />
 				<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" ratio="0.66"/>
 			</s:LinearGradient>
@@ -107,8 +108,8 @@
     <s:Rect id="highlightStroke" left="0" right="0" top="0" bottom="0" radiusX="4" excludeFrom="down">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0xFFFFFF" alpha.over="0.22" />
-                <s:GradientEntry color="0xD8D8D8" alpha.over="0.22" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha.over="0.22" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha.over="0.22" />
             </s:LinearGradientStroke>
         </s:stroke>
     </s:Rect>
@@ -118,11 +119,11 @@
     <s:Rect id="hldownstroke1" left="0" right="0" top="0" bottom="0" radiusX="4" includeIn="down">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
-                <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.001" />
-                <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.0011" />
-                <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.965" />
-                <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.9651" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.25" ratio="0.0" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.25" ratio="0.001" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.07" ratio="0.0011" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.07" ratio="0.965" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.00" ratio="0.9651" />
             </s:LinearGradientStroke>
         </s:stroke>
     </s:Rect>
@@ -130,8 +131,8 @@
     <s:Rect id="hldownstroke2" left="0" right="0" top="0" bottom="0" radiusX="4" includeIn="down">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
-                <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.0001" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.09" ratio="0.0" />
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" alpha="0.00" ratio="0.0001" />
             </s:LinearGradientStroke>
         </s:stroke>
     </s:Rect>
@@ -141,10 +142,10 @@
     <s:Rect id="border" left="0" right="0" top="0" bottom="0" width="69" height="20" radiusX="4">
         <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
-                <s:GradientEntry color="0x0066A6" 
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" 
                                  alpha="0.5625"
                                  alpha.down="0.6375" />
-                <s:GradientEntry color="0x00426B" 
+                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" 
                                  alpha="0.75" 
                                  alpha.down="0.85" />
             </s:LinearGradientStroke>

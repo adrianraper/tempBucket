@@ -20,24 +20,21 @@
 	<s:layout>
 		<s:HorizontalLayout />
 	</s:layout>
-		
+
+	<s:SWFLoader width="21" height="21" left="100"
+				 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" />
+	<s:Button id="readingCourseButton" label="Reading" width="90" />
+
+	<s:SWFLoader width="21" height="21" left="100"
+				 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')" />
+	<s:Button id="listeningCourseButton" label="Listening" width="90"/>
+
+	<s:SWFLoader width="21" height="21" left="100"
+					 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')" />				 
+	<s:Button id="speakingCourseButton" label="Speaking" width="90" />
+						
 	<s:SWFLoader width="21" height="21" left="100"
 				 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" />
-	<s:Button id="writingCourseButton" label="Writing" width="90"
-			  color.down="#DD143F"
-			  color="#000000"/>
-	
-	<s:SWFLoader width="21" height="21" left="100"
-					 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')" />
-					 
-	<s:Button id="speakingCourseButton" label="Speaking" width="90" />
-			
-	<s:SWFLoader width="21" height="21" left="100"
-						 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" />
-	<s:Button id="readingCourseButton" label="Reading" width="90" />
-						 
-	<s:SWFLoader width="21" height="21" left="100"
-					 source.up="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')" />
-	<s:Button id="listeningCourseButton" label="Listening" width="90"/>
+	<s:Button id="writingCourseButton" label="Writing" width="90"/>
 
 </s:Group>

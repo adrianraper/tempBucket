@@ -14,6 +14,7 @@
 			
 			import spark.events.IndexChangeEvent;
 			import spark.events.ListEvent;
+			import com.clarityenglish.ielts.view.zone.ZoneView;
 
 			protected function onExerciseListItemRollOver(event:ListEvent):void {
 				// On rollover change the thumbnail and difficulty renderers

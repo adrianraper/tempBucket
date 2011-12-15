@@ -13,15 +13,19 @@
 		<s:HorizontalLayout paddingTop="5"  />
 	</s:layout>
 	
-	<s:VGroup paddingTop="37" width="100%">
+	<s:VGroup paddingTop="20" width="100%">
 		<s:Label text="Your progress so far: an overview" fontSize="20" width="100%" />
 		<s:Spacer height="3" />
 		<s:Label text="The chart below shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." fontSize="12" width="84%"/>	
 		
-		<s:VGroup width="100%">
+		<s:VGroup width="100%" paddingTop="15">
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="reading" id="readingCoverageBar" width="85%" />
+			<s:Spacer height="6"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="listening" id="listeningCoverageBar" width="85%" />
+			<s:Spacer height="6"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="speaking" id="speakingCoverageBar" width="85%" />
+			<s:Spacer height="6"/>
+
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="writing" id="writingCoverageBar" width="85%" />
 		</s:VGroup>
 		

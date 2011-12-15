@@ -129,7 +129,8 @@
             target.bottomLeftRadiusX = includeBottom ? cornerRadius : 0;
             target.bottomRightRadiusX = includeBottom ? cornerRadius : 0;
         }
-        
+			import com.clarityenglish.ielts.view.zone.ZoneView;
+
         private var cornerRadius:Number;
 		]]>
     </fx:Script>
@@ -187,8 +188,8 @@
         <s:Rect id="background" left="1" top="1" right="1" bottom="1">
 			<s:fill>
 				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0x00A2C8"/>
-					<s:GradientEntry color="0x035063"/>
+					<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
+					<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"/>
 				</s:LinearGradient>
 			</s:fill>
         </s:Rect>
@@ -206,8 +207,8 @@
                 <s:Rect id="tbFill" left="0" right="0" top="0" bottom="1" height="40">
                     <s:fill>
                         <s:LinearGradient rotation="90">
-                            <s:GradientEntry color="0x00A2C8"/>
-                            <s:GradientEntry color="0x0098BC"/>
+                            <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
+                            <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
                         </s:LinearGradient>
                     </s:fill>
                 </s:Rect>
@@ -265,8 +266,8 @@
                     <s:Rect left="1" right="1" top="2" bottom="1">
                         <s:fill>
                             <s:LinearGradient rotation="90">
-                                <s:GradientEntry color="0xEDEDED"/>
-                                <s:GradientEntry color="0xCDCDCD"/>
+                                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
+                                <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
                             </s:LinearGradient>
                         </s:fill>
                     </s:Rect>

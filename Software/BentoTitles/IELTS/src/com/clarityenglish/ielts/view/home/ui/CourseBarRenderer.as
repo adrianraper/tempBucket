@@ -21,7 +21,7 @@ package com.clarityenglish.ielts.view.home.ui {
 		
 		[SkinPart(required="true")]
 		public var commentLabel:Label;
-		
+			
 		[SkinPart(required="true")]
 		public var overallProgressRect:Rect;
 
@@ -32,6 +32,7 @@ package com.clarityenglish.ielts.view.home.ui {
 		public var backColour:SolidColor;
 		
 		public var courseClass:String;
+		
 	
 		public function set dataProvider(value:XML):void {
 			
@@ -39,10 +40,9 @@ package com.clarityenglish.ielts.view.home.ui {
 				var course:XML = value.course.(@["class"]==courseClass)[0];
 				solidColour.color = getStyle(courseClass + "Color");
 				backColour.color = getStyle(courseClass + "ColorDark");
-				commentLabel.text = properCase(courseClass);
-				
+				commentLabel.text = courseClass + " - overall coverage " + new Number(course.@coverage) + "%";
 				var percentValue:Number = new Number(course.@coverage);
-				
+							
 				// Tween it
 				Tweener.removeTweens(overallProgressRect, percentWidth);
 				Tweener.addTween(overallProgressRect, {percentWidth:percentValue, time:2, delay:0, transition:"easeOutSine"});

@@ -2,6 +2,8 @@ package com.clarityenglish.ielts.view.zone.ui {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.zone.ExerciseEvent;
 	import com.clarityenglish.ielts.view.zone.ui.DifficultyRenderer;
+	import com.clarityenglish.ielts.view.zone.ZoneView;
+
 	
 	import flash.events.MouseEvent;
 	
@@ -38,6 +40,9 @@ package com.clarityenglish.ielts.view.zone.ui {
 		[Bindable]
 		public var href:Href;
 		
+		[Bindable]
+		public static var horribleHackCourseClass:String;
+
 		[Bindable]
 		public var exercises:XMLList;
 		

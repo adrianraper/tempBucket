@@ -56,7 +56,8 @@ in accordance with the terms of the license agreement accompanying it.
 			useChromeColor = true;
 			super.initializationComplete();
 		}
-		
+		import com.clarityenglish.ielts.view.zone.ZoneView;
+
 	</fx:Script>
 	
 	<!-- states -->
@@ -77,10 +78,10 @@ in accordance with the terms of the license agreement accompanying it.
 		<s:Rect id="fill" left="0" right="5" top="10" bottom="0" radiusX="6" radiusY="6" height="50">
 			<s:fill>
 				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0x00859B"
-									 color.selectedUpStates="0x003C4A"
-									 color.overStates="0x003C4A" 
-									 color.downStates="0x003C4A"/>
+					<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"
+									 color.selectedUpStates="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"
+									 color.overStates="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" 
+									 color.downStates="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"/>
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>

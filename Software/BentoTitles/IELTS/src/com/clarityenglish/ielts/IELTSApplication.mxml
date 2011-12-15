@@ -95,7 +95,10 @@
 	
 	<!-- Body -->
 	<s:Group left="20" right="20" top="10" bottom="{titleView.skin.currentState != 'exercise' ? 35 : 0}">
-		<s:Panel title="loading..." width="100" height="100" includeIn="loading" horizontalCenter="0" verticalCenter="0" />	
+		<s:Panel title="loading..." width="100" height="100" includeIn="loading" horizontalCenter="0" verticalCenter="0">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/loading.swf')" includeIn="loading" verticalAlign="middle" horizontalAlign="center" />
+		</s:Panel> 
+				
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
 		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
@@ -110,6 +113,7 @@
 		</s:Rect>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="120" top="9" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="25" top="12" />
-	</s:Group>
+		<s:Label text="Data © The British Council 2006-2011. Software © Clarity Language Consultants Ltd, 2011. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="17" paddingLeft="14" />
+</s:Group>
 	
 </bento:BentoApplication>
