@@ -80,6 +80,8 @@ package com.clarityenglish.textLayout.components {
 		private static var soundChannel:SoundChannel;
 		
 		public function AudioPlayer() {
+			super();
+			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
 			scrubBarTimer = new Timer(500, 0);

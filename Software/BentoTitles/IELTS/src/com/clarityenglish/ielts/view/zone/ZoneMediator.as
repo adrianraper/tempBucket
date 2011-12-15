@@ -12,6 +12,8 @@
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.events.FlexEvent;
+	
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.net.DynamicStreamingItem;

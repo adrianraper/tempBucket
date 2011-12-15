@@ -60,9 +60,6 @@ package com.clarityenglish.textLayout.components.behaviours {
 				// Position and size the component in line with its underlying text
 				var bounds:Rectangle = componentElement.getElementBounds();
 				if (bounds) {
-					// Convert the bounds from their original coordinate space to the coordinate space of the container
-					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
-					
 					if (!isNaN(bounds.width)) componentElement.getComponent().width = bounds.width;
 					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height;
 					componentElement.getComponent().x = bounds.x;

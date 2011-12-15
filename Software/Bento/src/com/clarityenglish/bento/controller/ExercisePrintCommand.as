@@ -32,7 +32,11 @@ package com.clarityenglish.bento.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		[Embed( source="/skins/assets/StatsYellowHeader.png", mimeType="application/octet-stream" )]
+		public override function execute(note:INotification):void {
+			
+		}
+		
+		/*[Embed(source="/skins/assets/StatsYellowHeader.png", mimeType="application/octet-stream")]
 		private var imageHeaderStream:Class;
 
 		public override function execute(note:INotification):void {
@@ -90,7 +94,7 @@ package com.clarityenglish.bento.controller {
 			
 			// Then close
 			pdf.end();
-		}
+		}*/
 		
 	}
 	

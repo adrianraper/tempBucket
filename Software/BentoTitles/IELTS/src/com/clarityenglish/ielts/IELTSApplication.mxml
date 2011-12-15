@@ -11,8 +11,7 @@
 						creationComplete="creationComplete(event)"
 						implements="com.clarityenglish.bento.view.interfaces.IBentoApplication"
 						currentState="loading"
-						addedToStage="onAddedToStage(event)"
-						>
+						addedToStage="onAddedToStage(event)">
 	<!--width="100%" height="100%"-->
 	
 	<fx:Metadata>

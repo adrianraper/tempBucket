@@ -116,7 +116,7 @@ package com.clarityenglish.bento.model {
 		 * @return 
 		 */
 		private function get delayedMarking():Boolean {
-			return exercise.model.getSettingParam("delayedMarking");
+			return exercise.model && exercise.model.getSettingParam("delayedMarking");
 		}
 		
 		private function checkExercise():void {
@@ -322,6 +322,8 @@ package com.clarityenglish.bento.model {
 		 */
 		public function getExerciseMark():ExerciseMark {
 			checkExercise();
+			
+			if (!exercise.model) return null;
 			
 			// An exercise can only be marked once - if its already been marked then return the cached mark
 			if (_exerciseMarked) return _exerciseMark;

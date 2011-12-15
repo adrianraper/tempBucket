@@ -1,6 +1,9 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
+	import flash.geom.Rectangle;
+	import flash.utils.setTimeout;
+	
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.events.FlexEvent;
@@ -53,13 +56,24 @@ package com.clarityenglish.textLayout.elements {
 			if (component) {
 				component.removeEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 				
-				// TODO: I have no idea why, but suddenly these are all returning 0 (except when debugging they show the correct values...).  This is causing text to flow over the
-				// audio player component.
-				elementWidth = component.width;
-				elementHeight = component.height;
+				// This needs to use the measured size
+				elementWidth = component.measuredWidth;
+				elementHeight = component.measuredHeight;
 				
 				fireElementSizeChanged();
 			}
+		}
+		
+		public override function getElementBounds():Rectangle {
+			var bounds:Rectangle = super.getElementBounds();
+			if (bounds) {
+				bounds.width = (component.initialized) ? component.measuredWidth : NaN;
+				bounds.height = (component.initialized) ? component.measuredHeight : NaN;
+			}
+			
+			trace(bounds);
+			
+			return bounds;
 		}
 		
 	}
