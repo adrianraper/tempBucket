@@ -24,6 +24,7 @@
       <libraryPathEntry kind="3" linkType="1" path="/Bento/bin/Bento.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/csslib/bin/csslib.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="D:/ProjectBench/Software/BentoTitles/IELTS/assets/CourseSelectorWidget.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="src/skins/ielts/assets/Preloader.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
