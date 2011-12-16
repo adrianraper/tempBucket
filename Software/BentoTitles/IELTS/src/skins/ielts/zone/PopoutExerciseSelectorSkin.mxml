@@ -59,11 +59,11 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:VGroup left="30" right="30" top="20" bottom="20">
+	<s:VGroup left="30" right="25" top="20" bottom="20">
 		<s:Label text="{hostComponent.group.@caption}" fontSize="18" />
 		
 		<s:HGroup>
-			<s:VGroup width="200" >
+			<s:VGroup width="170" >
 				<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" />
 				<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
 			</s:VGroup>

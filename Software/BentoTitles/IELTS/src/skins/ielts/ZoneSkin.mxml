@@ -114,7 +114,7 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="15">
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="10">
 						<s:SWFLoader width="450" height="210"
 									 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
@@ -130,7 +130,7 @@
 				
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone" >
-					<s:VGroup left="0" right="0" top="5" bottom="10" horizontalAlign="left" verticalAlign="middle" >
+					<s:VGroup left="0" right="0" top="10" bottom="10" horizontalAlign="left" >
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" />
 
 						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
@@ -162,9 +162,9 @@
 												}
 											]]>
 										</fx:Script>
-										<s:Rect id="imageBorder" width="72" height="42" top="-2" left="-2" >
+										<s:Rect id="imageBorder" width="75" height="45" top="-2" left="-2" >
 											<s:fill>
-												<s:SolidColor color="0xFF0000" />
+												<s:SolidColor color="#000000" />
 											</s:fill>
 										</s:Rect>
 										<s:Image id="image" width="68" height="38" top="0" left="0"/>
@@ -177,14 +177,14 @@
 	
 				<!-- Practice zone -->
 				<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
-					<s:VGroup left="0" right="20" top="5" bottom="0" gap="10">
+					<s:VGroup left="0" right="20" top="10" bottom="0" gap="10">
 						<!-- The unit title and description box -->
 						<s:Group width="96%">
 						<s:SWFLoader source="@Embed(source='skins/ielts/assets/unitdescription.png')" width="100%" />
 						
-							<s:VGroup width="100%" paddingLeft="20" paddingRight="10" paddingTop="20" paddingBottom="10">
+							<s:VGroup width="100%" paddingLeft="25" paddingRight="10" paddingTop="25" paddingBottom="10">
 								<s:Label id="unitCaption" fontSize="14" fontWeight="bold"  />
-								<s:RichText id="unitDescription" width="100%" fontSize="12" />
+								<s:RichText id="unitDescription" width="80%" fontSize="12" />
 							</s:VGroup>
 						</s:Group>
 						
@@ -198,9 +198,15 @@
 								<!-- Custom item renderer to render the label (probably not really necessary since its just text...) -->
 								<s:itemRenderer>
 									<fx:Component>
+
 										<s:ItemRenderer>
 											<fx:Script>
 												<![CDATA[
+													
+													[Bindable]
+													[Embed(source="skins/ielts/assets/uniticon.png")]
+													public var BulletCheck:Class;
+
 													public override function set data(value:Object):void {
 														super.data = value;
 														captionLabel.text = data.@caption;
