@@ -65,6 +65,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
 	<script type="text/javascript">
@@ -166,10 +167,9 @@
 		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
 		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
 	</script>
-		
 </head>
 <body onload="onLoad()">
-	<div id="bento">
+	<div style="text-align:center" id="bento">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

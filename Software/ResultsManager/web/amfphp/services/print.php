@@ -50,3 +50,4 @@ $simpleXml->body["onload"] = "window.print()";
 $dom = new DOMDocument('1.0');
 $dom->loadXML($simpleXml->asXML());
 echo $dom->saveHTML();
+?>
