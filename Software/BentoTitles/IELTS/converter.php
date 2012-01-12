@@ -165,6 +165,7 @@ function convertExercise($infile, $outfile) {
 //	global $exerciseFolderOut;
 //	global $exerciseURL;
 //	global $outURL;
+	global $exerciseID;
 	global $newline;
 	global $plainView;
 	//echo "checking on $exerciseID $newline";

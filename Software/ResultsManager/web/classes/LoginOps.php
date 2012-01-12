@@ -19,11 +19,16 @@ class LoginOps {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
 		// TODO. make it use constants.
-		// TODO. The code below ONLY uses username at the moment
+		// TODO. The code below ONLY uses username/studentID at the moment
 		if ($loginOption==1) {
 			if (isset($loginObj['username'])) {
-				$key = 'username';
+				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
+			}
+		} elseif ($loginOption==2) {
+			if (isset($loginObj['studentID'])) {
+				$key = 'u.F_StudentID';
+				$keyValue = $loginObj['studentID'];
 			}
 		}
 		if (isset($loginObj['password']))
@@ -53,7 +58,7 @@ EOD;
 		// Check password in the code afterwards
 		//		AND u.F_Password=?
 		$sql .=	<<<EOD
-				WHERE u.F_UserName=?
+				WHERE $key = ?
 EOD;
 			
 		// Construct the allowed login types into an SQL string and add it to the end of the query
@@ -107,7 +112,7 @@ EOD;
 				}
 
 				// Authenticate the user with the session
-				Authenticate::login($username, $loginObj->F_UserType);
+				Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
 				
 				// Return the loginObj so the specific service can continue with whatever action it likes
 				return $loginObj;

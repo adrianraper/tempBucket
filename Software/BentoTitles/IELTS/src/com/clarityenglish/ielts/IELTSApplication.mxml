@@ -45,7 +45,8 @@
 			
 			public var browserManager:IBrowserManager;
 			
-			private var com_clarityenglish_ielts_view_progress_ui_ProgressCourseBarComponent_obj:com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
+			// How did this variable get generated?
+			//private var com_clarityenglish_ielts_view_progress_ui_ProgressCourseBarComponent_obj:com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 			
 			override protected function get facade():BentoFacade {
 				return IELTSApplicationFacade.getInstance();
@@ -62,9 +63,9 @@
 				//var url:String = browserManager.url;
 				//var fragment:String = browserManager.fragment;
 				
-				// Hardcode some parameters that you expect to come from flashvars
+				// Hardcode/override some parameters that you expect to come from flashvars
 				//FlexGlobals.topLevelApplication.parameters.rootID=163;
-				FlexGlobals.topLevelApplication.parameters.prefix = "Clarity";
+				//FlexGlobals.topLevelApplication.parameters.prefix = "BCHK";
 				
 				// Kick off the PureMVC framework with a STARTUP notification
 				facade.sendNotification(BBNotifications.STARTUP, this);

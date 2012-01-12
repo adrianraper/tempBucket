@@ -168,6 +168,12 @@ package com.clarityenglish.common.model {
 			if (Config.DEVELOPER.name == "DK" || Config.DEVELOPER.name == "AR") {
 				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
 			}
+			if (FlexGlobals.topLevelApplication.parameters.studentID &&
+				FlexGlobals.topLevelApplication.parameters.password) {
+				return new LoginEvent(LoginEvent.LOGIN, 
+										FlexGlobals.topLevelApplication.parameters.studentID, 
+										FlexGlobals.topLevelApplication.parameters.password);
+			}
 			
 			return null;
 		}
