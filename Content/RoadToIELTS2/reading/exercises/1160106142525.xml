@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -97,9 +98,9 @@
 <p>The AFTRS is the national creative centre for professional training in film, television and radio production and has played an integral part in the outstanding growth of the Australian film and broadcasting industries. SummerSkill is your opportunity to be a part of the AFTRS tradition of creative excellence.</p>
 <p>SummerSkill is a unique opportunity for you to discover the bright ideas of Australia's leading filmmakers as well as the art and tools of creating for the big screen.</p>
 <p>So come along, be part of it!</p>
-<h7>SummerSkill Sydney<br/>
-FEATURE FILM PRODUCTION</h7>
-<h2><p>From Concept to Screen</p></h2>
+<h7>SummerSkill Sydney</h7>
+<h2><p>FEATURE FILM PRODUCTION<br/>
+From Concept to Screen</p></h2>
 <p>A comprehensive series of seminars suitable for film enthusiasts and aspiring professionals, presented by leading industry practitioners. Each seminar includes: lecture, screening/s, discussion &#x2013; question and answer.</p>
 <h7>MONDAY<br/>
 30am - 12.30pm</h7>

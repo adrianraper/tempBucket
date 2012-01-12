@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -102,15 +106,17 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 15. Click on them.
-		
+		</div>
 
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/TT_AW_015.jpg" mode="1" id="1001"/>
-  
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+    <img class="rightFloat" src="../media/TT_AW_015.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
   <p align="left">The growth of tourism means that nowadays most countries have a tourist industry and for many countries it is an essential sector of their economy.&#xA0;<g id="t1">However</g>, like any major industry, tourism may have some drawbacks, I strongly&#xA0;<g id="t2">oppose</g>&#xA0;that it rarely benefits countries. On the&#xA0;<g id="t3">contrast</g>, I am&#xA0;<g id="t4">in favour of</g>, for a number of reasons, the vast majority of countries derive great benefit from it.</p>
   <p><g id="t5">Another</g>&#xA0;reason is that tourism provides regular employment for many local people who might otherwise be unemployed. They can find work in restaurants or hotels, or with tourist agencies as guides or drivers, for example, and earn regular wages. This,&#xA0;<g id="t6">on the other hand</g>, means that they may be able to save money and improve their standard of living.</p>
@@ -123,40 +129,52 @@
   </p>
   </div>
 </section>
-
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 40 minutes on this task.</p>
+			<p class="popuptext">Present a written argument or case to an educated reader with no specialist knowledge of the following topic</p>
+			
+			<p class="popuptext"><b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it. However, tourism rarely benefits the countries which tourists visit.</b></p>
+			
+			<p class="popuptext"><b>To what extent do you agree or disagree</b></p>
+			
+			<p class="popuptext">You should write at least 250 words.</p>
+			
+			<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence</p>
+			
+		</section>
 <section id="fb1">
-  <p align="left">
+  <p class="feedbacktext">
     <b>However -&gt; Although</b>
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
+  <p class="feedbacktext">
     <b>oppose -&gt; disagree</b>
     <font color="#0000ff"/>
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
+  <p class="feedbacktext">
     <b>On the contrast -&gt; On the contrary</b>
     <font color="#0000ff"/>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">We say 'in contrast' and 'on the contrary'. However, they do not mean the same thing!</font>
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
+  <p class="feedbacktext">
     <b>I am in favour of -&gt; I am convinced that</b>
     <font color="#0000ff"/>
   </p>
-  <p align="left">'in favour of' needs to be followed by a gerund or noun.</p>
+  <p class="feedbacktext">'in favour of' needs to be followed by a gerund or noun.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">
+  <p class="feedbacktext">
     <b>Another -&gt; The most important</b>
     <font color="#0000ff"/>
   </p>
@@ -164,7 +182,7 @@
 </section>
 
 <section id="fb6">
-  <p align="left">
+  <p class="feedbacktext">
     <b>on the other hand -&gt; in turn</b>
     <font color="#0000ff"/>
   </p>
@@ -172,30 +190,30 @@
 </section>
 
 <section id="fb7">
-  <p align="left">
+  <p class="feedbacktext">
     <b>The main reason -&gt; The second reason</b>
     <font color="#0000ff"/>
   </p>
-  <p align="left">The 'main' reason has already been discussed in the first paragraph.</p>
+  <p class="feedbacktext">The 'main' reason has already been discussed in the first paragraph.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">
+ <p class="feedbacktext">
     <b>as -&gt; such as</b>
     <font color="#0000ff"/>
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
+  <p class="feedbacktext">
     <b>including -&gt; for instance</b>
     <font color="#0000ff"/>
   </p>
-  <p align="left">'including' should come before the example is given, not after it i.e. 'including food suppliers'.</p>
+  <p class="feedbacktext">'including' should come before the example is given, not after it i.e. 'including food suppliers'.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">
+  <p class="feedbacktext">
     <b>A final reason -&gt; A further reason</b>
     <font color="#0000ff"/>
   </p>
@@ -203,21 +221,21 @@
 </section>
 
 <section id="fb11">
-  <p align="left">
+  <p class="feedbacktext">
     <b>A second reason -&gt; A final reason</b>
     <font color="#0000ff"/>
   </p>
 </section>
 
 <section id="fb12">
-  <p align="left">
+  <p class="feedbacktext">
     <b>against -&gt; in favour of</b>
     <font color="#0000ff"/>
   </p>
 </section>
 
 <section id="fb13">
-  <p align="left">
+ <p class="feedbacktext">
     <b>For example -&gt; Consequently</b>
     <font color="#0000ff"/>
   </p>
@@ -225,18 +243,18 @@
 </section>
 
 <section id="fb14">
-  <p align="left">
+  <p class="feedbacktext">
     <b>In contrast -&gt; Likewise</b>
     <font color="#0000ff"/>
   </p>
 </section>
 
 <section id="fb15">
-  <p align="left">
+  <p class="feedbacktext">
     <b>support -&gt; believe</b>
     <font color="#0000ff"/>
   </p>
-  <p align="left">'support' needs to be followed by a noun or gerund.</p>
+  <p class="feedbacktext">'support' needs to be followed by a noun or gerund.</p>
 </section>
 
 </body>

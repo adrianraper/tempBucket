@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -52,32 +56,49 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LC_WTG01.jpg" mode="16" id="1004"  />Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter and click on all nine expressions the writer uses to give advice.
-
-Writing Task 1
+<div id="instruction">Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter and click on all nine expressions the writer uses to give advice.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_GW_004.jpg" mode="1" id="1001"/>
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+    <img class="rightFloat" src="../media/LC_GW_004.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
-  <p align="left">Dear Carl,</p>
-  <p align="left">
-    <font color="#000000">Thanks for your letter. I think going to a language school is a great way to improve your English. As you know, I've done quite a few English courses so you've come to the right person for advice! There are definitely a few points you should consider before you enroll on a course.</font>
-  </p>
-  <p align="left"><g id="t1">The first thing I'd do if I were you is</g>&#xA0;ask about the methodology. Some schools have you sitting in rows doing lots of written exercises.&#xA0;<g id="t2">I don't think you should</g>&#xA0;enrol at this type of school because the lessons can be very boring and you don't get much oral practice.&#xA0;<g id="t3">I'd advise you to</g>&#xA0;choose a school that encourages lots of group work and speaking practice.&#xA0;<g id="t4">You should</g>&#xA0;check the school's brochures and talk to the staff and students if you can.</p>
-  <p align="left">Also,&#xA0;<g id="t5">you ought to</g>&#xA0;find out what the maximum class size is.&#xA0;<g id="t6">If I were you, I wouldn't</g>&#xA0;enroll in a class with more than 20 students because you won't get enough attention from the teacher. What's more, big classes tend to be mixed ability so you may find the pace is too slow or too fast for you. I think between 10 and 15 students is a good number.</p>
-  <p align="left">And another thing&#xA0;<g id="t7">you'd better</g>&#xA0;think about is the intensity of the course. You can do an intensive 100-hour course in a month but <g id="t8">I wouldn't advise you to</g>&#xA0;do this. If you've got the time,&#xA0;<g id="t9">I think you should</g>&#xA0;study over a longer period to allow yourself time to assimilate everything.</p>
-  <p align="left">Anyway, I hope this useful. If you need any more advice, just drop me a line.</p>
-  <p align="left">All the best,</p>
-  <p align="left">Ali</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>Dear Carl,</p>
+  <p>Thanks for your letter. I think going to a language school is a great way to improve your English. As you know, I've done quite a few English courses so you've come to the right person for advice! There are definitely a few points you should consider before you enroll on a course.</p>
+
+  <p><g id="t1">The first thing I'd do if I were you is</g>&#xA0;ask about the methodology. Some schools have you sitting in rows doing lots of written exercises.&#xA0;<g id="t2">I don't think you should</g>&#xA0;enrol at this type of school because the lessons can be very boring and you don't get much oral practice.&#xA0;<g id="t3">I'd advise you to</g>&#xA0;choose a school that encourages lots of group work and speaking practice.&#xA0;<g id="t4">You should</g>&#xA0;check the school's brochures and talk to the staff and students if you can.</p>
+  
+  <p>Also,&#xA0;<g id="t5">you ought to</g>&#xA0;find out what the maximum class size is.&#xA0;<g id="t6">If I were you, I wouldn't</g>&#xA0;enroll in a class with more than 20 students because you won't get enough attention from the teacher. What's more, big classes tend to be mixed ability so you may find the pace is too slow or too fast for you. I think between 10 and 15 students is a good number.</p>
+  
+  <p>And another thing&#xA0;<g id="t7">you'd better</g>&#xA0;think about is the intensity of the course. You can do an intensive 100-hour course in a month but <g id="t8">I wouldn't advise you to</g>&#xA0;do this. If you've got the time,&#xA0;<g id="t9">I think you should</g>&#xA0;study over a longer period to allow yourself time to assimilate everything.</p>
+  
+  <p>Anyway, I hope this useful. If you need any more advice, just drop me a line.</p>
+  
+  <p>All the best,</p>
+  
+  <p>Ali</p>
   </div>
 </section>
 
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+			<p class="popuptext"><b>One of your penfriends wants to improve their English at a language school. They have never studied at a language school before and have asked for your advice on how to choose a good one.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to your penfriend. Advise them about the following: the teaching method, the number of students in a class and the number of hours a week.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			
+			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			
+			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+		</section>
+		
 <section id="rt2001">
-  <p align="left">
+  <p >
     <font face="verdana" size="13" color="#000000">There are lots of different ways of giving advice. When writing a letter like this, you should try to use a variety of structures.</font>
   </p>
 </section>

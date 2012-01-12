@@ -1,15 +1,16 @@
 * {
-	font-size: 14px;
+	font-size: 12px;
 	font-family: Verdana;
+
 }
 
 /* Layout */
 section {
-	display: none;
+	display: block;
 }
 
 section#readingText {
-	display: block;
+	display: none;
 }
 
 /* The rubric */
@@ -17,32 +18,39 @@ body > header {
 	font-weight: normal;
 	color: #000000;
 	background-color: #F5D767;
-	padding: 20px;
-	margin-bottom: 10px;
+	padding: 0px 170px 0 20px;
+	line-height: 20em;
+}
+
+/* section body*/
+#body {
+	padding: 0 0 20px 0px;
+}
+
+#body p {
+	padding: 0 380% 0 15px;
 }
 
 h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11 {
 	font-weight: bold;
+	padding: 0 0 0 25px;
 }
 
+h8, h8 > p,
 h1, h1 > p {
-	font-size: 18px !important;
+	font-size: 16px !important;
 }
 
 h2, h2 > p,
 h3, h3 > p,
 h4, h4 > p,
 h5, h5 > p,
-h6, h6 > p {
-	font-size: 16px !important;
-}
-
+h6, h6 > p,
 h7, h7 > p,
-h8, h8 > p,
 h9, h9 > p,
 h10, h10 > p,
 h11, h11 > p {
-	font-size: 15px !important;
+	font-size: 12px !important;
 }
 
 /* Reading text spacing */
@@ -55,4 +63,10 @@ h11, h11 > p {
 a {
 	color: #3A00FF;
 	text-decoration: none;
+}
+
+/* image */
+.rightFloat {
+float: right;
+padding: 20px 25px 0 0;
 }

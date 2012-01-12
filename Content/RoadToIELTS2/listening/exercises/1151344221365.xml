@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	#part2{
 	Position: relative;
@@ -18,11 +19,29 @@
 
 	#part2 p{
 	text-indent: -34px;
-	padding-left: 8px;
+	padding-left: 50px;
 	padding-right: 200%;
 	padding-bottom: 12px;
 	}
 	
+		#rightcolumn {
+	position:relative;
+	line-height: 22em;
+	padding-left: 300px;
+	padding-top:60px;
+	}
+	
+	#rightcolumn p {
+	padding-bottom:12px;
+	}
+	
+	h4 {
+	font-family: Verdana;
+	font-size: 13px;
+	padding-left: 15px;
+	padding-bottom: 0px;
+	padding-top: 0px
+}
 	</style>
 	
 	
@@ -34,19 +53,19 @@
 
   <questions>
   	 <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="false"/>
-      <answer source="a2" correct="true"/>
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
       <answer source="a3" correct="false"/>
     </DropDownQuestion>
 	  	 <DropDownQuestion source="q2" block="b2">
       <answer source="a4" correct="false"/>
-      <answer source="a5" correct="true"/>
-      <answer source="a6" correct="false"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
     </DropDownQuestion>
  	<DropDownQuestion source="q3" block="b3">
       <answer source="a7" correct="false"/>
-      <answer source="a8" correct="true"/>
-      <answer source="a9" correct="false"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="true"/>
     </DropDownQuestion>
   	<DropDownQuestion source="q4" block="b4">
       <answer source="a10" correct="false"/>
@@ -72,28 +91,30 @@
    
  <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
  
-<div id="wrapper">
+
 
  <div id="part2"> 
-<ol>
-  <p>9.<tab/>working on your own<tab/><tab/><tab/><tab/>
-  		<select id="q1"><option id="a1">he is in favour</option>
+
+  <p>9.<tab/>working on your own</p>
+  <p>10.<tab/>learning large amounts of factual data</p>
+  <p>11.<tab/>taking detailed notes during lectures</p>
+  <p>12.<tab/>recording lectures on tape</p>
+  <p></p>
+  </div>
+
+  <div id="rightcolumn">
+  <p><select id="q1"><option id="a1">he is in favour</option>
 		<option id="a2">he has no strong opinion either way</option>
 		<option id="a3">he is against</option></select></p>
-  <p>10.<tab/>learning large amounts of factual data<tab/>
-  		<select id="q2"><option id="a4">he is in favour</option>
+  <p><select id="q2"><option id="a4">he is in favour</option>
 		<option id="a5">he has no strong opinion either way</option>
 		<option id="a6">he is against</option></select></p>
-  <p>11.<tab/>taking detailed notes during lectures<tab/><tab/>
-  		<select id="q3"><option id="a7">he is in favour</option>
+  <p><select id="q3"><option id="a7">he is in favour</option>
 		<option id="a8">he has no strong opinion either way</option>
 		<option id="a9">he is against</option></select></p>
-  <p>12.<tab/>recording lectures on tape<tab/><tab/><tab/>
-  		<select id="q4"><option id="a10">he is in favour</option>
+  <p><select id="q4"><option id="a10">he is in favour</option>
 		<option id="a11">he has no strong opinion either way</option>
 		<option id="a12">he is against</option></select></p>
-  </ol>
-  </div>
   </div>
 </section>
 

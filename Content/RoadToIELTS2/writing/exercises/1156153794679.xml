@@ -4,17 +4,30 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+		
+			
 	]]>
+	#u1t1sample {
+	padding-top:10px;
+			padding-right: 450%;
+			text-align: left;
+			line-height: 22em;
+		}
+		
+		#u1t1sample p {
+			padding-bottom: 20em;
+}
 	</style>
 	
 	
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -76,80 +89,98 @@
 <body>
 	
 <header>		
+<div id="instruction">
 		Read this sample answer to the writing task in the previous exercise and click on the mistakes. There are 10. 
+		</div>
 </header>
 	
 <section id="body">
 
 
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/>
+<img class="rightFloat" src="../media/Unit01_Write_e7.jpg" mode="1" id="1003"/>
+
+
+<div id="u1t1sample">
+
+  <p>The chart&#xA0;<g id="t1">is showing</g>&#xA0;the&#xA0;<g id="t2">numbers</g>&#xA0;of boys and girls in Australia who take part in five different leisure activities. Overall we can say that boys' participation in these activities&#xA0;<g id="t3">was</g>&#xA0;greater than that of girls.</p>
   
-<div id="targetspotting">
-  <p align="left">The chart &#xA0;<g id="t1">is showing</g>&#xA0; the &#xA0;<g id="t2">numbers</g>&#xA0; of boys and girls in Australia who take part in five different leisure activities. Overall we can say that boys' participation in these activities &#xA0;<g id="t3">was</g>&#xA0; greater than that of girls.</p>
-  <p align="left">It is immediately clear that the most popular leisure time activity among this age group is watching television. Almost all children in Australia &#xA0;<g id="t4">are spending</g>&#xA0; their free time in this way and this is true for both boys and girls. However, in three of the four remaining activities, boys' participation &#xA0;<g id="t5">was</g>&#xA0; significantly greater than that of girls.</p>
-  <p align="left">The next most popular activity is playing computer games. Four out of five boys enjoy these games, compared to almost &#xA0;<g id="t6">three in four</g>&#xA0; girls. Bike riding follows computer games in terms of popularity. Just under three-quarters of boys say they like cycling compared to approximately &#xA0;<g id="t7">a fifth</g>&#xA0; of all girls. The only activity which &#xA0;<g id="t8">has become</g>&#xA0; more popular with girls than with boys is art and craft. Just over 50 per cent of girls enjoy this pastime compared to only about &#xA0;<g id="t9">a quarter</g>&#xA0; of boys.</p>
-  <p align="left">The figures &#xA0;<g id="t10">are seeming</g>&#xA0; to suggest that the stereotypical image of boys being more active and girls more artistic or creative still holds some truth in Australian society.</p>
-     <img class="leftFloat" src="../media/Unit01_Write_e7.jpg" mode="1" id="1003"/>
+  <p>It is immediately clear that the most popular leisure time activity among this age group is watching television. Almost all children in Australia&#xA0;<g id="t4">are spending</g>&#xA0;their free time in this way and this is true for both boys and girls. However, in three of the four remaining activities, boys' participation&#xA0;<g id="t5">was</g>&#xA0;significantly greater than that of girls.</p>
+  
+  <p>The next most popular activity is playing computer games. Four out of five boys enjoy these games, compared to almost&#xA0;<g id="t6">three in four</g>&#xA0;girls. Bike riding follows computer games in terms of popularity. Just under three-quarters of boys say they like cycling compared to approximately&#xA0;<g id="t7">a fifth</g>&#xA0;of all girls. The only activity which&#xA0;<g id="t8">has become</g>&#xA0;more popular with girls than with boys is art and craft. Just over 50 per cent of girls enjoy this pastime compared to only about&#xA0;<g id="t9">a quarter</g>&#xA0;of boys.</p>
+  
+  <p>The figures&#xA0;<g id="t10">are seeming</g>&#xA0;to suggest that the stereotypical image of boys being more active and girls more artistic or creative still holds some truth in Australian society.</p>
+     
   </div>
-  
 
   </section>
+  
+<section id="writingtask1">
 
+
+<p class="popuptext"> You should spend about 20 minutes on this task.</p>
+<p class="popuptext"><b> The chart shows participation in certain leisure activities by children in Australia</b></p>
+<p class="popuptext"><b> Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext">You should write at least 150 words</p>
+
+		</section>
 <section id="fb1">
-  <p>
+    <p class="feedbacktext">
     <b>shows:</b>&#xA0;Present simple is the correct tense here.
   </p>
 </section>
 
 <section id="fb2">
-  <p>
+    <p class="feedbacktext">
     <b>percentages:</b>&#xA0;The vertical axis tells us that the figures are percentages.
   </p>
 </section>
 
 <section id="fb3">
-  <p>
+    <p class="feedbacktext">
     <b>is:</b>&#xA0;No time period is referred to in the graph, simple present is the appropriate tense.
   </p>
 </section>
 
 <section id="fb4">
-  <p>
+    <p class="feedbacktext">
     <b>spend:</b>&#xA0;No time period is referred to in the graph, simple present is the appropriate tense.
   </p>
 </section>
 
 <section id="fb5">
-  <p>
+    <p class="feedbacktext">
     <b>is:</b>&#xA0;No time period is referred to in the graph, simple present is the appropriate tense.
   </p>
 </section>
 
 <section id="fb6">
-  <p>
+    <p class="feedbacktext">
     <b>three in five:</b>&#xA0;The figure for girls is 58 per cent, which is almost three in five.
   </p>
 </section>
 
 <section id="fb7">
-  <p>
+    <p class="feedbacktext">
     <b>three-fifths:</b>&#xA0;The figure for girls is 56 per cent, which is approximately three-fifths.
   </p>
 </section>
 
 <section id="fb8">
-  <p>
+    <p class="feedbacktext">
     <b>is:</b>&#xA0;No time period is referred to in the graph, simple present is the appropriate tense.
   </p>
 </section>
 
 <section id="fb9">
-  <p>
+    <p class="feedbacktext">
     <b>a third:</b>&#xA0;The figure for boys is 34 per cent, which is approximately a third.
   </p>
 </section>
 
 <section id="fb10">
-  <p>
+    <p class="feedbacktext">
    <b>seem:</b>&#xA0;No time period is referred to in the graph, simple present is the appropriate tense.
   </p>
 </section>

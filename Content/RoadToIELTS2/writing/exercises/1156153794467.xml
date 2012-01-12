@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -64,18 +65,23 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look at the pie chart and complete the report by filling each gap with the past simple of the verb given in brackets.
+	</div>
 </header>
 	
 	
 
 <section id="body">
+<img class="leftFloat" src="../media/Unit01_Write_e5.jpg" mode="1" id="1003"/>
+
   <div id="gapfillText">
+  <p class="linespace"></p>
   <p>
-    In 1961 people in the UK mostly&#xA0;<input id="q1"/>&#xA0;(watch) television or&#xA0;<input id="q2"/>&#xA0;(listen) to the radio in their leisure time. On average they&#xA0;<input id="q3"/>&#xA0;(spend) almost half of their free time on these activities. After that&#xA0;<input id="q4"/>&#xA0;(come) other unspecified pastimes, which <input id="q5"/> (take up) about an hour and a quarter a day. People&#xA0;<input id="q6"/>&#xA0;(not seem) to socialise a great deal, as this&#xA0;<input id="q7"/>&#xA0;(account) for only 35 minutes in a typical day. People&#xA0;<input id="q8"/>&#xA0;(eat) out,&#xA0;<input id="q9"/>&#xA0;(go) to the cinema or&#xA0;<input id="q10"/>&#xA0;(entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="q11"/> (play) sports or&#xA0;<input id="q12"/>&#xA0;(walk) for an average of only 9 minutes a day.
+    In 1961, people in the UK mostly&#xA0;<input id="q1"/>&#xA0;(watch) television or&#xA0;<input id="q2"/>&#xA0;(listen) to the radio in their leisure time. On average they&#xA0;<input id="q3"/>&#xA0;(spend) almost half of their free time on these activities. After that&#xA0;<input id="q4"/>&#xA0;(come) other unspecified pastimes, which&#xA0;<input id="q5"/> (take up) about an hour and a quarter a day. People&#xA0;<input id="q6"/>&#xA0;(not seem) to socialise a great deal, as this&#xA0;<input id="q7"/>&#xA0;(account) for only 35 minutes in a typical day. People&#xA0;<input id="q8"/>&#xA0;(eat) out,&#xA0;<input id="q9"/>&#xA0;(go) to the cinema or&#xA0;<input id="q10"/>&#xA0;(entertain) themselves in other ways outside the home for an average of 28 minutes a day. Finally, people <input id="q11"/> (play) sports or&#xA0;<input id="q12"/>&#xA0;(walk) for an average of only 9 minutes a day.
   </p>
   
-  <img class="leftFloat" src="../media/Unit01_Write_e5.jpg" mode="1" id="1003"/>
+
   
   
   </div>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,9 +16,16 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="visual" source="actpass" width="443" height="493" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
-</settings>
+
+	<feedback>
+		<feedback source="fb0" />
+	</feedback>
+	</settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="is informed" correct="true"/>
@@ -77,22 +85,27 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look carefully at the flow chart and complete the report by filling each gap with a suitable verb from the chart. In each case, decide whether you need active or passive voice and remember to use the correct tense.
+	</div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/WB_WR7s.jpg" mode="1" id="1001"  /><img class="leftFloat" src="../media/_WB_WR7.jpg" mode="16" id="1003"  />
+	<a id="visual"><img class="rightFloat" src="../media/WB_WR7s.jpg" mode="1" id="1001"  /></a>
 	
 	<div id="gapfillText">
-	<p>The process of recruiting staff is dealt with by the Human Resources Department, which&#xA0;<input id="q1" />&#xA0;by other departments when a vacancy needs to &#xA0;<input id="q2" />. The HRD then &#xA0;<input id="q3" />&#xA0;a job analysis and, based on this, a job description and a job specification&#xA0;<input id="q4" />. When these are ready, the HRD&#xA0;<input id="q5" />&#xA0;the vacancy and&#xA0;<input id="q6" />&#xA0;an application form. At the same time, a selection test&#xA0;<input id="q7" />&#xA0;specifically for the post. If the company is looking to recruit from existing staff, the post can&#xA0;<input id="q8" />&#xA0;in the company magazine or on notice boards. Otherwise, the vacancy may&#xA0;<input id="q9" />&#xA0;through employment agencies and in the press. If the company is looking for a particularly talented or experienced person to fill the post, it may even&#xA0;<input id="q10" />&#xA0;headhunting to find them. Based on information in application forms and CVs, suitable candidates&#xA0;<input id="q11" />. Interviews&#xA0;<input id="q12" />&#xA0;and candidates take the selection test. The head of the relevant department is the one who eventually&#xA0;<input id="q13" />&#xA0;the best candidate and unsuccessful candidates&#xA0;<input id="q14" />&#xA0;in writing. Finally, a contract between the appointee and the company must <input id="q15" /> before they can take up the post.</p>
-	<p align="left"><font size="2"></font></p>
-		
+	<p>The process of recruiting staff is dealt with by the Human Resources Department, which&#xA0;<input id="q1" />&#xA0;by other departments when a vacancy needs to &#xA0;<input id="q2" />. The HRD then&#xA0;<input id="q3" />&#xA0;a job analysis and, based on this, a job description and a job specification&#xA0;<input id="q4" />. When these are ready, the HRD&#xA0;<input id="q5" />&#xA0;the vacancy and&#xA0;<input id="q6" />&#xA0;an application form. At the same time, a selection test&#xA0;<input id="q7" />&#xA0;specifically for the post. If the company is looking to recruit from existing staff, the post can&#xA0;<input id="q8" />&#xA0;in the company magazine or on notice boards. Otherwise, the vacancy may&#xA0;<input id="q9" />&#xA0;through employment agencies and in the press. If the company is looking for a particularly talented or experienced person to fill the post, it may even&#xA0;<input id="q10" />&#xA0;headhunting to find them. Based on information in application forms and CVs, suitable candidates&#xA0;<input id="q11" />. Interviews&#xA0;<input id="q12" />&#xA0;and candidates take the selection test. The head of the relevant department is the one who eventually&#xA0;<input id="q13" />&#xA0;the best candidate and unsuccessful candidates&#xA0;<input id="q14" />&#xA0;in writing. Finally, a contract between the appointee and the company must&#xA0;<input id="q15" />&#xA0;before they can take up the post.</p>
 		
 		</div>
 </section>
+
+<section id="actpass">
+	<img src="../media/WB_WR7.jpg" mode="1" id="1003"  />
+</section>
+
 <section id="fb0">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Passive voice is made with 'be + past participle'.</font>
+   <p class="feedbacktext">
+    Passive voice is made with 'be + past participle'.
   </p>
 </section>
 

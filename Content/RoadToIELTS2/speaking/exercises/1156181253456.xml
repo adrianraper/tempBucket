@@ -4,13 +4,31 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#body .rightFloatvideo1 {	
+	width:860px;
+	height: 830px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 480px;
+	margin-top: 0em;
+	}
+	
+#content1{
+	position:relative;
+	padding-top:25px;
+    height: 790px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
 	</style>
 	
 	
@@ -89,9 +107,9 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Watch Zenia being interviewed and decide which of the following she mentions.
+</div>
 </header>
 	
 <section id="body">
@@ -103,40 +121,46 @@
   </div>
   
   <div id="content1">
-  <p>
-    <b>What reasons does Zenia give for visiting other countries?</b></p>
-    <g id="t1">A.  see the sights</g><br/>
-    <g id="t2">B.  learn languages</g><br/>
-    <g id="t3">C.  souvenirs</g><br/>
-    <g id="t4">D.  culture</g><br/>
-    <g id="t5">E.  traditions</g><br/>
-    <g id="t6">F.  food</g><br/>
-    <g id="t7">G.  music</g><br/>
+  <p><b>What reasons does Zenia give for visiting other countries?</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t1">see the sights</a></li>
+			<li><a id="t2">learn languages</a></li>
+			<li><a id="t3">souvenirs</a></li>
+			<li><a id="t4">culture</a></li>
+			<li><a id="t5">traditions</a></li>
+			<li><a id="t6">food</a></li>
+			<li><a id="t7">music</a></li>
+		</list>
+	</ol>
   <br/><br/><br/><br/>
-  <p>
-    <b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b></p>
-    <g id="t8">A.  learning another language</g><br/>
-    <g id="t9">B.  becoming more open-minded</g><br/>
-    <g id="t10">C.  seeing another way of living</g><br/>
-    <g id="t11">D.  meeting people from different countries</g><br/>
-    <g id="t12">E.  discovering the culture</g><br/>
-    <g id="t13">F.  getting better job opportunities</g><br/>
-    <g id="t14">G.  learning to be independent</g><br/>
+  
+  <p><b>Which of the following does Zenia mention in listing the benefits of studying in another country?</b></p>
+  	<ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t8">learning another language</a></li>
+			<li><a id="t9">becoming more open-minded</a></li>
+			<li><a id="t10">seeing another way of living</a></li>
+			<li><a id="t11">meeting people from different countries</a></li>
+			<li><a id="t12">discovering the culture</a></li>
+			<li><a id="t13">getting better job opportunities</a></li>
+			<li><a id="t14">learning to be independent</a></li>
+		</list>
+	</ol>
   <br/><br/><br/>
-  <p>
-    <b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b></p>
-    <g id="t15">A.  see relatives</g><br/>
-    <g id="t16">B.  emergencies</g><br/>
-    <g id="t17">C.  pleasure</g><br/>
-    <g id="t18">D.  business</g><br/>
-    <g id="t19">E.  able to afford it</g><br/>
-    <g id="t20">F.  study</g><br/>
-    <g id="t21">G.  shopping</g>
-  
 
-  <p align="left">
-  
-  </p>
+  <p><b>Which of the following, according to Zenia, refer to travel a hundred years ago?</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t15">see relatives</a></li>
+			<li><a id="t16">emergencies</a></li>
+			<li><a id="t17">pleasure</a></li>
+			<li><a id="t18">business</a></li>
+			<li><a id="t19">able to afford it</a></li>
+			<li><a id="t20">study</a></li>
+			<li><a id="t21">shopping</a></li>
+		</list>
+	</ol>
   </div>
   </div>
 </section>

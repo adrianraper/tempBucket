@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -74,21 +75,21 @@
 <section id="body">
  <img class="leftFloat" src="../media/RD__MTG01_001.jpg" mode="1" id="1003"  />
   <ol id="splitquestionList">
-    <li id="1">Paragraph A<tab/><input id="q1" type="droptarget"/></li>
+    <li id="1">Paragraph A<tab/>&#xA0;<input id="q1" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="2">Paragraph B<tab/><input id="q2" type="droptarget"/></li>
+    <li id="2">Paragraph B<tab/>&#xA0;<input id="q2" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="3">Paragraph C<tab/><input id="q3" type="droptarget"/></li>
+    <li id="3">Paragraph C<tab/>&#xA0;<input id="q3" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="4">Paragraph D<tab/><input id="q4" type="droptarget"/></li>
+    <li id="4">Paragraph D<tab/>&#xA0;<input id="q4" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="5">Paragraph E<tab/><input id="q5" type="droptarget"/></li>
+    <li id="5">Paragraph E<tab/>&#xA0;<input id="q5" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="6">Paragraph F<tab/><input id="q6" type="droptarget"/></li>
+    <li id="6">Paragraph F<tab/>&#xA0;<input id="q6" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="7">Paragraph G<tab/><input id="q7" type="droptarget"/></li>
+    <li id="7">Paragraph G<tab/>&#xA0;<input id="q7" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="8">Paragraph H<tab/><input id="q8" type="droptarget"/></li>
+    <li id="8">Paragraph H<tab/>&#xA0;<input id="q8" type="droptarget"/></li>
 	<p class="linespace"></p>
   </ol>
 </section>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,10 +16,6 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-  <questions/>
 </script>
 
 </head>
@@ -37,7 +34,7 @@
     
   
   <p><b>Diagram 1 - Describing an object</b></p>
-  You will ...
+  <p>You will ...</p>
   <ol>
     <li>read a report and complete it with the missing	information.</li>
     <li>identify words and phrases used to express purpose and	cause and result in a report.</li>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -47,7 +48,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look carefully at the diagram, which shows how a water-powered pump works. Complete the report by selecting the correct phrase for each gap.
+</div>
 </header>
 	
 <section id="noscroll">

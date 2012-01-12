@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -73,7 +74,7 @@
 	<p class="linespace"></p>
     <li id="3">Non-irrigated terraces &#x2013; traditionally&#xA0;<input id="q3"/>&#xA0;grown here.</li>
 	<p class="linespace"></p>
-    <li id="4">The steepest slopes now cultivated have gradients of up to&#xA0;<input id="q4"/>.</li>
+    <li id="4">The steepest slopes now cultivated have gradients of up to &#xA0;<input id="q4"/>.</li>
 	<p class="linespace"></p>
     <li id="5">Irrigation channels &#x2013; carry water from the&#xA0;<input id="q5"/>&#xA0;further up the valley.</li>
 	<p class="linespace"></p>

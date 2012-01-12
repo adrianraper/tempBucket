@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -21,10 +21,10 @@
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="The McLoughlin Brothers" correct="true"/>
-      <answer value="The McLouglin Bros." correct="true"/>
+      <answer value="The McLoughlin Bros." correct="true"/>
       <answer value="The McLoughlin Bros" correct="true"/>
       <answer value="McLoughlin Brothers" correct="true"/>
-      <answer value="McLouglin Bros." correct="true"/>
+      <answer value="McLoughlin Bros." correct="true"/>
       <answer value="McLoughlin Bros" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
@@ -92,32 +92,36 @@
  
     <li id="1">Which game company was established in 1858?<br/>
 	<input id="q1"/></li>
-	
+	<p class="linespace"></p>
     <li id="2">What game pieces were regarded as extremely immoral before the end of the 19th century?<br/><input id="q2"/></li>
-    
+	<p class="linespace"></p>    
 	<li id="3">Who did Milton Bradley produce miniaturised games for?<br/>
 	<input id="q3"/></li>
-	
+	<p class="linespace"></p>	
 	<li id="4">What production technique was dropped at the turn of the last century to make games more affordable?<br/><input id="q4"/></li>
-	
+	<p class="linespace"></p>	
     <li id="5">What aspect of the late 1940s lifestyle was reflected in the games of that period?<br/><input id="q5"/></li>
-	
+	<p class="linespace"></p>	
     <li id="6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.<br/><input id="q6"/></li>
-	
+	<p class="linespace"></p>	
     <p>List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.</p>
-	
+	<p class="linespace"></p>	
     <li id="7">
       <input id="q7"/>
     </li>
+	<p class="linespace"></p>	
     <li id="8">
       <input id="q8"/>
     </li>
+	<p class="linespace"></p>	
     <li id="9">
       <input id="q9"/>
     </li>
+	<p class="linespace"></p>
     <li id="10">
       <input id="q10"/>
     </li>
+	<p class="linespace"></p>	
 	</ol>
   
 </section>

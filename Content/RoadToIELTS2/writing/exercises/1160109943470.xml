@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -80,41 +81,38 @@
 	
 <section id="body">
 <ol id="splitquestionList">
-  <li>How well do you know the person youare writing to?
+  <li>How well do you know the person you are writing to?
   <list class="answerList">
-  <li><g id="t1">You have never met them.</g></li>
-  <li><g id="t2">You have only just met them.</g></li>
-  <li><g id="t3">You have been writing to them for a long time.</g></li>
-  <li><g id="t4">You have known them for a long time.</g></li>
+	  <li><a id="t1">You have never met them.</a></li>
+	  <li><a id="t2">You have only just met them.</a></li>
+	  <li><a id="t3">You have been writing to them for a long time.</a></li>
+	  <li><a id="t4">You have known them for a long time.</a></li>
   </list></li>
   <p class="linespace"></p>
   <li>What style of letter should you write?
   <list class="answerList">
-  <li><g id="t5">formal</g></li>
-  <li><g id="t6">informal</g></li>
+	  <li><a id="t5">formal</a></li>
+	  <li><a id="t6">informal</a></li>
   </list></li>
   <p class="linespace"></p>
   <li>What do you have to do in this letter?
   <list class="answerList">
-  <li><g id="t7">explain a situation</g></li>
-  <li><g id="t8">express thanks</g></li>
-  <li><g id="t9">give reasons</g></li>
-  <li><g id="t10">make a suggestion</g></li>
-  <li><g id="t11">request information</g></li>
+	  <li><a id="t7">explain a situation</a></li>
+	  <li><a id="t8">express thanks</a></li>
+	  <li><a id="t9">give reasons</a></li>
+	  <li><a id="t10">make a suggestion</a></li>
+	  <li><a id="t11">request information</a></li>
   </list></li>
   <p class="linespace"></p>
-  <li>How many points do you have to coverin this letter?
+  <li>How many points do you have to cover in this letter?
   <list class="answerList">
-  <li><g id="t12">one</g></li>
-  <li><g id="t13">two</g></li>
-  <li><g id="t14">three</g></li>
-  <li><g id="t15">four</g></li>
-  <li><g id="t16">E.  five</g></li>
+	  <li><a id="t12">one</a></li>
+	  <li><a id="t13">two</a></li>
+	  <li><a id="t14">three</a></li>
+	  <li><a id="t15">four</a></li>
+	  <li><a id="t16">five</a></li>
   </list></li>
   <p class="linespace"></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
   </ol>
 </section>
 
@@ -123,9 +121,8 @@
 	<p>You should spend about 20 minutes on this task.</p>
 	<p><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
 	<p>You should write at least 150 words.</p>
-	<p>You do NOT need to write your own address.</p>
+	<p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 	<p>Begin your letter as follows:</p><p>Dear Sir/Madam,</p>
-	<p align="left"><font size="2"></font></p>
 </section>
 </body>
 </bento>

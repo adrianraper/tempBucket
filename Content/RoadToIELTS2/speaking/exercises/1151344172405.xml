@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -27,20 +28,37 @@
 </header>
 <section id="body"><img class="rightFloat" src="../media/WB_SP_002.jpg" mode="1" id="1001"/>
 <div id="presentation">
-<p>Your answers will be fuller and more interesting if you can support them with reasons and examples. In daily life, practise giving yourself reasons for what you do and what you think.</p>
+<p>Your answers will be fuller and more interesting if you can support them with reasons and examples. In daily life, practise giving yourself reasons for what you do and what you think. For example:</p>
 
 <ul color="#7935AB">
-	<p color="#000000">For example:</p>
 	<li>Why am I buying this ice-cream?</li>
 	<li>It's very hot today.</li>
 	<li>I want to reward myself for working hard this morning.</li>
 	<li>It looks delicious on the TV ad.</li>
 	<li>I'm rather thirsty.</li>
 </ul>
-<p>Learn to&#xA0;<b>give reasons</b>&#xA0;for your statements and opinions.Learn phrases like:</p>- The reason I like ... is ... <br/>- The reason for this is ...<br/>- One of the important things about this is ...<br/>- What I like about ... is ...<br/>- Because of this, ...<br/>- This means that ...<br/>- As I see it, ...
 
-<h5><p>Pros and Cons &#x2013; Advantages and Disadvantages</p></h5>
-<p>Try and see both sides of a picture. Give yourself two reasons for, and two reasons against. Learn to evaluate ideas and situations. Use phrases such as:</p>- On one hand ..., on the other hand ...<br/>- Although ..., it could be said that ...<br/>- The advantages of this are ..., while the disadvantages are ...<br/>- It is sometimes said that ..., but I think ...<p align="left"><font size="2"/></p>
+<p>Learn to&#xA0;<b>give reasons</b>&#xA0;for your statements and opinions. Learn phrases like:</p>
+
+<ul color="#7935AB">
+	<li>The reason I like ... is ...</li>
+	<li>The reason for this is ...</li>
+	<li>One of the important things about this is ...</li>
+	<li>What I like about ... is ...</li>
+	<li>Because of this, ...</li>
+	<li>This means that ...</li>
+	<li>As I see it, ...</li>
+</ul>
+
+<h6><p>Pros and cons &#x2013; Advantages and disadvantages</p></h6>
+<p>Try and see both sides of a picture. Give yourself two reasons for, and two reasons against. Learn to evaluate ideas and situations. Use phrases such as:</p>
+
+<ul color="#7935AB">
+	<li>On one hand ..., on the other hand ...</li>
+	<li>Although ..., it could be said that ...</li>
+	<li>The advantages of this are ..., while the disadvantages are ...</li>
+	<li>It is sometimes said that ..., but I think ...</li>
+</ul>
 </div>
 </section>
 

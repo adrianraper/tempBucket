@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -34,6 +34,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="nonverbal means" correct="true"/>
+	  <answer value="non-verbal means" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
       <answer value="quiet areas" correct="true"/>
@@ -68,7 +69,7 @@
     <p class="linespace"></p>
 	<li>After surgery, patients suffering from epilepsy are only able to use&#xA0;<input id="q4"/>&#xA0;to describe what is happening in their left visual field.</li>
     <p class="linespace"></p>
-	<li>In photographs produced by the PET technique,&#xA0;<input id="q5"/>&#xA0;of the brain appear less brightly.</li>
+	<li>In photographs produced by the PET technique, &#xA0;<input id="q5"/>&#xA0;of the brain appear less brightly.</li>
 	<p class="linespace"></p>
 	<li>Sign aphasia is a condition associated with&#xA0;<input id="q6"/>&#xA0;people.</li>
     <p class="linespace"></p>
@@ -86,7 +87,7 @@
 
 <p>In the 130 years since, Broca's conclusion has been confirmed by many kinds of evidence. Some of it comes from the convenient fact that the right half of the body and of perceptual space is controlled by the left hemisphere of the brain and vice versa. Many people with aphasia suffer weakness or paralysis on the right side, including Tan.</p>
 
-<p>Normal people recognize words more accurately when the words are flashed to the right side of their visual field than when they are flashed to the left, even when the language is Hebrew, which is written from right to left. When different words are presented simultaneously to the two ears, the person can make out the word coming into the right ear better.</p>
+<p>Normal people recognise words more accurately when the words are flashed to the right side of their visual field than when they are flashed to the left, even when the language is Hebrew, which is written from right to left. When different words are presented simultaneously to the two ears, the person can make out the word coming into the right ear better.</p>
 
 <p>In some cases of otherwise incurable epilepsy, surgeons disconnect the two cerebral hemispheres by cutting the bundle of fibers running between them. After surgery the patients live completely normal lives, except for a subtlety discovered by the neuroscientist Michael Gazzaniga: when the patients are kept still, they can describe events taking place in their right visual field and can name objects in their right hand, but cannot describe events taking place in their left visual field or name objects placed in their left hand (though the right hemisphere can display its awareness of those events by nonverbal means). The left half of their world has been disconnected from their language center.</p>
 

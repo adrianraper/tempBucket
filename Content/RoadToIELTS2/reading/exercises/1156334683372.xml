@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -20,8 +21,6 @@
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="750 billion" correct="true"/>
-      <answer value="750b" correct="true"/>
-      <answer value="750,000,000,000" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="half" correct="true"/>

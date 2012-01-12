@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -75,7 +75,7 @@
 <img class="photo2" src="../media/LC_AR_002.jpg" mode="1" id="1001"/>
 
 
-<h11><p>Do animals talk?</p></h11>
+<h1><p>Do animals talk?</p></h1>
 
 <div id="reading">
 <p class="hangingIndent"><b>A</b>&#xA0;Do any animals naturally have a true language? In order to answer this question, we must compare human language with animal communication. But such a comparison presents a number of perhaps unsolvable problems. Two in particular need to be discussed before we can give a coherent reply to the query, Do animals talk naturally?</p>

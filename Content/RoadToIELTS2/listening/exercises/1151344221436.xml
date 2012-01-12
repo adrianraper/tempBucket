@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -39,6 +40,10 @@
       <answer value="approximately 10 mins" correct="true"/>
       <answer value="approximately ten minutes" correct="true"/>
       <answer value="approximately ten mins" correct="true"/>
+      <answer value="approx. 10 minutes" correct="true"/>
+      <answer value="approx. 10 mins" correct="true"/>
+      <answer value="approx. ten minutes" correct="true"/>
+      <answer value="approx. ten mins" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="Italian" correct="true"/>

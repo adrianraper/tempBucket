@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,9 +16,11 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="visual" source="w3t1sample" width="612" height="381" />
+	</popups>
+
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true">
@@ -88,109 +91,108 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 12. Click on them.
-		
+		</div>
 		
 	
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_WR8s.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/_WB_WR8.jpg" mode="16" id="1003"/>
+  
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  <a id="visual"><img class="rightFloat" src="../media/WB_WR8s.jpg" mode="1" id="1001"/></a>
   <div id="targetspotting">
   <p>The flow chart illustrates the process which the Hong Kong Post Office&#xA0;<g id="t1">is used</g>&#xA0;to select suitable artwork for its stamps.</p>
+  
   <p>The first stages&#xA0;<g id="t2">are involved</g>&#xA0;gathering ideas for possible themes. District councils, tourist associations and government departments are all&#xA0;<g id="t3">invite</g>&#xA0;to send in suggestions to the Post Office. These are then forwarded to a special stamp advisory committee which&#xA0;<g id="t4">simultaneously</g>&#xA0;chooses between six and eight of the best ideas.</p>
+  
   <p><g id="t5">Prior to this</g>, the committee may decide&#xA0;<g id="t6">or</g>&#xA0;to use the work of professional artists or to hold a competition and ask the public to enter their own artwork.&#xA0;<g id="t7">In case</g>&#xA0;professionals are to be used, three artists will normally&#xA0;<g id="t8">commissioned</g>&#xA0;to submit designs. The best of these will&#xA0;<g id="t9">choose</g>. Prior to printing, however, the design must be endorsed by the Secretary for Home Affairs. If, on the other hand, the committee decides to use amateur artwork, then a competition will be set up and publicised.&#xA0;<g id="t10">Before</g>&#xA0;entries have been submitted, the committee will&#xA0;<g id="t11">be chosen</g>&#xA0;the best and the winning artwork is&#xA0;<g id="t12">sending</g>&#xA0;for printing.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-
+ 
   </div>
 </section>
 
+<section id="writingtask1">
+<p class="popuptext"> You should spend about 20 minutes on this task.</p>
+<p class="popuptext"><b>The flow chart below shows the process by which the Hong Kong Post Office chooses artwork for its stamps.</b></p>
+<p class="popuptext"><b> Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext">You should write at least 150 words</p>
+</section>
+		
+<section id="w3t1sample">
+	<img src="../media/WB_WR8.jpg" mode="1" id="1003"/>
+</section>
+
 <section id="fb1">
-  <p align="left">
-    <b>is used -&gt; </b>
-    <font color="#0000ff"><b>uses</b><b>:</b>&#xA0;'the Hong Kong Post Office' is the subject of this verb in active voice.</font>
+  <p class="feedbacktext">
+    <b>is used -&gt; uses</b>: 'the Hong Kong Post Office' is the subject of this verb in active voice.
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <b>are involved -&gt; </b>
-    <font color="#0000ff"><b>involve</b><b>:</b>&#xA0;'The first stages' is the subject of this verb in active voice.</font>
+  <p class="feedbacktext">
+    <b>are involved -&gt; involve</b>: 'The first stages' is the subject of this verb in active voice.
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <b>invited -&gt; </b>
-    <font color="#0000ff"><b>invited</b><b>:</b>&#xA0;Passive is needed here.</font>
+  <p class="feedbacktext">
+    <b>invited -&gt; invited</b>: Passive is needed here.
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <b>simultaneously -&gt; </b>
-    <font color="#0000ff"><b>subsequently</b><b>:</b>&#xA0;'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.</font>
+  <p class="feedbacktext">
+    <b>simultaneously -&gt; subsequently</b>: 'simultaneously' means 'at the same time' and 'subsequently' means 'afterwards'.
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <b>Prior to this -&gt; </b>
-    <font color="#0000ff"><b>At this stage</b><b>:</b>&#xA0;'Prior to this' means 'before'.</font>
+  <p class="feedbacktext">
+    <b>Prior to this -&gt; At this stage</b>: 'Prior to this' means 'before'.
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <b>or -&gt; </b>
-    <font color="#0000ff"><b>either</b><b>:</b>&#xA0;'Either' introduces the first alternative.</font>
+ <p class="feedbacktext">
+    <b>or -&gt; either</b>: 'Either' introduces the first alternative.
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <b>In case -&gt; </b>
-    <font color="#0000ff"><b>If</b><b>:</b>&#xA0;'In case' does not have exactly the same meaning as 'if'.</font>
+  <p class="feedbacktext">
+    <b>In case -&gt; If</b>: 'In case' does not have exactly the same meaning as 'if'.
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <b>commissioned -&gt; </b>
-    <font color="#0000ff"><b>be commissioned</b><b>:</b>&#xA0;This verb is in passive voice in the future form, 'will be + past participle'. </font>
+  <p class="feedbacktext">
+    <b>commissioned -&gt; be commissioned</b>: This verb is in passive voice in the future form, 'will be + past participle'. 
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <b>choose -&gt; </b>
-    <font color="#0000ff"><b>be chosen</b><b>:</b>&#xA0;This verb is in passive voice in the future form, 'will be + past participle'.</font>
+  <p class="feedbacktext">
+    <b>choose -&gt; be chosen</b>: This verb is in passive voice in the future form, 'will be + past participle'.
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
-    <b>Before -&gt; </b>
-    <font color="#0000ff"><b>Once</b><b>:</b>&#xA0;'Once' here means 'as soon as'.</font>
+  <p class="feedbacktext">
+    <b>Before -&gt; Once</b>: 'Once' here means 'as soon as'.
   </p>
 </section>
 
 <section id="fb11">
-  <p align="left">
-    <b>be chosen -&gt; </b>
-    <font color="#0000ff"><b>choose</b><b>:</b>&#xA0;This verb is in passive voice in the future form, 'will be + past participle'.</font>
+  <p class="feedbacktext">
+    <b>be chosen -&gt; choose</b>: This verb is in passive voice in the future form, 'will be + past participle'.
   </p>
-  <p align="left"/>
 </section>
 
 <section id="fb12">
-  <p align="left">
-    <b>sending -&gt; </b>
-    <font color="#0000ff"><b>sent</b><b>:</b>&#xA0;The 'is' here is part of the passive verb. Present continuous is not appropriate here.</font>
+  <p class="feedbacktext">
+    <b>sending -&gt; sent</b>: The 'is' here is part of the passive verb. Present continuous is not appropriate here.
   </p>
 </section>
 

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -25,13 +26,16 @@
 <body>
 	
 <header>
+<div id="instruction">
 	You should spend about 20 minutes on this task. You should write at least 150 words.
+	</div>
 </header>
 	
 <section id="body">
-  
-  <p><b>The flow chart below shows the process by which the Hong Kong Post Office chooses artwork for its stamps.</b></p>
+  <div id="presentation">
+  <h5>The flow chart below shows the process by which the Hong Kong Post Office chooses artwork for its stamps.</h5>
   <p>Write a report for a university lecturer describing the information shown below.</p>
+  </div>
   <img class="leftFloat" src="../media/WB_WR8.jpg" mode="1" id="1001"/>
 
 </section>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -36,9 +37,9 @@
 	
 <header>
 	
-		
+<div id="instruction">
 		Complete the plan on the right by choosing a suitable counter-argument (A-H) from the list on the left. There are more counter-arguments than arguments, so you will not use them all.
-		
+</div>
 </header>
 		<section id="noscroll">
 	
@@ -46,33 +47,39 @@
   <span id="a2" draggable="true">Greater profits for the agriculture industry</span>
   <span id="a3" draggable="true">Tampering with nature is nothing new in agriculture</span>
   <span id="a4" draggable="true">GM crops could be grown in difficult environments such as semi-desert</span>
+   <span id="a6" draggable="true">GM crops last longer in storage</span>
   <span id="a5" draggable="true">Farmers of GM crops are less dependent on environmentally harmful insecticides</span>
-  <span id="a6" draggable="true">GM crops last longer in storage</span>
   <span id="a7" draggable="true">Improved nutritional value of GM food</span>
   <span id="a8" draggable="true">Improved flavour and appearance of GM foods</span>
 
 </section>
 
 <section id="body">
-   <img class="rightFloat" src="../media/WR_ARG_001.jpg" mode="1" id="1003"  />
+  <img class="rightFloat" src="../media/WR_ARG_001.jpg" mode="1" id="1003"  />
 <div id="gapfillText">
-
-<h8>Paragraph 1</h8>
+ 
+<h9>Paragraph 1</h9>
 <p>Introduction</p>
-<h8>Paragraph 2</h8> 
-<p>Argument 1 + Counter-argument</p>
-<p>GM crops interfere with nature</p>
-<p>Counter-Argument&#xA0;<input id="q1" type="droptarget"/></p>
-<h8>Paragraph 3</h8>
-<p>Argument 2 + Counter-argument</p>
-<p>GM foods may be bad for our health</p>
-<p>Counter-Argument&#xA0;<input id="q2" type="droptarget"/></p>
-<h8>Paragraph 4</h8>
-<p>Argument 3 + Counter-argument</p>
-<p>GM crops may cause ecological damage (e.g. kill harmless insects)</p>
-<p>Counter-Argument&#xA0;<input id="q3" type="droptarget"/></p>
-
-<h8>Paragraph 5</h8>
+<p class="linespace"></p>
+<h9>Paragraph 2</h9> 
+<p>Argument 1 + Counter-argument<br/>
+GM crops interfere with nature<br/>
+Counter-Argument<br/>
+<input id="q1" type="droptarget"/></p>
+<p class="linespace"></p>
+<h9>Paragraph 3</h9>
+<p>Argument 2 + Counter-argument<br/>
+GM foods may be bad for our health<br/>
+Counter-Argument<br/>
+<input id="q2" type="droptarget"/></p>
+<p class="linespace"></p>
+<h9>Paragraph 4</h9>
+<p>Argument 3 + Counter-argument<br/>
+GM crops may cause ecological damage (e.g. kill harmless insects)<br/>
+Counter-Argument<br/>
+<input id="q3" type="droptarget"/></p>
+<p class="linespace"></p>
+<h9>Paragraph 5</h9>
 <p>Conclusion</p>
 </div> 
 </section>

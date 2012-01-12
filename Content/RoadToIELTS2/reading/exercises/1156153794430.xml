@@ -5,11 +5,20 @@
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
 	<style type="text/css">
 	.hangingindenttable {
 	padding-left: 31px;
  	text-indent: -124em;
+	}
+	
+sh1{
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 10px;
+	padding-left: -95px;
+	padding-right: 25em;
 	}
 	</style>
 		
@@ -20,6 +29,7 @@
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="Aboriginal" correct="true"/>
+	  <answer value="Australian Aboriginal" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="Buka women" correct="true"/>
@@ -36,6 +46,10 @@
       <answer value="pin and balls" correct="true"/>
       <answer value="a pin and balls" correct="true"/>
       <answer value="a wooden pin and balls" correct="true"/>
+	  <answer value="wooden pin and balls" correct="true"/>
+	  <answer value="wooden pin, balls" correct="true"/>
+	  <answer value="pin, balls" correct="true"/>
+	  <answer value="a pin, balls" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
       <answer value="T" correct="true"/>
@@ -49,6 +63,7 @@
     <GapFillQuestion source="q9" block="b9">
       <answer value="farmers" correct="true"/>
       <answer value="Kelantanese farmers" correct="true"/>
+	  <answer value="Malaysian farmers" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
       <answer value="paper" correct="true"/>
@@ -74,31 +89,31 @@
 <div id="gapfillText">
 
 
-<h9>Infinity Marbles</h9>
+<sh1>Infinity Marbles</sh1>
 <p class="hangingindenttable">Country:<tab/><tab/>Australia</p>
 <p class="hangingindenttable">Players:<tab/><tab/>(1)&#xA0;<input id="q1"/>&#xA0;children</p>
 <p class="hangingindenttable">Equipment:<tab/><tab/>marbles</p>
 <p class="hangingindenttable">Format:<tab/><tab/>I<br/></p>
 
-<h9>Salan Lanai</h9>
+<sh1>Salan Lanai</sh1>
 <p class="hangingindenttable">Country:<tab/><tab/>New Guinea</p>
 <p class="hangingindenttable">Players:<tab/><tab/>(2)&#xA0;<input id="q2"/></p>
 <p class="hangingindenttable">Equipment:<tab/><tab/>(3)&#xA0;<input id="q3"/></p>
 <p class="hangingindenttable">Format:<tab/><tab/>G<br/></p>
 
-<h9>Pin</h9>
+<sh1>Pin</sh1>
 <p class="hangingindenttable">Country:<tab/><tab/>(4)&#xA0;<input id="q4"/></p>
 <p class="hangingindenttable">Players:<tab/><tab/>Indian children</p>
 <p class="hangingindenttable">Equipment:<tab/><tab/>(5)&#xA0;<input id="q5"/></p>
 <p class="hangingindenttable">Format:<tab/><tab/>(6)&#xA0;<input id="q6"/><br/></p>
 
-<h9>Muk</h9>
+<sh1>Muk</sh1>
 <p class="hangingindenttable">Country:<tab/><tab/>Canada </p>
 <p class="hangingindenttable">Players:<tab/><tab/>(7)&#xA0;<input id="q7"/>&#xA0;children and their families</p>
 <p class="hangingindenttable">Equipment:<tab/><tab/>none</p>
 <p class="hangingindenttable">Format:<tab/><tab/>(8)&#xA0;<input id="q8"/><br/></p>
 
-<h9>Kite-flying</h9>
+<sh1>Kite-flying</sh1>
 <p class="hangingindenttable">Country:<tab/><tab/>Malaysia</p>
 <p class="hangingindenttable">Players:<tab/><tab/>(9)&#xA0;<input id="q9"/></p>
 <p class="hangingindenttable">Equipment:<tab/><tab/>(10)&#xA0;<input id="q10"/>&#xA0;kites with bamboo frames</p>

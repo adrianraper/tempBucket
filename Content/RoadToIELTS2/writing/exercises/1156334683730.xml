@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -39,9 +43,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read the writing task and put the paragraph headings in the appropriate order. When you have finished, listen to a teacher and some students discussing the same writing task and check your answers.
-		
+		</div>
 		
 		
 </header>
@@ -54,21 +58,33 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/EN_AW_009.jpg" mode="1" id="1001"/>
+
   
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <div><audio controls="compact"  src="../media/EN_WR1aa.mp3" mode="1" id="1002"/></div>
+  <img class="rightFloat" src="../media/EN_AW_009.jpg" mode="1" id="1001"/>
   <div id="questionList">
-  <p><audio controls="compact"  src="../media/EN_WR1aa.mp3" mode="1" id="1002"/></p>
+
  
-  <p align="left">Paragraph 1&#xA0;<input id="q1" type="droptarget"/></p>
-  <p align="left">Paragraph 2&#xA0;<input id="q2" type="droptarget"/></p>
-  <p align="left">Paragraph 3&#xA0;<input id="q3" type="droptarget"/></p>
-  <p align="left">Paragraph 4&#xA0;<input id="q4" type="droptarget"/></p>
+  <p>Paragraph 1<tab/><input id="q1" type="droptarget"/></p>
+  <p>Paragraph 2<tab/><input id="q2" type="droptarget"/></p>
+  <p>Paragraph 3<tab/><input id="q3" type="droptarget"/></p>
+  <p>Paragraph 4<tab/><input id="q4" type="droptarget"/></p>
   
   </div>
 </section>
+<section id="writingtask1">
 
+
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic</b></p>
+<p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
+<p class="popuptext">You should write at least 250 words</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
 <section id="rt2001">
-  <p align="left">The writing task may ask you to discuss a problem, saying what the causes are and suggesting possible solutions. There are basically two ways of organising this kind of composition and in this unit we look at one possible structure. We will look at an alternative structure in Unit 8.</p>
+  <p>The writing task may ask you to discuss a problem, saying what the causes are and suggesting possible solutions. There are basically two ways of organising this kind of composition and in this unit we look at one possible structure. We will look at an alternative structure in Unit 8.</p>
 </section>
 
 </body>

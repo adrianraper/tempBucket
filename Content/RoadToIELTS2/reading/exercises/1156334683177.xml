@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -175,7 +176,7 @@
 
 <p>Our primate cousins are particularly vulnerable because they depend on shrinking tropical forests and endangered ecosystems for foraging. Although most have made it through the last 100 years, an estimated 20 percent &#x2013; some 120 types of prosimians, monkeys, and apes &#x2013; will be at severe risk of extinction within the next two decades. Among them are some whose faces are as appealing as their names, including the Tonkin snub-nosed monkey, the golden lion tamarin, and Miss Waldron's red colobus monkey.</p>
 
-<p>Exactly what we're losing isn't known, because about 90 percent of the disappeared are unnamed, unknown invertebrates &#x2013; mostly insects &#x2013; that thrive in tropical rain forests.  And insects make the world as we know it work. They play a crucial role in pollination, they devour detritus, and they contain pests. "If we lost half of all insects," says Norman Myers, British ecologist and author of <i>The Sinking Ark</i>, "our agricultural system would be in deep trouble in just one year."</p>
+<p>Exactly what we're losing isn't known, because about 90 percent of the disappeared are unnamed, unknown invertebrates &#x2013; mostly insects &#x2013; that thrive in tropical rain forests.  And insects make the world as we know it work. They play a crucial role in pollination, they devour detritus, and they contain pests. "If we lost half of all insects," says Norman Myers, British ecologist and author of&#xA0;<i>The Sinking Ark</i>, "our agricultural system would be in deep trouble in just one year."</p>
 
 <p>Indeed, our own survival depends on the survival of other species. Studies show that the more biologically diverse a region is, the more species it contains and the more resilient it is to environmental perturbations. And ecologists already know that the loss of a species can have a devastating ripple effect. David Hawksworth, former director of the International Mycological Institute, estimates that every time one plant becomes extinct, at least 15 other organisms also vanish.</p>
 

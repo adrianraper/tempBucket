@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -44,7 +45,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Zafir will talk about a social problem in his country. Drag down the phrases to complete the text.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -65,12 +68,7 @@
   </div>
 
   <div id="content">
-  <p align="left">
-    <input id="q1" type="droptarget"/>&#xA0;the problem of unemployment in my country. &#xA0;<input id="q2" type="droptarget"/>&#xA0;it's really a big problem. Let's tell the truth. If you want to talk about the reasons behind this phenomenon, I think the reasons are many.&#xA0;<input id="q3" type="droptarget"/>&#xA0;they are political reasons. Mostly they are political.&#xA0;<input id="q4" type="droptarget"/>&#xA0;we have illiterateness (illiteracy). People are not that free to do just what they want. I mean we are not in the free market.&#xA0;<input id="q5" type="droptarget"/>&#xA0;I think everything is restricted. Many restriction for jobs, for many things.&#xA0;<input id="q6" type="droptarget"/>&#xA0;we have this problem.
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p><input id="q1" type="droptarget"/>&#xA0;the problem of unemployment in my country.&#xA0;<input id="q2" type="droptarget"/>&#xA0;it's really a big problem. Let's tell the truth. If you want to talk about the reasons behind this phenomenon, I think the reasons are many.&#xA0;<input id="q3" type="droptarget"/>&#xA0;they are political reasons. Mostly they are political.&#xA0;<input id="q4" type="droptarget"/>&#xA0;we have illiterateness (illiteracy). People are not that free to do just what they want. I mean we are not in the free market.&#xA0;<input id="q5" type="droptarget"/>&#xA0;I think everything is restricted. Many restriction for jobs, for many things.&#xA0;<input id="q6" type="droptarget"/>&#xA0;we have this problem.</p>
   </div>
   </div>
 </section>

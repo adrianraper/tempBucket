@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -85,15 +86,15 @@
 </section>
 
 <section id="fb2">
-  <p align="left">2. This applies to volunteers who are team leaders.</p>
+  <p class="feedbacktext">2. This applies to volunteers who are team leaders.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. The Peace Corps is another organisation similar to those described in the text.</p>
+  <p class="feedbacktext">4. The Peace Corps is another organisation similar to those described in the text.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. Urban means in the city, rural in the countryside.</p>
+  <p class="feedbacktext">6. Urban means in the city, rural in the countryside.</p>
 </section>
 
 <section id="readingText">

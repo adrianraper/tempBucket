@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -79,34 +83,52 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Complete each sentence with a phrase for giving advice.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_GW_005.jpg" mode="1" id="1001"/>
   
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  <img class="rightFloat" src="../media/LC_GW_005.jpg" mode="1" id="1001"/>
   <ol id="questionList">
-    <li id="1">Find out about the school's methodology.If I were you,&#xA0;<input id="q1"/>&#xA0;about the school's methodology.</li>
+    <li id="1">Find out about the school's methodology. If I were you,&#xA0;<input id="q1"/>&#xA0;about the school's methodology.</li>
 	<p class="linespace"></p>
-    <li id="2">Choose the school carefully.You'd&#xA0;<input id="q2"/>&#xA0;the school carefully.</li>
+    <li id="2">Choose the school carefully. You'd&#xA0;<input id="q2"/>&#xA0;the school carefully.</li>
 	<p class="linespace"></p>
     <li id="3">Don't enrol in a class with over 20 students.&#xA0;<input id="q3"/>&#xA0;you should enrol in a class with over 20 students.</li>
 	<p class="linespace"></p>
-    <li id="4">Don't choose a short, intensive course.If I were you,&#xA0;<input id="q4"/>&#xA0;a short, intensive course.</li>
+    <li id="4">Don't choose a short, intensive course. If I were you,&#xA0;<input id="q4"/>&#xA0;a short, intensive course.</li>
 	<p class="linespace"></p>
-    <li id="5">Ask if the teachers are native speakers.I'd&#xA0;<input id="q5"/>&#xA0;ask if the teachers are native speakers.</li>
+    <li id="5">Ask if the teachers are native speakers. I'd&#xA0;<input id="q5"/>&#xA0;ask if the teachers are native speakers.</li>
 	<p class="linespace"></p>
-    <li id="6">Avoid mixed ability classes.I think&#xA0;<input id="q6"/>&#xA0;mixed ability classes.</li>
+    <li id="6">Avoid mixed ability classes. I think&#xA0;<input id="q6"/>&#xA0;mixed ability classes.</li>
 	<p class="linespace"></p>
-    <li id="7">Don't choose a school that uses old-fashioned teaching methods.I wouldn't choose a school that uses old-fashioned teaching methods&#xA0;<input id="q7"/>.</li>
+    <li id="7">Don't choose a school that uses old-fashioned teaching methods. I wouldn't choose a school that uses old-fashioned teaching methods&#xA0;<input id="q7"/>.</li>
 	<p class="linespace"></p>
-    <li id="8">Don't enrol in a class with fewer than six students.You'd&#xA0;<input id="q8"/>&#xA0;in a class with fewer than six students.</li>
+    <li id="8">Don't enrol in a class with fewer than six students. You'd&#xA0;<input id="q8"/>&#xA0;in a class with fewer than six students.</li>
 	<p class="linespace"></p>
-    <li id="9">Don't do an intensive course.I wouldn't&#xA0;<input id="q9"/>&#xA0;do an intensive course.</li>
+    <li id="9">Don't do an intensive course. I wouldn't&#xA0;<input id="q9"/>&#xA0;do an intensive course.</li>
 	<p class="linespace"></p>
-    <li id="10">Find out what the maximum class size is.The first thing I'd do&#xA0;<input id="q10"/>&#xA0;is find out what the maximum class size is.</li>
+    <li id="10">Find out what the maximum class size is. The first thing I'd do&#xA0;<input id="q10"/>&#xA0;is find out what the maximum class size is.</li>
   </ol>
 </section>
 
+<section id="writingtask1">
+<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+			<p class="popuptext"><b>One of your penfriends wants to improve their English at a language school. They have never studied at a language school before and have asked for your advice on how to choose a good one.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to your penfriend. Advise them about the following: the teaching method, the number of students in a class and the number of hours a week.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			
+			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			
+			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+		</section>
+		
 </body>
 </bento>

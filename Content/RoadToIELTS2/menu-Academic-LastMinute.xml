@@ -7,8 +7,8 @@
 		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
 				<group id="1" caption="Unit 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" description="xxx." />
-				<group id="3" caption="Unit 3" task="1" description="xxx." />
+				<group id="2" caption="Unit 2" task="1" description="" />
+				<group id="3" caption="Unit 3" task="1" description="" />
 			</groups>
 			<unit id="1287130110000" class="question-zone">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
@@ -23,61 +23,61 @@
 				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
-				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" thumbnail="reading/thumbnails/Reading_arp1.jpg" enabledFlag="3" difficulty="3">
+				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_arp1.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" thumbnail="reading/thumbnails/Reading_arp2.jpg" enabledFlag="3" difficulty="3">
+				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_arp2.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" thumbnail="reading/thumbnails/Reading_match_infopara.jpg" enabledFlag="3" difficulty="3">
+				<exercise id="1156165919506" group="1" caption="Matching (Information to paragraphs)" href="reading/exercises/1156165919506.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_matching.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml" thumbnail="reading/thumbnails/Reading_sencomp.jpg" enabledFlag="3" difficulty="3">
+				<exercise id="1156165919884" group="1" caption="Sentence completion" href="reading/exercises/1156165919884.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_sencomp.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml" thumbnail="reading/thumbnails/Reading_untangling.jpg" enabledFlag="3">
+				<exercise id="1156334683372" group="2" caption="Untangling the science of climate" href="reading/exercises/1156334683372.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/reading2_untangling.jpg">
 				  <!--MC - splitscreen TB-->
 				</exercise>
-				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml" thumbnail="reading/thumbnails/Reading_andthen.jpg" enabledFlag="3">
+				<exercise id="1156334683177" group="2" caption="And then there were none" href="reading/exercises/1156334683177.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/reading2_andthen.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344537791" group="2" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml" thumbnail="reading/thumbnails/Reading_selfport.jpg" enabledFlag="3">
+				<exercise id="1151344537791" group="2" caption="Self-portraits in series" href="reading/exercises/1151344537791.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/reading2_selfportraits.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1151344537636" group="2" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml" thumbnail="reading/thumbnails/Reading_awc.jpg" enabledFlag="3">
+				<exercise id="1151344537636" group="2" caption="Ancient world cultures" href="reading/exercises/1151344537636.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/reading2_ancient.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244509" group="3" caption="Matching" href="reading/exercises/1151344244509.xml" thumbnail="reading/thumbnails/Reading_matching1.jpg" enabledFlag="3">
+				<exercise id="1151344244509" group="3" caption="Matching (1)" href="reading/exercises/1151344244509.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_matching1.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244681" group="3" caption="Diagram completion" href="reading/exercises/1151344244681.xml" thumbnail="reading/thumbnails/Reading_diagcomp.jpg" enabledFlag="3">
+				<exercise id="1151344244681" group="3" caption="Diagram completion" href="reading/exercises/1151344244681.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_diagram.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244836" group="3" caption="Short answer questions" href="reading/exercises/1151344244836.xml" thumbnail="reading/thumbnails/Reading_saq1.jpg" enabledFlag="3">
+				<exercise id="1151344244836" group="3" caption="Short-answer questions" href="reading/exercises/1151344244836.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_saq.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244784" group="3" caption="Sentence completion" href="reading/exercises/1151344244784.xml" thumbnail="reading/thumbnails/Reading_sencomp2.jpg" enabledFlag="3">
+				<exercise id="1151344244784" group="3" caption="Sentence completion" href="reading/exercises/1151344244784.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_sencomp.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344244888" group="3" caption="Multiple selection" href="reading/exercises/1151344244888.xml" thumbnail="reading/thumbnails/Reading_ms.jpg" enabledFlag="3">
+				<exercise id="1151344244888" group="3" caption="Multiple selection" href="reading/exercises/1151344244888.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_multiplesel.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1151344259045" group="3" caption="Matching (1)" href="reading/exercises/1151344259045.xml" thumbnail="reading/thumbnails/Reading_matching2.jpg" enabledFlag="3">
+				<exercise id="1151344259045" group="3" caption="Matching (2)" href="reading/exercises/1151344259045.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_matching2.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259264" group="3" caption="Classification" href="reading/exercises/1151344259264.xml" thumbnail="reading/thumbnails/Reading_classification.jpg" enabledFlag="3">
+				<exercise id="1151344259264" group="3" caption="Classification" href="reading/exercises/1151344259264.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_classification.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259319" group="3" caption="Multiple choice" href="reading/exercises/1151344259319.xml" thumbnail="reading/thumbnails/Reading_mc.jpg" enabledFlag="3">
+				<exercise id="1151344259319" group="3" caption="Multiple choice" href="reading/exercises/1151344259319.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_multiplecho.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259704" group="3" caption="Yes, No, Not given" href="reading/exercises/1151344259704.xml" thumbnail="reading/thumbnails/Reading_ynng.jpg" enabledFlag="3">
+				<exercise id="1151344259704" group="3" caption="Yes, No, Not given" href="reading/exercises/1151344259704.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_yesno.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259839" group="3" caption="Matching (2)" href="reading/exercises/1151344259839.xml" thumbnail="reading/thumbnails/Reading_matching3.jpg" enabledFlag="3">
+				<exercise id="1151344259839" group="3" caption="Matching (3)" href="reading/exercises/1151344259839.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_matching3.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344259757" group="3" caption="Summary completion" href="reading/exercises/1151344259757.xml" thumbnail="reading/thumbnails/Reading_sc.jpg" enabledFlag="3">
+				<exercise id="1151344259757" group="3" caption="Summary completion" href="reading/exercises/1151344259757.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/reading3_summary.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
         	</unit>
@@ -85,8 +85,8 @@
 		<course id="1287130200000" class="listening" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" description="xxx." />
-				<group id="3" caption="Unit 3" task="1" description="xxx." />
+				<group id="2" caption="Unit 2" task="1" description="" />
+				<group id="3" caption="Unit 3" task="1" description="" />
 			</groups>
 			<unit id="1287130210000" class="question-zone">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
@@ -102,64 +102,64 @@
 
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
-				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3">
+				<exercise id="1156153794384" group="1" caption="Short-answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_saq.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1156153794466" group="1" caption="Table completion" href="listening/exercises/1156153794466.xml" thumbnail="listening/thumbnails/Listening_tabcomp1.jpg" enabledFlag="3">
+				<exercise id="1156153794466" group="1" caption="Table completion" href="listening/exercises/1156153794466.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_table.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1156165919258" group="1" caption="Sentence completion" href="listening/exercises/1156165919258.xml" thumbnail="listening/thumbnails/Listening_sencomp1.jpg" enabledFlag="3">
+				<exercise id="1156165919258" group="1" caption="Sentence completion" href="listening/exercises/1156165919258.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_sencomp.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1156165919813" group="1" caption="Matching" href="listening/exercises/1156165919813.xml" enabledFlag="3">
+				<exercise id="1156165919813" group="1" caption="Matching" href="listening/exercises/1156165919813.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156957196702" group="2" caption="Monologue" href="listening/exercises/1156957196702.xml" thumbnail="listening/thumbnails/Listening_monologue.jpg" enabledFlag="3">
+				<exercise id="1156957196702" group="2" caption="Monologue" href="listening/exercises/1156957196702.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_monologue.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1156429192269" group="2" caption="Conversation" href="listening/exercises/1156429192269.xml" enabledFlag="3">
+				<exercise id="1156429192269" group="2" caption="Conversation" href="listening/exercises/1156429192269.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_conversation.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344537628" group="2" caption="Purchasing tickets" href="listening/exercises/1151344537628.xml" thumbnail="listening/thumbnails/Listening_purtick.jpg" enabledFlag="3">
+				<exercise id="1151344537628" group="2" caption="Purchasing tickets" href="listening/exercises/1151344537628.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_purchasing.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344537619" group="2" caption="British cinema" href="listening/exercises/1151344537619.xml" enabledFlag="3">
+				<exercise id="1151344537619" group="2" caption="British cinema" href="listening/exercises/1151344537619.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344259533" group="3" caption="Form completion" href="listening/exercises/1151344259533.xml" enabledFlag="3">
+				<exercise id="1151344259533" group="3" caption="Form completion (1)" href="listening/exercises/1151344259533.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_formcomp1.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344259234" group="3" caption="Multiple selection (1)" href="listening/exercises/1151344259234.xml" enabledFlag="3">
+				<exercise id="1151344259234" group="3" caption="Multiple selection (1)" href="listening/exercises/1151344259234.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_multiplesel1.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344259298" group="3" caption="Short answers" href="listening/exercises/1151344259298.xml" enabledFlag="3">
+				<exercise id="1151344259298" group="3" caption="Short-answer questions (1)" href="listening/exercises/1151344259298.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_saq1.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344259537" group="3" caption="Multiple selection (2)" href="listening/exercises/1151344259537.xml" enabledFlag="3">
+				<exercise id="1151344259537" group="3" caption="Multiple selection (2)" href="listening/exercises/1151344259537.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_multiplesel2.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1151344259715" group="3" caption="Sentence completion" href="listening/exercises/1151344259715.xml" enabledFlag="3">
+				<exercise id="1151344259715" group="3" caption="Sentence completion (1)" href="listening/exercises/1151344259715.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_sencomp1.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344259935" group="3" caption="Classification" href="listening/exercises/1151344259935.xml" enabledFlag="3">
+				<exercise id="1151344259935" group="3" caption="Classification (1)" href="listening/exercises/1151344259935.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_classification1.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1151344221308" group="3" caption="Table completion" href="listening/exercises/1151344221308.xml" enabledFlag="3">
+				<exercise id="1151344221308" group="3" caption="Table completion" href="listening/exercises/1151344221308.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_table.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344221548" group="3" caption="Form completion" href="listening/exercises/1151344221548.xml" enabledFlag="3">
+				<exercise id="1151344221548" group="3" caption="Form completion (2)" href="listening/exercises/1151344221548.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_formcomp2.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344221436" group="3" caption="Short-answer questions" href="listening/exercises/1151344221436.xml" enabledFlag="3">
+				<exercise id="1151344221436" group="3" caption="Short-answer questions (2)" href="listening/exercises/1151344221436.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_saq2.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344221888" group="3" caption="Sentence completion" href="listening/exercises/1151344221888.xml" thumbnail="listening/thumbnails/Listening_sencomp2.jpg" enabledFlag="3">
+				<exercise id="1151344221888" group="3" caption="Sentence completion (2)" href="listening/exercises/1151344221888.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_sencomp2.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344221365" group="3" caption="Classification" href="listening/exercises/1151344221365.xml" enabledFlag="3">
+				<exercise id="1151344221365" group="3" caption="Classification (2)" href="listening/exercises/1151344221365.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_classification2.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344221875" group="3" caption="Labelling a diagram" href="listening/exercises/1151344221875.xml" enabledFlag="3">
+				<exercise id="1151344221875" group="3" caption="Labelling a diagram" href="listening/exercises/1151344221875.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_labelling.jpg">
 				  <!--GF - QB-->
 				</exercise>
             </unit>
@@ -167,8 +167,8 @@
 		 <course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
 				<group id="1" caption="Unit 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" description="xxx." />
-				<group id="3" caption="Unit 3" task="1" description="xxx." />
+				<group id="2" caption="Unit 2" task="1" description="" />
+				<group id="3" caption="Unit 3" task="1" description="" />
 			</groups>
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
@@ -183,73 +183,73 @@
 				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Speaking section 2" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" />
 			</unit>
 			<unit id="1287130340000" class="practice-zone">
-				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" thumbnail="speaking/thumbnails/Speaking_intro1.jpg" enabledFlag="3">
+				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156153794715" group="1" caption="The speaking test (1)" href="speaking/exercises/1156153794715.xml" thumbnail="speaking/thumbnails/Speaking_stest1_1.jpg" enabledFlag="3">
+				<exercise id="1156153794715" group="1" caption="The speaking test (1)" href="speaking/exercises/1156153794715.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_speakingtest1.jpg">
 				  <!--D&D - QB-->
 				</exercise>
-				<exercise id="1156153794077" group="1" caption="The speaking test (2)" href="speaking/exercises/1156153794077.xml" thumbnail="speaking/thumbnails/Speaking_stest2_1.jpg" enabledFlag="3">
+				<exercise id="1156153794077" group="1" caption="The speaking test (2)" href="speaking/exercises/1156153794077.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_speakingtest2.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794231" group="1" caption="Watch a video (1)" href="speaking/exercises/1156153794231.xml" thumbnail="speaking/thumbnails/Speaking_watchvid1_1.jpg" enabledFlag="3">
+				<exercise id="1156153794231" group="1" caption="Watch a video (1)" href="speaking/exercises/1156153794231.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo1.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156153794482" group="1" caption="Watch a video (2)" href="speaking/exercises/1156153794482.xml" thumbnail="speaking/thumbnails/Speaking_watchvid2_1.jpg" enabledFlag="3">
+				<exercise id="1156153794482" group="1" caption="Watch a video (2)" href="speaking/exercises/1156153794482.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo2.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1156153794271" group="1" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml" enabledFlag="3">
+				<exercise id="1156153794271" group="1" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo3.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156153794218" group="1" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml" enabledFlag="3">
+				<exercise id="1156153794218" group="1" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo4.jpg">
 				<!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml" enabledFlag="3">
+				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172405" group="2" caption="Practice for Section 2" href="speaking/exercises/1151344172405.xml" enabledFlag="3">
+				<exercise id="1151344172405" group="2" caption="Practice for Section 2" href="speaking/exercises/1151344172405.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172961" group="2" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml" enabledFlag="3">
+				<exercise id="1151344172961" group="2" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_candidate1.jpg">
 				  <!--D&D QB-->
 				</exercise>
-				<exercise id="1151344172836" group="2" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml" enabledFlag="3">
+				<exercise id="1151344172836" group="2" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_candidate2.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344172525" group="2" caption="Comparative forms" href="speaking/exercises/1151344172525.xml" enabledFlag="3">
+				<exercise id="1151344172525" group="2" caption="Comparative forms" href="speaking/exercises/1151344172525.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_comparative.jpg">
 				  <!--D&D QB-->
 				</exercise>
-				<exercise id="1151344172701" group="2" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml" enabledFlag="3">
+				<exercise id="1151344172701" group="2" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_candidate3.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml" enabledFlag="3">
+				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253123" group="3" caption="Tips for Section 3" href="speaking/exercises/1156181253123.xml" enabledFlag="3">
+				<exercise id="1156181253123" group="3" caption="Tips for Section 3" href="speaking/exercises/1156181253123.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_tips.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253456" group="3" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml" enabledFlag="3">
+				<exercise id="1156181253456" group="3" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_candidate.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156181253086" group="3" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml" thumbnail="speaking/thumbnails/Speaking_summary.jpg" enabledFlag="3">
+				<exercise id="1156181253086" group="3" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_summary.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156181253500" group="3" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml" enabledFlag="3">
+				<exercise id="1156181253500" group="3" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_IELTSexam.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156181253785" group="3" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml" enabledFlag="3">
+				<exercise id="1156181253785" group="3" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_watchanother.jpg">
 				  <!--GF TB-->
 				</exercise>
 			</unit>
 		</course>
 		 <course id="1287130400000" class="writing" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
 			<groups>
-				<group id="1" caption="Unit 1 task 1" task="1" description="xxx." />
-				<group id="2" caption="Unit 1 task 2" task="2" description="xxx." />
-				<group id="3" caption="Unit 2 task 1" task="1" description="xxx." />
-				<group id="4" caption="Unit 2 task 2" task="2" description="xxx." />
-				<group id="5" caption="Unit 3 task 1" task="1" description="xxx." />
-				<group id="6" caption="Unit 3 task 2" task="2" description="xxx." />
+				<group id="1" caption="Unit 1 task 1" task="1" description="" />
+				<group id="2" caption="Unit 1 task 2" task="2" description="" />
+				<group id="3" caption="Unit 2 task 1" task="1" description="" />
+				<group id="4" caption="Unit 2 task 2" task="2" description="" />
+				<group id="5" caption="Unit 3 task 1" task="1" description="" />
+				<group id="6" caption="Unit 3 task 2" task="2" description="" />
 			</groups>
 			<unit id="1287130410000" class="question-zone">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
@@ -269,175 +269,175 @@
 
 			</unit>
 			<unit id="1287130440000" class="practice-zone">
-				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="2">
+				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml" thumbnail="writing/thumbnails/Writing_statchart.jpg" enabledFlag="3">
+				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_static.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156153794787" group="1" caption="Understanding static charts (1)" href="writing/exercises/1156153794787.xml" enabledFlag="3">
+				<exercise id="1156153794787" group="1" caption="Understanding static charts (1)" href="writing/exercises/1156153794787.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding1.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="3">
+				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding2.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="3">
+				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding3.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="3">
+				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding4.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794241" group="1" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml" enabledFlag="3">
+				<exercise id="1156153794241" group="1" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_dealing.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156153794414" group="1" caption="Present simple" href="writing/exercises/1156153794414.xml" enabledFlag="3">
+				<exercise id="1156153794414" group="1" caption="Present simple" href="writing/exercises/1156153794414.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_presentsimple.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156153794467" group="1" caption="Past simple" href="writing/exercises/1156153794467.xml" enabledFlag="3">
+				<exercise id="1156153794467" group="1" caption="Past simple" href="writing/exercises/1156153794467.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_pastsimple.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1156153794027" group="1" caption="Organising your report" href="writing/exercises/1156153794027.xml" enabledFlag="3">
+				<exercise id="1156153794027" group="1" caption="Organising your report" href="writing/exercises/1156153794027.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_practice.jpg">
 				  <!--D&D - QB-->
 				</exercise>
-				<exercise id="1156153794876" group="1" caption="Practice activity A" href="writing/exercises/1156153794876.xml" enabledFlag="3">
+				<exercise id="1156153794876" group="1" caption="Practice activity A" href="writing/exercises/1156153794876.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156153794679" group="1" caption="Sample answer" href="writing/exercises/1156153794679.xml" enabledFlag="3">
+				<exercise id="1156153794679" group="1" caption="Sample answer" href="writing/exercises/1156153794679.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_sample.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156181253271" group="2" caption="Introduction" href="writing/exercises/1156181253271.xml" enabledFlag="3">
+				<exercise id="1156181253271" group="2" caption="Introduction" href="writing/exercises/1156181253271.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253679" group="2" caption="Arguments &quot;for or against&quot;" href="writing/exercises/1156181253679.xml" enabledFlag="3">
+				<exercise id="1156181253679" group="2" caption="Arguments &quot;for or against&quot;" href="writing/exercises/1156181253679.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_argumentsfoa.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156181253291" group="2" caption="Choosing an introduction" href="writing/exercises/1156181253291.xml" enabledFlag="3">
+				<exercise id="1156181253291" group="2" caption="Choosing an introduction" href="writing/exercises/1156181253291.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_choosing.jpg">
 				  <!--D&D QB-->
 				</exercise>
-				<exercise id="1156181253997" group="2" caption="Linking words and phrases (1)" href="writing/exercises/1156181253997.xml" enabledFlag="3">
+				<exercise id="1156181253997" group="2" caption="Linking words and phrases (1)" href="writing/exercises/1156181253997.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_linking1.jpg">
 				  <!--Dropdown QB-->
 				</exercise>
-				<exercise id="1156181253915" group="2" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml" enabledFlag="3">
+				<exercise id="1156181253915" group="2" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_linking2.jpg">
 				  <!--Dropdown TB-->
 				</exercise>
-				<exercise id="1156181253598" group="2" caption="Ideas for the Writing task" href="writing/exercises/1156181253598.xml" enabledFlag="3">
+				<exercise id="1156181253598" group="2" caption="Ideas for the Writing task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156181253928" group="2" caption="Practice activity E" href="writing/exercises/1156181253928.xml" enabledFlag="3">
+				<exercise id="1156181253928" group="2" caption="Practice activity E" href="writing/exercises/1156181253928.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253739" group="2" caption="Proofreading" href="writing/exercises/1156181253739.xml" enabledFlag="3">
+				<exercise id="1156181253739" group="2" caption="Proofreading" href="writing/exercises/1156181253739.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_proofreading.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156334683219" group="3" caption="Introduction" href="writing/exercises/1156334683219.xml" enabledFlag="3">
+				<exercise id="1156334683219" group="3" caption="Introduction" href="writing/exercises/1156334683219.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156334683158" group="3" caption="Describing an object" href="writing/exercises/1156334683158.xml" enabledFlag="3">
+				<exercise id="1156334683158" group="3" caption="Describing an object" href="writing/exercises/1156334683158.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_describing.jpg">
 				  <!--GF TB-->
 				</exercise>
-				<exercise id="1156334683833" group="3" caption="Express purpose, cause and result" href="writing/exercises/1156334683833.xml" enabledFlag="3">
+				<exercise id="1156334683833" group="3" caption="Express purpose, cause and result" href="writing/exercises/1156334683833.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_expresspcr.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156334683268" group="3" caption="The hydram water pump" href="writing/exercises/1156334683268.xml" enabledFlag="3">
+				<exercise id="1156334683268" group="3" caption="The hydram water pump" href="writing/exercises/1156334683268.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_waterpump.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156334683296" group="3" caption="Cohesive devices" href="writing/exercises/1156334683296.xml" enabledFlag="3">
+				<exercise id="1156334683296" group="3" caption="Cohesive devices" href="writing/exercises/1156334683296.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_cohesive.jpg">
 				  <!--GF QB-->
 				</exercise>
-				<exercise id="1156334683322" group="3" caption="Relative clauses (1)" href="writing/exercises/1156334683322.xml" enabledFlag="3">
+				<exercise id="1156334683322" group="3" caption="Relative clauses (1)" href="writing/exercises/1156334683322.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_relative1.jpg">
 				  <!--MC-->
 				</exercise>
-				<exercise id="1157364253085" group="3" caption="Relative clauses (2)" href="writing/exercises/1157364253085.xml" enabledFlag="3">
+				<exercise id="1157364253085" group="3" caption="Relative clauses (2)" href="writing/exercises/1157364253085.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_relative2.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156334683345" group="3" caption="The wind turbine" href="writing/exercises/1156334683345.xml" enabledFlag="3">
+				<exercise id="1156334683345" group="3" caption="The wind turbine" href="writing/exercises/1156334683345.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_windturbine.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156334683160" group="3" caption="Practice activity A" href="writing/exercises/1156334683160.xml" enabledFlag="3">
+				<exercise id="1156334683160" group="3" caption="Practice activity A" href="writing/exercises/1156334683160.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_practice.jpg">
 				  <!--Dropdown - TB-->
 				</exercise>
-				<exercise id="1156334683495" group="3" caption="Sample answer" href="writing/exercises/1156334683495.xml" enabledFlag="3">
+				<exercise id="1156334683495" group="3" caption="Sample answer" href="writing/exercises/1156334683495.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_sample.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156334683834" group="4" caption="Introduction" href="writing/exercises/1156334683834.xml" enabledFlag="3">
+				<exercise id="1156334683834" group="4" caption="Introduction" href="writing/exercises/1156334683834.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156334683730" group="4" caption="Paragraph headings" href="writing/exercises/1156334683730.xml" enabledFlag="3">
+				<exercise id="1156334683730" group="4" caption="Paragraph headings" href="writing/exercises/1156334683730.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_paragraph.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156334683492" group="4" caption="Organising ideas into paragraphs" href="writing/exercises/1156334683492.xml" enabledFlag="3">
+				<exercise id="1156334683492" group="4" caption="Organising ideas into paragraphs" href="writing/exercises/1156334683492.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_organising.jpg">
 				  <!--Dropdown - QB-->
 				</exercise>
-				<exercise id="1156334683290" group="4" caption="Noise problems and solutions" href="writing/exercises/1156334683290.xml" enabledFlag="3">
+				<exercise id="1156334683290" group="4" caption="Noise problems and solutions" href="writing/exercises/1156334683290.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_noiseproblems.jpg">
 				  <!--Dropdown - TB-->
 				</exercise>
-				<exercise id="1156334683327" group="4" caption="Expressing cause and effect" href="writing/exercises/1156334683327.xml" enabledFlag="3">
+				<exercise id="1156334683327" group="4" caption="Expressing cause and effect" href="writing/exercises/1156334683327.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_expressing.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156334683860" group="4" caption="Preparation for the next task" href="writing/exercises/1156334683860.xml" enabledFlag="3">
+				<exercise id="1156334683860" group="4" caption="Preparation for the next task" href="writing/exercises/1156334683860.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_preparation.jpg">
 				  <!--GF splitscreen QB-->
 				</exercise>
-				<exercise id="1156334683512" group="4" caption="Practice activity B" href="writing/exercises/1156334683512.xml" enabledFlag="3">
+				<exercise id="1156334683512" group="4" caption="Practice activity B" href="writing/exercises/1156334683512.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156334683244" group="4" caption="Sample answer" href="writing/exercises/1156334683244.xml" enabledFlag="3">
+				<exercise id="1156334683244" group="4" caption="Sample answer" href="writing/exercises/1156334683244.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t2_sample.jpg">
 				  <!--GF splitscreen TB-->
 				</exercise>
-				<exercise id="1151344172565" group="5" caption="Introduction" href="writing/exercises/1151344172565.xml" enabledFlag="3">
+				<exercise id="1151344172565" group="5" caption="Introduction" href="writing/exercises/1151344172565.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172016" group="5" caption="Table completion" href="writing/exercises/1151344172016.xml" enabledFlag="3">
+				<exercise id="1151344172016" group="5" caption="Table completion" href="writing/exercises/1151344172016.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_table.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172381" group="5" caption="Identifying stages in a process" href="writing/exercises/1151344172381.xml" enabledFlag="3">
+				<exercise id="1151344172381" group="5" caption="Identifying stages in a process" href="writing/exercises/1151344172381.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_identifying.jpg">
 				  <!--MC splitscreen QB-->
 				</exercise>
-				<exercise id="1151344172816" group="5" caption="Sequence markers" href="writing/exercises/1151344172816.xml" enabledFlag="3">
+				<exercise id="1151344172816" group="5" caption="Sequence markers" href="writing/exercises/1151344172816.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_sequence.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1151344172861" group="5" caption="First conditional" href="writing/exercises/1151344172861.xml" enabledFlag="3">
+				<exercise id="1151344172861" group="5" caption="First conditional" href="writing/exercises/1151344172861.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_firstcon.jpg">
 				  <!--Dropdown - QB-->
 				</exercise>
-				<exercise id="1151344172864" group="5" caption="Stages in a process - practice" href="writing/exercises/1151344172864.xml" enabledFlag="3">
+				<exercise id="1151344172864" group="5" caption="Stages in a process - practice" href="writing/exercises/1151344172864.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_stageinprocess.jpg">
 				  <!--Dropdown - TB-->
 				</exercise>
-				<exercise id="1151344172878" group="5" caption="Passive voice" href="writing/exercises/1151344172878.xml" enabledFlag="3">
+				<exercise id="1151344172878" group="5" caption="Passive voice" href="writing/exercises/1151344172878.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_passivevoice.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344172453" group="5" caption="Active and passive" href="writing/exercises/1151344172453.xml" enabledFlag="3">
+				<exercise id="1151344172453" group="5" caption="Active and passive" href="writing/exercises/1151344172453.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_activepassive.jpg">
 				  <!--GF TB-->
 				</exercise>
-				<exercise id="1151344172813" group="5" caption="Practice activity A" href="writing/exercises/1151344172813.xml" enabledFlag="3">
+				<exercise id="1151344172813" group="5" caption="Practice activity A" href="writing/exercises/1151344172813.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172669" group="5" caption="Sample answer" href="writing/exercises/1151344172669.xml" enabledFlag="3">
+				<exercise id="1151344172669" group="5" caption="Sample answer" href="writing/exercises/1151344172669.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_sample.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1154106427713" group="6" caption="Introduction" href="writing/exercises/1154106427713.xml" enabledFlag="3">
+				<exercise id="1154106427713" group="6" caption="Introduction" href="writing/exercises/1154106427713.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344151941" group="6" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml" enabledFlag="3">
+				<exercise id="1151344151941" group="6" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1155192197437" group="6" caption="Arguments" href="writing/exercises/1155192197437.xml" enabledFlag="3">
+				<exercise id="1155192197437" group="6" caption="Arguments" href="writing/exercises/1155192197437.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_arguments.jpg">
 				  <!--GF splitscreen TB-->
 				</exercise>
-				<exercise id="1151344151535" group="6" caption="Learning to refute arguments" href="writing/exercises/1151344151535.xml" enabledFlag="3">
+				<exercise id="1151344151535" group="6" caption="Learning to refute arguments" href="writing/exercises/1151344151535.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_learning.jpg">
 				  <!--MC splitscreen QB-->
 				</exercise>
-				<exercise id="1151344151459" group="6" caption="Expressing probability (1)" href="writing/exercises/1151344151459.xml" enabledFlag="3">
+				<exercise id="1151344151459" group="6" caption="Expressing probability (1)" href="writing/exercises/1151344151459.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_expressing1.jpg">
 				  <!--MC splitscreen QB-->
 				</exercise>
-				<exercise id="1151344151113" group="6" caption="Expressing probability (2)" href="writing/exercises/1151344151113.xml" enabledFlag="3">
+				<exercise id="1151344151113" group="6" caption="Expressing probability (2)" href="writing/exercises/1151344151113.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_expressing2.jpg">
 				  <!--GF QB-->
 				</exercise>
-				<exercise id="1151344151924" group="6" caption="For or against?" href="writing/exercises/1151344151924.xml" enabledFlag="3">
+				<exercise id="1151344151924" group="6" caption="For or against?" href="writing/exercises/1151344151924.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_foragainst.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1151344151900" group="6" caption="Practice activity B" href="writing/exercises/1151344151900.xml" enabledFlag="3">
+				<exercise id="1151344151900" group="6" caption="Practice activity B" href="writing/exercises/1151344151900.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344151225" group="6" caption="Sample answer" href="writing/exercises/1151344151225.xml" enabledFlag="3">
+				<exercise id="1151344151225" group="6" caption="Sample answer" href="writing/exercises/1151344151225.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_sample.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
           </unit>

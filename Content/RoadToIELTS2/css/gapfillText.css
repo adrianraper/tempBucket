@@ -1,63 +1,90 @@
 * {
 	font-size: 12px;
 	font-family: Verdana;
-}
-
+	line-height: 22em;
+	color: #000000;
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* The main header should always be bold */
 body > header {
 	font-weight: normal;
 	color: #000000;
 	line-height:20em;
-}
-
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* The body should always have a bit of space at the top */
 #body {
 	padding-top: 12px;
-}
-
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* Paragraphs have spacing after them */
 p {
-	
 	padding-left:20px;
 	padding-right:20px;
-	
-}
-
-
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* Lists use numbers. */
-
-
+/*-----------------------------------------------------------------------------------------------*/
 /* Multiple-choice answers use letters */
 .answerList {
 	list-style-type: lowerLatin;
 	padding-left: 15px;
 	margin-left: 0px;
-}
-/* Reading text spacing */
-/* I would be happier doing #readingText * {} but that overrides the h1 settings */
-#readingText p {
-	padding-right: 25px;
-	padding-left: 15px;
-	padding-top: 12px;
-	padding-bottom: 18em;
-	font-size: 12px;
-	text-align: justify;
-	line-height: 20em
-
-
-}
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
- 	tab-stops: 30px;
  	text-indent: -30px;
  	padding-left: 30px;
-}		
-
+	}		
+	
+.hangingIndent1 {
+ 	padding-left: 190px;
+	text-indent: -175px;
+ 	line-height: 20px;
+	}
+.hangingIndent2 {
+ 	text-indent: -80px;
+ 	padding-left: 95px;
+	line-height: 30em;
+	}			
+.hangingIndent3{
+ 	text-indent: -177px;
+ 	padding-left: 192px;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* This is the image or video floating on the right hand side in many exercises */
+#body .rightFloat {
+	float: right;
+	padding-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	}
+#body .leftFloat {
+	float: left;
+	padding-top: 0px;
+	padding-right: 200px;
+	padding-left: 0px;
+	}
+#body .rightFloatvideo {
+	width:760px;
+	padding-top: 0em;
+	padding-right: 10em;
+	padding-left: 100px;
+	margin-top: 0em;
+	}
+img.floatleft {
+	float: left;
+	padding-top: 37px;
+	padding-right: 50px;
+	padding-left: 25px;
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
 	color: #3A00FF;
 	text-decoration: none;
-}
+	}
 
 /* Draggable spans in noscroll should be in a bordered filled box */
 #noscroll span[draggable=true] {
@@ -71,36 +98,39 @@ a, span[draggable="true"] {
 	border-color: #B5B5B5;
 	border-radius: 12px;
 	background-color: #FFFFFF;
-}
+	}
+	
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */
 #noscroll span p {
 	padding-bottom: 0px;
-}
+	}
 
 /* Use the custom after-pad property to add a width of 1 _ characters to any input's maximum length */
 input {
 	gap-after-padding: 2;
-}
+	}
 
 /* Drag and drop targets always have the same gap text underneath them */
 input[type="droptarget"] {
 	gap-text: "__.__";
-}
+	}
 
 /* Color classes */
 .blue {
 	color: #3A00FF;
-}
+	}
 
 /* Classes for showing selections and results */
+
 a.selected {
 	text-decoration: underline;
-}
+	}
 
 a.correct, input.correct, g.correct, select.correct {
-	color: #00AA00 !important;
-}
+	color: 	#347C17 !important;
+	text-decoration: underline;
+	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
 	color: #AA0000 !important;
@@ -108,12 +138,11 @@ a.incorrect, input.incorrect, g.incorrect, select.incorrect {
 
 a.neutral, input.neutral, g.neutral, select.neutral {
 	color: #0000AA !important;
-}
+	}
 
 /* Headings */
-/* This heading affects the heading in Listening 1 Table completion */
+/* This heading affects the heading in e.g. Listening 1 Table completion */
 h1 {
-	font-family: Verdana;
 	font-size: 16px;
 	font-weight: bold;
 	padding-top: 0px;
@@ -123,8 +152,8 @@ h1 {
 	text-align: left;
 	line-height: 20em
 }
+
 h2 {
-	font-family: Verdana;
 	font-size: 12px;
 	color: #333333;
 	padding-left: 15px;
@@ -132,33 +161,19 @@ h2 {
 	padding-bottom: 18em;
 	padding-right: 25em;
 	text-align: left;
-    line-height: 20em
+    line-height: 20em;
 }
 
-/* This h4 affects the heading for Listening 3 Classification */
+/* This h4 affects the question heading in e.g Listening 3 Classification */
 h4 {
-	font-family: Verdana;
 	font-size: 13px;
 	padding-bottom: 20px;
 	padding-top: 0px;
 	padding-left:20px;
-}
-
-/* This h5 affects the heading for Listening 1 Sentence completion */
-h5 {
-	font-family: Verdana;
-	font-size: 16px;
-	font-weight: bold;
-	padding-top: 20em;
-	padding-bottom: 10px;
-	padding-left:15px;
-	text-align: left;
-	line-height: 5em;
-}
-
-/* This h5 affects the section heading for Listening 1 Sentence completion */
+	}
+	
+/* bullet sub heading e.g. Listening 1 Sentence completion */
 h6 {
-	font-family: Verdana;
 	font-size: 11px;
 	color: #000000;
 	padding-bottom: 0;
@@ -166,36 +181,32 @@ h6 {
 	text-align: left;
 	line-height: 20em;
 	padding-left:15px;
-}
-
-/* This h7 is session heading for Listening 2 Purchasing tickets */
+	}
+	
+/* This h7 is session heading in e.g. Listening 2 Purchasing tickets */
 h7{
-	font-family: Verdana;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 20px;
 	line-height: 20em;
 	padding-right: 0%;
-	padding-left:15px
+	padding-left:20px
 	}
 	
-	/* This h8 affects the heading for Listening 3 Form completion */
+	/* This h8 affects the heading in e.g. Listening 3 Form completion (1)*/
 	h8{
-	font-family: Verdana;
 	font-size: 15px;
 	font-weight: bold;
 	padding-top: 0px;
-	padding-bottom: 0em;
 	padding-left: 15px;
 	padding-right: 25px;
 	text-align: left;
 	line-height: 20em;
 	padding-right: 25em;
-}
+	}
 
-/* This h9 affects the heading for Listening 3 Sentence completion */
+/* This h9 affects the headings in Listening 3 Sentence completion (2)*/
 	h9{
-	font-family: Verdana;
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 0px;
@@ -204,30 +215,44 @@ h7{
 	padding-left: 15px;
 	}
 	
+	/*writing task */
+	h10{
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left:20px;
+	line-height: 20em;
+	padding-right: 350%;
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* Exercise ID and class */
-#questionList {
-	list-style-type: decimal;
-	
-	padding-left: 0px;
-	padding-right: 380%;
-	padding-top: 20em;
-	text-align: left;
-	line-height: 20em;
-}
-
-#questionList p {
-padding-bottom: 12px;
-}
-
-.questionList_target {
-	list-style-type: lowerLatin;
-	padding-left: 0px;
-	padding-right: 225%;
-	padding-top: 20em;
-	text-align: left;
-	line-height: 20em;
-}
-
+/* this class is for instruction in reading exercise */
+#instruction{
+	padding-left:0px;
+	padding-right: 160%;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/*Formatting used for feedback text without numbering. */
+.feedbacktext {
+	margin: 0 0 0 0;
+	padding: 20px 0px 20px 50px;
+	line-height: 22em;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/*Formatting used for writing task text. */
+.popuptext {
+	margin: 0 0 0 0;
+	padding: 20px 50px 20px 50px;
+	line-height: 22em;
+	}		
+/*-----------------------------------------------------------------------------------------------*/
+/* This is for image of writing task */
+	.imagetask {
+	float:left;
+	padding: 5px 10px 0 -4px;
+	}
+/*-----------------------------------------------------------------------------------------------*/	
 .bulletList {
 	list-style-type: circle;
 	list-style-position:outside;
@@ -237,161 +262,64 @@ padding-bottom: 12px;
 	padding-bottom: 15em;
 	text-align: left;
 	line-height: 22em;
-}
+	}
 
 .bulletList li{
 	text-indent: 10%;
+	}
 	
-}
 #gapfillTable{
 	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
-	padding-right: 280%;
-}
+	padding-right: 380%;
+	padding-left:1px;
+	}
+	
 #gapfillTable p{
-padding-bottom: 12px;
-}
+	padding-bottom: 12px;
+	}
 
 #gapfillText{
-padding-left:0px;
+	padding-left:0px;
 	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
 	padding-right: 380%;
-}
+	}
+	
 #gapfillText p{
-padding-bottom: 20em;
-}
+	padding-bottom: 20em;
+	}
 
 #writing {
 	list-style-type: decimal;
+	padding-bottom: 12px;
 	margin-left: 20px;
 	padding-right: 25em;
 	padding-top: 20em;
 	text-align: left;
 	line-height: 22em;
-}
-#writing {
-padding-bottom: 12px;
-}
-.hangingIndent1 {
- 	padding-left: 190px;
-	text-indent: -175px	;
- 	line-height: 20px;
-}
-.hangingIndent2 {
- 	tab-stops: 30px;
- 	text-indent: -80px;
- 	padding-left: 95px;
-	line-height: 30em;
-}		
-.hangingIndent3{
-	tab-stops: 30px;
- 	text-indent: -177px;
- 	padding-left: 192px;
-}
-/* This is the image or video floating on the right hand side in many exercises */
-#body .rightFloat {
-	float: right;
-	padding-top: 20px;
-	padding-right: 20px;
-	padding-left: 20px;
-}
-#body .leftFloat {
-	float: left;
-	padding-top: 0px;
-	padding-right: 20px;
-	padding-left: 0px;
-}
-#body .rightFloatvideo {
-	width:760px;
-	padding-top: 0em;
-	padding-right: 10em;
-	padding-left: 100px;
-	margin-top: 0em;
-}
-img.floatleft {
-float: left;
-	padding-top: 37px;
-	padding-right: 50px;
-	padding-left: 25px;
-}
-
-	#gapfillTextvideo{
-	padding-top: 0px;
-	text-align: left;
-	line-height: 22em;
-	padding-right: 400%;
-	width:400px;
-}
-
-img.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-} 
-
-
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* video div */
 #outer{
-position: relative;
+	position: relative;
     width:500px;
-}
+	}
 
 #content{
-position:relative;
-padding-top:25px;
+	position:relative;
+	padding-top:25px;
     height: 300px;
     width:400px;
     line-height:22em;
 	padding-left: 0px;
-}
+	}
 
 #video{
-	
-	padding-top: 20em;
-	padding-right: 0em;
-	padding-left: 520px;
+	position:relative;
+	padding: 25em 0em 0 520px;
 	margin-top: 0em;
-}
-
-
-/* This class is used for column layout in Listening, Unit 3, Sentence completion. */
-#outersencomp{
-	position:static;
-	padding-top: 25px;
-   padding-left: -22em;
-    width:auto;
-}
-#contentsencomp{
-	position:fixed;
-	float: left;
-    height: 300px;
-    width:100px;
-	line-height: 30px;
-	top: 0;
-	left: 20px;
-}
-
-#content1sencomp{
-   position:relative;
-padding-top:70px;
-   left: -20px;
-   float: left;
-   height:900px;
-	width: 800px;
-   line-height: 30px;
-}
-
-#instruction{
-	padding-left:0px;
-	padding-right: 160%;
-}
-
-/*Formatting used for feedback text without numbering. */
-.feedbacktext {
-	margin: 0 0 0 0;
-	padding: 20px 0px 20px 0px;
-	line-height: 22em;
 	}
+/*-----------------------------------------------------------------------------------------------*/

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,8 +16,10 @@
 	
 	
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -88,107 +91,119 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 12. Click on them.
+		</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/EN_AW_007s.jpg" mode="1" id="1001"/>
   
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  <img class="rightFloat" src="../media/EN_AW_007s.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
   <p>The diagrams illustrate two methods of using the movement of waves&#xA0;<g id="t1">so that</g>&#xA0;generate electricity.</p>
-  <p>The first method makes use of a float connected to a pump. The float moves up and down with the movement of the waves. This movement is transferred to the pump, &#xA0;<g id="t2">which</g>&#xA0;piston rises and falls inside a cylinder. When the piston rises, water flows from the intake pipe into the storage tank. When&#xA0;<g id="t3">this</g>&#xA0;falls, there is a downward flow of water.&#xA0;<g id="t4">So that</g>&#xA0;, the intake valve closes.&#xA0;<g id="t5">Due</g>&#xA0;to leave the tank, the water must now go out via the outlet pipe. As it does so, it passes through a turbine,&#xA0;<g id="t6">so as</g>&#xA0;to rotate. This movement is then transferred to a generator, <g id="t7">who</g> converts the mechanical energy to electricity.</p>
-  <p>The second method also makes use of a turbine, but in this case&#xA0;<g id="t8">which</g>&#xA0;is surrounded by air inside a chamber. Below this is another chamber,&#xA0;<g id="t9">that</g>&#xA0;is half-submerged in the sea. The water in <g id="t10">a</g>&#xA0;second chamber rises and falls with the movement of the waves. When the water level rises, it pushes air into the top chamber.&#xA0;<g id="t11">So that</g>&#xA0;, a current of air passes through the top chamber and out of an opening in the roof. When the water level falls, air is drawn from the top chamber into the bottom one. Due to&#xA0;<g id="t12">this</g>&#xA0;currents of air, the turbine rotates. As in the first method, the turbine is connected to a generator, which produces electricity.</p>
+  
+  <p>The first method makes use of a float connected to a pump. The float moves up and down with the movement of the waves. This movement is transferred to the pump,&#xA0;<g id="t2">which</g>&#xA0;piston rises and falls inside a cylinder. When the piston rises, water flows from the intake pipe into the storage tank. When&#xA0;<g id="t3">this</g>&#xA0;falls, there is a downward flow of water.&#xA0;<g id="t4">So that</g>, the intake valve closes.&#xA0;<g id="t5">Due</g>&#xA0;to leave the tank, the water must now go out via the outlet pipe. As it does so, it passes through a turbine,&#xA0;<g id="t6">so as</g>&#xA0;to rotate. This movement is then transferred to a generator,&#xA0;<g id="t7">who</g>&#xA0;converts the mechanical energy to electricity.</p>
+  
+  <p>The second method also makes use of a turbine, but in this case&#xA0;<g id="t8">which</g>&#xA0;is surrounded by air inside a chamber. Below this is another chamber,&#xA0;<g id="t9">that</g>&#xA0;is half-submerged in the sea. The water in&#xA0;<g id="t10">a</g>&#xA0;second chamber rises and falls with the movement of the waves. When the water level rises, it pushes air into the top chamber.&#xA0;<g id="t11">So that</g>, a current of air passes through the top chamber and out of an opening in the roof. When the water level falls, air is drawn from the top chamber into the bottom one. Due to&#xA0;<g id="t12">this</g>&#xA0;currents of air, the turbine rotates. As in the first method, the turbine is connected to a generator, which produces electricity.</p>
+  
   <p>Both devices show how clean, renewable energy sources can be used to create electric power.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+ 
   </div>
 </section>
 
+<section id="writingtask1">
+
+<p class="popuptext"> You should spend about 20 minutes on this task.</p>
+<p class="popuptext"><b> The diagram below shows two ways of using the energy from ocean waves to generate electricity.</b></p>
+<p class="popuptext"><b> Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext">You should write at least 150 words</p>
+
+		</section>
 <section id="fb1">
-  <p align="left">
+  <p class="feedbacktext">
     'so that' needs to be followed with a full verb clause (subject + verb + object).
   </p>
-  <p >
+  <p class="feedbacktext">
     Correct: ...of waves&#xA0;<b>to</b>&#xA0;generate...
   </p>
 </section>
 
 <section id="fb2">
-  <p>A relative pronoun which shows possession is needed here. 'The piston of the pump' in other words.</p>
-  <p>
+  <p class="feedbacktext">A relative pronoun which shows possession is needed here. 'The piston of the pump' in other words.</p>
+  <p class="feedbacktext">
    Correct: ...the pump,&#xA0;<b>whose</b>&#xA0;piston...
   </p>
 </section>
 
 <section id="fb3">
-  <p>
+  <p class="feedbacktext">
    Correct: When&#xA0;<b>it</b>&#xA0;falls, ...
   </p>
 </section>
 
 <section id="fb4">
-  <p>
+  <p class="feedbacktext">
   'so that' needs to be followed with a full verb clause (subject + verb + object).
   </p>
-  <p>
+ <p class="feedbacktext">
    Correct:&#xA0;<b>Consequently</b>, the valve...
   </p>
 </section>
 
 <section id="fb5">
-  <p>'Due to' means 'because of'.</p>
-  <p>
+  <p class="feedbacktext">'Due to' means 'because of'.</p>
+  <p class="feedbacktext">
     Correct:&#xA0;<b>In order</b>&#xA0;to leave...
   </p>
 </section>
 
 <section id="fb6">
-  <p>
+  <p class="feedbacktext">
     'so that' needs to be followed with a full verb clause (subject + verb + object).
   </p>
-  <p>
+  <p class="feedbacktext">
     Correct: a turbine,&#xA0;<b>causing it</b>&#xA0;to rotate.
   </p>
 </section>
 
 <section id="fb7">
-  <p>'Who' is used to refer to people.</p>
-  <p>
+  <p class="feedbacktext">'Who' is used to refer to people.</p>
+  <p class="feedbacktext">
    Correct: ...to a generator,&#xA0;<b>which</b>&#xA0;converts...
   </p>
 </section>
 
 <section id="fb8">
-  <p >
+ <p class="feedbacktext">
     Correct: ...in this case&#xA0;<b>it</b>&#xA0;is surrounded...
   </p>
 </section>
 
 <section id="fb9">
-  <p>This is the second reference to the chamber, so 'a' is not appropriate here.</p>
-  <p>
-    Correct: ...another chamber,&#xA0;<b>which</b>&#xA0;is half...
+  <p class="feedbacktext">This is the second reference to the chamber, so 'a' is not appropriate here.</p>
+  
+  <p class="feedbacktext">Correct: ...another chamber,&#xA0;<b>which</b>&#xA0;is half...
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
+  <p class="feedbacktext">
    this
   </p>
 </section>
 
 <section id="fb11">
-  <p>'So that' can't be used here because there is a comma.</p>
-  <p>
+  <p class="feedbacktext">'So that' can't be used here because there is a comma.</p>
+  <p class="feedbacktext">
   Correct:&#xA0;<b>As a result</b>, a current...
   </p>
 </section>
 
 <section id="fb12">
-  <p>'Currents' is plural.</p>
-  <p>
+  <p class="feedbacktext">'Currents' is plural.</p>
+  <p class="feedbacktext">
   Correct: Due to&#xA0;<b>these</b>&#xA0;currents...
   </p>
 </section>

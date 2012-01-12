@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -121,6 +122,7 @@
       <input id="q9"/>
     </li><p class="linespace"></p>
     <li id="10">If you want to go to Canary Wharf on the underground, which line do you need?<br/><input id="q10"/></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
@@ -128,7 +130,17 @@
 	
 	<h8>Canary Wharf </h8>
 	<h2><p>new top spot to visit in London</p></h2>
-<p>	Fast emerging as one of the top spots to visit in London is Canary Wharf. Canary Wharf – in west London, just a few kilometres from the 'Square Mile' finance district and where some of the tallest office buildings in Europe are sited – is quickly catching up to other popular shopping and tourism locations like Oxford Street, Knightsbridge and Convent Garden. Apart from the 55,000 people who work for the businesses that have relocated to this highly prestigious riverside setting, hundreds of visitors also flock there every day to enjoy 200 stores, bars and restaurants. Below ground at Canada Square, for example, is upmarket fashion store Cecil Gee, lifestyle and design outlet Purves &amp; Purves, designer Ted Baker, and superior pen maker Mont Blanc. At Cabot Place there are other fashion chains reowned for British quality; Austin Reed; top shirt maker Thomas Pink; Church's Shoes and Burrell's the Jewellers. Other well known stores have also opened branches at Canary Wharf including Boots (chemists) and clothing stores Monsoon, Gap, Walls, Oasis and Next. A recent addition is Hobbs, described as a 'classic women's fashion store'. There is also a huge selection of places to eat and socialise in Canary Wharf, from coffee shops such as Starbucks and Coffee Republic, to eateries such as Caffe Italia, Pizza Express and Singapore Sam. The take-away outlets include Ixxy's Bagel's, Soup Opera and Crazy Salads. Among the more formal "sit down" establishments is Carluccio's, an authentic Italian cafe, where, in fine weather, customers can lunch outside on the pavement terrace, enjoying regional dishes developed by one of London's top chefs, Antonio Carluccio. Restaurateur and design guru Sir Terence Conran has sited his lastest venue, Plateau, at Canary Wharf, where not just good, mainly British, food is offered, but also fabulous views, especially at night. The choice of cuisine is wide. First Edition serves international dishes with continental and Far Eastern influences (together with an impressive array of fresh seafood), Royal China is famous for its dim sum, and Ubon, which sits on the top floor of a significant building on the riverfront, has an oriental menu that draws heavily on the existing fare offered at the celebrity-packed Nobu, in Park Lane, including the 'new style' sashimi and the legendary black cod with miso.  A new shopping centre, Jubilee Place, opened in Canary Wharf this fall to join the other successful shopping malls at Cabot and Canada Place. Now open are fashion outlets such as Phase Eight, Reiss and Karen Millen. Whistles, renowned for its directional, stylish clothes, also has a branch in Jubilee Place, as does L K Bennett offering not just footwear but clothing and accessories. Shops and restaurants are not the only reason to visit Canary Wharf. Scenic riverside walks, well-tended open spaces, sculptures, the recently opened maritime museum, as well as stunning modern architecture are also great attractions. Canary Wharf is reached by Docklands Light Railway, which operates seven days a week, and by London Underground's Jubilee Line Extension.</p>
+<p>Fast emerging as one of the top spots to visit in London is Canary Wharf.</p>
+
+<p>Canary Wharf – in west London, just a few kilometres from the 'Square Mile' finance district and where some of the tallest office buildings in Europe are sited – is quickly catching up to other popular shopping and tourism locations like Oxford Street, Knightsbridge and Convent Garden. Apart from the 55,000 people who work for the businesses that have relocated to this highly prestigious riverside setting, hundreds of visitors also flock there every day to enjoy 200 stores, bars and restaurants. Below ground at Canada Square, for example, is upmarket fashion store Cecil Gee, lifestyle and design outlet Purves &amp; Purves, designer Ted Baker, and superior pen maker Mont Blanc. At Cabot Place there are other fashion chains reowned for British quality; Austin Reed; top shirt maker Thomas Pink; Church's Shoes and Burrell's the Jewellers. Other well known stores have also opened branches at Canary Wharf including Boots (chemists) and clothing stores Monsoon, Gap, Walls, Oasis and Next. A recent addition is Hobbs, described as a 'classic women's fashion store'.</p>
+
+<p>There is also a huge selection of places to eat and socialise in Canary Wharf, from coffee shops such as Starbucks and Coffee Republic, to eateries such as Caffe Italia, Pizza Express and Singapore Sam. The take-away outlets include Ixxy's Bagel's, Soup Opera and Crazy Salads.</p>
+
+<p>Among the more formal "sit down" establishments is Carluccio's, an authentic Italian cafe, where, in fine weather, customers can lunch outside on the pavement terrace, enjoying regional dishes developed by one of London's top chefs, Antonio Carluccio. Restaurateur and design guru Sir Terence Conran has sited his lastest venue, Plateau, at Canary Wharf, where not just good, mainly British, food is offered, but also fabulous views, especially at night. The choice of cuisine is wide. First Edition serves international dishes with continental and Far Eastern influences (together with an impressive array of fresh seafood), Royal China is famous for its dim sum, and Ubon, which sits on the top floor of a significant building on the riverfront, has an oriental menu that draws heavily on the existing fare offered at the celebrity-packed Nobu, in Park Lane, including the 'new style' sashimi and the legendary black cod with miso.</p>
+
+<p>A new shopping centre, Jubilee Place, opened in Canary Wharf this fall to join the other successful shopping malls at Cabot and Canada Place. Now open are fashion outlets such as Phase Eight, Reiss and Karen Millen. Whistles, renowned for its directional, stylish clothes, also has a branch in Jubilee Place, as does L K Bennett offering not just footwear but clothing and accessories.</p>
+
+<p>Shops and restaurants are not the only reason to visit Canary Wharf. Scenic riverside walks, well-tended open spaces, sculptures, the recently opened maritime museum, as well as stunning modern architecture are also great attractions. Canary Wharf is reached by Docklands Light Railway, which operates seven days a week, and by London Underground's Jubilee Line Extension.</p>
 
 </section>
 </body>

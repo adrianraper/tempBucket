@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -97,57 +101,74 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/WB_WTG01.jpg" mode="16" id="1004"  />Read the writing task from the previous exercise again and answer the questions. In most cases, there is more than one correct answer.
-
-
+<div id="instruction">
+Read the writing task from the previous exercise again and answer the questions. In most cases, there is more than one correct answer.
+</div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/WB_GW_003.jpg" mode="1" id="1001"  />
 	
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  <img class="rightFloat" src="../media/WB_GW_003.jpg" mode="1" id="1001"  />
 	<ol id="questionList">
 	
 	<li>Which of the following openings are the most appropriate for this letter?
 	<list class="answerList">
-	<li><g id="t1">I am writing to apply for the position of part-time bookshop assistant as advertised in The Post on Monday, 12th December.</g></li>
-	<li><g id="t2">I'm writing about your ad for a shop assistant.</g></li>
-	<li><g id="t3">I read with interest your advertisement in The Post on Monday, 12th December and I would like to apply for the position of part-time bookshop assistant.</g></li>
-	<li><g id="t4">I saw your job in the paper and I want to apply.</g></li>
-	<li><g id="t5">I've always wanted a job in a shop so when I saw your advert in the paper on Monday, I decided to apply.</g></li>
-	<li><g id="t6">I would like to express my interest in the position of part-time bookshop assistant as advertised in The Post on Monday, 12th December.</g></li>
+	<li><a id="t1">I am writing to apply for the position of part-time bookshop assistant as advertised in The Post on Monday, 12th December.</a></li>
+	<li><a id="t2">I'm writing about your ad for a shop assistant.</a></li>
+	<li><a id="t3">I read with interest your advertisement in The Post on Monday, 12th December and I would like to apply for the position of part-time bookshop assistant.</a></li>
+	<li><a id="t4">I saw your job in the paper and I want to apply.</a></li>
+	<li><a id="t5">I've always wanted a job in a shop so when I saw your advert in the paper on Monday, I decided to apply.</a></li>
+	<li><a id="t6">I would like to express my interest in the position of part-time bookshop assistant as advertised in The Post on Monday, 12th December.</a></li>
 	</list></li>
 	<p class="linespace"></p>
 	<li>Which is the best way to refer to your CV?
 	<list class="answerList">
-	<li><g id="t7">Read my CV for more details.</g></li>
-	<li><g id="t8">You can check all this by looking at my CV.</g></li>
-	<li><g id="t9">have a look at my CV and you'll see that ...</g></li>
-	<li><g id="t10">As you can see from my CV, ...</g></li>
-	<li><g id="t11">Please find enclosed my CV.</g></li>
-	<li><g id="t12">Anyway, it's all in my CV so you can see for yourself.</g></li>
+	<li><a id="t7">Read my CV for more details.</a></li>
+	<li><a id="t8">You can check all this by looking at my CV.</a></li>
+	<li><a id="t9">have a look at my CV and you'll see that ...</a></li>
+	<li><a id="t10">As you can see from my CV, ...</a></li>
+	<li><a id="t11">Please find enclosed my CV.</a></li>
+	<li><a id="t12">Anyway, it's all in my CV so you can see for yourself.</a></li>
 	</list></li>
 	<p class="linespace"></p>
 	<li>Which is the best way to refer to your experience?
 	<list class="answerList">
-	<li><g id="t13">I've worked in loads of bookshops before.</g></li>
-	<li><g id="t14">I have three years' experience in the retail industry.</g></li>
-	<li><g id="t15">I have simply years of experience.</g></li>
-	<li><g id="t16">I've got lots of experience in this business already.</g></li>
-	<li><g id="t17">You'll be amazed at how experienced I am!</g></li>
-	<li><g id="t18">I have considerable experience in sales.</g></li>
+	<li><a id="t13">I've worked in loads of bookshops before.</a></li>
+	<li><a id="t14">I have three years' experience in the retail industry.</a></li>
+	<li><a id="t15">I have simply years of experience.</a></li>
+	<li><a id="t16">I've got lots of experience in this business already.</a></li>
+	<li><a id="t17">You'll be amazed at how experienced I am!</a></li>
+	<li><a id="t18">I have considerable experience in sales.</a></li>
 	</list></li>
 	<p class="linespace"></p>
 	<li>Which is the best way to express your availability for interview?
 	<list class="answerList">
-	<li><g id="t19">I'm free all the time.</g></li>
-	<li><g id="t20">I can come for an interview at a moment's notice.</g></li>
-	<li><g id="t21">I can make it to an interview any time.</g></li>
-	<li><g id="t22">Any time that suits you is fine by me.</g></li>
-	<li><g id="t23">I am available for an interview at your convenience.</g></li>
-	<li><g id="t24">I can have an interview whenever you like.</g></li>
+	<li><a id="t19">I'm free all the time.</a></li>
+	<li><a id="t20">I can come for an interview at a moment's notice.</a></li>
+	<li><a id="t21">I can make it to an interview any time.</a></li>
+	<li><a id="t22">Any time that suits you is fine by me.</a></li>
+	<li><a id="t23">I am available for an interview at your convenience.</a></li>
+	<li><a id="t24">I can have an interview whenever you like.</a></li>
 	</list></li>
 	<p class="linespace"></p>
 	</ol>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+  
+  <p class="popuptext"><b>You have seen an advertisement in your local newspaper for a part-time shop assistant in a bookshop.</b></p>
+
+  <p class="popuptext"><b>Write a letter of application to the manager of the bookshop. Write about your experience and qualifications and say why you would like the job. Also state when you would be available for an interview.</b></p>
+  
+  <p class="popuptext">You should write at least 150 words.</p>
+  
+  <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+
 </section>
 </body>
 </bento>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,35 +16,29 @@
 	<br/>
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
   </settings>
-  <questions/>
+
 </script>
 
 </head>
 <body>
 	
 <header>
+<div id="instruction">
 	You should spend about 20 minutes on this task. You should write at least 150 words.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/MM_GW_006.jpg" mode="1" id="1001"/>
   <div id="presentation">
-  <p align="left">
-    <b>Your local newspaper published a series of articles recently which you thought were very good.</b>
-  </p>
-  <p align="left">
-    <b>Write a letter to the editor of the newspaper. Thank them for the articles and praise the journalist who wrote them.  Ask if they will be publishing more of their articles in the future.</b>
-  </p>
-  <p align="left">You do NOT need to write your own address.</p>
-  <p align="left">
-    <font color="#000000">Begin your letter as follows:</font>
-  </p>
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p><b>Your local newspaper published a series of articles recently which you thought were very good.</b></p>
+  
+  <p><b>Write a letter to the editor of the newspaper. Thank them for the articles and praise the journalist who wrote them.  Ask if they will be publishing more of their articles in the future.</b></p>
+  
+  <p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p>Begin your letter as follows: Dear Sir/Madam,</p>
   </div>
 </section>
 

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,9 +16,16 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="visual" source="tabcomp" width="730" height="448" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
-</settings>
+
+<feedback>
+		<feedback source="fb0" width="500" height="325" />
+	</feedback>
+	</settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
       <answer source="a1" correct="true"/>
@@ -117,8 +125,8 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/_WB_WR3.jpg" mode="16" id="1003"/>
+  <a id="visual"><img class="leftFloat" src="../media/WB_WR3s.jpg" mode="1" id="1001"/></a>
+  
   
   <ol id="splitquestionList">
     
@@ -128,90 +136,101 @@
 	<li><a id="a2">Concurrent stages</a></li>
 	<li><a id="a3">Alternative stages</a></li>
 	</list></li>
-    
+    <p class="linespace"></p>
     <li id="q2">already<list class="answerList">
 	<li><a id="a46">Consecutive stages</a></li>
 	<li><a id="a47">Concurrent stages</a></li>
 	<li><a id="a48">Alternative stages</a></li>
 	</list></li>
-   
+   <p class="linespace"></p>
     <li id="q3">The next stage<list class="answerList"><li><a id="a43">Consecutive stages</a></li><li><a id="a44">Concurrent stages</a></li><li><a id="a45">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q4">either<list class="answerList"><li><a id="a40">Consecutive stages</a></li><li><a id="a41">Concurrent stages</a></li><li><a id="a42">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q5">already<list class="answerList"><li><a id="a37">Consecutive stages</a></li><li><a id="a38">Concurrent stages</a></li><li><a id="a39">Alternative stages</a></li></list></li>
-   
+   <p class="linespace"></p>
     <li id="q6">or<list class="answerList"><li><a id="a34">Consecutive stages</a></li><li><a id="a60">Concurrent stages</a></li><li><a id="a36">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q7">then<list class="answerList"><li><a id="a31">Consecutive stages</a></li><li><a id="a32">Concurrent stages</a></li><li><a id="a33">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q8">in turn<list class="answerList"><li><a id="a28">Consecutive stages</a></li><li><a id="a29">Concurrent stages</a></li><li><a id="a30">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q9">If<list class="answerList"><li><a id="a25">Consecutive stages</a></li><li><a id="a26">Concurrent stages</a></li><li><a id="a27">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q10">then<list class="answerList"><li><a id="a22">Consecutive stages</a></li><li><a id="a23">Concurrent stages</a></li><li><a id="a24">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q11">If<list class="answerList"><li><a id="a19">Consecutive stages</a></li><li><a id="a20">Concurrent stages</a></li><li><a id="a21">Alternative stages</a></li></list></li>
-   
+   <p class="linespace"></p>
     <li id="q12">otherwise<list class="answerList"><li><a id="a16">Consecutive stages</a></li><li><a id="a17">Concurrent stages</a></li><li><a id="a18">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q13">While<list class="answerList"><li><a id="a13">Consecutive stages</a></li><li><a id="a14">Concurrent stages</a></li><li><a id="a15">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q14">Subsequently<list class="answerList"><li><a id="a10">Consecutive stages</a></li><li><a id="a11">Concurrent stages</a></li><li><a id="a12">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q15">before<list class="answerList"><li><a id="a7">Consecutive stages</a></li><li><a id="a8">Concurrent stages</a></li><li><a id="a9">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q16">Once<list class="answerList"><li><a id="a4">Consecutive stages</a></li><li><a id="a5">Concurrent stages</a></li><li><a id="a6">Alternative stages</a></li></list></li>
-    
+    <p class="linespace"></p>
     <li id="q17">finally<list class="answerList"><li><a id="a49">Consecutive stages</a></li><li><a id="a50">Concurrent stages</a></li><li><a id="a51">Alternative stages</a></li></list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
 <section id="fb0">
-  <p align="left">
+<div id="feedback1">
+  <p class="feedbacktext">
     <b>Consecutive Stages</b>
   </p>
-  <p align="left">- after this</p>
-  <p align="left">- afterwards</p>
-  <p align="left">- beforehand</p>
-  <p align="left">- before this</p>
-  <p align="left">- next</p>
-  <p align="left">- later</p>
-  <p align="left">- prior to</p>
-  <p align="left">- First</p>
-  <p align="left">- The next stage</p>
-  <p align="left">- already</p>
-  <p align="left">- then</p>
-  <p align="left">- in turn</p>
-  <p align="left">- Subsequently</p>
-  <p align="left">- before</p>
-  <p align="left">- Once</p>
-  <p align="left">- finally</p>
-  <p align="left"/>
-  <p align="left">
+  <ul>
+  <li>after this</li>
+  <li>afterwards</li>
+  <li>beforehand</li>
+  <li>before this</li>
+  <li>next</li>
+  <li>later</li>
+  <li>prior to</li>
+  <li>First</li>
+  <li>The next stage</li>
+  <li>already</li>
+  <li>then</li>
+  <li>in turn</li>
+  <li>Subsequently</li>
+  <li>before</li>
+  <li>Once</li>
+  <li>finally</li>
+  </ul>
+  </div>
+  <div id="feedback2">
+  <p class="feedbacktext">
     <b>Concurrent Stages</b>
   </p>
-  <p align="left">- at the same time</p>
-  <p align="left">- at this stage</p>
-  <p align="left">- in the meantime</p>
-  <p align="left">- meanwhile</p>
-  <p align="left">- simultaneously</p>
-  <p align="left">- While</p>
-  <p align="left">
-    <b/>
-  </p>
-  <p align="left">
+  <ul>
+  <li>at the same time</li>
+  <li>at this stage</li>
+  <li>in the meantime</li>
+  <li>meanwhile</li>
+  <li>simultaneously</li>
+  <li>While</li>
+  </ul>
+  <p class="feedbacktext">
     <b>Alternative Stages</b>
   </p>
-  <p align="left">- alternatively</p>
-  <p align="left">- instead</p>
-  <p align="left">- on the other hand</p>
-  <p align="left">- either</p>
-  <p align="left">- or</p>
-  <p align="left">- If</p>
-  <p align="left">- otherwise</p>
+  <ul>
+  <li>alternatively</li>
+  <li>instead</li>
+  <li>on the other hand</li>
+  <li>either</li>
+  <li>or</li>
+  <li>If</li>
+  <li>otherwise</li>
+  </ul>
+  <p></p>
+  </div>
 </section>
 
+<section id="tabcomp">
+	<img src="../media/WB_WR3.jpg" mode="1" id="1003"/>
+</section>
 <section id="rt2001">
   <p align="left">
     <font face="verdana" size="13" color="#000000">Stages in a process may be consecutive when one stage follows another, or concurrent when two or more things happen at the same time. In some processes there are alternative stages, where the process may follow one route or another. Look carefully at the flow chart and identify where these stages are. There are some useful words and phrases for describing the relationships between different stages in a process and you should try to use them appropriately.</font>
@@ -219,7 +238,7 @@
 </section>
 
 <section id="readingText">
-<br/>
+
 	<p>The flow chart shows the steps in the process of publishing academic books.&#xA0;<b>(1) First</b>, the publisher researches the market for popular subjects and reviews titles which&#xA0;<b>(2) already</b>&#xA0;exist in those fields. Based on this research, a publishing project is chosen.&#xA0;<b>(3) The next stage</b>&#xA0;is to find a suitable manuscript. The publisher can&#xA0;<b>(4) either</b>&#xA0;select from manuscripts which have&#xA0;<b>(5) already</b>&#xA0;been submitted, &#xA0;<b>(6) or</b>&#xA0;they can commission authors to write them. Manuscripts are &#xA0;<b>(7) then</b>&#xA0;reviewed by readers. They make recommendations to the commissioning editor, who&#xA0;<b>(8) in turn</b>&#xA0;makes a final selection for the project.&#xA0;<b>(9) If</b>&#xA0; the publisher believes that the project will be a financial success,&#xA0;<b>(10) then</b>&#xA0;the detailed editing process can begin. Style, spelling and punctuation are checked by copy and line editors.&#xA0;<b>(11) If</b>&#xA0;the manuscript needs further correction, it is sent back to the writer,&#xA0;<b>(12) otherwise</b>&#xA0;the book is ready for design and manufacture. &#xA0;<b>(13) While</b>&#xA0;the above creative processes are taking place, a marketing plan is drawn up.&#xA0;<b>(14) Subsequently</b>, advertising and publicity campaigns can generate orders for the book even (15) before it is printed.&#xA0;<b>(16) Once</b>&#xA0;the book has been designed and manufactured, a price is set and the book can be distributed to warehouses and &#xA0;<b>(17) finally</b>&#xA0;to bookshops.</p>
 	
 </section>

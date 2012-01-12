@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,8 +16,10 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -44,9 +47,7 @@
       <answer source="t8" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b9">
-      <answer source="t9" correct="true">
-	  	  <feedback source="fb2"/>
-		        </answer>
+      <answer source="t9" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b10">
       <answer source="t10" correct="false"/>
@@ -74,46 +75,59 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read the writing task and look at this student's plan for the composition. Then click to listen to a radio interview. Which of the arguments did the student hear in the interview? Click on them.
-		
+		</div>
 		
 	
 </header>
 	
 <section id="body">
+
+
+    <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+
+ <div><audio controls="compact"  src="../media/HF_WR1aa.mp3" mode="1" id="1002"/></div>
+
   <img class="rightFloat" src="../media/HF_AW_012.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/HF_WR1aa.mp3" mode="1" id="1002"/>
-  
+
 <h7><p>Arguments for</p></h7>
     <ol id="targetspotting">
     <list class="answerList">
-	<li><g id="t1">Increased agricultural productivity</g></li>
-    <li><g id="t2">Greater profits for the agriculture industry</g></li>
-    <li><g id="t3">GM crops could be grown in difficult environments such as semi-desert</g></li>
-    <li><g id="t4">Tampering with nature is nothing new in agriculture</g></li>
-    <li><g id="t5">GM crops last longer in storage</g></li>
-    <li><g id="t6">Farmers of GM crops are less dependent on environmentally harmful insecticides</g></li>
-    <li><g id="t7">Improved flavour and appearance of GM foods</g></li>
-    <li><g id="t8">Improved nutritional value of GM foods</g></li></list>
+	<li><a id="t1">Increased agricultural productivity</a></li>
+    <li><a id="t2">Greater profits for the agriculture industry</a></li>
+    <li><a id="t3">GM crops could be grown in difficult environments such as semi-desert</a></li>
+    <li><a id="t4">Tampering with nature is nothing new in agriculture</a></li>
+    <li><a id="t5">GM crops last longer in storage</a></li>
+    <li><a id="t6">Farmers of GM crops are less dependent on environmentally harmful insecticides</a></li>
+    <li><a id="t7">Improved flavour and appearance of GM foods</a></li>
+    <li><a id="t8">Improved nutritional value of GM foods</a></li></list>
 	</ol>
-  
+
+  <p class="linespace"></p>
   <h7><p>Arguments against</p></h7>
 
     <ol id="targetspotting">    
-    <list class="answerList"><li><g id="t9">GM crops interfere with nature</g></li>
-    <li><g id="t10">Farming in previously uncultivated areas such as semi- desert may damage natural balance of nature</g></li>
-    <li><g id="t11">Non-GM farmers will go out of business</g></li>
-    <li><g id="t12">Traditional farming methods will disappear</g></li>
-    <li><g id="t13">GM crops may cause ecological damage (e.g. kill harmless insects)</g></li>
-    <li><g id="t14">Taste and appearance of GM foods is unnatural</g></li>
-    <li><g id="t15">GM foods may be bad for our health</g></li></list>
+    <list class="answerList"><li><a id="t9">GM crops interfere with nature</a></li>
+    <li><a id="t10">Farming in previously uncultivated areas such as semi- desert may damage natural balance of nature</a></li>
+    <li><a id="t11">Non-GM farmers will go out of business</a></li>
+    <li><a id="t12">Traditional farming methods will disappear</a></li>
+    <li><a id="t13">GM crops may cause ecological damage (e.g. kill harmless insects)</a></li>
+    <li><a id="t14">Taste and appearance of GM foods is unnatural</a></li>
+    <li><a id="t15">GM foods may be bad for our health</a></li></list>
 	</ol>
 </section>
-<section id="fb2">
-  <p align="left">B. Jane mentions that one of the hoses might not be connected properly. She doesn't say that it is broken.</p>
-</section>
 
+
+<section id="writingtask1">
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic</b></p>
+<p class="popuptext"><b> Biotechnology companies are over the world are developing different types of genetically modified (GM) crops. However, not enough is known about the effects of these crops on our health and on the environment. Interfering with nature in this way should be prohibited</b></p>
+<p class="popuptext"><b>To what extent do you agree or disagree?</b></p>
+<p class="popuptext">You should write at least 250 words</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
 <section id="rt2001">
   <p align="left">If you find it difficult to think of ideas for Writing Task 2, remember that the topics you are asked to write about are often current issues and that these may be discussed in the press and on radio and television. It is good preparation, therefore, to spend time reading newspaper and magazine articles, listening to radio programmes and watching television programmes that deal with these kinds of topics as this will help you develop ideas on a wide variety of subjects.</p>
 </section>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -25,7 +26,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	You should spend about 40 minutes on this task and write at least 250 words. 
+</div>
 </header>
 	
 <section id="body">

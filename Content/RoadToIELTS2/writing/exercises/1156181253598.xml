@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,41 +16,47 @@
 	
 	
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<feedback>
+		<feedback source="fb0" width="650" height="325"/>
+	</feedback>
 </settings>
   <questions>
     <DragQuestion source="q1" block="b1">
       <answer source="a12" correct="true"/>
-      <answer source="a11" correct="true"/>
+      <answer source="a10" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q2" block="b2">
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
+	  <answer source="a10" correct="true"/>
+	  <answer source="a12" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q3" block="b3">
-      <answer source="a13" correct="true"/>
-      <answer source="a16" correct="true"/>
+	  <answer source="a13" correct="true"/>
+      <answer source="a15" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q4" block="b4">
-      <answer source="a16" correct="true"/>
-      <answer source="a13" correct="true"/>
+	  <answer source="a15" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q5" block="b5">
-      <answer source="a20" correct="true"/>
+      <answer source="a17" correct="true"/>
       <answer source="a19" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q6" block="b6">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="true"/>
+	  <answer source="a19" correct="true"/>
+      <answer source="a17" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q7" block="b7">
-      <answer source="a24" correct="true"/>
-      <answer source="a23" correct="true"/>
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q8" block="b8">
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
+      <answer source="a22" correct="true"/>
+      <answer source="a21" correct="true"/>
     </DragQuestion>
   </questions>
 </script>
@@ -59,9 +66,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
-		
+		</div>
 
 
 </header>
@@ -100,58 +107,82 @@
   </div>
   
   <div class="audiodrag">
-  <span id="a15" draggable="true">Audio H </span><audio controls="compact"  src="../media/TT_WR1ba.mp3" mode="1" id="1018"/>
+  <span id="a15" draggable="true">Audio H</span><audio controls="compact"  src="../media/TT_WR1ba.mp3" mode="1" id="1018"/>
   </div>
   
 </section>
 
 <section id="body">
-	<img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  />
 	
-  
-  
-  
- 
-  
-  
- 
+
+
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+ <img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  />
 	<ol id="questionList">
-	<li>Employment Opportunities&#xA0;<input id="q1" type="droptarget" />&#xA0;<input id="q2" type="droptarget" /></li>
-	<li>Business and the local economy&#xA0;<input id="q3" type="droptarget" />&#xA0;<input id="q4" type="droptarget" /></li>
-	<li>Infrastructure, facilities and the environment&#xA0;<input id="q5" type="droptarget" />&#xA0;<input id="q6" type="droptarget" /></li>
-	<li>Local customs and culture&#xA0;<input id="q7" type="droptarget" />&#xA0;<input id="q8" type="droptarget" /></li></ol>
-	<p align="left"><font size="2"></font></p>
+	<li>Employment Opportunities&#xA0;<br/>
+		<input id="q1" type="droptarget" /><tab/><tab/><input id="q2" type="droptarget" /></li>
+		<p class="linespace"></p>
+	<li>Business and the local economy&#xA0;<br/>
+		<input id="q3" type="droptarget" /><tab/><tab/><input id="q4" type="droptarget" /></li>
+			<p class="linespace"></p>
+	<li>Infrastructure, facilities and the environment&#xA0;<br/>
+		<input id="q5" type="droptarget" /><tab/><tab/><input id="q6" type="droptarget" /></li>
+			<p class="linespace"></p>
+	<li>Local customs and culture<br/>
+		<input id="q7" type="droptarget" /><tab/><tab/><input id="q8" type="droptarget" /></li></ol>
+
 </section>
 <section id="fb0">
-  <p align="left">
+
+<div id="feedback1">
+  <p class="feedbacktext">
     <b>1. Employment Opportunities </b>
   </p>
-  <p align="left">- More and better job opportunities for locals</p>
-  <p align="left">- Tourist industry only offers locals menial, badly-paid, seasonal jobs</p>
-  <p align="left">
-    <b/>
-  </p>
-  <p align="left">
+  <ul>
+  <li>More and better job opportunities for locals</li>
+  <li>Tourist industry only offers locals menial, badly-paid, seasonal jobs</li>
+  </ul>
+
+  <p class="feedbacktext">
     <b>2. Business and the local economy </b>
   </p>
-  <p align="left">- Local businesses flourish</p>
-  <p align="left">- If holiday company is often foreign-owned, little money may reach local economy</p>
-  <p align="left"/>
-  <p align="left">
+  <ul>
+  <li>Local businesses flourish</li>
+  <li>If holiday company is often foreign-owned, little money may reach local economy</li>
+  </ul>
+  </div>
+  <div id="feedback2">
+  <p class="feedbacktext">
     <b>3. Infrastructure, facilities and the environment</b>
   </p>
-  <p align="left">- Tourist facilities may cause environmental damage </p>
-  <p align="left">- Locals as well as tourists benefit from improved infrastructure</p>
-  <p align="left"/>
-  <p align="left">
+  <ul>
+  <li>Tourist facilities may cause environmental damage </li>
+  <li>Locals as well as tourists benefit from improved infrastructure</li>
+  </ul>
+  <p class="feedbacktext">
     <b>4.  Local customs and culture</b>
   </p>
-  <p align="left">- Local customs and traditions may not be respected</p>
-  <p align="left">
-    <font color="#000000">- Locals and tourists learn about each other&#x2019;s cultures</font>
-  </p>
+  <ul>
+  <li>Local customs and traditions may not be respected</li>
+  <li>Locals and tourists learn about each other&#x2019;s cultures</li>
+  </ul>
+  <p></p>
+  </div>
 </section>
-
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 40 minutes on this task.</p>
+			<p class="popuptext">Present a written argument or case to an educated reader with no specialist knowledge of the following topic</p>
+			
+			<p class="popuptext"><b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it. However, tourism rarely benefits the countries which tourists visit.</b></p>
+			
+			<p class="popuptext"><b>To what extent do you agree or disagree</b></p>
+			
+			<p class="popuptext">You should write at least 250 words.</p>
+			
+			<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence</p>
+			
+		</section>
 <section id="rt2001">
   <p align="left">This exercise will help you with ideas for the writing task. You'll have to choose which ideas you want to use as some won't support your opinion. When you have finished this exercise, you can decide whether you want to write a balanced 'for and against' composition or a 'one-sided' composition that gives your personal opinion and only discusses the arguments that support it.</p>
 </section>

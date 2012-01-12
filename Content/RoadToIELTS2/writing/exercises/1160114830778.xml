@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -92,29 +96,41 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/MM_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with a suitable word. Where a word is given after a gap, use it to form an adjective. Fill the other gaps with an appropriate article or possessive adjective.
-
-
+<div id="instruction">Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with a suitable word. Where a word is given after a gap, use it to form an adjective. Fill the other gaps with an appropriate article or possessive adjective.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_GW_007.jpg" mode="1" id="1001"/>
-  
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+    <img class="rightFloat" src="../media/MM_GW_007.jpg" mode="1" id="1001"/>
   <div id="gapfillText">
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">
-    <font color="#000000">I am writing to thank you for&#xA0;<input id="q1"/>&#xA0;<input id="q2"/>&#xA0;(inspire) series of articles by Paul Hodgson on&#xA0;<input id="q3"/>&#xA0;pressures of modern life. I only wish I had had&#xA0;<input id="q4"/>&#xA0;benefit of&#xA0;<input id="q5"/>&#xA0;<input id="q6"/>&#xA0;(value) insights ten years ago before&#xA0;<input id="q7"/>&#xA0;son was born as it might have saved me a few heartaches.</font>
+  <p>Dear Sir/Madam,</p>
+  <p>
+    I am writing to thank you for&#xA0;<input id="q1"/>&#xA0;<input id="q2"/>&#xA0;(inspire) series of articles by Paul Hodgson on&#xA0;<input id="q3"/>&#xA0;pressures of modern life. I only wish I had had&#xA0;<input id="q4"/>&#xA0;benefit of&#xA0;<input id="q5"/>&#xA0;<input id="q6"/>&#xA0;(value) insights ten years ago before&#xA0;<input id="q7"/>&#xA0;son was born as it might have saved me a few heartaches.
   </p>
-  <p align="left">
-    <font color="#000000">I believe Hodgson's&#xA0;<input id="q8"/>&#xA0;(fascinate) articles are among&#xA0;<input id="q9"/>&#xA0;most&#xA0;<input id="q10"/>&#xA0;(inform) I have ever read. This&#xA0;<input id="q11"/>&#xA0;(impress) standard of journalism is sadly lacking in most newspapers today. Hodgson is not only&#xA0;<input id="q12"/>&#xA0;eloquent and&#xA0;<input id="q13"/>&#xA0;(power) writer, but it is also quite obvious that he undertakes painstaking research. I particularly enjoyed&#xA0;<input id="q14"/>&#xA0;article 'Life with television' in yesterday's edition of&#xA0;<input id="q15"/>&#xA0;newspaper. I found&#xA0;<input id="q16"/>&#xA0;ideas on&#xA0;<input id="q17"/>&#xA0;influence of television on family life both thought- provoking and extremely&#xA0;<input id="q18"/>&#xA0;(insight).</font>
+  <p>
+    I believe Hodgson's&#xA0;<input id="q8"/>&#xA0;(fascinate) articles are among&#xA0;<input id="q9"/>&#xA0;most&#xA0;<input id="q10"/>&#xA0;(inform) I have ever read. This&#xA0;<input id="q11"/>&#xA0;(impress) standard of journalism is sadly lacking in most newspapers today. Hodgson is not only&#xA0;<input id="q12"/>&#xA0;eloquent and&#xA0;<input id="q13"/>&#xA0;(power) writer, but it is also quite obvious that he undertakes painstaking research. I particularly enjoyed&#xA0;<input id="q14"/>&#xA0;article 'Life with television' in yesterday's edition of&#xA0;<input id="q15"/>&#xA0;newspaper. I found&#xA0;<input id="q16"/>&#xA0;ideas on&#xA0;<input id="q17"/>&#xA0;influence of television on family life both thought- provoking and extremely&#xA0;<input id="q18"/>&#xA0;(insight).
   </p>
-  <p align="left">I would very much like to see more of Hodgson's articles in&#xA0;<input id="q19"/> future, and sincerely hope that he will soon have&#xA0;<input id="q20"/>&#xA0;regular column in the Post.</p>
-  <p align="left">Yours faithfully,</p>
-  <p align="left">Dora Ninian</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>I would very much like to see more of Hodgson's articles in&#xA0;<input id="q19"/> future, and sincerely hope that he will soon have&#xA0;<input id="q20"/>&#xA0;regular column in the Post.</p>
+  <p>Yours faithfully,</p>
+  <p>Dora Ninian</p>
+
   </div>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+	<p class="popuptext"><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
+	
+	<p class="popuptext">You should write at least 150 words.</p>
+	
+	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+	
+	<p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+	
 </section>
 
 </body>

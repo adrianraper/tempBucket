@@ -1,0 +1,73 @@
+* {
+	font-size: 12px;
+	font-family: Verdana;
+	line-height: 1.5em;
+}
+
+/* Layout */
+section {
+	display: none;
+}
+
+section#readingText {
+	display: block;
+	
+}
+
+section#body {
+	display: block;
+	padding-bottom: 100%;
+
+}
+
+/* The rubric */
+body > header {
+	font-weight: normal;
+	color: #000000;
+	background-color: #F5D767;
+	padding: 0px 170px 0 20px;
+	line-height: 20em;
+}
+
+h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11 {
+	font-weight: bold;
+}
+
+h8, h8 > p,
+h1, h1 > p {
+	font-size: 16px !important;
+}
+
+h2, h2 > p,
+h3, h3 > p,
+h4, h4 > p,
+h5, h5 > p,
+h6, h6 > p,
+h7, h7 > p,
+h9, h9 > p,
+h10, h10 > p,
+h11, h11 > p {
+	font-size: 12px !important;
+}
+
+/* Reading text spacing */
+#readingText p {
+	font-size: 13px;
+	text-align: justify;
+}
+
+#readingText li {
+	padding-left: 0px;
+}
+
+/* Links and draggable spans should be blue and not underlined */
+a {
+	color: #3A00FF;
+	text-decoration: none;
+}
+
+/* image */
+.rightFloat {
+float: right;
+padding: 20px 25px 0 0;
+}

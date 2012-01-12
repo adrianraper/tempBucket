@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 	/* This is used to make hanging indents for the parts. */
@@ -52,7 +53,7 @@
 <p>The speaking test is a one-to-one interview which assesses how well you can communicate in English. The interview lasts for 11-14 minutes and has three parts.</p>
 
 
-<p class="hangingpart">Section 1: You answer general questions about yourself, your life and interests.</p>
+<p>Section 1: You answer general questions about yourself, your life and interests.</p>
 <p>Section 2: You give a short talk on a particular topic.</p>
 <p>Section 3: You discuss with the examiner some issues related to your talk.</p>
 

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,7 +16,6 @@
 	
 	
 <script id="model" type="application/xml">
-
 </script>
 
 </head>
@@ -29,9 +29,9 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/WB_SP_001.jpg" mode="1" id="1001"/>
- 
-  <h1><p>Giving reasons</p></h1>
-   <div id="presentation">
+ <div id="presentation">
+  <h1>Giving reasons</h1>
+   
   <p align="left">You will ...</p>
   <ol>
     <li>read advice on strategies for giving reasons during the	individual long turn in Section 2.</li>

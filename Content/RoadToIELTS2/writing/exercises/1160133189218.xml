@@ -4,16 +4,18 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+				
 	]]>
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -79,10 +81,10 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Here are the notes that a student made for the writing task in the previous exercise. Put each point under the correct paragraph heading to make a plan for the letter.
-
+</div>
 </header>
-	<img class="rightFloat" src="../media/LC_WTG01.jpg" mode="16" id="1004"  />
 <section id="noscroll">
   <span id="a20" draggable="true">No more than 20 in a class</span>
   <span id="a14" draggable="true">Good idea to go to language school</span>
@@ -99,32 +101,48 @@
 </section>
 
 <section id="body">
-<img class="rightFloat" src="../media/LC_GW_003.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/>
 <div id="gapfillText">
+
 <h7>Paragraph 1 - Opening paragraph</h7>
 <p><input id="q1" type="droptarget"/><br/>
 <input id="q2" type="droptarget"/></p>
-
+<p class="linespace"></p>
 <h7>Paragraph 2 - Advice on teaching methods</h7>
 <p><input id="q3" type="droptarget"/><br/>
 <input id="q4" type="droptarget"/><br/>
 <input id="q5" type="droptarget"/></p>
-
+<p class="linespace"></p>
 <h7>Paragraph 3 - Advice on number of students in class</h7>
 <p><input id="q6" type="droptarget"/><br/>
 <input id="q7" type="droptarget"/><br/>
 <input id="q8" type="droptarget"/></p>
-
+<p class="linespace"></p>
 <h7>Paragraph 4 - Advice on number of hours a week</h7>
 <p><input id="q9" type="droptarget"/><br/>
 <input id="q10" type="droptarget"/></p>
-
+<p class="linespace"></p>
 <h7>Paragraph 5 - Closing paragraph</h7>
 <p><input id="q11" type="droptarget"/><br/>
 <input id="q12" type="droptarget"/></p>
-
+<p class="linespace"></p>
 </div>
 </section>
+
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+			<p class="popuptext"><b>One of your penfriends wants to improve their English at a language school. They have never studied at a language school before and have asked for your advice on how to choose a good one.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to your penfriend. Advise them about the following: the teaching method, the number of students in a class and the number of hours a week.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			
+			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			
+			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+		</section>
 
 <section id="rt2001">
   <p align="left">

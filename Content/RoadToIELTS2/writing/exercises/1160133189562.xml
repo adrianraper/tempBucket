@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -49,8 +53,8 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LC_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by dragging the correct word or phrase into each gap.
-
+<div id="instruction">Read this sample answer to the writing task in the previous exercise. Complete the letter by dragging the correct word or phrase into each gap.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -66,7 +70,10 @@
 
 <section id="body">
 
-  <img class="rightFloat" src="../media/LC_GW_007.jpg" mode="1" id="1001"/>
+  
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/>
+<img class="rightFloat" src="../media/LC_GW_007.jpg" mode="1" id="1001"/>
   <div id="gapfillText">
   <p>Dear Maria,</p>
  
@@ -76,20 +83,31 @@
   </p>
   <p>As for your listening skills,&#xA0;<input id="q4" type="droptarget"/>&#xA0;tune into English language programmes on television and the radio whenever you can. Also, don't forget that lots of Australian, British and American web sites have audio that you can listen to so I'd make the most of the Internet if&#xA0;<input id="q5" type="droptarget"/>&#xA0;.</p>
   <p>Browsing the Internet will also help extend your vocabulary, but you&#xA0;<input id="q6" type="droptarget"/>&#xA0;read books, newspapers and magazines as well. You'd &#xA0;<input id="q7" type="droptarget"/>&#xA0;get a good English-English dictionary too.&#xA0;<input id="q8" type="droptarget"/>&#xA0;you should throw away your bilingual one, but only use it when you really have to!</p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Well, I have to get back to work now. If you need any more advice, don't hesitate to get in touch.</font>
+  <p>Well, I have to get back to work now. If you need any more advice, don't hesitate to get in touch.
   </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Love,</font>
+  <p>
+    Love,
   </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Miranda</font>
+  <p>
+    Miranda
   </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
   </div>
 </section>
 
+<section id="writingtask1">
+<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+			<p class="popuptext"><b>One of your penfriends wants to improve their English at a language school. They have never studied at a language school before and have asked for your advice on how to choose a good one.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to your penfriend. Advise them about the following: the teaching method, the number of students in a class and the number of hours a week.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			
+			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			
+			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+		</section>
+		
 </body>
 </bento>

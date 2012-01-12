@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -50,7 +51,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Alexandra is asked about social problems in her country. She talks about people with special needs.
+</div>
 </header>
 	
 <section id="body">
@@ -59,19 +62,19 @@
   <video src="../media/Unit08_e3.flv" mode="1" id="1003" autoPlay="false"/>
   </div>
   <div id="content">
-  <p><b>Which of the following does Alexandra mention?</b><br/>
-  <g id="t1">A. telephones</g><br/>
-  <g id="t2">B. lifts/elevators</g><br/>
-  <g id="t3">C. public transport</g><br/>
-  <g id="t4">D. street crossings</g><br/>
-  <g id="t5">E. stairs</g><br/>
-  <g id="t6">F. seats</g><br/>
-  <g id="t7">G. traffic lights</g><br/>
-  <g id="t8">H. doors</g></p>
-  <p align="left">
-    <font size="2"/>
-	
-  </p>
+  <p><b>Which of the following does Alexandra mention?</b></p>
+  <ol id="targetspottingvideo">
+    	<list class="answerList">
+  		<li><a id="t1">telephones</a></li>
+	  	<li><a id="t2">lifts/elevators</a></li>
+  		<li><a id="t3">public transport</a></li>
+  		<li><a id="t4">street crossings</a></li>
+  		<li><a id="t5">stairs</a></li>
+  		<li><a id="t6">seats</a></li>
+  		<li><a id="t7">traffic lights</a></li>
+  		<li><a id="t8">doors</a></li>
+		</list>
+	</ol>
   </div>
   </div>
 </section>

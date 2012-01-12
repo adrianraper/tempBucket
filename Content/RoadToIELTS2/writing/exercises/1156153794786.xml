@@ -4,13 +4,33 @@
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+	.wrapperbox{
+	margin:0;
+	padding:0;
+}
+
+.questionbox {
+	margin:0;
+	padding-top: -100px;
+}
+
+.imagebox{
+	margin:0;
+	padding-top: -40px;
+
+}
+.imagebox1{
+	margin:0;
+	padding-top: 20px;
+}
 	</style>
 	
 	

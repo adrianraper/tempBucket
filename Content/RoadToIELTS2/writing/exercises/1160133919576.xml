@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,7 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -106,83 +108,80 @@
 </header>
 	
 <section id="body">
+
 <ol id="splitquestionList">
 
   <li>Who do you have to write to?
   <list class="answerList">
-  <li><g id="t1">the editor of a newspaper</g></li>
-  <li><g id="t2">a prospective employer</g></li>
-  <li><g id="t3">a shop assistant</g></li>
-  <li><g id="t4">an interviewer</g></li>
+  <li><a id="t1">the editor of a newspaper</a></li>
+  <li><a id="t2">a prospective employer</a></li>
+  <li><a id="t3">a shop assistant</a></li>
+  <li><a id="t4">an interviewer</a></li>
   </list></li>
   <p class="linespace"></p>
-  <li>How well do you know the person youare writing to?
+  <li>How well do you know the person you are writing to?
   <list class="answerList">
-  <li><g id="t5">A.  You are friends.</g></li>
-  <li><g id="t6">B.  You have only just met them.</g></li>
-  <li><g id="t7">C.  You have never met them.</g></li>
+  <li><a id="t5">You are friends.</a></li>
+  <li><a id="t6">You have only just met them.</a></li>
+  <li><a id="t7">You have never met them.</a></li>
   </list></li>
   <p class="linespace"></p>
   <li>What style of letter should you write?
   <list class="answerList">
-  <li><g id="t8">A.  formal</g></li>
-  <li><g id="t9">B.  informal</g></li>
+  <li><a id="t8">formal</a></li>
+  <li><a id="t9">informal</a></li>
   </list></li>
   <p class="linespace"></p>
   <li>What do you have to do in this letter?
   <list class="answerList">
-  <li><g id="t10">A.  request information</g></li>
-  <li><g id="t11">B.  explain a situation</g></li>
-  <li><g id="t12">C.  make arrangements</g></li>
-  <li><g id="t13">D.  make an application</g></li>
-  <li><g id="t14">E.  request action</g></li>
+  <li><a id="t10">request information</a></li>
+  <li><a id="t11">explain a situation</a></li>
+  <li><a id="t12">make arrangements</a></li>
+  <li><a id="t13">make an application</a></li>
+  <li><a id="t14">request action</a></li>
   </list></li>
   <p class="linespace"></p>
-  <li>How many points do you have tocover in this letter?
+  <li>How many points do you have to cover in this letter?
   <list class="answerList">
-  <li><g id="t15">A.  one</g></li>
-  <li><g id="t16">B.  two</g></li>
-  <li><g id="t17">C.  three</g></li>
-  <li><g id="t18">D.  four</g></li>
-  <li><g id="t19">E.  five</g></li>
+  <li><a id="t15">one</a></li>
+  <li><a id="t16">two</a></li>
+  <li><a id="t17">three</a></li>
+  <li><a id="t18">four</a></li>
+  <li><a id="t19">five</a></li>
   </list></li>
   <p class="linespace"></p>
   <li>Which of the following would it be appropriate to write about in this letter?
     <list class="answerList">
-  <li><g id="t20">A.  where you saw the advertisement</g></li>
-  <li><g id="t21">B.  your previous jobs in a similar field</g></li>
-  <li><g id="t22">C.  the reason you would like the job</g></li>
-  <li><g id="t23">D.  the reason you left your last job</g></li>
-  <li><g id="t24">E.  your qualifications</g></li>
-  <li><g id="t25">F.  your daily routine</g></li>
+  <li><a id="t20">where you saw the advertisement</a></li>
+  <li><a id="t21">your previous jobs in a similar field</a></li>
+  <li><a id="t22">the reason you would like the job</a></li>
+  <li><a id="t23">the reason you left your last job</a></li>
+  <li><a id="t24">your qualifications</a></li>
+  <li><a id="t25">your daily routine</a></li>
   </list></li>
-  
+  <p class="linespace"></p>
 </ol>
 </section>
 
 <section id="readingText">
   <h1>Writing Task 1</h1>
   
-  <p align="left">You should spend about 20 minutes on this task.</p>
-  <p align="left">
-    <b>You have seen an advertisement in your local newspaper for a part-time shop assistant in a bookshop.</b>
-  </p>
-  <p align="left">
-    <b>Write a letter of application to the manager of the bookshop. Write about your experience and qualifications and say why you would like the job. Also state when you would be available for an interview.</b>
-  </p>
-  <p align="left">You should write at least 150 words.</p>
-  <p align="left">You do NOT need to write your own address.</p>
-  <p align="left">
-    <font color="#000000">Begin your letter as follows:</font>
-  </p>
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>You should spend about 20 minutes on this task.</p>
+  
+  <p><b>You have seen an advertisement in your local newspaper for a part-time shop assistant in a bookshop.</b></p>
+
+  <p><b>Write a letter of application to the manager of the bookshop. Write about your experience and qualifications and say why you would like the job. Also state when you would be available for an interview.</b></p>
+  
+  <p>You should write at least 150 words.</p>
+  
+  <p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p>Begin your letter as follows: Dear Sir/Madam,</p>
+
 </section>
 
 <section id="rt2001">
-  <p align="left">
+  <p>
     <font face="verdana" size="13" color="#000000">Remember to ask yourself questions like these whenever you write a letter.</font>
   </p>
 </section>

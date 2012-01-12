@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -76,31 +80,44 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/MM_WTG01.jpg" mode="16" id="1004"  />
-		
+<div id="instruction">		
 		Read the letter from the previous exercise again and find all the adjectives the writer uses to praise the radio series. Click on them.
-
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_GW_005.jpg" mode="1" id="1001"/>
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+    <img class="rightFloat" src="../media/MM_GW_005.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">I am writing to thank you for your<g id="t1">fabulous</g> series 'A Hundred Years of Radio'.</p>
-  <p align="left">My whole family thoroughly enjoyed each of the <g id="t2">excellent</g> broadcasts in the series, so much so that on Thursday evenings we would all rush home expressly to listen to them. My youngest son, who is only twelve, is not usually interested in radio programmes but even he enjoyed them. In fact, he found them <g id="t3">invaluable</g> as he has been doing a project on the history of radio at school.</p>
-  <p align="left">I must say we particularly enjoyed the <g id="t4">fascinating</g> narration by George Pickering and his <g id="t5">insightful</g> comments, as well as all the <g id="t6">wonderful</g> recordings from the early days of radio. The <g id="t7">original</g> and <g id="t8">creative</g> style of the series was also extremely <g id="t9">impressive</g>.</p>
-  <p align="left">We would very much like to know whether you are planning to air more <g id="t10">stimulating</g> programmes of this kind in the future. If so, we would appreciate it if you could inform us in advance so that we do not miss them.</p>
-  <p align="left">Thank you once again.</p>
-  <p align="left">Yours faithfully,</p>
-  <p align="left">Mrs M. Alty</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>Dear Sir/Madam,</p>
+  <p>I am writing to thank you for your<g id="t1">fabulous</g> series 'A Hundred Years of Radio'.</p>
+  <p>My whole family thoroughly enjoyed each of the <g id="t2">excellent</g> broadcasts in the series, so much so that on Thursday evenings we would all rush home expressly to listen to them. My youngest son, who is only twelve, is not usually interested in radio programmes but even he enjoyed them. In fact, he found them <g id="t3">invaluable</g> as he has been doing a project on the history of radio at school.</p>
+  <p>I must say we particularly enjoyed the <g id="t4">fascinating</g> narration by George Pickering and his <g id="t5">insightful</g> comments, as well as all the <g id="t6">wonderful</g> recordings from the early days of radio. The <g id="t7">original</g> and <g id="t8">creative</g> style of the series was also extremely <g id="t9">impressive</g>.</p>
+  <p>We would very much like to know whether you are planning to air more <g id="t10">stimulating</g> programmes of this kind in the future. If so, we would appreciate it if you could inform us in advance so that we do not miss them.</p>
+  <p>Thank you once again.</p>
+  <p>Yours faithfully,</p>
+  <p>Mrs M. Alty</p>
+  
   </div>
 </section>
 
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+	<p class="popuptext"><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
+	
+	<p class="popuptext">You should write at least 150 words.</p>
+	
+	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+	
+	<p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+	
+</section>
+
 <section id="rt2001">
-  <p align="left">
+  <p>
     <font face="verdana" size="13" color="#000000">The examiner will be looking for your ability to use a range of vocabulary. It is easy to use a variety of adjectives in a letter like this.</font>
   </p>
 </section>

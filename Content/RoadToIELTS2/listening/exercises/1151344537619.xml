@@ -4,13 +4,33 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#wrapper{
+	position:absolute;
+
+    width:1000px;
+}
+#part1{
+Position: relative;
+padding-top: 10px;
+padding-left: -22px;
+line-height:22em;
+}
+
+#part1 li{
+	padding-right: 200%;
+}
+
+#part1 p{
+	padding-right: 200%;
+}
 	</style>
 	
 	

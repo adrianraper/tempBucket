@@ -4,28 +4,19 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	#outertabcomp1{
-		position:absolute;
-		padding-top: 100px;
-	   	padding-left: 0em;
-		width:500px;
-	}
 	#contenttabcomp1{
-		position:relative;
+		position: relative;
 		padding-left:-3px;
 		padding-top: 100px;
-		height: 400px;
-		width:220px;
 		line-height:22em;
 	}
 	#content1tabcomp1{
-		position:relative;
+		position: relative;
 		padding-left:202px;
 		padding-top:100px;
- 	    height:400px;
-		width:320px;
 		line-height:22em;
 	}
 	</style>
@@ -135,7 +126,7 @@
 
   <h1><p>Percentage of people aged 20 to 24 participating in the most popular sports, games and physical activities.</p></h1>
 
-  <div id="outertabcomp1">
+
 
   
   <div id="contenttabcomp1">
@@ -166,11 +157,10 @@
   <p>43%</p>
   <p>28%</p>
   <p>7.&#xA0;<input id="q7"/> %</p>
-  <p>7%</p>
+  <p>17%</p>
   <p>8.&#xA0;<input id="q8"/>&#xA0;%</p>
   </div>
   
-    </div>
 
  </section>
 

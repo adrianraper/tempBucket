@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,6 +18,9 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<feedback>
+		<feedback source="fb0" width="550" height="420" />
+	</feedback>
 </settings>
   <questions>
     <DropDownQuestion source="q1" block="b1">
@@ -140,98 +144,147 @@
 <body>
 	
 <header>
-	
+<div id="instruction">	
 		
 		Here are the notes that a group of students made for the writing task in the previous exercise. Assign a paragraph heading to each point to make a plan for the composition.
-		
+</div>		
 </header>
 	
 <section id="body">
 
 <div id="questionList">
 <img class="rightFloat" src="../media/WR_OIIP_001.jpg" mode="1" id="1001"/>
-  <p align="left">Sleeplessness<tab/><tab/><tab/><tab/><select id="q1"><option id="a1">What the problem is and its effects</option><option id="a2">Causes of the problem</option><option id="a3">Possible solutions to the problem</option><option id="a4">Possible results of solutions</option></select></p>
+  <p>Sleeplessness</p>
   
-  <p align="left"><font size="2"/>Stress<tab/><tab/><tab/><tab/><tab/><select id="q2"><option id="a5">What the problem is and its effects</option><option id="a6">Causes of the problem</option><option id="a7">Possible solutions to the problem</option><option id="a8">Possible results of solutions</option></select></p>
+  <p>Stress</p>
   
-  <p align="left"><font size="2"/>Traffic<tab/><tab/><tab/><tab/><tab/><select id="q3"><option id="a9">Causes of the problem</option><option id="a10">What the problem is and its effects</option><option id="a11">Possible solutions to the problem</option><option id="a12">Possible results of solutions</option></select></p>
+  <p>Traffic</p>
   
-  <p align="left"><font size="2"/>Better sound insulation in buildings<tab/><select id="q4"><option id="a13">Possible solutions to the problem</option><option id="a14">What the problem is and its effects</option><option id="a15">Causes of the problem</option><option id="a16">Possible results of solutions</option></select></p>
+  <p>Better sound insulation in buildings</p>
   
-  <p align="left"><font size="2"/>Mental problems e.g. depression<tab/><tab/><select id="q5"><option id="a17">What the problem is and its effects</option><option id="a18">Causes of the problem</option><option id="a19">Possible solutions to the problem</option><option id="a20">Possible results of solutions</option></select></p>
+  <p>Mental problems e.g. depression</p>
   
-  <p align="left"><font size="2"/>Noise pollution is a serious problem<tab/><select id="q6"><option id="a21">What the problem is and its effects</option><option id="a22">Causes of the problem</option><option id="a23">Possible solutions to the problem</option><option id="a24">Possible results of solutions</option></select></p>
+  <p>Noise pollution is a serious problem</p>
   
-  <p align="left"><font size="2"/>Ban aircraft flying over urban areas<tab/><select id="q7"><option id="a25">Possible solutions to the problem</option><option id="a26">What the problem is and its effects</option><option id="a27">Causes of the problem</option><option id="a28">Possible results of solutions</option></select></p>
+  <p>Ban aircraft flying over urban areas</p>
   
-  <p align="left"><font size="2"/>More consideration for our neighbours<tab/><select id="q8"><option id="a29">Possible solutions to the problem</option><option id="a30">What the problem is and its effects</option><option id="a31">Causes of the problem</option><option id="a32">Possible results of solutions</option></select></p>
+  <p>More consideration for our neighbours</p>
   
-  <p align="left"><font size="2"/>Loss of hearing<tab/><tab/><tab/><tab/><select id="q9"><option id="a33">What the problem is and its effects</option><option id="a34">Causes of the problem</option><option id="a35">Possible solutions to the problem</option><option id="a36">Possible results of solutions</option></select></p>
+  <p>Loss of hearing</p>
   
-  <p align="left"><font size="2"/>High blood pressure<tab/><tab/><tab/><select id="q10"><option id="a37">What the problem is and its effects</option><option id="a38">Causes of the problem</option><option id="a39">Possible solutions to the problem</option><option id="a40">Possible results of solutions</option></select></p>
+  <p>High blood pressure</p>
   
-  <p align="left"><font size="2"/>Lower productivity at work<tab/><tab/><tab/><select id="q11"><option id="a41">What the problem is and its effects</option><option id="a42">Causes of the problem</option><option id="a43">Possible solutions to the problem</option><option id="a44">Possible results of solutions</option></select></p>
+  <p>Lower productivity at work</p>
   
-  <p align="left"><font size="2"/>Low-flying aircraft<tab/><tab/><tab/><tab/><select id="q12"><option id="a45">Causes of the problem</option><option id="a46">What the problem is and its effects</option><option id="a47">Possible solutions to the problem</option><option id="a48">Possible results of solutions</option></select></p>
+  <p>Low-flying aircraft</p>
   
-  <p align="left"><font size="2"/>Build airports further from cities<tab/><tab/><select id="q13"><option id="a49">Possible solutions to the problem</option><option id="a50">What the problem is and its effects</option><option id="a51">Causes of the problem</option><option id="a52">Possible results of solutions</option></select></p>
+  <p>Build airports further from cities</p>
   
-  <p align="left"><font size="2"/>Loud televisions, radios and music<tab/><tab/><select id="q14"><option id="a53">Causes of the problem</option><option id="a54">What the problem is and its effects</option><option id="a55">Possible solutions to the problem</option><option id="a56">Possible results of solutions</option></select></p>
+  <p>Loud televisions, radios and music</p>
   
-  <p align="left"><font size="2"/>Stricter speed limits in residential areas<tab/><select id="q15"><option id="a57">Possible solutions to the problem</option><option id="a58">What the problem is and its effects</option><option id="a59">Causes of the problem</option><option id="a60">Possible results of solutions</option></select></p>
+  <p>Stricter speed limits in residential areas</p>
   
-  <p align="left"><font size="2"/>Improved physical and mental health<tab/><select id="q16"><option id="a61">Possible results of solutions</option><option id="a62">What the problem is and its effects</option><option id="a63">Causes of the problem</option><option id="a64">Possible solutions to the problem</option></select></p>
+  <p>Improved physical and mental health</p>
   
-  <p align="left"><font size="2"/>Avoid the use of noisy tools<tab/><tab/><select id="q17"><option id="a65">Possible solutions to the problem</option><option id="a66">What the problem is and its effects</option><option id="a67">Causes of the problem</option><option id="a68">Possible results of solutions</option></select></p>
+  <p>Avoid the use of noisy tools</p>
   
-  <p align="left"><font size="2"/>Noisy power tools	<tab/><tab/><tab/><tab/><select id="q18"><option id="a69">Causes of the problem</option><option id="a70">What the problem is and its effects</option><option id="a71">Possible solutions to the problem</option><option id="a72">Possible results of solutions</option></select></p>
+  <p>Noisy power tools</p>
  
- <p align="left"><font size="2"/>Better quality of life in cities<tab/><tab/><select id="q19"><option id="a73">Possible results of solutions</option><option id="74">What the problem is and its effects</option><option id="a75">Causes of the problem</option><option id="a76">Possible solutions to the problem</option></select></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+ <p>Better quality of life in cities</p>
+ 
   </div>
+  <div id="dropdownlist">
+<p><select id="q1"><option id="a1">What the problem is and its effects</option><option id="a2">Causes of the problem</option><option id="a3">Possible solutions to the problem</option><option id="a4">Possible results of solutions</option></select></p>
+
+<p><select id="q2"><option id="a5">What the problem is and its effects</option><option id="a6">Causes of the problem</option><option id="a7">Possible solutions to the problem</option><option id="a8">Possible results of solutions</option></select></p>
+
+<p><select id="q3"><option id="a9">Causes of the problem</option><option id="a10">What the problem is and its effects</option><option id="a11">Possible solutions to the problem</option><option id="a12">Possible results of solutions</option></select></p>
+
+<p><select id="q4"><option id="a13">Possible solutions to the problem</option><option id="a14">What the problem is and its effects</option><option id="a15">Causes of the problem</option><option id="a16">Possible results of solutions</option></select></p>
+
+<p><select id="q5"><option id="a17">What the problem is and its effects</option><option id="a18">Causes of the problem</option><option id="a19">Possible solutions to the problem</option><option id="a20">Possible results of solutions</option></select></p>
+
+<p><select id="q6"><option id="a21">What the problem is and its effects</option><option id="a22">Causes of the problem</option><option id="a23">Possible solutions to the problem</option><option id="a24">Possible results of solutions</option></select></p>
+
+<p><select id="q7"><option id="a25">Possible solutions to the problem</option><option id="a26">What the problem is and its effects</option><option id="a27">Causes of the problem</option><option id="a28">Possible results of solutions</option></select></p>
+
+<p><select id="q8"><option id="a29">Possible solutions to the problem</option><option id="a30">What the problem is and its effects</option><option id="a31">Causes of the problem</option><option id="a32">Possible results of solutions</option></select></p>
+
+<p><select id="q9"><option id="a33">What the problem is and its effects</option><option id="a34">Causes of the problem</option><option id="a35">Possible solutions to the problem</option><option id="a36">Possible results of solutions</option></select></p>
+
+<p><select id="q10"><option id="a37">What the problem is and its effects</option><option id="a38">Causes of the problem</option><option id="a39">Possible solutions to the problem</option><option id="a40">Possible results of solutions</option></select></p>
+
+<p><select id="q11"><option id="a41">What the problem is and its effects</option><option id="a42">Causes of the problem</option><option id="a43">Possible solutions to the problem</option><option id="a44">Possible results of solutions</option></select></p>
+
+<p><select id="q12"><option id="a45">Causes of the problem</option><option id="a46">What the problem is and its effects</option><option id="a47">Possible solutions to the problem</option><option id="a48">Possible results of solutions</option></select></p>
+
+<p><select id="q13"><option id="a49">Possible solutions to the problem</option><option id="a50">What the problem is and its effects</option><option id="a51">Causes of the problem</option><option id="a52">Possible results of solutions</option></select></p>
+
+<p><select id="q14"><option id="a53">Causes of the problem</option><option id="a54">What the problem is and its effects</option><option id="a55">Possible solutions to the problem</option><option id="a56">Possible results of solutions</option></select></p>
+
+<p><select id="q15"><option id="a57">Possible solutions to the problem</option><option id="a58">What the problem is and its effects</option><option id="a59">Causes of the problem</option><option id="a60">Possible results of solutions</option></select></p>
+
+<p><select id="q16"><option id="a61">Possible results of solutions</option><option id="a62">What the problem is and its effects</option><option id="a63">Causes of the problem</option><option id="a64">Possible solutions to the problem</option></select></p>
+
+<p><select id="q17"><option id="a65">Possible solutions to the problem</option><option id="a66">What the problem is and its effects</option><option id="a67">Causes of the problem</option><option id="a68">Possible results of solutions</option></select></p>
+
+<p><select id="q18"><option id="a69">Causes of the problem</option><option id="a70">What the problem is and its effects</option><option id="a71">Possible solutions to the problem</option><option id="a72">Possible results of solutions</option></select></p>
+
+<p><select id="q19"><option id="a73">Possible results of solutions</option><option id="74">What the problem is and its effects</option><option id="a75">Causes of the problem</option><option id="a76">Possible solutions to the problem</option></select></p>
+
+</div>
 </section>
 
 <section id="fb0">
-  <p align="left">
+<div id="feedback1">
+  <p class="feedbacktext">
     <b>What the problem is and its effects</b>
   </p>
-  <p align="left">- Stress</p>
-  <p align="left">- Noise pollution is a serious problem</p>
-  <p align="left">- Sleeplessness</p>
-  <p align="left">- Mental problems e.g. depression</p>
-  <p align="left">- Loss of hearing</p>
-  <p align="left">- High blood pressure</p>
-  <p align="left">- Lower productivity at work</p>
-  <p align="left"/>
-  <p align="left">
+  <ul>
+  <li>Stress</li>
+  <li>Noise pollution is a serious problem</li>
+  <li>Sleeplessness</li>
+  <li>Mental problems e.g. depression</li>
+  <li>Loss of hearing</li>
+  <li>High blood pressure</li>
+  <li>Lower productivity at work</li>
+  </ul>
+  <p class="feedbacktext">
     <b>Causes of the problem</b>
   </p>
-  <p align="left">- Traffic</p>
-  <p align="left">- Low-flying aircraft</p>
-  <p align="left">- Noisy power tools</p>
-  <p align="left">- Loud televisions, radios and music</p>
-  <p align="left"/>
-  <p align="left">
+  <ul>
+   <li>Traffic</li>
+   <li>Low-flying aircraft</li>
+   <li>Noisy power tools</li>
+   <li>Loud televisions, radios and music</li>
+  </ul>
+  </div>
+  <div id="feedback2">
+  <p class="feedbacktext">
     <b>Possible solutions to the problem</b>
   </p>
-  <p align="left">- Use better sound insulation in buildings</p>
-  <p align="left">- Show more consideration for our neighbours</p>
-  <p align="left">- Ban aircraft from flying over urban areas</p>
-  <p align="left">- Build airports further from cities</p>
-  <p align="left">- Impose stricter speed limits in residential areas</p>
-  <p align="left">- Avoid the use of noisy tools</p>
-  <p align="left"/>
-  <p align="left">
+  <ul>
+  <li>Use better sound insulation in buildings</li>
+  <li>Show more consideration for our neighbours</li>
+  <li>Ban aircraft from flying over urban areas</li>
+  <li>Build airports further from cities</li>
+  <li>Impose stricter speed limits in residential areas</li>
+  <li>Avoid the use of noisy tools</li>
+  </ul>
+ 
+  <p class="feedbacktext">
     <b>Possible results of suggested solutions</b>
   </p>
-  <p align="left">- Improved physical and mental health</p>
-  <p align="left">- Better quality of life in cities</p>
+  <ul>
+  <li>Improved physical and mental health</li>
+  <li>Better quality of life in cities</li>
+  </ul>
+  <p></p>
+  </div>
 </section>
 
 <section id="rt2001">
-  <p align="left">As with other composition types, it is important to brainstorm for ideas and organise them into paragraphs before you start writing your composition.</p>
+  <p>As with other composition types, it is important to brainstorm for ideas and organise them into paragraphs before you start writing your composition.</p>
 </section>
 
 </body>

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,23 +16,33 @@
 	<br/>
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
   </settings>
-  <questions/>
+
 </script>
 
 </head>
 <body>
 	
 <header>
-	What will I learn in this Unit?
+<div id="instruction">What will I learn in this Unit?</div>
 </header>
 	
 <section id="body">
 <img class="rightFloat" src="../media/WB_GW_001.jpg" mode="1" id="1001"/>
 <div id="presentation">
 <h1>General Training Writing Task 1</h1>
-<p align="left"><font color="#000000"><b>Letter &#x2013; making an application</b></font></p>You will ...<ol><li>read a task and analyse what is required.</li><li>consider expressions used in formal letters.</li><li>organise ideas in a letter of application.</li><li>focus on prepositions in letters.</li><li>read a task and find mistakes in a sample answer.</li></ol><p align="left"><font size="2"/></p>
+
+<p><b>Letter &#x2013; making an application</b></p>
+
+<p>You will ...</p>
+
+<ol>
+	<li>read a task and analyse what is required;</li>
+	<li>consider expressions used in formal letters;</li>
+	<li>organise ideas in a letter of application;</li>
+	<li>focus on prepositions in letters;</li>
+	<li>read a task and find mistakes in a sample answer.</li>
+</ol>
 </div>
 </section>
 

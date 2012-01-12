@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -47,7 +48,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Zafir is asked about the benefits of working or studying in another country. Listen to his answer and complete the summary of what he says.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -67,10 +70,7 @@
  </div>
  
  <div id="content">
-  <p>If you know or you&#xA0;<input id="q1" type="droptarget"/>&#xA0;two&#xA0;<input id="q2" type="droptarget"/>&#xA0;, then you are not only one person you are two people. If you go&#xA0;<input id="q3" type="droptarget"/>&#xA0;for studying or for travelling or for&#xA0;<input id="q4" type="droptarget"/>&#xA0;. You can&#xA0;<input id="q5" type="droptarget"/>&#xA0;a lot of things, about other&#xA0;<input id="q6" type="droptarget"/>&#xA0;, other languages,&#xA0;<input id="q7" type="droptarget"/>&#xA0;, all over the world. </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>If you know or you&#xA0;<input id="q1" type="droptarget"/>&#xA0;two&#xA0;<input id="q2" type="droptarget"/>&#xA0;, then you are not only one person you are two people. If you go&#xA0;<input id="q3" type="droptarget"/>&#xA0;for studying or for travelling or for&#xA0;<input id="q4" type="droptarget"/>&#xA0;. You can&#xA0;<input id="q5" type="droptarget"/>&#xA0;a lot of things, about other&#xA0;<input id="q6" type="droptarget"/>&#xA0;, other languages,&#xA0;<input id="q7" type="droptarget"/>&#xA0;, all over the world.</p>
   </div>
   </div>
 </section>

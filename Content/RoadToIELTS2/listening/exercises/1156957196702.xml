@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -121,7 +122,7 @@ Listen to the recording, which will play automatically, and follow the instructi
 		<li><a id="t6">TV programmes being made</a></li>
 		<li><a id="t7">TV programmes</a></li></list>
 	</ol>
-  
+    <p class="linespace"></p>
   <h7>Questions 5-8 </h7>
   <p><b>What FOUR things does the guide say you can do on the second floor?</b></p>
   <ol id="targetspotting">
@@ -135,7 +136,7 @@ Listen to the recording, which will play automatically, and follow the instructi
 	<li><a id="t14">play a role in radio drama</a></li>
   </list>
   </ol>
-  <p class="linespace"></p>
+
 </section>
 
 <section id="fb1">

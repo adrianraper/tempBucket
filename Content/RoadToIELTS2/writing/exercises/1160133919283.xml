@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -92,9 +96,9 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/WB_WTG01.jpg" mode="16" id="1004"  />Here are the notes that a student made for the writing task you looked at in the previous exercises. Put each point under the correct paragraph heading to make a plan for the letter.
-
-Writing Task 1
+<div id="instruction">
+Here are the notes that a student made for the writing task you looked at in the previous exercises. Put each point under the correct paragraph heading to make a plan for the letter.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -114,33 +118,54 @@ Writing Task 1
 </section>
 
 <section id="body">
-<img class="rightFloat" src="../media/WB_GW_004.jpg" mode="1" id="1001"/>
 
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  <img class="rightFloat" src="../media/WB_GW_004.jpg" mode="1" id="1001"/>
 <div id="gapfillText">
 <h7>Paragraph 1 &#x2013; Reason for writing</h7>
 <p><input id="q1" type="droptarget"/><br/>
 <input id="q2" type="droptarget"/></p>
 <p class="linespace"></p>
+
 <h7>Paragraph 2 &#x2013; Work experience</h7>
 <p><input id="q3" type="droptarget"/><br/>
 <input id="q4" type="droptarget"/><br/>
 <input id="q5" type="droptarget"/><br/>
 <input id="q6" type="droptarget"/></p>
 <p class="linespace"></p>
+
 <h7>Paragraph 3 &#x2013; Education and qualifications</h7>
 <p><input id="q7" type="droptarget"/><br/>
 <input id="q8" type="droptarget"/></p>
 <p class="linespace"></p>
+
 <h7>Paragraph 4 &#x2013; Reason for wanting job</h7>
 <p><input id="q9" type="droptarget"/><br/>
 <input id="q10" type="droptarget"/><br/>
 <input id="q11" type="droptarget"/><br/>
 <input id="q12" type="droptarget"/></p>
 <p class="linespace"></p>
+
 <h7>Paragraph 5 &#x2013; Availability for interview</h7>
 <p><input id="q13" type="droptarget"/></p>
 <p class="linespace"></p>
 </div>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+  
+  <p class="popuptext"><b>You have seen an advertisement in your local newspaper for a part-time shop assistant in a bookshop.</b></p>
+
+  <p class="popuptext"><b>Write a letter of application to the manager of the bookshop. Write about your experience and qualifications and say why you would like the job. Also state when you would be available for an interview.</b></p>
+  
+  <p class="popuptext">You should write at least 150 words.</p>
+  
+  <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+
 </section>
 
 </body>

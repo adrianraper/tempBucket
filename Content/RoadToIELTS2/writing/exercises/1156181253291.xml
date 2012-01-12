@@ -4,17 +4,42 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+.outerbox {
+	display:block;
+	padding-left:-40px;
+	}
+
+.audio {
+	position: relative;
+	float:left;
+	width:45px;
+	padding-left:-25px;
+	padding-top:10px;
+	}
+
+.questiondiv  {
+	display:block;
+	line-height:22em;
+	padding-right:370px;
+	}
+
+
+
 	</style>
 	
 	
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -45,8 +70,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Here are six possible introductory paragraphs to the writing task you looked at in the previous exercise. Read the introductions and think about how appropriate they would be. Then listen to a teacher and drag the comments to the appropriate paragraph.
+		</div>
 </header>
 	
 <section id="noscroll">
@@ -60,21 +86,88 @@
 </section>
 
 <section id="body">
+<img class="rightFloat1" src="../media/TT_AW_010.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
 
-  <audio controls="compact"  src="../media/TT_WR1aa.mp3" mode="1" id="1004"/>
-  <img class="rightFloat" src="../media/TT_AW_010.jpg" mode="1" id="1001"/>
-  
-  <ol id="questionList">
-    <li id="1">The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking.&#xA0;<input id="q1" type="droptarget"/>&#xA0;<audio controls="compact"  src="../media/TT_WR1as.mp3" mode="1" id="1"/></li>
-    <li id="2">Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done.&#xA0;<input id="q2" type="droptarget"/>&#xA0;<audio controls="compact"  src="../media/TT_WR1ao.mp3" mode="1" id="2"/></li>
-    <li id="3">Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea.&#xA0;<input id="q3" type="droptarget"/>&#xA0;<audio controls="compact"  src="../media/TT_WR1ap.mp3" mode="1" id="3"/></li>
-    <li id="4">Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre.&#xA0;<input id="q4" type="droptarget"/>&#xA0;<audio controls="compact"  src="../media/TT_WR1ar.mp3" mode="1" id="4"/></li>
-    <li id="5">At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre.&#xA0;<input id="q5" type="droptarget"/>&#xA0;<audio controls="compact"  src="../media/TT_WR1aq.mp3" mode="1" id="5"/></li>
-    <li id="6">Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so.&#xA0;<input id="q6" type="droptarget"/>&#xA0;<audio controls="compact"  src="../media/TT_WR1an.mp3" mode="1" id="6"/></li>
-	<br/>
-  </ol>
+<div><audio controls="compact"  src="../media/TT_WR1aa.mp3" mode="1" id="1004"/></div>
+
+<br/>
+
+<div class="outerbox">
+
+<div class="audio">
+<audio controls="compact"  src="../media/TT_WR1as.mp3" mode="1" id="1"/>
+</div>
+<div class="questiondiv">
+The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking.&#xA0;<input id="q1" type="droptarget"/>&#xA0;
+</div>
+</div>
+<p class="linespace"></p>
+
+<div class="outerbox">
+<div class="audio">
+<audio controls="compact"  src="../media/TT_WR1ao.mp3" mode="1" id="2"/>
+</div>
+<div class="questiondiv">
+Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done.&#xA0;<input id="q2" type="droptarget"/>&#xA0;
+</div>
+</div>	
+<p class="linespace"></p>
+
+<div class="outerbox">
+<div class="audio">
+<audio controls="compact"  src="../media/TT_WR1ap.mp3" mode="1" id="3"/>
+</div>
+<div class="questiondiv">
+Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea.&#xA0;<input id="q3" type="droptarget"/>&#xA0;
+</div>
+</div>	
+<p class="linespace"></p><br/>
+
+<div class="outerbox">
+<div class="audio">
+<audio controls="compact"  src="../media/TT_WR1ar.mp3" mode="1" id="4"/>
+</div>
+<div class="questiondiv">
+Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre.&#xA0;<input id="q4" type="droptarget"/>&#xA0;
+</div>
+</div>	
+ <p class="linespace"></p>
+ 
+ <div class="outerbox">
+<div class="audio">
+<audio controls="compact"  src="../media/TT_WR1aq.mp3" mode="1" id="5"/>
+</div>
+<div class="questiondiv">
+At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre.&#xA0;<input id="q5" type="droptarget"/>&#xA0;
+</div>
+</div>	
+
+
+ <div class="outerbox">
+<div class="audio">
+<audio controls="compact"  src="../media/TT_WR1an.mp3" mode="1" id="6"/>
+</div>
+<div class="questiondiv">
+Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so.&#xA0;<input id="q6" type="droptarget"/>&#xA0;
+</div>
+</div>	
+
+	
 </section>
-
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 40 minutes on this task.</p>
+			<p class="popuptext">Present a written argument or case to an educated reader with no specialist knowledge of the following topic</p>
+			
+			<p class="popuptext"><b>Excessive traffic has made cities unpleasant places to live and work in. For this reason, pricate cars should be completely banned from city centres.</b></p>
+			
+			<p class="popuptext"><b>To what extent do you agree or disagree</b></p>
+			
+			<p class="popuptext">You should write at least 250 words.</p>
+			
+			<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence</p>
+			
+		</section>
 <section id="rt2001">
   <p align="left">It is very important to write a good introductory paragraph for your composition. If your introduction is good, it makes the rest of the composition easier to write and it makes a good impression on the reader. Remember, if you decide not to write a balanced 'for and against' composition, you should give your personal opinion in the first paragraph and repeat it in the conclusion.</p>
 </section>

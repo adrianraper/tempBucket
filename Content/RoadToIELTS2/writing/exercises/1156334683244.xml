@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -82,23 +86,23 @@
 </section>
 
 <section id="fb1">
-  <p align="left">1. What's missing here are the causes of deforestation.</p>
+  <p class="feedbacktext">1. What's missing here are the causes of deforestation.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. What are the consequences of such pollution?</p>
+  <p class="feedbacktext">2. What are the consequences of such pollution?</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. In this paragraph solutions are listed in the same order as the problems in the previous paragraph. Which is the first problem mentioned?</p>
+  <p class="feedbacktext">3. In this paragraph solutions are listed in the same order as the problems in the previous paragraph. Which is the first problem mentioned?</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. What's missing here is a solution for the problem of environmental pollution.</p>
+ <p class="feedbacktext">4. What's missing here is a solution for the problem of environmental pollution.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. What's missing here is a solution to the problem of hunting and trading in animal products.</p>
+  <p class="feedbacktext">5. What's missing here is a solution to the problem of hunting and trading in animal products.</p>
 </section>
 
 <section id="rt2001">
@@ -107,6 +111,9 @@
 
 <section id="readingText">
 <img class="photo1" src="../media/WR_SA_001.jpg" mode="1" id="1003"  />
+<br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+ <br/>
 <h7><p>Sentence A:</p></h7>
 <p>the hunting of rare species must be banned, and an international agency ought to be set up to prevent the trade in products made from rare species</p>
 
@@ -124,6 +131,15 @@
 
 
 </section>
+<section id="writingtask1">
 
+
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic</b></p>
+<p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
+<p class="popuptext">You should write at least 250 words</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
 </body>
 </bento>

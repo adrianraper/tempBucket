@@ -4,22 +4,16 @@
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-10-28" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */
 		/* Lists in a non-split screen need more padding-left so that number 10 doesnt get swallowed. */
-		#questionList {
-			padding-left: 25px;
-			tab-stops: 120px;
-		}
-		#questionList a {
-			color: #3A00FF;
-			font-weight: bold;
-		}
 	]]>
+	
 	</style>
 	
 	<br/>
@@ -129,11 +123,11 @@ Watch Section 1 of an interview with Zenia. Are the following statements true or
 
 
 <div id="content">
-	<ol >
-		<li id="q1">The Examiner introduces herself to the candidate.<br/>
-			<a id="a1" ><b>True</b></a><tab/><tab/><a id="a2" ><b>False</b></a></li>
+	<ol>
+		<li id="q1">The examiner introduces herself to the candidate.</li>
+			<a id="a1" ><b>True</b></a><tab/><tab/><a id="a2" ><b>False</b></a>
 			<p class="linespace"></p>
-		<li id="q2">Zenia has to give the Examiner her full name.</li>
+		<li id="q2">Zenia has to give the examiner her full name.</li>
 			<a id="a3" ><b>True</b></a><tab/><tab/><a id="a4" ><b>False</b></a>
 			<p class="linespace"></p>
 		<li id="q3">Zenia does not need to produce identification.</li>
@@ -145,19 +139,19 @@ Watch Section 1 of an interview with Zenia. Are the following statements true or
 		<li id="q5">The candidate is asked where she comes from.</li>
 			<a id="a9" ><b>True</b></a><tab/><tab/><a id="a10" ><b>False</b></a>
 			<p class="linespace"></p>
-		<li id="q6">The candidate asks the Examiner her name.</li>
+		<li id="q6">The candidate asks the examiner her name.</li>
 			<a id="a11" ><b>True</b></a><tab/><tab/><a id="a12" ><b>False</b></a>
 			<p class="linespace"></p>
 		<li id="q7">Zenia is asked to describe her home town.</li>
 			<a id="a13" ><b>True</b></a><tab/><tab/><a id="a14" ><b>False</b></a>
 			<p class="linespace"></p>
-		<li id="q8">The Examiner asks Zenia about her family.</li>
+		<li id="q8">The examiner asks Zenia about her family.</li>
 			<a id="a15" ><b>True</b></a><tab/><tab/><a id="a16" ><b>False</b></a>
 			<p class="linespace"></p>
 		<li id="q9">The candidate is asked where she was born.</li>
 			<a id="a17" ><b>True</b></a><tab/><tab/><a id="a18" ><b>False</b></a>
 			<p class="linespace"></p>
-		<li id="q10">The Examiner asks Zenia to talk about her life.</li>
+		<li id="q10">The examiner asks Zenia to talk about her life.</li>
 			<a id="a19" ><b>True</b></a><tab/><tab/><a id="a20" ><b>False</b></a>
 			<p class="linespace"></p>
 	</ol>
@@ -169,19 +163,19 @@ Watch Section 1 of an interview with Zenia. Are the following statements true or
 	<p class="feedbacktext">1. When you give your name to someone this is an introduction.</p>
 </section>
 <section id="fb2">
-	<p class="feedbacktext">2. This is important so that the Examiner can check the candidate's identity.</p>
+	<p class="feedbacktext">2. This is important so that the examiner can check the candidate's identity.</p>
 </section>
 <section id="fb3">
 	<p class="feedbacktext">3. Identification is essential, you can't take the exam without it.</p>
 </section>
 <section id="fb4">
-	<p class="feedbacktext">4. The Examiner asks all the questions.</p>
+	<p class="feedbacktext">4. The examiner asks all the questions.</p>
 </section>
 <section id="fb5">
-	<p class="feedbacktext">5. This is one of the first questions the Examiner will ask.</p>
+	<p class="feedbacktext">5. This is one of the first questions the examiner will ask.</p>
 </section>
 <section id="fb6">
-	<p class="feedbacktext">6. The Examiner gives her name without the candidate having to ask. </p>
+	<p class="feedbacktext">6. The examiner gives her name without the candidate having to ask. </p>
 </section>
 <section id="fb7">
 	<p class="feedbacktext">7. She doesn't have to go into lots of detail but gives a short description.</p>

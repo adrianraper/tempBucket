@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -56,7 +57,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Revise comparative forms. Drag down the comparative forms to complete the sentences below. You should try and use these forms in sentences of your own when comparing ideas and solutions.
+	</div>
 </header>
 	
 <section id="noscroll">

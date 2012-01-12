@@ -4,13 +4,19 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+.matchinglist{
+	padding-top:10px;
+	padding-left:0px;
+	padding-bottom:10px;
+}
 	</style>
 	
 <script id="model" type="application/xml">
@@ -58,6 +64,10 @@
       <answer value="11000 hectares" correct="true"/>
       <answer value="eleven thousand hectares" correct="true"/>
       <answer value="11 thousand hectares" correct="true"/>
+	  <answer value="11,000 ha" correct="true"/>
+	  <answer value="11000 ha" correct="true"/>
+	  <answer value="11000ha" correct="true"/>
+	  <answer value="11,000ha" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
       <answer value="2,100m" correct="true"/>
@@ -84,6 +94,13 @@
       <answer value="approx 33,000 people" correct="true"/>
       <answer value="approx 33000 people" correct="true"/>
       <answer value="approx 33 thousand" correct="true"/>
+	  <answer value="approx. 33,000" correct="true"/>
+      <answer value="approx. 33000" correct="true"/>
+      <answer value="approx. thirty-three thousand" correct="true"/>
+      <answer value="approx. 33 thousand" correct="true"/>
+      <answer value="approx. 33,000 people" correct="true"/>
+      <answer value="approx. 33000 people" correct="true"/>
+      <answer value="approx. 33 thousand" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
       <answer value="three" correct="true"/>

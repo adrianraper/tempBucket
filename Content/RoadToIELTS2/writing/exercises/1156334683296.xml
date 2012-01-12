@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -24,70 +25,110 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="true">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a3" correct="false">
-        <feedback source="fb3"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a4" correct="false">
-        <feedback source="fb4"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a6" correct="true">
-        <feedback source="fb6"/>
+        <feedback source="fb2"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
       <answer source="a7" correct="false">
-        <feedback source="fb7"/>
+        <feedback source="fb3"/>
       </answer>
       <answer source="a8" correct="true">
-        <feedback source="fb8"/>
+        <feedback source="fb3"/>
       </answer>
       <answer source="a9" correct="false">
-        <feedback source="fb9"/>
+        <feedback source="fb3"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
       <answer source="a10" correct="true">
-        <feedback source="fb10"/>
+        <feedback source="fb4"/>
       </answer>
-      <answer source="a11" correct="false"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a11" correct="false">
+	  <feedback source="fb4"/>
+	  </answer>
+      <answer source="a12" correct="false">
+	  <feedback source="fb4"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a13" correct="true"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="false"/>
+      <answer source="a13" correct="true">
+	  <feedback source="fb5"/>
+	  </answer>
+      <answer source="a14" correct="false">
+	  <feedback source="fb5"/>
+	  </answer>
+      <answer source="a15" correct="false">
+	  <feedback source="fb5"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a16" correct="false"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="false"/>
+      <answer source="a16" correct="false">
+	  <feedback source="fb6"/>
+	  </answer>
+      <answer source="a17" correct="true">
+	  <feedback source="fb6"/>
+	  </answer>
+      <answer source="a18" correct="false">
+	  <feedback source="fb6"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q7">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="false"/>
-      <answer source="a21" correct="false"/>
+      <answer source="a19" correct="true">
+	  <feedback source="fb7"/>
+	  </answer>
+      <answer source="a20" correct="false">
+	  <feedback source="fb7"/>
+	  </answer>
+      <answer source="a21" correct="false">
+	  <feedback source="fb7"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q8">
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="false"/>
-      <answer source="a24" correct="true"/>
+      <answer source="a22" correct="false">
+	  <feedback source="fb8"/>
+	  </answer>
+      <answer source="a23" correct="false">
+	  <feedback source="fb8"/>
+	  </answer>
+      <answer source="a24" correct="true">
+	  <feedback source="fb8"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q9">
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="false"/>
-      <answer source="a27" correct="false"/>
+      <answer source="a25" correct="true">
+	  <feedback source="fb9"/>
+	  </answer>
+      <answer source="a26" correct="false">
+	  <feedback source="fb9"/>
+	  </answer>
+      <answer source="a27" correct="false">
+	  <feedback source="fb9"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q10">
-      <answer source="a28" correct="false"/>
-      <answer source="a29" correct="false"/>
-      <answer source="a30" correct="true"/>
+      <answer source="a28" correct="false">
+	  <feedback source="fb10"/>
+	  </answer>
+      <answer source="a29" correct="false">
+	  <feedback source="fb10"/>
+	  </answer>
+      <answer source="a30" correct="true">
+	  <feedback source="fb10"/>
+	  </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>
@@ -106,65 +147,75 @@
   <ol id="splitquestionList">
     
     <li id="q1">What does 'which' refer to?<list class="answerList"><li><a id="a1">the carriage</a></li><li><a id="a2">the ballast tank</a></li><li><a id="a3">the water-balanced railway</a></li></list></li>
-    
+    <p class="linespace"></p>
+	
     <li id="q2">What does 'These' refer to?<list class="answerList"><li><a id="a4">the steel tracks</a></li><li><a id="a5">the carriages</a></li><li><a id="a6">the steel cables</a></li></list></li>
+    <p class="linespace"></p>    
     
-    <li id="q3">What does 'it' refer to?<list class="answerList"><li><a id="a7">the ballast tank</a></li><li><a id="a8">the top carriage</a></li><li><a id="a9">the reservoir</a></li></list></li>
-    
+	<li id="q3">What does 'it' refer to?<list class="answerList"><li><a id="a7">the ballast tank</a></li><li><a id="a8">the top carriage</a></li><li><a id="a9">the reservoir</a></li></list></li>
+    <p class="linespace"></p>
+	    
     <li id="q4">What does 'the other one' refer to?<list class="answerList"><li><a id="a10">the lower carriage</a></li><li><a id="a11">the higher carriage</a></li><li><a id="a12">the imbalance</a></li></list></li>
-    
+    <p class="linespace"></p>
+	    
     <li id="q5">What does 'them' refer to?<list class="answerList"><li><a id="a13">the carriages</a></li><li><a id="a14">the steel tracks</a></li><li><a id="a15">the steel cables</a></li></list></li>
-    
+    <p class="linespace"></p>
+	    
     <li id="q6">What does 'This' refer to<list class="answerList"><li><a id="a16">the drum</a></li><li><a id="a17">the braking system</a></li><li><a id="a18">the computer system</a></li></list></li>
-    
+    <p class="linespace"></p>
+	    
     <li id="q7">What does 'which' refer to?<list class="answerList"><li><a id="a19">the hydraulic pump</a></li><li><a id="a20">the braking system</a></li><li><a id="a21">the computer system</a></li></list></li>
-    
+    <p class="linespace"></p>
+	    
     <li id="q8">What does 'it' refer to?<list class="answerList"><li><a id="a22">the braking system</a></li><li><a id="a23">the hydraulic pump</a></li><li><a id="a24">the drum</a></li></list></li>
-    
+        <p class="linespace"></p>
+		
     <li id="q9">What does 'this' refer to?<list class="answerList"><li><a id="a25">the carriages reduce speed</a></li><li><a id="a26">the braking system</a></li><li><a id="a27">the gas is compressed</a></li></list></li>
-    
+        <p class="linespace"></p>
+		
     <li id="q10">What does 'This' refer to?<list class="answerList"><li><a id="a28">the braking system</a></li><li><a id="a29">the hydraulic pump</a></li><li><a id="a30">the stored energy</a></li></list></li>
   </ol>
+      <p class="linespace"></p>
 </section>
 
 <section id="fb1">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">1A: Although the carriage does carry water, as well as passengers, the pronoun here refers to something else.</font>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">1C: This is the whole system, so the pronoun can't refer to this.</font>
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">2A: If you look at the diagram you'll see that the tracks don't go around the drum.</font>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">2B: The diagram shows that the carriages only go up and down. They can't go around the drum.</font>
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">3A: The ballast tank itself doesn't have to be heavier than the other carriage. The weight of the carriage, ballast and passengers altogether is what's important.</font>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">3C: Can a reservoir be weighted?</font>
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">4B: Can the higher one be pulled up?</font>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">4C: is there more than one?</font>
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">5B: The tracks don't move.</font>
   </p>
   <p align="left">
@@ -173,37 +224,37 @@
 </section>
 
 <section id="fb6">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">6A: The drum is a simple component in the system. It doesn't 'consist of' anything; it houses the breaking system.</font>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">6C: The computer system doesn't 'consist of' a pump; it controls the pump.</font>
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">7: 'which' refers to the noun immediately before the comma in this sentence.</font>
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">8: Look at the verb associated with the pronoun. Can the braking system 'turn'?</font>
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">9B: Look at the verb associated with the pronoun. Can the braking system 'happen'?</font>
   </p>
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">9C: This is the result. What happens to compress the gas?</font>
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000">10: Look back to the previous sentence to see what the pronoun refers to.</font>
   </p>
 </section>

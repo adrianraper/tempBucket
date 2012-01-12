@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -25,7 +26,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	You should spend about 40 minutes on this task. You should write at least 250 words.
+</div>
 </header>
 	
 <section id="body">
@@ -35,9 +38,7 @@
   <p>Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
   <p><b>Many species of animals and plants are in danger of becoming extinct.  What are the causes of this problem, and what can be done to prevent it from happening?</b></p>
   <p>You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+ 
   </div>
 </section>
 

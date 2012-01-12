@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -100,7 +101,7 @@
 <section id="body">
 <img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"/>
 <audio controls="hidden" loop="1" src="../media/LC_LN1.mp3" mode="4" id="1002" autoplay="true"/>
-<h5><p>How to improve your English outside the classroom</p></h5>
+<h1><p>How to improve your English outside the classroom</p></h1>
 
 
 <ul class="bulletList">
@@ -114,7 +115,7 @@
 	<li>Start your own (5)&#xA0;<input id="q5"/>.<br/></li>
 </ul>
 
-<h5>Dealing with problem areas</h5>
+<h1>Dealing with problem areas</h1>
 <h6><p>Grammar</p></h6>
 <ul class="bulletList">
 	<li>Select a book from the (6)&#xA0;<input id="q6"/>.</li>

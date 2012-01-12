@@ -4,12 +4,21 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+		#orgreport {
+			padding-top: 12px;
+			text-align: left;
+			line-height: 22em;
+			padding-right: 260%;
+		}
+
+		#orgreport p{
+			padding-bottom: 12px;
+			max-width:10px;
+		}			
 	]]>
 	</style>
 	
@@ -62,79 +71,48 @@
 <body>
 	
 <header>
+<div id="instruction">
 	The report on this bar chart is jumbled up. Look carefully at the chart and drag down the paragraph descriptions (Introduction, Development, Conclusion) to the appropriate sentences.
+	</div>
 </header>
 	
 <section id="noscroll">
 
   <span id="a22" draggable="true">Introduction</span>
-  <span id="a15" draggable="true">Development</span>
-  <span id="a23" draggable="true">Conclusion</span>
+  <span id="a21" draggable="true">Development</span>
+  <span id="a24" draggable="true">Conclusion</span>
 </section>
 
 <section id="body">
-  
-  <div id="gapfillText">
-  
-    <p class="hangingIndent1">
-	<input id="q1" type="droptarget"/>
-      : This pattern is true for almost all other equipment.</p>
+  <img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/>
+  <div id="orgreport">
  
-   <p class="hangingIndent1">
-   <input id="q2" type="droptarget"/>
-      : For example, the percentage of boys with computers in their bedroom is almost twice the percentage for girls.</p>
+    <p><input id="q1" type="droptarget"/><br/>This pattern is true for almost all other equipment.</p>
+ 
+   <p><input id="q2" type="droptarget"/><br/>For example, the percentage of boys with computers in their bedroom is almost twice the percentage for girls.</p>
 	  
-  <p class="hangingIndent1">
-      <input id="q3" type="droptarget"/>
-      : Almost 1 in 2 children have one.
-  </p>
+  <p><input id="q3" type="droptarget"/><br/>Almost 1 in 2 children have one.</p>
   
-  <p class="hangingIndent1">
-      <input id="q4" type="droptarget"/>
-      : It is clear that a large proportion of all children, just over 50 per cent, have some kind of equipment in their bedroom and that the percentage is considerably higher for boys.</p>
+  <p><input id="q4" type="droptarget"/><br/>It is clear that a large proportion of all children, just over 50 per cent, have some kind of equipment in their bedroom and that the percentage is considerably higher for boys.</p>
 	  
-   <p class="hangingIndent1"><input id="q5" type="droptarget"/>
-     : The television is closely followed by games consoles in popularity.</p>
+   <p><input id="q5" type="droptarget"/><br/>The television is closely followed by games consoles in popularity.</p>
 	 
-   <p class="hangingIndent1"><input id="q6" type="droptarget"/>
-     : The only exception is video cassette recorders, which are slightly more common in girls' bedrooms.</p>
+   <p><input id="q6" type="droptarget"/><br/>The only exception is video cassette recorders, which are slightly more common in girls' bedrooms.</p>
 	 
-  <p class="hangingIndent1">
-  <input id="q7" type="droptarget"/>
-      : A third of boys own such consoles compared to only a fifth of girls.
-  </p>
+  <p><input id="q7" type="droptarget"/><br/>A third of boys own such consoles compared to only a fifth of girls.</p>
   
-    <p class="hangingIndent1">
-    <font color="#0000ff">
-      <input id="q8" type="droptarget"/>
-      <font color="#000000">: A closer look at the figures shows that the most common appliance found in children's bedrooms is the television set.<font color="#0000ff"/></font>
-    </font>
-  </p>
+    <p><input id="q8" type="droptarget"/><br/>A closer look at the figures shows that the most common appliance found in children's bedrooms is the television set.</p>
   
-  <p class="hangingIndent1">
-    <font color="#0000ff">
-      <input id="q9" type="droptarget"/>
-      <font color="#000000">: However, these are far more popular with boys than with girls.<font color="#0000ff"/></font>
-    </font>
-  </p>
+  <p><input id="q9" type="droptarget"/><br/>However, these are far more popular with boys than with girls.</p>
   
-  <p class="hangingIndent1">
-    <font color="#0000ff"><input id="q10" type="droptarget"/>: The bar chart shows the percentages of girls and boys with home entertainment equipment in their bedrooms.<font color="#0000ff"/></font>
-  </p>
+  <p><input id="q10" type="droptarget"/><br/>The bar chart shows the percentages of girls and boys with home entertainment equipment in their bedrooms.</p>
   
-  <p class="hangingIndent1">
-    <font color="#0000ff">
-      <input id="q11" type="droptarget"/>
-      <font color="#000000">: We might also wonder what effect this has on their social development.<font color="#0000ff"/></font>
-    </font>
-  </p>
+  <p><input id="q11" type="droptarget"/><br/>We might also wonder what effect this has on their social development.</p>
   
-  <p class="hangingIndent1">
-    <font color="#0000ff"><input id="q12" type="droptarget"/>: We could infer from these figures that children today spend a lot of their free time in their bedrooms.<font color="#0000ff"/></font>
-  </p>
+  <p><input id="q12" type="droptarget"/><br/>We could infer from these figures that children today spend a lot of their free time in their bedrooms.</p>
   
   
-<img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/>
+
     
  
   </div>

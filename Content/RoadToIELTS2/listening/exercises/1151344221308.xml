@@ -4,34 +4,33 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 		<![CDATA[
-				#outertabcomp{
-					position:absolute;
-					padding-top: 0px;
-				    padding-left: 0em;
-				    width:500px;
-				}
-				
+
+		]]>	
 				#table1{
 					position:relative;
 					padding-left:-3px;
 					padding-top: 35px;
-				    height: 400px;
-				    width:220px;
-				    line-height:30em;
-				}
+				    line-height: 50em;
+					}
+					
+				#table1 p {
+					padding-bottom: 10px;
+					}
 				
 				#table2{
 					position:relative;
 					padding-left:202px;
 					padding-top:35px;
-				    height:400px;
-				    width:500px;
-				    line-height:30em;
-				}
-		]]>	
+					}
+				#table2 p {
+					padding-bottom: 10px;
+					}
+
+				
 	</style>
 	
 	
@@ -39,12 +38,16 @@
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="190" />
-</settings>
+	<feedback>
+		 <feedback source="fb1"/>
+	</feedback>
+	</settings>
+	
    <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Italian conversation" correct="true">
-        <feedback source="fb1"/>
-		</answer>
+      <answer value="Italian conversation" correct="true"/>
+       
+	
       <answer value="conversational Italian" correct="true">
         <feedback source="fb1"/>
 		</answer>

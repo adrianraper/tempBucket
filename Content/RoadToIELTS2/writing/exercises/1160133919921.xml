@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -73,44 +74,44 @@
 <body>
 	
 <header>
-	Complete the sentences with the correct preposition.
+<div id="instruction">Complete the sentences with the correct preposition.</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/WB_GW_006.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-    <li id="1">I am a student <input id="q1"/> the University of Manchester.</li>
+    <li id="1">I am a student&#xA0;<input id="q1"/>&#xA0;the University of Manchester.</li>
 	<p class="linespace"></p>
-    <li id="2">I have been working <input id="q2"/> a mobile phone company since I left school.</li>
+    <li id="2">I have been working&#xA0;<input id="q2"/>&#xA0;a mobile phone company since I left school.</li>
 	<p class="linespace"></p>
-    <li id="3">I am writing to apply <input id="q3"/> the position of security guard.</li>
+    <li id="3">I am writing to apply&#xA0;<input id="q3"/>&#xA0;the position of security guard.</li>
 	<p class="linespace"></p>
-    <li id="4">I am particularly interested <input id="q4"/> working at your city branch.</li>
+    <li id="4">I am particularly interested&#xA0;<input id="q4"/>&#xA0;working at your city branch.</li>
 	<p class="linespace"></p>
-    <li id="5">I am available <input id="q5"/> interview during morning hours.</li>
+    <li id="5">I am available&#xA0;<input id="q5"/>&#xA0;interview during morning hours.</li>
 	<p class="linespace"></p>
-    <li id="6">I have five years' experience <input id="q6"/> the field of education.</li>
+    <li id="6">I have five years' experience&#xA0;<input id="q6"/>&#xA0;the field of education.</li>
 	<p class="linespace"></p>
-    <li id="7">I have a diploma <input id="q7"/> hotel management.</li>
+    <li id="7">I have a diploma&#xA0;<input id="q7"/>&#xA0;hotel management.</li>
 	<p class="linespace"></p>
-    <li id="8">I was responsible <input id="q8"/> the final product.</li>
+    <li id="8">I was responsible&#xA0;<input id="q8"/>&#xA0;the final product.</li>
 	<p class="linespace"></p>
-    <li id="9">I look forward <input id="q9"/> hearing from you.</li>
+    <li id="9">I look forward&#xA0;<input id="q9"/>&#xA0;hearing from you.</li>
 	<p class="linespace"></p>
-    <li id="10">I was in charge <input id="q10"/> the sales department for three years.</li>
+    <li id="10">I was in charge&#xA0;<input id="q10"/>&#xA0;the sales department for three years.</li>
 	<p class="linespace"></p>
-    <li id="11">This was followed <input id="q11"/> two years overseas.</li>
+    <li id="11">This was followed&#xA0;<input id="q11"/>&#xA0;two years overseas.</li>
 	<p class="linespace"></p>
-    <li id="12">I am currently studying <input id="q12"/> a master's degree.</li>
+    <li id="12">I am currently studying&#xA0;<input id="q12"/>&#xA0;a master's degree.</li>
 	<p class="linespace"></p>
-    <li id="13">I mainly deal <input id="q13"/> our overseas clients.</li>
+    <li id="13">I mainly deal&#xA0;<input id="q13"/>&#xA0;our overseas clients.</li>
 	<p class="linespace"></p>
-    <li id="14">I can attend an interview <input id="q14"/> your earliest convenience.</li>
+    <li id="14">I can attend an interview&#xA0;<input id="q14"/>&#xA0;your earliest convenience.</li>
 	<p class="linespace"></p>
-    <li id="15">I am writing in response to the advertisement you placed <input id="q15"/> the Daily Record on Saturday, 15th September. </li>
+    <li id="15">I am writing in response to the advertisement you placed&#xA0;<input id="q15"/>&#xA0;the Daily Record on Saturday, 15th September.</li>
 	<p class="linespace"></p>
-    <li id="16">As you can see <input id="q16"/> my CV, I am a fully-qualified nurse.</li>
+    <li id="16">As you can see&#xA0;<input id="q16"/>&#xA0;my CV, I am a fully-qualified nurse.</li>
 	<p class="linespace"></p>
   </ol>
 </section>

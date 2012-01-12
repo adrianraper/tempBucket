@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,32 +18,56 @@
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
-  <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="BS" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="N" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="N" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="N" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="JH" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="BS" correct="true"/>
-    </GapFillQuestion>
-  </questions>
+ <questions>
+  	<DropDownQuestion source="q1Select" block="q1Block">
+		<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+	<DropDownQuestion source="q2Select" block="q2Block">
+		<answer correct="false" source="${#q2Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(3)}" />
+		<answer correct="true" source="${#q2Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q3Select" block="q3Block">
+		<answer correct="false" source="${#q3Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q3Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+  	<DropDownQuestion source="q4Select" block="q4Block">
+		<answer correct="false" source="${#q4Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(3)}" />
+		<answer correct="true" source="${#q4Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+ 	<DropDownQuestion source="q5Select" block="q5Block">
+		<answer correct="false" source="${#q5Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q5Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q6Select" block="q6Block">
+		<answer correct="false" source="${#q6Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(3)}" />
+		<answer correct="true" source="${#q6Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+    <DropDownQuestion source="q7Select" block="q7Block">
+		<answer correct="true" source="${#q7Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+    <DropDownQuestion source="q8Select" block="q8Block">
+		<answer correct="false" source="${#q8Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q8Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q8Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q8Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+</questions>
 </script>
 
 </head>
@@ -51,36 +76,76 @@
 <header>
 	
 		<div id="instruction">
-		Questions 9-16. Classify the descriptions on the right as referring to the work of John Hildebrand's team - JH; Brian Smith's team - BS; Both John Hildebrand's team and Brian Smith's team - B; None of the above - N. You may use any answer more than once.
+		Questions 9-16. Classify the descriptions on the right as referring to the work of John Hildebrand's team - JH; Brian Smith's team - BS; Both teams - B; None of the above - N. You may use any answer more than once.
 		</div>
 </header>
 	
 <section id="body">
    <img class="leftFloat" src="../media/RD_CFN_001.jpg" mode="1" id="1003"  />
-  <div id="splitquestionList" >
+  <div id="dropdown" >
  
-  <p class="hangingIndent2">9.<tab/><input id="q1"/>&#xA0;have imitated and adapted animal experiments carried out by another researcher.</p>
+  <p class="hangingIndent2">9.&#xA0;&#xA0;&#xA0;<select id="q1Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have imitated and adapted animal experiments carried out by another researcher.</p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">10.<tab/><input id="q2"/>&#xA0;have experimented with animals' responses to sounds.</p>  
+  <p class="hangingIndent2">10.&#xA0;<select id="q2Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have experimented with animals' responses to sounds.</p>  
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">11.<tab/><input id="q3"/>&#xA0;have designed electronic equipment for moths.</p>
+  <p class="hangingIndent2">11.&#xA0;<select id="q3Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have designed electronic equipment for moths.</p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">12.<tab/><input id="q4"/>&#xA0;have successfully attached an electronic receiver to a moth.</p>
+  <p class="hangingIndent2">12.&#xA0;<select id="q4Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have successfully attached an electronic receiver to a moth.</p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">13.<tab/><input id="q5"/>&#xA0; have examined the effects of chemicals on the behaviour of moths.</p>
+  <p class="hangingIndent2">13.&#xA0;<select id="q5Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0; have examined the effects of chemicals on the behaviour of moths.</p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">14.<tab/><input id="q6"/>&#xA0;have used moths to locate landmines.</p>
+  <p class="hangingIndent2">14.&#xA0;<select id="q6Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have used moths to locate landmines.</p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">15.<tab/><input id="q7"/>&#xA0;have been trying to develop methods to direct moths.</p>
+  <p class="hangingIndent2">15.&#xA0;<select id="q7Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have been trying to develop methods to direct moths.</p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">16.<tab/><input id="q8"/>&#xA0;have successfully trained moths.</p>
+  <p class="hangingIndent2">16.&#xA0;<select id="q8Select">
+		<option>John Hildebrand's team</option>
+		<option>Brian Smith's team</option>
+		<option>Both teams</option>
+		<option>None of the above</option>
+		</select>&#xA0;have successfully trained moths.</p>
  <p class="linespace"></p>
   </div>
   
