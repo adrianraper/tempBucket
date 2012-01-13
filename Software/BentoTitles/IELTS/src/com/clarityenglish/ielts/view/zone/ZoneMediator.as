@@ -7,6 +7,9 @@
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
+
 	
 	import flash.events.Event;
 	import flash.net.URLLoader;
@@ -36,6 +39,13 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			// Inject required data into the view
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			view.user = loginProxy.user;
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.dateFormatter = configProxy.getDateFormatter();
 			
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);

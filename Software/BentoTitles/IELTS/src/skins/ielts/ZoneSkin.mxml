@@ -75,7 +75,9 @@
 			<s:layout>
 				<s:VerticalLayout paddingLeft="10" paddingRight="20" paddingTop="10" paddingBottom="10" />
 			</s:layout>
-			
+			<s:Label text="Welcome, {hostComponent.user.fullName}." top="0" right="0" />
+			<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="0" right="0" />
+
 			<!-- this is for the rotating course selector -->
 			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
 		</s:Group>

@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	
@@ -10,6 +11,7 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.net.URLRequest;
 	
 	import mx.collections.XMLListCollection;
+	import mx.formatters.DateFormatter;
 	
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
@@ -90,6 +92,11 @@ package com.clarityenglish.ielts.view.zone {
 		public function get backgroundColorBottom():Number {
 			return getStyle(_courseCaption.toLowerCase() + "ColorDark")
 		}
+		[Bindable]
+		public var user:User;
+
+		[Bindable]
+		public var dateFormatter:DateFormatter;
 		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
