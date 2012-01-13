@@ -83,8 +83,11 @@ package com.clarityenglish.bento.model {
 			// Maintain a strong reference during loading so the loader isn't garbage collected, and so we have the original href
 			urlLoaders[urlLoader] = href;
 		}
-		
+
+
 		private function notifyXHTMLLoaded(href:Href):void {
+			// Stop this here and do it from ProgressProxy instead
+			/*
 			if (href.type == Href.MENU_XHTML) {
 				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -93,7 +96,7 @@ package com.clarityenglish.bento.model {
 					sendNotification(BBNotifications.MENU_XHTML_LOADED);
 				}
 			}
-			
+			*/
 			sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
 		}
 		

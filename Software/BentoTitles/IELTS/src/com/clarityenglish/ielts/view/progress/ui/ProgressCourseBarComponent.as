@@ -6,10 +6,10 @@ package com.clarityenglish.ielts.view.progress.ui {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
-	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.ToggleButton;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	public class ProgressCourseBarComponent extends SkinnableComponent {
@@ -20,16 +20,16 @@ package com.clarityenglish.ielts.view.progress.ui {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		[SkinPart(required="true")]
-		public var writingCourseButton:Button;
+		public var readingCourseButton:ToggleButton;
 		
 		[SkinPart(required="true")]
 		public var listeningCourseButton:Button;
 		
 		[SkinPart(required="true")]
-		public var readingCourseButton:Button;
+		public var speakingCourseButton:Button;
 		
 		[SkinPart(required="true")]
-		public var speakingCourseButton:Button;
+		public var writingCourseButton:Button;
 		
 		public var courseSelect:Signal = new Signal(String);
 		

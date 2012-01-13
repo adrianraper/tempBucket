@@ -230,10 +230,9 @@
 					</s:layout>
 					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
+								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
 								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
 					
-					<s:SWFLoader left="100" top="300" source.speakingStates="@Embed(source='skins/ielts/assets/exampractice_speaking.png')"/>
-		
 					<s:DataGroup id="examPracticeDataGroup" width="300" >
 						<s:layout>
 							<s:VerticalLayout paddingLeft="14" gap="0" />

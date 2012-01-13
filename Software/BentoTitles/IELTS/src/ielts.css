@@ -225,6 +225,7 @@ progresscomponents|ProgressAnalysisView {
 progressui|ProgressBarRenderer {
 	skinClass: ClassReference("skins.ielts.progress.ProgressBarRendererSkin");
 }
+/*
 progressui|ProgressCourseBarComponent {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCourseBarSkin");
 }
@@ -239,6 +240,13 @@ progressui|ProgressCourseBarComponent #readingCourseButton {
 }
 progressui|ProgressCourseBarComponent #listeningCourseButton {
 	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
+}
+*/
+progresscomponents|ProgressCoverageView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
+}
+progresscomponents|ProgressScoreView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
 }
 progressui|CoverageExerciseComponent {
 	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");

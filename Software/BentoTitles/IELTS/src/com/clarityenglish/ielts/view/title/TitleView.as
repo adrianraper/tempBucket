@@ -61,6 +61,7 @@ package com.clarityenglish.ielts.view.title {
 		private var currentExerciseHref:Href;
 		
 		private var _productVersion:String;
+		private var _productCode:uint;
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
 		private var homeIcon:Class;
@@ -74,14 +75,26 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="NotepadIcon")]
 		private var notepadIcon:Class;
 		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		private var fullVersionLogo:Class;
+		private var fullVersionAcademicLogo:Class;
 		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
+		private var fullVersionGeneralTrainingLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
-		private var tenHourLogo:Class;
+		private var tenHourAcademicLogo:Class;
 		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
+		private var tenHourGeneralTrainingLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
-		private var lastMinuteLogo:Class;
+		private var lastMinuteAcademicLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
+		private var lastMinuteGeneralTrainingLogo:Class;
 		
 		// Constructor to let us initialise our states
 		public function TitleView() {
@@ -97,18 +110,40 @@ package com.clarityenglish.ielts.view.title {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		public function set productCode(value:uint):void {
+			if (_productCode != value) {
+				_productCode = value;
+				dispatchEvent(new Event("productVersionChanged"));
+			}
+		}
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
-			switch (_productVersion) {
-				case "fullVersion":
-					return fullVersionLogo;
-				case "lastMinute":
-					return lastMinuteLogo;
-				case "tenHour":
-					return tenHourLogo;
+			switch (_productCode) {
+				case 52:
+					switch (_productVersion) {
+						case "fullVersion":
+							return fullVersionAcademicLogo;
+						case "lastMinute":
+							return lastMinuteAcademicLogo;
+						case "tenHour":
+							return tenHourAcademicLogo;
+					}
+					break;
+				case 53:
+					switch (_productVersion) {
+						case "fullVersion":
+							return fullVersionGeneralTrainingLogo;
+						case "lastMinute":
+							return lastMinuteGeneralTrainingLogo;
+						case "tenHour":
+							return tenHourGeneralTrainingLogo;
+					}
+					break;
+				default:
+					// No product code set yet so don't set the logo
+					return null;
 			}
-			
 			return null;
 		}
 		
@@ -167,9 +202,6 @@ package com.clarityenglish.ielts.view.title {
 			if (currentExerciseHref)
 				return "exercise";
 			
-			// The skin state is (for the moment) determined by the tab selection.
-			// This has to stop because the tabs don't include zone view
-			//return (mainTabBar && mainTabBar.selectedItem) ? mainTabBar.selectedItem.data : null;
 			return currentState;
 		}
 		

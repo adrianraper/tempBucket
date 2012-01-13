@@ -76,6 +76,7 @@ package com.clarityenglish.common.model {
 
 			// Trigger the database call
 			getAccountSettings();
+			
 		}
 		/**
 		 * Method to get details about the account from the database
@@ -148,6 +149,14 @@ package com.clarityenglish.common.model {
 		
 		public function getUserID():String {
 			return config.userID;
+		}
+		
+		public function getProductVersion():String {
+			return config.productVersion;
+		}
+		
+		public function getProductCode():uint {
+			return config.productCode;
 		}
 		
 		// Is it OK to just get the config object?

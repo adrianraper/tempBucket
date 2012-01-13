@@ -65,7 +65,6 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
 	<script type="text/javascript">
@@ -164,6 +163,8 @@
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
 		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
 	</script>
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
 
 </head>
 <body onload="onLoad()">

@@ -37,7 +37,9 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
 			view.configID = configProxy.getConfig().configID;
-			view.productVersion = configProxy.getConfig().productVersion || "fullVersion";
+			//view.productVersion = configProxy.getConfig().productVersion || "fullVersion";
+			view.productVersion = configProxy.getProductVersion() || "fullVersion";
+			view.productCode = configProxy.getProductCode() || 52;
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {

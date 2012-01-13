@@ -19,13 +19,14 @@ package com.clarityenglish.ielts.view.progress.components {
 	import skins.ielts.progress.ProgressCourseBarSkin;
 	
 	import spark.components.Button;
+	import spark.components.ButtonBar;
 	import spark.components.DataGrid;
 	import spark.components.Label;
 	
 	public class ProgressScoreView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var progressCourseBar:ProgressCourseBarComponent;
+		public var progressCourseButtonBar:ButtonBar;
 		
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
@@ -115,10 +116,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			switch (instance) {
 				
-				case progressCourseBar:
-					instance.courseSelect.add(onCourseSelect);
-					break;
-
 				// Use one of the 'charts' to initialise for all
 				case scoreDetailsDataGrid:
 					initCharts();
@@ -128,12 +125,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
-			
-			switch (instance) {
-				case progressCourseBar:
-					instance.courseSelect.remove(onCourseSelect);
-					break;
-			}
 			
 		}
 		

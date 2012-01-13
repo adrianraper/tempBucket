@@ -4,6 +4,7 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
@@ -14,6 +15,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.common.vo.progress.Score;
 	import com.clarityenglish.dms.vo.account.Account;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -67,6 +69,12 @@ package com.clarityenglish.common.model {
 		public var score:Score;
 		
 		/**
+		 * I need to save the href for the menu.xml as so much of progress depends on it
+		 */
+		// DKmenu.xml Is this OK?
+		public var href:Href;
+		
+		/**
 		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
 		 */
 		public function ProgressProxy(data:Object = null) {
@@ -82,6 +90,10 @@ package com.clarityenglish.common.model {
 		 * or just the userID as that will let the backend get it all anyway, albeit with another db call.
 		 * Or do we just let the backend keep everything in session variables? 
 		 * I don't really like that much - it seems much safer to pass the little that we do need.
+		 * 
+		 * progressType:
+		 * 	Progress.PROGRESS_MY_DETAILS - this is the same as the menu
+		 * 
 		 * @param number userID 
 		 */
 		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
@@ -98,12 +110,16 @@ package com.clarityenglish.common.model {
 					return;
 			
 			// Send user details and the URL of the menu to the backend
-			var menuFile:String = href.currentDir+'/'+href.filename;
-			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, menuFile ];
+			//var menuFile:String = href.currentDir+'/'+href.filename;
+			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, href.url ];
 			new RemoteDelegate("getProgressData", params, this).execute();
 			
 			// Maintain a note that we are currently loading this data
 			dataLoading[progressType] = true;
+			
+			// And save the href
+			// DKmenu.xml Is this OK?
+			this.href = href;
 
 		}
 		
@@ -113,6 +129,16 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		private function notifyDataLoaded(progressType:String):void {
+			
+			if (progressType == Progress.PROGRESS_MY_DETAILS) {
+				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				if (!bentoProxy.menuXHTML) {
+					bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
+					sendNotification(BBNotifications.MENU_XHTML_LOADED);
+				}
+			}
+
 			var data:Object = {type:progressType, dataProvider:loadedResources[progressType]};
 			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 		}

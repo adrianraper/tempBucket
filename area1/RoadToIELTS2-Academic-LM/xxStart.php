@@ -59,7 +59,7 @@
 <html>
 <head>
 	<title>Road to IELTS 2 from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/Software/RoadToIELTS2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />
@@ -95,6 +95,7 @@
 		
 		// v6.5.5.6 Allow resize screen mode
 		var coordsWidth = "100%"; var coordsHeight = "100%"; 
+		//var coordsWidth = "990"; var coordsHeight = "600"; 
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
 		var coordsMinHeight = "600"; var coordsMaxHeight = null;
 		
@@ -153,21 +154,23 @@
 			id: "bento",
 			name: "bento",
 			quality: "high",
-			allowfullscreen: "true",
-			scale: "default"
+			allowfullscreen: "true",			
+			salign: "tc",
+			scale: "noscale"
 		};
 		var attr = {
+			align: "middle",
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
+		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
+		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
 	</script>
-
+		
 </head>
 <body onload="onLoad()">
-	<div align="center" id="altContent">
+	<div id="bento">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

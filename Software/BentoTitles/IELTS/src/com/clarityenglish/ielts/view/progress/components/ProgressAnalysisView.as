@@ -60,22 +60,44 @@ package com.clarityenglish.ielts.view.progress.components {
 						  </marker_settings>
 					</pie_series>
 				  </data_plot_settings>
+				<styles>
+					<pie_style name="Writing">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</normal>
+						</states>
+					</pie_style>
+					<pie_style name="Reading">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</normal>
+						</states>
+					</pie_style>
+					<pie_style name="Speaking">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</normal>
+						</states>
+					</pie_style>
+					<pie_style name="Listening">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</normal>
+						</states>
+					</pie_style>
+				</styles>			
 				  <data>
-					<series name="You" type="Pie" palette="R2IV2" />
+					<series name="You" type="Pie" />
 				  </data>
 				  <chart_settings>
 					<chart_background enabled="false" />
 					<title enabled="false" />
 					<legend enabled="false" />
 				  </chart_settings>
-				  <palettes>
-					<palette name="R2IV2" type="DistinctColors" color_count="Auto">
-						<item color={_writingBright}/>
-						<item color={_speakingBright}/>
-						<item color={_readingBright}/>
-						<item color={_listeningBright}/>
-					</palette>
-				  </palettes>
 				</chart>
 			  </charts>
 			</anychart>;
@@ -94,15 +116,24 @@ package com.clarityenglish.ielts.view.progress.components {
 				}
 				
 				for each (var point:XML in dataProvider.course) {
-					_scoreChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption} />);
+					// Skip 0 values, they don't work well in a pie-chart
+					if (Number(point.@averageScore)>0) {
+						_scoreChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption} />);
+					}
 				}
 				if (analysisScoreChart) {
 					analysisScoreChart.anychartXML = _scoreChartXML;
 				}
 			}
+			var myDuration:int = 0;
 			if (_durationChartXML) {
 				for each (point in dataProvider.course) {
-					_durationChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@duration} style={point.@caption} />);
+					// Skip 0 values, they don't work well in a pie-chart
+					if (Number(point.@duration)>30) {
+						// Duration data is in seconds, but we want to display in minutes (rounded)
+						myDuration = Math.round(Number(point.@duration)/60);
+						_durationChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={myDuration} style={point.@caption} />);
+					}
 				}
 				if (analysisTimeChart) {
 					analysisTimeChart.anychartXML = _durationChartXML;
@@ -144,7 +175,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// customise the label settings
 			_scoreChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}%"}</format>);
-			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}sec"}</format>);
+			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}"}</format>);
 			
 		}
 

@@ -21,6 +21,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import skins.ielts.progress.ProgressCourseBarSkin;
 	
 	import spark.components.Button;
+	import spark.components.ButtonBar;
 	import spark.components.DataGrid;
 	import spark.components.Group;
 	import spark.components.Label;
@@ -29,8 +30,9 @@ package com.clarityenglish.ielts.view.progress.components {
 	public class ProgressCoverageView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var progressCourseBar:ProgressCourseBarComponent;
-		
+		//public var progressCourseBar:ProgressCourseBarComponent;
+		public var progressCourseButtonBar:ButtonBar;
+
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
 		
@@ -155,9 +157,10 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			switch (instance) {
 				
-				case progressCourseBar:
-					instance.courseSelect.add(onCourseSelect);
-					break;
+				// Not needed with buttonBar
+				//case progressCourseBar:
+					//instance.courseSelect.add(onCourseSelect);
+					//break;
 					
 				// Use one of the 'charts' to initialise for all
 				case practiceZoneCoverage:
@@ -170,9 +173,10 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partRemoved(partName, instance);
 			switch (instance) {
 				
-				case progressCourseBar:
-					instance.courseSelect.remove(onCourseSelect);
-					break;
+				// Not needed with buttonBar
+				//case progressCourseBar:
+					//instance.courseSelect.remove(onCourseSelect);
+					//break;
 			}
 					
 		}

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
-	<developer>none</developer>
+	<developer>AR</developer>
 	<dbHost>2</dbHost>
-	<productCode>52</productCode>
-	<productVersion>lastMinute</productVersion>
-	<courseFile>menu-Academic-LastMinute.xml</courseFile>
+	<productCode>53</productCode>
+	<productVersion>fullVersion</productVersion>
+	<courseFile>menu-GeneralTraining-FullVersion.xml</courseFile>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />

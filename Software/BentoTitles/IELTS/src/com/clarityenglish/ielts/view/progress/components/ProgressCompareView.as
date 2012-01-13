@@ -21,7 +21,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		//[Bindable]
 		private var _fullChartXML:XML;
 
-		// see ielts.css
+		// see ielts.css. But I can't call getStyle in this .as file.
 		private static const _writingBright:String = '#7DAB36';
 		private static const _writingDull:String = '#364A17';
 		private static const _readingBright:String = '#00A2C8';

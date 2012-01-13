@@ -46,7 +46,7 @@ package com.clarityenglish.ielts.view.progress {
 		public function ProgressView() {
 			super();
 			
-			// The first one listed will be the default - really?
+			// The first one listed will be the default
 			StateUtil.addStates(this, [ "coverage", "compare", "analysis" , "score" ], true);
 		}
 		

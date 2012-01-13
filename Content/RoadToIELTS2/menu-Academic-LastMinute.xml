@@ -25,6 +25,7 @@
 			<unit id="1287130140000" class="practice-zone" >
 				<exercise id="1156153794672" group="1" caption="Academic reading passage (1)" href="reading/exercises/1156153794672.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_arp1.jpg">
 				  <!--GF - splitscreen QB-->
+				  <note name="Adrian" />
 				</exercise>
 				<exercise id="1156153794430" group="1" caption="Academic reading passage (2)" href="reading/exercises/1156153794430.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_arp2.jpg">
 				  <!--GF - splitscreen TB-->
