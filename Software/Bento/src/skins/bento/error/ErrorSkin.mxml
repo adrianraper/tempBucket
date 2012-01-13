@@ -10,7 +10,5 @@
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
-	
 	<s:Label text="Sorry, there is an error: {hostComponent.error.errorContext}" />
-	
 </s:Skin>
