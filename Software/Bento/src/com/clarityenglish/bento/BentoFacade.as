@@ -66,6 +66,7 @@
 			registerCommand(BBNotifications.EXERCISE_SHOW_FEEDBACK, ExerciseShowFeedbackCommand);
 			registerCommand(BBNotifications.EXERCISE_PRINT, ExercisePrintCommand);
 			registerCommand(BBNotifications.COURSE_SELECT, CourseSelectCommand);
+			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
@@ -76,7 +77,6 @@
 			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
 			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
-
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

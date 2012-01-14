@@ -3,6 +3,8 @@ package com.clarityenglish.bento {
 	import com.clarityenglish.textLayout.util.TLF2Application;
 	
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -17,6 +19,8 @@ package com.clarityenglish.bento {
 		 * Standard flex logger
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		public var isCtrlDown:Boolean;
 		
 		public function BentoApplication() {
 			// Configure logging
@@ -47,6 +51,10 @@ package com.clarityenglish.bento {
 			stage.addEventListener(Event.ADDED_TO_STAGE, onViewAddedToStage, true);
 			stage.addEventListener(Event.REMOVED_FROM_STAGE, onViewRemovedFromStage, true);
 			
+			// Top level listeners to detect whether keys are held down (used by WordClickCommand to determine if ctrl is pressed)
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			
 			createDeferredContent();
 		}
 		
@@ -56,6 +64,14 @@ package com.clarityenglish.bento {
 		
 		private function onViewRemovedFromStage(event:Event):void {
 			facade.onViewRemoved(event.target);
+		}
+		
+		protected function onKeyDown(event:KeyboardEvent):void {
+			if (event.keyCode == Keyboard.CONTROL) isCtrlDown = true;
+		}
+		
+		protected function onKeyUp(event:KeyboardEvent):void {
+			if (event.keyCode == Keyboard.CONTROL) isCtrlDown = false;
 		}
 		
 	}
