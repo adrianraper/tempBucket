@@ -190,6 +190,7 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 				var eventMirror:IEventDispatcher = selectElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
 					eventMirror.addEventListener(Event.CHANGE, Closure.create(this, onAnswerSubmitted, exercise, question, source));
+					eventMirror.addEventListener(MouseEvent.CLICK, Closure.create(this, onAnswerClicked, exercise, question, source));
 				}
 			}
 		}
@@ -212,6 +213,23 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 		}
 		
 		log.error("Unable to find a matching answer for option {0}", optionNode.toXMLString());
+	}
+	
+	/**
+	 * This is a special case; if an input is disabled then we want to answer the question on a click instead of a value commit.  This is because
+	 * once marking has taken place all the inputs will be disabled, but clicking on them should still show feedback.
+	 * 
+	 * @param e
+	 * @param exercise
+	 * @param question
+	 * @param inputNode
+	 */
+	private function onAnswerClicked(e:Event, exercise:Exercise, question:Question, inputNode:XML):void {
+		// This is only relevant for a disabled node
+		if (!XHTML.hasClass(inputNode, "disabled"))
+			return;
+		
+		onAnswerSubmitted(e, exercise, question, inputNode);
 	}
 	
 }
