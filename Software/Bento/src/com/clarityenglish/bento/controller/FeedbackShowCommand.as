@@ -22,6 +22,7 @@ package com.clarityenglish.bento.controller {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	import spark.components.Scroller;
 	import spark.components.TitleWindow;
 	
 	public class FeedbackShowCommand extends SimpleCommand {
@@ -76,7 +77,10 @@ package com.clarityenglish.bento.controller {
 				xhtmlRichText.nodeId = "#" + feedback.source;
 				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
 				
-				titleWindow.addElement(xhtmlRichText);
+				// #127
+				var scroller:Scroller = new Scroller();
+				scroller.viewport = xhtmlRichText;
+				titleWindow.addElement(scroller);
 				
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
 				// a neater way to do this, but this works and doesn't seem to do any harm.

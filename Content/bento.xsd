@@ -29,6 +29,7 @@
 							</restriction>
 						</simpleType>
 					</attribute>
+					<attribute name="media" type="string"></attribute>
 				</complexType>
 			</element>
 			<element name="style" maxOccurs="1" minOccurs="0"></element>
@@ -73,6 +74,12 @@
 											</attribute>
 											<attribute name="source"
 												type="string">
+											</attribute>
+											<attribute name="width"
+												type="int">
+											</attribute>
+											<attribute
+												name="height" type="int">
 											</attribute>
 										</complexType>
 									</element>
