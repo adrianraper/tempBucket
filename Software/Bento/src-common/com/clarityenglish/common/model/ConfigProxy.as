@@ -86,6 +86,10 @@ package com.clarityenglish.common.model {
 		private function getAccountSettings():void {
 			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
 			
+			if (Config.DEVELOPER.name == "DK") {
+				config.prefix = "Clarity";
+			}
+			
 			// Create a subset of the config object to pass to the remote call
 			// I could do some error handling before we go
 			//	we must have rootID or prefix (prefix is most likely)
@@ -197,7 +201,7 @@ package com.clarityenglish.common.model {
 			//return { courseClass: "writing" };
 			
 			if (Config.DEVELOPER.name == "DK") {
-				return { exerciseId: "1156153794672" };
+				return { exerciseId: "1151344172669" };
 			}
 			
 			return null;

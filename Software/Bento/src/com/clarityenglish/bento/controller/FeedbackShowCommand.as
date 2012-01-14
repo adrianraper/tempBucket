@@ -97,7 +97,7 @@ package com.clarityenglish.bento.controller {
 			// Add a keyboard listener so the user can close the feedback window with the keyboard.  This listener needs a brief delay before being
 			// added as otherwise its possible to trigger the feedback window with the same key that closes it, hence closing it instantly.
 			setTimeout(function():void {
-				FlexGlobals.topLevelApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+				(FlexGlobals.topLevelApplication as DisplayObject).stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
 			}, 300);
 		}
 		
@@ -129,7 +129,7 @@ package com.clarityenglish.bento.controller {
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
-			FlexGlobals.topLevelApplication.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+			(FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
 			
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
