@@ -20,6 +20,9 @@
 		public static const SCORE_WRITE:String = "score_write";
 		public static const SCORE_WRITTEN:String = "score_written";
 		
+		public static const USER_UPDATE:String = "user_update";
+		public static const USER_UPDATED:String = "user_updated";
+		
 		public static const COURSE_SELECT:String = "course_select";
 		public static const COURSE_SELECTED:String = "course_selected";
 		

@@ -29,6 +29,8 @@
 		
 		public static const LOGIN_ERROR:String = "login_error";
 		
+		public static const UPDATE_FAILED:String = "update_failed";
+		
 		public static const DATABASE_ERROR:String = "database_error";
 		
 		public static const TRACE_NOTICE:String = "trace_notice";

@@ -65,10 +65,50 @@ package com.clarityenglish.common.model {
 			onDelegateResult("logout", {status:"success"});
 			//new RemoteDelegate("logout", [ ], this).execute();
 		}
-		
+
+		public function updateUser(userChanges:Object):void {
+			// Current user details are already here
+			// So the user details you are passed just overwrite the relevant ones
+			// Do I need to clone the user in case I end up not managing to make the change?
+			var newUserDetails:User = user;
+			
+			if (userChanges.existingPassword != user.password) {
+				// Raise an error and do nothing
+				sendNotification(CommonNotifications.UPDATE_FAILED);
+				return;
+			}
+			
+			// Get new details from the passed object
+			// We could either cycle through all properties or just do expected ones
+			if (userChanges.password)
+				newUserDetails.password = userChanges.password;
+			if (userChanges.examDate)
+				newUserDetails.birthday = userChanges.examDate;
+			if (userChanges.email)
+				newUserDetails.email = userChanges.email;
+			
+			// Off to the database
+			var params:Array = [ newUserDetails ];
+			new RemoteDelegate("updateUser", params, this).execute();
+			//trace("In LoginProxy calling RemoteDelegate");
+		}
+
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
+				case "udpateUser":
+					if (data) {
+						// First need to see if the return has an error
+						if (data.error && data.error.errorNumber>0) {
+							sendNotification(CommonNotifications.UPDATE_FAILED);
+						} else {
+							sendNotification(BBNotifications.USER_UPDATED, data);	
+						}
+					} else {
+						sendNotification(CommonNotifications.UPDATE_FAILED);
+					}
+					break;
+				
 				case "login":
 					if (data) {
 						// First need to see if the return has an error
@@ -85,8 +125,8 @@ package com.clarityenglish.common.model {
 							// And id and name are the two key pieces of information I need.
 							_user = data.group.manageables[0] as User;
 							//var manageable:Manageable = data.group.manageables[0] as Manageable;
-							_user.id = user.userID;
-							_user.name = user.fullName;
+							//_user.id = user.userID;
+							//_user.name = user.fullName;
 							//_user = new User();
 							//_user.buildUser(data.group.manageables[0]);
 							

@@ -51,8 +51,19 @@
 		public var startDate:String;
 		public var contactMethod:String;
 		
-		/** The user's birthday.  This is stored as an ANSI string (use DateUtils.dateToAnsiString to convert Date to a valid String
-		 *  before storing it) */
+		/** 
+		 * The user's birthday. 
+		 * Change to use this as a 'key' date for the user.
+		 * For Road to IELTS this will be the exam date/time.
+		 * TODO. Change the name to keydate from birthday. 
+		 *   Orchid php. ok
+		 *   Orchid as. check
+		 *   RM php. check
+		 *   RM as. check
+		 *   DMS php. check
+		 *   DMS as. check
+		 *   javascript login. check
+		 * */
 		public var birthday:String;
 		
 		public var email:String;

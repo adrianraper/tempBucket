@@ -345,6 +345,16 @@ class BentoService extends AbstractService {
 		}
 		return array("error" => $errorObj);
 	}
+
+	/**
+	 * The program wants to update the user's information.
+	 * Expected for things like changing password
+	 * TODO. If you send a password, then confirm that it matches the current one
+	 */
+	function updateUser($userObj, $password = NULL) {
+		$rootID = Session::get('rootID');
+		return $this->manageableOps->updateUsers(array($userObj), $rootID);
+	}
 	
 	/**
 	 * Get the copy XML document

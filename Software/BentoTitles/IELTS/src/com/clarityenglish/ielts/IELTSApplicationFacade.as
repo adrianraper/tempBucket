@@ -5,6 +5,7 @@
 	import com.clarityenglish.common.controller.LoggedInCommand;
 	import com.clarityenglish.common.controller.LogoutCommand;
 	import com.clarityenglish.common.controller.ShowErrorCommand;
+	import com.clarityenglish.common.controller.UpdateUserCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
@@ -66,6 +67,7 @@
 			// Common ones are done in BentoFacade
 			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
 			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			registerCommand(BBNotifications.USER_UPDATE, UpdateUserCommand);
 			
 			// For use with errors and exit
 			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
