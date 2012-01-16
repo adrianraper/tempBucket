@@ -87,7 +87,11 @@
 			if (!viewComponent)
 				return;
 			
-			var mediatorClass:Class = mediatorClassByViewClass[ClassUtil.getClass(viewComponent)];
+			try {
+				var mediatorClass:Class = mediatorClassByViewClass[ClassUtil.getClass(viewComponent)];
+			} catch (e:ReferenceError) {
+				return;
+			}
 			
 			if (mediatorClass && mediatorInstanceByView[viewComponent] == null) {
 				var uniqueMediatorName:String = ClassUtil.getClassAsString(mediatorClass) + new Date().getTime().toString();
