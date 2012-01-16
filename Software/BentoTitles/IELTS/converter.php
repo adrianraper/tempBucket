@@ -28,7 +28,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.
 
 // If you want to see echo stmts, then use plainView
 $plainView=false;
-$batch=false;
+$batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -126,11 +126,12 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	
 } else {
 	// or just a specific one
-	$courseFolder = '1151344537052';
+	//$courseFolder = '1151344537052';
+	$courseFolder = '1144338842079';
 	//$skillFolder = "writing";
 	//$skillFolder = "speaking";
-	//$skillFolder = "reading";
-	$skillFolder = "listening";
+	$skillFolder = "reading";
+	//$skillFolder = "listening";
 	$exerciseFolder = $titleFolder.'/Courses/'.$courseFolder.'/Exercises/';
 	$exerciseFolderOut = $titleFolderOut.'/'.$skillFolder.'/exercises/';
 	$exerciseURL = '/Content/RoadToIELTS2-General/'.$skillFolder.'/exercises/';
@@ -150,7 +151,7 @@ if ($batch && $handle1 = opendir($topFolder)) {
 	//$exerciseID = '1156153794384'; // For testing customised=true
 	//$exerciseID = '1156153794430'; // missing reading text
 	//$exerciseID = '1151344172816'; // missing main content
-	$exerciseID = '1151344537628'; // warning from GT conversion
+	$exerciseID = '1160107365393'; // warning from GT conversion
 	$fromFile = $exerciseFolder.$exerciseID.'.xml';
 	$toFile = $exerciseFolderOut.$exerciseID.'.xml';
 	convertExercise($fromFile, $toFile);

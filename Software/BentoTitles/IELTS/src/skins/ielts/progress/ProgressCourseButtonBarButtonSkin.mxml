@@ -58,15 +58,14 @@
 		 * Simply defining an icon attribute in the data provider object will display it.
 		 * But if I want to manipulate it, I need to do something like this.
 		 * Problem is that it thinks hostComponent doesn't have data object.
-		 * Works in the sample I used though...
+		 * Can't figure out, just work round with smaller icons in the assets swf
 		 */	
 		/*
 		protected function gr_creationComplete(evt:FlexEvent):void {
 			var dataObj:Object = hostComponent.data;
-			img.source = dataObj.icon;
-			img.width = 25;
+			iconImage.source = dataObj.icon;
 		}
-        */
+		*/
        /** 
         * @private
         */     
@@ -102,6 +101,7 @@
 	
     <!-- layer 8: icon and text -->
     <!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+	<!--- source="{(hostComponent as ButtonBarButton).data.courseIcon}" -->
     <s:Label id="labelDisplay"
              textAlign="center"
              verticalAlign="middle"

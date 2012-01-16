@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.account {
 	import flash.events.MouseEvent;
 	
 	import mx.controls.Alert;
+	import mx.controls.SWFLoader;
 	
 	import org.osflash.signals.Signal;
 	
@@ -30,7 +31,10 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart(required="true")]
 		public var saveChangesButton:Button;
-		
+
+		[SkinPart]
+		public var IELTSApp1:SWFLoader;
+
 		public var updateUser:Signal = new Signal(Object);
 		
 		[Bindable]
@@ -47,6 +51,11 @@ package com.clarityenglish.ielts.view.account {
 				case saveChangesButton:
 					instance.addEventListener(MouseEvent.CLICK, onUpdateButtonClick);
 					break;
+				
+				case IELTSApp1:
+					//instance.source = "/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true";
+					instance.source = "http://dock.projectbench/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true";
+					break
 			}
 		}
 		

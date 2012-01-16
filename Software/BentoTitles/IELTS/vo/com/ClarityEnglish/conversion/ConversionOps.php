@@ -85,7 +85,8 @@ EOD;
 	<meta name="conversion-from" content="$exerciseType" />
 	<meta name="conversion-date" content="$now" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
