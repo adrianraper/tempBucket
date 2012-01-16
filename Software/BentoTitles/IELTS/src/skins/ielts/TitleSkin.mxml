@@ -22,15 +22,15 @@
 	</s:states>
 	
 	<s:layout>
-		<s:VerticalLayout paddingTop="5" />
+		<s:VerticalLayout paddingTop="3" />
 	</s:layout>
 	
 	<s:Group width="100%" excludeFrom="exercise">
-		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="9" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="46" />
-		<s:SWFLoader source="{hostComponent.productVersionLogo}" top="42" right="178" />
-		<s:Label text = "Last Minute - Academic module" top="50" right="0" />
-		<s:ButtonBar id="navBar" right="0" height="35" top="0" />
+		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="0" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="45" />
+		<s:SWFLoader source="{hostComponent.productVersionLogo}" top="47" right="178" />
+		<s:Label text = "Last Minute - Academic module" top="55" right="0" />
+		<s:ButtonBar id="navBar" right="0" height="35" top="2" />
 	</s:Group>
 	
 	<s:Group width="100%" includeIn="exercise">

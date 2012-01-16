@@ -5,6 +5,8 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,6 +29,13 @@
 			
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
+			
+			// Inject required data into the view
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			view.user = loginProxy.user;
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.dateFormatter = configProxy.getDateFormatter();
 			
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;

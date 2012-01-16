@@ -29,10 +29,10 @@
 					 change="courseChangeHandler(event);">
 			<s:dataProvider>
 				<s:ArrayList>
-					<fx:Object label="Reading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" /> 
-					<fx:Object label="Listening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')" /> 
-					<fx:Object label="Speaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')" /> 
-					<fx:Object label="Writing" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" />
+					<fx:Object label="Reading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" /> 
+					<fx:Object label="Listening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" /> 
+					<fx:Object label="Speaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" /> 
+					<fx:Object label="Writing" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
 				</s:ArrayList>
 			</s:dataProvider>
 		</s:ButtonBar>

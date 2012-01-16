@@ -129,7 +129,7 @@ package com.clarityenglish.ielts.view.progress.components {
 									<text>Average score%</text>
 								</title>
 								<labels allow_overlap="true" show_first_label="true" show_last_label="true">
-									<font family="Verdana" size="10" />
+									<font family="Arial" size="12" />
 									<format>{"{%Value}{numDecimals:0}"}</format>
 								</labels>
 								<major_tickmark enabled="true" />
@@ -137,7 +137,7 @@ package com.clarityenglish.ielts.view.progress.components {
 							</y_axis>
 						<x_axis>
 						<labels>
-							<font size="14" family="Helvetica,Arial" bold="true" />
+							<font size="12" family="Helvetica,Arial" bold="true" />
 						</labels>
 						<title enabled="false" />
 					  </x_axis>

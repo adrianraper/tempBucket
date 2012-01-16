@@ -5,7 +5,7 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
-		minWidth="540" minHeight="520" 
+		minWidth="540" minHeight="560" 
 		>
 	<!-- host component -->
 	<fx:Metadata>
@@ -65,18 +65,19 @@
 		</s:Transition>
 	</s:transitions>
 	
-	<s:Group width="100%" height="100%">
-		<s:layout>
-			<s:BasicLayout />
-		</s:layout>
-		
+	<s:Group width="100%" height="100%" top="3">
+		<s:HGroup top="10">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
+			<s:VGroup alignmentBaseline="ideographicBottom">
+				<s:Label text="Welcome, {hostComponent.user.fullName}." top="0" right="0" />
+				<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="0" right="0" />	
+			</s:VGroup>
+</s:HGroup>
 		<!-- The left hand side -->
-		<s:Group width="50%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="35">
+		<s:Group width="50%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="70">
 			<s:layout>
-				<s:VerticalLayout paddingLeft="10" paddingRight="20" paddingTop="10" paddingBottom="10" />
+				<s:VerticalLayout/>
 			</s:layout>
-			<s:Label text="Welcome, {hostComponent.user.fullName}." top="0" right="0" />
-			<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="0" right="0" />
 
 			<!-- this is for the rotating course selector -->
 			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
@@ -86,7 +87,7 @@
 		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" width="50%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="320" exerciseSelected="onPopoutExerciseSelected(event)" />
 		
 		<!-- The right hand side -->
-		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="0" bottom="40" minWidth="510" minHeight="520">
+		<s:BorderContainer right="0" width="50%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="0" bottom="40" minWidth="510" minHeight="560">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="18" paddingBottom="20" />
 			</s:layout>
@@ -116,7 +117,10 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Question zone" width="100%">
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="10">
+					<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="40">
+
 						<s:SWFLoader width="450" height="210"
 									 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
@@ -132,8 +136,9 @@
 				
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice zone" >
-					<s:VGroup left="0" right="0" top="10" bottom="10" horizontalAlign="left" >
-						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" />
+					<s:VGroup left="0" right="0" top="2" bottom="30" horizontalAlign="left" >
+						<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" top="10" />
 
 						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
@@ -179,7 +184,9 @@
 	
 				<!-- Practice zone -->
 				<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
-					<s:VGroup left="0" right="20" top="10" bottom="0" gap="10">
+					<s:VGroup left="0" right="0" top="2" bottom="0" gap="10">
+						<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+
 						<!-- The unit title and description box -->
 						<s:Group width="96%">
 						<s:SWFLoader source="@Embed(source='skins/ielts/assets/unitdescription.png')" width="100%" />
@@ -194,13 +201,12 @@
 						<s:Group left="0" right="0" top="5" bottom="5">
 							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12" itemRollOver="onUnitItemRollOver(event)" click="onUnitClick(event)">
 								<s:layout>
-									<s:TileLayout requestedColumnCount="2" requestedRowCount="6" orientation="columns" columnWidth="250" verticalGap="15" />
+									<s:TileLayout requestedColumnCount="3" requestedRowCount="8" orientation="columns" columnWidth="120" verticalGap="15" />
 								</s:layout>
 								
 								<!-- Custom item renderer to render the label (probably not really necessary since its just text...) -->
 								<s:itemRenderer>
 									<fx:Component>
-
 										<s:ItemRenderer>
 											<fx:Script>
 												<![CDATA[
@@ -228,13 +234,19 @@
 				<!-- Exam practice -->
 				<s:NavigatorContent id="examPracticeNavigatorContent" label="Exam practice" width="100%" >
 					<s:layout>
-						<s:HorizontalLayout paddingTop="10"/>
+						<s:VerticalLayout paddingTop="2"/>
 					</s:layout>
-					<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
-								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
-								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
-								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
+
+					<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+					<s:HGroup paddingTop="10">
+						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
+									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
+									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
+									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
+
 					
+				
+
 					<s:DataGroup id="examPracticeDataGroup" width="300" >
 						<s:layout>
 							<s:VerticalLayout paddingLeft="14" gap="0" />
@@ -270,6 +282,7 @@
 							</fx:Component>
 						</s:itemRenderer>
 					</s:DataGroup>
+					</s:HGroup>
 				</s:NavigatorContent>
 								
 			</tink:Accordion>

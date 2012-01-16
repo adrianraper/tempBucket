@@ -11,6 +11,7 @@ package com.clarityenglish.ielts.view.home {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
+	import mx.formatters.DateFormatter;
 	
 	import org.osflash.signals.Signal;
 	
@@ -49,6 +50,12 @@ package com.clarityenglish.ielts.view.home {
 		
 		[Bindable]
 		public var dataProvider:XML;
+		
+		[Bindable]
+		public var user:User;
+		
+		[Bindable]
+		public var dateFormatter:DateFormatter;
 		
 		public var courseSelect:Signal = new Signal(XML);
 		
