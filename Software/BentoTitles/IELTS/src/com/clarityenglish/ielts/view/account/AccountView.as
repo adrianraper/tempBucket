@@ -3,6 +3,9 @@ package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.common.vo.manageable.User;
 	
 	import flash.events.MouseEvent;
+	import flash.system.ApplicationDomain;
+	import flash.system.LoaderContext;
+	import flash.system.SecurityDomain;
 	
 	import mx.controls.Alert;
 	import mx.controls.SWFLoader;
@@ -54,6 +57,17 @@ package com.clarityenglish.ielts.view.account {
 				
 				case IELTSApp1:
 					//instance.source = "/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true";
+					var context:LoaderContext = new LoaderContext();
+					
+					/* Specify the current application's security domain. */
+					context.securityDomain = SecurityDomain.currentDomain;
+					
+					/* Specify a new ApplicationDomain, which loads the sub-app into a 
+					peer ApplicationDomain. */
+					context.applicationDomain = new ApplicationDomain();
+					
+					instance.loaderContext = context;                 
+					//contentLoader.source = "http://yourdomain.com/SubApp3.swf";
 					instance.source = "http://dock.projectbench/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true";
 					break
 			}
