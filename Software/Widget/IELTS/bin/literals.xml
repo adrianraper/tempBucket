@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="IELTS Widgets" version="1.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="common">
+			<lit name="btnMoreInfo">Free IELTS Practice</lit>
+			<lit name="btnRegister">Register for IELTS</lit>
+			<lit name="btnTryAgain">Do it again</lit>
+			
+			<lit name = "moreInfoGlobal">http://www.britishcouncil.org/learning-ielts-in-your-country.htm</lit>
+			<lit name = "moreInfoSingapore">http://www.britishcouncil.org.sg/ielts/ielts-exam</lit>
+			<lit name = "moreInfoBurma">http://www.britishcouncil.org/burma-exams-ielts-self-practice.htm</lit>
+			<lit name = "moreInfoHongKong">https://ielts.britishcouncil.org.hk/iorps/html/content/preparation.jsp</lit>
+			<lit name = "moreInfoThailand">http://www.britishcouncil.org/thailand-exams-ielts-self-practice-2.htm</lit>
+			<lit name = "moreInfoKorea">http://eng.ieltstest.or.kr</lit>
+			<lit name = "moreInfoJapan">http://www.britishcouncil.org/jp/japan-exams-ielts.htm</lit>
+			<lit name = "moreInfoVietnam">http://www.britishcouncil.org/vi/vietnam-exams-ielts-home.htm</lit>
+			<lit name = "moreInfoTaiwan">http://www.britishcouncil.org/tw/taiwan-exams-ielts.htm</lit>
+			<lit name = "moreInfoPhilippines">http://www.britishcouncil.org/philippines-common-take-an-exam-ielts-test-takers.htm</lit>
+			<lit name = "moreInfoMalaysia">http://www.britishcouncil.org/malaysia-exams-ielts.htm</lit>
+			<lit name = "moreInfoChina">http://www.chinaielts.org</lit>
+			<lit name = "moreInfoIndia">http://www.britishcouncil.org/india-exams-ielts-home.htm</lit>
+			
+			<lit name = "registerGlobal">http://www.britishcouncil.org/learning-ielts-in-your-country.htm</lit>
+			<lit name = "registerSingapore">http://www.britishcouncil.org.sg/ielts/ielts-exam</lit>
+			<lit name = "registerBurma">http://www.britishcouncil.org/burma-exams-ielts-registration-and-fees.htm</lit>
+			<lit name = "registerHongKong">https://ielts.britishcouncil.org.hk/iorps/html/registration/showExamSessionListServlet.do?lang=C</lit>
+			<lit name = "registerThailand">http://www.britishcouncil.org/th/thailand-exams-ielts-registration-fees.htm</lit>
+			<lit name = "registerKorea">http://eng.ieltstest.or.kr</lit>
+			<lit name = "registerJapan">http://www.britishcouncil.org/jp/japan-exams-ielts.htm</lit>
+			<lit name = "registerVietnam">http://www.britishcouncil.org/vi/vietnam-exams-how-to-register-for-ielts-2.htm</lit>
+			<lit name = "registerTaiwan">https://www.ieltstest.org.tw</lit>
+			<lit name = "registerPhilippines">http://www.britishcouncil.org/philippines-common-take-an-exam-ielts-test-takers-how-do-i-register-for-ielts.htm</lit>
+			<lit name = "registerMalaysia">http://www.britishcouncil.org/malaysia-exams-ielts-how-to-apply-for-ielts.htm</lit>
+			<lit name = "registerChina">http://www.chinaielts.org</lit>
+			<lit name = "registerIndia">http://www.britishcouncil.org/india-exams-ielts-home.htm</lit>
+		</group>
+		<group name="BandScoreCalculator">	
+			<lit name="applicationName">Listening and Reading{newline}Score Calculator</lit>
+			<lit name="shortName">Listening and Reading Scores</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="listeningQ">How many questions do you think you will get right?</lit>
+			<lit name="readingQ">and how many in the reading test?</lit>
+			<lit name="preListening">Listening:</lit>
+			<lit name="preReading">Reading:</lit>
+			<lit name="examQ">for which exam?</lit>
+			<lit name="examAC">Academic</lit>
+			<lit name="examGT">General Training</lit>
+			<lit name="numQuestions">of {questions}</lit>
+			<lit name="btnCalculate">Calculate</lit>
+			
+			<lit name="bandScoreDescriptor">
+				<![CDATA[<font family='Helvetica' size='12'>Your scores<br/><b>Listening {bandScoreListening}</b><br/><b>Reading {bandScoreReading}</b></font>]]>
+			</lit>
+			<lit name="disclaimer">These scores are estimates only.</lit>
+			<lit name="disclaimerFull">
+				<![CDATA[<textformat leading="-2"><font family='Helvetica' size='10' >Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</font></textformat>]]>
+			</lit>
+			<lit name="statusRestart"></lit>
+			<lit name="statusNeedNumber">Type a number.</lit>
+			<lit name="statusNeedExamType">Choose an exam.</lit>
+		</group>
+		<group name="PredictYourBandScore">	
+			<lit name="applicationName">Overall Score Calculator</lit>
+			<lit name="shortName">Overall Scores</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="intro">What score do you think you will get in each test?</lit>
+			<lit name="preListening">Listening:</lit>
+			<lit name="preReading">Reading:</lit>
+			<lit name="preWriting">Writing:</lit>
+			<lit name="preSpeaking">Speaking:</lit>
+			<lit name="btnCalculate">Calculate</lit>
+
+			<lit name="bandScoreDescriptor">
+				<![CDATA[<font family='Helvetica' size='12'>Your score<br/><b>{bandScore}</b></font>]]>
+			</lit>
+			<lit name="disclaimer">This score is an estimate only.</lit>
+			<lit name="disclaimerFull">
+				<![CDATA[<textformat leading="-2"><font family='Helvetica' size='10' >Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</font></textformat>]]>
+			</lit>
+			<lit name="statusRestart"></lit>
+		</group>
+		<group name="WhereToStudy">	
+			<lit name="applicationName">Where do you want to study in the USA?</lit>
+			<lit name="shortName">Where to study</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="intro">Type the school name or state where you want to study:</lit>
+			<lit name="noResults">No matches were found in the database, please try again.</lit>
+			<lit name="btnCalculate">Search</lit>
+
+			<lit name="whatToDo">Double-click below for details</lit>
+			<lit name="whatToDoFull">Double-click a name to go to a detailed page about that institution.</lit>
+			<lit name="disclaimer">These results are for guidance.</lit>
+			<lit name="disclaimerFull">
+				<![CDATA[<textformat leading="-2"><font family='Helvetica' size='10' >Check with the faculty you wish to apply to for the exact requirements for your programme of study. Other institutions that are not listed may also accept IELTS. Double-click results for full details.</font></textformat>]]>
+			</lit>
+			<lit name="statusRestart"></lit>
+		</group>
+	</language>
+	<language name="繁體中文" code="ZH">
+		<group name="BandScoreCalculator">	
+			<lit name="applicationName">Calculate your Listening and Reading Scores</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="listeningQ">有多少問題，你認為你會得到正確的在這些路段？</lit>
+			<lit name="preListening">聽力:</lit>
+			<lit name="preReading">聽力:</lit>
+			<lit name="examQ">為此考試?</lit>
+			<lit name="examAC">Academic</lit>
+			<lit name="examGT">General Training</lit>
+			<lit name="numQuestions">of {questions}</lit>
+			<lit name="btnCalculate">計算</lit>
+			<lit name="btnTryAgain">再做一次</lit>
+
+			<lit name="bandScoreDescriptor">
+				<![CDATA[<font family='Helvetica' size='12'>Your scores will be<br/><b>Listening {bandScoreListening}</b><br/><b>Reading {bandScoreReading}</b></font>]]>
+			</lit>
+		</group>
+		<group name="PredictYourBandScore">	
+			<lit name="applicationName">Self-assessed band score calculator</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="listeningQ">有多少問題，你認為你會得到正確的在這些路段？</lit>
+			<lit name="preListening">聽力:</lit>
+			<lit name="preReading">聽力:</lit>
+			<lit name="preWriting">寫作:</lit>
+			<lit name="preSpeaking">會話:</lit>
+			<lit name="examQ">為此考試?</lit>
+			<lit name="examAC">Academic</lit>
+			<lit name="examGT">General Training</lit>
+			<lit name="numQuestions">of {questions}</lit>
+			<lit name="btnCalculate">計算</lit>
+			<lit name="btnTryAgain">再做一次</lit>
+
+			<lit name="bandScoreDescriptor">如果你是對的，你會取得{bandScore}在閱讀和聽力部分的測試。</lit>
+			<lit name="moreInfo">
+				<![CDATA[To find out how the British Council can help you get a better IELTS score, <u><a href="{targetURL}" target="_blank">click here</a></u>.]]>
+			</lit>
+			<lit name = "moreInfoInternational">http://www.britishcouncil.org/ielts</lit>
+			<lit name = "moreInfoThailand">http://www.britishcouncil.th/ielts</lit>
+			<lit name="statusRestart">Type new numbers.</lit>
+			<lit name="statusNeedNumber">Type a number.</lit>
+			<lit name="statusNeedExamType">Choose an exam.</lit>
+		</group>
+	</language>
+</literals>
