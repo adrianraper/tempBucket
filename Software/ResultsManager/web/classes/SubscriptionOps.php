@@ -323,7 +323,9 @@ EOD;
 		
 			while ($record = $rs->FetchNextObj()) {
 				// Start and end date are common to all titles in an offer (but need to read duration from record)
-				// Expiring today plus duration
+				// Not true, you could choose two offers with different durations. 
+				// The following code will work for creating the titles, buy you end up with apiInformation->expiryDate JUST for the last offer
+				// Expiring today plus duration.
 				$apiInformation->startDate = date('Y-m-d').' 00:00:00';
 				//$thisTitle->expiryDate = date_format((new DateTime()->modify('+'.$record->duration.' day'), 'Y-m-d');
 				$expiryDate = strtotime('+'.$record->duration.' days');
@@ -510,7 +512,7 @@ EOD;
 	}
 
 	// Save the account object you have built up
-	public function saveAccount ($account, $apiInformation) {
+	public function saveAccount($account, $apiInformation) {
 	
 		if ($apiInformation->updateAccount) {
 			//echo "try to upgrade the account<br/>";

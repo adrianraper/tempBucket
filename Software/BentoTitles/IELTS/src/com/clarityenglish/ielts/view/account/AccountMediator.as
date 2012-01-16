@@ -37,7 +37,8 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				CommonNotifications.UPDATE_FAILED,				
+				CommonNotifications.UPDATE_FAILED,
+				BBNotifications.USER_UPDATED,
 			]);
 		}
 		
@@ -47,7 +48,11 @@
 			switch (note.getName()) {
 				case CommonNotifications.UPDATE_FAILED:
 					view.showUpdateError();
-					break;				
+					break;	
+				
+				case BBNotifications.USER_UPDATED:
+					view.showUpdateSuccess();
+					break;
 			}
 		}
 		
@@ -58,13 +63,13 @@
 		private function onUpdateUser(userDetails:Object):void {
 			
 			// Validate the data that you can first
-			if (userDetails.currentPassword) {
+			//if (userDetails.currentPassword) {
 				var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 				if (userDetails.currentPassword != loginProxy.user.password) {
 					view.showUpdateError("Your current password doesn't match, please try again.");
 					return;
 				}
-			}
+			//}
 			if (userDetails.examJustDate) {
 				// It must be a valid date in the future
 			}

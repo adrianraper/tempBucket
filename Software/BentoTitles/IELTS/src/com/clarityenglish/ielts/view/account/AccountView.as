@@ -65,7 +65,6 @@ package com.clarityenglish.ielts.view.account {
 				examDate.text = "2012-04-01";
 				examTime.text = "09:00";				
 			}
-			
 		}
 		
 		/**
@@ -95,6 +94,13 @@ package com.clarityenglish.ielts.view.account {
 				Alert.show(msg, "Update problem");
 			} else {
 				Alert.show("Sorry, these details can't be updated.", "Update problem");				
+			}
+		}
+		public function showUpdateSuccess(msg:String = ""):void {
+			if (msg) {
+				Alert.show(msg, "Update success");
+			} else {
+				Alert.show("Your details have been changed.", "Update");				
 			}
 		}
 		

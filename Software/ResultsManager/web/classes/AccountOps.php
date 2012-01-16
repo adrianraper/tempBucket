@@ -156,6 +156,10 @@ SQL;
 					case 'accountStatus':
 						$selectBuilder->addWhere("a.F_AccountStatus = '".$value."'");
 						break;
+					// The default is to ignore suspended accounts, don't send them anything
+					case 'notAccountStatus':
+						$selectBuilder->addWhere("NOT a.F_AccountStatus = '".$value."'");
+						break;
 					case 'productCode':
 						// Note that this doesn't just find accounts that have this product, it ONLY returns this product in the accounts
 						$selectBuilder->addWhere("t.F_ProductCode = '".$value."'");
@@ -484,6 +488,7 @@ EOD;
 			$dbObj['F_MessageType'] = 31;
 			$this->db->AutoExecute("T_AccountEmails", $dbObj, "INSERT");			
 		}
+		
 		// v3.2 This was not added for new accounts. Generally it is not set for new accounts.
 		if (isset($account->licenceAttributes)) {
 			foreach ($account->licenceAttributes as $licenceAttribute) {

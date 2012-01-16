@@ -237,7 +237,7 @@ class Title extends Content {
 			$array['F_LicenceClearanceDate'] = null;
 		}
 		if (isset($this->licenceClearanceFrequency))
-		$array['F_LicenceClearanceFrequency'] = $this->licenceClearanceFrequency;
+			$array['F_LicenceClearanceFrequency'] = $this->licenceClearanceFrequency;
 
 		return $array;
 	}

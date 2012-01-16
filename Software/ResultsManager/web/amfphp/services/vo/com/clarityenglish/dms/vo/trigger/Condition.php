@@ -15,6 +15,7 @@ class Condition {
 	var $update;
 	var $accountType;
 	var $accountStatus;
+	var $notAccountStatus;
 	var $licenceType;
 	var $notLicenceType;
 	// v3.1 EMU
@@ -60,6 +61,8 @@ class Condition {
 			$this->accountType = $conditionArray['accountType'];
 		if (isset($conditionArray['accountStatus'])) 
 			$this->accountStatus = $conditionArray['accountStatus'];
+		if (isset($conditionArray['notAccountStatus'])) 
+			$this->notAccountStatus = $conditionArray['notAccountStatus'];
 		if (isset($conditionArray['licenceType'])) 
 			$this->licenceType = $conditionArray['licenceType'];
 		if (isset($conditionArray['notLicenceType'])) 

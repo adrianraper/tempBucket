@@ -10,7 +10,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.vo.manageable.User;
-			private function formatExamDetails(userDetails:User, type:String):void {
+			private function formatExamDetails(userDetails:User, type:String):String {
 				// Split into separate date and time
 				if (userDetails.birthday) {
 					var thisDate:String = userDetails.birthday;
@@ -19,9 +19,11 @@
 				} else {
 					thisDate = "2012-04-01 09:00";				
 				}
-				examDate.text = thisDate.substr(0, 10);;
-				examTime.text = thisDate.substr(11, 5);
-				
+				if (type=='date')
+					return thisDate.substr(0, 10);
+				if (type=='time')
+					return thisDate.substr(11, 5);
+				return '';
 			}
 		]]>
 	</fx:Script>

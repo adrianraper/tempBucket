@@ -76,7 +76,12 @@ class TriggerOps {
 					$accountConditions["expiryDate"] = null;
 				}
 				if (isset($trigger->condition->accountType)) $accountConditions["accountType"] = $trigger->condition->accountType;
-				if (isset($trigger->condition->accountStatus)) $accountConditions["accountStatus"] = $trigger->condition->accountStatus;
+				// v3.7 The trigger system should ignore accountStatus=suspended (3) unless specifically set
+				if (isset($trigger->condition->accountStatus)) {
+					$accountConditions["accountStatus"] = $trigger->condition->accountStatus;
+				} else {
+					$accountConditions["notAccountStatus"] = 3;
+				}
 				if (isset($trigger->condition->licenceType)) $accountConditions["licenceType"] = $trigger->condition->licenceType;
 				if (isset($trigger->condition->notLicenceType)) $accountConditions["notLicenceType"] = $trigger->condition->notLicenceType;
 				if (isset($trigger->condition->productCode)) $accountConditions["productCode"] = $trigger->condition->productCode;
@@ -201,7 +206,8 @@ class TriggerOps {
 		
 	}
 	/*
-	 * For updating database changes through triggers
+	 * For updating database changes through triggers.
+	 * This should run preset scripts rather than being freeform SQL
 	 */
 	function updateDatabase($sql) {
 		//echo $sql."</br>";

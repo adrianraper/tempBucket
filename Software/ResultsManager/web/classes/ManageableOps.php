@@ -424,7 +424,7 @@ EOD;
 			$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 		}
 		
-		$this->db->CompleteTrans();
+		return $this->db->CompleteTrans();
 	}
 	
 	/**

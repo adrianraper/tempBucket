@@ -168,9 +168,11 @@ EOD;
 			
 		// for each year, get the stats
 		// But we are sending a usage period with first and last dates, so shouldn't we respect these?
+		// No - ends up showing a wrong graph since Jan is always there
 		$statsArray = array();
 		for ($i = $firstYear; $i <= $lastYear; $i++) {
 			$j = $i + 1;
+			/*
 			if ($i == $firstYear) {
 				$startDate = $fromDate;
 			} else {
@@ -181,6 +183,9 @@ EOD;
 			} else {
 				$endDate = $j;
 			}
+			*/
+			//$startDate = $i;
+			//$endDate = $j;
 			//v3.6 datepart is not MySQL compatible
 			// options are date_format(F_StartDateStamp, %m) or month(F_StartDateStamp)
 			// Use adodb SQLDATE($fmt, $date)
@@ -200,8 +205,8 @@ EOD;
 					from T_Session
 					where F_RootID = ?
 					and F_ProductCode = ?
-					and F_StartDateStamp>='$startDate'
-					and F_StartDateStamp<'$endDate'
+					and F_StartDateStamp>='$i-01-01'
+					and F_StartDateStamp<'$j'
 					group by $sqldatemonth
 					order by $sqldatemonth;
 EOD;
@@ -889,8 +894,8 @@ EOD;
 	 * These functions are used by triggers for monthly usage reports
 	 */
 	public function insertDirectStartRecord($account) {
-		
-		$validDays=30;
+		// If we don't want to change the security code every month, then we should just insert once.
+		// After RM expires you won't be able to get in anyway.
 		$directStartInfo = array();
 		$directStartInfo['F_SecureString'] = md5(strval(microtime().rand()));
 		$directStartInfo['F_RootID'] = $account->id;
@@ -898,12 +903,27 @@ EOD;
 		$directStartInfo['F_UserName'] = $account->adminUser->name;
 		$directStartInfo['F_Password'] = $account->adminUser->password;
 		$directStartInfo['F_UserID'] = $account->getAdminUserID();
+		// Currently this is not null, so just write a date in until this is all confirmed and you can drop the column.
+		$validDays=365;
 		$directStartInfo['F_ValidUntilDate'] = date('Y-m-d H:i:s', time() + ($validDays * 86400));
 		
 		$this->db->AutoExecute("T_DirectStart", $directStartInfo, "INSERT");
 		
 		// And if you fail?
 		return $directStartInfo['F_SecureString'];
+	}
+	// Called to allow a subscription reminder email to include a link to usage stats.
+	public function getDirectStartRecord($account) {
+		$sql = 	<<<EOD
+				SELECT F_SecureString AS secureString FROM T_DirectStart
+				WHERE F_RootID=?
+EOD;
+		$bindingParams = array($account->id);
+		//echo "sql=$sql with id=".$account->id;
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs)
+			return ((string)($rs->FetchNextObj()->secureString));
+		
 	}
 	// Called to remove old records
 	public function clearDirectStartRecords() {

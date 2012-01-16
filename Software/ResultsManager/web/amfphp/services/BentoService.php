@@ -142,6 +142,7 @@ class BentoService extends AbstractService {
 			
 			// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
 			// Well, above I am using rootID and productCode from sessionVariables...
+			Session::set('valid_userIDs', array($userObj->F_UserID));
 			Session::set('userID', $userObj->F_UserID);
 			Session::set('userType', $userObj->F_UserType);
 			

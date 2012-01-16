@@ -72,12 +72,6 @@ package com.clarityenglish.common.model {
 			// Do I need to clone the user in case I end up not managing to make the change?
 			var newUserDetails:User = user;
 			
-			if (userChanges.existingPassword != user.password) {
-				// Raise an error and do nothing
-				sendNotification(CommonNotifications.UPDATE_FAILED);
-				return;
-			}
-			
 			// Get new details from the passed object
 			// We could either cycle through all properties or just do expected ones
 			if (userChanges.password)
@@ -96,16 +90,12 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
-				case "udpateUser":
-					if (data) {
-						// First need to see if the return has an error
-						if (data.error && data.error.errorNumber>0) {
-							sendNotification(CommonNotifications.UPDATE_FAILED);
-						} else {
-							sendNotification(BBNotifications.USER_UPDATED, data);	
-						}
-					} else {
+				case "updateUser":
+					// First need to see if the return has an error
+					if (data == false) {
 						sendNotification(CommonNotifications.UPDATE_FAILED);
+					} else {
+						sendNotification(BBNotifications.USER_UPDATED, data);	
 					}
 					break;
 				

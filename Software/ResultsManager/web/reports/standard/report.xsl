@@ -42,8 +42,12 @@
 						grid.setImagePath("../../reports/standard/dhtmlx/dhtmlxGrid/codebase/imgs/");
 						grid.setSkin("light");
 						grid.setInitWidths("*,*,*,*,*,*,*,*,*,*,*,*");
-						
+		
 						/* Custom sorting function for durations */
+						/* Cope with &lt;1 as a time spent 
+							This is REALLY difficult as I can't even write the &lt; in a comment let alone match it!
+							So use GenerateReport.php.secondsToMinutes to change it to 0.5
+						*/
 						duration_custom = function(a, b, order) {
 							var a = new Number(a.split(":").join("."));
 							var b = new Number(b.split(":").join("."));
@@ -67,7 +71,8 @@
 						<xsl:if test="report/row/@duration">sortTypes.push("duration_custom");</xsl:if>
 						<xsl:if test="report/row/@start_date">sortTypes.push("date");</xsl:if>
 						
-						<xsl:if test="report/row/@average_score">sortTypes.push("str");</xsl:if>
+						// Change average score to be a number not a string
+						<xsl:if test="report/row/@average_score">sortTypes.push("int");</xsl:if>
 						<xsl:if test="report/row/@complete">sortTypes.push("int");</xsl:if>
 						<xsl:if test="report/row/@average_time">sortTypes.push("duration_custom");</xsl:if>
 						<xsl:if test="report/row/@total_time">sortTypes.push("duration_custom");</xsl:if>
