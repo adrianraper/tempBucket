@@ -1,1 +1,0 @@
-﻿package org.w3c.dom.html{	public interface IHTMLHeadingElement extends IHTMLElement	{	}}
