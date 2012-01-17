@@ -40,16 +40,16 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-
+		
 		<s:Spacer height="10" />
 		<s:Label text="You have 30 days until your program expires." fontWeight="bold" fontSize="12"/>
 		
 		<s:Spacer height="3" />
-		<!--
+
 		<s:SWFLoader width="290" height="103"
-					 source="@Embed(source='skins/ielts/assets/countdown.swf')">
+		source="@Embed(source='skins/ielts/assets/countdown.swf')">
 		</s:SWFLoader>
-		-->
+
 		<s:Spacer height="10" />
 		
 		<s:HGroup width="100%" height="100%" top="120" >
@@ -72,7 +72,7 @@
 				<s:Spacer height="3" />
 				<s:Label text="and time:" />
 				<s:Spacer height="3" />
-
+				
 				
 			</s:VGroup>
 			<s:Spacer height="1" />
@@ -99,7 +99,7 @@
 		</s:HGroup>
 		<s:Spacer height="10" />
 		<s:Button id="saveChangesButton" label="Save changes" />
-
+		
 	</s:VGroup>
 	<s:VGroup width="40%" paddingTop="20" >
 		<s:Label text="IELTS Apps" fontSize="20" width="50%" />
@@ -109,12 +109,8 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-		<s:Group width="240" height="300" >
-			<s:SWFLoader id="IELTSApp1" left="0" top="46" width="200" height="300" />
-			<!--
-						 source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
-						 />
-			-->
+		<s:Group width="241" height="301">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/bcwidget.png')" width="100%" />
 		</s:Group>
 	</s:VGroup>
 </s:Skin>
