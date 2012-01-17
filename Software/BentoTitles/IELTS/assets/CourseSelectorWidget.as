@@ -16,16 +16,16 @@
 		public function setCourse(course:String):void {
 			switch (course) {
 				case "writing":
-					gotoAndPlay(11);
+					gotoAndStop(11);
 					break;
 				case "listening":
-					gotoAndPlay(2);
+					gotoAndStop(2);
 					break;
 				case "speaking":
-					gotoAndPlay(6);
+					gotoAndStop(6);
 					break;
 				case "reading":
-					gotoAndPlay(10);
+					gotoAndStop(10);
 					break;
 			}
 		}
