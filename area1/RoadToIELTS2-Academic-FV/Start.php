@@ -97,7 +97,7 @@
 		var coordsWidth = "100%"; var coordsHeight = "100%"; 
 		//var coordsWidth = "990"; var coordsHeight = "600"; 
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
-		var coordsMinHeight = "600"; var coordsMaxHeight = null;
+		var coordsMinHeight = "760"; var coordsMaxHeight = null;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
