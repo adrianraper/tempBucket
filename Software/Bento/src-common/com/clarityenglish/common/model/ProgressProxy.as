@@ -118,9 +118,8 @@ package com.clarityenglish.common.model {
 			dataLoading[progressType] = true;
 			
 			// And save the href
-			// DKmenu.xml Is this OK?
 			this.href = href;
-
+			
 		}
 		
 		/**
@@ -193,7 +192,7 @@ package com.clarityenglish.common.model {
 				var uid:Object = UIDUtil.UID(mark.UID);
 				
 				// build the new score node
-				var newScoreNode:XML = <score score={mark.correctPercent} duration={mark.duration} />;
+				var newScoreNode:XML = <score score={mark.correctPercent} duration={mark.duration} datetime={dateNow} />;
 				
 				// insert into the cache
 				var thisExercise:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0];
@@ -238,8 +237,17 @@ package com.clarityenglish.common.model {
 							log.info("Successfully loaded data for type {0}", loadingData);
 
 							// Put the returned data into the cache and send out the notification
-							//loadedResources[loadingData] = new ArrayCollection(data.progress.dataProvider);
-							loadedResources[loadingData] = data.progress.dataProvider;
+							
+							// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml
+							//if (href.type == Href.MENU_XHTML) {
+							if (loadingData == Progress.PROGRESS_MY_DETAILS) {
+								loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
+								// For consistency with other progress data, just grab the menu bit
+								var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
+								loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
+							} else {
+								loadedResources[loadingData] = data.progress.dataProvider;
+							}
 							notifyDataLoaded(loadingData);
 							
 						}							
@@ -286,6 +294,24 @@ package com.clarityenglish.common.model {
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
 		}
 		
-
+		// Since this loads the menu xml, we need to be able to return it from cache if asked
+		public function loadXHTML(href:Href):void {
+			if (!href) {
+				log.error("progressProxy loadXHTML received a null Href");
+				return;
+			}
+			
+			// If the resource has already been loaded then just return it
+			if (loadedResources[href]) {
+				log.debug("Href already loaded so returning cached copy {0}", href);
+				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
+				return;
+			} else {
+				log.error("progressProxy loadXHTML doesn't have the menu yet");
+				return;				
+			}
+			
+		}
+				
 	}
 }

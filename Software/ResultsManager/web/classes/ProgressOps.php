@@ -102,6 +102,7 @@ class ProgressOps {
 					$score = $exercise[0]->addChild('score');
 					$score->addAttribute('score',$record['F_Score']);
 					$score->addAttribute('duration',$record['F_Duration']);
+					$score->addAttribute('datetime',$record['F_DateStamp']);
 				}
 			}
 		}
@@ -120,7 +121,9 @@ insert into T_Score values
 ('27639', '2011-11-24 18:57:10', '1287130410001', '50', '1287130410000', '180', '0', '0', '0', '2227356', NULL, '1287130400000', '52', null);
 */	
 
-		return $menu->asXML();
+		// Try to return the whole xml file, with additions, not just the menu bit
+		//return $menu->asXML();
+		return $this->menu->asXML();
 		
 	}
 	/**

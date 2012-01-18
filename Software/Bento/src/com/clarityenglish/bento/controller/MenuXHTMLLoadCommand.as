@@ -32,7 +32,7 @@ package com.clarityenglish.bento.controller {
 			// progress version, which is the same base xml, but also merges in score data.
 			//var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			//xhtmlProxy.loadXHTML(href);
-			// First just trigger to see if we can get it now
+			log.debug("Loading progress version of {0}", href);
 			progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), href, Progress.PROGRESS_MY_DETAILS);
 
 		}

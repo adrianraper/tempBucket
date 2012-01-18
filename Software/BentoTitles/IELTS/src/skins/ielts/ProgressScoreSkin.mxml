@@ -48,6 +48,7 @@
 					<s:GridColumn headerText="Exercise" dataField="@caption" />
 					<s:GridColumn headerText="Score" dataField="@score" />
 					<s:GridColumn headerText="Time spent" dataField="@duration" />
+					<s:GridColumn headerText="Date" dataField="@datetime" />
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>

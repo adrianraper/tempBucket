@@ -13,6 +13,7 @@ package com.clarityenglish.ielts.view.title {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
+	import mx.events.ItemClickEvent;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.StateUtil;
@@ -169,6 +170,9 @@ package com.clarityenglish.ielts.view.title {
 					
 					navBar.requireSelection = true;
 					navBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
+					// Since Home button stays active when you are on zone state
+					// need special click listener to react to it
+					navBar.addEventListener(ItemClickEvent.ITEM_CLICK, onNavBarClick); 
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
@@ -213,6 +217,12 @@ package com.clarityenglish.ielts.view.title {
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
 			currentState = event.target.selectedItem.data;
+		}
+		protected function onNavBarClick(event:ItemClickEvent):void {
+			// If you are in zone view, then clicking Home triggers it even though the button is already selected
+			if (currentState == "zone") {
+				currentState = event.target.selectedItem.data;
+			}
 		}
 		
 		/**

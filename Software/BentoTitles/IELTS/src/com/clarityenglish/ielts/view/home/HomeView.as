@@ -98,6 +98,9 @@ package com.clarityenglish.ielts.view.home {
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
+			
+			// Also remove the selection of the navBar Home button so that you can click it from Zone view
+			// How to refer to titleView from here? _parent?
 
 		}
 	}

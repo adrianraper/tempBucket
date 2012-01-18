@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ProgressProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -21,8 +22,14 @@ package com.clarityenglish.bento.controller {
 			
 			var href:Href = note.getBody() as Href;
 			
-			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			xhtmlProxy.loadXHTML(href);
+			// menu.xml loaded through a different proxy than other xhtml files
+			if (href.type == Href.MENU_XHTML) {
+				var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
+				progressProxy.loadXHTML(href);
+			} else {
+				var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
+				xhtmlProxy.loadXHTML(href);
+			}
 		}
 		
 	}

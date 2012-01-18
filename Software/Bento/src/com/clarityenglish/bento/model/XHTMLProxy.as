@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
