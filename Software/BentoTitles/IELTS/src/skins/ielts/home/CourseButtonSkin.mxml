@@ -176,8 +176,8 @@
 	
 	<!-- layer 9: IELTS course button specific stuff -->
 	<s:SWFLoader source="{getStyle('courseIcon')}" left="20" top="15" width="32" height="32" />
-	<s:RichText text="{getStyle('title')}" left="60" top="22" fontSize="20" />
-	<s:RichText text="{getStyle('description')}" left="60" right="200" top="50" width="59" fontSize="12" alpha.up="1" alpha.over="0.9" />
+	<s:RichText text="{getStyle('title')}" left="60" top="24" fontSize="16" />
+	<s:RichText text="{getStyle('description')}" left="60" right="200" top="50" width="59" alpha.up="1" alpha.over="0.9" lineHeight="16"/>
 	<s:Image source="{getStyle('courseImage')}" right="0" alpha.up="1" alpha.over="0.9"/>
 
 </s:SparkButtonSkin>

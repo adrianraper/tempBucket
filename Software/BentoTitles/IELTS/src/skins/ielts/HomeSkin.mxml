@@ -21,19 +21,18 @@
 				<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="0" right="0" />	
 			</s:VGroup>
 		</s:HGroup>
-		<s:Spacer height="6"/>
-		<s:Label text="Your progress so far: an overview" fontSize="12" fontWeight="bold" width="100%" />
-		<s:Label text="The chart below shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." fontSize="12" width="70%" lineHeight="16" />	
-		
+			
 		<s:VGroup width="100%" paddingTop="15">
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="reading" id="readingCoverageBar" width="85%" />
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="reading" id="readingCoverageBar" width="100%" />
 			<s:Spacer height="6"/>
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="listening" id="listeningCoverageBar" width="85%" />
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="listening" id="listeningCoverageBar" width="100%" />
 			<s:Spacer height="6"/>
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="speaking" id="speakingCoverageBar" width="85%" />
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="speaking" id="speakingCoverageBar" width="100%" />
 			<s:Spacer height="6"/>
+			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="writing" id="writingCoverageBar" width="100%" />
+			<s:Spacer height="6"/>
+			<s:Label text="The chart above shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." width="80%" lineHeight="20" />	
 
-			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="writing" id="writingCoverageBar" width="85%" />
 		</s:VGroup>
 		
 	</s:VGroup>
@@ -43,6 +42,7 @@
 		<s:Button id="listeningCourseButton" width="100%" />
 		<s:Button id="speakingCourseButton" width="100%" />
 		<s:Button id="writingCourseButton" width="100%" />
+
 	</s:VGroup>		
 	
 </s:Skin>

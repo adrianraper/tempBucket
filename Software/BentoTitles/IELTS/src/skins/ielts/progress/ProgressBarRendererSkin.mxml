@@ -23,7 +23,7 @@
 	<s:VGroup width="90%" height="70" top="0" left="0">
 		<s:HGroup>
 			<s:Spacer width="100%" />
-			<s:Label id="commentLabel" color="#303030" fontSize="12" />			
+			<s:Label id="commentLabel" color="#303030"/>			
 		</s:HGroup>
 		<s:Rect id="overallProgressRect" percentWidth="0" height="30" radiusX="8" radiusY="8" >
 			<s:fill>
