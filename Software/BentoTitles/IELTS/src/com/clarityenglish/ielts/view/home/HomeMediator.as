@@ -89,10 +89,9 @@
 		private function onCourseSelected(course:XML):void {
 			// dispatch a notification, which titleMediator is listening for
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
-
+			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			bentoProxy.currentCourseClass = course.@["class"];
-			
 		}
 		
 	}

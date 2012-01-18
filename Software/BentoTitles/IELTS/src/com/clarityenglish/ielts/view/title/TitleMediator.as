@@ -80,6 +80,7 @@
 				case IELTSNotifications.COURSE_SHOW:
 					var course:XML = note.getBody() as XML;
 					view.currentState = "zone";
+					view.navBar.selectedIndex = -1;
 					view.callLater(function():void {
 						view.zoneView.course = course;
 					});

@@ -20,6 +20,8 @@ package com.clarityenglish.ielts.view.title {
 	
 	import spark.components.Button;
 	import spark.components.ButtonBar;
+	import spark.events.IndexChangeEvent;
+	import spark.events.ListEvent;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -168,11 +170,16 @@ package com.clarityenglish.ielts.view.title {
 						{ icon: notepadIcon, label: "Notepad", data: "account" },
 					] );
 					
-					navBar.requireSelection = true;
+					navBar.selectedIndex = 0;
 					navBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
-					// Since Home button stays active when you are on zone state
-					// need special click listener to react to it
-					navBar.addEventListener(ItemClickEvent.ITEM_CLICK, onNavBarClick); 
+					
+					// This is some slightly hacky code to ensure that the user cannot deselect a navbar button whilst still allowing us to set selectedIndex=-1 programatically (#140)
+					navBar.addEventListener(IndexChangeEvent.CHANGE, function(e:IndexChangeEvent):void {
+						if (e.newIndex == -1) {
+							e.preventDefault();
+							navBar.callLater(function():void { navBar.selectedIndex = e.oldIndex; });
+						}
+					} );
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
@@ -216,13 +223,7 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
-			currentState = event.target.selectedItem.data;
-		}
-		protected function onNavBarClick(event:ItemClickEvent):void {
-			// If you are in zone view, then clicking Home triggers it even though the button is already selected
-			if (currentState == "zone") {
-				currentState = event.target.selectedItem.data;
-			}
+			if (event.target.selectedItem) currentState = event.target.selectedItem.data;
 		}
 		
 		/**
