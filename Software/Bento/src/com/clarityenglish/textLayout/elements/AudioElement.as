@@ -71,8 +71,6 @@ package com.clarityenglish.textLayout.elements {
 				bounds.height = (component.initialized) ? component.measuredHeight : NaN;
 			}
 			
-			trace(bounds);
-			
 			return bounds;
 		}
 		

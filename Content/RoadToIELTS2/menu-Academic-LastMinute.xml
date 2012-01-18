@@ -94,9 +94,9 @@
 				<exercise id="1287130210002" caption="Download PDF" href="listening/ebook/ebook_listening.pdf" />
 			</unit>
 			<unit id="1287130220000" class="exam-practice">
-				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening practice paper part 1" difficulty="1" />
-				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Listening practice paper part 2" difficulty="2" />
-				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" difficulty="3" />
+				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening practice paper part 1" audioCaption="Practice Test 1 audio" audioHref="listening/media/ST_LN1a.mp3" />
+				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Listening practice paper part 2" audioCaption="Practice Test 1 audio" audioHref="listening/media/ST_LN1a.mp3" />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" audioCaption="Practice Test 1 audio" audioHref="listening/media/ST_LN1a.mp3" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />

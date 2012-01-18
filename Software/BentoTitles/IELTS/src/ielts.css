@@ -172,6 +172,13 @@ zone|ZoneView #questionZoneDownloadButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
 }
 
+zone|ZoneView #examPracticeAudioPlayer {
+	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioStop");
+}
+
 zoneui|PopoutExerciseSelector {
 	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
 }

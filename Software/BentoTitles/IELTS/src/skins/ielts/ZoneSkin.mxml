@@ -5,7 +5,7 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
-		minWidth="540" minHeight="560" 
+		minWidth="540" minHeight="560" xmlns:components="com.clarityenglish.textLayout.components.*" 
 		>
 	<!-- host component -->
 	<fx:Metadata>
@@ -232,9 +232,6 @@
 									 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')"
 									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
 
-					
-				
-
 					<s:DataGroup id="examPracticeDataGroup" width="300" >
 						<s:layout>
 							<s:VerticalLayout paddingLeft="14" gap="0" />
@@ -265,6 +262,16 @@
 									</s:layout>
 									
 									<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="230" height="30" textAlignLast="left" />
+									
+									<!--<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />-->
+									
+									<!-- #144 -->
+									<s:Group height="33">
+										<s:HGroup paddingLeft="5" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
+											<components:AudioPlayer id="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+											<s:Label text="{data.@audioCaption}" fontSize="13" paddingTop="2" />
+										</s:HGroup>
+									</s:Group>
 								</s:DataRenderer>
 							</fx:Component>
 						</s:itemRenderer>
