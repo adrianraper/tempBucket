@@ -65,7 +65,7 @@ package com.clarityenglish.ielts.view.account {
 					context.applicationDomain = new ApplicationDomain();
 					
 					instance.loaderContext = context;                 
-					instance.source = "http://dock.projectbench/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true";
+					instance.source = "/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true&cache=" + new Date().getTime();
 					break
 			}
 		}

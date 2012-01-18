@@ -70,7 +70,7 @@
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
 			<s:VGroup alignmentBaseline="ideographicBottom">
 				<s:Label text="Welcome, {hostComponent.user.fullName}." top="0" right="0" />
-				<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="0" right="0" />	
+				<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your test." top="0" right="0" />	
 			</s:VGroup>
 </s:HGroup>
 		<!-- The left hand side -->
@@ -204,7 +204,7 @@
 									<s:TileLayout requestedColumnCount="3" requestedRowCount="8" orientation="columns" columnWidth="120" verticalGap="15" />
 								</s:layout>
 								
-								<!-- Custom item renderer to render the label (probably not really necessary since its just text...) -->
+								<!-- Custom item renderer to render the label -->
 								<s:itemRenderer>
 									<fx:Component>
 										<s:ItemRenderer>
@@ -213,7 +213,7 @@
 													
 													[Bindable]
 													[Embed(source="skins/ielts/assets/uniticon.png")]
-													public var BulletCheck:Class;
+													public var unitIcon:Class;
 
 													public override function set data(value:Object):void {
 														super.data = value;
@@ -221,7 +221,10 @@
 													}
 												]]>
 											</fx:Script>
-											<s:Label id="captionLabel" fontSize="12" />
+											<s:HGroup width="100%" verticalAlign="middle" paddingLeft="5" paddingTop="5" paddingBottom="5">
+												<s:Image id="captionIcon" source="{unitIcon}" />
+												<s:Label id="captionLabel" fontSize="12" />
+											</s:HGroup>
 										</s:ItemRenderer>
 									</fx:Component>
 								</s:itemRenderer>

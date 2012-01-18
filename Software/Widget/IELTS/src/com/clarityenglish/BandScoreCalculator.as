@@ -50,11 +50,13 @@ package com.clarityenglish
 			var paramObj:Object = loaderInfo.parameters;
 			//TraceUtils.myTrace("running from " + this.root.loaderInfo.loaderURL);
 			//var rootArray:Array = this.root.loaderInfo.loaderURL.split("/");
-			var rootArray:Array = loaderInfo.loaderURL.split("/");
+			// v1.1 In case the loaderURL has parameters, chop anything after a ? first
+			var baseURL:String = loaderInfo.loaderURL.split("?")[0];
+			var rootArray:Array = baseURL.split("/");
 			// drop the filename
 			rootArray.pop();
 			var applicationRoot:String = rootArray.join("/");
-			TraceUtils.myTrace("running from " + applicationRoot);
+			TraceUtils.myTrace("1.running from " + applicationRoot);
 			
 			for (var parameter:String in paramObj) {
 				TraceUtils.myTrace("config." + parameter + "=" + paramObj[parameter]);
@@ -62,7 +64,8 @@ package com.clarityenglish
 			// Find the width and height. These are not passed but set as flash parameters.
 			if (paramObj['widgetdatawidth']) {
 				//TraceUtils.myTrace("width=" + paramObj['widgetdatawidth']);
-				TraceUtils.myTrace("we know the stageWidth=" + this.stage.stageWidth);
+				TraceUtils.myTrace("we know the widgetdatawidth=" + paramObj['widgetdatawidth']);
+				TraceUtils.myTrace("and stageWidth=" + this.stage.stageWidth);
 			}
 			if (paramObj['widgetdataheight']) {
 				//TraceUtils.myTrace("height=" + paramObj['widgetdataheight']);
@@ -119,8 +122,19 @@ package com.clarityenglish
 			
 			// So use these parameters to set the stage size and call literals and style
 			// Actually we can set the Flash width and height from swfobject, so all we need to do here is read the stage.
-			//this.stage.width = Number(paramObj['widgetdatawidth']);
-			//this.stage.height = Number(paramObj['widgetdataheight']);
+			// But if the widget is being loaded into a Flex application, stage is wrong.
+			//this.stage.stageWidth = Number(paramObj['widgetdatawidth']);
+			//this.stage.stageHeight = Number(paramObj['widgetdataheight']);
+			if (paramObj['widgetdatawidth']) {
+				var myWidth:uint = Number(paramObj['widgetdatawidth']);
+			} else {
+				myWidth = this.stage.stageWidth;
+			}
+			if (paramObj['widgetdataheight']) {
+				var myHeight:uint = Number(paramObj['widgetdataheight']);
+			} else {
+				myHeight = this.stage.stageHeight;
+			}
 			
 			// Instantiate the literals class and start loading.
 			thisWidget = 'BandScoreCalculator';
@@ -137,7 +151,8 @@ package com.clarityenglish
 			//TraceUtils.myTrace("stage.stageWidth=" + this.stage.stageWidth);
 			//TraceUtils.myTrace("screen.width=" + this.stage.fullScreenWidth);
 			//TraceUtils.myTrace("displayObject.width=" + this.width);
-			this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			//this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			this.widgetLayout(myWidth, myHeight);
 			
 			// And we need to make the origin in the top left corner
 			// If you publish the flash with width 160, changing that with the Flash options means that the
@@ -238,6 +253,7 @@ package com.clarityenglish
 			title_txt.width = width - horizontalPadding * 2;
 			titleTF = new TextFormat();
 			titleTF.font = "Helvetica";
+			//titleTF.font = "Verdana";
 			titleTF.color = "0xFFFFFFFF";
 			titleTF.size = 13;
 			titleTF.align = TextFormatAlign.CENTER;
@@ -255,6 +271,7 @@ package com.clarityenglish
 			// What size should fonts be in the other fields?
 			var textTF:TextFormat = new TextFormat();
 			textTF.font = "Helvetica";
+			//textTF.font = "Verdana";
 			textTF.color = "0xFF000000";
 			// it could be a little bigger if you want and have more space
 			if (width>160) {
@@ -289,7 +306,8 @@ package com.clarityenglish
 			
 			// And text on the Button
 			var buttonTF:TextFormat = new TextFormat();
-			buttonTF.font = "Helvetica";
+			//buttonTF.font = "Helvetica";
+			buttonTF.font = "Verdana";
 			buttonTF.color = "0xFFFFFFFF";
 			buttonTF.align = TextFormatAlign.CENTER;
 			//buttonTF.bold = true;
@@ -419,11 +437,13 @@ package com.clarityenglish
 			TraceUtils.myTrace("you clicked");
 			var errorStyle:TextFormat = new TextFormat();
 			errorStyle.color = 0xFF0000;
-			errorStyle.font = "Helvetica";
+			//errorStyle.font = "Helvetica";
+			errorStyle.font = "Verdana";
 			errorStyle.size = 12;
 			var normalStyle:TextFormat = new TextFormat();
 			normalStyle.color = 0x000000;
-			normalStyle.font = "Helvetica";
+			//normalStyle.font = "Helvetica";
+			normalStyle.font = "Verdana";
 			normalStyle.size = 12;
 			var formHasError:Boolean = false;
 			

@@ -25,12 +25,12 @@
 		 * @param	message The text to display
 		 * @return
 		 */
-		public function Literals(defaultLanguage:String = 'EN', applicationName:String = 'SelfAssessedBandScoreCalculator') {
+		public function Literals(defaultLanguage:String = 'EN', applicationName:String = 'BandScoreCalculator') {
 			
 			// Set the default langauge to use
 			this.literalsLanguage = defaultLanguage;
 			this.applicationName = applicationName;
-			//TraceUtils.myTrace("in lits for " + this.literalsLanguage);
+			TraceUtils.myTrace("in lits for " + this.literalsLanguage + " and " + this.applicationName);
 			
 		}
 		public function loadXMLFile(folder:String=null) {
@@ -41,7 +41,7 @@
 				if (folder.charAt(folder.length-1)!="/")
 					folder+="/";
 			}
-			TraceUtils.myTrace("path=" + folder);
+			TraceUtils.myTrace("literals path=" + folder);
 			literalsLoader.load(new URLRequest(folder + "literals.xml"));
 			literalsLoader.addEventListener(Event.COMPLETE, processXML);
 		}
@@ -54,13 +54,13 @@
 			dispatchEvent(new Event(Literals.LOADED));
 		}
 		
-		public function literalExists(name:String):Boolean {
+		public function literalExists(litName:String):Boolean {
 			if (!this.literalsXML) return false;
-			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==name);			
+			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==litName);			
 			if (thisLiteral.length()==0) {
 				// If you are not working in English, check that in case it has extra literals
 				if (this.literalsLanguage!='EN') {
-					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==name);
+					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
 					if (thisLiteral.length() == 0) {
 						return false;
 					}
@@ -71,23 +71,23 @@
 			return true;			
 		}
 		
-		public function getLiteral(name:String, replaceObj:Object=null):String {
+		public function getLiteral(litName:String, replaceObj:Object=null):String {
 			if (!this.literalsXML) return 'not loaded';
-			//TraceUtils.myTrace('getting ' + name);
+			TraceUtils.myTrace('getting ' + litName + " from " + this.applicationName + ' in ' + this.literalsLanguage);
 			//var thisLiteral = this.literalsXML.language.(@name==this.literalsLanguage).group.(@name=='BandScoreCalculator').lit.(@name==name);
 			//var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName).lit.(@name==name);
-			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==name);
-			
+			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
+			//TraceUtils.myTrace('xmlist=' + this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==litName).toString());
 			if (thisLiteral.length()==0) {
 				// If you are not working in English, check that in case it has extra literals
 				if (this.literalsLanguage!='EN') {
-					TraceUtils.myTrace("try English for " + name);
-					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==name);
+					TraceUtils.myTrace("try English for " + litName);
+					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
 					if (thisLiteral.length() == 0) {
-						return name;
+						return litName;
 					}
 				} else {
-					return name;
+					return litName;
 				}
 				
 			} 

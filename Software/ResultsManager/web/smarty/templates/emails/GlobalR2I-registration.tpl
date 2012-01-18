@@ -30,7 +30,12 @@ font-size: 11px;}
     <td height="28"></td>
   </tr>
   <tr align="left" valign="top">
-    <td height="28" >You have been registered for Road to IELTS. The start page for your account is: <a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/">www.ieltspractice.com/BritishCouncil/RoadToIELTS.</a></strong></td>
+    <td height="28" >You have been registered for Road to IELTS. The start page for your account is: 
+	<a href="http://http://r2iv2.clarityenglish.com/BritishCouncil/R2IV2/login.php?loginID={$body.loginID}">http://r2iv2.clarityenglish.com/BritishCouncil/R2IV2/login.php</a></td>
+    <td height="28" ></td>
+  </tr>
+  <tr align="left" valign="top">
+    <td height="28" >If the above link doesn't work, please type it in your browser instead of clicking. Sometimes links in emails can get corrupted.</td>
     <td height="28" ></td>
   </tr>
   <tr align="left" valign="top">

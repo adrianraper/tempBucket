@@ -109,6 +109,9 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
+		<!-- 						 
+			source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
+		-->
 		<s:Group width="241" height="301">
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/bcwidget.png')" width="100%" />
 		</s:Group>
