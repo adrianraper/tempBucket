@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b26">
+      <answer source="t26" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b27">
+      <answer source="t27" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b28">
+      <answer source="t28" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b29">
+      <answer source="t29" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b30">
+      <answer source="t30" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b31">
+      <answer source="t31" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b32">
+      <answer source="t32" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b33">
+      <answer source="t33" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b34">
+      <answer source="t34" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b35">
+      <answer source="t35" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b36">
+      <answer source="t36" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b37">
+      <answer source="t37" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b38">
+      <answer source="t38" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b39">
+      <answer source="t39" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b40">
+      <answer source="t40" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b41">
+      <answer source="t41" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b42">
+      <answer source="t42" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Answer the questions. In most cases, there is more than one correct answer.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/TT_GW_006.jpg" mode="1" id="1001"/>
+  <p align="left"><b>1.</b>  Which of the following people would you write a formalletter to?<g id="t1">A.  a close friend</g><g id="t2">B.  someone you have never met</g><g id="t3">C.  someone you do not know very well</g><g id="t4">D.  a close relative</g><g id="t5">E.  the editor of a newspaper</g><g id="t6">F.  a prospective employer</g></p>
+  <p align="left"><b>2.</b>  When we do not know the name of the person we arewriting to we begin the letter with 'Dear Sir/Madam'.Which ending is the most appropriate?<g id="t7">A.  Yours faithfully</g><g id="t8">B.  Yours sincerely</g><g id="t9">C.  All the best</g></p>
+  <p align="left"><b>3.</b>  When we know the recipient's surname, we use it in thesalutation, for example 'Dear Miss Barnes'. Which endingis the most appropriate?<g id="t10">A.  Yours faithfully</g><g id="t11">B.  Yours sincerely</g><g id="t12">C.  All the best</g></p>
+  <p align="left"><b>4.</b>  Which of the following openings are suitable for a formalletter?<g id="t13">A.  I am writing to enquire about ...</g><g id="t14">B.  I am writing to inform you ...</g><g id="t15">C.  Just a quick note to ...</g><g id="t16">D.  This is just to let you know ...</g><g id="t17">E.  Thanks for your letter. It was great to hear ...</g><g id="t18">F.  Thank you for your letter of ...</g><g id="t19">G.  I am writing to apply for ...</g><g id="t20">H.  I saw your advertisement in ...</g><g id="t21">I.  Sorry I haven't been in touch for so long but ...</g><g id="t22">J.  I am writing to apologise for ...</g></p>
+  <p align="left"><b>5.</b>  Which closing sentences are suitable for a formal letter?<g id="t23">A.  I would appreciate a reply by return of post.</g><g id="t24">B.  Hope to hear from you very soon.</g><g id="t25">C.  I'm really looking forward to hearing all your news.</g><g id="t26">D.  Drop me a line when you can.</g><g id="t27">E.  I look forward to hearing from you in the near future.</g><g id="t28">F.  With thanks for your help in this matter.</g><g id="t29">G.  Thanks for everything.</g><g id="t30">H.  Thank you for your kind attention.</g><g id="t31">I.  Please feel free to contact me for further information.</g><g id="t32">J.  Take care and do keep in touch!</g></p>
+  <p align="left"><b>6.</b>  Which of the following are found mainly in formal letters?<g id="t33">A.  colloquial language</g><g id="t34">B.  full forms (e.g. I am, I would like, I have written)</g><g id="t35">C.  short forms (e.g. I'm, I'd like, I've written)</g><g id="t36">D.  impersonal style and tone</g><g id="t37">E.  personal style and tone</g><g id="t38">F.  phrasal verbs</g><g id="t39">G.  short, simple sentences</g><g id="t40">H.  indirect questions</g><g id="t41">I.  polite phrases</g><g id="t42">J.  idioms</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

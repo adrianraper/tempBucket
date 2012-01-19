@@ -97,11 +97,13 @@
 <header>
 <div id="instruction">		
 		Questions 1-8. Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		<audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body"><img class="rightFloat" src="../media/ED_LN_005.jpg" mode="1" id="1001"/>
-<audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2a.mp3" mode="4" id="1002"/>
+
 <div id="gapfillTable">
 <h9>Lecture</h9>
 <p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Lecturer and large group</p>

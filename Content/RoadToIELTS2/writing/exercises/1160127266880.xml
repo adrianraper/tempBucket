@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a12" correct="true"/>
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a13" correct="true"/>
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a15" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a16" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a17" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a18" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a19" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a20" correct="true"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a21" correct="true"/>
+      <answer source="a22" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q11" block="b11">
+      <answer source="a22" correct="true"/>
+      <answer source="a21" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/EN_WTG01.jpg" mode="16" id="1004"  />Here are the notes that a student made for the writing task in the previous exercise. Put each point under the correct paragraph heading to make a plan for the composition.
+
+Writing Task 1
+</header>
+	
+<section id="noscroll">
+  <span id="a15" draggable="true">Can't open windows</span>
+  <span id="a22" draggable="true">Build structure to house bins</span>
+  <span id="a18" draggable="true">Noise wakes me at 6 a.m.</span>
+  <span id="a14" draggable="true">Bins spoil view from bedroom window</span>
+  <span id="a13" draggable="true">Writing to complain</span>
+  <span id="a17" draggable="true">Hotel staff leave bin lids open</span>
+  <span id="a12" draggable="true">Live next door</span>
+  <span id="a21" draggable="true">Arrange for rubbish collection after 8 a.m.</span>
+  <span id="a16" draggable="true">Can't sleep after 6 a.m.</span>
+  <span id="a19" draggable="true">Open bins attract stray cats and dogs</span>
+  <span id="a20" draggable="true">Rubbish collection is noisy and smelly</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/EN_GW_003.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <b>Paragraph 1 &#x2013; Reason for writing</b>
+    </font>
+  </p>
+  <input id="q1" type="droptarget"/>
+  <input id="q2" type="droptarget"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <b>Paragraph 2 &#x2013; Details of complaint</b>
+    </font>
+  </p>
+  <input id="q3" type="droptarget"/>
+  <input id="q4" type="droptarget"/>
+  <input id="q5" type="droptarget"/>
+  <input id="q6" type="droptarget"/>
+  <input id="q7" type="droptarget"/>
+  <input id="q8" type="droptarget"/>
+  <input id="q9" type="droptarget"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <b>Paragraph 3 &#x2013; Request for action</b>
+    </font>
+  </p>
+  <input id="q10" type="droptarget"/>
+  <input id="q11" type="droptarget"/>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Letters of complaint are often organised into three paragraphs: a short introductory paragraph stating the nature of the complaint, a longer paragraph giving details and another short paragraph saying what you think should be done.</font>
+  </p>
+</section>
+
+</body>
+</bento>

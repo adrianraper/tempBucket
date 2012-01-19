@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="know" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="think" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="don't see" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="begins" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="is told" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="is rescued" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="grow" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="leaves" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="unfolds" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="are" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="bring" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="go" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="see" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/AC_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the present simple of one of the verbs provided. You will use some of the verbs more than once, and in some cases you will need to use passive voice.
+
+Writing Task 1
+</header>
+	
+<section id="noscroll">
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/AC_GW_007.jpg" mode="1" id="1001"/>
+  <p align="left">Dear Justin,</p>
+  <p align="left">
+    <font color="#000000">You won't believe this but I've just sat through 'Titanic'. I <input id="q1"/> you and I swore we would never watch it but I really <input id="q2"/> you might be missing a great film if you <input id="q3"/> it!</font>
+  </p>
+  <p align="left">
+    <font color="#000000">It's not just about the sinking of the ship &#x2013; it's a romance and a disaster film rolled into one! It <input id="q4"/> in modern times and then the whole story <input id="q5"/> in flashbacks by Rose, a survivor of the tragedy. The main story is about how Rose, as a young woman, <input id="q6"/> from a suicide attempt by Jack, a passenger from the lower decks of the ship, and how they gradually <input id="q7"/> closer to each other. The plot is full of suspense and <input id="q8"/> you breathless in parts. You really can't help but get caught up in the emotions of their impossible situation and the tragedy that <input id="q9"/>, though there are a few corny moments! The two main stars and the supporting cast <input id="q10"/> excellent though. The costumes and the sets inside the ship are fabulous and really <input id="q11"/> the period to life.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">So do try and find a spare three hours or so and <input id="q12"/> and <input id="q13"/> it. I really do think you'll be pleasantly surprised!</font>
+  </p>
+  <p align="left">Looking forward to catching up on all your news.</p>
+  <p align="left">All the best,</p>
+  <p align="left">Maxine </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

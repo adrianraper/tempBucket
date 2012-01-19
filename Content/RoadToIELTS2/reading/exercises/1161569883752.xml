@@ -42,29 +42,7 @@
 	Complete the summary using words in bold at the top of the right hand column. Write your answers in the gaps. There are more words than spaces, so you will not use them all.
 	</div>
 </header>
-		<section id="noscroll">
-	
-  <span id="a1" draggable="true">community development</span>
-  <span id="a2" draggable="true">housing</span>
-  <span id="a3" draggable="true">rural life</span>
-  <span id="a4" draggable="true"> experienced volunteers</span>
-  <span id="a6" draggable="true">government agencies</span>
-  <span id="a7" draggable="true">construction</span>
-  <span id="a8" draggable="true">university graduates</span>
-  <span id="a9" draggable="true">partner villages</span>
-  <span id="a10" draggable="true">qualified professionals</span>
-  <span id="a11" draggable="true">different cultures</span>
-  <span id="a12" draggable="true">team leaders</span>
-  <span id="a13" draggable="true">medicine</span>
-  
-</section>
-<section id="body">
-<img class="leftFloat" src="../media/RD_SC_001.jpg" mode="1" id="1001"/>
-<div id="splitdrag">
-	<p><b>Global Citizens Network</b><br/>
-	GCN places volunteers on projects chosen by&#xA0;<input id="q1" type="droptarget"/>. The purpose of the projects is to encourage greater awareness of&#xA0;<input id="q2" type="droptarget"/>. Recent projects have been in the fields of&#xA0;<input id="q3" type="droptarget"/>, education and ecotourism. Anyone may apply to work as a volunteer but team leader positions are only open to&#xA0;<input id="q4" type="droptarget"/>.</p>
-	</div>
-</section>
+
 
 <section id="readingText">
 <h1>International development projects</h1>
@@ -95,8 +73,28 @@
 <p>Abridged book extracts relating to 'Global Citizens Network' (page 36), 'Operation Crossroads Africa' (pages 44-45), and 'Visions in Action' (pages 213-214) from Directory of International Voluntary Work by Louise Whetter and Victoria Pybus, Seventh Edition, Vacation Work Publications.</p>
 </section> 
 
-<section id="rt2001">
-  <p align="left">Make sure the words you have chosen to fill the gaps fit grammatically and agree with the information in the text.</p>
+		<section id="noscroll">
+	
+  <span id="a1" draggable="true">community development</span>
+  <span id="a2" draggable="true">housing</span>
+  <span id="a3" draggable="true">rural life</span>
+  <span id="a4" draggable="true"> experienced volunteers</span>
+  <span id="a6" draggable="true">government agencies</span>
+  <span id="a7" draggable="true">construction</span>
+  <span id="a8" draggable="true">university graduates</span>
+  <span id="a9" draggable="true">partner villages</span>
+  <span id="a10" draggable="true">qualified professionals</span>
+  <span id="a11" draggable="true">different cultures</span>
+  <span id="a12" draggable="true">team leaders</span>
+  <span id="a13" draggable="true">medicine</span>
+  
+</section>
+<section id="body">
+<img class="leftFloat" src="../media/RD_SC_001.jpg" mode="1" id="1001"/>
+<div id="splitdrag">
+	<p><b>Global Citizens Network</b><br/>
+	GCN places volunteers on projects chosen by&#xA0;<input id="q1" type="droptarget"/>. The purpose of the projects is to encourage greater awareness of&#xA0;<input id="q2" type="droptarget"/>. Recent projects have been in the fields of&#xA0;<input id="q3" type="droptarget"/>, education and ecotourism. Anyone may apply to work as a volunteer but team leader positions are only open to&#xA0;<input id="q4" type="droptarget"/>.</p>
+	</div>
 </section>
 
 </body>

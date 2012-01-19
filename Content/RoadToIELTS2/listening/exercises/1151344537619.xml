@@ -12,25 +12,7 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
-	#wrapper{
-	position:absolute;
 
-    width:1000px;
-}
-#part1{
-Position: relative;
-padding-top: 10px;
-padding-left: -22px;
-line-height:22em;
-}
-
-#part1 li{
-	padding-right: 200%;
-}
-
-#part1 p{
-	padding-right: 200%;
-}
 	</style>
 	
 	
@@ -138,13 +120,15 @@ line-height:22em;
 <header>
 <div id="instruction">
 Listen to the recording, which will play automatically, and follow the instructions. According to the speaker, when did the following take place? For each question, click to choose the appropriate answer.
+  <audio controls="hidden"  loop="1" autoplay="true" src="../media/AC_LN2.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body">
 
   <img class="rightFloat" src="../media/AC_LN_003.jpg" mode="1" id="1001"/>
-  <audio controls="hidden"  loop="1" autoplay="true" src="../media/AC_LN2.mp3" mode="4" id="1002"/>
+
  <div id="wrapper">
 
  <div id="part1">

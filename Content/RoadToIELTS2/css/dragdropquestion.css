@@ -323,3 +323,84 @@ h8{
 	width: 300px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/* specify for Writing 1 task1 Dealing with numbers */
+#wrapper{
+    width:700px;
+	height:500px;
+	}
+
+#g1 { 
+	position: relative;
+	padding-top: 20px;
+	line-height:30em;
+	}
+
+#g2 {
+	position: relative;
+	padding-left:200px;
+	padding-top: 20px;
+	line-height:30em;
+	}
+
+#g3 {
+	position: relative;
+	padding-left:400px;
+	padding-top: 20px;
+	line-height:30em;
+	}
+
+#g4 {
+	position: relative;
+	padding-top: 170px;
+	line-height:30em;
+	}
+
+#g5 {
+	position: relative;
+	padding-top: 170px;
+	padding-left: 200px;
+	line-height:30em;
+	}
+
+.leftFloat {
+	display: block;
+	float: left;
+	padding-top: 20px;
+	padding-right: 200px;
+	padding-left: 40px;
+	}
+	/*-----------------------------------------------------------------------------------------------*/
+/* Specify for Writing Unit 1 task 2 Choosing an introduction */
+.outerbox {
+	display:block;
+	padding-left:-40px;
+	}
+
+.audio {
+	position: relative;
+	float:left;
+	width:45px;
+	padding-left:-25px;
+	padding-top:10px;
+	}
+
+.questiondiv  {
+	display:block;
+	line-height:22em;
+	padding-right:370px;
+	}
+	/*-----------------------------------------------------------------------------------------------*/
+	/* Specify for FV Listening Unit 7 Fill in the table (2) */
+	#disease1 {
+	float: left;
+	width: 220px;
+	line-height: 25em;
+	padding-left: -20px;
+	}
+	
+	#disease2 {
+	float: left;
+	width: 170px;
+	line-height: 25em;
+	}
+	/*-----------------------------------------------------------------------------------------------*/

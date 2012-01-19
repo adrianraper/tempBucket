@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/TT_GW_007.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <b>You are planning a holiday in Australia. You have been given the name and address of a hotel in the centre of Sydney and would like further information.</b>
+  </p>
+  <p align="left">
+    <b>Write a letter to the hotel. Ask for the availability of the rooms and the hotel's facilities. Find out if the hotel arranges day trips and ask them to send you a brochure.</b>
+  </p>
+  <p align="left">You do <b>NOT</b> need to write your own address.</p>
+  <p align="left">
+    <font color="#000000">Begin your letter as follows:</font>
+  </p>
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

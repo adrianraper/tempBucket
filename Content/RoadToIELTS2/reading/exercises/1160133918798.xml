@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Questions 1-9. Using the passage on the left, answer the questions on the right.
+		
+</header>
+	
+<section id="body">
+  <p align="left">The reading text provides information about benefits offered to Valleyfair employees.</p>
+  <p align="left"><b>1-4.</b>  Which FOUR employee benefits arecovered?<g id="t1">A.  free park admission</g><g id="t2">B.  discounts</g><g id="t3">C.  opportunities for promotion</g><g id="t4">D.  incentive schemes</g><g id="t5">E.  social events</g><g id="t6">F.  insurance</g><g id="t7">G.  sporting events</g><g id="t8">H.  opportunities for scholarships</g></p>
+  <p align="left">The reading text provides information about standards of appearance and conduct required of Valleyfair employees.</p>
+  <p align="left"><b>5-9.</b>  Which FIVE employee standards arecovered?<g id="t9">A.  dress</g><g id="t10">B.  jewellery</g><g id="t11">C.  footwear</g><g id="t12">D.  grooming</g><g id="t13">E.  honesty</g><g id="t14">F.  punctuality</g><g id="t15">G.  politeness</g><g id="t16">H.  personal hygiene</g><g id="t17">I.  company loyalty</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <font color="#0000ff">
+      <b>Valleyfair</b>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#000000">Want to take your summer job to new heights? Check out Valleyfair, and feel the power of fun! You will work with 1,500 employees from all over the world, while enjoying Valleyfair's park atmosphere and all its benefits. You can choose from a variety of exciting positions in many different departments, at all levels of fun.</font>
+  </p>
+  <p align="left">Valleyfair employees get into the park free with their valid Valleyfair ID. You will also earn complimentary passes to give to your family and friends. You can earn up to 6 complimentary passes.</p>
+  <p align="left">Our Employee Accommodations Department provides housing assistance to employees seeking housing. On-site Housing provides sleeping quarters for approximately 420 employees. Since the number of spaces for on-site housing is limited, and offered on a first-come first-served basis, you may need to explore other housing options.</p>
+  <p align="left">
+    <font color="#000000">Valleyfair rewards employees for the number of hours they work. There are four levels of achievement: 250, 400, 700 and 1000 hours. Prizes are awarded at each level. The more hours you work, the bigger the prizes.</font>
+  </p>
+  <p align="left">The Weekend Work Incentive Program is designed to help employees who are still in school with expenses while working weekends. Employees earn a specific amount of money that is above and beyond their hourly wage.</p>
+  <p align="left">Several leadership positions are available in each department every season. If chosen for one or these positions, you have the opportunity to build your communication skills, conduct meetings and ensure your particular location is being operated to its full capacity.</p>
+  <p align="left">Several times during the season, after the park closes, we open some of the major rides for you and several hundred of your co-workers. At most Ride Night events, we also serve snacks and have entertainment. We also offer Game Nights when you can test your skills on several of the games. Prizes are awarded to the employees with the highest skill level. And just when you think "these hot summer days will never end", we'll throw in a Waterpark Night. We open the waterpark attractions after the park closes, serve snacks and have entertainment.</p>
+  <p align="left">After the summer has ended, we keep having fun. In January past employees are invited to a party. The Reunion and Rehire party is a great opportunity to see the friends you made during the summer and also gives you a chance to talk to the managers about the up-coming season.</p>
+  <p align="left"><b>Employee Standards</b>Valleyfair maintains high standards for our employees. These standards may seem exceptionally high, but they are what our guests have come to expect from the park and its employees over the years.</p>
+  <p align="left">Two sets of apparel are issued to each employee. Most outfits consist of shorts and a shirt. The apparel is comfortable and practical for the intended job.</p>
+  <p align="left">Most Valleyfair employees are required to wear white tennis shoes and white socks. Shoes must be laced and tied. Each department will provide specifics.</p>
+  <p align="left">Men's hair must be neatly trimmed and maintained. Women's hair must be of a conservative nature. We recommend women with long hair wear it pulled back for comfort.</p>
+  <p align="left">Valleyfair's guests expect the park to be fully functioning when the gates open each morning. In some cases we do not have the flexibility to accommodate employees who are habitually late. Tardiness not only affects the employee but also affects the employee's co-workers and our guests.</p>
+  <p align="left">Each person hired to work at Valleyfair must be a "people person". Excellent interpersonal skills are required, and are critical components for win-win employee/guest experiences.</p>
+  <p align="left">Valleyfair's most effective method of public relations is courtesy. Each guest deserves to be treated with respect as an individual. We want each one to feel welcome and special.</p>
+  <p align="left">Valleyfair's reputation for being one of the cleanest parks in the nation is due to the efforts of our employees. All employees have a basic responsibility to keep their work area, the park and behind the scenes areas clean.</p>
+  <p align="left">Every Valleyfair employee completes several phases of training covering extensive information. Each employee is expected to thoroughly read all the training material provided and ask questions if they don't understand something.</p>
+  <p align="left">
+    <font color="#000000">Valleyfair, Pam Amundson, http://www.valleyfair.com/</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

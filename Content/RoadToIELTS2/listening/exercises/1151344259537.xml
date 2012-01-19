@@ -66,11 +66,13 @@
 <header>
 <div id="instruction">
 		Questions 1-4. Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters A-G.
+		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body">
-  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
+
   <img class="rightFloat" src="../media/ST_LN_005.jpg" mode="1" id="1001"/>
   
   

@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -12,17 +13,12 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking overwriteanswers="true"/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
+
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="second-class citizens" correct="true"/>
@@ -63,11 +59,7 @@
 		
 </header>
 	
-<section id="body">
-  <img class="leftFloat" src="../media/SS_AR_005.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList"><tab/><b>7</b>What will the status of the 'mobility have-nots' be in a hypermobile society?<input id="q1"/><tab/><b>8</b>What is the minimum recommended age for children to be out of the house without an adult?<input id="q2"/><tab/><b>9</b>Give the name of ONE scheme which tries to foster traditional community values.<input id="q3"/><tab/><b>10</b>List TWO characteristics of modern police methods.<input id="q4"/><tab/><b>11</b><input id="q5"/><tab/><b>12</b>Which political institutions are losing power as a result of increasing mobility in society?<input id="q6"/></ol>
-</section>
+
 
 <section id="readingText">
   <p align="left">
@@ -98,8 +90,24 @@
   </p>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">Read the instructions carefully. In this case you can use a number but not more than two words from the text.</font>&nbsp;Question 7 'Status' means your position in society and how much power, influence and freedom it brings you. Which section will you read to find the answer?&nbsp;Question 8Which section mostly discusses the effects of hypermobility on children?&nbsp;Question 9The word 'scheme' here means an official project organised to achieve some goal. Such schemes are often given names or titles, which describe that goal. Names begin with capital letters.&nbsp;Questions 10 and 11The order you answer these in doesn't matter.&nbsp;Question 12What do you think is meant by 'political institutions'? Can you name any?</p>
+<section id="body">
+  <img class="leftFloat" src="../media/SS_AR_005.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
+  
+  <p class="hangingIndent2">7.<tab/>What will the status of the 'mobility have-nots' be in a hypermobile society?<br/><input id="q1"/></p>
+  <p class="linespace"></p>
+  <p class="hangingIndent2">8.<tab/>What is the minimum recommended age for children to be out of the house without an adult?<br/><input id="q2"/></p>
+  <p class="linespace"></p>
+  <p class="hangingIndent2">9.<tab/>Give the name of ONE scheme which tries to foster traditional community values.<br/><input id="q3"/></p>
+  <p class="linespace"></p>
+  <p class="hangingIndent2">10.<tab/>List TWO characteristics of modern police methods.<br/><input id="q4"/></p>
+  <p class="linespace"></p>
+  <p class="hangingIndent2">11.<tab/><input id="q5"/></p>
+  <p class="linespace"></p>
+  <p class="hangingIndent2">12.<tab/>Which political institutions are losing power as a result of increasing mobility in society?<br/><input id="q6"/></p>
+  <p class="linespace"></p>
+  </ol>
 </section>
+
 </body>
 </bento>

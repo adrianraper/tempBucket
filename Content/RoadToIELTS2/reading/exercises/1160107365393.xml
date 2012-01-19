@@ -63,12 +63,7 @@
 	</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_TP_001.jpg" mode="1" id="1001"/>
-<div id="splitquestionList">
-  <p align="left">Computer technology, first used by the&#xA0;<input id="q1"/>, has had a major effect on the&#xA0;<input id="q2"/>&#xA0;of the newspaper industry. In the past, the typesetting process required a&#xA0;<input id="q3"/>&#xA0;and printing was very&#xA0;<input id="q4"/>. Production costs have since fallen due to the use of advanced computer systems for both&#xA0;<input id="q5"/>&#xA0;and producing newspapers. Journalists now use the&#xA0;<input id="q6"/>&#xA0;to input their material directly into a computer. Pages are laid out on screen before being transferred to&#xA0;<input id="q7"/>&#xA0;or film, from which&#xA0;<input id="q8"/>&#xA0;for the printing press are made. Using a technique known as&#xA0;<input id="q9"/>, the images on these are then transferred to a&#xA0;<input id="q10"/>&#xA0;and from there on to the paper.</p>
-</div>
-</section>
+
 
 <section id="readingText">
 	<h8>The Written Word</h8>
@@ -81,8 +76,12 @@
 	<p>The Media in Britain, Foreign and Commonwealth Office.</p>
 </section>
 
-<section id="rt2001">
-	<p align="left">This text is a brief introduction to the newspaper industry in Britain. There's a lot of information here that you don't need for the exercise, so the first thing you should do is read the summary, ignoring the gaps, and find the relevant section in the text to concentrate on. Can you find the right section? Question 1You're looking for who first used this technology. Question 2Who or what was most influenced by this change? Question 3What was needed for this technique? Question 4What kind of word or phrase fits here grammatically? Question 5You're looking for another important process in newspaper production. Question 6The definite article 'the' before the gap should tell you that this is the name of a technique. Question 7You're looking for an alternative to 'film'. There are two possible answers. Question 8What kind of word fits here grammatically? Question 9Again, you need the name of a technique. Don't worry if you don't know what it means. Question 10Search for the word transferred in the text and the answer is close by. </p><p align="left"><font size="2"></font></p>
+<section id="body">
+<img class="leftFloat" src="../media/RD_TP_001.jpg" mode="1" id="1001"/>
+<div id="splitquestionList">
+  <p align="left">Computer technology, first used by the&#xA0;<input id="q1"/>, has had a major effect on the&#xA0;<input id="q2"/>&#xA0;of the newspaper industry. In the past, the typesetting process required a&#xA0;<input id="q3"/>&#xA0;and printing was very&#xA0;<input id="q4"/>. Production costs have since fallen due to the use of advanced computer systems for both&#xA0;<input id="q5"/>&#xA0;and producing newspapers. Journalists now use the&#xA0;<input id="q6"/>&#xA0;to input their material directly into a computer. Pages are laid out on screen before being transferred to&#xA0;<input id="q7"/>&#xA0;or film, from which&#xA0;<input id="q8"/>&#xA0;for the printing press are made. Using a technique known as&#xA0;<input id="q9"/>, the images on these are then transferred to a&#xA0;<input id="q10"/>&#xA0;and from there on to the paper.</p>
+</div>
 </section>
+
 </body>
 </bento>

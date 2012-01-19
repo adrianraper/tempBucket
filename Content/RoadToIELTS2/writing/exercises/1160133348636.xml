@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="if the rooms have" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="Can I pay" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="which credit cards you accept" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="Is there" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="if the hotel has" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="Do I have to pay" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="what time" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="Are there" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="if you could" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="do you serve" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="if there is any" correct="true"/>
+      <answer value="if there is" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="does it take" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete each sentence so that it means the same as the sentence before it. Change the direct questions to indirect questions, and vice versa.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/TT_GW_005.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">Do the rooms have a view of the sea?Please let me know <input id="q1"/> a view of the sea.</li>
+    <li id="2">I would like to know if I can pay by credit card.<input id="q2"/> by credit card?</li>
+    <li id="3">Which credit cards do you accept?Could you let me know <input id="q3"/>?</li>
+    <li id="4">I was wondering if there is a car park.<input id="q4"/> a car park?</li>
+    <li id="5">Does the hotel have 24-hour room service?I would like to know <input id="q5"/> 24-hour room service.</li>
+    <li id="6">Please let me know whether I have to pay a deposit.<input id="q6"/> a deposit?</li>
+    <li id="7">What time does the hotel restaurant close?Can you tell me <input id="q7"/> the hotel restaurant closes?</li>
+    <li id="8">Could you let me know if there are any rooms available in August?<input id="q8"/> any rooms available in August?</li>
+    <li id="9">Can you send me a brochure?I would be grateful <input id="q9"/> send me a brochure.</li>
+    <li id="10">I would like to know what time you serve breakfast.What time <input id="q10"/> breakfast?</li>
+    <li id="11">Is there air conditioning in the rooms?I was wondering <input id="q11"/> air conditioning in the rooms.</li>
+    <li id="12">Can you tell me how long it takes to get to the hotel from the airport?How long <input id="q12"/> to get to the hotel from the airport?</li>
+  </ol>
+</section>
+
+</body>
+</bento>

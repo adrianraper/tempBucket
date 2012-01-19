@@ -81,32 +81,7 @@
 	</div>
 </header>
 	
-<section id="body">
-  
-  <ol id="splitquestionList">
-    
-    <li id="q1">Bath has more in common with Italian cities than with other English cities.<list class="answerList"><li><a id="a1">Yes</a></li><li><a id="a2">No</a></li><li><a id="a3">Not given</a></li></list></li>
-    <p class="linespace"></p>
-    <li id="q2">Bath is the most beautiful city in Europe.<list class="answerList"><li><a id="a4">Yes</a></li><li><a id="a5">No</a></li><li><a id="a6">Not given</a></li></list></li>
-    <p class="linespace"></p>
-    <li id="q3">What makes Bath a special city is its architecture.<list class="answerList"><li><a id="a7">Yes</a></li><li><a id="a8">No</a></li><li><a id="a9">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q4">Residents of Bath tend to be impatient drivers.<list class="answerList"><li><a id="a10">Yes</a></li><li><a id="a11">No</a></li><li><a id="a12">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q5">The best way to travel to Bath is by train.<list class="answerList"><li><a id="a13">Yes</a></li><li><a id="a14">No</a></li><li><a id="a15">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q6">The best way to explore Bath is on an organised walking tour.<list class="answerList"><li><a id="a16">Yes</a></li><li><a id="a17">No</a></li><li><a id="a18">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q7">It is essential to find out about the history of Bath before you visit.<list class="answerList"><li><a id="a19">Yes</a></li><li><a id="a20">No</a></li><li><a id="a21">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q8">The audio tour of the Roman baths provides very detailed information about the site.<list class="answerList"><li><a id="a22">Yes</a></li><li><a id="a23">No</a></li><li><a id="a24">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q9">It is advisable to visit the Roman baths and the Museum of Costume on different days.<list class="answerList"><li><a id="a25">Yes</a></li><li><a id="a26">No</a></li><li><a id="a27">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q10">There are too many museums in Bath.<list class="answerList"><li><a id="a28">Yes</a></li><li><a id="a29">No</a></li><li><a id="a30">Not given</a></li></list> </li>
-	<p class="linespace"></p>
-  </ol>
-</section>
+
 
 <section id="readingText">
 <img class="photo2" src="../media/RD_BB_001.jpg" mode="1" id="1001"/>
@@ -147,10 +122,31 @@
   <p>Richard Girling, Sunday Times.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This text is about what to do and what to see in the English city of Bath. However, the report is quite a personal account and the writer expresses his own views on how best to spend your time there. These opinions are often implied, rather than stated clearly. You sometimes have to 'read between the lines' to understand the author's views.</font>
-  </p>
+<section id="body">
+  
+  <ol id="splitquestionList">
+    
+    <li id="q1">Bath has more in common with Italian cities than with other English cities.<list class="answerList"><li><a id="a1">Yes</a></li><li><a id="a2">No</a></li><li><a id="a3">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q2">Bath is the most beautiful city in Europe.<list class="answerList"><li><a id="a4">Yes</a></li><li><a id="a5">No</a></li><li><a id="a6">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q3">What makes Bath a special city is its architecture.<list class="answerList"><li><a id="a7">Yes</a></li><li><a id="a8">No</a></li><li><a id="a9">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q4">Residents of Bath tend to be impatient drivers.<list class="answerList"><li><a id="a10">Yes</a></li><li><a id="a11">No</a></li><li><a id="a12">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q5">The best way to travel to Bath is by train.<list class="answerList"><li><a id="a13">Yes</a></li><li><a id="a14">No</a></li><li><a id="a15">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q6">The best way to explore Bath is on an organised walking tour.<list class="answerList"><li><a id="a16">Yes</a></li><li><a id="a17">No</a></li><li><a id="a18">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q7">It is essential to find out about the history of Bath before you visit.<list class="answerList"><li><a id="a19">Yes</a></li><li><a id="a20">No</a></li><li><a id="a21">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q8">The audio tour of the Roman baths provides very detailed information about the site.<list class="answerList"><li><a id="a22">Yes</a></li><li><a id="a23">No</a></li><li><a id="a24">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q9">It is advisable to visit the Roman baths and the Museum of Costume on different days.<list class="answerList"><li><a id="a25">Yes</a></li><li><a id="a26">No</a></li><li><a id="a27">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q10">There are too many museums in Bath.<list class="answerList"><li><a id="a28">Yes</a></li><li><a id="a29">No</a></li><li><a id="a30">Not given</a></li></list> </li>
+	<p class="linespace"></p>
+  </ol>
 </section>
 
 </body>

@@ -64,43 +64,7 @@
 	</div>
 </header>
 	
-<section id="body">
-  <ol id="splitquestionList">
-    <li id="1">Which book is a love story?<br/>
-		<input id="q1"/></li>
-	<p class="linespace"></p>
-    <li id="2">Which book is autobiographical?<br/>
-		<input id="q2"/></li>
-	<p class="linespace"></p>
-    <li id="3">Which book features criminal acts?<br/>
-		<input id="q3"/></li>
-	<p class="linespace"></p>
-    <li id="4">Which book describes the history and development of a place?<br/>
-		<input id="q4"/></li>
-	<p class="linespace"></p>
-    <li id="5">Which book is aimed at children?<br/>
-		<input id="q5"/></li>
-	<p class="linespace"></p>
-    <li id="6">Which book discusses an area of scientific research?<br/>
-		<input id="q6"/></li>
-	<p class="linespace"></p>
-    <li id="7">Which book is set in space?<br/>
-		<input id="q7"/></li>
-	<p class="linespace"></p>
-    <li id="8">Which TWO books share the theme of cooking?<br/>
-		<input id="q8"/><br/>
-		<input id="q9"/></li>
-	<p class="linespace"></p>
-    <li id="9">Which TWO books feature an accident?<br/>
-		<input id="q10"/><br/>
-		<input id="q11"/></li>
-	<p class="linespace"></p>
-    <li id="10">Which TWO books would interest readers who want to develop a practical skill?<br/>
-		<input id="q12"/><br/>
-		<input id="q13"/></li>
-	<p class="linespace"></p>
-  </ol>
-</section>
+
 
 <section id="readingText">
 <img class="photo2" src="../media/RD_WBC_001.jpg" mode="1" id="1001"/>
@@ -146,10 +110,42 @@ Subtitled 'the autobiography of a species in 23 chapters' (one for each chromoso
 </div>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This exercise shouldn't take too long, but does need care. There are a few 'traps' here and there. Skim for key words, but don't assume that you've found the correct match because you've found the key words. Read the description carefully. Also, don't be fooled by the titles. Some of these books are not what you think they are at first.</font>
-  </p>
+<section id="body">
+  <ol id="splitquestionList">
+    <li id="1">Which book is a love story?<br/>
+		<input id="q1"/></li>
+	<p class="linespace"></p>
+    <li id="2">Which book is autobiographical?<br/>
+		<input id="q2"/></li>
+	<p class="linespace"></p>
+    <li id="3">Which book features criminal acts?<br/>
+		<input id="q3"/></li>
+	<p class="linespace"></p>
+    <li id="4">Which book describes the history and development of a place?<br/>
+		<input id="q4"/></li>
+	<p class="linespace"></p>
+    <li id="5">Which book is aimed at children?<br/>
+		<input id="q5"/></li>
+	<p class="linespace"></p>
+    <li id="6">Which book discusses an area of scientific research?<br/>
+		<input id="q6"/></li>
+	<p class="linespace"></p>
+    <li id="7">Which book is set in space?<br/>
+		<input id="q7"/></li>
+	<p class="linespace"></p>
+    <li id="8">Which TWO books share the theme of cooking?<br/>
+		<input id="q8"/><br/>
+		<input id="q9"/></li>
+	<p class="linespace"></p>
+    <li id="9">Which TWO books feature an accident?<br/>
+		<input id="q10"/><br/>
+		<input id="q11"/></li>
+	<p class="linespace"></p>
+    <li id="10">Which TWO books would interest readers who want to develop a practical skill?<br/>
+		<input id="q12"/><br/>
+		<input id="q13"/></li>
+	<p class="linespace"></p>
+  </ol>
 </section>
 
 </body>

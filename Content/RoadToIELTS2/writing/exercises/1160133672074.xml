@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a12" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a13" correct="true"/>
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a13" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a14" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a14" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a13" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a16" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="a17" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a18" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="a18" correct="true"/>
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="a20" correct="true"/>
+      <answer source="a19" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/AC_WTG01.jpg" mode="16" id="1004"  />Here is a list of points that a student brainstormed for the writing task in the previous exercise. Put each point under the most appropriate heading to make a plan for the letter.
+
+Writing Task 1
+</header>
+	
+<section id="noscroll">
+  <span id="a14" draggable="true">Book's genre</span>
+  <span id="a11" draggable="true">Name of author</span>
+  <span id="a16" draggable="true">Main characters</span>
+  <span id="a17" draggable="true">Setting</span>
+  <span id="a12" draggable="true">Reason for writing</span>
+  <span id="a13" draggable="true">Title of book</span>
+  <span id="a15" draggable="true">Reason(s) I enjoyed the book</span>
+  <span id="a18" draggable="true">Plot</span>
+  <span id="a20" draggable="true">Recommend friend to read book</span>
+  <span id="a19" draggable="true">Offer to lend friend book</span>
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/AC_GW_003.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <b>Opening paragraph</b>
+    <input id="q1" type="droptarget"/>
+    <input id="q2" type="droptarget"/>
+    <input id="q3" type="droptarget"/>
+    <input id="q4" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Body of letter</b>
+    <input id="q5" type="droptarget"/>
+    <input id="q6" type="droptarget"/>
+    <input id="q7" type="droptarget"/>
+    <input id="q8" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Closing paragraph</b>
+    <input id="q9" type="droptarget"/>
+    <input id="q10" type="droptarget"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

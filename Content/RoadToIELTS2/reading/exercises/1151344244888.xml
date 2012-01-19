@@ -62,27 +62,7 @@
 		</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_MS_001.jpg" mode="1" id="1003"  />
 
-<div id="splitquestionList">
-<p><b>Which SIX of the following strengths are mentioned?</b></p>
-    <list class="answerList">    
-	<li><a id="t1">It reduces the turbidity of the water.</a></li>
-    <li><a id="t2">It does not spoil the taste of the water.</a></li>
-    <li><a id="t3">It is portable.</a></li>
-    <li><a id="t4">It kills all pathogens.</a></li>
-    <li><a id="t5">It has a residual effect.</a></li>
-    <li><a id="t6">It is ideal for keeping water disinfected long term.</a></li>
-    <li><a id="t7">It needs little maintenance.</a></li>
-	<li><a id="t8">It is environmentally friendly.</a></li>
-    <li><a id="t9">It does not pose a health risk.</a></li>
-    <li><a id="t10">It is energy-efficient.</a></li>
-    <li><a id="t11">It is a well-proven method.</a></li>
-	<p class="linespace"></p>
-	</list>
-	</div>
-</section>
 
 <section id="readingText">
 <h8>To Drink Without Risk</h8>
@@ -109,12 +89,26 @@
 <p>Ashok J. Gadgil and Leslie J. Shown, 1st February 1995, Solar Cooking Archive web site.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">What you are looking for in this exercise are the strengths of the UV disinfection system in comparison to other treatment methods or sources of drinkable water. This is the topic of the third section of the passage.Therefore, any statement in the list, which refers to information from another part of the text is probably not a strength of the system, compared to others. For each statement you should ask yourself, 'Does this make the UV system better than others?' If the answer is 'no' or 'don't know', then this is not a 'strength' of the system.</p>
-  <p align="left">A It reduces the turbidity of the water.'Turbidity' is explained in the glossary.</p>
-  <p align="left">C It is portable.If something is 'portable' it can be moved from one place to another. Don't confuse this with 'potable', another term, which is explained in the glossary.</p>
-  <p align="left">E It has a residual effect.You don't need to know what residual effect means in order to answer this question. However, if you read carefully, the term is explained in the passage.</p>
-  <p align="left">F It is ideal for keeping water disinfected long term.</p>
+<section id="body">
+<img class="leftFloat" src="../media/RD_MS_001.jpg" mode="1" id="1003"  />
+
+<div id="splitquestionList">
+<p><b>Which SIX of the following strengths are mentioned?</b></p>
+    <list class="answerList">    
+	<li><a id="t1">It reduces the turbidity of the water.</a></li>
+    <li><a id="t2">It does not spoil the taste of the water.</a></li>
+    <li><a id="t3">It is portable.</a></li>
+    <li><a id="t4">It kills all pathogens.</a></li>
+    <li><a id="t5">It has a residual effect.</a></li>
+    <li><a id="t6">It is ideal for keeping water disinfected long term.</a></li>
+    <li><a id="t7">It needs little maintenance.</a></li>
+	<li><a id="t8">It is environmentally friendly.</a></li>
+    <li><a id="t9">It does not pose a health risk.</a></li>
+    <li><a id="t10">It is energy-efficient.</a></li>
+    <li><a id="t11">It is a well-proven method.</a></li>
+	<p class="linespace"></p>
+	</list>
+	</div>
 </section>
 
 </body>

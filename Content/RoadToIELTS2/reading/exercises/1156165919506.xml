@@ -49,27 +49,7 @@
 	</div>
 </header>
 	
-<section id="body">
-  <ol id="splitquestionList">
-    <li id="1">The truth probably lies between two extremes.<br/>
-	<input id="q1"/></li>
-	<p class="linespace"></p>
-    <li id="2">How a theory was disproved.<br/>
-	<input id="q2"/></li>
-	<p class="linespace"></p>
-    <li id="3">The problem of defining communication.<br/>
-	<input id="q3"/></li>
-	<p class="linespace"></p>
-    <li id="4">Two theories of the origin of language.<br/>
-	<input id="q4"/></li>
-	<p class="linespace"></p>
-    <li id="5">The difference between animal noises and language.<br/>
-	<input id="q5"/></li>
-	<p class="linespace"></p>
-    <li id="6">Examples of how a particular species communicates.<br/>
-	<input id="q6"/></li>
-  </ol>
-</section>
+
 
 <section id="readingText">
 <img class="photo2" src="../media/LC_AR_002.jpg" mode="1" id="1001"/>
@@ -115,7 +95,27 @@
 
 </section>
 
-<section id="rt2001"><p align="left"><font color="#000000">Questions 1-6 - Matching (information to paragraphs)</font></p>First look through the questions and then skim through the passage to get a general idea of what it's about. It's quite a complex text, but you shouldn't worry if you don't fully understand all the ideas and concepts it discusses. Next, read the first statement in Question 1 and skim quickly through the passage again trying to find the paragraph that expresses the same piece of information. Do the same with the other statements.<p align="left">Notice there are eight paragraphs but only six questions, so there are two paragraphs that don't have matching statements.</p><p align="left"><font color="#000000">Answering the following questions will help you focus on what you're looking for in the text:</font></p><p align="left">Question 1The truth about what, do you think?</p><p align="left">Question 2What do you think the theory was about?</p><p align="left">Question 3How would you define the word 'communication'?</p><p align="left">Question 4How do you think humans acquired language?</p><p align="left">Question 5 What might those differences be?</p><p align="left">Question 6 How many different types of animals do you think are discussed in this paragraph? </p></section>
+<section id="body">
+  <ol id="splitquestionList">
+    <li id="1">The truth probably lies between two extremes.<br/>
+	<input id="q1"/></li>
+	<p class="linespace"></p>
+    <li id="2">How a theory was disproved.<br/>
+	<input id="q2"/></li>
+	<p class="linespace"></p>
+    <li id="3">The problem of defining communication.<br/>
+	<input id="q3"/></li>
+	<p class="linespace"></p>
+    <li id="4">Two theories of the origin of language.<br/>
+	<input id="q4"/></li>
+	<p class="linespace"></p>
+    <li id="5">The difference between animal noises and language.<br/>
+	<input id="q5"/></li>
+	<p class="linespace"></p>
+    <li id="6">Examples of how a particular species communicates.<br/>
+	<input id="q6"/></li>
+  </ol>
+</section>
 
 </body>
 </bento>

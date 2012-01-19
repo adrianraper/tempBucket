@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="E" correct="true"/>
+      <answer value="e" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="J" correct="true"/>
+      <answer value="j" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="B" correct="true"/>
+      <answer value="b" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="I" correct="true"/>
+      <answer value="i" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="D" correct="true"/>
+      <answer value="d" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="G" correct="true"/>
+      <answer value="g" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="F" correct="true"/>
+      <answer value="f" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	The reading passage on the left has ten paragraphs A-J. Which paragraphs contain the information (1-7) on the right? Write the appropriate letters (A-J) in the gaps 1-7. Only write ONE letter for each answer.
+</header>
+	
+<section id="body">
+  <br/>
+  <ol id="questionList">
+    <li id="1">a definition of body language  <input id="q1"/></li>
+    <li id="2">how excessive gesturing can be avoided  <input id="q2"/></li>
+    <li id="3">the meaning of impression management  <input id="q3"/></li>
+    <li id="4">types of posture to avoid  <input id="q4"/></li>
+    <li id="5">the format of the start of an interview  <input id="q5"/></li>
+    <li id="6">appropriate and inappropriate kinds of eye contact  <input id="q6"/></li>
+    <li id="7">the relative importance of verbal and non-verbal behaviour  <input id="q7"/></li>
+  </ol>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <b>Success in Four Minutes or Less</b>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>A  </b>
+      <font color="#000000">A job interview typically lasts anything up to forty-five minutes, but it appears that the length of an interview may, in reality, be academic. Why? Because researchers both in Canada and at Aston University in the UK have shown that interviewers make their minds up about a candidate's personality within just the first four minutes of an interview. Other experts reckon it takes only 120 seconds &#x2013; not long by anyone's standards. So perhaps we should forget about the length of the interview for a moment and concentrate on how to make the best use of those crucial first few minutes &#x2013; on how to make the right sort of impression. Psychologists call it 'impression management'.<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>B  </b>
+      <font color="#000000">The term refers to 'conscious or unconscious attempts to control the images that are projected in &#x2026; social interactions' (Schlenker, 1980). And if there are only four minutes in which to do this at an interview, it's important to look at how a good impression might be managed in those few decisive moments. According to Reed Personnel, a common remark made by employers is 'Above all, it's the first impression that counts.'<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>C  </b>The right sort of impact at the start of an interview is a central factor in making a success of it. This isn't just a commonly held belief. Findings by researchers at Sheffield University confirm that those of us most likely to succeed are the people who are most skilled at impression management.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>D  </b>
+      <font color="#000000">What is rather disconcerting about this in the interview situation is that interviewers normally do all the talking in the first few minutes. They introduce themselves and show the candidate where to sit; they settle down and shuffle papers, which takes up a few more seconds; and then they normally chat about the job and the ground they intend to cover. Often all candidates have said by this stage is "Hello" or "Good morning/afternoon" and one or two "Thank you's" &#x2013; if we are lucky. Not a word about qualifications for the job, not even time to utter experience's first syllable. So it is hardly likely to be the brilliance of our conversation which informs those important first impressions.<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>E  </b>
+      <font color="#000000">Since we have so little chance to speak in the opening four minutes, body language &#x2013; non-verbal behaviour, all those silent messages which we send out intentionally or which slip through in a split second by accident &#x2013; is left to do the talking for us. Our body language creates the first impression as firmly as if it had been set in concrete and steel plate.<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>F  </b>Psychology professor Albert Mehrabian looked at what it is that makes the strongest impression on the people we meet. He found that our impact depends only 7 per cent on what we actually say, 38 per cent on how we say the words and use our voice but over half, 55 per cent, on the unspoken signals we transmit. The Professor of Communication at the University of Pennsylvania, Ray Birdwhistell, considers the figure even higher. He reckons that almost two-thirds of our interaction during a conversation is at the non-verbal level.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>G  </b>
+      <font color="#000000">Frequent eye contact is one aspect of non-verbal behaviour which has been found to go down well with interviewers and create a good impression (Parsons and Liden, 1984) &#x2013; depending on how it's done. Staring fixedly at someone is interpreted as a sign of hostility. Avoiding all eye contact is worse.<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff">
+      <b>H  </b>
+      <font color="#000000">Researchers have shown that job applicants who maintain eye contact are judged by interviewers to be alert, assertive, dependable, confident and responsive and as having initiative (Amalfitano and Kalt, 1977). From their studies of graduate-selection interviews Neil Anderson and Viv Shackleton at the University of Sheffield go so far as to recommend that 'Interviewees would be well advised to maintain high levels of eye contact with the interviewer and to display frequent positive facial expressions so as to maximise their chances of success.'<font color="#0000ff"/></font>
+    </font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>I  </b>The way people carry themselves says a lot. Since deportment is one of the first body-language signals interviewers read as you enter the room, it is your first chance to transmit a positive message. Sagging shoulders speak of defeatism. Slouching implies that you don't care. Walk into the room upright but relaxed.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#0000ff"><b>J  </b>We all tend to wave our arms around to a greater or lesser extent when explaining something or as we become involved in what we are saying. This is fine. It shows a certain amount of enthusiasm. What can work against someone in interview is not the occasional flourish but the sort of fidgeting which can be downright distracting to watch. If this is a problem for you when you are nervous, it may be worthwhile to practise sitting with your hands gently resting in your lap or on the arms or a chair. Folding your arms to try to control their waywardness, however, tends to look uncomfortable and hostile.<font color="#0000ff"/></font>
+  </p>
+  <p align="left">
+    <font color="#000000">The Guardian Careers Guide &#x2013; Interviews, Christine Ingham, Fourth Estate, 1997, pp. 13-23.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Remember that although this exercise looks like 'matching headings to paragraphs', it is not exactly the same. You are trying to find paragraphs that contain certain information. You don't have to worry so much about the overall 'theme' of each paragraph, although knowing this can help you find the information.</font>
+  </p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 1</font>You are looking for an explanation of the term, not necessarily examples of it.</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 2</font>'Excessive gesturing' means too much body movement.</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 3</font>This is similar to Question 1. You are looking for a definition, not necessarily examples.</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 4</font>Your 'posture' is the way you hold your body.</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 5</font>In other words, what happens during the first few minutes of an interview?</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 6</font>In other words, when, how often and how should you look at your interviewer during the interview?</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Question 7</font>'Relative' here means 'compared with'. In other words, how important is non-verbal behaviour in comparison to verbal behaviour?</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

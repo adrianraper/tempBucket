@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q11" block="b11">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q12" block="b12">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q13" block="b13">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q14" block="b14">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/AC_WTG01.jpg" mode="16" id="1004"  />Here is a sample answer to the previous exercise. Read the letter and group the verbs in the present simple according to whether they are in active or passive voice. Drag them across to the appropriate category on the right.
+
+Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/AC_GW_004.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <b>Present Simple - Passive Voice</b>
+    <input id="q1" type="droptarget"/>
+    <input id="q2" type="droptarget"/>
+    <input id="q3" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Present Simple - Active Voice</b>
+    <input id="q4" type="droptarget"/>
+    <input id="q5" type="droptarget"/>
+    <input id="q6" type="droptarget"/>
+    <input id="q7" type="droptarget"/>
+    <input id="q8" type="droptarget"/>
+    <input id="q9" type="droptarget"/>
+    <input id="q10" type="droptarget"/>
+    <input id="q11" type="droptarget"/>
+    <input id="q12" type="droptarget"/>
+    <input id="q13" type="droptarget"/>
+    <input id="q14" type="droptarget"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="readingText">
+  <p align="left">Dear Hilary,</p>
+  <p align="left">I've just finished reading the most amazing book and I just had to write and tell you about it as I <font color="#0000ff">[19] you'd really enjoy it. You've probably heard about these books but won't have read them because they <font color="#0000ff">[20]</font> for children &#x2013; J.K. Rowling's 'Harry Potter' series?</font></p>
+  <p align="left">
+    <font color="#000000">Well, last night I stayed up all night reading the first in the series &#x2013; 'Harry Potter and the Philosopher's Stone'. The plot of each book <font color="#0000ff">[21]</font> around a young boy called Harry Potter and his best friends Ron and Hermione. They all <font color="#0000ff">[22]</font> to a school for wizards, which is where most of the story <font color="#0000ff">[23]</font>. In this book Harry <font color="#0000ff">[24]</font> lots of tricks like how to fly a broom and how to use a cloak to make himself invisible and <font color="#0000ff">[25]</font> to go through a series of dangerous trials. My description <font color="#0000ff">[26]</font> the book seem childish but Rowling <font color="#0000ff">[27]</font> a wonderful storyteller and her books <font color="#0000ff">[28]</font> compulsive reading. The characters are amazingly three-dimensional, although I <font color="#0000ff">[30]</font> in this particular book they <font color="#0000ff">[31]</font> to behave a little out of character towards the end in order to serve the plot. However, the books are really quite special and I can't recommend them enough.</font>
+  </p>
+  <p align="left">Anyway, just give one of the books a go. I know you'll absolutely love them. If you <font color="#0000ff">[34] to splash out on the books yourself, I <font color="#0000ff">[35]</font> them all in hardback and you are welcome to borrow them anytime.</font></p>
+  <p align="left">Looking forward to hearing from you soon.</p>
+  <p align="left">Lots of love, Janine</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">Exercise 3When describing books, films or plays we tend to relate the story in the present tense.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

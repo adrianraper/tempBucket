@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -12,17 +13,12 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
+
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="multi-layered" correct="true"/>
@@ -52,32 +48,17 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Complete the labels on the diagrams below, using NO MORE THAN THREE WORDS OR A NUMBER from the passage on the left for each answer.
-		
+		</div>
 </header>
 	
-<section id="body">
-  <img class="leftFloat" src="../media/WB_WR2a.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/WB_WR2b.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/WB_WR2c.jpg" mode="1" id="1004"/>
-  <br/>
-  <ol id="questionList">
-    <li id="1">Typical 1970s <input id="q1"/>organisation</li>
-    <li id="2">Many levels of <input id="q2"/> management such as leading hands and foremen</li>
-    <li id="3">A single manager with much greater <input id="q3"/></li>
-    <li id="4">Second level of management consists of about a dozen <input id="q4"/></li>
-    <li id="5">Members are responsible for certain <input id="q5"/> on a rota basis</li>
-    <li id="6">Teams consist of up to <input id="q6"/> employees but no <input id="q7"/></li>
-  </ol>
-</section>
+
 
 <section id="readingText">
-  <p align="left">
-    <font color="#0000ff">
-      <b>Abolishing management, one slice at a time</b>
-    </font>
-  </p>
+
+   <h1>Abolishing management, one slice at a time</h1>
+
   <p align="left">The management function has been whittled away since the seventies. Harry Onsman suggests the whittling may not be over yet.</p>
   <p align="left">Is it possible to abolish the management function? Is it conceivable that we could create a corporate structure in which management has no place? Can it be done?</p>
   <p align="left">
@@ -102,13 +83,28 @@
   <p align="left">This in turn leads to the question of why such people should be employees at all. The outsourcing craze continues unabated and will probably continue to speed up. There is no function left that cannot be or has not been outsourced. Even core functions like setting strategy and human resource management have been handed over to outside suppliers. Even management itself in the form of consultants and management companies has been handed over. Nothing is sacred when it comes to what is core and what is not.</p>
   <p align="left">Where will it end? Greater spans of control, fewer layers of management, high levels of self-management, and fewer corporate functions. Each is a threat to the manager's career path. Put them together and they become a threat to management itself.</p>
   <p align="left">Harry Onsman, The Manager's web site.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">Look carefully at the diagram and use it to help you predict or guess some answers before you read the relevant sections of the text in detail.</font>&nbsp;Question 1How would you describe this management structure? Now look for that word, or similar words, in the text.&nbsp;Question 2Where are these managers in relation to employees and other management levels?&nbsp;Question 3What do managers have in the company that makes them managers?&nbsp;Question 4 How could you describe this level? How are the employees organised in this diagram?&nbsp;Question 5What kind of information must follow the phrase 'up to …'?</p>&nbsp;Question 6Why do you think the employees are grouped loosely in circles? What's missing?&nbsp;Question 7What can someone be 'responsible for'?&nbsp;
+<section id="body">
+
+  <ol id="splitquestionList">
+   <img class="leftFloat" src="../media/WB_WR2a.jpg" mode="1" id="1001"/>
+    <li id="1">Typical 1970s&#xA0;<input id="q1"/>&#xA0;organisation</li>
+	<p class="linespace"></p>
+    <li id="2">Many levels of&#xA0;<input id="q2"/>&#xA0;management such as leading hands and foremen</li>
+	<p class="linespace"></p>
+	<img class="leftFloat" src="../media/WB_WR2b.jpg" mode="1" id="1003"/>
+    <li id="3">A single manager with much greater&#xA0;<input id="q3"/></li>
+	<p class="linespace"></p>
+    <li id="4">Second level of management consists of about a dozen&#xA0;<input id="q4"/></li>
+	<p class="linespace"></p>
+	  <img class="leftFloat" src="../media/WB_WR2c.jpg" mode="1" id="1004"/>
+    <li id="5">Members are responsible for certain&#xA0;<input id="q5"/>&#xA0;on a rota basis</li>
+	<p class="linespace"></p>
+    <li id="6">Teams consist of up to&#xA0;<input id="q6"/>&#xA0;employees but no&#xA0;<input id="q7"/></li>
+  </ol>
 </section>
+
 </body>
 </bento>

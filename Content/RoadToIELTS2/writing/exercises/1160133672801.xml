@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="is set" correct="true"/>
+      <answer value="'s set" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="tells" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="runs" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="spend" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="travel" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="get" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="keep" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="is" correct="true"/>
+      <answer value="'s" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="starts" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="arrives" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="doesn't want" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="hides" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="tries" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q14" block="b14">
+      <answer value="is set" correct="true"/>
+      <answer value="'s set" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q15" block="b15">
+      <answer value="is" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q16" block="b16">
+      <answer value="hates" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q17" block="b17">
+      <answer value="fakes" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q18" block="b18">
+      <answer value="has" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q19" block="b19">
+      <answer value="moves" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q20" block="b20">
+      <answer value="is introduced" correct="true"/>
+      <answer value="'s introduced" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q21" block="b21">
+      <answer value="doesn't recognise" correct="true"/>
+      <answer value="does not recognise" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q22" block="b22">
+      <answer value="has" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q23" block="b23">
+      <answer value="is" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q24" block="b24">
+      <answer value="happens" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q25" block="b25">
+      <answer value="don't want" correct="true"/>
+      <answer value="do not want" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Here are some extracts from letters describing books, plays and films. Complete them by filling each gap with the present simple of the verb given in the brackets. You will need to use both active and passive voice.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/AC_GW_005.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font color="#000000">The film <input id="q1"/> (set) in the 1960s and 1970s and <input id="q2"/> (tell) the story of a young girl, Marie, who <input id="q3"/> (run) away from home and whose parents <input id="q4"/> (spend) the next ten years looking for her. They <input id="q5"/> (travel) all over the world and <input id="q6"/> (get) really close but just <input id="q7"/> (keep) missing her all the time.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">The plot <input id="q8"/> (be) quite good. It <input id="q9"/> (start) quite dramatically with a dead body lying in the middle of the stage and then the main character <input id="q10"/> (arrive) and, of course, he <input id="q11"/> (not want) other people to think he did it, so he <input id="q12"/> (hide) the body and <input id="q13"/> (try) to find out who did it himself.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">The story <input id="q14"/> (set) in the present day and <input id="q15"/> (be) about a man who <input id="q16"/> (hate) his life so much that he <input id="q17"/> (fake) his own death. He <input id="q18"/> (have) plastic surgery and <input id="q19"/> (move) into a house about five miles away from his old home. One day he <input id="q20"/> (introduce) to his wife at a party but she <input id="q21"/> (not recognise) him &#x2013; she simply <input id="q22"/> (have) no idea at all who he <input id="q23"/> (be)! I won't tell you what <input id="q24"/> (happen) at the end of the book because I <input id="q25"/> (not want) to spoil it for you.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -4,31 +4,14 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" />
-	
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen"/>
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	.underline {
 	text-decoration: underline;
 	}
 	
-	#rightcolumn {
-	position:relative;
-	line-height: 22em;
-	padding-left: 200px;
-	padding-top:75px;
-	}
-	
-	#rightcolumn p {
-	padding-bottom:12px;
-	}
-	
-	#leftcolumn {
-	line-height: 22em;
-	}
-	
-	#leftcolumn p {
-	padding-bottom:12px;
-	}
+
 	</style>
 	
 	
@@ -91,17 +74,19 @@
 <header>
 <div id="instruction">		
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-</div>		
+		<audio controls="hidden" loop="1" autoplay="true" src="../media/AC_LN1.mp3" mode="4" id="1002"/>	
+</div>	
+
 </header>
 	
 <section id="body">
-<audio controls="hidden" loop="1" autoplay="true" src="../media/AC_LN1.mp3" mode="4" id="1002"/>
+
 
 <img class="rightFloat" src="../media/AC_LN_002.jpg" mode="1" id="1001"/>
 
 
 <h1><p>THEATRE ROYAL TELEPHONE TICKET PURCHASE FORM</p></h1>
-
+<div id="box1">
 <div id="leftcolumn">
 <p>Production</p>
 <p>Date	</p>
@@ -110,16 +95,17 @@
 <p>No. of Tickets</p>
 <p>Seat Numbers</p>
 <p>Total Cost</p>
-<h7>CREDIT CARD DETAILS</h7>
+
+<p><b>CREDIT CARD DETAILS</b></p>
 <p>Card
-<br/>
-<br/></p>
+<br/>&#xA0;
+<br/>&#xA0;</p>
 <p>Name of Cardholder</p>
 <p>Card No.</p>
 <p>Expiry Date</p>
-<h7>DELIVERY METHOD</h7>
+<p><b>DELIVERY METHOD</b></p>
 <p>	
-<br/></p>
+<br/>&#xA0;</p>
 <p>Address</p>
 <p>Contact No.	</p>
 <p></p>
@@ -133,7 +119,8 @@
 <p>TWO</p>
 <p>(4)&#xA0;<input id="q4"/></p>
 <p>&#xA3; (5)&#xA0;<input id="q5"/></p>
-<h7><p></p></h7>
+
+<p>&#xA0;</p>
 <p>_ VISA	
 <br/>_ Master Card	<br/>
 <span class="underline">X</span>&#xA0;American Express</p>
@@ -141,11 +128,12 @@
 <p>Mr Richard (6)&#xA0;<input id="q6"/></p>
 <p>(7)&#xA0;<input id="q7"/></p>
 <p>March 2005</p>
-<h7><p></p></h7>
+<p></p>
 <p>_ Hold tickets for collection
 <br/><span class="underline">X</span>&#xA0;Post tickets</p>
 <p>(8)&#xA0;<input id="q8"/>, Winchester</p>
 <p>2719 8832</p>
+</div>
 </div>
 </section>
 

@@ -12,24 +12,6 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
-.outerbox {
-	display:block;
-	padding-left:-40px;
-	}
-
-.audio {
-	position: relative;
-	float:left;
-	width:45px;
-	padding-left:-25px;
-	padding-top:10px;
-	}
-
-.questiondiv  {
-	display:block;
-	line-height:22em;
-	padding-right:370px;
-	}
 
 
 
@@ -168,9 +150,7 @@ Cars and other forms of transport have given rise to a variety of problems in ou
 			<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence</p>
 			
 		</section>
-<section id="rt2001">
-  <p align="left">It is very important to write a good introductory paragraph for your composition. If your introduction is good, it makes the rest of the composition easier to write and it makes a good impression on the reader. Remember, if you decide not to write a balanced 'for and against' composition, you should give your personal opinion in the first paragraph and repeat it in the conclusion.</p>
-</section>
+
 
 </body>
 </bento>

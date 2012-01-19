@@ -95,12 +95,14 @@
 <header>
 <div id="instruction">		
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS for each answer.
+		<audio controls="hidden" loop="1" src="../media/LC_LN1.mp3" mode="4" id="1002" autoplay="true"/>
 </div>		
+
 </header>
 	
 <section id="body">
 <img class="rightFloat" src="../media/LC_LN_002.JPG" mode="1" id="1001"/>
-<audio controls="hidden" loop="1" src="../media/LC_LN1.mp3" mode="4" id="1002" autoplay="true"/>
+
 <h1><p>How to improve your English outside the classroom</p></h1>
 
 

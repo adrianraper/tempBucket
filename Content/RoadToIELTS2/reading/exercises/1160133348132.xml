@@ -79,28 +79,7 @@
 	</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_AL_001.jpg" mode="1" id="1001"/>
-  <ol id="splitquestionList">
-  
-    <li id="q1">Customer service representatives are available to help passengers ...<list class="answerList"><li><a id="a1">during the rail journey.</a></li><li><a id="a2">at the airport.</a></li><li><a id="a3">by telephone.</a></li><li><a id="a4">on the platforms at Paddington Station.</a></li></list></li>
-<p class="linespace"></p>
-    <li id="q2">First class passengers ...<list class="answerList"><li><a id="a5">can get on the train before others.</a></li><li><a id="a6">can get off the train before others.</a></li><li><a id="a7">have more space for their luggage.</a></li><li><a id="a8">can reach the terminals more quickly when they get off the train.</a></li></list> </li>
-<p class="linespace"></p>
-    <li id="q3">An Express Class return ticket costs ...<list class="answerList"><li><a id="a9">less than a First Class single ticket.</a></li><li><a id="a10">more than a First Class single.</a></li><li><a id="a11">twice as much as a First Class single.</a></li><li><a id="a12">three times as much as a First Class single.</a></li></list> </li>
-<p class="linespace"></p>
-    <li id="q4">You can buy Frequent Flyer tickets for the Heathrow Express ...<list class="answerList"><li><a id="a13">on the train.</a></li><li><a id="a14">at Heathrow Express ticket offices.</a></li><li><a id="a15">from ticket machines.</a></li><li><a id="a16">at the baggage reclaim areas at Heathrow airport.</a></li></list> </li>
-<p class="linespace"></p>
-    <li id="q5">You can pay for Heathrow Express tickets ...<list class="answerList"><li><a id="a17">with all credit cards.</a></li><li><a id="a18">by cheque.</a></li><li><a id="a19">in any foreign currency.</a></li><li><a id="a20">in some foreign currencies.</a></li></list> </li>
-<p class="linespace"></p>
-    <li id="q6">You can buy tickets for the Heathrow Express ...<list class="answerList"><li><a id="a21">in some shops.</a></li><li><a id="a22">on the train only.</a></li><li><a id="a23">from ticket machines only.</a></li><li><a id="a24">from the Heathrow Express web site.</a></li></list> </li>
-<p class="linespace"></p>
-    <li id="q7">Disabled passengers ...<list class="answerList"><li><a id="a25">use a special entrance to board the train.</a></li><li><a id="a26">can get off the train before other passengers.</a></li><li><a id="a27">can remain in their wheelchairs on the train.</a></li><li><a id="a28">have additional storage space.</a></li></list> </li>
-<p class="linespace"></p>
-    <li id="q8">This passage has probably been taken from ...<list class="answerList"><li><a id="a29">a magazine.</a></li><li><a id="a30">a web site.</a></li><li><a id="a31">a leaflet.</a></li><li><a id="a32">a catalogue.</a></li></list> </li>
-<p class="linespace"></p>
-  </ol>
-  </section>
+
 
 <section id="readingText">
 	<h1>London to and from Heathrow Airport in 15 minutes every 15 minutes</h1>
@@ -158,5 +137,29 @@
 	
 	<p>London to and from Heathrow in 15 minutes, Edition 2, Heathrow Express</p>
 </section>
+
+<section id="body">
+<img class="leftFloat" src="../media/RD_AL_001.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
+  
+    <li id="q1">Customer service representatives are available to help passengers ...<list class="answerList"><li><a id="a1">during the rail journey.</a></li><li><a id="a2">at the airport.</a></li><li><a id="a3">by telephone.</a></li><li><a id="a4">on the platforms at Paddington Station.</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q2">First class passengers ...<list class="answerList"><li><a id="a5">can get on the train before others.</a></li><li><a id="a6">can get off the train before others.</a></li><li><a id="a7">have more space for their luggage.</a></li><li><a id="a8">can reach the terminals more quickly when they get off the train.</a></li></list> </li>
+<p class="linespace"></p>
+    <li id="q3">An Express Class return ticket costs ...<list class="answerList"><li><a id="a9">less than a First Class single ticket.</a></li><li><a id="a10">more than a First Class single.</a></li><li><a id="a11">twice as much as a First Class single.</a></li><li><a id="a12">three times as much as a First Class single.</a></li></list> </li>
+<p class="linespace"></p>
+    <li id="q4">You can buy Frequent Flyer tickets for the Heathrow Express ...<list class="answerList"><li><a id="a13">on the train.</a></li><li><a id="a14">at Heathrow Express ticket offices.</a></li><li><a id="a15">from ticket machines.</a></li><li><a id="a16">at the baggage reclaim areas at Heathrow airport.</a></li></list> </li>
+<p class="linespace"></p>
+    <li id="q5">You can pay for Heathrow Express tickets ...<list class="answerList"><li><a id="a17">with all credit cards.</a></li><li><a id="a18">by cheque.</a></li><li><a id="a19">in any foreign currency.</a></li><li><a id="a20">in some foreign currencies.</a></li></list> </li>
+<p class="linespace"></p>
+    <li id="q6">You can buy tickets for the Heathrow Express ...<list class="answerList"><li><a id="a21">in some shops.</a></li><li><a id="a22">on the train only.</a></li><li><a id="a23">from ticket machines only.</a></li><li><a id="a24">from the Heathrow Express web site.</a></li></list> </li>
+<p class="linespace"></p>
+    <li id="q7">Disabled passengers ...<list class="answerList"><li><a id="a25">use a special entrance to board the train.</a></li><li><a id="a26">can get off the train before other passengers.</a></li><li><a id="a27">can remain in their wheelchairs on the train.</a></li><li><a id="a28">have additional storage space.</a></li></list> </li>
+<p class="linespace"></p>
+    <li id="q8">This passage has probably been taken from ...<list class="answerList"><li><a id="a29">a magazine.</a></li><li><a id="a30">a web site.</a></li><li><a id="a31">a leaflet.</a></li><li><a id="a32">a catalogue.</a></li></list> </li>
+<p class="linespace"></p>
+  </ol>
+  </section>
+  
 </body>
 </bento>

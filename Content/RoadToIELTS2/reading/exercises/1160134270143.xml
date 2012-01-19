@@ -55,22 +55,7 @@
 	</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_MS_002.jpg" mode="1" id="1001"/>
-<div id="splitquestionList">
-  <p><b>Which FOUR of the following features do they have in common?</b></p>
-  <list class="answerList">    
- <li><a id="t1">They work in co-operation with local people.</a></li>
- <li><a id="t2">They have a language requirement for some projects.</a></li>
- <li><a id="t3">They provide training for all volunteers.</a></li>
- <li><a id="t4">They specify a minimum age limit for volunteers.</a></li>
- <li><a id="t5">They run a variety of projects.</a></li>
- <li><a id="t6">They accept volunteers of all nationalities.</a></li>
- <li><a id="t7">They run projects throughout the year.</a></li>
- <li><a id="t8">They require volunteers to pay to participate in a project.</a></li>
- </list>
-  </div>
-</section>
+
 
 <section id="readingText">
 <h1>International development projects</h1>
@@ -101,19 +86,21 @@
 <p>Abridged book extracts relating to 'Global Citizens Network' (page 36), 'Operation Crossroads Africa' (pages 44-45), and 'Visions in Action' (pages 213-214) from Directory of International Voluntary Work by Louise Whetter and Victoria Pybus, Seventh Edition, Vacation Work Publications.</p>
 </section> 
 
-<section id="rt2001">
-  <p align="left">You must choose statements from the list that are true for ALL THREE organisations. Some of the statements may not be true for any; some may be true for one or two, but not all three.</p>
-  <p align="left">AThis means that residents of the host country work together with volunteers.</p>
-  <p align="left">B In other words, volunteers must be able to speak a foreign language.</p>
-  <p align="left">C'Training' could include any kind of preparation or instruction before or during the project.</p>
-  <p align="left">D'Minimum age' means the youngest age allowed for volunteers.</p>
-  <p align="left">E In other words, they run different kinds of projects.</p>
-  <p align="left">F Do volunteers come from all over the World, or must they be of a certain nationality?</p>
-  <p align="left">GDo projects run all year round, or only during certain seasons or months?</p>
-  <p align="left">HIs there a fee that volunteers have to pay in order to participate? Search for any mention of money.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="body">
+<img class="leftFloat" src="../media/RD_MS_002.jpg" mode="1" id="1001"/>
+<div id="splitquestionList">
+  <p><b>Which FOUR of the following features do they have in common?</b></p>
+  <list class="answerList">    
+ <li><a id="t1">They work in co-operation with local people.</a></li>
+ <li><a id="t2">They have a language requirement for some projects.</a></li>
+ <li><a id="t3">They provide training for all volunteers.</a></li>
+ <li><a id="t4">They specify a minimum age limit for volunteers.</a></li>
+ <li><a id="t5">They run a variety of projects.</a></li>
+ <li><a id="t6">They accept volunteers of all nationalities.</a></li>
+ <li><a id="t7">They run projects throughout the year.</a></li>
+ <li><a id="t8">They require volunteers to pay to participate in a project.</a></li>
+ </list>
+  </div>
 </section>
 
 </body>

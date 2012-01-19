@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -12,40 +13,57 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
+
 	
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+	
+</settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="BT" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="C" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="B" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="TC" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="BT" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="C" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="TC" correct="true"/>
-    </GapFillQuestion>
-  </questions>
+  	<DropDownQuestion source="q1Select" block="q1Block">
+		<answer correct="false" source="${#q1Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q1Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+	<DropDownQuestion source="q2Select" block="q2Block">
+		<answer correct="false" source="${#q2Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(3)}" />
+		<answer correct="true" source="${#q2Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q3Select" block="q3Block">
+		<answer correct="true" source="${#q3Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+  	<DropDownQuestion source="q4Select" block="q4Block">
+		<answer correct="false" source="${#q4Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q4Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+ 	<DropDownQuestion source="q5Select" block="q5Block">
+		<answer correct="false" source="${#q5Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q5Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q6Select" block="q6Block">
+		<answer correct="false" source="${#q6Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(3)}" />
+		<answer correct="true" source="${#q6Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+    <DropDownQuestion source="q7Select" block="q7Block">
+		<answer correct="false" source="${#q7Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q7Select > option:nth-child(3)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(4)}" />
+	</DropDownQuestion>
+</questions>
 </script>
 
 </head>
@@ -53,30 +71,16 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Using the passage on the left, classify the characteristics on the right. You may use any answer more than once.
-		
+		</div>
 </header>
 	
-<section id="body">
-  <br/>
-  <ol id="questionList">
-    <li id="1">shared decision making	<input id="q1"/></li>
-    <li id="2">individual anonymity	<input id="q2"/></li>
-    <li id="3">no agriculture	<input id="q3"/></li>
-    <li id="4">settled communities	<input id="q4"/></li>
-    <li id="5">no formal social ranks	<input id="q5"/></li>
-    <li id="6">use of slaves	<input id="q6"/></li>
-    <li id="7">two or more social groupings	<input id="q7"/></li>
-  </ol>
-</section>
+
 
 <section id="readingText">
-  <p align="left">
-    <font color="#0000ff">
-      <b>Bands, Tribes and Chiefdoms</b>
-    </font>
-  </p>
+<h1>Bands, Tribes and Chiefdoms</h1>
+
   <p align="left">Bands are the tiniest societies, consisting typically of 5 to 80 people, most or all of them close relatives by birth or by marriage. In effect, a band is an extended family or several related extended families. Today, bands still living autonomously are almost confined to the most remote parts of New Guinea and Amazonia, but within modern times there were many others that have only recently fallen under state control or been assimilated or exterminated. All those modern bands are or were nomadic hunter-gatherers rather than settled food producers. Probably all humans lived in bands until at least 40,000 years ago, and most still did as recently as 11,000 years ago.</p>
   <p align="left">
     <font color="#000000">Bands lack many institutions that we take for granted in our own society. They have no permanent single base of residence. The band's land is used jointly by the whole group, instead of being partitioned among subgroups or individuals. There is no regular economic specialization, except by age and sex: all able-bodied individuals forage for food. There are no formal institutions, such as laws, police, and treaties, to resolve conflicts within and between bands. Band organization is often described as 'egalitarian': there is no formalized social stratification into upper and lower classes, no formalized or hereditary leadership, and no formalized monopolies of information and decision making. However, the term 'egalitarian' should not be taken to mean that all band members are equal in prestige and contribute equally to decisions. Rather, the term merely means that any band 'leadership' is informal and acquired through qualities such as personality, strength, intelligence, and fighting skills.</font>
@@ -94,13 +98,60 @@
   <p align="left">Part of the solution to that problem was for one person, the chief, to exercise a monopoly on the right to use force. A chief held a recognized office, filled by hereditary right. Instead of the decentralized anarchy of a village meeting, the chief was a permanent centralized authority, made all significant decisions, and had a monopoly on critical information.</p>
   <p align="left">A chiefdom's large population in a small area required plenty of food, obtained by food production in most cases, by hunting-gathering in a few especially rich areas. The food surpluses generated by some people, regulated to the rank of commoners, went to feed the chiefs, their families, bureaucrats, and craft specialists, who variously made canoes, adzes, or spittoons or worked as bird catchers or tattooers. Furthermore, since chiefs required menial servants as well as specialized craftspeople, chiefdoms differed from tribes in having many jobs that could be filled by slaves, typically obtained by capture in raids.</p>
   <p align="left">Guns, Germs and Steel, Jared Diamond, Vintage 1998, pp. 267-275.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">As with all classification exercises, once you've skimmed the text to get a general idea of its content and organisation, you should look carefully at the classifications and the letters that represent each one. The classifications in this case refer to different types of social grouping. Although there are no headings, the text is clearly divided into sections, which deal with each type of social group in turn.</font>&nbsp;If you find that a description applies to 'bands', check if it also applies to tribes. The same is also true of 'chiefdoms'.&nbsp;Remember that the questions obviously don't follow the order of the text, so you should do the task in an organised, logical way. For each question, skim over the text from the beginning looking for words or phrases that match the description.</p>
+<section id="body">
+  <ol id="splitquestionList">
+    <li id="1">shared decision making	<br/><select id="q1Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+		
+    <li id="2">individual anonymity<br/><select id="q2Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+		
+    <li id="3">no agriculture<br/><select id="q3Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+		
+    <li id="4">settled communities<br/><select id="q4Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+		
+    <li id="5">no formal social ranks	<br/><select id="q5Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+		
+    <li id="6">use of slaves<br/><select id="q6Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+		
+    <li id="7">two or more social groupings<br/><select id="q7Select">
+		<option>bands only</option>
+		<option>both bands and tribes</option>
+		<option>both tribes and chiefdoms</option>
+		<option>chiefdoms only</option>
+		</select></li>
+  </ol> 
 </section>
 </body>
 </bento>

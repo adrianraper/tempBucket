@@ -75,11 +75,13 @@
 <header>
 <div id="instruction">
 		Questions 11-15. Listen to the recording, which will play automatically, and follow the instructions. What advice does the lecturer give about web site design? Click G, if she considers it a feature of good web site design; or B, if she considers it a feature of bad web site design.
+		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body">
-  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
+
   <img class="rightFloat" src="../media/ST_LN_007.jpg" mode="1" id="1001"/>
   
   <ol id="trueFalse">

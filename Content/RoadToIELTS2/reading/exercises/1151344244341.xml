@@ -96,18 +96,7 @@
 		
 </header>
 	
-<section id="body">
- <ol id="splitquestionList">
-  <p><b>Jhikhu Khola Valley, Nepal - Key Facts</b><br/></p>
- 
-  <li id="7">Distance from Kathmandu:&#xA0;<input id="q1"/></li>
-  <li id="8">Area:&#xA0;<input id="q2"/></li>
-  <li id="9">Highest elevation:&#xA0;<input id="q3"/></li>
-  <li id="10">Population:&#xA0;<input id="q4"/></li>
-  <li id="11">Harvests per year: From one to&#xA0;<input id="q5"/></li>
-  <li id="12">Maximum annual rainfall:&#xA0;<input id="q6"/></li>
-  </ol>
-</section>
+
 
 <section id="readingText">
 <h1>The Mountain Sculptors</h1>
@@ -141,7 +130,17 @@
   </div>
 </section>
 
-<section id="rt2001"><p align="left">You will have to scan different parts of the text in order to complete this table. Look for units of measurement, which match the missing information.</p><p align="left"><font color="#000000">Distance: kilometers (km)</font></p>Area: square kilometers (km&#xB2;)Highest elevation (= height above sea level): metres (m)Maximum rainfall: metres (m)
+<section id="body">
+ <ol id="splitquestionList">
+  <p><b>Jhikhu Khola Valley, Nepal - Key Facts</b><br/></p>
+ 
+  <li id="7">Distance from Kathmandu:&#xA0;<input id="q1"/></li>
+  <li id="8">Area:&#xA0;<input id="q2"/></li>
+  <li id="9">Highest elevation:&#xA0;<input id="q3"/></li>
+  <li id="10">Population:&#xA0;<input id="q4"/></li>
+  <li id="11">Harvests per year: From one to&#xA0;<input id="q5"/></li>
+  <li id="12">Maximum annual rainfall:&#xA0;<input id="q6"/></li>
+  </ol>
 </section>
 
 </body>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="gum disease" correct="true"/>
+      <answer value="receding gums" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="a fluoride toothpaste" correct="true"/>
+      <answer value="fluoride toothpaste" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="water sprays" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="your fingertips" correct="true"/>
+      <answer value="your fingers" correct="true"/>
+      <answer value="fingertips" correct="true"/>
+      <answer value="the fingertips" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="ill-fitting dentures" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="broken teeth" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="lozenges" correct="true"/>
+      <answer value="mouth rinses" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="mouth rinses" correct="true"/>
+      <answer value="lozenges" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="plaque or germs" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Fill the gaps on the right. Choose NO MORE THAN THREE WORDS from the passage on the left for each answer.
+</header>
+	
+<section id="body"><img class="leftFloat" src="../media/HF_GR_002.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>	Tooth root decay</b></font>Cause:	(1) <input id="q1"/></p>Treatment:	Eat less sugar between meals.	Use (2)<input id="q2"/><p align="left"><font color="#0000ff"><b>	Dry mouth</b></font>Cause:	Side effect of drug treatment</p>	Symptom of a disease affecting	the salivary glandsTreatment:	Suck sugar-free sweets or 	chewing gum. Use	(3) <input id="q3"/> and	saliva substitutes.<p align="left"><font color="#0000ff"><b>	Sensitive teeth</b></font>Cause:	Receding gums</p>Treatment:	For sensitive teeth, apply	toothpaste with	(4) <input id="q4"/> where	the gums and teeth meet.<p align="left"><font color="#0000ff"><b>	Thrush</b></font>Cause:	(5) <input id="q5"/></p>	Poor dental hygiene	Lowered resistance to infections<p align="left"><font color="#0000ff"><b>	Ulcers</b></font>Cause:	Variety of causes including: </p>	Ill-fitting dentures	(6) <input id="q6"/>Treatment:	(7) <input id="q7"/> and 	(8) <input id="q8"/> can	help reduce the pain.<p align="left"><font color="#0000ff"><b>	Bleeding gums</b></font>Cause:	Accumulation of </p>	(9) <input id="q9"/>	between the teeth and gums.Treatment:	Brush the problem areas gently.<p align="left"><font size="2"/></p>
+</section>
+
+<section id="readingText"><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Keeping your teeth healthy</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Clean teeth and healthy gums feel good and look great. They help you to have the confidence to get really close to people. Good mouth care from birth sets the pattern for healthy teeth for life. To maintain healthy teeth it's important to choose the right drinks and foods, to brush your teeth twice every day and to visit the dentist on a regular basis throughout your life.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Common dental problems</b></font>Tooth root decay can occur when the gum recedes as a result of gum disease and is an increasing problem as more people aged over 65 keep their own teeth. Reducing between-meals sugar intake and using a fluoride toothpaste are particularly important if you have receding gums.</p><p align="left"><font face="verdana" size="13" color="#000000"><b>Abscesses</b> can cause pain, swelling and fever. Contact your dentist without delay if you have an abscess.</font></p><p align="left"><font face="verdana" size="13" color="#000000">A <b>dry mouth</b> causes discomfort, makes the wearing of dentures almost impossible and can increase the risk of infections. A dry mouth may be a side effect of drug treatment or can be a symptom of a disease affecting the salivary glands. You can relieve a dry mouth by sucking sugar-free sweets, sugar-free chewing gum or by using water sprays and saliva substitutes.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Many people have <b>sensitive teeth</b>. If your gums recede slightly to expose part of the root, your teeth may hurt when you have hot or cold drinks or food. Toothpaste for sensitive teeth can often help; use your fingertips to rub a little toothpaste where teeth and gums meet. If the problem continues for more than six weeks ask the dentist for help.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Thrush</b> is a fungal infection that may show itself as white spots on the tongue, a red area beneath a denture or red patches at the corners of the mouth. It may be caused by ill-fitting dentures, poor dental hygiene or lowered resistance to infection. It should always be treated. See your dentist or doctor for advice.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Ulcers</b> have a variety of causes. Your pharmacist, doctor or dentist may recommend lozenges or mouth rinses to relieve the pain they cause. If ill-fitting dentures or broken teeth are causing pain and discomfort, your dentist will be able to help. Any ulcer that has not healed after two weeks should be checked by a doctor or dentist.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Bleeding of the gums</b> while brushing is caused by a build-up of plaque or germs where your teeth and gums meet. The plaque inflames the gums and makes them bleed. Keep brushing the problem areas gently. Disclosing tablets will show where you have left plaque or germs on your teeth after brushing. Your dentist or hygienist will explain how to use them. The bleeding should soon stop, but if it doesn't, ask your dentist for help.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Keeping your teeth healthy, NHS Direct, Healthy Living guide:</font></p>http://www.nhsdirect.nhs.uk<p align="left"><font face="verdana" size="13" color="#000000">Copyright Information:</font></p>http://www.nhsdirect.nhs.uk<p align="left"><font size="2"/></p></section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This short text about taking care of your teeth is quite straightforward. The words in bold type act like headings and you should use these to help you find information quickly in the text.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Don't take too long over this exercise. You should be scanning quickly for the answers. It's worth spending a minute or so looking at how the table is organised before you start. You'll notice that there are three columns. The first lists dental problems; the second lists the causes and the third possible treatments. All the gaps come in the second and third columns.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Information about causes, for the second column, may be introduced in the text with phrases such as 'as a result of' or 'caused by' or 'make'. Scanning the text for these phrases may help.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Information about treatments, for the third column, may begin with phrases such as 'to relieve' or 'in order to treat'. Again, scanning for these may help.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

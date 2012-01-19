@@ -57,12 +57,14 @@
 <header>
 <div id="instruction">	
 		Questions 13-16. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/ED_LN_004.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
+
   
   <div id="questionList">
   <p class="hanging">13. What is the title of the coursebook used on the course?<br/><input id="q1"/></p>
@@ -72,8 +74,5 @@
   </div>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see from the questions that you will hear some details about the course.</font>Question 13You are asked for the name of the course book.Question 14You are asked for the cost of the book. Think about an appropriate figure in pounds.Question 15What do you think the length of the break might be?Question 16What nationality do you think the teacher could be?</p>
-</section>
 </body>
 </bento>

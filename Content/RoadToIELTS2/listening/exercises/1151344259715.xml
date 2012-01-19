@@ -75,11 +75,13 @@
 <header>
 <div id="instruction">		
 		Questions 5-10. Listen to the recording, which will play automatically, and follow the instructions. Complete the flow chart below. Write NO MORE THAN THREE WORDS for each answer.
+		<audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body">
-<audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2b.mp3" mode="4" id="1002"/>
+
 <img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"/>
 
 <h1><p>Setting up a web site</p></h1>
@@ -93,15 +95,6 @@
 <p class="hangingIndent2"><b>Step 8</b><tab/>Set up your website once but (10)&#xA0;<input id="q6"/>.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">You should be able to tell from the title of the flow chart and the information provided that you will hear someone talking about how to set up a web site.</p>
-  <p align="left">Question 5What part of speech do you think can follow 'acquire'? What do you think you need to acquire when setting up a web site? What words of similar meaning can you think of for 'acquire'?</p>
-  <p align="left">Question 6What do you think you should 'look at' before creating your site? What would you do? What other words or phrases might you hear instead of 'look at'?</p>
-  <p align="left">Question 7The stem of this sentence should help you. What do you think the 'who' could refer to, a business? Who are the people involved?</p>
-  <p align="left">Question 8Think about other words for 'collect'. Any ideas about what you might need to collect?</p>
-  <p align="left">Question 9In this question you are given the stem, which helps you when you are listening. Make sure you understand what is written here.</p>
-  <p align="left">Question 10The 'but' in this statement should help you. The advice is to do something 'once' so maybe you have to do something else more frequently?</p>
-</section>
 
 </body>
 </bento>

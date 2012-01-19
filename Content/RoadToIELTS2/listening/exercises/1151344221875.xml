@@ -76,14 +76,15 @@
 <body>
 	
 <header>
-<div id="instruction">Questions 13-16. Complete the labels on the diagram below. Write ONE OR TWO WORDS for each answer.</div>
-		
+<div id="instruction">Questions 13-16. Complete the labels on the diagram below. Write ONE OR TWO WORDS for each answer.
+  <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>	</div>
+	
 </header>
 	
 <section id="body">
 
  <img class="rightFloat" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2c.mp3" mode="4" id="1002"/>
+
  
   
   <div id="questionList">

@@ -1,7 +1,7 @@
 * {
 	font-size: 12px;
 	font-family: Verdana;
-	line-height: 1.5em;
+	line-height: 2em;
 }
 
 /* Layout */
@@ -9,40 +9,40 @@ section {
 	display: block;
 }
 
-section#body {
-	display: block;
-	padding-bottom: 75%;
+section#readingText {
+	display: none;
 }
 
-section#readingText {
+section#body {
 	display: block;
+	
+}
+
+ audio {
+	display: none;
+}
+
+body video {
+	display: none;
 }
 
 /* The rubric */
-body > header {
-	font-weight: normal;
-	color: #000000;
+header {
 	background-color: #F5D767;
-	padding: 0px 170px 0 20px;
-	line-height: 20em;
+		font-weight: bold;
 }
+
 
 /* section body*/
 #body {
 	padding: 0 0 20px 0px;
+	display: block;
 }
 
-#body p {
-	padding: 0 380% 0 15px;
-}
-
-#body audio {
-	display: none;
-}
 
 h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11 {
 	font-weight: bold;
-	padding: 0 0 0 25px;
+
 }
 
 h8, h8 > p,
@@ -74,33 +74,14 @@ a {
 	text-decoration: none;
 }
 
-/* image */
-.rightFloat {
-float: right;
-padding: 20px 25px 0 0;
+input {
+	border: 1px solid #000000;
+		border-radius: 5px;
 }
 
-#questionList {
-	list-style-type: decimal;
-	padding-left: -5px;
-	padding-right: 380%;
-	text-align: left;
-	line-height: 22em;		
-	}
-
-/* This affects the question spacing for Listening 3 Short-answer question 
-																   Listening 3 Labelling a diagram
-														*/
-#questionList p{
-	padding-bottom: 12px;
-	}
-
-#questionList li{
-	padding-left:15px;
-	line-height: 22em;
-	}
-	
-#questionList input{
-	text-indent: 10%;
-	tab-stops: 190em;
-	}
+/* image */
+.rightFloat {
+	float: left;
+	display: block;
+	padding: 20px 100% 20px 0;
+}

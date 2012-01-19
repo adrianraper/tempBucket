@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -12,48 +13,42 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
-	
+
 <script id="model" type="application/xml">
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="Yes" correct="true"/>
-      <answer value="YES" correct="true"/>
-      <answer value="Y" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="Not given" correct="true"/>
-      <answer value="NOT GIVEN" correct="true"/>
-      <answer value="NG" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="Yes" correct="true"/>
-      <answer value="YES" correct="true"/>
-      <answer value="Y" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="No" correct="true"/>
-      <answer value="NO" correct="true"/>
-      <answer value="N" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="No" correct="true"/>
-      <answer value="NO" correct="true"/>
-      <answer value="N" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="Yes" correct="true"/>
-      <answer value="YES" correct="true"/>
-      <answer value="Y" correct="true"/>
-    </GapFillQuestion>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="false"/>
+      <answer source="a3" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a4" correct="false"/>
+      <answer source="a5" correct="false"/>
+      <answer source="a6" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+      <answer source="a9" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a10" correct="false"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="true"/>
+      <answer source="a15" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a16" correct="true"/>
+      <answer source="a17" correct="false"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
   </questions>
 </script>
 
@@ -62,29 +57,17 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 1-6. Do the statements on the right agree with the views of the writer of the passage on the left?
-		
+		</div>
 </header>
 	
-<section id="body">
-  <br/>
-  <ol id="questionList">
-    <li id="1">An increasingly mobile society is a threat to the environment.<input id="q1"/></li>
-    <li id="2">Greater mobility will widen the economic gap between the rich and the poor.<input id="q2"/></li>
-    <li id="3">Statistics concerning road safety are misleading.<input id="q3"/></li>
-    <li id="4">In order to develop essential social skills, children should spend more time with their parents than they do.<input id="q4"/></li>
-    <li id="5">People will become less isolated as a result of greater mobility.<input id="q5"/></li>
-    <li id="6">Police technology which can keep a close watch on people will be essential in a hypermobile society.<input id="q6"/></li>
-  </ol>
-</section>
+
 
 <section id="readingText">
-  <p align="left">
-    <font color="#0000ff">
-      <b>Hypermobility</b>
-    </font>
-  </p>
+
+ <h1>Hypermobility</h1>
+
   <p align="left">Transport and communications provide the means by which everyone connects with everyone else. But the transformation in the speed and reach of these means is having profound social consequences. Many of the unwelcome characteristics of the hypermobile society can readily be imagined by extrapolating existing trends.</p>
   <p align="left">Society will be more dispersed. The process of suburban sprawl will accelerate. Societies whose members move at high speed over great distances consume more space. More of the country will need to be paved to provide parking places; the extra roads required will scar cherished landscapes and subdivide still further the habitats of endangered species; room will have to be found for new and larger airports; those parts of the world valued for their remote tranquillity will be further encroached on.</p>
   <p align="left">Society will be more polarised. The increase in the mobility of the average Briton conceals a growing gap between the mobility-rich and the mobility have-nots. All those too young, or too old, or otherwise disqualified from driving will get left behind, along with those too poor to afford cars and plane tickets. They will become second-class citizens dependent for their mobility on the withered remains of public transport or the goodwill of car owners.</p>
@@ -103,13 +86,54 @@
   <p align="left">Society will be less democratic. Individuals will have less influence over the decisions which govern their lives. As we spread ourselves ever wider and thinner in our social and economic activities, the geographical scope of political authority must expand in order to keep up with the growing size of the problems which require governing. Political power migrates up the hierarchy from local authorities to unaccountable institutions such as the World Bank and the World Trade Organisation. Trust in these unaccountable institutions diminishes as their "facts" become increasingly difficult to distinguish from spin.</p>
   <p align="left">To question the benefits of hypermobility is not to deny freedom and choice. It is to ask people what it is that they really, really want, and to confront them with the fact that their choices have consequences beyond the primary objects of their desires.</p>
   <p align="left">John Adams, Prospect Magazine, March 2000.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">In this text the author discusses the changes that increasing mobility will bring to society. The discussion is clearly divided up into six different areas. If you skim over the text, looking at the first sentence of each paragraph, you'll see what those areas are.</font>&nbsp;There are six statements in this exercise, and you should notice that each one focuses on a different part of the discussion in the text. Knowing this will help you find information quickly.&nbsp;Remember that at least one of the opinions listed in the exercise is not mentioned at all.</p>
+<section id="body">
+  <ol id="splitquestionList">
+    <li id="1">An increasingly mobile society is a threat to the environment.
+	<list class="answerList">
+	<li><a id="a1">Yes</a></li>
+	<li><a id="a2">No</a></li>
+	<li><a id="a3">Not given</a></li>
+	</list></li>
+    <p class="linespace"></p>
+    <li id="2">Greater mobility will widen the economic gap between the rich and the poor.
+	<list class="answerList">
+	<li><a id="a4">Yes</a></li>
+	<li><a id="a5">No</a></li>
+	<li><a id="a6">Not given</a></li>
+	</list></li>
+    <p class="linespace"></p>
+    <li id="3">Statistics concerning road safety are misleading.
+	<list class="answerList">
+	<li><a id="a7">Yes</a></li>
+	<li><a id="a8">No</a></li>
+	<li><a id="a9">Not given</a></li>
+	</list></li>
+    <p class="linespace"></p>
+    <li id="4">In order to develop essential social skills, children should spend more time with their parents than they do.
+	<list class="answerList">
+	<li><a id="a10">Yes</a></li>
+	<li><a id="a11">No</a></li>
+	<li><a id="a12">Not given</a></li>
+	</list></li>
+    <p class="linespace"></p>
+    <li id="5">People will become less isolated as a result of greater mobility.
+	<list class="answerList">
+	<li><a id="a13">Yes</a></li>
+	<li><a id="a14">No</a></li>
+	<li><a id="a15">Not given</a></li>
+	</list></li>
+    <p class="linespace"></p>
+    <li id="6">Police technology which can keep a close watch on people will be essential in a hypermobile society.
+	<list class="answerList">
+	<li><a id="a16">Yes</a></li>
+	<li><a id="a17">No</a></li>
+	<li><a id="a18">Not given</a></li>
+	</list></li>
+    <p class="linespace"></p>
+  </ol>
 </section>
 </body>
 </bento>

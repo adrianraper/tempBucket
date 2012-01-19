@@ -48,6 +48,29 @@
 		Questions 1-6. The reading passage on the left has six paragraphs A-F. Choose the most suitable heading for each paragraph from the list of headings on the right. Write the numbers (i-x) in gaps 1-6. There are more headings than paragraphs, so you will not use all of them.
 		</div>
 </header>
+
+
+<section id="readingText">
+<h1>BBC Experience</h1>
+<div id="reading">
+<p class="hangingIndent"><b>A</b>&#xA0;Situated beneath Broadcasting House in London, the BBC Experience is one long advertisement for the Beeb or a new interactive exhibition celebrating 75 years of broadcasting, depending on your frame of mind.</p>
+<p class="hangingIndent"><b>B</b>&#xA0;Groups of up to 30 people are guided through a series of rooms, each one offering a different experience. First come a few static exhibits describing the early years of radio, followed by a multiscreen video diary of a typical day at Broadcasting House. Then the group gets the chance to record a short radio play, before moving into two rooms to watch a slide show relating the key events of the 20th century and the role of the BBC in reporting them. Finally, visitors are let loose in the interactive room where they can play with various gadgets and video games.</p>
+<p class="hangingIndent"><b>C</b>&#xA0;The first two rooms are as exciting as watching a test-card transmission. To make things worse, visitors must spend 15 minutes in each room as all the dividing doors are operated by timers. However, the radio play can be great fun, particularly if you abandon your inhibitions. The slide show is artfully executed but hardly the cutting edge of technology.</p>
+<p class="hangingIndent"><b>D</b>&#xA0;You can stay as long as you like in the interactive room. Some of the gadgets are enjoyable &#x2013; you can direct a scene from a soap opera, remix a music track, present the weather forecast, appear on a radio programme, commentate on a variety of sports events and operate the puppets on children's television.</p>
+<p class="hangingIndent"><b>E</b>&#xA0;Groups leave every 15 minutes and you can buy tickets on the door or pre-book by phone. If you turn up at the busiest times (between 11am and 2pm), you may not get on the next tour.</p>
+<p class="hangingIndent"><b>F</b>&#xA0;The exhibition is open 9.30am-5.30pm daily. The last group leaves at 5.30pm. Snacks and meals are available in the ground-floor cafe. Take the tube to Oxford Circus or Great Portland Street.</p>
+</div>
+<h7>Glossary</h7>
+<ol id="splitreadingList">
+<li>BBC: British Broadcasting Corporation. A publicly financed broadcasting organisation &#x2013; the first and biggest in Britain.</li>
+<li>Broadcasting House: the headquarters of the BBC in London.</li>
+<li>the Beeb: the informal name for the BBC.</li>
+<li>test-card transmission: a still television picture broadcast outside normal programming hours and used to judge the quality of the image.</li>
+<li>the tube: the underground train in London.</li>
+</ol>
+<p>Mark Hodson, The Sunday Times.</p>
+</section>
+
 		<section id="noscroll">
 	
   <span id="a1" draggable="true">Go back in time</span>
@@ -78,37 +101,6 @@
 	<p class="linespace"></p>
     <li id="6">Paragraph F <tab/> <input id="q6" type="droptarget"/></li>
   </ol>
-</section>
-
-<section id="readingText">
-<h1>BBC Experience</h1>
-<div id="reading">
-<p class="hangingIndent"><b>A</b>&#xA0;Situated beneath Broadcasting House in London, the BBC Experience is one long advertisement for the Beeb or a new interactive exhibition celebrating 75 years of broadcasting, depending on your frame of mind.</p>
-<p class="hangingIndent"><b>B</b>&#xA0;Groups of up to 30 people are guided through a series of rooms, each one offering a different experience. First come a few static exhibits describing the early years of radio, followed by a multiscreen video diary of a typical day at Broadcasting House. Then the group gets the chance to record a short radio play, before moving into two rooms to watch a slide show relating the key events of the 20th century and the role of the BBC in reporting them. Finally, visitors are let loose in the interactive room where they can play with various gadgets and video games.</p>
-<p class="hangingIndent"><b>C</b>&#xA0;The first two rooms are as exciting as watching a test-card transmission. To make things worse, visitors must spend 15 minutes in each room as all the dividing doors are operated by timers. However, the radio play can be great fun, particularly if you abandon your inhibitions. The slide show is artfully executed but hardly the cutting edge of technology.</p>
-<p class="hangingIndent"><b>D</b>&#xA0;You can stay as long as you like in the interactive room. Some of the gadgets are enjoyable &#x2013; you can direct a scene from a soap opera, remix a music track, present the weather forecast, appear on a radio programme, commentate on a variety of sports events and operate the puppets on children's television.</p>
-<p class="hangingIndent"><b>E</b>&#xA0;Groups leave every 15 minutes and you can buy tickets on the door or pre-book by phone. If you turn up at the busiest times (between 11am and 2pm), you may not get on the next tour.</p>
-<p class="hangingIndent"><b>F</b>&#xA0;The exhibition is open 9.30am-5.30pm daily. The last group leaves at 5.30pm. Snacks and meals are available in the ground-floor cafe. Take the tube to Oxford Circus or Great Portland Street.</p>
-</div>
-<h7>Glossary</h7>
-<ol id="splitreadingList">
-<li>BBC: British Broadcasting Corporation. A publicly financed broadcasting organisation &#x2013; the first and biggest in Britain.</li>
-<li>Broadcasting House: the headquarters of the BBC in London.</li>
-<li>the Beeb: the informal name for the BBC.</li>
-<li>test-card transmission: a still television picture broadcast outside normal programming hours and used to judge the quality of the image.</li>
-<li>the tube: the underground train in London.</li>
-</ol>
-<p>Mark Hodson, The Sunday Times.</p>
-</section>
-
-<section id="rt2001">
-  <p align="left">
-    <font color="#000000">This short text describes a tourist attraction in London where visitors can learn something of the history and day-to-day running of the British Broadcasting Corporation (the BBC). The text is a review of the tour and so it includes useful information as well as some opinions.</font>
-  </p>
-  <p align="left">Remember that for each paragraph you must choose a heading that summarises the content of the whole paragraph, not just some of the information it contains.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
 </section>
 
 </body>

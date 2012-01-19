@@ -7,18 +7,7 @@
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	#contenttabcomp1{
-		position: relative;
-		padding-left:-3px;
-		padding-top: 100px;
-		line-height:22em;
-	}
-	#content1tabcomp1{
-		position: relative;
-		padding-left:202px;
-		padding-top:100px;
-		line-height:22em;
-	}
+
 	</style>
 	
 <script id="model" type="application/xml">
@@ -115,12 +104,14 @@
 <header>
 <div id="instruction">	
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the table below. Write NO MORE THAN THREE WORDS OR A NUMBER in each gap.
+		  <audio controls="hidden"  loop="1" src="../media/LE_LN2.mp3" mode="4" id="1002" autoPlay="true"/>
 </div>
+
 </header>
 	
 <section id="body">
   
-  <audio controls="hidden"  loop="1" src="../media/LE_LN2.mp3" mode="4" id="1002" autoPlay="true"/>
+
   
 <img class="rightFloat" src="../media/LE_LN_003.jpg" mode="1" id="1001"/>
 
@@ -128,7 +119,7 @@
 
 
 
-  
+  <div id="box1">
   <div id="contenttabcomp1">
   <p><b>Males</b></p>
   <p>1.&#xA0;<input id="q1"/></p>
@@ -136,7 +127,7 @@
   <p>3.&#xA0;<input id="q3"/></p>
   <p>4.&#xA0;<input id="q4"/></p>
   <p>Swimming</p>
-  <p></p>
+  <p>&#xA0;</p>
   <p><b>Females</b></p>
   <p>Walking</p>
   <p>6.&#xA0;<input id="q6"/>/yoga</p>
@@ -146,21 +137,21 @@
   </div>
   
   <div id="content1tabcomp1">
-  <p></p>
+  <p>&#xA0;</p>
   <p>57%</p>
   <p>2.&#xA0;<input id="q2"/>%</p>
   <p>28%</p>
   <p>24%</p>
   <p>5.&#xA0;<input id="q5"/>%</p>
-  <p></p>
-  <p></p>
+ <p>&#xA0;</p>
+ <p>&#xA0;</p>
   <p>43%</p>
   <p>28%</p>
   <p>7.&#xA0;<input id="q7"/> %</p>
   <p>17%</p>
   <p>8.&#xA0;<input id="q8"/>&#xA0;%</p>
   </div>
-  
+  </div>
 
  </section>
 

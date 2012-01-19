@@ -67,29 +67,7 @@
 	</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_SSS_001.jpg" mode="1" id="1001"/>
-  <div id="splitquestionList">
-  <p>
-    <b>Which SIX areas are covered in the seminars?</b>
-  </p>
 
-    <list class="answerList">    
-    <li><a id="t1">producing</a></li>
-    <li><a id="t2">acting</a></li>
-   	<li><a id="t3">scriptwriting</a></li>
-   	<li><a id="t4">casting</a></li>
-  	<li><a id="t5">directing</a></li>
-   	<li><a id="t6">stunts</a></li>
-    <li><a id="t7">production design</a></li>
-    <li><a id="t8">digital film effects</a></li>
-    <li><a id="t9">art direction</a></li>
-    <li><a id="t10">music</a></li>
-    <li><a id="t11">editing</a></li>
-    <li><a id="t12">sound design</a></li>
- </list>
- </div>
-</section>
 
 <section id="readingText">
 <h1>SummerSkill Sydney</h1>
@@ -134,8 +112,28 @@ From Concept to Screen</p></h2>
 <p>'SummerSkill Sydney' brochure, Australian Film Television and Radio School website.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">This exercise is straightforward and the text is reasonably easy. You shouldn't spend too much time on this exercise. Skim through the text looking for key words.</p>
+<section id="body">
+<img class="leftFloat" src="../media/RD_SSS_001.jpg" mode="1" id="1001"/>
+  <div id="splitquestionList">
+  <p>
+    <b>Which SIX areas are covered in the seminars?</b>
+  </p>
+
+    <list class="answerList">    
+    <li><a id="t1">producing</a></li>
+    <li><a id="t2">acting</a></li>
+   	<li><a id="t3">scriptwriting</a></li>
+   	<li><a id="t4">casting</a></li>
+  	<li><a id="t5">directing</a></li>
+   	<li><a id="t6">stunts</a></li>
+    <li><a id="t7">production design</a></li>
+    <li><a id="t8">digital film effects</a></li>
+    <li><a id="t9">art direction</a></li>
+    <li><a id="t10">music</a></li>
+    <li><a id="t11">editing</a></li>
+    <li><a id="t12">sound design</a></li>
+ </list>
+ </div>
 </section>
 
 </body>

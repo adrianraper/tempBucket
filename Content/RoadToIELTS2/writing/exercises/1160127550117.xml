@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Identify the thirteen linking words and phrases and other cohesive devices in this letter that help the ideas and sentences to flow logically. Click on each of them.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/EN_GW_004.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Dear Sir/Madam,</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"><g id="t1">As you can see from the address above</g>, I live in the house next door to your hotel and I am writing to complain about your rubbish collection and disposal system.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"><g id="t2">To begin with</g>, the ten large rubbish bins that you have lined up in the hotel courtyard completely spoil the view from my bedroom window. <g id="t3">As if the ugly view were not enough</g>, some members of your staff leave the lids of <g id="t4">these bins</g> open. <g id="t5">This</g> attracts stray cats and dogs and, consequently, the rubbish ends up strewn all over the road in front of my house. <g id="t6">What is more</g>, the noise the rubbish disposal truck makes when it lifts and empties <g id="t7">the bins</g> is deafening and I am woken up at 6 o'clock every morning. <g id="t8">To make matters even worse</g>, the smell that is produced as the rubbish is being emptied is revolting and lingers in the air for hours afterwards. <g id="t9">As a result of this</g>, I cannot continue sleeping and I cannot open any of the windows in my house.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">I feel that something needs to be done about <g id="t10">this situation</g> and I suggest that you build some kind of structure to house <g id="t11">these bins</g>, preferably at the back of the hotel. I would <g id="t12">also</g> appreciate it if you could arrange for the rubbish to be collected after 8 a.m. in the morning.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">I trust that you will give <g id="t13">this matter</g> your immediate attention.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Yours faithfully,</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Mrs W. Pursey</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">It is very important to write clearly and to link your sentences and paragraphs appropriately. To do this you need to use linking words and phrases and other cohesive devices like the ones in this sample composition.</font>
+  </p>
+</section>
+
+</body>
+</bento>

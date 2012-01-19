@@ -7,10 +7,7 @@
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	.menandwomen {
-	padding-left: 80px;
- 	text-indent: -173em;
-	}
+
 	</style>
 	<br/>
 <script id="model" type="application/xml">
@@ -45,33 +42,7 @@
 		</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_MW_001.jpg" mode="1" id="1001"/>
-<div id="gapfillText">
-<p class="menandwomen"><b>Skills and Abilities:</b><tab/>spatial tasks involving mentally rotating an object in space</p>
 
-<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>(1)&#xA0;<input id="q1"/><br/></p>
-<h9></h9>
-
-<p class="menandwomen"><b>Skills and Abilities:</b><tab/>visual perception</p>
-
-<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>(2)&#xA0;<input id="q2" />&#xA0;<br/></p>
-
-<h9></h9>
-
-<p class="menandwomen"><b>Skills and Abilities:</b><tab/>target-directed motor skills</p>
-
-<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>(3)&#xA0;<input id="q3" /><br/></p>
-
-<h9></h9>
-
-<p class="menandwomen"><b>Skills and Abilities:</b><tab/>(4)&#xA0;<input id="q4" /></p>
-
-<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>sewing</p>
-
-<p class="linespace"></p>
-</div>
-</section>
 
 <section id="readingText">
 
@@ -109,8 +80,32 @@
 
 </section>
 
-<section id="rt2001">
-  <p>The skills in the 'Skills and Abilities' category are direct quotes from the text. If you scan the text to find these phrases, you will find the example given close by. Write your answers in note form because you are only allowed to write up to three words in each space. Notice that for gap four you are given the example and you must find the skill. Again, scan for the word 'sewing' and you'll find the information you need close by.</p>
+<section id="body">
+<img class="leftFloat" src="../media/RD_MW_001.jpg" mode="1" id="1001"/>
+<div id="gapfillText">
+<p class="menandwomen"><b>Skills and Abilities:</b><tab/>spatial tasks involving mentally rotating an object in space</p>
+
+<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>(1)&#xA0;<input id="q1"/><br/></p>
+<h9></h9>
+
+<p class="menandwomen"><b>Skills and Abilities:</b><tab/>visual perception</p>
+
+<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>(2)&#xA0;<input id="q2" />&#xA0;<br/></p>
+
+<h9></h9>
+
+<p class="menandwomen"><b>Skills and Abilities:</b><tab/>target-directed motor skills</p>
+
+<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>(3)&#xA0;<input id="q3" /><br/></p>
+
+<h9></h9>
+
+<p class="menandwomen"><b>Skills and Abilities:</b><tab/>(4)&#xA0;<input id="q4" /></p>
+
+<p class="menandwomen"><b>Examples:</b><tab/><tab/><tab/>sewing</p>
+
+<p class="linespace"></p>
+</div>
 </section>
 
 </body>

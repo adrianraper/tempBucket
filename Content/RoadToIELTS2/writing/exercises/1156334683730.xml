@@ -66,10 +66,10 @@
   <div id="questionList">
 
  
-  <p>Paragraph 1<tab/><input id="q1" type="droptarget"/></p>
-  <p>Paragraph 2<tab/><input id="q2" type="droptarget"/></p>
-  <p>Paragraph 3<tab/><input id="q3" type="droptarget"/></p>
-  <p>Paragraph 4<tab/><input id="q4" type="droptarget"/></p>
+  <p>Paragraph 1<tab/>&#xA0;<input id="q1" type="droptarget"/></p>
+  <p>Paragraph 2<tab/>&#xA0;<input id="q2" type="droptarget"/></p>
+  <p>Paragraph 3<tab/>&#xA0;<input id="q3" type="droptarget"/></p>
+  <p>Paragraph 4<tab/>&#xA0;<input id="q4" type="droptarget"/></p>
   
   </div>
 </section>

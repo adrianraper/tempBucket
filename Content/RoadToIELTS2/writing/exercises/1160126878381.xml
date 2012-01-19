@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task on the left and answer the questions on the right. In some cases, there is more than one correct answer.
+</header>
+	
+<section id="body">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"><b>1.</b>  Who do you have to write to?</font>
+    <g id="t1">A. your boss</g>
+    <g id="t2">B. a colleague</g>
+    <g id="t3">C. a stranger</g>
+    <g id="t4">D. a friend</g>
+    <g id="t5">E. a relative</g>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"><b>2.</b>  What style of letter should you write?</font>
+    <g id="t6">A. formal</g>
+    <g id="t7">B. informal</g>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000"><b>3.</b>  What do you have to do in this letter?</font>
+    <g id="t8">A. make an apology</g>
+    <g id="t9">B. make an application</g>
+    <g id="t10">C. make a complaint</g>
+    <g id="t11">D. request action</g>
+    <g id="t12">E. make arrangements</g>
+  </p>
+  <p align="left"><font face="verdana" size="13" color="#000000"><b>4.</b>  How many points do you have to</font>cover in this letter?<g id="t13">A. one</g><g id="t14">B. two</g><g id="t15">C. three</g><g id="t16">D. four</g><g id="t17">E. five</g></p>
+  <p align="left"><font face="verdana" size="13" color="#000000"><b>5.</b>  Which of the following could you write</font>about in this letter?<g id="t18">A. the colour of the rubbish bins</g><g id="t19">B. the sight of the rubbish bins</g><g id="t20">C. the smell of the rubbish bins</g><g id="t21">D. the noise during the collection of the rubbish</g><g id="t22">E. the view from the hotel windows</g><g id="t23">F. the mess left after the collection of the rubbish</g><g id="t24">G. the smell the collection of the rubbish creates</g><g id="t25">H. the loss of business for the hotel due to the smell of rubbish</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <font color="#0000ff">
+      <b>Writing Task 1</b>
+    </font>
+  </p>
+  <p align="left">You should spend about 20 minutes on this task.</p>
+  <p align="left">
+    <b>You live next to a large hotel. The hotel's rubbish bins are kept directly below your bedroom window and this is causing you problems.</b>
+  </p>
+  <p align="left">
+    <b>Write a letter to the hotel. Explain how you are being affected by this situation and say what you would like them to do about it.</b>
+  </p>
+  <p align="left">You should write at least 150 words.</p>
+  <p align="left">You do <b>NOT</b> need to write your own address.</p>
+  <p align="left">
+    <font color="#000000">Begin your letter as follows:</font>
+  </p>
+  <p align="left">Dear Sir/Madam, </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

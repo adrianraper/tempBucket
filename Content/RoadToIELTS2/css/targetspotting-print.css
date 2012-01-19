@@ -1,39 +1,49 @@
 * {
 	font-size: 12px;
 	font-family: Verdana;
-	line-height: 22em;
+	line-height: 1.5em;
 }
 
 /* Layout */
 section {
-	display: none;
-}
-
-section#readingText {
 	display: block;
 }
 
-/* The rubric */
-body > header {
-	font-weight: normal;
-	color: #000000;
-	background-color: #F5D767;
-	padding: 0px 170px 0 20px;
-	line-height: 20em;
+section#readingText {
+	display: none;
 }
+
+section#body {
+	display: block;
+}
+
+body audio {
+	display: none;
+}
+
+body video {
+	display: none;
+}
+
+/* The rubric */
+header {
+	background-color: #F5D767;
+		font-weight: bold;
+}
+
 
 /* section body*/
 #body {
-	padding: 0 0 20px 0px;
+	padding: 0 0 20px 0;
 }
 
-#body p {
-	padding: 0 380% 0 15px;
+#writingtask1 {
+	padding: 20px 0 20px 0;
 }
 
 h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11 {
 	font-weight: bold;
-	padding: 0 0 0 25px;
+
 }
 
 h8, h8 > p,
@@ -65,8 +75,20 @@ a {
 	text-decoration: none;
 }
 
+input {
+	border: 1px solid #000000;
+		border-radius: 5px;
+}
+
 /* image */
 .rightFloat {
-float: right;
-padding: 20px 25px 0 0;
+	float: left;
+	display: block;
+	padding-right: 100%;
+	padding: 20px 100% 20px 0;
+}
+
+
+.imagetask {
+	display: none;
 }

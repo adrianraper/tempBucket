@@ -64,10 +64,12 @@
 <header>
 <div id="instruction">	
 		Questions 1-6. Listen to the recording, which will play automatically, and follow the instructions. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		<audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1a.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/><audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1a.mp3" mode="4" id="1002"/>
+<section id="body"><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/>
 
 <h8><p>Williams Electrical Goods</p></h8>
 <h2><p>Repair Request Form</p></h2>
@@ -85,10 +87,7 @@
 
 </section>
 
-<section id="rt2001">
-  <p align="left">You should be able to see from the form that you will need to listen for a name, an address, a phone number, the name of a product, a number and a date.</p>
-  <p align="left">Questions 1-8Make sure you are familiar with the form and you know where to put the information you hear.</p>
-</section>
+
 
 </body>
 </bento>

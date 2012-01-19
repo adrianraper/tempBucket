@@ -151,9 +151,9 @@
 </header>
 	
 <section id="body">
-
-<div id="questionList">
 <img class="rightFloat" src="../media/WR_OIIP_001.jpg" mode="1" id="1001"/>
+<div id="dropdownlist1">
+
   <p>Sleeplessness</p>
   
   <p>Stress</p>

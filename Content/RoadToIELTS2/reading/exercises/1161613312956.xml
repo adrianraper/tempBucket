@@ -51,13 +51,7 @@
 	</div>
 </header>
 	
-<section id="body">
-<img class="leftFloat" src="../media/RD_SCM_001.jpg" mode="1" id="1001"/>
-<div id="gapfillText1">
-  <p>Research using&#xA0;<input id="q1"/>&#xA0;has shown that male and female brains process language in very different ways. One of the main differences is that the female brain has an&#xA0;<input id="q2"/>&#xA0;to deal with speech. Scientists believe this may be due to evolution. One theory is that the parts of the brain responsible for language evolved differently in men and women because of the&#xA0;<input id="q3"/>&#xA0;that existed in prehistoric times. Men spent a great deal of their time hunting and therefore did not have much need to communicate. Women, in contrast, spent their time with their children and other women so the ability to process language was far more important.  Researchers have also discovered that the sexes use different brain structures when expressing emotions. Men make greater use of a part of the brain similar to a structure found in&#xA0;<input id="q4"/>, whereas women tend to use a structure found only in&#xA0;<input id="q5"/>.</p>
-  <p class="linespace"></p>
-  </div>
-</section>
+
 
 <section id="readingText">
 
@@ -92,6 +86,14 @@
   <p>All scientists who study male and female brains emphasise that the differences are not categorical: some men fall into the female range and vice versa. Fink says: "The good thing is that it is not clear cut."</p>
 
   <p>Steve Connor, The Sunday Times.</p>
+</section>
+
+<section id="body">
+<img class="leftFloat" src="../media/RD_SCM_001.jpg" mode="1" id="1001"/>
+<div id="gapfillText1">
+  <p>Research using&#xA0;<input id="q1"/>&#xA0;has shown that male and female brains process language in very different ways. One of the main differences is that the female brain has an&#xA0;<input id="q2"/>&#xA0;to deal with speech. Scientists believe this may be due to evolution. One theory is that the parts of the brain responsible for language evolved differently in men and women because of the&#xA0;<input id="q3"/>&#xA0;that existed in prehistoric times. Men spent a great deal of their time hunting and therefore did not have much need to communicate. Women, in contrast, spent their time with their children and other women so the ability to process language was far more important.  Researchers have also discovered that the sexes use different brain structures when expressing emotions. Men make greater use of a part of the brain similar to a structure found in&#xA0;<input id="q4"/>, whereas women tend to use a structure found only in&#xA0;<input id="q5"/>.</p>
+  <p class="linespace"></p>
+  </div>
 </section>
 
 </body>

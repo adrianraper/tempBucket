@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read these extracts from letters and find the grammar mistakes. There are 25. Click on them.
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/SS_GW_006.jpg" mode="1" id="1001"/><p align="left">I love eating out and trying different types of food. I eat out at least once <g id="t1">the</g> week and I <g id="t2">have often</g> breakfast out on Sunday mornings. I really enjoy <g id="t3">to cook</g> too. I'm taking a Thai cookery course at the moment. Last week we <g id="t4">learn</g> how to cook fish cakes and <g id="t5">the</g> delicious noodle dish.- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -If I were you, <g id="t6">I'll</g> phone the school and arrange to meet Peter's teacher. She might have noticed the change in his behaviour too, or she might have noticed something that could account for <g id="t7">them</g>. If that <g id="t8">don't</g> help, then you ought to talk to Peter &#x2013; but you'd better not <g id="t9">to do</g> it in front of <g id="t10">her</g> sister. Anyway, drop me a line and let me know how <g id="t11">he</g> goes.</p>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -We were also extremely impressed by the speed with which the officers <g id="t12">manage</g> to find the burglars and return the items <g id="t13">he</g> had taken. The items <g id="t14">was</g> stolen <g id="t15">at</g> Sunday evening and by Wednesday we <g id="t16">have</g> them all back.- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -I have always loved <g id="t17">animal</g> and, as you can see <g id="t18">at</g> my CV, I am currently <g id="t19">study</g> for a diploma in animal husbandry. I am planning to become a veterinary assistant when I have completed <g id="t20">the</g> studies.- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -I <g id="t21">am</g> wondering what facilities <g id="t22">do you</g> offer. I would particularly like to know whether there is <g id="t23">the</g> swimming pool. I would be grateful <g id="t24">whether</g> you <g id="t25">can</g> send me a brochure.<p align="left"><font size="2"/></p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <b>the -&gt; </b>
+    <font color="#0000ff">
+      <b>a</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <b>have often -&gt; </b>
+    <font color="#0000ff">
+      <b>often have</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <b>to cook -&gt; </b>
+    <font color="#0000ff">
+      <b>cooking</b>
+      <font color="#000000"/>
+    </font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <b>learn -&gt; </b>
+    <font color="#0000ff">
+      <b>learnt</b>
+      <font color="#000000"/>
+    </font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <b>the -&gt; </b>
+    <font color="#0000ff">
+      <b>a</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <b>I'll -&gt; </b>
+    <font color="#0000ff">
+      <b>I'd</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <b>them -&gt;</b>
+    <font color="#0000ff">
+      <b> it</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <b>don't -&gt; </b>
+    <font color="#0000ff">
+      <b>doesn't</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <b>to do -&gt; </b>
+    <font color="#0000ff">
+      <b>do</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <b>her -&gt; </b>
+    <font color="#0000ff">
+      <b>his</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb11">
+  <p align="left">
+    <b>he -&gt; </b>
+    <font color="#0000ff">
+      <b>it</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb12">
+  <p align="left">
+    <b>manage -&gt; </b>
+    <font color="#0000ff">
+      <b>managed</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb13">
+  <p align="left">
+    <b>he -&gt; </b>
+    <font color="#0000ff">
+      <b>they</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <b>was -&gt; </b>
+    <font color="#0000ff">
+      <b>were</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb15">
+  <p align="left">
+    <b>at -&gt; </b>
+    <font color="#0000ff">
+      <b>on</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb16">
+  <p align="left">
+    <b>have -&gt; </b>
+    <font color="#0000ff">
+      <b>had</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb17">
+  <p align="left">
+    <b>animal -&gt; </b>
+    <font color="#0000ff">
+      <b>animals</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb18">
+  <p align="left">
+    <b>at -&gt; </b>
+    <font color="#0000ff">
+      <b>from</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb19">
+  <p align="left">
+    <b>study -&gt; </b>
+    <font color="#0000ff">
+      <b>studying</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb20">
+  <p align="left">
+    <b>the -&gt; </b>
+    <font color="#0000ff">
+      <b>my</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb21">
+  <p align="left">
+    <b>am -&gt; </b>
+    <font color="#0000ff">
+      <b>was</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb22">
+  <p align="left">
+    <b>do you -&gt; </b>
+    <font color="#0000ff">
+      <b>you</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb23">
+  <p align="left">
+    <b>the -&gt; </b>
+    <font color="#0000ff">
+      <b>a</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb24">
+  <p align="left">
+    <b>whether -&gt; </b>
+    <font color="#0000ff">
+      <b>if</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb25">
+  <p align="left">
+    <b>can -&gt; </b>
+    <font color="#0000ff">
+      <b>could</b>
+    </font>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Remember to check your work for mistakes when you have finished writing.</font>
+  </p>
+</section>
+
+</body>
+</bento>

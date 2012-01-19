@@ -44,6 +44,12 @@ p {
 	padding-right: 20px;
 	padding-left: 20px;
 	}
+	
+.leftFloat {
+	float: left;
+	margin: 5px;
+	padding: 10px 200% 0px -15px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
@@ -108,7 +114,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 /* Exercise ID and class */
 /* this class is for instruction in reading exercise  */
 #instruction{
-	padding-left:20px;
+	padding-left: 0px;
 	padding-right: 160%;
 	}
 /*-----------------------------------------------------------------------------------------------*/
@@ -143,8 +149,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 /*-----------------------------------------------------------------------------------------------*/
 #mchoices {
 	list-style-type: decimal;
-	padding: 0 280% 12px 20px;
-	margin-left: 20px;
+	padding: 0 280% 12px 10px;
 	text-align: left;
 	line-height: 20em;
 	}

@@ -2,9 +2,10 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -12,12 +13,11 @@
 		 */			
 	]]>
 	</style>
-	
-	
+	<br/>
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="wider" correct="true"/>

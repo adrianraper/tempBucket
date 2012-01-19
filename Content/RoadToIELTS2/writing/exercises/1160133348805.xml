@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/TT_WTG01.jpg" mode="16" id="1004"  />Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter and find the six phrases the writer uses to introduce her questions and make them less direct and more polite and formal. Click on each phrase.
+
+Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/TT_GW_004.jpg" mode="1" id="1001"/>
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">My family and I are planning a holiday to Scotland in August and I am writing for more information about your hotel.</p>
+  <p align="left">I know the hotel is close to the sea, but <g id="t1">I would be grateful if you could</g> give me details of its exact location. <g id="t2">Can you tell me</g> how close it is to the nearest beach? Also, how far is it from the town centre? Would we need to hire a car during our stay?</p>
+  <p align="left"><g id="t3">I would also like to know</g> what facilities the hotel has. Is there an indoor swimming pool, for example, and do you provide a babysitting service? <g id="t4">Could you also tell me</g> whether the rooms have an Internet connection?</p>
+  <p align="left">Lastly, my elderly mother will be coming with us and she has problems walking up stairs. <g id="t5">I was wondering</g> if the hotel has a lift. If not, <g id="t6">please let me know</g> whether it would be possible to book a single room on the ground floor for her. Also, will we have to pay a supplement for the single room?</p>
+  <p align="left">I look forward to hearing from you.</p>
+  <p align="left">Yours faithfully,</p>
+  <p align="left">Jenny Walsh</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Indirect questions are more polite than direct questions so we tend to use them in more formal situations, for example when we don't know the person we are writing to or talking to. However, when we ask a series of questions it would be unnatural to make all of them indirect. We usually start off with one or two indirect questions to establish politeness, and then continue with direct questions. Using a mixture of direct and indirect questions like this will make your English sound more natural.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Notice the varied question types in this letter. Notice also the different verb forms used in direct and indirect questions. </font>
+  </p>
+</section>
+
+</body>
+</bento>

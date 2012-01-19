@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="fell" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="hit" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="was taken" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="was involved" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="had" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="attacked" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="was bitten" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="had" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="broke down" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="was trapped" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="did not have" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="had" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="ran" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q14" block="b14">
+      <answer value="went" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q15" block="b15">
+      <answer value="was knocked" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q16" block="b16">
+      <answer value="was given" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q17" block="b17">
+      <answer value="developed" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q18" block="b18">
+      <answer value="felt" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q19" block="b19">
+      <answer value="caught" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q20" block="b20">
+      <answer value="came" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q21" block="b21">
+      <answer value="stayed" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q22" block="b22">
+      <answer value="underwent" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q23" block="b23">
+      <answer value="were" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q24" block="b24">
+      <answer value="was not discharged" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q25" block="b25">
+      <answer value="tripped" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q26" block="b26">
+      <answer value="sprained" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q27" block="b27">
+      <answer value="was told" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q28" block="b28">
+      <answer value="were involved" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q29" block="b29">
+      <answer value="were not injured" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q30" block="b30">
+      <answer value="was damaged" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Here are some extracts from letters from people explaining why they were unable to attend a meeting. Complete them by filling each gap with the past simple of the verb given in brackets. You will need to use both active and passive voice.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/HF_GW_004.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font color="#000000">My daughter <input id="q1"/> (fall) off a chair at school, <input id="q2"/> (hit) her head and <input id="q3"/> (take) to hospital.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">My dog <input id="q4"/> (involve) in a fight with another dog and I <input id="q5"/> (have) to pull them apart. The other dog then <input id="q6"/> (attack) me and I <input id="q7"/> (bit) extremely badly and <input id="q8"/> (have) to go to hospital.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">The lift <input id="q9"/> (break down) and I <input id="q10"/> (trap) for over an hour. I <input id="q11"/> (not have) my mobile phone with me so I <input id="q12"/> (have) to wait for the emergency services to rescue me.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">I <input id="q13"/> (run) over a stone on my bicycle, <input id="q14"/> (go) flying over the handlebars and <input id="q15"/> (knock) unconscious.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">I <input id="q16"/> (give) hepatitis vaccination for my holiday and I <input id="q17"/> (develop) a high fever and <input id="q18"/> (feel) extremely nauseous.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">My five-year-old son <input id="q19"/> (catch) chicken pox. He was running a fever and <input id="q20"/> (come) out in a nasty skin rash so I <input id="q21"/> (stay) at home to look after him.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">I <input id="q22"/> (undergo) a minor operation last week but there <input id="q23"/> (be) complications and I <input id="q24"/> (not discharge) from hospital until yesterday.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">I <input id="q25"/> (trip) over one of my children's toys and <input id="q26"/> (sprain) my ankle. I <input id="q27"/> (tell) by the doctor not to walk for three days.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">My wife and I <input id="q28"/> (involve) in a minor car accident. We <input id="q29"/>(not injure) but our car <input id="q30"/> (damage) in the collision.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

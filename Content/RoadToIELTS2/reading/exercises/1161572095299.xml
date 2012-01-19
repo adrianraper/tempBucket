@@ -66,26 +66,7 @@
 	</div>
 </header>
 	
-<section id="body">
-   <img class="leftFloat" src="../media/RD_TFN_001.jpg" mode="1" id="1001"/>
-  <ol id="splitquestionList">
-     
-    <li id="q1">Male status in Maasai culture is linked to the ownership of cattle.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q2">Cattle were regularly sold in traditional Maasai communities.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q3">The colonial administration tried to integrate the Maasai into the market economy.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q4">Traditionally Enkangs are occupied all year round.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q5">A high proportion of Maasai suffer from breathing problems caused by indoor air pollution.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q6">Vegetables are not part of the traditional Maasai diet.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q7">Ferro-cement can be used to make water containers.<list class="answerList"><li><a id="a19">True</a></li><li><a id="a20">False</a></li><li><a id="a21">Not given</a></li></list> </li>
-	 <p class="linespace"></p>
-  </ol>
-</section>
+
 
 <section id="readingText">
 
@@ -122,18 +103,25 @@
   <p>Nick Hall, New Internationalist, Issue 276.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">Remember that these questions follow the order that information is given in the text.</p>
-  <p align="left">Question 10Scan quickly for the word 'status' in the text.</p>
-  <p align="left">Question 11The key word here is 'regularly'.</p>
-  <p align="left">Question 12What do you think 'market economy' means? Scan the text for 'colonial administration' to find the answer.</p>
-  <p align="left">Question 13You should be able to guess from the question what 'Enkangs' are.</p>
-  <p align="left">Question 14The information in this statement is very specific. Does this match information given in the text?</p>
-  <p align="left">Question 15Scan quickly for any mention of food and drink.</p>
-  <p align="left">Question 16Which section mentions building materials? Answer according to the information in the text. You can probably make water containers out of almost anything, but what does the text say?</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="body">
+   <img class="leftFloat" src="../media/RD_TFN_001.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
+     
+    <li id="q1">Male status in Maasai culture is linked to the ownership of cattle.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q2">Cattle were regularly sold in traditional Maasai communities.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q3">The colonial administration tried to integrate the Maasai into the market economy.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q4">Traditionally Enkangs are occupied all year round.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q5">A high proportion of Maasai suffer from breathing problems caused by indoor air pollution.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q6">Vegetables are not part of the traditional Maasai diet.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q7">Ferro-cement can be used to make water containers.<list class="answerList"><li><a id="a19">True</a></li><li><a id="a20">False</a></li><li><a id="a21">Not given</a></li></list> </li>
+	 <p class="linespace"></p>
+  </ol>
 </section>
 
 </body>

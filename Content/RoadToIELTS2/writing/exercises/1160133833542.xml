@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="was" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="did not feel" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="caught" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="spread" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="woke up" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="had" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="felt" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="went" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="prescribed" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="told" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="said" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q18" block="b18">
+      <answer value="discovered" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/HF_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the past simple of one of the verbs provided. You may need to use some of the verbs more than once.
+
+Writing Task 1
+</header>
+	
+<section id="noscroll">
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/HF_GW_007.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Dear Mr Robinson,</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">I am writing to apologise for not being present at the tutorial on Friday.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">I am terribly sorry but I <input id="q1"/> unable to attend because I <input id="q2"/> well enough to travel into college. I <input id="q3"/> the flu virus that <input id="q4"/> through college last week and I had been trying to ignore it. However, on Friday morning I <input id="q5"/> with an extremely sore throat and <input id="q18"/> that I had completely lost my voice. I also <input id="q6"/> a high temperature and <input id="q7"/> extremely weak. I <input id="q8"/> to the doctor in the afternoon and she <input id="q9"/> throat lozenges and aspirin. She also <input id="q10"/> me to stay at home and rest and <input id="q11"/> that my voice should be back in a few days.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">As the presentation is assessed I am very worried about having missed it and hope it will not affect my final result. I am feeling much better today and I was wondering if it would be possible for me to give the presentation later this week.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Thank you for your kind attention.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Yours sincerely,</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Mark Cross</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

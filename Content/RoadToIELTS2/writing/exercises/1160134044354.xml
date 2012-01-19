@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="am writing" correct="true"/>
+      <answer value="'m writing" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="to complain" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="moved" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="was" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="am" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="are" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="is" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="stand" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="drinking" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="shouting" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="were" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="do not show" correct="true"/>
+      <answer value="don't show" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q13" block="b13">
+      <answer value="throw" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q14" block="b14">
+      <answer value="scratch" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q15" block="b15">
+      <answer value="are covered" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q16" block="b16">
+      <answer value="is" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q17" block="b17">
+      <answer value="to go out" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q18" block="b18">
+      <answer value="did not feel" correct="true"/>
+      <answer value="didn't feel" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q19" block="b19">
+      <answer value="start" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q20" block="b20">
+      <answer value="walks" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q21" block="b21">
+      <answer value="was attacked" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q22" block="b22">
+      <answer value="had" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q23" block="b23">
+      <answer value="needs" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q24" block="b24">
+      <answer value="would like" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q25" block="b25">
+      <answer value="trust" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q26" block="b26">
+      <answer value="will give" correct="true"/>
+      <answer value="'ll give" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/SS_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the correct form of one of the verbs provided. You may need to use some of the verbs more than once.
+
+Writing Task 1
+</header>
+	
+<section id="noscroll">
+</section>
+
+<section id="body">
+  <img class="rightFloat" src="../media/SS_GW_009.jpg" mode="1" id="1001"/>
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">I <input id="q1"/>&#xA0;<input id="q2"/> about the increasing violence in my nieghbourhood.</p>
+  <p align="left">When I first <input id="q3"/> to Primrose Road six years ago, it <input id="q4"/> a quite safe area. Now, as I <input id="q5"/> sure you <input id="q6"/> aware, it <input id="q7"/> an incredibly dangerous and violent place.</p>
+  <p align="left">To begin with, groups of youths <input id="q8"/> around on street corners all day long, <input id="q9"/> alcohol and <input id="q10"/> at passers-by. As if this <input id="q11"/> not enough, they <input id="q12"/> any respect for the residents' property at all. They <input id="q13"/> their empty drinks cans into our gardens and <input id="q14"/> their names on our cars. What is more, most of the walls and garage doors in the street <input id="q15"/> in unsightly graffiti.</p>
+  <p align="left">As a result of this, it <input id="q16"/> now impossible <input id="q17"/> at night. At first my neighbours and I <input id="q18"/> too intimidated by these youths but they now <input id="q19"/> fights with anybody who <input id="q20"/> by. Last week my daughter's boyfriend <input id="q21"/> and <input id="q22"/> to be taken to hospital.</p>
+  <p align="left">I feel that something <input id="q23"/> to be done about this situation and in particular I <input id="q24"/> more of a police presence in the area.</p>
+  <p align="left">I <input id="q25"/> that you <input id="q26"/> this matter your immediate attention.</p>
+  <p align="left">Yours faithfully,</p>
+  <p align="left">Mrs P. Samson </p>
+</section>
+
+</body>
+</bento>

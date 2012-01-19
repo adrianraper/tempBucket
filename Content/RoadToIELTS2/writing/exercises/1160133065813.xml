@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Read the writing task from the previous exercises again and answer the questions. There is more than one correct answer in each case.
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LE_GW_006.jpg" mode="1" id="1001"/>
+  <p align="left">1.  Which beginnings would be most suitable for this letter?<g id="t1">A.  My English teacher has told me you're looking for a penfriend so I'm writing to introduce myself to you.</g><g id="t2">B.  I've been given your name by my teacher and I'm writing because I'd like to become your penfriend.</g><g id="t3">C.  I have seen your advertisement and would like to apply to become your penfriend.</g><g id="t4">D.  I am writing to enquire about becoming your penfriend.</g><g id="t5">E.  In reference to your advertisement, I would like to become your penfriend.</g><g id="t6">F.  My teacher suggested I write to you because I'm looking for a penfriend.</g></p>
+  <p align="left">2.  Which closing sentences would be most suitable for this letter?<g id="t7">A.  I would appreciate a prompt reply.</g><g id="t8">B.  I hope you'll write soon and tell me all about yourself. Looking forward to hearing from you.</g><g id="t9">C.  I very much hope that my application will be successful.</g><g id="t10">D.  I look forward to a favourable reply as soon as possible.</g><g id="t11">E.  I hope you'll write to me, and I look forward to hearing all about you.</g><g id="t12">F.  Thank you for taking the time to write to me.</g></p>
+  <p align="left">3.  Which endings would be most suitable for this letter?<g id="t13">A.  Lots of love</g><g id="t14">B.  All the best</g><g id="t15">C.  Best wishes</g><g id="t16">D.  Kind regards</g><g id="t17">E.  Yours sincerely</g><g id="t18">F.  Yours faithfully</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">When you write a letter it's important to think carefully about who you are writing to and why you are writing to them in order to select appropriate ways of starting and closing the letter.</font>
+  </p>
+</section>
+
+</body>
+</bento>

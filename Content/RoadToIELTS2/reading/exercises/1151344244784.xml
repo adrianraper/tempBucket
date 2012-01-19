@@ -51,22 +51,7 @@
 	
 </header>
 	
-<section id="body">
-  <img class="leftFloat" src="../media/DD_WR2.jpg" mode="1" id="1001"/>
 
-  <div id="splitquestionList">
-  <p>8. &#xA0;&#xA0;Contaminated&#xA0;<input id="q1"/>&#xA0;water</p>
-  <p class="linespace"></p>
-  <p>9. &#xA0;&#xA0;Contaminated&#xA0;<input id="q2"/>&#xA0;water</p>
-  <p class="linespace"></p>
-  <p>10.&#xA0;<input id="q3"/>&#xA0;filter</p>
-  <p class="linespace"></p>
-  <p>11. To users through a&#xA0;<input id="q4"/></p>
-  <p class="linespace"></p>
-  <p>12. To a&#xA0;<input id="q5"/>&#xA0;suitable for drinking water</p>
-  <p class="linespace"></p>
-  </div>
-</section>
 
 <section id="readingText">
 <h8>To Drink Without Risk</h8>
@@ -96,6 +81,22 @@
 <p>Ashok J. Gadgil and Leslie J. Shown, 1st February 1995, Solar Cooking Archive web site.</p>
 </section>
 
+<section id="body">
+  <img class="leftFloat" src="../media/DD_WR2.jpg" mode="1" id="1001"/>
+
+  <div id="splitquestionList">
+  <p>8. &#xA0;&#xA0;Contaminated&#xA0;<input id="q1"/>&#xA0;water</p>
+  <p class="linespace"></p>
+  <p>9. &#xA0;&#xA0;Contaminated&#xA0;<input id="q2"/>&#xA0;water</p>
+  <p class="linespace"></p>
+  <p>10.&#xA0;<input id="q3"/>&#xA0;filter</p>
+  <p class="linespace"></p>
+  <p>11. To users through a&#xA0;<input id="q4"/></p>
+  <p class="linespace"></p>
+  <p>12. To a&#xA0;<input id="q5"/>&#xA0;suitable for drinking water</p>
+  <p class="linespace"></p>
+  </div>
+</section>      
 
 </body>
 </bento>

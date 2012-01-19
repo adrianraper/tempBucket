@@ -252,7 +252,6 @@ h10{
 
 #readingText p {
 	padding: 0 25px 20px 6px;
-	font-size:12px;
 	}
 
 /* This class is used for reading text which paragraph label */
@@ -356,4 +355,76 @@ list-style-type: decimal;
 #feedback2 li {
 	padding: 0 0 0 20px;
 	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for Academic Reading 1 Academic reading passage (2) */
+	.hangingindenttable {
+	padding-left: 31px;
+ 	text-indent: -124em;
+	}
+	
+sh1{
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 10px;
+	padding-left: -95px;
+	padding-right: 25em;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for GT Reading 3 Men and women: minds apart */
+	.menandwomen {
+	padding-left: 80px;
+ 	text-indent: -173em;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for GT Reading 3 classification */
+	#menandwomendropdown {
+	padding-left: 25px;
+	padding-right: 35px;
+	padding-top: 20px;
+	text-align: left;
+	line-height: 22em;
+	margin: 0 20px 20px 20px;
+	}
+	
+	#menandwomendropdown p{
+	padding-left: 25px;
+ 	text-indent: -30px;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for Writing Unit 2 Task 1 Express purpose, cause and result */
+#Exp1{
+	padding-left: 30px;
+	}
+	#Exp2{
+	position: relative;
+	padding: 215px 0 0 150px;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for GT reading Unit 6 The sun protection factor */
+#skinbox {
+	width: 600px;
+
+}
+#skin1 {
+	padding-left:20px; 
+	width: 160px;
+	float: left;
+	line-height: 22em;
+}
+
+#skin1 p{ 
+	padding-bottom: 12em;
+}
+
+#skin2 {
+	padding-left: 15px;
+	width: 250px;
+	float: left;
+	line-height: 24.5em;
+}
+
+#skin2 p{ 
+	padding-bottom: 5em;
+}
+
 /*-----------------------------------------------------------------------------------------------*/

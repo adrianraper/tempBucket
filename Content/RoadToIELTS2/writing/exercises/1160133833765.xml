@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="for cancelling" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="for not attending" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="for taking" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="for losing" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="for not returning" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="for forgetting" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="for not meeting" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="for not informing" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="for not being" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="for sending" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q11" block="b11">
+      <answer value="for leaving" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q12" block="b12">
+      <answer value="for not writing" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the apologies.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/HF_GW_005.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <li id="1">You cancelled an appointment at very short notice.I am writing to apologise <input id="q1"/> our appointment at such short notice.</li>
+    <li id="2">You did not attend a meeting last week.Please accept my apologies <input id="q2"/> the meeting last week.</li>
+    <li id="3">You have taken a long time to reply to a letter.Please forgive me <input id="q3"/> so long to reply to your letter.</li>
+    <li id="4">You lost a book your tutor lent you.I am writing to apologise <input id="q4"/> the book you lent me.</li>
+    <li id="5">You did not return a phone call.Please accept my apologies <input id="q5"/> your phone call.</li>
+    <li id="6">You forgot your mother's birthday.Please forgive me <input id="q6"/> your birthday.</li>
+    <li id="7">You did not meet the deadline for a written assignment.I am writing to apologise <input id="q7"/> the deadline for my written assignment.</li>
+    <li id="8">You did not inform your teacher that you were going on holiday.Please accept my apologies <input id="q8"/> you that I was going on holiday.</li>
+    <li id="9">You were not at home when a friend came to visit.Please forgive me <input id="q9"/> at home when you came to visit.</li>
+    <li id="10">You sent the wrong documents with your application.I am writing to apologise <input id="q10"/> the wrong documents with my application.</li>
+    <li id="11">You left a party without saying goodbye to your hosts.Please accept my apologies <input id="q11"/> the party without saying goodbye.</li>
+    <li id="12">You have not written to your parents for a long time.Please forgive me <input id="q12"/> to you for such a long time.</li>
+  </ol>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">There are several ways of apologising in written English. Here are three of the most common structures:</font>
+  </p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Formal</font>I am writing to apologise for not informing you of my new address.Please accept my apologies for not informing you of my new address.</p>
+  <p align="left"><font face="verdana" size="13" color="#000000">Informal</font>Please forgive me for not telling you my new address.</p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Notice that in all three structures, the introductory phrase is followed by the preposition 'for' and the '-ing' form of the verb.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

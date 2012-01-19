@@ -2,77 +2,54 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
-	<meta name="conversion-date" content="2011-10-31" />
+	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */
-	]]>
+
 	</style>
-	
+	<br/>
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="The McLoughlin Brothers" correct="true"/>
-      <answer value="The McLouglin Bros." correct="true"/>
-      <answer value="The McLoughlin Bros" correct="true"/>
-      <answer value="McLoughlin Brothers" correct="true"/>
-      <answer value="McLouglin Bros." correct="true"/>
-      <answer value="McLoughlin Bros" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="dice" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="Civil War soldiers" correct="true"/>
-      <answer value="soldiers" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="lithography" correct="true"/>
-      <answer value="colorful lithography" correct="true"/>
-      <answer value="colourful lithography" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="domesticity" correct="true"/>
-      <answer value="cult of domesticity" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="Charles Lindbergh" correct="true"/>
-      <answer value="Lindbergh" correct="true"/>
-      <answer value="Admiral Byrd" correct="true"/>
-      <answer value="Byrd" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="plastic" correct="true"/>
-      <answer value="wood" correct="true"/>
-      <answer value="metal" correct="true"/>
-      <answer value="plaster of Paris" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="wood" correct="true"/>
-      <answer value="plastic" correct="true"/>
-      <answer value="metal" correct="true"/>
-      <answer value="plaster of Paris" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q9" block="b9">
-      <answer value="metal" correct="true"/>
-      <answer value="plastic" correct="true"/>
-      <answer value="wood" correct="true"/>
-      <answer value="plaster of Paris" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q10" block="b10">
-      <answer value="plaster of Paris" correct="true"/>
-      <answer value="plastic" correct="true"/>
-      <answer value="wood" correct="true"/>
-      <answer value="metal" correct="true"/>
-    </GapFillQuestion>
+  	<DropDownQuestion source="q1Select" block="q1Block">
+		<answer correct="true" source="${#q1Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q1Select > option:nth-child(3)}" />
+	</DropDownQuestion>
+	<DropDownQuestion source="q2Select" block="q2Block">
+		<answer correct="false" source="${#q2Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q2Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q2Select > option:nth-child(3)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q3Select" block="q3Block">
+		<answer correct="false" source="${#q3Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q3Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q3Select > option:nth-child(3)}" />
+	</DropDownQuestion>
+  	<DropDownQuestion source="q4Select" block="q4Block">
+		<answer correct="true" source="${#q4Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q4Select > option:nth-child(3)}" />
+	</DropDownQuestion>
+ 	<DropDownQuestion source="q5Select" block="q5Block">
+		<answer correct="false" source="${#q5Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q5Select > option:nth-child(2)}" />
+		<answer correct="true" source="${#q5Select > option:nth-child(3)}" />
+	</DropDownQuestion>
+   	<DropDownQuestion source="q6Select" block="q6Block">
+		<answer correct="true" source="${#q6Select > option:nth-child(1)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q6Select > option:nth-child(3)}" />
+	</DropDownQuestion>
+    <DropDownQuestion source="q7Select" block="q7Block">
+		<answer correct="false" source="${#q7Select > option:nth-child(1)}" />
+		<answer correct="true" source="${#q7Select > option:nth-child(2)}" />
+		<answer correct="false" source="${#q7Select > option:nth-child(3)}" />
+	</DropDownQuestion>
   </questions>
 </script>
 
@@ -81,82 +58,78 @@
 	
 <header>
 <div id="instruction">
-	Read the passage on the left. Using NO MORE THAN THREE WORDS from the passage, answer the questions on the right.
+	Questions 5-11. Classify the descriptions on the right as applying to: mainly men - M; mainly women - W; both men and women equally - B. Write the appropriate letters in gaps 5-11. You may use any answer more than once.
 	</div>
 </header>
 	
-<section id="body">
 
-
-  <ol id="splitquestionList">
- 
-    <li id="1">Which game company was established in 1858?<br/>
-	<input id="q1"/></li>
-	
-    <li id="2">What game pieces were regarded as extremely immoral before the end of the 19th century?<br/><input id="q2"/></li>
-    
-	<li id="3">Who did Milton Bradley produce miniaturised games for?<br/>
-	<input id="q3"/></li>
-	
-	<li id="4">What production technique was dropped at the turn of the last century to make games more affordable?<br/><input id="q4"/></li>
-	
-    <li id="5">What aspect of the late 1940s lifestyle was reflected in the games of that period?<br/><input id="q5"/></li>
-	
-    <li id="6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.<br/><input id="q6"/></li>
-	
-    <p>List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.</p>
-	
-    <li id="7">
-      <input id="q7"/>
-    </li>
-    <li id="8">
-      <input id="q8"/>
-    </li>
-    <li id="9">
-      <input id="q9"/>
-    </li>
-    <li id="10">
-      <input id="q10"/>
-    </li>
-	</ol>
-  
-</section>
 
 <section id="readingText">
 
-  <h8><p>Board Games</p></h8>
-  <h2><p>How it all began</p></h2>
+  <h1>Men and women: minds apart</h1>
   
-  <p>The first documented board game in America, A Traveler's Tour Through the United States, appeared in 1822. Demand for this new form of pastime was limited, and it wasn't until W. &amp; S.B. Ives successfully marketed the Mansion of Happiness in 1843 that production began to pick up. The McLoughlin Brothers, one of the most successful board game producers of the 19th century, started its business in 1858.</p>
+  <p>An alien from outer space could be forgiven for thinking that men and women belong to separate species. The two types of Homo sapiens not only look different, they behave differently. Their likes and dislikes, their mental strengths and weaknesses and general psychological make-up appear to be quite distinct.</p>
   
-  <img class="photo1" src="../media/LE_AR_002.jpg" mode="1" id="1001"/>
+  <p>Now scientists are beginning to find that the most sexual part of the human body is the brain and it is inherently different in men and women. Scientific literature contains abundant evidence that males and females, even when little boys and girls, fall into distinct behavioural stereotypes. But with the advent of ever more powerful brain scanners, it seems these distinctions are the result of physical differences in the chemistry and neural circuitry of the brain that are laid down at birth.</p>
+  
+  <p>In psychological tests, men, on average, perform better at certain spatial tasks that involve mentally rotating an object in space. It could explain why they are supposedly better at parking cars. Women are more perceptive and perform consistently better at quickly matching objects in their field of view.</p>
+  
+  <p>If you ask a typical man to navigate, he will do it by orienting himself in relation to which way he is facing and whether it is a right turn or a left. Women tend to do it by remembering landmarks on a route. Psychologists say that men are better than women in target-directed motor skills (men would say they are just better at playing darts), whereas women are stronger in precision manual tasks, psychobabble for the sort of skills needed in sewing.</p>
 
-  
-  <p>Strict Victorian mores guided early board game producers. The games were viewed as educational tools, intended to teach children lessons in history, geography, and good moral conduct. Dice were frowned upon, owing to an early Puritan belief that the tiny cubes were "instruments of the Devil". As the century drew to a close, the rules governing board game design eased and inventors were free to create games that were more entertaining and less moralistic, including examples based on baseball, yachting, and horse racing.</p>
-  <p>
- As the middle class continued to expand, the desire for new leisure activities spurred the board game industry. W. &amp; S.B. Ives, though it had been one of the first American companies to manufacture games, soon faded from the scene. In its place, four firms rose to dominance: the McLoughlin Bros., known for bright-colored, lithographed boxes and game boards; Milton Bradley, the first firm to manufacture compact game boards for Civil War soldiers; Parker Brothers, started in 1888 after George Parker bought the rights to the W. &amp; S.B. Ives company's games; and Selchow and Righter, the firm that obtained the U.S. rights to Parcheesi in 1874.</p>
-  <p>By 1900, dozens of companies were producing board games for distribution across the United States. Newspaper publishers even printed full-page game boards in their Sunday papers from time to time. New trends appeared, such as games involving skill and strategy that targeted adult audiences. While the public benefited from the competitive pricing and the wider selection of games that resulted from the increase in production, the colorful lithography that had been the norm during the 19th century fell victim to cost-cutting measures. As the 20th century progressed, game boards became smaller, block letters replaced elaborate lithography and plastic supplanted wood and metal as the material of choice for game pieces.</p>
-  
-  <h7><p>Portrait of an Era</p></h7>
-  <p>
-		"These were more than just games," says Lee Dennis, one of the foremost game collectors in America and a frequent lecturer on the subject, "they were boxes of history." Advancements in transportation, Presidential elections and military conquests were just some of the events that inspired new board games. Drawing on the influences around them, designers of the '30s and '40s developed themes that reflected the times in which they lived.
-	</p>
-  <p>
-  	Characters from the Sunday comics soon appeared on board games like the Dick Tracy Detective Game (Whitman Pub.), Oh, Blondie (Whitman Pub.), and the Little Orphan Annie Game (Milton Bradley). Radio serials were another popular pastime in America's pretelevision days. Eddie Cantor's Tell It to the Judge (Parker Bros.) and Fibber McGee and the Wistful Vista Mystery Game (Milton Bradley) were two examples translated onto game boards. </p>
-   <p>
-Educational games held their appeal and were produced in large numbers. The 1930s Game of Voyage Around the World (Milton Bradley) came on the heels of the late-1920s Flight to Paris (Milton Bradley) and the Lindy Flying Game (Parker Bros.), inspired by Charles Lindbergh's historic 1927 flight. Other educational games from the 1930s and '40s included Admiral Byrd's South Pole Game (Parker Bros.) and Go to the Head of the Class (Milton Bradley), a precursor of sorts to today's Trivial Pursuit (Parker Bros.).
-  </p>
-  <p>
-Game production rose to new heights late in the 1930s and then slowed during the Second World War, as paper, metal, and other materials were rationed and the nation turned to wartime production. Some games of this era came equipped with plaster of Paris pieces and an apologetic note from the manufacturer explaining the need to ration metal as part of the war effort. The late 1940s welcomed the baby boomers and witnessed the rise of the cult of domesticity. Games like Let's Furnish a House for All the Family (Parker Bros.) reflected these cultural phenomena as well.
-  </p>
-  <p>By the early 1950s, television had entered the American home. Fictional characters and celebrities from this new medium would find their way onto board games in the decades that followed, including Howdy Doody and Davy Crockett in the 1950s, Batman and the Addams Family in the 1960s, and the Partridge Family and Charlie's Angels in the 1970s. Interest in these later games has been growing among young collectors during recent years.</p>
-  <p>Bruce E. Johnson, Country Living, December 1997.</p>
+  <p>This may all sound horribly sexist and deterministic, but there is now convincing scientific evidence to show that although cultural influences are important, it is the type of brain we are born with that determines the differences in the psychology of the sexes. Even in old age, distinctions persist: men become grumpier, women more forgetful.</p>
 
+  <p>"You cannot get away from it," says Professor George Fink, director of the Medical Research Council's brain metabolism unit in Edinburgh. "The concept that the male and female brain are the same at birth died a long time ago. There is plenty of evidence on the anatomy of the human brain that there are major differences between the sexes."</p>
+
+  <p>These differences first became apparent during the study of dyslexia, the inability to read or write accurately. "Dyslexia is very rare in women and common in men and so for the past 20 years or so people have been trying to establish whether this is due to sex differences in the brain and it probably is," Fink says.</p>
+
+  <p>A husband and wife team at Yale Medical School in America produced some of the strongest evidence showing a physical difference between the brains of men and women when it came to dealing with language. Sally and Bennett Shaywitz put groups of men and women in a brain scanner and subjected them to a battery of language tests. One experiment, for instance, required the subjects to match words that rhymed. The scanner showed that men only used parts of the left side of the brain that are known to be involved in language, but the women used an additional region behind the right eyebrow.</p>
+
+  <p>This could explain why women who suffer brain damage to the front of their heads can lose their ability to speak. More men than women, on the other hand, suffer total speech loss when only the left side of the brain is damaged. Women, therefore, seem better protected than men against accidental loss of speech, caused, say, by a stroke, because the female brain has two areas rather than just one involved in language.</p>
+
+  <p>Sally Shaywitz is loath to put too much meaning into this but she admits that a plausible although "highly speculative" explanation for why speech is split between two areas of the female brain may go back to our distant evolutionary history. Perhaps, she says, speech was more important for women thousands of years ago and as a result women evolved the safety measure of an extra area that could still function if the other failed.</p>
+
+  <p>Some biologists are coming round to the idea that the differences between the male and female brain are the result of a division of labour in prehistoric society. The reasoning is that men were responsible for hunting large game, which involved team work and planning &#x2013; but not much conversation &#x2013; and navigating over long distances with the vital need to throw a spear accurately. Women, the argument continues, stayed nearer to base camp and formed closer emotional ties with their children and each other, which allowed language to develop as a sort of extension of the desire to gossip.</p>
+
+  <p>Again using brain scanners, scientists have shown that when dealing with emotions men tend to use a part of their brain called the temporal limbic system, a structure that in evolutionary terms is very old, because something similar exists in reptiles. Women, however, show greater activity in the cingulate gyrus, a "higher" part of the brain that we share only with other primates. The bottom line is that men are emotional reptiles &#x2013; they tend to lash out when upset &#x2013; whereas women are like monkeys: they sit down and chat about it.</p>
+
+  <p>Fink says that the scientific evidence so far is not strong enough to form the basis of any changes in social policy, although he thinks that one day it might, provided they are done to help redress any natural imbalances rather than enhancing them by imposing discrimination. "This research does not mean to say that culture and education cannot make a big difference, because the power of the human brain is its ability to be plastic and to develop new skills."</p>
+
+  <p>All scientists who study male and female brains emphasise that the differences are not categorical: some men fall into the female range and vice versa. Fink says: "The good thing is that it is not clear cut."</p>
+
+  <p>Steve Connor, The Sunday Times.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">Questions 1-10 - Short answer questionsDo not spend too much time on this exercise. The questions focus on very specific pieces of information. Analyse the questions first, looking for key words, and then skim through the passage quickly to find the information. You do not need to read the whole text in detail. Remember, you should use a maximum of three words for each answer and these must be taken from the reading passage.</p>
-  <p align="left">Question 7-10What kind of materials do you think are used to manufacture board games? You will have to go back to the beginning of the passage and scan the whole text to find these. Three of the answers can be found close together, but one is on its own in a later part of the text. And remember - you are looking for materials used to make game pieces, not other parts of board games.</p>
+<section id="body">
+  <img class="leftFloat" src="../media/RD_CLS_001.jpg" mode="1" id="1001"/>
+<div id="menandwomendropdown">
+  <p id="q1Block">5.<tab/><select id="q1Select">
+	<option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;become increasingly bad-tempered in later life.</p>
+	<p class="linespace"></p>
+	
+	<p id="q2Block">6.<tab/><select id="q2Select">
+    <option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;make use of the left brain hemisphere in processing language.</p>
+    <p class="linespace"></p>
+	
+	<p id="q3Block">7.<tab/><select id="q3Select">
+    <option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;rely on their memory when navigating.</p>
+    <p class="linespace"></p>
+	
+	<p id="q4Block">8.<tab/><select id="q4Select">
+    <option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;tend to suffer from dyslexia.</p>
+    <p class="linespace"></p>
+	
+	<p id="q5Block">9.<tab/><select id="q5Select">
+    <option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;are subject to cultural influences.</p>
+    <p class="linespace"></p>
+	
+	<p id="q6Block">10.<tab/><select id="q6Select">
+    <option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;risk losing the power of speech if they suffer from a stroke.</p>
+    <p class="linespace"></p>
+	
+	<p id="q7Block">11.<tab/><select id="q7Select">
+    <option>Mainly men</option><option>Mainly women</option><option>Both men and women equally</option></select>&#xA0;are likely to suffer from memory loss in old age.</p>
+  	<p class="linespace"></p>
+  </div>
 </section>
 
 </body>

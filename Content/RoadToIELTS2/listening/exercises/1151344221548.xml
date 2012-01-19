@@ -11,27 +11,7 @@
 	text-decoration: underline;
 	}
 	
-	#rightcolumn {
-	position:relative;
-	line-height: 22em;
-	padding-left: 200px;
-	padding-top:50px;
-	}
-	
-	#rightcolumn p {
-	padding-bottom:12px;
-	}
-	
-	#leftcolumn {
-	position:relative;
-	line-height: 22em;
-	padding-left: -5px;
-	padding-top:50px;
-	}
-	
-	#leftcolumn p {
-	padding-bottom:12px;
-	}
+
 	</style>
 	
 	
@@ -76,30 +56,37 @@
 <header>
 <div id="instruction">		
 		Questions 8-12. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+		<audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
 </div>		
+
 </header>
 	
 <section id="body">
 <img class="rightFloat" src="../media/ED_LN_003.jpg" mode="1" id="1001"/>
-<audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
-<h1><p>REGISTRATION FORM</p></h1>
 
-<div id="leftcolumn">
-<p></p>
+<h1><p>REGISTRATION FORM</p></h1>
+<div id="box1">
+<div id="leftcolumn1">
+
 <p><b>Surname</b></p>
 <p><b>Other Names</b></p>
 <p><b>Address</b></p>
-<p><b>Telephone </b><br/></p>
+<p><b>Telephone </b>
+<br/>&#xA0;</p>
 <p><b>Course</b></p>
 <p><b>Course Code</b></p>
-<p><b>Payment Method</b><br/><br/><br/><br/></p>
+<p><b>Payment Method</b>
+<br/>&#xA0;
+<br/>&#xA0;
+<br/>&#xA0;
+<br/>&#xA0;</p>
 <p><b>Card No.</b></p>
 <p><b>Expiry date:</b></p>
 <p></p>
 </div>
 
-<div id="rightcolumn">
-<p></p>
+<div id="rightcolumn1">
+
 <p>(8)&#xA0;<input id="q1"/></p>
 <p>Karen Louise</p>
 <p>(9)&#xA0;<input id="q2"/>, Eastleigh</p>
@@ -116,10 +103,11 @@
 <p>July 2004</p>
 <p></p>
 </div>
+</div>
+
+  <p class="feedbacktext"></p>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see from the name of the form, the headings and the information given that you will hear a girl called Karen giving a course administrator some personal details. </font>Questions 8-12For all of these questions you just need to listen very carefully. Make sure you are  familiar with the form and you know where to put the information you hear.</p>
-</section>
+
 </body>
 </bento>

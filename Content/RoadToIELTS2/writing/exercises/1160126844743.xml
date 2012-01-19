@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	What will I learn in this unit?
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/EN_GW_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>General Training Writing Task 1</b></font></p><p align="left"><font color="#000000"><b>Letter &#x2013; making a complaint</b></font></p>You will ...<ol><li>read a task and analyse what is required.</li><li>organise ideas in a letter of complaint.</li><li>identify linking expressions.</li><li>read a task and complete a sample answer with 	linking expressions.</li></ol><p align="left"><font size="2"/></p></section>
+
+</body>
+</bento>

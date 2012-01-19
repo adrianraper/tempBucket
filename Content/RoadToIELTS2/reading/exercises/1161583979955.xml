@@ -46,24 +46,7 @@ Questions 13-16. Complete the flow chart on the right with words taken from the 
 	</div>
 </header>
 	
-<section id="body">
-   <img class="leftFloat" src="../media/RD_SC_002.jpg" mode="1" id="1001"/>
-<div id="splitquestionList"> 
- <p><b>BBC Experience</b><br/>
-	The tour begins with (13)&#xA0;<input id="q1"/>&#xA0;which show how radio began.</p>
-  <p class="linespace"></p>
-  <p>Then visitors find out about the daily routine at Broadcasting House by watching a (14)&#xA0;<input id="q2"/>.</p>
-  <p class="linespace"></p>
-  <p>Next is a radio studio where they can record a radio play.</p>
-  <p class="linespace"></p>
-  <p>After this they watch a slide show of important 20th century events.</p>
-  <p class="linespace"></p>
-  <p>This is followed by a second slide show dealing with the role played by the BBC in reporting these events.</p>
-  <p class="linespace"></p>
-  <p>The last room is the (15)&#xA0;<input id="q3"/>. Here, visitors can direct or present a television programme, take part in a radio programme, provide a (16)&#xA0;<input id="q4"/>&#xA0;commentary or operate the puppets on children's television.</p>
-  <p class="linespace"></p>
-</div>
-</section>
+
 
 <section id="readingText">
 <h1>BBC Experience</h1>
@@ -86,10 +69,23 @@ Questions 13-16. Complete the flow chart on the right with words taken from the 
 <p>Mark Hodson, The Sunday Times.</p>
 </section>
 
-<section id="rt2001">
-  <p>
-    <font face="verdana" size="13" color="#000000">The flow chart summarises what happens during the BBC Experience tour. Which paragraphs give you this information? Make sure your answers fit grammatically.</font>
-  </p>
+<section id="body">
+   <img class="leftFloat" src="../media/RD_SC_002.jpg" mode="1" id="1001"/>
+<div id="splitquestionList"> 
+ <p><b>BBC Experience</b><br/>
+	The tour begins with (13)&#xA0;<input id="q1"/>&#xA0;which show how radio began.</p>
+  <p class="linespace"></p>
+  <p>Then visitors find out about the daily routine at Broadcasting House by watching a (14)&#xA0;<input id="q2"/>.</p>
+  <p class="linespace"></p>
+  <p>Next is a radio studio where they can record a radio play.</p>
+  <p class="linespace"></p>
+  <p>After this they watch a slide show of important 20th century events.</p>
+  <p class="linespace"></p>
+  <p>This is followed by a second slide show dealing with the role played by the BBC in reporting these events.</p>
+  <p class="linespace"></p>
+  <p>The last room is the (15)&#xA0;<input id="q3"/>. Here, visitors can direct or present a television programme, take part in a radio programme, provide a (16)&#xA0;<input id="q4"/>&#xA0;commentary or operate the puppets on children's television.</p>
+  <p class="linespace"></p>
+</div>
 </section>
 
 </body>

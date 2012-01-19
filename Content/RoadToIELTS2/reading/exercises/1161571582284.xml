@@ -52,19 +52,7 @@
 		</div>
 </header>
 	
-<section id="body">
-  <img class="leftFloat" src="../media/DD_GR_006.jpg" mode="1" id="1001"/>
-  
-  <div id="splitquestionList">
-    <p>6. &#xA0;<input id="q1"/>.</p>
-	<p class="linespace"></p>
-    <p>7. &#xA0;<input id="q2"/>.</p>
-	<p class="linespace"></p>
-    <p>8. &#xA0;<input id="q3"/>.</p>
-	<p class="linespace"></p>
-    <p>9. &#xA0;<input id="q4"/>.</p>
-</div>
-</section>
+
 
 <section id="readingText">
 
@@ -101,8 +89,18 @@
   <p>Nick Hall, New Internationalist, Issue 276.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">This exercise shouldn't take you too long. All the answers come from one small paragraph. Can you find the relevant paragraph? Make sure your answers are grammatically possible and make sure that you copy correctly from the text.</p>
+<section id="body">
+  <img class="leftFloat" src="../media/DD_GR_006.jpg" mode="1" id="1001"/>
+  
+  <div id="splitquestionList">
+    <p>6. &#xA0;<input id="q1"/>.</p>
+	<p class="linespace"></p>
+    <p>7. &#xA0;<input id="q2"/>.</p>
+	<p class="linespace"></p>
+    <p>8. &#xA0;<input id="q3"/>.</p>
+	<p class="linespace"></p>
+    <p>9. &#xA0;<input id="q4"/>.</p>
+</div>
 </section>
 
 </body>

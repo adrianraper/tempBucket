@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b25">
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b26">
+      <answer source="t26" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Read the writing task from the previous exercise again and answer the questions. In some cases, there is more than one correct answer.
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LE_GW_003.jpg" mode="1" id="1001"/>
+  <p align="left">1.  How well do you know the person you are writing to?<g id="t1">A.  You have known them for a long time.</g><g id="t2">B.  You have been writing to them for a long time.</g><g id="t3">C.  You have only just met them.</g><g id="t4">D.  You have never met them.</g></p>
+  <p align="left">2.  What style of letter should you write?<g id="t5">A.  formal</g><g id="t6">B.  informal</g></p>
+  <p align="left">3.  What do you have to do in this letter?<g id="t7">A.  make arrangements</g><g id="t8">B.  provide information</g><g id="t9">C.  explain a situation</g><g id="t10">D.  request information</g><g id="t11">E.  offer advice</g></p>
+  <p align="left">4.  How many points do you have to cover in this letter?<g id="t12">A.  one</g><g id="t13">B.  two</g><g id="t14">C.  three</g><g id="t15">D.  four</g><g id="t16">E.  five</g></p>
+  <p align="left">5.  What personal information would it be appropriate toinclude in this letter?<g id="t17">A.  your nationality</g><g id="t18">B.  where you live</g><g id="t19">C.  some details about your family</g><g id="t20">D.  your life history</g><g id="t21">E.  what you do</g></p>
+  <p align="left">6.  According to the writing task, what do you have to askthe person you are writing to?<g id="t22">A.  how they spend their free time</g><g id="t23">B.  where they live</g><g id="t24">C.  what they look like</g><g id="t25">D.  what they do</g><g id="t26">E.  what their future plans are</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Before you begin writing, you should make sure you've understood the task correctly and that you know exactly what is expected in your letter.</font>
+  </p>
+</section>
+
+</body>
+</bento>

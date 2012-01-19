@@ -47,37 +47,9 @@
 		</div>
 		
 </header>
-	<section id="noscroll">
-	
-  <span id="a1" draggable="true">unstable climates</span>
-  <span id="a2" draggable="true">the Solar System</span>
-  <span id="a3" draggable="true">intelligent beings</span>
-  <span id="a4" draggable="true">simple life forms</span>
-  <span id="a5" draggable="true">sophisticated cultures</span>
-  <span id="a6" draggable="true">complex organisms</span>
-  <span id="a7" draggable="true">fossils</span>
-  <span id="a8" draggable="true">polar regions</span>
-  <span id="a9" draggable="true">small animals</span>
-  <span id="a10" draggable="true">the Universe</span>
-  <span id="a11" draggable="true">higher plants</span>
-  <span id="a12" draggable="true">extreme conditions</span>
-  <span id="a13" draggable="true">sea creatures</span>
-  <span id="a14" draggable="true">the Galaxy</span>
-  <span id="a15" draggable="true">alien species</span>
 
-</section>
 
-<section id="body">
-<img class="leftFloat" src="../media/RD_MTG3_001.jpg" mode="1" id="1003"  />
-	<div id="splitdrag">
-		<p><b>Questions 12 - 16</b><br/>
-		Why is the belief that complex life forms may well exist on planets other than the Earth so widespread? Firstly, there is the issue of probability. Using the Drake equation, scientists have calculated there to be a million civilisations in (12)&#xA0;<input id="q1" type="droptarget"/>&#xA0;and potentially billions of planets with extraterrestrial life in (13)&#xA0;<input id="q2" type="droptarget"/>.
-		</p>
-		<p>Secondly, since (14)&#xA0;<input id="q3" type="droptarget"/>&#xA0;have been found to survive in (15)&#xA0;<input id="q4" type="droptarget"/>&#xA0;on Earth, it is argued that they are also likely to exist on other planets with similar environments. Finally, (16)&#xA0;<input id="q5" type="droptarget"/>&#xA0;have been discovered which suggest that life forms relatively easily, so it is believed that life must have appeared on innumerable occasions elsewhere in the Universe.
-		</p>
-</div>
-		
-</section>
+
 		<section id="readingText">
 
 	<h8>No place like home</h8>
@@ -121,13 +93,37 @@
 	</ol>
 	<p >Peter Ward, New Scientist Magazine, 18th March 2000.</p>
 </section>
-<section id="rt2001">
-  <p align="left">
-    <font color="#000000">In this case the summary does not summarise the whole text, but only one section. The first sentence of the summary tells you which section of the text if refers to. Read through the whole summary once before filling in any gaps. Here are some things to consider:</font>
-  </p>
-  <p align="left">Questions 12, 13 and 15In both cases the gaps follows the preposition 'in', so the missing words must be places.</p>
-  <p align="left">Question 14The whole sentence tells you that the missing word refers to something that 'survives', so it must be a living thing.</p>
-  <p align="left">Question 16This could be a living thing, or evidence of living things.</p>
+
+	<section id="noscroll">
+	
+  <span id="a1" draggable="true">unstable climates</span>
+  <span id="a2" draggable="true">the Solar System</span>
+  <span id="a3" draggable="true">intelligent beings</span>
+  <span id="a4" draggable="true">simple life forms</span>
+  <span id="a5" draggable="true">sophisticated cultures</span>
+  <span id="a6" draggable="true">complex organisms</span>
+  <span id="a7" draggable="true">fossils</span>
+  <span id="a8" draggable="true">polar regions</span>
+  <span id="a9" draggable="true">small animals</span>
+  <span id="a10" draggable="true">the Universe</span>
+  <span id="a11" draggable="true">higher plants</span>
+  <span id="a12" draggable="true">extreme conditions</span>
+  <span id="a13" draggable="true">sea creatures</span>
+  <span id="a14" draggable="true">the Galaxy</span>
+  <span id="a15" draggable="true">alien species</span>
+
+</section>
+
+<section id="body">
+<img class="leftFloat" src="../media/RD_MTG3_001.jpg" mode="1" id="1003"  />
+	<div id="splitdrag">
+		<p><b>Questions 12 - 16</b><br/>
+		Why is the belief that complex life forms may well exist on planets other than the Earth so widespread? Firstly, there is the issue of probability. Using the Drake equation, scientists have calculated there to be a million civilisations in (12)&#xA0;<input id="q1" type="droptarget"/>&#xA0;and potentially billions of planets with extraterrestrial life in (13)&#xA0;<input id="q2" type="droptarget"/>.
+		</p>
+		<p>Secondly, since (14)&#xA0;<input id="q3" type="droptarget"/>&#xA0;have been found to survive in (15)&#xA0;<input id="q4" type="droptarget"/>&#xA0;on Earth, it is argued that they are also likely to exist on other planets with similar environments. Finally, (16)&#xA0;<input id="q5" type="droptarget"/>&#xA0;have been discovered which suggest that life forms relatively easily, so it is believed that life must have appeared on innumerable occasions elsewhere in the Universe.
+		</p>
+</div>
+		
 </section>
 
 </body>

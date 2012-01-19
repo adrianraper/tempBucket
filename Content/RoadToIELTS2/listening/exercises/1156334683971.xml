@@ -4,13 +4,17 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+		.underline {
+	text-decoration: underline;
+	}
 	</style>
 	
 	
@@ -66,10 +70,67 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Complete the form below.Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+	<audio controls="hidden"  loop="1" autoPlay="true" class="leftFloat" src="../media/EN_LN1.mp3" mode="4" id="1002"/>
+	</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/EN_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/EN_LN1.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>ADOPT AN ANIMAL - GIFT APPLICATION FORM</b></font></p><p align="left"><font color="#000000"><b>PURCHASER&#x2019;S DETAILS</b></font></p>Name	Mr <input id="q1"/> KennedyAddress	<input id="q2"/>, ManlyDaytime Phone No.	<input id="q3"/>E-mail	ekennedy@conectup.comAnimal for Adoption	<input id="q4"/>&#xA0;<p align="left"><font color="#000000"><b>RECIPIENT&#x2019;S DETAILS</b></font></p>Name	<input id="q5"/> KennedyAddress	as aboveDaytime Phone No	as aboveDate of Birth	18th June <input id="q6"/>Adoption Package	2Amount Due ($)	<input id="q7"/>Method of Payment	Cash	Cheque	Credit Card  X	VISA  X		MasterCard	Card No. <input id="q8"/>	Expiry date: November 2004<p align="left"><font size="2"/></p>
+<section id="body">
+<img class="rightFloat" src="../media/EN_LN_002.jpg" mode="1" id="1001"/>
+
+
+<h1><p>ADOPT AN ANIMAL - GIFT APPLICATION FORM</p></h1>
+<div id="box1">
+<div id="leftcolumn1"> 
+<p><b>PURCHASER'S DETAILS</b></p>
+<p>Name</p>
+<p>Address</p>
+<p>Daytime Phone No.</p>
+<p>Email</p>
+<p>Animal for Adoption</p>
+<p>&#xA0;</p>
+<p><b>RECIPIENT&#x2019;S DETAILS</b></p>
+<p>Name</p>
+<p>Address</p>
+<p>Daytime Phone No.</p>
+<p>Date of Birth</p>
+<p>Adoption Package</p>
+<p>Amount Due ($)</p>
+<p>Method of Payment</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+
+</div>
+
+<div id="rightcolumn1">
+<p>&#xA0;</p>
+<p>Mr&#xA0;<input id="q1"/>&#xA0;Kennedy</p>
+<p><input id="q2"/>, Manly</p>
+<p><input id="q3"/></p>
+<p>ekennedy@conectup.com</p>
+<p><input id="q4"/></p>
+<p></p>
+<p></p>
+<p><input id="q5"/> Kennedy</p>
+<p>as above</p>
+<p>as above</p>
+<p>18th June <input id="q6"/></p>
+<p>2</p>
+<p><input id="q7"/></p>
+<p>_ Cash
+<br/>_ Cheque
+<br/><span class="underline">X</span>&#xA0;Credit Card<tab/><span class="underline">X</span>&#xA0;VISA
+<br/><tab/><tab/><tab/>_ MasterCard</p>
+<p>Card No.&#xA0;<input id="q8"/></p>
+<p>Expiry date: November 2004</p>
+
+</div>
+</div>
+
+
 </section>
 
 <section id="rt2001">

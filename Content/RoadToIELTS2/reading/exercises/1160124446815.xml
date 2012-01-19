@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="gapfill" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="Sturnus vulgaris" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q2" block="b2">
+      <answer value="house sparrow" correct="true"/>
+      <answer value="the sparrow" correct="true"/>
+      <answer value="sparrow" correct="true"/>
+      <answer value="the house sparrow" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q3" block="b3">
+      <answer value="60" correct="true"/>
+      <answer value="sixty" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q4" block="b4">
+      <answer value="nesting places" correct="true"/>
+      <answer value="suitable nesting places" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q5" block="b5">
+      <answer value="Woodland" correct="true"/>
+      <answer value="woodland" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q6" block="b6">
+      <answer value="65" correct="true"/>
+      <answer value="sixty-five" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q7" block="b7">
+      <answer value="willow tit" correct="true"/>
+      <answer value="Parus montanus" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q8" block="b8">
+      <answer value="lapwing" correct="true"/>
+      <answer value="the lapwing" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q9" block="b9">
+      <answer value="52" correct="true"/>
+      <answer value="fifty-two" correct="true"/>
+    </GapFillQuestion>
+    <GapFillQuestion source="q10" block="b10">
+      <answer value="intensive farmland practices" correct="true"/>
+      <answer value="intensive farming practices" correct="true"/>
+      <answer value="intensive practices" correct="true"/>
+      <answer value="farmland practices" correct="true"/>
+      <answer value="farming practices" correct="true"/>
+    </GapFillQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Complete the notes on the right using NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer. Write your answers in gaps 1-10.
+</header>
+	
+<section id="body"><img class="rightFloat" src="../media/EN_GR_003a.jpg" mode="1" id="1001"/><img class="leftFloat" src="../media/EN_GR_003b.jpg" mode="1" id="1002"/><img class="leftFloat" src="../media/EN_GR_003c.jpg" mode="1" id="1003"/><img class="leftFloat" src="../media/EN_GR_003d.jpg" mode="1" id="1004"/><img class="leftFloat" src="../media/EN_GR_003e.jpg" mode="1" id="1005"/><p align="left"><font face="verdana" size="13" color="#0000ff"><b>BRITAIN&#x2019;S DECLINING BIRD POPULATION</b></font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Common Garden Birds</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">a. Common Name: starling</font></p>Scientific Name: (1) <input id="q1"/><p align="left"><font face="verdana" size="13" color="#000000">b. Common Name: (2) <input id="q2"/></font></p>Scientific Name: Passer domesticus<p align="left"><font face="verdana" size="13" color="#000000">Status: (3) <input id="q3"/>% decrease in numbers in the last 30 years.</font></p>Possible cause of decline:lack of (4) <input id="q4"/><p align="left"><font face="verdana" size="13" color="#000000">(5) <b><input id="q5"/> Birds</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">a. Common Name: marsh tit</font></p>Scientific Name: Parus palustris<p align="left"><font face="verdana" size="13" color="#000000">b. Common Name: willow tit</font></p>Scientific Name: Parus montanus<p align="left"><font face="verdana" size="13" color="#000000">Status: (6) <input id="q6"/>% decrease in the number of both birds on average in the last 30 years.</font></p>More recently, an even greater decrease in the (7) <input id="q7"/> population has been observed.<p align="left"><font face="verdana" size="13" color="#000000"><b>Farmland Birds</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Common Name: (8) <input id="q8"/></font></p>Scientific Name: Vanellus vanellus<p align="left"><font face="verdana" size="13" color="#000000">Status: (9) <input id="q9"/>% decrease in numbers in the last 30 years.</font></p>Possible cause of decline:(10) <input id="q10"/><p align="left"><font size="2"/></p>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">
+      <b>Starlings put to flight by proud house owners</b>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Conservationists are so concerned about the decline in numbers of the house sparrow and starling that for the first time these common garden birds could be included in the Red List of birds in urgent need of protection.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Graham Madge, a spokesman for the Royal Society for the Protection of Birds, said yesterday: "These declining birds have really caught us on the hop. We know why farmland birds are in decline because of farming practices, but the threat to the starling and house sparrow is a mystery."</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">One possibility is that most surveys on birds are carried out in rural areas, which may be distorting the figures. A survey of starlings and house sparrows in London parks has started.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Mr Madge appealed to households to help to protect the birds by installing nesting boxes now in readiness for the breeding season, and regularly to leave out food for the birds, especially in freezing weather. He urged homeowners to leave some areas in their gardens untouched so that flowers can go to seed to provide food for birds.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Starlings, or Sturnus vulgaris, can be recognised by their black bodies and yellow bills, like blackbirds, but they are smaller and fatter with pointed heads and wings. The house sparrow, or Passer domesticus, is dull brown and grey. Male birds are easily identified by their grey crown and variable sized black bib. The females are trickier to spot, but unlike other sparrows, their lower body is plain and unstreaked.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Both species have dwindled by 60 per cent in the past 30 years but no reason has been found for their decline. One theory is that with homeowners in towns taking more care in the past few decades to maintain the exteriors of their properties, such as cleaning out eaves and gutterings, the birds have not been able to find suitable nesting places.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Experts are also puzzled by the decline in the population of woodland birds, particularly the marsh tit and the willow tit, whose numbers have fallen by an average of 65 per cent in the past 30 years. These, too, are candidates for the Red List.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Mr Madge said, "We have noticed an even faster rate of decline of the willow tit in the past five years. It really is the first sign we have had that woodland birds are in trouble. Again, we don&#x2019;t know why, when other relatives such as the blue tit and the great tit are doing well. There must be something happening on woodland and scrubland that we have not detected."</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">One possibility is that willow tits, which excavate their nesting holes, are somehow being deterred from nesting.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The marsh tit, or Parus palustris, is so similar to the willow tit, Parus montanus, that they were not identified as separate species until 1900. Both birds have a black cap, white cheeks and a brown back, and it takes an expert eye to tell them apart. The marsh tit is more dapper; it is slimmer with a glossy black cap and short, neat black bib.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The lapwing, or Vanellus vanellus, is a prime candidate for the Red List. Mr Madge believes that its decline by 52 per cent in the past 30 years is directly linked to intensive farmland practices. He has called on the Government to speed up payments to farms that implement environmentally friendly measures to protect the lapwing and other farmland birds.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Lapwings are easily identifiable wading birds. They are of medium size, black and white with white faces and a long upright crest.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The Joint Nature Conservation Committee, the British Trust for Ornithology and the Royal Society for the Protection of Birds are discussing the format of a new Red List. Any species that appears on the list is treated as a conservation priority. The Ministry of Agriculture and English Nature are more likely to provide funding to set up special protection schemes for birds on the list.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Valerie Elliott, Countryside Editor, The Times, 2nd January 2001.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">This exercise shouldn't take more than a few minutes. The text, about British birds that are becoming endangered, is quite straightforward. The diagram you have to complete is very clearly organised. Examine it carefully before you read the text so that you know what information to look for.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">The 'common name' is the name most people use for the bird. The 'scientific name' is usually a Latin term used by scientists when they refer to the species. Status refers to how much at risk the bird is.</font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

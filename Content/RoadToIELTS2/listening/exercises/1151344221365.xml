@@ -7,41 +7,7 @@
 	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	#part2{
-	Position: relative;
-	padding-top: 10px;
-	line-height:22em;
-	}
 
-	#part2 li{
-	padding-right: 200%;
-	}
-
-	#part2 p{
-	text-indent: -34px;
-	padding-left: 50px;
-	padding-right: 200%;
-	padding-bottom: 12px;
-	}
-	
-		#rightcolumn {
-	position:relative;
-	line-height: 22em;
-	padding-left: 300px;
-	padding-top:60px;
-	}
-	
-	#rightcolumn p {
-	padding-bottom:12px;
-	}
-	
-	h4 {
-	font-family: Verdana;
-	font-size: 13px;
-	padding-left: 15px;
-	padding-bottom: 0px;
-	padding-top: 0px
-}
 	</style>
 	
 	
@@ -81,17 +47,19 @@
 <header>
 <div id="instruction">		
 		Questions 9-12. Click to choose the appropriate answer.
+		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
 </div>
+
 </header>
 	
 <section id="body">
  
-  <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
+
    <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
    
  <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
  
-
+<div id="box1">
 
  <div id="part2"> 
 
@@ -115,6 +83,7 @@
   <p><select id="q4"><option id="a10">he is in favour</option>
 		<option id="a11">he has no strong opinion either way</option>
 		<option id="a12">he is against</option></select></p>
+  </div>
   </div>
 </section>
 

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="quiz" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <MultipleChoiceQuestion block="q1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q2">
+      <answer source="a3" correct="true"/>
+      <answer source="a4" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q3">
+      <answer source="a5" correct="true"/>
+      <answer source="a6" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q4">
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q5">
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q6">
+      <answer source="a11" correct="true"/>
+      <answer source="a12" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q7">
+      <answer source="a13" correct="false"/>
+      <answer source="a14" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q8">
+      <answer source="a15" correct="true"/>
+      <answer source="a16" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q9">
+      <answer source="a17" correct="true"/>
+      <answer source="a18" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q10">
+      <answer source="a19" correct="true"/>
+      <answer source="a20" correct="false"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q11">
+      <answer source="a21" correct="false"/>
+      <answer source="a22" correct="true"/>
+    </MultipleChoiceQuestion>
+    <MultipleChoiceQuestion block="q12">
+      <answer source="a23" correct="true"/>
+      <answer source="a24" correct="false"/>
+    </MultipleChoiceQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read these sentences from letters and decide if the language is formal or informal.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/SS_GW_005.jpg" mode="1" id="1001"/>
+  <br/>
+  <ol id="questionList">
+    <br/>
+    <li id="q1">The first thing I'd do if I were you is go and see his teacher.<a id="a1">Formal</a><tab/><a id="a2">Informal</a><br/></li>
+    <br/>
+    <li id="q2">I would like to know whether it would be possible for transportation to be arranged.<a id="a3">Formal</a><tab/><a id="a4">Informal</a><br/></li>
+    <br/>
+    <li id="q3">My family doctor informed the Central Hospital immediately following the diagnosis and explained the seriousness of my condition.<a id="a5">Formal</a><tab/><a id="a6">Informal</a><br/></li>
+    <br/>
+    <li id="q4">I have considerable experience in the field of animal care.<a id="a7">Formal</a><tab/><a id="a8">Informal</a><br/></li>
+    <br/>
+    <li id="q5">It's a really good read.<a id="a9">Formal</a><tab/><a id="a10">Informal</a><br/></li>
+    <br/>
+    <li id="q6">Our children are unable to walk home from school unless they are accompanied by an adult.<a id="a11">Formal</a><tab/><a id="a12">Informal</a><br/></li>
+    <br/>
+    <li id="q7">You really should check out the job ads on the Internet too.<a id="a13">Formal</a><tab/><a id="a14">Informal</a><br/></li>
+    <br/>
+    <li id="q8">We were particularly impressed by the number of ramps for wheelchair users.<a id="a15">Formal</a><tab/><a id="a16">Informal</a><br/></li>
+    <br/>
+    <li id="q9">I have suffered from acute sleep deprivation for a number of years.<a id="a17">Formal</a><tab/><a id="a18">Informal</a><br/></li>
+    <br/>
+    <li id="q10">I strongly feel that there is an unacceptable level of violence in the programme and that, therefore, the series should be broadcast at a more appropriate time.<a id="a19">Formal</a><tab/><a id="a20">Informal</a><br/></li>
+    <br/>
+    <li id="q11">I really can't stand football.<a id="a21">Formal</a><tab/><a id="a22">Informal</a><br/></li>
+    <br/>
+    <li id="q12">The officers on duty responded to our call within a matter of minutes.<a id="a23">Formal</a><tab/><a id="a24">Informal</a><br/></li>
+  </ol>
+</section>
+
+</body>
+</bento>

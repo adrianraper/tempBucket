@@ -45,27 +45,7 @@
 		
 </header>
 	
-<section id="body">
-   <img class="leftFloat" src="../media/RD_MCO_001.jpg" mode="1" id="1003"  />
-  <ol id="splitquestionList">
-  <p>17. An alternative title for this passage would be &#x2026; </p>
- <list class="answerList1">
- <li><a id="a1">intelligent moths.</a></li>
-  <li><a id="a2">new developments in microelectronics.</a></li>
-  <li><a id="a3">new ways to harness nature for human work.</a></li>
-  <li><a id="a4">recent discoveries in lepidopteran behaviour.</a></li>
-  </list>
-  <p class="linespace"></p>
-  <p>18. This passage has probably been taken from &#x2026;</p>
-  <list class="answerList1">
-  <li><a id="a5">a journal of neurobiology.</a></li>
-  <li><a id="a6">a popular science magazine.</a></li>
-  <li><a id="a7">a formal research report.</a></li>
-  <li><a id="a8">a wildlife magazine.</a></li>
-  </list>
-  <p class="linespace"></p>
-  </ol>
-</section>
+
 
 <section id="readingText">
 <h1>Robomoths</h1>
@@ -96,10 +76,26 @@
 <p>The Economist, 4th March 2000.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">The two questions in this exercise are 'summary' questions, in that they refer to the text as a whole.</p>
-  <p align="left">Question 17Choose a title that suits the whole passage, not just certain sections or information it contains. What news is the writer reporting?</p>
-  <p align="left">Question 18Consider the style and tone of this passage. How serious is it? Is there any humour in the passage? Are there any references or footnotes of the kind that often appear in academic journals? What is the overall subject matter? Would non-specialists understand it?</p>
+<section id="body">
+   <img class="leftFloat" src="../media/RD_MCO_001.jpg" mode="1" id="1003"  />
+  <ol id="splitquestionList">
+  <p>17. An alternative title for this passage would be &#x2026; </p>
+ <list class="answerList1">
+ <li><a id="a1">intelligent moths.</a></li>
+  <li><a id="a2">new developments in microelectronics.</a></li>
+  <li><a id="a3">new ways to harness nature for human work.</a></li>
+  <li><a id="a4">recent discoveries in lepidopteran behaviour.</a></li>
+  </list>
+  <p class="linespace"></p>
+  <p>18. This passage has probably been taken from &#x2026;</p>
+  <list class="answerList1">
+  <li><a id="a5">a journal of neurobiology.</a></li>
+  <li><a id="a6">a popular science magazine.</a></li>
+  <li><a id="a7">a formal research report.</a></li>
+  <li><a id="a8">a wildlife magazine.</a></li>
+  </list>
+  <p class="linespace"></p>
+  </ol>
 </section>
 
 </body>

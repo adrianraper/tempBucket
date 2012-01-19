@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -12,15 +13,7 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking instant="true"/>
-		<feedback wrongonly="false"/>
-		<buttons feedback="false" marking="true"/>
-		<exercise/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
+
 	
 <script id="model" type="application/xml">
   <questions>
@@ -55,47 +48,17 @@
 <body>
 	
 <header>
+<div id="instruction">
 	The writer mentions a number of changes which are leading to the disappearance of management. Which FIVE of the following changes are mentioned?
+	</div>
 </header>
 	
-<section id="body">
-  <img class="rightFloat" src="../media/Education_004.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>Which FIVE of the following changes are mentioned?</b>
-  </p>
-  <p align="left">
-    <g id="t1">A	cutting the number of management levels</g>
-  </p>
-  <p align="left">
-    <g id="t2">B	limiting the amount of bureaucracy at management level</g>
-  </p>
-  <p align="left">
-    <g id="t3">C	reducing the size of the workforce</g>
-  </p>
-  <p align="left">
-    <g id="t4">D	organising a more self-reliant workforce</g>
-  </p>
-  <p align="left">
-    <g id="t5">E	giving workers 'team leader' status</g>
-  </p>
-  <p align="left">
-    <g id="t6">F	using technology instead of managers to supervise work processes</g>
-  </p>
-  <p align="left">
-    <g id="t7">G	taking advantage of electronic communications</g>
-  </p>
-  <p align="left">
-    <g id="t8">H	putting work out to contract</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-</section>
+
 
 <section id="readingText">
   <p align="left">
     <font color="#0000ff">
-      <b>Abolishing management, one slice at a time</b>
+      <h1>Abolishing management, one slice at a time</h1>
     </font>
   </p>
   <p align="left">The management function has been whittled away since the seventies. Harry Onsman suggests the whittling may not be over yet.</p>
@@ -127,10 +90,37 @@
   </p>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Read through the list of changes. Which do you think are the most likely to cause the disappearance of management in companies and organisations? Underline key words and search for them in the text.</font>
-  </p>
+<section id="body">
+  <img class="rightFloat" src="../media/Education_004.jpg" mode="1" id="1001"/>
+  <div id="splitquestionList">
+  <p><b>Which FIVE of the following changes are mentioned?</b></p>
+  <list class="answerList">    
+  <li><a id="t1">cutting the number of management levels</a></li>
+
+ <li>
+    <a id="t2">limiting the amount of bureaucracy at management level</a></li>
+
+  <li>
+    <a id="t3">reducing the size of the workforce</a></li>
+
+  <li>
+    <a id="t4">organising a more self-reliant workforce</a></li>
+
+  <li>
+    <a id="t5">giving workers 'team leader' status</a></li>
+
+  <li>
+    <a id="t6">using technology instead of managers to supervise work processes</a></li>
+
+  <li>
+    <a id="t7">taking advantage of electronic communications</a></li>
+
+  <li>
+    <a id="t8">putting work out to contract</a></li>
+	<p class="linespace"></p>
+	</list>
+
+</div>
 </section>
 
 </body>

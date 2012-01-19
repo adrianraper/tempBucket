@@ -58,13 +58,15 @@
 <header>
 <div id="instruction">
 Listen to the recording, which will play automatically, and follow the instructions. Complete the following summary. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
+  <audio controls="hidden" loop="1" autoplay="true" src="../media/MM_LN2.mp3" mode="4" id="1006"/>
 </div>
+
 </header>
 	
 <section id="body">
 
 <img class="rightFloat" src="../media/MM_LN_003.jpg" mode="1" id="1001"/>
-  <audio controls="hidden" loop="1" autoplay="true" src="../media/MM_LN2.mp3" mode="4" id="1006"/>
+
     
 	
   <div id="gapfillText">

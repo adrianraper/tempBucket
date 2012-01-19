@@ -56,27 +56,7 @@
 
 </header>
 	
-<section id="body">
-  
-  <ol id="splitquestionList">
-    <li id="1">Some species are unable to adapt to the changing climate brought about by global warming.
-	<p><b>Solution</b> &#xA0;<input id="q1"/><br/></p></li>
-    <li id="2">Overfishing upsets the natural balance of marine life.
-	<p><b>Solution</b> &#xA0;<input id="q2"/><br/></p></li>
-    <li id="3">Logging to provide timber for industry destroys forests.
-	<p ><b>Solution</b> &#xA0;<input id="q3"/><br/></p></li>
-    <li id="4">Some endangered species are still hunted due to the demand for traditional medicines, ivory, skins and other animal products.
-	<p ><b>Solution</b> &#xA0;<input id="q4"/><br/></p></li>
-    <li id="5">Industry continues to pollute rivers, lakes and coastal areas.
-	<p><b>Solution</b> &#xA0;<input id="q5"/><br/></p></li>
-    <li id="6">Forests are cleared to provide agricultural land.
-	<p ><b>Solution</b> &#xA0;<input id="q6"/><br/></p></li>
-  </ol>
-</section>
 
-<section id="rt2001">
-  <p align="left">This exercise will give you some ideas for the writing task. Remember, for every cause you mention in paragraph two, you should suggest at least one corresponding solution in paragraph three. One way to make suggestions is to use modal verbs such as 'should', 'ought to' and 'must', but there are also some other useful phrases you can use - look back at the earlier exercises if you can't remember them.</p>
-</section>
 
 <section id="readingText">
 <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
@@ -94,6 +74,7 @@
 <h7><p>Solution F:</p></h7>
 <p>CO2 emissions from vehicles and industry should be reduced and more use made of renewable energy sources such as wind and solar power.</p>
 </section>
+
 <section id="writingtask1">
 
 
@@ -104,5 +85,22 @@
 <p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
 
 		</section>
+		<section id="body">
+  
+  <ol id="splitquestionList">
+    <li id="1">Some species are unable to adapt to the changing climate brought about by global warming.
+	<p><b>Solution</b> &#xA0;<input id="q1"/><br/></p></li>
+    <li id="2">Overfishing upsets the natural balance of marine life.
+	<p><b>Solution</b> &#xA0;<input id="q2"/><br/></p></li>
+    <li id="3">Logging to provide timber for industry destroys forests.
+	<p ><b>Solution</b> &#xA0;<input id="q3"/><br/></p></li>
+    <li id="4">Some endangered species are still hunted due to the demand for traditional medicines, ivory, skins and other animal products.
+	<p ><b>Solution</b> &#xA0;<input id="q4"/><br/></p></li>
+    <li id="5">Industry continues to pollute rivers, lakes and coastal areas.
+	<p><b>Solution</b> &#xA0;<input id="q5"/><br/></p></li>
+    <li id="6">Forests are cleared to provide agricultural land.
+	<p ><b>Solution</b> &#xA0;<input id="q6"/><br/></p></li>
+  </ol>
+</section>
 </body>
 </bento>

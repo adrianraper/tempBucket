@@ -182,6 +182,17 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 #dropdownlist p{
 padding-bottom: 12px;
 	}
+	
+#dropdownlist1 {
+	list-style-type: decimal;
+	padding-top:0px;
+	padding-right: 20px;
+	text-align: left;
+	line-height: 22em;
+}
+#dropdownlist1 p{
+	padding-bottom: 12px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* colmuns for long feedback i.e. Linking words and phrases (1)  */
 #feedback1 {
@@ -193,4 +204,61 @@ padding-bottom: 12px;
 	width: 270px;
 	padding: 0 30px 0 0;
 	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for Listening 2 British cinema */
+	#wrapper{
+	position:absolute;
+    width:1000px;
+	}
+	#part1{
+	Position: relative;
+	padding-top: 10px;
+	padding-left: -22px;
+	line-height:22em;
+	}
+
+	#part1 li{
+	padding-right: 200%;
+	}	
+
+	#part1 p{
+	padding-right: 200%;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for Listening 3 Classification (2) */
+	#part2{
+	Position: relative;
+	padding-top: 10px;
+	line-height:22em;
+	}
+
+	#part2 li{
+	padding-right: 200%;
+	}
+
+	#part2 p{
+	text-indent: -34px;
+	padding-left: 50px;
+	padding-right: 200%;
+	padding-bottom: 12px;
+	}
+	
+		#rightcolumn {
+	position:relative;
+	line-height: 22em;
+	padding-left: 300px;
+	padding-top:60px;
+	}
+	
+	#rightcolumn p {
+	padding-bottom:12px;
+	}
+	
+	h4 {
+	font-family: Verdana;
+	font-size: 13px;
+	padding-left: 15px;
+	padding-bottom: 0px;
+	padding-top: 0px
+}
 /*-----------------------------------------------------------------------------------------------*/

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="draganddrop" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <DragQuestion source="q1" block="b1">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q7" block="b7">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q8" block="b8">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q9" block="b9">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q10" block="b10">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q11" block="b11">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q12" block="b12">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q13" block="b13">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q14" block="b14">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q15" block="b15">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q16" block="b16">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q17" block="b17">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q18" block="b18">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q19" block="b19">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q20" block="b20">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q21" block="b21">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q22" block="b22">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q23" block="b23">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q24" block="b24">
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+      <answer source="aunknown" correct="true"/>
+    </DragQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Put the phrases into the correct group by dragging them across.
+</header>
+	
+<section id="body">
+  <p align="left">
+    <b>Giving Advice</b>
+    <input id="q1" type="droptarget"/>
+    <input id="q2" type="droptarget"/>
+    <input id="q3" type="droptarget"/>
+    <input id="q4" type="droptarget"/>
+    <input id="q5" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Linking Expressions</b>
+    <input id="q6" type="droptarget"/>
+    <input id="q7" type="droptarget"/>
+    <input id="q8" type="droptarget"/>
+    <input id="q9" type="droptarget"/>
+    <input id="q10" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Indirect Questions/Requests</b>
+    <input id="q11" type="droptarget"/>
+    <input id="q12" type="droptarget"/>
+    <input id="q13" type="droptarget"/>
+    <input id="q14" type="droptarget"/>
+    <input id="q15" type="droptarget"/>
+    <input id="q16" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Recommending</b>
+    <input id="q17" type="droptarget"/>
+    <input id="q18" type="droptarget"/>
+    <input id="q19" type="droptarget"/>
+    <input id="q20" type="droptarget"/>
+  </p>
+  <p align="left">
+    <b>Apologising</b>
+    <input id="q21" type="droptarget"/>
+    <input id="q22" type="droptarget"/>
+    <input id="q23" type="droptarget"/>
+    <input id="q24" type="droptarget"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="readingText">
+  <p align="left"><font size="13" face="verdana"><tab/><font color="#0000ff">[40]</font></font><tab/>[31]<tab/>[36]<tab/>[25]<tab/>[34]<tab/>[42]<tab/>[33]<tab/>[39]<tab/>[43]<tab/>[29]<tab/>[30]<tab/>[47]<tab/>[27]<tab/>[44]<tab/>[28]<tab/>[45]<tab/>[37]<tab/>[46]<tab/>[41]<tab/>[26]<tab/>[38]<tab/>[32]<tab/>[48]<tab/>[35]</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

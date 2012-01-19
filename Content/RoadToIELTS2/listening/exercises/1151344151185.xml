@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -20,30 +21,38 @@
 </settings>
 
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="C" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="H" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="K" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="J" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="E" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="D" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="A" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="F" correct="true"/>
-    </GapFillQuestion>
+    <DragQuestion source="q1" block="b1">
+      <answer source="a3" correct="true"/>
+
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a8" correct="true"/>
+
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a11" correct="true"/>
+
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a10" correct="true"/>
+
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a5" correct="true"/>
+
+    </DragQuestion>
+    <DragQuestion source="q6" block="b6">
+      <answer source="a4" correct="true"/>
+    </DragQuestion>
+	
+	    <DragQuestion source="q7" block="b7">
+      <answer source="a1" correct="true"/>
+    </DragQuestion>
+	
+	    <DragQuestion source="q8" block="b8">
+      <answer source="a6" correct="true"/>
+    </DragQuestion>
+	
   </questions>
 </script>
 
@@ -52,19 +61,57 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 1-8. Listen to the recording, which will play automatically, and follow the instructions. Match the diseases on the left to the insects that cause them. Write the appropriate letters A-K against Questions 1-8.
-		
+		<audio controls="hidden" loop="1" autoPlay="true" src="../media/HF_LN2a.mp3" mode="4" id="1002"/>
+		</div>
 </header>
-	
-<section id="body"><audio controls="compact" class="leftFloat" src="../media/HF_LN2a.mp3" mode="4" id="1002"/><p align="left"><b>Insects	Diseases</b>================================Anopheles mosquitoes	(1) <input id="q1"/></p>Aedes aegypti mosquitoes	(2) <input id="q2"/>Houseflies	(3) <input id="q3"/>Deer ticks	(4) <input id="q4"/>Body lice	(5) <input id="q5"/>Fleas	(6) <input id="q6"/>Black flies	(7) <input id="q7"/>Sand flies	(8) <input id="q8"/><p align="left"><font size="2"/></p></section>
+		<section id="noscroll">
+  <span id="a1" draggable="true">river blindness</span>
+  <span id="a2" draggable="true">oxoplasmosis</span>
+  <span id="a3" draggable="true">malaria</span>
+  <span id="a4" draggable="true">endemic typhus</span>
+  <span id="a5" draggable="true">epidemic typhus</span>
+  <span id="a6" draggable="true">leishmaniasis</span>
+  <span id="a7" draggable="true">Q-fever</span>
+  <span id="a8" draggable="true">dengue fever</span>
+  <span id="a9" draggable="true">sleeping sickness</span>
+    <span id="a9" draggable="true">Lyme disease</span>
+	<span id="a9" draggable="true">dysentery</span>
 
-<section id="readingText">
-  <p align="left"><b>Diseases</b>==============A	river blindnessB	toxoplasmosisC	malariaD	endemic typhusE	epidemic typhusF	leishmaniasisG	Q-feverH	dengue feverI	sleeping sicknessJ	Lyme diseaseK	dysentery</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
 </section>
+
+<section id="body">
+<div id="box1">
+<div id="disease1">
+<p><b>Insects</b></p>
+<p></p>
+<p>Anopheles mosquitoes</p> 
+<p>Aedes aegypti mosquitoes</p>
+<p>Houseflies</p>
+<p>Deer ticks</p>
+<p>Body lice</p>
+<p>Fleas</p>
+<p>Black flies</p>
+<p>Sand flies</p>
+</div>
+
+<div id="disease2">
+<p><b>Diseases</b></p>
+<p></p>
+<p>(1) <input id="q1" type="droptarget"/></p> 
+<p>(2) <input id="q2" type="droptarget"/></p>
+<p>(3) <input id="q3" type="droptarget"/></p>
+<p>(4) <input id="q4" type="droptarget"/></p>
+<p>(5) <input id="q5" type="droptarget"/></p>
+<p>(6) <input id="q6" type="droptarget"/></p>
+<p>(7) <input id="q7" type="droptarget"/></p>
+<p>(8) <input id="q8" type="droptarget"/></p>
+</div>
+</div>
+</section>
+
+
 
 </body>
 </bento>

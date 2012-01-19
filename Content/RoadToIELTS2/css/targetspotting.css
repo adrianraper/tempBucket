@@ -240,3 +240,15 @@ h7{
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/* Specify for Writing Unit 1 task 1 sample answer */
+	#u1t1sample {
+	padding-top:10px;
+			padding-right: 450%;
+			text-align: left;
+			line-height: 22em;
+		}
+		
+		#u1t1sample p {
+			padding-bottom: 20em;
+}
+/*-----------------------------------------------------------------------------------------------*/

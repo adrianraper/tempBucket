@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Read the letter from the previous exercise again and click on all the words and phrases the writer uses to talk about how often she does things.
+		
+		Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/LE_GW_005.jpg" mode="1" id="1001"/>
+  <p align="left">Dear Pat,</p>
+  <p align="left">My English teacher has told me you're looking for a penfriend so I'm writing to introduce myself to you.</p>
+  <p align="left">
+    <font color="#000000">I'm 24 years old and I live in Hong Kong. I work in the tourist industry as a tour guide. I live with my parents on an outlying island and I travel to work by ferry <g id="t1">every day</g>. I love my job as I get to meet so many interesting people from all over the world, but I don't like having to work on public holidays and at the weekend!</font>
+  </p>
+  <p align="left">
+    <font color="#000000">As for my hobbies and interests, I'm a bit of a fitness fanatic! I go jogging <g id="t2">every morning</g> before I go to work and I <g id="t3">always</g> do some yoga before I go to bed. I play badminton <g id="t4">twice a week</g> and squash about <g id="t5">once a fortnight</g>. I enjoy hiking and try and get out to the country park at least <g id="t6">once a month</g>, but I prefer going swimming in the summer because I can't stand the heat. And I absolutely detest gyms! I hate running on a treadmill that doesn't go anywhere and staring aimlessly into space. Apart from sport, I also like dancing and I <g id="t7">often</g> go clubbing with friends at the weekend. I'm really keen on disco music and I can dance for hours.</font>
+  </p>
+  <p align="left">
+    <font color="#000000">Anyway, enough about me! What about you? What do you like doing in your free time? I hope you'll write soon and tell me about yourself.</font>
+  </p>
+  <p align="left">Looking forward to hearing from you.</p>
+  <p align="left">Best wishes,</p>
+  <p align="left">Kim</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">There are also several ways to express the frequency with which we do things. To avoid repetition, you should try to use a mixture of frequency adverbs such as 'always' and 'usually', and adverbial phrases such as 'once or twice a week' and 'every day'.</font>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -61,7 +61,9 @@
 <header>
 <div id="instruction">
 	Complete the table below by dragging down the pieces of information to match the languages they describe.
+		<audio controls="hidden" loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
 	</div>
+
 	</header>
 
 	<section id="noscroll">
@@ -79,7 +81,7 @@
 <section id="body">
 
 <img class="rightFloat" src="../media/LC_LN_003.JPG" mode="1" id="1001"/>
-<audio controls="hidden" loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
+
 
 
 <ol id="questionList">

@@ -12,13 +12,7 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
-#Exp1{
-padding-left: 30px;
-}
-#Exp2{
-position: relative;
-padding: 215px 0 0 150px;
-}
+
 	</style>
 	
 	

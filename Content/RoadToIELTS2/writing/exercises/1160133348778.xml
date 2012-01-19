@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Read the writing task on the left and answer the questions on the right. In some cases, there is more than one correct answer.
+</header>
+	
+<section id="body">
+  <p align="left"><b>1.</b>  Who do you have to write to?<g id="t1">A.  a friend</g><g id="t2">B.  a relative</g><g id="t3">C.  a colleague</g><g id="t4">D.  an acquaintance</g><g id="t5">E.  a stranger</g></p>
+  <p align="left"><b>2.</b>  What style of letter should you write?<g id="t6">A.  formal</g><g id="t7">B.  informal</g></p>
+  <p align="left"><b>3.</b>  What do you have to do in this letter?<g id="t8">A.  make arrangement</g><g id="t9">B.  request information</g><g id="t10">C.  offer advice</g><g id="t11">D.  make a complaint</g><g id="t12">E.  provide information</g></p>
+  <p align="left"><b>4.</b>  How many points do you have to coverin this letter?<g id="t13">A.  one</g><g id="t14">B.  two</g><g id="t15">C.  three</g><g id="t16">D.  four</g><g id="t17">E.  five</g></p>
+  <p align="left"><b>5.</b>  Which of the following could you askabout in this letter?<g id="t18">A.  if the hotel has a swimming pool</g><g id="t19">B.  when the hotel was established</g><g id="t20">C.  how far the hotel is from the town centre</g><g id="t21">D.  what the weather will be like in August</g><g id="t22">E.  if they provide meals for vegetarians</g></p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="readingText">
+  <p align="left">
+    <font face="verdana" size="13" color="#0000ff">
+      <b>Writing Task 1</b>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You should spend about 20 minutes on this task.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <b>You are planning a holiday in Scotland. You have been given the name and address of a hotel near the sea and would like some further information.</b>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">
+      <b>Write a letter to the hotel. Ask for information about the hotel's exact location and facilities. Explain any special requirements you have and ask whether the hotel can accommodate them.</b>
+    </font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You should write at least 150 words.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">You do <b>NOT</b> need to write your own address.</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Begin your letter as follows:</font>
+  </p>
+  <p align="left">
+    <font face="verdana" size="13" color="#000000">Dear Sir/Madam, </font>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

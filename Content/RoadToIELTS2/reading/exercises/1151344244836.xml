@@ -77,25 +77,7 @@
 		</div>
 </header>
 	
-<section id="body">
 
-  <ol id="splitquestionList">
-    <li id="1">What do two thirds of the world's population not have at home?<br/><input id="q1"/></li>
-	<p class="linespace"></p>
-    <li id="2">What feature of the UV water disinfection system ensures safe use by operators?<br/><input id="q2"/></li>
-	<p class="linespace"></p>
-    <li id="3">What causes water to flow through the UV system?<br/><input id="q3"/></li>
-	<p class="linespace"></p>
-    <li id="4">How much water does the unit treat every minute?<br/><input id="q4"/></li>
-	<p class="linespace"></p>
-    <li id="5">Where is the UV system becoming increasingly accepted as a water treatment method?<br/><input id="q5"/></li>
-	<p class="linespace"></p>
-    <li id="6">Name a source of safe, untreated drinking water which can be found in some countries.<br/><input id="q6"/></li>
-	<p class="linespace"></p>
-    <li id="7">Apart from children, who will particularly benefit from a cheap but effective water treatment technique?<br/><input id="q7"/></li>
-	<p class="linespace"></p>
-  </ol>
-</section>
 
 
 
@@ -137,7 +119,25 @@
 <p align="left">Ashok J. Gadgil and Leslie J. Shown, 1st February 1995, Solar Cooking Archive web site.</p>
 </section>
 
-<section id="rt2001"><p align="left"><font color="#000000">This passage describes a method of disinfecting water using ultraviolet (UV) light. Don't worry if you think that the title seems very technical. In fact, only a part of the passage explains how UV technology actually disinfects water and this can easily be understood with careful reading. The rest of the passage is quite non-technical.</font></p><p align="left"><font color="#000000">Notice how the text is clearly divided up into four sections: the introduction, which discusses the shortage of treated, drinkable water in developing countries; a section describing how the UV system works; a third section comparing the UV system with other treatment methods or sources of drinkable water; the conclusion.</font></p>As you read through the questions, you should be able to see which section they refer to. Also, don't forget that the questions follow the order in which information is presented in the text.<p align="left">Question 1Can you think of other ways of expressing the value 'two-thirds'?</p><p align="left">Question 2The term 'operators' here means the people who use the disinfection equipment, not the people who consume the treated water.</p><p align="left">Question 3In other words, how does the water move through the system?</p><p align="left">Question 4You are looking for a number and a unit of measurement used for liquids.</p><p align="left">Question 5Can you find another way of saying 'becoming increasingly accepted' in the text?</p><p align="left">Question 6The key words here are 'untreated water'. In other words, water that has not been disinfected.</p><p align="left">Question 7The answer to this question comes late on in the text.</p></section>
+<section id="body">
+
+  <ol id="splitquestionList">
+    <li id="1">What do two thirds of the world's population not have at home?<br/><input id="q1"/></li>
+	<p class="linespace"></p>
+    <li id="2">What feature of the UV water disinfection system ensures safe use by operators?<br/><input id="q2"/></li>
+	<p class="linespace"></p>
+    <li id="3">What causes water to flow through the UV system?<br/><input id="q3"/></li>
+	<p class="linespace"></p>
+    <li id="4">How much water does the unit treat every minute?<br/><input id="q4"/></li>
+	<p class="linespace"></p>
+    <li id="5">Where is the UV system becoming increasingly accepted as a water treatment method?<br/><input id="q5"/></li>
+	<p class="linespace"></p>
+    <li id="6">Name a source of safe, untreated drinking water which can be found in some countries.<br/><input id="q6"/></li>
+	<p class="linespace"></p>
+    <li id="7">Apart from children, who will particularly benefit from a cheap but effective water treatment technique?<br/><input id="q7"/></li>
+	<p class="linespace"></p>
+  </ol>
+</section>
 
 </body>
 </bento>

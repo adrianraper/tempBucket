@@ -323,3 +323,90 @@ h7{
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/* specify for Listening 2 Purchasing tickets */
+	#rightcolumn {
+	position:relative;
+	line-height: 22em;
+	padding-left: 200px;
+	padding-top:95px;
+	}
+	
+	
+	#leftcolumn {
+	position:relative;
+	padding-top:95px;
+	padding-left:-5px;
+	line-height: 22em;
+	}
+	
+
+/*-----------------------------------------------------------------------------------------------*/	
+/* specify for Listening 3 form completion (2) */
+	#rightcolumn1 {
+	position:relative;
+	line-height: 22em;
+	padding-left: 200px;
+	padding-top:75px;
+	}
+	
+	#rightcolumn1 p {
+	padding-bottom:12px;
+	}
+	
+	#leftcolumn1 {
+	padding-left: -5px;
+	line-height: 22em;
+	}
+	
+	#leftcolumn1 p {
+	padding-bottom:12px;
+	}
+/*-----------------------------------------------------------------------------------------------*/	
+/* specify for Listening 3 table completion */
+	#table1{
+	position:relative;
+	padding-left:-3px;
+	padding-top: 35px;
+	line-height: 50em;
+	}
+					
+	#table1 p {
+	padding-bottom: 10px;
+	}
+				
+	#table2{
+	position:relative;
+	padding-left:202px;
+	padding-top:35px;
+	}
+	
+	#table2 p {
+	padding-bottom: 10px;
+	}				
+/*-----------------------------------------------------------------------------------------------*/	
+/* specify for Listening 1  Table completion*/
+	#contenttabcomp1{
+		position: relative;
+		padding-left:-3px;
+		padding-top: 100px;
+		line-height:22em;
+	}
+	#content1tabcomp1{
+		position: relative;
+		padding-left:202px;
+		padding-top:100px;
+		line-height:22em;
+	}
+/*-----------------------------------------------------------------------------------------------*/	
+/* specify for FV Listening 7 Fill in the table (1)*/
+	#food1 {
+		float: left;
+		width: 300px;
+		padding-left: -20px;
+	}
+	
+	#food2 {
+	float: left;
+	width: 200px;
+	}
+/*-----------------------------------------------------------------------------------------------*/	

@@ -61,24 +61,7 @@
 	</div>
 </header>
 	
-<section id="body">
-   
-  <ol id="splitquestionList">
-     
-    <li id="q1">You have to join a group to see the exhibition.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q2">You can visit the rooms of the exhibition in any order.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q3">You can direct different types of television programme at the exhibition.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q4">You can meet radio and television personalities at the exhibition.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q5">There are four tours of the exhibition every hour.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list> </li>
-     <p class="linespace"></p>
-    <li id="q6">You have to book in advance to go on a tour of the exhibition.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list> </li>
-	<p class="linespace"></p>
-  </ol>
-</section>
+
 
 <section id="readingText">
 <img class="photo2" src="../media/RD_TFN_002.jpg" mode="1" id="1001"/>
@@ -102,16 +85,23 @@
 <p>Mark Hodson, The Sunday Times.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">Question 7Be careful when the statement includes modals such as 'have to' or 'must'. Is this exactly what the text says?</p>
-  <p align="left">Question 8 The key words here are 'in any order'.</p>
-  <p align="left">Question 9The key words here are 'different types'.</p>
-  <p align="left">Question 10The text gives details of what visitors do on the tour. Is this included?</p>
-  <p align="left">Question 11Can you think of another way to express 'four every hour'?</p>
-  <p align="left">Question 12How do you normally gain entrance to a museum or theatre if you haven't booked in advance? Can you do this for the BBC Experience?</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="body">
+   
+  <ol id="splitquestionList">
+     
+    <li id="q1">You have to join a group to see the exhibition.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q2">You can visit the rooms of the exhibition in any order.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q3">You can direct different types of television programme at the exhibition.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q4">You can meet radio and television personalities at the exhibition.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q5">There are four tours of the exhibition every hour.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list> </li>
+     <p class="linespace"></p>
+    <li id="q6">You have to book in advance to go on a tour of the exhibition.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list> </li>
+	<p class="linespace"></p>
+  </ol>
 </section>
 
 </body>

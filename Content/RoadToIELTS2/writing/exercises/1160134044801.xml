@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	<br/>
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b13">
+      <answer source="t13" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b15">
+      <answer source="t15" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b19">
+      <answer source="t19" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b20">
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b21">
+      <answer source="t21" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b22">
+      <answer source="t22" correct="false"/>
+    </TargetSpottingQuestion>
+  </questions>
+</script>
+
+</head>
+<body>
+	
+<header>
+	Choose the pieces of advice that you think you should follow in answering IELTS Writing Task 1.
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/SS_GW_007.jpg" mode="1" id="1001"/>
+  <p align="left">
+    <g id="t1">A.  Brainstorm for ideas first.</g>
+    <g id="t2">B.  Close the letter appropriately.</g>
+    <g id="t3">C.  Copy the writing task and use it as your opening sentence.</g>
+    <g id="t4">D.  Cover all the points in the writing task.</g>
+    <g id="t5">E.  Decide if you have to write a formal or informal letter.</g>
+    <g id="t6">F.  Decide what the purpose of the letter is.</g>
+    <g id="t7">G.  Divide your letter into paragraphs.</g>
+    <g id="t8">H.  Follow the instructions.</g>
+    <g id="t9">I.  Include all the ideas you brainstormed.</g>
+    <g id="t10">J.  Include irrelevant information.</g>
+    <g id="t11">K.  Leave out any of the points mentioned in the task.</g>
+    <g id="t12">L.  Leave some time at the end to check your letter for mistakes.</g>
+    <g id="t13">M.  Make a quick plan for your letter.</g>
+    <g id="t14">N.  Open the letter appropriately.</g>
+    <g id="t15">O.  Read the writing task carefully.</g>
+    <g id="t16">P.  Spend more than 20 minutes on Writing Task 1.</g>
+    <g id="t17">Q.  Start writing your letter immediately.</g>
+    <g id="t18">R.  Think about who you have to write to.</g>
+    <g id="t19">S.  Write a prepared answer.</g>
+    <g id="t20">T.  Write fewer than 150 words.</g>
+    <g id="t21">U.  Write one paragraph.</g>
+    <g id="t22">V.  Write your address.</g>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

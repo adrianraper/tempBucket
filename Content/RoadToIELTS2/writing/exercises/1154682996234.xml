@@ -4,7 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -38,7 +39,7 @@
       <answer source="a16" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q7" block="b7">
-      <answer source="aunknown" correct="true"/>
+      <answer source="a17" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q8" block="b8">
       <answer source="a18" correct="true"/>
