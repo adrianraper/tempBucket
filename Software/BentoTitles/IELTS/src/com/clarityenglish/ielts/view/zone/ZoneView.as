@@ -62,6 +62,9 @@ package com.clarityenglish.ielts.view.zone {
 		public var questionZoneDownloadButton:Button;
 		
 		[SkinPart(required="true")]
+		public var questionZoneVideoButton:Button;
+		
+		[SkinPart(required="true")]
 		public var unitList:List;
 		
 		[SkinPart(required="true")]

@@ -172,6 +172,11 @@ zone|ZoneView #questionZoneDownloadButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
 }
 
+zone|ZoneView #questionZoneVideoButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
+}
+
 zone|ZoneView #examPracticeAudioPlayer {
 	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
 	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");

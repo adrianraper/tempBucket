@@ -7,11 +7,11 @@
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
 	
-	<s:VGroup width="100%" top="18">
+	<s:Group width="100%" top="3">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="13" />
-		<s:RichText text="IELTS preparation and practice" color="0x00426B" fontFamily="HelveticaNeueLtStd" fontSize="15"  />
-	</s:VGroup>
-	
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="57" />
+	</s:Group>
+
 	<s:VGroup width="100%" height="100%" top="120" left="30"  >
 		<s:Label text="User login" fontFamily="HelveticaNeueLtStd" fontSize="20" />
 		<s:Rect left="100" right="0" top="0" bottom="0" width="300" height="1" >
@@ -39,7 +39,6 @@
 		</s:HGroup>
 		
 	</s:VGroup>
-	
 	<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="90" right="70" />
 	
 </s:Skin>
