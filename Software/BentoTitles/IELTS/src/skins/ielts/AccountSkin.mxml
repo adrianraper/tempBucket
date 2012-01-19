@@ -92,7 +92,7 @@
 		
 		<s:Spacer height="3" />
 
-		<local:countdownDisplay targetDate="{hostComponent.userDetails.examDate}">
+		<local:countdownDisplay targetDate="{hostComponent.userDetails.examDate}"/>
 
 		<s:Spacer height="10" />
 		
