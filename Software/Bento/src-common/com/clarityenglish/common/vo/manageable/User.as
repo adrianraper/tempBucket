@@ -50,6 +50,7 @@
 		// v3.1 Added for EMU processing
 		public var startDate:String;
 		public var contactMethod:String;
+		public var registrationDate:String;
 		
 		/** 
 		 * The user's birthday. 
@@ -113,6 +114,24 @@
 		
 		public function get birthdayAsDate():Date {
 			return (birthday) ? DateUtil.ansiStringToDate(birthday) : null;
+		}
+		
+		/**
+		 * Shorthand for the exam date, including conversion from database String to program Date
+		 * 
+		 */
+		public function get examDate():Date {
+			if (birthday) {
+				var thisDateString:String = birthday;
+			} else if (expiryDate) {
+				thisDateString = expiryDate;
+			} else {
+				thisDateString = DateUtil.dateToAnsiString(new Date());				
+			}
+			return DateUtil.ansiStringToDate(thisDateString);
+		}
+		public function set examDate(value:Date):void {
+			birthday = DateUtil.dateToAnsiString(value);
 		}
 		
 		/**

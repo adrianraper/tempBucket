@@ -13,6 +13,7 @@ package com.clarityenglish.ielts.view.home {
 	import mx.collections.XMLListCollection;
 	import mx.formatters.DateFormatter;
 	
+	import org.davekeen.util.DateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -47,6 +48,12 @@ package com.clarityenglish.ielts.view.home {
 		
 		[SkinPart(required="true")]
 		public var writingCoverageBar:CourseBarRenderer;
+		
+		[SkinPart(required="true")]
+		public var welcomeLabel:Label;
+	
+		[SkinPart(required="true")]
+		public var noticeLabel:Label;
 		
 		[Bindable]
 		public var dataProvider:XML;
@@ -83,6 +90,13 @@ package com.clarityenglish.ielts.view.home {
 				case examTipsCourseButton:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
+				
+				case welcomeLabel:
+					instance.text="Welcome, " + user.fullName + ".";
+					break;
+				case noticeLabel:
+					//instance.text = DateUtil.dateDiff(new Date(), user.examDate, "d").toString() + " days left until your exam.";
+					break
 			}
 		}
 		/**

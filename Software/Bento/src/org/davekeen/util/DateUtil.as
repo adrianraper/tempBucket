@@ -30,6 +30,50 @@
 			return new Date(ansiString.replace(/-/g, "/"));
 		}
 		
+		/**
+		 * This function returns the difference between two dates. 
+		 * The answer is rounded to the closest unit your choose. 
+		 * @param startDate as a Date
+		 * @param endDate as a Date
+		 * @param datePart as a String - s,m,h,d,w,M,y - follow spark date formatter key
+		 * @return difference as a Number
+		 * 
+		 */
+		public static function dateDiff(startDate:Date = null, endDate:Date = null, datePart:String = "s"):Number {
+			if (!startDate)
+				startDate = new Date();
+			if (!endDate)
+				endDate = new Date();
+			
+			var startNumber:Number = startDate.getTime();
+			var endNumber:Number = endDate.getTime();
+			var difference:Number = Math.abs(endNumber - startNumber);
+			switch (datePart) {
+				case "s":
+					var divisor:Number = 1000;
+					break;
+				case "m":
+					divisor = 60*1000;
+					break;
+				case "h":
+					divisor = 60*60*1000;
+					break;
+				case "d":
+					divisor = 24*60*60*1000;
+					break;
+				case "w":
+					divisor = 7*24*60*60*1000;
+					break;
+				case "M":
+					divisor = 2629744*1000;
+					break;
+				case "y":
+					divisor = 31556926*1000;
+					break
+				default:
+					divisor = 1;
+			}
+			return Math.round(difference/divisor);
+		}
 	}
-	
 }

@@ -7,24 +7,43 @@
 		[HostComponent("com.clarityenglish.ielts.view.account.AccountView")]
 	</fx:Metadata>
 	
+	<fx:Declarations>
+		<s:DateTimeFormatter id="dbDateFormatter" 
+							 dateTimePattern="yyyy-MM-dd HH:mm:ss" />
+		<s:DateTimeFormatter id="screenDateFormatter" 
+							 dateTimePattern="d MMM yyyy" />
+	</fx:Declarations>
+	
 	<fx:Script>
 		<![CDATA[
+			import org.davekeen.util.DateUtil;
 			import com.clarityenglish.common.vo.manageable.User;
+			
+			import mx.events.CalendarLayoutChangeEvent;
 			private function formatExamDetails(userDetails:User, type:String):String {
-				// Split into separate date and time
-				if (userDetails.birthday) {
-					var thisDate:String = userDetails.birthday;
-				} else if (userDetails.expiryDate) {
-					thisDate = userDetails.expiryDate;
-				} else {
-					thisDate = "2012-04-01 09:00";				
+				switch (type) {
+					case 'date':
+						return dbDateFormatter.format(userDetails.examDate).substr(0, 10);
+						break;
+					case 'hours':
+						return dbDateFormatter.format(userDetails.examDate).substr(11, 2);
+						break;
+					case 'mins':
+						return dbDateFormatter.format(userDetails.examDate).substr(14, 2);
+						break;
 				}
-				if (type=='date')
-					return thisDate.substr(0, 10);
-				if (type=='time')
-					return thisDate.substr(11, 5);
-				return '';
+				return null;
 			}
+			private function dateChooserInit(userDetails:User):void {
+				examDate.selectedDate = userDetails.examDate;
+				var selectStartDate:Date = (userDetails.registrationDate) ? DateUtil.ansiStringToDate(userDetails.registrationDate) : new Date();
+				var selectEndDate:Date = new Date((new Date().getTime() + (365*24*60*60*1000)));
+				examDate.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
+			}
+			private function formatScreenDate(date:Date):String {
+				return screenDateFormatter.format(date);
+			}
+
 		]]>
 	</fx:Script>
 	
@@ -42,16 +61,6 @@
 		</s:Rect>
 		
 		<s:Spacer height="10" />
-		<s:Label text="You have 30 days until your program expires." fontWeight="bold" fontSize="12"/>
-		
-		<s:Spacer height="3" />
-
-		<s:SWFLoader width="290" height="103"
-		source="@Embed(source='skins/ielts/assets/countdown.swf')">
-		</s:SWFLoader>
-
-		<s:Spacer height="10" />
-		
 		<s:HGroup width="100%" height="100%" top="120" >
 			<s:VGroup width="110" height="100%" >
 				<s:Label text="Registered name:" />
@@ -68,23 +77,15 @@
 				<s:Spacer height="3" />
 				<s:Label text="Confirm password:" />
 				<s:Spacer height="3" />
-				<s:Label text="Your exam date:" />
-				<s:Spacer height="3" />
-				<s:Label text="and time:" />
-				<s:Spacer height="3" />
-				
-				
 			</s:VGroup>
-			<s:Spacer height="1" />
-			
 			<s:VGroup width="50%" height="100%" top="120" >
 				<s:Label text="{hostComponent.userDetails.fullName}" fontWeight="bold" />
 				<s:Spacer height="3" />
 				<s:Label text="{hostComponent.userDetails.email}" fontWeight="bold" />
 				<s:Spacer height="3" />
-				<s:Label text="{hostComponent.userDetails.startDate}" fontWeight="bold"/>		
+				<s:Label text="{screenDateFormatter.format(DateUtil.ansiStringToDate(hostComponent.userDetails.registrationDate))}" fontWeight="bold"/>		
 				<s:Spacer height="3" />
-				<s:Label text="{hostComponent.userDetails.expiryDate}" fontWeight="bold"/>
+				<s:Label text="{screenDateFormatter.format(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate))}" fontWeight="bold"/>
 				<s:Spacer height="3" />
 				<s:TextInput id="currentPassword" width="180" />
 				<s:Spacer height="3" />
@@ -92,10 +93,24 @@
 				<s:Spacer height="3" />
 				<s:TextInput id="confirmPassword" width="180" />
 				<s:Spacer height="3" />
-				<s:TextInput id="examDate" text="{formatExamDetails(hostComponent.userDetails, 'date')}" width="180" />
-				<s:Spacer height="3" />
-				<s:TextInput id="examTime" text="{formatExamDetails(hostComponent.userDetails, 'time')}" width="180" />
 			</s:VGroup>
+		</s:HGroup>
+		
+		<s:Spacer height="3" />
+
+		<s:SWFLoader width="290" height="103"
+		source="@Embed(source='skins/ielts/assets/countdown.swf')">
+		</s:SWFLoader>
+
+		<s:Spacer height="10" />
+		
+		<s:HGroup width="100%" height="100%" top="120" >
+			<mx:DateField id="examDate" creationComplete="dateChooserInit(hostComponent.userDetails);" 
+						  labelFunction="formatScreenDate" parseFunction="{null}"/>
+			<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1" 
+							   value="{Number(formatExamDetails(hostComponent.userDetails, 'hours'))}" textAlign="center"/>
+			<s:NumericStepper id="examMinutes" minimum="0" maximum="59" stepSize="1" 
+							   value="{Number(formatExamDetails(hostComponent.userDetails, 'mins'))}" textAlign="center"/>
 		</s:HGroup>
 		<s:Spacer height="10" />
 		<s:Button id="saveChangesButton" label="Save changes" />

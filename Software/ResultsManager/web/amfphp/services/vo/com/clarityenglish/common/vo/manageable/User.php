@@ -23,6 +23,8 @@ class User extends Manageable {
 	var $custom2;
 	var $custom3;
 	var $custom4;
+	// v3.5 For R2IV2
+	var $registrationDate;
 	
 	const USER_TYPE_DMS_VIEWER = -2;
 	const USER_TYPE_DMS = -1;
@@ -101,6 +103,7 @@ class User extends Manageable {
 		$this->fullName = $obj->F_FullName;
 		$this->contactMethod = $obj->F_ContactMethod;
 		if ($obj->F_StartDate && strtotime($obj->F_StartDate) > 0) $this->startDate = $obj->F_StartDate;
+		if ($obj->F_RegistrationDate && strtotime($obj->F_RegistrationDate) > 0) $this->registrationDate = $obj->F_RegistrationDate;
 	}
 	
 	/**
@@ -117,6 +120,7 @@ class User extends Manageable {
 		$array['F_StudentID'] = $this->studentID;
 		$array['F_ExpiryDate'] = $this->expiryDate;
 		$array['F_StartDate'] = $this->startDate;
+		$array['F_RegistrationDate'] = $this->registrationDate;
 		$array['F_Birthday'] = $this->birthday;
 		$array['F_Country'] = ($this->country) ? $this->country : ""; // Not null
 		$array['F_City'] = ($this->city) ? $this->city : ""; // Not null
@@ -141,6 +145,7 @@ class User extends Manageable {
 						"$prefix.F_UserType",
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_ExpiryDate")." F_ExpiryDate",
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_StartDate")." F_StartDate",
+						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_RegistrationDate")." F_RegistrationDate",
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_Birthday")." F_Birthday",
 						"$prefix.F_Country",
 						"$prefix.F_City",
@@ -163,6 +168,7 @@ class User extends Manageable {
 					  "studentID",
 					  "expiryDate",
 					  "startDate",
+					  "registrationDate",
 					  "birthday",
 					  "country",
 					  "city",
@@ -200,6 +206,7 @@ class User extends Manageable {
 			case "birthday":
 			case "startDate":
 			case "expiryDate":
+			case "registrationDate":
 				return date("Y/m/d", strtotime($this->$attribute));
 			default:
 				return $this->$attribute;
@@ -218,6 +225,7 @@ class User extends Manageable {
 			case "birthday":
 			case "startDate":
 			case "expiryDate":
+			case "registrationDate":
 				if (strpos($value, "-", 0)>0) {
 					$date = explode("-", $value);
 				//} elseif (strpos($value, "/", 0)>0) {

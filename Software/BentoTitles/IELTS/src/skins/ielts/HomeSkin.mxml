@@ -17,8 +17,8 @@
 		<s:HGroup>
 				<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
 			<s:VGroup alignmentBaseline="ideographicBottom">
-				<s:Label text="Welcome, {hostComponent.user.fullName}." top="0" right="0" />
-				<s:Label text="Today is {hostComponent.dateFormatter.format(new Date())}. 10 days left until your exam." top="0" right="0" />	
+				<s:Label id="welcomeLabel" top="0" right="0" />
+				<s:Label id="noticeLabel" top="0" right="0" />	
 			</s:VGroup>
 		</s:HGroup>
 			
