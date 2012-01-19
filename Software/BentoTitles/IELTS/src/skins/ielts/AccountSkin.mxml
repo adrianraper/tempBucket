@@ -7,13 +7,6 @@
 		[HostComponent("com.clarityenglish.ielts.view.account.AccountView")]
 	</fx:Metadata>
 	
-	<fx:Declarations>
-		<s:DateTimeFormatter id="dbDateFormatter" 
-							 dateTimePattern="yyyy-MM-dd HH:mm:ss" />
-		<s:DateTimeFormatter id="screenDateFormatter" 
-							 dateTimePattern="d MMM yyyy" />
-	</fx:Declarations>
-	
 	<fx:Script>
 		<![CDATA[
 			import org.davekeen.util.DateUtil;
@@ -23,13 +16,13 @@
 			private function formatExamDetails(userDetails:User, type:String):String {
 				switch (type) {
 					case 'date':
-						return dbDateFormatter.format(userDetails.examDate).substr(0, 10);
+						return DateUtil.formatDate(userDetails.examDate,'yyyy-MM-dd');
 						break;
 					case 'hours':
-						return dbDateFormatter.format(userDetails.examDate).substr(11, 2);
+						return DateUtil.formatDate(userDetails.examDate,'HH');
 						break;
 					case 'mins':
-						return dbDateFormatter.format(userDetails.examDate).substr(14, 2);
+						return DateUtil.formatDate(userDetails.examDate,'mm');
 						break;
 				}
 				return null;
@@ -41,7 +34,7 @@
 				examDate.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
 			}
 			private function formatScreenDate(date:Date):String {
-				return screenDateFormatter.format(date);
+				return DateUtil.formatDate(date,'d MMMM yyyy');
 			}
 
 		]]>
@@ -83,9 +76,9 @@
 				<s:Spacer height="3" />
 				<s:Label text="{hostComponent.userDetails.email}" fontWeight="bold" />
 				<s:Spacer height="3" />
-				<s:Label text="{screenDateFormatter.format(DateUtil.ansiStringToDate(hostComponent.userDetails.registrationDate))}" fontWeight="bold"/>		
+				<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.registrationDate),'d MMMM yyyy')}" fontWeight="bold"/>		
 				<s:Spacer height="3" />
-				<s:Label text="{screenDateFormatter.format(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate))}" fontWeight="bold"/>
+				<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate),'d MMMM yyyy')}" fontWeight="bold"/>
 				<s:Spacer height="3" />
 				<s:TextInput id="currentPassword" width="180" />
 				<s:Spacer height="3" />

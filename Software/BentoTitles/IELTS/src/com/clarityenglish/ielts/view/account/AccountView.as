@@ -12,6 +12,7 @@ package com.clarityenglish.ielts.view.account {
 	import mx.controls.SWFLoader;
 	import mx.events.CalendarLayoutChangeEvent;
 	
+	import org.davekeen.util.DateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -49,12 +50,8 @@ package com.clarityenglish.ielts.view.account {
 		[Bindable]
 		public var userDetails:User;
 
-		private var dbDateFormatter:DateTimeFormatter; 
-			
 		public function AccountView() {
 			super();
-			dbDateFormatter = new DateTimeFormatter();
-			dbDateFormatter.dateTimePattern = "yyyy/MM/dd";
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -85,38 +82,17 @@ package com.clarityenglish.ielts.view.account {
 		}
 		
 		/**
-		 * Populate the form with existing details 
-		 * 
-		 */
-		/*
-		public function showUserDetails(user:User):void {
-			// Split into separate date and time
-			if (user.birthday) {
-				examDate.text = user.birthday;
-			} else if (user.expiryDate) {
-				examDate.text = user.expiryDate.substr(0, 10);
-				examTime.text = user.expiryDate.substr(11, 5);
-			} else {
-				examDate.text = "2012-04-01";
-				examTime.text = "09:00";				
-			}
-		}
-		*/
-		
-		/**
 		 * The user changed the exam date 
 		 * @param event
 		 * 
 		 */
 		protected function onExamDateChange(eventObj:CalendarLayoutChangeEvent):void {
 			// Make sure selectedDate is not null.
-			if (eventObj.currentTarget.selectedDate == null) {
-				return 
+			if (eventObj.currentTarget.selectedDate) {
+				// Just update the counter for now
+				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
+				userDetails.examDate = eventObj.currentTarget.selectedDate;
 			}
-			
-			// Don't save to the database unless they click save button
-			// Just update the counter for now
-			userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
 		}
 		
 		/**
@@ -135,7 +111,7 @@ package com.clarityenglish.ielts.view.account {
 				var newUserDetails:Object = new Object();
 				newUserDetails.currentPassword = currentPassword.text;
 				newUserDetails.password = newPassword.text;
-				newUserDetails.examJustDate = dbDateFormatter.format(examDate.selectedDate);
+				//newUserDetails.examJustDate = DateUtil.dateToAnsiString(examDate.selectedDate);
 				newUserDetails.examJustTime = examHours.value.toString() + ":" + examMinutes.value.toString();
 				updateUser.dispatch(newUserDetails);
 			}

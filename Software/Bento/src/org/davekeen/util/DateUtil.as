@@ -1,5 +1,5 @@
 ﻿package org.davekeen.util {
-	import mx.formatters.DateFormatter;
+	import spark.formatters.DateTimeFormatter;
 	
 	/**
 	 * ...
@@ -8,8 +8,8 @@
 	public class DateUtil {
 			
 		public static function formatDate(date:Date, dateFormat:String):String {
-			var dateFormatter:DateFormatter = new DateFormatter();
-			dateFormatter.formatString = dateFormat;
+			var dateFormatter:DateTimeFormatter = new DateTimeFormatter();
+			dateFormatter.dateTimePattern = dateFormat;
 			return dateFormatter.format(date);
 		}
 		
