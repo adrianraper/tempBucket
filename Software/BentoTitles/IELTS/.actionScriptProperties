@@ -27,7 +27,7 @@
       <libraryPathEntry kind="3" linkType="1" path="src/skins/ielts/assets/Preloader.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="assets/CourseSelectorWidget.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
-      <libraryPathEntry kind="3" linkType="1" path="src/skins/ielts/assets/countdown.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="assets/CountdownDisplay.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
