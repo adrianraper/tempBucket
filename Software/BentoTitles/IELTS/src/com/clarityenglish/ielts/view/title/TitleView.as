@@ -16,10 +16,12 @@ package com.clarityenglish.ielts.view.title {
 	import mx.events.ItemClickEvent;
 	import mx.formatters.DateFormatter;
 	
+	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StateUtil;
 	
 	import spark.components.Button;
 	import spark.components.ButtonBar;
+	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
 	import spark.events.ListEvent;
 	
@@ -52,6 +54,9 @@ package com.clarityenglish.ielts.view.title {
 		[SkinPart]
 		public var exerciseView:ExerciseView;
 		
+		[SkinPart]
+		public var noticeLabel:Label;
+				
 		[Bindable]
 		public var user:User;
 		
@@ -149,7 +154,37 @@ package com.clarityenglish.ielts.view.title {
 			}
 			return null;
 		}
-		
+
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionText():String {
+			switch (_productCode) {
+				case 52:
+					switch (_productVersion) {
+						case "fullVersion":
+							return "Full version - Academic module";
+						case "lastMinute":
+							return "Last minute - Academic module";
+						case "tenHour":
+							return "Test drive - Academic module";
+					}
+					break;
+				case 53:
+					switch (_productVersion) {
+						case "fullVersion":
+							return "Full version - General Training module";
+						case "lastMinute":
+							return "Last minute - General Training module";
+						case "tenHour":
+							return "Test drive - General Training module";
+					}
+					break;
+				default:
+					// No product code set yet so don't set the text
+					return null;
+			}
+			return null;
+		}
+
 		//public function set productVersion:String;
 		
 		public function showExercise(exerciseHref:Href):void {
@@ -186,6 +221,11 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;
+					break;
+				case noticeLabel:
+					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
+					var daysUnit:String = (daysLeft==1) ? "day" : "days";
+					instance.text = daysLeft.toString() + " " + daysUnit + " left until your test.";
 					break;
 			}
 		}

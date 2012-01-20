@@ -34,6 +34,7 @@
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			view.user = loginProxy.user;
 			
+			// For standardised date formatting
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
 			

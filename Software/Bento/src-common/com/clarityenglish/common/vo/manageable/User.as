@@ -128,10 +128,12 @@
 			} else {
 				thisDateString = DateUtil.dateToAnsiString(new Date());				
 			}
+			trace("get exam date string is " + thisDateString);
 			return DateUtil.ansiStringToDate(thisDateString);
 		}
 		public function set examDate(value:Date):void {
 			birthday = DateUtil.dateToAnsiString(value);
+			trace("set exam date set birthday to " + birthday + " from " + value.toDateString()); 
 		}
 		
 		/**

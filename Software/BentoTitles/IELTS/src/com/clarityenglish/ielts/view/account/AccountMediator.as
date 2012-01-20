@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -28,11 +29,14 @@
 			view.updateUser.add(onUpdateUser);
 			
 			// Inject some data to the screen.
-			// But this is too early, the fields don't exist, so just save the data
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			//view.showUserDetails(loginProxy.user);
 			view.userDetails = loginProxy.user;
-			
+
+			// Inject required data into the view
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.productVersion = configProxy.getProductVersion() || "fullVersion";
+			view.productCode = configProxy.getProductCode() || 52;
+
 		}
         
 		override public function listNotificationInterests():Array {

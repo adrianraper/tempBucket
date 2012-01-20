@@ -50,8 +50,30 @@ package com.clarityenglish.ielts.view.account {
 		[Bindable]
 		public var userDetails:User;
 
+		private var _productVersion:String;
+		private var _productCode:uint;
+		
 		public function AccountView() {
 			super();
+		}
+		
+		[Bindable]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
+		}
+		[Bindable]
+		public function get productCode():uint {
+			return _productCode;
+		}
+		public function set productCode(value:uint):void {
+			if (_productCode != value) {
+				_productCode = value;
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -92,6 +114,7 @@ package com.clarityenglish.ielts.view.account {
 				// Just update the counter for now
 				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
 				userDetails.examDate = eventObj.currentTarget.selectedDate;
+				trace("exam date changed to " + userDetails.examDate.toDateString()); 
 			}
 		}
 		
