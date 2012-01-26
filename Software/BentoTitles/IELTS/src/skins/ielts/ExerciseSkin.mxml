@@ -57,7 +57,7 @@
 	
 	<!-- Top buttons -->
 	<s:VGroup right="-15" top="40" includeIn="exercise">
-		<s:Button id="notepadButton" skinClass="skins.ielts.title.NotepadButtonSkin" label="Notepad" />
+		<s:Button id="helpButton" skinClass="skins.ielts.title.HelpButtonSkin" label="Help" />
 		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" label="Print" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
 		<s:Button id="recorderButton" skinClass="skins.ielts.title.RecorderButtonSkin" label="Recorder" />
 	</s:VGroup>

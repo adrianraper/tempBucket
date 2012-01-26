@@ -37,12 +37,12 @@
 		
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')"/>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="180" top="10" />
-		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="397" top="4" />
-		<s:Label text = "{hostComponent.productVersionText}" top="17" left="430" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="240" top="6" />
+		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="460" top="0" />
+		<s:Label text = "{hostComponent.productVersionText}" top="10" left="495" color="#FFFFFF" />
 
 		
-		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="10" top="10" />
+		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="10" top="2" />
 	</s:Group>
 	
 	<s:HGroup width="100%" height="100%">

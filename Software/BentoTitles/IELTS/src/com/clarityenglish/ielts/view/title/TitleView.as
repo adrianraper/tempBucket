@@ -80,8 +80,8 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="AccountIcon")]
 		private var accountIcon:Class;
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="NotepadIcon")]
-		private var notepadIcon:Class;
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="HelpIcon")]
+		private var helpIcon:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
@@ -201,8 +201,8 @@ package com.clarityenglish.ielts.view.title {
 					navBar.dataProvider = new ArrayCollection( [
 						{ icon: homeIcon, label: "Home", data: "home" },
 						{ icon: progressIcon, label: "My Progress", data: "progress" },
-						{ icon: accountIcon, label: "My Account", data: "account" },
-						{ icon: notepadIcon, label: "Notepad", data: "account" },
+						{ icon: accountIcon, label: "My Profile", data: "account" },
+						{ icon: helpIcon, label: "Help", data: "account" },
 					] );
 					
 					navBar.selectedIndex = 0;

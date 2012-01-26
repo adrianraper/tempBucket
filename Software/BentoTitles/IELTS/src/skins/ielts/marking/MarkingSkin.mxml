@@ -30,10 +30,10 @@
 			</s:fill>
 		</s:Rect>
 		
-		<s:VGroup paddingTop="20">
+		<s:VGroup paddingTop="20" width="97%">
 	<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" paddingLeft="14" paddingBottom="10" />
 	
-	<s:Group id="correctGroup" left="10%" width="90%" height="31" >		
+	<s:Group id="correctGroup" left="10%" width="100%" height="31" >		
 
 		<s:Rect percentWidth="{hostComponent.exerciseMark.correctPercent}" height="100%" left="19" >
 			<s:fill>
@@ -51,7 +51,7 @@
 	</s:Group>
 	<s:Spacer height="10" />
 	
-	<s:Group id="incorrectGroup" left="10%" width="90%" height="31" >			
+	<s:Group id="incorrectGroup" left="10%" width="100%" height="31" >			
 		<s:Rect percentWidth="{hostComponent.exerciseMark.incorrectPercent}" height="100%" left="19" >
 			<s:fill>
 				<s:SolidColor color="#ED8287" />
@@ -68,7 +68,7 @@
 	</s:Group>
 	<s:Spacer height="10" />
 	
-	<s:Group id="missedCount" left="10%" width="90%" height="31" >
+	<s:Group id="missedCount" left="10%" width="100%" height="31" >
 			
 			<s:Rect percentWidth="{hostComponent.exerciseMark.missedPercent}" height="100%" left="19" >
 				<s:fill>
