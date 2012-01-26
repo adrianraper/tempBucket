@@ -25,13 +25,11 @@
 		<s:VerticalLayout paddingTop="3" />
 	</s:layout>
 	
-	<s:Group width="100%" height="80" excludeFrom="exercise">
+	<s:Group width="100%" height="50" excludeFrom="exercise">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="11" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="42" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="68" />
-		<s:Label text = "{hostComponent.productVersionText}" top="78" left="34" color="#FFFFFF" />
-		<s:Label text="Welcome, {hostComponent.user.fullName}. Today is {hostComponent.dateFormatter.format(new Date())}." top="50" right="0" />
-		<s:Label id="noticeLabel" right="0" top="66"/>
+		<s:Label text = "{hostComponent.productVersionText}" top="78" left="37" color="#FFFFFF" />
 		<s:ButtonBar id="navBar" right="0" height="35" top="2" />
 		</s:Group>
 

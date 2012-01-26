@@ -11,19 +11,19 @@
 		]]>
 	</fx:Script>
 			<s:Group width="90%" top="5">
-				<s:Rect top="0" left="0" height="40" percentWidth="100" radiusX="8" radiusY="8" >
+				<s:Rect top="0" left="0" height="30" percentWidth="100" radiusX="8" radiusY="8" >
 					<s:fill>
 						<s:SolidColor id="backColour" color="{getStyle('ColorDark')}" />
 					</s:fill>
 				</s:Rect>
 	<s:VGroup width="100%">
-				<s:Rect top="0" left="90" height="40" id="overallProgressRect" percentWidth="0" radiusX="8" radiusY="8" >
+				<s:Rect top="0" left="90" height="30" id="overallProgressRect" percentWidth="0" radiusX="8" radiusY="8" >
 					<s:fill>
 						<s:SolidColor id="solidColour" color="#CCED9A"  />
 					</s:fill>
 				</s:Rect>
 	</s:VGroup>
-				<s:Label id="commentLabel" color="#303030" width="200" paddingTop="44" />
+				<s:Label id="commentLabel" color="#303030" width="200" paddingTop="35" />
 			</s:Group>
 
 	

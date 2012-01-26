@@ -13,36 +13,37 @@
 		<s:HorizontalLayout paddingTop="3"  />
 	</s:layout>
 
-	<s:VGroup paddingTop="10" width="100%">
+	<s:VGroup paddingTop="60" width="100%">
 		<s:HGroup>
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
 			<s:VGroup alignmentBaseline="ideographicBottom">
 				<s:Label id="welcomeLabel" top="0" right="0" />
-				<s:Label id="noticeLabel" top="0" right="0" />	
+				<s:Label id="noticeLabel" top="0" right="0" />
 			</s:VGroup>
 		</s:HGroup>
 			
 		<s:VGroup width="100%" paddingTop="15">
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="reading" id="readingCoverageBar" width="100%" />
-			<s:Spacer height="6"/>
+			<s:Spacer height="1"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="listening" id="listeningCoverageBar" width="100%" />
-			<s:Spacer height="6"/>
+			<s:Spacer height="1"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="speaking" id="speakingCoverageBar" width="100%" />
-			<s:Spacer height="6"/>
+			<s:Spacer height="1"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="writing" id="writingCoverageBar" width="100%" />
-			<s:Spacer height="6"/>
+			<s:Spacer height="1"/>
 			<s:Label text="The chart above shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." width="80%" lineHeight="20" />	
-
-		</s:VGroup>
+	</s:VGroup>
 		
 	</s:VGroup>
 	
 	<s:VGroup width="100%">
 		<s:Button id="readingCourseButton" width="100%" />
+		<s:Spacer height="1" />
 		<s:Button id="listeningCourseButton" width="100%" />
+		<s:Spacer height="1" />
 		<s:Button id="speakingCourseButton" width="100%" />
+		<s:Spacer height="1" />
 		<s:Button id="writingCourseButton" width="100%" />
-
 	</s:VGroup>		
 	
 </s:Skin>

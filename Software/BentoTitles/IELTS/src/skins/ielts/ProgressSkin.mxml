@@ -28,10 +28,10 @@
 	</s:transitions>
 
 	<s:Group width="100%">
-		<s:ButtonBar id="progressNavBar" left="0" height="35" top="20" />
+		<s:ButtonBar id="progressNavBar" left="0" height="25" top="65" />
 	</s:Group>
 
-	<s:Group top="50" width="100%">
+	<s:Group top="10" width="100%">
 		<s:Line width="100%">
 			<s:stroke>
 				<s:SolidColorStroke color="0x878787" weight="1"/>
