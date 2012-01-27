@@ -13,6 +13,7 @@
 			<unit id="1287130110000" class="question-zone">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
 				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" />
+				<exercise id="1287130110003" caption="Advice" href="reading/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130120000" class="exam-practice">
 				<exercise id="1287130120001" caption="Reading test practice part 1" href="reading/pdf/reading_ac_practice1.pdf" difficulty="1" />
@@ -91,6 +92,7 @@
 			<unit id="1287130210000" class="question-zone">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
 				<exercise id="1287130210002" caption="Download PDF" href="listening/ebook/ebook_listening.pdf" />
+				<exercise id="1287130210003" caption="Advice" href="listening/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130220000" class="exam-practice">
 				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening test practice part 1" difficulty="1" />
@@ -99,7 +101,6 @@
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
-
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_saq.jpg">
@@ -173,6 +174,7 @@
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
 				<exercise id="1287130310002" caption="Download PDF" href="speaking/ebook/ebook_speaking.pdf" />	
+				<exercise id="1287130310003" caption="Advice" href="speaking/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
 				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
@@ -254,6 +256,7 @@
 			<unit id="1287130410000" class="question-zone">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
 				<exercise id="1287130410002" caption="Download PDF" href="writing/ebook/ebook_writing.pdf" />
+				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130420000" class="exam-practice" caption="Try the test practices.">
 				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing test practice part 1" difficulty="1" />
