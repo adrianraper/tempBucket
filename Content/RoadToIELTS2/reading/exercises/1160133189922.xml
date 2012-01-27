@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -62,40 +62,81 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Complete each of the statements on the right (Questions 1-8) with words taken from the passage. Write NO MORE THAN THREE WORDS for each answer. Write your answers in the gaps.
+		</div>
 </header>
 	
+
+<section id="readingText">
+
+<h8>Write On! Guide to letter writing</h8>
+<br/>
+<h7><p>Why write letters?</p></h7>
+<p>Even in today's high-tech, fast moving world of faxes, phones, cables and computers where messages zoom along the information highway to destinations all over the world &#x2013; the personal letter is still one of the most popular forms of communication.</p>
+
+<p>For a start, a letter is a personal one-to-one message. Letters are private and can be kept and treasured. They are constant reminders of affection and friendship. A letter can do anything from saying just a brief "hello", or sending good news, to expressing deepest emotions.</p>
+
+<h7><p>Writing a personal letter</p></h7>
+<p>A personal letter should be written in the same way as you would speak to the person you are writing to. Spontaneous letters are great to send when you literally cannot wait to tell someone something important. Generally speaking though, a little thought and pre-planning should be given to make the most of letter writing.</p>
+
+<p>If you find letter writing difficult, it is sometimes helpful to write a rough draft first, just to remind yourself of what you wish to say, and in what order. Writing a draft can also help us remember other things which can then be fitted into the appropriate place.</p>
+
+<p>Above all, a personal letter should have a natural flow, like a good conversation, being careful not to repeat yourself, and to show an interest in others as well as yourself.</p>
+
+<h7><p>Materials</p></h7>
+<p>A good quality paper and a pen that writes smoothly will do much more than enhance the overall presentation. It will make your letter pleasant to read and to keep.</p>
+
+<p>There are literally hundreds of different types of quality writing materials available today, ranging from highly decorated and embossed writing sets through to crisp white paper affordable by everyone. Pens also offer a wide range of choice, and it is worth experimenting a little to find the type that suits your handwriting best. Some people find a fountain pen brings out their very best handwriting, while others find the roller balls, fibre tips or ball points flow quickly, easily and neatly.</p>
+
+<h7><p>Sending a letter? Use the postcode</p></h7>
+
+<p>Your letter should be properly addressed, with the postcode clearly shown. The postcode is an essential part of every postal address in the UK and it helps to make your address unique. If you use an incorrect postcode, or if you fail to use a postcode at all, your letter may be delayed. So, if you need to check a postcode, call our Postcode Enquiry Line (during office hours). </p>
+<p>0345 111222 (All calls are charged at local rate).</p>
+
+<h7><p>Doing it right</p></h7>
+<p>Addressing your letters properly and using the postcode is important, and will ensure your letters are delivered quickly and accurately.</p>
+
+<p>Always leave plenty of space at the top of the envelope to allow for postmarks, and start your address slightly above the centre.</p>
+
+<p>An address should be set out like this:<br/>
+Name<tab/><tab/><tab/>Mr J Smith<br/>
+No. and Street<tab/><tab/>13 Evesham Lane<br/>
+TOWN in capitals<tab/>COVENTRY<br/>
+County<tab/><tab/>Warwickshire<br/>
+(if required)<br/>
+POSTCODE<tab/><tab/>CV3 2PW<br/>
+(clearly written in capitals)</p>
+
+<p>Write On! Guide to letter writing, Royal Mail.</p>
+
+</section>
+
+
+
 <section id="body">
-  <br/>
-  <ol id="questionList">
-    <li id="1">Letters can perform a variety of functions such as sending greetings or <input id="q1"/>.</li>
-    <li id="2">Making a <input id="q2"/> can help you organise the content of your letter.</li>
-    <li id="3">A personal letter should be written in the style of a <input id="q3"/>.</li>
-    <li id="4">Using good writing materials can improve the <input id="q4"/> of your letter.</li>
-    <li id="5">Your letter may take longer to deliver if you don't use the correct address and <input id="q5"/>.</li>
-    <li id="6">The Postcode Enquiry Line is available to callers <input id="q6"/>.</li>
-    <li id="7">You should leave sufficient space for <input id="q7"/> at the top of the envelope.</li>
-    <li id="8">When addressing an envelope you should write the town and postcode <input id="q8"/>.</li>
+  <img class="leftFloat" src="../media/RD_GTL_001.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
+    <li id="1">Letters can perform a variety of functions such as sending greetings or&#xA0;<input id="q1"/>.</li>
+	<p class="linespace"></p>
+    <li id="2">Making a&#xA0;<input id="q2"/>&#xA0;can help you organise the content of your letter.</li>
+	<p class="linespace"></p>
+    <li id="3">A personal letter should be written in the style of a&#xA0;<input id="q3"/>.</li>
+	<p class="linespace"></p>
+    <li id="4">Using good writing materials can improve the&#xA0;<input id="q4"/>&#xA0;of your letter.</li>
+	<p class="linespace"></p>
+    <li id="5">Your letter may take longer to deliver if you don't use the correct address and&#xA0;<input id="q5"/>.</li>
+	<p class="linespace"></p>
+    <li id="6">The Postcode Enquiry Line is available to callers&#xA0;<input id="q6"/>.</li>
+	<p class="linespace"></p>
+    <li id="7">You should leave sufficient space for&#xA0;<input id="q7"/>&#xA0;at the top of the envelope.</li>
+	<p class="linespace"></p>
+    <li id="8">When addressing an envelope you should write the town and postcode&#xA0;<input id="q8"/>.</li>
+	<p class="linespace"></p>
+	<p class="linespace"></p>
   </ol>
 </section>
 
-<section id="readingText"><p align="left"><font color="#0000ff"><b>Write On!</b></font></p>Guide to letter writing<p align="left"><b>Why write letters?</b>Even in today's high-tech, fast moving world of faxes, phones, cables and computers where messages zoom along the information highway to destinations all over the world &#x2013; the personal letter is still one of the most popular forms of communication.</p><p align="left">For a start, a letter is a personal one-to-one message. Letters are private and can be kept and treasured. They are constant reminders of affection and friendship. A letter can do anything from saying just a brief "hello", or sending good news, to expressing deepest emotions.</p><p align="left"><b>Writing a personal letter</b>A personal letter should be written in the same way as you would speak to the person you are writing to. Spontaneous letters are great to send when you literally cannot wait to tell someone something important. Generally speaking though, a little thought and pre-planning should be given to make the most of letter writing.</p><p align="left">If you find letter writing difficult, it is sometimes helpful to write a rough draft first, just to remind yourself of what you wish to say, and in what order. Writing a draft can also help us remember other things which can then be fitted into the appropriate place.</p><p align="left">Above all, a personal letter should have a natural flow, like a good conversation, being careful not to repeat yourself, and to show an interest in others as well as yourself.</p><p align="left"><b>Materials</b>A good quality paper and a pen that writes smoothly will do much more than enhance the overall presentation. It will make your letter pleasant to read and to keep.</p><p align="left">There are literally hundreds of different types of quality writing materials available today, ranging from highly decorated and embossed writing sets through to crisp white paper affordable by everyone. Pens also offer a wide range of choice, and it is worth experimenting a little to find the type that suits your handwriting best. Some people find a fountain pen brings out their very best handwriting, while others find the roller balls, fibre tips or ball points flow quickly, easily and neatly.</p><p align="left"><b>Sending a letter? Use the postcode</b>Your letter should be properly addressed, with the postcode clearly shown. The postcode is an essential part of every postal address in the UK and it helps to make your address unique. If you use an incorrect postcode, or if you fail to use a postcode at all, your letter may be delayed. So, if you need to check a postcode, call our Postcode Enquiry Line (during office hours).</p><p align="left"><font color="#000000">0345 111222 (All calls are charged at local rate).</font></p><p align="left"><b>Doing it right</b>Addressing your letters properly and using the postcode is important, and will ensure your letters are delivered quickly and accurately.</p><p align="left">Always leave plenty of space at the top of the envelope to allow for postmarks, and start your address slightly above the centre.</p><p align="left"><font color="#000000">An address should be set out like this:</font></p>Name	Mr J SmithNo. and Street	13 Evesham LaneTOWN in capitals	COVENTRYCounty	Warwickshire(if required)POSTCODE	CV3 2PW(clearly written in capitals)<p align="left"><font color="#000000">Write On! Guide to letter writing, Royal Mail.</font></p><p align="left"><font size="2"/></p></section>
-
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Don't spend too much time on this exercise. Read the questions first and then scan the text quickly to find information you need. Use the section headings in the text to help you find information.</font>
-  </p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 1</font>'Functions' in the question means 'uses of letters' or 'reasons for writing'.</p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 2</font>You need a word that means 'plan'.</p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 3</font>What style would you use writing to a friend or family member?</p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 4</font>'Writing materials' means pens and paper. What would they improve when writing your letter?</p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 5</font>An important part of the address.</p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 6</font>This could refer to a time or to a charge.</p>
-  <p align="left"><font face="verdana" size="13" color="#000000">Question 7</font>Something the post office puts on letters during the sorting process.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-</section>
 
 </body>
 </bento>

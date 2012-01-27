@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,96 +16,164 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="visual" source="w2t1sample" width="512" height="281" />
+	</popups>
+	
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
-  <questions/>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
+
 </script>
 
 </head>
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LC_Task01b.jpg" mode="16" id="1004"  />
-		
+		<div id="instruction">
 		Read this sample answer to the writing task in Exercise 7 and find the mistakes. There are 10 and they may be factual, grammatical or lexical errors. Click on them.
+		</div>
 		
-		
-		Writing Task 1
 </header>
-	
+
+
 <section id="body">
-  <img class="rightFloat" src="../media/Unit02_Write_e7n8_s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e7n8.jpg" mode="16" id="1004"/>
-  <p align="left">The chart shows the <g id="t1">number</g> of Internet users among the female population of the United States in 2000 and 2001. As is perhaps to be expected, there was a higher proportion of Internet users among younger age groups than older age groups. This was true for both years, but the trend was slightly less pronounced in 2001 as Internet use <g id="t2">rise</g> steadily across nearly all age groups.</p>
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  <a id="visual"><img class="rightFloat" src="../media/Unit02_Write_e7n8_s.jpg"  mode="1" id="1001"/></a>
+  <div id="targetspotting">
+  <p align="left">The chart shows the&#xA0; <g id="t1">number</g> &#xA0;of Internet users among the female population of the United States in 2000 and 2001. As is perhaps to be expected, there was a higher proportion of Internet users among younger age groups than older age groups. This was true for both years, but the trend was slightly less pronounced in 2001 as Internet use&#xA0; <g id="t2">rise</g> &#xA0;steadily across nearly all age groups.</p>
   <p align="left">
-    <font color="#000000">In 2000, there was a clear <g id="t3">upward</g> trend in the proportion of the female population who used the Internet as age increased. The percentage was at its highest with the 12 to 15-year-olds. Between the ages of 16 and 55, the percentage fell <g id="t4">steady</g>, but from the age of 55 onwards the figures <g id="t5">fluctuated</g>. The percentage for women in the 65+ age group, for example, was less than a third of that for the 46 to 55-year-olds.</font>
+    <font color="#000000">In 2000, there was a clear&#xA0; <g id="t3">upward</g> &#xA0;trend in the proportion of the female population who used the Internet as age increased. The percentage was at its highest with the 12 to 15-year-olds. Between the ages of 16 and 55, the percentage fell&#xA0; <g id="t4">steady</g>, but from the age of 55 onwards the figures&#xA0; <g id="t5">fluctuated</g>. The percentage for women in the 65+ age group, for example, was less than a third of that for the 46 to 55-year-olds.</font>
   </p>
   <p align="left">
-    <font color="#000000">Turning to 2001, there was a marked <g id="t6">peak</g> in the proportion of Internet users for nearly all age groups of women. Most notably, the percentage of users in the 65+ age group nearly <g id="t7">tripled</g> and the proportion in the 36 to 55 age groups also rose <g id="t8">sharp</g>. There was a <g id="t9">dramatical</g> increase in the proportion of users in the 16 to 18-year-old age group, reaching almost 100 per cent. Interestingly, however, there was a slight <g id="t10">plunge</g> in the figure for the very youngest age group.</font>
+    <font color="#000000">Turning to 2001, there was a marked&#xA0; <g id="t6">peak</g> &#xA0;in the proportion of Internet users for nearly all age groups of women. Most notably, the percentage of users in the 65+ age group nearly&#xA0; <g id="t7">tripled</g> &#xA0;and the proportion in the 36 to 55 age groups also rose&#xA0; <g id="t8">sharp</g>. There was a&#xA0; <g id="t9">dramatical</g> &#xA0;increase in the proportion of users in the 16 to 18-year-old age group, reaching almost 100 per cent. Interestingly, however, there was a slight&#xA0; <g id="t10">plunge</g> &#xA0;in the figure for the very youngest age group.</font>
   </p>
   <p align="left">Overall, it can be said that, among the female population of the United States, Internet use became more common and more evenly distributed across age groups between 2000 and 2001.</p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
+
+  </div>
+</section>
+
+<section id="writingtask1">
+<p class="popuptext"> You should spend about 20 minutes on this task.</p>
+<p class="popuptext"><b>The chart shows trends in the use of the Internet by the female population of the USA.</b></p>
+<p class="popuptext"><b> Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext">You should write at least 150 words</p>
+</section>
+
+<section id="w2t1sample">
+	<img src="../media/Unit02_Write_e7n8.jpg" mode="1" id="1003"/>
 </section>
 
 <section id="fb1">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>percentage</b>: The vertical axis shows percentages.</font>
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>rose</b>: The past simple tense is needed.</font>
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>downward</b>: Older age groups use the Internet less.</font>
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>steadily</b>: The adverb is needed.</font>
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>plunged</b>: The figures fell dramatically.</font>
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>increase</b>: A peak is a rise to the highest point followed by a fall.</font>
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>doubled</b>: From 18 per cent to nearly 30 per cent.</font>
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>sharply</b>: The adverb is needed, not the adjective.</font>
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>dramatic</b>: This is the correct form of the adjective.</font>
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
+  <p class="feedbacktext">
     <font color="#000000"><b>fall</b>: A plunge can never be described as 'slight'.</font>
   </p>
 </section>

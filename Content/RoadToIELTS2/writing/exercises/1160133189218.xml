@@ -85,6 +85,7 @@
 	Here are the notes that a student made for the writing task in the previous exercise. Put each point under the correct paragraph heading to make a plan for the letter.
 </div>
 </header>
+
 <section id="noscroll">
   <span id="a20" draggable="true">No more than 20 in a class</span>
   <span id="a14" draggable="true">Good idea to go to language school</span>
@@ -128,6 +129,7 @@
 <input id="q12" type="droptarget"/></p>
 <p class="linespace"></p>
 </div>
+
 </section>
 
 <section id="writingtask1">
@@ -141,14 +143,8 @@
 			
 			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
 			
-			<p class="popuptext">Begin your letter as follows: Dear...,</p>
-		</section>
-
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Before you begin writing, it's a good idea to brainstorm some ideas and just jot them down. You can then organise them into paragraphs.</font>
-  </p>
-  
+	<p class="popuptext">Begin your letter as follows:</p>
+	<p class="popuptext">Dear...,</p>
 </section>
 
 </body>

@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -53,80 +53,98 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		The composition in the previous exercise did not have a conclusion. Read the five conclusions and think about how appropriate they would be for the composition. Then listen to the teacher talking about each one and match each comment to the appropriate conclusion.
-		
+		</div>
 </header>
 	
 <section id="noscroll">
+  <div class="audiodrag">
   <span id="a8" draggable="true">Audio A</span>
+   <audio controls="compact"  src="../media/MM_WR1ea.mp3" mode="1" id="1003"/>
+   </div>
+    <div class="audiodrag">
   <span id="a10" draggable="true">Audio D</span>
+    <audio controls="compact"  src="../media/MM_WR1ed.mp3" mode="1" id="1004"/>
+	   </div>
+   <div class="audiodrag">
   <span id="a7" draggable="true">Audio C</span>
+    <audio controls="compact"  src="../media/MM_WR1ec.mp3" mode="1" id="1005"/>
+	   </div>
+   <div class="audiodrag">
   <span id="a6" draggable="true">Audio E</span>
+    <audio controls="compact"  src="../media/MM_WR1ee.mp3" mode="1" id="1006"/>
+	   </div>
+   <div class="audiodrag">
   <span id="a9" draggable="true">Audio B</span>
-  <audio controls="compact" class="leftFloat" src="../media/MM_WR1ea.mp3" mode="1" id="1003"/>
-  <audio controls="compact" class="rightFloat" src="../media/MM_WR1ed.mp3" mode="1" id="1004"/>
-  <audio controls="compact" class="rightFloat" src="../media/MM_WR1ec.mp3" mode="1" id="1005"/>
-  <audio controls="compact" class="rightFloat" src="../media/MM_WR1ee.mp3" mode="1" id="1006"/>
-  <audio controls="compact" class="rightFloat" src="../media/MM_WR1eb.mp3" mode="1" id="1007"/>
+    <audio controls="compact"  src="../media/MM_WR1eb.mp3" mode="1" id="1007"/>
+	   </div>
+ 
+
+
+
+
 </section>
 
 <section id="body">
   <img class="rightFloat" src="../media/MM_AW_013.jpg" mode="1" id="1001"/>
-  <br/>
+
   <ol id="questionList">
     <li id="1">
-			To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.<input id="q1" type="droptarget"/></li>
-    <li id="2">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.<input id="q2" type="droptarget"/></li>
-    <li id="3">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.<input id="q3" type="droptarget"/></li>
-    <li id="4">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.<input id="q4" type="droptarget"/></li>
-    <li id="5">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.<input id="q5" type="droptarget"/></li>
+			To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.&#xA0; <input id="q1" type="droptarget"/></li>
+			<p class="linespace"></p>
+    <li id="2">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.&#xA0; <input id="q2" type="droptarget"/></li>
+	<p class="linespace"></p>
+    <li id="3">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.&#xA0; <input id="q3" type="droptarget"/></li>
+	<p class="linespace"></p>
+    <li id="4">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.&#xA0; <input id="q4" type="droptarget"/></li>
+	<p class="linespace"></p>
+    <li id="5">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.&#xA0; <input id="q5" type="droptarget"/></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
 <section id="fb1">
-  <p align="left">Q1. </p>
-  <p align="left">To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.</p>
-  <p align="left">
+  <p class="feedbacktext">Q1. </p>
+  <p class="feedbacktext">To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.</p>
+  <p class="feedbacktext">
     <b>Conclusion introduces new points</b>
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">Q2.</p>
-  <p align="left">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.</p>
-  <p align="left">
+  <p class="feedbacktext">Q2.</p>
+  <p class="feedbacktext">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.</p>
+  <p class="feedbacktext">
     <b>No personal opinion</b>
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">Q3.</p>
-  <p align="left">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.</p>
-  <p align="left">
+  <p class="feedbacktext">Q3.</p>
+  <p class="feedbacktext">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.</p>
+  <p class="feedbacktext">
     <b>Contradictory</b>
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">Q4.</p>
-  <p align="left">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</p>
-  <p align="left">
+  <p class="feedbacktext">Q4.</p>
+  <p class="feedbacktext">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</p>
+  <p class="feedbacktext">
     <b>Good conclusion</b>
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">Q5.</p>
-  <p align="left">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.</p>
-  <p align="left">
+  <p class="feedbacktext">Q5.</p>
+  <p class="feedbacktext">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.</p>
+  <p class="feedbacktext">
     <b>No reason given for opinion</b>
   </p>
 </section>
 
-<section id="rt2001">
-  <p align="left">It is very important to create a good impression with your final paragraph. The conclusion should be relevant to the arguments you have included in the main body of the composition and it should also give your opinion, with brief reasons for it.</p>
-</section>
+
 
 </body>
 </bento>

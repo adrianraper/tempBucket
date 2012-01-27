@@ -63,18 +63,18 @@ p {
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
-a, span[draggable="true"] {
+a, span[draggable="false"] {
 	color: #3A00FF;
 	text-decoration: none;
 	}
 
 /* Draggable spans in noscroll should be in a bordered filled box */
-#noscroll span[draggable=true] {
+#noscroll span[draggable=false] {
 	float: left;
 	color: #0E00AB;
-	padding: 5px 8px -8px 8px;
+	padding: 5px 8px 4px 8px;
 	margin-right: 4px;
-	margin-bottom: 0px;
+	margin-bottom: 4px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #B5B5B5;
@@ -82,6 +82,9 @@ a, span[draggable="true"] {
 	background-color: #FFFFFF;
 	}
 
+	#noscroll{
+	padding-left:-16px;
+	}
 
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
 /* TODO. But this doesn't work. So for now I have set padding-bottom = -8 in the span definition */

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -42,7 +42,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Here are two possible plans for a composition discussing the causes of a problem and suggesting solutions. Some of the paragraph headings have been removed from the plans. Complete each plan by matching an appropriate heading to the paragraphs that do not have one.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -54,7 +56,34 @@
 </section>
 
 <section id="body">
-	<img class="rightFloat" src="../media/WB_AW_014.jpg" mode="1" id="1001"  /><p align="left"><b>Plan 1</b>Paragraph 1 – Introduction</p>Paragraph 2 – <input id="q1" type="droptarget" />Paragraph 3 – <input id="q2" type="droptarget" />Paragraph 4 – Conclusion&nbsp;Plan 2Paragraph 1 – IntroductionParagraph 2 – <input id="q3" type="droptarget" />Paragraph 3 – <input id="q4" type="droptarget" />Paragraph 4 – <input id="q5" type="droptarget" />Paragraph 5 – Conclusion<p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/WB_AW_014.jpg" mode="1" id="1001"  />
+	<div id="gapfillText">
+	<h7>Plan 1</h7>
+	<h7><p>Paragraph 1</p></h7>
+	<p>Introduction</p>
+	
+	<h7>Paragraph 2</h7>
+	<p><input id="q1" type="droptarget" /></p>
+	
+	<h7>Paragraph 3</h7>
+	<p><input id="q2" type="droptarget" /></p>
+	
+	<h7>Paragraph 4</h7>
+	<p>Conclusion</p>
+	
+	<h7>Plan 2</h7>
+	<h7><p>Paragraph 1</p></h7>
+	<p>Introduction</p>
+	<h7>Paragraph 2</h7>
+	<p><input id="q3" type="droptarget" /></p>
+	<h7>Paragraph 3 </h7>
+	<p><input id="q4" type="droptarget" /></p>
+	<h7>Paragraph 4 </h7>
+	<p><input id="q5" type="droptarget" /></p>
+	<h7>Paragraph 5 </h7>
+	<p>Conclusion</p>
+	
+	</div>
 </section>
 </body>
 </bento>

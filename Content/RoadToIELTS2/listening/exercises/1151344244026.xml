@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -76,12 +76,28 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 10-15. Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+		<audio controls="hidden" loop="1" autoPlay="true" src="../media/DD_LN1c.mp3" mode="4" id="1002"/>
+		</div>
 </header>
 	
-<section id="body"><audio controls="compact" class="leftFloat" src="../media/DD_LN1c.mp3" mode="4" id="1002"/><img class="rightFloat" src="../media/DD_LN_004.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Voluntary Workers International</b></font></p><p align="left"><b>How can you help?</b>- Become a volunteer overseas.- Become part of a (10) <input id="q1"/> promoting VWI's work.</p>- Organise or take part in (11) <input id="q2"/> e.g. marathons and sponsored hikes.- Purchase (12) <input id="q3"/> e.g. music, toys and T-shirts.- Shop at stores which donate (13) <input id="q4"/> of the money you spend to VWI.- Make (14) <input id="q5"/>.- Sponsor a (15) <input id="q6"/>.
+<section id="body">
+<img class="rightFloat" src="../media/DD_LN_004.jpg" mode="1" id="1001"/>
+
+<h1><p>Voluntary Workers International</p></h1>
+<h9>How can you help?</h9>
+<ul class="bulletList">
+
+
+<li>Become a volunteer overseas.</li>
+<li>Become part of a (10)&#xA0;<input id="q1"/>&#xA0;promoting VWI's work.</li>
+<li>Organise or take part in (11)&#xA0;<input id="q2"/>&#xA0;e.g. marathons and sponsored hikes.</li>
+<li>Purchase (12)&#xA0;<input id="q3"/>&#xA0;e.g. music, toys and T-shirts.</li>
+<li>Shop at stores which donate (13)&#xA0;<input id="q4"/>&#xA0;of the money you spend to VWI.</li>
+<li>Make (14)&#xA0;<input id="q5"/>.</li>
+<li>Sponsor a (15)&#xA0;<input id="q6"/>.</li>
+</ul>
 </section>
 
 </body>

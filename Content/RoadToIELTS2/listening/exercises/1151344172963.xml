@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -88,20 +88,34 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 6-12. Listen to the recording, which will play automatically, and follow the instructions. Complete the sentences below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/WB_LN2b.mp3" mode="4" id="1002"/>
+		</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/WB_LN_005.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/WB_LN2b.mp3" mode="4" id="1002"/>
-  <br/>
-  <ol id="questionList"><tab/><b>6</b>Compared to men, women are more prepared to work <input id="q1"/>.<tab/><b>7</b>The growth in <input id="q2"/> has led to an increase in the rate of female employment.<tab/><b>8</b>Female managers often have higher incomes than <input id="q3"/>.<tab/><b>9</b>Female managers often employ <input id="q4"/> in their companies.<tab/><b>10</b>Husbands of female managers often retire in their <input id="q5"/>.<tab/><b>11</b>Men and women sometimes reverse roles, with men looking after <input id="q6"/>.<tab/><b>12</b>The people who have greatest difficulty in role reversal are <input id="q7"/>.</ol>
+
+
+  <ol id="questionList">
+  <p class="hanging">6. &#xA0;&#xA0;Compared to men, women are more prepared to work&#xA0;<input id="q1"/>.</p>
+  <p class="linespace"></p>
+  <p class="hanging">7. &#xA0;&#xA0;The growth in&#xA0;<input id="q2"/>&#xA0;has led to an increase in the rate of female employment.</p>
+  <p class="linespace"></p>
+  <p class="hanging">8. &#xA0;&#xA0;Female managers often have higher incomes than&#xA0;<input id="q3"/>.</p>
+  <p class="linespace"></p>
+  <p class="hanging">9. &#xA0;&#xA0;Female managers often employ&#xA0;<input id="q4"/>&#xA0;in their companies.</p>
+  <p class="linespace"></p>
+  <p class="hanging">10. Husbands of female managers often retire in their&#xA0;<input id="q5"/>.</p>
+  <p class="linespace"></p>
+  <p class="hanging">11. Men and women sometimes reverse roles, with men looking after&#xA0;<input id="q6"/>.</p>
+  <p class="linespace"></p>
+ <p class="hanging">12. The people who have greatest difficulty in role reversal are&#xA0;<input id="q7"/></p>.</ol>
 </section>
 
 <section id="fb1">
-  <p align="left">6. Mary says that women are willing to go into part-time work. In other words, more prepared to work part time.</p>
+  <p class="feedbacktext">6. Mary says that women are willing to go into part-time work. In other words, more prepared to work part time.</p>
 </section>
 
 </body>

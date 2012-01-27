@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,10 +16,75 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+		<popup click="visual" source="w5t1" width="712" height="381" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
-  <questions/>
+    <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true">
+        <feedback source="fb11"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true">
+        <feedback source="fb12"/>
+      </answer>
+    </TargetSpottingQuestion>
+
+  </questions>
 </script>
 
 </head>
@@ -27,84 +92,87 @@
 	
 <header>
 	<img class="rightFloat" src="../media/AC_Task02.jpg" mode="16" id="1004"  />
-		
+		<div id="instruction">
 		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 12. Click on them.
-		
-		Writing Task 1
-</header>
+		</div>
 	
-<section id="body">
-  <img class="rightFloat" src="../media/AC_AW_006s.jpg" mode="1" id="1003"/>
+</header>
+	  <img class="rightFloat" src="../media/AC_AW_006s.jpg" mode="1" id="1003"/>
   <img class="leftFloat" src="../media/AC_AW_006.jpg" mode="16" id="1004"/>
-  <p align="left">The chart shows views held by New Zealanders <g id="t1">who attend cultural events</g> regarding <g id="t2">the quality of these events</g>. It is quite clear from the figures that they tend to <g id="t3">disagree</g> on most cultural issues. There are, however, a few issues on which opinions differ.</p>
-  <p align="left">The strongest agreement noticeable is in connection with the importance of cultural activities in school and the benefits culture brings to our lives. Almost three-quarters of <g id="t4">those who agree</g> say they strongly agree that children should be involved in cultural pursuits at school. <g id="t5">On the other hand</g> the vast majority agree that cultural activities enrich our lives and bring us closer together. Almost two-thirds of those who agree on this do so strongly. <g id="t6">Similarly</g>, the population is not <g id="t7">such</g> unanimous on some issues <g id="t8">than</g> it is on others. For example, about half the population do not agree that sport is more important <g id="t9">as</g> culture, while the other half think it is. Just over half of <g id="t10">New Zealanders</g> hold this view strongly. <g id="t11">In contrast</g>, although most New Zealanders believe that they have a sense of their cultural identity, a significant minority, just under <g id="t12">1 in 10</g>, do not feel this way.</p>
+<section id="body">
+
+    <a id="visual"><img class="rightFloat" src="../media/AC_AW_006s.jpg" mode="1" id="1001"/></a>
+	
+	<div id="targetspotting">
+  <p align="left">The chart shows views held by New Zealanders&#xA0; <g id="t1">who attend cultural events</g> &#xA0;regarding&#xA0; <g id="t2"> the quality of these events</g>. It is quite clear from the figures that they tend to&#xA0; <g id="t3">disagree</g> &#xA0;on most cultural issues. There are, however, a few issues on which opinions differ.</p>
+  <p align="left">The strongest agreement noticeable is in connection with the importance of cultural activities in school and the benefits culture brings to our lives. Almost three-quarters of &#xA0;<g id="t4">those who agree</g> &#xA0;say they strongly agree that children should be involved in cultural pursuits at school. <g id="t5">On the other hand</g> &#xA0;the vast majority agree that cultural activities enrich our lives and bring us closer together. Almost two-thirds of those who agree on this do so strongly.&#xA0; <g id="t6">Similarly</g>, the population is not&#xA0; <g id="t7">such</g> &#xA0;unanimous on some issues&#xA0; <g id="t8">than</g> it is on others. For example, about half the population do not agree that sport is more important <g id="t9">as</g> culture, while the other half think it is. Just over half of <g id="t10">New Zealanders</g> hold this view strongly.&#xA0; <g id="t11">In contrast</g>, although most New Zealanders believe that they have a sense of their cultural identity, a significant minority, just under&#xA0; <g id="t12">1 in 10</g>, do not feel this way.</p>
   <p align="left">Although they do not agree on all issues, it seems overall that most New Zealanders have fairly positive attitudes towards their nation's cultural life.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
+
+  </div>
+</section>
+
+<section id="w5t1">
+	<img src="../media/AC_AW_006.jpg" mode="1" id="1003"/>
 </section>
 
 <section id="fb1">
-  <p align="left">New Zealanders</p>
-  <p align="left">We don't know if the people surveyed attended cultural events or not.</p>
+ <p class="feedbacktext">New Zealanders</p>
+ <p class="feedbacktext">We don't know if the people surveyed attended cultural events or not.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">The quality of the events is not referred to in the chart. A better phrase would be <font color="#0000ff">...regarding cultural matters.</font></p>
+ <p class="feedbacktext">The quality of the events is not referred to in the chart. A better phrase would be <font color="#0000ff">...regarding cultural matters.</font></p>
 </section>
 
 <section id="fb3">
-  <p align="left">agree</p>
-  <p align="left">For three of the five statements, the vast majority agree or agree strongly.</p>
+ <p class="feedbacktext">agree</p>
+ <p class="feedbacktext">For three of the five statements, the vast majority agree or agree strongly.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">New Zealanders</p>
-  <p align="left">74 per cent refers to New Zealanders.</p>
+ <p class="feedbacktext">New Zealanders</p>
+ <p class="feedbacktext">74 per cent refers to New Zealanders.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">Similarly...</p>
+ <p class="feedbacktext">Similarly...</p>
 </section>
 
 <section id="fb6">
-  <p align="left">What follows this linking phrase contrasts or contradicts the point which is made before. So it could be <font color="#0000ff">... However,</font></p>
+ <p class="feedbacktext">What follows this linking phrase contrasts or contradicts the point which is made before. So it could be <font color="#0000ff">... However,</font></p>
 </section>
 
 <section id="fb7">
-  <p align="left">We use 'as...as' to compare things. 'Such as' introduces examples. <font color="#0000ff"/></p>
-  <p align="left">
+ <p class="feedbacktext">We use 'as...as' to compare things. 'Such as' introduces examples. <font color="#0000ff"/></p>
+ <p class="feedbacktext">
     <font color="#0000ff">...is not <b>so</b> unanimous...</font>
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">'Than' follows as comparative adjective, 'bigger than' for example, but not comparatives with 'as'. <font color="#0000ff"/></p>
-  <p align="left">
+ <p class="feedbacktext">'Than' follows as comparative adjective, 'bigger than' for example, but not comparatives with 'as'. <font color="#0000ff"/></p>
+ <p class="feedbacktext">
     <font color="#0000ff">...on some issues <b>as</b> it is on others.</font>
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">After a comparative adjective we use 'than', not 'as'.</p>
+ <p class="feedbacktext">After a comparative adjective we use 'than', not 'as'.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">...those who think sport is more important...</p>
+ <p class="feedbacktext">...those who think sport is more important...</p>
 </section>
 
 <section id="fb11">
-  <p align="left">The point that follows this linking phrase is another example of what New Zealanders disagree about.</p>
-  <p align="left">
+ <p class="feedbacktext">The point that follows this linking phrase is another example of what New Zealanders disagree about.</p>
+ <p class="feedbacktext">
     <font color="#0000ff">Likewise, ...</font>
   </p>
 </section>
 
 <section id="fb12">
-  <p align="left">2 in 5</p>
+ <p class="feedbacktext">2 in 5</p>
 </section>
 
 </body>

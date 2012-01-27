@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -59,23 +59,44 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Complete each sentence so that it means the same as the sentence before it. Use the passive form of the highlighted verb in each case and do not include the agent.
+	</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/LC_AW_026.JPG" mode="1" id="1001"/>
-  <br/>
+
   <ol id="questionList">
-    <li id="1">Some people think that an international language would reduce nationalistic feelings.It <input id="q1"/> that an international language would reduce nationalistic feelings.</li>
-    <li id="2">Experts believe that about 6,000 languages are spoken in the world today.About 6,000 languages <input id="q2"/> to be spoken in the world today.</li>
-    <li id="3">People often suggest that an international language would lead to the disappearance of minority languages.It <input id="q3"/> that an international language would lead to the disappearance of minority languages.</li>
-    <li id="4">People argue that an international language would facilitate international trade.It <input id="q4"/> that an international language would facilitate international trade.</li>
-    <li id="5">Some experts estimate that up to 1.5 billion people speak some English nowadays.There <input id="q5"/> to be up to 1.5 billion people who speak some English nowadays.</li>
-    <li id="6">Many people consider the biggest problem to be which language to choose as an international language.The biggest problem <input id="q6"/> to be which language to choose as an international language.</li>
-    <li id="7">Many people feel that if an international language was imposed on people, there would be a strong reaction against it.It <input id="q7"/> that if an international language was imposed on people, there would be a strong reaction against it.</li>
-    <li id="8">People say that an international language would increase international co-operation and understanding.It <input id="q8"/> that an international language would increase international co-operation and understanding.</li>
-    <li id="9">People generally agree that artificial languages such as Esperanto are not the solution to the problem.It <input id="q9"/> that artificial languages such as Esperanto are not the solution to the problem.</li>
-    <li id="10">Linguists have pointed out that all languages diversify into dialects.It <input id="q10"/> that all languages diversify into dialects.</li>
+    <li id="1">Some people think that an international language would reduce nationalistic feelings.
+	<br/>It&#xA0; <input id="q1"/> &#xA0;that an international language would reduce nationalistic feelings.</li>
+    <p class="linespace"></p>
+	<li id="2">Experts believe that about 6,000 languages are spoken in the world today.
+	<br/>About 6,000 languages&#xA0; <input id="q2"/> &#xA0;to be spoken in the world today.</li>
+    <p class="linespace"></p>
+	<li id="3">People often suggest that an international language would lead to the disappearance of minority languages.
+	<br/>It&#xA0; <input id="q3"/> &#xA0;that an international language would lead to the disappearance of minority languages.</li>
+    <p class="linespace"></p>
+	<li id="4">People argue that an international language would facilitate international trade.
+	<br/>It&#xA0; <input id="q4"/> &#xA0;that an international language would facilitate international trade.</li>
+    <p class="linespace"></p>
+	<li id="5">Some experts estimate that up to 1.5 billion people speak some English nowadays.
+	<br/>There&#xA0; <input id="q5"/> &#xA0;to be up to 1.5 billion people who speak some English nowadays.</li>
+    <p class="linespace"></p>
+	<li id="6">Many people consider the biggest problem to be which language to choose as an international language.
+	<br/>The biggest problem&#xA0; <input id="q6"/> &#xA0;to be which language to choose as an international language.</li>
+    <p class="linespace"></p>
+	<li id="7">Many people feel that if an international language was imposed on people, there would be a strong reaction against it.
+	<br/>It&#xA0; <input id="q7"/> &#xA0;that if an international language was imposed on people, there would be a strong reaction against it.</li>
+    <p class="linespace"></p>
+	<li id="8">People say that an international language would increase international co-operation and understanding.
+	<br/>It&#xA0; <input id="q8"/> &#xA0;that an international language would increase international co-operation and understanding.</li>
+    <p class="linespace"></p>
+	<li id="9">People generally agree that artificial languages such as Esperanto are not the solution to the problem.
+	<br/>It&#xA0; <input id="q9"/> &#xA0;that artificial languages such as Esperanto are not the solution to the problem.</li>
+    <p class="linespace"></p>
+	<li id="10">Linguists have pointed out that all languages diversify into dialects.
+	<br/>It&#xA0; <input id="q10"/> &#xA0;that all languages diversify into dialects.</li>
   </ol>
 </section>
 

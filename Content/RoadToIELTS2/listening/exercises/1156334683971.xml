@@ -82,7 +82,7 @@
 
 <h1><p>ADOPT AN ANIMAL - GIFT APPLICATION FORM</p></h1>
 <div id="box1">
-<div id="leftcolumn1"> 
+<div id="leftcolumn"> 
 <p><b>PURCHASER'S DETAILS</b></p>
 <p>Name</p>
 <p>Address</p>
@@ -105,7 +105,7 @@
 
 </div>
 
-<div id="rightcolumn1">
+<div id="rightcolumn">
 <p>&#xA0;</p>
 <p>Mr&#xA0;<input id="q1"/>&#xA0;Kennedy</p>
 <p><input id="q2"/>, Manly</p>
@@ -133,10 +133,7 @@
 
 </section>
 
-<section id="rt2001">
-  <p align="left">You should be able to see from the form that you will need to listen for names, an address, the name of an animal, a date and some numbers.</p>
-  <p align="left">Questions 1-8Make sure you are familiar with the form and you know where to put the information you hear.</p>
-</section>
+
 
 </body>
 </bento>

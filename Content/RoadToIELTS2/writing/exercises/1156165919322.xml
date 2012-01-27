@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,27 +16,25 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-  <questions/>
+
 </script>
 
 </head>
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+	</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/LC_AW_021.JPG" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Academic Writing Task 2</b>
-    </font>
-  </p>
-  <p align="left"><b>Arguments for and against</b>You will ...</p>
+    <div id="presentation">
+      <h1><p>Academic Writing Task 2</p></h1>
+
+  <p align="left"><b>Arguments for and against</b></p>
+  <p>You will ...</p>
   <ol>
     <li>analyse a writing task and group ideas according to	whether they are arguments for or against.</li>
     <li>read a composition and identify the arguments for and	against included by the writer.</li>
@@ -44,9 +42,8 @@
     <li>practise writing sentences using reporting verbs in the	passive.</li>
     <li>complete conditional sentences with appropriate verb	forms.</li>
   </ol>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
+  </div>
 </section>
 
 </body>

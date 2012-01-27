@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,9 +16,7 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
+
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true">
@@ -83,101 +81,96 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Look carefully at the chart, which shows changes in media usage patterns over a ten-year period. All the statements, A-K, about the chart are true. Click only on the information you would include in a report to describe the chart.
+		</div>
 		
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/MM_AW_003.jpg" mode="1" id="1001"/>
+  <div id="u1t1sample">
   <p align="left">
-    <font color="#0000ff">
-      <b>Which of the following would you include?</b>
-    </font>
-  </p>
-  <p align="left">
-    <g id="t1">A During this decade, there was an overall upward trend in the percentage who were mainly informed by television.</g>
-  </p>
-  <p align="left">
-    <g id="t2">B In 1989 there was a noticeable drop in the figure for television.</g>
-  </p>
-  <p align="left">
-    <g id="t3">C In 1992 the percentage for those who were informed by television was seven times higher than for those who relied on radio.</g>
-  </p>
-  <p align="left">
-    <g id="t4">D In 1997 the percentage who were informed by newspapers was just over twice the percentage for radio.</g>
-  </p>
-  <p align="left">
-    <g id="t5">E The figure for those who were informed by radio in 1989 was the same as for newspapers in 1998.</g>
-  </p>
-  <p align="left">
-    <g id="t6">F The percentage for those who mainly relied on radio or newspapers for world news declined over the period.</g>
-  </p>
-  <p align="left">
-    <g id="t7">G The percentage for those who relied on newspapers rose slightly in 1991, 1993, 1995,1996 and 1997.</g>
-  </p>
-  <p align="left">
-    <g id="t8">H The smallest proportion of the population were informed by radio.</g>
-  </p>
-  <p align="left">
-    <g id="t9">I There was a 1 per cent rise in the percentage who were informed by television in 1992.</g>
-  </p>
-  <p align="left">
-    <g id="t10">J There was a more marked decline for newspapers than for radio.</g>
-  </p>
-  <p align="left">
-    <g id="t11">K Throughout this period most people received their news about the world from television.</g>
-  </p>
-  <p align="left">&#xA0;</p>
+
+      <b>Which of the following would you include?</b></p>
+
+  <list class="answerlist">
+<p class="linespace"></p>
+    <li><g id="t1">During this decade, there was an overall upward trend in the percentage who were mainly informed by television.</g></li>
+<p class="linespace"></p>
+    <li><g id="t2">In 1989 there was a noticeable drop in the figure for television.</g></li>
+ <p class="linespace"></p>
+    <li><g id="t3">In 1992 the percentage for those who were informed by television was seven times higher than for those who relied on radio.</g></li>
+ <p class="linespace"></p>
+    <li> <g id="t4">In 1997 the percentage who were informed by newspapers was just over twice the percentage for radio.</g></li>
+<p class="linespace"></p>
+  <li><g id="t5">The figure for those who were informed by radio in 1989 was the same as for newspapers in 1998.</g></li>
+  <p class="linespace"></p>
+  <li><g id="t6">The percentage for those who mainly relied on radio or newspapers for world news declined over the period.</g></li>
+  <p class="linespace"></p>
+  <li>  <g id="t7">The percentage for those who relied on newspapers rose slightly in 1991, 1993, 1995,1996 and 1997.</g></li>
+  <p class="linespace"></p>
+  <li><g id="t8">The smallest proportion of the population were informed by radio.</g>
+  </li>
+<p class="linespace"></p>
+  <li><g id="t9">There was a 1 per cent rise in the percentage who were informed by television in 1992.</g>
+  </li>
+  <p class="linespace"></p>
+  <li><g id="t10">There was a more marked decline for newspapers than for radio.</g>
+  </li>
+  <p class="linespace"></p>
+  <li><g id="t11">Throughout this period most people received their news about the world from television.</g>
+  </li>
+  <p class="linespace"></p>
+  </list>
+  </div>
 </section>
 
 <section id="fb1">
-  <p align="left">A. This summarises the main changes shown in the 'television line'.</p>
+  <p class="feedbacktext">A. This summarises the main changes shown in the 'television line'.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">B. This is one of the most dramatic changes shown in the chart.</p>
+  <p class="feedbacktext">B. This is one of the most dramatic changes shown in the chart.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">C. This is more or less true for most of the period shown in the chart. There is nothing special about 1992 in this respect.</p>
+  <p class="feedbacktext">C. This is more or less true for most of the period shown in the chart. There is nothing special about 1992 in this respect.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">D. This is neither the biggest difference between radio and newspapers that existed during the period, nor the smallest.</p>
+  <p class="feedbacktext">D. This is neither the biggest difference between radio and newspapers that existed during the period, nor the smallest.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">E. The report should compare figures for the three media at the same point in time. Comparing radio in one year with newspapers in another doesn't tell us very much about their relative popularity.</p>
+  <p class="feedbacktext">E. The report should compare figures for the three media at the same point in time. Comparing radio in one year with newspapers in another doesn't tell us very much about their relative popularity.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">F. The report should compare figures for the three media at the same point in time. Comparing radio in one year with newspapers in another doesn't tell us very much about their relative popularity.</p>
+  <p class="feedbacktext">F. The report should compare figures for the three media at the same point in time. Comparing radio in one year with newspapers in another doesn't tell us very much about their relative popularity.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">G. The overall downward trend is much more important than these occasional slight rises.</p>
+  <p class="feedbacktext">G. The overall downward trend is much more important than these occasional slight rises.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">H. This is immediately noticeable when you first look at the chart, and is important to note in the report.</p>
+  <p class="feedbacktext">H. This is immediately noticeable when you first look at the chart, and is important to note in the report.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">I. Such a small rise at only one point in time is not a very significant fact to report.</p>
+  <p class="feedbacktext">I. Such a small rise at only one point in time is not a very significant fact to report.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">J. This shows a significant change in the way people inform themselves about the world.</p>
+  <p class="feedbacktext">J. This shows a significant change in the way people inform themselves about the world.</p>
 </section>
 
 <section id="fb11">
-  <p align="left">K. This is clearly one of the main findings of the survey and should be mentioned in the report.</p>
+  <p class="feedbacktext">K. This is clearly one of the main findings of the survey and should be mentioned in the report.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">In your report you are expected to describe all the important information shown in the chart or graph and to comment on the most significant trends. You are not expected, and you will not have time, to describe every detail. This means that before you write, you must decide which information should be included and which information does not need to be mentioned.</p>
-</section>
+
 
 </body>
 </bento>

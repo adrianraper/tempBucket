@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,27 +16,25 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-  <questions/>
+
 </script>
 
 </head>
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+	</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/SS_AW_011.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Academic Writing Task 2</b>
-    </font>
-  </p>
-  <p align="left"><b>Revision</b>You will ...</p>
+  <div id="presentation">
+<h1><p>Academic Writing Task 2</p></h1>
+
+  <p align="left"><b>Revision</b></p>
+  <p>You will ...</p>
   <ol>
     <li>analyse a variety of writing tasks and choose the most	appropriate type of composition for each one.</li>
     <li>choose the most appropriate introduction for writing	tasks.</li>
@@ -45,9 +43,8 @@
     <li>revise language from previous units.</li>
     <li>group pieces of advice for Writing Task 2 according to	whether they are 'Dos' or 'Don'ts'.</li>
   </ol>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
+  </div>
 </section>
 
 </body>

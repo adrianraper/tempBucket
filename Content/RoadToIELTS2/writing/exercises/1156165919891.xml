@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -47,24 +47,29 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the paragraph and decide which of the ideas from the brainstorming exercise the writer has included.
+	</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/LC_AW_023.JPG" mode="1" id="1001"/>
-  <p align="left">The arguments in favour of an international language are both ideological and practical. Firstly, it is sometimes said that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, it is argued that if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, it is generally agreed that a common language would make international travel much easier for everyone.</p>
-  <p align="left"><b>1</b>  Which of these arguments in favour of an international language are included in the paragraph?</p>
-  <p align="left">
-    <g id="t1">A  Improve international co-operation and understanding</g>
-    <g id="t2">B  Reduce nationalism</g>
-    <g id="t3">C  Reduce the amount of translation work needed</g>
-    <g id="t4">D  Help international trade</g>
-    <g id="t5">E  Simplify electronic communication</g>
-    <g id="t6">F  Make international travel easier</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <div id="targetspotting">
+  
+  <p>The arguments in favour of an international language are both ideological and practical. Firstly, it is sometimes said that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, it is argued that if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, it is generally agreed that a common language would make international travel much easier for everyone.</p>
+  
+  <ol>
+  <li>Which of these arguments in favour of an international language are included in the paragraph?
+	<list class="answerList2">
+    <li><a id="t1">Improve international co-operation and understanding</a></li>
+    <li><a id="t2">Reduce nationalism</a></li>
+    <li><a id="t3">Reduce the amount of translation work needed</a></li>
+    <li><a id="t4">Help international trade</a></li>
+    <li><a id="t5">Simplify electronic communication</a></li>
+    <li><a id="t6">Make international travel easier</a></li>
+	</list></li>
+</ol>
+</div> 
 </section>
 
 <section id="fb2">

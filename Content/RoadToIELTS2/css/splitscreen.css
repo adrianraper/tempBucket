@@ -393,11 +393,15 @@ sh1{
 /*-----------------------------------------------------------------------------------------------*/
 /* Specify for Writing Unit 2 Task 1 Express purpose, cause and result */
 #Exp1{
+	width: 170px;
+	float:left;
 	padding-left: 30px;
+	line-height: 22em;
 	}
 	#Exp2{
-	position: relative;
-	padding: 215px 0 0 150px;
+	width: 170px;
+	float:left;
+	line-height: 22em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Specify for GT reading Unit 6 The sun protection factor */

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -152,20 +152,89 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Answer the questions. In most cases, there is more than one correct answer.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_GW_006.jpg" mode="1" id="1001"/>
-  <p align="left"><b>1.</b>  Which of the following people would you write a formalletter to?<g id="t1">A.  a close friend</g><g id="t2">B.  someone you have never met</g><g id="t3">C.  someone you do not know very well</g><g id="t4">D.  a close relative</g><g id="t5">E.  the editor of a newspaper</g><g id="t6">F.  a prospective employer</g></p>
-  <p align="left"><b>2.</b>  When we do not know the name of the person we arewriting to we begin the letter with 'Dear Sir/Madam'.Which ending is the most appropriate?<g id="t7">A.  Yours faithfully</g><g id="t8">B.  Yours sincerely</g><g id="t9">C.  All the best</g></p>
-  <p align="left"><b>3.</b>  When we know the recipient's surname, we use it in thesalutation, for example 'Dear Miss Barnes'. Which endingis the most appropriate?<g id="t10">A.  Yours faithfully</g><g id="t11">B.  Yours sincerely</g><g id="t12">C.  All the best</g></p>
-  <p align="left"><b>4.</b>  Which of the following openings are suitable for a formalletter?<g id="t13">A.  I am writing to enquire about ...</g><g id="t14">B.  I am writing to inform you ...</g><g id="t15">C.  Just a quick note to ...</g><g id="t16">D.  This is just to let you know ...</g><g id="t17">E.  Thanks for your letter. It was great to hear ...</g><g id="t18">F.  Thank you for your letter of ...</g><g id="t19">G.  I am writing to apply for ...</g><g id="t20">H.  I saw your advertisement in ...</g><g id="t21">I.  Sorry I haven't been in touch for so long but ...</g><g id="t22">J.  I am writing to apologise for ...</g></p>
-  <p align="left"><b>5.</b>  Which closing sentences are suitable for a formal letter?<g id="t23">A.  I would appreciate a reply by return of post.</g><g id="t24">B.  Hope to hear from you very soon.</g><g id="t25">C.  I'm really looking forward to hearing all your news.</g><g id="t26">D.  Drop me a line when you can.</g><g id="t27">E.  I look forward to hearing from you in the near future.</g><g id="t28">F.  With thanks for your help in this matter.</g><g id="t29">G.  Thanks for everything.</g><g id="t30">H.  Thank you for your kind attention.</g><g id="t31">I.  Please feel free to contact me for further information.</g><g id="t32">J.  Take care and do keep in touch!</g></p>
-  <p align="left"><b>6.</b>  Which of the following are found mainly in formal letters?<g id="t33">A.  colloquial language</g><g id="t34">B.  full forms (e.g. I am, I would like, I have written)</g><g id="t35">C.  short forms (e.g. I'm, I'd like, I've written)</g><g id="t36">D.  impersonal style and tone</g><g id="t37">E.  personal style and tone</g><g id="t38">F.  phrasal verbs</g><g id="t39">G.  short, simple sentences</g><g id="t40">H.  indirect questions</g><g id="t41">I.  polite phrases</g><g id="t42">J.  idioms</g></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  	<ol id="questionList">
+	
+	<li>Which of the following people would you write a formalletter to?
+	<list class="answerList">
+	<li><a id="t1">a close friend</a></li>
+	<li><a id="t2">someone you have never met</a></li>
+	<li><a id="t3">someone you do not know very well</a></li>
+	<li><a id="t4">a close relative</a></li>
+	<li><a id="t5">the editor of a newspaper</a></li>
+	<li><a id="t6">a prospective employer</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>When we do not know the name of the person we arewriting to we begin the letter with 'Dear Sir/Madam'.Which ending is the most appropriate?
+	<list class="answerList">
+	<li><a id="t7">Yours faithfully</a></li>
+	<li><a id="t8">Yours sincerely</a></li>
+	<li><a id="t9">All the best</a></li>
+	</list></li>
+	<p class="linespace"></p>
+
+	<li>When we know the recipient's surname, we use it in thesalutation, for example 'Dear Miss Barnes'. Which endingis the most appropriate?
+	<list class="answerList">
+	<li><a id="t10">Yours faithfully</a></li>
+	<li><a id="t11">Yours sincerely</a></li>
+	<li><a id="t12">All the best</a></li>
+	</list></li>
+	<p class="linespace"></p>
+  
+	<li>Which of the following openings are suitable for a formalletter?
+	<list class="answerList">
+	<li><a id="t13">I am writing to enquire about ...</a></li>
+	<li><a id="t14">I am writing to inform you ...</a></li>
+	<li><a id="t15">Just a quick note to ...</a></li>
+	<li><a id="t16">This is just to let you know ...</a></li>
+	<li><a id="t17">Thanks for your letter. It was great to hear ...</a></li>
+	<li><a id="t18">Thank you for your letter of ...</a></li>
+	<li><a id="t19">I am writing to apply for ...</a></li>
+	<li><a id="t20">I saw your advertisement in ...</a></li>
+	<li><a id="t21">Sorry I haven't been in touch for so long but ...</a></li>
+	<li><a id="t22">I am writing to apologise for ...</a></li>
+	</list></li>
+	<p class="linespace"></p>
+ 
+	<li>Which closing sentences are suitable for a formal letter?
+	<list class="answerList">
+	<li><a id="t23">I would appreciate a reply by return of post.</a></li>
+	<li><a id="t24">Hope to hear from you very soon.</a></li>
+	<li><a id="t25">I'm really looking forward to hearing all your news.</a></li>
+	<li><a id="t26">Drop me a line when you can.</a></li>
+	<li><a id="t27">I look forward to hearing from you in the near future.</a></li>
+	<li><a id="t28">With thanks for your help in this matter.</a></li>
+	<li><a id="t29">Thanks for everything.</a></li>
+	<li><a id="t30">Thank you for your kind attention.</a></li>
+	<li><a id="t31">Please feel free to contact me for further information.</a></li>
+	<li><a id="t32">Take care and do keep in touch!</a></li>
+	</list></li>
+	<p class="linespace"></p>
+  
+	<li>Which of the following are found mainly in formal letters?
+	<list class="answerList">
+	<li><a id="t33">colloquial language</a></li>
+	<li><a id="t34">full forms (e.g. I am, I would like, I have written)</a></li>
+	<li><a id="t35">short forms (e.g. I'm, I'd like, I've written)</a></li>
+	<li><a id="t36">impersonal style and tone</a></li>
+	<li><a id="t37">personal style and tone</a></li>
+	<li><a id="t38">phrasal verbs</a></li>
+	<li><a id="t39">short, simple sentences</a></li>
+	<li><a id="t40">indirect questions</a></li>
+	<li><a id="t41">polite phrases</a></li>
+	<li><a id="t42">idioms</a></li>
+	</list></li>
+	<p class="linespace"></p> 
+
+  </ol>
 </section>
 
 </body>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/mchoices-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -76,23 +76,24 @@
 <section id="body">
   <img class="rightFloat" src="../media/HF_AW_005.jpg" mode="1" id="1001"/>
   <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">(&#x2026;), waiting lists for hip operations have grown shorter over the last few months.<list class="answerList"><li><a id="a1">Worryingly</a></li><li><a id="a2">Disappointingly</a></li><li><a id="a3">Encouragingly</a></li></list><br/></li>
-    <br/>
-    <li id="q2">(&#x2026;), there has been a noticeable upward trend in the number of patients admitted to hospital with heart problems.<list class="answerList"><li><a id="a4">Disturbingly</a></li><li><a id="a5">Worryingly</a></li><li><a id="a6">Unpredictably</a></li></list><br/></li>
-    <br/>
-    <li id="q3">(&#x2026;), the figures show that high blood pressure is more common among the elderly.<list class="answerList"><li><a id="a7">Strangely</a></li><li><a id="a8">Not surprisingly</a></li><li><a id="a9">Predictably</a></li></list><br/></li>
-    <br/>
-    <li id="q4">(&#x2026;), the number of common colds reported rose during the summer months.<list class="answerList"><li><a id="a10">Unexpectedly</a></li><li><a id="a11">Predictably</a></li><li><a id="a12">Surprisingly</a></li></list><br/></li>
-    <br/>
-    <li id="q5">(&#x2026;), a significant proportion of those who wanted to lose weight continued to eat a high-fat diet.<list class="answerList"><li><a id="a13">Strangely</a></li><li><a id="a14">Encouragingly</a></li><li><a id="a15">Surprisingly</a></li></list><br/></li>
-    <br/>
-    <li id="q6">(&#x2026;), the percentage of the world's children immunised against diseases such as polio has risen dramatically in recent years.<list class="answerList"><li><a id="a16">Strangely</a></li><li><a id="a17">Encouragingly</a></li><li><a id="a18">Disturbingly</a></li></list><br/></li>
-    <br/>
-    <li id="q7">(&#x2026;), the figures show that asthma is becoming more and more common among children and young people.<list class="answerList"><li><a id="a19">Worryingly</a></li><li><a id="a20">Disturbingly</a></li><li><a id="a21">Encouragingly</a></li></list><br/></li>
-    <br/>
-    <li id="q8">(&#x2026;), the figures seem to show that those who take regular exercise run less risk of developing heart disease later in life.<list class="answerList"><li><a id="a22">Unpredictably</a></li><li><a id="a23">Predictably</a></li><li><a id="a24">Not surprisingly</a></li></list><br/></li>
+  <ol id="mchoices">
+
+    <li id="q1">(&#x2026;), waiting lists for hip operations have grown shorter over the last few months.<list class="answerList"><li><a id="a1">Worryingly</a></li><li><a id="a2">Disappointingly</a></li><li><a id="a3">Encouragingly</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q2">(&#x2026;), there has been a noticeable upward trend in the number of patients admitted to hospital with heart problems.<list class="answerList"><li><a id="a4">Disturbingly</a></li><li><a id="a5">Worryingly</a></li><li><a id="a6">Unpredictably</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q3">(&#x2026;), the figures show that high blood pressure is more common among the elderly.<list class="answerList"><li><a id="a7">Strangely</a></li><li><a id="a8">Not surprisingly</a></li><li><a id="a9">Predictably</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q4">(&#x2026;), the number of common colds reported rose during the summer months.<list class="answerList"><li><a id="a10">Unexpectedly</a></li><li><a id="a11">Predictably</a></li><li><a id="a12">Surprisingly</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q5">(&#x2026;), a significant proportion of those who wanted to lose weight continued to eat a high-fat diet.<list class="answerList"><li><a id="a13">Strangely</a></li><li><a id="a14">Encouragingly</a></li><li><a id="a15">Surprisingly</a></li></list></li>
+   <p class="linespace"></p>
+    <li id="q6">(&#x2026;), the percentage of the world's children immunised against diseases such as polio has risen dramatically in recent years.<list class="answerList"><li><a id="a16">Strangely</a></li><li><a id="a17">Encouragingly</a></li><li><a id="a18">Disturbingly</a></li></list></li>
+   <p class="linespace"></p>
+    <li id="q7">(&#x2026;), the figures show that asthma is becoming more and more common among children and young people.<list class="answerList"><li><a id="a19">Worryingly</a></li><li><a id="a20">Disturbingly</a></li><li><a id="a21">Encouragingly</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q8">(&#x2026;), the figures seem to show that those who take regular exercise run less risk of developing heart disease later in life.<list class="answerList"><li><a id="a22">Unpredictably</a></li><li><a id="a23">Predictably</a></li><li><a id="a24">Not surprisingly</a></li></list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

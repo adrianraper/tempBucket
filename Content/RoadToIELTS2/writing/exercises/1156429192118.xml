@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="634"  />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -71,71 +74,75 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/MM_Task02.jpg" mode="16" id="1004"  />
-		
+
+		<div id="instruction">
 		First click to read the Writing Task. Then listen to the recording of a class discussion about whether disturbing images should be included in television news reports. Click on the arguments for and against that are mentioned.
-		
-		
-		Writing Task
+		</div>
+
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/MM_AW_012.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="rightFloat" src="../media/MM_WR1aa.mp3" mode="1" id="1002"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Arguments for</b>
-    </font>
-  </p>
-  <p align="left">
-    <g id="t1">A.  Pictures have more impact than words.</g>
-    <g id="t2">B.  If unpleasant images are shown on television, people may take action.</g>
-    <g id="t3">C.  Important news events must not be 'censored' for the public, even if the images are unpleasant.</g>
-    <g id="t4">D.  If you find the images upsetting, you can turn the television off.</g>
-    <g id="t5">E.  Some political systems work better when people know exactly what is happening in the world.</g>
-    <g id="t6">F.  Young people should not be sheltered from the unpleasant realities of the world.</g>
-  </p>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Arguments against</b>
-    </font>
-  </p>
-  <p align="left">
-    <g id="t7">A.  Victims of violence may not want to be shown on television.</g>
-    <g id="t8">B.  Television news reports often trivialise tragic events by turning them into entertainment.</g>
-    <g id="t9">C.  Viewers are not always given enough warning before disturbing images are shown.</g>
-    <g id="t10">D.  Viewers want to be entertained, not distressed, when they watch television.</g>
-    <g id="t11">E.  Children may be traumatised by disturbing images.</g>
-    <g id="t12">F.  Too much exposure to disturbing images may accustom us to them, so we no longer react.</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <b>Click to start the audio</b>
-  </p>
+  
+  <div id="targetspotting">
+    <div><a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a></div>
+  <audio controls="compact"  src="../media/MM_WR1aa.mp3" mode="1" id="1002"/>
+
+
+  <h7><p>Arguments for</p></h7>
+    
+  <list class="answerList2">
+    <li><a id="t1">Pictures have more impact than words.</a></li>
+    <li><a id="t2">If unpleasant images are shown on television, people may take action.</a></li>
+    <li><a id="t3">Important news events must not be 'censored' for the public, even if the images are unpleasant.</a></li>
+    <li><a id="t4">If you find the images upsetting, you can turn the television off.</a></li>
+    <li><a id="t5">Some political systems work better when people know exactly what is happening in the world.</a></li>
+    <li><a id="t6">Young people should not be sheltered from the unpleasant realities of the world.</a></li>
+  </list>
+  
+  <h7><p>Arguments against</p></h7>
+
+  <list class="answerList2">
+    <li><a id="t7">Victims of violence may not want to be shown on television.</a></li>
+    <li><a id="t8">Television news reports often trivialise tragic events by turning them into entertainment.</a></li>
+    <li><a id="t9">Viewers are not always given enough warning before disturbing images are shown.</a></li>
+    <li><a id="t10">Viewers want to be entertained, not distressed, when they watch television.</a></li>
+    <li><a id="t11">Children may be traumatised by disturbing images.</a></li>
+    <li><a id="t12">Too much exposure to disturbing images may accustom us to them, so we no longer react.</a></li>
+  </list>
+
+  </div>
 </section>
 
+<section id="writingtask1">
+
+<p class="popuptext"><b>Writing Task 2</b></p>
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+<p class="popuptext"><b> Many television news programmes show pictures of events in the news which people find upsetting. While television has a duty to report important news, it should not bring disturbing images into people's homes.</b></p>
+<p class="popuptext"><b> To what extent do you agree or disagree?</b></p>
+
+<p class="popuptext">You should write at least 250 words</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
+
 <section id="fb1">
-  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p class="feedbacktext">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p class="feedbacktext">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p class="feedbacktext">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
+  <p class="feedbacktext">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">The plan you saw in the previous exercise is just one way to organize a 'for and against' composition. Another way is to form paragraphs by pairing arguments and counter-arguments. If you are going to use the composition structure shown in this exercise, the easiest way to do this is to state the argument you don't agree with first, and then state a counter-argument, which refutes it. In order to be able to write at least 250 words, you will need three or four arguments and the same number of counter-arguments.</p>
-  <p align="left">This is a good structure to use if you find you have thought of a lot of arguments for and against. You will not have the time or space to include them all, and by using this composition structure, you will find it easier to decide which arguments to keep and which to reject. But remember, this structure only works when you have a counter-argument to match each argument.</p>
-</section>
 
 </body>
 </bento>

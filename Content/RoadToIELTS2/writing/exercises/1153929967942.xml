@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="634"  />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -51,69 +54,101 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/AC_Task03.jpg" mode="16" id="1004"  />
-		
+
+		<div id="instruction">
 		Click on the icon to read the writing task. Then listen to six people saying how they feel about free admission to museums. Click according to whether each person is For or Against. 
-		
-		
-		Writing Task 2
+		</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/AC_AW_008.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
+
+<div><a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a></div>
+
+<div id="audio">
+<p><audio controls="compact" class="leftFloat" src="../media/AC_WR1aa.mp3" mode="1" id="1"/></p>
+<p class="linespace"></p>
+<p><audio controls="compact" class="leftFloat" src="../media/AC_WR1ab.mp3" mode="1" id="2"/></p>
+<p class="linespace"></p>
+<p><audio controls="compact" class="leftFloat" src="../media/AC_WR1ac.mp3" mode="1" id="3"/></p>
+<p class="linespace"></p>
+<p><audio controls="compact" class="leftFloat" src="../media/AC_WR1ad.mp3" mode="1" id="4"/></p>
+<p class="linespace"></p>
+<p><audio controls="compact" class="leftFloat" src="../media/AC_WR1ae.mp3" mode="1" id="5"/></p>
+<p class="linespace"></p>
+<p><audio controls="compact" class="leftFloat" src="../media/AC_WR1af.mp3" mode="1" id="6"/></p>
+<p class="linespace"></p>
+</div>
+
+  <img class="rightFloat1" src="../media/AC_AW_008.jpg" mode="1" id="1001"/>
+
+  
+  <div id="questiondiv">
+  <ol>
+   
     <li id="q1">
-      <a id="a1">For</a>
-      <tab/>
-      <a id="a2">Against</a>
-      <br/>
+      <a id="a1"><b>For</b></a>
+      <tab/><tab/>
+      <a id="a2"><b>Against</b></a>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/AC_WR1aa.mp3" mode="1" id="1"/>
-    <br/>
+    
+<p class="linespace"></p>
     <li id="q2">
-      <a id="a3">For</a>
-      <tab/>
-      <a id="a4">Against</a>
-      <br/>
+      <a id="a3"><b>For</b></a>
+      <tab/><tab/>
+      <a id="a4"><b>Against</b></a>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/AC_WR1ab.mp3" mode="1" id="2"/>
-    <br/>
+    
+<p class="linespace"></p>
     <li id="q3">
-      <a id="a5">For</a>
-      <tab/>
-      <a id="a6">Against</a>
-      <br/>
+      <a id="a5"><b>For</b></a>
+      <tab/><tab/>
+      <a id="a6"><b>Against</b></a>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/AC_WR1ac.mp3" mode="1" id="3"/>
-    <br/>
+    
+<p class="linespace"></p>
     <li id="q4">
-      <a id="a7">For</a>
-      <tab/>
-      <a id="a8">Against</a>
-      <br/>
+      <a id="a7"><b>For</b></a>
+      <tab/><tab/>
+      <a id="a8"><b>Against</b></a>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/AC_WR1ad.mp3" mode="1" id="4"/>
-    <br/>
+    
+<p class="linespace"></p>
     <li id="q5">
-      <a id="a9">For</a>
-      <tab/>
-      <a id="a10">Against</a>
-      <br/>
+      <a id="a9"><b>For</b></a>
+      <tab/><tab/>
+      <a id="a10"><b>Against</b></a>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/AC_WR1ae.mp3" mode="1" id="5"/>
-    <br/>
+
+<p class="linespace"></p>
     <li id="q6">
-      <a id="a11">For</a>
-      <tab/>
-      <a id="a12">Against</a>
-      <br/>
+      <a id="a11"><b>For</b></a>
+      <tab/><tab/>
+      <a id="a12"><b>Against</b></a>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/AC_WR1af.mp3" mode="1" id="6"/>
+    <p class="linespace"></p>
   </ol>
+  </div>
 </section>
 
+<section id="writingtask1">
+
+<p class="popuptext"><b>Writing Task 2</b></p>
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+<p class="popuptext"><b> Many state-owned museums charge visitors an entrance fee. However, in some countries admission to public museum is free. While free admission to museums has obvious benefits, there are also certain drawbacks.</b></p>
+<p class="popuptext"><b> To what extent do you agree or disagree?</b></p>
+<p class="popuptext"><b> Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext">You should write at least 250 words</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
+		
 <section id="fb0">
   <p align="left">
     <b>For</b>
@@ -142,9 +177,7 @@
   </p>
 </section>
 
-<section id="rt2001">
-  <p align="left">This writing task asks about the 'benefits' and 'drawbacks' of a situation, which is the same as asking about its advantages and disadvantages. Before you do this exercise, spend a few minutes noting down what you think the advantages and disadvantages of free admission to museums are. Then, after you have done the exercise, compare your ideas with the ones mentioned by the people.</p>
-</section>
+
 
 </body>
 </bento>

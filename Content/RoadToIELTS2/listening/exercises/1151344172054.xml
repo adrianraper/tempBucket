@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -64,55 +64,57 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters A-G.
-		
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/WB_LN1b.mp3" mode="4" id="1002"/>
+		  </div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/WB_LN_003.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/WB_LN1b.mp3" mode="4" id="1002"/>
-  <p align="left"><b>Questions 9-12</b><br/>Which FOUR pieces of advice about writing a CV does the speaker give?</p>
-  <p align="left">
-    <g id="t1">A.  You should find out about the company you are applying to.</g>
-    <g id="t2">B.  You should make your CV stand out from other applicants' CVs.</g>
-    <g id="t3">C.  You should be careful not to make any mistakes.</g>
-    <g id="t4">D.  You should use white paper for your CV.</g>
-    <g id="t5">E.  You should be truthful on your CV.</g>
-    <g id="t6">F.  You should limit the length of your CV.</g>
-    <g id="t7">G.  You should keep a copy of your CV for yourself.</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
+  <h7><p>Questions 9-12</p></h7>
+  <p>Which FOUR pieces of advice about writing a CV does the speaker give?</p>
+  	<ol id="targetspotting">
+  <list class="answerList">
+  <li><a id="t1">You should find out about the company you are applying to.</a></li>
+  <li><a id="t2">You should make your CV stand out from other applicants' CVs.</a></li>
+  <li>  <a id="t3">You should be careful not to make any mistakes.</a></li>
+  <li>  <a id="t4">You should use white paper for your CV.</a></li>
+  <li>  <a id="t5">You should be truthful on your CV.</a></li>
+  <li>  <a id="t6">You should limit the length of your CV.</a></li>
+  <li>  <a id="t7">You should keep a copy of your CV for yourself.</a></li>
+  </list>
+</ol>
+
 </section>
 
 <section id="fb1">
-  <p align="left">A. Mary does not mention this at all.</p>
+  <p class="feedbacktext">A. Mary does not mention this at all.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">B. Mary says your CV should be unique and 'attract an employer's attention'. In other words 'stand out'.</p>
+  <p class="feedbacktext">B. Mary says your CV should be unique and 'attract an employer's attention'. In other words 'stand out'.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">C. Mary says that accuracy is important and that you shouldn't make any spelling, grammar, punctuation or spacing errors. The word 'errors' has the same meaning as 'mistakes'.</p>
+  <p class="feedbacktext">C. Mary says that accuracy is important and that you shouldn't make any spelling, grammar, punctuation or spacing errors. The word 'errors' has the same meaning as 'mistakes'.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">D. Mary does not mention the paper you should use.</p>
+  <p class="feedbacktext">D. Mary does not mention the paper you should use.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">E. Mary says that honesty is important and that you should never include false information on your CV. 'Honesty' means the same as 'truthfulness'.</p>
+  <p class="feedbacktext">E. Mary says that honesty is important and that you should never include false information on your CV. 'Honesty' means the same as 'truthfulness'.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">F. Mary says that conciseness is important too. She says that your CV should never go beyond two sides of A4 paper. In other words, limit the length.</p>
+  <p class="feedbacktext">F. Mary says that conciseness is important too. She says that your CV should never go beyond two sides of A4 paper. In other words, limit the length.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">G. Mary doesn't mention this.</p>
+  <p class="feedbacktext">G. Mary doesn't mention this.</p>
 </section>
 
 </body>

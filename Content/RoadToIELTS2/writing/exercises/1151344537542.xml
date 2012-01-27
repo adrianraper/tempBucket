@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -18,8 +18,12 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	   	<feedback>
+		<feedback source="fb0" width="590" height="150" />
+	</feedback>
 </settings>
   <questions>
+
     <MultipleChoiceQuestion block="q1">
       <answer source="a1" correct="true"/>
       <answer source="a2" correct="false"/>
@@ -71,43 +75,40 @@
 </header>
 	
 <section id="body">
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">which some countries have of free admission to state-owned museums<list class="answerList"><li><a id="a1">Defining relative clause</a></li><li><a id="a2">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q2">who can afford it<list class="answerList"><li><a id="a3">Defining relative clause</a></li><li><a id="a4">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q3">which is based on the principle of equal opportunity for all<list class="answerList"><li><a id="a5">Defining relative clause</a></li><li><a id="a6">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q4">who visit them on impulse<list class="answerList"><li><a id="a7">Defining relative clause</a></li><li><a id="a8">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q5">which may mean they present their exhibitions in a more serious way<list class="answerList"><li><a id="a9">Defining relative clause</a></li><li><a id="a10">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q6">whose income comes entirely from public funds<list class="answerList"><li><a id="a11">Defining relative clause</a></li><li><a id="a12">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q7">which sometimes means that exhibitions are expected to reflect the government's views<list class="answerList"><li><a id="a13">Defining relative clause</a></li><li><a id="a14">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q8">both of which tend to receive higher priority<list class="answerList"><li><a id="a15">Defining relative clause</a></li><li><a id="a16">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q9">that do not charge admission<list class="answerList"><li><a id="a17">Defining relative clause</a></li><li><a id="a18">Non-defining relative clause</a></li></list><br/></li>
-    <br/>
-    <li id="q10">which can discourage more serious visitors<list class="answerList"><li><a id="a19">Defining relative clause</a></li><li><a id="a20">Non-defining relative clause</a></li></list><br/></li>
+  
+  <ol id="splitquestionList">
+    
+    <li id="q1">which some countries have of free admission to state-owned museums
+	<list class="answerList"><li><a id="a1">Defining relative clause</a></li><li><a id="a2">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q2">who can afford it<list class="answerList"><li><a id="a3">Defining relative clause</a></li><li><a id="a4">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q3">which is based on the principle of equal opportunity for all<list class="answerList"><li><a id="a5">Defining relative clause</a></li><li><a id="a6">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q4">who visit them on impulse<list class="answerList"><li><a id="a7">Defining relative clause</a></li><li><a id="a8">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q5">which may mean they present their exhibitions in a more serious way<list class="answerList"><li><a id="a9">Defining relative clause</a></li><li><a id="a10">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q6">whose income comes entirely from public funds<list class="answerList"><li><a id="a11">Defining relative clause</a></li><li><a id="a12">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q7">which sometimes means that exhibitions are expected to reflect the government's views<list class="answerList"><li><a id="a13">Defining relative clause</a></li><li><a id="a14">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q8">both of which tend to receive higher priority<list class="answerList"><li><a id="a15">Defining relative clause</a></li><li><a id="a16">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q9">that do not charge admission<list class="answerList"><li><a id="a17">Defining relative clause</a></li><li><a id="a18">Non-defining relative clause</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q10">which can discourage more serious visitors<list class="answerList"><li><a id="a19">Defining relative clause</a></li><li><a id="a20">Non-defining relative clause</a></li></list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
 <section id="fb0">
-  <p align="left">Would the sentence make sense without this clause? Is this separated from the rest of the sentence by a comma? Is 'that' used for the relative pronoun?</p>
+  <p class="feedbacktext">Would the sentence make sense without this clause? </p>
+    <p class="feedbacktext">Is this separated from the rest of the sentence by a comma?</p>
+  <p class="feedbacktext">	Is 'that' used for the relative pronoun?</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font color="#000000">Another way to make your language more complex is to join ideas together using relative clauses. There are two basic types of relative clause, defining and non-defining. For example:</font>
-  </p>
-  <p align="left">Museums which do not have an admission fee attract a lot of visitors.The relative clause gives essential information about 'museums', so it is a defining relative clause.</p>
-  <p align="left">Free museums, which do not have an admission fee, attract a lot of visitors.The relative clause gives additional information about 'free museums', so it is a non-defining relative clause.</p>
-  <p align="left">Only non-defining relative clauses need to be enclosed in commas.</p>
-</section>
+
 
 <section id="readingText">
   <p align="left">

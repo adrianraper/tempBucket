@@ -85,8 +85,8 @@
   <img class="rightFloat" src="../media/HF_AW_013.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-    <li id="1">It is unlikely that genetically modified crops will have such a disastrous effect on the environment.
-	<br/>Genetically modified crops&#xA0;<input id="q1"/>&#xA0;such a disastrous effect on the environment. (likely)</li>
+    <li id="1"><b>It is unlikely that genetically modified crops will have such a disastrous effect on the environment.
+	<br/>Genetically modified crops&#xA0;<input id="q1"/>&#xA0;such a disastrous effect on the environment. (likely)</b></li>
 	<p class="linespace"></p>
 	
     <li id="2">Research into gene therapy will probably provide a cure for certain forms of cancer.

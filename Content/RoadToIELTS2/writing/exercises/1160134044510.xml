@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -25,10 +25,27 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/SS_GW_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>General Training Writing Task 1</b></font></p><p align="left"><font color="#000000"><b>Revision &#x2013; different types of letter</b></font></p>You will ...<ol><li>read different tasks and analyse what kind of letter is	required.</li><li>choose appropriate beginnings and endings for different	letters.</li><li>decide if writing is formal or informal.</li><li>find mistakes in a letter.</li><li>decide on good and bad advice for IELTS Writing Task 1.</li><li>read a task and complete a sample answer.</li></ol><p align="left"><font size="2"/></p></section>
+<section id="body">
+<img class="rightFloat" src="../media/SS_GW_001.jpg" mode="1" id="1001"/>
+<div id="presentation">
+	<h1><p>General Training Writing Task 1</p></h1>
+	<p><b>Revision - different types of letter</b></p>
+	<p>You will ...</p>
+	<ol>
+	<li>read different tasks and analyse what kind of letter is	required.</li>
+	<li>choose appropriate beginnings and endings for different	letters.</li>
+	<li>decide if writing is formal or informal.</li>
+	<li>find mistakes in a letter.</li>
+	<li>decide on good and bad advice for IELTS Writing Task 1.</li>
+	<li>read a task and complete a sample answer.</li>
+	</ol>
+</div>
+</section>
 
 </body>
 </bento>

@@ -41,12 +41,47 @@ p {
 	margin-left: 0px;
 	line-height: 20em;
 	}
+	
+/* targetspotting questionlist (not splitscreen) specifiy for FV Writing 2 task2 reporting verbs in the passive (1) */
+	.answerList2 {
+	list-style-type: lowerLatin;
+	padding-left: 40em;
+	padding-top: 20em;
+	margin-left: 0px;
+	line-height: 20em;
+	text-indent: 0px;
+	}
+	
+/* targetspotting questionlist (not splitscreen) with specific numbering */
+	.answerList3 {
+	list-style-type: lowerLatin;
+	padding-left: 60em;
+
+	margin-left: 0px;
+	line-height: 20em;
+	text-indent: 0px;
+	}
+	
+/* targetspotting questionlist (not splitscreen) */
+	.answerList4 {
+	list-style-type: lowerLatin;
+	padding-left: 40em;
+	margin-left: 0px;
+	line-height: 20em;
+	text-indent: 0px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
  	tab-stops: 30px;
  	text-indent: -30px;
  	padding-left: 30px;
+	}		
+/* A paragraph class for questionList that need specific numbering */
+.hangingIndent1 {
+
+ 	text-indent: -20px;
+ 	padding-left: 40px;
 	}		
 /*-----------------------------------------------------------------------------------------------*/
 /* This is the image or video floating on the right hand side in many exercises */
@@ -58,6 +93,7 @@ p {
 #body .leftFloat {
 	float:left;
 	padding-top:0px;
+	padding-right: 300%;
 	}
 	img.floatRightClear { 
     float: right; 
@@ -240,15 +276,37 @@ h7{
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/* This div is for exercises which have audio button in front of question List */
+#audio{
+	position:relative;
+	height: 1500px;
+	padding-left:-4px;
+	line-height:30px;
+	padding-top:20px;
+	}
+
+#questiondiv{
+	height: 1500px;
+	position:relative;
+	line-height:30px;
+	padding-left: 12px;
+	padding-top: 25px;
+	}
+
+#questiondiv li{
+	text-indent :5px;
+}
+/*-----------------------------------------------------------------------------------------------*/
 /* Specify for Writing Unit 1 task 1 sample answer */
 	#u1t1sample {
+		list-style-type: lowerLatin;
 	padding-top:10px;
 			padding-right: 450%;
 			text-align: left;
 			line-height: 22em;
 		}
-		
-		#u1t1sample p {
-			padding-bottom: 20em;
-}
+			
+			#u1t1sample li {
+			padding-left: -25px;
+	}
 /*-----------------------------------------------------------------------------------------------*/

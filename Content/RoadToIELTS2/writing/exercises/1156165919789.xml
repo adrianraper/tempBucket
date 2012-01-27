@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -84,14 +84,13 @@ Look at the chart and complete the report with the correct words or figures.
 
 <section id="body">
   <img class="rightFloat" src="../media/LC_AW_007.jpg" mode="1" id="1003"/>
-  <p align="left">In 2000, when asked if e-mail helps them communicate with people they would not otherwise be able to connect with, <font color="#0000ff"><input id="q1" type="droptarget"/> of e-mail users agreed and another <font color="#0000ff"><input id="q2" type="droptarget"/></font> agreed strongly. Only <font color="#0000ff"><input id="q3" type="droptarget"/></font> responded that they disagreed and <font color="#0000ff"><input id="q4" type="droptarget"/></font> that they disagreed strongly. Just under <font color="#0000ff"><input id="q5" type="droptarget"/></font> were not sure either way. By 2001 opinions had changed dramatically. The percentage of those who <font color="#0000ff"><input id="q6" type="droptarget"/></font> halved, while the proportion who <font color="#0000ff"><input id="q7" type="droptarget"/></font> fell by just over a quarter. Correspondingly, the percentage of those who agreed or <font color="#0000ff"><input id="q8" type="droptarget"/></font> rose. The <font color="#0000ff"><input id="q9" type="droptarget"/></font> rose slightly by only 3 per cent, but the <font color="#0000ff"><input id="q10" type="droptarget"/></font> rose by just under <font color="#0000ff"><input id="q11" type="droptarget"/></font>. The fact that the percentage of those who neither agreed nor disagreed had <font color="#0000ff"><input id="q12" type="droptarget"/></font> by 2001 suggests that people had begun to realise the potential of the medium.</font></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="gapfillText">
+  <p align="left">In 2000, when asked if e-mail helps them communicate with people they would not otherwise be able to connect with,&#xA0;<input id="q1" type="droptarget"/>&#xA0;of e-mail users agreed and another&#xA0; <input id="q2" type="droptarget"/> &#xA0;agreed strongly. Only&#xA0; <input id="q3" type="droptarget"/> &#xA0;responded that they disagreed and&#xA0; <input id="q4" type="droptarget"/> &#xA0;that they disagreed strongly. Just under&#xA0; <input id="q5" type="droptarget"/> &#xA0;were not sure either way. By 2001 opinions had changed dramatically. The percentage of those who&#xA0; <input id="q6" type="droptarget"/> &#xA0;halved, while the proportion who&#xA0; <input id="q7" type="droptarget"/> &#xA0;fell by just over a quarter. Correspondingly, the percentage of those who agreed or&#xA0; <input id="q8" type="droptarget"/> &#xA0;rose. The&#xA0; <input id="q9" type="droptarget"/> &#xA0;rose slightly by only 3 per cent, but the&#xA0; <input id="q10" type="droptarget"/> &#xA0;rose by just under&#xA0; <input id="q11" type="droptarget"/>. The fact that the percentage of those who neither agreed nor disagreed had&#xA0; <input id="q12" type="droptarget"/> &#xA0;by 2001 suggests that people had begun to realise the potential of the medium.</p>
+</div>
 </section>
 
-<section id="rt2001"><p align="left"><font color="#000000">Another way to describe rising and falling trends is by using verbs or expressions, which derive from fractions, for example:</font></p>x doubled in 2000,y halved in 2001,z rose by a third in 2002.
-</section>
+
 
 </body>
 </bento>

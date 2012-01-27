@@ -18,13 +18,16 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+		 	<feedback>
+		<feedback source="fb1"/>
+	</feedback>
 </settings>
 
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="E-mail address" correct="true"/>
       <answer value="Email address" correct="true">
-        <feedback source="fb1"/>
+
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
@@ -33,9 +36,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="Diplomas" correct="true"/>
-      <answer value="Certificates" correct="true">
-        <feedback source="fb3"/>
-      </answer>
+      <answer value="Certificates" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="Certificates" correct="true"/>
@@ -81,32 +82,54 @@
 
 <h1><p>Layout of a Curriculum Vitae</p></h1>
 
-<div id="gapfillText">
-<h7><p>Section 1:	Personal Information</p></h7>
-<p>Name</p>
-<p>Home</p>
-<p>address</p>
-<p>Telephone number</p>
-<p>1.&#xA0;<input id="q1"/></p>
-<p>Date of Birth</p>
-<p>Place of Birth</p>
-<p>2.&#xA0;<input id="q2"/></p>
 
-<p align="left"><font color="#000000"><b>Section 2:	Education &amp; Qualifications</b></font></p>(dates)	University Degrees	(3) <input id="q3"/>&#xA0;	(4) <input id="q4"/>(dates)	Secondary School	A-levels	GCSEs<p align="left"><font color="#000000"><b>Section 3:	Skills</b></font></p>Examples:	Driving	(5) <input id="q5"/>	Typing	(6) <input id="q6"/><p align="left"><font color="#000000"><b>Section 4:</b>	(7) <input id="q7"/></font></p>(dates)	(8) <input id="q8"/>	Company	Address	Duties<p align="left"><font color="#000000"><b>Section 5:	Activities</b></font></p>	Hobbies and interests<p align="left"><font size="2"/></p>
-</div>
+<p class="hangingIndent1"><b>Section 1:	Personal Information</b></p>
+<p class="hangingIndent1">Name</p>
+<p class="hangingIndent1">Home</p>
+<p class="hangingIndent1">address</p>
+<p class="hangingIndent1">Telephone number</p>
+<p class="hangingIndent1">(1)&#xA0;<input id="q1"/></p>
+<p class="hangingIndent1">Date of Birth</p>
+<p class="hangingIndent1">Place of Birth</p>
+<p class="hangingIndent1">(2)&#xA0;<input id="q2"/></p>
+<p>&#xA0;</p>
+<p class="hangingIndent1"><b>Section 2:	Education &amp; Qualifications</b></p>
+<p class="hangingIndent1">University Degrees<tab/>(dates)</p>
+<p class="hangingIndent1">(3)&#xA0;<input id="q3"/></p>
+<p class="hangingIndent1">(4)&#xA0;<input id="q4"/></p>
+<p class="hangingIndent1">Secondary School<tab/>(dates)</p>
+<p class="hangingIndent1">A-levels</p>
+<p class="hangingIndent1">GCSEs</p>
+<p>&#xA0;</p>
+<p class="hangingIndent1"><b>Section 3:	Skills</b></p>
+<p class="hangingIndent1">Driving</p>
+<p class="hangingIndent1">(5)&#xA0;<input id="q5"/></p>
+<p class="hangingIndent1">Typing</p>
+<p class="hangingIndent1">(6)&#xA0;<input id="q6"/></p>
+<p>&#xA0;</p>
+<p class="hangingIndent1">Section 4: (7)&#xA0;<input id="q7"/></p>
+<p class="hangingIndent1">(8)&#xA0;<input id="q8"/></p>
+<p class="hangingIndent1">Company</p>
+<p class="hangingIndent1">Address</p>
+<p class="hangingIndent1">Duties</p>
+<p>&#xA0;</p>
+<p class="hangingIndent1"><b>Section 5:	Activities</b></p>
+<p class="hangingIndent1">Hobbies and interests</p>
+<p></p>
+
+
+
+
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">1. Address is already given as 'home address' above. What other kind of address is there?</font>
+  <p class="feedbacktext">1. Address is already given as 'home address' above. What other kind of address is there?
+  </p>
+    <p class="feedbacktext">3. Mary is not talking about one specific diploma but diplomas in general.
   </p>
 </section>
 
-<section id="fb3">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">3. Mary is not talking about one specific diploma but diplomas in general. </font>
-  </p>
-</section>
+
 
 </body>
 </bento>

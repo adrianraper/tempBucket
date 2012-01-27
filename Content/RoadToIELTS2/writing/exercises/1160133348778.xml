@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -92,54 +92,72 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the writing task on the left and answer the questions on the right. In some cases, there is more than one correct answer.
+</div>
 </header>
 	
-<section id="body">
-  <p align="left"><b>1.</b>  Who do you have to write to?<g id="t1">A.  a friend</g><g id="t2">B.  a relative</g><g id="t3">C.  a colleague</g><g id="t4">D.  an acquaintance</g><g id="t5">E.  a stranger</g></p>
-  <p align="left"><b>2.</b>  What style of letter should you write?<g id="t6">A.  formal</g><g id="t7">B.  informal</g></p>
-  <p align="left"><b>3.</b>  What do you have to do in this letter?<g id="t8">A.  make arrangement</g><g id="t9">B.  request information</g><g id="t10">C.  offer advice</g><g id="t11">D.  make a complaint</g><g id="t12">E.  provide information</g></p>
-  <p align="left"><b>4.</b>  How many points do you have to coverin this letter?<g id="t13">A.  one</g><g id="t14">B.  two</g><g id="t15">C.  three</g><g id="t16">D.  four</g><g id="t17">E.  five</g></p>
-  <p align="left"><b>5.</b>  Which of the following could you askabout in this letter?<g id="t18">A.  if the hotel has a swimming pool</g><g id="t19">B.  when the hotel was established</g><g id="t20">C.  how far the hotel is from the town centre</g><g id="t21">D.  what the weather will be like in August</g><g id="t22">E.  if they provide meals for vegetarians</g></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="readingText">
+	<h1>Writing Task 1</h1>
+	<p>You should spend about 20 minutes on this task.</p>
+ 	<p><b>You are planning a holiday in Scotland. You have been given the name and address of a hotel near the sea and would like some further information.</b></p>
+	<p><b>Write a letter to the hotel. Ask for information about the hotel's exact location and facilities. Explain any special requirements you have and ask whether the hotel can accommodate them.</b></p>
+	<p>You should write at least 150 words.</p>
+	<p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+	<p>Begin your letter as follows:</p>
+	<p>Dear Sir/Madam,</p>
 </section>
 
-<section id="readingText">
-  <p align="left">
-    <font face="verdana" size="13" color="#0000ff">
-      <b>Writing Task 1</b>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You should spend about 20 minutes on this task.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <b>You are planning a holiday in Scotland. You have been given the name and address of a hotel near the sea and would like some further information.</b>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <b>Write a letter to the hotel. Ask for information about the hotel's exact location and facilities. Explain any special requirements you have and ask whether the hotel can accommodate them.</b>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You should write at least 150 words.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You do <b>NOT</b> need to write your own address.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Begin your letter as follows:</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Dear Sir/Madam, </font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="body">
+<ol id="splitquestionList">
+	<li>Who do you have to write to?
+	  <list class="answerList">
+		  <li><a id="t1">a friend</a></li>
+		  <li><a id="t2">a relative</a></li>
+		  <li><a id="t3">a colleague</a></li>
+		  <li><a id="t4">an acquaintance</a></li>
+		  <li><a id="t5">a stranger</a></li>
+	  </list></li>
+	  <p class="linespace"></p>
+	  
+	<li>What style of letter should you write?
+	  <list class="answerList">
+		  <li><a id="t6">formal</a></li>
+		  <li><a id="t7">informal</a></li>
+	  </list></li>
+	  <p class="linespace"></p>
+
+	<li>What do you have to do in this letter?
+	  <list class="answerList">
+		  <li><a id="t8">make arrangement</a></li>
+		  <li><a id="t9">request information</a></li>
+		  <li><a id="t10">offer advice</a></li>
+		  <li><a id="t11">make a complaint</a></li>
+		  <li><a id="t12">provide information</a></li>
+	  </list></li>
+	  <p class="linespace"></p>	  
+
+	<li>How many points do you have to cover in this letter?
+	  <list class="answerList">
+		  <li><a id="t13">one</a></li>
+		  <li><a id="t14">two</a></li>
+		  <li><a id="t15">three</a></li>
+		  <li><a id="t16">four</a></li>
+		  <li><a id="t17">five</a></li>
+	  </list></li>
+	  <p class="linespace"></p>		  
+
+	<li>Which of the following could you ask about in this letter?
+	  <list class="answerList">
+		  <li><a id="t18">if the hotel has a swimming pool</a></li>
+		  <li><a id="t19">when the hotel was established</a></li>
+		  <li><a id="t20">how far the hotel is from the town centre</a></li>
+		  <li><a id="t21">what the weather will be like in August</a></li>
+		  <li><a id="t22">if they provide meals for vegetarians</a></li>
+	  </list></li>
+	  <p class="linespace"></p>	
+
+  </ol>
 </section>
 
 </body>

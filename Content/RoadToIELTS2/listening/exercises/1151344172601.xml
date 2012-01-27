@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/mchioces-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -64,28 +64,35 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Listen to the recording, which will play automatically, and follow the instructions. Click the correct letters a-c.
-		
+		  <audio controls="hidden" loop="1" autoPlay="true" class="leftFloat" src="../media/WB_LN2a.mp3" mode="4" id="1002"/>
+		  </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_LN_004.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/WB_LN_004a.jpg" mode="1" id="1004"/>
-  <audio controls="compact" class="leftFloat" src="../media/WB_LN2a.mp3" mode="4" id="1002"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">What percentage of the working population nowadays are women?<list class="answerList"><li><a id="a1">less than 20%</a></li><li><a id="a2">between 21% and 50%</a></li><li><a id="a3">more than 50%</a></li></list><br/></li>
-    <br/>
-    <li id="q2">Nowadays the average female manager's salary is between ...<list class="answerList"><li><a id="a4">&#xA3;25,000&#x2013;&#xA3;29,000.</a></li><li><a id="a5">&#xA3;30,000&#x2013;&#xA3;34,000.</a></li><li><a id="a6">&#xA3;35,000&#x2013;&#xA3;39,000.</a></li></list><br/></li>
-    <br/>
-    <li id="q3">What is the principal reason for women going out to work?<list class="answerList"><li><a id="a7">They do not want to depend on other people for money.</a></li><li><a id="a8">They can no longer depend on husbands to support them.</a></li><li><a id="a9">They find life more expensive.</a></li></list><br/></li>
-    <br/>
-    <li id="q4">Changes in attitudes in the 1960s and '70s meant that more young women ...<list class="answerList"><li><a id="a10">were able to take office jobs.</a></li><li><a id="a11">went into temporary employment.</a></li><li><a id="a12">received a university education.</a></li></list><br/></li>
-    <br/>
-    <li id="q5">Which pie chart shows the proportion of men and women who are expected to start businesses in 2010?<list class="answerList"><li><a id="a13">Chart A</a></li><li><a id="a14">Chart B</a></li><li><a id="a15">Chart C</a></li></list><br/></li>
+  <img class="leftFloat" src="../media/WB_LN_004.jpg" mode="1" id="1001"/>
+
+
+  <ol id="mchoices">
+    <li id="q1">What percentage of the working population nowadays are women?
+	<list class="answerList">
+	<li><a id="a1">less than 20%</a></li>
+	<li><a id="a2">between 21% and 50%</a></li>
+	<li><a id="a3">more than 50%</a></li>
+	</list></li>
+    <p class="linespace"></p>
+    <li id="q2">Nowadays the average female manager's salary is between ...<list class="answerList"><li><a id="a4">&#xA3;25,000&#x2013;&#xA3;29,000.</a></li><li><a id="a5">&#xA3;30,000&#x2013;&#xA3;34,000.</a></li><li><a id="a6">&#xA3;35,000&#x2013;&#xA3;39,000.</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q3">What is the principal reason for women going out to work?<list class="answerList"><li><a id="a7">They do not want to depend on other people for money.</a></li><li><a id="a8">They can no longer depend on husbands to support them.</a></li><li><a id="a9">They find life more expensive.</a></li></list></li>
+   <p class="linespace"></p>
+    <li id="q4">Changes in attitudes in the 1960s and '70s meant that more young women ...<list class="answerList"><li><a id="a10">were able to take office jobs.</a></li><li><a id="a11">went into temporary employment.</a></li><li><a id="a12">received a university education.</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q5">Which pie chart shows the proportion of men and women who are expected to start businesses in 2010?</li>
+	  <img class="leftFloat" src="../media/WB_LN_004a.jpg" mode="1" id="1004"/>
+	<list class="answerList"><li><a id="a13">Chart A</a></li><li><a id="a14">Chart B</a></li><li><a id="a15">Chart C</a></li></list>
   </ol>
+  <p></p>
 </section>
 
 <section id="fb1">

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -54,8 +54,10 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 6-10. Listen to the recording, which will play automatically, and follow the instructions. Complete the summary using words from the box. There are more words than spaces, so you will not use them all.
+		<audio controls="hidden" loop="1" autoPlay="true" src="../media/SS_LN2b.mp3" mode="4" id="1002"/>
+		</div>
 		
 </header>
 	
@@ -79,13 +81,13 @@
 
 <section id="body">
   <img class="rightFloat" src="../media/SS_LN_005.jpg" mode="1" id="1001"/>
-  <audio controls="compact" class="leftFloat" src="../media/SS_LN2b.mp3" mode="4" id="1002"/>
-  <p align="left">
-    <font color="#000000">The prospect of living longer has brought about a change in people's (6) <font color="#0000ff"><input id="q1" type="droptarget"/></font>. The elderly no longer conform to Shakespearean stereotypes of old age, the middle-aged feel younger than previous generations while young people today regard themselves as (7) <font color="#0000ff"><input id="q2" type="droptarget"/></font> at sixteen.</font>
+  
+  <div id="gapfillText">
+  <p>The prospect of living longer has brought about a change in people's (6)&#xA0;<input id="q1" type="droptarget"/>. The elderly no longer conform to Shakespearean stereotypes of old age, the middle-aged feel younger than previous generations while young people today regard themselves as (7)&#xA0;<input id="q2" type="droptarget"/>&#xA0;at sixteen.</p>
+  
+  <p>People who retire after 2010 are unlikely to be as (8)&#xA0;<input id="q3" type="droptarget"/>&#xA0;as previous generations of pensioners. There are two reasons for this. Firstly, attitudes and beliefs formed when we are young tend to remain with us throughout life, in much the same way that (9)&#xA0;<input id="q4" type="droptarget"/>&#xA0;loyalties do. Secondly, the next generation of pensioners will have had a better (10)&#xA0;<input id="q5" type="droptarget"/>.
   </p>
-  <p align="left">
-    <font color="#000000">People who retire after 2010 are unlikely to be as (8) <font color="#0000ff"><input id="q3" type="droptarget"/></font> as previous generations of pensioners. There are two reasons for this. Firstly, attitudes and beliefs formed when we are young tend to remain with us throughout life, in much the same way that (9) <font color="#0000ff"><input id="q4" type="droptarget"/></font> loyalties do. Secondly, the next generation of pensioners will have had a better (10) <font color="#0000ff"><input id="q5" type="droptarget"/></font>.</font>
-  </p>
+  </div>
 </section>
 
 <section id="fb1">

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,66 +26,18 @@
 <body>
 	
 <header>
-	IELTS Writing Task 1You should spend about 20 minutes on this task.  You should write at least 150 words.
-</header>
+	<div id="instruction">
+	You should spend about 20 minutes on this task.  You should write at least 150 words.
+	</div>
+	</header>
 	
 <section id="body">
+<div id="presentation">
+  <h5><p>The chart below shows attitudes towards culture and cultural activities in New Zealand.</p></h5>
+  <p>Write a report for a university lecturer describing the information shown below.</p>
   <img class="leftFloat" src="../media/AC_AW_006.jpg" mode="1" id="1003"/>
-  <p align="left"><b>The chart below shows attitudes towards culture and cultural activities in New Zealand.</b>Write a report for a university lecturer describing the information shown below.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+</div>
+ 
 </section>
 
 </body>

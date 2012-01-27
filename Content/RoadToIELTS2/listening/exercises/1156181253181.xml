@@ -78,7 +78,7 @@
 	
 		<div id="instruction">
 		Listen to the recording, which will play automatically, and follow the instructions. Click on the correct letters A-D.
-		  <audio controls="hidden" loop="1" autoPlay="true" class="leftFloat" src="../media/TT_LN1.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/TT_LN1.mp3" mode="4" id="1002"/>
 			</div>
 </header>
 	

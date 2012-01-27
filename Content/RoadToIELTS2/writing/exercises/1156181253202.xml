@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -157,52 +157,57 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look at the table and complete the sentences by choosing the correct word or phrase for each gap.  There is more than one correct answer in each case.
+	</div>
 </header>
 	
-<section id="noscroll">
-  <img class="leftFloat" src="../media/TT_AW_004a.jpg" mode="1" id="1003"/>
-</section>
+
 
 <section id="body">
-  <p align="left">
-    <font color="#000000"><b>1</b>  Every year road transport consumed the greatest (&#x2026;) of petroleum.</font>
-  </p>
-  <g id="t21">A  quantity</g>
-  <g id="t22">B  amount</g>
-  <g id="t23">C  proportion</g>
-  <g id="t24">D  number</g>
-  <p align="left">
-    <font color="#000000"><b>2</b>  Petroleum consumption for railways was (&#x2026;) less than for other means of transport.</font>
-  </p>
-  <g id="t25">A  a lot</g>
-  <g id="t26">B  far</g>
-  <g id="t27">C  many</g>
-  <g id="t28">D  much</g>
-  <p align="left">
-    <font color="#000000"><b>3</b>  In 1999 road transport consumed (&#x2026;) petroleum than the previous year.</font>
-  </p>
-  <g id="t29">A  less</g>
-  <g id="t30">B  fewer</g>
-  <g id="t31">C  fewer tonnes of</g>
-  <g id="t32">D  a smaller quantity of</g>
-  <p align="left">
-    <font color="#000000"><b>4</b>  Petroleum consumption by air transport was (&#x2026;) in 1999 than ten years earlier.</font>
-  </p>
-  <g id="t33">A  many more</g>
-  <g id="t34">B  much higher</g>
-  <g id="t35">C  a lot higher</g>
-  <g id="t36">D  far higher</g>
-  <p align="left">
-    <font color="#000000"><b>5</b>  Over the years railway and water transport consumed (&#x2026;) petroleum.</font>
-  </p>
-  <g id="t37">A  less and less</g>
-  <g id="t38">B  smaller and smaller amounts of</g>
-  <g id="t39">C  fewer and fewer</g>
-  <g id="t40">D  fewer and fewer tonnes of</g>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<img class="leftFloat" src="../media/TT_AW_004a.jpg" mode="1" id="1003"/>
+<ol id="targetspotting">
+  <li>Every year road transport consumed the greatest (&#x2026;) of petroleum.
+  <list class="answerList4">
+  <li><a id="t21">quantity</a></li>
+  <li><a id="t22">amount</a></li>
+  <li><a id="t23">proportion</a></li>
+  <li><a id="t24">number</a></li>
+  </list></li>
+  <p class="linespace"></p>
+ <li>Petroleum consumption for railways was (&#x2026;) less than for other means of transport.
+   <list class="answerList4">
+  <li><a id="t25">a lot</a> </li>
+   <li><a id="t26">far</a></li>
+   <li><a id="t27">many</a></li>
+   <li><a id="t28">much</a></li>
+   </list></li>
+   <p class="linespace"></p>
+   <li>In 1999 road transport consumed (&#x2026;) petroleum than the previous year.
+   <list class="answerList4">
+  <li><a id="t29">less</a></li>
+  <li><a id="t30">fewer</a></li>
+  <li><a id="t31">fewer tonnes of</a></li>
+  <li><a id="t32">a smaller quantity of</a></li>
+  </list></li>
+  <p class="linespace"></p>
+  <li>Petroleum consumption by air transport was (&#x2026;) in 1999 than ten years earlier.
+     <list class="answerList4">
+  <li><a id="t33">many more</a></li>
+  <li><a id="t34">much higher</a></li>
+  <li><a id="t35">a lot higher</a></li>
+  <li><a id="t36">far higher</a></li>
+  </list></li>
+  <p class="linespace"></p>
+	<li>Over the years railway and water transport consumed (&#x2026;) petroleum.
+	<list class="answerList4">
+  <li><a id="t37">less and less</a></li>
+  <li><a id="t38">smaller and smaller amounts of</a></li>
+  <li><a id="t39">fewer and fewer</a></li>
+  <li><a id="t40">fewer and fewer tonnes of</a></li>
+  </list></li>
+  <p class="linespace"></p>
+  </ol>
 </section>
 
 <section id="fb24">

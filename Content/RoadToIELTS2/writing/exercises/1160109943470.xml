@@ -79,6 +79,15 @@
 	</div>
 </header>
 	
+<section id="readingText">
+	<h1>Writing Task 1</h1>
+	<p>You should spend about 20 minutes on this task.</p>
+	<p><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
+	<p>You should write at least 150 words.</p>
+	<p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+	<p>Begin your letter as follows:</p><p>Dear Sir/Madam,</p>
+</section>
+
 <section id="body">
 <ol id="splitquestionList">
   <li>How well do you know the person you are writing to?
@@ -116,13 +125,5 @@
   </ol>
 </section>
 
-<section id="readingText">
-	<h1>Writing Task 1</h1>
-	<p>You should spend about 20 minutes on this task.</p>
-	<p><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
-	<p>You should write at least 150 words.</p>
-	<p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
-	<p>Begin your letter as follows:</p><p>Dear Sir/Madam,</p>
-</section>
 </body>
 </bento>

@@ -79,20 +79,27 @@ img.floatleft {
 	padding-right: 50px;
 	padding-left: 25px;
 	}
+	
+	.leftFloat1 {
+
+	height: 310px;
+	width:420px;
+	float: left;
+}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
-a, span[draggable="true"] {
+a, span[draggable="false"] {
 	color: #3A00FF;
 	text-decoration: none;
 	}
 
 /* Draggable spans in noscroll should be in a bordered filled box */
-#noscroll span[draggable=true] {
+#noscroll span[draggable=false] {
 	float: left;
 	color: #0E00AB;
-	padding: 5px 8px -8px 8px;
+	padding: 5px 8px 4px 8px;
 	margin-right: 4px;
-	margin-bottom: 0px;
+	margin-bottom: 4px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #B5B5B5;
@@ -281,7 +288,7 @@ h7{
 	}
 
 #gapfillText{
-	padding-left:0px;
+	padding-left:-5px;
 	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
@@ -323,7 +330,7 @@ h7{
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
-/* specify for Listening 2 Purchasing tickets */
+/* specify for Listening 2 Purchasing tickets & FV Listening 4 Adopt an animal*/
 	#rightcolumn {
 	position:relative;
 	line-height: 22em;
@@ -409,4 +416,29 @@ h7{
 	float: left;
 	width: 200px;
 	}
+/*-----------------------------------------------------------------------------------------------*/	
+/* specify for FV Listening 9 Form completion*/
+	#theft1 {
+		position:relative;
+		padding-top: 85px;
+		float: left;
+		width:180px;
+		padding-left: -5px;
+	}
+	
+	#theft1 p{
+	padding-bottom: 12em;
+	}
+	
+	#theft2 {
+	padding-top: 20px;
+	float: left;
+	width: 200px;
+	}
+	
+	#theft2 p{
+	padding-bottom: 12em;
+	}
+	/*-----------------------------------------------------------------------------------------------*/	
+
 /*-----------------------------------------------------------------------------------------------*/	

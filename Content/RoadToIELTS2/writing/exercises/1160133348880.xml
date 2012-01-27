@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-01-16" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -13,22 +13,34 @@
 		 */			
 	]]>
 	</style>
-	<br/>
+
 <script id="model" type="application/xml">
-  <settings>
-    <param name="delayedMarking" value="true"/>
-  </settings>
-  <questions/>
 </script>
 
 </head>
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/TT_GW_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>General Training Writing Task 1</b></font></p><p align="left"><font color="#000000"><b>Letter &#x2013; asking for information</b><font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font></font></p>You will ...<ol><li>read a task and analyse what is required.</li><li>organize ideas for a letter asking for information.</li><li>identify indirect questions.</li><li>practise using indirect questions.</li><li>analyse what is needed in a formal letter.</li><li>read a task and complete a sample answer.</li></ol><p align="left"><font size="2"/></p></section>
-
+<section id="body">
+<img class="rightFloat" src="../media/LC_GW_001.jpg" mode="1" id="1001"  />
+<div id="presentation">
+	<h1><p>General Training Writing Task 1</p></h1>
+	<p><b>Letter – asking for information</b></p>
+	<p>You will ...</p>
+	<ol>
+		<li>read a task and analyse what is required.</li>
+		<li>organize ideas for a letter asking for information.</li>
+		<li>identify indirect questions.</li>
+		<li>practise using indirect questions.</li>
+		<li>analyse what is needed in a formal letter.</li>
+		<li>read a task and complete a sample answer.</li>
+	</ol>
+</div>
+</section>
 </body>
 </bento>

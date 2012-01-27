@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -108,57 +108,15 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the writing task on the left and look at the list of ideas on the right that a group of IELTS students produced. Decide whether each idea is an argument for an international language, an argument against or an idea which is irrelevant to the task.
+	</div>
 </header>
 	
 <section id="body">
   <img class="leftFloat" src="../media/LC_AW_022.JPG" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">Cost of teaching everyone the language <list class="answerList"><li><a id="a1">Argument for</a></li><li><a id="a2">Argument against</a></li><li><a id="a3">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q2">Diversification of language into dialects <list class="answerList"><li><a id="a4">Argument for</a></li><li><a id="a5">Argument against</a></li><li><a id="a6">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q3">Help international trade <list class="answerList"><li><a id="a7">Argument for</a></li><li><a id="a8">Argument against</a></li><li><a id="a9">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q4">Improve international co-operation and understanding <list class="answerList"><li><a id="a10">Argument for</a></li><li><a id="a11">Argument against</a></li><li><a id="a12">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q5">Interpreters and translators would lose their jobs <list class="answerList"><li><a id="a13">Argument for</a></li><li><a id="a14">Argument against</a></li><li><a id="a15">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q6">Make international travel easier <list class="answerList"><li><a id="a16">Argument for</a></li><li><a id="a17">Argument against</a></li><li><a id="a18">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q7">Many languages already have a large number of words in common <list class="answerList"><li><a id="a19">Argument for</a></li><li><a id="a20">Argument against</a></li><li><a id="a21">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q8">Many people enjoy learning new languages <list class="answerList"><li><a id="a22">Argument for</a></li><li><a id="a23">Argument against</a></li><li><a id="a24">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q9">Might not be used <list class="answerList"><li><a id="a25">Argument for</a></li><li><a id="a26">Argument against</a></li><li><a id="a27">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q10">Reduce nationalism <list class="answerList"><li><a id="a28">Argument for</a></li><li><a id="a29">Argument against</a></li><li><a id="a30">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q11">Reduce the amount of translation work needed <list class="answerList"><li><a id="a31">Argument for</a></li><li><a id="a32">Argument against</a></li><li><a id="a33">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q12">Simplify electronic communication <list class="answerList"><li><a id="a34">Argument for</a></li><li><a id="a35">Argument against</a></li><li><a id="a36">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q13">There are about 6,000 languages spoken in the world today <list class="answerList"><li><a id="a37">Argument for</a></li><li><a id="a38">Argument against</a></li><li><a id="a39">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q14">World would lose cultural diversity <list class="answerList"><li><a id="a40">Argument for</a></li><li><a id="a41">Argument against</a></li><li><a id="a42">Irrelevant idea</a></li></list><br/></li>
-    <br/>
-    <li id="q15">Would kill less widely-spoken languages <list class="answerList"><li><a id="a43">Argument for</a></li><li><a id="a44">Argument against</a></li><li><a id="a45">Irrelevant idea</a></li></list><br/></li>
-  </ol>
-</section>
 
-<section id="fb7">
-  <p align="left">7. This might make learning a new language a little easier for some people, but it is not itself an advantage that an international language would bring.</p>
-</section>
 
-<section id="fb8">
-  <p align="left">8. This might be true, but it is neither an advantage nor a disadvantage of having an 'international language'.</p>
-</section>
-
-<section id="fb13">
-  <p align="left">13. Although you might be able to use this fact to support an argument, on its own it is neither an advantage nor a disadvantage.</p>
-</section>
 
 <section id="readingText">
   <p align="left">
@@ -179,5 +137,55 @@
   </p>
 </section>
 
+  <ol id="splitquestionList">
+
+    <li id="q1">Cost of teaching everyone the language 
+	<list class="answerList">
+	<li><a id="a1">Argument for</a></li>
+	<li><a id="a2">Argument against</a></li>
+	<li><a id="a3">Irrelevant idea</a></li>
+	</list></li>
+<p class="linespace"></p>
+    <li id="q2">Diversification of language into dialects <list class="answerList"><li><a id="a4">Argument for</a></li><li><a id="a5">Argument against</a></li><li><a id="a6">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q3">Help international trade <list class="answerList"><li><a id="a7">Argument for</a></li><li><a id="a8">Argument against</a></li><li><a id="a9">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q4">Improve international co-operation and understanding <list class="answerList"><li><a id="a10">Argument for</a></li><li><a id="a11">Argument against</a></li><li><a id="a12">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q5">Interpreters and translators would lose their jobs <list class="answerList"><li><a id="a13">Argument for</a></li><li><a id="a14">Argument against</a></li><li><a id="a15">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q6">Make international travel easier <list class="answerList"><li><a id="a16">Argument for</a></li><li><a id="a17">Argument against</a></li><li><a id="a18">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q7">Many languages already have a large number of words in common <list class="answerList"><li><a id="a19">Argument for</a></li><li><a id="a20">Argument against</a></li><li><a id="a21">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q8">Many people enjoy learning new languages <list class="answerList"><li><a id="a22">Argument for</a></li><li><a id="a23">Argument against</a></li><li><a id="a24">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q9">Might not be used <list class="answerList"><li><a id="a25">Argument for</a></li><li><a id="a26">Argument against</a></li><li><a id="a27">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q10">Reduce nationalism <list class="answerList"><li><a id="a28">Argument for</a></li><li><a id="a29">Argument against</a></li><li><a id="a30">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q11">Reduce the amount of translation work needed <list class="answerList"><li><a id="a31">Argument for</a></li><li><a id="a32">Argument against</a></li><li><a id="a33">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q12">Simplify electronic communication <list class="answerList"><li><a id="a34">Argument for</a></li><li><a id="a35">Argument against</a></li><li><a id="a36">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q13">There are about 6,000 languages spoken in the world today <list class="answerList"><li><a id="a37">Argument for</a></li><li><a id="a38">Argument against</a></li><li><a id="a39">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q14">World would lose cultural diversity <list class="answerList"><li><a id="a40">Argument for</a></li><li><a id="a41">Argument against</a></li><li><a id="a42">Irrelevant idea</a></li></list></li>
+<p class="linespace"></p>
+    <li id="q15">Would kill less widely-spoken languages <list class="answerList"><li><a id="a43">Argument for</a></li><li><a id="a44">Argument against</a></li><li><a id="a45">Irrelevant idea</a></li></list></li>
+  </ol>
+</section>
+
+<section id="fb7">
+  <p class="feedbacktext">7. This might make learning a new language a little easier for some people, but it is not itself an advantage that an international language would bring.</p>
+</section>
+
+<section id="fb8">
+  <p class="feedbacktext">8. This might be true, but it is neither an advantage nor a disadvantage of having an 'international language'.</p>
+</section>
+
+<section id="fb13">
+  <p class="feedbacktext">13. Although you might be able to use this fact to support an argument, on its own it is neither an advantage nor a disadvantage.</p>
+</section>
 </body>
 </bento>

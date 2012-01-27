@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -49,24 +49,24 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Read the complete sample answer to the writing task in the earlier exercise and find all the reporting verbs using passive constructions. Click on them.
-		
+		</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/LC_AW_025.JPG" mode="1" id="1001"/>
-  <p align="left"><g id="t1">It has often been suggested that</g> we should all learn to speak an international language, and both artificial and natural languages, including Esperanto, Latin and English, have been put forward at various times in history as candidates to fill this role.</p>
-  <p align="left">The arguments in favour of an international language are both ideological and practical. Firstly, <g id="t2">it is sometimes said</g> that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, <g id="t3">it is argued that</g> if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, <g id="t4">it is generally agreed that</g> a common language would make international travel much easier for everyone.</p>
-  <p align="left">However, there are strong arguments against the introduction of an international language. To start with, <g id="t5">it is often pointed out that</g> while an international language might initially facilitate communication, all languages tend to divide into dialects, some of which cannot always be understood by all native speakers. Secondly, <g id="t6">it is often claimed that</g> an international language would eventually come to dominate over, and in some cases cause the disappearance of, less widely-spoken languages. Furthermore, as culture and language are closely associated, <g id="t7">it is widely believed that</g> the threat to minority languages posed by an international one would also mean a threat to their related cultures. The result would be a dull world, lacking in both linguistic and cultural diversity.</p>
+  
+  <div id="targetspotting">
+  <p align="left"><g id="t1">It has often been suggested that</g> &#xA0;we should all learn to speak an international language, and both artificial and natural languages, including Esperanto, Latin and English, have been put forward at various times in history as candidates to fill this role.</p>
+  <p align="left">The arguments in favour of an international language are both ideological and practical. Firstly,&#xA0; <g id="t2">it is sometimes said</g> &#xA0;that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly,&#xA0; <g id="t3">it is argued that</g> &#xA0;if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally,&#xA0; <g id="t4">it is generally agreed that</g> &#xA0;a common language would make international travel much easier for everyone.</p>
+  <p align="left">However, there are strong arguments against the introduction of an international language. To start with,&#xA0; <g id="t5">it is often pointed out that</g> &#xA0;while an international language might initially facilitate communication, all languages tend to divide into dialects, some of which cannot always be understood by all native speakers. Secondly,&#xA0; <g id="t6">it is often claimed that</g> &#xA0;an international language would eventually come to dominate over, and in some cases cause the disappearance of, less widely-spoken languages. Furthermore, as culture and language are closely associated,&#xA0; <g id="t7">it is widely believed that</g> &#xA0;the threat to minority languages posed by an international one would also mean a threat to their related cultures. The result would be a dull world, lacking in both linguistic and cultural diversity.</p>
   <p align="left">On balance, I believe that it would be undesirable to impose an international language on the world. I doubt that an international language would bring about international peace, and the disappearance of minority languages and cultures would be a sad loss.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
+  </div>
 </section>
 
-<section id="rt2001"><p align="left">Writers often introduce ideas and arguments using passive forms of reporting verbs such as 'say', 'argue', 'suggest' and 'believe' and this formal style is more appropriate for Writing Task 2.For example, instead of writing:</p>'Many people believe that &#x2026;'it is better to write:'It is widely believed that ...'Remember that when you use this kind of passive construction, it is not necessary to include the agent, as it does not add any useful information to the sentence. For example 'People think ...' just becomes 'It is thought that ...' and not 'It is thought by many people that ...'
-</section>
+
 
 </body>
 </bento>

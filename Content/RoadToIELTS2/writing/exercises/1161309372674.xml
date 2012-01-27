@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -13,7 +13,7 @@
 		 */			
 	]]>
 	</style>
-	<br/>
+
 <script id="model" type="application/xml">
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -152,16 +152,15 @@
 <body>
 	
 <header>
-	Read the writing tasks and choose the kind of letter should you write for each. Choose two options in each case.
+<div id="instruction">
+Read the writing tasks and choose the kind of letter should you write for each. Choose two options in each case.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/SS_GW_002.jpg" mode="1" id="1001"/>
 </section>
 
-<section id="rt2001">
-  <p align="left">Always read the writing task carefully and decide what kind of letter you have to write. Look for words like 'say why', 'explain', 'complain', 'recommend', 'apologise', 'describe', 'ask', 'find out' and so on. You also need to decide if you should use formal or informal language in your letter.</p>
-</section>
 
 </body>
 </bento>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,75 +16,30 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-  <questions/>
+
 </script>
 
 </head>
 <body>
 	
 <header>
-	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+<div id="instruction">
+You should spend about 20 minutes on this task. You should write at least 150 words.
+</div>
 </header>
 	
 <section id="body">
-  <img class="leftFloat" src="../media/HF_AW_007.jpg" mode="1" id="1004"/>
+<div id="presentation">
+<h5><p>The table shows trends in the proportion of smokers among different socio-economic groups in Great Britain between 1972 and 1999.</p></h5>
+
   <p align="left">
-    <b>The table shows trends in the proportion of smokers among different socio-economic groups in Great Britain between 1972 and 1999.</b>
+  Write a report for a university lecturer describing the information shown below.
   </p>
   <p align="left">
-    <b>Write a report for a university lecturer describing the information shown below.</b>
+      <img class="leftFloat" src="../media/HF_AW_007.jpg" mode="1" id="1004"/>
   </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
+  </div>
 </section>
 
 </body>

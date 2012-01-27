@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -85,39 +85,54 @@
 <body>
 	
 <header>
+<div id="instruction">
 	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter on the left, click on the words and phrases the writer uses to express her likes and dislikes, and drag them to the approprite category on the right.
+		</div>
 		
-		Writing Task 1
 </header>
-	
+	<section id="noscroll">
+  <span id="a1" draggable="true">I love</span>
+  <span id="a2" draggable="true">I don't like</span>
+  <span id="a3" draggable="true">I enjoy</span>
+  <span id="a4" draggable="true">I prefer</span>
+  <span id="a5" draggable="true">I can't stand</span>
+  <span id="a6" draggable="true">I absolutely detest</span>
+  <span id="a7" draggable="true">I hate</span>
+  <span id="a8" draggable="true">I also like</span>
+    <span id="a9" draggable="true">I'm really keen on</span>
+</section>
+
 <section id="body">
   <img class="rightFloat" src="../media/LE_GW_004.jpg" mode="1" id="1001"/>
+  <div id="Exp1">
   <p align="left">
-    <b>Expressing Likes</b>
-    <input id="q1" type="droptarget"/>
-    <input id="q2" type="droptarget"/>
-    <input id="q3" type="droptarget"/>
-    <input id="q4" type="droptarget"/>
-    <input id="q5" type="droptarget"/>
-  </p>
+    <b>Expressing Likes</b> </p>
+	<p></p>
+    <p><input id="q1" type="droptarget"/></p>
+     <p><input id="q2" type="droptarget"/></p>
+    <p> <input id="q3" type="droptarget"/></p>
+    <p> <input id="q4" type="droptarget"/></p>
+    <p> <input id="q5" type="droptarget"/></p>
+ 
+  </div>
+  <div id="Exp2">
   <p align="left">
-    <b>Expressing Dislikes</b>
-    <input id="q6" type="droptarget"/>
-    <input id="q7" type="droptarget"/>
-    <input id="q8" type="droptarget"/>
-    <input id="q9" type="droptarget"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+    <b>Expressing Dislikes</b></p>
+	<p></p>
+     <p><input id="q6" type="droptarget"/></p>
+     <p><input id="q7" type="droptarget"/></p>
+     <p><input id="q8" type="droptarget"/></p>
+     <p><input id="q9" type="droptarget"/></p>
+  
+</div>
 </section>
 
 <section id="readingText">
   <p align="left">Dear Pat,</p>
   <p align="left">My English teacher has told me you're looking for a penfriend so I'm writing to introduce myself to you.</p>
-  <p align="left">I'm 24 years old and I live in Hong Kong. I work in the tourist industry as a tour guide. I live with my parents on an outlying island and I travel to work by ferry every day. <font color="#0000ff">[10] my job as I get to meet so many interesting people from all over the world, but <font color="#0000ff">[11]</font> having to work on public holidays and at the weekend!</font></p>
+  <p align="left">I'm 24 years old and I live in Hong Kong. I work in the tourist industry as a tour guide. I live with my parents on an outlying island and I travel to work by ferry every day.&#xA0; <b>I love</b> &#xA0;my job as I get to meet so many interesting people from all over the world, but&#xA0; <b>I don't like</b> &#xA0;having to work on public holidays and at the weekend!</p>
   <p align="left">
-    <font color="#000000">As for my hobbies and interests, I'm a bit of a fitness fanatic! I go jogging every morning before I go to work and I always do some yoga before I go to bed. I play badminton twice a week and squash about once a fortnight. <font color="#0000ff">[12]</font> hiking and try and get out to the country park at least once a month, but <font color="#0000ff">[13]</font> going swimming in the summer because <font color="#0000ff">[14]</font> the heat. And <font color="#0000ff">[15]</font> gyms! <font color="#0000ff">[16]</font> running on a treadmill that doesn't go anywhere and staring aimlessly into space. Apart from sport, <font color="#0000ff">[17]</font> dancing and I often go clubbing with friends at the weekend. <font color="#0000ff">[18]</font> disco music and I can dance for hours.</font>
+    As for my hobbies and interests, I'm a bit of a fitness fanatic! I go jogging every morning before I go to work and I always do some yoga before I go to bed. I play badminton twice a week and squash about once a fortnight.&#xA0; <b>I enjoy</b> &#xA0;hiking and try and get out to the country park at least once a month, but&#xA0; <b>I prefer</b> &#xA0;going swimming in the summer because&#xA0; <b>I can't stand</b> &#xA0;the heat. And&#xA0; <b>I absolutely detest</b> &#xA0;gyms!&#xA0; <b>I hate</b> &#xA0;running on a treadmill that doesn't go anywhere and staring aimlessly into space. Apart from sport,&#xA0; <b>I also like</b> &#xA0;dancing and I often go clubbing with friends at the weekend.&#xA0; <b>I'm really keen on</b> &#xA0;disco music and I can dance for hours.
   </p>
   <p align="left">
     <font color="#000000">Anyway, enough about me! What about you? What do you like doing in your free time? I hope you'll write soon and tell me about yourself.</font>
@@ -125,16 +140,10 @@
   <p align="left">Looking forward to hearing from you.</p>
   <p align="left">Best wishes,</p>
   <p align="left">Kim</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">There are several ways you can express likes and dislikes. You should try to use a variety of expressions in a letter like this.</font>
-  </p>
-</section>
+
 
 </body>
 </bento>

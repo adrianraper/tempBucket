@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/mchoices-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -71,40 +71,86 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 4-9. Listen to the recording, which will play automatically, and follow the instructions. Click the correct letters A-C.
-		
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/DD_LN1b.mp3" mode="4" id="1002"/>
+		</div>
 </header>
 	
 <section id="body">
-  <audio controls="compact" class="leftFloat" src="../media/DD_LN1b.mp3" mode="4" id="1002"/>
+
   <img class="rightFloat" src="../media/DD_LN_003.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList"><tab/><b>4</b>How many people have VWI sent abroad to work?a.<a id="a1">nearly 21,000</a>b.<a id="a2">21,000</a>c.<a id="a3">more than 21,000</a><tab/><b>5</b>Where do VWI volunteers come from?a.<a id="a4">The USA and Canada</a>b.<a id="a5">The USA and Europe</a>c.<a id="a6">Canada and Australia</a><tab/><b>6</b>How old is the oldest volunteer?a.<a id="a7">65</a>b.<a id="a8">66</a>c.<a id="a9">70</a><tab/><b>7</b>What are volunteers in Vietnam doing?a.<a id="a10">training teachers</a>b.<a id="a11">teaching English</a>c.<a id="a12">teaching primary school children</a><tab/><b>8</b>Where are volunteers in South Africa working?a.<a id="a13">in the cities</a>b.<a id="a14">in the countryside</a>c.<a id="a15">in both the cities and the countryside</a><tab/><b>9</b>Who are volunteers in Thailand training?a.<a id="a16">healthcare workers</a>b.<a id="a17">youth workers</a>c.<a id="a18">park workers</a></ol>
+
+  
+  <ol id="mchoices1">
+  
+  <p>4. How many people have VWI sent abroad to work?</p>
+   <list class="answerList1">
+  <li><a id="a1">nearly 21,000</a></li>
+  <li><a id="a2">21,000</a></li>
+  <li><a id="a3">more than 21,000</a></li>
+  </list>
+  <p class="linespace"></p>
+  <p>5. Where do VWI volunteers come from?</p>
+     <list class="answerList1">
+  <li><a id="a4">The USA and Canada</a></li>
+  <li><a id="a5">The USA and Europe</a></li>
+  <li><a id="a6">Canada and Australia</a></li>
+  </list>
+  <p class="linespace"></p>
+  <p>6. How old is the oldest volunteer?</p>
+       <list class="answerList1">
+  <li><a id="a7">65</a></li>
+  <li><a id="a8">66</a></li>
+  <li><a id="a9">70</a></li>
+  </list>
+  <p class="linespace"></p>
+  <p>7. What are volunteers in Vietnam doing?</p>
+       <list class="answerList1">
+  <li><a id="a10">training teachers</a></li>
+  <li><a id="a11">teaching English</a></li>
+  <li><a id="a12">teaching primary school children</a></li>
+  </list>
+  <p class="linespace"></p>
+  <p>8. Where are volunteers in South Africa working?</p>
+	<list class="answerList1">
+  <li><a id="a13">in the cities</a></li>
+  <li><a id="a14">in the countryside</a></li>
+  <li><a id="a15">in both the cities and the countryside</a></li>
+  </list>
+  <p class="linespace"></p>
+  <p>9. Who are volunteers in Thailand training?</p>
+         <list class="answerList1">
+  <li><a id="a16">healthcare workers</a></li>
+  <li><a id="a17">youth workers</a></li>
+  <li><a id="a18">park workers</a></li>
+  </list>
+  
+  </ol>
 </section>
 
 <section id="fb1">
-  <p align="left">1. James says they've sent over 21,000 and over means the same as more than.</p>
+  <p class="feedbacktext">1. James says they've sent over 21,000 and over means the same as more than.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. James says that most of their recruits are from European countries and the United States.</p>
+  <p class="feedbacktext">2. James says that most of their recruits are from European countries and the United States.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. James says that most of their volunteers are younger but that they do have one or two between the ages of 66 and 70.</p>
+  <p class="feedbacktext">3. James says that most of their volunteers are younger but that they do have one or two between the ages of 66 and 70.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. James says that their biggest projects in Vietnam is in English language teacher training and primary teacher training.</p>
+  <p class="feedbacktext">4. James says that their biggest projects in Vietnam is in English language teacher training and primary teacher training.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. James says that volunteers work in rural communities in South Africa.</p>
+  <p class="feedbacktext">5. James says that volunteers work in rural communities in South Africa.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. James says that the volunteers go to national parks and wildlife sancturies and conduct staff training.  </p>
+  <p class="feedbacktext">6. James says that the volunteers go to national parks and wildlife sancturies and conduct staff training.  </p>
 </section>
 
 </body>

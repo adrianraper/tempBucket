@@ -3,19 +3,28 @@
 <head>
 	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+		#imgwrapper{
+	width: 300px;
+	float:right;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="visual1" source="flow1" width="459" height="265" />
+	<popup click="visual2" source="flow2" width="722" height="198" />
+	<popup click="visual3" source="flow3" width="422" height="278" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -181,34 +190,47 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look carefully at the charts and complete the reports by choosing the preposition which best fits each gap. The preposition should be both grammatically correct and correct according to the information shown in the charts.
+	</div>
 </header>
-	
+
 <section id="body">
-  <img class="rightFloat" src="../media/MM_AW_005s.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/MM_AW_005.jpg" mode="16" id="1002"/>
-  <img class="leftFloat" src="../media/MM_AW_006s.jpg" mode="1" id="1005"/>
-  <img class="leftFloat" src="../media/MM_AW_006.jpg" mode="16" id="1003"/>
-  <img class="leftFloat" src="../media/MM_AW_007s.jpg" mode="1" id="1006"/>
-  <img class="leftFloat" src="../media/MM_AW_007.jpg" mode="16" id="1004"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Chart A shows a general downward trend <select id="q1"><option>over</option><option>in</option><option>until</option></select> the decade in the number of hours per week spent watching television. From just under 23.5 hours <select id="q2"><option>in</option><option>at</option><option>on</option></select> 1991, the number of viewing hours fell steadily <select id="q3"><option>until</option><option>by</option><option>after</option></select> 1995, when there was a marked rise. <select id="q4"><option>Between</option><option>From</option><option>Until</option></select> 1996 and 1998 there was another steady decline. <select id="q5"><option>In</option><option>At</option><option>By</option></select> 1999 there was a sharp drop of nearly an hour. Time spent viewing continued to decline steadily <select id="q6"><option>over</option><option>until</option><option>after</option></select> the rest of the period.</font>
+
+
+
+
+<div id="imgwrapper">
+<a id="visual1"><img class="rightFloat" src="../media/MM_AW_005s.jpg" mode="1" id="1001"/></a>
+    
+<a id="visual2"><img class="rightFloat" src="../media/MM_AW_006s.jpg" mode="1" id="1004"/></a>
+
+<a id="visual3"><img class="rightFloat" src="../media/MM_AW_007s.jpg" mode="1" id="1004"/></a>
+  </div>
+      <div id="dropdown">
+    <p align="left">
+    <font face="verdana" size="13" color="#000000">Chart A shows a general downward trend&#xA0; <select id="q1"><option>over</option><option>in</option><option>until</option></select> &#xA0;the decade in the number of hours per week spent watching television. From just under 23.5 hours&#xA0; <select id="q2"><option>in</option><option>at</option><option>on</option></select> &#xA0;1991, the number of viewing hours fell steadily&#xA0; <select id="q3"><option>until</option><option>by</option><option>after</option></select> &#xA0;1995, when there was a marked rise.&#xA0; <select id="q4"><option>Between</option><option>From</option><option>Until</option></select> &#xA0;1996 and 1998 there was another steady decline.&#xA0; <select id="q5"><option>In</option><option>At</option><option>By</option></select> 1999 there was a sharp drop of nearly an hour. Time spent viewing continued to decline steadily <select id="q6"><option>over</option><option>until</option><option>after</option></select> &#xA0;the rest of the period.</font>
   </p>
   <p align="left">
-    <font face="verdana" size="13" color="#000000">Line graph B shows variations in audience size for Channel 1 <select id="q7"><option>at</option><option>in</option><option>from</option></select> different times <select id="q8"><option>on</option><option>in</option><option>at</option></select> an average weekday. The first peak in audience figures comes <select id="q9"><option>at</option><option>during</option><option>to</option></select> 1 o'clock in the afternoon, when around 35 per cent of the population are watching. However, it is clear that prime time for Channel 1 is <select id="q10"><option>during</option><option>to</option><option>at</option></select> the early evening. <select id="q11"><option>At</option><option>In</option><option>During</option></select> 6 p.m. well over 50 per cent of the population are tuned in and <select id="q12"><option>from</option><option>until</option><option>to</option></select> 7 p.m. <select id="q13"><option>to</option><option>between</option><option>at</option></select> 10 p.m. at least two-fifths of the population are watching. Not surprisingly, the percentage falls off dramatically <select id="q14"><option>after</option><option>during</option><option>by</option></select> midnight. <select id="q15"><option>By</option><option>Until</option><option>During</option></select> 3 a.m. only a tiny proportion of the population are watching and figure does not rise significantly <select id="q16"><option>until</option><option>to</option><option>by</option></select> 10 a.m. in the morning.</font>
+    <font face="verdana" size="13" color="#000000">Line graph B shows variations in audience size for Channel 1&#xA0; <select id="q7"><option>at</option><option>in</option><option>from</option></select> different times&#xA0; <select id="q8"><option>on</option><option>in</option><option>at</option></select> &#xA0;an average weekday. The first peak in audience figures comes&#xA0; <select id="q9"><option>at</option><option>during</option><option>to</option></select> &#xA0;1 o'clock in the afternoon, when around 35 per cent of the population are watching. However, it is clear that prime time for Channel 1 is&#xA0; <select id="q10"><option>during</option><option>to</option><option>at</option></select> &#xA0;the early evening.&#xA0; <select id="q11"><option>At</option><option>In</option><option>During</option></select> &#xA0;6 p.m. well over 50 per cent of the population are tuned in and&#xA0; <select id="q12"><option>from</option><option>until</option><option>to</option></select> &#xA0;7 p.m.&#xA0; <select id="q13"><option>to</option><option>between</option><option>at</option></select> &#xA0;10 p.m. at least two-fifths of the population are watching. Not surprisingly, the percentage falls off dramatically&#xA0; <select id="q14"><option>after</option><option>during</option><option>by</option></select> &#xA0;midnight.&#xA0; <select id="q15"><option>By</option><option>Until</option><option>During</option></select> &#xA0;3 a.m. only a tiny proportion of the population are watching and figure does not rise significantly&#xA0; <select id="q16"><option>until</option><option>to</option><option>by</option></select> &#xA0;10 a.m. in the morning.</font>
   </p>
   <p align="left">
-    <font face="verdana" size="13" color="#000000">Chart C shows trends in audience size for a popular soap opera <select id="q17"><option>over</option><option>at</option><option>from</option></select> a six-month period <select id="q18"><option>in</option><option>at</option><option>on</option></select> 2001. <select id="q19"><option>Before</option><option>During</option><option>In</option></select> the summer months, the programme attracted an audience of over 17 million. <select id="q20"><option>From</option><option>Between</option><option>In</option></select> June <select id="q21"><option>to</option><option>in</option><option>during</option></select> August there was a marked decline in audience number but <select id="q22"><option>by</option><option>in</option><option>at</option></select> September the figure had recovered to its original level.</font>
+    <font face="verdana" size="13" color="#000000">Chart C shows trends in audience size for a popular soap opera&#xA0; <select id="q17"><option>over</option><option>at</option><option>from</option></select> &#xA0;a six-month period&#xA0; <select id="q18"><option>in</option><option>at</option><option>on</option></select> &#xA0;2001. &#xA0;<select id="q19"><option>Before</option><option>During</option><option>In</option></select> &#xA0;the summer months, the programme attracted an audience of over 17 million.&#xA0; <select id="q20"><option>From</option><option>Between</option><option>In</option></select> &#xA0;June&#xA0; <select id="q21"><option>to</option><option>in</option><option>during</option></select> &#xA0;August there was a marked decline in audience number but&#xA0; <select id="q22"><option>by</option><option>in</option><option>at</option></select> &#xA0;September the figure had recovered to its original level.</font>
   </p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
+
+  </div>
+</section>
+
+<section id="flow1">
+	<img src="../media/MM_AW_005.jpg" mode="1" id="1003"/>
+</section>
+
+<section id="flow2">
+	<img  src="../media/MM_AW_006.jpg" mode="1" id="1005"/>
+</section>
+
+<section id="flow3">
+	<img  src="../media/MM_AW_007.jpg" mode="1" id="1007"/>
 </section>
 
 <section id="fb1">

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -108,25 +111,55 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/SS_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the correct form of one of the verbs provided. You may need to use some of the verbs more than once.
-
-Writing Task 1
+<div id="instruction">
+Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the correct form of one of the verbs provided. You may need to use some of the verbs more than once.
+</div>
 </header>
 	
 <section id="noscroll">
+
 </section>
 
 <section id="body">
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/>
+  
   <img class="rightFloat" src="../media/SS_GW_009.jpg" mode="1" id="1001"/>
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">I <input id="q1"/>&#xA0;<input id="q2"/> about the increasing violence in my nieghbourhood.</p>
-  <p align="left">When I first <input id="q3"/> to Primrose Road six years ago, it <input id="q4"/> a quite safe area. Now, as I <input id="q5"/> sure you <input id="q6"/> aware, it <input id="q7"/> an incredibly dangerous and violent place.</p>
-  <p align="left">To begin with, groups of youths <input id="q8"/> around on street corners all day long, <input id="q9"/> alcohol and <input id="q10"/> at passers-by. As if this <input id="q11"/> not enough, they <input id="q12"/> any respect for the residents' property at all. They <input id="q13"/> their empty drinks cans into our gardens and <input id="q14"/> their names on our cars. What is more, most of the walls and garage doors in the street <input id="q15"/> in unsightly graffiti.</p>
-  <p align="left">As a result of this, it <input id="q16"/> now impossible <input id="q17"/> at night. At first my neighbours and I <input id="q18"/> too intimidated by these youths but they now <input id="q19"/> fights with anybody who <input id="q20"/> by. Last week my daughter's boyfriend <input id="q21"/> and <input id="q22"/> to be taken to hospital.</p>
-  <p align="left">I feel that something <input id="q23"/> to be done about this situation and in particular I <input id="q24"/> more of a police presence in the area.</p>
-  <p align="left">I <input id="q25"/> that you <input id="q26"/> this matter your immediate attention.</p>
-  <p align="left">Yours faithfully,</p>
-  <p align="left">Mrs P. Samson </p>
+  <div id="gapfillText">
+  <p>Dear Sir/Madam,</p>
+  <p>I&#xA0; <input id="q1"/>&#xA0;<input id="q2"/> &#xA0;about the increasing violence in my nieghbourhood.</p>
+  
+  <p>When I first&#xA0; <input id="q3"/> &#xA0;to Primrose Road six years ago, it&#xA0; <input id="q4"/> &#xA0;a quite safe area. Now, as I&#xA0; <input id="q5"/> &#xA0;sure you&#xA0; <input id="q6"/> &#xA0;aware, it&#xA0; <input id="q7"/> &#xA0;an incredibly dangerous and violent place.</p>
+  
+  <p>To begin with, groups of youths&#xA0; <input id="q8"/> &#xA0;around on street corners all day long,&#xA0; <input id="q9"/> &#xA0;alcohol and&#xA0; <input id="q10"/> &#xA0;at passers-by. As if this&#xA0; <input id="q11"/> &#xA0;not enough, they&#xA0; <input id="q12"/> &#xA0;any respect for the residents' property at all. They&#xA0; <input id="q13"/> &#xA0;their empty drinks cans into our gardens and&#xA0; <input id="q14"/> &#xA0;their names on our cars. What is more, most of the walls and garage doors in the street&#xA0; <input id="q15"/> &#xA0;in unsightly graffiti.</p>
+  
+  <p>As a result of this, it&#xA0; <input id="q16"/> &#xA0;now impossible&#xA0; <input id="q17"/> &#xA0;at night. At first my neighbours and I&#xA0; <input id="q18"/> &#xA0;too intimidated by these youths but they now&#xA0; <input id="q19"/> &#xA0;fights with anybody who&#xA0; <input id="q20"/> &#xA0;by. Last week my daughter's boyfriend&#xA0; <input id="q21"/> &#xA0;and&#xA0; <input id="q22"/> &#xA0;to be taken to hospital.</p>
+  
+  <p>I feel that something&#xA0; <input id="q23"/> &#xA0;to be done about this situation and in particular I&#xA0; <input id="q24"/> &#xA0;more of a police presence in the area.</p>
+  
+  <p>I&#xA0; <input id="q25"/> &#xA0;that you&#xA0; <input id="q26"/> &#xA0;this matter your immediate attention.</p>
+  <p>Yours faithfully,</p>
+  <p>Mrs P. Samson </p>
+  
+</div>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+	<p class="popuptext"><b>Your neighbourhood has become increasingly unsafe and you feel the police are not providing adequate protection.</b></p>
+	
+	<p class="popuptext"><b>Write a letter to the local police station. Explain the situation and say how you feel about it. Tell them what you would like them to do about it.</b></p>
+	
+	<p class="popuptext">You should write at least 150 words.</p>
+	
+	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+	
+	<p class="popuptext">Begin your letter as follows:</p>
+	
+	<p class="popuptext">Dear Sir/Madam,</p>
+	
 </section>
 
 </body>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -13,134 +13,138 @@
 		 */			
 	]]>
 	</style>
-	<br/>
+
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+  </popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
+  
   <questions>
     <DragQuestion source="q1" block="b1">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a1" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q2" block="b2">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a2" correct="true"/>
+      <answer source="a1" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q3" block="b3">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a3" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a1" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q4" block="b4">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a4" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a1" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q5" block="b5">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a5" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a1" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q6" block="b6">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a8" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a1" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q7" block="b7">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a11" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a1" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q8" block="b8">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a12" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a1" correct="true"/>
+	  <answer source="a13" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q9" block="b9">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a13" correct="true"/>
+      <answer source="a2" correct="true"/>
+	  <answer source="a3" correct="true"/>
+	  <answer source="a4" correct="true"/>
+	  <answer source="a5" correct="true"/>
+	  <answer source="a8" correct="true"/>
+	  <answer source="a11" correct="true"/>
+	  <answer source="a12" correct="true"/>
+	  <answer source="a11" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q10" block="b10">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a6" correct="true"/>
+      <answer source="a7" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a10" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q11" block="b11">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a7" correct="true"/>
+      <answer source="a6" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a10" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q12" block="b12">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a7" correct="true"/>
+      <answer source="a6" correct="true"/>
+      <answer source="a10" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q13" block="b13">
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
-      <answer source="aunknown" correct="true"/>
+	    <DragQuestion source="q13" block="b13">
+      <answer source="a10" correct="true"/>
+      <answer source="a7" correct="true"/>
+      <answer source="a9" correct="true"/>
+      <answer source="a6" correct="true"/>
     </DragQuestion>
   </questions>
 </script>
@@ -149,53 +153,71 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/HF_WTG01.jpg" mode="16" id="1004"  />Here is a sample answer to the writing task. Read the letter on the left and find all the verbs in the past simple. Group them according to whether they are in active or passive voice by dragging them across to the appropriate category on the right.
-
-Writing Task 1
+<div id="instruction">Here is a sample answer to the writing task. Read the letter on the left and find all the verbs in the past simple. Group them according to whether they are in active or passive voice by dragging them across to the appropriate category on the right.
+</div>
 </header>
 	
-<section id="body">
-  <p align="left">
-    <b>Past Simple - Active Voice</b>
-    <input id="q1" type="droptarget"/>
-    <input id="q2" type="droptarget"/>
-    <input id="q3" type="droptarget"/>
-    <input id="q4" type="droptarget"/>
-    <input id="q5" type="droptarget"/>
-    <input id="q6" type="droptarget"/>
-    <input id="q7" type="droptarget"/>
-    <input id="q8" type="droptarget"/>
-    <input id="q9" type="droptarget"/>
-  </p>
-  <p align="left">
-    <b>Past Simple - Passive Voice</b>
-    <input id="q10" type="droptarget"/>
-    <input id="q11" type="droptarget"/>
-    <input id="q12" type="droptarget"/>
-    <input id="q13" type="droptarget"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-</section>
-
+<section id="noscroll">
+  <span id="a4" draggable="true">hit</span>
+  <span id="a8" draggable="true">had</span>
+  <span id="a11" draggable="true">did not need</span>
+  <span id="a3" draggable="true">suffered</span>
+  <span id="a10" draggable="true">was also taken</span>
+  <span id="a9" draggable="true">was not injured</span>
+  <span id="a2" draggable="true">collided</span>
+  <span id="a6" draggable="true">was knocked</span>
+  <span id="a12" draggable="true">made</span>
+  <span id="a1" draggable="true">was</span>
+  <span id="a5" draggable="true">cut</span>
+  <span id="a7" draggable="true">were seriously injured</span>
+  <span id="a13" draggable="true">rang</span>
+</section>	
+	
 <section id="readingText">
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">I am writing to apologise for missing my 3 p.m. appointment with you on Thursday, 12th November.</p>
-  <p align="left">I am terribly sorry but on my way to your office the taxi I <font color="#0000ff">[16] in <font color="#0000ff">[17]</font> with a bus. Although I only <font color="#0000ff">[18]</font> minor bruising, the taxi driver <font color="#0000ff">[19]</font> his head against the windscreen, <font color="#0000ff">[20]</font> it very badly and <font color="#0000ff">[21]</font> unconscious. Also, several of the passengers on the bus <font color="#0000ff">[22]</font> and <font color="#0000ff">[23]</font> to be taken to hospital. Although I <font color="#0000ff">[24]</font> myself, I <font color="#0000ff">[25]</font> to hospital. I <font color="#0000ff">[26]</font> any treatment but I was in a state of shock for a number of hours afterwards. I <font color="#0000ff">[28]</font> repeated attempts to contact your office but every time I <font color="#0000ff">[29]</font>, the line was engaged.</font></p>
-  <p align="left">I would like to know if it would be possible to rearrange the appointment. I am free on Tuesday and Thursday afternoons, however, if I have enough notice, it would also be possible for me to rearrange my work schedule and meet at your convenience.</p>
-  <p align="left">Thank you for your kind attention.</p>
-  <p align="left">I look forward to hearing from you.</p>
-  <p align="left">Yours faithfully, Justine Small</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/>
+  <p>Dear Sir/Madam,</p>
+  <p>I am writing to apologise for missing my 3 p.m. appointment with you on Thursday, 12th November.</p>
+  <p>I am terribly sorry but on my way to your office the taxi I &#xA0;<b>was</b> &#xA0;in &#xA0;<b>collided</b> &#xA0;with a bus. Although I only &#xA0;<b>suffered</b> &#xA0;minor bruising, the taxi driver &#xA0;<b>hit</b> &#xA0;his head against the windscreen, &#xA0;<b>cut</b> &#xA0;it very badly and &#xA0;<b>was knocked</b> &#xA0;unconscious. Also, several of the passengers on the bus &#xA0;<b>were seriously injured</b> &#xA0;and &#xA0;<b>had</b> &#xA0;to be taken to hospital. Although I &#xA0;<b>was not injured</b> &#xA0;myself, I &#xA0;<b>was also taken</b> &#xA0;to hospital. I &#xA0;<b>did not need</b> &#xA0;any treatment but I was in a state of shock for a number of hours afterwards. I &#xA0;<b>made</b> &#xA0;repeated attempts to contact your office but every time I &#xA0;<b>rang</b> &#xA0;, the line was engaged.</p>
+  
+  <p>I would like to know if it would be possible to rearrange the appointment. I am free on Tuesday and Thursday afternoons, however, if I have enough notice, it would also be possible for me to rearrange my work schedule and meet at your convenience.</p>
+  <p align="left">Thank you for your kind attention. I look forward to hearing from you.</p>
+  <p align="left">Yours faithfully,</p>
+  <p align="left">Justine Small</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">When we recount something that happened in the past, we mainly use the past simple, and we often need to use passive as well as active voice. The past simple form (for active voice) and the past participle form (for passive voice) of many common verbs are irregular so make sure you know them!</font>
-  </p>
+<section id="body">
+<div id="splitquestionList">
+  <p><b>Past Simple - Active Voice</b></p>
+    <p><input id="q1" type="droptarget"/></p>
+    <p><input id="q2" type="droptarget"/></p>
+    <p><input id="q3" type="droptarget"/></p>
+    <p><input id="q4" type="droptarget"/></p>
+    <p><input id="q5" type="droptarget"/></p>
+    <p><input id="q6" type="droptarget"/></p>
+    <p><input id="q7" type="droptarget"/></p>
+    <p><input id="q8" type="droptarget"/></p>
+    <p><input id="q9" type="droptarget"/></p>
+<p class="linespace"></p>
+  <p><b>Past Simple - Passive Voice</b></p>
+    <p><input id="q10" type="droptarget"/></p>
+    <p><input id="q11" type="droptarget"/></p>
+    <p><input id="q12" type="droptarget"/></p>
+    <p><input id="q13" type="droptarget"/></p>
+  </div>
+</section>
+
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+			<p class="popuptext"><b>You missed an appointment at the immigration department because you were involved in an accident.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to the immigration officer. Apologise for missing the appointment and explain why you missed it. Ask if you can make a new appointment.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			<p class="popuptext">Begin your letter as follows:</p>
+			<p class="popuptext">Dear Sir/Madam,</p>
 </section>
 
 </body>

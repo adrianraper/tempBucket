@@ -29,6 +29,12 @@ p {
 	padding-left: 15px;
 	margin-left: 0px;
 	}
+	
+.answerList1{
+	list-style-type: lowerLatin;
+	padding-left: 39px;
+	margin-left: 0px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -48,7 +54,14 @@ p {
 .leftFloat {
 	float: left;
 	margin: 5px;
-	padding: 10px 200% 0px -15px;
+	padding: 10px 350% 0px -15px;
+	}
+
+/* specify for exercise with multiple picture but with manually question numbering */
+.leftFloat1{
+	float: left;
+	margin: 5px;
+	padding: 10px 450% 0px  0px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
@@ -150,6 +163,14 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 #mchoices {
 	list-style-type: decimal;
 	padding: 0 280% 12px 10px;
+	text-align: left;
+	line-height: 20em;
+	}
+	
+/* mchoices question list with specific numbering */
+#mchoices1 {
+	list-style-type: decimal;
+	padding: 0 280% 12px -5px;
 	text-align: left;
 	line-height: 20em;
 	}

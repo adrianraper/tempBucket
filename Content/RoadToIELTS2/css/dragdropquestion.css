@@ -48,7 +48,13 @@ p {
 	padding-right: 20px;
 	padding-left: 20px;
 	}
-
+	
+/* specify for FV writing Unit 6 task1 practice act D, image aligning next to each other */
+.leftFloat1 {
+	height: 310px;
+	width:420px;
+	float: left;
+}
 /* This is image class to control image to be align with text (when there is a writing task image) when questions are div-ed */
 #body .rightFloat1 {
 	float: right;
@@ -404,3 +410,21 @@ h8{
 	line-height: 25em;
 	}
 	/*-----------------------------------------------------------------------------------------------*/
+/* Specify for FV Writing 2 task 1 Useful expressions */
+	#expbox {
+	width: 200px;
+	}
+	
+	#graphbox {
+	padding-left:-20px;
+	width: 200px;
+	height: 180px;
+	float: left;
+	}
+	
+	.answer {
+	
+	padding-left: 27px;
+	padding-top: 10px;
+	}
+/*-----------------------------------------------------------------------------------------------*/

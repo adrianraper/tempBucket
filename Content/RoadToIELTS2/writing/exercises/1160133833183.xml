@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -13,7 +13,7 @@
 		 */			
 	]]>
 	</style>
-	<br/>
+
 <script id="model" type="application/xml">
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -116,41 +116,33 @@
 <body>
 	
 <header>
-	Here are some extracts from letters from people explaining why they were unable to attend a meeting. Complete them by filling each gap with the past simple of the verb given in brackets. You will need to use both active and passive voice.
+<div id="instruction">
+Here are some extracts from letters from people explaining why they were unable to attend a meeting. Complete them by filling each gap with the past simple of the verb given in brackets. You will need to use both active and passive voice.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/HF_GW_004.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#000000">My daughter <input id="q1"/> (fall) off a chair at school, <input id="q2"/> (hit) her head and <input id="q3"/> (take) to hospital.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">My dog <input id="q4"/> (involve) in a fight with another dog and I <input id="q5"/> (have) to pull them apart. The other dog then <input id="q6"/> (attack) me and I <input id="q7"/> (bit) extremely badly and <input id="q8"/> (have) to go to hospital.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">The lift <input id="q9"/> (break down) and I <input id="q10"/> (trap) for over an hour. I <input id="q11"/> (not have) my mobile phone with me so I <input id="q12"/> (have) to wait for the emergency services to rescue me.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">I <input id="q13"/> (run) over a stone on my bicycle, <input id="q14"/> (go) flying over the handlebars and <input id="q15"/> (knock) unconscious.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">I <input id="q16"/> (give) hepatitis vaccination for my holiday and I <input id="q17"/> (develop) a high fever and <input id="q18"/> (feel) extremely nauseous.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">My five-year-old son <input id="q19"/> (catch) chicken pox. He was running a fever and <input id="q20"/> (come) out in a nasty skin rash so I <input id="q21"/> (stay) at home to look after him.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">I <input id="q22"/> (undergo) a minor operation last week but there <input id="q23"/> (be) complications and I <input id="q24"/> (not discharge) from hospital until yesterday.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">I <input id="q25"/> (trip) over one of my children's toys and <input id="q26"/> (sprain) my ankle. I <input id="q27"/> (tell) by the doctor not to walk for three days.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">My wife and I <input id="q28"/> (involve) in a minor car accident. We <input id="q29"/>(not injure) but our car <input id="q30"/> (damage) in the collision.</font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="gapfillText">
+  <p>My daughter&#xA0; <input id="q1"/> &#xA0;(fall) off a chair at school,&#xA0; <input id="q2"/> &#xA0;(hit) her head and&#xA0; <input id="q3"/> &#xA0;(take) to hospital.</p>
+  
+  <p>My dog&#xA0; <input id="q4"/> &#xA0;(involve) in a fight with another dog and I&#xA0; <input id="q5"/> &#xA0;(have) to pull them apart. The other dog then&#xA0; <input id="q6"/> &#xA0;(attack) me and I&#xA0; <input id="q7"/> &#xA0;(bit) extremely badly and&#xA0; <input id="q8"/> &#xA0;(have) to go to hospital.</p>
+  
+  <p>The lift&#xA0; <input id="q9"/> &#xA0;(break down) and I&#xA0; <input id="q10"/> &#xA0;(trap) for over an hour. I&#xA0; <input id="q11"/> &#xA0;(not have) my mobile phone with me so I&#xA0; <input id="q12"/> &#xA0;(have) to wait for the emergency services to rescue me.</p>
+  
+  <p>I&#xA0; <input id="q13"/> &#xA0;(run) over a stone on my bicycle,&#xA0; <input id="q14"/> &#xA0;(go) flying over the handlebars and&#xA0; <input id="q15"/> &#xA0;(knock) unconscious.</p>
+  
+  <p>I&#xA0; <input id="q16"/> &#xA0;(give) hepatitis vaccination for my holiday and I&#xA0; <input id="q17"/> &#xA0;(develop) a high fever and&#xA0; <input id="q18"/> &#xA0;(feel) extremely nauseous.</p>
+  
+  <p>My five-year-old son&#xA0; <input id="q19"/> &#xA0;(catch) chicken pox. He was running a fever and&#xA0; <input id="q20"/> &#xA0;(come) out in a nasty skin rash so I&#xA0; <input id="q21"/> &#xA0;(stay) at home to look after him.</p>
+  
+  <p>I&#xA0; <input id="q22"/> &#xA0;(undergo) a minor operation last week but there&#xA0; <input id="q23"/> &#xA0;(be) complications and I&#xA0; <input id="q24"/> &#xA0;(not discharge) from hospital until yesterday.</p>
+  
+  <p>I&#xA0; <input id="q25"/> &#xA0;(trip) over one of my children's toys and&#xA0; <input id="q26"/> &#xA0;(sprain) my ankle. I&#xA0; <input id="q27"/> &#xA0;(tell) by the doctor not to walk for three days.</p>
+  
+  <p>My wife and I&#xA0; <input id="q28"/> &#xA0;(involve) in a minor car accident. We&#xA0; <input id="q29"/> &#xA0;(not injure) but our car&#xA0; <input id="q30"/> &#xA0;(damage) in the collision.</p>
+</div>
 </section>
 
 </body>

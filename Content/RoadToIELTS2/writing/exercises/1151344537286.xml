@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+		<popup click="visual" source="w5t1" width="612" height="381" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -78,9 +81,9 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Look carefully at the charts and complete the sentences by putting the correct word or phrase into each gap. You may use each word or phrase more than once.
-		
+		</div>
 </header>
 	
 <section id="noscroll">
@@ -92,67 +95,78 @@
   <span id="a13" draggable="true">women</span>
 </section>
 
+
 <section id="body">
-  <img class="rightFloat" src="../media/AC_AW_004s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/AC_AW_004.jpg" mode="16" id="1004"/>
-  <br/>
+  <a id="visual"><img class="rightFloat" src="../media/AC_AW_004s.jpg" mode="1" id="1001"/></a>
+
   <ol id="questionList">
     <li id="1">Over the four-week period shown in the charts, <input id="q1" type="droptarget"/> accounted for 55 per cent of all adult jazz concert-goers.</li>
-    <li id="2">5 per cent of <input id="q2" type="droptarget"/> attended pop/rock concerts.</li>
-    <li id="3"><input id="q3" type="droptarget"/> accounted for two-fifths of all pop/rock concert goers.</li>
-    <li id="4">About three-fifths of <input id="q4" type="droptarget"/> were men.</li>
-    <li id="5">Approximately half of <input id="q5" type="droptarget"/> were men.</li>
-    <li id="6">The ratio of men to women was almost equal among <input id="q6" type="droptarget"/>.</li>
-    <li id="7">Nearly two-thirds of <input id="q7" type="droptarget"/> were women.</li>
-    <li id="8">Only 2 per cent of <input id="q8" type="droptarget"/> attended jazz concerts.</li>
-    <li id="9">The percentage of adults who went to jazz concerts was half that of adults who attended <input id="q9" type="droptarget"/>.</li>
-    <li id="10">Only a very small minority of <input id="q10" type="droptarget"/> went to these musical performances.</li>
+	<p class="linespace"></p>
+    <li id="2">5 per cent of&#xA0; <input id="q2" type="droptarget"/> &#xA0;attended pop/rock concerts.</li>
+    <p class="linespace"></p>
+	<li id="3"><input id="q3" type="droptarget"/> &#xA0;accounted for two-fifths of all pop/rock concert goers.</li>
+    <p class="linespace"></p>
+	<li id="4">About three-fifths of&#xA0; <input id="q4" type="droptarget"/> &#xA0;were men.</li>
+    <p class="linespace"></p>
+	<li id="5">Approximately half of&#xA0; <input id="q5" type="droptarget"/> &#xA0;were men.</li>
+	<p class="linespace"></p>
+    <li id="6">The ratio of men to women was almost equal among&#xA0; <input id="q6" type="droptarget"/>.</li>
+  <p class="linespace"></p> 
+   <li id="7">Nearly two-thirds of&#xA0; <input id="q7" type="droptarget"/> were women.</li>
+    <p class="linespace"></p>
+	<li id="8">Only 2 per cent of <input id="q8" type="droptarget"/> attended jazz concerts.</li>
+    <p class="linespace"></p>
+	<li id="9">The percentage of adults who went to jazz concerts was half that of adults who attended <input id="q9" type="droptarget"/>.</li>
+    <p class="linespace"></p>
+	<li id="10">Only a very small minority of <input id="q10" type="droptarget"/> went to these musical performances.</li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
+<section id="w5t1">
+	<img src="../media/AC_AW_004.jpg" mode="1" id="1003"/>
+</section>
+
 <section id="fb1">
-  <p align="left">1. The pie chart for Jazz tells us this.</p>
+ <p class="feedbacktext">1. The pie chart for Jazz tells us this.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. The bar chart gives us this information.</p>
+ <p class="feedbacktext">2. The bar chart gives us this information.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. The pie chart for Rock and pop concerts tell us that 41 per cent of rock and pop concert-goers were women. This is about two-fifths. </p>
+ <p class="feedbacktext">3. The pie chart for Rock and pop concerts tell us that 41 per cent of rock and pop concert-goers were women. This is about two-fifths. </p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. 58 per cent is about three-fifths.</p>
+ <p class="feedbacktext">4. 58 per cent is about three-fifths.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. 52 per cent of people who attended country and folk concerts were men.</p>
+ <p class="feedbacktext">5. 52 per cent of people who attended country and folk concerts were men.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. The percentage for women and the percentage for men was almost balanced.</p>
+ <p class="feedbacktext">6. The percentage for women and the percentage for men was almost balanced.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">7. 63 per cent of all classical concert-goers were women, which is just over two-thirds.</p>
+ <p class="feedbacktext">7. 63 per cent of all classical concert-goers were women, which is just over two-thirds.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">8. The bar chart tells us this.</p>
+ <p class="feedbacktext">8. The bar chart tells us this.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">9. 2 per cent attended jazz concerts, while 4 per cent attended classical concerts.</p>
+ <p class="feedbacktext">9. 2 per cent attended jazz concerts, while 4 per cent attended classical concerts.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">10. No type of concert attracted more than 5 per cent of the adult population. The vast majority of adults did not attend any of these events.</p>
+ <p class="feedbacktext">10. No type of concert attracted more than 5 per cent of the adult population. The vast majority of adults did not attend any of these events.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">In Unit 1 we looked at different ways of referring to proportions represented in a chart. We saw that we can use percentages, fractions and ratios. For examples, '25 per cent', 'a quarter' and '1 in 4' can all be used to describe the same proportion. Whichever way you use, it is important that you make it clear to the reader exactly what each figure you include in your report refers to.</p>
-</section>
 
 </body>
 </bento>

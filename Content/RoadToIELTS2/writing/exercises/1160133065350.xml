@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="proofreading" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -13,132 +13,169 @@
 		 */			
 	]]>
 	</style>
-	<br/>
+
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
-  <questions/>
+  
+  <questions>
+      <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="true">
+        <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+        <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+        <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+        <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true">
+        <feedback source="fb5"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b7">
+      <answer source="t7" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b8">
+      <answer source="t8" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b9">
+      <answer source="t9" correct="true">
+        <feedback source="fb9"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b10">
+      <answer source="t10" correct="true">
+        <feedback source="fb10"/>
+      </answer>
+    </TargetSpottingQuestion>
+
+  </questions>
 </script>
 
 </head>
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Read this sample answer to the writing task and click on the mistakes.There are 10.
-		
-		Writing Task 1
+
+<div id="instruction">
+Read this sample answer to the writing task and click on the mistakes.There are 10.
+</div>
+
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LE_GW_008.jpg" mode="1" id="1001"/>
-  <p align="left">Dear Pat,</p>
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  
+  <div id="targetspotting">
+  <p>Dear Pat,</p>
   <p align="left">My teacher suggested I write to you because I'm looking for a penfriend. I'd like to know if you'd be interested in writing to me.</p>
-  <p align="left">
-    <font color="#000000">I'm 21 years old and I live in Lisbon in Portugal. I'm doing the second year of a computer science degree at Lisbon University. I live just outside Lisbon in a house with two other students &#x2013; Josh and Paco. They're good fun and I <g id="t1">absolutely</g> enjoy <g id="t2">to live</g> with them.</font>
-  </p>
-  <p align="left">I spend a lot of my free <g id="t3">times</g> on the beach as I love windsurfing. I go down there with a group of friends <g id="t4">twice</g> or three times a month and we have a great time. I love basketball too and I play for the university team. We have a match <g id="t5">one time</g> a week.</p>
-  <p align="left">I also really enjoy films and watch almost anything but I <g id="t6">don't</g> stand musicals. I prefer science fiction and action adventure. I only get to the cinema about twice <g id="t7">the</g> month but I <g id="t8">watch often</g> videos at home in the evening. I read a bit too, although I'm not very keen <g id="t9">in</g> fiction. I like reading computer magazines and books and I also enjoy books about foreign places.</p>
-  <p align="left">Well, I hope you'll write to me, and I look forward to <g id="t10">hear</g> all about you and how you spend your free time.</p>
-  <p align="left">All the best,</p>
-  <p align="left">Manuel </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>I'm 21 years old and I live in Lisbon in Portugal. I'm doing the second year of a computer science degree at Lisbon University. I live just outside Lisbon in a house with two other students &#x2013; Josh and Paco. They're good fun and I&#xA0;<g id="t1">absolutely</g>&#xA0;enjoy&#xA0;<g id="t2">to live</g>&#xA0;with them.</p>
+  <p>I spend a lot of my free&#xA0;<g id="t3">times</g>&#xA0;on the beach as I love windsurfing. I go down there with a group of friends&#xA0;<g id="t4">twice</g>&#xA0;or three times a month and we have a great time. I love basketball too and I play for the university team. We have a match&#xA0;<g id="t5">one time</g>&#xA0;a week.</p>
+  <p>I also really enjoy films and watch almost anything but I&#xA0;<g id="t6">don't</g>&#xA0;stand musicals. I prefer science fiction and action adventure. I only get to the cinema about twice&#xA0;<g id="t7">the</g>&#xA0;month but I&#xA0;<g id="t8">watch often</g>&#xA0;videos at home in the evening. I read a bit too, although I'm not very keen&#xA0;<g id="t9">in</g>&#xA0;fiction. I like reading computer magazines and books and I also enjoy books about foreign places.</p>
+  <p>Well, I hope you'll write to me, and I look forward to&#xA0;<g id="t10">hear</g>&#xA0;all about you and how you spend your free time.</p>
+  <p>All the best,</p>
+  <p>Manuel </p>
+  </div>
 </section>
 
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 20 minutes on this task.</p>
+			<p class="popuptext"><b>Your English teacher has found a new penfriend for you.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to the penfriend and introduce yourself. Tell them what you like doing in your free time. Ask your penfriend to tell you about their hobbies and interests.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			
+			<p class="popuptext">You do NOT need to write your own address.</p>
+						
+			<p class="popuptext">Begin your letter as follows: Dear ...</p>
+
+			
+		</section>
+
 <section id="fb1">
-  <p align="left">
-    <b>absolutely -&gt; </b>
-    <font color="#0000ff">
-      <b>really</b>
-    </font>
+  <p class="feedbacktext">
+  <b>absolutely -&gt; really</b>
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <b>to live -&gt; </b>
-    <font color="#0000ff">
-      <b>living</b>
-    </font>
-  </p>
+  <p class="feedbacktext">
+    <b>to live -&gt; living</b>
+    </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <b>times -&gt; </b>
-    <font color="#0000ff">
-      <b>time</b>
-      <b/>
-    </font>
+  <p class="feedbacktext">
+  <b>times -&gt; time</b>
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <b>twice -&gt; </b>
-    <font color="#0000ff">
-      <b>two</b>
-      <b/>
-    </font>
+  <p class="feedbacktext">
+  <b>twice -&gt; two</b>
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <b>one time -&gt; </b>
-    <font color="#0000ff">
-      <b>once</b>
-      <font color="#000000"/>
-    </font>
+  <p class="feedbacktext">
+  <b>one time -&gt; once</b>
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <b>don't -&gt; </b>
-    <font color="#0000ff">
-      <b>can't</b>
-      <font color="#000000"/>
-    </font>
+  <p class="feedbacktext">
+  <b>don't -&gt; can't</b>
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <b>the -&gt; </b>
-    <font color="#0000ff">
-      <b>a</b>
-    </font>
+  <p class="feedbacktext">
+  <b>the -&gt; a</b>
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <b>watch often -&gt; </b>
-    <font color="#0000ff">
-      <b>often watch</b>
-      <font color="#000000"/>
-    </font>
+  <p class="feedbacktext">
+  <b>watch often -&gt; often watch</b>
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <b>in -&gt; </b>
-    <font color="#0000ff">
-      <b>on</b>
-    </font>
+  <p class="feedbacktext">
+  <b>in -&gt; on</b>
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
-    <b>hear -&gt; </b>
-    <font color="#0000ff">
-      <b>hearing</b>
-    </font>
+  <p class="feedbacktext">
+  <b>hear -&gt; hearing</b>
   </p>
 </section>
 

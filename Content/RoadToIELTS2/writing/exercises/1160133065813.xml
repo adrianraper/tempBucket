@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,9 +15,15 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+</popups>
   <settings>
-    <param name="delayedMarking" value="true"/>
+  
+    <param name="delayedMarking" value="false"/>
   </settings>
+  
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true"/>
@@ -80,25 +86,73 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Read the writing task from the previous exercises again and answer the questions. There is more than one correct answer in each case.
-		
-		Writing Task 1
+<div id="instruction">
+Read the writing task from the previous exercises again and answer the questions. There is more than one correct answer in each case.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LE_GW_006.jpg" mode="1" id="1001"/>
-  <p align="left">1.  Which beginnings would be most suitable for this letter?<g id="t1">A.  My English teacher has told me you're looking for a penfriend so I'm writing to introduce myself to you.</g><g id="t2">B.  I've been given your name by my teacher and I'm writing because I'd like to become your penfriend.</g><g id="t3">C.  I have seen your advertisement and would like to apply to become your penfriend.</g><g id="t4">D.  I am writing to enquire about becoming your penfriend.</g><g id="t5">E.  In reference to your advertisement, I would like to become your penfriend.</g><g id="t6">F.  My teacher suggested I write to you because I'm looking for a penfriend.</g></p>
-  <p align="left">2.  Which closing sentences would be most suitable for this letter?<g id="t7">A.  I would appreciate a prompt reply.</g><g id="t8">B.  I hope you'll write soon and tell me all about yourself. Looking forward to hearing from you.</g><g id="t9">C.  I very much hope that my application will be successful.</g><g id="t10">D.  I look forward to a favourable reply as soon as possible.</g><g id="t11">E.  I hope you'll write to me, and I look forward to hearing all about you.</g><g id="t12">F.  Thank you for taking the time to write to me.</g></p>
-  <p align="left">3.  Which endings would be most suitable for this letter?<g id="t13">A.  Lots of love</g><g id="t14">B.  All the best</g><g id="t15">C.  Best wishes</g><g id="t16">D.  Kind regards</g><g id="t17">E.  Yours sincerely</g><g id="t18">F.  Yours faithfully</g></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/>
+
+  <ol id="questionList">
+
+  <li>Which beginnings would be most suitable for this letter?</li>
+  <list class="answerList1">
+  
+  <li><a id="t1">My English teacher has told me you're looking for a penfriend so I'm writing to introduce myself to you.</a></li>
+  <li><a id="t2">I've been given your name by my teacher and I'm writing because I'd like to become your penfriend.</a></li>
+  <li><a id="t3">I have seen your advertisement and would like to apply to become your penfriend.</a></li>
+  <li><a id="t4">I am writing to enquire about becoming your penfriend.</a></li>
+  <li><a id="t5">In reference to your advertisement, I would like to become your penfriend.</a></li>
+  <li><a id="t6">My teacher suggested I write to you because I'm looking for a penfriend.</a></li>
+  </list>
+  <p class="linespace"></p> 
+  
+  <li>Which closing sentences would be most suitable for this letter?</li>
+  <list class="answerList1">
+  
+  <li><a id="t7">I would appreciate a prompt reply.</a></li>
+  <li><a id="t8">I hope you'll write soon and tell me all about yourself. Looking forward to hearing from you.</a></li>
+  <li><a id="t8">I very much hope that my application will be successful.</a></li>
+  <li><a id="t10">I look forward to a favourable reply as soon as possible.</a></li>
+  <li><a id="t11">I hope you'll write to me, and I look forward to hearing all about you.</a></li>
+  <li><a id="t12">Thank you for taking the time to write to me.</a></li>
+  </list>
+  <p class="linespace"></p> 
+
+  <li>Which endings would be most suitable for this letter?</li>
+  <list class="answerList1">
+  
+  <li><a id="t13">Lots of love</a></li>
+  <li><a id="t14">All the best</a></li>
+  <li><a id="t15">Best wishes</a></li>
+  <li><a id="t16">Kind regards</a></li>
+  <li><a id="t17">Yours sincerely</a></li>
+  <li><a id="t18">Yours faithfully</a></li>
+  </list>
+  <p class="linespace"></p>
+  
+  </ol>
 </section>
 
+<section id="writingtask1">
+			<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	
+			<p class="popuptext"><b>Your English teacher has found a new penfriend for you.</b></p>
+			
+			<p class="popuptext"><b>Write a letter to the penfriend and introduce yourself. Tell them what you like doing in your free time. Ask your penfriend to tell you about their hobbies and interests.</b></p>
+			
+			<p class="popuptext">You should write at least 150 words.</p>
+			
+			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			
+			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+		</section>
+
 <section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">When you write a letter it's important to think carefully about who you are writing to and why you are writing to them in order to select appropriate ways of starting and closing the letter.</font>
-  </p>
+  <p>When you write a letter it's important to think carefully about who you are writing to and why you are writing to them in order to select appropriate ways of starting and closing the letter.</p>
 </section>
 
 </body>

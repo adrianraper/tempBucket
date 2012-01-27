@@ -3,9 +3,9 @@
 <head>
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
-	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<meta name="customised" content="true" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -98,16 +98,31 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Listen to some facts and figures about life expectancy and decide in each case which kind of approximation the speaker makes.
-		
+		</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/HF_AW_003.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
+<div id="audio">
+<p>    <audio controls="compact"  src="../media/HF_AW1ab.mp3" mode="1" id="1"/><br/><br/><br/></p>
+<p>    <audio controls="compact"  src="../media/HF_AW1ad.mp3" mode="1" id="2"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1af.mp3" mode="1" id="3"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1al.mp3" mode="1" id="4"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ac.mp3" mode="1" id="5"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1aa.mp3" mode="1" id="6"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ae.mp3" mode="1" id="7"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1an.mp3" mode="1" id="8"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1aj.mp3" mode="1" id="9"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ah.mp3" mode="1" id="10"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ai.mp3" mode="1" id="11"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ak.mp3" mode="1" id="12"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1am.mp3" mode="1" id="13"/><br/><br/><br/></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ag.mp3" mode="1" id="14"/><br/><br/><br/></p>
+</div>
+  <div id="questiondiv">
+    <ol>
     <li id="q1">
       <list class="answerList">
         <li>
@@ -120,10 +135,10 @@
           <a id="a3">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ab.mp3" mode="1" id="1"/>
-    <br/>
+<p class="linespace"></p>
+    
     <li id="q2">
       <list class="answerList">
         <li>
@@ -136,10 +151,10 @@
           <a id="a20">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ad.mp3" mode="1" id="2"/>
-    <br/>
+
+    <p class="linespace"></p>
     <li id="q3">
       <list class="answerList">
         <li>
@@ -152,10 +167,10 @@
           <a id="a21">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1af.mp3" mode="1" id="3"/>
-    <br/>
+
+    <p class="linespace"></p>
     <li id="q4">
       <list class="answerList">
         <li>
@@ -168,10 +183,10 @@
           <a id="a22">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1al.mp3" mode="1" id="4"/>
-    <br/>
+
+    <p class="linespace"></p>
     <li id="q5">
       <list class="answerList">
         <li>
@@ -184,10 +199,10 @@
           <a id="a24">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ac.mp3" mode="1" id="5"/>
-    <br/>
+
+    <p class="linespace"></p>
     <li id="q6">
       <list class="answerList">
         <li>
@@ -200,10 +215,10 @@
           <a id="a26">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1aa.mp3" mode="1" id="6"/>
-    <br/>
+<p class="linespace"></p>
+    
     <li id="q7">
       <list class="answerList">
         <li>
@@ -216,10 +231,10 @@
           <a id="a28">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ae.mp3" mode="1" id="7"/>
-    <br/>
+<p class="linespace"></p>
+    
     <li id="q8">
       <list class="answerList">
         <li>
@@ -232,10 +247,10 @@
           <a id="a30">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1an.mp3" mode="1" id="8"/>
-    <br/>
+<p class="linespace"></p>
+    
     <li id="q9">
       <list class="answerList">
         <li>
@@ -248,10 +263,10 @@
           <a id="a32">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1aj.mp3" mode="1" id="9"/>
-    <br/>
+<p class="linespace"></p>
+
     <li id="q10">
       <list class="answerList">
         <li>
@@ -264,10 +279,10 @@
           <a id="a34">General approximation</a>
         </li>
       </list>
-      <br/>
+
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ah.mp3" mode="1" id="10"/>
-    <br/>
+<p class="linespace"></p>
+
     <li id="q11">
       <list class="answerList">
         <li>
@@ -280,10 +295,10 @@
           <a id="a36">General approximation</a>
         </li>
       </list>
-      <br/>
+      
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ai.mp3" mode="1" id="11"/>
-    <br/>
+
+   <p class="linespace"></p> 
     <li id="q12">
       <list class="answerList">
         <li>
@@ -296,10 +311,10 @@
           <a id="a38">General approximation</a>
         </li>
       </list>
-      <br/>
+      
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ak.mp3" mode="1" id="12"/>
-    <br/>
+<p class="linespace"></p>
+    
     <li id="q13">
       <list class="answerList">
         <li>
@@ -312,10 +327,10 @@
           <a id="a40">General approximation</a>
         </li>
       </list>
-      <br/>
+      
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1am.mp3" mode="1" id="13"/>
-    <br/>
+<p class="linespace"></p>
+    
     <li id="q14">
       <list class="answerList">
         <li>
@@ -328,10 +343,11 @@
           <a id="a42">General approximation</a>
         </li>
       </list>
-      <br/>
+      
     </li>
-    <audio controls="compact" class="leftFloat" src="../media/HF_AW1ag.mp3" mode="1" id="14"/>
+<p class="linespace"></p>
   </ol>
+  </div>
 </section>
 
 <section id="fb0">

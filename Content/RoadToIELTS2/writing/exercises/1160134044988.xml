@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -13,7 +13,7 @@
 		 */			
 	]]>
 	</style>
-	<br/>
+
 <script id="model" type="application/xml">
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -74,38 +74,65 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read these sentences from letters and decide if the language is formal or informal.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/SS_GW_005.jpg" mode="1" id="1001"/>
   <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">The first thing I'd do if I were you is go and see his teacher.<a id="a1">Formal</a><tab/><a id="a2">Informal</a><br/></li>
-    <br/>
-    <li id="q2">I would like to know whether it would be possible for transportation to be arranged.<a id="a3">Formal</a><tab/><a id="a4">Informal</a><br/></li>
-    <br/>
-    <li id="q3">My family doctor informed the Central Hospital immediately following the diagnosis and explained the seriousness of my condition.<a id="a5">Formal</a><tab/><a id="a6">Informal</a><br/></li>
-    <br/>
-    <li id="q4">I have considerable experience in the field of animal care.<a id="a7">Formal</a><tab/><a id="a8">Informal</a><br/></li>
-    <br/>
-    <li id="q5">It's a really good read.<a id="a9">Formal</a><tab/><a id="a10">Informal</a><br/></li>
-    <br/>
-    <li id="q6">Our children are unable to walk home from school unless they are accompanied by an adult.<a id="a11">Formal</a><tab/><a id="a12">Informal</a><br/></li>
-    <br/>
-    <li id="q7">You really should check out the job ads on the Internet too.<a id="a13">Formal</a><tab/><a id="a14">Informal</a><br/></li>
-    <br/>
-    <li id="q8">We were particularly impressed by the number of ramps for wheelchair users.<a id="a15">Formal</a><tab/><a id="a16">Informal</a><br/></li>
-    <br/>
-    <li id="q9">I have suffered from acute sleep deprivation for a number of years.<a id="a17">Formal</a><tab/><a id="a18">Informal</a><br/></li>
-    <br/>
-    <li id="q10">I strongly feel that there is an unacceptable level of violence in the programme and that, therefore, the series should be broadcast at a more appropriate time.<a id="a19">Formal</a><tab/><a id="a20">Informal</a><br/></li>
-    <br/>
-    <li id="q11">I really can't stand football.<a id="a21">Formal</a><tab/><a id="a22">Informal</a><br/></li>
-    <br/>
-    <li id="q12">The officers on duty responded to our call within a matter of minutes.<a id="a23">Formal</a><tab/><a id="a24">Informal</a><br/></li>
+<div id="content">
+  <ol>
+    <li id="q1">The first thing I'd do if I were you is go and see his teacher.</li>
+		<a id="a1"><b>Formal</b></a><tab/><a id="a2"><b>Informal</b></a>
+	<p class="linespace"></p>
+
+    <li id="q2">I would like to know whether it would be possible for transportation to be arranged.</li>
+		<a id="a3"><b>Formal</b></a><tab/><a id="a4"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q3">My family doctor informed the Central Hospital immediately following the diagnosis and explained the seriousness of my condition.</li>
+	<a id="a5"><b>Formal</b></a><tab/><a id="a6"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q4">I have considerable experience in the field of animal care.</li>
+	<a id="a7"><b>Formal</b></a><tab/><a id="a8"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q5">It's a really good read.</li>
+	<a id="a9"><b>Formal</b></a><tab/><a id="a10"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q6">Our children are unable to walk home from school unless they are accompanied by an adult.</li>
+	<a id="a11"><b>Formal</b></a><tab/><a id="a12"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q7">You really should check out the job ads on the Internet too.</li>
+	<a id="a13"><b>Formal</b></a><tab/><a id="a14"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q8">We were particularly impressed by the number of ramps for wheelchair users.</li>
+	<a id="a15"><b>Formal</b></a><tab/><a id="a16"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q9">I have suffered from acute sleep deprivation for a number of years.</li>
+	<a id="a17"><b>Formal</b></a><tab/><a id="a18"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q10">I strongly feel that there is an unacceptable level of violence in the programme and that, therefore, the series should be broadcast at a more appropriate time.</li>
+	<a id="a19"><b>Formal</b></a><tab/><a id="a20"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q11">I really can't stand football.</li>
+	<a id="a21"><b>Formal</b></a><tab/><a id="a22"><b>Informal</b></a>
+	<p class="linespace"></p>
+	
+    <li id="q12">The officers on duty responded to our call within a matter of minutes.</li>
+	<a id="a23"><b>Formal</b></a><tab/><a id="a24"><b>Informal</b></a>
+	
   </ol>
+  </div>
 </section>
 
 </body>

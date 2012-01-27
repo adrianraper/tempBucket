@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -48,16 +48,40 @@
 	
 <header>
 	
-		
+		<div id="instruction">
 		Questions 1-5. Listen to the recording, which will play automatically, and follow the instructions. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		
+		<audio controls="hidden" loop="1" autoPlay="true" src="../media/SS_LN1a.mp3" mode="4" id="1002"/>
+		</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/SS_LN_002.jpg" mode="1" id="1001"/><audio controls="compact" class="leftFloat" src="../media/SS_LN1a.mp3" mode="4" id="1002"/><p align="left"><font color="#0000ff"><b>Campus Security</b></font></p><p align="left"><b>Report of theft or burglary</b></p><p align="left"><font color="#000000">NAME:	Lucy (1) <input id="q1"/></font></p>HOUSE NAME:	(2) <input id="q2"/> HouseROOM NUMBER:	(3) <input id="q3"/>FLOOR:	(4) <input id="q4"/>CONTACT NUMBER:	(5) <input id="q5"/>ITEMS STOLEN<p align="left"><font size="2"/></p>
+<section id="body">
+
+<img class="rightFloat" src="../media/SS_LN_002.jpg" mode="1" id="1001"/>
+
+<h1><p>Campus Security</p></h1>
+<p class="hangingIndent1"><b>Report of theft or burglary</b></p>
+<div id="box1">
+<div id="theft1">
+<p>Name:</p>
+<p>HOUSE NAME:</p>
+<p>ROOM NUMBER:</p>
+<p>FLOOR:</p>
+<p>CONTACT NUMBER:</p>
+<p>ITEMS STOLEN</p>
+</div>
+<div id="theft2">
+<p>Lucy (1)&#xA0;<input id="q1"/></p>
+<p>(2)&#xA0;<input id="q2"/> House</p>
+<p>(3)&#xA0;<input id="q3"/></p>
+<p>(4)&#xA0;<input id="q4"/></p>
+<p>(5)&#xA0;<input id="q5"/></p>
+</div>
+</div> 
+
+
+
+
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to see from the form that you will need to listen for names and numbers.</font>&nbsp;Questions 1-5 &nbsp;Make sure you are familiar with the form and you know where to put the information you hear.</p>
-</section>
 </body>
 </bento>
