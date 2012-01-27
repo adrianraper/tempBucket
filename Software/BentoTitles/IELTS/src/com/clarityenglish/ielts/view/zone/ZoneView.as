@@ -71,6 +71,9 @@ package com.clarityenglish.ielts.view.zone {
 		public var adviceZoneVideoPlayer:VideoPlayer;
 		
 		[SkinPart(required="true")]
+		public var questionZoneVideoPlayer:VideoPlayer;
+		
+		[SkinPart(required="true")]
 		public var adviceZoneVideoList:List;
 		
 		[SkinPart(required="true")]
@@ -105,7 +108,7 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
-		public var videoSelected:Signal = new Signal(Href);
+		public var videoSelected:Signal = new Signal(Href, String);
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -204,6 +207,9 @@ package com.clarityenglish.ielts.view.zone {
 				case questionZoneDownloadButton:
 					questionZoneDownloadButton.addEventListener(MouseEvent.CLICK, onQuestionZoneDownloadButtonClick);
 					break;
+				case questionZoneVideoButton:
+					questionZoneVideoButton.addEventListener(MouseEvent.CLICK, onQuestionZoneVideoButtonClick);
+					break;
 				case courseSelectorWidget:
 					courseSelectorWidget.addEventListener("writingSelected", onCourseSelectorClick, false, 0, true);
 					courseSelectorWidget.addEventListener("readingSelected", onCourseSelectorClick, false, 0, true);
@@ -246,7 +252,6 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 			}
 			
-			
 			if (matchingCourses.length() == 0) {
 				log.error("Unable to find a matching course");
 			} else {
@@ -274,6 +279,14 @@ package com.clarityenglish.ielts.view.zone {
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
 		}
+		protected function onQuestionZoneVideoButtonClick(event:MouseEvent):void {
+			// as above for file type
+			for each (var questionZoneEBookNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
+				if (questionZoneEBookNode.@href.indexOf(".rss") > 0) 
+					break;
+			}
+			videoSelected.dispatch(href.createRelativeHref(null, questionZoneEBookNode.@href), "question-zone");
+		}
 		
 		protected function onQuestionZoneDownloadButtonClick(event:MouseEvent):void {
 			// as above for file type
@@ -294,7 +307,7 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 */
 		public function adviceZoneVideoSelected(filename:String):void {
-			videoSelected.dispatch(href.createRelativeHref(null, filename));
+			videoSelected.dispatch(href.createRelativeHref(null, filename), "advice-zone");
 		}
 	}
 	

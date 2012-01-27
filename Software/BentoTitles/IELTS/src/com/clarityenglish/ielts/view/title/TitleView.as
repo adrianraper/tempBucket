@@ -18,6 +18,7 @@ package com.clarityenglish.ielts.view.title {
 	
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StateUtil;
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.ButtonBar;
@@ -36,7 +37,7 @@ package com.clarityenglish.ielts.view.title {
 		[SkinPart]
 		public var navBar:ButtonBar;
 		
-		[SkinPart]
+		[SkinPart(required="true")]
 		public var logoutButton:Button;
 		
 		[SkinPart]
@@ -73,6 +74,8 @@ package com.clarityenglish.ielts.view.title {
 		
 		private var _productVersion:String;
 		private var _productCode:uint;
+		
+		public var logout:Signal = new Signal();
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
 		private var homeIcon:Class;
@@ -224,6 +227,7 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				
 				case logoutButton:
+					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
 					break;
 				
 				case backToMenuButton:
@@ -248,7 +252,10 @@ package com.clarityenglish.ielts.view.title {
 					navBar.removeEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
 				case backToMenuButton:
-					backToMenuButton.removeEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
+					instance.removeEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
+					break;
+				case onLogoutButtonClick:
+					instance.removeEventListener(MouseEvent.CLICK, onLogoutButtonClick);
 					break;
 			}
 		}
@@ -283,6 +290,9 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			showExercise(null);
+		}
+		protected function onLogoutButtonClick(event:MouseEvent):void {
+			logout.dispatch();
 		}
 		
 	}

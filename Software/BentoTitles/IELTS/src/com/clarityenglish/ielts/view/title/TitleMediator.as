@@ -5,6 +5,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.config.Config;
@@ -40,11 +41,22 @@
 			//view.productVersion = configProxy.getConfig().productVersion || "fullVersion";
 			view.productVersion = configProxy.getProductVersion() || "fullVersion";
 			view.productCode = configProxy.getProductCode() || 52;
+			
+			// listen for these signals
+			view.logout.add(onLogout);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
 			
+		}
+		
+		/**
+		 * Logout
+		 * 
+		 */
+		private function onLogout():void {
+			sendNotification(CommonNotifications.LOGOUT);
 		}
 		
 		override public function onRemove():void {
@@ -57,6 +69,7 @@
 				BBNotifications.EXERCISE_RESTART,
 				BBNotifications.EXERCISE_SECTION_FINISHED,
 				IELTSNotifications.COURSE_SHOW,
+				CommonNotifications.LOGGED_OUT,
 			]);
 		}
 		
@@ -84,6 +97,8 @@
 					view.callLater(function():void {
 						view.zoneView.course = course;
 					});
+					break;
+				case CommonNotifications.LOGGED_OUT:
 					break;
 			}
 		}

@@ -41,8 +41,6 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="240" top="6" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="460" top="0" />
 		<s:Label text = "{hostComponent.productVersionText}" top="10" left="495" color="#FFFFFF" />
-
-		
 		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="10" top="2" />
 	</s:Group>
 	
@@ -52,7 +50,6 @@
 			<zone:ZoneView id="zoneView" width="100%" height="100%" includeIn="zone" />
 			<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />
 			<account:AccountView id="accountView" width="100%" height="100%" includeIn="account" />
-			
 			<exercise:ExerciseView id="exerciseView" width="100%" height="100%" includeIn="exercise" />
 		</s:Group>
 	</s:HGroup>

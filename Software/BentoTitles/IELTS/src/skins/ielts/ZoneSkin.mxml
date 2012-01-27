@@ -120,12 +120,7 @@
 							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12" width="160" height="30" />
 						</s:HGroup>
 						
-						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" top="10" />
-						
-						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-						<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-						<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
+						<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" />
 
 					</s:VGroup>
 				</s:NavigatorContent>
@@ -134,7 +129,7 @@
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice and tutorials" >
 					<s:VGroup left="0" right="0" top="2" bottom="30" horizontalAlign="left" >
 						<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
-						<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" top="10" />
+						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" top="10" />
 
 						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />

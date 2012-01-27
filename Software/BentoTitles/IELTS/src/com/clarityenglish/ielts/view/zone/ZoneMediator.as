@@ -112,7 +112,7 @@
 		 * @return 
 		 * 
 		 */
-		private function onVideoSelected(href:Href):void {
+		private function onVideoSelected(href:Href, zoneName:String):void {
 			
 			// #81 If the href is not a simple video file, it might be a dynamic streaming list
 			//var videoSource:String = href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url;
@@ -126,11 +126,23 @@
 				
 			} else {
 				
-				view.adviceZoneVideoPlayer.source = videoSource;
-				// #63
-				view.callLater(function():void {
-					view.adviceZoneVideoPlayer.play();
-				});
+				// Add video player for a different zone too
+				switch (zoneName) {
+					case "question-zone":
+						view.questionZoneVideoPlayer.source = videoSource;
+						// #63
+						view.callLater(function():void {
+							view.questionZoneVideoPlayer.play();
+						});
+						break;
+					default:
+						view.adviceZoneVideoPlayer.source = videoSource;
+						// #63
+						view.callLater(function():void {
+							view.adviceZoneVideoPlayer.play();
+						});
+						break;
+				}
 			}
 			
 			// #111 Write a record that they have started watching the video

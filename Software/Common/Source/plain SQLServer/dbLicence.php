@@ -582,6 +582,11 @@ EOD;
 			// v6.5.6.6 Change the rules for a Transferable Licence (6) - in which case you only care about active students
 			// Drop the check on a EXISTS score as I think this slows things down considerably. Mind you - it is very fast on production
 			$rootID = $vars['ROOTID'];
+			// v6.5.6 SciencesPo temporary workround
+			if ($rootID==14652) {
+				$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
+				return true;
+			}
 			/*
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT s.F_UserID)  AS licencesUsed

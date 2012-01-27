@@ -45,6 +45,7 @@ package com.clarityenglish.bento.controller {
 					</state>
 					
 					<state name={BBStates.STATE_TITLE}>
+						<transition action={CommonNotifications.LOGOUT} target={BBStates.STATE_LOGIN} />
 					</state>
 					
 					<state name={BBStates.STATE_CREDITS}>

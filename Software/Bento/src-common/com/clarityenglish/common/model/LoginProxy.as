@@ -63,8 +63,8 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
-			onDelegateResult("logout", {status:"success"});
-			//new RemoteDelegate("logout", [ ], this).execute();
+			//onDelegateResult("logout", {status:"success"});
+			new RemoteDelegate("logout", [ ], this).execute();
 		}
 
 		public function updateUser(userChanges:Object):void {
