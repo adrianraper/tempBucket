@@ -109,7 +109,7 @@ in accordance with the terms of the license agreement accompanying it.
 			 color.down="0x00FF00"
 			 color.up="0xCCCCCC"
 			 color.selectedUpStates="0x000000"
-			 fontSize="12"
+			 fontSize="12.6"
 			 >
 	</s:Label>
 	

@@ -34,9 +34,6 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var courseTitleLabel:IDisplayText;
 		
-		[SkinPart(required="true")]
-		public var courseDescriptionLabel:IDisplayText;
-		
 		[SkinPart]
 		public var accordian:Accordion;
 		
@@ -155,7 +152,6 @@ package com.clarityenglish.ielts.view.zone {
 			
 			if (_courseChanged) {
 				courseTitleLabel.text = _course.@caption;
-				courseDescriptionLabel.text = _course.@description;
 				
 				// Only display units with content in the XML - #51 - but this isn't working with Tink's Accordian right now
 				/*practiceZoneNavigatorContent.visible = practiceZoneNavigatorContent.includeInLayout = hasUnit("practice-zone");

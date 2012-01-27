@@ -12,7 +12,7 @@
 		<s:VerticalLayout />
 	</s:layout>
 
-	<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="30" />
+	<s:SkinnableComponent id="courseKeyPieComponent" skinClass="skins.ielts.progress.CourseKeyPieSkin" width="100%" height="30" />
 	
 	<s:Group top="0">
 		<s:Line width="100%">
@@ -24,13 +24,13 @@
 
 	<s:HGroup width="100%" height="100%" >
 		<s:VGroup width="50%" height="100%" >
-			<s:Label text="What is your average score in each unit?" fontSize="12" fontWeight="bold"  paddingTop="60" paddingLeft="170"/>
-			<s:Label text="Score (%)" fontSize="12" paddingLeft="260"/>
+			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold"  paddingTop="60" paddingLeft="180"/>
+			<s:Label text="Score (%)" fontSize="12.6" paddingLeft="260"/>
 			<ns1:AnyChartFlex id="analysisScoreChart" width="100%" />		
 		</s:VGroup>
 		<s:VGroup width="50%" height="100%" >
-			<s:Label text="How long have you spent working on each unit?" fontSize="12" fontWeight="bold" paddingTop="60" paddingLeft="140"/>
-			<s:Label text="Time in minutes" fontSize="12" paddingLeft="240"/>
+			<s:Label text="Time spent on each skill" fontSize="12.6" fontWeight="bold" paddingTop="60" paddingLeft="140"/>
+			<s:Label text="Time in minutes" fontSize="12.6" paddingLeft="240"/>
 			<ns1:AnyChartFlex id="analysisTimeChart" width="100%" />		
 		</s:VGroup>		
 	</s:HGroup>

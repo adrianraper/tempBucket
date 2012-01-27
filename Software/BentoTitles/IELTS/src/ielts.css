@@ -47,7 +47,7 @@ global {
 	
 	/* This sets the default font properties */
 	fontFamily: "HelveticaNeueLtStd";
-	fontSize: 12;
+	fontSize: 12.6;
 	fontWeight: normal;
 	color: #303030;
 	
@@ -115,32 +115,34 @@ home|HomeView s|Button#writingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Writing.png");
 	title: "Writing";
-	description: "Prepare for the two sections of the writing test";
 }
 
 home|HomeView s|Button#speakingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
 	title: "Speaking";
-	description: "Learn how to succeed in the three parts of the speaking test";
 }
 
 home|HomeView s|Button#readingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Reading.png");
 	title: "Reading";
-	description: "Familiarise yourself with the question types in the reading test";
 }
 
 home|HomeView s|Button#listeningCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
 	courseImage: Embed(source="skins/ielts/assets/Listening.png");
 	title: "Listening";
-	description: "Develop your listening skills as you practise for the listening test";
 }
 
 homeui|CourseBarRenderer {
 	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
+}
+/* Title view styles */
+
+title|TitleView #logoutButton {
+	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="LogoutIcon");
 }
 
 /* Zone view styles */

@@ -115,7 +115,7 @@
 		</s:Rect>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="120" top="9" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="25" top="12" />
-		<s:Label text="Data © The British Council 2006-2011. Software © Clarity Language Consultants Ltd, 2011. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="17" paddingLeft="14" />
+		<s:Label text="Data © The British Council 2006-2011. Software © Clarity Language Consultants Ltd, 2011. All rights reserved." color="#FFFFFF" paddingTop="17" paddingLeft="14" />
 </s:Group>
 	
 </bento:BentoApplication>

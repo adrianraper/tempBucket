@@ -13,7 +13,7 @@
 		]]>
 	</fx:Script>
 	
-	<s:VGroup width="100%" height="70" top="18" left="0">
+	<s:VGroup width="100%" height="70" top="19" left="0">
 		<s:Rect height="30" percentWidth="100" radiusX="8" radiusY="8" >
 			<s:fill>
 				<s:SolidColor id="backColour" color="#00FF00" />

@@ -37,6 +37,9 @@ package com.clarityenglish.ielts.view.title {
 		public var navBar:ButtonBar;
 		
 		[SkinPart]
+		public var logoutButton:Button;
+		
+		[SkinPart]
 		public var backToMenuButton:Button;
 		
 		[SkinPart]
@@ -82,6 +85,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HelpIcon")]
 		private var helpIcon:Class;
+		
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="LogoutIcon")]
+		private var logoutIcon:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
@@ -216,6 +222,10 @@ package com.clarityenglish.ielts.view.title {
 						}
 					} );
 					break;
+				
+				case logoutButton:
+					break;
+				
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
