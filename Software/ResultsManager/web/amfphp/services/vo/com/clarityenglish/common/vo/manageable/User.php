@@ -25,6 +25,8 @@ class User extends Manageable {
 	var $custom4;
 	// v3.5 For R2IV2
 	var $registrationDate;
+	var $userProfileOption;
+	var $registerMethod;
 	
 	const USER_TYPE_DMS_VIEWER = -2;
 	const USER_TYPE_DMS = -1;
@@ -104,6 +106,8 @@ class User extends Manageable {
 		$this->contactMethod = $obj->F_ContactMethod;
 		if ($obj->F_StartDate && strtotime($obj->F_StartDate) > 0) $this->startDate = $obj->F_StartDate;
 		if ($obj->F_RegistrationDate && strtotime($obj->F_RegistrationDate) > 0) $this->registrationDate = $obj->F_RegistrationDate;
+		$this->userProfileOption = $obj->F_UserProfileOption;
+		$this->registerMethod = $obj->F_RegisterMethod;
 	}
 	
 	/**
@@ -132,6 +136,8 @@ class User extends Manageable {
 		// v3.3 Extra data for special imports
 		$array['F_FullName'] = ($this->fullName);
 		$array['F_ContactMethod'] = ($this->contactMethod) ? $this->contactMethod : ""; // Not null
+		$array['F_UserProfileOption'] = $this->userProfileOption;
+		$array['F_RegisterMethod'] = $this->registerMethod;
 		
 		return $array;
 	}
@@ -155,6 +161,8 @@ class User extends Manageable {
 						"$prefix.F_Custom3",
 						"$prefix.F_Custom4",
 						"$prefix.F_FullName",
+						"$prefix.F_UserProfileOption",
+						"$prefix.F_RegisterMethod",
 						"$prefix.F_ContactMethod");
 		
 		return implode(",", $fields);
@@ -178,6 +186,8 @@ class User extends Manageable {
 					  "custom3",
 					  "custom4",
 					  "fullName",
+					  "userProfileOption",
+					  "registerMethod",
 					  "contactMethod");
 	}
 	

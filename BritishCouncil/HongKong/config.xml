@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
-	<developer>None</developer>
+	<id>/BritishCouncil/HongKong</id>
+	<developer>BC</developer>
 	<dbHost>2</dbHost>
-	<productCode>52</productCode>
+	<prefix>BCHK</prefix>
+	<rootID>10943</rootID>
+	<groupID>170</groupID>
 	<productVersion>lastMinute</productVersion>
-	<courseFile>menu-Academic-LastMinute.xml</courseFile>
+	<courseFile>menu-{productCode}-LastMinute.xml</courseFile>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />

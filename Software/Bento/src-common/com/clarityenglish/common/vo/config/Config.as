@@ -86,20 +86,33 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// userID takes precedence over name/studentID/email
-			if (parameters.userID) {
+			// Not until you can login with it!
+			if (parameters.userID)
 				this.userID = parameters.userID;
-			} else {
-				if (parameters.username) this.username = parameters.username;
-				if (parameters.studentID) this.studentID = parameters.studentID;
-				if (parameters.email) this.email = parameters.email;
-			}
+			if (parameters.username) this.username = parameters.username;
+			if (parameters.studentID) this.studentID = parameters.studentID;
+			if (parameters.email) this.email = parameters.email;
 			
+			if (parameters.productCode) this.productCode = parameters.productCode;
 			if (parameters.password) this.password = parameters.password;
 			if (parameters.courseID) this.courseID = parameters.courseID;
-			if (parameters.courseFile) this.courseFile = parameters.courseFile;
+			if (parameters.courseFile) this.paths.menuFilename = parameters.courseFile;
 			if (parameters.startingPoint) this.startingPoint = parameters.startingPoint;
 			if (parameters.sessionID) this.sessionID = parameters.sessionID;
 			if (parameters.language) this.language = parameters.language;
+			
+			// See if you can now do any substitutions
+			// For loginService, the config.xml might not know which productCode you are
+			// <courseFile>menu-{productCode}-LastMinute.xml</courseFile>
+			if (paths.menuFilename.indexOf("{productCode}")>=0) {
+				if (productCode==52) {
+					var replace:String = "Academic";
+					paths.menuFilename = paths.menuFilename.replace("{productCode}", replace);
+				} else if (productCode==53) {
+					replace = "GeneralTraining";
+					paths.menuFilename = paths.menuFilename.replace("{productCode}", replace);
+				}
+			}
 		}
 		
 		/**
@@ -138,8 +151,9 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// Name of the menu file (called courseFile to fit in with Orchid)
-			if (xml..courseFile.toString()) {
-				this.paths.menuFilename = xml..courseFile.toString();
+			var courseFile:String = xml..courseFile.toString();
+			if (courseFile) {
+				this.paths.menuFilename = courseFile;
 			} else {
 				this.paths.menuFilename = "menu.xml";
 			}
@@ -154,7 +168,7 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			if (xml..courseID.toString()) this.courseID = xml..courseID.toString();
-			if (xml..courseFile.toString()) this.courseFile = xml..courseFile.toString();
+//			if (xml..courseFile.toString()) this.courseFile = xml..courseFile.toString();
 			if (xml..language.toString()) this.language = xml..language.toString();
 			
 			// To handle the amfphp gateway

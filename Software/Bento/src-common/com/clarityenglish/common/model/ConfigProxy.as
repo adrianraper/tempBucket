@@ -173,7 +173,7 @@ package com.clarityenglish.common.model {
 		}
 		
 		/**
-		 * Direct login is implemented here.  If a LoginEvent is returned then the application should log straight in without showing a login screen.
+		 * Direct login is implemented here. If a LoginEvent is returned then the application should log straight in without showing a login screen.
 		 * 
 		 * @return 
 		 */
@@ -181,11 +181,13 @@ package com.clarityenglish.common.model {
 			if (Config.DEVELOPER.name == "DK" || Config.DEVELOPER.name == "AR") {
 				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
 			}
-			if (FlexGlobals.topLevelApplication.parameters.studentID &&
-				FlexGlobals.topLevelApplication.parameters.password) {
+			// take it from config rather than direct from the parameters
+			//if (FlexGlobals.topLevelApplication.parameters.studentID &&
+			//	FlexGlobals.topLevelApplication.parameters.password) {
+			if (config.studentID) {
 				return new LoginEvent(LoginEvent.LOGIN, 
-										FlexGlobals.topLevelApplication.parameters.studentID, 
-										FlexGlobals.topLevelApplication.parameters.password);
+										config.studentID, 
+										config.password);
 			}
 			
 			return null;

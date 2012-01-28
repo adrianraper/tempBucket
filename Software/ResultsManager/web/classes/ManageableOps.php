@@ -1036,9 +1036,13 @@ EOD;
 			   FROM T_Groupstructure g 
 			   WHERE F_GroupID=?
 EOD;
-		$row = $this->db->getRow($sql, array($groupID));
+		$rs = $this->db->Execute($sql, array($groupID));
 		$group = new Group();
-		return $group->fromDatabaseObj($row);
+		if ($rs) {
+			$obj = $rs->FetchNextObj();
+			$group->fromDatabaseObj($obj);
+		}
+		return $group;
 	}
 	
 	function getExtraGroups($userID) {
@@ -1392,78 +1396,83 @@ EOD;
 			$rootClause = '';
 		}
 		
-		// Ensure the username is unique within this context
-		// v3.3 Multi-group users
-		// You may now have multiple membership rows for one user, so only get distinct userIDs
-		//		SELECT u.F_UserID
-		// v3.6.1 You might want to know WHY this is not a valid user
-		// Also, surely I need to bring teachers and reporters into the uniqueness too?
-		//		SELECT distinct(u.F_UserID), u.F_UserName, u.F_StudentID, m.F_GroupID
-		//		AND u.F_UserType>=0 
-		//		AND m.F_RootID=? 	
-		$sql = 	<<<EOD
-				SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID
-				FROM T_User u, T_Membership m
-				WHERE u.F_UserID=m.F_UserID
-				AND u.F_UserName = ?
-				$rootClause
+		// Bento - if the loginOption is 2, then we don't care if the name is not unique.
+		if ($loginOption & 1) {
+			// Ensure the username is unique within this context
+			// v3.3 Multi-group users
+			// You may now have multiple membership rows for one user, so only get distinct userIDs
+			//		SELECT u.F_UserID
+			// v3.6.1 You might want to know WHY this is not a valid user
+			// Also, surely I need to bring teachers and reporters into the uniqueness too?
+			//		SELECT distinct(u.F_UserID), u.F_UserName, u.F_StudentID, m.F_GroupID
+			//		AND u.F_UserType>=0 
+			//		AND m.F_RootID=? 	
+			$sql = 	<<<EOD
+					SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID
+					FROM T_User u, T_Membership m
+					WHERE u.F_UserID=m.F_UserID
+					AND u.F_UserName = ?
+					$rootClause
 EOD;
-		//NetDebug::trace('isUserValid name sql='.$sql);
-		
-		//if ($user->userType != User::USER_TYPE_ADMINISTRATOR) {
-		//	$sql .= "AND m.F_RootID=? "; 
-		//} else {
-		//	//$sql .= "AND u.F_Password=?"; 
-		//}
-		//$sql .= "AND m.F_RootID=? "; 
-		
-		// TODO: u.F_UserType>=0 might need to change; can't quite work this out...
-		// v3.2 If we have removed password from the check, then don't send it in bindingParams...
-		//$rs = $this->db->Execute($sql, array($username, $rootID, $password));
-		// v3.6.1.1 And root handled above
-		//$rs = $this->db->Execute($sql, array($username, $rootID));
-		$rs = $this->db->Execute($sql, array($username));
-		
-		// v3.6.1 Initialise return
-		$rc = Array();
-		$rc['returnInfo'] = Array();
-		
-		switch ($rs->RecordCount()) {
-			case 0:
-				// There are no duplicates
-				// But you might need to check for ID too
-				// return true;
-				$nameOK = true;
-				break;
-			case 1:
-				// There is a duplicate, but if this is an update it might be the same record
-				// v3.3 Multi-group users
-				// return ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->id));
-				//NetDebug::trace('isUserValid duplicate name='.$user->name.' userID='.$user->userID);
-				// But you might need to check for ID too
-				//return ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
-				//$nameOK = ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
-				//$nameOK = ((int)($rs->FetchNextObj()->userID) == (int)($user->userID));
-				$firstRecord = $rs->FetchNextObj();
-				if ((int)($firstRecord->userID) == (int)($user->userID)) {
-					//NetDebug::trace('but it is the same person');
+			//NetDebug::trace('isUserValid name sql='.$sql);
+			
+			//if ($user->userType != User::USER_TYPE_ADMINISTRATOR) {
+			//	$sql .= "AND m.F_RootID=? "; 
+			//} else {
+			//	//$sql .= "AND u.F_Password=?"; 
+			//}
+			//$sql .= "AND m.F_RootID=? "; 
+			
+			// TODO: u.F_UserType>=0 might need to change; can't quite work this out...
+			// v3.2 If we have removed password from the check, then don't send it in bindingParams...
+			//$rs = $this->db->Execute($sql, array($username, $rootID, $password));
+			// v3.6.1.1 And root handled above
+			//$rs = $this->db->Execute($sql, array($username, $rootID));
+			$rs = $this->db->Execute($sql, array($username));
+			
+			// v3.6.1 Initialise return
+			$rc = Array();
+			$rc['returnInfo'] = Array();
+			
+			switch ($rs->RecordCount()) {
+				case 0:
+					// There are no duplicates
+					// But you might need to check for ID too
+					// return true;
 					$nameOK = true;
-				} else {
-					NetDebug::trace('found another person by name');
+					break;
+				case 1:
+					// There is a duplicate, but if this is an update it might be the same record
+					// v3.3 Multi-group users
+					// return ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->id));
+					//NetDebug::trace('isUserValid duplicate name='.$user->name.' userID='.$user->userID);
+					// But you might need to check for ID too
+					//return ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
+					//$nameOK = ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
+					//$nameOK = ((int)($rs->FetchNextObj()->userID) == (int)($user->userID));
+					$firstRecord = $rs->FetchNextObj();
+					if ((int)($firstRecord->userID) == (int)($user->userID)) {
+						//NetDebug::trace('but it is the same person');
+						$nameOK = true;
+					} else {
+						NetDebug::trace('found another person by name');
+						$nameOK = false;
+						$rc['returnInfo'][] = Array('name'=>$firstRecord->F_UserName, 'group'=>$firstRecord->F_GroupID);
+					}
+					break;
+				default:
+					// You found many existing users with this name
+					// Is this really an exception, or just a sign that this is a user your can't add/update?
+					//throw new Exception("isUserValid: More than one user was returned with username '".$username."'");
+					//return false;
 					$nameOK = false;
-					$rc['returnInfo'][] = Array('name'=>$firstRecord->F_UserName, 'group'=>$firstRecord->F_GroupID);
-				}
-				break;
-			default:
-				// You found many existing users with this name
-				// Is this really an exception, or just a sign that this is a user your can't add/update?
-				//throw new Exception("isUserValid: More than one user was returned with username '".$username."'");
-				//return false;
-				$nameOK = false;
-				// You really should send back info on all the duplicates to be useful
-				while($record = $rs->FetchNextObj()) {
-					$rc['returnInfo'][] = Array('name' => $record->F_UserName, 'group' => $record->F_GroupID);
-				}
+					// You really should send back info on all the duplicates to be useful
+					while($record = $rs->FetchNextObj()) {
+						$rc['returnInfo'][] = Array('name' => $record->F_UserName, 'group' => $record->F_GroupID);
+					}
+			}
+		} else {
+			$nameOK = true;
 		}
 		// Do we want to check the studentID for uniqueness too?
 		if ($loginOption & 2) {

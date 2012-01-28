@@ -13,8 +13,12 @@ class LoginAPI {
 	var $groupID;
 	var $rootID;
 	var $prefix;
-	var $loginType;
-
+	var $loginOption;
+	var $productCode;
+	var $expiryDate;
+	var $city;
+	var $country;
+	
 	function LoginAPI() {
 	}
 	/*
@@ -37,13 +41,26 @@ class LoginAPI {
 		if (isset($info['userID'])) 
 			$this->userID = $info['userID'];
 		if (isset($info['groupID'])) 
-			$this->rootID = $info['groupID'];
+			$this->groupID = $info['groupID'];
 		if (isset($info['rootID'])) 
 			$this->rootID = $info['rootID'];
 		if (isset($info['prefix'])) 
 			$this->prefix = $info['prefix'];
-		if (isset($info['loginType'])) 
-			$this->loginType = $info['loginType'];
+		if (isset($info['expiryDate'])) 
+			$this->expiryDate = $info['expiryDate'];
+		if (isset($info['productCode'])) 
+			$this->productCode = $info['productCode'];
+		if (isset($info['city'])) 
+			$this->city = $info['city'];
+		if (isset($info['country'])) 
+			$this->country = $info['country'];
+			
+		// Fields with defaults if not sent
+		if (isset($info['loginOption'])) {
+			$this->loginOption = $info['loginOption'];
+		} else {
+			$this->loginOption = 1;
+		}
 	}
 	
 	public function toString() {

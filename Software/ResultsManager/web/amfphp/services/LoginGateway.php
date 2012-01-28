@@ -19,7 +19,9 @@ $loginService = new LoginService();
 function loadAPIInformation() {
 	global $loginService;
 	
-	$postInformation = json_decode(file_get_contents("php://input"), true);
+	//$postInformation = json_decode(file_get_contents("php://input"), true);
+	$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6017","name":"Adrian Raper","email":"support@ieltspractice.com","city":"Hong Kong","dbHost":2,"productCode":52,"expiryDate":"2012-04-15 23:59:59","rootID":10943,"prefix":"BCHK","groupID":"170","loginOption":2,"userType":0}';
+	$postInformation = json_decode($presetString, true);
 
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist

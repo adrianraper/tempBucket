@@ -44,15 +44,33 @@ class LoginService extends AbstractService {
 	// Can you find this user?
 	function getUser($loginDetails) {
 		$stubUser = new User();
-		$stubUser->studentID = $loginDetails->studentID;
-		return $this->manageableOps->getUserByLearnerId($stubUser);
+		if ($loginDetails->loginOption==2) {
+			$stubUser->studentID = $loginDetails->studentID;
+			$user = $this->manageableOps->getUserByLearnerId($stubUser);
+		}
+		return $user; 
 	}
 	// Add this user
 	function addUser($loginDetails) {
 		$stubUser = new User();
-		$stubUser->studentID = $loginDetails->studentID;
+		if ($loginDetails->studentID)
+			$stubUser->studentID = $loginDetails->studentID;
+		if ($loginDetails->name)
+			$stubUser->name = $loginDetails->name;
+		if ($loginDetails->email)
+			$stubUser->email = $loginDetails->email;
+		if ($loginDetails->productCode)
+			$stubUser->userProfileOption = $loginDetails->productCode;
+		if ($loginDetails->expiryDate)
+			$stubUser->expiryDate = $loginDetails->expiryDate;
+		if ($loginDetails->city)
+			$stubUser->city = $loginDetails->city;
+		if ($loginDetails->country)
+			$stubUser->country = $loginDetails->country;
+		$stubUser->userType = User::USER_TYPE_STUDENT;
+		$stubUser->registrationDate = date('Y-m-d H:i:s');
+		$stubUser->registerMethod = "loginService";
 		
-		// What kind of authentication needs to be set before this will work?
 		$group = $this->manageableOps->getGroup($loginDetails->groupID);
 		 
 		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID);
