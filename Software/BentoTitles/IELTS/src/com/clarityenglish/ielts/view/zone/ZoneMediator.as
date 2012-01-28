@@ -120,13 +120,22 @@
 			
 			if (videoSource.indexOf("rss")>0 || videoSource.indexOf("xml")>0) {
 				
+				// Add video player for a different zone too. Clumsy.
+				switch (zoneName) {
+					case "question-zone":
+						var completeMethod:Function = onQuestionZoneVideoRSSLoadComplete;
+						break;
+					default:
+						completeMethod = onAdviceZoneVideoRSSLoadComplete;
+						break;
+				}
 				var urlLoader:URLLoader = new URLLoader();
-				urlLoader.addEventListener(Event.COMPLETE, onAdviceZoneVideoRSSLoadComplete);
+				urlLoader.addEventListener(Event.COMPLETE, completeMethod);
 				urlLoader.load(new URLRequest(videoSource));
 				
 			} else {
 				
-				// Add video player for a different zone too
+				// Add video player for a different zone too. Clumsy.
 				switch (zoneName) {
 					case "question-zone":
 						view.questionZoneVideoPlayer.source = videoSource;
@@ -181,6 +190,28 @@
 			/*callLater(function():void {
 			adviceZoneVideoPlayer.play();
 			});*/
+			
+		}
+		// HORRIBLE. Duplicate of above just for a different player. Please fix.
+		// Add a property to the target? Send an parameter to the listener through a custom event? 
+		protected function onQuestionZoneVideoRSSLoadComplete(e:Event):void {
+			var dynamicList:XML = new XML(e.target.data);
+			
+			// Build the mxml component
+			var host:String = dynamicList.channel.host.toString();
+			var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+			dynamicSource.urlIncludesFMSApplicationInstance = true;
+			dynamicSource.streamType = dynamicList.channel.type.toString();
+			var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
+			for each (var stream:XML in dynamicList.channel.item) {
+				var streamName:String = stream.streamName;
+				var bitrate:Number = stream.bitrate;
+				var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
+				streamItems.push(streamingItem);
+			}
+			dynamicSource.streamItems = streamItems; 
+			view.questionZoneVideoPlayer.source = dynamicSource;
+			view.questionZoneVideoPlayer.autoPlay = true;
 			
 		}
 		public function videoPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {

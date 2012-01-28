@@ -119,9 +119,8 @@
 							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12" width="160" height="30"   />
 							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12" width="160" height="30" />
 						</s:HGroup>
-						
 						<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" />
-
+						
 					</s:VGroup>
 				</s:NavigatorContent>
 				

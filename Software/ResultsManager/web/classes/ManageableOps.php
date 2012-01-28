@@ -1025,6 +1025,21 @@ EOD;
 		$row = $this->db->getRow($sql, array($userID));
 		return $row['F_GroupID'];
 	}
+	/**
+	 * This returns a group. 
+	 * Added for loginGateway, though I don't see why it isn't here already!
+	 * It's in loginOps, that's why. Though I am sure it shouldn't be.
+	 */
+	function getGroup($groupID) {
+		$sql = <<<EOD
+			   SELECT *
+			   FROM T_Groupstructure g 
+			   WHERE F_GroupID=?
+EOD;
+		$row = $this->db->getRow($sql, array($groupID));
+		$group = new Group();
+		return $group->fromDatabaseObj($row);
+	}
 	
 	function getExtraGroups($userID) {
 		// Only authenticate if this is not the logged in user attempting to get their groups (during login).

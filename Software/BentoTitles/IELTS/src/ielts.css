@@ -2,6 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace login "com.clarityenglish.ielts.view.login.*";
+@namespace credits "com.clarityenglish.ielts.view.credits.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
@@ -9,6 +10,7 @@
 @namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
 @namespace progressui "com.clarityenglish.ielts.view.progress.ui.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
+@namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace homeui "com.clarityenglish.ielts.view.home.ui.*";
@@ -65,9 +67,9 @@ global {
 	listeningColorDark: #7A3100;
 }
 
-/* Account view styles */
-account|AccountView #saveChangesButton {
-	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
+/* Credit view styles */
+credits|CreditsView {
+	skinClass: ClassReference("skins.ielts.CreditsSkin");
 }
 
 /* Login view styles */
@@ -272,6 +274,15 @@ progressui|CoverageUnitComponent {
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ielts.AccountSkin");
+}
+
+account|AccountView #saveChangesButton {
+	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
+}
+
+/* Suuport view styles */
+support|SupportView {
+	skinClass: ClassReference("skins.ielts.SupportSkin");
 }
 
 /* Marking view styles (this overwrites the default skin) */

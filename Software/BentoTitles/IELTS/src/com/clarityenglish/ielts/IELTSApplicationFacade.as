@@ -12,6 +12,8 @@
 	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.credits.CreditsMediator;
+	import com.clarityenglish.ielts.view.credits.CreditsView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeMediator;
@@ -27,6 +29,8 @@
 	import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreMediator;
 	import com.clarityenglish.ielts.view.progress.components.ProgressScoreView;
+	import com.clarityenglish.ielts.view.support.SupportMediator;
+	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
 	import com.clarityenglish.ielts.view.title.TitleView;
 	import com.clarityenglish.ielts.view.zone.ZoneMediator;
@@ -53,6 +57,8 @@
 			mapView(ZoneView, ZoneMediator);
 			mapView(ProgressView, ProgressMediator);
 			mapView(AccountView, AccountMediator);
+			mapView(CreditsView, CreditsMediator);
+			mapView(SupportView, SupportMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);
 			mapView(ProgressCompareView, ProgressCompareMediator);

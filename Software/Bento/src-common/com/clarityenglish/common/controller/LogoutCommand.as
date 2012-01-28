@@ -13,9 +13,9 @@ package com.clarityenglish.common.controller {
 	public class LogoutCommand extends SimpleCommand {
 		
 		override public function execute(note:INotification):void {
-			//TraceUtils.myTrace("LogoutCommand");
-			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			loginProxy.logout();
+			trace("LogoutCommand");
+			//var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			//loginProxy.logout();
 		}
 		
 	}

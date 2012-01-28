@@ -5,6 +5,7 @@ class LoginOps {
 	var $db;
 	
 	function LoginOps($db) {
+		
 		$this->db = $db;
 		
 		$this->copyOps = new CopyOps();

@@ -62,6 +62,9 @@ package com.clarityenglish.ielts.view.zone {
 		public var questionZoneVideoButton:Button;
 		
 		[SkinPart(required="true")]
+		public var questionZoneVideoPlayer:VideoPlayer;
+		
+		[SkinPart(required="true")]
 		public var unitList:List;
 		
 		[SkinPart(required="true")]
@@ -69,9 +72,6 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
-		
-		[SkinPart(required="true")]
-		public var questionZoneVideoPlayer:VideoPlayer;
 		
 		[SkinPart(required="true")]
 		public var adviceZoneVideoList:List;

@@ -34,6 +34,11 @@ class ProgressOps {
 		//foreach ($this->menu->xpath('//course') as $course) {
 		foreach ($this->menu->head->script->menu->course as $course) {
 			// Get the number of completed exercises from the recordset for this courseID
+			// Trac #137.
+			$count = 0;
+			$averageScore = 0;
+			$averageDuration = 0;
+			$totalDuration = 0;
 			foreach ($rs as $record) {
 				if ($record['F_CourseID']==$course['id']) {
 					// my data gives the number of distinct exercises I have done in this course

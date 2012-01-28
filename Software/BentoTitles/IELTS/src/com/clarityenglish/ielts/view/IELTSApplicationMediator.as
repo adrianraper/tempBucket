@@ -87,8 +87,11 @@ package com.clarityenglish.ielts.view {
 					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";
-					
 					handleDirectStart();
+					break;
+				case BBStates.STATE_CREDITS:
+					trace("fsm - go to credits view");
+					view.currentState = "credits";
 					break;
 			}
 		}

@@ -7,6 +7,7 @@
 		xmlns:zone="com.clarityenglish.ielts.view.zone.*"
 		xmlns:progress="com.clarityenglish.ielts.view.progress.*"
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
+		xmlns:support="com.clarityenglish.ielts.view.support.*"
 		xmlns:exercise="com.clarityenglish.ielts.view.exercise.*">
 	<!-- host component -->
 	<fx:Metadata>
@@ -18,6 +19,7 @@
 		<s:State name="zone" />
 		<s:State name="progress" />
 		<s:State name="account" />
+		<s:State name="support" />
 		<s:State name="exercise" />
 	</s:states>
 	
@@ -32,9 +34,7 @@
 		<s:Label text = "{hostComponent.productVersionText}" top="78" left="37" color="#FFFFFF" />
 		<s:ButtonBar id="navBar" right="50" height="35" top="2" />
 		<s:Button id="logoutButton" right="0" height="35" top="2" />
-		</s:Group>
-
-
+	</s:Group>
 		
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')"/>
@@ -50,6 +50,7 @@
 			<zone:ZoneView id="zoneView" width="100%" height="100%" includeIn="zone" />
 			<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />
 			<account:AccountView id="accountView" width="100%" height="100%" includeIn="account" />
+			<support:SupportView id="supportView" width="100%" height="100%" includeIn="support" />
 			<exercise:ExerciseView id="exerciseView" width="100%" height="100%" includeIn="exercise" />
 		</s:Group>
 	</s:HGroup>

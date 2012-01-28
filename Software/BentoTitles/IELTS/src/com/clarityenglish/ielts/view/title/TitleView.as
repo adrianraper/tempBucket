@@ -7,6 +7,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
+	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
 	import flash.events.Event;
@@ -31,6 +32,7 @@ package com.clarityenglish.ielts.view.title {
 	[SkinState("zone")]
 	[SkinState("progress")]
 	[SkinState("account")]
+	[SkinState("support")]
 	[SkinState("exercise")]
 	public class TitleView extends BentoView {
 		
@@ -54,6 +56,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		[SkinPart]
 		public var accountView:AccountView;
+		
+		[SkinPart]
+		public var supportView:SupportView;
 		
 		[SkinPart]
 		public var exerciseView:ExerciseView;
@@ -118,7 +123,7 @@ package com.clarityenglish.ielts.view.title {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "account" ], true);
+			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
 		}
 		
 		public function set productVersion(value:String):void {
@@ -211,7 +216,7 @@ package com.clarityenglish.ielts.view.title {
 						{ icon: homeIcon, label: "Home", data: "home" },
 						{ icon: progressIcon, label: "My Progress", data: "progress" },
 						{ icon: accountIcon, label: "My Profile", data: "account" },
-						{ icon: helpIcon, label: "Help", data: "account" },
+						{ icon: helpIcon, label: "Help", data: "support" },
 					] );
 					
 					navBar.selectedIndex = 0;
@@ -237,6 +242,7 @@ package com.clarityenglish.ielts.view.title {
 					exerciseView.href = currentExerciseHref;
 					break;
 				case noticeLabel:
+					// TODO: Check whether we know the exam date, if not say go to my account page to set it
 					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
 					var daysUnit:String = (daysLeft==1) ? "day" : "days";
 					instance.text = daysLeft.toString() + " " + daysUnit + " left until your test.";

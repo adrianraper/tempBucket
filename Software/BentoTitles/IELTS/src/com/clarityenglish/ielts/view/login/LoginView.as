@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	
 	import mx.controls.Alert;
@@ -40,6 +41,7 @@ package com.clarityenglish.ielts.view.login {
 			
 			switch (instance) {
 				case loginButton:
+					instance.addEventListener(KeyboardEvent.KEY_DOWN, onKeyClick);
 				case quickStartButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;				
@@ -57,6 +59,12 @@ package com.clarityenglish.ielts.view.login {
 				loginHeading.label = name;
 		}
 		
+		protected function onKeyClick(event:KeyboardEvent):void {
+			// TODO. This might be better as a form event, then don't need to worry about which field you are on when pressing Enter
+			// Just pick up Enter key to trigger login
+			if (event.charCode == 13)
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+		}
 		/**
 		 * The user has clicked the login button
 		 *
