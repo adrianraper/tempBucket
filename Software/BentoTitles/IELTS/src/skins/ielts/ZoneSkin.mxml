@@ -5,7 +5,10 @@
 		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
-		minWidth="540" minHeight="560" xmlns:components="com.clarityenglish.textLayout.components.*" 
+		minWidth="540"
+		minHeight="560"
+		xmlns:components="com.clarityenglish.textLayout.components.*"
+		creationComplete="creationComplete(event)"
 		>
 	<!-- host component -->
 	<fx:Metadata>
@@ -16,10 +19,20 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import caurina.transitions.Tweener;
+			
 			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+			
+			import mx.events.FlexEvent;
 			
 			import spark.events.IndexChangeEvent;
 			import spark.events.ListEvent;
+			
+			protected function creationComplete(event:FlexEvent):void {
+				questionZoneVideoPlayer.x = 500;
+				questionZoneVideoPlayer.alpha = 0;
+				questionZoneVideoPlayer.visible = false;
+			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
 				if (unitList.selectedItem)
@@ -37,6 +50,22 @@
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
 				// Too much happening here, shift to the view/mediator
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);
+			}
+			
+			protected function showEBook():void {
+				Tweener.removeTweens(questionZoneVideoPlayer);
+				Tweener.removeTweens(questionZoneEBookGraphic);
+				
+				Tweener.addTween(questionZoneVideoPlayer, { x: 500, _autoAlpha: 0, time: 0.7 });
+				Tweener.addTween(questionZoneEBookGraphic, { x: 0, _autoAlpha: 1, time: 0.7 });
+			}
+			
+			protected function showVideo():void {
+				Tweener.removeTweens(questionZoneVideoPlayer);
+				Tweener.removeTweens(questionZoneEBookGraphic);
+				
+				Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 0.7 });
+				Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 0.7 });
 			}
 			
 		]]>
@@ -109,18 +138,21 @@
 
 					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="40">
 
-						<s:SWFLoader width="476" height="214"
-									 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
-									 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
-									 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
-									 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
-						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10"  >
-							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12" width="160" height="30" left="70"  />							  
-							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12" width="160" height="30"   />
-							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12" width="160" height="30" />
-						</s:HGroup>
-						<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" />
+						<s:Group width="476">
+							<s:SWFLoader id="questionZoneEBookGraphic" width="476" height="214"
+										 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
+										 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
+										 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
+										 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
+							
+							<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" />
+						</s:Group>
 						
+						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10"  >
+							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12" width="160" height="30" left="70" click="showEBook()" />							  
+							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12" width="160" height="30" click="showEBook()"  />
+							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12" width="160" height="30" click="showVideo()" />
+						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
 				

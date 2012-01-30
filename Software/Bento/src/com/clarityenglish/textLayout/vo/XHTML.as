@@ -265,7 +265,7 @@ package com.clarityenglish.textLayout.vo {
 		
 		[Bindable(event="xmlChange")]
 		public function selectOne(expression:String):XML {
-			var results:Array =  select(expression);
+			var results:Array = select(expression);
 			if (results.length > 1)
 				log.error("selectOne(" + expression + ") returned more than 1 result.  Returning the first result");
 			

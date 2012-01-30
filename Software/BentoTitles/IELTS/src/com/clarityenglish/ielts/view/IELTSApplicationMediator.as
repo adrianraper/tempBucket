@@ -124,7 +124,7 @@ package com.clarityenglish.ielts.view {
 			
 			// If courseClass is defined go straight into a course
 			if (directStart.courseClass) {
-				var course:XML = bentoProxy.menuXHTML.selectOne("script#model > menu > course[class=" + directStart.courseClass + "]");
+				var course:XML = bentoProxy.menuXHTML.selectOne("course[class=" + directStart.courseClass + "]");
 				
 				if (course) {
 					sendNotification(IELTSNotifications.COURSE_SHOW, course);
