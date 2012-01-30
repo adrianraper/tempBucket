@@ -19,9 +19,10 @@ $loginService = new LoginService();
 function loadAPIInformation() {
 	global $loginService;
 	
-	//$postInformation = json_decode(file_get_contents("php://input"), true);
-	$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6017","name":"Adrian Raper","email":"support@ieltspractice.com","city":"Hong Kong","dbHost":2,"productCode":52,"expiryDate":"2012-04-15 23:59:59","rootID":10943,"prefix":"BCHK","groupID":"170","loginOption":2,"userType":0}';
-	$postInformation = json_decode($presetString, true);
+	$postInformation = json_decode(file_get_contents("php://input"), true);
+	//$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6017","name":"Adrian Raper","email":"support@ieltspractice.com","city":"Hong Kong","dbHost":2,"productCode":52,"expiryDate":"2012-04-15 23:59:59","rootID":10943,"prefix":"BCHK","groupID":"170","loginOption":2,"userType":0}';
+	//$presetString = '{"method":"getOrAddUser","studentID":"J0655013-170","name":"Vishna Vardhan Kompalli","email":"06.vishnu@gmail.com","dbHost":"2","productCode":52,"expiryDate":"2012-03-19 23:59:59","prefix":"BCHK","rootID":"10943","groupID":"170","loginOption":"2"}';
+	//$postInformation = json_decode($presetString, true);
 
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist
@@ -67,6 +68,18 @@ try {
 	//echo "loaded API";
 	switch ($apiInformation->method) {
 		case 'getUser':
+			
+			// TODO: First validate the account that you are going to get from
+			// This probably goes outside the switch, but you might skip it if you
+			// don't know an account and are doing a global getUser.
+			/*
+			if ($apiInformation->rootID || $apiInformation->prefix) {
+				$account = $loginService->getAccount($apiInformation);
+				if ($account==false) {
+					returnError(1, 'No such account');
+				}
+			}			
+			*/
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {

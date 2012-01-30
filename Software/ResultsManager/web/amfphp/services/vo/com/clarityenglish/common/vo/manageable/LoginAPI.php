@@ -56,6 +56,8 @@ class LoginAPI {
 			$this->country = $info['country'];
 			
 		// Fields with defaults if not sent
+		// TODO. This should not be sent, it should be read from the account
+		// but perhaps account value can be overwritten if sent
 		if (isset($info['loginOption'])) {
 			$this->loginOption = $info['loginOption'];
 		} else {

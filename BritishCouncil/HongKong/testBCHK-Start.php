@@ -22,6 +22,7 @@
 	$prefix = (string) $configXML->prefix[0];
 	$rootID = (string) $configXML->rootID[0];
 	$groupID = (string) $configXML->groupID[0];
+	$loginOption = (string) $configXML->loginOption[0];
 
 	// Will we write out lots of log messages?
 	$debugLog = true;
@@ -90,11 +91,13 @@
 			$LoginAPI['prefix'] = $prefix;
 			$LoginAPI['rootID'] = $rootID;
 			$LoginAPI['groupID'] = $groupID;
+			$LoginAPI['loginOption'] = $loginOption;
 	
 			// Send this single LoginAPI
 			$serializedObj = json_encode($LoginAPI);
 			$targetURL = $commonDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
-		
+			echo $serializedObj;		
+			
 			// Initialize the cURL session
 			$ch = curl_init();
 			
@@ -162,6 +165,13 @@
 	}
 	//error_log($logStr, 3, "/tmp/Login.log");
 
+	echo $contents;
+	if (isset($returnInfo['user'])) {
+		echo " userID is ".$returnInfo['user']['userID'];
+	}
+	
+	exit(0);
+
 function buildPasswordHash($str) {
 	$pass0sha1 = sha1($str, true); // get 20 digit hash
 	$password = base64_encode($pass0sha1); // nFXx CBo/ xe00 3MNw QbXK UwLf ECU= // This is 28 characters
@@ -206,138 +216,3 @@ function decodeCharacters ($rawText) {
 	return $temp;
 }
 ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-	<title>Road to IELTS 2 from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
-	<script type="text/javascript">
-		// ****
-		// 
-		// ****
-		function thisMovie(movieName) {
-			if (window.document[movieName]) {
-				return window.document[movieName];
-			}
-			if (navigator.appName.indexOf("Microsoft Internet") == -1) {
-				if (document.embeds && document.embeds[movieName])
-					return document.embeds[movieName];
-			} else { // if (navigator.appName.indexOf("Microsoft Internet")!=-1)
-				return document.getElementById(movieName);
-			}
-		}
-		
-		function onLoad() {
-			thisMovie("bento").focus();
-		}
-		// *********
-		// *********
-		var webShare = "<?php echo $webShare ?>";
-		var startControl = "<?php echo $startControl ?>";
-		var swfName = "<?php echo $swfName ?>";
-		
-		// v6.5.5.6 Allow resize screen mode
-		var coordsWidth = "100%"; var coordsHeight = "100%"; 
-		//var coordsWidth = "990"; var coordsHeight = "600"; 
-		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
-		var coordsMinHeight = "600"; var coordsMaxHeight = null;
-		
-		var sections = location.pathname.split("/");
-		var userdatapath = sections.slice(0,sections.length-1).join("/");
-		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $configFile ?>";
-		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
-		
-		// see whether variables have come from command line or, preferentially, session variables
-		if ("<?php echo $name ?>".length>0) {
-			var jsUserName = "<?php echo $name ?>";
-		} else {
-			var jsUserName = swfobject.getQueryParamValue("username");
-		}
-		if ("<?php echo $password ?>".length>0) {
-			var jsPassword = "<?php echo $password ?>";
-		} else {
-			var jsPassword = swfobject.getQueryParamValue("password");
-		}
-		if ("<?php echo $uniqueStudentID ?>".length>0) {
-			var jsStudentID = "<?php echo $uniqueStudentID ?>";
-		} else {
-			var jsStudentID = swfobject.getQueryParamValue("studentID");
-		}
-		if ("<?php echo $userID ?>".length>0) {
-			var jsUserID = "<?php echo $userID ?>";
-		} else {
-			var jsUserID = swfobject.getQueryParamValue("userID");
-		}
-		if ("<?php echo $email ?>".length>0) {
-			var jsEmail = "<?php echo $email ?>";
-		} else {
-			var jsEmail = swfobject.getQueryParamValue("email");
-		}
-		if ("<?php echo $instanceID ?>".length>0) {
-			var jsInstanceID = "<?php echo $instanceID ?>";
-		} else {
-			var jsInstanceID = swfobject.getQueryParamValue("instanceID");
-		}
-		var flashvars = {
-			username: jsUserName,
-			password: jsPassword,
-			studentID: jsStudentID,
-			userID: jsUserID,
-			email: jsEmail,
-			instanceID: jsInstanceID,
-			startingPoint: swfobject.getQueryParamValue("startingPoint"),
-			course: swfobject.getQueryParamValue("course"),
-			action: swfobject.getQueryParamValue("action"),
-			referrer: "<?php echo $referrer ?>",
-			server: "<?php echo $server ?>",
-			ip: "<?php echo $ip ?>"
-		};
-		var params = {
-			id: "bento",
-			name: "bento",
-			quality: "high",
-			allowfullscreen: "true",			
-			salign: "tc",
-			scale: "noscale"
-		};
-		var attr = {
-			align: "middle",
-			id: "bento",
-			name: "bento"
-		};
-		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
-	</script>
-</head>
-<body onload="onLoad()">
-<?php if ($validLink): ?> 
-	<div style="text-align:center" id="bento">
-		<p>This application requires Adobe's Flash player, running at least version 9.</p>
-		<p>It seems your browser doesn't have this.</p>
-		<p>Please download the latest Adobe Flash Player.</p>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
-		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
-	</div>
-<noscript>
-This application requires your browser to support javascript and to have Adobe's Flash player installed. <br/>
-Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br/>
-to switch this on and then refresh this page.</noscript>
-<?php endif ?>
-<?php if ($validLink==false): ?> 
-<div id="invalidLink">
-	This application can only be run from a <a href="http://www.britishcouncil.org">British Council website</a>.
-</div>
-<br/><?php echo $encrypt; ?>
-<br/>
-<?php endif ?>
-</body>
-</html>

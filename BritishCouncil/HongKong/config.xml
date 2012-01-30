@@ -6,6 +6,7 @@
 	<prefix>BCHK</prefix>
 	<rootID>10943</rootID>
 	<groupID>170</groupID>
+	<loginOption>2</loginOption>
 	<productVersion>lastMinute</productVersion>
 	<courseFile>menu-{productCode}-LastMinute.xml</courseFile>
 	<streamingMedia />

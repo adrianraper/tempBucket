@@ -44,14 +44,18 @@ class LoginService extends AbstractService {
 	// Can you find this user?
 	function getUser($loginDetails) {
 		$stubUser = new User();
+		// TODO: Add other login options
 		if ($loginDetails->loginOption==2) {
 			$stubUser->studentID = $loginDetails->studentID;
 			$user = $this->manageableOps->getUserByLearnerId($stubUser);
+		} else {
+			$user = false;
 		}
 		return $user; 
 	}
 	// Add this user
 	function addUser($loginDetails) {
+		echo "LoginService addUser";
 		$stubUser = new User();
 		if ($loginDetails->studentID)
 			$stubUser->studentID = $loginDetails->studentID;

@@ -965,13 +965,13 @@ EOD;
 	/**
 	 * This returns a specific user object defined by its studentID
 	 */
-	function getUserByLearnerId($user) {
+	function getUserByLearnerId($stubUser) {
 		$sql  = "SELECT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
 				FROM T_User u
 				WHERE u.F_StudentID=?
 EOD;
-		$usersRS = $this->db->Execute($sql, array($user->studentID));
+		$usersRS = $this->db->Execute($sql, array($stubUser->studentID));
 
 		// If you don't get a unique match, throw an exception
 		if ($usersRS->RecordCount()==1) {
@@ -980,7 +980,7 @@ EOD;
 		} else if ($usersRS->RecordCount()==0) {
 			return false;
 		} else {
-			throw new Exception("More than one user with this studentID ($user->studentID)");
+			throw new Exception("More than one user with this studentID ($stubUser->studentID)");
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
@@ -1505,7 +1505,7 @@ EOD;
 					if ((int)($firstRecord->userID) == (int)($user->userID)) {
 						$idOK = true;
 					} else {
-						NetDebug::trace('found another person by id');
+						//NetDebug::trace('found another person by id');
 						$idOK = false;
 						$rc['returnInfo'][] = Array('studentID'=>$firstRecord->F_StudentID, 'group'=>$firstRecord->F_GroupID);
 					}
