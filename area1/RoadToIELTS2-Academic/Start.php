@@ -59,7 +59,7 @@
 <html>
 <head>
 	<title>Road to IELTS 2 from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="/Software/RoadToIELTS2.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />

@@ -16,6 +16,7 @@ package com.clarityenglish.ielts.view.account {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.NumericStepper;
 	import spark.components.TextInput;
 	import spark.formatters.DateTimeFormatter;
@@ -31,7 +32,10 @@ package com.clarityenglish.ielts.view.account {
 		[SkinPart(required="true")]
 		public var confirmPassword:TextInput;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
+		public var countdownLabel:Label;
+		
+		[SkinPart]
 		public var examDate:DateField;
 		
 		[SkinPart(required="true")]
@@ -82,6 +86,15 @@ package com.clarityenglish.ielts.view.account {
 			switch (instance) {
 				case saveChangesButton:
 					instance.addEventListener(MouseEvent.CLICK, onUpdateButtonClick);
+					break;
+				
+				case countdownLabel:
+					// We will only tell the user about the countdown if they have confirmed their exam date
+					if (userDetails.examDate) {
+						instance.text = "This is the remaining time until your test."
+					} else {
+						instance.text = "Please confirm your test date below."
+					}
 					break;
 				
 				case examDate:

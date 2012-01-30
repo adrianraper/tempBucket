@@ -225,7 +225,9 @@
 						<s:VerticalLayout paddingTop="2"/>
 					</s:layout>
 
-					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
+					<s:Label text="There is nothing for speaking" includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
+					<s:Label text="Download complete test papers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 					<s:HGroup paddingTop="10">
 						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"

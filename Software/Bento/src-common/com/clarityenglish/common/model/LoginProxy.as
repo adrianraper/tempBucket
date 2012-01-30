@@ -29,7 +29,7 @@ package com.clarityenglish.common.model {
 			
 			// TODO: We might want to maintain sessions later on, but for the moment always ensure authentication is cleared
 			// on each startup.
-			logout();
+			//logout();
 		}
 		
 		public function get user():User {
