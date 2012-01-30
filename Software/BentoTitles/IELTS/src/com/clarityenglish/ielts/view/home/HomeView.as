@@ -95,9 +95,13 @@ package com.clarityenglish.ielts.view.home {
 					instance.text="Welcome, " + user.fullName + ".";
 					break;
 				case noticeLabel:
-					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-					var daysUnit:String = (daysLeft==1) ? "day" : "days";
-					instance.text = daysLeft.toString() + " " + daysUnit + " left until your test.";
+					if (user.examDate) {
+						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
+						var daysUnit:String = (daysLeft==1) ? "day" : "days";
+						instance.text = daysLeft.toString() + " " + daysUnit + " left until your test.";
+					} else {
+						instance.text = "Please confirm your test date on the My Profile page."
+					}
 					break;
 			}
 		}

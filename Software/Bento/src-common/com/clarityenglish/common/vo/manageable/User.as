@@ -118,18 +118,21 @@
 		
 		/**
 		 * Shorthand for the exam date, including conversion from database String to program Date
-		 * 
+		 * Change, only use the examDate IF it is explicitly set. Otherwise keep as null.
 		 */
 		public function get examDate():Date {
 			if (birthday) {
 				var thisDateString:String = birthday;
-			} else if (expiryDate) {
-				thisDateString = expiryDate;
+			//} else if (expiryDate) {
+			//	thisDateString = expiryDate;
+			//} else {
+			//	thisDateString = DateUtil.dateToAnsiString(new Date());				
+			//}
+			//trace("get exam date string is " + thisDateString);
+				return DateUtil.ansiStringToDate(thisDateString);
 			} else {
-				thisDateString = DateUtil.dateToAnsiString(new Date());				
+				return null;
 			}
-			trace("get exam date string is " + thisDateString);
-			return DateUtil.ansiStringToDate(thisDateString);
 		}
 		public function set examDate(value:Date):void {
 			birthday = DateUtil.dateToAnsiString(value);

@@ -36,7 +36,7 @@ package com.clarityenglish.ielts.view.account {
 		public var countdownLabel:Label;
 		
 		[SkinPart]
-		public var examDate:DateField;
+		public var examDateField:DateField;
 		
 		[SkinPart(required="true")]
 		public var examHours:NumericStepper;
@@ -97,7 +97,7 @@ package com.clarityenglish.ielts.view.account {
 					}
 					break;
 				
-				case examDate:
+				case examDateField:
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
 				
@@ -127,6 +127,7 @@ package com.clarityenglish.ielts.view.account {
 				// Just update the counter for now
 				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
 				userDetails.examDate = eventObj.currentTarget.selectedDate;
+				userDetails.examDate.setHours(examHours.value as Number, examHours.value as Number);
 				trace("exam date changed to " + userDetails.examDate.toDateString()); 
 			}
 		}
@@ -144,12 +145,19 @@ package com.clarityenglish.ielts.view.account {
 				// Trigger the update command. Use an Event or a Signal?
 				// Do I really need to pass anything at all since the mediator can get it all anyway?
 				// Or I could use a form and pass that?
-				var newUserDetails:Object = new Object();
-				newUserDetails.currentPassword = currentPassword.text;
-				newUserDetails.password = newPassword.text;
-				//newUserDetails.examJustDate = DateUtil.dateToAnsiString(examDate.selectedDate);
-				newUserDetails.examJustTime = examHours.value.toString() + ":" + examMinutes.value.toString();
-				updateUser.dispatch(newUserDetails);
+				var updatedUserDetails:Object = new Object();
+				if (currentPassword.text)
+					updatedUserDetails.currentPassword = currentPassword.text;
+				if (newPassword.text)
+					updatedUserDetails.password = newPassword.text;
+				if (userDetails.examDate) {
+					// setHours is just not working
+					//userDetails.examDate.setHours(examHours.value);
+					//userDetails.examDate.setMinutes(examMinutes.value);
+					//updatedUserDetails.examDate = DateUtil.dateToAnsiString(userDetails.examDate);
+					updatedUserDetails.examDate = DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
+				}
+				updateUser.dispatch(updatedUserDetails);
 			}
 		}
 		

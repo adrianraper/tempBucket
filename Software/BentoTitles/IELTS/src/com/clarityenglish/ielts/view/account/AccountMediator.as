@@ -67,23 +67,20 @@
 		private function onUpdateUser(userDetails:Object):void {
 			
 			// Validate the data that you can first
-			//if (userDetails.currentPassword) {
+			if (userDetails.currentPassword) {
 				var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 				if (userDetails.currentPassword != loginProxy.user.password) {
 					view.showUpdateError("Your current password doesn't match, please try again.");
 					return;
 				}
-			//}
-			if (userDetails.examJustDate) {
-				// It must be a valid date in the future
 			}
-			if (userDetails.examJustTime) {
-				// It must be a valid time
+			if (userDetails.examDate) {
+				// It must be a valid date in the future
 			}
 
 			var passedDetails:Object = new Object();
 			passedDetails.password = userDetails.password;
-			passedDetails.examDate = userDetails.examJustDate + ' ' + userDetails.examJustTime;
+			passedDetails.examDate = userDetails.examDate;
 			
 			// dispatch a notification, which will trigger the command
 			sendNotification(BBNotifications.USER_UPDATE, passedDetails);

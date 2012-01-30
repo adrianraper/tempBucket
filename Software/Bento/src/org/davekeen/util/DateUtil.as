@@ -33,6 +33,50 @@
 		}
 		
 		/**
+		 * This function adds x units to the date. This is NOT accurate, but is fine for rough purposes.
+		 * Leap years etc will go wrong and months are just average numbers.
+		 * @param startDate as a Date
+		 * @param datePart as a String - s,m,h,d,w,M,y - follow spark date formatter key
+		 * @param quantity as a number
+		 * @return new Date
+		 * 
+		 */
+		public static function dateAdd(startDate:Date, datePart:String = "s", quantity:int = 1):Date {
+			if (!startDate)
+				startDate = new Date();
+			
+			var startNumber:Number = startDate.getTime();
+			switch (datePart) {
+				case "s":
+					var multiplier:Number = 1000;
+					break;
+				case "m":
+					multiplier = 60*1000;
+					break;
+				case "h":
+					multiplier = 60*60*1000;
+					break;
+				case "d":
+					multiplier = 24*60*60*1000;
+					break;
+				case "w":
+					multiplier = 7*24*60*60*1000;
+					break;
+				case "M":
+					multiplier = 2629744*1000;
+					break;
+				case "y":
+					multiplier = 31556926*1000;
+					break
+				default:
+					multiplier = 1;
+			}
+			var endNumber:Number = startNumber + (quantity*multiplier);
+			return new Date(endNumber);
+			
+		}
+		
+		/**
 		 * This function returns the difference between two dates. 
 		 * The answer is rounded to the closest unit your choose. 
 		 * @param startDate as a Date
