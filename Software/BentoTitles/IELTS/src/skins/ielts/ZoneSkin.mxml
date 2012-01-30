@@ -109,7 +109,7 @@
 
 					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="40">
 
-						<s:SWFLoader width="450" height="210"
+						<s:SWFLoader width="476" height="214"
 									 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
 									 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
@@ -127,7 +127,7 @@
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice and tutorials" >
 					<s:VGroup left="0" right="0" top="2" bottom="30" horizontalAlign="left" >
-						<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+						<s:Label text="Click on a thumbnail to play the video." width="95%" lineHeight="18" />
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" top="10" />
 
 						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
@@ -180,7 +180,6 @@
 				<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
 					<s:VGroup left="0" right="0" top="2" bottom="0" gap="10">
 						<s:Label text="Choose a set below and start your IELTS language practice." width="95%" lineHeight="18" />
-						<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
 						<s:SWFLoader width="473" height="113"
 									 source="@Embed(source='skins/ielts/assets/practicezone_image.png')" />
 						<!-- The unit list -->
@@ -226,7 +225,7 @@
 						<s:VerticalLayout paddingTop="2"/>
 					</s:layout>
 
-					<s:Label text="Download and print the practice papers. When you are ready to start, click the audio button. As in the exam, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
+					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." width="95%" lineHeight="18" />
 					<s:HGroup paddingTop="10">
 						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"

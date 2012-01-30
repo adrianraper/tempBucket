@@ -31,7 +31,7 @@
 			<s:Spacer height="1"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseClass="writing" id="writingCoverageBar" width="100%" />
 			<s:Spacer height="5"/>
-			<s:Label text="The chart above shows how much you have completed in each skill section of Road to IELTS. Go to My Progress to see detailed reports." width="80%" lineHeight="20" />	
+			<s:Label text="The colour bars show how much you have completed in each skill area. Go to My Progress for more details." width="80%" lineHeight="18" />	
 	</s:VGroup>
 		
 	</s:VGroup>

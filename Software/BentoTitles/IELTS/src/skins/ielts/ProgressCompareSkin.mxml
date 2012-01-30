@@ -15,7 +15,7 @@
 	<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="30" top="0" />
 	</s:Group>
 	<s:Group>
-		<s:Label text="Your average score compared against everyone else..." fontSize="12" fontWeight="bold" paddingLeft="10" paddingTop="30"/>
+		<s:Label text="This chart compares your scores with other Road To IELTS users worldwide." fontSize="12" fontWeight="bold" paddingLeft="10" paddingTop="30"/>
 		<ns1:AnyChartFlex id="compareChart" width="600" height="300" top="20" />
 	</s:Group>
 </s:Skin>
