@@ -46,18 +46,18 @@
 	</s:Group>
 
 	<s:HGroup width="100%" height="100%" top="100" >
-		<ui:CoverageUnitComponent id="practiceZoneCoverage"
-									  caption="Practice zone" 
-									  dataProvider="{hostComponent.practiceZoneDataProvider}"  />
 		<ui:CoverageExerciseComponent id="questionZoneCoverage"
-									  caption="Question zone"
+									  caption="Starting out"
 									  dataProvider="{hostComponent.questionZoneDataProvider}" />
 		<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%"
-									  caption="Advice zone"
+									  caption="Advice and tutorials"
 									  dataProvider="{hostComponent.adviceZoneDataProvider}" />
 		<ui:CoverageExerciseComponent id="examPracticeCoverage"
-									  caption="Exam practice"
+									  caption="Test practice"
 									  dataProvider="{hostComponent.examPracticeDataProvider}" />
+		<ui:CoverageUnitComponent id="practiceZoneCoverage"
+								  caption="Practice zone" 
+								  dataProvider="{hostComponent.practiceZoneDataProvider}"  />
 	</s:HGroup>
 
 </s:Skin>

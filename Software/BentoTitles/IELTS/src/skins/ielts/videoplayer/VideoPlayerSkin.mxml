@@ -119,10 +119,10 @@
 	<!-- drop shadow -->
 	<!--- @private -->
 	<s:RectangularDropShadow id="dropShadow"
-							 blurX="17"
-							 blurY="17"
+							 blurX="0"
+							 blurY="0"
 							 alpha="0.32"
-							 distance="4"
+							 distance="0"
 							 angle="90"
 							 color="#131313"
 							 left="0"
@@ -168,7 +168,7 @@
 							top.fullScreenStates="0" />
 
 			<!-- video player controls -->
-			<s:Group id="controls" left="0" right="0" height="37" bottom="0" bottom.fullScreenStates="150">
+			<s:Group id="controls" left="0" right="0" height="25" bottom="0" bottom.fullScreenStates="150">
 				
 				<!-- background for scrubbar + the currentTime/duration -->
 				<s:Rect radiusX="2" radiusY="2" left.normalStates="0" right.normalStates="0" top.normalStates="0" bottom.normalStates="0" x.fullScreenStates="{playerControls.x}" y.fullScreenStates="{playerControls.y}" width.fullScreenStates="{playerControls.width}" height.fullScreenStates="{playerControls.height}">
@@ -187,7 +187,7 @@
 					<!--- @copy spark.components.VideoPlayer#playPauseButton -->
 					<s:ToggleButton id="playPauseButton"
 									left="0"
-									bottom="0"
+									top="20"
 									skinClass="skins.ielts.videoplayer.PlayPauseButtonSkin"
 									skinClass.fullScreenStates="spark.skins.spark.mediaClasses.fullScreen.PlayPauseButtonSkin"
 									layoutDirection="ltr"
@@ -195,7 +195,7 @@
 									focusOut="event.target.depth=0" />
 
 					<!-- scrubbar + the currentTime/duration labels -->
-					<s:Group left.normalStates="35" left.fullScreenStates="39" right.normalStates="60" right.fullScreenStates="80" top="0" bottom.normalStates="5" bottom.fullScreenStates="0">
+					<s:Group left.normalStates="40" left.fullScreenStates="39" right.normalStates="80" right.fullScreenStates="80" top="0" bottom.normalStates="0" bottom.fullScreenStates="0">
 
 						<!-- scrub bar + currentTime/duration in a HorizontalLayout -->
 						<s:Group left="0" right="0" height="23" bottom="0">
@@ -229,9 +229,9 @@
 					
 					<!--- @copy spark.components.VideoPlayer#fullScreenButton -->
 					<s:Button id="fullScreenButton"
-							  right.normalStates="45"
+							  right.normalStates="37"
 							  right.fullScreenStates="37"
-							  bottom.normalStates="11" bottom.fullScreenStates="0"
+							  bottom.normalStates="0" bottom.fullScreenStates="0"
 							  label="Fullscreen"
 							  skinClass="skins.ielts.videoplayer.FullScreenButtonSkin"
 							  skinClass.fullScreenStates="spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin"
@@ -245,8 +245,8 @@
 								 liveDragging="true"
 								 right.fullScreenStates="0"
 								 bottom.fullScreenStates="0"
-								 right.normalStates="11"
-								 bottom.normalStates="11"
+								 right.normalStates="0"
+								 bottom.normalStates="0"
 								 layoutDirection="ltr"
 								 skinClass="skins.ielts.videoplayer.VolumeBarSkin"
 								 skinClass.fullScreenStates="spark.skins.spark.mediaClasses.fullScreen.VolumeBarSkin"

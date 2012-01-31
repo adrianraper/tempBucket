@@ -45,7 +45,7 @@
     <fx:Declarations>
         <!--- Defines the appearance of the ScrubBar skin's data tip. To customize the data tip's appearance, create a custom ScrubBarSkin class. -->
         <fx:Component id="dataTip">     
-            <s:DataRenderer minHeight="24" minWidth="40" y="-34">
+            <s:DataRenderer minHeight="24" minWidth="30" y="-34">
                 <s:RectangularDropShadow id="shadow" distance="3" 
                     angle="90" color="#999999" left="0" top="0" right="0" bottom="0"/>
                     
@@ -136,7 +136,7 @@
 	
 	<s:Rect left="7" right="5" top="-1" bottom="2" radiusX="2" radiusY="2">
 		<s:stroke>
-			<s:SolidColorStroke color="0xFFFFFF" weight="3" />
+			<s:SolidColorStroke color="0x424242" weight="1" />
 		</s:stroke>
 	</s:Rect>
 	

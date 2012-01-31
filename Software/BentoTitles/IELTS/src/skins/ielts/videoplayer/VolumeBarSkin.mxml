@@ -48,12 +48,12 @@
         left="0" right="0" top="0" bottom="0" popUpPosition="above" itemDestructionPolicy="auto">
         
         <!--- @copy spark.components.mediaClasses.VolumeBar#dropDown -->
-        <s:Group id="dropDown" width="38" height="84" horizontalCenter="0">
+        <s:Group id="dropDown" width="37" height="84" horizontalCenter="0">
         
             <!-- dropshadow for the dropdown -->
             <s:Rect left="0" top="0" right="0" bottom="0">
                 <s:filters>
-                    <s:DropShadowFilter knockout="true" blurX="20" blurY="20" alpha="0.32" distance="11" angle="90" />   
+                    <s:DropShadowFilter knockout="true" blurX="6" blurY="6" alpha="0.32" distance="6" angle="90" />   
                 </s:filters>    
                 <s:fill>    
                     <s:SolidColor color="0x000000" />   
@@ -64,8 +64,8 @@
             <s:Rect left="0" right="0" top="0" bottom="0">
                 <s:fill>
                     <s:LinearGradient rotation="90">
-                        <s:GradientEntry color="0xFFFFFF"/>
-                        <s:GradientEntry color="0xDCDCDC"/>
+                        <s:GradientEntry color="0x424242"/>
+                        <s:GradientEntry color="0x424242"/>
                     </s:LinearGradient>
                 </s:fill>
                 <s:stroke>

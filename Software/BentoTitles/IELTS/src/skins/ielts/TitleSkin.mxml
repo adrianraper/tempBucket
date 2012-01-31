@@ -32,7 +32,7 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="48" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
 		<s:Label text = "{hostComponent.productVersionText}" top="84" left="37" color="#FFFFFF" />
-		<s:ButtonBar id="navBar" right="50" height="35" top="6" />
+		<s:ButtonBar id="navBar" right="48" height="35" top="6" />
 		<s:Button id="logoutButton" right="0" height="35" top="6" />
 	</s:Group>
 		

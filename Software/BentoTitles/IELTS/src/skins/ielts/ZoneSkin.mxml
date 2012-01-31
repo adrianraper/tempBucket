@@ -134,9 +134,9 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Starting out" width="100%">
-					<s:Label text="Click the view button to see the eBook or download the PDF for print-outs." width="95%" lineHeight="18" />
+					<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video about the key facts in this section of the IELTS exam." width="95%" lineHeight="18" />
 
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="40">
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50">
 
 						<s:Group width="476">
 							<s:SWFLoader id="questionZoneEBookGraphic" width="476" height="214"
@@ -159,7 +159,8 @@
 				<!-- Advice zone -->
 				<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice and tutorials" >
 					<s:VGroup left="0" right="0" top="2" bottom="30" horizontalAlign="left" >
-						<s:Label text="Click on a thumbnail to play the video." width="95%" lineHeight="18" />
+						<s:Label text="Click on a thumbnail to play the video."  visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='speaking'}" includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
+						<s:Label text="Click on the thumbnail to play the video."  visible="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" includeInLayout="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 						<s:VideoPlayer id="adviceZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" visible="{adviceZoneVideoList.selectedItem != null}" includeInLayout="{adviceZoneVideoList.selectedItem != null}" top="10" />
 
 						<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
@@ -258,8 +259,8 @@
 					</s:layout>
 
 					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
-					<s:Label text="There is nothing for speaking" includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
-					<s:Label text="Download complete test papers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
+					<s:Label text="Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
+					<s:Label text="Download complete test papers with answers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 					<s:HGroup paddingTop="10">
 						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"

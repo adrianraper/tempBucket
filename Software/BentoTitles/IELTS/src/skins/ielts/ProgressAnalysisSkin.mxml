@@ -23,14 +23,14 @@
 	</s:Group>
 
 	<s:HGroup width="100%" height="100%" >
-		<s:VGroup width="50%" height="100%" >
-			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold"  paddingTop="60" paddingLeft="190"/>
-			<s:Label text="Score (%)" fontSize="12.6" paddingLeft="270"/>
+		<s:VGroup width="50%" height="100%" horizontalAlign="center" >
+			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold"  paddingTop="60"  />
+			<s:Label text="Score (%)" fontSize="12.6" />
 			<ns1:AnyChartFlex id="analysisScoreChart" width="100%" />		
 		</s:VGroup>
-		<s:VGroup width="50%" height="100%" >
-			<s:Label text="Time spent on each skill" fontSize="12.6" fontWeight="bold" paddingTop="60" paddingLeft="210"/>
-			<s:Label text="Time in minutes" fontSize="12.6" paddingLeft="240"/>
+		<s:VGroup width="50%" height="100%" horizontalAlign="center" >
+			<s:Label text="Time spent on each skill" fontSize="12.6" fontWeight="bold" paddingTop="60"/>
+			<s:Label text="Time in minutes" fontSize="12.6" />
 			<ns1:AnyChartFlex id="analysisTimeChart" width="100%" />		
 		</s:VGroup>		
 	</s:HGroup>

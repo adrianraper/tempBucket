@@ -15,7 +15,8 @@
 	<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="30" top="0" />
 	</s:Group>
 	<s:Group>
-		<s:Label text="This chart compares your scores with other Road To IELTS users worldwide." fontSize="12" fontWeight="bold" paddingLeft="10" paddingTop="30"/>
-		<ns1:AnyChartFlex id="compareChart" width="600" height="300" top="20" />
+		<s:Label text="This chart compares your scores with other Road To IELTS users worldwide." fontSize="12.6" fontWeight="bold" paddingLeft="10" paddingTop="29"/>
+		<s:Label text="The bar in the front row are your average scores. The bars in the back row are everyone else's." fontSize="12.6" fontWeight="bold" paddingLeft="10" paddingTop="47"/>
+		<ns1:AnyChartFlex id="compareChart" width="600" height="300" top="35" />
 	</s:Group>
 </s:Skin>
