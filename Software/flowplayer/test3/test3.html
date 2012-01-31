@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Access UK: A Student's Guide | Asking a porter</title>
+<script type="text/javascript" src="/Software/flowplayer/flowplayer-3.2.6.min.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+    	<a id="player1" style="display:block;width:720px;height:406px">
+            <img src="/Content/AccessUK/video/accommodation/recycling.jpg" alt="Access UK video" width="720" height="406" />
+	</a> 
+		<script>
+			flowplayer("player1", "/Software/flowplayer/flowplayer-3.2.7.swf", 
+			{
+				clip:
+				{
+					autoPlay: true,
+					autoBuffering: true,
+					provider: 'rtmp',
+					urlResolvers: 'bwcheck',
+					scaling: 'fit',
+					bitrates: 
+					[
+						 { url: "AccessUK/video/accommodation/recycling_1280w_2500_1", width: 1280, bitrate: 2500 },
+						 { url: "AccessUK/video/accommodation/recycling_720w_1600_1", width: 720, bitrate: 1600 },
+						 { url: "AccessUK/video/accommodation/recycling_720w_700_1", width: 720, bitrate: 700 },
+						 { url: "AccessUK/video/accommodation/recycling_320w_200_1", width: 320, bitrate: 200 },
+						 { url: "AccessUK/video/accommodation/recycling_320w_80_1", width: 320, bitrate: 80, isDefault: true }
+				   	]
+				},
+				/*
+				*/
+				plugins:	
+				{
+			        // bandwidth check plugin
+					bwcheck: 
+					{  
+						url: '/Software/flowplayer/flowplayer.bwcheck-3.2.5.swf', 
+						serverType: 'fms',
+						dynamic: true,		
+						dynamicBuffer: true,	
+						maxWidth: 1280,			
+						netConnectionUrl: 'rtmp://streaming.clarityenglish.com:1935/cfx/st/',
+						// If you use checkOnStart it does something (a download?) first to see how long it takes, then it chooses a bandwidth
+						// So this slows everything down (7 seconds), but it means it will start nicely. Otherwise you start horribly and then have to wait
+						// a while for it to go good. 15 seconds, which is too long.
+						checkOnStart: true,
+						// In theory this should remember the selected bitrate used last time, and thus start on the right one, but it doesn't.
+						bitrateProfileName: 'AccessUK',
+						rememberBitrate: true,
+						// show the selected file in the content box. This is not used in real installations.
+						onStreamSwitchBegin: function (newItem, currentItem) {
+						   $f().getPlugin('content').setHtml("Switch from: " + currentItem.bitrate + " to " + newItem.bitrate);
+						},
+						onStreamSwitch: function (newItem) {
+						   $f().getPlugin('content').setHtml("br: " + newItem.bitrate);
+						},
+						onBWDone: function(url, mappedBitrate, detectedBitrate) {
+						   $f().getPlugin('content').setHtml("bandwidth: " + mappedBitrate);
+						}
+					},
+					rtmp:
+					{
+						url: '/Software/flowplayer/flowplayer.rtmp-3.2.3.swf',
+						netConnectionUrl: 'rtmp://streaming.clarityenglish.com:1935/cfx/st/'
+					},
+			        // a content box so that we can see the selected video dimensions. This is not used in real installations.
+					content: 
+					{
+						url: '/Software/flowplayer/flowplayer.content-3.2.0.swf',
+						top: 0, left: 0, width: 320, height: 100,
+						backgroundColor: 'transparent', backgroundGradient: 'none', border: 0,
+						textDecoration: 'outline', 
+						style: {  
+							body: {  
+								fontSize: 12,
+								fontFamily: 'Arial', 
+								textAlign: 'left', 
+								color: '#ffffff' 
+							}  
+						}  		
+					}  
+				}
+			});
+		</script>
+	<hr />
+	<!-- 
+			href="http://c284790.r90.stream.cf1.rackcdn.com/AccessUK/accommodation/recycling_720w_700_1.flv"
+	-->
+	<a	style="display:block;width:720px;height:406px" 
+		id="player2"> 
+            <img src="/Content/AccessUK/video/accommodation/recycling.jpg" alt="Access UK video" width="720" height="406" />
+	</a> 
+		<script>
+			flowplayer("player2", "/Software/flowplayer/flowplayer-3.2.7.swf", 
+			{
+				clip:
+				{
+					baseUrl: 'http://c284790.r90.stream.cf1.rackcdn.com/',
+					url: 'AccessUK/accommodation/recycling_720w_700_1.flv',
+					autoPlay: true,
+					autoBuffering: true,
+					provider: 'akamai'
+				},
+				plugins:	
+				{
+					akamai:
+					{
+						url: '/Software/flowplayer/AkamaiFlowPlugin.swf'
+					}
+				}
+			});
+		</script>
+
+</body>
+</html>

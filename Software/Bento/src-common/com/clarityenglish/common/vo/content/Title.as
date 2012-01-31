@@ -47,6 +47,15 @@
 		public var dbContentLocation:String;
 		
 		public var licenceType:Number;
+		// v3.6.5 Adding licence clearance date
+		public var licenceClearanceDate:String;
+		public var licenceClearanceFrequency:Number;
+		
+		// v3.1 For emus and courses - not used for database storage
+		public var indexFile:String;
+		// v3.1 For emus to specify other titles that they include - not used for database storage
+		public var licencedProductCodes:String;
+		public var deliveryFrequency:Number;
 		
 		public var checksum:String;
 		

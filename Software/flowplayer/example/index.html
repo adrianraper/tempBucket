@@ -1,0 +1,51 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- A minimal Flowplayer setup to get you started -->
+  
+
+	<!-- 
+		include flowplayer JavaScript file that does  
+		Flash embedding and provides the Flowplayer API.
+	-->
+	<script type="text/javascript" src="/Software/flowplayer/flowplayer-3.2.6.min.js"></script>
+	
+	<!-- some minimal styling, can be removed -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+	<!-- page title -->
+	<title>Minimal Flowplayer setup</title>
+
+</head><body>
+
+	<div id="page">
+		
+		<h1>Sample Flowplayer video</h1>
+	
+		<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+		<a  
+			 style="display:block;width:520px;height:330px"  
+			 id="player"> 
+		</a> 
+	
+		<!-- this will install flowplayer inside previous A- tag. -->
+		<script>
+			flowplayer("player", "/Software/flowplayer/flowplayer-3.2.7.swf", 
+				clip: {
+					autoPlay: false,
+					autoBuffering: true
+					},
+				playlist: [
+					{url: "http://pseudo01.hddn.com/vod/demo.flowplayervod/flowplayer-700.flv"}
+					]
+				);
+		</script>
+	
+		<p>
+			See this identical page on <a href="http://flowplayer.org/demos/example/index.htm">Flowplayer website</a> 
+		</p>
+		
+	</div>
+	
+	
+</body>
+</html>

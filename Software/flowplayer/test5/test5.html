@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Access UK: A Student's Guide | Asking a porter</title>
+<script type="text/javascript" src="/Software/flowplayer/flowplayer-3.2.6.min.js"></script>
+<script type="text/javascript" src="/script/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var player = flowplayer("player", "/Software/flowplayer/flowplayer-3.2.7.swf",
+			{
+				clip:
+				{
+					baseUrl: 'http://c284790.r90.stream.cf1.rackcdn.com/',
+					url: 'AccessUK/accommodation/recycling_720w_700.flv',
+					autoPlay: true,
+					autoBuffering: true,
+					scaling: 'orig',
+					provider: 'akamai'
+				},
+				plugins:	
+				{
+					akamai:
+					{
+						url: '/Software/flowplayer/AkamaiFlowPlugin.swf'
+					}
+				}
+			}
+		);
+		$("#smaller").click(function () {
+			var currentTime = $f().getTime();
+			$f().getClip().update({baseURL: 'http://c284790.r90.stream.cf1.rackcdn.com/', 
+								url: 'AccessUK/accommodation/recycling_360w_180.flv',
+								start: 30,
+								autoPlay: false});
+			$f().play();
+			return false;
+		});
+	});
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<a	style="display:block;width:720px;height:405px" 
+		id="player"> 
+	</a> 
+	Video streaming problems? <a href='http://www.clarityenglish.com' id='smaller'>Click for a  smaller video</a>
+</body>
+</html>

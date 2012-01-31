@@ -7,7 +7,8 @@ class Account extends Reportable {
 	
 	var $name;
 	var $prefix;
-	var $email;
+	// v3.6 Drop AccountRoot F_Email
+	//var $email;
 	var $tacStatus;
 	var $accountStatus;
 	// v3.0.5 Change status handling

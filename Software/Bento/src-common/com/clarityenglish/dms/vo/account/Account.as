@@ -34,6 +34,9 @@
 		// v3.5 Flexibility of email system
 		public var optOutEmails:Boolean;
 		public var optOutEmailDate:String;
+		// v4.0 Integration with Bento
+		public var verified:Number;
+		public var selfRegister:Number;
 		
 		public var adminUser:User;
 		
