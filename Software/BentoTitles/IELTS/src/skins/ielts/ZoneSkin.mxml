@@ -91,7 +91,7 @@
 	
 	<s:Group width="100%" height="100%" top="0">
 	<!-- The left hand side -->
-		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="90" left="0"  >
+		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="120" left="0"  >
 			<s:layout>
 				<s:VerticalLayout/>
 			</s:layout>
@@ -145,13 +145,13 @@
 										 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
 										 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
 							
-							<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" />
+							<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" horizontalCenter="0" />
 						</s:Group>
 						
 						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10"  >
-							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12" width="160" height="30" left="70" click="showEBook()" />							  
-							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12" width="160" height="30" click="showEBook()"  />
-							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12" width="160" height="30" click="showVideo()" />
+							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="showEBook()" />							  
+							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="showEBook()"  />
+							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12.6" width="160" height="30" click="showVideo()" />
 						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
@@ -204,7 +204,7 @@
 						</s:List>
 						<s:VGroup width="100%" paddingLeft="25" paddingRight="10" paddingTop="25" paddingBottom="10">
 							<s:Label id="unitCaption" fontSize="14" fontWeight="bold"  />
-							<s:RichText id="unitDescription" width="80%" fontSize="12" />
+							<s:RichText id="unitDescription" width="80%" fontSize="12.6" />
 						</s:VGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
@@ -217,7 +217,7 @@
 									 source="@Embed(source='skins/ielts/assets/practicezone_image.png')" />
 						<!-- The unit list -->
 						<s:Group left="0" right="0" top="5" bottom="5">
-							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12"  click="onUnitClick(event)">
+							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12.6"  click="onUnitClick(event)">
 								<s:layout>
 									<s:TileLayout requestedColumnCount="3" requestedRowCount="8" orientation="columns" columnWidth="120" verticalGap="3" />
 								</s:layout>
@@ -241,7 +241,7 @@
 											</fx:Script>
 											<s:HGroup width="100%" verticalAlign="middle" paddingLeft="5" paddingTop="5" paddingBottom="5">
 												<s:Image id="captionIcon" source="{unitIcon}" />
-												<s:Label id="captionLabel" fontSize="11" />
+												<s:Label id="captionLabel" fontSize="12.6" />
 											</s:HGroup>
 										</s:ItemRenderer>
 									</fx:Component>
@@ -261,7 +261,7 @@
 					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
 					<s:Label text="Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
 					<s:Label text="Download complete test papers with answers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
-					<s:HGroup paddingTop="10">
+					<s:HGroup paddingTop="20">
 						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
 									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
 									 source.speakingStates="@Embed(source='skins/ielts/assets/exampractice_speaking.png')"
@@ -296,7 +296,7 @@
 										<s:VerticalLayout />
 									</s:layout>
 									
-									<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="230" height="30" textAlignLast="left" />
+									<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="230" height="30" textAlignLast="left" fontSize="12.6" />
 									
 									<!--<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />-->
 									
@@ -304,7 +304,7 @@
 									<s:Group height="33">
 										<s:HGroup paddingLeft="5" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
 											<components:AudioPlayer id="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
-											<s:Label text="{data.@audioCaption}" fontSize="13" paddingTop="2" />
+											<s:Label text="{data.@audioCaption}" fontSize="12.6" paddingTop="2" />
 										</s:HGroup>
 									</s:Group>
 								</s:DataRenderer>

@@ -18,7 +18,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flashx.textLayout.elements.FlowElement;
-	
+	import mx.graphics.SolidColor;
 	import spark.components.Group;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
@@ -63,6 +63,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var readingTextRichText:XHTMLRichText;
+			
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
+		public var backColour:SolidColor;
+	
+		public var courseClass:String;
 		
 		[Bindable]
 		public var courseCaption:String;
@@ -98,6 +103,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			
 			return null;
 		}
+		
+		public function set dataProvider(value:XML):void {
+			
+			if (value) {
+				var course:XML = value.course.(@["class"]==courseClass)[0];
+				backColour.color = getStyle(courseClass + "ColorDark");		
+			}
+		}
+
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
