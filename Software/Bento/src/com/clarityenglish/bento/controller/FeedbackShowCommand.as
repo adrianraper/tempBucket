@@ -24,6 +24,7 @@ package com.clarityenglish.bento.controller {
 	
 	import spark.components.Scroller;
 	import spark.components.TitleWindow;
+	import spark.events.TitleWindowBoundsEvent;
 	
 	public class FeedbackShowCommand extends SimpleCommand {
 		
@@ -65,6 +66,7 @@ package com.clarityenglish.bento.controller {
 				titleWindow = new TitleWindow();
 				titleWindow.styleName = "feedbackTitleWindow";
 				titleWindow.title = feedback.title;
+				titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 				
 				// Create an XHTMLRichText component and add it to the title window
 				var xhtmlRichText:XHTMLRichText = new XHTMLRichText();
@@ -127,12 +129,32 @@ package com.clarityenglish.bento.controller {
 		}
 		
 		/**
+		 * Keep the window on the screen (#197)
+		 * 
+		 * @param event
+		 */
+		protected function onWindowMoving(event:TitleWindowBoundsEvent):void {
+			if (event.afterBounds.left < 0) {
+				event.afterBounds.left = 0;
+			} else if (event.afterBounds.right > titleWindow.systemManager.stage.stageWidth) {
+				event.afterBounds.left = titleWindow.systemManager.stage.stageWidth - event.afterBounds.width;
+			}
+			
+			if (event.afterBounds.top < 0) {
+				event.afterBounds.top = 0;
+			} else if (event.afterBounds.bottom > titleWindow.systemManager.stage.stageHeight) {
+				event.afterBounds.top = titleWindow.systemManager.stage.stageHeight - event.afterBounds.height;
+			}
+		}
+		
+		/**
 		 * Close the popup and make all variables eligible for garbage collection
 		 * 
 		 * @param event
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
+			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 			(FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
 			
 			PopUpManager.removePopUp(titleWindow);
