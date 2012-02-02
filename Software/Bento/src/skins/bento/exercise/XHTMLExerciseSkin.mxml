@@ -25,6 +25,9 @@
 				event.delta = event.delta / Math.abs(event.delta) * 32;
 			}
 			
+			[Bindable]
+			public var courseColorDark:Number;
+			
 		]]>
 	</fx:Script>
 	
@@ -47,7 +50,7 @@
 		<s:Group right="0" width="240" height="100%" visible="{hostComponent.atLeastOneSelectedAnswerHasFeedback}">
 			<s:Rect width="100%" height="100%">
 				<s:fill>
-					<s:SolidColor id="backColour" color="{getStyle('ColorDark')}" />
+					<s:SolidColor color="0X4D4E4E" />
 				</s:fill>
 			</s:Rect>
 			<exercise:FeedbackAvailableIcon verticalCenter="0" left="20" />

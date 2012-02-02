@@ -32,6 +32,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 		public var backColour:SolidColor;
 		
 		public var courseClass:String;
+		
 	
 		public var type:String;
 		

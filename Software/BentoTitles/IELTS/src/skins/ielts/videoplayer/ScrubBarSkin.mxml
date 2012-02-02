@@ -59,7 +59,7 @@
                          horizontalCenter="0" verticalCenter="1"
                          left="5" right="5" top="5" bottom="5"
                          textAlign="center" verticalAlign="middle"
-                         fontWeight="normal" color="white" fontSize="11">
+                         fontWeight="normal" color="white" fontSize="12.6">
                 </s:Label>
             </s:DataRenderer>
         </fx:Component>

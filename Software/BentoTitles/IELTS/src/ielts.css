@@ -144,7 +144,6 @@ homeui|CourseBarRenderer {
 
 title|TitleView #logoutButton {
 	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="LogoutIcon");
 }
 
 /* Zone view styles */
@@ -314,4 +313,8 @@ s|TitleWindow.markingTitleWindow {
 
 s|TitleWindow.feedbackTitleWindow {
 	skinClass: ClassReference("skins.ielts.titlewindows.FeedbackTitleWindowSkin");
+}
+
+s|TitleWindow.titleWindowClose {
+	skinClass: ClassReference("skins.ielts.titlewindows.TitleWindowCloseSkin");
 }

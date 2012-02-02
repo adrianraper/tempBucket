@@ -98,7 +98,7 @@
 										<s:SolidColor id="fillColor" />
 									</s:fill>
 								</s:Rect>
-								<s:Label id="captionLabel" left="20" fontSize="12" />
+								<s:Label id="captionLabel" left="20" fontSize="12.6" />
 							</s:Group>
 						</s:ItemRenderer>
 					</fx:Component>

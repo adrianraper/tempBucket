@@ -11,7 +11,7 @@ package com.clarityenglish.ielts.view.home.ui {
 	
 	import spark.components.Label;
 	import spark.primitives.Rect;
-		
+
 	public class CourseBarRenderer extends SkinnableDataRenderer {
 		
 		/**
@@ -33,14 +33,19 @@ package com.clarityenglish.ielts.view.home.ui {
 		
 		public var courseClass:String;
 		
-	
+		private var _courseCaption:String;
+		
+		public function set courseCaption(value:String):void {
+			_courseCaption = value;
+		}
+
 		public function set dataProvider(value:XML):void {
 			
 			if (value) {
 				var course:XML = value.course.(@["class"]==courseClass)[0];
 				solidColour.color = getStyle(courseClass + "Color");
 				backColour.color = getStyle(courseClass + "ColorDark");
-				commentLabel.text = courseClass + " - overall coverage " + new Number(course.@coverage) + "%";
+				commentLabel.text = _courseCaption + " - overall coverage " + new Number(course.@coverage) + "%";
 				var percentValue:Number = new Number(course.@coverage);
 							
 				// Tween it
@@ -54,7 +59,5 @@ package com.clarityenglish.ielts.view.home.ui {
 		private function properCase(word:String):String {
 			return word.charAt(0).toUpperCase()+word.substr(1).toLowerCase();
 		}
-		
 	}
-	
 }

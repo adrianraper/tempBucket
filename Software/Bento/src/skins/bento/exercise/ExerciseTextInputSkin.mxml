@@ -70,7 +70,7 @@
 	<s:Line left="0" right="0" bottom="1">
 		<s:stroke>
 			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8"
-								color.disabledStates="#DD143F"/>
+								color.disabledStates="#6A6A6A"/>
 		</s:stroke>
 	</s:Line>
 	

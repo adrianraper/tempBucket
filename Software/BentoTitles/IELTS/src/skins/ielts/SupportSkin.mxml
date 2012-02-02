@@ -8,8 +8,56 @@
 	</fx:Metadata>
 	
 	<s:layout>
-		<s:HorizontalLayout paddingTop="50" />
+		<s:VerticalLayout paddingTop="50" />
 	</s:layout>
-	<s:Label text="Please contact support@clarityenglish.com if you have any trouble." />
 	
+	<s:VGroup width="70%" paddingTop="20" >
+	<s:Label text="Help" fontSize="20" width="70%" />
+	<s:Rect left="100" right="0" top="100" bottom="0" width="100%" height="1" >
+		<s:fill>
+			<s:SolidColor color="0x999999" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Spacer height="5" />
+
+	<s:Label text="Technical problems" width="70%" fontWeight="bold"  />
+	<s:Label text="Clarity will be pleased to help you with any technical problems. However, please check with the technical support of your institution first as they may have a quicker answer." width="100%" />
+	<s:Spacer height="5" />	
+	<s:Label text="Email support@clarityenglish.com with a description of your problem and the URL of your course (if you are running online)." width="100%" />
+
+	<s:Spacer height="15" />	
+	<s:Label text="Content problems" width="70%" fontWeight="bold"  />
+	<s:Label text="If you have any enquiries about the content, for example, if you have questions about an answer in the exercises, please contact the British Council. " width="100%" />
+	</s:VGroup>	
+		<s:VGroup width="50%" paddingTop="20" >
+	<s:Label text="Credits and acknowledgements" fontSize="20" width="70%" />
+		<s:Rect left="100" right="0" top="100" bottom="0" width="100%" height="1" >
+			<s:fill>
+				<s:SolidColor color="0x999999" />
+			</s:fill>
+		</s:Rect>
+			<s:Spacer height="5" />
+	<s:Label text="British Council CD-ROM Project Production Team " width="70%" fontWeight="bold"  />
+	<s:Label text="Project Manager: Mark Osborne" />
+	<s:Label text="Project Co-ordinator: Graham Shipman" />
+	<s:Label text="IELTS Co-ordinator: Julia Baracco" />
+	<s:Label text="UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller" />
+	<s:Label text="Production Assistant: Cecilia Koutsouba" />
+	<s:Label text="Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive" />
+	<s:Label text="Technical Assistance: Bybit srl, Milan" />
+	<s:Label text="Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane, Susan Hutchison and Shannon West " />
+	
+	<s:Spacer height="5" />
+	<s:Label text="Sound Recordings" width="70%" fontWeight="bold"  />
+	<s:Label text="Examiners: Andy Harvey and Rose Aravanis" />
+	<s:Label text="Project Co-ordinator: Graham Shipman" />
+	<s:Label text="IELTS Co-ordinator: Julia Baracco" />
+	<s:Label text="UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller" />
+	<s:Label text="Production Assistant: Cecilia Koutsouba" />
+	<s:Label text="Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive" />
+	<s:Label text="Technical Assistance: Bybit srl, Milan" />
+	<s:Label text="Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane, Susan Hutchison and Shannon West " />
+
+	</s:VGroup>
 </s:Skin>

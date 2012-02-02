@@ -10,7 +10,7 @@
 		<![CDATA[		
 		]]>
 	</fx:Script>
-			<s:Group width="90%" top="5">
+			<s:Group width="96%" top="5">
 				<s:Rect top="0" left="0" height="30" percentWidth="100" radiusX="8" radiusY="8" >
 					<s:fill>
 						<s:SolidColor id="backColour" color="{getStyle('ColorDark')}" />

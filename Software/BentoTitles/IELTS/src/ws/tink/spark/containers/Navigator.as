@@ -335,7 +335,7 @@ package ws.tink.spark.containers
 	 *    focusedTextSelectionColor=""
 	 *    fontFamily="Times New Roman"
 	 *    fontLookup="device"
-	 *    fontSize="12"
+	 *    fontSize="12.6"
 	 *    fontStyle="normal"
 	 *    fontWeight="normal"
 	 *    inactiveTextSelectionColor="0xE8E8E8"

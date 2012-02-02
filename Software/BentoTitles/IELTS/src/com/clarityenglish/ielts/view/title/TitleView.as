@@ -94,9 +94,6 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HelpIcon")]
 		private var helpIcon:Class;
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="LogoutIcon")]
-		private var logoutIcon:Class;
-		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionAcademicLogo:Class;

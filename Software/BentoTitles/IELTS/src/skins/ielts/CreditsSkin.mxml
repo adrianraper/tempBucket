@@ -8,8 +8,15 @@
 	</fx:Metadata>
 	
 	<s:layout>
-		<s:HorizontalLayout paddingTop="50" />
+		<s:HorizontalLayout paddingTop="50" horizontalAlign="center" />
 	</s:layout>
-	<s:Label text="Good luck in your IELTS exam." />
+	<s:VGroup horizontalAlign="center" verticalAlign="middle">
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" width="700" />
+		<s:Label text="Thank you for using Road to IELTS." fontSize="18" color="0X0C436B" />
+		<s:Spacer height="1" />
+		<s:Label text="Good luck in your IELTS exam." fontSize="18" color="0X0C436B" />
+
+	</s:VGroup>
+
 	
 </s:Skin>
