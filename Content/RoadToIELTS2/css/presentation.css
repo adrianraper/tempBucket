@@ -229,3 +229,14 @@ padding-left: -27em;
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/*Layout to align text with graphic in LM>Writing>Set 2 Task 1>Practice activity A.*/
+#imgwrapper{
+			width: 320px;
+			float:right;
+		}
+		
+#imgwrapper p{
+			padding-top: 0px;
+			padding-left: 35px;
+			line-height: 22em;
+}

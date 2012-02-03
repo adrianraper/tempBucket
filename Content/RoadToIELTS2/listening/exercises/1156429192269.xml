@@ -5,8 +5,7 @@
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
-	<link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -31,6 +30,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="the weather forecast" correct="true"/>
+	  <answer value="weather forecasts" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="lengthy newspaper articles" correct="true"/>

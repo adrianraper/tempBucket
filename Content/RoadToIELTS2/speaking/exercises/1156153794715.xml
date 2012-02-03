@@ -50,10 +50,10 @@
 	
 <section id="noscroll">
   <span id="a8" draggable="true">3 parts</span>
-  <span id="a11" draggable="true">Section 1</span>
+  <span id="a11" draggable="true">Phase 1</span>
   <span id="a9" draggable="true">communicate</span>
   <span id="a10" draggable="true">1 to 2</span>
-  <span id="a12" draggable="true">Sections 2 and 3</span>
+  <span id="a12" draggable="true">Phases 2 and 3</span>
   <span id="a7" draggable="true">11 to 14</span>
 </section>
 

@@ -72,7 +72,10 @@
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6" >
-      <answer value="a fire" correct="true">
+      <answer value="fire" correct="true">
+        <feedback source="fb6"/>
+      </answer>
+	  <answer value="a fire" correct="true">
         <feedback source="fb6"/>
       </answer>
       <answer value="a log fire" correct="true">
@@ -83,15 +86,24 @@
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
-      <answer value="a live band" correct="true">
+      <answer value="live band" correct="true">
         <feedback source="fb7"/>
       </answer>
-      <answer value="a live group" correct="true">
+	  <answer value="a live band" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+      <answer value="live group" correct="true">
+        <feedback source="fb7"/>
+      </answer>
+	  <answer value="a live group" correct="true">
         <feedback source="fb7"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
       <answer value="in Park Road" correct="true">
+        <feedback source="fb8"/>
+      </answer>
+	  <answer value="Park Road" correct="true">
         <feedback source="fb8"/>
       </answer>
     </GapFillQuestion>

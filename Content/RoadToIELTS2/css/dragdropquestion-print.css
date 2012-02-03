@@ -104,3 +104,15 @@ input {
 	display: none;
 }
 
+/*Layout div in use for LM>Writing>Set 1 task 1>Organising your report*/
+#orgreport {
+			padding-top: 12px;
+			text-align: left;
+			line-height: 22em;
+			padding-right: 260%;
+		}
+
+#orgreport p{
+			padding-bottom: 12px;
+			max-width:10px;
+		}	

@@ -27,11 +27,11 @@
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="13 Berkely Road" correct="true"/>
-      <answer value="13, Berkey Road" correct="true"/>
-      <answer value="13 Berkey Rd" correct="true"/>
-      <answer value="13, Berkey Rd" correct="true"/>
-      <answer value="13 Berkey Rd." correct="true"/>
-      <answer value="13, berkey Rd." correct="true"/>
+      <answer value="13, Berkely Road" correct="true"/>
+      <answer value="13 Berkely Rd" correct="true"/>
+      <answer value="13, Berkely Rd" correct="true"/>
+      <answer value="13 Berkely Rd." correct="true"/>
+      <answer value="13, berkely Rd." correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="1962870533" correct="true"/>
@@ -81,7 +81,7 @@
 <br/>&#xA0;
 <br/>&#xA0;</p>
 <p><b>Card No.</b></p>
-<p><b>Expiry date:</b></p>
+<p><b>Expiry Date:</b></p>
 <p></p>
 </div>
 
@@ -96,7 +96,7 @@
 <p>(11)&#xA0;<input id="q4"/></p>
 <p>_ Cash
 <br/>_ Cheque
-<br/>_ Credit card
+<br/>Credit card
 <br/><span class="underline">X</span>&#xA0;MasterCard
 <br/>_ VISA</p>
 <p>(12)&#xA0;<input id="q5"/></p>

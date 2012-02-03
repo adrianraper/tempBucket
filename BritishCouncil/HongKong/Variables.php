@@ -1,7 +1,7 @@
 <?php
 	//$thisDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
-	$thisDomain = 'http://www.ieltspractice.com/';
-	$commonDomain = 'http://www.clarityenglish.com/';
+	$thisDomain = 'http://dock.projectbench/';
+	$commonDomain = 'http://dock.fixbench/';
 	$startFolder = "BritishCouncil/RoadToIELTS/";
 	// We need to know the dbHost that is used
 	$locationInfo = parse_setting_file($commonDomain.$startFolder."location-1.txt");

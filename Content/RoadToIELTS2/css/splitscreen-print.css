@@ -68,6 +68,18 @@ sh1, shi1 > p {
 	padding-left: 0px;
 }
 
+/* exercise area spacing */
+#splitquestionList {
+	padding: 20px 0px 20px 0px;
+	line-height: 22em;
+	font-size: 14px;
+	margin: 0 20px 20px 20px;
+	}
+	
+#splitquestionList li {
+	padding: 0 0 30px 15px;
+	font-size: 14px;
+	}
 /* Links and draggable spans should be blue and not underlined */
 a {
 	color: #3A00FF;
@@ -99,3 +111,14 @@ float: right;
 .leftFloat {
 	padding: 20px 0 20px 0;
 }
+
+/* Multiple-choice answers use letters i.e Reading 2 And then there were none */
+.answerList {
+	list-style-type: lowerLatin;
+	padding: 0px 0 0 0;
+	line-height: 20em;
+	}
+
+.answerList li {
+	list-style-type: lowerLatin;
+	}

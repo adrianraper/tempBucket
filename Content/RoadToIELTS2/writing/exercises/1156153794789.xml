@@ -55,7 +55,7 @@
 	
 <header>
 <div id="instruction">
-	Beside each chart there are two icons. Click on each of these and decide which displays the same information as the main chart. When you have decided, click on Chart A or Chart B as appropriate.
+	First look at Charts A and B. Then decide which one displays the same information as the main chart at the top. When you have decided, click on the Chart A or Chart B label in blue as appropriate.
 </div>
 </header>
 	
@@ -79,11 +79,11 @@
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">There are two pie charts here because in the bar chart on the left the percentages referred to two different age groups.</p>
+  <p class="feedbacktext">There are two pie charts here because in the bar chart at the top the percentages referred to two different age groups.</p>
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">The percentage in the bar chart on the left referred to two different age groups, for example 31 per cent of 16 to 24 year olds. This pie chart has mixed the age groups together to form a whole, so now the percentages don't refer to anything.</p>
+  <p class="feedbacktext">The percentage in the bar chart at the top referred to two different age groups, for example 31 per cent of 16 to 24 year olds. This pie chart has mixed the age groups together to form a whole, so now the percentages don't refer to anything.</p>
 </section>
 
 

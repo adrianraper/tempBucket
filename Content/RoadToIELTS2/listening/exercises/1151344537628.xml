@@ -95,7 +95,7 @@
 <p>No. of Tickets</p>
 <p>Seat Numbers</p>
 <p>Total Cost</p>
-
+<p>&#xA0;</p>
 <p><b>CREDIT CARD DETAILS</b></p>
 <p>Card
 <br/>&#xA0;
@@ -103,6 +103,7 @@
 <p>Name of Cardholder</p>
 <p>Card No.</p>
 <p>Expiry Date</p>
+<p>&#xA0;</p>
 <p><b>DELIVERY METHOD</b></p>
 <p>	
 <br/>&#xA0;</p>
@@ -116,10 +117,10 @@
 <p>(1)&#xA0;<input id="q1"/>&#xA0;September</p>
 <p>(2)&#xA0;<input id="q2"/>&#xA0;p.m.</p>
 <p>(3)&#xA0;<input id="q3"/></p>
-<p>TWO</p>
+<p>Two</p>
 <p>(4)&#xA0;<input id="q4"/></p>
 <p>&#xA3; (5)&#xA0;<input id="q5"/></p>
-
+<p>&#xA0;</p>
 <p>&#xA0;</p>
 <p>_ VISA	
 <br/>_ Master Card	<br/>
@@ -129,6 +130,8 @@
 <p>(7)&#xA0;<input id="q7"/></p>
 <p>March 2005</p>
 <p></p>
+<p>&#xA0;</p>
+
 <p>_ Hold tickets for collection
 <br/><span class="underline">X</span>&#xA0;Post tickets</p>
 <p>(8)&#xA0;<input id="q8"/>, Winchester</p>

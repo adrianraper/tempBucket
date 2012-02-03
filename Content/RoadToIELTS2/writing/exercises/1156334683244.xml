@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="clickme" source="examtips" width="629" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -73,50 +74,44 @@
 <img class="photo1" src="../media/WR_SA_001.jpg" mode="1" id="1003"  />
 <br/>
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
- <br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+ <br/><br/><br/><br/>
 <h7><p>Sentence A:</p></h7>
-<p>the hunting of rare species must be banned, and an international agency ought to be set up to prevent the trade in products made from rare species</p>
+<p>The hunting of rare species must be banned, and an international agency ought to be set up to prevent the trade in products made from rare species.</p>
 
 <h7><p>Sentence B:</p></h7>
-<p>the only effective way to prevent the contamination of natural habitats is to impose heavy fines on those companies that ignore regulations</p>
+<p>The only effective way to prevent the contamination of natural habitats is to impose heavy fines on those companies that ignore regulations.</p>
 
 <h7><p>Sentence C:</p></h7>
-<p>this is partly due to the fact that industry needs the wood and because growing populations need the land for agriculture</p>
+<p>This is partly due to the fact that industry needs the wood and because growing populations need the land for agriculture.</p>
 
 <h7><p>Sentence D:</p></h7>
-<p>this leads to the extinction of the species which live there</p>
+<p>This leads to the extinction of the species which live there.</p>
 
 <h7><p>Sentence E:</p></h7>
-<p>to reduce or stop further deforestation, it is essential that timber for industry should be taken only from renewable forests</p>
+<p>To reduce or stop further deforestation, it is essential that timber for industry should be taken only from renewable forests.</p>
 
 
 </section>
-<section id="writingtask1">
-
-
-<p class="popuptext"> You should spend about 40 minutes on this task.</p>
-<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic</b></p>
-<p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
-<p class="popuptext">You should write at least 250 words</p>
-<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
-
-		</section>
-		
-		<section id="body">
+	
+<section id="body">
 <div id="splitquestionList">
 
   <p>Large numbers of animals and plants are threatened with extinction mainly as a result of human activity. Obviously this constitutes a major environmental disaster in itself since it reduces the biodiversity of our planet. However, it could also give rise to agricultural problems since the disappearance of many insects would affect pollination and pest control. Furthermore, many of the plants used for making medicines would also disappear forever.</p>
   <p><br/>
-    Before suggesting solutions to the problem, we need to examine some of the human activities that are causing the extinction of so many species. The most important cause is almost certainly the destruction of animal and plant habitats, particularly the destruction of forests where so many species live. (Sentence&#xA0;<input id="q1"/>. )
+    Before suggesting solutions to the problem, we need to examine some of the human activities that are causing the extinction of so many species. The most important cause is almost certainly the destruction of animal and plant habitats, particularly the destruction of forests where so many species live. (Sentence&#xA0;<input id="q1"/>&#xA0;)
   </p>
   <p><br/>
-    Another significant cause is pollution, which poisons land, rivers and lakes. (Sentence &#xA0;<input id="q2"/>. ) A third cause is the hunting of rare species for food, traditional medicines and various animal products which can be sold at high prices to collectors.
+    Another significant cause is pollution, which poisons land, rivers and lakes. (Sentence&#xA0;<input id="q2"/>&#xA0;) A third cause is the hunting of rare species for food, traditional medicines and various animal products which can be sold at high prices to collectors.
   </p>
   <p><br/>
-    A number of urgent measures need to be taken in order to solve the problem. Firstly, (Sentence&#xA0;<input id="q3"/>. ) In addition, local populations should be encouraged to make a living by harvesting the natural products which grow in forests, instead of burning them down in order to grow cash crops such as coffee. As regards pollution, (Sentence&#xA0;<input id="q4"/>. ) This should discourage them from polluting again. Finally, (Sentence&#xA0;<input id="q5"/>. )
+    A number of urgent measures need to be taken in order to solve the problem. Firstly, (Sentence&#xA0;<input id="q3"/>&#xA0;) In addition, local populations should be encouraged to make a living by harvesting the natural products which grow in forests, instead of burning them down in order to grow cash crops such as coffee. As regards pollution, (Sentence&#xA0;<input id="q4"/>&#xA0;) This should discourage them from polluting again. Finally, (Sentence&#xA0;<input id="q5"/>&#xA0;)
   </p>
   <p><br/>
-  To sum up, this is a problem which cannot be solved until we humans learn to live in harmony with our natural surroundings and to respect them. By preserving natural habitats such as forests, preventing pollution and stopping illegal hunting an environmental disaster could be averted.&#xA0;</p>
+  To sum up, this is a problem which cannot be solved until we humans learn to live in harmony with our natural surroundings and to respect them. By preserving natural habitats such as forests, preventing pollution and stopping illegal hunting, an environmental disaster could be averted.</p>
+  <p></p>
+  </div>
+</section>
  
  <section id="fb1">
   <p class="feedbacktext">1. What's missing here are the causes of deforestation.</p>
@@ -138,8 +133,27 @@
   <p class="feedbacktext">5. What's missing here is a solution to the problem of hunting and trading in animal products.</p>
 </section>
   
+<section id="writingtask1">
 
-  </div>
+
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
+<p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
 </section>
+
+<section id="examtips">
+
+
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
+<p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+</section>
+
 </body>
 </bento>

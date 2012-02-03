@@ -16,8 +16,6 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
-</settings>
 </script>
 
 </head>
@@ -25,14 +23,14 @@
 	
 <header>
 <div id="instruction">
-	Section 3 of the IELTS Speaking Module
+	Phase 3 of the IELTS Speaking test
 </div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/TT_SP_002.jpg" mode="1" id="1001"/>
   <div id="presentation">
-  <p>Sections 2 and 3 are linked by a common theme. When you have finished your talk in Section 2, you will be asked several questions related to the same theme. Answer simply but clearly. Take a little time to think about your answer, if necessary. Each answer could be from one to five sentences long. You may be asked to compare, to evaluate, to explain, to describe, to speculate. Over the coming units you will learn strategies to deal with all these situations. Remember, you are NOT being tested on your general knowledge, but on your ability to communicate! 
+  <p>Phases 2 and 3 are linked by a common theme. When you have finished your talk in Phase 2, you will be asked several questions related to the same theme. Answer simply but clearly. Take a little time to think about your answer, if necessary. Each answer could be from one to five sentences long. You may be asked to compare, to evaluate, to explain, to describe, to speculate. Over the coming units you will learn strategies to deal with all these situations. Remember, you are NOT being tested on your general knowledge, but on your ability to communicate! 
   </p>
   
     

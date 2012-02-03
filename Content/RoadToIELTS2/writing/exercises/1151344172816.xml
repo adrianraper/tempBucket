@@ -76,13 +76,13 @@
   </section>
   
   <section id="noscroll">
-  <span id="a10" draggable="true">Blanking Press</span>
-  <span id="a14" draggable="true">Distribution to Banks</span>
-  <span id="a12" draggable="true">Coining Press</span>
-  <span id="a8" draggable="true">Foundry</span>
-  <span id="a9" draggable="true">Rolling Mill</span>
+  <span id="a10" draggable="true">blanking press</span>
+  <span id="a14" draggable="true">distribution to banks</span>
+  <span id="a12" draggable="true">coining press</span>
+  <span id="a8" draggable="true">foundry</span>
+  <span id="a9" draggable="true">rolling mill</span>
   <span id="a13" draggable="true">Trial of the Pyx</span>
-  <span id="a11" draggable="true">Annealing and Pickling Plant</span>
+  <span id="a11" draggable="true">annealing and pickling plant</span>
 </section>
 
   <section id="body">
@@ -110,43 +110,43 @@
 
 <section id="fb1">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">1. 'The first stage takes place at the foundry.'</font>
+    1. 'The first stage takes place at the foundry ...'
   </p>
 </section>
 
 <section id="fb2">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">2. 'The metal is subsequently flattened...in the rolling mill.'</font>
+    2. 'The metal is subsequently flattened ... in the rolling mill.'
   </p>
 </section>
 
 <section id="fb3">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">3. 'This sheet metal is then fed into the blanking press.'</font>
+    3. 'This sheet metal is then fed into the blanking press ...'
   </p>
 </section>
 
 <section id="fb4">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">4. 'Prior to this (being stamped with a design) they must be softened and cleaned in the annealing and pickling plant.'</font>
+    4. 'Prior to [being stamped with a design] they must be softened and cleaned in the annealing and pickling plant.'
   </p>
 </section>
 
 <section id="fb5">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">5. 'Once this (softening and cleaning) is completed, the blanks go to the coining press.'</font>
+    5. 'Once [softening and cleaning] is completed, the blanks go to the coining press ...'
   </p>
 </section>
 
 <section id="fb6">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">6. 'Next, (after being stamped in the coining press) a sample goes through...the Trial of the Pyx.'</font>
+    6. 'Next, [after being stamped in the coining press] a sample ... goes through ... the Trial of the Pyx.'
   </p>
 </section>
 
 <section id="fb7">
   <p class="feedbacktext">
-    <font face="verdana" size="13" color="#000000">7. 'The coins are finally ready for circulation.'</font>
+    7. 'The coins are finally ready to go into circulation.'
   </p>
 </section>
 

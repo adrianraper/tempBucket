@@ -65,7 +65,7 @@
 	
 <header>
 <div id="instruction">
-		Questions 1-4. Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters A-G.
+		Questions 1-4. Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters a-g.
 		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
 </div>		
 
@@ -77,7 +77,7 @@
   
   
   
-    <p><b>1 - 4 Which FOUR advantages of having a web site are mentioned by the speaker?</b></p>
+    <p><b>Questions 1-4. Which FOUR advantages of having a web site are mentioned by the speaker?</b></p>
 	
 	<ol id="targetspotting">
 		<list class="answerList">
@@ -94,31 +94,31 @@
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">A. The speaker says that you don't have to employ a professional programmer. In other words, you don't need to employ additional staff. She does not say anything about being able to reduce staff.</p>
+  <p class="feedbacktext">a. The speaker says that you don't have to employ a professional programmer. In other words, you don't need to employ additional staff. She does not say anything about being able to reduce staff.</p>
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">B. The speaker says that it's a 'comparatively low-cost way to advertise' and 'low-cost' has a similar meaning to 'inexpensive'.</p>
+  <p class="feedbacktext">b. The speaker says that it's a 'comparatively low-cost way to advertise' and 'low-cost' has a similar meaning to 'inexpensive'.</p>
 </section>
 
 <section id="fb3">
-  <p class="feedbacktext">C. The speaker says that the web sites of small companies need not be any different to those of larger companies and so they can be just as impressive. In other words, just as competitive.</p>
+  <p class="feedbacktext">c. The speaker says that the web sites of small companies need not be any different to those of larger companies and so they can be just as impressive. In other words, just as competitive.</p>
 </section>
 
 <section id="fb4">
-  <p class="feedbacktext">D. The speaker does not mention this.</p>
+  <p class="feedbacktext">d. The speaker does not mention this.</p>
 </section>
 
 <section id="fb5">
-  <p class="feedbacktext">E. The speaker says that a web site gives a much greater number of customers the possibility of buying the products and that people anywhere in the world can find out about these products.</p>
+  <p class="feedbacktext">e. The speaker says that a web site gives a much greater number of customers the possibility of buying the products and that people anywhere in the world can find out about these products.</p>
 </section>
 
 <section id="fb6">
-  <p class="feedbacktext">F. The speaker says its easier to revise and update the web pages not the products and services.</p>
+  <p class="feedbacktext">f. The speaker says its easier to revise and update the web pages, not the products and services.</p>
 </section>
 
 <section id="fb7">
-  <p class="feedbacktext">G. The speaker says that you can quickly and easily change the information on your web site and keep customers informed. In other words keep them up-to-date.</p>
+  <p class="feedbacktext">g. The speaker says that you can quickly and easily change the information on your web site and keep customers informed. In other words keep them up-to-date.</p>
 </section>
 
 <section id="rt2001">

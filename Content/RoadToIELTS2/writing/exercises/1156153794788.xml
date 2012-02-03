@@ -55,7 +55,7 @@
 	
 <header>
 <div id="instruction">
-	Beside each chart there are two icons. Click on each of these and decide which displays the same information as the main chart. When you have decided, click on Chart A or Chart B as appropriate.
+	First look at Charts A and B. Then decide which one displays the same information as the main chart at the top. When you have decided, click on the Chart A or Chart B label in blue as appropriate.
 </div>
 </header>
 	
@@ -78,11 +78,11 @@
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">Most of the values in this bar chart are much higher than the ones given in the proportional bar chart you saw first. For example, money spent by men on 'other leisure' in this chart is over &#xA3;20 per week. In the original chart on the left, the figure is only about &#xA3;5.</p>
+  <p class="feedbacktext">Most of the values in this bar chart are much higher than the ones given in the proportional bar chart at the top. For example, money spent by men on 'other leisure' in this chart is over &#xA3;20 per week. In the original chart at the top, the figure is only about &#xA3;5.</p>
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">The figures in this standard bar chart are the same as the ones given in the proportional bar chart on the left. The difference is that the values are next to each other instead of on top of each other to form towers.</p>
+  <p class="feedbacktext">The figures in this standard bar chart are the same as the ones given in the proportional bar chart at the top. The difference is that the values are next to each other instead of on top of each other to form towers.</p>
 </section>
 
 

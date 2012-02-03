@@ -1,6 +1,6 @@
 * {
 	font-size: 12px;
-	font-family: Verdana;
+	font-family: Arial;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* The main header should always be bold */
@@ -216,6 +216,8 @@ h7{
 
 #targetspotting p{
 	padding-bottom: 20em;
+	font-size: 12px;
+	font-family: Arial;
 	}
 
 /* This is for targetspotting exercises that have videos. */

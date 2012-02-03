@@ -88,7 +88,7 @@
     <li id="7">We are having a bad winter. The weather is much&#xA0;<input id="q7" type="droptarget"/>&#xA0;than last year.</li>
     <li id="8">I loved the film. It was the&#xA0;<input id="q8" type="droptarget"/>&#xA0;film I had ever seen.</li>
     <li id="9">Did people lead simple lives thirty years ago? Yes, my grandmother's life was much&#xA0;<input id="q9" type="droptarget"/>&#xA0;than mine.</li>
-    <li id="10">Would you say people have comfortable lives now?Yes, my life is much&#xA0;<input id="q10" type="droptarget"/>&#xA0;than my parents'.</li>
+    <li id="10">Would you say people have comfortable lives now? Yes, my life is much&#xA0;<input id="q10" type="droptarget"/>&#xA0;than my parents'.</li>
   </ol>
 </section>
 

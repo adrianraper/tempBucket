@@ -75,17 +75,7 @@
 <p>CO2 emissions from vehicles and industry should be reduced and more use made of renewable energy sources such as wind and solar power.</p>
 </section>
 
-<section id="writingtask1">
-
-
-<p class="popuptext"> You should spend about 40 minutes on this task.</p>
-<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic</b></p>
-<p class="popuptext"><b>Many species of animals and plants are in danger of becoming extinct. What are the causes of this problem, and what can be done to prevent it from happening?</b></p>
-<p class="popuptext">You should write at least 250 words</p>
-<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
-
-		</section>
-		<section id="body">
+<section id="body">
   
   <ol id="splitquestionList">
     <li id="1">Some species are unable to adapt to the changing climate brought about by global warming.
@@ -101,6 +91,17 @@
     <li id="6">Forests are cleared to provide agricultural land.
 	<p ><b>Solution</b> &#xA0;<input id="q6"/><br/></p></li>
   </ol>
+</section>
+
+<section id="writingtask1">
+
+
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
+<p class="popuptext"><b>Many species of animals and plants are in danger of becoming extinct. What are the causes of this problem, and what can be done to prevent it from happening?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
 </section>
 </body>
 </bento>

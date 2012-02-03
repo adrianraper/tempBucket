@@ -55,7 +55,7 @@
 	
 <header>
 <div id="instruction">
-	Beside each chart there are two icons. Click on each of these and decide which displays the same information as the main chart. When you have decided, click on Chart A or Chart B as appropriate.
+	First look at Charts A and B. Then decide which one displays the same information as the main chart at the top. When you have decided, click on the Chart A or Chart B label in blue as appropriate.
 </div>
 </header>
 	
@@ -78,7 +78,7 @@
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">These are the same figures as in the standard bar chart on the left, but presented as a proportional bar chart. The figures for each activity are built up, one on top of another, to reach a total percentage for the age group of 100 per cent.</p>
+  <p class="feedbacktext">These are the same figures as in the standard bar chart at the top, but presented as a proportional bar chart. The figures for each activity are built up, one on top of another, to reach a total percentage for the age group of 100 per cent.</p>
 </section>
 
 

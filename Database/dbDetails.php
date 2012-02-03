@@ -2,6 +2,20 @@
 class DBDetails {
 	function DBDetails($dbHost) {
 		switch ($dbHost) {
+			case 101:
+				$this->driver = "mysql"; 
+				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";  
+				$this->user = "clarity"; 
+				$this->password = "clarity123"; 
+				$this->dbname  = "GlobalRoadToIELTS";
+				break;
+			case 100:
+				$this->driver = "mysql"; 
+				$this->host = "localhost";  
+				$this->user = "root"; 
+				$this->password = "Sunshine1787"; 
+				$this->dbname  = "GlobalRoadToIELTS";
+				break;
 			case 2:
 				$this->driver = "mysql"; 
 				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";  

@@ -38,11 +38,8 @@
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="5 - 15" correct="true"/>
-      <answer value="five - fifteen" correct="true"/>
       <answer value="5 to 15" correct="true"/>
-      <answer value="five to fifteen" correct="true"/>
       <answer value="5 and 15" correct="true"/>
-      <answer value="five and fifteen" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="discuss it" correct="true">
@@ -111,7 +108,7 @@
 <p class="hangingIndent1">Aims:	<tab/><tab/><tab/>Guide students through course, draw students'	attention to (1)&#xA0;<input id="q1"/></p>
 
 <h9>Seminar</h9>
-<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and between (2)&#xA0;<input id="q2"/> students</p>
+<p class="hangingIndent1">Participants:	<tab/><tab/><tab/>Tutor and between (2)&#xA0;<input id="q2"/>&#xA0;students</p>
 <p class="hangingIndent1">What happens:	<tab/><tab/>Students present topic, tutor and students	(3)&#xA0;<input id="q3"/>&#xA0;as a group</p>
 <p class="hangingIndent1">Aims:<tab/><tab/><tab/>Help students to:	(4)&#xA0;<input id="q4"/>, make critical	judgements, form opinions</p>
 

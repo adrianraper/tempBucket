@@ -31,7 +31,7 @@
       <answer source="a6" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q3" block="b3">
-      <answer source="a7" correct="false"/>
+      <answer source="a7" correct="true"/>
       <answer source="a8" correct="true"/>
       <answer source="a9" correct="false"/>
     </DropDownQuestion>
@@ -41,7 +41,7 @@
       <answer source="a12" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q5" block="b5">
-      <answer source="a13" correct="false"/>
+      <answer source="a13" correct="true"/>
       <answer source="a14" correct="true"/>
       <answer source="a15" correct="false"/>
     </DropDownQuestion>
@@ -51,7 +51,7 @@
       <answer source="a18" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q7" block="b7">
-      <answer source="a19" correct="false"/>
+      <answer source="a19" correct="true"/>
       <answer source="a20" correct="true"/>
       <answer source="a21" correct="false"/>
     </DropDownQuestion>
@@ -69,7 +69,7 @@
 <header>
 	
 		
-		Determine which conditionals: 'if', 'provided' or 'unless' to use in each questions.
+		Determine which conditionals: 'if', 'provided' or 'unless' to use in each question.
 		
 </header>
 	

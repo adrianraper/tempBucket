@@ -56,7 +56,7 @@
 	
 <header>
 <div id="instruction">		
-		Questions 7-9. Listen to the recording, which will play automatically, and follow the instructions. Click THREE letters A-F.
+		Questions 7-9. Listen to the recording, which will play automatically, and follow the instructions. Click THREE letters a-f.
 		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
 </div>		
 
@@ -68,7 +68,7 @@
 
   
  
-	<p><b>7-9  What is wrong with the washing machine?</b></p>
+	<p><b>Questions 7-9. What is wrong with the washing machine?</b></p>
 	 <ol id="targetspotting">
 		<list class="answerList">
 		<li><a id="t1">It leaks.</a></li>

@@ -120,7 +120,7 @@
   <br/><br/><br/>
  <img class="rightFloat" src="../media/TT_AW_013.jpg" mode="1" id="1001"  />
 	<ol id="questionList">
-	<li>Employment Opportunities&#xA0;<br/>
+	<li>Employment opportunities&#xA0;<br/>
 		<input id="q1" type="droptarget" /><tab/><tab/><input id="q2" type="droptarget" /></li>
 		<p class="linespace"></p>
 	<li>Business and the local economy&#xA0;<br/>
@@ -137,19 +137,19 @@
 
 <div id="feedback1">
   <p class="feedbacktext">
-    <b>1. Employment Opportunities </b>
+    <b>1. Employment opportunities </b>
   </p>
   <ul>
   <li>More and better job opportunities for locals</li>
-  <li>Tourist industry only offers locals menial, badly-paid, seasonal jobs</li>
+  <li>Tourist industry only offers locals menial, badly-paid, seasonal jobs.</li>
   </ul>
 
   <p class="feedbacktext">
     <b>2. Business and the local economy </b>
   </p>
   <ul>
-  <li>Local businesses flourish</li>
-  <li>If holiday company is often foreign-owned, little money may reach local economy</li>
+  <li>Local businesses flourish.</li>
+  <li>If holiday company is often foreign-owned, little money may reach local economy.</li>
   </ul>
   </div>
   <div id="feedback2">
@@ -157,30 +157,27 @@
     <b>3. Infrastructure, facilities and the environment</b>
   </p>
   <ul>
-  <li>Tourist facilities may cause environmental damage </li>
-  <li>Locals as well as tourists benefit from improved infrastructure</li>
+  <li>Tourist facilities may cause environmental damage.</li>
+  <li>Locals as well as tourists benefit from improved infrastructure.</li>
   </ul>
   <p class="feedbacktext">
     <b>4.  Local customs and culture</b>
   </p>
   <ul>
-  <li>Local customs and traditions may not be respected</li>
-  <li>Locals and tourists learn about each other&#x2019;s cultures</li>
+  <li>Local customs and traditions may not be respected.</li>
+  <li>Locals and tourists learn about each other&#x2019;s cultures.</li>
   </ul>
   <p></p>
   </div>
 </section>
 <section id="writingtask1">
-			<p class="popuptext">You should spend about 40 minutes on this task.</p>
-			<p class="popuptext">Present a written argument or case to an educated reader with no specialist knowledge of the following topic</p>
-			
-			<p class="popuptext"><b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it. However, tourism rarely benefits the countries which tourists visit.</b></p>
-			
-			<p class="popuptext"><b>To what extent do you agree or disagree</b></p>
-			
-			<p class="popuptext">You should write at least 250 words.</p>
-			
-			<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence</p>
+			<p class="popuptext"><b>Writing Task 2</b></p>
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+<p class="popuptext"><b> Excessive traffic has made cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres.</b></p>
+<p class="popuptext"><b> To what extent do you agree or disagree?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
 			
 		</section>
 

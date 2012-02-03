@@ -53,27 +53,27 @@
 <section id="body">
   <img class="rightFloat" src="../media/EN_AW_005.jpg" mode="1" id="1001"/>
   <ol id="questionList">
-  <li>The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.
+  <li><span color="#7935AB">The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.</span>
   <br/> The water-balanced railway's hydraulic brake&#xA0;<input id="q1"/>&#xA0;main function is to slow the train, helps store energy to pump water.</li>
   <p class="linespace"></p>
   
-  <li>A solar cell is a power source. It converts sunlight into electricity. 
+  <li><span color="#7935AB">A solar cell is a power source. It converts sunlight into electricity.</span>
   <br/> A solar cell is a power source&#xA0;<input id="q2"/>&#xA0;converts sunlight into electricity.</li>
   <p class="linespace"></p>
   
-  <li>A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source. 
+  <li><span color="#7935AB">A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source.</span>
   <br/> A hydram,&#xA0;<input id="q3"/>&#xA0;can irrigate fields sixty metres above the water source, is powered by water pressure.</li>
   <p class="linespace"></p>
   
-  <li>The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity. 
+  <li><span color="#7935AB">The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity.</span>
   <br/> The water-balanced railway,&#xA0;<input id="q4"/>&#xA0;is powered by the force of gravity, is an example of sustainable technology.</li>
   <p class="linespace"></p>
   
-  <li>Ecologists are scientists. They study the relationship between living organisms and their environment. 
+  <li><span color="#7935AB">Ecologists are scientists. They study the relationship between living organisms and their environment.</span>
   <br/> Ecologists are scientists&#xA0;<input id="q5"/>&#xA0;study the relationship between living organisms and their environment.</li>
   <p class="linespace"></p>
   
-  <li>Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment. 
+  <li><span color="#7935AB">Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment.</span>
   <br/> Greenpeace is an organisation&#xA0;<input id="q6"/>&#xA0;aim is to protect wildlife and the natural environment.</li>
   <p class="linespace"></p>
   

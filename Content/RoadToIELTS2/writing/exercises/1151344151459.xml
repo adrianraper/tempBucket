@@ -63,7 +63,7 @@
 	
 <header>
 	<div id="instruction">
-		Read the composition and find all the examples of modal verbs and other expressions the writer has used to express probability. Decide whether each is a modal verb or other expression by clicking on a or b on the right.
+		Read the composition on the left and find all the examples of modal verbs and other expressions the writer has used to express probability. Decide whether each is a modal verb or other expression by clicking on the appropriate answer on the right.
 		</div>
 </header>
 	
@@ -75,11 +75,13 @@
 	
 	<p>The first objection to GM crops is that they are unnatural. Biotechnologists argue that farming methods have always been unnatural since they involve selective breeding and methods of cross-pollination. However, this argument is unacceptable because genetic modification involves a totally new approach where genes from different species are introduced into a plant's composition. These permanent genetic alterations&#xA0;<b>(2) could well</b>&#xA0;have disastrous consequences which are impossible to predict.</p>
 	
-	<p>Another issue which provokes disagreement is the extent to which GM foods pose a health risk. Supporters of GM foods point out that so far no major health problems have arisen as a result of them. On the other hand, many people remain unconvinced as this technology is in its infancy, and there are real fears that GM foods &#xA0;<b>(3) may</b>&#xA0;cause allergies and that some &#xA0;<b>(4) might just</b>&#xA0;prove to be poisonous or toxic in some way.</p>
+	<p>Another issue which provokes disagreement is the extent to which GM foods pose a health risk. Supporters of GM foods point out that so far no major health problems have arisen as a result of them. On the other hand, many people remain unconvinced as this technology is in its infancy, and there are real fears that GM foods&#xA0;<b>(3) may</b>&#xA0;cause allergies and that some&#xA0;<b>(4) might just</b>&#xA0;prove to be poisonous or toxic in some way.</p>
 	
-	<p>A final area of disagreement concerns the environment. Some crops have been genetically modified to kill the pests which attack them. Advocates of these modifications point out that this avoids the need for indiscriminate spraying of crops. However, this point of view is unjustifiable as &#xA0;<b>(5) it is quite possible that</b>&#xA0;GM crops will also kill harmless or beneficial insects indiscriminately. What is more, due to cross-pollination,&#xA0;<b>(6) it is highly unlikely that</b>&#xA0;modified genes will remain confined to the new crops.&#xA0;<b>(7) In all probability</b>, the genes which kill insects will eventually escape into the wild plant population, thereby causing an environmental disaster.</p>
+	<p>A final area of disagreement concerns the environment. Some crops have been genetically modified to kill the pests which attack them. Advocates of these modifications point out that this avoids the need for indiscriminate spraying of crops. However, this point of view is unjustifiable as&#xA0;<b>(5) it is quite possible that</b>&#xA0;GM crops will also kill harmless or beneficial insects indiscriminately. What is more, due to cross-pollination,&#xA0;<b>(6) it is highly unlikely that</b>&#xA0;modified genes will remain confined to the new crops.&#xA0;<b>(7) In all probability</b>, the genes which kill insects will eventually escape into the wild plant population, thereby causing an environmental disaster.</p>
 	
 	<p>In conclusion, while GM crops&#xA0;<b>(8) may well</b>&#xA0;help raise food production in a hungry world, they do so at great risk to human and environmental health. I believe that GM foods should not be prohibited, but that much tighter controls should be put in place for their development, testing and marketing to ensure that they are completely safe.</p>
+	
+	
 	
 </section>
 
@@ -111,27 +113,26 @@
     <li id="q8">'may well'?<list class="answerList"><li><a id="a13">Modal verbs for expressing probability</a></li><li><a id="a14">Other words and expressions for expressing probability</a></li></list></li>
   </ol>
   <p class="linespace"></p>
+  <p class="linespace"></p>
  </section>
 
 <section id="fb0">
 <div id="feedback1">
   <p class="feedbacktext">
-    <b>Modal verbs for expressing probability</b>
-  </p>
-   <p class="feedbacktext">2. could well</p>
-   <p class="feedbacktext">3. may</p>
-   <p class="feedbacktext">4. might just</p>
-   <p class="feedbacktext">8. may well</p>
+    <b>Modal verbs for expressing probability</b><br/>
+  		2. could well<br/>
+		3. may<br/>
+		4. might just<br/>
+   		8. may well</p>
      </div>
 	 
    <div id="feedback2">
    <p class="feedbacktext">
-    <b>Other words and expressions for expressing probability</b>
-  </p>
-   <p class="feedbacktext">1. are likely to</p>
-   <p class="feedbacktext">5. it is quite possible that</p>
-   <p class="feedbacktext">6. it is highly unlikely that</p>
-   <p class="feedbacktext">7. in all probability</p>
+    <b>Other words and expressions for expressing probability</b><br/>
+  	1. are likely to<br/>
+   	5. it is quite possible that<br/>
+   	6. it is highly unlikely that<br/>
+   	7. in all probability</p>
    </div>
 </section>
 </body>

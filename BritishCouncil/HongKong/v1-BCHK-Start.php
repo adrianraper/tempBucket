@@ -1,7 +1,6 @@
 <?php
 
-	// This is to be uploaded to ieltspractice.com and renamed to BCHK-Start.php. It will invisibly pick up people
-	// who go in through the current system. However, I can't do because I can't get an Asia Pay testing account.
+	// This is the original start page, now accessed only if you already exist, as determined by BCHK-Start.php
 	
 session_start();
 include_once("Variables.php");
@@ -10,9 +9,6 @@ include_once "libQuery.php";
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$StudentID = $Email = '';
 	$referrer = $ip = $server = $productCode = '';
-
-	// R2IV2 first, just send the full URL direct to a capture page for testing with real data
-	sendToR2IV2();
 
 // For BC Global and Hong Kong auto
 $rootID=14030;
@@ -208,27 +204,6 @@ function decodeCharacters ($rawText) {
 	$replacement = '=';
 	$temp = preg_replace($pattern, $replacement, $temp);
 	return $temp;
-}
-function sendToR2IV2() {
-	global $thisDomain;
-	$targetURL = $thisDomain.'BritishCouncil/HongKong/R2IV2-BCHK-Start.php?'.$_SERVER['QUERY_STRING'];
-	
-	// Initialize the cURL session
-	$ch = curl_init();
-	
-	// Setup the post variables
-	$curlOptions = array(CURLOPT_HEADER => false,
-						CURLOPT_FAILONERROR=>false,
-						CURLOPT_FOLLOWLOCATION=>true,
-						CURLOPT_RETURNTRANSFER => true,
-						CURLOPT_POST => false,
-						CURLOPT_URL => $targetURL
-	);
-	curl_setopt_array($ch, $curlOptions);
-	
-	// Execute the cURL session, but keep going no matter what comes back, or doesn't.
-	$contents = curl_exec ($ch);
-	curl_close($ch);
 }
 ?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

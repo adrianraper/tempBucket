@@ -282,7 +282,7 @@
 <section id="fb0">
 <div id="feedback1">
   <p class="feedbacktext">
-    <b>Giving Opinions</b>
+    <b>Giving opinions</b>
   </p>
   <ul>
   <li>I agree</li>
@@ -302,7 +302,7 @@
 </div>
 <div id="feedback2">
   <p class="feedbacktext">
-    <b>Giving Examples</b>
+    <b>Giving examples</b>
   </p>
   <ul>
   <li>a case in point is</li>
@@ -313,7 +313,7 @@
   <li>such as</li>
 </ul>
   <p class="feedbacktext">
-    <b>Introducing Reasons for Opinions</b>
+    <b>Introducing reasons for opinions</b>
   </p>
   <ul>
   <li>a final reason is</li>

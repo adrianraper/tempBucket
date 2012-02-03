@@ -1,6 +1,6 @@
 * {
-	font-size: 12px;
-	font-family: Verdana;
+	font-size: 14px;
+	font-family: Times;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* The main header should always be bold */
@@ -67,6 +67,7 @@ img.leftFloat {
 	float:left;
 	padding: 10px 280px 0px 25px;
 	}
+	
 /*-----------------------------------------------------------------------------------------------*/
 
 /* Links and draggable spans should be blue and not underlined */
@@ -150,6 +151,7 @@ h1 {
 /* h2 is used for subtitles in reading texts and exercises */
 h2 {
 	font-size: 12px;
+	font-family: Times;
 	color: #333333;
 	padding: 0px 25px 18px 6px;
 	text-align: left;
@@ -184,6 +186,7 @@ h7{
 /* h8 is used for main titles in exercises when <h2> are present. */
 h8{
 	font-size: 15px;
+	font-family: Times;
 	font-weight: bold;
 	padding: 20px 25px 0px 6px;
 	line-height: 20em;
@@ -228,6 +231,7 @@ h10{
 	padding: 20px 0px 20px 50px;
 	line-height: 22em;
 	}
+	
 /*-----------------------------------------------------------------------------------------------*/
 /* This is for image of writing task */
 .imagetask {
@@ -238,11 +242,13 @@ h10{
 #splitquestionList {
 	padding: 20px 35px 0 25px;
 	line-height: 22em;
+	font-size: 14px;
 	margin: 0 20px 20px 20px;
 	}
 	
 #splitquestionList li {
 	padding: 0 0 30px 15px;
+	font-size: 14px;
 	}
 
 #readingText {
@@ -252,6 +258,8 @@ h10{
 
 #readingText p {
 	padding: 0 25px 20px 6px;
+	font-size:14px;
+	font-family: Times;
 	}
 
 /* This class is used for reading text which paragraph label */
@@ -343,8 +351,15 @@ list-style-type: decimal;
 	float: left;
 	width: 220px;
 	}
+	
+#feedback1 p {
+	padding: 20px 0 0 50px;
+	line-height: 22em;
+	}
+	
 #feedback1 li {
 	padding: 0 0 0 20px;
+	line-height: 22em;
 	}
 	
 #feedback2 {
@@ -352,9 +367,17 @@ list-style-type: decimal;
 	width: 270px;
 	padding: 0 45px 0 0;
 	}
-#feedback2 li {
-	padding: 0 0 0 20px;
+
+#feedback2 p {
+	padding: 20px 0 0 27px;
+	line-height: 22em;
 	}
+	
+#feedback2 li {
+	padding: 0 0 0 0px;
+	line-height: 22em;
+	}
+
 /*-----------------------------------------------------------------------------------------------*/
 /* Specify for Academic Reading 1 Academic reading passage (2) */
 	.hangingindenttable {

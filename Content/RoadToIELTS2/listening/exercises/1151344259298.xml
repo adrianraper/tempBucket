@@ -30,6 +30,9 @@
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="She is working" correct="true"/>
+	  <answer value="She is working." correct="true"/>
+	  <answer value="Jane is working" correct="true"/>
+	  <answer value="Jane is working." correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="on Monday evening" correct="true"/>
@@ -67,7 +70,7 @@
   <ol id="questionList">
   <p class="hanging">10. When is the earliest a service engineer is available?<br/><input id="q1"/></p>
   <p class="hanging">11. Why is this inconvenient for Jane?<br/><input id="q2"/></p>
-  <p class="hanging">12.When would be most convenient for Jane?<br/><input id="q3"/></p>
+  <p class="hanging">12. When would be most convenient for Jane?<br/><input id="q3"/></p>
   <p class="hanging">13. When do they arrange for the service engineer to see the machine?<br/><input id="q4"/></p>
   </ol>
 </section>
