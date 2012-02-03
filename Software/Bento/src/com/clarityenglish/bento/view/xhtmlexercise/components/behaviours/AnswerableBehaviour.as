@@ -298,9 +298,9 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			}
 			
 			// TODO: THIS ISN'T UPDATING THE DISPLAY, I HAVE NO IDEA WHY.  IT WORKS IF THE SPAN ISN'T IN A FLOAT :(
-			/*XHTML.addClass(inputElement.droppedNode, "disabled");
+			XHTML.addClass(inputElement.droppedNode, "disabled");
 			TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
-			inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();*/
+			inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 		}
 		
 		// If this is a true gapfill, with a user entered answer then answerOrString will still be null, in which case we
