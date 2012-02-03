@@ -2,25 +2,15 @@
 <rss version="2.0">
 <channel>
 	<title>Advice zone video 1</title>
-	<host>rtmp://streaming.clarityenglish.com:1935/cfx/st/</host>
+	<host>http://c284790.r90.stream.cf1.rackcdn.com/</host>
 	<type>recorded</type>
-	<item>
-		<title>low quality</title>
-		<streamName>RoadToIELTS2/listening/media/listening_advice1_1</streamName>
-		<bitrate>150</bitrate>
-		<width>411</width>
-	</item>
+	<server></server>
+	<streaming>http</streaming>
 	<item>
 		<title>medium quality</title>
-		<streamName>RoadToIELTS2/listening/media/listening_advice1_2</streamName>
+		<streamName>RoadToIELTS2/listening/media/listening_advice1_700.flv</streamName>
 		<bitrate>700</bitrate>
 		<width>411</width>
-	</item>
-	<item>
-		<title>high quality</title>
-		<streamName>RoadToIELTS2/listening/media/listening_advice1_3</streamName>
-		<bitrate>1200</bitrate>
-		<width>822</width>
 	</item>
 </channel>
 </rss>

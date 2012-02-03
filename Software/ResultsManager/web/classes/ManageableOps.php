@@ -619,7 +619,6 @@ EOD;
 		
 		$userIdInString = join(",", $userIdArray);
 		
-		
 		// Delete users from the T_User table
 		$this->db->Execute("DELETE FROM T_User WHERE F_UserID IN ($userIdInString)");
 		
@@ -632,6 +631,10 @@ EOD;
 		
 		// Delete user records from the T_Score table
 		$this->db->Execute("DELETE FROM T_Score WHERE F_UserID IN ($userIdInString)");
+		
+		// Reinstate for licence control - except that I only want to do that IF this is using Transferable Tracking
+		// and that is not easy to know here
+		//$this->db->Execute("DELETE FROM T_LicenceControl WHERE F_UserID IN ($userIdInString)");
 		
 		// Delete user from the t_licences table
 		// v6.5.5.0 The T_Licences table is dropped in favour of using T_Session.
@@ -1359,6 +1362,8 @@ EOD;
 EOD;
 		$rs = $this->db->Execute($sql, array($rootID));
 		switch ($rs->RecordCount()) {
+			case 0:
+				throw new Exception("No account with this root ($rootID)");
 			case 1:
 				$loginOption = (int)($rs->FetchNextObj()->loginOption);
 				break;
@@ -1384,7 +1389,10 @@ EOD;
 			while($record = $rs->FetchNextObj()) {
 				// For now all I care about is groupedRoots.
 				if ($record->F_Key == 'groupedRoots') {
-					$rootList = $record->F_Value;
+					// at least check that this is not empty or spaces
+					if ($record->F_Value && trim($record->F_Value)!='') {
+						$rootList = trim($record->F_Value);
+					}
 					break;
 				}
 			}

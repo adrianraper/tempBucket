@@ -55,7 +55,7 @@ class LoginService extends AbstractService {
 	}
 	// Add this user
 	function addUser($loginDetails) {
-		echo "LoginService addUser";
+		//echo "LoginService addUser";
 		$stubUser = new User();
 		if ($loginDetails->studentID)
 			$stubUser->studentID = $loginDetails->studentID;

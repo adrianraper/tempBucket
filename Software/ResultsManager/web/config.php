@@ -29,7 +29,7 @@ require_once(dirname(__FILE__).$commonFolders.'/../../Database/dbDetails.php');
 if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);
 } else {
-	$dbHost=0; // Pick up default from dbDetails.
+	$dbHost=100; // Default for R2IV2
 }
 $dbDetails = new DBDetails($dbHost);
 //$dbDetails = new DBDetails(100);

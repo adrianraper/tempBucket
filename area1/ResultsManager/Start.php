@@ -1,9 +1,15 @@
 <?php
 	session_start();
+	unset($_SESSION['dbHost']);
+	if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 	
 	$userName = $password = $extraParam = $licenceFile = '';
+	$userName = $password = $extraParam = $licenceFile = '';
+	//$dbHost='2';
 	if (isset($_SESSION['UserName'])) $userName = $_SESSION['UserName']; 
 	if (isset($_SESSION['Password'])) $password = $_SESSION['Password'];
+	// Pass this through Flash instead of setting it here
+	//$_SESSION['dbHost'] = $dbHost;
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

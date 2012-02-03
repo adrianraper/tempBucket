@@ -13,11 +13,12 @@ class LoginAPI {
 	var $groupID;
 	var $rootID;
 	var $prefix;
-	var $loginOption;
 	var $productCode;
 	var $expiryDate;
 	var $city;
 	var $country;
+	var $loginOption;
+	var $dbHost;
 	
 	function LoginAPI() {
 	}
@@ -62,6 +63,11 @@ class LoginAPI {
 			$this->loginOption = $info['loginOption'];
 		} else {
 			$this->loginOption = 1;
+		}
+		if (isset($info['dbHost'])) {
+			$this->dbHost = $info['dbHost'];
+		} else {
+			$this->dbHost = 0;
 		}
 	}
 	

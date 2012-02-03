@@ -54,7 +54,7 @@ class AbstractService {
 		// How to make it write to the folder I want?
 		// v3.4 Sometimes I want to use a file log in DMS. If I set it up here, does it mean overhead with every single call?
 		// I don't think so, it only does opening etc when called to write.
-		AbstractService::$debugLog = & Log::factory('file');
+		AbstractService::$debugLog = &Log::factory('file');
 		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');	
 		
 	}

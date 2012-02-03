@@ -6,10 +6,9 @@
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
-
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import flash.events.Event;
 	import flash.net.URLLoader;
@@ -168,23 +167,35 @@
 		protected function onAdviceZoneVideoRSSLoadComplete(e:Event):void {
 			var dynamicList:XML = new XML(e.target.data);
 			
-			// Build the mxml component
-			var host:String = dynamicList.channel.host.toString();
-			var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
-			dynamicSource.urlIncludesFMSApplicationInstance = true;
-			dynamicSource.streamType = dynamicList.channel.type.toString();
-			var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
-			for each (var stream:XML in dynamicList.channel.item) {
-				var streamName:String = stream.streamName;
-				var bitrate:Number = stream.bitrate;
-				var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
-				streamItems.push(streamingItem);
+			// #199. For FMS rtmp streaming do this
+			var streaming:String = dynamicList.channel.streaming.toString();
+			var server:String = dynamicList.channel.server.toString();
+			if (streaming=="rtmp") {
+				var host:String = dynamicList.channel.host.toString();
+				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+				if (server=="fms")
+					dynamicSource.urlIncludesFMSApplicationInstance = true;
+				dynamicSource.streamType = dynamicList.channel.type.toString();
+				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
+				for each (var stream:XML in dynamicList.channel.item) {
+					var streamName:String = stream.streamName;
+					var bitrate:Number = stream.bitrate;
+					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
+					streamItems.push(streamingItem);
+				}
+				dynamicSource.streamItems = streamItems; 
+				view.adviceZoneVideoPlayer.source = dynamicSource;
+				view.adviceZoneVideoPlayer.autoPlay = true;
+			} else if (streaming=="http") {
+				host = dynamicList.channel.host.toString();
+				for each (stream in dynamicList.channel.item) {
+					streamName = stream.streamName;
+				}				
+				view.adviceZoneVideoPlayer.source = host + streamName;
+				view.adviceZoneVideoPlayer.autoPlay = true;
 			}
-			dynamicSource.streamItems = streamItems; 
-			view.adviceZoneVideoPlayer.source = dynamicSource;
 			//view.adviceZoneVideoPlayer.addEventListener(TimeEvent.COMPLETE, videoPlayerCompleteHandler);
 			//view.adviceZoneVideoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, videoPlayerStateChangeHandler);
-			view.adviceZoneVideoPlayer.autoPlay = true;
 			
 			// #63 - overidden by #119
 			/*callLater(function():void {
@@ -198,20 +209,35 @@
 			var dynamicList:XML = new XML(e.target.data);
 			
 			// Build the mxml component
-			var host:String = dynamicList.channel.host.toString();
-			var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
-			dynamicSource.urlIncludesFMSApplicationInstance = true;
-			dynamicSource.streamType = dynamicList.channel.type.toString();
-			var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
-			for each (var stream:XML in dynamicList.channel.item) {
-				var streamName:String = stream.streamName;
-				var bitrate:Number = stream.bitrate;
-				var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
-				streamItems.push(streamingItem);
+			// #199. For FMS rtmp streaming do this
+			var streaming:String = dynamicList.channel.streaming.toString();
+			var server:String = dynamicList.channel.server.toString();
+			if (streaming=="rtmp") {
+				var host:String = dynamicList.channel.host.toString();
+				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+				if (server=="fms")
+					dynamicSource.urlIncludesFMSApplicationInstance = true;
+				dynamicSource.streamType = dynamicList.channel.type.toString();
+				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
+				for each (var stream:XML in dynamicList.channel.item) {
+					var streamName:String = stream.streamName;
+					var bitrate:Number = stream.bitrate;
+					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
+					streamItems.push(streamingItem);
+				}
+				dynamicSource.streamItems = streamItems; 
+				view.questionZoneVideoPlayer.source = dynamicSource;
+				view.questionZoneVideoPlayer.autoPlay = true;
+			} else if (streaming=="http") {
+				var host:String = dynamicList.channel.host.toString();
+				view.questionZoneVideoPlayer.source = dynamicSource;
+				view.questionZoneVideoPlayer.autoPlay = true;
+				for each (var stream:XML in dynamicList.channel.item) {
+					var streamName:String = stream.streamName;
+				}				
+				view.questionZoneVideoPlayer.source = host + streamName;
+				view.questionZoneVideoPlayer.autoPlay = true;
 			}
-			dynamicSource.streamItems = streamItems; 
-			view.questionZoneVideoPlayer.source = dynamicSource;
-			view.questionZoneVideoPlayer.autoPlay = true;
 			
 		}
 		public function videoPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {

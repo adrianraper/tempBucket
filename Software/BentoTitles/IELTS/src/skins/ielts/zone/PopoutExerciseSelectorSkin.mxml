@@ -92,14 +92,14 @@
 									}
 								]]>
 							</fx:Script>
-							<s:Group left="10">
+							<s:HGroup verticalAlign="middle" left="10" paddingTop="5" paddingBottom="5">
 								<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
 									<s:fill>
 										<s:SolidColor id="fillColor" />
 									</s:fill>
 								</s:Rect>
 								<s:Label id="captionLabel" left="20" fontSize="12.6" />
-							</s:Group>
+							</s:HGroup>
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>

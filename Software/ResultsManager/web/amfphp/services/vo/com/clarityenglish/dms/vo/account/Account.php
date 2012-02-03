@@ -161,9 +161,9 @@ class Account extends Reportable {
 		if (isset($this->optOutEmails)) $array['F_OptOutEmails'] = ($this->optOutEmails) ? 1 : 0;
 		if (isset($this->optOutEmails)) $array['F_OptOutEmailDate'] = $this->optOutEmailDate;
 		// v4.0 Integration with Bento
-		$array['F_LoginOption'] = $this->loginOption;
-		$array['F_Verified'] = $this->verified;
-		$array['F_SelfRegister'] = $this->selfregister;
+		$array['F_LoginOption'] = (isset($this->loginOption)) ? $this->loginOption : 1;
+		$array['F_Verified'] = (isset($this->verified)) ? $this->verified : 1;
+		$array['F_SelfRegister'] = (isset($this->selfregister)) ? $this->selfregister : 0;
 		
 		return $array;
 	}

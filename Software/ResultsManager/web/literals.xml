@@ -33,6 +33,8 @@
 			<lit name="resetGroupContent">This will reset all content in all titles to the original for this group. It can't be undone. Do you want to do this?</lit>
 			<lit name="directStartInformation">If you want to use a direct link to this item, the following are the IDs you need:</lit>
 			
+			<lit name="addCourseMenuItem">Add new course...</lit>
+			
 			<lit name="generateReportMenuItem">Generate report...</lit>
 			<lit name="clearRecordsMenuItem">Clear records...</lit>
 			<lit name="addGroupMenuItem">Add group...</lit>
@@ -79,6 +81,7 @@
 			<lit name="loginWindow">Log in to Results Manager</lit>
 			<lit name="loginUsername">Username:</lit>
 			<lit name="loginPassword">Password:</lit>
+			<lit name="loginFilter">Search for:</lit>
 			<lit name="loginButton">Login</lit>
 			<lit name="logoutButton">Logout</lit>
 			<lit name="empty">Empty</lit>
@@ -94,6 +97,7 @@
 			<lit name="someHiddenContent">Some of this content is available for the selected group.</lit>
 			<lit name="noHiddenContent">All this content is available for the selected group.</lit>
 			<lit name="detailedContent">The tick boxes show which content is available.</lit>
+			<lit name="CCBCourse">Right click the tree, then create new course...</lit>
 			<lit name="manageables">Users and groups</lit>
 			<lit name="detailedManageablesLabel">Right-click on a user or group to see what you can do.</lit>
 			<lit name="editedExerciseToolTip">This exercise has been edited for this group.</lit>
@@ -522,6 +526,29 @@
 			<lit name="logMessage">Message</lit>
 			<lit name="logDate">Date</lit>
 			
+			<!-- CCB part-->
+			<lit name="titleCourseInfo">Course Information</lit>
+			<lit name="titleVideoWindow">Choose video</lit>
+			<lit name="titleAudioWindow">Choose audio</lit>
+			<lit name="titlePictureWindow">Choose picture</lit>
+			<lit name="titlePDFWindow">Choose PDF</lit>
+			<lit name="titleProductSelection">Choose exercise</lit>
+			<!-- Tool tips -->
+			<lit name="tooltipCCBTree">Please right click the tree for the next step</lit>
+			<!-- Introduction -->
+			<lit name="introCCBTree">Right click on the folders to create new courses and units.</lit>
+			<lit name="noticCourseWindow">Set a course schedule for your students. Otherwise, they won't see your course content.</lit>
+			<lit name="introCCBWindow">To start editing your course, select an item on the right and choose a media type.</lit>
+			<lit name="introCCBPicture">Select a picture file (jpg, gif or png format) from the list below, or click Upload to choose from file.</lit>
+			<lit name="introCCBAudio">Select a mp3 file from the list below, or click Upload to choose from file.</lit>
+			<lit name="introCCBPDF">Select a PDF file from the list below, or click Upload to choose from file.</lit>
+			<lit name="introCCBVideo">Paste the YouTube video's URL below</lit>
+			<lit name="introCCBExercise">Click the arrow beside the program and choose an exercise or unit from the dropdown list.</lit>
+			
+			<lit name="unitTitle">You are editing unit: </lit>
+			<lit name="audioPreview">Click the play button below to preview </lit>
+			<lit name="pdfPreview">Click the PDF image below to preview </lit>
+			<lit name="exePreview">Click the exercise image to preview </lit>
 		</group>
 	</language>
 </literals>

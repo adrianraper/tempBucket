@@ -11,7 +11,7 @@
 	//$thisDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
 	$thisDomain = 'http://dock.projectbench/';
 	$commonDomain = 'http://dock.projectbench/';
-	$startFolder = "BritishCouncil/RoadToIELTS/";
+	//$startFolder = "BritishCouncil/RoadToIELTS/";
 	$configFile = 'config.xml';
 	
 	$swfName = 'IELTSApplication.swf';
@@ -24,9 +24,20 @@
 	$prefix = (string) $configXML->prefix[0];
 	$rootID = (string) $configXML->rootID[0];
 	$groupID = (string) $configXML->groupID[0];
+	$loginOption = (string) $configXML->loginOption[0];
 
 	// Will we write out lots of log messages?
 	$debugLog = true;
+	$debugFile = 'BCHK-Start.log';
+
+	// Decrypt the passed parameters	
+	$name = $_GET['n'];
+	$email = $_GET['e'];
+	$encrypt = $_GET['d'];
+	
+	if ($debugLog) {
+		error_log("starting BCHK-Start.php with $name", 3, $debugFile);
+	}
 	
 	// Decrypt the passed parameters	
 	$name = $_GET['n'];
@@ -87,8 +98,8 @@
 			
 			// make the database connection
 			global $db;
-			$dbHost = 100;
-			$dbDetails = new DBDetails($dbHost);
+			$oldDbHost = 101; // GlobalRoadToIELTS
+			$dbDetails = new DBDetails($oldDbHost);
 			$db = &ADONewConnection($dbDetails->dsn);
 			if (!$db) die("Connection failed");
 			//$db->debug = true;
@@ -117,11 +128,15 @@
 			$LoginAPI['prefix'] = $prefix;
 			$LoginAPI['rootID'] = $rootID;
 			$LoginAPI['groupID'] = $groupID;
+			$LoginAPI['loginOption'] = $loginOption;
 	
 			// Send this single LoginAPI
 			$serializedObj = json_encode($LoginAPI);
 			$targetURL = $commonDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
-		
+			if ($debugLog) {
+				error_log("to LoginGateway with $serializedObj", 3, $debugFile);
+			}
+			
 			// Initialize the cURL session
 			$ch = curl_init();
 			
@@ -148,7 +163,11 @@
 					$contents = substr($contents,3);
 				}
 				$returnInfo = json_decode($contents, true);
-		
+
+				if ($debugLog) {
+					error_log("back from LoginGateway with $contents", 3, $debugFile);
+				}
+
 				// Expecting to get back an error or a user object
 				if (isset($returnInfo['error'])){
 					$errorCode = $returnInfo['error'];

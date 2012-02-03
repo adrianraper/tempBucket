@@ -3,6 +3,8 @@
 <channel>
 	<title>Advice zone video 1</title>
 	<host>rtmp://streaming.clarityenglish.com:1935/cfx/st/</host>
+	<server>fms</server>
+	<streaming>rtmp</streaming>
 	<type>recorded</type>
 	<item>
 		<title>low quality</title>

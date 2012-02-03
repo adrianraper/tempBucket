@@ -231,10 +231,10 @@ EOD;
 		if ($this->getOpt(ReportBuilder::SHOW_STUDENTID)) $this->addColumn("u.F_StudentID", "studentID");
 		
 		// For Science Po who need more data. How can I tell if it is them?
-		// They were first of all root 12923, and now moved to 13770
+		// They were first of all root 12923, and now moved to 13770, and in 2011 to 14252 
 		// And now moved to something else!
 		$rootID = Session::get('rootID');
-		if ($rootID == '13770') {
+		if ($rootID == '14252') {
 			$this->addColumn("u.F_StudentID", "studentID");
 			$this->addColumn("u.F_Email", "email");
 			$this->addColumn("u.F_FullName", "fullName");

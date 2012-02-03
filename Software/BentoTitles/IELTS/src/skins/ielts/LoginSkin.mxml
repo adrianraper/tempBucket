@@ -34,7 +34,9 @@
 		</s:Group>
 		<s:Spacer height="3" />
 		<s:HGroup>
+		<!--
 		<s:Button id="quickStartButton" label="Quick start" />
+			-->
 		<s:Button id="loginButton" label="Login" />
 		</s:HGroup>
 		

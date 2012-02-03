@@ -2,6 +2,7 @@
 /*
  * This script is a gateway for login functions
  */
+
 require_once(dirname(__FILE__)."/LoginService.php");
 
 // Shouldn't all the following be in LoginService?
@@ -22,6 +23,7 @@ function loadAPIInformation() {
 	$postInformation = json_decode(file_get_contents("php://input"), true);
 	//$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6017","name":"Adrian Raper","email":"support@ieltspractice.com","city":"Hong Kong","dbHost":2,"productCode":52,"expiryDate":"2012-04-15 23:59:59","rootID":10943,"prefix":"BCHK","groupID":"170","loginOption":2,"userType":0}';
 	//$presetString = '{"method":"getOrAddUser","studentID":"J0655013-170","name":"Vishna Vardhan Kompalli","email":"06.vishnu@gmail.com","dbHost":"2","productCode":52,"expiryDate":"2012-03-19 23:59:59","prefix":"BCHK","rootID":"10943","groupID":"170","loginOption":"2"}';
+	//$presetString = '{"method":"getOrAddUser","studentID":"P10102920-170","name":"dandelion","email":"adrian@clarityenglish.com","dbHost":100,"productCode":52,"expiryDate":"2012-02-19 23:59:59","prefix":"BCHK","rootID":"14030","groupID":"170","loginOption":"2"}';
 	//$postInformation = json_decode($presetString, true);
 
 	// We are expecting a method and parameters as an object
@@ -66,6 +68,12 @@ try {
 	$apiInformation = loadAPIInformation();
 	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
 	//echo "loaded API";
+	
+	// You might want a different dbHost which you have now got - so override the settings from config.php
+	$dbDetails = new DBDetails($apiInformation->dbHost);
+	$GLOBALS['dbms'] = $dbDetails->driver;
+	$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
+	
 	switch ($apiInformation->method) {
 		case 'getUser':
 			

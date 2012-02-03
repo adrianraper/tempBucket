@@ -37,10 +37,10 @@ class Title extends Content {
 	var $licenceClearanceDate;
 	var $licenceClearanceFrequency;
 	
-	// v3.3 For getting information from T_Product in ContentOps._buildTitle
-	var $name;
 	// v3.1 For emus and courses - not used for database storage
 	var $indexFile;
+	// v3.3 For getting information from T_Product in ContentOps._buildTitle
+	var $name;
 	// v3.1 For emus to specify other titles that they include - not used for database storage
 	var $licencedProductCodes;
 	var $deliveryFrequency;

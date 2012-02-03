@@ -2,9 +2,9 @@
 <config>
 	<id>/BritishCouncil/HongKong</id>
 	<developer>BC</developer>
-	<dbHost>2</dbHost>
-	<prefix>BCHK</prefix>
-	<rootID>10943</rootID>
+	<dbHost>100</dbHost>
+	<prefix>GLOBAL</prefix>
+	<rootID>14030</rootID>
 	<groupID>170</groupID>
 	<loginOption>2</loginOption>
 	<productVersion>lastMinute</productVersion>

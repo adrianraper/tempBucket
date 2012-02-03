@@ -72,6 +72,8 @@ class CopyOps {
 		$doc = new DOMDocument();
 		$doc->load($this->filename);
 		
+		// provide a default
+		if (!Session::is_set('languageCode')) Session::set('languageCode', 'EN');
 		$xpath = new DOMxpath($doc);
 		
 		$elements = $xpath->query("/literals/language[@code='".Session::get('languageCode')."']", $doc);
@@ -86,6 +88,8 @@ class CopyOps {
 		$doc = new DOMDocument();
 		$doc->load($this->filename);
 		
+		// provide a default
+		if (!Session::is_set('languageCode')) Session::set('languageCode', 'EN');
 		$xpath = new DOMxpath($doc);
 		
 		// TODO: This needs to respect the language code once we've decided how it will work
