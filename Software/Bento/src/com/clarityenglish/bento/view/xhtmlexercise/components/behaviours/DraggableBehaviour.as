@@ -96,19 +96,14 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			for each (var draggableNode:XML in getDraggableNodes(xhtml)) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
 				
-				// This is kind of a hack, but it might be alright just for the moment; if the node is mapped to a FloatableTextFlow
-				// then just find the first leaf and use that
-				if (draggableFlowElement is FloatableTextFlow)
-					draggableFlowElement = (draggableFlowElement as FloatableTextFlow).getFirstLeaf();
-				
-				if (!draggableFlowElement)
-					continue;
-				
-				// draggable="true" is only allowed on FlowLeafElements
 				if (draggableFlowElement is FlowLeafElement) {
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));
+				} else if (draggableFlowElement is FloatableTextFlow) {
+					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
+					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
+					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));					
 				} else {
 					log.error("draggable='true' is only valid on leaf elements - " + draggableFlowElement);
 				}

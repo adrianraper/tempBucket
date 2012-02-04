@@ -52,8 +52,6 @@ package com.clarityenglish.textLayout.components {
 		 */
 		private var _behaviours:Vector.<IXHTMLBehaviour>;
 		
-		private var _flowElementXmlBiMap:FlowElementXmlBiMap;
-		
 		private var _css:CSS;
 		
 		public function XHTMLRichText() {
@@ -67,7 +65,6 @@ package com.clarityenglish.textLayout.components {
 			
 			_xhtml = null;
 			_behaviours = null;
-			_flowElementXmlBiMap = null;
 			_css = null;
 		}
 		
@@ -91,8 +88,6 @@ package com.clarityenglish.textLayout.components {
 				// Clean up if there was a previous exercise
 				if (_xhtml)
 					_xhtml.removeEventListener(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
-				
-				_flowElementXmlBiMap = null;
 				
 				_xhtml = value;
 				_xhtmlChanged = true;
@@ -128,10 +123,6 @@ package com.clarityenglish.textLayout.components {
 					log.error("Unable to instantiate behaviour " + behaviourClass);
 				}
 			}
-		}
-		
-		public function get flowElementXmlBiMap():FlowElementXmlBiMap {
-			return _flowElementXmlBiMap;
 		}
 		
 		public function get css():CSS {
@@ -173,11 +164,6 @@ package com.clarityenglish.textLayout.components {
 					renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
 				}
 				
-				if (_flowElementXmlBiMap) {
-					_flowElementXmlBiMap.clear();
-					_flowElementXmlBiMap = null;
-				}
-				
 				if (_css) {
 					_css.clear();
 					_css = null;
@@ -189,7 +175,6 @@ package com.clarityenglish.textLayout.components {
 				if (node) {
 					// Parse the XHTML into a RenderFlow
 					renderFlow = importer.importToRenderFlow(_xhtml, node);
-					_flowElementXmlBiMap = importer.getFlowElementXmlBiMap();
 					_css = importer.getCSS();
 					importer.clear();
 					importer = null;
@@ -206,7 +191,7 @@ package com.clarityenglish.textLayout.components {
 					addElement(renderFlow);
 					
 					// Apply to registered behaviours
-					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, _flowElementXmlBiMap); } );
+					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, _xhtml.flowElementXmlBiMap); } );
 					
 					// Dispatch an event to say the CSS has been parsed.  Specifically this is used by ShowFeedbackCommand which need info out of the css to make the popup.
 					dispatchEvent(new XHTMLEvent(XHTMLEvent.CSS_PARSED));

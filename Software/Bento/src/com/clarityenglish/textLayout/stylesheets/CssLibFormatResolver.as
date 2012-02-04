@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.stylesheets {
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;

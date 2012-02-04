@@ -26,11 +26,6 @@ package com.clarityenglish.textLayout.conversion {
 		private static const XHTML_BLOCK_FORMAT:String = "xhtml_block_format";
 		
 		/**
-		 * This maintains a bidirectional map between parsed FlowElements and their original XHTML source nodes. 
-		 */
-		private var flowElementXmlBiMap:FlowElementXmlBiMap;
-		
-		/**
 		 * The default stylesheet implemented by browsers
 		 */ 
 		[Embed(source="/com/clarityenglish/textLayout/conversion/xhtmldefaults.css", mimeType="application/octet-stream")]
@@ -47,15 +42,6 @@ package com.clarityenglish.textLayout.conversion {
 				TextConverter.addFormat(XHTML_BLOCK_FORMAT, XHTMLBlockImporter, null, null);
 		}
 		
-		/**
-		 * Get the bidirectional map between FlowElements and their original XHTML source nodes
-		 * 
-		 * @return 
-		 */
-		public function getFlowElementXmlBiMap():FlowElementXmlBiMap {
-			return flowElementXmlBiMap;
-		}
-		
 		public function getCSS():CSS {
 			return css;
 		}
@@ -63,14 +49,13 @@ package com.clarityenglish.textLayout.conversion {
 		public function importToRenderFlow(xhtml:XHTML, node:XML):RenderFlow {
 			if (css) css.clear();
 			
-			flowElementXmlBiMap = new FlowElementXmlBiMap();
 			css = parseCss(xhtml);
 			
 			var blockImporter:XHTMLBlockImporter = TextConverter.getImporter(XHTML_BLOCK_FORMAT) as XHTMLBlockImporter;
-			var formatResolver:CssLibFormatResolver = new CssLibFormatResolver(css, flowElementXmlBiMap);
+			var formatResolver:CssLibFormatResolver = new CssLibFormatResolver(css, xhtml.flowElementXmlBiMap);
 			
 			blockImporter.formatResolver = formatResolver;
-			blockImporter.flowElementXmlBiMap = flowElementXmlBiMap;
+			blockImporter.flowElementXmlBiMap = xhtml.flowElementXmlBiMap;
 			blockImporter.css = css;
 			blockImporter.rootPath = xhtml.rootPath;
 			
@@ -82,7 +67,6 @@ package com.clarityenglish.textLayout.conversion {
 		 * 
 		 */
 		public function clear():void {
-			flowElementXmlBiMap = null;
 			css = null;
 		}
 		

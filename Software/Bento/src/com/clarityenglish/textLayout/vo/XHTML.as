@@ -1,5 +1,6 @@
 package com.clarityenglish.textLayout.vo {
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.newgonzo.commons.utils.StringUtil;
 	import com.newgonzo.web.css.CSS;
@@ -41,8 +42,13 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		protected var _xml:XML;
 		
+		/**
+		 * Stylesheet flags 
+		 */
 		private var isLoadingStyleLinks:Boolean
 		private var externalStyleSheetsLoaded:Boolean;
+		
+		private var _flowElementXmlBiMap:FlowElementXmlBiMap;
 		
 		/**
 		 * This is appended to any filenames so that paths can be relative to the xhtml document 
@@ -71,12 +77,18 @@ package com.clarityenglish.textLayout.vo {
 			return href.rootPath;
 		}
 		
+		public function get flowElementXmlBiMap():FlowElementXmlBiMap {
+			return _flowElementXmlBiMap;
+		}
+		
 		public function set xml(value:XML):void {
 			if (_xml !== value) {
 				// This is a little bit of a hack, but use string functions to remove the namespace.
 				var xmlString:String = value.toXMLString();
 				xmlString = xmlString.replace(" xmlns=\"http://www.w3.org/1999/xhtml\"", "");
 				_xml = new XML(xmlString);
+				
+				_flowElementXmlBiMap = new FlowElementXmlBiMap();
 				
 				dispatchEvent(new Event(XML_CHANGE_EVENT));
 			}

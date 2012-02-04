@@ -1,7 +1,14 @@
 package com.clarityenglish.textLayout.conversion {
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
+	
 	import flash.utils.Dictionary;
 	
 	import flashx.textLayout.elements.FlowElement;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 
 	/**
 	 * This class is supposed to store a bi-directional map between XML nodes and their associated FlowElement.  Unfortunately due to a
@@ -11,6 +18,11 @@ package com.clarityenglish.textLayout.conversion {
 	 * Therefore the FlowElement -> XML map uses a Dictionary, but XML -> FlowElement has to use an iterative Vector solution.
 	 */
 	public class FlowElementXmlBiMap {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var flowElementToXmlMap:Dictionary;
 		

@@ -94,8 +94,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			for each (var sectionName:String in SUPPORTED_SECTIONS) {
 				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
 				
-				if (xhtmlRichText && xhtmlRichText.flowElementXmlBiMap) {
-					var flowElement:FlowElement = xhtmlRichText.flowElementXmlBiMap.getFlowElement(node);
+				//if (xhtmlRichText && xhtmlRichText.flowElementXmlBiMap) {
+				if (xhtmlRichText && _xhtml.flowElementXmlBiMap) {
+					//var flowElement:FlowElement = xhtmlRichText.flowElementXmlBiMap.getFlowElement(node);
+					var flowElement:FlowElement = _xhtml.flowElementXmlBiMap.getFlowElement(node);
 					if (flowElement)
 						return flowElement;
 				}
