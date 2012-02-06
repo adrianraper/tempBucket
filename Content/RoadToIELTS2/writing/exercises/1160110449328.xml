@@ -219,13 +219,88 @@
 		<option id="a31">A</option>
 		<option id="a32">(...)</option>
 	</select>
-	&#xA0;youngest son, who is only twelve, is not usually interested in&#xA0;<select id="q9"><option id="a33">(...)</option><option id="a34">the</option><option id="a35">a</option><option id="a36">our</option></select>&#xA0;radio programmes but even he enjoyed them. In fact, he found them invaluable as he has been doing&#xA0;<select id="q10"><option id="a37">a</option><option id="a38">the</option><option id="a39">our</option><option id="a40">(...)</option></select>&#xA0;project on&#xA0;<select id="q11"><option id="a41">the</option><option id="a42">a</option><option id="a43">an</option><option id="a44">(...)</option></select>&#xA0;history of radio at&#xA0;<select id="q12"><option id="a45">(...)</option><option id="a46">the</option><option id="a47">a</option><option id="a48">our</option></select>&#xA0;school.</p>
-  <p>I must say we particularly enjoyed&#xA0;<select id="q13"><option id="a49">the</option><option id="a50">a</option><option id="a51">your</option><option id="a52">(...)</option></select>&#xA0;fascinating narration by&#xA0;<select id="q14"><option id="a53">(...)</option><option id="a54">the</option><option id="a55">a</option><option id="a56">your</option></select>&#xA0;George Pickering and&#xA0;<select id="q15"><option id="a57">his</option><option id="a58">the</option><option id="a59">an</option><option id="a60">(...)</option></select>&#xA0;insightful comments, as well as all&#xA0;<select id="q16"><option id="a61">the</option><option id="a62">a</option><option id="a63">its</option><option id="a64">(...)</option></select>&#xA0; wonderful recordings from&#xA0;<select id="q17"><option id="a65">the</option><option id="a66">an</option><option id="a67">its</option><option id="a68">(...)</option></select>&#xA0;early days of radio.&#xA0;<select id="q18"><option id="a69">The</option><option id="a70">An</option><option id="a71">His</option><option id="a72">(...)</option></select>&#xA0;original and creative style of&#xA0;<select id="q19"><option id="a73">the</option><option id="a74">a</option><option id="a75">his</option><option id="a76">(...)</option></select>&#xA0;series was also extremely impressive.</p>
-  <p>We would very much like to know whether you are planning to air more stimulating programmes of this kind in&#xA0;<select id="q20"><option id="a77">the</option><option id="a78">a</option><option id="a79">our</option><option id="a80">(...)</option></select>&#xA0;future. If so, we would appreciate it if you could inform us in advance so that we do not miss them.</p>
+	&#xA0;youngest son, who is only twelve, is not usually interested in&#xA0;
+	<select id="q9">
+		<option id="a33">(...)</option>
+		<option id="a34">the</option>
+		<option id="a35">a</option>
+		<option id="a36">our</option></select>
+	&#xA0;radio programmes but even he enjoyed them. In fact, he found them invaluable as he has been doing&#xA0;
+	<select id="q10">
+		<option id="a37">a</option>
+		<option id="a38">the</option>
+		<option id="a39">our</option>
+		<option id="a40">(...)</option></select>
+	&#xA0;project on&#xA0;
+	<select id="q11">
+		<option id="a41">the</option>
+		<option id="a42">a</option>
+		<option id="a43">an</option>
+		<option id="a44">(...)</option></select>
+	&#xA0;history of radio at&#xA0;
+	<select id="q12">
+		<option id="a45">(...)</option>
+		<option id="a46">the</option>
+		<option id="a47">a</option>
+		<option id="a48">our</option></select>
+	&#xA0;school.</p>
+	
+  	<p>I must say we particularly enjoyed&#xA0;
+  	<select id="q13">
+  		<option id="a49">the</option>
+		<option id="a50">a</option>
+		<option id="a51">your</option>
+		<option id="a52">(...)</option></select>
+	&#xA0;fascinating narration by&#xA0;
+	<select id="q14">
+		<option id="a53">(...)</option>
+		<option id="a54">the</option>
+		<option id="a55">a</option>
+		<option id="a56">your</option></select>
+	&#xA0;George Pickering and&#xA0;
+	<select id="q15">
+		<option id="a57">his</option>
+		<option id="a58">the</option>
+		<option id="a59">an</option>
+		<option id="a60">(...)</option></select>
+	&#xA0;insightful comments, as well as all&#xA0;
+	<select id="q16">
+		<option id="a61">the</option>
+		<option id="a62">a</option>
+		<option id="a63">its</option>
+		<option id="a64">(...)</option></select>
+	&#xA0;wonderful recordings from&#xA0;
+	<select id="q17">
+		<option id="a65">the</option>
+		<option id="a66">an</option>
+		<option id="a67">its</option>
+		<option id="a68">(...)</option></select>
+	&#xA0;early days of radio.&#xA0;
+	<select id="q18">
+		<option id="a69">The</option>
+		<option id="a70">An</option>
+		<option id="a71">His</option>
+		<option id="a72">(...)</option></select>
+	&#xA0;original and creative style of&#xA0;
+	<select id="q19">
+	<option id="a73">the</option>
+	<option id="a74">a</option>
+	<option id="a75">his</option>
+	<option id="a76">(...)</option></select>
+	&#xA0;series was also extremely impressive.</p>
+	
+  	<p>We would very much like to know whether you are planning to air more stimulating programmes of this kind in&#xA0;
+  	<select id="q20">
+		<option id="a77">the</option>
+		<option id="a78">a</option>
+		<option id="a79">our</option>
+		<option id="a80">(...)</option></select>
+	&#xA0;future. If so, we would appreciate it if you could inform us in advance so that we do not miss them.</p>
+	
   <p>Thank you once again.</p>
   <p>Yours faithfully,</p>
   <p>Mrs M. Alty</p>
-  
+  <p class="linespace"></p>
   </div>
 </section>
 
@@ -238,14 +313,14 @@
 	
 	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 	
-	<p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+	<p class="popuptext">Begin your letter as follows:</p>
+	
+	<p class="popuptext">Dear Sir/Madam,</p>
 	
 </section>
 
-<section id="rt2001">
-  <p>
-    <font face="verdana" size="13" color="#000000">One of the most common areas of mistakes is the use and omission of the articles 'a', 'an' and 'the'. You need to decide whether or not one is necessary, and, if it is, which one. Similarly, you have to take care to make appropriate use of possessive adjectives (my, your, his, her, its, our, their). The next two exercises will give you practice in both of these.</font>
-  </p>
+<section id="examtips">
+  <p class="popuptext">One of the most common areas of mistakes is the use and omission of the articles 'a', 'an' and 'the'. You need to decide whether or not one is necessary, and, if it is, which one. Similarly, you have to take care to make appropriate use of possessive adjectives (my, your, his, her, its, our, their). The next two exercises will give you practice in both of these.</p>
 </section>
 
 </body>

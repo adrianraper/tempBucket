@@ -19,6 +19,7 @@
 <script id="model" type="application/xml">
 	<popups>
 		<popup click="visual" source="describingobject" width="663" height="436" />
+		<popup click="clickme" source="examtips" width="500" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -51,6 +52,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
 <p>The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages&#xA0;<b>to</b>&#xA0;transport passengers up and down a hillside 30 metres in height.</p>
 
 <p>The carriages are made of timber and steel&#xA0;<b>so that</b>&#xA0;they are light and strong. Underneath each one is a ballast tank, which carries up to 1,600 litres of water. The carriages run along 53 metres of parallel steel track and are linked by steel cables. These go around a large drum at the top of the slope.</p>
@@ -99,8 +102,10 @@
 <p><input id="q6" type="droptarget"/></p>
 <p><input id="q8" type="droptarget"/></p>
 </div>
+</section>
 
-
+<section id="examtips">
+<p class="popuptext">If you are asked to write a report describing a process or how something works, you need to be able to identify and explain the stages in a process, or the functions of the various parts of the device and the relationships between them. These include relationships of cause and result, and purpose. There are some useful words and phrases you can use to express such relationships.</p>
 </section>
 
 </body>

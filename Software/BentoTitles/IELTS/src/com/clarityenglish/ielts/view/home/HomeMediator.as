@@ -76,7 +76,18 @@
 						
 						case Progress.PROGRESS_MY_SUMMARY:
 							view.dataProvider = new XML(rs.dataProvider);
+							
+							// Do a quick check to see if there is any data
+							var foundAValue:Boolean  = false;
+							for each (var course:XML in view.dataProvider.course) {
+								if (new Number(course.@coverage)>0) {
+									foundAValue = true;
+									break;
+								}
+							}
+							view.noProgressData = !foundAValue;
 							break;
+						
 						default:
 					}
 				

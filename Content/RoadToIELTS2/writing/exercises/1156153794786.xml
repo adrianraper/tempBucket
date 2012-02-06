@@ -35,6 +35,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -61,7 +64,10 @@
 	
 <section id="body">
 
+
 <div class="wrapperbox">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 		<div class="questionbox">
 	 		<img class="imagebox1" src="../media/Unit01_Write_e2.2q.jpg" mode="1" id="1006"/></div>
 		
@@ -81,7 +87,9 @@
   <p class="feedbacktext">These are the same figures as in the standard bar chart at the top, but presented as a proportional bar chart. The figures for each activity are built up, one on top of another, to reach a total percentage for the age group of 100 per cent.</p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">The information for the writing task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart.</p>
+</section>
 
 </body>
 </bento>

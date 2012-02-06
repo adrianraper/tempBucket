@@ -21,55 +21,37 @@
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="A few kilometres" correct="true"/>
+	  <answer value="A few km" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="55,000" correct="true"/>
+	  <answer value="55000" correct="true"/>
     </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="coffee shop" correct="true"/>
-      <answer value="coffee shops" correct="true"/>
+    <GapFillQuestion source="{#q3,#q4,#q5}" block="b3">
+      <answer value="coffee shop" correct="true" synonymGroup="coffee"/>
+      <answer value="coffee shops" correct="true" synonymGroup="coffee"/>
       <answer value="eateries" correct="true"/>
-      <answer value="take-away outlet" correct="true"/>
-      <answer value="take-away outlets" correct="true"/>
+      <answer value="take-away outlet" correct="true" synonymGroup="takeaway"/>
+	  <answer value="takeaway outlet" correct="true" synonymGroup="takeaway"/>
+      <answer value="take-away outlets" correct="true" synonymGroup="takeaway"/>
+	  <answer value="takeaway outlets" correct="true" synonymGroup="takeaway"/>
     </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="eateries" correct="true"/>
-      <answer value="coffee shop" correct="true"/>
-      <answer value="coffee shops" correct="true"/>
-      <answer value="take-away outlet" correct="true"/>
-      <answer value="take-away outlets" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="take-away outlet" correct="true"/>
-      <answer value="take-away outlets" correct="true"/>
-      <answer value="coffee shop" correct="true"/>
-      <answer value="coffee shops" correct="true"/>
-      <answer value="eateries" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
+    <GapFillQuestion source="q6" block="b4">
       <answer value="outside" correct="true"/>
       <answer value="on the terrace" correct="true"/>
       <answer value="pavement terrace" correct="true"/>
       <answer value="the pavement terrace" correct="true"/>
     </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
+    <GapFillQuestion source="{#q7,#q8,#q9}" block="b5">
       <answer value="footwear" correct="true"/>
       <answer value="clothing" correct="true"/>
       <answer value="accessories" correct="true"/>
     </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="clothing" correct="true"/>
-      <answer value="footwear" correct="true"/>
-      <answer value="accessories" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q9" block="b9">
-      <answer value="accessories" correct="true"/>
-      <answer value="footwear" correct="true"/>
-      <answer value="clothing" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q10" block="b10">
+    <GapFillQuestion source="q10" block="b6">
       <answer value="Jubilee Line Extension" correct="true"/>
-      <answer value="a Jubilee Line" correct="true"/>
+	  <answer value="the Jubilee Line Extension" correct="true"/>
+      <answer value="the Jubilee Line" correct="true"/>
+	  <answer value="Jubilee Line" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>
@@ -91,9 +73,9 @@
 	<h2><p>new top spot to visit in London</p></h2>
 <p>Fast emerging as one of the top spots to visit in London is Canary Wharf.</p>
 
-<p>Canary Wharf – in west London, just a few kilometres from the 'Square Mile' finance district and where some of the tallest office buildings in Europe are sited – is quickly catching up to other popular shopping and tourism locations like Oxford Street, Knightsbridge and Convent Garden. Apart from the 55,000 people who work for the businesses that have relocated to this highly prestigious riverside setting, hundreds of visitors also flock there every day to enjoy 200 stores, bars and restaurants. Below ground at Canada Square, for example, is upmarket fashion store Cecil Gee, lifestyle and design outlet Purves &amp; Purves, designer Ted Baker, and superior pen maker Mont Blanc. At Cabot Place there are other fashion chains reowned for British quality; Austin Reed; top shirt maker Thomas Pink; Church's Shoes and Burrell's the Jewellers. Other well known stores have also opened branches at Canary Wharf including Boots (chemists) and clothing stores Monsoon, Gap, Walls, Oasis and Next. A recent addition is Hobbs, described as a 'classic women's fashion store'.</p>
+<p>Canary Wharf – in west London, just a few kilometres from the 'Square Mile' finance district and where some of the tallest office buildings in Europe are sited – is quickly catching up to other popular shopping and tourism locations like Oxford Street, Knightsbridge and Convent Garden. Apart from the 55,000 people who work for the businesses that have relocated to this highly prestigious riverside setting, hundreds of visitors also flock there every day to enjoy 200 stores, bars and restaurants. Below ground at Canada Square, for example, is upmarket fashion store Cecil Gee, lifestyle and design outlet Purves &amp; Purves, designer Ted Baker, and superior pen maker Mont Blanc. At Cabot Place there are other fashion chains renowned for British quality: Austin Reed; top shirt maker Thomas Pink; Church's Shoes and Burrell's the Jewellers. Other well known stores have also opened branches at Canary Wharf including Boots (chemists) and clothing stores Monsoon, Gap, Walls, Oasis and Next. A recent addition is Hobbs, described as a 'classic women's fashion store'.</p>
 
-<p>There is also a huge selection of places to eat and socialise in Canary Wharf, from coffee shops such as Starbucks and Coffee Republic, to eateries such as Caffe Italia, Pizza Express and Singapore Sam. The take-away outlets include Ixxy's Bagel's, Soup Opera and Crazy Salads.</p>
+<p>There is also a huge selection of places to eat and socialise in Canary Wharf, from coffee shops such as Starbucks and Coffee Republic, to eateries such as Caffe Italia, Pizza Express and Singapore Sam. The take-away outlets include Ixxy's Bagels, Soup Opera and Crazy Salads.</p>
 
 <p>Among the more formal "sit down" establishments is Carluccio's, an authentic Italian cafe, where, in fine weather, customers can lunch outside on the pavement terrace, enjoying regional dishes developed by one of London's top chefs, Antonio Carluccio. Restaurateur and design guru Sir Terence Conran has sited his lastest venue, Plateau, at Canary Wharf, where not just good, mainly British, food is offered, but also fabulous views, especially at night. The choice of cuisine is wide. First Edition serves international dishes with continental and Far Eastern influences (together with an impressive array of fresh seafood), Royal China is famous for its dim sum, and Ubon, which sits on the top floor of a significant building on the riverfront, has an oriental menu that draws heavily on the existing fare offered at the celebrity-packed Nobu, in Park Lane, including the 'new style' sashimi and the legendary black cod with miso.</p>
 

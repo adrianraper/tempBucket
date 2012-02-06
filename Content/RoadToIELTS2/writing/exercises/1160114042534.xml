@@ -92,6 +92,7 @@
     <li id="5">I would like to congratulate you on the high standard of your journalists.&#xA0;<input id="q5"/>&#xA0;professionalism and dedication is a credit to your newspaper.</li>
 	<p class="linespace"></p>
     <li id="6">I have never written&#xA0;<input id="q6"/>&#xA0;letter to a newspaper before but feel I have to write to congratulate you on yesterday's excellent editorial.</li>
+	<p class="linespace"></p>
     <li id="7">My family and I depend on your channel for&#xA0;<input id="q7"/>&#xA0;evening entertainment.</li>
 	<p class="linespace"></p>
     <li id="8">I would like to know if Matt Drew,&#xA0;<input id="q8"/>&#xA0;hilarious disc jockey who presented the breakfast show last week, will be given a programme of his own in the near future.</li>
@@ -111,10 +112,8 @@
   </ol>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">An article or possessive adjective is needed in each of the sentences.</font>
-  </p>
+<section id="examtips">
+  <p class="popuptext">An article or possessive adjective is needed in each of the sentences./p>
 </section>
 
 </body>

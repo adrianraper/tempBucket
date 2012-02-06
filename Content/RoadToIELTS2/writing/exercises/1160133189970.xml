@@ -94,25 +94,36 @@
   <br/><br/><br/>
   <img class="rightFloat" src="../media/LC_GW_005.jpg" mode="1" id="1001"/>
   <ol id="questionList">
-    <li id="1">Find out about the school's methodology. If I were you,&#xA0;<input id="q1"/>&#xA0;about the school's methodology.</li>
+    <li><span color="#7935AB">Find out about the school's methodology.</span><br/>
+	If I were you,&#xA0;<input id="q1"/>&#xA0;about the school's methodology.</li>
 	<p class="linespace"></p>
-    <li id="2">Choose the school carefully. You'd&#xA0;<input id="q2"/>&#xA0;the school carefully.</li>
+    <li><span color="#7935AB">Choose the school carefully.</span><br/>
+	You'd&#xA0;<input id="q2"/>&#xA0;the school carefully.</li>
 	<p class="linespace"></p>
-    <li id="3">Don't enrol in a class with over 20 students.&#xA0;<input id="q3"/>&#xA0;you should enrol in a class with over 20 students.</li>
+    <li><span color="#7935AB">Don't enrol in a class with over 20 students.</span><br/>		
+	<input id="q3"/>&#xA0;you should enrol in a class with over 20 students.</li>
 	<p class="linespace"></p>
-    <li id="4">Don't choose a short, intensive course. If I were you,&#xA0;<input id="q4"/>&#xA0;a short, intensive course.</li>
+    <li><span color="#7935AB">Don't choose a short, intensive course.</span><br/>
+	If I were you,&#xA0;<input id="q4"/>&#xA0;a short, intensive course.</li>
 	<p class="linespace"></p>
-    <li id="5">Ask if the teachers are native speakers. I'd&#xA0;<input id="q5"/>&#xA0;ask if the teachers are native speakers.</li>
+    <li><span color="#7935AB">Ask if the teachers are native speakers.</span><br/>
+	I'd&#xA0;<input id="q5"/>&#xA0;ask if the teachers are native speakers.</li>
 	<p class="linespace"></p>
-    <li id="6">Avoid mixed ability classes. I think&#xA0;<input id="q6"/>&#xA0;mixed ability classes.</li>
+    <li><span color="#7935AB">Avoid mixed ability classes.</span><br/>
+	I think&#xA0;<input id="q6"/>&#xA0;mixed ability classes.</li>
 	<p class="linespace"></p>
-    <li id="7">Don't choose a school that uses old-fashioned teaching methods. I wouldn't choose a school that uses old-fashioned teaching methods&#xA0;<input id="q7"/>.</li>
+    <li><span color="#7935AB">Don't choose a school that uses old-fashioned teaching methods.</span><br/>
+	I wouldn't choose a school that uses old-fashioned teaching methods&#xA0;<input id="q7"/>.</li>
 	<p class="linespace"></p>
-    <li id="8">Don't enrol in a class with fewer than six students. You'd&#xA0;<input id="q8"/>&#xA0;in a class with fewer than six students.</li>
+    <li><span color="#7935AB">Don't enrol in a class with fewer than six students.</span><br/> 
+	You'd&#xA0;<input id="q8"/>&#xA0;in a class with fewer than six students.</li>
 	<p class="linespace"></p>
-    <li id="9">Don't do an intensive course. I wouldn't&#xA0;<input id="q9"/>&#xA0;do an intensive course.</li>
+    <li><span color="#7935AB">Don't do an intensive course.</span><br/>
+	I wouldn't&#xA0;<input id="q9"/>&#xA0;do an intensive course.</li>
 	<p class="linespace"></p>
-    <li id="10">Find out what the maximum class size is. The first thing I'd do&#xA0;<input id="q10"/>&#xA0;is find out what the maximum class size is.</li>
+    <li><span color="#7935AB">Find out what the maximum class size is.</span><br/>
+	The first thing I'd do&#xA0;<input id="q10"/>&#xA0;is find out what the maximum class size is.</li>
+	<p class="linespace"></p>
   </ol>
 </section>
 
@@ -125,9 +136,10 @@
 			
 			<p class="popuptext">You should write at least 150 words.</p>
 			
-			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 			
-			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+			<p class="popuptext">Begin your letter as follows:</p>
+			<p class="popuptext">Dear...,</p>
 		</section>
 		
 </body>

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="210" />
@@ -70,7 +73,9 @@
 </header>
 	
 <section id="body"><img class="rightFloat" src="../media/ST_LN_002.jpg" mode="1" id="1001"/>
-
+<br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
 <h8><p>Williams Electrical Goods</p></h8>
 <h2><p>Repair Request Form</p></h2>
 
@@ -82,12 +87,16 @@
 <p class="hangingIndent1"><b>Appliance:</b>	<tab/><tab/><tab/>washing machine</p>
 <p class="hangingIndent1"><b>Make:</b><tab/><tab/><tab/>	(4)&#xA0;<input id="q4"/></p>
 <p class="hangingIndent1"><b>Model number:</b><tab/><tab/>	(5)&#xA0;<input id="q5"/></p>
-<p class="hangingIndent1"><b>Date of purchase:</b><tab/><tab/>	(6)&#xA0;<input id="q6"/>&#xA0;October, 2001</p>
+<p class="hangingIndent1"><b>Date of purchase:</b><tab/><tab/>	(6)&#xA0;<input id="q6"/>&#xA0;October</p>
 </div>
 
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">You should be able to see from the form that you will need to listen for a name, an address, a phone number, the name of a product, a number and a date.</p>
+<p class="popuptext1"><b>Questions 1-8</b></p>
+<p class="popuptext2">Make sure you are familiar with the form and you know where to put the information you hear.</p>
+</section>
 
 </body>
 </bento>

@@ -127,63 +127,63 @@
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">Sir -&gt; Sir/Madam</p>
+  <p class="feedbacktext"><b>Sir -&gt; Sir/Madam</b></p>
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">to -&gt; for</p>
+  <p class="feedbacktext"><b>to -&gt; for</b></p>
 </section>
 
 <section id="fb3">
-  <p class="feedbacktext">advertising -&gt; advertised</p>
+  <p class="feedbacktext"><b>advertising -&gt; advertised</b></p>
 </section>
 
 <section id="fb4">
-  <p class="feedbacktext">in -&gt; on</p>
+  <p class="feedbacktext"><b>in -&gt; on</b></p>
 </section>
 
 <section id="fb5">
-  <p class="feedbacktext">could -&gt; can</p>
+  <p class="feedbacktext"><b>could -&gt; can</b></p>
 </section>
 
 <section id="fb6">
-  <p class="feedbacktext">in -&gt; for</p>
+  <p class="feedbacktext"><b>in -&gt; for</b></p>
 </section>
 
 <section id="fb7">
-  <p class="feedbacktext">for -&gt; by</p>
+  <p class="feedbacktext"><b>for -&gt; by</b></p>
 </section>
 
 <section id="fb8">
-  <p class="feedbacktext">of -&gt; for</p>
+  <p class="feedbacktext"><b>of -&gt; for</b></p>
 </section>
 
 <section id="fb9">
-  <p class="feedbacktext">about -&gt; in</p>
+  <p class="feedbacktext"><b>about -&gt; in</b></p>
 </section>
 
 <section id="fb10">
-  <p class="feedbacktext">at -&gt; in</p>
+  <p class="feedbacktext"><b>at -&gt; in</b></p>
 </section>
 
 <section id="fb11">
-  <p class="feedbacktext">interesting -&gt; interested</p>
+  <p class="feedbacktext"><b>interesting -&gt; interested</b></p>
 </section>
 
 <section id="fb12">
-  <p class="feedbacktext">of -&gt; in</p>
+  <p class="feedbacktext"><b>of -&gt; in</b></p>
 </section>
 
 <section id="fb13">
-  <p class="feedbacktext">at -&gt; in</p>
+  <p class="feedbacktext"><b>at -&gt; in</b></p>
 </section>
 
 <section id="fb14">
-  <p class="feedbacktext">hear -&gt; hearing</p>
+  <p class="feedbacktext"><b>hear -&gt; hearing</b></p>
 </section>
 
 <section id="fb15">
-  <p class="feedbacktext">sincerely -&gt; faithfully</p>
+  <p class="feedbacktext"><b>sincerely -&gt; faithfully</b></p>
 </section>
 
 <section id="writingtask1">
@@ -197,7 +197,9 @@
   
   <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
   
-  <p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+  <p class="popuptext">Begin your letter as follows:</p>
+  
+  <p class="popuptext">Dear Sir/Madam,</p>
 
 </section>
 

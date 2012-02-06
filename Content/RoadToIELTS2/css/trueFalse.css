@@ -124,7 +124,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 .feedbacktext {
 	margin: 0 0 0 0;
 	padding: 20px 0px 20px 50px;
-	line-height: 22em;
+	line-height: 20em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for writing task text. */
@@ -191,6 +191,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding-bottom: 12px;
 	}
 /* This div is for exercises which have audio button in front of question List */
+
 #audio{
 	position:relative;
 	height: 555px;

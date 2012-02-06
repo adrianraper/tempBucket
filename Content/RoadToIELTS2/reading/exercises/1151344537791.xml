@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="634"  />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	
@@ -90,7 +93,9 @@
 		</div>
 </header>
 <section id="readingText">
-	<h8>Multiple Personalities</h8>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><p></p>
+	<h8><p>Multiple Personalities</p></h8>
 	<h2><p>Self-portraits in Series</p></h2>
 	<p>Many artists have turned to the mirror and made a self-portrait based on what they saw reflected. For different reasons, some have recorded their image over the course of a lifetime.</p>
 	<h7><p>Rembrandt van Rijn (1606-1669)</p></h7>
@@ -104,7 +109,7 @@
 	<h7><p>Pablo Picasso (1881-1973)</p></h7>
 	<p>Pablo Picasso's self-portraits are also autobiographical. Although few in number relative to his total output, they coincide roughly with the changes in style taking place in his other works. For example, his early self-portraits reveal an interest in Realism, Impressionism, and the post-Impressionistic works of Van Gogh, Gauguin, and Toulouse-Lautrec. His later works reflect his study of Cézanne, primitivism, abstraction, neoclassicism, Surrealism, Expressionism and even Abstract Expressionism.</p>
 	<p>The 1906 self-portrait reveals the simplifications and abstractions taking place in all his paintings in response to African and Iberian sculpture, which would lead toward his breakthrough into Cubism. In other paintings, the artist's realistic silhouette, based on a photo taken by the artist, appears beside a contorted abstract face. In another painting – of his first wife, Olga – what appears to be an unfinished patch of random brushstrokes behind the figure's head turns out to be the painter's profile rendered in the negative space of the untouched canvas. In a Picasso you can never take anything for granted. In one of his last self-portraits, done in 1972, a year before he died, he painted himself almost as a living death mask.</p>
-	<p>Terry Sullivan, American Artist Magazine, September 1997, Vol.61, No.662, pp. 30.</p>
+	<p>Terry Sullivan, American Artist Magazine, Vol.61, No.662, pp. 30.</p>
 </section>
 
 <section id="body">
@@ -183,6 +188,12 @@
 
 <section id="fb4">
   <p>Both Beckmann and Picasso produced paintings where they appeared with their wives.</p>
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-8 - Classification</b></p>
+<p class="popuptext2">Make sure you're clear about which letters and combinations of letters are used for each category. The text is clearly divided into sections dealing with each artist in turn, so you need to skim through each section looking for key words and phrases or synonyms of key words and phrases used in the questions.</p>
+<p class="popuptext">Notice that the artist Beckmann is also grouped with Rembrandt and Picasso to form two of the categories. Each time you find something that applies to Beckmann, you should look through the sections on Rembrandt or Picasso and decide if it also applies to them. Similarly, when you find something that applies to Rembrandt or Picasso, you should check whether it also applies to Beckmann.</p>
 </section>
 </body>
 </bento>

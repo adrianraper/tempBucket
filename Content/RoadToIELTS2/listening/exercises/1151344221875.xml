@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="150" />
@@ -85,7 +88,9 @@
 
  <img class="rightFloat" src="../media/ED_LN3.jpg" mode="1" id="1001"/>
 
- 
+ <br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   
   <div id="questionList">
   <p>13.&#xA0;<input id="q1"/></p>
@@ -138,6 +143,10 @@
   <p class="feedbacktext">16. Dr Grant says that the exam papers are to the left of the entrance.</p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">From the diagram you should be able to tell that you will hear someone describing the layout of a library. Notice that you have to move clockwise from number 13.</p>
+<p class="popuptext1"><b>Questions 13-16</b></p>
+<p class="popuptext2">Look at the areas already marked in the library. What do you think is missing?</p>
+</section>
 </body>
 </bento>

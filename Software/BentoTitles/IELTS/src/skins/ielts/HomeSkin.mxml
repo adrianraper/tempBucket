@@ -22,7 +22,7 @@
 			</s:VGroup>
 		</s:HGroup>
 			
-		<s:VGroup width="100%" paddingTop="5">
+		<s:VGroup id="completionGroup" width="100%" paddingTop="5" visible="{!hostComponent.noProgressData}" includeInLayout="{!hostComponent.noProgressData}" >
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseCaption="Reading" courseClass="reading" id="readingCoverageBar" width="100%" />
 			<s:Spacer height="1"/>
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseCaption="Listening" courseClass="listening" id="listeningCoverageBar" width="100%" />
@@ -32,8 +32,10 @@
 			<ui:CourseBarRenderer dataProvider="{hostComponent.dataProvider}" courseCaption="Writing" courseClass="writing" id="writingCoverageBar" width="100%" />
 			<s:Spacer height="5"/>
 			<s:Label text="The colour bars show how much you have completed in each skill area. Go to My Progress for more details." width="80%" lineHeight="18" />	
-	</s:VGroup>
-		
+		</s:VGroup>
+		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
+			<s:Label text="Welcome to Road to IELTS2. Click the buttons on the right to look at the resources to help with each skill." width="80%" lineHeight="18" />				
+		</s:VGroup>		
 	</s:VGroup>
 	
 	<s:VGroup width="100%">

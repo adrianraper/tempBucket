@@ -23,15 +23,6 @@
 </settings>
   <questions>
     <GapFillQuestion source="{#q1,#q2,#q3}" block="b1">
-      <answer value="an Italian" correct="true" synonymGroup="Italian">
-        <feedback source="fb1"/>
-      </answer>
-      <answer value="an Indian" correct="true" synonymGroup="Indian">
-        <feedback source="fb2"/>
-      </answer>
-      <answer value="a French" correct="true" synonymGroup="French">
-        <feedback source="fb3"/>
-      </answer>
       <answer value="Italian" correct="true" synonymGroup="Italian">
         <feedback source="fb1"/>
       </answer>
@@ -60,7 +51,7 @@
         <feedback source="fb3"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="{#q4, #q5}" block="b4">
+    <GapFillQuestion source="{#q4, #q5}" block="b2">
       <answer value="Food Express" correct="true">
         <feedback source="fb45"/>
       </answer>
@@ -71,7 +62,7 @@
         <feedback source="fb45"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6" >
+    <GapFillQuestion source="q6" block="b3" >
       <answer value="fire" correct="true">
         <feedback source="fb6"/>
       </answer>
@@ -85,7 +76,7 @@
         <feedback source="fb6"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
+    <GapFillQuestion source="q7" block="b4">
       <answer value="live band" correct="true">
         <feedback source="fb7"/>
       </answer>
@@ -99,7 +90,7 @@
         <feedback source="fb7"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
+    <GapFillQuestion source="q8" block="b5">
       <answer value="in Park Road" correct="true">
         <feedback source="fb8"/>
       </answer>

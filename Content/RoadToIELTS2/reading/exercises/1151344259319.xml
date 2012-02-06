@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -48,7 +51,9 @@
 
 
 <section id="readingText">
-<h1>Robomoths</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+<h1><p>Robomoths</p></h1>
 
 <div id="reading">
 <p class="hangingIndent"><b>A</b>&#xA0;With rare exceptions, such as bees and silkworms, the insect world is a source of pests rather than of pets or pack animals. In an age of miniaturisation, however, a few researchers are wondering if more insects might be harnessed to the service of man. One is John Hildebrand, a neurobiologist at the University of Arizona. As part of a project run by America's Defence Advanced Research Projects Agency (DARPA), he and his colleagues have been working with the giant sphinx moth to create a "biobot" &#x2013; an animal that can be controlled electronically by a human. They have designed a radio transmitter small enough to attach to a sphinx moth without impairing its ability to fly. The next stage is to add a receiver to tell the moth where to go.</p>
@@ -73,7 +78,7 @@
 <li>lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</li>
 </ol>
 
-<p>The Economist, 4th March 2000.</p>
+<p>The Economist.</p>
 </section>
 
 <section id="body">
@@ -98,5 +103,12 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">The two questions in this exercise are 'summary' questions, in that they refer to the text as a whole.</p>
+<p class="popuptext1"><b>Question 17</b></p>
+<p class="popuptext2">Choose a title that suits the whole passage, not just certain sections or information it contains. What news is the writer reporting?</p>
+<p class="popuptext1"><b>Question 18</b></p>
+<p class="popuptext2">Consider the style and tone of this passage. How serious is it? Is there any humour in the passage? Are there any references or footnotes of the kind that often appear in academic journals? What is the overall subject matter? Would non-specialists understand it?</p>
+</section>
 </body>
 </bento>

@@ -315,7 +315,7 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
-		 * Count the number of correct, incorrect and missed answers and return them.  If instant marking was on the markable answers will already have been set,
+		 * Count the number of correct, incorrect and missed answers and return them. If instant marking was on the markable answers will already have been set,
 		 * otherwise the currently selected answers will become the markable answers.
 		 * 
 		 * @return 
@@ -364,7 +364,12 @@ package com.clarityenglish.bento.model {
 					// Add values to the exercise mark, including calculating the number of missed points
 					_exerciseMark.correctCount += correctCount;
 					_exerciseMark.incorrectCount += incorrectCount;
-					_exerciseMark.missedCount += (question.getMaximumPossibleScore() - correctCount - incorrectCount);
+					// #106. If a target spotting is wrong and you click it, you shouldn't end up with missed count of -1
+					if (question.getMaximumPossibleScore()>0) {
+						_exerciseMark.missedCount += (question.getMaximumPossibleScore() - correctCount - incorrectCount);
+					} else {
+						_exerciseMark.missedCount += 0;
+					}
 				} else {
 					// The entire question was missed
 					_exerciseMark.missedCount += question.getMaximumPossibleScore();

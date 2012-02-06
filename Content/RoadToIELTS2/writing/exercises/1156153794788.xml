@@ -35,6 +35,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -62,7 +65,8 @@
 <section id="body">
 
 <div class="wrapperbox">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 		<div class="questionbox">
 	  		<img class="imagebox1" src="../media/Unit01_Write_e2.3q.jpg" mode="1" id="1009"/>
 		</div>
@@ -85,7 +89,9 @@
   <p class="feedbacktext">The figures in this standard bar chart are the same as the ones given in the proportional bar chart at the top. The difference is that the values are next to each other instead of on top of each other to form towers.</p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">The information for the writing task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart.</p>
+</section>
 
 </body>
 </bento>

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -51,7 +54,9 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/EN_AW_005.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/EN_AW_005.jpg" mode="1" id="1001"/><br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <ol id="questionList">
   <li><span color="#7935AB">The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.</span>
   <br/> The water-balanced railway's hydraulic brake&#xA0;<input id="q1"/>&#xA0;main function is to slow the train, helps store energy to pump water.</li>
@@ -80,6 +85,14 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">When describing an object we often use relative clauses to give information about its function, construction and so on. These may be defining relative clauses, for example:</p>
+<p class="popuptext">A ballast tank is a tank which holds water for weight.</p>
+<p class="popuptext">The relative clause gives essential information about the object, so it is a defining relative clause.</p>
+<p class="popuptext">Or they may be non-defining relative clauses, for example:</p>
+<p class="popuptext">The carriages, which can carry up to 20 passengers, go up and down a steep slope.</p>
+<p class="popuptext">The relative clause gives additional information about the object, so it is a non-defining relative clause. Only non-defining relative clauses need to be enclosed in commas.</p>
+</section>
 
 </body>
 </bento>

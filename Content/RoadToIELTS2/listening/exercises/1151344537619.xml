@@ -17,6 +17,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="267" />
@@ -128,6 +131,9 @@ Listen to the recording, which will play automatically, and follow the instructi
 <section id="body">
 
   <img class="rightFloat" src="../media/AC_LN_003.jpg" mode="1" id="1001"/>
+  <br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 
  <div id="wrapper">
 
@@ -202,6 +208,11 @@ Listen to the recording, which will play automatically, and follow the instructi
   <p class="feedbacktext">8. The lecturer states that in recent decades an attempt has been made to screen films aimed specifically at children, which means the same as targetting younger audiences. </p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to work out from the question asked, the statements and the categories that you are going to hear someone talking about cinema from the 1950s-onwards. You should also see that you are expected to listen and find out for which period of time each statement is true. Look at the different periods and think about how they might be expressed differently. What century or part of the century does each period refer to, for example?</p>
+<p class="popuptext1"><b>Questions 1-8</b></p>
+<p class="popuptext2">Make sure you are familiar with each of these statements before you start to listen. Can you guess or eliminate any of the answers? What about number 3 for example? What do you think multiplex cinemas are and do you think they could have been introduced before 1950?</p>
+</section>
 
 </body>
 </bento>

@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500"  />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -86,7 +89,9 @@
 
 
 <section id="readingText">
-<h1>And then there were none</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+<h1><p>And then there were none</p></h1>
 
 <p>"We're on the verge of the seventh great extinction," says Harvard biologist E. O. Wilson. While cosmic accident or climate change used to be the cause of such biological cataclysms, humans alone are responsible for nearly every loss of species in the past few thousand years. Since the advent of Homo sapiens, Wilson says, extinctions have occurred 100 to 100,000 times faster than before, principally because we have degraded and destroyed forests, spread agriculture, introduced animals into new environments, and polluted the air, water, and soil.</p>
 
@@ -106,7 +111,7 @@
 
 <p>"If someone burned down the Louvre, you can be sure people would be outraged," says Russell Mittermeier, president of Conservation International. "We're burning down nature's Louvre, and no one pays attention."</p>
 
-<p>Jack McClintock, Discover Magazine, Vol.21, No.10, October 2000.</p>
+<p>Jack McClintock, Discover Magazine, Vol.21, No.10.</p>
 </section>
 
 <section id="body">
@@ -182,6 +187,11 @@
 	</list></li>
 	<p class="linespace"></p>
   </ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">Notice the tense used (present perfect). Another way this statement could be expressed is 'Seven great extinctions have already taken place.'</p>
 </section>
 
 </body>

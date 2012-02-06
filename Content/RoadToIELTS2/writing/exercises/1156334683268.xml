@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -64,14 +67,15 @@
 </section>
 
 <section id="body">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 	<img class="rightFloat" src="../media/EN_AW_003.jpg" mode="1" id="1001"  />
 	<div id="gapfillText">
 	<p>The hydram, which has been around for some two hundred years, is an example of sustainable technology. It is basically a water-powered pump for lifting water from a river or stream in order to &#xA0;<input id="q1" type="droptarget" />. The device consists of a valve box, a system of valves and an air vessel. Water is drawn from a point about 2 metres higher than the bottom of the hydram itself so as to&#xA0;<input id="q2" type="droptarget" />. This flow of water into the valve box eventually causes&#xA0;<input id="q3" type="droptarget" />. As a result,&#xA0;<input id="q4" type="droptarget" />. In order to&#xA0;<input id="q5" type="droptarget" />, the delivery valve opens and water rushes into the air vessel. Consequently,&#xA0;<input id="q6" type="droptarget" />, the delivery valve closes and the whole cycle begins again. The air vessel is designed so that&#xA0;<input id="q7" type="droptarget" />.  It can be pumped as high as 60 metres.</p>
 	</div>
 </section>
-<section id="rt2001">
-  <p align="left">When writing sentences that express purpose or cause and result, you should think carefully about the logic and syntax of what you write.</p>
+<section id="examtips">
+  <p class="popuptext">When writing sentences that express purpose or cause and result, you should think carefully about the logic and syntax of what you write.</p>
 </section>
 
 </body>

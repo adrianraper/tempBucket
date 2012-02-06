@@ -109,9 +109,9 @@
 		 </course>
 		<course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
-				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Set 2" task="1" alt="" />
-				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="1" caption="Phase 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Phase 2" task="1" alt="" />
+				<group id="3" caption="Phase 3" task="1" alt="" />
 			</groups>
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />

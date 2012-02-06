@@ -35,6 +35,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -62,7 +65,8 @@
 <section id="body">
 
 <div class="wrapperbox">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 	<div class="questionbox">
 		<img class="imagebox1" src="../media/Unit01_Write_e2.4q.jpg" mode="1" id="1012"/>
  	</div>
@@ -73,7 +77,7 @@
 		<img class="imagebox" src="../media/Unit01_Write_e2.4b.jpg" mode="16" id="1014"/>
 	</div>
 	<div class="questionbox"><tab/><tab/><tab/><tab/><a id="a1"><b>Chart A</b></a><tab/><tab/><tab/><tab/><tab/><tab/><tab/><tab/><a id="a2"><b>Chart B</b></a></div>	
-
+<p></p>
 </div>
 
 </section>
@@ -86,7 +90,9 @@
   <p class="feedbacktext">The percentage in the bar chart at the top referred to two different age groups, for example 31 per cent of 16 to 24 year olds. This pie chart has mixed the age groups together to form a whole, so now the percentages don't refer to anything.</p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">The information for the writing task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart.</p>
+</section>
 
 </body>
 </bento>

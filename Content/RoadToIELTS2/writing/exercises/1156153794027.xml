@@ -14,6 +14,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -74,6 +77,8 @@
 </section>
 
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <img class="leftFloat" src="../media/Unit01_Write_e6.jpg" mode="1" id="1003"/>
   <div id="orgreport">
  
@@ -108,6 +113,9 @@
   </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">Examiners are looking for well-organised answers. Your report must be divided into paragraphs and these paragraphs should have a logical order to them. For this reason, it is very important to spend a few minutes planning your answer before you begin writing your report. The basic overall structure should be introduction - development - conclusion.</p>
+</section>
 
 </body>
 </bento>

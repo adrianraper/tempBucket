@@ -58,12 +58,12 @@
 </header>
 	
 <section id="noscroll">
-  <span id="a11" draggable="true">Inappropriate chatty style</span>
-  <span id="a8" draggable="true">Opinion clearly stated, good</span>
-  <span id="a10" draggable="true">Too short</span>
-  <span id="a12" draggable="true">Too long</span>
-  <span id="a9" draggable="true">Copying! Use your own words</span>
-  <span id="a7" draggable="true">Historical background is irrelevant</span>
+  <span id="a11" draggable="true">inappropriate chatty style</span>
+  <span id="a8" draggable="true">opinion clearly stated, good</span>
+  <span id="a10" draggable="true">too short</span>
+  <span id="a12" draggable="true">too long</span>
+  <span id="a9" draggable="true">Copying! Use your own words.</span>
+  <span id="a7" draggable="true">historical background is irrelevant</span>
   
 </section>
 
@@ -81,50 +81,52 @@
 <audio controls="compact"  src="../media/TT_WR1as.mp3" mode="1" id="1"/>
 </div>
 <div class="questiondiv">
-The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking.<br/>
-<input id="q1" type="droptarget"/>
+<input id="q1" type="droptarget"/><br/>
+The motor car was invented in the late nineteenth century, and within about twenty years it replaced the horse as the main means of transport in most cities. This gave rise to a whole new range of problems. Whereas before the problems had been stabling and feeding horses, now there are problems of accidents and parking.
 </div>
 </div>
-<p class="linespace"></p>
+
 
 <div class="outerbox">
 <div class="audio">
 <audio controls="compact"  src="../media/TT_WR1ao.mp3" mode="1" id="2"/>
 </div>
 <div class="questiondiv">
-Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done.<br/><input id="q2" type="droptarget"/>
+<input id="q2" type="droptarget"/><br/>
+Most cities now have pedestrian precincts and from time to time cities are in the news because cars have been temporarily banned from the centre to reduce pollution. However, no town council has yet had the courage to completely prohibit private motor vehicles from entering the city centre. There are several reasons why I believe this should be done.
 </div>
 </div>	
-<p class="linespace"></p>
+
 
 <div class="outerbox">
 <div class="audio">
 <audio controls="compact"  src="../media/TT_WR1ap.mp3" mode="1" id="3"/>
 </div>
 <div class="questiondiv">
-Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea.<br/>
-<input id="q3" type="droptarget"/>
+<input id="q3" type="droptarget"/><br/>
+Excessive traffic has made towns and cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres, and there are several reasons why I support this idea.
 </div>
 </div>	
-<p class="linespace"></p><br/>
+
 
 <div class="outerbox">
 <div class="audio">
 <audio controls="compact"  src="../media/TT_WR1ar.mp3" mode="1" id="4"/>
 </div>
 <div class="questiondiv">
-Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre.<br/>
-<input id="q4" type="droptarget"/>
+<input id="q4" type="droptarget"/><br/>
+Traffic is an increasing problem in our cities, and there are several reasons why I think cars should be banned from the centre.
 </div>
 </div>	
- <p class="linespace"></p>
+
  
  <div class="outerbox">
 <div class="audio">
 <audio controls="compact"  src="../media/TT_WR1aq.mp3" mode="1" id="5"/>
 </div>
 <div class="questiondiv">
-At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre.<br/><input id="q5" type="droptarget"/>
+<input id="q5" type="droptarget"/><br/>
+At Christmas last year, I had to get home from my job in the centre of Barcelona, and with all the shopping traffic I was stuck in a traffic jam for an hour and a half. This problem would be avoided if the city authorities banned private cars from the city centre.
 </div>
 </div>	
 
@@ -134,8 +136,8 @@ At Christmas last year, I had to get home from my job in the centre of Barcelona
 <audio controls="compact"  src="../media/TT_WR1an.mp3" mode="1" id="6"/>
 </div>
 <div class="questiondiv">
-Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so.<br/>
-<input id="q6" type="droptarget"/>
+<input id="q6" type="droptarget"/><br/>
+Cars and other forms of transport have given rise to a variety of problems in our cities. For example, most cities are unpleasantly polluted both with exhaust fumes and noise, and, in spite of improvements in the public transport system, it is becoming increasingly difficult to move around town with the traffic congestion which exists at most times of day. However, having said that, few cities, if any, have banned private cars from their centres, and I believe, for a number of reasons, that it would be a mistake to do so.
 </div>
 </div>	
 
@@ -153,6 +155,8 @@ Cars and other forms of transport have given rise to a variety of problems in ou
 			
 		</section>
 
-
+<section id="examtips">
+<p class="popuptext">It is very important to write a good introductory paragraph for your composition. If your introduction is good, it makes the rest of the composition easier to write and it makes a good impression on the reader. Remember, if you decide not to write a balanced 'for and against' composition, you should give your personal opinion in the first paragraph and repeat it in the conclusion.</p>
+</section>
 </body>
 </bento>

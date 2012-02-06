@@ -81,8 +81,11 @@
   
   <p>Speaking is probably going to be the most useful skill so, if I were you,&#xA0;<input id="q1" type="droptarget"/>&#xA0;try and speak in English as much as possible. And &#xA0;<input id="q2" type="droptarget"/>&#xA0;you should do a short, intensive oral course before you go too if you have time. I wouldn't&#xA0;<input id="q3" type="droptarget"/>&#xA0;buy one of those language courses on tape though because they're expensive and you don't get the opportunity to interact with other people.
   </p>
-  <p>As for your listening skills,&#xA0;<input id="q4" type="droptarget"/>&#xA0;tune into English language programmes on television and the radio whenever you can. Also, don't forget that lots of Australian, British and American web sites have audio that you can listen to so I'd make the most of the Internet if&#xA0;<input id="q5" type="droptarget"/>&#xA0;.</p>
+  
+  <p>As for your listening skills,&#xA0;<input id="q4" type="droptarget"/>&#xA0;tune into English language programmes on television and the radio whenever you can. Also, don't forget that lots of Australian, British and American web sites have audio that you can listen to so I'd make the most of the Internet if&#xA0;<input id="q5" type="droptarget"/>.</p>
+  
   <p>Browsing the Internet will also help extend your vocabulary, but you&#xA0;<input id="q6" type="droptarget"/>&#xA0;read books, newspapers and magazines as well. You'd &#xA0;<input id="q7" type="droptarget"/>&#xA0;get a good English-English dictionary too.&#xA0;<input id="q8" type="droptarget"/>&#xA0;you should throw away your bilingual one, but only use it when you really have to!</p>
+  
   <p>Well, I have to get back to work now. If you need any more advice, don't hesitate to get in touch.
   </p>
   <p>
@@ -91,7 +94,7 @@
   <p>
     Miranda
   </p>
-
+	<p class="linespace"></p>
   </div>
 </section>
 
@@ -104,9 +107,11 @@
 			
 			<p class="popuptext">You should write at least 150 words.</p>
 			
-			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 			
-			<p class="popuptext">Begin your letter as follows: Dear...,</p>
+			<p class="popuptext">Begin your letter as follows:</p>
+			
+			<p class="popuptext">Dear...,</p>
 		</section>
 		
 </body>

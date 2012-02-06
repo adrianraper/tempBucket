@@ -144,13 +144,31 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	margin: 0 0 0 0;
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
+	}
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext3 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 0px 50px;
+	line-height: 22em;
 	}		
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for feedback text without numbering. */
 .feedbacktext {
 	margin: 0 0 0 0;
 	padding: 20px 0px 20px 50px;
-	line-height: 22em;
+	line-height: 20em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* This is for image of writing task */

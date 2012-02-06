@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -143,6 +146,8 @@
 </header>
 	
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/><br/>
 <img class="photo1" src="../media/WR_CD_001.jpg" mode="1" id="1003"  />
   <p>The water-balanced railway basically operates like a huge balance, using the difference in weight between the two carriages to transport passengers up and down a hillside 30 metres in height.</p>
   <p>
@@ -271,9 +276,9 @@
   </p>
 </section>
 
-
-
-
+<section id="examtips">
+<p class="popuptext">Cohesive devices are words and phrases that can be used to refer back or forward to other words and ideas in a text. Good writers use them to make their writing clearer, more organized and more logical. Such devices include linking words and phrase like those we looked at in the earlier exercises. Pronouns such as 'which', 'it', 'this', 'that', and 'they' are other examples of cohesive devices.</p>
+</section>
 
 </body>
 </bento>

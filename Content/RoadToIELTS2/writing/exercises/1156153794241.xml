@@ -18,6 +18,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -251,7 +254,8 @@
 
 <section id="body">
 <div id="wrapper">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/><br/><br/>
 <div id="g1">
   <img class="leftFloat" src="../media/LE_AW_3a.jpg" mode="1" id="1003"/>
     <p>
@@ -368,6 +372,8 @@
   </p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">Although the bar chart in the previous exercise shows percentages, the figures are referred to in a variety of ways in the report, for example, 'almost half' instead of 50 per cent and '1 in 5' instead of 20 per cent. It is good to have this kind of variety in your reports.</p>
+</section>
 </body>
 </bento>

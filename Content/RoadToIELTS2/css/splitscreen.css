@@ -1,6 +1,6 @@
 * {
-	font-size: 14px;
-	font-family: Times;
+	font-size: 12px;
+	font-family: Verdana;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* The main header should always be bold */
@@ -151,7 +151,6 @@ h1 {
 /* h2 is used for subtitles in reading texts and exercises */
 h2 {
 	font-size: 12px;
-	font-family: Times;
 	color: #333333;
 	padding: 0px 25px 18px 6px;
 	text-align: left;
@@ -186,7 +185,6 @@ h7{
 /* h8 is used for main titles in exercises when <h2> are present. */
 h8{
 	font-size: 15px;
-	font-family: Times;
 	font-weight: bold;
 	padding: 20px 25px 0px 6px;
 	line-height: 20em;
@@ -223,13 +221,31 @@ h10{
 	margin: 0 0 0 0;
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
+	}
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext3 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 0px 50px;
+	line-height: 22em;
 	}		
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for feedback text without numbering. */
 .feedbacktext {
 	margin: 0 0 0 0;
 	padding: 20px 0px 20px 50px;
-	line-height: 22em;
+	line-height: 20em;
 	}
 	
 /*-----------------------------------------------------------------------------------------------*/
@@ -242,13 +258,13 @@ h10{
 #splitquestionList {
 	padding: 20px 35px 0 25px;
 	line-height: 22em;
-	font-size: 14px;
+	font-size: 12px;
 	margin: 0 20px 20px 20px;
 	}
 	
 #splitquestionList li {
 	padding: 0 0 30px 15px;
-	font-size: 14px;
+	font-size: 12px;
 	}
 
 #readingText {
@@ -258,8 +274,7 @@ h10{
 
 #readingText p {
 	padding: 0 25px 20px 6px;
-	font-size:14px;
-	font-family: Times;
+	font-size:12px;
 	}
 
 /* This class is used for reading text which paragraph label */

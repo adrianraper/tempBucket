@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -74,7 +77,9 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_AW_002.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/WB_AW_002.jpg" mode="1" id="1001"/><br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <ol id="dropdown">
   <li id="1"><select id="q1"><option id="a1">Unless</option><option id="a2">If</option><option id="a3">Provided</option></select>&#xA0;publishers think that they can sell enough copies, they will not publish a book.</li>
   <p class="linespace"></p>
@@ -98,7 +103,9 @@
   </ol>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">Alternative stages in a process only take place in certain circumstances or depend on the outcome of other stages. The first conditional, with the words, 'if', 'provided' or 'unless', is useful for expressing this kind of relationship between stages.</p>
+</section>
 
 </body>
 </bento>

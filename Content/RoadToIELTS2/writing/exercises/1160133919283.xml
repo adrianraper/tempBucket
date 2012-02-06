@@ -22,69 +22,25 @@
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
-    <DragQuestion source="q1" block="b1">
+    <DragQuestion source="{#q1,#q2}" block="b1">
       <answer source="a14" correct="true"/>
       <answer source="a15" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a15" correct="true"/>
-      <answer source="a14" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
+    <DragQuestion source="{#q3,#q4,#q5,#q6}" block="b2">
       <answer source="a16" correct="true"/>
       <answer source="a17" correct="true"/>
       <answer source="a18" correct="true"/>
       <answer source="a19" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a17" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a19" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a18" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a19" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
-      <answer source="a19" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
+    <DragQuestion source="{#q7,#q8}" block="b3">
       <answer source="a20" correct="true"/>
       <answer source="a21" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a21" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q9" block="b9">
+    <DragQuestion source="{#q9,#q10,#q11,#q12}" block="b4">
       <answer source="a22" correct="true"/>
       <answer source="a23" correct="true"/>
       <answer source="a24" correct="true"/>
       <answer source="a25" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q10" block="b10">
-      <answer source="a23" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q11" block="b11">
-      <answer source="a24" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a25" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q12" block="b12">
-      <answer source="a25" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
     </DragQuestion>
     <DragQuestion source="q13" block="b13">
       <answer source="a26" correct="true"/>
@@ -164,7 +120,9 @@ Here are the notes that a student made for the writing task you looked at in the
   
   <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
   
-  <p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+  <p class="popuptext">Begin your letter as follows:</p>
+  
+  <p class="popuptext">Dear Sir/Madam,</p>
 
 </section>
 

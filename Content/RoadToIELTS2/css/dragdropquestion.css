@@ -81,11 +81,6 @@ a, span[draggable="true"] {
 	background-color: #FFFFFF;
 	}
 
-		
-#noscroll span[draggable=true].disabled {
-	color: #CCCCCC;
-	}
-
 #noscroll{
 	padding-left:-16px;
 	}
@@ -223,6 +218,24 @@ h8{
 	margin: 0 0 0 0;
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
+	}
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext3 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 0px 50px;
+	line-height: 22em;
 	}		
 /*-----------------------------------------------------------------------------------------------*/	
 /*Formatting used for feedback text without numbering. */
@@ -270,6 +283,19 @@ h8{
 	}
 
 #gapfillText p{
+	padding-bottom: 12px;
+	max-width:10px;
+	}
+
+/*This is specially made for LM>Writing>Set 3 task 2>Arguments. */
+#arguments{
+	padding-top: 0px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 300%;
+	}
+
+#arguments p{
 	padding-bottom: 12px;
 	max-width:10px;
 	}
@@ -342,33 +368,33 @@ h8{
 
 #g1 { 
 	position: relative;
-	padding-top: 20px;
+	padding-top: 40px;
 	line-height:30em;
 	}
 
 #g2 {
 	position: relative;
 	padding-left:200px;
-	padding-top: 20px;
+	padding-top: 40px;
 	line-height:30em;
 	}
 
 #g3 {
 	position: relative;
 	padding-left:400px;
-	padding-top: 20px;
+	padding-top: 40px;
 	line-height:30em;
 	}
 
 #g4 {
 	position: relative;
-	padding-top: 170px;
+	padding-top: 190px;
 	line-height:30em;
 	}
 
 #g5 {
 	position: relative;
-	padding-top: 170px;
+	padding-top: 190px;
 	padding-left: 200px;
 	line-height:30em;
 	}

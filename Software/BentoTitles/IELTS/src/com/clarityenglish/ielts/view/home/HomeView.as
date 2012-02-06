@@ -64,6 +64,9 @@ package com.clarityenglish.ielts.view.home {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		[Bindable]
+		public var noProgressData:Boolean;
+		
 		public var courseSelect:Signal = new Signal(XML);
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {

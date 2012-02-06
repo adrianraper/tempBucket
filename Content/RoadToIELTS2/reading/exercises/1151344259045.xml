@@ -16,6 +16,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -61,7 +64,9 @@
 
 
 <section id="readingText">
-<h1>Robomoths</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+<h1><p>Robomoths</p></h1>
 
 <div id="reading">
 <p class="hangingIndent"><b>A</b>&#xA0;With rare exceptions, such as bees and silkworms, the insect world is a source of pests rather than of pets or pack animals. In an age of miniaturisation, however, a few researchers are wondering if more insects might be harnessed to the service of man. One is John Hildebrand, a neurobiologist at the University of Arizona. As part of a project run by America's Defence Advanced Research Projects Agency (DARPA), he and his colleagues have been working with the giant sphinx moth to create a "biobot" &#x2013; an animal that can be controlled electronically by a human. They have designed a radio transmitter small enough to attach to a sphinx moth without impairing its ability to fly. The next stage is to add a receiver to tell the moth where to go.</p>
@@ -87,7 +92,7 @@
 <li> lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</li>
 </ol>
 
-<p>The Economist, 4th March 2000.</p>
+<p>The Economist.</p>
 
 </section>
 
@@ -127,5 +132,26 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">By doing this exercise first you will have a good idea about the general content and organisation of the text. This is important because, with eight paragraphs, this is a fairly long passage. The list of headings probably seems quite long at first sight, but don't panic. If you do the task in an organised way, it's not so difficult.</p>
+<p class="popuptext">Reading through the list, you should begin to notice that there are pairs of headings that share a theme:</p>
+<p class="popuptext1"><b>Facts about moths:</b></p>
+<p class="popuptext3"><span color="#3A00FF">What attracts a moth?</span></p>
+<p class="popuptext2"><span color="#3A00FF">Lepidopteran mating rituals</span></p>
+<p class="popuptext1"><b>Scientists and their work:</b></p>
+<p class="popuptext3"><span color="#3A00FF">Smith's work with dogs and donkeys</span></p>
+<p class="popuptext3"><span color="#3A00FF">Pavlov's work with moths</span></p>
+<p class="popuptext2"><span color="#3A00FF">Hildebrand's achievements so far</span></p>
+<p class="popuptext1"><b>Steering:</b></p>
+<p class="popuptext3"><span color="#3A00FF">More sophisticated steering</span></p>
+<p class="popuptext2"><span color="#3A00FF">A crude approach to steering</span></p>
+<p class="popuptext1"><b>Using insects:</b></p>
+<p class="popuptext3"><span color="#3A00FF">Future work for insects</span></p>
+<p class="popuptext2"><span color="#3A00FF">Moths could save lives</span></p>
+<p class="popuptext1"><b>Other:</b></p>
+<p class="popuptext3"><span color="#3A00FF">A solution to a problem</span></p>
+<p class="popuptext2"><span color="#3A00FF">Stimulus and response</span></p>
+<p class="popuptext">Organised like this, the list doesn't seem so long or difficult to deal with. Now you can search the text for paragraphs that match a theme, for example 'steering', by scanning for key words. When you have found the word 'steering', read carefully to find out which of the two 'steering' headings match. Do the same for each theme.</p>
+</section>
 </body>
 </bento>

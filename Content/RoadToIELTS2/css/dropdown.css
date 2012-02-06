@@ -132,6 +132,24 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	margin: 0 0 0 0;
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
+	}
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext3 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 0px 50px;
+	line-height: 22em;
 	}		
 /*-----------------------------------------------------------------------------------------------*/
 /* This is for image of writing task */
@@ -247,7 +265,7 @@ padding-bottom: 12px;
 	position:relative;
 	line-height: 22em;
 	padding-left: 300px;
-	padding-top:60px;
+	padding-top:133px;
 	}
 	
 	#rightcolumn p {

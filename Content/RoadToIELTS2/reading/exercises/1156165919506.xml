@@ -8,13 +8,14 @@
 <link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+		
 	]]>
 	</style>
 		
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -52,6 +53,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/><br/>
 <img class="photo2" src="../media/LC_AR_002.jpg" mode="1" id="1001"/>
 
 
@@ -91,7 +94,7 @@
 	<li>Masai tribesman: a member of an African tribe of cattle herders.</li>
 </ol>
 
-<p>The Articulate Mammal, Jean Aitchison, Routledge 1998, pp. 24-26.</p>
+<p>The Articulate Mammal, Jean Aitchison, Routledge, pp. 24-26.</p>
 
 </section>
 
@@ -115,6 +118,20 @@
     <li id="6">Examples of how a particular species communicates.<br/>
 	<input id="q6"/></li>
   </ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-6 - Matching (information to paragraphs)</b></p>
+<p class="popuptext2">First look through the questions and then skim through the passage to get a general idea of what it's about. It's quite a complex text, but you shouldn't worry if you don't fully understand all the ideas and concepts it discusses. Next, read the first statement in Question 1 and skim quickly through the passage again trying to find the paragraph that expresses the same piece of information. Do the same with the other statements.</p>
+<p class="popuptext">Notice there are eight paragraphs but only six questions, so there are two paragraphs that don't have matching statements.</p>
+<p class="popuptext">Answering the following questions will help you focus on what you're looking for in the text:</p>
+<p class="popuptext">Question 1: The truth about what, do you think?</p>
+<p class="popuptext">Question 2: What do you think the theory was about?</p>
+<p class="popuptext">Question 3: How would you define the word 'communication'?</p>
+<p class="popuptext">Question 4: How do you think humans acquired language?</p>
+<p class="popuptext">Question 5: What might those differences be?</p>
+<p class="popuptext">Question 6: How many different types of animals do you think are discussed in this paragraph?</p>
+<p></p>
 </section>
 
 </body>

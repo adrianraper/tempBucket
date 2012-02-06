@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -83,7 +86,9 @@
 
 
 <section id="readingText">
-<h1>Robomoths</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+<h1><p>Robomoths</p></h1>
 
 <div id="reading">
 <p class="hangingIndent"><b>A</b>&#xA0;With rare exceptions, such as bees and silkworms, the insect world is a source of pests rather than of pets or pack animals. In an age of miniaturisation, however, a few researchers are wondering if more insects might be harnessed to the service of man. One is John Hildebrand, a neurobiologist at the University of Arizona. As part of a project run by America's Defence Advanced Research Projects Agency (DARPA), he and his colleagues have been working with the giant sphinx moth to create a "biobot" &#x2013; an animal that can be controlled electronically by a human. They have designed a radio transmitter small enough to attach to a sphinx moth without impairing its ability to fly. The next stage is to add a receiver to tell the moth where to go.</p>
@@ -109,7 +114,7 @@
 <li> lepidopteran: of the insect order Lepidoptera, which includes butterflies and moths, that as adults have four wings usually covered with tiny scales.</li>
 </ol>
 
-<p>The Economist, 4th March 2000.</p>
+<p>The Economist.</p>
 
 </section>
 
@@ -184,5 +189,15 @@
   
 </section>
 
+<section id="examtips">
+<p class="popuptext">Question 9: Find the name of another researcher in the text other than those listed in the exercise. Who was influenced by his work?</p>
+<p class="popuptext">Question 10: Scan quickly to find words connected with 'sounds'. Who conducted the experiments?</p>
+<p class="popuptext">Question 11: Find examples of electronic equipment in the text.</p>
+<p class="popuptext">Question 12: The key words here are 'receiver' and 'successfully'.</p>
+<p class="popuptext">Question 13: Scan for the scientific names of chemicals in the text.</p>
+<p class="popuptext">Question 14: Note the use of the present perfect tense in this question. This is important.</p>
+<p class="popuptext">Question 15: In other words, which scientists are interested in controlling the moths in flight?</p>
+<p class="popuptext">Question 16: If you train an animal, you can make it do something you want it to do.</p>
+</section>
 </body>
 </bento>

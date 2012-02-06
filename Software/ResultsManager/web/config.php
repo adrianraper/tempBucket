@@ -3,9 +3,18 @@
 // I need to call session_start here as this is about the first thing in any page.
 session_start();
 
+// If the total manageables in the logged in account is more than this students will not be displayed and some function disabled (RM only)
+$GLOBALS['max_manageables_for_student_display'] = 5000;
+
 // This contains literals.xml (moved from content). Expect it to be the same folder as this config.php
 //$GLOBALS['interface_dir'] = "./";
 $GLOBALS['interface_dir'] = "/../";
+
+// This contains any help files. Expect it to be /Software/ResultsManager/Help
+$GLOBALS['help_dir'] = "./Help";
+
+/* The temporary directory is used as a holding area for uploads before they are processed */
+$GLOBALS['tmp_dir'] = "./tmp";
 
 /* Configuration for RMail */
 // Try SendGrid stmp service. Seems to work nicely

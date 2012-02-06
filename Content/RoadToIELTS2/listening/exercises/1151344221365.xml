@@ -12,6 +12,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="150" />
@@ -56,6 +59,9 @@
  
 
    <img class="rightFloat" src="../media/ED_LN_006.jpg" mode="1" id="1001"/>
+   <br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/><br/>
    
  <h4><p>What is Dr Grant's opinion on the following points?</p></h4>
  
@@ -87,6 +93,10 @@
   </div>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">You should be able to see that you will hear Dr Grant talking about study skills and that he will be giving his opinion on the various methods.</p>
+<p class="popuptext1"><b>Question 9 - 12</b></p>
+<p class="popuptext2">Think about the various ways these statements can be expressed. For example, 'working on your own' could be 'working in isolation', or 'working independently', or 'working alone' or in this context 'studying alone', etc.</p>
+</section>
 </body>
 </bento>

@@ -27,6 +27,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="precision manual task" correct="true"/>
+	  <answer value="precision manual tasks" correct="true"/>
       <answer value="precision manual" correct="true"/>
     </GapFillQuestion>
   </questions>
@@ -76,7 +77,7 @@
 
   <p>All scientists who study male and female brains emphasise that the differences are not categorical: some men fall into the female range and vice versa. Fink says: "The good thing is that it is not clear cut."</p>
 
-  <p>Steve Connor, The Sunday Times.</p>
+  <p>Steve Connor, The Sunday Times</p>
 
 </section>
 
@@ -108,5 +109,8 @@
 </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">The skills in the 'Skills and Abilities' category are direct quotes from the text. If you scan the text to find these phrases, you will find the example given close by. Write your answers in note form because you are only allowed to write up to three words in each space. Notice that for gap four you are given the example and you must find the skill. Again, scan for the word 'sewing' and you'll find the information you need close by.</p>
+</section>
 </body>
 </bento>

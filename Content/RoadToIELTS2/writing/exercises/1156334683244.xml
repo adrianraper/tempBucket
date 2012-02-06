@@ -18,7 +18,7 @@
 <script id="model" type="application/xml">
 <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
-		<popup click="clickme" source="examtips" width="629" />
+		<popup click="clickme1" source="examtips" width="629" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -74,7 +74,7 @@
 <img class="photo1" src="../media/WR_SA_001.jpg" mode="1" id="1003"  />
 <br/>
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <a id="clickme1"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
  <br/><br/><br/><br/>
 <h7><p>Sentence A:</p></h7>
 <p>The hunting of rare species must be banned, and an international agency ought to be set up to prevent the trade in products made from rare species.</p>
@@ -134,8 +134,6 @@
 </section>
   
 <section id="writingtask1">
-
-
 <p class="popuptext"> You should spend about 40 minutes on this task.</p>
 <p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
 <p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
@@ -145,13 +143,7 @@
 </section>
 
 <section id="examtips">
-
-
-<p class="popuptext"> You should spend about 40 minutes on this task.</p>
-<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
-<p class="popuptext"><b> Our cities are noisier than ever before. Why is this so, and what can be done about it?</b></p>
-<p class="popuptext">You should write at least 250 words.</p>
-<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+<p class="popuptext">In this unit we have looked at one way of organising a 'problem and solution' composition. The causes of the problem should be discussed in one paragraph and then possible solutions in another, separate paragraph. In order for this composition structure to work, it is best to have at least one solution for each cause. The solutions should be presented in the same order as the causes. We will looked at an alternative structure in Unit 8.</p>
 
 </section>
 

@@ -17,7 +17,8 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="634"  />
+    	<popup click="clickme" source="writingtask1" width="500"  />
+		<popup click="clickme1" source="examtips" width="500" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -136,8 +137,9 @@
 
 
 
-<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-  <br/><br/><br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a><br/><br/><br/><br/>
+<a id="clickme1"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/><br/><br/><br/>
   <img class="rightFloat" src="../media/LE_AW_1n4.jpg" mode="1" id="1003"/>
     <div id="writing">
   <p>The bar chart&#xA0;<g id="t1">shows</g>&#xA0;the amount of time that 16 to 24-year-olds in England&#xA0;<g id="t2">spend</g>&#xA0;per week on sport and exercise. It&#xA0;<g id="t3">is</g>&#xA0;clear from the chart that young women&#xA0;<g id="t4">are</g>&#xA0;less active in their leisure time than young men.</p>
@@ -235,6 +237,9 @@
   <p class="feedbacktext"><b>are</b>&#xA0;- The present tense of the verb 'be' in the plural.</p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">The bar chart in this exercise has no date so we can assume that the information relates to the present. It shows the situation at one point in time and does not show changes over time. This kind of chart is sometimes called a 'static' chart and simple tenses (rather than continuous or perfect tenses) are most appropriate when describing the information shown. In this case, we can use the present simple for most of the report.</p>
+</section>
 
 </body>
 </bento>

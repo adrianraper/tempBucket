@@ -116,8 +116,7 @@
   <p>I would very much like to see more of Hodgson's articles in&#xA0;<input id="q19"/> future, and sincerely hope that he will soon have&#xA0;<input id="q20"/>&#xA0;regular column in the Post.</p>
   <p>Yours faithfully,</p>
   <p>Dora Ninian</p>
-
-  </div>
+</div>
 </section>
 
 <section id="writingtask1">
@@ -129,7 +128,9 @@
 	
 	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 	
-	<p class="popuptext">Begin your letter as follows: Dear Sir/Madam,</p>
+	<p class="popuptext">Begin your letter as follows:</p>
+	
+	<p class="popuptext">Dear Sir/Madam,</p>
 	
 </section>
 

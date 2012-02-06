@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="634"  />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -49,29 +52,11 @@
       <answer value="Admiral Byrd" correct="true"/>
       <answer value="Byrd" correct="true"/>
     </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
+    <GapFillQuestion source="{#q7,#q8,#q9,#q10}" block="b7">
       <answer value="plastic" correct="true"/>
       <answer value="wood" correct="true"/>
       <answer value="metal" correct="true"/>
       <answer value="plaster of Paris" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q8" block="b8">
-      <answer value="wood" correct="true"/>
-      <answer value="plastic" correct="true"/>
-      <answer value="metal" correct="true"/>
-      <answer value="plaster of Paris" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q9" block="b9">
-      <answer value="metal" correct="true"/>
-      <answer value="plastic" correct="true"/>
-      <answer value="wood" correct="true"/>
-      <answer value="plaster of Paris" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q10" block="b10">
-      <answer value="plaster of Paris" correct="true"/>
-      <answer value="plastic" correct="true"/>
-      <answer value="wood" correct="true"/>
-      <answer value="metal" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>
@@ -88,9 +73,10 @@
 
 
 <section id="readingText">
-
+	<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/>
   <h8><p>Board Games</p></h8>
-  <h2><p>How it all began</p></h2>
+  <h2><p>How it all Began</p></h2>
   
   <p>The first documented board game in America, A Traveler's Tour Through the United States, appeared in 1822. Demand for this new form of pastime was limited, and it wasn't until W. &amp; S.B. Ives successfully marketed the Mansion of Happiness in 1843 that production began to pick up. The McLoughlin Brothers, one of the most successful board game producers of the 19th century, started its business in 1858.</p>
   
@@ -115,46 +101,54 @@ Educational games held their appeal and were produced in large numbers. The 1930
 Game production rose to new heights late in the 1930s and then slowed during the Second World War, as paper, metal, and other materials were rationed and the nation turned to wartime production. Some games of this era came equipped with plaster of Paris pieces and an apologetic note from the manufacturer explaining the need to ration metal as part of the war effort. The late 1940s welcomed the baby boomers and witnessed the rise of the cult of domesticity. Games like Let's Furnish a House for All the Family (Parker Bros.) reflected these cultural phenomena as well.
   </p>
   <p>By the early 1950s, television had entered the American home. Fictional characters and celebrities from this new medium would find their way onto board games in the decades that followed, including Howdy Doody and Davy Crockett in the 1950s, Batman and the Addams Family in the 1960s, and the Partridge Family and Charlie's Angels in the 1970s. Interest in these later games has been growing among young collectors during recent years.</p>
-  <p>Bruce E. Johnson, Country Living, December 1997.</p>
+  <p>Bruce E. Johnson, Country Living</p>
 
 </section>
 <section id="body">
  <ol id="splitquestionList">
  
-    <li id="1">Which game company was established in 1858?<br/>
+    <li>Which game company was established in 1858?<br/>
 	<input id="q1"/></li>
 	<p class="linespace"></p>
-    <li id="2">What game pieces were regarded as extremely immoral before the end of the 19th century?<br/><input id="q2"/></li>
+    <li>What game pieces were regarded as extremely immoral before the end of the 19th century?<br/><input id="q2"/></li>
 	<p class="linespace"></p>    
-	<li id="3">Who did Milton Bradley produce miniaturised games for?<br/>
+	<li>Who did Milton Bradley produce miniaturised games for?<br/>
 	<input id="q3"/></li>
 	<p class="linespace"></p>	
-	<li id="4">What production technique was dropped at the turn of the last century to make games more affordable?<br/><input id="q4"/></li>
+	<li>What production technique was dropped at the turn of the last century to make games more affordable?<br/><input id="q4"/></li>
 	<p class="linespace"></p>	
-    <li id="5">What aspect of the late 1940s lifestyle was reflected in the games of that period?<br/><input id="q5"/></li>
+    <li>What aspect of the late 1940s lifestyle was reflected in the games of that period?<br/><input id="q5"/></li>
 	<p class="linespace"></p>	
-    <li id="6">Give the name of ONE real person who inspired board game designers in the first half of the 20th century.<br/><input id="q6"/></li>
+    <li>Give the name of ONE real person who inspired board game designers in the first half of the 20th century.<br/><input id="q6"/></li>
 	<p class="linespace"></p>	
     <p>List&#xA0;<b>FOUR</b>&#xA0;materials which have been used to make game pieces.</p>
 	<p class="linespace"></p>	
-    <li id="7">
+    <li>
       <input id="q7"/>
     </li>
 	<p class="linespace"></p>	
-    <li id="8">
+    <li>
       <input id="q8"/>
     </li>
 	<p class="linespace"></p>	
-    <li id="9">
+    <li>
       <input id="q9"/>
     </li>
 	<p class="linespace"></p>
-    <li id="10">
+    <li>
       <input id="q10"/>
     </li>
 	<p class="linespace"></p>	
 	</ol>
   
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-10 - Short answer questions</b></p>
+<p class="popuptext2">Do not spend too much time on this exercise. The questions focus on very specific pieces of information. Analyse the questions first, looking for key words, and then skim through the passage quickly to find the information. You do not need to read the whole text in detail. Remember, you should use a maximum of three words for each answer and these must be taken from the reading passage.</p>
+
+<p class="popuptext1"><b>Questions 7-10</b></p>
+<p class="popuptext2">What kind of materials do you think are used to manufacture board games? You will have to go back to the beginning of the passage and scan the whole text to find these. Three of the answers can be found close together, but one is on its own in a later part of the text. And remember - you are looking for materials used to make game pieces, not other parts of board games.</p>
 </section>
 
 </body>
