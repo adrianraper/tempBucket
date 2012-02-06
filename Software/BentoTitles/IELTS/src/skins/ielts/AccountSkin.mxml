@@ -101,47 +101,53 @@
 						</s:VGroup>
 						
 					</s:HGroup>
-					<s:HGroup>
+							
 						
-						<s:VGroup paddingTop="13">	
+					
+					<s:VGroup paddingTop="13">	
+						<s:HGroup>
 							<s:Label text="Registered name:" />
-							<s:Spacer height="3" />
-							<s:Label text="Email:"/>
-							<s:Spacer height="3" />
-							<s:Label text="Account start date:"/>		
-							<s:Spacer height="3" />
-							<s:Label text="Account expiry date:"/>		
-							<s:Spacer height="3" />
-							<s:VGroup id="passwordLabelsGroup" includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
-								<s:Label text="Current password:" />
-								<s:Spacer height="3" />
-								<s:Label text="New password:" />
-								<s:Spacer height="3" />
-								<s:Label text="Confirm password:" />
-							</s:VGroup>
-							</s:VGroup>
-						
-						<s:Spacer height="3" />
-						
-						<s:VGroup width="50%" height="100%"  paddingTop="13">
+							<s:Spacer width="30"/>
 							<s:Label text="{hostComponent.userDetails.fullName}" fontWeight="bold" />
-							<s:Spacer height="3" />
+						</s:HGroup>
+						<s:Spacer height="3" />
+						<s:HGroup>
+							<s:Label text="Email:"/>
+							<s:Spacer width="94"/>
 							<s:Label text="{hostComponent.userDetails.email}" fontWeight="bold" />
-							<s:Spacer height="3" />
+						</s:HGroup>
+						<s:Spacer height="3" />
+						<s:HGroup>
+							<s:Label text="Account start date:"/>
+							<s:Spacer width="22"/>
 							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.registrationDate),'d MMMM yyyy')}" fontWeight="bold"/>		
-							<s:Spacer height="3" />
+						</s:HGroup>
+						<s:Spacer height="3" />
+						<s:HGroup>
+							<s:Label text="Account expiry date:"/>		
+							<s:Spacer width="13"/>
 							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate),'d MMMM yyyy')}" fontWeight="bold"/>
-							<s:Spacer height="3" />
-							<s:VGroup id="passwordFieldsGroup" includeInLayout="{hostComponent.productVersion!='lastMinute'}" width="100%" height="100%" >
+						</s:HGroup>
+						<s:Spacer height="3" />
+							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
+								<s:Label text="Current password:" />
+								<s:Spacer width="24"/>
 								<s:TextInput id="currentPassword" width="180" />
-								<s:Spacer height="3" />
+							</s:HGroup>
+							<s:Spacer height="3" />
+							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
+								<s:Label text="New password:"  />
+								<s:Spacer width="40"/>
 								<s:TextInput id="newPassword" width="180" />
-								<s:Spacer height="3" />
+							</s:HGroup>
+							<s:Spacer height="3" />
+							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
+								<s:Label text="Confirm password:"  />
+								<s:Spacer width="22"/>
 								<s:TextInput id="confirmPassword" width="180" />
-								<s:Spacer height="3" />
-							</s:VGroup>
-						</s:VGroup>
-					</s:HGroup>	
+							</s:HGroup>
+
+				</s:VGroup>
 				</s:VGroup>
 			</s:HGroup>
 		</s:VGroup>

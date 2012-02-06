@@ -6,7 +6,7 @@
 		xmlns:tink="ws.tink.spark.containers.*"
 		xmlns:flashcomponents="*"
 		minWidth="540"
-		minHeight="560"
+		maxHeight="500"
 		xmlns:components="com.clarityenglish.textLayout.components.*"
 		creationComplete="creationComplete(event)"
 		>
@@ -91,7 +91,7 @@
 	
 	<s:Group width="100%" height="100%" top="0">
 	<!-- The left hand side -->
-		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="100" left="0"  >
+		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="90" left="0"  >
 			<s:layout>
 				<s:VerticalLayout/>
 			</s:layout>
@@ -105,9 +105,9 @@
 		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" width="45%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="320" exerciseSelected="onPopoutExerciseSelected(event)"  />
 		
 		<!-- The right hand side -->
-		<s:BorderContainer right="0" width="55%" height="100%" backgroundColor="#F2F2F2" cornerRadius="12" top="0" bottom="40" minWidth="540" minHeight="560">
+		<s:BorderContainer right="0" width="55%" height="80%" backgroundColor="#F2F2F2" cornerRadius="12" top="0" bottom="40" minWidth="540" minHeight="570">
 			<s:layout>
-				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="18" paddingBottom="20" />
+				<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="13" paddingBottom="6" />
 			</s:layout>
 			
 			<s:borderStroke>
@@ -115,7 +115,7 @@
 			</s:borderStroke>
 			
 			<s:HGroup width="100%">
-				<s:SWFLoader id="courseIcon" width="30" height="30"
+				<s:SWFLoader id="courseIcon" width="25" height="25"
 							 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')"
 							 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')"
 							 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')"
@@ -125,7 +125,7 @@
 					</s:filters>
 				</s:SWFLoader>
 				
-				<s:RichText id="courseTitleLabel" fontSize="16"  paddingTop="10" paddingBottom="10"/>
+				<s:RichText id="courseTitleLabel" fontSize="18"  paddingTop="6" paddingBottom="0"/>
 			</s:HGroup>
 			
 			
@@ -136,19 +136,18 @@
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Starting out" width="100%">
 					<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video about the key facts in this section of the IELTS exam." width="95%" lineHeight="18" />
 
-					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50">
+					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50" width="100%">
 
-						<s:Group width="476">
-							<s:SWFLoader id="questionZoneEBookGraphic" width="476" height="214"
-										 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
+						<s:Group width="100%" height="100%">
+							<s:SWFLoader id="questionZoneEBookGraphic" width="100%" height="100%"
+										 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')" 
 										 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
 										 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
 										 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
-							
 							<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" horizontalCenter="0" />
 						</s:Group>
-						
-						<s:HGroup horizontalCenter="0" verticalAlign="middle" paddingTop="10" paddingBottom="10"  >
+							
+						<s:HGroup horizontalCenter="0" verticalAlign="middle" >
 							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="showEBook()" />							  
 							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="showEBook()"  />
 							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12.6" width="160" height="30" click="showVideo()" />
@@ -171,7 +170,7 @@
 						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
 								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
 							<s:layout>
-								<s:TileLayout requestedColumnCount="2" requestedRowCount="5" orientation="columns" columnWidth="225" verticalGap="5" />
+								<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="235" verticalGap="10" horizontalGap="5" />
 							</s:layout>
 							
 							<s:itemRenderer>
@@ -194,14 +193,14 @@
 												}
 											]]>
 										</fx:Script>
-										<s:Rect id="imageBorder" width="75" height="45" top="-2" left="-2" >
+										<s:Rect id="imageBorder" width="75" height="35" top="-2" left="-2" >
 											<s:fill>
 												<s:SolidColor color="#000000" />
 											</s:fill>
 										</s:Rect>
 										<s:HGroup top="0" left="0" height="38" >
 											<s:Image id="image" width="68" />
-											<s:Label id="videoLabel" width="150" />
+											<s:Label id="videoLabel" width="150" paddingTop="7" fontWeight="bold"/>
 										</s:HGroup>
 									</s:ItemRenderer>
 								</fx:Component>
@@ -224,7 +223,7 @@
 						<s:Group left="0" right="0" top="5" bottom="5">
 							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12.6"  click="onUnitClick(event)">
 								<s:layout>
-									<s:TileLayout requestedColumnCount="3" requestedRowCount="8" orientation="columns" columnWidth="120" verticalGap="3" />
+									<s:TileLayout requestedColumnCount="4" requestedRowCount="6" orientation="columns" columnWidth="110" verticalGap="3" />
 								</s:layout>
 								
 								<!-- Custom item renderer to render the label -->
@@ -266,15 +265,15 @@
 					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
 					<s:Label text="Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
 					<s:Label text="Download complete test papers with answers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
-					<s:HGroup paddingTop="20">
-						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeReading')"
-									 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeWriting')"
-									 source.speakingStates="@Embed(source='skins/ielts/assets/exampractice_speaking.png')"
-									 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeListening')" />
+					<s:VGroup paddingTop="10" horizontalAlign="center" horizontalCenter="0" width="100%" >
+						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/testpractice_reading.png')"
+									 source.writingStates="@Embed(source='skins/ielts/assets/testpractice_writing.png')"
+									 source.speakingStates="@Embed(source='skins/ielts/assets/testpractice_speaking.png')"
+									 source.listeningStates="@Embed(source='skins/ielts/assets/testpractice_listening.png')" />
 						
-					<s:DataGroup id="examPracticeDataGroup" width="300" >
+					<s:DataGroup id="examPracticeDataGroup" width="100%" >
 						<s:layout>
-							<s:VerticalLayout paddingLeft="14" gap="0" />
+							<s:HorizontalLayout paddingLeft="0" paddingTop="10" gap="0" horizontalAlign="center" />
 						</s:layout>
 						<s:itemRenderer >
 							<fx:Component>
@@ -294,20 +293,20 @@
 											protected function onViewButtonClick(event:MouseEvent):void {
 												dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
 											}
-											
+									
 										]]>
 									</fx:Script>
 									<s:layout>
-										<s:VerticalLayout />
+										<s:HorizontalLayout/>
 									</s:layout>
 									
-									<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="230" height="30" textAlignLast="left" fontSize="12.6" />
+									<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="132" height="30" textAlignLast="left" fontSize="12.6" />
 									
 									<!--<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />-->
 									
 									<!-- #144 -->
 									<s:Group height="33">
-										<s:HGroup paddingLeft="5" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
+										<s:HGroup paddingLeft="0" paddingTop="3" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
 											<components:AudioPlayer id="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 											<s:Label text="{data.@audioCaption}" fontSize="12.6" paddingTop="2" />
 										</s:HGroup>
@@ -316,7 +315,48 @@
 							</fx:Component>
 						</s:itemRenderer>
 					</s:DataGroup>
-					</s:HGroup>
+						
+						<s:DataGroup id="examPracticeAnswerDataGroup" width="100%" >
+							<s:layout>
+								<s:HorizontalLayout paddingLeft="0" gap="0" horizontalAlign="center" />
+							</s:layout>
+							<s:itemRenderer >
+								<fx:Component>
+									<s:DataRenderer>
+										<fx:Script>
+											<![CDATA[
+												import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+												
+												public override function set data(value:Object):void {
+													super.data = value;
+													
+													if (data) {
+														examPracticeAnswerButton.label = data.@caption;
+													}
+												}
+												
+												protected function onViewButtonClick(event:MouseEvent):void {
+													dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
+												}
+												
+											]]>
+										</fx:Script>
+										<s:layout>
+											<s:HorizontalLayout />
+										</s:layout>
+										
+										<s:Button id="examPracticeAnswerButton" click="onViewButtonClick(event)" width="132" height="30" textAlignLast="left" fontSize="12.6" />
+										<s:Group height="33">
+											<s:HGroup paddingLeft="0" paddingTop="3" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
+												<components:AudioPlayer id="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+												<s:Label text="{data.@audioCaption}" fontSize="12.6" paddingTop="2" />
+											</s:HGroup>
+										</s:Group>
+									</s:DataRenderer>
+								</fx:Component>
+							</s:itemRenderer>
+						</s:DataGroup>
+					</s:VGroup>
 				</s:NavigatorContent>
 								
 			</tink:Accordion>

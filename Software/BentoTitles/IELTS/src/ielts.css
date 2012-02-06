@@ -165,6 +165,10 @@ zone|ZoneView #examPracticeViewButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
+zone|ZoneView #examPracticeAnswerButton {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeAnswerButtonSkin");
+}
+
 zone|ZoneView #questionZoneViewButton {
 	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");

@@ -88,7 +88,7 @@
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:entries>
-					<mx:GradientEntry color="0x000000" ratio="0.77" alpha="0.0" />
+					<mx:GradientEntry color="0x000000" ratio="0.70" alpha="0.0" />
 					<mx:GradientEntry color="0x000000" ratio="0.99" alpha="0.4" />
 				</s:entries>
 			</s:LinearGradient>
@@ -113,9 +113,10 @@
 				<s:SolidColor color="#767676" />
 			</s:fill>
 		</s:Rect>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='FooterGraphic')" left="370" top="9"/>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" right="120" top="9" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" right="25" top="12" />
-		<s:Label text="Data © The British Council 2006-2011. Software © Clarity Language Consultants Ltd, 2011. All rights reserved." color="#FFFFFF" paddingTop="17" paddingLeft="14" />
+		<s:Label text="Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="17" paddingLeft="14" />
 </s:Group>
 	
 </bento:BentoApplication>

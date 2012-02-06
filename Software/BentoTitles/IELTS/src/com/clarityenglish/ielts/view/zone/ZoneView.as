@@ -53,6 +53,9 @@ package com.clarityenglish.ielts.view.zone {
 		public var examPracticeDataGroup:DataGroup;
 		
 		[SkinPart(required="true")]
+		public var examPracticeAnswerDataGroup:DataGroup;
+		
+		[SkinPart(required="true")]
 		public var questionZoneViewButton:Button;
 		
 		[SkinPart(required="true")]
@@ -160,6 +163,7 @@ package com.clarityenglish.ielts.view.zone {
 				/*practiceZoneNavigatorContent.visible = practiceZoneNavigatorContent.includeInLayout = hasUnit("practice-zone");
 				adviceZoneNavigatorContent.visible = adviceZoneNavigatorContent.includeInLayout = hasUnit("advice-zone");
 				examPracticeNavigatorContent.visible = examPracticeNavigatorContent.includeInLayout = hasUnit("exam-practice");
+				examPracticeNavigatorContent.visible = examPracticeNavigatorContent.includeInLayout = hasUnit("exam-practice");
 				questionZoneNavigatorContent.visible = questionZoneNavigatorContent.includeInLayout = hasUnit("question-zone");*/
 				
 				// Give groups as the dataprovider to the unit list
@@ -170,6 +174,9 @@ package com.clarityenglish.ielts.view.zone {
 				
 				// Give the exam practice exercises as a dataprovider to the exam practice data group
 				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
+
+				// Give the exam practice exercises as a dataprovider to the exam practice answer group
+				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice2").exercise);
 				
 				// Change the course selector
 				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
@@ -201,6 +208,9 @@ package com.clarityenglish.ielts.view.zone {
 				case examPracticeDataGroup:
 					instance.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
+				case examPracticeAnswerDataGroup:
+					instance.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+					break;
 				case questionZoneViewButton:
 					questionZoneViewButton.addEventListener(MouseEvent.CLICK, onQuestionZoneViewButtonClick);
 					break;
@@ -218,6 +228,8 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 			}
 		}
+		
+		
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
