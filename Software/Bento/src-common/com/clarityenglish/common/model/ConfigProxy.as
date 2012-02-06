@@ -178,8 +178,11 @@ package com.clarityenglish.common.model {
 		 * @return 
 		 */
 		public function getDirectLogin():LoginEvent {
-			if (Config.DEVELOPER.name == "DK" || Config.DEVELOPER.name == "AR") {
+			if (Config.DEVELOPER.name == "DK") {
 				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
+			}
+			if (Config.DEVELOPER.name == "AR") {
+				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "password")
 			}
 			// take it from config rather than direct from the parameters
 			//if (FlexGlobals.topLevelApplication.parameters.studentID &&

@@ -171,7 +171,7 @@
 						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
 								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
 							<s:layout>
-								<s:HorizontalLayout />
+								<s:TileLayout requestedColumnCount="2" requestedRowCount="5" orientation="columns" columnWidth="225" verticalGap="5" />
 							</s:layout>
 							
 							<s:itemRenderer>
@@ -189,6 +189,8 @@
 													} else {
 														imageBorder.visible = false;
 													}
+													
+													videoLabel.text = data.@caption;
 												}
 											]]>
 										</fx:Script>
@@ -197,7 +199,10 @@
 												<s:SolidColor color="#000000" />
 											</s:fill>
 										</s:Rect>
-										<s:Image id="image" width="68" height="38" top="0" left="0"/>
+										<s:HGroup top="0" left="0" height="38" >
+											<s:Image id="image" width="68" />
+											<s:Label id="videoLabel" width="150" />
+										</s:HGroup>
 									</s:ItemRenderer>
 								</fx:Component>
 							</s:itemRenderer>
