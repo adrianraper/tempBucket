@@ -134,7 +134,7 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Starting out" width="100%">
-					<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video about the key facts in this section of the IELTS exam." width="95%" lineHeight="18" />
+					<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video about the key facts in this section of the IELTS test." width="95%" lineHeight="18" />
 
 					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50" width="100%">
 
@@ -147,7 +147,7 @@
 							<s:VideoPlayer id="questionZoneVideoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" top="10" horizontalCenter="0" />
 						</s:Group>
 							
-						<s:HGroup horizontalCenter="0" verticalAlign="middle" >
+						<s:HGroup horizontalCenter="0"  paddingTop="20" >
 							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="showEBook()" />							  
 							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="showEBook()"  />
 							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12.6" width="160" height="30" click="showVideo()" />

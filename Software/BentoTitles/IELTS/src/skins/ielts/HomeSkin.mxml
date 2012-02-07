@@ -35,6 +35,7 @@
 		</s:VGroup>
 		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
 			<s:Label text="Welcome to Road to IELTS2. Click the buttons on the right to look at the resources to help with each skill." width="80%" lineHeight="18" />				
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar.png')"/>
 		</s:VGroup>		
 	</s:VGroup>
 	
