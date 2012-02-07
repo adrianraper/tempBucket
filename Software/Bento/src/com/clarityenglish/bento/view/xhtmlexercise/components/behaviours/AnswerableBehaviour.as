@@ -298,9 +298,14 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			}
 			
 			if (inputElement.droppedFlowElement) {
-				XHTML.addClass(inputElement.droppedNode, "disabled");
-				TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
-				inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+				// #11 - once a drag source has been moved it becomes disabled, unless allowMultipleDrags is set
+				if (!exercise.model.getSettingParam("allowMultipleDrags")) {
+					container.callLater(function():void {
+						XHTML.addClass(inputElement.droppedNode, "disabled");
+						TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
+						inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+					});
+				}
 			}
 		}
 		

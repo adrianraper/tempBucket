@@ -56,6 +56,7 @@ package com.clarityenglish.bento.vo.content.model {
 			
 			if (value == "true") return true;
 			if (value == "false") return false;
+			
 			return value;
 		}
 		
