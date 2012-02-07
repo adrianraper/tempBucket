@@ -1,27 +1,5 @@
 <?php
-class SimpleXMLElementEx extends SimpleXMLElement {
-	
-    public function insertChildFirst($name, $value = null, $namespace = null) {
-        // Convert ourselves to DOM.
-        $targetDom = dom_import_simplexml($this);
-        
-        // Check for children
-        $hasChildren = $targetDom->hasChildNodes();
-
-        // Create the new childnode.
-        $newNode = $this->addChild($name, $value, $namespace);
-
-        // Put in the first position.
-        if ($hasChildren) {
-            $newNodeDom = $targetDom->ownerDocument->importNode(dom_import_simplexml($newNode), true);
-            $targetDom->insertBefore($newNodeDom, $targetDom->firstChild);
-        }
-
-        // Return the new node.
-        return $newNode;
-    }
-    
-}
+require_once(dirname(__FILE__)."/../../../../Common/SimpleDOM.php");
 
 if (!isset($_GET["u"]) || !isset($_GET["b"])) exit(0);
 
@@ -37,11 +15,10 @@ $basePath = preg_replace("..", "", $basePath);
 // Remove any default namespaces before parsing anything
 $xmlString = file_get_contents($url);
 $xmlString = preg_replace('/( *)?xmlns[^=]*="[^"]*"/i', '', $xmlString);
-$simpleXml = simplexml_load_string($xmlString, "SimpleXMLElementEx");
+$simpleXml = simpledom_load_string($xmlString);
 
 // Add in a base tag
-$baseElement = $simpleXml->head->insertChildFirst("base");
-$baseElement = $simpleXml->head->base["href"] = $basePath."/";
+$baseElement = $simpleXml->head->insertBefore(new SimpleDOM('<base href="'.$basePath.'/" />'));
 
 // Add a copyright notice at the end of the document
 $copyrightElement = $simpleXml->body->addChild("p", "Copyright © 1993 - 2011 Clarity Language Consultants Ltd. All rights reserved.");
@@ -64,11 +41,12 @@ $screenCssElement["type"] = "text/css";
 
 $javascriptElement = $simpleXml->head->addChild("script",
 <<<JS
-document.body.onload = function() {
-	// #203
+window.onload = function() {
+	// #203 - the try/catch block is for IE
 	var audioElements = document.getElementsByTagName('audio');
-	for (var i = 0; i < audioElements.length; i++)
-		audioElements[i].pause();
+	for (var i = 0; i < audioElements.length; i++) {
+		try { audioElements[i].pause(); } catch (e) { }
+	}
 	
 	window.print();
 	window.close();
@@ -79,7 +57,5 @@ JS
 $dom = new DOMDocument('1.0');
 $dom->loadXML($simpleXml->asXML());
 
-/*header("Content-type: application/xml");
-echo '<?xml-stylesheet type="text/xml" href="http://dock.projectbench/Content/print.xsl"?>'."\n";*/
-
+echo "<!DOCTYPE html>\n";
 echo $dom->saveHTML();
