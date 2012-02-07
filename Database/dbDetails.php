@@ -1,7 +1,7 @@
 <?php
 class DBDetails {
 	
-	public function DBDetails($dbHost) {
+	function __construct($dbHost) {
 		switch ($dbHost) {
 			case 200:
 				$this->driver = "mysql"; 
@@ -17,13 +17,13 @@ class DBDetails {
 				$this->password = "Sunshine1787"; 
 				$this->dbname = "GlobalRoadToIELTS";
 				break;
-			case 100:
+			/*case 100:
 				$this->driver = "mysql"; 
 				$this->host = "localhost";  
 				$this->user = "clarity"; 
 				$this->password = "clarity"; 
 				$this->dbname = "global_r2iv2";
-				break;
+				break;*/
 			case 2:
 				$this->driver = "mysql"; 
 				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";  

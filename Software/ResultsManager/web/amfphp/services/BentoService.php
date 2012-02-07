@@ -56,10 +56,11 @@ class BentoService extends AbstractService {
 		// I am now using is_set, but is that safe? If not set it might be an error. 
 		if (Session::is_set('userID')) {
 			AbstractService::$log->setIdent(Session::get('userID'));
-		};
+		}
+		
 		if (Session::is_set('rootID')) {
 			AbstractService::$log->setRootID(Session::get('rootID'));
-		};
+		}
 		
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
@@ -68,8 +69,8 @@ class BentoService extends AbstractService {
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
-
 	}
+	
 	/**
 	 *
 	 * This call finds the relevant account, keyed on rootID [or prefix].
@@ -84,8 +85,12 @@ class BentoService extends AbstractService {
 	 * @return config - Miscellaneous information, such as database version 
 	 * @return error - Error object if required 
 	 */
-	function getAccountSettings($config) {
-	
+	public function getAccountSettings($config) {
+		/*if (isset($config->dbHost)) {
+			$_SESSION['dbHost'] = $config->dbHost;
+			configureGlobalDatabaseVars($config->dbHost);
+		}*/
+		
 		// All errors are caught with an exception handler. This includes expected
 		// errors such as terms and conditions not accepted yet
 		// and unexpected errors such as no database connection.
@@ -112,12 +117,13 @@ class BentoService extends AbstractService {
 					"config" => $configObj,
 					"account" => $account);
 	}
+	
 	// Rewritten from RM version
 	// Assume that dbHost is handled in config.php
 	// Assume, for now, that rootID and productCode were put into session variables by getAccountDetails
 	// otherwise they need to be passed with every call.
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
-	function login($loginObj, $loginOption, $instanceID) {
+	public function login($loginObj, $loginOption, $instanceID) {
 	
 		// All errors are caught with an exception handler. This includes expected
 		// errors such as incorrect password, data errors such as no account
@@ -183,7 +189,7 @@ class BentoService extends AbstractService {
 		
 	}
 	
-	function logout() {
+	public function logout() {
 		$this->loginOps->logout();
 	}
 	
@@ -196,7 +202,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param progressType. This object tells us what type of progress data to return
 	 */
-	function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
+	public function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
 		
 		$errorObj = array("errorNumber" => 0);
 		
@@ -241,6 +247,7 @@ class BentoService extends AbstractService {
 					"progress" => $progress
 		);
 	}
+	
 	/**
 	 * 
 	 * This service call will create a session record for this user in the database.
@@ -248,7 +255,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	function startSession($userID, $rootID, $productCode, $dateNow) {
+	public function startSession($userID, $rootID, $productCode, $dateNow) {
 		
 		$errorObj = array("errorNumber" => 0);
 		
@@ -264,6 +271,7 @@ class BentoService extends AbstractService {
 		return array("error" => $errorObj,
 					"sessionID" => $sessionID);
 	}
+	
 	/**
 	 * 
 	 * This service call will close the open session record for this user in the database.
@@ -272,7 +280,7 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	function updateSession($sessionID, $dateNow ) {
+	public function updateSession($sessionID, $dateNow ) {
 		
 		$errorObj = array("errorNumber" => 0);
 		
@@ -287,6 +295,7 @@ class BentoService extends AbstractService {
 		}
 		return array("error" => $errorObj);
 	}
+	
 	/**
 	 * 
 	 * Currently stopping the session is just the same as updating it.
@@ -296,9 +305,10 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	function stopSession($sessionID, $dateNow ) {
+	public function stopSession($sessionID, $dateNow ) {
 		return $this->updateSession($sessionID, $dateNow);
 	}
+	
 	/**
 	 * 
 	 * This service call will create a score record when a user has completed an exercise or activitiy
@@ -306,7 +316,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
+	public function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
 		
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we shoud be trying to keep the format the same!
@@ -352,7 +362,7 @@ class BentoService extends AbstractService {
 	 * Expected for things like changing password
 	 * TODO. If you send a password, then confirm that it matches the current one
 	 */
-	function updateUser($userObj, $password = NULL) {
+	public function updateUser($userObj, $password = NULL) {
 		$rootID = Session::get('rootID');
 		return $this->manageableOps->updateUsers(array($userObj), $rootID);
 	}
@@ -360,15 +370,14 @@ class BentoService extends AbstractService {
 	/**
 	 * Get the copy XML document
 	 */
-	function getCopy() {
+	public function getCopy() {
 		return $this->copyOps->getCopy();
 	}
 	
 	/**
 	 * Get the current database version number
 	 */
-	function getDatabaseVersion() {
-		
+	public function getDatabaseVersion() {
 		$sql = <<< EOD
 				SELECT MAX(F_VersionNumber) as versionNumber 
 				FROM T_DatabaseVersion;

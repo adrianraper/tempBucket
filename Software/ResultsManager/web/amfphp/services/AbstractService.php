@@ -56,7 +56,6 @@ class AbstractService {
 		// I don't think so, it only does opening etc when called to write.
 		AbstractService::$debugLog = &Log::factory('file');
 		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');	
-		
 	}
 	
 	/**
