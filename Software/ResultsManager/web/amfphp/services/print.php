@@ -62,8 +62,19 @@ CSS
 );
 $screenCssElement["type"] = "text/css";
 
-// Make the page print when loaded
-$simpleXml->body["onload"] = "window.print();window.close();";
+$javascriptElement = $simpleXml->head->addChild("script",
+<<<JS
+document.body.onload = function() {
+	// #203
+	var audioElements = document.getElementsByTagName('audio');
+	for (var i = 0; i < audioElements.length; i++)
+		audioElements[i].pause();
+	
+	window.print();
+	window.close();
+}
+JS
+);
 
 $dom = new DOMDocument('1.0');
 $dom->loadXML($simpleXml->asXML());
