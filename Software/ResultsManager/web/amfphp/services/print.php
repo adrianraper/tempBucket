@@ -41,6 +41,23 @@ $screenCssElement["type"] = "text/css";
 
 $javascriptElement = $simpleXml->head->addChild("script",
 <<<JS
+/*function getIEVersion() {
+    var style = document.documentElement.style;
+    if (style.scrollbar3dLightColor != undefined) {
+        if (style.opacity != undefined)
+            return 9;
+        else if (style.msBlockProgression != undefined)
+            return 8;
+        else if (style.msInterpolationMode != undefined)
+            return 7;
+        else if (style.textOverflow != undefined)
+            return 6;
+        else
+            return 5.5;
+    }
+    return 0;
+}*/
+
 window.onload = function() {
 	// #203 - the try/catch block is for IE
 	var audioElements = document.getElementsByTagName('audio');
@@ -49,6 +66,10 @@ window.onload = function() {
 	}
 	
 	window.print();
+	
+	/*var ieVersion = getIEVersion();
+	if (ieVersion &lt; 9 &amp;&amp; ieVersion &gt; 0) document.body.setAttribute("style", "display: none");*/
+	
 	window.close();
 }
 JS
