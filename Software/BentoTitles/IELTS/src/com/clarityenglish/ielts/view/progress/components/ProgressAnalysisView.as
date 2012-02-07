@@ -21,6 +21,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		private var _scoreChartXML:XML;
 		private var _durationChartXML:XML;
 
+		[Bindable]
+		public var numberSectionsDone:uint;
+		
 		// TODO. These are all set in ielts.css if you can get at that from this view?
 		private const _writingBright:String = '#7DAB36';
 		private const _writingDull:String = '#364A17';
@@ -66,6 +69,15 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_writingBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</selected_hover>
 						</states>
 					</pie_style>
 					<pie_style name="Reading">
@@ -73,6 +85,15 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_readingBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</selected_hover>
 						</states>
 					</pie_style>
 					<pie_style name="Speaking">
@@ -80,6 +101,15 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_speakingBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</selected_hover>
 						</states>
 					</pie_style>
 					<pie_style name="Listening">
@@ -87,6 +117,15 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_listeningBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</selected_hover>
 						</states>
 					</pie_style>
 				</styles>			
@@ -115,10 +154,13 @@ package com.clarityenglish.ielts.view.progress.components {
 					delete _durationChartXML.charts.chart.data.series[0].point[0]; 
 				}
 				
+				// AR Pie charts also don't work well if only one non-zero chunk.
+				numberSectionsDone = 0;
 				for each (var point:XML in dataProvider.course) {
 					// Skip 0 values, they don't work well in a pie-chart
 					if (Number(point.@averageScore)>0) {
 						_scoreChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption} />);
+						numberSectionsDone++;
 					}
 				}
 				if (analysisScoreChart) {

@@ -205,8 +205,22 @@ package com.clarityenglish.common.model {
 					currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
 					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
 				}
+				// #164. A copy of this was saved in BentoProxy.menuXHTML too
+				// But you are stopped from updating that...
+				//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				//bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]), this.href);
 				
-				// TODO. If you wanted to update mySummary details, can you calculate that from the myDetails cache?
+				// #164. If you wanted to update mySummary details, just weight the existing score appropriately
+				var mySummaryRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_SUMMARY]);
+				var thisCourse:XML = mySummaryRecords.course.(@id==uid.courseID)[0];
+				var recordsOf:uint = thisCourse.@of;
+				var newCount:uint = parseInt(thisCourse.@count) + 1;
+				thisCourse.@averageScore = Math.round((((thisCourse.@averageScore * recordsOf) + mark.correctPercent) / newCount));
+				thisCourse.@averageDuration = Math.round((((thisCourse.@averageDuration * recordsOf) + mark.duration) / newCount));
+				thisCourse.@duration = parseInt(thisCourse.@duration) + mark.duration;
+				thisCourse.@count = newCount;
+				loadedResources[Progress.PROGRESS_MY_SUMMARY] = mySummaryRecords.toString();
+				
 			}
 		}
 		
