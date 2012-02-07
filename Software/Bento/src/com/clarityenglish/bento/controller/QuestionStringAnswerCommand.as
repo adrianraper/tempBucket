@@ -8,6 +8,7 @@ package com.clarityenglish.bento.controller {
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.INotification;

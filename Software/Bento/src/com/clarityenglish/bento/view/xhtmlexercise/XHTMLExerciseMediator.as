@@ -81,12 +81,13 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(view.exercise)) as ExerciseProxy;
 			
 			var question:Question = note.getBody().question as Question;
-			var answerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
 			
-			view.selectAnswerMap(question, answerMap);
+			// Show the selected answer map
+			view.selectAnswerMap(question, exerciseProxy.getSelectedAnswerMap(question));
 			
+			// Show the marked answer map
 			if (!note.getBody().delayedMarking)
-				view.markAnswerMap(question, answerMap);
+				view.markAnswerMap(question, exerciseProxy.getMarkableAnswerMap(question));
 		}
 		
 		protected function handleShowAnswers(note:INotification):void {

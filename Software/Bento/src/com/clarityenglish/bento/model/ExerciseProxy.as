@@ -7,11 +7,11 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
+	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
-	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -219,6 +219,16 @@ package com.clarityenglish.bento.model {
 			
 			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
 			
+			// If the answer is in a synonym group then check if it has already been used and if so replace this answer with an incorrect copy (#201)
+			if (answer is TextAnswer && answer.synonymGroup) {
+				var existingIdx:int = markableAnswerMap.values.indexOf(answer);
+				if (existingIdx >= 0) {
+					//answer = answer.clone();
+					//answer.correct = false;
+					answer = new TextAnswer(<answer value={(answer as TextAnswer).value} correct={false}/>);
+				}
+			}
+			
 			if (question.isMutuallyExclusive()) {
 				// For mutually exlusive questions we store the answer if there isn't one already
 				if (markableAnswerMap.keys.length == 0) {
@@ -233,8 +243,8 @@ package com.clarityenglish.bento.model {
 				}
 			}
 			
-			// If a correct answer is given then make all the other answers in the same synonym group incorrect (#97)
 			if (answer.markingClass == Answer.CORRECT && answer.synonymGroup) {
+				// If a correct answer is given then make all the other answers in the same synonym group incorrect (#97)
 				for each (var possibleAnswer:Answer in question.answers) {
 					if (possibleAnswer.synonymGroup == answer.synonymGroup && possibleAnswer !== answer) {
 						possibleAnswer.correct = false;
