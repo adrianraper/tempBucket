@@ -77,4 +77,3 @@ $GLOBALS['smarty_cache_dir'] = $smartyRoot."/cache/";
 $GLOBALS['smarty_plugins_dir'] = $smartyRoot."/plugins/";
 // Used for logging
 $GLOBALS['logs_dir'] = dirname(__FILE__).$commonFolders.'/logs/';
-?>

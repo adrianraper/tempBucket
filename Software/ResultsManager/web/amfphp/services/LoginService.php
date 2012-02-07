@@ -26,8 +26,8 @@ class LoginService extends AbstractService {
 	
 	var $db;
 
-	function LoginService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("LOGIN");
@@ -42,7 +42,7 @@ class LoginService extends AbstractService {
 	}
 	
 	// Can you find this user?
-	function getUser($loginDetails) {
+	public function getUser($loginDetails) {
 		$stubUser = new User();
 		// TODO: Add other login options
 		if ($loginDetails->loginOption==2) {
@@ -53,8 +53,9 @@ class LoginService extends AbstractService {
 		}
 		return $user; 
 	}
+	
 	// Add this user
-	function addUser($loginDetails) {
+	public function addUser($loginDetails) {
 		//echo "LoginService addUser";
 		$stubUser = new User();
 		if ($loginDetails->studentID)
@@ -81,4 +82,3 @@ class LoginService extends AbstractService {
 	}
 	
 }
-?>

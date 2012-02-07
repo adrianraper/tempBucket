@@ -1,5 +1,7 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
+	import com.clarityenglish.textLayout.util.TLFUtil;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	
@@ -247,6 +249,11 @@ package com.clarityenglish.textLayout.elements {
 			// If the item is dragged from itself to itself then do nothing
 			if (event.relatedObject === getComponent())
 				return;
+			
+			// #11
+			/*XHTML.removeClass(_droppedNode, "disabled");
+			TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
+			droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();*/
 			
 			// #101 states than no matter what the source will be cleared so no need to check for DragManager.NONE - if (DragManager.getFeedback() == DragManager.NONE) {
 			_droppedFlowElement = null;

@@ -18,8 +18,8 @@ class EmailService extends AbstractService {
 	
 	var $db;
 
-	function EmailService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("EMAIL");
@@ -32,7 +32,8 @@ class EmailService extends AbstractService {
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
 	}
-	function sendEmails($template, $emailArray, $sender, $data=null) {
+	
+	public function sendEmails($template, $emailArray, $sender, $data=null) {
 		// All about the person sending out the emails
 		$emailFrom = $sender['email'];
 		$emailFromName = $sender['name'];
@@ -73,5 +74,3 @@ class EmailService extends AbstractService {
 	}
 	
 }
-
-?>

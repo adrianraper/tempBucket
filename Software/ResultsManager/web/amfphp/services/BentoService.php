@@ -43,8 +43,8 @@ class BentoService extends AbstractService {
 	
 	var $db;
 
-	function BentoService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("Bento");
@@ -381,5 +381,3 @@ EOD;
 	}
 	
 }
-
-?>

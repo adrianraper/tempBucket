@@ -19,15 +19,15 @@ class MinimalService extends AbstractService {
 	
 	var $db;
 
-	function MinimalService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("Mini");
 		
 	}
 	
-	function checkDirectStartSecurityCode($securityCode) {
+	public function checkDirectStartSecurityCode($securityCode) {
 		// This looks up the securityCode in the database. If found it returns the related details.
 		global $db;
 		// Update to stop changing the security codes every month - just do it once
@@ -61,5 +61,3 @@ EOD;
 	}
 	
 }
-
-?>

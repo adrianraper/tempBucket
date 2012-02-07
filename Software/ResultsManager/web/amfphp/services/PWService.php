@@ -33,8 +33,8 @@ class PWService extends AbstractService {
 	
 	var $db;
 
-	function PWService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("PW");
@@ -56,7 +56,7 @@ class PWService extends AbstractService {
 
 	}
 	
-	function login($username, $password, $rootID = null, $productCode = null) {
+	public function login($username, $password, $rootID = null, $productCode = null) {
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,
 								 User::USER_TYPE_AUTHOR,
@@ -89,21 +89,21 @@ class PWService extends AbstractService {
 		}
 	}
 	
-	function logout() {
+	public function logout() {
 		$this->loginOps->logout();
 	}
 	
 	/**
 	 * Get the copy XML document
 	 */
-	function getCopy() {
+	public function getCopy() {
 		return $this->copyOps->getCopy();
 	}
 
 	/**
 	 * Get the content that this PW needs
 	 */
-	function getContent($rootID, $productCode = null) {
+	public function getContent($rootID, $productCode = null) {
 		//NetDebug::trace('PW.getContent.productCode='.$productCode);
 		//return array("productCode" => $productCode);
 		// But maybe I don't want restricted content, instead looking for all content this account has access to
@@ -117,11 +117,12 @@ class PWService extends AbstractService {
 		if (isset($rootID)) Session::set('rootID', $rootID);
 		return $this->contentOps->getRestrictedContent($productCode);
 	}
+	
 	/**
 	 * Get the progress records for the passed reportables.
 	 * Differentiate if you want AP and EMU records back separately
 	 */
-	function getCoverage($reportable, $userID, $startDate = 0, $endDate = 0, $singleStyle = null) {
+	public function getCoverage($reportable, $userID, $startDate = 0, $endDate = 0, $singleStyle = null) {
 		//NetDebug::trace("PWService.userID= ".$userID);
 		//NetDebug::trace("PWService.userDetails.rootID= ".$userDetails->rootID);
 		//NetDebug::trace("PWService.userDetails.productCode= ".$userDetails->productCode);
@@ -142,11 +143,12 @@ class PWService extends AbstractService {
 		//NetDebug::trace('PW.getContent.productCode='.$productCode);
 		return $this->usageOps->getCoverage($reportable, $startDate, $endDate, $myUserID, $singleStyle);
 	}
+	
 	/**
 	 * Repeat for everybody.
 	 * Include country if you want to filter.
 	 */
-	function getEveryonesCoverage($reportable, $userID, $rootID=null, $country=null, $startDate=0, $endDate=0) {
+	public function getEveryonesCoverage($reportable, $userID, $rootID=null, $country=null, $startDate=0, $endDate=0) {
 		// Need userID (to exclude it) and then perhaps rootID and country if you want to filter by a limited set of others
 		if (isset($userID)) {
 			$myUserID = $userID;
@@ -165,5 +167,3 @@ class PWService extends AbstractService {
 	}
 	
 }
-
-?>

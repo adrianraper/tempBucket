@@ -56,8 +56,8 @@ class DMSService extends AbstractService {
 	
 	var $db;
 
-	function DMSService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("DMS");
@@ -95,7 +95,7 @@ class DMSService extends AbstractService {
 		
 	}
 	
-	function login($username, $password, $rootID = null) {
+	public function login($username, $password, $rootID = null) {
 		// Only users of type USER_TYPE_DMS are allowed to login to DMS
 		$loginObj = $this->loginOps->login($username, $password, array(User::USER_TYPE_DMS, User::USER_TYPE_DMS_VIEWER), $rootID);
 		
@@ -128,18 +128,18 @@ class DMSService extends AbstractService {
 		}
 	}
 	
-	function logout() {
+	public function logout() {
 		$this->loginOps->logout();
 	}
 	
 	/**
 	 * Get the copy XML document
 	 */
-	function getCopy() {
+	public function getCopy() {
 		return $this->copyOps->getCopy();
 	}
 	
-	function getAccounts($accountIDArray = null, $conditions = null, $sortOrder = null) {
+	public function getAccounts($accountIDArray = null, $conditions = null, $sortOrder = null) {
 		// v3.6.1 You often fail to load DMS, so can I increase php script execution time just for this call?
 		// Well, you can run this command here fine. But where will you set it back down to the default?
 		// Oddly this seems to fail if we are running through a load balancer. It works directly on each individual IP/server
@@ -149,32 +149,33 @@ class DMSService extends AbstractService {
 		set_time_limit(60);
 		return $this->accountOps->getAccounts($accountIDArray, $conditions, $sortOrder);
 	}
+	
 	// v3.1 New function to delay picking up all the account details that are not essential for main list display
-	function getAccountDetails($accountID) {
+	public function getAccountDetails($accountID) {
 		return $this->accountOps->getAccountLicenceDetails($accountID);
 	}
 	
 	var $addAccountRoles = array(User::USER_TYPE_DMS);
 	// v3.1 AccountOps.addAccount doesn't expect a second parameter, adminUser is a part of account.
-	function addAccount($account, $adminUser = null) {
+	public function addAccount($account, $adminUser = null) {
 		return $this->accountOps->addAccount($account, $adminUser);
 	}
 	
 	var $updateAccountsRoles = array(User::USER_TYPE_DMS);
-	function updateAccounts($accounts) {
+	public function updateAccounts($accounts) {
 		return $this->accountOps->updateAccounts($accounts);
 	}
 	
 	var $deleteAccountsRoles = array(User::USER_TYPE_DMS);
-	function deleteAccounts($accounts) {
+	public function deleteAccounts($accounts) {
 		return $this->accountOps->deleteAccounts($accounts);
 	}
 	
-	function getEmailTemplates() {
+	public function getEmailTemplates() {
 		return $this->templateOps->getTemplates("emails");
 	}
 	
-	function getReportTemplates() {
+	public function getReportTemplates() {
 		return $this->templateOps->getTemplates("dms_reports");
 	}
 	
@@ -268,5 +269,3 @@ class DMSService extends AbstractService {
 	}
 	
 }
-
-?>

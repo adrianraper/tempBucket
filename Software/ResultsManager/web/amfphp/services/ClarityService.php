@@ -61,8 +61,8 @@ class ClarityService extends AbstractService {
 	
 	var $db;
 
-	function ClarityService() {
-		parent::_AbstractService();
+	function __construct() {
+		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("RM");
@@ -91,9 +91,10 @@ class ClarityService extends AbstractService {
 		//$this->ccbOps = new CCBOps($this->db);
 
 	}
+	
 	// Allow several optional parameters to come from Flash
 	// $productCode is deprecated
-	function login($username, $password, $rootID = null, $dbHost=null, $productCode = null) {
+	public function login($username, $password, $rootID = null, $dbHost=null, $productCode = null) {
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								 User::USER_TYPE_ADMINISTRATOR,
 								 User::USER_TYPE_AUTHOR,
@@ -187,40 +188,43 @@ class ClarityService extends AbstractService {
 		}
 	}
 	
-	function logout() {
+	public function logout() {
 		$this->loginOps->logout();
 	}
 	
-	function getLoginOpts() {
+	public function getLoginOpts() {
 		return $this->loginOps->getLoginOpts();
 	}
 	
-	function setLoginOpts($loginOption, $selfRegister, $passwordRequired) {
+	public function setLoginOpts($loginOption, $selfRegister, $passwordRequired) {
 		return $this->loginOps->setLoginOpts($loginOption, $selfRegister, $passwordRequired);
 	}
+	
 	// v3.6 For setting email options. It would be more sensible to put this in accountOps, but that is saved for DMS
 	// so I will bundle with loginOpts, which is incorrectly bundled with loginOps!
-	function getEmailOpts() {
+	public function getEmailOpts() {
 		return $this->loginOps->getEmailOpts();
 	}
-	function setEmailOpts($emailOptionsArray) {
+	
+	public function setEmailOpts($emailOptionsArray) {
 		return $this->loginOps->setEmailOpts($emailOptionsArray);
 	}
 	
 	/**
 	 * Get the copy XML document
 	 */
-	function getCopy() {
+	public function getCopy() {
 		return $this->copyOps->getCopy();
 	}
 	
-	function getAllManageables() {
+	public function getAllManageables() {
 		return $this->manageableOps->getAllManageables();
 	}
 	
-	function getContent() {
+	public function getContent() {
 		return $this->contentOps->getContent();
 	}
+	
 	// CCB
 	/*
 	function getCCBContent($prefix, $userID, $groupID) {
@@ -251,37 +255,37 @@ class ClarityService extends AbstractService {
 		return $this->ccbOps->removeCourseSchedule($schedule);
 	}
 	*/
-	function addGroup($group, $parentGroup) {
+	public function addGroup($group, $parentGroup) {
 		return $this->manageableOps->addGroup($group, $parentGroup);
 	}
 	
-	function addUser($user, $parentGroup) {
+	public function addUser($user, $parentGroup) {
 		return $this->manageableOps->addUser($user, $parentGroup);
 	}
 	
-	function updateGroups($groupsArray) {
+	public function updateGroups($groupsArray) {
 		return $this->manageableOps->updateGroups($groupsArray);
 	}
 	
-	function updateUsers($usersArray) {
+	public function updateUsers($usersArray) {
 		return $this->manageableOps->updateUsers($usersArray);
 	}
 	
-	function moveManageables($manageables, $parentGroup) {
+	public function moveManageables($manageables, $parentGroup) {
 		return $this->manageableOps->moveManageables($manageables, $parentGroup);
 	}
 	
-	function deleteManageables($manageablesArray) {
+	public function deleteManageables($manageablesArray) {
 		return $this->manageableOps->deleteManageables($manageablesArray);
 	}
 	
-	function importXMLFromUpload($parentGroup) {
+	public function importXMLFromUpload($parentGroup) {
 		return $this->manageableOps->importXMLFromUpload($parentGroup);
 	}
 
 	// v3.6.1 Allow moving and importing
 	//function importManageables($groups, $users, $parentGroup) {
-	function importManageables($groups, $users, $parentGroup, $moveExistingStudents=false) {
+	public function importManageables($groups, $users, $parentGroup, $moveExistingStudents=false) {
 		//Throw new Exception("importManageables with moving=".$moveExistingStudents);
 		// AR Special function for updating the names of lots of students keyed on studentID
 		return $this->manageableOps->importManageables($groups, $users, $parentGroup, $moveExistingStudents);
@@ -290,7 +294,7 @@ class ClarityService extends AbstractService {
 
 	// This call is not used anymore
 	// 3.4 But it is still made! So remove any further calls.
-	function getLicences() {
+	public function getLicences() {
 		//return $this->licenceOps->getLicences();
 		return Array();
 	}
@@ -306,62 +310,69 @@ class ClarityService extends AbstractService {
 		return $this->licenceOps->unallocateLicences($userIdArray, $productCode);
 	}
 	*/
-	function getExtraGroups($user) {
+	public function getExtraGroups($user) {
 		// v3.4 Multi-group users
 		//return $this->manageableOps->getExtraGroups($user->id);
 		return $this->manageableOps->getExtraGroups($user->userID);
 	}
 	
-	function setExtraGroups($user, $groupsArray) {
+	public function setExtraGroups($user, $groupsArray) {
 		return $this->manageableOps->setExtraGroups($user, $groupsArray);
 	}
 	
-	function getUsageForTitle($title, $fromDate, $toDate) {
+	public function getUsageForTitle($title, $fromDate, $toDate) {
 		return $this->usageOps->getUsageForTitle($title, $fromDate, $toDate);
 	}
+	
 	// v3.0.4 Include the template as well
-	function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
+	public function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
 		// Since we are potentially passing a lot of reportables to this from the client pass IDs instead of VOs to save on transfer overhead
 		return $this->reportOps->getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template);
 	}
 	
-	function getHiddenContent() {
+	public function getHiddenContent() {
 		return $this->contentOps->getHiddenContent();
 	}
-	function getEditedContent($groupIDs) {
+	
+	public function getEditedContent($groupIDs) {
 		return $this->contentOps->getEditedContent($groupIDs);
 	}
 	
-	function setHiddenContent($contentIDObject, $groupID, $visible) {
+	public function setHiddenContent($contentIDObject, $groupID, $visible) {
 		return $this->contentOps->setHiddenContent($contentIDObject, $groupID, $visible);
 	}
+	
 	// v3.4 Editing Clarity Content
-	function initEditedContent($toPath, $groupID) {
+	public function initEditedContent($toPath, $groupID) {
 		return $this->contentOps->initEditedContent($toPath, $groupID);
 	}
+	
 	// V3.5 Add another variable
 	//function checkEditedContentExercise($fromPath, $toPath, $groupID, $UID, $caption) {		
-	function checkEditedContentExercise($fromPath, $toPath, $groupID, $UID, $caption, $exerciseID) {		
+	public function checkEditedContentExercise($fromPath, $toPath, $groupID, $UID, $caption, $exerciseID) {		
 		return $this->contentOps->checkEditedContentExercise($fromPath, $toPath, $groupID, $UID, $caption, $exerciseID);
 	}
-	function checkEditedContentFolder($toPath, $groupID) {		
+	
+	public function checkEditedContentFolder($toPath, $groupID) {		
 		return $this->contentOps->checkEditedContentFolder($toPath, $groupID);
 	}
+	
 	// This works for moving and inserting content (and probably deleting too)
 	// v3.5 Send the title so I can reset related UIDs if necessary
-	function moveContent($editedUID, $groupID, $relatedUID, $mode, $title) {
+	public function moveContent($editedUID, $groupID, $relatedUID, $mode, $title) {
 		return $this->contentOps->moveContent($editedUID, $groupID, $relatedUID, $mode, $title);
 	}
-	function insertContent($editedUID, $groupID, $relatedUID, $mode, $toPath) {
+	
+	public function insertContent($editedUID, $groupID, $relatedUID, $mode, $toPath) {
 		return $this->contentOps->insertContent($editedUID, $groupID, $relatedUID, $mode, $toPath);
 	}
-	function copyContent($editedUID, $groupID, $relatedUID, $mode, $toPath) {
+	
+	public function copyContent($editedUID, $groupID, $relatedUID, $mode, $toPath) {
 		return $this->contentOps->copyContent($editedUID, $groupID, $relatedUID, $mode, $toPath);
 	}
-	function resetContent($editedUID, $groupID) {
+	
+	public function resetContent($editedUID, $groupID) {
 		return $this->contentOps->resetContent($editedUID, $groupID);
 	}
 
 }
-
-?>

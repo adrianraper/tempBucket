@@ -19,7 +19,7 @@ class AbstractService {
 	static $log;
 	static $debugLog;
 
-	function _AbstractService() {
+	function __construct() {
 		// This deals with a date bug in AdoDB MSSQL driver
 		global $ADODB_mssql_mths;
 		$ADODB_mssql_date_order = 'mdy'; 
@@ -65,7 +65,7 @@ class AbstractService {
 	 *
 	 * The concrete service must implement a protected getDictionary($dictionaryName) method for this to work.
 	 */
-	function getDictionaries($dictionaryNames) {
+	public function getDictionaries($dictionaryNames) {
 		$dictionaries = array();
 		
 		foreach ($dictionaryNames as $dictionaryName)
@@ -119,5 +119,3 @@ class AbstractService {
 	}
 	
 }
-
-?>
