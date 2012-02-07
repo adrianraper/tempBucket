@@ -204,11 +204,12 @@ package com.clarityenglish.common.model {
 					}
 					currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
 					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
+
+					// #164. A copy of this was saved in BentoProxy.menuXHTML too (above on line 134)
+					// But because of new XML() cloning (?) - you need to update that too. Seems wrong.
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
 				}
-				// #164. A copy of this was saved in BentoProxy.menuXHTML too
-				// But you are stopped from updating that...
-				//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				//bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]), this.href);
 				
 				// #164. If you wanted to update mySummary details, just weight the existing score appropriately
 				var mySummaryRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_SUMMARY]);
@@ -220,7 +221,7 @@ package com.clarityenglish.common.model {
 				thisCourse.@duration = parseInt(thisCourse.@duration) + mark.duration;
 				thisCourse.@count = newCount;
 				loadedResources[Progress.PROGRESS_MY_SUMMARY] = mySummaryRecords.toString();
-				
+
 			}
 		}
 		

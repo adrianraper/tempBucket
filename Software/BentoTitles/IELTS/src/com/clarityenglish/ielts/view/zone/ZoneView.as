@@ -191,6 +191,7 @@ package com.clarityenglish.ielts.view.zone {
 			switch (instance) {
 				case unitList:
 					unitList.addEventListener(IndexChangeEvent.CHANGE, function(e:IndexChangeEvent):void {
+						/*
 						var groupXML:XML = unitList.selectedItem;
 						
 						popoutExerciseSelector.group = groupXML;
@@ -200,8 +201,9 @@ package com.clarityenglish.ielts.view.zone {
 						for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
 							if (Exercise.showExerciseInMenu(exerciseNode))
 								exercises += exerciseNode;
-						
 						popoutExerciseSelector.exercises = exercises;
+						*/
+						popoutExerciseSelector.exercises = refreshedExercises();
 					} );
 					break;
 				case popoutExerciseSelector:
@@ -229,7 +231,23 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
-		
+		/**
+		 * To allow the data in the exercise list to be refreshed based on score written 
+		 * @return 
+		 * 
+		 */
+		public function refreshedExercises():XMLList {
+			var groupXML:XML = unitList.selectedItem;
+			
+			popoutExerciseSelector.group = groupXML;
+			
+			var exercises:XMLList = new XMLList();
+			for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
+			if (Exercise.showExerciseInMenu(exerciseNode))
+				exercises += exerciseNode;
+			
+			return exercises;
+		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);

@@ -145,6 +145,8 @@ package com.clarityenglish.ielts.view.progress.components {
 				for each (var score:XML in buildXML) {
 					score.@caption = score.parent().@caption;
 					score.@unitCaption = detailDataProvider.course.(@["class"]==courseClass).groups.group.(@id==score.parent().@group).@caption;
+					
+					// #
 				}
 				tableDataProvider = new XMLListCollection(buildXML);
 			}			

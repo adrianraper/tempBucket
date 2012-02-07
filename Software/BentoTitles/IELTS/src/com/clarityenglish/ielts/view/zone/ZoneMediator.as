@@ -67,6 +67,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				//IELTSNotifications.COURSE_SHOW,
+				BBNotifications.SCORE_WRITTEN,
 			]);
 		}
 		
@@ -81,6 +82,10 @@
 					view.course = course[0] as XML;
 					break;
 				*/
+				// #164 For updating of coverage blobs when you do another exercise
+				case BBNotifications.SCORE_WRITTEN:
+					view.popoutExerciseSelector.exercises = view.refreshedExercises();
+					break;
 			}
 		}
 		
