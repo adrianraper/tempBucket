@@ -11,6 +11,8 @@ package com.clarityenglish.textLayout.elements {
 	import mx.events.FlexEvent;
 	
 	import org.osmf.events.MediaPlayerStateChangeEvent;
+	import org.osmf.events.SeekEvent;
+	import org.osmf.events.TimeEvent;
 	import org.osmf.media.MediaPlayerState;
 	
 	import spark.components.VideoPlayer;
@@ -74,6 +76,7 @@ package com.clarityenglish.textLayout.elements {
 				case NORMAL:
 					var videoPlayer:VideoPlayer = new VideoPlayer();
 					videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange, false, 0, true);
+					videoPlayer.addEventListener(TimeEvent.COMPLETE, onTimeComplete, false, 0, true);
 					
 					videoPlayer.source = _src;
 					videoPlayer.width = width;
@@ -120,6 +123,8 @@ package com.clarityenglish.textLayout.elements {
 		 * @param event
 		 */
 		private function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
+			var videoPlayer:VideoPlayer = event.target as VideoPlayer;
+			
 			switch (event.state) {
 				case MediaPlayerState.PLAYING:
 				case MediaPlayerState.PAUSED:
@@ -139,13 +144,19 @@ package com.clarityenglish.textLayout.elements {
 			
 			// #76 - only one video should play at once
 			if (event.state == MediaPlayerState.PLAYING) {
-				if (currentlyPlayingVideoPlayer) currentlyPlayingVideoPlayer.stop();
+				if (currentlyPlayingVideoPlayer && currentlyPlayingVideoPlayer !== getComponent())
+					currentlyPlayingVideoPlayer.stop();
 				
 				currentlyPlayingVideoPlayer = getComponent() as VideoPlayer;
 			} else if (event.state == MediaPlayerState.PAUSED) {
 				// #109
 				currentlyPlayingVideoPlayer = null;
 			}
+		}
+		
+		private function onTimeComplete(event:TimeEvent):void {
+			// #206
+			currentlyPlayingVideoPlayer = null;
 		}
 		
 		/**
