@@ -240,7 +240,7 @@
 			} else if (streaming=="http") {
 				var host:String = dynamicList.channel.host.toString();
 				view.questionZoneVideoPlayer.source = dynamicSource;
-				view.questionZoneVideoPlayer.autoPlay = true;
+				view.callLater(view.adviceZoneVideoPlayer.play);
 				for each (var stream:XML in dynamicList.channel.item) {
 					var streamName:String = stream.streamName;
 				}				
