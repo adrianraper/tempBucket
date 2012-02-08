@@ -244,7 +244,9 @@ class Content{
 		global $newline;
 		$builder='';
 		// Each question in any question based exercise extends content so comes here
-		if ($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) {
+		// Need to add TARGET_SPOTTING for RTI-GT
+		if (($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
+			($exerciseType==Exercise::EXERCISE_TYPE_TARGETSPOTTING)) {
 			// You need to output all the paragraphs.
 			$lastTagType = null;
 			// MC are very specific format from Arthur. There will only be one paragraph, but

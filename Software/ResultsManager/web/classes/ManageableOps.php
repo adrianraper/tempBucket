@@ -632,10 +632,6 @@ EOD;
 		// Delete user records from the T_Score table
 		$this->db->Execute("DELETE FROM T_Score WHERE F_UserID IN ($userIdInString)");
 		
-		// Reinstate for licence control - except that I only want to do that IF this is using Transferable Tracking
-		// and that is not easy to know here
-		//$this->db->Execute("DELETE FROM T_LicenceControl WHERE F_UserID IN ($userIdInString)");
-		
 		// Delete user from the t_licences table
 		// v6.5.5.0 The T_Licences table is dropped in favour of using T_Session.
 		// So this clear out is unnecessary
@@ -1364,6 +1360,7 @@ EOD;
 		switch ($rs->RecordCount()) {
 			case 0:
 				throw new Exception("No account with this root ($rootID)");
+				break;
 			case 1:
 				$loginOption = (int)($rs->FetchNextObj()->loginOption);
 				break;

@@ -1,6 +1,7 @@
 <?php
 
 	// New BCHK start page for links from AsiaPay portal.
+	// Use this when ready to start live
 	session_start();
 	date_default_timezone_set('UTC');
 
@@ -38,11 +39,6 @@
 	if ($debugLog) {
 		error_log("starting BCHK-Start.php with $name", 3, $debugFile);
 	}
-	
-	// Decrypt the passed parameters	
-	$name = $_GET['n'];
-	$email = $_GET['e'];
-	$encrypt = $_GET['d'];
 	
 	$pattern = '/\(AT\)/';
 	$replacement = '@';

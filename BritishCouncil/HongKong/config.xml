@@ -2,11 +2,12 @@
 <config>
 	<id>/BritishCouncil/HongKong</id>
 	<developer>BC</developer>
-	<dbHost>100</dbHost>
+	<dbHost>101</dbHost>
 	<prefix>GLOBAL</prefix>
 	<rootID>14030</rootID>
 	<groupID>170</groupID>
 	<loginOption>2</loginOption>
+	<country>Hong Kong</country>
 	<productVersion>lastMinute</productVersion>
 	<courseFile>menu-{productCode}-LastMinute.xml</courseFile>
 	<streamingMedia />

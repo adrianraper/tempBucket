@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
@@ -26,16 +26,10 @@
 <body>
 	
 <header>
-	
-		
-		Read the writing task below. You should spend about 20 minutes on this task. You should write at least 150 words. When you have finished, click to see the sample answer.
-		
+	What will I learn in this unit?
 </header>
 	
-<section id="body">
-  <img class="rightFloat" src="../media/MM_AW_002.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/MM_ANS_001.jpg" mode="16" id="1004"/>
-</section>
+<section id="body"><img class="rightFloat" src="../media/LE_GW_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>General Training Writing Task 1</b></font></p><p align="left"><font color="#000000"><b>Letter &#x2013; making an application</b></font></p>You will ...<ol><li>read a task and analyse what is required.</li><li>consider expressions for likes and dislikes.</li><li>consider expressions for talking about frequency.</li><li>practise beginning and ending letters.</li><li>read a task and find mistakes in a sample answer.</li></ol><p align="left"><font size="2"/></p></section>
 
 </body>
 </bento>

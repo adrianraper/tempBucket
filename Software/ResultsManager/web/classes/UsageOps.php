@@ -294,43 +294,6 @@ EOD;
 	}
 	
 	// AR How many title/user licences have been used so far in this licence period?
-	// v3.5 Try using T_LicenceControl instead of session
-	private function xxgetTitleUserCounts($title, $rootID, $fromDateStamp = null) {
-		if (!$fromDateStamp)
-			$fromDateStamp = $this->getLicenceClearanceDate($title);
-		$fromDate = strftime('%Y-%m-%d 00:00:00', $fromDateStamp);
-		
-		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
-		if ($title->licenceType == 6) {
-			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
-				FROM T_LicenceControl c, T_User u
-				WHERE c.F_ProductCode = ?
-				AND c.F_UserID = u.F_UserID
-				AND c.F_LastUpdateTime >= ?
-EOD;
-		} else {
-			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
-				WHERE F_ProductCode = ?
-				AND F_LastUpdateTime >= ?
-EOD;
-		}
-		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND F_RootID in ($rootID)";
-		} else if ($rootID=='*') {
-			// check all roots in that case - just for special cases, usually self-hosting
-		} else {
-			$sql.= " AND F_RootID = $rootID";
-		}
-		$rs = $this->db->GetRow($sql, array($title->productCode, $fromDate));
-		if (!$rs) {
-			$licencesUsed = (int)$rs['licencesUsed'];
-		} else {
-			$licencesUsed = 0;
-		}
-		return $licencesUsed;
-	}
 	//private function getTitleUserCounts($title, $rootID) {
 	private function getTitleUserCounts($title, $rootID, $fromDateStamp = null) {
 		// AR We want special processing for counting licences in perpetual licences, basically a rolling 1 year.

@@ -2,7 +2,7 @@
 <config>
 	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
 	<developer>AR</developer>
-	<dbHost>100</dbHost>
+	<dbHost>2</dbHost>
 	<productCode>52</productCode>
 	<productVersion>lastMinute</productVersion>
 	<courseFile>menu-Academic-LastMinute.xml</courseFile>

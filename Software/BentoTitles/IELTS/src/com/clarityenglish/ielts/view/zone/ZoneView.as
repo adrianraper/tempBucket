@@ -237,6 +237,9 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 */
 		public function refreshedExercises():XMLList {
+			if (!unitList.selectedItem)
+				return null;
+			
 			var groupXML:XML = unitList.selectedItem;
 			
 			popoutExerciseSelector.group = groupXML;

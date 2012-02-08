@@ -2,10 +2,10 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
-	<meta name="conversion-date" content="2012-01-16" />
+	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -152,15 +152,14 @@
 <body>
 	
 <header>
-<div id="instruction">
-Read the writing tasks and choose the kind of letter should you write for each. Choose two options in each case.
-</div>
+	Read the writing tasks and choose the kind of letter should you write for each. Choose two options in each case.
 </header>
 	
-<section id="body">
-  <img class="rightFloat" src="../media/SS_GW_002.jpg" mode="1" id="1001"/>
-</section>
+<section id="body"><img class="rightFloat" src="../media/SS_GW_002.jpg" mode="1" id="1001"/><tab/><b>#q</b>You have been waiting for an operation for eight months. Write a letter to the local hospital authority. Explain the situation and tell them how you feel about it. Say what you would like them to do.A.<g id="t1">a letter of advice</g>B.<g id="t2">a letter of praise</g>C.<g id="t3">a letter of complaint</g>D.<g id="t4">a letter of recommendation</g>E.<g id="t5">a formal letter</g>F.<g id="t6">an informal letter</g><tab/><b>#q</b>Your mother is 72 and is very lonely and bored. Write a letter to the local senior citizens centre. Ask for information about the facilities at the centre. Explain any special needs your mother has and find out if they can cater for them.A.<g id="t7">a letter of thanks</g>B.<g id="t8">a letter of enquiry</g>C.<g id="t9">a letter of recommendation</g>D.<g id="t10">a letter of application</g>E.<g id="t11">a formal letter</g>F.<g id="t12">an informal letter</g><tab/><b>#q</b>Last night you saw the first programme in a series of documentaries on social issues. You think your friend would enjoy this series. Write a letter to your friend. Say what the programme was about and explain why you enjoyed it. Recommend that they watch the rest of the series.A.<g id="t13">a letter of recommendation</g>B.<g id="t14">a letter of enquiry</g>C.<g id="t15">a letter of complaint</g>D.<g id="t16">a letter of thanks</g>E.<g id="t17">a formal letter</g>F.<g id="t18">an informal letter</g><tab/><b>#q</b>You have seen an advertisement for a position as a voluntary worker at the local animal welfare centre. Write a letter of application. Say why you are interested in the position and what experience you have. Tell them when you would be available for work.A.<g id="t19">a letter of enquiry</g>B.<g id="t20">a letter of recommendation</g>C.<g id="t21">a letter of application</g>D.<g id="t22">a letter of praise</g>E.<g id="t23">a formal letter</g>F.<g id="t24">an informal letter</g><tab/><b>#q</b>Your father is disabled and yesterday you took him to a town near your home for the first time. You were very impressed with the facilities for disabled people in the town. Write a letter to the town council. Describe your visit and praise them for the facilities available and for their concern for disabled people.A.<g id="t25">a letter of enquiry</g>B.<g id="t26">a letter of recommendation</g>C.<g id="t27">a letter of praise</g>D.<g id="t28">a letter of advice</g>E.<g id="t29">a formal letter</g>F.<g id="t30">an informal letter</g><tab/><b>#q</b>A friend has written to you for advice.  She has noticed a change in her son's behaviour recently. He does not want to go to school and spends all his time in his room. Write a letter to your friend. Suggest reasons he might be behaving like this and give advice as to how to deal with the situation.A.<g id="t31">a letter of complaint</g>B.<g id="t32">a letter of advice</g>C.<g id="t33">a letter of apology</g>D.<g id="t34">a letter of recommendation</g>E.<g id="t35">a formal letter</g>F.<g id="t36">an informal letter</g><tab/><b>#q</b>Your neighbourhood has become increasingly unsafe and you feel the police are not providing adequate protection. Write a letter to the local police station. Explain the situation and say how you feel about it. Tell them what you would like them to do about it.A.<g id="t37">a letter of complaint</g>B.<g id="t38">a letter of recommendation</g>C.<g id="t39">a letter of enquiry</g>D.<g id="t40">a letter of apology</g>E.<g id="t41">a formal letter</g>F.<g id="t42">an informal letter</g><p align="left"><font size="2"/></p></section>
 
+<section id="rt2001">
+  <p align="left">Always read the writing task carefully and decide what kind of letter you have to write. Look for words like 'say why', 'explain', 'complain', 'recommend', 'apologise', 'describe', 'ask', 'find out' and so on. You also need to decide if you should use formal or informal language in your letter.</p>
+</section>
 
 </body>
 </bento>

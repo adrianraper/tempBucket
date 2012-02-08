@@ -2,6 +2,7 @@
 
 	// This is to be uploaded to ieltspractice.com and renamed to BCHK-Start.php. It will invisibly pick up people
 	// who go in through the current system. However, I can't do because I can't get an Asia Pay testing account.
+	// Have to just try.
 	
 session_start();
 include_once("Variables.php");

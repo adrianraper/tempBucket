@@ -56,16 +56,18 @@
 				Tweener.removeTweens(questionZoneVideoPlayer);
 				Tweener.removeTweens(questionZoneEBookGraphic);
 				
-				Tweener.addTween(questionZoneVideoPlayer, { x: 500, _autoAlpha: 0, time: 0.7 });
-				Tweener.addTween(questionZoneEBookGraphic, { x: 0, _autoAlpha: 1, time: 0.7 });
+				Tweener.addTween(questionZoneVideoPlayer, { x: 500, _autoAlpha: 0, time: 1.2 });
+				Tweener.addTween(questionZoneEBookGraphic, { x: 0, _autoAlpha: 1, time: 1.2 });
 			}
 			
 			protected function showVideo():void {
 				Tweener.removeTweens(questionZoneVideoPlayer);
 				Tweener.removeTweens(questionZoneEBookGraphic);
 				
-				Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 0.7 });
-				Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 0.7 });
+				//Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 1.2 });
+				//Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2 });
+				Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 1.2, transition:"easeOutSine" });
+				Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition:"easeOutSine" });
 			}
 			
 		]]>

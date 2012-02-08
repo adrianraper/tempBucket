@@ -26,10 +26,10 @@
 				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
-				<exercise id="1160133065871" group="1" caption="Canary Wharf" href="reading/exercises/1160133065871.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_canary.jpg">
+				<exercise id="1160133065871" group="1" caption="Short answer questions" href="reading/exercises/1160133065871.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_canary.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160133065334" group="1" caption="Games on playing cards" href="reading/exercises/1160133065334.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
+				<exercise id="1160133065334" group="1" caption="Table completion" href="reading/exercises/1160133065334.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
 				<exercise id="1160133189922" group="2" caption="Guide to letter writing" href="reading/exercises/1160133189922.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
@@ -179,7 +179,7 @@
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
-				<exercise id="1156153794384" group="1" caption="Short-answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_saq.jpg">
+				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_saq.jpg">
 				  <!--GF - QB-->
 				</exercise>
 				<exercise id="1156153794466" group="1" caption="Table completion" href="listening/exercises/1156153794466.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_table.jpg">
@@ -191,40 +191,40 @@
 				<exercise id="1156165919813" group="2" caption="Matching" href="listening/exercises/1156165919813.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156181253181" group="3" caption="Multiple choice - Picture options" href="listening/exercises/1156181253181.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
+				<exercise id="1156181253181" group="3" caption="Multiple choice (1)" href="listening/exercises/1156181253181.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156181253817" group="3" caption="Havasupai" href="listening/exercises/1156181253817.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
+				<exercise id="1156181253817" group="3" caption="Multiple choice (2)" href="listening/exercises/1156181253817.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156334683971" group="4" caption="Adopt an animal" href="listening/exercises/1156334683971.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
+				<exercise id="1156334683971" group="4" caption="Form completion" href="listening/exercises/1156334683971.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156334683753" group="4" caption="Internal structure of the earth" href="listening/exercises/1156334683753.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
+				<exercise id="1156334683753" group="4" caption="Labelling a diagram" href="listening/exercises/1156334683753.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_matching.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1156957196702" group="5" caption="Monologue" href="listening/exercises/1156957196702.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_monologue.jpg">
+				<exercise id="1151344537628" group="5" caption="Form completion" href="listening/exercises/1151344537628.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_purchasing.jpg">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344537619" group="5" caption="Classification" href="listening/exercises/1151344537619.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1156957196702" group="6" caption="Multiple selection" href="listening/exercises/1156957196702.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_monologue.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1156429192269" group="5" caption="Conversation" href="listening/exercises/1156429192269.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_conversation.jpg">
+				<exercise id="1156429192269" group="6" caption="Summary completion" href="listening/exercises/1156429192269.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_conversation.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344537628" group="6" caption="Purchasing tickets" href="listening/exercises/1151344537628.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_purchasing.jpg">
-				  <!--GF - TB-->
-				</exercise>
-				<exercise id="1151344537619" group="6" caption="British cinema" href="listening/exercises/1151344537619.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				<exercise id="1151344151990" group="7" caption="Table completion (1)" href="listening/exercises/1151344151990.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344151990" group="7" caption="Fill in the table (1)" href="listening/exercises/1151344151990.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				<exercise id="1154102099587" group="7" caption="Short answer questions" href="listening/exercises/1154102099587.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1154102099587" group="7" caption="Some more advice" href="listening/exercises/1154102099587.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				<exercise id="1151344151185" group="7" caption="Table completion (2)" href="listening/exercises/1151344151185.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344151185" group="7" caption="Fill in the table (2)" href="listening/exercises/1151344151185.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1154102879147" group="7" caption="Label the diagram" href="listening/exercises/1154102879147.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				<exercise id="1154102879147" group="7" caption="Labelling a diagram" href="listening/exercises/1154102879147.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
 				  <!--GF - QB-->
 				</exercise>
 				<exercise id="1151344172855" group="8" caption="Form completion" href="listening/exercises/1151344172855.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
@@ -251,59 +251,59 @@
 				<exercise id="1151344194748" group="9" caption="Summary completion" href="listening/exercises/1151344194748.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344244009" group="10" caption="Multiple choice (1)" href="listening/exercises/1151344244009.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1151344244398" group="10" caption="Multiple choice (2)" href="listening/exercises/1151344244398.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1151344244026" group="10" caption="Sentence completion" href="listening/exercises/1151344244026.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1155523998171" group="10" caption="Matching" href="listening/exercises/1155523998171.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1151344244199" group="10" caption="Labelling a diagram" href="listening/exercises/1151344244199.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1151344244577" group="10" caption="Multiple choice (3)" href="listening/exercises/1151344244577.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1151344259533" group="11" caption="Form completion (1)" href="listening/exercises/1151344259533.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_formcomp1.jpg">
+				<exercise id="1151344221308" group="10" caption="Table completion" href="listening/exercises/1151344221308.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_table.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344259234" group="11" caption="Multiple selection (1)" href="listening/exercises/1151344259234.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_multiplesel1.jpg">
+				<exercise id="1151344221548" group="10" caption="Form completion" href="listening/exercises/1151344221548.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_formcomp2.jpg">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221436" group="10" caption="Short answer questions" href="listening/exercises/1151344221436.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_saq2.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344221888" group="10" caption="Sentence completion" href="listening/exercises/1151344221888.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_sencomp2.jpg">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221365" group="10" caption="Classification" href="listening/exercises/1151344221365.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_classification2.jpg">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344221875" group="10" caption="Labelling a diagram" href="listening/exercises/1151344221875.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_labelling.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344244009" group="11" caption="Multiple choice (1)" href="listening/exercises/1151344244009.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344244398" group="11" caption="Multiple choice (2)" href="listening/exercises/1151344244398.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344244026" group="11" caption="Sentence completion" href="listening/exercises/1151344244026.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1155523998171" group="11" caption="Matching" href="listening/exercises/1155523998171.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344244199" group="11" caption="Labelling a diagram" href="listening/exercises/1151344244199.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344244577" group="11" caption="Multiple choice (3)" href="listening/exercises/1151344244577.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/listening2_british.jpg">
+				  <!--GF - QB-->
+				</exercise>
+				<exercise id="1151344259533" group="12" caption="Form completion" href="listening/exercises/1151344259533.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_formcomp1.jpg">
+				  <!--GF - TB-->
+				</exercise>
+				<exercise id="1151344259234" group="12" caption="Multiple selection (1)" href="listening/exercises/1151344259234.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_multiplesel1.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344259298" group="11" caption="Short-answer questions (1)" href="listening/exercises/1151344259298.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_saq1.jpg">
+				<exercise id="1151344259298" group="12" caption="Short answer questions" href="listening/exercises/1151344259298.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_saq1.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344259537" group="11" caption="Multiple selection (2)" href="listening/exercises/1151344259537.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_multiplesel2.jpg">
+				<exercise id="1151344259537" group="12" caption="Multiple selection (2)" href="listening/exercises/1151344259537.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_multiplesel2.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1151344259715" group="11" caption="Sentence completion (1)" href="listening/exercises/1151344259715.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_sencomp1.jpg">
+				<exercise id="1151344259715" group="12" caption="Sentence completion" href="listening/exercises/1151344259715.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_sencomp1.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1151344259935" group="11" caption="Classification (1)" href="listening/exercises/1151344259935.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_classification1.jpg">
+				<exercise id="1151344259935" group="12" caption="Classification" href="listening/exercises/1151344259935.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_classification1.jpg">
 				  <!--T/F-->
-				</exercise>
-				<exercise id="1151344221308" group="12" caption="Table completion" href="listening/exercises/1151344221308.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_table.jpg">
-				  <!--GF - TB-->
-				</exercise>
-				<exercise id="1151344221548" group="12" caption="Form completion (2)" href="listening/exercises/1151344221548.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_formcomp2.jpg">
-				  <!--GF - TB-->
-				</exercise>
-				<exercise id="1151344221436" group="12" caption="Short-answer questions (2)" href="listening/exercises/1151344221436.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_saq2.jpg">
-				  <!--GF - QB-->
-				</exercise>
-				<exercise id="1151344221888" group="12" caption="Sentence completion (2)" href="listening/exercises/1151344221888.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_sencomp2.jpg">
-				  <!--GF - TB-->
-				</exercise>
-				<exercise id="1151344221365" group="12" caption="Classification (2)" href="listening/exercises/1151344221365.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_classification2.jpg">
-				  <!--GF - TB-->
-				</exercise>
-				<exercise id="1151344221875" group="12" caption="Labelling a diagram" href="listening/exercises/1151344221875.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/listening3_labelling.jpg">
-				  <!--GF - QB-->
 				</exercise>
             </unit>
 			<unit id="1287130220000" class="exam-practice">

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2012-02-08" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<img class="rightFloat" src="../media/ST_WTG01.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise and find the spelling mistakes. There are 25. Click on them.
+
+Writing Task 1
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/ST_GW_003.jpg" mode="1" id="1001"/>
+  <p align="left">Dear Sir/Madam,</p>
+  <p align="left">I am <g id="t1">writting</g> to express my <g id="t2">gratititude</g> for the way your staff responded to a problem I encountered <g id="t3">wiht</g> my computer last week.</p>
+  <p align="left">I work from home and my computer is an <g id="t4">extreemly</g> important <g id="t5">peice</g> of <g id="t6">equipement</g> so when it failed to work properly on Friday morning I was very <g id="t7">conserned</g> that I would not be able to have it repaired <g id="t8">untill</g> after the weekend. However, I telephoned your shop and spoke to a young man called Jonathan, who, with great <g id="t9">patiense</g>, talked me through various solutions on the phone. <g id="t10">Unfortunatly</g>, we were unable to <g id="t11">ressolve</g> the problem. He promised to send a <g id="t12">tecnician</g> and I was absolutely delighted to find a very <g id="t13">helpfull</g> young woman called Patricia on my doorstep less <g id="t14">then</g> thirty minutes later.</p>
+  <p align="left">Patricia <g id="t15">identifed</g> the problem almost <g id="t16">immedietly</g> and spent the best part of the next two hours working on my computer. She not only <g id="t17">repared</g> it but <g id="t18">aslo</g> talked me <g id="t19">throught</g> what she was doing so that I would be able to deal with the problem myself in future.</p>
+  <p align="left">I would be <g id="t20">greatful</g> if you could convey my sincere thanks to both your <g id="t21">employes</g>. I have no hesitation in <g id="t22">recomending</g> your services to my <g id="t23">freinds</g> and <g id="t24">colleauges</g>.</p>
+  <p align="left">Yours <g id="t25">faithfuly</g>,</p>
+  <p align="left">Claire Moody</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <b>writting -&gt; </b>
+    <font color="#0000ff">
+      <b>writing</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <b>gratititude -&gt; </b>
+    <font color="#0000ff">
+      <b>gratitude</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <b>wiht -&gt; </b>
+    <font color="#0000ff">
+      <b>with</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <b>extreemly -&gt; </b>
+    <font color="#0000ff">
+      <b>extremely</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <b>peice -&gt; </b>
+    <font color="#0000ff">
+      <b>piece</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <b>equipement -&gt; </b>
+    <font color="#0000ff">
+      <b>equipment</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <b>conserned -&gt; </b>
+    <font color="#0000ff">
+      <b>concerned</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <b>untill -&gt; </b>
+    <font color="#0000ff">
+      <b>until</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <b>patiense -&gt; </b>
+    <font color="#0000ff">
+      <b>patience</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <b>Unfortunatly -&gt; </b>
+    <font color="#0000ff">
+      <b>Unfortunately</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb11">
+  <p align="left">
+    <b>ressolve -&gt; </b>
+    <font color="#0000ff">
+      <b>resolve</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb12">
+  <p align="left">
+    <b>tecnician -&gt; </b>
+    <font color="#0000ff">
+      <b>technician</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb13">
+  <p align="left">
+    <b>helpfull -&gt; </b>
+    <font color="#0000ff">
+      <b>helpful</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <b>then -&gt; </b>
+    <font color="#0000ff">
+      <b>than</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb15">
+  <p align="left">
+    <b>identifed -&gt; </b>
+    <font color="#0000ff">
+      <b>identified</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb16">
+  <p align="left">
+    <b>immedietly -&gt; </b>
+    <font color="#0000ff">
+      <b>immediately</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb17">
+  <p align="left">
+    <b>repared -&gt; </b>
+    <font color="#0000ff">
+      <b>repaired</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb18">
+  <p align="left">
+    <b>aslo -&gt; </b>
+    <font color="#0000ff">
+      <b>also</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb19">
+  <p align="left">
+    <b>throught -&gt;</b>
+    <font color="#0000ff">
+      <b> through</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb20">
+  <p align="left">
+    <b>greatful -&gt; </b>
+    <font color="#0000ff">
+      <b>grateful</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb21">
+  <p align="left">
+    <b>employes -&gt; </b>
+    <font color="#0000ff">
+      <b>employees</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb22">
+  <p align="left">
+    <b>recomending -&gt; </b>
+    <font color="#0000ff">
+      <b>recommending</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb23">
+  <p align="left">
+    <b>freinds -&gt; </b>
+    <font color="#0000ff">
+      <b>friends</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb24">
+  <p align="left">
+    <b>colleauges -&gt; </b>
+    <font color="#0000ff">
+      <b>colleagues</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb25">
+  <p align="left">
+    <b>faithfuly -&gt; </b>
+    <font color="#0000ff">
+      <b>faithfully</b>
+    </font>
+  </p>
+</section>
+
+<section id="rt2001">
+  <p align="left">
+    <font color="#000000">Don't forget to check your spelling when you have finished writing!</font>
+  </p>
+</section>
+
+</body>
+</bento>

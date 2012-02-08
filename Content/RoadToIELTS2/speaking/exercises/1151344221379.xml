@@ -2,10 +2,10 @@
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="quiz" />
-	<meta name="conversion-date" content="2011-11-14" />
+	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -14,11 +14,11 @@
 	]]>
 	</style>
 	
-	
+
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
       <answer source="a1" correct="true">
@@ -104,32 +104,31 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/ED_SP_002.jpg" mode="1" id="1001"/>
-  <br/>
   <ol id="questionList">
-    <br/>
-    <li id="q1">You will have to talk about yourself.<a id="a1">True</a><tab/><a id="a2">False</a><br/></li>
-    <br/>
-    <li id="q2">The Examiner will ask you to call him or her Mr/Ms X.<a id="a3">True</a><tab/><a id="a4">False</a><br/></li>
-    <br/>
-    <li id="q3">You need to have a lot of information about a lot of topics.<a id="a5">True</a><tab/><a id="a6">False</a><br/></li>
-    <br/>
-    <li id="q4">The Examiner will ask all the questions.<a id="a7">True</a><tab/><a id="a8">False</a><br/></li>
-    <br/>
-    <li id="q5">The interview time will vary a little from candidate to candidate.<a id="a9">True</a><tab/><a id="a10">False</a><br/></li>
-    <br/>
-    <li id="q6">You can ask about your marks.<a id="a11">True</a><tab/><a id="a12">False</a><br/></li>
-    <br/>
-    <li id="q7">The Examiner may judge you partly on your appearance.<a id="a13">True</a><tab/><a id="a14">False</a><br/></li>
-    <br/>
-    <li id="q8">The Examiner will ask where you are from.<a id="a15">True</a><tab/><a id="a16">False</a><br/></li>
-    <br/>
-    <li id="q9">Giving examples to support your opinion will help you do better.<a id="a17">True</a><tab/><a id="a18">False</a><br/></li>
-    <br/>
-    <li id="q10">The discussion topic will be chosen by the Examiner.<a id="a19">True</a><tab/><a id="a20">False</a><br/></li>
-    <br/>
-    <li id="q11">You are required to have definite opinions.<a id="a21">True</a><tab/><a id="a22">False</a><br/></li>
-    <br/>
-    <li id="q12">You must communicate, no matter what topic is presented.<a id="a23">True</a><tab/><a id="a24">False</a><br/></li>
+    <li id="q1">You will have to talk about yourself.<a id="a1">True</a><tab/><a id="a2">False</a>
+</li>
+    <li id="q2">The Examiner will ask you to call him or her Mr/Ms X.<a id="a3">True</a><tab/><a id="a4">False</a>
+</li>
+    <li id="q3">You need to have a lot of information about a lot of topics.<a id="a5">True</a><tab/><a id="a6">False</a>
+</li>
+    <li id="q4">The Examiner will ask all the questions.<a id="a7">True</a><tab/><a id="a8">False</a>
+</li>
+    <li id="q5">The interview time will vary a little from candidate to candidate.<a id="a9">True</a><tab/><a id="a10">False</a>
+</li>
+    <li id="q6">You can ask about your marks.<a id="a11">True</a><tab/><a id="a12">False</a>
+</li>
+    <li id="q7">The Examiner may judge you partly on your appearance.<a id="a13">True</a><tab/><a id="a14">False</a>
+</li>
+    <li id="q8">The Examiner will ask where you are from.<a id="a15">True</a><tab/><a id="a16">False</a>
+</li>
+    <li id="q9">Giving examples to support your opinion will help you do better.<a id="a17">True</a><tab/><a id="a18">False</a>
+</li>
+    <li id="q10">The discussion topic will be chosen by the Examiner.<a id="a19">True</a><tab/><a id="a20">False</a>
+</li>
+    <li id="q11">You are required to have definite opinions.<a id="a21">True</a><tab/><a id="a22">False</a>
+</li>
+    <li id="q12">You must communicate, no matter what topic is presented.<a id="a23">True</a><tab/><a id="a24">False</a>
+</li>
   </ol>
 </section>
 

@@ -1,6 +1,7 @@
 <?php
 
 	// This is the original start page, now accessed only if you already exist, as determined by BCHK-Start.php
+	// This can be copied to ieltspractice.com immediately.
 	
 session_start();
 include_once("Variables.php");

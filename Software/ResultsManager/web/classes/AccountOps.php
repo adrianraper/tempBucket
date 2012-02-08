@@ -400,7 +400,8 @@ SQL;
 				// v3.3 Drop DefaultContentLocation from here - move to T_ProductLangauge
 				//return $this->db->GetArray("SELECT F_ProductCode data, F_ProductName label, F_DefaultContentLocation defaultContentLocation 
 				//$result = $this->db->GetArray("SELECT F_ProductCode data, F_ProductName label FROM T_Product");
-				$result = $this->db->GetArray("SELECT F_ProductCode data, F_ProductName label FROM T_Product order by F_DisplayOrder");
+				// v3.5 withing displayOrder, make it alphabetic
+				$result = $this->db->GetArray("SELECT F_ProductCode data, F_ProductName label FROM T_Product order by F_DisplayOrder, F_ProductName");
 				break;
 			case "licenceType":
 				$result = $this->db->GetArray("SELECT F_Status data, F_Description label FROM T_LicenceType");

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="proofreading" />
+	<meta name="conversion-date" content="2012-02-08" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	
+		
+		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 15. Click on them.
+		
+</header>
+	
+<section id="body">
+  <img class="rightFloat" src="../media/DD_AW_005.jpg" mode="1" id="1001"/>
+  <p align="left">Many developing countries continue to struggle against poverty and the constant threat of famine. It is often argued that the best way forward for these nations is a radical change of their economy and farming systems in order to grow cash crops <g id="t1">examples</g> as coffee and animal feed for export. <g id="t2">Consequently</g>, there are several reasons why I <g id="t3">support</g> this idea is <g id="t4">really</g> unlikely to bring a solution.</p>
+  <p align="left">It is widely believed that foreign currency earned through large-scale, mechanised farming for export would give life to less developed economies. In turn, the argument goes, these earnings would help them become less dependent on loans and aid. In <g id="t5">contrast</g>, I think it is far more <g id="t6">probably</g> that they would become even more dependent on the economies of the affluent West. The West, for example, would set the price for goods imported from developing nations. Furthermore, these cash-crop economies would have to depend on imports of food to feed their populations. Consequently, a downturn in the economies of the West would bring almost <g id="t7">probable</g> disaster for these countries.</p>
+  <p align="left">It is often said that the money earned through exports of crops <g id="t8">as</g> tobacco or cocoa would end poverty and hunger in the developing world. However, there is little evidence to <g id="t9">believe</g> this, and in all <g id="t10">possibility</g> such a system would only serve to worsen the situation. Firstly, those who formerly lived off subsistence farming would become labourers and, in most cases, would be paid poverty wages. In addition, the best land would be devoted to growing cash crops, leaving only degraded or unsuitable land for the cultivation of food.</p>
+  <p align="left">Another <g id="t11">reason</g> is that the modernised farming of cash crops is less damaging to the environment. Subsistence farmers, it is argued, farm their land to exhaustion and then search for new fertile areas. This leads to deforestation and soil erosion. <g id="t12">Despite</g>, intensive farming of cash crops can be equally damaging to the environment by, <g id="t13">as</g> instance, wasteful exploitation of water resources and excessive use of chemical pesticides and fertilisers.</p>
+  <p align="left">
+    <font color="#000000">In summary, I am <g id="t14">believed</g> that a move to large-scale farming of cash crops would only replace one set of problems with another. In some cases, it <g id="t15">must</g> well exacerbate the most serious problems of all: hunger and poverty.</font>
+  </p>
+</section>
+
+<section id="fb1">
+  <p align="left">
+    <b>example -&gt; </b>
+    <font color="#0000ff">
+      <b>such</b>
+      <font color="#000000"/>
+    </font>
+  </p>
+</section>
+
+<section id="fb2">
+  <p align="left">
+    <b>Consequently -&gt; </b>
+    <font color="#0000ff"><b>However</b><b>:</b> 'Consequently' means 'as a result'.</font>
+  </p>
+</section>
+
+<section id="fb3">
+  <p align="left">
+    <b>support -&gt; </b>
+    <font color="#0000ff"><b>believe</b><b>:</b> 'Support' should be followed with a noun or gerund, but not with another verb clause.</font>
+  </p>
+</section>
+
+<section id="fb4">
+  <p align="left">
+    <b>really -&gt; </b>
+    <font color="#0000ff"><b>highly</b><b>:</b> 'really' is too informal.</font>
+  </p>
+</section>
+
+<section id="fb5">
+  <p align="left">
+    <b>In contrast -&gt; </b>
+    <font color="#0000ff">
+      <b>In fact</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb6">
+  <p align="left">
+    <b>probably -&gt; </b>
+    <font color="#0000ff">
+      <b>likely</b>
+      <font color="#000000"/>
+    </font>
+  </p>
+</section>
+
+<section id="fb7">
+  <p align="left">
+    <b>probable -&gt; </b>
+    <font color="#0000ff"><b>certain</b><b>:</b> 'almost certain' means 'probable'. 'Almost probable' doesn't make sense.</font>
+  </p>
+</section>
+
+<section id="fb8">
+  <p align="left">
+    <b>as -&gt; </b>
+    <font color="#0000ff"><b>like</b><b>:</b> We can say 'such as' or 'like' when giving examples.</font>
+  </p>
+</section>
+
+<section id="fb9">
+  <p align="left">
+    <b>believe -&gt; </b>
+    <font color="#0000ff"><b>support</b><b>:</b> evidence can be used to 'support' an argument.</font>
+  </p>
+</section>
+
+<section id="fb10">
+  <p align="left">
+    <b>possibility -&gt; </b>
+    <font color="#0000ff"><b>probability</b><b>:</b> This is an expression.</font>
+  </p>
+</section>
+
+<section id="fb11">
+  <p align="left">
+    <b>reason -&gt; </b>
+    <font color="#0000ff"><b>claim</b><b>:</b> In other words, 'it is also argued that...'</font>
+  </p>
+</section>
+
+<section id="fb12">
+  <p align="left">
+    <b>Despite -&gt; </b>
+    <font color="#0000ff"><b>Nevertheless</b><b>:</b> 'Despite' must be followed with a noun, a gerund or the word 'this'.</font>
+  </p>
+</section>
+
+<section id="fb13">
+  <p align="left">
+    <b>as instance -&gt;</b>
+    <font color="#0000ff">
+      <b> for instance</b>
+    </font>
+  </p>
+</section>
+
+<section id="fb14">
+  <p align="left">
+    <b>believed -&gt; </b>
+    <font color="#0000ff">
+      <b>convinced</b>
+      <font color="#000000"/>
+    </font>
+  </p>
+</section>
+
+<section id="fb15">
+  <p align="left">
+    <b>must -&gt; </b>
+    <font color="#0000ff"><b>could</b><b>:</b> 'Must' can't be used to speculate about the future.</font>
+  </p>
+</section>
+
+</body>
+</bento>

@@ -1008,15 +1008,30 @@ EOD;
 				//$titleObj->F_ContentLocation = substr($folder,6);
 				
 				// v3.1 Is this title is an emu or a regular Clarity course?
+				// v3.5 Or is it a new Bento title?
 				//NetDebug::trace("this folder is code=".$folder);
 				//NetDebug::trace("this product is code=".$titleObj->F_ProductCode);
 				if (intval($titleObj->F_ProductCode) > 1000) {
 					// case-sensitive
 					$titleObj->indexFile = "Emu.xml";
+				// For Road to IELTS 2
+				} else if (intval($titleObj->F_ProductCode) == 52) {
+					switch ($titleObj->F_LanguageCode) {
+						case 'R2ILM':
+							$langCodeCopy = "LastMinute";
+							break;
+						case 'R2I10':
+							$langCodeCopy = "TestDrive";
+							break;
+						case 'R2IFV':
+							$langCodeCopy = "FullVersion";
+							break;
+					}
+					$titleObj->indexFile = "menu-Academic-".$langCodeCopy.".xml";
 				} else {
 					$titleObj->indexFile = "course.xml";
 				}
-				// Build the title object (if the course.xml file doesn't exist then just skip it.  However, if we are in $forDMS
+				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
 				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
 				//AbstractService::$log->notice("get content from =".$folder."/".$titleObj->indexFile);

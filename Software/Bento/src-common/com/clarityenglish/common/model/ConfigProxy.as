@@ -182,7 +182,7 @@ package com.clarityenglish.common.model {
 				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
 			}
 			if (Config.DEVELOPER.name == "AR") {
-				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "password")
+				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording")
 			}
 			// take it from config rather than direct from the parameters
 			//if (FlexGlobals.topLevelApplication.parameters.studentID &&

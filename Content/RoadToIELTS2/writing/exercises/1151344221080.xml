@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2012-02-08" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+</header>
+	
+<section id="body">
+  <img class="leftFloat" src="../media/ED_WR1.jpg" mode="1" id="1004"/>
+  <p align="left">
+    <b>The table and chart below show data concerning education worldwide.</b>
+  </p>
+  <p align="left">Write a report for a university lecturer describing the information shown below.</p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+  <p align="left">
+    <font size="2"/>
+  </p>
+</section>
+
+</body>
+</bento>

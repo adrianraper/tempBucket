@@ -1,6 +1,7 @@
 <?php
 
 	// This is to pick up URL used by HK candidates in old system to test the new LoginGateway
+	// It registers, but does NOT start the application.
 	
 	session_start();
 	date_default_timezone_set('UTC');
@@ -26,10 +27,11 @@
 	$rootID = (string) $configXML->rootID[0];
 	$groupID = (string) $configXML->groupID[0];
 	$loginOption = (string) $configXML->loginOption[0];
+	$country = (string) $configXML->country[0];
 
 	// Will we write out lots of log messages?
 	$debugLog = true;
-	$debugFile = $commonDomain.$startFolder.'R2IV2-capture.log';
+	//$debugFile = $commonDomain.$startFolder.'R2IV2-capture.log';
 	$debugFile = 'R2IV2-capture.log';
 
 	// Decrypt the passed parameters	
@@ -38,7 +40,7 @@
 	$encrypt = $_GET['d'];
 	
 	if ($debugLog) {
-		error_log("starting R2IV2-BCHK-Start.php with $name", 3, $debugFile);
+		error_log("1. starting R2IV2-BCHK-Start.php with $name\n", 3, $debugFile);
 	}
 	
 	$pattern = '/\(AT\)/';
@@ -101,11 +103,15 @@
 			$LoginAPI['rootID'] = $rootID;
 			$LoginAPI['groupID'] = $groupID;
 			$LoginAPI['loginOption'] = $loginOption;
+			$LoginAPI['country'] = $country;
 	
 			// Send this single LoginAPI
 			$serializedObj = json_encode($LoginAPI);
 			$targetURL = $commonDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
 			//echo $serializedObj;		
+			if ($debugLog) {
+				error_log($serializedObj."\n", 3, $debugFile);
+			}
 			
 			// Initialize the cURL session
 			$ch = curl_init();

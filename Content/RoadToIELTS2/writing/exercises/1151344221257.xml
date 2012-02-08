@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta name="conversion-from" content="targetspotting" />
+	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
@@ -26,16 +26,11 @@
 <body>
 	
 <header>
-	
-		
-		Read the writing task below. You should spend about 20 minutes on this task. You should write at least 150 words. When you have finished, click to see the sample answer.
-		
+	What will I learn in this unit?
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_AW_002.jpg" mode="1" id="1001"/>
-  <img class="leftFloat" src="../media/MM_ANS_001.jpg" mode="16" id="1004"/>
+	<img class="rightFloat" src="../media/ED_AW_001.jpg" mode="1" id="1001"  /><p align="left"><font color="#0000ff"><b>Academic Writing Task 1</b></font></p><p align="left"><b>Table and static chart</b>You will write a report based on a table and a static chart.</p><p align="left"><font color="#0000ff"><b>Academic Writing Task 2</b></font></p><p align="left"><b>Arguments for and against</b>You will ...</p><ol><li>write a composition discussing arguments for and	against.</li><li>complete a sample composition with appropriate words	and phrases.</li>
 </section>
-
 </body>
 </bento>
