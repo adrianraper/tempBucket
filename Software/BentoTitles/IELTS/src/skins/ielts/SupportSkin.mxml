@@ -6,6 +6,30 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.conversion.TextConverter;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations> 
+		<fx:String id="creditsTextAsHTML"><![CDATA[					
+			<p align='left'>British Council CD-ROM Project Production Team<br />
+			Project Manager: Mark Osborne<br />
+			Examiners: Andy Harvey and Rose Aravanis<br />
+			Project Co-ordinator: Graham Shipman<br />
+			IELTS Co-ordinator: Julia Baracco<br />
+			UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller<br />
+			Production Assistant: Cecilia Koutsouba<br />
+			Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive<br />
+			Technical Assistance: Bybit srl, Milan<br />
+			Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane,<br/>
+			Susan Hutchison and Shannon West</p>
+			<p><b>Sound Recordings</b>
+			
+			</p>]]>
+		</fx:String>
+	</fx:Declarations>
 	
 	<s:layout>
 		<s:VerticalLayout paddingTop="50" />
@@ -40,42 +64,14 @@
 		<s:Spacer height="5" />
 		<s:Scroller width="100%" height="300">
 			<s:Group> 
-				<s:RichText id="creditsNotes" width="70%" fontWeight="bold" >
-					British Council CD-ROM Project Production Team\n
-					Project Manager: Mark Osborne\n
-					Project Co-ordinator: Graham Shipman\n
-					IELTS Co-ordinator: Julia Baracco\n
-					UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller\n
-					Production Assistant: Cecilia Koutsouba\n
-					Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive\n
-					Technical Assistance: Bybit srl, Milan\n
-					Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane, Susan Hutchison and Shannon West \n
-					\n
-					<s:span fontWeight="bold">Sound Recordings</s:span>
-				</s:RichText>
+				<s:RichText id="creditsText" 
+					textFlow="{TextConverter.importToFlow(creditsTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}"  /> 
 			</s:Group>        
-		</s:Scroller>  
+		</s:Scroller>
 	<!--
-	<s:RichText text="British Council CD-ROM Project Production Team " width="70%" fontWeight="bold"  />
-	<s:RichText text="Project Manager: Mark Osborne" />
-	<s:RichText text="Project Co-ordinator: Graham Shipman" />
-	<s:RichText text="IELTS Co-ordinator: Julia Baracco" />
-	<s:RichText text="UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller" />
-	<s:RichText text="Production Assistant: Cecilia Koutsouba" />
-	<s:RichText text="Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive" />
-	<s:RichText text="Technical Assistance: Bybit srl, Milan" />
-	<s:RichText text="Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane, Susan Hutchison and Shannon West " />
 	
 			<s:Spacer height="5" />
 			<s:RichText text="Sound Recordings" width="70%" fontWeight="bold"  />
-			<s:RichText text="Examiners: Andy Harvey and Rose Aravanis" />
-			<s:RichText text="Project Co-ordinator: Graham Shipman" />
-			<s:RichText text="IELTS Co-ordinator: Julia Baracco" />
-			<s:RichText text="UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller" />
-			<s:RichText text="Production Assistant: Cecilia Koutsouba" />
-			<s:RichText text="Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive" />
-			<s:RichText text="Technical Assistance: Bybit srl, Milan" />
-			<s:RichText text="Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane, Susan Hutchison and Shannon West " />
 			
 			<s:Spacer height="5" />
 			<s:RichText text="Video Recordings" width="70%" fontWeight="bold"  />
