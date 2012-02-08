@@ -256,14 +256,25 @@
 				</s:Group>
 
 			</s:Group>
-
+			
 			<!-- border -->
 			<s:Rect left="0" right="0" top="0" bottom="0" excludeFrom="fullScreenStates">
 				<s:stroke>
 					<s:SolidColorStroke color="0x131313" />
 				</s:stroke>
 			</s:Rect>
-
+			
+			<!-- buffering -->
+			<s:Group left="0" right="0" top="0" bottom="0" includeIn="bufferingStates">
+				<s:Rect left="0" right="0" top="0" bottom="0">
+					<s:fill>
+						<s:SolidColor color="0x000000" alpha="0.75" />
+					</s:fill>
+				</s:Rect>
+				
+				<!-- Alfred can replace this with something pretty -->
+				<s:Label text="BUFFERING..." color="0xFFFFFF" fontSize="20" verticalCenter="0" horizontalCenter="0" />
+			</s:Group>
 		</s:Group>
 	</s:Group>
 </s:SparkSkin>

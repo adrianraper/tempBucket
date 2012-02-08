@@ -178,8 +178,10 @@
 			if (streaming=="rtmp") {
 				var host:String = dynamicList.channel.host.toString();
 				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+				
 				if (server=="fms")
 					dynamicSource.urlIncludesFMSApplicationInstance = true;
+				
 				dynamicSource.streamType = dynamicList.channel.type.toString();
 				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
 				for each (var stream:XML in dynamicList.channel.item) {
@@ -189,15 +191,17 @@
 					streamItems.push(streamingItem);
 				}
 				dynamicSource.streamItems = streamItems; 
+				
 				view.adviceZoneVideoPlayer.source = dynamicSource;
-				view.adviceZoneVideoPlayer.autoPlay = true;
+				view.callLater(view.adviceZoneVideoPlayer.play);
 			} else if (streaming=="http") {
 				host = dynamicList.channel.host.toString();
 				for each (stream in dynamicList.channel.item) {
 					streamName = stream.streamName;
-				}				
+				}
+				
 				view.adviceZoneVideoPlayer.source = host + streamName;
-				view.adviceZoneVideoPlayer.autoPlay = true;
+				view.callLater(view.adviceZoneVideoPlayer.play);
 			}
 			//view.adviceZoneVideoPlayer.addEventListener(TimeEvent.COMPLETE, videoPlayerCompleteHandler);
 			//view.adviceZoneVideoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, videoPlayerStateChangeHandler);
@@ -232,7 +236,7 @@
 				}
 				dynamicSource.streamItems = streamItems; 
 				view.questionZoneVideoPlayer.source = dynamicSource;
-				view.questionZoneVideoPlayer.autoPlay = true;
+				view.callLater(view.adviceZoneVideoPlayer.play);
 			} else if (streaming=="http") {
 				var host:String = dynamicList.channel.host.toString();
 				view.questionZoneVideoPlayer.source = dynamicSource;
@@ -241,7 +245,7 @@
 					var streamName:String = stream.streamName;
 				}				
 				view.questionZoneVideoPlayer.source = host + streamName;
-				view.questionZoneVideoPlayer.autoPlay = true;
+				view.callLater(view.adviceZoneVideoPlayer.play);
 			}
 			
 		}
