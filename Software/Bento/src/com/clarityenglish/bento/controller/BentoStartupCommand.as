@@ -29,6 +29,7 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new ProgressProxy());
 			
 			// Inject the FSM into PureMVC
+			// Note that 'changed' means entered, really
 			var fsm:XML =
 				<fsm initial={BBStates.STATE_LOAD_CONFIG}>
 					
