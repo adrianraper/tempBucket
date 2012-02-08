@@ -26,42 +26,43 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		// TODO. These are all set in ielts.css if you can get at that from this view?
 		private const _writingBright:String = '#7DAB36';
-		private const _writingDull:String = '#364A17';
+		private const _writingDull:String = '#95CC40';
 		private const _readingBright:String = '#00A2C8';
-		private const _readingDull:String = '#005063';
+		private const _readingDull:String = '#00BCE8';
 		private const _listeningBright:String = '#FF6600';
-		private const _listeningDull:String = '#7A3100';
+		private const _listeningDull:String = '#FF8736';
 		private const _speakingBright:String = '#A93087';
-		private const _speakingDull:String = '#4F173F';
+		private const _speakingDull:String = '#D43CA9';
 		private const _opacityDull:String = '0.9';
 		
 		private const chartTemplates:XML = 
 			<anychart>
 			  <settings>
-				<animation enabled="False" duration="1" interpolation_type="Quadratic" show_mode="Together" />
+				<animation enabled="False" />
 			  </settings>
 			  <charts>
+			<chart_settings>
+				<animation enabled="False" />
+			</chart_settings>
 				<chart plot_type="Pie">
 				  <data_plot_settings enable_3d_mode="true" >
-					<pie_series>
-						<label_settings enabled="true">
+					<pie_series style="Aqua">
+<animation enabled="False" />
+<tooltip_settings enabled="true" >
+<format><![CDATA[{%Name}]]>
+</format>
+					<font family="Arial" size="12" />
+				</tooltip_settings>
+						<label_settings enabled="true" mode="outside">
 							<background enabled="false" />
-							<position anchor="Center" valign="Center" halign="Center" padding="20" />
-							<font color="White">
-							  <effects>
-								<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
-							  </effects>
-							</font>
-						</label_settings>
-						 <marker_settings enabled="true">
-							<marker type="None" />
-							<states>
-							  <hover>
-								<marker type="Circle" anchor="CenterTop" />
-							  </hover>
-							</states>
-						  </marker_settings>
-					</pie_series>
+							<position anchor="Center" valign="Center" halign="Center" padding="15%" />
+							<font color="#303030" family="Arial" size="12" bold="True"  />
+							<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
+							</label_settings>
+							<connector enabled="True" color="#303030" opacity="1" thickness="1.4" />
+
+						</pie_series>
+
 				  </data_plot_settings>
 				<styles>
 					<pie_style name="Writing">
@@ -78,6 +79,12 @@ package com.clarityenglish.ielts.view.progress.components {
 							<selected_hover>
 								<fill enabled="true" type="solid" color={_writingBright} />
 							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</pie_style>
 					<pie_style name="Reading">
@@ -94,6 +101,12 @@ package com.clarityenglish.ielts.view.progress.components {
 							<selected_hover>
 								<fill enabled="true" type="solid" color={_readingBright} />
 							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</pie_style>
 					<pie_style name="Speaking">
@@ -110,6 +123,12 @@ package com.clarityenglish.ielts.view.progress.components {
 							<selected_hover>
 								<fill enabled="true" type="solid" color={_speakingBright} />
 							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</pie_style>
 					<pie_style name="Listening">
@@ -126,11 +145,22 @@ package com.clarityenglish.ielts.view.progress.components {
 							<selected_hover>
 								<fill enabled="true" type="solid" color={_listeningBright} />
 							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</pie_style>
 				</styles>			
 				  <data>
-					<series name="You" type="Pie" />
+					<series name="You" type="Pie" >
+					<point name="Reading" />
+					<point name="Listening" />
+					<point name="Speaking" />
+					<point name="Writing" />
+					</series>
 				  </data>
 				  <chart_settings>
 					<chart_background enabled="false" />
@@ -217,7 +247,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// customise the label settings
 			_scoreChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}%"}</format>);
-			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}"}</format>);
+			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0} minutes"}</format>);
 			
 		}
 

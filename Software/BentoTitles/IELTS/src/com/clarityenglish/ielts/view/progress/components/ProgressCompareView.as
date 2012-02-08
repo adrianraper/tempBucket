@@ -24,12 +24,16 @@ package com.clarityenglish.ielts.view.progress.components {
 		// see ielts.css. But I can't call getStyle in this .as file.
 		private static const _writingBright:String = '#7DAB36';
 		private static const _writingDull:String = '#364A17';
+		private static const _writingLight:String = '#95CC40';
 		private static const _readingBright:String = '#00A2C8';
 		private static const _readingDull:String = '#005063';
+		private static const _readingLight:String = '#00BCE8';
 		private static const _listeningBright:String = '#FF6600';
 		private static const _listeningDull:String = '#7A3100';
+		private static const _listeningLight:String = '#FF8736';
 		private static const _speakingBright:String = '#A93087';
 		private static const _speakingDull:String = '#4F173F';
+		private static const _speakingLight:String = '#D43CA9';
 		private static const _opacityDull:String = '0.9';
 		
 		private static const chartTemplates:XML = 
@@ -42,7 +46,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				  <data_plot_settings default_series_type="Bar" enable_3d_mode="true" z_padding="0.5" z_aspect="1" z_elevation="45" >
 					<bar_series group_padding="0.9" >
 						<tooltip_settings enabled="true">
-							<font family="Helvetica,Arial" size="12" />
+							<font family="Arial" size="12" />
 							<format>{"{%SeriesName} {%YValue}{numDecimals:0}%"}</format>
 						</tooltip_settings>
 					  <label_settings enabled="false">
@@ -58,6 +62,21 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_writingBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_writingLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_writingLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</bar_style>
 					<bar_style name="Writing1">
@@ -65,6 +84,22 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingDull} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_writingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color="#00FFFF" />
+							</missing>
+
 						</states>
 					</bar_style>
 					<bar_style name="Reading0">
@@ -72,6 +107,21 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_readingBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_readingLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_readingLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</bar_style>
 					<bar_style name="Reading1">
@@ -79,6 +129,22 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingDull} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_readingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color="#00FFFF" />
+							</missing>
+
 						</states>
 					</bar_style>
 					<bar_style name="Speaking0">
@@ -86,6 +152,21 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_speakingBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_speakingLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_speakingLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</bar_style>
 					<bar_style name="Speaking1">
@@ -93,6 +174,21 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingDull} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_speakingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color="#00FFFF" />
+							</missing>
 						</states>
 					</bar_style>
 					<bar_style name="Listening0">
@@ -100,6 +196,21 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" color={_listeningBright} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_listeningLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_listeningLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
 						</states>
 					</bar_style>
 					<bar_style name="Listening1">
@@ -107,6 +218,21 @@ package com.clarityenglish.ielts.view.progress.components {
 							<normal>
 								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningDull} />
 							</normal>
+							<hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningLight} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningLight} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color={_listeningBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" opacity={_opacityDull} color="#00FFFF" />
+							</missing>
 						</states>
 					</bar_style>
 				</styles>
@@ -124,9 +250,9 @@ package com.clarityenglish.ielts.view.progress.components {
 					<legend enabled="false" />
 					<axes>
 							<y_axis>
-								<title rotation="90">
-									<font family="Helvetica,Arial" bold="true" size="11" />
-									<text>Average score%</text>
+								<title rotation="0">
+									<font family="Arial" bold="true" size="12" />
+									<text>Average score %</text>
 								</title>
 								<labels allow_overlap="true" show_first_label="true" show_last_label="true">
 									<font family="Arial" size="12" />
@@ -136,8 +262,10 @@ package com.clarityenglish.ielts.view.progress.components {
 								<scale minimum="0" maximum="100" major_interval="20" mode="Overlay"/>
 							</y_axis>
 						<x_axis>
+
 						<labels>
 							<font size="12" family="Helvetica,Arial" bold="true" />
+
 						</labels>
 						<title enabled="false" />
 					  </x_axis>
