@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="634"  />
+    	<popup click="clickme" source="writingtask1" width="634" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -25,7 +25,7 @@
   <questions>
     <DragQuestion source="q1" block="b1">
       <answer source="a13" correct="true">
-        <feedback source="fb1"/>
+        <feedback source="fb1" />
       </answer>
     </DragQuestion>
     <DragQuestion source="q2" block="b2">

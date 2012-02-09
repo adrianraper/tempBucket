@@ -41,7 +41,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					if (flowElement) {
 						var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
 						if (eventMirror) {
-							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onClick, popupNode.@source, popupNode.@width, popupNode.@height));
+							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onClick, popupNode.@source, popupNode.@width, popupNode.@height, popupNode.hasOwnProperty("@title") ? popupNode.@title : " "));
 						} else {
 							log.error("Attempt to bind a click handler to non-leaf element {0}", flowElement);
 						}
@@ -52,10 +52,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
-		private function onClick(e:FlowElementMouseEvent, source:String, width:String = null, height:String = null):void {
+		private function onClick(e:FlowElementMouseEvent, source:String, width:String = null, height:String = null, title:String = " "):void {
 			var feedbackNode:XML = <feedback source={source} modal="false" />
+			if (title && title.length > 0) feedbackNode.@title = title;
 			if (width) feedbackNode.@width = width;
-			if (height) feedbackNode.@height = height;			
+			if (height) feedbackNode.@height = height;					
 			
 			container.dispatchEvent(new FeedbackEvent(FeedbackEvent.FEEDBACK_SHOW, new Feedback(feedbackNode), true));
 		}
