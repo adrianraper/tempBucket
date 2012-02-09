@@ -30,13 +30,13 @@ $copyrightElement["style"] = "border-top: 1px solid black";
 // Hide the content in 'screen' media mode, and replace it with a message to close the window once printing is complete
 $screenCssElement = $simpleXml->head->addChild("style",
 <<<CSS
-@media screen {
+/*@media screen {
 	body header,
 	body section,
 	body #copyright {
 		display: none;
 	}
-}
+}*/
 CSS
 );
 $screenCssElement["type"] = "text/css";
@@ -44,10 +44,20 @@ $screenCssElement["type"] = "text/css";
 $javascriptElement = $simpleXml->head->addChild("script",
 <<<JS
 window.onload = function() {
+	var i, audioElements, selectElements, selectWidth;
+	
 	// #203 - the try/catch block is for IE
-	var audioElements = document.getElementsByTagName('audio');
-	for (var i = 0; i < audioElements.length; i++) {
+	audioElements = document.getElementsByTagName('audio');
+	for (i = 0; i < audioElements.length; i++) {
 		try { audioElements[i].pause(); } catch (e) { }
+	}
+	
+	// #194 - clear all options from dropdowns
+	selectElements = document.getElementsByTagName('select');
+	for (i = 0; i < selectElements.length; i++) {
+		selectWidth = selectElements[i].clientWidth;
+		selectElements[i].options.length = 0;
+		selectElements[i].setAttribute("style", "width: " + selectWidth + "px;");
 	}
 	
 	window.print();
