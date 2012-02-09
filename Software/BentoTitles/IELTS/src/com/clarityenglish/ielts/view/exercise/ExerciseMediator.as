@@ -77,8 +77,8 @@
 					
 					var exercise:Exercise = note.getBody() as Exercise;
 					
-					// #108
-					if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(exercise).exerciseMarked);
+					// #108, #171
+					view.isMarked = getExerciseProxy(exercise).exerciseMarked;
 					view.hasQuestions = (exercise.model.questions.length > 0);
 					
 					// #123

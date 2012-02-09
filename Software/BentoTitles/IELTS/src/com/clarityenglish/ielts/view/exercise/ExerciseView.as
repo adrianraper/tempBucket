@@ -40,6 +40,9 @@ package com.clarityenglish.ielts.view.exercise {
 		public var exerciseTitle:String;
 		
 		[Bindable]
+		public var isMarked:Boolean;
+		
+		[Bindable]
 		public var hasQuestions:Boolean;
 			
 		[Bindable]

@@ -80,10 +80,10 @@
 		
 		<s:Group>
 			<s:Button id="feedbackButton" skinClass="skins.ielts.title.FeedbackButtonSkin" label="Feedback" visible="false" />
-			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" visible="{hostComponent.hasQuestions}" />
+			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
 		</s:Group>
 		
-		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" visible="{hostComponent.hasQuestions}" />
+		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
 		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" />
 		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" />
 	</s:HGroup>
