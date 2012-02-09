@@ -191,18 +191,6 @@ package com.clarityenglish.ielts.view.zone {
 			switch (instance) {
 				case unitList:
 					unitList.addEventListener(IndexChangeEvent.CHANGE, function(e:IndexChangeEvent):void {
-						/*
-						var groupXML:XML = unitList.selectedItem;
-						
-						popoutExerciseSelector.group = groupXML;
-						
-						// Build up a list of exercises we can show (includes disabled ones)
-						var exercises:XMLList = new XMLList();
-						for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
-							if (Exercise.showExerciseInMenu(exerciseNode))
-								exercises += exerciseNode;
-						popoutExerciseSelector.exercises = exercises;
-						*/
 						popoutExerciseSelector.exercises = refreshedExercises();
 					} );
 					break;

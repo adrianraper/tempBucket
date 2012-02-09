@@ -184,14 +184,11 @@
 													super.data = value;
 													
 													image.source = outerDocument.hostComponent.href.createRelativeHref(null, data.@thumbnail).url;
-													
-													if (this.selected) {
-														imageBorder.visible = true;
-													} else {
-														imageBorder.visible = false;
-													}
-													
+													imageBorder.visible = this.selected;
 													videoLabel.text = data.@caption;
+													
+													// #213
+													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
 												}
 											]]>
 										</fx:Script>
@@ -289,6 +286,9 @@
 												
 												if (data) {
 													examPracticeViewButton.label = data.@caption;
+													
+													// #213
+													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
 												}
 											}
 											
