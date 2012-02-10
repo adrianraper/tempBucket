@@ -23,7 +23,7 @@ function loadAPIInformation() {
 	$postInformation = json_decode(file_get_contents("php://input"), true);
 	//$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6017","name":"Adrian Raper","email":"support@ieltspractice.com","city":"Hong Kong","dbHost":2,"productCode":52,"expiryDate":"2012-04-15 23:59:59","rootID":10943,"prefix":"BCHK","groupID":"170","loginOption":2,"userType":0}';
 	//$presetString = '{"method":"getOrAddUser","studentID":"J0655013-170","name":"Vishna Vardhan Kompalli","email":"06.vishnu@gmail.com","dbHost":"2","productCode":52,"expiryDate":"2012-03-19 23:59:59","prefix":"BCHK","rootID":"10943","groupID":"170","loginOption":"2"}';
-	//$presetString = '{"method":"getOrAddUser","studentID":"P10102920-170","name":"dandelion","email":"adrian@clarityenglish.com","dbHost":100,"productCode":52,"expiryDate":"2012-02-19 23:59:59","prefix":"BCHK","rootID":"14030","groupID":"170","loginOption":"2"}';
+	//$presetString = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"dandelion","email":"adrian@clarityenglish.com","dbHost":101,"productCode":52,"expiryDate":"2012-02-19 23:59:59","prefix":"TEST","rootID":"14028","groupID":"22153","loginOption":"2","emailTemplateID":"BCHK-welcome"}';
 	//$postInformation = json_decode($presetString, true);
 
 	// We are expecting a method and parameters as an object
@@ -94,13 +94,21 @@ try {
 				returnError(200, 'No such user');
 			}			
 			break;
+			
 		case 'getOrAddUser':
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {
 				$user = $loginService->addUser($apiInformation);
+				
+				// If we want to send an email on adding a new user, do it here
+				if ($apiInformation->emailTemplateID) {
+					$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);
+					AbstractService::$debugLog->info("sent email to ".$user->email.' using '.$apiInformation->emailTemplateID);
+				}
 			}			
 			break;
+			
 		default:
 			returnError(1, 'Invalid method '.$apiInformation->method);
 	}

@@ -452,6 +452,29 @@ EOD;
 			echo $emailText = $this->emailOps->fetchEmail($templateID, $emailData);
 		}	
 	}
+	// For sending out email once the user is created
+	public function sendUserEmail($user, $apiInformation, $send=true) {
+		// If the admin email is different from the account email, cc
+		$templateID = $apiInformation->emailTemplateID;
+		$userEmail = $user->email;
+		$emailData = array("user" => $user, "api"=>$apiInformation);
+		$emailArray = array("to" => $userEmail, "data" => $emailData);
+						
+		// Check that the template exists
+		// All templates for user emails exist in the preset subfolder
+		$templateID = 'user/'.$templateID;
+		if (!$this->templateOps->checkTemplate('emails', $templateID)) {
+			throw new Exception ("This template doesn't exist. /emails/$templateID");
+		}
+		// For testing or real
+		if ($send) {
+			$this->emailOps->sendEmails("", $templateID, array($emailArray));
+		} else {
+			echo $emailText = $this->emailOps->fetchEmail($templateID, $emailData);
+		}
+		
+	}
+	
 	// For creating temporary files (perhaps to be downloaded or sent as email attachments)
 	// This should be as generic as possible
 	//public function createFile($fileName, $dataObject, $templateID) {

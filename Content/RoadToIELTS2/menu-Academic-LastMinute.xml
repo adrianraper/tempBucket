@@ -18,7 +18,7 @@
 			<unit id="1287130120000" class="exam-practice">
 				<exercise id="1287130120001" caption="Reading practice test 1" href="reading/pdf/reading_ac_practice1.pdf" />
 				<exercise id="1287130120002" caption="Reading practice test 2" href="reading/pdf/reading_ac_practice2.pdf" />
-				<exercise id="1287130120003" caption="Reading practice test 3" href="reading/pdf/reading_ac_practice3.pdf" />
+				<exercise id="1287130120003" caption="Reading practice test 3" href="reading/pdf/reading_ac_practice3.pdf" enabled="false"/>
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
 				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
@@ -125,7 +125,7 @@
 				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" />
 				<exercise id="1287130330004" href="speaking/advicezonevideo4.rss" caption="Advice: Coping with nerves" thumbnail="speaking/thumbnails/speaking_coping.jpg" />
 				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Speaking section 1" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" />
-				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Speaking section 2" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" />
+				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Speaking section 2" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" enabled="false"/>
 			</unit>
 			<unit id="1287130340000" class="practice-zone">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_introduction.jpg">

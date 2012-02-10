@@ -1460,7 +1460,7 @@ EOD;
 						//NetDebug::trace('but it is the same person');
 						$nameOK = true;
 					} else {
-						NetDebug::trace('found another person by name');
+						//NetDebug::trace('found another person by name');
 						$nameOK = false;
 						$rc['returnInfo'][] = Array('name'=>$firstRecord->F_UserName, 'group'=>$firstRecord->F_GroupID);
 					}

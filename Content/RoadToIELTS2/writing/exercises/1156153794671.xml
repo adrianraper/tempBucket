@@ -21,6 +21,7 @@
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+ 	<param name="allowMultipleDrags" value="false" />
 </settings>
   <questions>
     <DragQuestion source="q1" block="b1">

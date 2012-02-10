@@ -19,6 +19,7 @@ class LoginAPI {
 	var $country;
 	var $loginOption;
 	var $dbHost;
+	var $emailTemplateID;
 	
 	function LoginAPI() {
 	}
@@ -55,6 +56,8 @@ class LoginAPI {
 			$this->city = $info['city'];
 		if (isset($info['country'])) 
 			$this->country = $info['country'];
+		if (isset($info['emailTemplateID'])) 
+			$this->emailTemplateID = $info['emailTemplateID'];
 			
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account

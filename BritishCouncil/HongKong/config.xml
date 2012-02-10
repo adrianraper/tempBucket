@@ -3,9 +3,9 @@
 	<id>/BritishCouncil/HongKong</id>
 	<developer>BC</developer>
 	<dbHost>101</dbHost>
-	<prefix>GLOBAL</prefix>
-	<rootID>14030</rootID>
-	<groupID>170</groupID>
+	<prefix>TEST</prefix>
+	<rootID>14028</rootID>
+	<groupID>22153</groupID>
 	<loginOption>2</loginOption>
 	<country>Hong Kong</country>
 	<productVersion>lastMinute</productVersion>

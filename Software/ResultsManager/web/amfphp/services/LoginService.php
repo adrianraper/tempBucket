@@ -20,6 +20,9 @@ require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
+require_once(dirname(__FILE__)."/../../classes/SubscriptionOps.php");
+require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
+require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class LoginService extends AbstractService {
@@ -36,6 +39,7 @@ class LoginService extends AbstractService {
 		AbstractService::$log->setProductName("LOGIN");
 		
 		$this->manageableOps = new ManageableOps($this->db);
+		$this->subscriptionOps = new SubscriptionOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -72,6 +76,7 @@ class LoginService extends AbstractService {
 			$stubUser->city = $loginDetails->city;
 		if ($loginDetails->country)
 			$stubUser->country = $loginDetails->country;
+			
 		$stubUser->userType = User::USER_TYPE_STUDENT;
 		$stubUser->registrationDate = date('Y-m-d H:i:s');
 		$stubUser->registerMethod = "loginService";

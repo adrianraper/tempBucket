@@ -390,6 +390,8 @@ EOD;
 		
 		Session::clear();
 		
+		// TODO. Close the session and drop any licence control
+		
 		//session_unset();
 		//unset($_SESSION['rootID']);
 		//unset($_SESSION['userID']);

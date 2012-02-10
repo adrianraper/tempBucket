@@ -26,6 +26,7 @@
 	$rootID = (string) $configXML->rootID[0];
 	$groupID = (string) $configXML->groupID[0];
 	$loginOption = (string) $configXML->loginOption[0];
+	$emailTemplate = "BCHK-welcome";
 
 	// Will we write out lots of log messages?
 	$debugLog = true;
@@ -94,7 +95,7 @@
 			
 			// make the database connection
 			global $db;
-			$oldDbHost = 101; // GlobalRoadToIELTS
+			$oldDbHost = 102; // GlobalRoadToIELTS
 			$dbDetails = new DBDetails($oldDbHost);
 			$db = &ADONewConnection($dbDetails->dsn);
 			if (!$db) die("Connection failed");
@@ -125,6 +126,8 @@
 			$LoginAPI['rootID'] = $rootID;
 			$LoginAPI['groupID'] = $groupID;
 			$LoginAPI['loginOption'] = $loginOption;
+			$LoginAPI['emailTemplateID'] = $emailTemplate;
+			$LoginAPI['country'] = "Hong Kong";
 	
 			// Send this single LoginAPI
 			$serializedObj = json_encode($LoginAPI);
@@ -152,6 +155,7 @@
 			if($contents === false){
 				echo 'Curl error: ' . curl_error($ch);
 				curl_close($ch);
+				$errorCode = 1;
 			} else {
 				curl_close($ch);
 				// $contents is coming back with a utf-8 BOM in front of it, which invalidates it as JSON. Get rid of it.
