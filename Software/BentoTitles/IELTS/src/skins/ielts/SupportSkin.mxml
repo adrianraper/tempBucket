@@ -14,8 +14,8 @@
 	
 	<fx:Declarations> 
 		<fx:String id="creditsTextAsHTML"><![CDATA[					
-			<p align='left'>British Council CD-ROM Project Production Team<br />
-			Project Manager: Mark Osborne<br />
+			<p align='left'><b>British Council CD-ROM Project Production Team</b><br />
+			Project Manager: Mark Osborne
 			Examiners: Andy Harvey and Rose Aravanis<br />
 			Project Co-ordinator: Graham Shipman<br />
 			IELTS Co-ordinator: Julia Baracco<br />

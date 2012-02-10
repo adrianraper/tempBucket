@@ -96,7 +96,7 @@
 	<!-- Footer text -->
 	<s:HGroup left="25" right="25" bottom="3" includeIn="exercise">
 		<s:Spacer width="100%" />
-		<s:Label text="Data © The British Council 2006-2011. Software © Clarity Language Consultants Ltd, 2011. All rights reserved." color="#FFFFFF" fontSize="11" />
+		<s:Label text="Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" fontSize="11" />
 	</s:HGroup>
 	
 </s:Skin>

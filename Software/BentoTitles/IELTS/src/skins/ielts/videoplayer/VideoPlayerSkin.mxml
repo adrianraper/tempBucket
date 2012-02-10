@@ -273,7 +273,8 @@
 				</s:Rect>
 				
 				<!-- Alfred can replace this with something pretty -->
-				<s:Label text="BUFFERING..." color="0xFFFFFF" fontSize="20" verticalCenter="0" horizontalCenter="0" />
+				<s:Label text="buffering..." color="0xFFFFFF" fontSize="12.6" verticalCenter="30" horizontalCenter="4" alpha="0.7"  />
+				<s:SWFLoader source="@Embed(source='skins/ielts/assets/buffering.swf')" verticalCenter="0" horizontalCenter="0"  />
 			</s:Group>
 		</s:Group>
 	</s:Group>
