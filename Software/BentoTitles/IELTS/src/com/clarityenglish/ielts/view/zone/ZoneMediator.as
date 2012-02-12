@@ -5,7 +5,6 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
@@ -14,8 +13,10 @@
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import mx.events.FlexEvent;
+	import mx.core.mx_internal;
 	
+	import org.davekeen.util.Closure;
+	import org.osmf.events.BufferEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.net.DynamicStreamingItem;
@@ -23,10 +24,14 @@
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
+	import spark.components.VideoPlayer;
+	
 	/**
 	 * A Mediator
 	 */
 	public class ZoneMediator extends BentoMediator implements IMediator {
+
+		private var urlLoader:URLLoader;
 		
 		public function ZoneMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
@@ -112,50 +117,41 @@
 		
 		/**
 		 * Trigger the display of a video in the advice zone view and note that you are doing it in progress
+		 * 
 		 * @param videoSource
 		 * @return 
-		 * 
 		 */
 		private function onVideoSelected(href:Href, zoneName:String):void {
-			
 			// #81 If the href is not a simple video file, it might be a dynamic streaming list
-			//var videoSource:String = href.createRelativeHref(null, adviceZoneVideoList.selectedItem.@href).url;
 			var videoSource:String = href.url;
 			
-			if (videoSource.indexOf("rss")>0 || videoSource.indexOf("xml")>0) {
-				
-				// Add video player for a different zone too. Clumsy.
-				switch (zoneName) {
-					case "question-zone":
-						var completeMethod:Function = onQuestionZoneVideoRSSLoadComplete;
-						break;
-					default:
-						completeMethod = onAdviceZoneVideoRSSLoadComplete;
-						break;
-				}
-				var urlLoader:URLLoader = new URLLoader();
-				urlLoader.addEventListener(Event.COMPLETE, completeMethod);
+			// Get the target video player
+			var videoPlayer:VideoPlayer;
+			switch (zoneName) {
+				case "question-zone":
+					videoPlayer = view.questionZoneVideoPlayer;
+					break;
+				case "advice-zone":
+					videoPlayer = view.adviceZoneVideoPlayer;
+					break;
+				default:
+					log.error("Unknown zone name " + zoneName);
+					return;
+			}
+			
+			// #208
+			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
+			
+			if (videoSource.match(/\.(rss|xml)$/)) {
+				urlLoader = new URLLoader();
+				urlLoader.addEventListener(Event.COMPLETE, Closure.create(this, onRssLoadComplete, videoPlayer));
 				urlLoader.load(new URLRequest(videoSource));
-				
 			} else {
-				
-				// Add video player for a different zone too. Clumsy.
-				switch (zoneName) {
-					case "question-zone":
-						view.questionZoneVideoPlayer.source = videoSource;
-						// #63
-						view.callLater(function():void {
-							view.questionZoneVideoPlayer.play();
-						});
-						break;
-					default:
-						view.adviceZoneVideoPlayer.source = videoSource;
-						// #63
-						view.callLater(function():void {
-							view.adviceZoneVideoPlayer.play();
-						});
-						break;
-				}
+				videoPlayer.source = videoSource;
+				// #63
+				view.callLater(function():void {
+					videoPlayer.play();
+				});
 			}
 			
 			// #111 Write a record that they have started watching the video
@@ -167,91 +163,49 @@
 			
 			// Trigger a notification to write the score out
 			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
-
 		}
-		protected function onAdviceZoneVideoRSSLoadComplete(e:Event):void {
+		
+		protected function onBufferingChange(event:Event):void {
+			event.target.removeEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
+			event.target.bufferTime = 8;
+		}
+		
+		private function onRssLoadComplete(e:Event, videoPlayer:VideoPlayer):void {
 			var dynamicList:XML = new XML(e.target.data);
 			
-			// #199. For FMS rtmp streaming do this
 			var streaming:String = dynamicList.channel.streaming.toString();
 			var server:String = dynamicList.channel.server.toString();
-			if (streaming=="rtmp") {
+			
+			if (streaming == "rtmp") {
 				var host:String = dynamicList.channel.host.toString();
 				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
 				
-				if (server=="fms")
-					dynamicSource.urlIncludesFMSApplicationInstance = true;
+				if (server == "fms") dynamicSource.urlIncludesFMSApplicationInstance = true;
 				
 				dynamicSource.streamType = dynamicList.channel.type.toString();
 				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
 				for each (var stream:XML in dynamicList.channel.item) {
-					var streamName:String = stream.streamName;
-					var bitrate:Number = stream.bitrate;
-					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
+					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(stream.streamName, stream.bitrate);
 					streamItems.push(streamingItem);
 				}
 				dynamicSource.streamItems = streamItems; 
 				
-				view.adviceZoneVideoPlayer.source = dynamicSource;
-				view.callLater(view.adviceZoneVideoPlayer.play);
-			} else if (streaming=="http") {
-				host = dynamicList.channel.host.toString();
-				for each (stream in dynamicList.channel.item) {
-					streamName = stream.streamName;
-				}
-				
-				view.adviceZoneVideoPlayer.source = host + streamName;
-				view.callLater(view.adviceZoneVideoPlayer.play);
-			}
-			//view.adviceZoneVideoPlayer.addEventListener(TimeEvent.COMPLETE, videoPlayerCompleteHandler);
-			//view.adviceZoneVideoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, videoPlayerStateChangeHandler);
-			
-			// #63 - overidden by #119
-			/*callLater(function():void {
-			adviceZoneVideoPlayer.play();
-			});*/
-			
-		}
-		// HORRIBLE. Duplicate of above just for a different player. Please fix.
-		// Add a property to the target? Send an parameter to the listener through a custom event? 
-		protected function onQuestionZoneVideoRSSLoadComplete(e:Event):void {
-			var dynamicList:XML = new XML(e.target.data);
-			
-			// Build the mxml component
-			// #199. For FMS rtmp streaming do this
-			var streaming:String = dynamicList.channel.streaming.toString();
-			var server:String = dynamicList.channel.server.toString();
-			if (streaming=="rtmp") {
-				var host:String = dynamicList.channel.host.toString();
-				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
-				if (server=="fms")
-					dynamicSource.urlIncludesFMSApplicationInstance = true;
-				dynamicSource.streamType = dynamicList.channel.type.toString();
-				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
-				for each (var stream:XML in dynamicList.channel.item) {
-					var streamName:String = stream.streamName;
-					var bitrate:Number = stream.bitrate;
-					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
-					streamItems.push(streamingItem);
-				}
-				dynamicSource.streamItems = streamItems; 
-				view.questionZoneVideoPlayer.source = dynamicSource;
-				view.callLater(view.adviceZoneVideoPlayer.play);
-			} else if (streaming=="http") {
-				var host:String = dynamicList.channel.host.toString();
-				view.questionZoneVideoPlayer.source = dynamicSource;
-				view.callLater(view.adviceZoneVideoPlayer.play);
-				for each (var stream:XML in dynamicList.channel.item) {
-					var streamName:String = stream.streamName;
-				}				
-				view.questionZoneVideoPlayer.source = host + streamName;
-				view.callLater(view.adviceZoneVideoPlayer.play);
+				videoPlayer.source = dynamicSource;
+				videoPlayer.callLater(videoPlayer.play);
+			} else {
+				log.error(streaming + " streaming type not supported");
+				videoPlayer.stop();
+				videoPlayer.source = null;
 			}
 			
+			// Allow the listener to be garbage collected
+			urlLoader = null;
 		}
+		
 		public function videoPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {
 			log.info("video state is " + event.state);
 		}
+		
 		public function videoPlayerCompleteHandler(event:TimeEvent):void {
 			log.info("video completed " + event.toString());
 		}
