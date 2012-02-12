@@ -83,17 +83,24 @@
 					
 					// #123
 					view.hasPrintStylesheet = exercise.hasPrintStylesheet();
+					
+					// #171
+					configureButtonVisibility(exercise);
 					break;
 				case BBNotifications.MARKING_SHOWN:
-					view.markingButton.visible = !(getExerciseProxy(note.getBody() as Exercise).exerciseMarked);
-					
-					// If there is exercise feedback then show the exercise feedback button
-					view.feedbackButton.visible = getExerciseProxy(note.getBody() as Exercise).hasExerciseFeedback();
+					configureButtonVisibility(note.getBody() as Exercise);
 					break;
 				case BBNotifications.EXERCISE_PRINTED:
 					trace("exercise printed");
 					break;
 			}
+		}
+		
+		private function configureButtonVisibility(exercise:Exercise):void {
+			if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(exercise).exerciseMarked);
+			
+			// If there is exercise feedback then show the exercise feedback button
+			if (view.feedbackButton) view.feedbackButton.visible = getExerciseProxy(exercise).hasExerciseFeedback();
 		}
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {
