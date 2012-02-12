@@ -220,11 +220,11 @@ package com.clarityenglish.bento.model {
 			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
 			
 			// If the answer is in a synonym group then check if it has already been used and if so replace this answer with an incorrect copy (#201)
-			if (answer is TextAnswer && answer.synonymGroup) {
+			// #201 comments; I *think* its the case that no matter whether or not a text answer is in a synonym group it can only be used once per question, so I
+			// have removed the synonymGroup check.  It needs to be confirmed that this has no undesirable side effects.
+			if (answer is TextAnswer /*&& answer.synonymGroup*/) {
 				var existingIdx:int = markableAnswerMap.values.indexOf(answer);
 				if (existingIdx >= 0) {
-					//answer = answer.clone();
-					//answer.correct = false;
 					answer = new TextAnswer(<answer value={(answer as TextAnswer).value} correct={false}/>);
 				}
 			}

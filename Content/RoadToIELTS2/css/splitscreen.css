@@ -89,6 +89,10 @@ a, span[draggable="true"] {
 	background-color: #FFFFFF;
 	}
 
+#noscroll span[draggable=true].disabled {
+	color: #CCCCCC;
+}
+
 #noscroll{
 	padding-left:5px;
 	}
