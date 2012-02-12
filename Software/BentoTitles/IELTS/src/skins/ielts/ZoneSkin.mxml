@@ -104,7 +104,7 @@
 		
 		
 		<!-- The popout exercise selector -->
-		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" width="45%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="320" exerciseSelected="onPopoutExerciseSelected(event)"  />
+		<ui:PopoutExerciseSelector id="popoutExerciseSelector" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" width="45%" x.normalStates="{width / 2}" x.popoutStates="0" top="90" height="360" exerciseSelected="onPopoutExerciseSelected(event)"  />
 		
 		<!-- The right hand side -->
 		<s:BorderContainer right="0" width="55%" height="80%" backgroundColor="#F2F2F2" cornerRadius="12" top="0" bottom="40" minWidth="540" minHeight="570">
