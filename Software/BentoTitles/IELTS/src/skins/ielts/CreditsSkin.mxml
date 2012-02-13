@@ -7,16 +7,35 @@
 		[HostComponent("com.clarityenglish.ielts.view.credits.CreditsView")]
 	</fx:Metadata>
 	
-	<s:layout>
-		<s:HorizontalLayout paddingTop="50" horizontalAlign="center" />
-	</s:layout>
-	<s:VGroup horizontalAlign="center" verticalAlign="middle">
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" width="700" />
-		<s:Label text="Thank you for using Road to IELTS." fontSize="18" color="0X0C436B" />
-		<s:Spacer height="1" />
-		<s:Label text="Good luck in your IELTS exam." fontSize="18" color="0X0C436B" />
-
-	</s:VGroup>
+	<fx:Declarations>
+		<s:Animate id="anim" targets="{[endLogo]}" duration="1000" >
+			<s:SimpleMotionPath property="alpha" valueFrom="0.0" valueTo="1.0" />
+			<s:SimpleMotionPath property="horizontalCenter" valueFrom="-100" valueTo="0" />
+			<s:SimpleMotionPath property="rotationY" valueFrom="-45" valueTo="0" />
+			<s:SimpleMotionPath property="scaleX" valueFrom="1.5" valueTo="1" />
+			<s:SimpleMotionPath property="scaleY" valueFrom="1.5" valueTo="1" />
+		</s:Animate>
+	</fx:Declarations>
 
 	
+	<s:layout>
+		<s:VerticalLayout paddingTop="80" horizontalAlign="center" />
+	</s:layout>
+	
+	<s:VGroup horizontalAlign="center" verticalAlign="middle" width="100%">
+		<s:SWFLoader id="endLogo" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" autoLoad="true" width="400" height="70" />
+		<s:Spacer height="10" />
+		<s:Label text="Thank you for using Road to IELTS." fontSize="20" color="0X0C436B" />
+		<s:Spacer height="1" />
+		<s:Label text="Good luck in your IELTS exam." fontSize="20" color="0X0C436B" />
+		<s:Spacer height="5" />
+	</s:VGroup>
+	<s:VGroup>
+		<s:Rect width="80%" height="1" horizontalCenter="0" >
+			<s:fill>
+				<s:SolidColor color="0x0C436B" />
+			</s:fill>
+		</s:Rect>
+	</s:VGroup>
+
 </s:Skin>
