@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		minWidth="223" minHeight="24"
+		minWidth="215" minHeight="24"
 		>
 		
 

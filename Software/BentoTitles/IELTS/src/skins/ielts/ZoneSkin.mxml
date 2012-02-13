@@ -334,8 +334,12 @@
 													
 													if (data) {
 														examPracticeAnswerButton.label = data.@caption;
+														
+														// #213
+														enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
 													}
 												}
+			
 												
 												protected function onViewButtonClick(event:MouseEvent):void {
 													dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));

@@ -25,12 +25,12 @@
 	</fx:Script>
 	
 	
-	<s:Group left="10" width="100%" >
-		<s:Rect left="2" top="8" width="8" height="8" radiusX="2" radiusY="2"  >
+	<s:Group left="4" width="100%" >
+		<s:Rect left="0" top="8" width="8" height="8" radiusX="2" radiusY="2"  >
 			<s:fill>
 				<s:SolidColor id="fillColor" />
 			</s:fill>
 		</s:Rect>
-		<s:Label id="captionLabel" left="20" height="24" paddingTop="8" right="10" fontWeight="normal" fontSize="12.6" />
+		<s:Label id="captionLabel" left="15" height="24" paddingTop="8" right="10" fontWeight="normal" fontSize="12.6" />
 	</s:Group>
 </s:ItemRenderer>

@@ -68,12 +68,12 @@
 			</s:fill>
 		</s:Rect>
 		
-		<s:VGroup left="30" right="25" top="20" bottom="20">
+		<s:VGroup left="24" right="25" top="20" bottom="20">
 			<s:Label text="{hostComponent.group.@caption}" fontSize="18" />
 			
 			<s:HGroup>
-				<s:VGroup width="170" >
-					<ui:ImageItemRenderer id="imageItemRenderer" width="180" height="160" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" />
+				<s:VGroup width="149" >
+					<ui:ImageItemRenderer id="imageItemRenderer" width="149" height="160" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" />
 					<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
 				</s:VGroup>
 				
@@ -101,13 +101,13 @@
 										}
 									]]>
 								</fx:Script>
-								<s:HGroup verticalAlign="middle" left="10" paddingTop="5" paddingBottom="5">
+								<s:HGroup verticalAlign="middle" left="0" paddingTop="5" paddingBottom="5">
 									<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
 										<s:fill>
 											<s:SolidColor id="fillColor" />
 										</s:fill>
 									</s:Rect>
-									<s:Label id="captionLabel" left="20" fontSize="12.6" />
+									<s:Label id="captionLabel" left="0" fontSize="12.6" paddingTop="4" />
 								</s:HGroup>
 							</s:ItemRenderer>
 						</fx:Component>

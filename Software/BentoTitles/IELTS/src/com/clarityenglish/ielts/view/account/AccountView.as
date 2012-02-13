@@ -93,7 +93,7 @@ package com.clarityenglish.ielts.view.account {
 					if (userDetails.examDate) {
 						instance.text = "This is the remaining time until your test."
 					} else {
-						instance.text = "Please confirm your test date below."
+						instance.text = "Please set your test date below:"
 					}
 					break;
 				

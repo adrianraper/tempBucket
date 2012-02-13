@@ -14,8 +14,9 @@
 	
 	<fx:Declarations> 
 		<fx:String id="creditsTextAsHTML"><![CDATA[					
-			<p align='left'><b>British Council CD-ROM Project Production Team</b><br />
-			Project Manager: Mark Osborne
+			<p align='left'>
+			<b>British Council CD-ROM Project Production Team</b><br />
+			Project Manager: Mark Osborne<br />
 			Examiners: Andy Harvey and Rose Aravanis<br />
 			Project Co-ordinator: Graham Shipman<br />
 			IELTS Co-ordinator: Julia Baracco<br />
@@ -25,7 +26,76 @@
 			Technical Assistance: Bybit srl, Milan<br />
 			Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane,<br/>
 			Susan Hutchison and Shannon West</p>
-			<p><b>Sound Recordings</b>
+			
+			<p align='left'>
+			<b>Sound Recordings</b><br />
+			Antonis Tectonidis Studio<br />
+			Producer: Antonis Tectonidis<br />
+			<br />
+			
+			CSA Tell Tapes<br />
+			Producer: Clive Stanhope<br />
+			
+			Unique<br />
+			Producers: Frank Stirling & Laura Parfitt<br />
+			
+			Just About Productions<br />
+			Producers: Kate Bland & Susan Marling<br />
+			
+			Fiction Factory<br />
+			Producer: John Taylor<br />
+			
+			Post-production<br />
+			Sound Engineer: Antonis Tectonidis<br />
+			
+			Special thanks to the actors who took part in recording sessions at the above studios.<br />
+			</p>
+			
+			<p align='left'>
+			<b>Video Recordings</b><br />
+			
+			Examiners<br />
+			Andy Harvey & Rose Aravanis <br />
+			<br />
+			
+			Candidates<br />
+			Alexandra Sokolova, Dimitris Neofitos, Zaphir Kardy & Zenia Said<br />
+			
+			Direction, Camera & Editing<br />
+			Andy Lewis, Angelos Panagou & Angelos Papastefanou<br />
+			
+			Just About Productions<br />
+			Producers: Kate Bland & Susan Marling<br />
+			
+			Fiction Factory<br />
+			Producer: John Taylor<br />
+			
+			Post-production<br />
+			Sound Engineer: Antonis Tectonidis<br />
+			
+			Special thanks to the actors who took part in recording sessions at the above studios.<br />
+			</p>
+			
+			</p>]]>
+		</fx:String>
+		<fx:String id="helpTextAsHTML"><![CDATA[					
+			<p align='left'>
+			<b>Technical problems</b><br />
+			Clarity will be pleased to help you with any technical problems. However, please check with the technical support of your institution<br /> first as they may have a quicker answer.</p>
+			<p align='left'>
+			Email <a href="support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of your course (if you are running online).
+			</p>
+			
+			<p align='left'>
+			<u>Clarity Language Consultants Ltd</u><br />
+			PO Box 163, Sai Kung, Hong Kong<br />
+			Tel: +852 2791 1787<br />
+			Fax: +852 2791 6484 <br />
+			</p>
+			
+			<b>Content problems</b><br />
+			If you have any enquiries about the content, for example, if you have questions about an answer in the exercises, please contact<br /> the <a href="support@clarityenglish.com">British Council</a>.
+			</p>
 			
 			</p>]]>
 		</fx:String>
@@ -35,34 +105,27 @@
 		<s:VerticalLayout paddingTop="50" />
 	</s:layout>
 	
-	<s:VGroup width="70%" paddingTop="20" >
+	<s:VGroup width="80%" paddingTop="20" >
 		<s:RichText text="Help" fontSize="20" width="70%" />
 		<s:Rect left="100" right="0" top="100" bottom="0" width="100%" height="1" >
 			<s:fill>
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-		
-		<s:Spacer height="5" />
-	
-		<s:RichText text="Technical problems" width="70%" fontWeight="bold"  />
-		<s:RichText text="Clarity will be pleased to help you with any technical problems. However, please check with the technical support of your institution first as they may have a quicker answer." width="100%" />
-		<s:Spacer height="5" />	
-		<s:RichText text="Email support@clarityenglish.com with a description of your problem and the URL of your course (if you are running online)." width="100%" />
-	
-		<s:Spacer height="15" />	
-		<s:RichText text="Content problems" width="70%" fontWeight="bold"  />
-		<s:RichText text="If you have any enquiries about the content, for example, if you have questions about an answer in the exercises, please contact the British Council. " width="100%" />
+		<s:Group> 
+			<s:RichText id="HelpText" 
+						textFlow="{TextConverter.importToFlow(helpTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}"  /> 
+		</s:Group>   
 	</s:VGroup>	
-	<s:VGroup width="50%" paddingTop="20" >
+	
+	<s:VGroup width="80%" paddingTop="20" height="100%" >
 		<s:RichText text="Credits and acknowledgements" fontSize="20" width="70%" />
 		<s:Rect left="100" right="0" top="100" bottom="0" width="100%" height="1" >
 			<s:fill>
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-		<s:Spacer height="5" />
-		<s:Scroller width="100%" height="300">
+		<s:Scroller width="100%" height="80%">
 			<s:Group> 
 				<s:RichText id="creditsText" 
 					textFlow="{TextConverter.importToFlow(creditsTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}"  /> 
