@@ -16,7 +16,7 @@
 	</s:Group>
 	<s:Group>
 		<s:Label text="This chart compares your scores with other Road To IELTS users worldwide." fontSize="12.6" paddingLeft="10" paddingTop="29"/>
-		<s:Label text="The bar in the front row are your average scores. The bars in the back row are everyone else's." fontSize="12.6" paddingLeft="10" paddingTop="47"/>
+		<s:Label text="The bars in the front row show your average scores. The bars in the back row are everyone else's." fontSize="12.6" paddingLeft="10" paddingTop="47"/>
 		<ns1:AnyChartFlex id="compareChart" width="600" height="300" top="35" />
 	</s:Group>
 </s:Skin>

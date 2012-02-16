@@ -15,77 +15,78 @@
 	<fx:Declarations> 
 		<fx:String id="creditsTextAsHTML"><![CDATA[					
 			<p align='left'>
-			<b>British Council CD-ROM Project Production Team</b><br />
-			Project Manager: Mark Osborne<br />
-			Examiners: Andy Harvey and Rose Aravanis<br />
-			Project Co-ordinator: Graham Shipman<br />
-			IELTS Co-ordinator: Julia Baracco<br />
-			UK Progamme Management: Jeff Carvell, Alan Smart and Shaun Waller<br />
-			Production Assistant: Cecilia Koutsouba<br />
-			Development Assistants: Isabella Zabetaki, Joseph Roberts and William Clive<br />
-			Technical Assistance: Bybit srl, Milan<br />
-			Materials Writers: Charlaine Wetwood, Fiona Williams, Guy Brook-Hart, Stuart Cochrane,<br/>
-			Susan Hutchison and Shannon West</p>
-			
-			<p align='left'>
-			<b>Sound Recordings</b><br />
-			Antonis Tectonidis Studio<br />
-			Producer: Antonis Tectonidis<br />
-			<br />
-			
-			CSA Tell Tapes<br />
-			Producer: Clive Stanhope<br />
-			
-			Unique<br />
-			Producers: Frank Stirling & Laura Parfitt<br />
-			
-			Just About Productions<br />
-			Producers: Kate Bland & Susan Marling<br />
-			
-			Fiction Factory<br />
-			Producer: John Taylor<br />
-			
-			Post-production<br />
-			Sound Engineer: Antonis Tectonidis<br />
-			
-			Special thanks to the actors who took part in recording sessions at the above studios.<br />
-			</p>
-			
-			<p align='left'>
 			<b>Video Recordings</b><br />
+			Producer<br />
+			Andy Lewis</p>
 			
-			Examiners<br />
-			Andy Harvey & Rose Aravanis <br />
-			<br />
-			
-			Candidates<br />
-			Alexandra Sokolova, Dimitris Neofitos, Zaphir Kardy & Zenia Said<br />
-			
-			Direction, Camera & Editing<br />
-			Andy Lewis, Angelos Panagou & Angelos Papastefanou<br />
-			
-			Just About Productions<br />
-			Producers: Kate Bland & Susan Marling<br />
-			
-			Fiction Factory<br />
-			Producer: John Taylor<br />
-			
-			Post-production<br />
-			Sound Engineer: Antonis Tectonidis<br />
-			
-			Special thanks to the actors who took part in recording sessions at the above studios.<br />
+			<p align='left'>
+			<b>Sources of Original Articles and Images</b></p>
+			<p align='left'>
+			Photo images are taken from Shutterstock with permission.</p>
+			<p align='left'>
+			Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group. <br />
+			Tapescript: Alex Mackarow.
+			</p>
+
+			<p align='left'>
+			Authentic articles are taken from the following publications or organisations:<br />
+			Abolishing Management, One Slice at a Time<br />
+			ACTA<br />
+			American Artist Magazine<br />
+			Amnesty International USA<br />
+			Books, etc., Christmas Catalogue<br />
+			BritainUSA.com<br />
+			British Medical Journal<br />
+			Canada's International Development Research Centre<br />
+			Country Living Magazine<br />
+			Directory of International Voluntary Work<br />
+			ERIC Digest<br />
+			Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)<br />
+			Guns, Germs and Steel<br />
+			Heathrow Express<br />
+			Her Majesty's Stationery Office<br />
+			History Today<br />
+			Learndirect <br />
+			Management Today<br />
+			National Geographic<br />
+			New Internationalist<br />
+			New Statesman<br />
+			Play: An Endangered Species<br />
+			Prospect Magazine<br />
+			RECOUP<br />
+			Royal Mail<br />
+			Success in Four Minutes or Less<br />
+			The Articulate Mammal<br />
+			The Australian Film Television & Radio School<br />
+			The Economist<br />
+			The Futurist<br />
+			The Guardian<br />
+			The Independent<br />
+			The Language Instinct<br />
+			The Observer<br />
+			The Pocket Guide to the Birds of Britain and North-West Europe<br />
+			The Sunday Times<br />
+			The Times<br />
+			The US Geological Survey (USGS)<br />
+			Time Europe<br />
+			To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries<br />
+			Twenty Species We May Lose in the Next 20 Years<br />
+			UNESCO<br />
+			Valleyfair, Cedar Fair, L.P.<br />
+			Vanishing Languages<br />
+			Why Newspapers Will Flourish in the Years Ahead<br />
+			Why Study Ancient World Cultures?
 			</p>
 			
+			<p align='left'>
+			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the publisher will be pleased<br /> to make the necessary arrangements.
 			</p>]]>
 		</fx:String>
 		<fx:String id="helpTextAsHTML"><![CDATA[					
 			<p align='left'>
 			<b>Technical problems</b><br />
-			Clarity will be pleased to help you with any technical problems. However, please check with the technical support of your institution<br /> first as they may have a quicker answer.</p>
-			<p align='left'>
-			Email <a href="support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of your course (if you are running online).
-			</p>
-			
+			Clarity will be pleased to help you with any technical problems. Email <a href="support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem<br /> and the URL of your course (if you are running online).</p>
+
 			<p align='left'>
 			<u>Clarity Language Consultants Ltd</u><br />
 			PO Box 163, Sai Kung, Hong Kong<br />
@@ -131,234 +132,6 @@
 					textFlow="{TextConverter.importToFlow(creditsTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}"  /> 
 			</s:Group>        
 		</s:Scroller>
-	<!--
-	
-			<s:Spacer height="5" />
-			<s:RichText text="Sound Recordings" width="70%" fontWeight="bold"  />
-			
-			<s:Spacer height="5" />
-			<s:RichText text="Video Recordings" width="70%" fontWeight="bold"  />
-			<s:RichText text="Antonis Tectonidis Studio" />
-			<s:RichText text="Producer: Antonis Tectonidis" />
-			<s:Spacer height="2" />
-			<s:RichText text="CSA Tell Tapes" />
-			<s:RichText text="Producer: Clive Stanhope" />
-			<s:RichText height="2" />
-			<s:RichText text="Unique" />
-			<s:RichText text="Producers: Frank Stirling and Laura Parfitt" />
-			<s:Spacer height="2" />
-			<s:RichText text="Just About Productions" />
-			<s:RichText text="Producers: Kate Bland and Susan Marling" />
-			<s:Spacer height="2" />
-			<s:RichText text="Fiction Factory" />
-			<s:RichText text="Producer: John Taylor" />
-			<s:Spacer height="2" />
-			<s:RichText text="Post-production" />
-			<s:RichText text="Sound Engineer: Antonis Tectonidis" />
-			<s:Spacer height="2" />
-			<s:RichText text="Special thanks to the actors who took part in recording sessions at the above studios." />
-			
-			<s:Spacer height="5" />
-			<s:RichText text="Video Recordings" width="70%" fontWeight="bold"  />
-			<s:RichText text="Examiners" />
-			<s:RichText text="Andy Harvey and Rose Aravanis" />
-			<s:Spacer height="2" />
-			<s:RichText text="Candidates" />
-			<s:RichText text="Alexandra Sokolova, Dimitris Neofitos, Zaphir Kardy and Zenia Said" />
-			<s:Spacer height="2" />
-			<s:RichText text="Direction, Camera and Editing" />
-			<s:RichText text="Andy XXX, Angelos Panagou and Angelos Papastefanou" />
-			<s:Spacer height="2" />
-			<s:RichText text="Recording and Post-production" />
-			<s:RichText text="Anonis Tectonidis" />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphics Productions" />
-			<s:RichText text="With input from the British Council Design Department, Manchester" />
-			
-			<s:Spacer height="5" />
-			<s:RichText text="Quality Review Team" width="70%" fontWeight="bold"  />
-			<s:RichText text="Anne Saldanha, David Butcher, David Shearman, Deborah Newstead, Dillwyn Jaye, Grant Franklin, Paul Wade, Paul Woodfall and Walter Nowlan" />
-			
-			<s:Spacer height="5" />
-			<s:RichText text="Piloting Centres" width="70%" fontWeight="bold"  />
-			<s:RichText text="British Council Bogota, Colombia" />
-			<s:RichText text="Seamus Harkin" />
-			<s:Spacer height="2" />
-			<s:RichText text="British Council Alexandria, Egypt" />
-			<s:RichText text="Audrey Misbah" />
-			<s:Spacer height="2" />
-			<s:RichText text="British Council Delhi, India" />
-			<s:RichText text="Chris Donkin, Mukti Sanyal and Nic Humphries" />
-			<s:Spacer height="2" />
-			<s:RichText text="British Council Jakarta, Indonesia" />
-			<s:RichText text="Amy Willis, Denis Norton, Dorothy McMartin, Louise Owens, Maureen Bruce, Mei-kwei Barker, Melanie Crooks and Patrick Bradley" />
-			<s:Spacer height="2" />
-			<s:RichText text="British Council Tokyo, Japan" />
-			<s:RichText text="Bruce Howell, Guy Perring and Michael Rayner" />
-			<s:Spacer height="2" />
-			<s:RichText text="British Council Amman, Jordan" />
-			<s:RichText text="Alison King, Colleen Khallad, David Meddows, Karen Habash, Linda Roth and Rosie McLaughlin" />
-			<s:RichText text="Special thanks to the students who took part in the piloting at all of the above British Council Teaching Centres." />
-			
-			<s:Spacer height="5" />
-			<s:RichText text="Testing" width="70%" fontWeight="bold"  />
-			<s:RichText text="Testing Co-ordinator" />
-			<s:RichText text="Shannon West" />
-			<s:Spacer height="2" />
-			<s:RichText text="Teachers" />
-			<s:RichText text="Alan Rutt, Caroline Holden, Dave Collet, Graham Horn, Hilda Reilly, John Kuti, Jon Kear, Kashif Hayat, Marion Minton, Michael Stubbs, Sarah Morikawa, Sophie Walker and Tony Brace" />
-			<s:Spacer height="2" />
-			<s:RichText text="Senior Teachers" />
-			<s:RichText text="Alison Ball, Annie Nicoll, Annie Tostevin, Clare Jeffs, Darren Fox, Julian Peachey, Paul Doubleday, Richard Lunt and Roger Barlow" />
-			<s:Spacer height="2" />
-			<s:RichText text="Confirmlt" />
-			<s:RichText text="Anwar Aham and Lloyd Irving" />
-			<s:Spacer height="2" />
-			<s:RichText text="CCRTVU Online Testing" />
-			<s:RichText text="Chris Defty, Helen Halligan, Ja Li, Nicole de Lalouviere and the CCRTVU Online Team" />
-			<s:Spacer height="2" />
-			<s:RichText text="Acceptance Testing" />
-			<s:RichText text="Karen Waterston" />
-			<s:RichText text="Special thanks to the students who took part in the piloting at all of the above British Council Teaching Centres." />
-			<s:Spacer height="2" />
-			<s:RichText text="GTI Testing" />		
-			<s:RichText text="Julian Child" />
-			<s:Spacer height="2" />
-			<s:RichText text="Epicentre" />
-			<s:RichText text="Adrian Costello and Julia Worley" />
-			<s:Spacer height="2" />
-			<s:RichText text="Proof-reading" />
-			<s:RichText text="Alison Walters (proofwrite.co.uk)" />
-			<s:Spacer height="2" />
-			<s:RichText text="With special thanks to Anthoula Cavda, Chris Dove, Chris Gibson, Chris Hickey, George Tunnell, Jim Scarth, John Fry, Kostas Papadakis, Maria Vasilopoulou, Morgan Terry, Tony Hubbard and Yannis Kyriazis." />
-			
-			<s:Spacer height="5" />
-			<s:RichText text="Sources of Original Articles and Images" width="70%" fontWeight="bold"  />
-			<s:RichText text="'Board Games' by Bruce E. Johnson. Reproduced by kind permission of Bruce Johnson, Contributing Editor for Country Living Magazine." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Pastimes and Games of Native Peoples Around the World'. Schmidt, Janet, ed. Human Rights Education Resource Notebooks: Indigenous Peoples' Rights. Amnesty International USA, Human Rights Education Program. New York, NY." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Canary Wharf – new top spot to visit in London'. This information came from http://www.BritainUSA.com." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Games on Playing cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)'. Reprinted with permission of the University of Waterloo, Waterloo, Ontario, Canada." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Participation in the most popular sports, games and phyical activities: by gender and age: Social Trends Dataset'. Reproduced by kind permission of Her Majesty's Stationery Office." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Abridged book extract from 'The Articulate Mammal' - 4th Edition, by © Prof. Jean Aitchison, page 24-26. Routledge." />
-			<s:Spacer height="2" />
-			<s:RichText text="'The Language Instinct' by Steven Pinker, pages 299-302. Penguin. Reproduced by permission of Penguin Books Ltd.
-					 Abridged from 'The Language Instinct' by Steven Pinker. © Steven Pinker. All rights reserved." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Write On! Guide to Letter Writing', Royal Mail. Reproduced by kind permission of Consignia plc. ROYAL MAIL and the Royal Mail Cruciform device are registered trade marks of Consignia plc." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Success in Four Minutes or Less' by Christine Ingham, pages 13-23. © Christine Ingham c/o Watson, Little Ltd, Capo Di Monte, Windmill Hill, London NW3 6RJ" />
-			<s:Spacer height="2" />
-			<s:RichText text="'Vanishing Languages' by David Crystal. Reproduced by kind permission of David Crystal." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Things that go bump in your flight'. © The Economist Newspaper Limited, London." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Leisure in the Fast Lane' by Christine Whitehouse. Time Europe, Vol. 156 No. 18. © Time Inc. Reprinted by permission." />
-			<s:Spacer height="2" />
-			<s:RichText text="'London to and from Heathrow Airport in 15 minutes every 15 minutes', 2nd Edition, Heathrow Express. Covered by the permission of Heathrow Express." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Tomorrow the world' by Stephen Bleach. The Sunday Times. © Times Newspapers Limited." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Canyon Life'. © The Economist Newspaper Limited, London." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Untangling the science of climate' by Curt Suple. National Geographic, pp. 44-47. Curt Supple/National Geographic Society Image Sales." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Twenty Species We May Lose in the Next 20 Years. And then there were none' by Jack McCintock." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Fantastic Plastic'. Source: RECOUP, reproduced with permission from http://www.recoup.org." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Starlings put to flight by proud houseowners' by Valerie Elliott. The Times. © Times Newspapers Limited." />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphics of house sparrow, marsh tit and lapwing by Dave Nurney from The Pocket Guide to the Birds of Britain and North-West Europe by Chris Kightley and Steve Madge. © Pica Press. Reproduced by kind permission of A and C Black." />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphic of a starling (Sturnus vulgaris) extracted from HYPP CD-ROM edited by ACTA and INRA. Reproduced by kind permission of ACTA." />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphic of a willow tit (Parus montanus). © Werner Heitland, TU Munich." />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphic of a starling (Sturnus vulgaris) extracted from HYPP CD-ROM edited by ACTA and INRA. Reproduced by kind permission of ACTA." />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphic of a willow tit (Parus montanus). © Werner Heitland, TU Munich." />
-			<s:Spacer height="2" />
-			<s:RichText text="'This Dynamic Earth: The Story of Plate Tectonics' by Jacquelyne Kious and Robert I. Tilling, published by the US Geological Survey (USGS). Source (information, image): U.S. Geological Survey. The USGS home page is http://www.usgs.gov." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Multiple Personalities – Self Portraits in Series' by Terry Sullivan. American Artist Magazine, Vol. 61, No. 662, pp. 30. Reproduced by kind permission of American Artist Magazine." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Why Study Ancient World Cultures?' by Bill Hemminger. Reproduced by kind permission of the University of Evansville." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Books etc Catalogue'. Books etc Christmas Catalogue, Books etc (bookshop). © Books etc." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Bathing Beauty' by Richard Girling. Sunday Times. © Times Newspapers Limited." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Return of the Super Cinema' by Barry Doyle in History Today, Volume 48, Issue 8" />
-			<s:Spacer height="2" />
-			<s:RichText text="Abridged version of article 'Tuned in and switched off' by Joyce Nelson. Reprinted by kind permission of New Internationalist, http://www.newint.org." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Why Newspapers Will Flourish in the Years Ahead' by David Galloway. Copyright Torstar Corporation. All rights reserved." />
-			<s:Spacer height="2" />
-			<s:RichText text="'SummerSkill Sydney 2001'. Text provided by the Australian Film Television and Radio School." />
-			<s:Spacer height="2" />
-			<s:RichText text="'The Written Word – The Press'. 'The Media in Britain'. Foreign and Commonwealth Office. Reproduced by kind permission of Her Majesty's Stationery Office." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Back from the dead' by Matt Walker. Reproduced with permission from New Scientist magazine. © RBI. http://www.NewScientist.com." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Has the sun protection factor had its day?' by Professor Brian Diffey. Abridged article reproduced from British Medical Journal, Volume 320, Issue 7228, pp. 176-7 by kind permission of BMJ Publishing Group." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Keeping your teeth healthy', 'Healthy Living' guide on NHS Direct website. Reproduced by kind permission of Her Majesty's Stationery Office." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Your life on a plate' by Richard Dobson. © Roger Dobson. Adapted from an article first published in The Independent." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Mind your language' by John Bloom. First published in Management Today. http://www.clickmt.com." />
-			<s:Spacer height="2" />
-			<s:RichText text="Abridged from Abolishing Management, one slice at a time. Reproduced by kind permission of Harry Onsman." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Valleyfair Summer Jobs'. Reproduced by kind permission of Valleyfair, Cedar Fair, L.P." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Fine line between biro and fame' by Nicholas Bannister. The Guardian. © Guardian Unlimited." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Once, twice, three times the money...' by Sue Fielman in The Observer." />
-			<s:Spacer height="2" />
-			<s:RichText text="Extract from Guns, Germs and Steel by Jared Diamond, published by Jonathan Cape. Used by permission of The Random House Group Limited.
-					 From Guns, Germs and Steel: The Fates of Human Societies by Jared Diamond. Copyright © Jared Diamond. Used by permission of W.W. Norton and Company, Inc.
-					 From Guns, Germs and Steel by Jared Diamond. Copyright © Jared Diamond. All rights reserved.
-					 " />
-			<s:Spacer height="2" />
-			<s:RichText text="'Hypermobility' by John Adams. Prospect Magazine. http://www.prospect-magazine.co.uk." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Practical Ways to Crack Crime'. The Family Guide - 2nd edition, The Home Office. Reproduced by kind permission of Her Majesty's Stationery Office." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Extended life-spans: Are you ready to live to 120 or more?' by Marvin Cetron and Owen Davies. Originally published in The Futurist. Used with permission from the World Future Society, 7910 Woodmont Avenue, Suite 450, Bethesda, Maryland 20814. Telephone: 301-656-8274; Fax: 301-951-0394; http://www.wfs.org." />
-			<s:Spacer height="2" />
-			<s:RichText text="'They'll still swing when they're 84' by Paul Wallace. This article first appeared in the New Statesman." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Student Motivation to Learn.' by Linda S. Lumsden, ERIC Digest 92. Reprinted by permission of ERIC Clearinghouse on Educational Management, University of Oregon." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Play An Endangered Species' by Shelia G. Flaxman. From Instructor. Copyright © Scholastic Inc. Reproduced by permission of Scholastic Inc." />
-			<s:Spacer height="2" />
-			<s:RichText text="Abridged extracts taken from a Learndirect leaflet and from Learndirect websites. Learndirect is a registered trademark of Ufi Ltd. The information on Learndirect is owned by Ufi, Copyright © Ufi Limited, and featured with the kind permission of Ufi" />
-			<s:Spacer height="2" />
-			<s:RichText text="'For an Ecology of Learning' by Adama Ouane. UNESCO Sources." />
-			<s:Spacer height="2" />
-			<s:RichText text="'The Mountain Sculptors' by Jean-Marc Fleury. This article is reproduced with kind permission of Canada's International Development Research Centre. For more information, visit IDRC on the Web at http://www.idrc.ca." />
-			<s:Spacer height="2" />
-			<s:RichText text="'To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries' by Ashok J. Gadgil and Leslie J. Shown. Reprinted with permission from: Environment Energy Technologies Division, Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley CA 94820 USA." />
-			<s:Spacer height="2" />
-			<s:RichText text="Abridged book extracts relating to 'Global Citizens Network', 'Operation Crossroads Africa', and 'Visions in Action' from 'Directory of International Voluntary Work' by Louise Whetter and Victoria Pybus. Reproduced by kind permission of Vacation Work Publications." />
-			<s:Spacer height="2" />
-			<s:RichText text="Original article, 'Smoke gets in your throat' by Nick Hall. Reprinted by kind permission of New Internationalist, http://www.newint.org." />
-			<s:Spacer height="2" />
-			<s:RichText text="Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group. Tapescript: Alex Mackarow." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Robomoths' © The Economist Newspapers Limited, London." />
-			<s:Spacer height="2" />
-			<s:RichText text="'No place like home' by Peter Ward. Reproduced with permission from New Scientist magazine © RBI http://www.NewScientist.com." />
-			<s:Spacer height="2" />
-			<s:RichText text="'BBC Experience' by Mark Hodson. Reproduced with permission from The Times. © Times Newspapers Limited." />
-			<s:Spacer height="2" />
-			<s:RichText text="'Men and women: minds apart' by Steve Connor. Reproduced with permission from The Times. © Times Newspapers Limited." />
-	-->
+
 	</s:VGroup>
 </s:Skin>

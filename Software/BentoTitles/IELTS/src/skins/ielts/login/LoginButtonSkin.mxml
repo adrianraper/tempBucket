@@ -23,7 +23,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
+             minWidth="50" minHeight="30" 
              alpha.disabled="0.5">
      
     <fx:Metadata>
@@ -65,16 +65,10 @@
     <s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4">
         <s:fill>
             <s:LinearGradient rotation="90">
-                <s:GradientEntry color="0x00426B" ratio="0.03" 
-                                 color.over="0x0088DE" 
-                                 color.down="0x00314F" 
-                                 alpha="0.85" 
-								 />
-                <s:GradientEntry color="0x0066A6" ratio="0.96" 
-                                 color.over="0x0071B8" 
-                                 color.down="0x004069" 
-                                 alpha="0.85" 
-								 />
+                <s:GradientEntry color="0x2C9AD5" ratio="0.33" />
+
+                <s:GradientEntry color="0x0C436B" ratio="0.66" />
+								 
             </s:LinearGradient>
         </s:fill>
     </s:Rect>
@@ -83,10 +77,19 @@
     <!--- @private -->
     <s:Rect id="lowlight" left="0" right="0" top="0" bottom="0" radiusX="4">
         <s:fill>
-            <s:LinearGradient rotation="270">
-                <s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
-                <s:GradientEntry color="0x000000" ratio="0.48" alpha="0.0099" />
-                <s:GradientEntry color="0x000000" ratio="0.48001" alpha="0" />
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0x2C9AD5"							 
+								 ratio="0.0" 
+								 alpha="0.1" 
+								 alpha.over="0.99" 
+								 alpha.down="0.12" 
+								 />
+				<s:GradientEntry color="0x0C436B"
+								 ratio="0.48"
+								 alpha="0.33"
+								 alpha.over="0.22"
+								 alpha.down="0.12" />
+
             </s:LinearGradient>
         </s:fill>
     </s:Rect>
@@ -96,19 +99,18 @@
     <s:Rect id="highlight" left="0" right="0" top="0" bottom="0" radiusX="4">
         <s:fill>
             <s:LinearGradient rotation="90">
-                <s:GradientEntry color="0xFFFFFF"
-                                 ratio="0.0"
-                                 alpha="0.33" 
-                                 alpha.over="0.22" 
-                                 alpha.down="0.12"/>
-                <s:GradientEntry color="0xFFFFFF"
-                                 ratio="0.48"
-                                 alpha="0.33"
-                                 alpha.over="0.22"
-                                 alpha.down="0.12" />
-                <s:GradientEntry color="0xFFFFFF"
-                                 ratio="0.48001"
-                                 alpha="0" />
+					<s:GradientEntry color="0x2C9AD5"							 
+									 ratio="0.0" 
+									 alpha="0.1" 
+									 alpha.over="0.99" 
+									 alpha.down="0.12" 
+									 />
+					<s:GradientEntry color="0x0C436B"
+									 ratio="0.48"
+									 alpha="0.33"
+									 alpha.over="0.22"
+									 alpha.down="0.12" />
+
             </s:LinearGradient>
         </s:fill>
     </s:Rect>
@@ -170,8 +172,7 @@
              textAlign="center"
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-			 width="98" height="20"
-             left="10" right="10" top="2" bottom="2">
+			 width="98" height="20">
     </s:Label>
     
 </s:SparkButtonSkin>

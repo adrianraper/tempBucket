@@ -37,7 +37,7 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Group left="0" top="20" right="0" bottom="20">
+	<s:Group left="0" top="0" right="0" bottom="30">
 		
 		<!-- drop shadow -->
 		<s:Rect left="0" top="0" right="0" bottom="0" topLeftRadiusX="10" topLeftRadiusY="10" bottomLeftRadiusX="10" bottomLeftRadiusY="10" >
@@ -101,7 +101,7 @@
 										}
 									]]>
 								</fx:Script>
-								<s:HGroup verticalAlign="middle" left="0" paddingTop="5" paddingBottom="5">
+								<s:HGroup verticalAlign="middle" left="7" paddingTop="5" paddingBottom="5" paddingRight="7">
 									<s:Rect top="2" width="8" height="8" radiusX="2" radiusY="2">
 										<s:fill>
 											<s:SolidColor id="fillColor" />

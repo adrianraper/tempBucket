@@ -136,7 +136,7 @@
 				
 				<!-- Question zone -->
 				<s:NavigatorContent id="questionZoneNavigatorContent" label="Starting out" width="100%">
-					<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video about the key facts in this section of the IELTS test." width="95%" lineHeight="18" />
+					<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video setting out the key facts in this section of the IELTS test." width="95%" lineHeight="18" />
 
 					<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50" width="100%">
 
@@ -222,7 +222,7 @@
 						<s:Group left="0" right="0" top="5" bottom="5">
 							<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12.6"  click="onUnitClick(event)">
 								<s:layout>
-									<s:TileLayout requestedColumnCount="4" requestedRowCount="6" orientation="columns" columnWidth="110" verticalGap="3" />
+									<s:TileLayout requestedColumnCount="4" requestedRowCount="6" orientation="columns" columnWidth="120" verticalGap="8" />
 								</s:layout>
 								
 								<!-- Custom item renderer to render the label -->
@@ -244,7 +244,7 @@
 											</fx:Script>
 											<s:HGroup width="100%" verticalAlign="middle" paddingLeft="5" paddingTop="5" paddingBottom="5">
 												<s:Image id="captionIcon" source="{unitIcon}" />
-												<s:Label id="captionLabel" fontSize="12.6" />
+												<s:Label id="captionLabel" fontSize="12.6" paddingTop="3" />
 											</s:HGroup>
 										</s:ItemRenderer>
 									</fx:Component>

@@ -154,7 +154,7 @@ package com.clarityenglish.ielts.view.title {
 						case "fullVersion":
 							return fullVersionGeneralTrainingLogo;
 						case "lastMinute":
-							return lastMinuteGeneralTrainingLogo;
+							return lastMinuteAcademicLogo;
 						case "tenHour":
 							return tenHourGeneralTrainingLogo;
 					}

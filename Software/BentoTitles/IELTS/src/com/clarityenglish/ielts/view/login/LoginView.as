@@ -3,7 +3,7 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
-	
+		
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	
@@ -104,7 +104,7 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function showInvalidLogin():void {
-			Alert.show("Sorry, that name or password are wrong.", "Login problem");
+			Alert.show("Sorry, the login ID or password is wrong. Please try again.", "Login problem");
 		}
 		
 		public function clearData():void {
