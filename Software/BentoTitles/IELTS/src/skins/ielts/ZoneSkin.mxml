@@ -172,7 +172,7 @@
 						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
 								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
 							<s:layout>
-								<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="235" verticalGap="10" horizontalGap="5" />
+								<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="10" horizontalGap="5" />
 							</s:layout>
 							
 							<s:itemRenderer>
@@ -262,7 +262,7 @@
 					</s:layout>
 
 					<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
-					<s:Label text="Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
+					<s:Label text="There is no downloadable test practice materials in this section. Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
 					<s:Label text="Download complete test papers with answers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 					<s:VGroup paddingTop="10" horizontalAlign="center" horizontalCenter="0" width="100%" >
 						<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/testpractice_reading.png')"

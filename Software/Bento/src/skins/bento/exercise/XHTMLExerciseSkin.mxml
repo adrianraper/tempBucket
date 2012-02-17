@@ -54,7 +54,7 @@
 				</s:fill>
 			</s:Rect>
 			<exercise:FeedbackAvailableIcon verticalCenter="0" left="20" />
-			<s:RichText text="Please click on the answers to show feedback" color="#FFFFFF" left="70" right="20" top="6" verticalCenter="0" />
+			<s:RichText text="Please click on the answers to show feedback." color="#FFFFFF" left="70" right="20" top="6" verticalCenter="0" />
 		</s:Group>
 		
 	</s:Group>
