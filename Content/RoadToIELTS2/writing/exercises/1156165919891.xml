@@ -24,9 +24,7 @@
       <answer source="t1" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b2">
-      <answer source="t2" correct="false">
-        <feedback source="fb2"/>
-      </answer>
+      <answer source="t2" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b3">
       <answer source="t3" correct="true"/>
@@ -58,26 +56,21 @@
   
   <p>The arguments in favour of an international language are both ideological and practical. Firstly, it is sometimes said that linguistic diversity divides people and leads to conflict. In other words, if we removed language differences, we would find it easier to understand each other's point of view and, as a result, co-operate more easily. Secondly, it is argued that if everyone learned the same language, a great deal of time-consuming and expensive translation work would no longer be necessary, and this would be of great benefit to international trade. Finally, it is generally agreed that a common language would make international travel much easier for everyone.</p>
   
-  <ol>
-  <li>Which of these arguments in favour of an international language are included in the paragraph?
-	<list class="answerList2">
+  <p class="hangingIndent1">1. Which of these arguments in favour of an international language are included in the paragraph?</p>
+	<list class="answerList3">
     <li><a id="t1">Improve international co-operation and understanding</a></li>
     <li><a id="t2">Reduce nationalism</a></li>
     <li><a id="t3">Reduce the amount of translation work needed</a></li>
     <li><a id="t4">Help international trade</a></li>
     <li><a id="t5">Simplify electronic communication</a></li>
     <li><a id="t6">Make international travel easier</a></li>
-	</list></li>
-</ol>
+	</list>
+
 </div> 
 </section>
 
-<section id="fb2">
-  <p align="left">Although the writer says that an international language would improve understanding between nations, this doesn't necessarily mean that people will be less 'nationalistic'.</p>
-</section>
-
 <section id="rt2001">
-  <p align="left">The aim of brainstorming is to generate as many ideas as you can before you start writing. However, as you only have about 40 minutes to write and as your composition should be around 250 words in length, you will not be able to use all your ideas. The next stage is to select the best arguments to include in your composition. The 'best' arguments may be the strongest ones or they may be the ones that you know most about and, as a result, the ones that you will probably be able to write about best. It is not a good idea to include arguments that you don't know anything about, as you will find that you don't have very much to say.</p>
+  <p class="popuptext">The aim of brainstorming is to generate as many ideas as you can before you start writing. However, as you only have about 40 minutes to write and as your composition should be around 250 words in length, you will not be able to use all your ideas. The next stage is to select the best arguments to include in your composition. The 'best' arguments may be the strongest ones or they may be the ones that you know most about and, as a result, the ones that you will probably be able to write about best. It is not a good idea to include arguments that you don't know anything about, as you will find that you don't have very much to say.</p>
 </section>
 
 </body>

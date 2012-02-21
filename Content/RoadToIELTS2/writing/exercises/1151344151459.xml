@@ -19,7 +19,7 @@
 <settings>
  	<param name="delayedMarking" value="true" />
 	<feedback>
-  		<feedback source="fb0" width="500" height="325"  />
+  		<feedback source="fb0" width="500" height="165"  />
  </feedback>
 </settings>
   <questions>

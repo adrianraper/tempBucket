@@ -17,6 +17,7 @@
 <script id="model" type="application/xml">
   <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -155,7 +156,8 @@
 	
 <section id="body">
  
-  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <br/><br/><br/>
    <img class="rightFloat" src="../media/MM_GW_003.jpg" mode="1" id="1001"/>
   <div id="dropdown">

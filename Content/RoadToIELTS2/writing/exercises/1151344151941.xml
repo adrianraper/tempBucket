@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
 </settings>
@@ -85,9 +86,10 @@
 <section id="body">
 
 
-    <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+   <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 
- <div><audio controls="compact"  src="../media/HF_WR1aa.mp3" mode="1" id="1002"/></div>
+<audio controls="compact"  src="../media/HF_WR1aa.mp3" mode="1" id="1002"/>
 
   <img class="rightFloat" src="../media/HF_AW_012.jpg" mode="1" id="1001"/>
 
@@ -129,6 +131,9 @@
 
 		</section>
 
+<section id="examtips">
+<p class="popuptext">If you find it difficult to think of ideas for Writing Task 2, remember that the topics you are asked to write about are often current issues and that these may be discussed in the press and on radio and television. It is good preparation, therefore, to spend time reading newspaper and magazine articles, listening to radio programmes and watching television programmes that deal with these kinds of topics as this will help you develop ideas on a wide variety of subjects.</p>
+</section>
 
 </body>
 </bento>

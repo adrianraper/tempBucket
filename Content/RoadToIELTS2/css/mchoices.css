@@ -110,12 +110,12 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct, select.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral, g.neutral, select.neutral {
@@ -174,4 +174,43 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	text-align: left;
 	line-height: 20em;
 	}
+	
+/* This is for AC FV>Writing>Unit 2 task 1>Understanding dynamic charts and tables.*/
+#mchoices2 {
+	list-style-type: decimal;
+	padding: 0 280% 12px -30px;
+	text-align: left;
+	line-height: 20em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
+/* video div */
+#outer {
+	position: absolute;
+    width:500px;
+	}
+
+#content {
+	position:relative;
+	padding-top:25px;
+    height: 100px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
+
+#video {
+	position:relative;
+	padding: 25em 0em 0 520px;
+	margin-top: 0em;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* video div for exercises where the content section needs a bigger height.*/
+
+#content2{
+	position:relative;
+	padding-top:30px;
+    height: 300px;
+    width:400px;
+    line-height:22em;
+	padding-left: -30px;
+	}

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -65,56 +65,63 @@
 <body>
 	
 <header>
-	In what order do you think the candidate should perform these tasks after being given the discussion topic? Choose the right order.
+<div id="instruction">
+	In what order do you think the candidate should perform these tasks after being given the discussion topic? Choose the right order.</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/LC_SP_004.JPG" mode="1" id="1001"/>
-  <p align="left"><b>In Part 2 of the IELTS Speaking Module you will be given a topic, time to think and make notes, then one to two minutes to talk.</b>Use your time to:</p>
-  <ol>
-    <li>be clear about instructions</li>
-    <li>get your ideas in a logical order</li>
-    <li>have enough materials to speak until the examiner stops you</li>
+  <h7><p>In Part 2 of the IELTS Speaking Module you will be given a topic, time to think and make notes, then one to two minutes to talk.</p></h7>
+  
+  <p>Use your time to:</p>
+  <ol id="questionList">
+    <li>be clear about instructions;</li>
+    <li>get your ideas in a logical order;</li>
+    <li>have enough materials to speak until the examiner stops you.</li>
   </ol>
-  <p align="left">
-    <b>In what order should you perform these tasks in Part 2 of the Speaking Module?</b>
-    <g id="t1">A.  Think Speak Write Read</g>
-    <g id="t2">B.  Think Read Speak Write</g>
-    <g id="t3">C.  Write Read Speak Think</g>
-    <g id="t4">D.  Write Speak Read Think</g>
-    <g id="t5">E.  Read Write Think Speak</g>
-    <g id="t6">F.  Read Think Write Speak</g>
-    <g id="t7">G.  Speak Think Read Write</g>
-    <g id="t8">H.  Speak Write Think Read</g>
-  </p>
+  
+  <p><b>In what order should you perform these tasks in Part 2 of the Speaking Module?</b></p>
+    <ol id="targetspotting">
+		<list class="answerList">
+		<li><a id="t1">Think  Speak  Write  Read</a></li>
+    	<li><a id="t2">Think  Read  Speak  Write</a></li>
+    	<li><a id="t3">Write  Read  Speak  Think</a></li>
+    	<li><a id="t4">Write  Speak  Read  Think</a></li>
+    	<li><a id="t5">Read  Write  Think  Speak</a></li>
+    	<li><a id="t6">Read  Think  Write  Speak</a></li>
+    	<li><a id="t7">Speak  Think  Read  Write</a></li>
+    	<li><a id="t8">Speak  Write  Think  Read</a></li>
+		</list>
+	</ol>
+
 </section>
 
 <section id="fb1">
-  <p align="left">It would be a good idea to find out what you have to do first.</p>
+  <p class="feedbacktext">It would be a good idea to find out what you have to do first.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">It would be difficult to know what to think about.</p>
+  <p class="feedbacktext">It would be difficult to know what to think about.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">It would be difficult to know what to write.</p>
+  <p class="feedbacktext">It would be difficult to know what to write.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">It might be a good idea to find out what you have to do first.</p>
+  <p class="feedbacktext">It might be a good idea to find out what you have to do first.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">It is a better idea to think before you write anything down.</p>
+  <p class="feedbacktext">It is a better idea to think before you write anything down.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">Speaking is the last thing you should do.</p>
+  <p class="feedbacktext">Speaking is the last thing you should do.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">Speaking is the last thing you should do.</p>
+  <p class="feedbacktext">Speaking is the last thing you should do.</p>
 </section>
 
 </body>

@@ -16,10 +16,6 @@
 	
 	
 <script id="model" type="application/xml">
-<settings>
- 	<param name="delayedMarking" value="true" />
-</settings>
-  <questions/>
 </script>
 
 </head>
@@ -27,7 +23,7 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+	IELTS Writing Task 1. You should spend about 20 minutes on this task. You should write at least 150 words.
 	</div>
 </header>
 	
@@ -38,45 +34,9 @@
     <h5>The chart shows trends in the use of the Internet by the female population of the USA.</h5>
 <p>	Write a report for a university lecturer describing the information shown below. </p>
 		</div>
-	 <img class="leftFloat" src="../media/Unit02_Write_e7n8.jpg" mode="1" id="1003"/>
+	 <p><img class="leftFloat" src="../media/Unit02_Write_e7n8.jpg" mode="1" id="1003"/></p>
 
 
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
 </section>
 
 </body>

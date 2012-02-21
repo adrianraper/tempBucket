@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -55,7 +58,9 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/WR_ARG_001.jpg" mode="1" id="1003"  />
+  <br/><a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <img class="rightFloat1" src="../media/WR_ARG_001.jpg" mode="1" id="1003"  />
+  <br/><br/><br/>
 <div id="arguments">
  
 <h9>Paragraph 1</h9>
@@ -83,6 +88,10 @@ Counter-Argument<br/>
 <p>Conclusion</p>
 <p class="linespace"></p>
 </div> 
+</section>
+
+<section id="examtips">
+<p class="popuptext">In Unit 6 we saw how a balanced 'for and against' composition can be written by matching arguments and counter-arguments to form paragraphs. A similar outline can be used for a 'one-sided' composition. In this case, however, linking phrases are used to 'refute' each argument with a counter-argument.</p>
 </section>
 
 </body>

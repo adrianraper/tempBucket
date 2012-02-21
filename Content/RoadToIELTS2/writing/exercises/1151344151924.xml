@@ -20,6 +20,7 @@
 <script id="model" type="application/xml">
 <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
 </settings>
@@ -104,7 +105,8 @@
 <section id="body">
 
   
-  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <br/>
   <img class="rightFloat1" src="../media/HF_AW_014.jpg" mode="1" id="1001"/>
   <div id="audio">
@@ -244,8 +246,8 @@
    <p class="feedbacktext">8. The advantages of gene therapy may only be available to the rich.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">This exercise will help you with ideas for the writing task.</p>
+<section id="examtips">
+  <p class="popuptext">This exercise will help you with ideas for the writing task.</p>
 </section>
 
 </body>

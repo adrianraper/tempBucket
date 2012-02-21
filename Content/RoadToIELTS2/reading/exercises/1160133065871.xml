@@ -50,8 +50,6 @@
     <GapFillQuestion source="q10" block="b6">
       <answer value="Jubilee Line Extension" correct="true"/>
 	  <answer value="the Jubilee Line Extension" correct="true"/>
-      <answer value="the Jubilee Line" correct="true"/>
-	  <answer value="Jubilee Line" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>

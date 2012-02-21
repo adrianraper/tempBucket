@@ -4,18 +4,28 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/mchoices-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+		#imgwrapper{
+			width: 270px;
+			padding-right: 20px;
+			float:right;
+		}			
 	]]>
 	</style>
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="visual1" source="chart1" width="404" height="309" />
+	<popup click="visual2" source="chart2" width="453" height="289" />
+	<popup click="visual3" source="chart3" width="483" height="303" />
+	<popup click="visual4" source="chart4" width="537" height="282" />
+	<popup click="visual5" source="chart5" width="383" height="299" />
+	<popup click="visual6" source="chart6" width="565" height="319" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -87,54 +97,119 @@
 <body>
 	
 <header>
-	Look carefully at the charts and choose the best option, a, b or c.
+	<div id="instruction">
+	Look carefully at the charts and choose the best option, a, b or c.</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/Unit02_Write_e2ab_s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2ab.jpg" mode="16" id="1004"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2cd_s.jpg" mode="1" id="1005"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2cd.jpg" mode="16" id="1006"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2ef_s.jpg" mode="1" id="1007"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2ef.jpg" mode="16" id="1008"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2gh_s.jpg" mode="1" id="1009"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2gh.jpg" mode="16" id="1010"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2ij_s.jpg" mode="1" id="1011"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2ij.jpg" mode="16" id="1012"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2kl_s.jpg" mode="1" id="1013"/>
-  <img class="leftFloat" src="../media/Unit02_Write_e2kl.jpg" mode="16" id="1014"/>
-  <br/>
+
+<div id="imgwrapper">
+	<a id="visual1"><img class="leftFloat" src="../media/Unit02_Write_e2ab_s.jpg" mode="1" id="1003"/></a>
+	<br/><br/><br/><br/><br/>
+  	<a id="visual2"><img class="leftFloat" src="../media/Unit02_Write_e2cd_s.jpg" mode="1" id="1005"/></a>
+	<br/><br/><br/><br/>
+  	<a id="visual3"><img class="leftFloat" src="../media/Unit02_Write_e2ef_s.jpg" mode="1" id="1007"/></a>
+	<br/><br/><br/><br/>
+  	<a id="visual4"><img class="leftFloat" src="../media/Unit02_Write_e2gh_s.jpg" mode="1" id="1009"/></a>
+	<br/><br/><br/><br/><br/><br/><br/><br/>
+  	<a id="visual5"><img class="leftFloat" src="../media/Unit02_Write_e2ij_s.jpg" mode="1" id="1011"/></a>
+	<br/><br/><br/>
+  	<a id="visual6"><img class="leftFloat" src="../media/Unit02_Write_e2kl_s.jpg" mode="1" id="1013"/></a>
+</div>
+  
+  <div id="mchoices2">
+
   <ol id="questionList">
+    <li id="q1">How many people spoke three languages in 2001?
+		<list class="answerList"><li><a id="a1">1 million</a></li>
+		<li><a id="a2">1.5 million</a></li>
+		<li><a id="a3">3 million</a></li></list></li>
     <br/>
-    <li id="q1">How many people spoke three languages in 2001?<list class="answerList"><li><a id="a1">1 million</a></li><li><a id="a2">1.5 million</a></li><li><a id="a3">3 million</a></li></list><br/></li>
+    <li id="q2">The number of people who spoke two languages (&#x2026;) between 1960 and 2001.				
+		<list class="answerList"><li><a id="a4">decreased by 500,000</a></li>
+		<li><a id="a5">remained the same</a></li>
+		<li><a id="a6">increased by 500,000</a></li></list></li>
     <br/>
-    <li id="q2">The number of people who spoke two languages (&#x2026;) between 1960 and 2001.<list class="answerList"><li><a id="a4">decreased by 500,000</a></li><li><a id="a5">remained the same</a></li><li><a id="a6">increased by 500,000</a></li></list><br/></li>
+    <li id="q3">What does this graph show?
+		<list class="answerList"><li><a id="a7">the number of people in the population who had language disorders</a></li>
+		<li><a id="a8">the number of people in the population who did not have language disorders</a></li>
+		<li><a id="a9">the proportion of the population who had language disorders</a></li></list></li>
     <br/>
-    <li id="q3">What does this graph show?<list class="answerList"><li><a id="a7">the number of people in the population who had language disorders</a></li><li><a id="a8">the number of people in the population who did not have language disorders</a></li><li><a id="a9">the proportion of the population who had language disorders</a></li></list><br/></li>
+    <li id="q4">In 1981 (&#x2026;) had language disorders.
+		<list class="answerList"><li><a id="a10">500,000 people</a></li>
+		<li><a id="a11">5 in every 100,000 people</a></li>
+		<li><a id="a12">5 per cent of the population</a></li></list></li>
     <br/>
-    <li id="q4">In 1981 (&#x2026;) had language disorders.<list class="answerList"><li><a id="a10">500,000 people</a></li><li><a id="a11">5 in every 100,000 people</a></li><li><a id="a12">5 per cent of the population</a></li></list><br/></li>
+    <li id="q5">Approximately how many students studied Italian in 1987?
+		<list class="answerList"><li><a id="a13">30</a></li>
+		<li><a id="a14">80</a></li>
+		<li><a id="a15">180</a></li></list></li>
     <br/>
-    <li id="q5">Approximately how many students studied Italian in 1987?<list class="answerList"><li><a id="a13">30</a></li><li><a id="a14">80</a></li><li><a id="a15">180</a></li></list><br/></li>
+    <li id="q6">Between 1997 and 2002 the number of students of Italian (&#x2026;).
+		<list class="answerList"><li><a id="a16">fell</a></li>
+		<li><a id="a17">remained the same</a></li>
+		<li><a id="a18">rose</a></li></list></li>
     <br/>
-    <li id="q6">Between 1997 and 2002 the number of students of Italian (&#x2026;).<list class="answerList"><li><a id="a16">fell</a></li><li><a id="a17">remained the same</a></li><li><a id="a18">rose</a></li></list><br/></li>
+    <li id="q7">How much time did the majority of 19 to 25-year-olds spend on the telephone each week?
+		<list class="answerList"><li><a id="a19">less than 1 hour</a></li>
+		<li><a id="a20">1 to 3 hours</a></li>
+		<li><a id="a21">more than 5 hours</a></li></list></li>
     <br/>
-    <li id="q7">How much time did the majority of 19 to 25-year-olds spend on the telephone each week?<list class="answerList"><li><a id="a19">less than 1 hour</a></li><li><a id="a20">1 to 3 hours</a></li><li><a id="a21">more than 5 hours</a></li></list><br/></li>
+    <li id="q8">Which age group spent the least time on the telephone per week?
+		<list class="answerList"><li><a id="a22">12-18</a></li>
+		<li><a id="a23">26-45</a></li>
+		<li><a id="a24">65+</a></li></list></li>
     <br/>
-    <li id="q8">Which age group spent the least time on the telephone per week?<list class="answerList"><li><a id="a22">12-18</a></li><li><a id="a23">26-45</a></li><li><a id="a24">65+</a></li></list><br/></li>
+    <li id="q9">How many languages were spoken in 1500?
+		<list class="answerList"><li><a id="a25">approximately 7,000</a></li>
+		<li><a id="a26">7,000</a></li>
+		<li><a id="a27">approximately 9,000</a></li></list></li>
     <br/>
-    <li id="q9">How many languages were spoken in 1500?<list class="answerList"><li><a id="a25">approximately 7,000</a></li><li><a id="a26">7,000</a></li><li><a id="a27">approximately 9,000</a></li></list><br/></li>
+    <li id="q10">What is the predicted world population in 2100?
+		<list class="answerList"><li><a id="a28">8,000 million</a></li>
+		<li><a id="a29">10,000 million</a></li>
+		<li><a id="a30">80,000 million</a></li></list></li>
     <br/>
-    <li id="q10">What is the predicted world population in 2100?<list class="answerList"><li><a id="a28">8,000 million</a></li><li><a id="a29">10,000 million</a></li><li><a id="a30">80,000 million</a></li></list><br/></li>
+    <li id="q11">What does this chart show?
+		<list class="answerList"><li><a id="a31">the percentage of the population with e-mail and personal web sites</a></li>
+		<li><a id="a32">the percentage of workers who know how to use e-mail and web sites</a></li>
+		<li><a id="a33">the percentage of workers whose employers provide them with e-mail facilities or personal web sites</a></li></list></li>
     <br/>
-    <li id="q11">What does this chart show?<list class="answerList"><li><a id="a31">the percentage of the population with e-mail and personal web sites</a></li><li><a id="a32">the percentage of workers who know how to use e-mail and web sites</a></li><li><a id="a33">the percentage of workers whose employers provide them with e-mail facilities or personal web sites</a></li></list><br/></li>
-    <br/>
-    <li id="q12">The percentage of UK employees with access to e-mail or web sites (&#x2026;) between 1997 and 1998.<list class="answerList"><li><a id="a34">decreased</a></li><li><a id="a35">remained the same</a></li><li><a id="a36">increased</a></li></list><br/></li>
+    <li id="q12">The percentage of UK employees with access to e-mail or web sites (&#x2026;) between 1997 and 1998.
+		<list class="answerList"><li><a id="a34">decreased</a></li>
+		<li><a id="a35">remained the same</a></li>
+		<li><a id="a36">increased</a></li></list></li>
   </ol>
+  </div>
 </section>
 
 <section id="rt2001">
   <p align="left">Before you begin writing your report, it is important to make sure that you have understood the chart properly. Check that you have read the axes carefully and that you understand what the figures refer to. Don't forget also to look carefully at the key or legend and the title. They will all help to give you a better understanding of what the chart shows.</p>
 </section>
 
+
+<section id="chart1">
+	<img src="../media/Unit02_Write_e2ab.jpg" mode="1" id="1004"/>
+</section>
+
+<section id="chart2">
+	<img src="../media/Unit02_Write_e2cd.jpg" mode="1" id="1006"/>
+</section>
+
+<section id="chart3">
+	<img src="../media/Unit02_Write_e2ef.jpg" mode="1" id="1008"/>
+</section>
+
+<section id="chart4">
+	<img src="../media/Unit02_Write_e2gh.jpg" mode="1" id="1010"/>
+</section>
+
+<section id="chart5">
+	<img src="../media/Unit02_Write_e2ij.jpg" mode="1" id="1012"/>
+</section>
+
+<section id="chart6">
+	<img src="../media/Unit02_Write_e2kl.jpg" mode="1" id="1014"/>
+</section>
 </body>
 </bento>

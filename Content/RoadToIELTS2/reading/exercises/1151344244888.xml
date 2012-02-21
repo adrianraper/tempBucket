@@ -19,16 +19,16 @@
     	<popup click="clickme" source="examtips" width="500" height="325" />
 </popups>
   <questions>
-    <TargetSpottingQuestion block="b1">
+    <TargetSpottingQuestion>
       <answer source="t1" correct="false"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b2">
+    <TargetSpottingQuestion>
       <answer source="t2" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b3">
+    <TargetSpottingQuestion>
       <answer source="t3" correct="true"/>
     </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b4">
+    <TargetSpottingQuestion>
       <answer source="t4" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion>
@@ -120,10 +120,10 @@
 <div id="splitquestionList">
 <p><b>Which SIX of the following strengths are mentioned?</b></p>
     <list class="answerList">    
-	<li><g id="t1">It reduces the turbidity of the water.</g></li>
-    <li><g id="t2">It does not spoil the taste of the water.</g></li>
-    <li><g id="t3">It is portable.</g></li>
-    <li><g id="t4">It kills all pathogens.</g></li>
+	<li><a id="t1">It reduces the turbidity of the water.</a></li>
+    <li><a id="t2">It does not spoil the taste of the water.</a></li>
+    <li><a id="t3">It is portable.</a></li>
+    <li><a id="t4">It kills all pathogens.</a></li>
     <li><a id="t5">It has a residual effect.</a></li>
     <li><a id="t6">It is ideal for keeping water disinfected long term.</a></li>
     <li><a id="t7">It needs little maintenance.</a></li>

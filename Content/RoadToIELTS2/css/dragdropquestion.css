@@ -58,7 +58,7 @@ p {
 /* This is image class to control image to be align with text (when there is a writing task image) when questions are div-ed */
 #body .rightFloat1 {
 	float: right;
-	padding: 70em 20em 0 20em;
+	padding: 3em 20em 0 20em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
@@ -81,10 +81,6 @@ a, span[draggable="true"] {
 	background-color: #FFFFFF;
 	}
 
-#noscroll span[draggable=true].disabled {
-	color: #CCCCCC;
-}
-
 #noscroll{
 	padding-left:-16px;
 	}
@@ -92,6 +88,11 @@ a, span[draggable="true"] {
 #noscroll p{
 	padding-left: -25px;
 	padding-bottom: 10px;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/*Draggable spans should be greyed out after being used once.*/
+#noscroll span[draggable=true].disabled {
+    color: #CCCCCC;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Draggable spans in noscroll should NOT have padding-bottom in the paragraphs */
@@ -121,12 +122,12 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct, select.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral, g.neutral, select.neutral {
@@ -259,6 +260,13 @@ h8{
 	padding-left: -4px;
 	padding-right: 10px;
 	}
+
+/* This is used when the writing task and exam tips buttons are laid out side by side. */
+.imagetask1 {
+		display:inline-block;
+		padding-left: -4px;
+		padding-right: 30px;
+		}
 /*-----------------------------------------------------------------------------------------------*/
  #questionList {
 	list-style-type: decimal;

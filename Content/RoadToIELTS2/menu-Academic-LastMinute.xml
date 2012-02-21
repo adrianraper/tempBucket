@@ -13,15 +13,21 @@
 			<unit id="1287130110000" class="question-zone">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
 				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" />
-				<exercise id="1287130110003" caption="Advice" href="reading/questionzonevideo1.rss" />
+				<exercise id="1287130110003" caption="IELTS Reading Key Facts" href="reading/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130120000" class="exam-practice">
-				<exercise id="1287130120001" caption="Reading practice test 1" href="reading/pdf/reading_ac_practice1.pdf" />
-				<exercise id="1287130120002" caption="Reading practice test 2" href="reading/pdf/reading_ac_practice2.pdf" />
-				<exercise id="1287130120003" caption="Reading practice test 3" href="reading/pdf/reading_ac_practice3.pdf" enabled="false"/>
+				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" />
+				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" />
+				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" enabled="false" />
 			</unit>
+			<unit id="1287130121000" class="exam-practice2">
+				<exercise id="1287130121001" caption="Answer sheet 1" href="reading/pdf/reading_ac_answer1.pdf" />
+				<exercise id="1287130121002" caption="Answer sheet 2" href="reading/pdf/reading_ac_answer2.pdf" />
+				<exercise id="1287130121003" caption="Answer sheet 3" href="reading/pdf/reading_ac_answer3.pdf" enabled="false" />
+			</unit>
+
 			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
+				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="IELTS Reading Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
 			</unit>
 			<unit id="1287130140000" class="practice-zone" >
 				<exercise id="1156153794672" group="1" caption="Short answer questions" href="reading/exercises/1156153794672.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_arp1.jpg">
@@ -68,12 +74,17 @@
 				<exercise id="1287130210003" caption="Advice" href="listening/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130220000" class="exam-practice">
-				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening practice test 1" audioCaption="Practice test 1 audio" audioHref="listening/media/listening_tp_part1.mp3" />
-				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Listening practice test 2" audioCaption="Practice test 2 audio" audioHref="listening/media/listening_tp_part2.mp3" />
-				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice test 3" audioCaption="Practice test 3 audio" audioHref="listening/media/listening_tp_part3.mp3" />
+				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1" audioHref="listening/media/listening_tp_part1.mp3" />
+				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" audioHref="listening/media/listening_tp_part2.mp3" />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" audioHref="listening/media/listening_tp_part3.mp3" enabled="false" />
+			</unit>
+			<unit id="1287130221000" class="exam-practice2">
+				<exercise id="1287130221001" href="listening/pdf/listening_answer1.pdf" caption="Answer sheet 1" />
+				<exercise id="1287130221002" href="listening/pdf/listening_answer2.pdf" caption="Answer sheet 2" />
+				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3" enabled="false" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
-				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
+				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="IELTS Listening Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
 			</unit>
 			<unit id="1287130240000" class="practice-zone">
 				<exercise id="1156153794384" group="1" caption="Short answer questions" href="listening/exercises/1156153794384.xml" enabledFlag="3" difficulty="1" thumbnail="listening/thumbnails/listening1_saq.jpg">
@@ -110,9 +121,9 @@
 		 </course>
 		 <course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
-				<group id="1" caption="Phase 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Phase 2" task="1" description="" />
-				<group id="3" caption="Phase 3" task="1" description="" />
+				<group id="1" caption="Set 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Set 2" task="1" description="" />
+				<group id="3" caption="Set 3" task="1" description="" />
 			</groups>
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
@@ -120,69 +131,69 @@
 				<exercise id="1287130310003" caption="Advice" href="speaking/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
-				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
-				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" />
+				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="IELTS Speaking Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
+				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" enabled="false" />
 				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" />
 				<exercise id="1287130330004" href="speaking/advicezonevideo4.rss" caption="Advice: Coping with nerves" thumbnail="speaking/thumbnails/speaking_coping.jpg" />
-				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Speaking section 1" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" />
-				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Speaking section 2" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" enabled="false"/>
+				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Interview Phase 2" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" enabled="false" />
+				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Interview Phase 3" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" enabled="false" />
 			</unit>
 			<unit id="1287130340000" class="practice-zone">
-				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_introduction.jpg">
+				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156153794715" group="1" caption="The speaking test (1)" href="speaking/exercises/1156153794715.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_speakingtest1.jpg">
+				<exercise id="1156153794715" group="1" caption="The speaking test (1)" href="speaking/exercises/1156153794715.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_speakingtest1.jpg">
 				  <!--D&D - QB-->
 				</exercise>
-				<exercise id="1156153794077" group="1" caption="The speaking test (2)" href="speaking/exercises/1156153794077.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_speakingtest2.jpg">
+				<exercise id="1156153794077" group="1" caption="The speaking test (2)" href="speaking/exercises/1156153794077.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_speakingtest2.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794231" group="1" caption="Watch a video (1)" href="speaking/exercises/1156153794231.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo1.jpg">
+				<exercise id="1156153794231" group="1" caption="Watch a video (1)" href="speaking/exercises/1156153794231.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_watchvideo1.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156153794482" group="1" caption="Watch a video (2)" href="speaking/exercises/1156153794482.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo2.jpg">
+				<exercise id="1156153794482" group="1" caption="Watch a video (2)" href="speaking/exercises/1156153794482.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_watchvideo2.jpg">
 				  <!--GF - TB-->
 				</exercise>
-				<exercise id="1156153794271" group="1" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo3.jpg">
+				<exercise id="1156153794271" group="1" caption="Watch a video (3)" href="speaking/exercises/1156153794271.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_watchvideo3.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156153794218" group="1" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml" enabledFlag="3" difficulty="1" thumbnail="speaking/thumbnails/speaking1_watchvideo4.jpg">
+				<exercise id="1156153794218" group="1" caption="Watch a video (4)" href="speaking/exercises/1156153794218.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_watchvideo4.jpg">
 				<!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_introduction.jpg">
+				<exercise id="1151344172352" group="2" caption="Introduction" href="speaking/exercises/1151344172352.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172405" group="2" caption="Practice for Part 2" href="speaking/exercises/1151344172405.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_practice.jpg">
+				<exercise id="1151344172405" group="2" caption="Practice for Part 2" href="speaking/exercises/1151344172405.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking2_practice.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172961" group="2" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_candidate1.jpg">
+				<exercise id="1151344172961" group="2" caption="Watch a candidate (1)" href="speaking/exercises/1151344172961.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking2_candidate1.jpg">
 				  <!--D&D QB-->
 				</exercise>
-				<exercise id="1151344172836" group="2" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_candidate2.jpg">
+				<exercise id="1151344172836" group="2" caption="Watch a candidate (2)" href="speaking/exercises/1151344172836.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking2_candidate2.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1151344172525" group="2" caption="Comparative forms" href="speaking/exercises/1151344172525.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_comparative.jpg">
+				<exercise id="1151344172525" group="2" caption="Comparative forms" href="speaking/exercises/1151344172525.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking2_comparative.jpg">
 				  <!--D&D QB-->
 				</exercise>
-				<exercise id="1151344172701" group="2" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml" enabledFlag="3" difficulty="2" thumbnail="speaking/thumbnails/speaking2_candidate3.jpg">
+				<exercise id="1151344172701" group="2" caption="Watch a candidate (3)" href="speaking/exercises/1151344172701.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking2_candidate3.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_introduction.jpg">
+				<exercise id="1156181253089" group="3" caption="Introduction" href="speaking/exercises/1156181253089.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking3_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253123" group="3" caption="Tips for Phase 3" href="speaking/exercises/1156181253123.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_tips.jpg">
+				<exercise id="1156181253123" group="3" caption="Tips for Phase 3" href="speaking/exercises/1156181253123.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking3_tips.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156181253456" group="3" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_candidate.jpg">
+				<exercise id="1156181253456" group="3" caption="Watch a candidate" href="speaking/exercises/1156181253456.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking3_candidate.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
-				<exercise id="1156181253086" group="3" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_summary.jpg">
+				<exercise id="1156181253086" group="3" caption="Summary of an interview" href="speaking/exercises/1156181253086.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking3_summary.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156181253500" group="3" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_IELTSexam.jpg">
+				<exercise id="1156181253500" group="3" caption="More about the IELTS exam" href="speaking/exercises/1156181253500.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking3_ieltsexam.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156181253785" group="3" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml" enabledFlag="3" difficulty="3" thumbnail="speaking/thumbnails/speaking3_watchanother.jpg">
+				<exercise id="1156181253785" group="3" caption="Watch another candidate" href="speaking/exercises/1156181253785.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking3_watchanother.jpg">
 				  <!--GF TB-->
 				</exercise>
 			</unit>
@@ -202,35 +213,42 @@
 				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130420000" class="exam-practice" caption="Try the test practices.">
-				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing practice test 1" />
-				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Writing practice test 2" />
-				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice test 3" />
+				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Practice test 1" />
+				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Practice test 2" />
+				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" enabled="false" />
 			</unit>
+			
+			<unit id="1287130421000" class="exam-practice2" caption="Try the test practices.">
+				<exercise id="1287130421001" href="writing/pdf/writing_ac_answer1.pdf" caption="Answer sheet 1" />
+				<exercise id="1287130421002" href="writing/pdf/writing_ac_answer2.pdf" caption="Answer sheet 2" />
+				<exercise id="1287130421003" href="writing/pdf/writing_ac_answer3.pdf" caption="Answer sheet 3" enabled="false" />
+			</unit>
+
 			<unit id="1287130430000" class="advice-zone">  
-				<exercise id="1287130430001" href="writing/advicezonevideo1.rss" caption="Advice: General tips" thumbnail="writing/thumbnails/writing_keyfacts.jpg" />
-				<exercise id="1287130430002" href="writing/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" />
+				<exercise id="1287130430001" href="writing/advicezonevideo1.rss" caption="IELTS Writing Advice" thumbnail="writing/thumbnails/writing_keyfacts.jpg" />
+				<exercise id="1287130430002" href="writing/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" enabled="false" />
 				<exercise id="1287130430003" href="writing/advicezonevideo3.rss" caption="Advice: Writing task 2" thumbnail="writing/thumbnails/writing_advice.jpg" />
-				<exercise id="1287130430004" href="writing/advicezonevideo4a.rss" caption="Tutorial: Writing Task 1" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
-				<exercise id="1287130430005" href="writing/advicezonevideo5a.rss" caption="Tutorial: Writing Task 2" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
+				<exercise id="1287130430004" href="writing/advicezonevideo4a.rss" caption="Tutorial: Writing task 1" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
+				<exercise id="1287130430005" href="writing/advicezonevideo5a.rss" caption="Tutorial: Writing task 2" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
 
 			</unit>
 			<unit id="1287130440000" class="practice-zone">
-				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_introduction.jpg">
+				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/last_minute/1156153794055.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_static.jpg">
 				  <!--D&D TB-->
 				</exercise>
-				<exercise id="1156153794787" group="1" caption="Understanding static charts (1)" href="writing/exercises/1156153794787.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding1.jpg">
+				<exercise id="1156153794787" group="1" caption="Understanding static charts" href="writing/exercises/1156153794787.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding1.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding2.jpg">
+				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="34" difficulty="1">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding3.jpg">
+				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="34" difficulty="1">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding4.jpg">
+				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="34" difficulty="1">
 				  <!--T/F-->
 				</exercise>
 				<exercise id="1156153794241" group="1" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_dealing.jpg">

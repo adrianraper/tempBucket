@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -78,8 +81,11 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_GW_004.jpg" mode="1" id="1001"/>
+<p></p>
 
+<div><a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <img class="rightFloat1" src="../media/MM_GW_004.jpg" mode="1" id="1001"/></div>
+<br/><br/>
   <ol id="questionList">
     <li id="1">I am writing to congratulate you on&#xA0;<input id="q1"/>&#xA0;excellent coverage of the cricket yesterday.</li>
 	<p class="linespace"></p>
@@ -113,7 +119,7 @@
 </section>
 
 <section id="examtips">
-  <p class="popuptext">An article or possessive adjective is needed in each of the sentences./p>
+  <p class="popuptext">An article or possessive adjective is needed in each of the sentences.</p>
 </section>
 
 </body>

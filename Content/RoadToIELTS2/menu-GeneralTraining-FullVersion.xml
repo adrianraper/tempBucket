@@ -32,70 +32,70 @@
 				<exercise id="1160133065334" group="1" caption="Table completion" href="reading/exercises/1160133065334.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1160133189922" group="2" caption="Guide to letter writing" href="reading/exercises/1160133189922.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
+				<exercise id="1160133189922" group="2" caption="Sentence completion" href="reading/exercises/1160133189922.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1160133189459" group="2" caption="Success in four minutes" href="reading/exercises/1160133189459.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
+				<exercise id="1160133189459" group="2" caption="Matching information to paragraphs" href="reading/exercises/1160133189459.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_gamescards.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1160133348132" group="3" caption="Airline" href="reading/exercises/1160133348132.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_airline.jpg">
+				<exercise id="1160133348132" group="3" caption="Multiple choice" href="reading/exercises/1160133348132.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_airline.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1160560691265" group="3" caption="Tomorrow the world" href="reading/exercises/1160560691265.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_tomorrow.jpg">
+				<exercise id="1160560691265" group="3" caption="Matching headings to paragraphs" href="reading/exercises/1160560691265.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_tomorrow.jpg">
 				</exercise>
-				<exercise id="1160123324942" group="4" caption="Fantastic plastic" href="reading/exercises/1160123324942.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_tomorrow.jpg">
+				<exercise id="1160123324942" group="4" caption="True, False, Not given" href="reading/exercises/1160123324942.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_tomorrow.jpg">
 				</exercise>
-				<exercise id="1160124446815" group="4" caption="Starlings" href="reading/exercises/1160124446815.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_tomorrow.jpg">
+				<exercise id="1160124446815" group="4" caption="Table completion" href="reading/exercises/1160124446815.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/generaltraining/reading1_tomorrow.jpg">
 				</exercise>
-				<exercise id="1160737515913" group="5" caption="Welcome to the BOOKS etc. Catalogue" href="reading/exercises/1160737515913.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_catalogue.jpg">
+				<exercise id="1160737515913" group="5" caption="Matching" href="reading/exercises/1160737515913.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_catalogue.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160737515394" group="5" caption="Bathing Beauty" href="reading/exercises/1160737515394.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_bathing.jpg">
+				<exercise id="1160737515394" group="5" caption="Yes, No, Not given" href="reading/exercises/1160737515394.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_bathing.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160106142525" group="6" caption="SummerSkill Sydney" href="reading/exercises/1160106142525.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_summerskill.jpg">
+				<exercise id="1160106142525" group="6" caption="Multiple selection" href="reading/exercises/1160106142525.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_summerskill.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1160107365393" group="6" caption="The press" href="reading/exercises/1160107365393.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160107365393" group="6" caption="Summary completion" href="reading/exercises/1160107365393.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160710258684" group="7" caption="Keeping your teeth healthy" href="reading/exercises/1160710258684.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160710258684" group="7" caption="Table completion (1)" href="reading/exercises/1160710258684.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160712270885" group="7" caption="Short answers" href="reading/exercises/1160712270885.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160712270885" group="7" caption="Short answer questions" href="reading/exercises/1160712270885.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160715282744" group="7" caption="Your life on a plate" href="reading/exercises/1160715282744.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160715282744" group="7" caption="Table completion (2)" href="reading/exercises/1160715282744.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1160715639968" group="7" caption="Matching" href="reading/exercises/1160715639968.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160133918798" group="8" caption="Valleyfair (1)" href="reading/exercises/1160133918798.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160133918798" group="8" caption="Multiple selection (1)" href="reading/exercises/1160133918798.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160133919113" group="8" caption="Valleyfair (2)" href="reading/exercises/1160133919113.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160133919113" group="8" caption="Multiple selection (2)" href="reading/exercises/1160133919113.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1161160954755" group="8" caption="Fine line between Biro and fame (1)" href="reading/exercises/1161160954755.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1161160954755" group="8" caption="Classification" href="reading/exercises/1161160954755.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1161161296597" group="8" caption="Fine line between Biro and fame (2)" href="reading/exercises/1161161296597.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1161161296597" group="8" caption="Diagram completion" href="reading/exercises/1161161296597.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160134044519" group="9" caption="Practical Guide to Crime Prevention" href="reading/exercises/1160134044519.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160134044519" group="9" caption="Matching headings to paragraphs" href="reading/exercises/1160134044519.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160134044715" group="9" caption="True, False, Not Given" href="reading/exercises/1160134044715.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160134044715" group="9" caption="True, False, Not given" href="reading/exercises/1160134044715.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1161283378638" group="9" caption="Extended lifespans" href="reading/exercises/1161283378638.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1161283378638" group="9" caption="Yes, No, Not given" href="reading/exercises/1161283378638.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1161255070580" group="9" caption="Summary completion" href="reading/exercises/1161255070580.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160134207802" group="10" caption="Can you discover your hidden talent?" href="reading/exercises/1160134207802.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1160134207802" group="10" caption="Short answer questions" href="reading/exercises/1160134207802.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1160134207695" group="10" caption="Sentence completion" href="reading/exercises/1160134207695.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
@@ -104,7 +104,7 @@
 				<exercise id="1160134207176" group="10" caption="Multiple choice" href="reading/exercises/1160134207176.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1161248451018" group="10" caption="For an Ecology of Learning" href="reading/exercises/1161248451018.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
+				<exercise id="1161248451018" group="10" caption="Matching information to paragraphs" href="reading/exercises/1161248451018.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1161248923362" group="10" caption="Matching" href="reading/exercises/1161248923362.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
@@ -113,22 +113,22 @@
 				<exercise id="1160134207978" group="10" caption="Yes, No, Not given" href="reading/exercises/1160134207978.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/generaltraining/reading2_thepress.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1160134270413" group="11" caption="International development projects" href="reading/exercises/1160134270413.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_international.jpg">
+				<exercise id="1160134270413" group="11" caption="Matching" href="reading/exercises/1160134270413.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_international.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1160134270143" group="11" caption="Multiple selection" href="reading/exercises/1160134270143.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_multiplesel.jpg">
+				<exercise id="1160134270143" group="11" caption="Multiple selection (1)" href="reading/exercises/1160134270143.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_multiplesel.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
-				<exercise id="1161569883752" group="11" caption="Summary completion (1)" href="reading/exercises/1161569883752.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_summary1.jpg">
+				<exercise id="1161569883752" group="11" caption="Summary completion" href="reading/exercises/1161569883752.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_summary1.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1161571032393" group="11" caption="Smoke gets in your throat" href="reading/exercises/1161571032393.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_smoke.jpg">
+				<exercise id="1161571032393" group="11" caption="Multiple selection (2)" href="reading/exercises/1161571032393.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_smoke.jpg">
 				  <!--Targetspotting TB-->
 				</exercise>
 				<exercise id="1161571582284" group="11" caption="Diagram completion" href="reading/exercises/1161571582284.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_diagram.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1161572095299" group="11" caption="True, False, Not Given (1)" href="reading/exercises/1161572095299.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_truefalse1.jpg">
+				<exercise id="1161572095299" group="11" caption="True, False, Not given" href="reading/exercises/1161572095299.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_truefalse1.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
 				<exercise id="1161157617216" group="12" caption="BBC Experience" href="reading/exercises/1161157617216.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_bbc.jpg">
@@ -140,13 +140,13 @@
 				<exercise id="1161583979955" group="12" caption="Sentence completion" href="reading/exercises/1161583979955.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_sencomp.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
-				<exercise id="1161584758252" group="12" caption="Men and women: minds apart" href="reading/exercises/1161584758252.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_menwomen.jpg">
+				<exercise id="1161584758252" group="12" caption="Table completion" href="reading/exercises/1161584758252.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_menwomen.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
 				<exercise id="1161613312107" group="12" caption="Classification" href="reading/exercises/1161613312107.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_classification.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
-				<exercise id="1161613312956" group="12" caption="Summary completion (2)" href="reading/exercises/1161613312956.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_summary2.jpg">
+				<exercise id="1161613312956" group="12" caption="Summary completion" href="reading/exercises/1161613312956.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_summary2.jpg">
 				  <!--GF - splitscreen TB-->
 				</exercise>
 </unit>

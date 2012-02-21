@@ -14,13 +14,9 @@
 	]]>
 	</style>
 	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc splitscreen="true"/>
-	</settings>
+<settings>
+ 	<param name="delayedMarking" value="true" />
+</settings>
 	</script>
 	
 <script id="model" type="application/xml">
@@ -91,7 +87,7 @@
 	<li>erythema: redness of the skin, often a sign of inflammation or infection.</li>
 	<li>in vivo: within a living organism.</li>
 	</ol>
-	<p>Professor Brian Diffey, British Medical Journal, Volume 320, Issue 7228, pp.176-7, 15th January 2000.</p>
+	<p>Professor Brian Diffey, British Medical Journal, Volume 320, Issue 7228, pp.176-7.</p>
 </section>
 
 <section id="body">
@@ -104,7 +100,7 @@
 <p>Ultraviolet level required to produce erythema (doses)</p>
 <p>Minimum sun protection factor for southern Europe</p>
 <p>Minimum sun protection factorfor the tropics</p>
-<p>Recommended application thickness ( mg/cm&#xB2;)</p>
+<p>Recommended application thickness (mg/cm&#xB2;)</p>
 </div>
 <div id="skin2">
 <p><b>I</b>&#xA0;<tab/><tab/>&#xA0;<b>II</b>&#xA0;<tab/><tab/>&#xA0;<b>III</b></p>

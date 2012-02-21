@@ -39,9 +39,6 @@
       <answer value="49%" correct="true"/>
       <answer value="49 percent" correct="true"/>
       <answer value="49 per cent" correct="true"/>
-      <answer value="forty-nine %" correct="true"/>
-      <answer value="forty-nine percent" correct="true"/>
-      <answer value="forty-nine per cent" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
       <answer value="headwaters" correct="true"/>

@@ -54,14 +54,14 @@ p {
 	float: right;
 	padding-top: 20em;
 	padding-right: 20em;
-	padding-left: 20m;
+	padding-left: 20em;
 	}
 
 #body .leftFloat {
 	float: left;
 	padding-top: 20em;
 	padding-right: 20em;
-	padding-left: 20m;
+	padding-left: 20em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
@@ -111,12 +111,12 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct {
-	color: 	#347C17 !important;
+	color: 	#255711 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral {

@@ -81,7 +81,7 @@
 <header>
 	
 		<div id="instruction">
-		Read the report describing the information shown in the graph from Practice Activity A again. Find examples of the two sentence patterns for describing trends. Decide which sentence pattern each of the clauses on the left follows. Click on a or b on the right as appropriate.
+		Read the report describing the information shown in the graph from Practice activity A again. Find examples of the two sentence patterns for describing trends. Decide which sentence pattern each of the clauses on the left follows. Click on a or b on the right as appropriate.
 		</div>
 </header>
 	
@@ -89,20 +89,16 @@
 
 
 <section id="readingText">
-  <p align="left">
-    <font color="#000000">The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that <font color="#0000ff">(1) there was an overall downward trend</font> in student numbers for such courses during this period.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">Courses in French, German and Russian all became less popular during this time. The figures for French show the most dramatic changes of all. Between 1994 and 1996 <font color="#0000ff">(2) enrolments for French dropped steadily</font> to around 5,700. A year later <font color="#0000ff">(3) there was a slight rise</font> of around 100 students, but then <font color="#0000ff">(4) there was a sharp fall</font> of about 600 in 1998. <font color="#0000ff">(5) Numbers finally plunged</font> to around 4,700 in 1999. The pattern for German was very similar. Starting at around 2,400 students in 1994, <font color="#0000ff">(6) numbers had fallen</font> to about 2,300 by 1996. In 1997 <font color="#0000ff">(7) the figure recovered</font> to its 1994 level, but then <font color="#0000ff">(8) numbers declined steadily</font> by around 150 per year for the next two years. <font color="#0000ff">(9) The number of students accepted onto Russian courses fluctuated</font> between 400 and 500 for most of the period, but <font color="#0000ff">(10) there was a drop</font> to around 300 in 1999.</font>
-  </p>
-  <p align="left">
-    <font color="#0000ff">(11) Enrolments for two of the five languages, however, actually grew in number over the five years. From 1994 onwards, (12) there was a steady increase in enrolments for Spanish of approximately 100 every year. Likewise, (13) the number of students studying Italian rose gradually to around 900 in 1997 and (13) remained stable for the following two years.</font>
-  </p>
-  <p align="left">Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p>The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that&#xA0;<b>(1) there was an overall downward trend</b>&#xA0;in student numbers for such courses during this period.</p>
+
+  <p>Courses in French, German and Russian all became less popular during this time. The figures for French show the most dramatic changes of all. Between 1994 and 1996<br/><b>(2) enrolments for French dropped steadily</b>&#xA0;to around 5,700. A year later&#xA0;<b>(3) there was a slight rise</b>&#xA0;of around 100 students, but then&#xA0;<b>(4) there was a sharp fall</b>&#xA0;of about 600 in 1998.&#xA0;<b>(5) Numbers finally plunged</b>&#xA0;to around 4,700 in 1999. The pattern for German was very similar. Starting at around 2,400 students in 1994,&#xA0;<b>(6) numbers had fallen</b>&#xA0;to about 2,300 by 1996. In 1997&#xA0;<b>(7) the figure recovered</b>&#xA0;to its 1994 level, but then&#xA0;<b>(8) numbers declined steadily</b>&#xA0;by around 150 per year for the next two years.&#xA0;<b>(9) The number of students accepted onto Russian courses fluctuated</b>&#xA0;between 400 and 500 for most of the period, but&#xA0;<b>(10) there was a drop</b>&#xA0;to around 300 in 1999.</p>
+  
+  <p><b>(11) Enrolments for two of the five languages, however, actually grew in number over the five years. From 1994 onwards, (12) there was a steady increase in enrolments for Spanish of approximately 100 every year. Likewise, (13) the number of students studying Italian rose gradually to around 900 in 1997 and (13) remained stable for the following two years.</b></p>
+  
+  <p>Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</p>
+  
 </section>
+
 <section id="body">
   <ol id="splitquestionList">
     <li id="q1">Which sentence pattern does the phrase "there was an overall downward trend" have?
@@ -134,7 +130,9 @@
     <li id="q12">Which sentence pattern does the phrase "there was a steady increase" have?<list class="answerList"><li><a id="a23">Noun phrase + verb + (adverb)</a></li><li><a id="a24">There was a/an + (adjective) + noun</a></li></list></li>
   <p class="linespace"></p>
     <li id="q13">Which sentence pattern does the phrase "remained stable" have?<list class="answerList"><li><a id="a25">Noun phrase + verb + (adverb)</a></li><li><a id="a26">There was a/an + (adjective) + noun</a></li></list></li>
+	<p class="linespace"></p>
   </ol>
+  
 </section>
 </body>
 </bento>

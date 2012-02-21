@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500"  />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -40,7 +43,7 @@
 	    <DragQuestion source="q7" block="b7">
       <answer source="a11" correct="true"/>
 	  </DragQuestion>
-	    <DragQuestion source="q8" block="b8">
+	  <DragQuestion source="q8" block="b8">
       <answer source="a6" correct="true"/>
     </DragQuestion>
   </questions>
@@ -58,8 +61,9 @@
 
 
 <section id="readingText">
-	
-	<h1>Tomorrow the world</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Tomorrow the world</p></h1>
 	<p>Backpacking is easy, it's cheap, and it's the most fun you'll ever have in your life. If you've got the chance, take it. Going is easy – the rest of this article will tell you how.</p>
 	<div id="reading">
 	<p class="hangingIndent">

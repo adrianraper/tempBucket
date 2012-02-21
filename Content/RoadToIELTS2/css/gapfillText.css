@@ -60,6 +60,7 @@ p {
 	padding-right: 20px;
 	padding-left: 20px;
 	}
+	
 #body .leftFloat {
 	float: left;
 	padding-top: 0px;
@@ -135,12 +136,12 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct, select.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 }
 
 a.neutral, input.neutral, g.neutral, select.neutral {

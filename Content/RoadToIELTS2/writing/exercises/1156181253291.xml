@@ -21,6 +21,7 @@
 <script id="model" type="application/xml">
 	<popups>
     	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -68,10 +69,11 @@
 </section>
 
 <section id="body">
-<img class="rightFloat1" src="../media/TT_AW_010.jpg" mode="1" id="1001"/>
-<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<audio controls="compact" src="../media/TT_WR1aa.mp3" mode="1" id="1004"/>
+<div><a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1002"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1003"/></a>
 
-<div><audio controls="compact"  src="../media/TT_WR1aa.mp3" mode="1" id="1004"/></div>
+<img class="rightFloat1" src="../media/TT_AW_010.jpg" mode="1" id="1001"/></div>
 
 <br/>
 

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<feedback>
@@ -151,7 +154,9 @@
 </header>
 	
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 <img class="rightFloat" src="../media/WR_OIIP_001.jpg" mode="1" id="1001"/>
+<br/><br/><br/>
 <div id="wrapper">
 
  <div id="part1">

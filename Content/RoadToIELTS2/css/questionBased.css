@@ -54,6 +54,13 @@ p {
 	padding-right: 20px;
 	padding-left: 20px;
 	}
+	
+#body .rightFloat1 {
+	float: right;
+	padding-top: 5px;
+	padding-right: 20px;
+	padding-left: 20px;
+	}
 
 #body .lefttFloat {
 	float: left;
@@ -113,12 +120,12 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral, g.neutral, select.neutral {
@@ -224,3 +231,13 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	margin-top: 0em;
 	}
 /* -----------------------------------------------------------------------------------*/
+/* video div for exercises where the content section needs a bigger height.*/
+
+#content2{
+	position:relative;
+	padding-top:30px;
+    height: 300px;
+    width:400px;
+    line-height:22em;
+	padding-left: -30px;
+	}

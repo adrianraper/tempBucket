@@ -27,9 +27,7 @@
       <answer source="t2" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b3">
-      <answer source="t3" correct="false">
-        <feedback source="fb3"/>
-      </answer>
+      <answer source="t3" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b4">
       <answer source="t4" correct="true"/>
@@ -70,10 +68,6 @@
 	</list>
 
   </div>
-</section>
-
-<section id="fb3">
-  <p align="left">Translation is mentioned in the 'advantages' paragraph, but not here.</p>
 </section>
 
 <section id="rt2001">

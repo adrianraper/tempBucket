@@ -52,15 +52,17 @@
 
 		<section id="readingText">
 
-	<h8>No place like home</h8>
+	<h8><p>No place like home</p></h8>
+	
 	<h2><p>Intelligent life on other planets is rarer than you think, says Peter Ward</p></h2>
+	
 	<p>Night in night out, the world's television and movie screens radiate the sights and sounds of extraterrestrial life and the message is clear: the Universe is filled with alien life forms of all shapes and sizes, every conceivable level of intelligence, and covering the gamut of attitudes from friendly benevolence to outright hostility. The idea that planets with animal life are commonplace has firmly taken root.</p>
 	
 	<p>We don't just have science fiction writers to thank for this, but two celebrated astronomers. In 1973, Frank Drake and Carl Sagan gave us the Drake equation, a method of working out the potential number of advanced civilisations in our Galaxy. Using the best information available at the time, Sagan estimated that there may be a million civilisations in the Milky Way alone. And since our Galaxy is only one of hundreds of billions of galaxies in the Universe, there could be billions of planets with intelligent, alien species.</p>
 	
 	<p>It's a breathtaking concept. But is it credible? How probable is it that single-celled life on other planets could have evolved into more complex varieties, culminating in the development of animals and a sophisticated culture?</p>
 	
-	<p><font color="#000000">In our book Rare Earth: Why Complex Life is Uncommon in the Universe, Don Brownlee and I argue that even the simplest forms of animal life are exceedingly rare in our Galaxy, and in the Universe beyond. That's not to say all life is rare; but we do take issue with the notion that just because microbial life is common in the Universe, you'll automatically get animals and higher plants, let alone intelligent beings.</font></p>
+	<p>In our book Rare Earth: Why Complex Life is Uncommon in the Universe, Don Brownlee and I argue that even the simplest forms of animal life are exceedingly rare in our Galaxy, and in the Universe beyond. That's not to say all life is rare; but we do take issue with the notion that just because microbial life is common in the Universe, you'll automatically get animals and higher plants, let alone intelligent beings.</p>
 	
 	<p>But let's start from the beginning. Why do so many people believe animal life could be common elsewhere? One important reason is the discovery that microbes can survive, and even thrive, in the searing temperatures and crushing pressures of the deep sea and beneath the surface of the Earth. Similar conditions exist on other planets, and people take this to mean that if primitive life can survive on Earth, why not elsewhere in the Universe?</p>
 	
@@ -68,7 +70,7 @@
 	
 	<p>We think, however, that this line of reasoning is flawed. Just because life evolves does not mean that animal life will then eventually appear. The chances of animal life springing up are probably more remote than many scientists believe. Why? Because Earth is actually rather a special place, and there are unlikely to be many planets on which conditions are appropriate for simple life forms to evolve into complex organisms such as plants and animals.</p>
 	
-	<h7>What are those conditions?</h7>
+	<h7><p>What are those conditions?</p></h7>
 	
 	<p>One is stability. Life needs a relatively stable environment like that on Earth, which has a stable orbit and receives a stable amount of energy from the Sun. Most planets we know of outside the Solar System have irregular or unstable orbits. And the energy from stars in other solar systems and galaxies tends not to be constant – certainly not for such a long time. Had our Sun's energy output undergone rapid swings during life's long development, there would be little chance of animal life on this planet.</p>
 	
@@ -86,12 +88,12 @@
 	
 	<h7>Glossary</h7>
 	<ol id="splitreadingList">
-	<li>supernova: an exploding star.</li>
-	<li>tectonic plates: the huge moveable blocks into which the surface of the Earth is divided.</li>
-	<li>continental drift: the slow movement of the continents over the surface of the Earth.</li>
-	<li>Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun.</li>
+	<li>supernova: an exploding star</li>
+	<li>tectonic plates: the huge moveable blocks into which the surface of the Earth is divided</li>
+	<li>continental drift: the slow movement of the continents over the surface of the Earth</li>
+	<li>Copernicus: Polish astronomer (1473-1543) who first put forward the theory that the Earth and the other planets in the Solar System all orbit the Sun</li>
 	</ol>
-	<p >Peter Ward, New Scientist Magazine, 18th March 2000.</p>
+	<p>Peter Ward, New Scientist Magazine</p>
 </section>
 
 	<section id="noscroll">

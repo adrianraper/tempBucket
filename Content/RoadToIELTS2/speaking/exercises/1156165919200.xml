@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -19,36 +19,72 @@
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
-  <questions/>
+  <questions>
+    <TargetSpottingQuestion block="b1">
+      <answer source="t1" correct="false">
+	  <feedback source="fb1"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b2">
+      <answer source="t2" correct="true">
+	  <feedback source="fb2"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b3">
+      <answer source="t3" correct="true">
+	  <feedback source="fb3"/>
+      </answer>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b4">
+      <answer source="t4" correct="true">
+	  <feedback source="fb4"/>
+      </answer>
+    </TargetSpottingQuestion>
+  </questions>
 </script>
 
 </head>
 <body>
 	
 <header>
-	The examiner asks "What kinds of activities do people of your age do with their families?". Zenia is not sure how to answer.
+<div id="instruction">
+	The examiner asks "What kinds of activities do people of your age do with their families?". Zenia is not sure how to answer.</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit02_e2a.flv" mode="1" id="1003"/>
-  <br/>
-  <ol id="questionList"/>
+<div id="outer">
+
+<div id="video">
+  <video src="../media/Unit02_e2a.flv" mode="1" id="1003" autoPlay="false"/>
+  </div>
+  <div id="content">
+  <p><b>What does Zenia do?</b></p>
+  <ol id="targetspottingvideo">
+    <list class="answerList">
+		<li><a id="t1">cover up</a></li>
+		<li><a id="t2">ask for clarification</a></li>
+		<li><a id="t3">ask the examiner to repeat</a></li>
+		<li><a id="t4">change the subject</a></li>
+	</list>
+  </ol>
+  </div>
+  </div>
 </section>
 
 <section id="fb1">
-  <p align="left">A. "Cover up" means to hide something, Zenia doesn't try to hide anything.</p>
+  <p class="feedbacktext">a. "Cover up" means to hide something, Zenia doesn't try to hide anything.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">B. Yes. Zenia asks for clarification.</p>
+  <p class="feedbacktext">b. Yes. Zenia asks for clarification.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">C. She doesn't do this, she wants more information.</p>
+  <p class="feedbacktext">c. She doesn't do this, she wants more information.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">D. This is not a good idea.</p>
+  <p class="feedbacktext">d. This is not a good idea.</p>
 </section>
 
 </body>

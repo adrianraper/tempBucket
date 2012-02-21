@@ -64,8 +64,11 @@
 
 
 <section id="readingText">
+<h8>Things that Go Bump in Your Flight</h8>
+	
+	<h2><p>New sensing technologies could improve air safety by providing advance warning of turbulence</p></h2>
+	
 <div id="reading">
-	<p><b>Things that go bump in your flight - New sensing technologies could improve air safety by providing advance warning of turbulence</b></p>
 	
 	<p class="hangingIndent"><b>A</b>&#xA0;Along with dodgy food, cramped seating and screaming infants, turbulence is one of the banes of modern air travel. Avoiding turbulence is a somewhat haphazard business. Pilots do their best to fly around storms and to steer clear of turbulent areas reported by aircraft further along the route. But a series of experiments that has just finished in Colorado could eliminate some of the guesswork, by enabling airliners' existing radar systems to pick up signs of the most common kind of turbulence, called "convective" turbulence, with just a simple software upgrade.</p>
 	
@@ -81,7 +84,7 @@
 	
 	<p class="hangingIndent"><b>G</b>&#xA0;Yet another kind of turbulence is terrain-induced, and causes problems at airports in mountainous regions. But it too can be predicted. Using readings from an instrument-equipped plane in the air, in combination with ground-based windspeed sensors and radars, it is possible to build a mathematical model for a particular airport that can then be used to predict turbulence solely from measurements taken on the ground. Such a system is already in place at Hong Kong airport, and NCAR researchers are now testing a more advanced system at Juneau, Alaska, an airport where terrain-induced turbulence is a particular problem.</p>
 	
-	<p>The Economist, 3rd July 1999.</p>
+	<p>The Economist</p>
 	
 	</div>
 </section>

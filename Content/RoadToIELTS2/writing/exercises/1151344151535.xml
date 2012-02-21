@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -69,8 +72,9 @@
 </header>
 	
 <section id="body">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 <img class="rightFloat" src="../media/WR-LTRA_001.jpg" mode="1" id="1001"/>
+<br/><br/><br/>
   <div id="dropdown">
   
  	<p>Genetically modified (GM) crops have the potential to increase agricultural productivity, make crops resistant to pests and herbicides and produce foods with higher nutritional values. Despite these benefits, environmentalists have raised a number of objections to the introduction of GM crops and foods. Few of these objections, &#xA0;<select id="q1"><option id="a1">I nevertheless</option><option id="a2">despite this</option><option id="a3">however</option></select>&#xA0;, have a solid basis in fact.</p>
@@ -85,7 +89,9 @@
 
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">For this kind of composition to be effective, as well as linking words and phrases, you also need to use phrases and expressions for refuting arguments so that the reader is clear which side of argument you support.</p>
+</section>
 
 </body>
 </bento>

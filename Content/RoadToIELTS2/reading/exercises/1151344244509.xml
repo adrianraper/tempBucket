@@ -42,28 +42,19 @@
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
       <answer value="G" correct="true"/>
-      <answer value="G" correct="true"/>
 	 </GapFillQuestion>
 	<GapFillQuestion source="q7" block="b7">
       <answer value="40km" correct="true"/>
-      <answer value="forty km" correct="true"/>
       <answer value="40 kilometers" correct="true"/>
-      <answer value="forty kilometers" correct="true"/>
       <answer value="40 kilometres" correct="true"/>
-      <answer value="forty kilometres" correct="true"/>
       <answer value="40 km." correct="true"/>
-      <answer value="forty km." correct="true"/>
       <answer value="40 kms" correct="true"/>
-      <answer value="forty kms" correct="true"/>
       <answer value="40 kms." correct="true"/>
-      <answer value="forty kms." correct="true"/>
       <answer value="40 km" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q8" block="b8">
       <answer value="11,000 hectares" correct="true"/>
       <answer value="11000 hectares" correct="true"/>
-      <answer value="eleven thousand hectares" correct="true"/>
-      <answer value="11 thousand hectares" correct="true"/>
 	  <answer value="11,000 ha" correct="true"/>
 	  <answer value="11000 ha" correct="true"/>
 	  <answer value="11000ha" correct="true"/>
@@ -85,22 +76,14 @@
       <answer value="approximately 33,000 people" correct="true"/>
       <answer value="approximately 33000" correct="true"/>
       <answer value="approximately 33000 people" correct="true"/>
-      <answer value="approximately thirty-three thousand" correct="true"/>
-      <answer value="approximately 33 thousand" correct="true"/>
       <answer value="approx 33,000" correct="true"/>
       <answer value="approx 33000" correct="true"/>
-      <answer value="approx thirty-three thousand" correct="true"/>
-      <answer value="approx 33 thousand" correct="true"/>
       <answer value="approx 33,000 people" correct="true"/>
       <answer value="approx 33000 people" correct="true"/>
-      <answer value="approx 33 thousand" correct="true"/>
 	  <answer value="approx. 33,000" correct="true"/>
       <answer value="approx. 33000" correct="true"/>
-      <answer value="approx. thirty-three thousand" correct="true"/>
-      <answer value="approx. 33 thousand" correct="true"/>
       <answer value="approx. 33,000 people" correct="true"/>
       <answer value="approx. 33000 people" correct="true"/>
-      <answer value="approx. 33 thousand" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
       <answer value="three" correct="true"/>
@@ -111,7 +94,7 @@
       <answer value="3.2 metres" correct="true"/>
       <answer value="3.2 m" correct="true"/>
       <answer value="3.2 m." correct="true"/>
-      <answer value="3.2meters" correct="true"/>
+      <answer value="3.2 meters" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>
@@ -160,7 +143,7 @@
   <p class="hangingIndent"><b>K</b>&#xA0;Because of the deforestation of the Himalayas, Nepalese farmers are widely thought to be responsible for the disastrous flooding and sedimentation that afflict the rivers of Bangladesh and India. Yet the reality is more complex.</p>
   <p class="hangingIndent"><b>L</b>&#xA0;Initially, scientists believed that the soil carried away by the rains was lost forever. Yet the terraces are arranged in such a way that the soil washed from one terrace will be captured by the next. Unfortunately, it is generally the poorest farmers who cultivate the highest terraces, and soil lost to them is soil gained for the richer farmers in the lower reaches of the valley.</p>
   
-<p class="hangingIndent">Jean-Marc Fleury, IDRC Briefing No. 5, March 2000.</p>
+<p class="hangingIndent">Jean-Marc Fleury, IDRC Briefing No. 5</p>
 </div>
   </section>
 <section id="body">

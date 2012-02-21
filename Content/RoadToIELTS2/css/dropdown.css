@@ -91,11 +91,11 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38  !important;
 	text-decoration: underline;
 	}
 select.correct {
-	color: 	#006600 !important;
+	color: #4bae38  !important;
 	text-decoration: underline;
 	}
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
@@ -157,6 +157,13 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	float:left;
 	padding: 5px 10px 0 -4px;
 	}
+
+/* This is used when the writing task and exam tips buttons are laid out side by side. */
+.imagetask1 {
+		display:inline-block;
+		padding-left: -4px;
+		padding-right: 30px;
+		}
 /*-----------------------------------------------------------------------------------------------*/
 #questionList {
 	list-style-type: decimal;
@@ -276,7 +283,7 @@ padding-bottom: 12px;
 	font-family: Verdana;
 	font-size: 13px;
 	padding-left: 15px;
-	padding-bottom: 0px;
+	padding-bottom: 20px;
 	padding-top: 0px
 }
 /*-----------------------------------------------------------------------------------------------*/

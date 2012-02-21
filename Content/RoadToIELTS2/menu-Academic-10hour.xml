@@ -15,9 +15,14 @@
 				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" />
 			</unit>
 			<unit id="1287130120000" class="exam-practice">
-				<exercise id="1287130120001" caption="Reading practice paper part 1" href="reading/pdf/reading_ac_practice1.pdf" difficulty="1" />
-				<exercise id="1287130120002" caption="Reading practice paper part 2" href="reading/pdf/reading_ac_practice2.pdf" difficulty="2" />
-				<exercise id="1287130120003" caption="Reading practice paper part 3" href="reading/pdf/reading_ac_practice3.pdf" difficulty="3" />
+				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" />
+				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" />
+				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" />
+			</unit>
+			<unit id="1287130121000" class="exam-practice2">
+				<exercise id="1287130121001" caption="Answer sheet 1" href="reading/pdf/reading_ac_answer1.pdf"  />
+				<exercise id="1287130121002" caption="Answer sheet 2" href="reading/pdf/reading_ac_answer2.pdf"  />
+				<exercise id="1287130121003" caption="Answer sheet 3" href="reading/pdf/reading_ac_answer3.pdf"  />
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
 				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
@@ -93,10 +98,16 @@
 				<exercise id="1287130210002" caption="Download PDF" href="listening/ebook/ebook_listening.pdf" />
 			</unit>
 			<unit id="1287130220000" class="exam-practice">
-				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening practice paper part 1" difficulty="1" />
-				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Listening practice paper part 2" difficulty="2" />
-				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" difficulty="3" />
+				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1"  />
+				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2"  />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3"  />
 			</unit>
+			<unit id="1287130221000" class="exam-practice2">
+				<exercise id="1287130221001" href="listening/pdf/listening_answer1.pdf" caption="Answer sheet 1"  />
+				<exercise id="1287130221002" href="listening/pdf/listening_answer2.pdf" caption="Answer sheet 2"  />
+				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3"  />
+			</unit>
+
 			<unit id="1287130230000" class="advice-zone">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
 
@@ -256,9 +267,14 @@
 				<exercise id="1287130410002" caption="Download PDF" href="writing/ebook/ebook_writing.pdf" />
 			</unit>
 			<unit id="1287130420000" class="exam-practice" caption="Try the practice papers.">
-				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing practice paper part 1" difficulty="1" />
-				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Writing practice paper part 2" difficulty="2" />
-				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice paper part 3" difficulty="3" />
+				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Practice test 1" />
+				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Practice test 2" />
+				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" />
+			</unit>
+			<unit id="1287130421000" class="exam-practice2" caption="Try the practice papers.">
+				<exercise id="1287130421001" href="writing/pdf/writing_ac_practice1.pdf" caption="Answer sheet 1" />
+				<exercise id="1287130421002" href="writing/pdf/writing_ac_practice2.pdf" caption="Answer sheet 2" />
+				<exercise id="1287130421003" href="writing/pdf/writing_ac_practice3.pdf" caption="Answer sheet 3" />
 			</unit>
 			<unit id="1287130430000" class="advice-zone">  
 				<exercise id="1287130430001" href="writing/advicezonevideo1.rss" caption="Advice: General tips" thumbnail="writing/thumbnails/writing_keyfacts.jpg" />

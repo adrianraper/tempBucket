@@ -16,7 +16,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="examtips" width="634"  />
+    	<popup click="clickme" source="examtips" width="500"  />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />

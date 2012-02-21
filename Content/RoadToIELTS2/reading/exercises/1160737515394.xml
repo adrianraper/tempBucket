@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -84,6 +87,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/><br/>
 <img class="photo2" src="../media/RD_BB_001.jpg" mode="1" id="1001"/>
   <h1><p>Bathing Beauty</p></h1>
     

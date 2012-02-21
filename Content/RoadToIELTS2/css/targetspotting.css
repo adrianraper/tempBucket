@@ -89,6 +89,13 @@ p {
 	float: right;
 	padding: 20em 20em 0 20em;
 	}
+
+#body .rightFloat1 {
+	float: right;
+	padding-top: 5px;
+	padding-right: 20px;
+	padding-left: 20px;
+	}
 	
 #body .leftFloat {
 	float:left;
@@ -154,12 +161,12 @@ g.selected {
 	}
 
 a.correct, input.correct, g.correct, select.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral, g.neutral, select.neutral {
@@ -202,6 +209,13 @@ h7{
 	float:left;
 	padding: 5px 10px 0 -4px;
 	}
+
+/* This is used when the writing task and exam tips buttons are laid out side by side. */
+.imagetask1 {
+		display:inline-block;
+		padding-left: -4px;
+		padding-right: 30px;
+		}
 /*-----------------------------------------------------------------------------------------------*/
 #targetspotting {
 	list-style-type: decimal;

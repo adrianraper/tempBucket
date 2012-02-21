@@ -8,21 +8,21 @@
 	<type>recorded</type>
 	<item>
 		<title>low quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_examiner_1</streamName>
-		<bitrate>150</bitrate>
+		<streamName>RoadToIELTS2/speaking/media/speaking_examiner_180</streamName>
+		<bitrate>180</bitrate>
 		<width>411</width>
 	</item>
 	<item>
 		<title>medium quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_examiner_2</streamName>
+		<streamName>RoadToIELTS2/speaking/media/speaking_examiner_700</streamName>
 		<bitrate>700</bitrate>
 		<width>411</width>
 	</item>
 	<item>
 		<title>high quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_examiner_3</streamName>
+		<streamName>RoadToIELTS2/speaking/media/speaking_examiner_1200</streamName>
 		<bitrate>1200</bitrate>
-		<width>822</width>
+		<width>411</width>
 	</item>
 </channel>
 </rss>

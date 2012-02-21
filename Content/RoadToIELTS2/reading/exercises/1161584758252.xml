@@ -11,6 +11,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -26,9 +29,7 @@
       <answer value="playing darts" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="precision manual task" correct="true"/>
 	  <answer value="precision manual tasks" correct="true"/>
-      <answer value="precision manual" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>
@@ -46,8 +47,9 @@
 
 
 <section id="readingText">
-
-  <h1>Men and women: minds apart</h1>
+	<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+  <h1><p>Men and women: minds apart</p></h1>
   
   <p>An alien from outer space could be forgiven for thinking that men and women belong to separate species. The two types of Homo sapiens not only look different, they behave differently. Their likes and dislikes, their mental strengths and weaknesses and general psychological make-up appear to be quite distinct.</p>
   

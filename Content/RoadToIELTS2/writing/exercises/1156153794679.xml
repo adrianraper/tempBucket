@@ -89,9 +89,9 @@
 <section id="body">
 
 
-<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a><br/><br/><br/><br/>
-<a id="clickme1"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
-  <br/><br/><br/>
+<a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme1"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/>
 <img class="rightFloat" src="../media/Unit01_Write_e7.jpg" mode="1" id="1003"/>
 
 

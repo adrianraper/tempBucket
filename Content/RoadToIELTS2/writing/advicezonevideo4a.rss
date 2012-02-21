@@ -8,21 +8,21 @@
 	<streaming>rtmp</streaming>
 	<item>
 		<title>low quality</title>
-		<streamName>RoadToIELTS2/writing/media/writing_tutorialac1_1</streamName>
-		<bitrate>150</bitrate>
+		<streamName>RoadToIELTS2/writing/media/writing_task1_ac_180</streamName>
+		<bitrate>180</bitrate>
 		<width>411</width>
 	</item>
 	<item>
 		<title>medium quality</title>
-		<streamName>RoadToIELTS2/writing/media/writing_tutorialac1_2</streamName>
+		<streamName>RoadToIELTS2/writing/media/writing_task1_ac_700</streamName>
 		<bitrate>700</bitrate>
 		<width>411</width>
 	</item>
 	<item>
 		<title>high quality</title>
-		<streamName>RoadToIELTS2/writing/media/writing_tutorialac1_3</streamName>
+		<streamName>RoadToIELTS2/writing/media/writing_task1_ac_1200</streamName>
 		<bitrate>1200</bitrate>
-		<width>822</width>
+		<width>411</width>
 	</item>
 </channel>
 </rss>

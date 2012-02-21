@@ -54,20 +54,21 @@
 	
 <header>
 	
-		
+<div id="instruction">
 		Questions 9-15. Complete each of the statements on the right with words taken from the passage. Write NO MORE THAN THREE WORDS for each answer.
-		
+</div>
 </header>
 	
 
 
 <section id="readingText">
-  <div id="reading">
+  
   <h1><p>Mind your language</p></h1>
   
 
-  <p align="left">Small businesses are losing out because they have poor linguistic skills. When will they learn that English is not the only international business language?</p>
+  <p>Small businesses are losing out because they have poor linguistic skills. When will they learn that English is not the only international business language?</p>
   
+  <div id="reading">
   <p class="hangingIndent"><b>A</b>&#xA0;In business a lack of linguistic ability can be fatal. Scare stories are legion, but the most poignant involves a UK manufacturer that went bust last year. When the official receivers looked through the paperwork, they found a letter in a filing cabinet, written in German. No-one at the firm had understood it, so it had been filed away with other miscellaneous correspondence. It turned out to be a purchase order big enough to have saved the firm from insolvency.</p>
   
   <p class="hangingIndent"><b>B</b>&#xA0;Small businesses need to sit up and take notice. Research shows that only 38% of British companies employing up to 500 people have an executive able to negotiate in another language. The Centre for Information on Language Teaching and Research (CILT) has found that a third of UK exporters miss out on trade opportunities because of poor language skills.</p>
@@ -83,10 +84,11 @@
   <p class="hangingIndent"><b>G</b>&#xA0;While it helps to learn a few basics of a customer's language, even non-linguists can export, says Moran. When Peebles Transformers of Edinburgh won a contract to supply a Tianhuangping Pumped Storage site in China with six generators, the firm organised a multimedia training package for its staff in Mandarin. It used a local computer-science student, gathered audio- visual material on site and hired a local Chinese employee for translations and voice-overs.</p>
   
   <p class="hangingIndent"><b>H</b>&#xA0;If the worst comes to the worst, small businesses have to resort to English but should bear in mind a few ground rules. When dealing with customers, you should avoid colloquialisms and idioms, speak slowly and give the customer time to absorb what has been said. Do not get impatient if you are asked to repeat a phrase. Avoid complex sentence structures including double or phrasal verbs &#x2013; "develop" a proposal, not "work up" a proposal. Finally, don't assume that a smile or nod from a foreign colleague or customer denotes agreement. They might be too polite or too embarrassed to say "I don't understand".</p>
-  
-  <p>John Bloom, Management Today, August 1998.</p>
+ 
+ </div>
+ 
+  <p>John Bloom, Management Today</p>
 
-  </div>
 </section>
 
 <section id="body">

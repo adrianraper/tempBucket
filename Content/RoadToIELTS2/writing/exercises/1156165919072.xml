@@ -71,41 +71,41 @@
   <img class="rightFloat" src="../media/LC_AW_006.JPG" mode="1" id="1001"/>
 
   <ol id="questionList">
-    <li id="1">In 1999 there was a sharp rise in the number of people using e-mail.
+    <li><span color="#7935AB">In 1999 there was a sharp rise in the number of people using e-mail.</span>
 	<br/>In 1999 the number of people using e-mail&#xA0;<input id="q1"/>.</li>
 		<p class="linespace"></p>
-    <li id="2">In 2001 the percentage of 25-year-olds who were online fell slightly.
+    <li><span color="#7935AB">In 2001 the percentage of 25-year-olds who were online fell slightly.</span>
 	<br/>In 2001&#xA0;<input id="q2"/>&#xA0;the percentage of 25-year-olds who were online.</li>
 		<p class="linespace"></p>
-    <li id="3">There was a marked fall in the number of students enrolling on language courses in the 1990s.
+    <li><span color="#7935AB">There was a marked fall in the number of students enrolling on language courses in the 1990s.</span>
 	<br/>The number of students enrolling on language courses&#xA0;<input id="q3"/>&#xA0;in the 1990s.</li>
 		<p class="linespace"></p>
 
-    <li id="4">The number of languages spoken around the world decreased dramatically in the 20th century.
+    <li><span color="#7935AB">The number of languages spoken around the world decreased dramatically in the 20th century.</span>
 	<br/><input id="q4"/>&#xA0;the number of languages spoken around the world in the 20th century.</li>
 		<p class="linespace"></p>
-    <li id="5">During the 1990s the proportion of Europeans using mobile phones rose steeply.
+    <li><span color="#7935AB">During the 1990s the proportion of Europeans using mobile phones rose steeply.</span>
 	<br/>During the 1990s&#xA0;<input id="q5"/>&#xA0;the proportion of Europeans using mobile phones.</li>
 		<p class="linespace"></p>
-    <li id="6">In the mid-eighties the percentage of children with language problems such as dyslexia peaked.
+    <li><span color="#7935AB">In the mid-eighties the percentage of children with language problems such as dyslexia peaked.</span>
 	<br/>In the mid-eighties&#xA0;<input id="q6"/>&#xA0;the percentage of children with language problems such as dyslexia.</li>
 		<p class="linespace"></p>
-    <li id="7">There has been a gradual rise in the proportion of the population who speak two or more languages.
+    <li><span color="#7935AB">There has been a gradual rise in the proportion of the population who speak two or more languages.</span>
 	<br/>The proportion of the population who speak two or more languages&#xA0;<input id="q7"/>.</li>
 		<p class="linespace"></p>
-    <li id="8">There was a significant increase in spending on communications satellites after about 1985.
+    <li><span color="#7935AB">There was a significant increase in spending on communications satellites after about 1985.</span>
 	<br/>Spending on communications satellites&#xA0;<input id="q8"/>&#xA0;after about 1985.</li>
 		<p class="linespace"></p>
-    <li id="9">There was a noticeable drop in the proportion of students studying Nordic languages during the late 1990s.
+    <li><span color="#7935AB">There was a noticeable drop in the proportion of students studying Nordic languages during the late 1990s.</span>
 	<br/>The proportion of students studying Nordic languages&#xA0;<input id="q9"/>&#xA0;during the late 1990s.</li>
 		<p class="linespace"></p>
-    <li id="10">In recent years the percentage of bilinguals in the population has increased dramatically.
+    <li><span color="#7935AB">In recent years the percentage of bilinguals in the population has increased dramatically.</span>
 	<br/>In recent years there has been&#xA0;<input id="q10"/>&#xA0;the percentage of bilinguals in the population.</li>
 		<p class="linespace"></p>
-    <li id="11">There has been a steady fall in the average number of letters people write since the advent of e-mail.
+    <li><span color="#7935AB">There has been a steady fall in the average number of letters people write since the advent of e-mail.</span>
 	<br/>The average number of letters people write&#xA0;<input id="q11"/>&#xA0;since the advent of e-mail.</li>
 		<p class="linespace"></p>
-    <li id="12">The cost of mobile phones has dropped significantly since they were first introduced.
+    <li><span color="#7935AB">The cost of mobile phones has dropped significantly since they were first introduced.</span>
 	<br/>There has been&#xA0;<input id="q12"/>&#xA0;in the cost of mobile phones since they were first introduced.</li>
 		<p class="linespace"></p>
   </ol>

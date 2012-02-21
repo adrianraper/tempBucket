@@ -214,11 +214,11 @@ a.selected {
 }
 
 a.correct, input.correct, g.correct, select.correct {
-	color: #00AA00 !important;
+	color: #255711  !important;
 }
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404  !important;
 }
 
 a.neutral, input.neutral, g.neutral, select.neutral {

@@ -45,7 +45,7 @@ p {
 /* This is image class to control image to be align with text (when there is a writing task image) when questions are div-ed */
 #body .rightFloat1 {
 	float: right;
-	padding: 45em 20em 0 20em;
+	padding: 12em 20em 0 20em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
@@ -94,12 +94,12 @@ a.selected {
 	}
 
 a.correct, input.correct, g.correct, select.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral, g.neutral, select.neutral {
@@ -139,6 +139,13 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	float:left;
 	padding: 5px 10px 0 -4px;
 	}
+
+/* This is used when the writing task and exam tips buttons are laid out side by side. */
+.imagetask1 {
+		display:inline-block;
+		padding-left: -4px;
+		padding-right: 30px;
+		}
 /*-----------------------------------------------------------------------------------------------*/
 #trueFalse {
 	list-style-type: decimal;

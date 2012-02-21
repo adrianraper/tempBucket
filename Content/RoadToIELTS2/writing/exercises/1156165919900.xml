@@ -31,12 +31,8 @@
       <answer source="a6" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a7" correct="true">
-        <feedback source="fb7"/>
-      </answer>
-      <answer source="a8" correct="false">
-        <feedback source="fb8"/>
-      </answer>
+      <answer source="a7" correct="true"/>
+      <answer source="a8" correct="false"/>
       <answer source="a9" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
@@ -45,9 +41,7 @@
       <answer source="a12" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a13" correct="false">
-        <feedback source="fb13"/>
-      </answer>
+      <answer source="a13" correct="false"/>
       <answer source="a14" correct="true"/>
       <answer source="a15" correct="false"/>
     </MultipleChoiceQuestion>
@@ -57,14 +51,26 @@
       <answer source="a18" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q7">
-      <answer source="a19" correct="false"/>
-      <answer source="a20" correct="false"/>
-      <answer source="a21" correct="true"/>
+      <answer source="a19" correct="false">
+	  	<feedback source="fb7"/>
+	  </answer>
+      <answer source="a20" correct="false">
+	  	<feedback source="fb7"/>
+	  </answer>
+      <answer source="a21" correct="true">
+	  	<feedback source="fb7"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q8">
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="false"/>
-      <answer source="a24" correct="true"/>
+      <answer source="a22" correct="false">
+	  	<feedback source="fb8"/>
+	  </answer>
+      <answer source="a23" correct="false">
+	  	<feedback source="fb8"/>
+	  </answer>
+      <answer source="a24" correct="true">
+	  	<feedback source="fb8"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q9">
       <answer source="a25" correct="false"/>
@@ -87,9 +93,15 @@
       <answer source="a36" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q13">
-      <answer source="a37" correct="false"/>
-      <answer source="a38" correct="false"/>
-      <answer source="a39" correct="true"/>
+      <answer source="a37" correct="false">
+	  	<feedback source="fb13"/>
+	  </answer>
+      <answer source="a38" correct="false">
+	  	<feedback source="fb13"/>
+	  </answer>
+      <answer source="a39" correct="true">
+	  	<feedback source="fb13"/>
+	  </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q14">
       <answer source="a40" correct="false"/>
@@ -113,30 +125,24 @@
 	</div>
 </header>
 	
-<section id="body">
-  <img class="leftFloat" src="../media/LC_AW_022.JPG" mode="1" id="1001"/>
-
-
-
 <section id="readingText">
-  <p align="left">
-    <b>Writing Task 2</b>
-  </p>
-  <p align="left">You should spend about 40 minutes on this task.</p>
-  <p align="left">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
-  <p align="left">
-    <b>An international language would remove one of the main differences which separates people of different nationalities and this would lead to greater international understanding and co-operation.  There should be one international language which everyone agrees to learn and speak.</b>
-  </p>
-  <p align="left">
-    <b>To what extent do you agree or disagree?</b>
-  </p>
-  <p align="left">You should write at least 250 words.</p>
-  <p align="left">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p><b>Writing Task 2</b></p>
+  
+  <p>You should spend about 40 minutes on this task.</p>
+  
+  <p>Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+  
+  <p><b>An international language would remove one of the main differences which separates people of different nationalities and this would lead to greater international understanding and co-operation. There should be one international language which everyone agrees to learn and speak.</b></p>
+  
+  <p><b>To what extent do you agree or disagree?</b></p>
+  
+  <p>You should write at least 250 words.</p>
+  
+  <p>You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+  
 </section>
 
+<section id="body">
   <ol id="splitquestionList">
 
     <li id="q1">Cost of teaching everyone the language 
@@ -173,6 +179,7 @@
     <li id="q14">World would lose cultural diversity <list class="answerList"><li><a id="a40">Argument for</a></li><li><a id="a41">Argument against</a></li><li><a id="a42">Irrelevant idea</a></li></list></li>
 <p class="linespace"></p>
     <li id="q15">Would kill less widely-spoken languages <list class="answerList"><li><a id="a43">Argument for</a></li><li><a id="a44">Argument against</a></li><li><a id="a45">Irrelevant idea</a></li></list></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

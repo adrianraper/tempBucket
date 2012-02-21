@@ -31,6 +31,13 @@ body > header {
 	padding-left: 25em;
 	line-height: 20em;
 	}
+
+/*Used in FV>Reading>Set 6>Multiple selection*/
+.answerList2 {
+	list-style-type: lowerLatin;
+	padding-left: 17em;
+	line-height: 20em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -89,10 +96,6 @@ a, span[draggable="true"] {
 	background-color: #FFFFFF;
 	}
 
-#noscroll span[draggable=true].disabled {
-	color: #CCCCCC;
-}
-
 #noscroll{
 	padding-left:5px;
 	}
@@ -101,7 +104,12 @@ a, span[draggable="true"] {
 #noscroll span p {
 	padding-bottom: 0px;
 	}
-
+/*-----------------------------------------------------------------------------------------------*/
+/*Draggable spans should be greyed out after being used once.*/
+#noscroll span[draggable=true].disabled {
+    color: #CCCCCC;
+	}
+/*-----------------------------------------------------------------------------------------------*/
 /* Use the custom after-pad property to add a width of 1 _ characters to any input's maximum length */
 input {
 	gap-after-padding: 2;
@@ -127,15 +135,15 @@ g.selected {
 	text-decoration: underline;
 	}
 a.correct, input.correct, g.correct {
-	color: 	#347C17 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 select.correct {
-	color: 	#006600 !important;
+	color: 	#4bae38 !important;
 	text-decoration: underline;
 	}
 a.incorrect, input.incorrect, g.incorrect, select.incorrect {
-	color: #AA0000 !important;
+	color: #7A0404 !important;
 	}
 
 a.neutral, input.neutral, g.neutral, select.neutral {
@@ -472,5 +480,19 @@ sh1{
 #skin2 p{ 
 	padding-bottom: 5em;
 }
+
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for Listening 2 British cinema */
+	#wrapper{
+	position:absolute;
+    width:400px;
+	}
+	#part1{
+	Position: relative;
+	padding-top: 10px;
+	padding-left: 0px;
+	padding-right: 25px;
+	line-height:22em;
+	}
 
 /*-----------------------------------------------------------------------------------------------*/

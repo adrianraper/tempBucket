@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -70,7 +73,9 @@
 
 
 <section id="readingText">
-<h1>SummerSkill Sydney</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+<h1><p>SummerSkill Sydney</p></h1>
 <p>Interested in film? Ever wondered what it's like to go on set? Thinking of a career in the film industry? If so, SummerSkill at the Australian Film Television and Radio School (AFTRS) is the place to be.</p>
 <p>This week-long series of seminars is a comprehensive, intensive and, above all, entertaining program designed to give you the full picture on the feature film production process.</p>
 <p>The AFTRS is the national creative centre for professional training in film, television and radio production and has played an integral part in the outstanding growth of the Australian film and broadcasting industries. SummerSkill is your opportunity to be a part of the AFTRS tradition of creative excellence.</p>

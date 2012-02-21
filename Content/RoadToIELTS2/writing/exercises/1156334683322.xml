@@ -28,6 +28,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="which" correct="true"/>
+	  <answer value="that" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="which" correct="true"/>

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -168,7 +171,9 @@
 </header>
 	
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <img class="rightFloat" src="../media/EN_AW_010.jpg" mode="1" id="1001"/>
+  <br/><br/><br/>
   <div id="dropdown">
   <p>There is no doubt that we have to live with far more noise than in the past, particularly in cities, and this may be the form of pollution which affects us most directly. For example, it has been found that prolonged exposure to high levels of noise can &#xA0;<select id="q1"><option id="a1">lead to</option><option id="a2">be caused by</option><option id="a3">be due to</option></select>&#xA0; hearing loss and high blood pressure. It may also &#xA0;<select id="q2"><option id="a4">give rise to</option><option id="a5">be due to</option><option id="a6">be caused by</option></select>&#xA0; stress, insomnia and mental problems, including depression. These problems, in turn, often&#xA0;<select id="q3"><option id="a7">result in</option><option id="a8">result from</option><option id="a9">stem from</option></select>&#xA0; lower productivity at work &#xA0;<select id="q4"><option id="a10">because</option><option id="a11">due to</option><option id="a12">on account of</option></select>&#xA0;employees are too tired and stressed to work efficiently.</p>
   

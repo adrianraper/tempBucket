@@ -17,62 +17,42 @@
 <script id="model" type="application/xml">
   <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
-      <answer source="t1" correct="true">
-        <feedback source="fb1"/>
-      </answer>
+      <answer source="t1" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b2">
-      <answer source="t2" correct="true">
-        <feedback source="fb2"/>
-      </answer>
+      <answer source="t2" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b3">
-      <answer source="t3" correct="true">
-        <feedback source="fb3"/>
-      </answer>
+      <answer source="t3" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b4">
-      <answer source="t4" correct="true">
-        <feedback source="fb4"/>
-      </answer>
+      <answer source="t4" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b5">
-      <answer source="t5" correct="true">
-        <feedback source="fb5"/>
-      </answer>
+      <answer source="t5" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b6">
-      <answer source="t6" correct="true">
-        <feedback source="fb6"/>
-      </answer>
+      <answer source="t6" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b7">
-      <answer source="t7" correct="true">
-        <feedback source="fb7"/>
-      </answer>
+      <answer source="t7" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b8">
-      <answer source="t8" correct="true">
-        <feedback source="fb8"/>
-      </answer>
+      <answer source="t8" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b9">
-      <answer source="t9" correct="true">
-        <feedback source="fb9"/>
-      </answer>
+      <answer source="t9" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b10">
-      <answer source="t10" correct="true">
-        <feedback source="fb10"/>
-      </answer>
+      <answer source="t10" correct="true"/>
     </TargetSpottingQuestion>
-  
   </questions>
 </script>
 
@@ -87,9 +67,12 @@
 	
 <section id="body">
 
-  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-  <br/><br/><br/>
-    <img class="rightFloat" src="../media/MM_GW_005.jpg" mode="1" id="1001"/>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+    <img class="rightFloat1" src="../media/MM_GW_005.jpg" mode="1" id="1001"/>
+
+
   <div id="targetspotting">
   <p>Dear Sir/Madam,</p>
   <p>I am writing to thank you for your&#xA0;<g id="t1">fabulous</g>&#xA0;series 'A Hundred Years of Radio'.</p>
