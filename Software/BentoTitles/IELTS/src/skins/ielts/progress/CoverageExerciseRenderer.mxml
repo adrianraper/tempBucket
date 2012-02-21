@@ -15,15 +15,21 @@
 				// Note that we are setting the values here rather than using data binding in the spark component
 				// as we get warnings otherwise: warning: unable to bind to property 'done' on class 'XML' (class is not an IEventDispatcher)
 				captionLabel.text = data.@caption;
-				
-				var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color'); 
-				fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xB3B3B3;
+
+				// Trac 247. Show disabled menu items as such
+				if (data.@enabled == 'false') {
+					//captionLabel.color = 0xE6E6E6;
+					fillColor.color = 0xE6E6E6;
+					this.enabled = false;
+				} else {
+					var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color'); 
+					fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xB3B3B3;
+				}
 				
 			}
 			
 		]]>
 	</fx:Script>
-	
 	
 	<s:Group left="4" width="100%" >
 		<s:Rect left="0" top="8" width="8" height="8" radiusX="2" radiusY="2"  >

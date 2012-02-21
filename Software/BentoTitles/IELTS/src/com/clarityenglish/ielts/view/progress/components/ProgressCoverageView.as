@@ -141,6 +141,23 @@ package com.clarityenglish.ielts.view.progress.components {
 					//selectCourseData(course.@["class"]);
 				}
 				
+				// Trac 176. Make sure the buttons in the progressCourseBar component reflect current state
+				switch (courseClass) {
+					case "listening":
+						progressCourseButtonBar.selectedIndex = 1;
+						break;
+					case "speaking":
+						progressCourseButtonBar.selectedIndex = 2;
+						break;
+					case "writing":
+						progressCourseButtonBar.selectedIndex = 3;
+						break;
+					case "reading":
+					default:
+						progressCourseButtonBar.selectedIndex = 0;
+						break;
+				}
+				
 				_courseClassChanged = _dataChanged = false;
 			}
 		}

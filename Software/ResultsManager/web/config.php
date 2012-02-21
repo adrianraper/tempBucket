@@ -39,7 +39,7 @@ if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);
 } else {
 	$dbHost = 101; // Default for R2IV2 local
-	//$dbHost = 2; // Default for rack80829
+	$dbHost = 2; // Default for rack80829
 }
 $dbDetails = new DBDetails($dbHost);
 //$dbDetails = new DBDetails(100);

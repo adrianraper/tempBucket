@@ -23,13 +23,13 @@ package com.clarityenglish.ielts.view.progress.ui {
 		public var readingCourseButton:ToggleButton;
 		
 		[SkinPart(required="true")]
-		public var listeningCourseButton:Button;
+		public var listeningCourseButton:ToggleButton;
 		
 		[SkinPart(required="true")]
-		public var speakingCourseButton:Button;
+		public var speakingCourseButton:ToggleButton;
 		
 		[SkinPart(required="true")]
-		public var writingCourseButton:Button;
+		public var writingCourseButton:ToggleButton;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
