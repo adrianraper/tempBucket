@@ -1,8 +1,8 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	
 	import flash.events.Event;
@@ -153,6 +153,18 @@ package com.clarityenglish.ielts.view.zone {
 			invalidateSkinState();
 		}
 		
+		protected override function onAddedToStage(event:Event):void {
+			super.onAddedToStage(event);
+			
+			stage.addEventListener(MouseEvent.CLICK, onMouseClick);
+		}
+		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			
+			stage.removeEventListener(MouseEvent.CLICK, onMouseClick);
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -300,6 +312,7 @@ package com.clarityenglish.ielts.view.zone {
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
 		}
+		
 		protected function onQuestionZoneVideoButtonClick(event:MouseEvent):void {
 			// as above for file type
 			for each (var questionZoneEBookNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
@@ -330,6 +343,32 @@ package com.clarityenglish.ielts.view.zone {
 		public function adviceZoneVideoSelected(filename:String):void {
 			videoSelected.dispatch(href.createRelativeHref(null, filename), "advice-zone");
 		}
+		
+		/**
+		 * Detect mouse clicks over the whole stage with the intention of stopping video playing if a click is outside of that video player.  #216
+		 * 
+		 * @param event
+		 */
+		protected function onMouseClick(event:MouseEvent):void {
+			if (!(adviceZoneVideoPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
+				!(adviceZoneVideoList.getBounds(stage).contains(event.stageX, event.stageY))) {
+				
+				if (adviceZoneVideoPlayer.playing) {
+					log.debug("Stopped advice zone video player because click detected outside player or list");
+					adviceZoneVideoPlayer.stop();
+				}
+			}
+			
+			if (!(questionZoneVideoPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
+				!(questionZoneVideoButton.getBounds(stage).contains(event.stageX, event.stageY))) {
+				
+				if (questionZoneVideoPlayer.playing) {
+					log.debug("Stopped question zone video player because click detected outside player or button");
+					questionZoneVideoPlayer.stop();
+				}
+			}
+		}
+		
 	}
 	
 }
