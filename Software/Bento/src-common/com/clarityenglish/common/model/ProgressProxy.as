@@ -130,6 +130,13 @@ package com.clarityenglish.common.model {
 		private function notifyDataLoaded(progressType:String):void {
 			
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
+				
+				// #xxx. I am not correctly calculating summary information. So instead of a separate object,
+				// lets add it to the detail object as a summary node for each course.
+				// var menuXML:XML = new XML(loadedResources[progressType]);
+				// For each course, summarise the data
+				updateSummaryInformation();
+				
 				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				if (!bentoProxy.menuXHTML) {
@@ -142,6 +149,25 @@ package com.clarityenglish.common.model {
 			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 		}
 		
+		/**
+		 * This will calculate and update the summary information for progress.
+		 * It acts directly on the stored detail XML object 
+		 * 
+		 */
+		private function updateSummaryInformation():void {
+			var detailXML:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
+			
+			// for each course in detailXML.course
+			// delete the summary node
+			// add a new summary node with the following attributes
+			// of = number of exercises in the course node
+			// count = add up all the done attributes in the exercises
+			// averageScore = add up all the scores in the score nodes and divide by number of score nodes (ignore score=-1)
+			// duration = add up all the durations in the score nodes
+			// averageDuration = duration divided by count
+			// coverge = count exercises that have done attribute divided by of
+			
+		}
 		/**
 		 * Use the database to record that this user has started using this title 
 		 * @return void
@@ -216,6 +242,7 @@ package com.clarityenglish.common.model {
 				var thisCourse:XML = mySummaryRecords.course.(@id==uid.courseID)[0];
 				var recordsOf:uint = thisCourse.@of;
 				var newCount:uint = parseInt(thisCourse.@count) + 1;
+				thisCourse.@coverage = 1;
 				thisCourse.@averageScore = Math.round((((thisCourse.@averageScore * recordsOf) + mark.correctPercent) / newCount));
 				thisCourse.@averageDuration = Math.round((((thisCourse.@averageDuration * recordsOf) + mark.duration) / newCount));
 				thisCourse.@duration = parseInt(thisCourse.@duration) + mark.duration;

@@ -46,6 +46,7 @@
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
 			// BUG: If you do a direct start you skip this, so it crashes on coming back from an exercise
 			// Perhaps this should be in bentostartupcommand then.
+			// #xxx. No longer call mySummary as it is calculated from myDetails instead.
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			// AR No need to do this again as it is done for menu.xml
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS); 
@@ -76,12 +77,15 @@
 							var detailDataProvider:XML = new XML(rs.dataProvider);
 							break;
 						
+						// No longer call mySummary, calculate it from myDetails instead
+						// So all this stuff goes in the above case
 						case Progress.PROGRESS_MY_SUMMARY:
 							view.dataProvider = new XML(rs.dataProvider);
 							
 							// Do a quick check to see if there is any data
 							var foundAValue:Boolean  = false;
 							for each (var course:XML in view.dataProvider.course) {
+							//for each (var course:XML in view.dataProvider.course.summaryData) {
 								if (new Number(course.@coverage)>0) {
 									foundAValue = true;
 									break;

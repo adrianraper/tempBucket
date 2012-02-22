@@ -33,6 +33,7 @@ class ProgressOps {
 		
 		//foreach ($this->menu->xpath('//course') as $course) {
 		foreach ($this->menu->head->script->menu->course as $course) {
+			$course->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			// Get the number of completed exercises from the recordset for this courseID
 			// Trac #137.
 			$count = 0;
@@ -51,7 +52,6 @@ class ProgressOps {
 				}
 			}
 			// And count the number of exercises that are in the menu for this course
-			$course->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			$exercises = $course->xpath('.//xmlns:exercise');
 			$total = count($exercises);
 			$coverage = floor($count*100/$total);
@@ -74,6 +74,7 @@ class ProgressOps {
 	/**
 	 * This method merges the progress records with XML at the detail level
 	 * The rs contains a record(s) for each exercise that has been done.
+	 * It will include records for exercises that are no longer in the menu.xml and should be ignored.
 	 * Build an XML data provider for the charts that contains everything, done or not.
 	 */
 	function mergeXMLAndDataDetail($rs) {
@@ -146,7 +147,12 @@ insert into T_Score values
 		return $bookmark->asXML();		
 	}
 	/**
-	 * This method gets one user's progress records at the summary level
+	 * This method gets one user's progress records at the summary level.
+	 * It is extremely efficent to use SQL to do this, but it means that if we change
+	 * menu.xml we will still count old exercise IDs from T_Score. So we should switch
+	 * to getting the summary from the detail directly.
+	 * 
+	 * This method now obsolete.
 	 */
 	function getMySummary($userID, $productCode) {
 		

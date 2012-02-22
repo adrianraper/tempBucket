@@ -42,11 +42,14 @@ package com.clarityenglish.ielts.view.home.ui {
 		public function set dataProvider(value:XML):void {
 			
 			if (value) {
+				// mySummary information is now buried in myDetails instead of it's own XML
 				var course:XML = value.course.(@["class"]==courseClass)[0];
+				//var courseSummaryInfo:XML = value.course.(@["class"]==courseClass).summaryInfo[0];
 				solidColour.color = getStyle(courseClass + "Color");
 				backColour.color = getStyle(courseClass + "ColorDark");
 				commentLabel.text = _courseCaption + " - overall coverage " + new Number(course.@coverage) + "%";
 				var percentValue:Number = new Number(course.@coverage);
+				//var percentValue:Number = new Number(courseSummaryInfo.@coverage);
 							
 				// Tween it
 				Tweener.removeTweens(overallProgressRect, percentWidth);

@@ -220,14 +220,18 @@ class BentoService extends AbstractService {
 		// Each type of progress that we get goes back in data.
 		$progress->type = $progressType;
 		switch ($progressType) {
+			// MySummary data will now be calculated by ProgressProxy from the detail data
+			/*
 			case Progress::PROGRESS_MY_SUMMARY:
 				$rs = $this->progressOps->getMySummary($userID, $productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
 				break;
+			*/
 			case Progress::PROGRESS_EVERYONE_SUMMARY:
 				$rs = $this->progressOps->getEveryoneSummary($productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
 				break;
+				
 			case Progress::PROGRESS_MY_DETAILS:
 				$rs = $this->progressOps->getMyDetails($userID, $productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
