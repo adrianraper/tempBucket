@@ -18,12 +18,15 @@
 
 				// Trac 247. Show disabled menu items as such
 				if (data.@enabled == 'false') {
-					//captionLabel.color = 0xE6E6E6;
+					// Probably don't need to change the colour as simply setting enabled to false dulls it
+					//captionLabel.setStyle("color", 0xE6E6E6);
 					fillColor.color = 0xE6E6E6;
 					this.enabled = false;
 				} else {
+					//captionLabel.setStyle("color", getStyle('color'));
 					var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color'); 
 					fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xB3B3B3;
+					this.enabled = true;
 				}
 				
 			}

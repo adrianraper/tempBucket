@@ -60,6 +60,10 @@
 		// The specific title will want to implement actions on these two notifications
 		public static const EXERCISE_SHOW:String = "exercise_show";
 		public static const EXERCISE_SECTION_FINISHED:String = "exercise_section_finished";
+		
+		// Warnings that you are about to do something that will lose your data
+		// TODO. Trac 210. Implement this!
+		public static const WARN_DATA_LOSS:String = "warn_data_loss";
 	}
 	
 }

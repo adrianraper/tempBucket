@@ -59,6 +59,7 @@
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
 			registerCommand(BBNotifications.FEEDBACK_SHOW, FeedbackShowCommand);
 			registerCommand(BBNotifications.MARKING_SHOW, MarkingShowCommand);
+			registerCommand(BBNotifications.WARN_DATA_LOSS, WarningShowCommand);
 			registerCommand(BBNotifications.EXERCISE_START, ExerciseStartCommand);
 			registerCommand(BBNotifications.EXERCISE_STOP, ExerciseStopCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);

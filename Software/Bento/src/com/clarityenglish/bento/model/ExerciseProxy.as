@@ -59,6 +59,11 @@ package com.clarityenglish.bento.model {
 		private var _exerciseMarked:Boolean = false;
 		
 		/**
+		 * A flag to track whether or not the exercise has had anything done to it 
+		 */
+		private var _exerciseDirty:Boolean = false;
+		
+		/**
 		 * An exercise can only be marked once; once it has been marked the mark is stored here 
 		 */
 		private var _exerciseMark:ExerciseMark;
@@ -108,6 +113,13 @@ package com.clarityenglish.bento.model {
 		
 		public function get exerciseMarked():Boolean {
 			return _exerciseMarked;
+		}
+		
+		public function get exerciseDirty():Boolean {
+			return _exerciseDirty;
+		}
+		public function set exerciseDirty(value:Boolean):void {
+			_exerciseDirty = value;
 		}
 		
 		/**
@@ -169,7 +181,8 @@ package com.clarityenglish.bento.model {
 		 * @param question
 		 * @param answer
 		 * @param key
-		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  This is used when things happen after marking has been shown.
+		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  
+		 * 					This is used when things happen after marking has been shown.
 		 */
 		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false):void {
 			checkExercise();
@@ -196,6 +209,9 @@ package com.clarityenglish.bento.model {
 					// Add the answer
 					answerMap.put(key, answer);
 				}
+				
+				// Trac 121. You have now answered a question, so the exercise is dirty
+				exerciseDirty = true;
 				
 				// Send a notification to say the question has been answered
 				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
