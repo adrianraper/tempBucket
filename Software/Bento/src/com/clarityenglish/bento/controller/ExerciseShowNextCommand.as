@@ -25,6 +25,8 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			// TODO. I think it would be neater to have this one command for next and previous
+			// and send it a variable telling it which way to go.
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
@@ -34,11 +36,11 @@ package com.clarityenglish.bento.controller {
 			// Rules. If the exercise hasn't been marked, yet something has been done, warn them
 			if (!exerciseProxy.exerciseMarked && exerciseProxy.exerciseDirty) {
 				// Trigger a notification to warn them and handle the response
-				sendNotification(BBNotifications.WARN_DATA_LOSS, "lose_answers");
+				sendNotification(BBNotifications.WARN_DATA_LOSS, {type:"lose_answers", action:"show_next"});
 				
 			// Or if it has been marked and there is feedback that they haven't seen, warn them
 			} else if (exerciseProxy.exerciseMarked && exerciseProxy.hasExerciseFeedback()) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, "feedback_not_seen");
+				sendNotification(BBNotifications.WARN_DATA_LOSS, {type:"feedback_not_seen", action:"show_next"});
 				
 			} else {
 				var exerciseNode:XML = bentoProxy.getNextExerciseNode();

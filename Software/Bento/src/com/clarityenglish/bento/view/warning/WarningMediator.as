@@ -55,14 +55,22 @@
 		
 		// The user sees the warning and wants to go on anyway.
 		protected function onYes(event:Event):void {
-			// Set the condition that caused the warning to false and try again
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			exerciseProxy.exerciseDirty = false;
 			
-			// TODO. You don't know if you are going next or previous...
-			sendNotification(BBNotifications.EXERCISE_SHOW_NEXT);
+			// Set the condition that caused the warning to false and try again
+			if (view.type == "lose_answers")
+				exerciseProxy.exerciseDirty = false;
+			
+			switch (view.action) {
+				case "show_next":
+					sendNotification(BBNotifications.EXERCISE_SHOW_NEXT);
+					break;
+				case "show_previous":
+					sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
+					break;
+			}
 
 		}
 		

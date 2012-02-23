@@ -24,8 +24,8 @@ package com.clarityenglish.bento.view.warning {
 		[SkinPart]
 		public var warningMessage:Label;
 		
-		[Bindable]
 		public var type:String;
+		public var action:String;
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

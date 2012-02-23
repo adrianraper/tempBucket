@@ -52,5 +52,10 @@
 			<type>2</type>
 			<location>D:/Workbench/AIR/PrintPreviewer</location>
 		</link>
+		<link>
+			<name>bin-release1</name>
+			<type>2</type>
+			<location>D:/ProjectBench/release</location>
+		</link>
 	</linkedResources>
 </projectDescription>

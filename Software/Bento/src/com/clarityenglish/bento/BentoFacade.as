@@ -5,6 +5,8 @@
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
+	import com.clarityenglish.bento.view.warning.WarningMediator;
+	import com.clarityenglish.bento.view.warning.WarningView;
 	import com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator;
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.common.CommonNotifications;
@@ -50,6 +52,7 @@
 			mapView(XHTMLExerciseView, XHTMLExerciseMediator);
 			mapView(SWFPlayerView, SWFPlayerMediator);
 			mapView(MarkingView, MarkingMediator);
+			mapView(WarningView, WarningMediator);
 			
 			// Map built in commands
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);

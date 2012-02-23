@@ -93,6 +93,8 @@ package com.clarityenglish.common.model {
 		 * 
 		 * progressType:
 		 * 	Progress.PROGRESS_MY_DETAILS - this is the same as the menu
+		 * 	Progress.PROGRESS_MY_SUMMARY - this is calculated from MY_DETAILS
+		 * 	Progress.PROGRESS_EVERYONE_SUMMARY - this is read from a calculated table
 		 * 
 		 * @param number userID 
 		 */
@@ -108,15 +110,24 @@ package com.clarityenglish.common.model {
 			for each (var loadingData:String in dataLoading)
 				if (progressType === loadingData)
 					return;
-			
-			// Send user details and the URL of the menu to the backend
-			//var menuFile:String = href.currentDir+'/'+href.filename;
-			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, href.url ];
-			new RemoteDelegate("getProgressData", params, this).execute();
-			
-			// Maintain a note that we are currently loading this data
-			dataLoading[progressType] = true;
-			
+
+			// Some progress is read from the databse, some is calculated from other progress
+			switch (progressType) {
+				case Progress.PROGRESS_MY_SUMMARY:
+					updateSummaryData();
+					notifyDataLoaded(progressType);
+					break;
+					
+				default:
+					// Send user details and the URL of the menu to the backend
+					var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, href.url ];
+					new RemoteDelegate("getProgressData", params, this).execute();
+					
+					// Maintain a note that we are currently loading this data
+					dataLoading[progressType] = true;
+					
+			}
+				
 			// And save the href
 			this.href = href;
 			
@@ -130,12 +141,6 @@ package com.clarityenglish.common.model {
 		private function notifyDataLoaded(progressType:String):void {
 			
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
-				
-				// #xxx. I am not correctly calculating summary information. So instead of a separate object,
-				// lets add it to the detail object as a summary node for each course.
-				// var menuXML:XML = new XML(loadedResources[progressType]);
-				// For each course, summarise the data
-				updateSummaryInformation();
 				
 				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -154,20 +159,62 @@ package com.clarityenglish.common.model {
 		 * It acts directly on the stored detail XML object 
 		 * 
 		 */
-		private function updateSummaryInformation():void {
+		private function updateSummaryData():void {
 			var detailXML:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
 			
+			var summaryXML:XML = <progress />;
+			
 			// for each course in detailXML.course
-			// delete the summary node
-			// add a new summary node with the following attributes
 			// of = number of exercises in the course node
-			// count = add up all the done attributes in the exercises
+			// count = each exercise that we have done
+			// totalDone = add up all the done attributes in the exercises 
 			// averageScore = add up all the scores in the score nodes and divide by number of score nodes (ignore score=-1)
 			// duration = add up all the durations in the score nodes
 			// averageDuration = duration divided by count
 			// coverge = count exercises that have done attribute divided by of
+			for each (var course:XML in detailXML..course) {
 			
+				var count:uint = 0;
+				var of:uint = 0;
+				var scoredCount:uint = 0;
+				var duration:uint = 0;
+				var totalScore:uint = 0;
+				var totalDone:uint = 0;
+				for each (var exercise:XML in course..exercise) {
+					of++;
+					if (Number(exercise.@done) > 0) {
+						count++;
+						totalDone+=Number(exercise.@done);
+					}
+					for each (var score:XML in exercise.score) {
+						totalScore += Number(score.@score);
+						scoredCount++;
+						duration += Number(score.@duration);
+					}
+				}
+				if (scoredCount>0) {
+					var averageScore:uint = Math.floor(totalScore / scoredCount);
+					var averageDuration:uint = Math.floor(duration / scoredCount);
+				}
+				var coverage:uint = Math.floor(100 * count / of);
+				
+				var courseNode:XML = <course id={course.@id} 
+											class={course.@["class"]} 
+											caption={course.@caption} 
+											count={count}
+											of={count}
+											coverage={coverage}
+											averageScore={averageScore}
+											averageDuration={averageDuration}
+											duration={duration}
+											totalDone={totalDone} />;
+				
+				summaryXML[0].appendChild(courseNode);
+			}
+			
+			loadedResources[Progress.PROGRESS_MY_SUMMARY] = summaryXML.toString();
 		}
+		
 		/**
 		 * Use the database to record that this user has started using this title 
 		 * @return void
@@ -237,18 +284,8 @@ package com.clarityenglish.common.model {
 					bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
 				}
 				
-				// #164. If you wanted to update mySummary details, just weight the existing score appropriately
-				var mySummaryRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_SUMMARY]);
-				var thisCourse:XML = mySummaryRecords.course.(@id==uid.courseID)[0];
-				var recordsOf:uint = thisCourse.@of;
-				var newCount:uint = parseInt(thisCourse.@count) + 1;
-				thisCourse.@coverage = 1;
-				thisCourse.@averageScore = Math.round((((thisCourse.@averageScore * recordsOf) + mark.correctPercent) / newCount));
-				thisCourse.@averageDuration = Math.round((((thisCourse.@averageDuration * recordsOf) + mark.duration) / newCount));
-				thisCourse.@duration = parseInt(thisCourse.@duration) + mark.duration;
-				thisCourse.@count = newCount;
-				loadedResources[Progress.PROGRESS_MY_SUMMARY] = mySummaryRecords.toString();
-
+				// #164. After changing the detail records, recalculate the summary
+				updateSummaryData();
 			}
 		}
 		

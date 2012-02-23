@@ -46,7 +46,6 @@
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
 			// BUG: If you do a direct start you skip this, so it crashes on coming back from an exercise
 			// Perhaps this should be in bentostartupcommand then.
-			// #xxx. No longer call mySummary as it is calculated from myDetails instead.
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			// AR No need to do this again as it is done for menu.xml
 			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS); 
