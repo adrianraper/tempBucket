@@ -34,16 +34,24 @@ package com.clarityenglish.ielts.view.home.ui {
 		public var courseClass:String;
 		
 		private var _courseCaption:String;
-		
+
+		private var _dataChanged:Boolean;
+		private var _detailData:XML;
+
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
 		}
 
-		public function set dataProvider(value:XML):void {
-			
-			if (value) {
-				
-				var course:XML = value.course.(@["class"]==courseClass)[0];
+		public override function set data(value:Object):void {
+			super.data = value;
+			_detailData = value as XML;
+			_dataChanged= true;
+			invalidateProperties();
+		}
+		protected override function commitProperties():void {
+			super.commitProperties();
+			if (_dataChanged && _detailData) {
+				var course:XML = _detailData.course.(@["class"]==courseClass)[0];
 				//var courseSummaryInfo:XML = value.course.(@["class"]==courseClass).summaryInfo[0];
 				solidColour.color = getStyle(courseClass + "Color");
 				backColour.color = getStyle(courseClass + "ColorDark");
@@ -54,7 +62,6 @@ package com.clarityenglish.ielts.view.home.ui {
 				// Tween it
 				Tweener.removeTweens(overallProgressRect, percentWidth);
 				Tweener.addTween(overallProgressRect, {percentWidth:percentValue, time:2, delay:0, transition:"easeOutSine"});
-				
 			}
 		}
 		

@@ -196,6 +196,11 @@
 														// Add a mouseover to the item saying that it is only in the Full Version
 														// Ah, but Spark doesn't do this for disabled components
 														this.toolTip = "This item is only in the full version. See My Profile page.";
+													
+													// DK options 
+													// - manually use ToolTipManager - this would be the best way to do it
+													// - or don't disable it, leave it enabled, put a box over it with 50%
+													// - or capture mouseEvent, preventDefault.
 												}
 											]]>
 										</fx:Script>
