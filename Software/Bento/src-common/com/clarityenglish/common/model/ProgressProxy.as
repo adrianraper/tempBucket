@@ -166,8 +166,10 @@ package com.clarityenglish.common.model {
 			
 			// for each course in detailXML.course
 			// of = number of exercises in the course node
-			// count = each exercise that we have done
+			// count = how many of the exercises have we done (doesn't count multiple goes at one exercise)
 			// totalDone = add up all the done attributes in the exercises 
+			// scoredCount = how many exercises have we got a score for (includes duplicates)
+			// durationCount = how many exercises have we got a duration for (includes duplicates)
 			// averageScore = add up all the scores in the score nodes and divide by number of score nodes (ignore score=-1)
 			// duration = add up all the durations in the score nodes
 			// averageDuration = duration divided by count
@@ -177,6 +179,7 @@ package com.clarityenglish.common.model {
 				var count:uint = 0;
 				var of:uint = 0;
 				var scoredCount:uint = 0;
+				var durationCount:uint = 0;
 				var duration:uint = 0;
 				var totalScore:uint = 0;
 				var totalDone:uint = 0;
@@ -187,14 +190,18 @@ package com.clarityenglish.common.model {
 						totalDone+=Number(exercise.@done);
 					}
 					for each (var score:XML in exercise.score) {
-						totalScore += Number(score.@score);
-						scoredCount++;
+						// #232. #161. Don't let non-marked exercise scores impact the average
+						if (Number(score.@score) >= 0) {
+							totalScore += Number(score.@score);
+							scoredCount++;
+						}
+						durationCount++;
 						duration += Number(score.@duration);
 					}
 				}
 				if (scoredCount>0) {
 					var averageScore:uint = Math.floor(totalScore / scoredCount);
-					var averageDuration:uint = Math.floor(duration / scoredCount);
+					var averageDuration:uint = Math.floor(duration / durationCount);
 				}
 				var coverage:uint = Math.floor(100 * count / of);
 				
@@ -264,28 +271,35 @@ package com.clarityenglish.common.model {
 				// what is the UID of this record?
 				var uid:Object = UIDUtil.UID(mark.UID);
 				
-				// build the new score node
-				var newScoreNode:XML = <score score={mark.correctPercent} duration={mark.duration} datetime={dateNow} />;
-				
-				// insert into the cache
 				var thisExercise:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0];
 				if (thisExercise) {
-					if (thisExercise.@done) {
-						thisExercise.@done++;
+					var thisUnit:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID)[0];
+					
+					// #161. PZ exercises need a new score node. 
+					if (thisUnit.@["class"] == 'practice-zone') {
+						// build the new score node
+						var newScoreNode:XML = <score score={mark.correctPercent} duration={mark.duration} datetime={dateNow} />;
+						currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+					}
+					
+					// #164. All exercises need to update their done attribute.
+					if (Number(thisExercise.@done) > 0) {
+						thisExercise.@done = Number(thisExercise.@done) + 1;
 					} else {
 						thisExercise.@done = 1;
 					}
-					currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+						
 					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
-
+					
 					// #164. A copy of this was saved in BentoProxy.menuXHTML too (above on line 134)
 					// But because of new XML() cloning (?) - you need to update that too. Seems wrong.
+					// This doesn't work - to the extent that the coverage blobs in the menu don't update.
 					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 					bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+					
+					// #164. After changing the detail records, recalculate the summary
+					updateSummaryData();
 				}
-				
-				// #164. After changing the detail records, recalculate the summary
-				updateSummaryData();
 			}
 		}
 		

@@ -101,7 +101,13 @@ package com.clarityenglish.ielts.view.home {
 					if (user.examDate) {
 						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
 						var daysUnit:String = (daysLeft==1) ? "day" : "days";
-						instance.text ="You have less than"; instance.text = daysLeft.toString() + " " + daysUnit + "until your exam.";
+						if (daysLeft > 0) {
+							instance.text = "You have less than " + daysLeft.toString() + " " + daysUnit + " until your exam.";
+						} else if (daysLeft == 0) {
+							instance.text = "Good luck with your exam!";
+						} else {
+							instance.text = "Hope your exam went well...";
+						}
 					} else {
 						instance.text = "Please confirm your test date on the My Profile page."
 					}

@@ -178,7 +178,20 @@ EOD;
 	 */
 	function getEveryoneSummary($productCode) {
 			
+		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
+		/*
+		USE global_r2iv2;
+		SET @productCode = 52;
+		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+		SELECT @productCode, F_CourseID, AVG(F_Score) as AverageScore, AVG(F_Duration) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
+		FROM T_Score
+		WHERE F_ProductCode = @productCode
+		AND F_Score>=0
+		GROUP BY F_CourseID;
+		*/
+		
 		// Start working off cached results
+		// It would be safest if we could ensure that we only read the record with the latest datestamp
 		$sql = 	<<<EOD
 			SELECT F_CourseID, F_AverageScore as AverageScore, F_AverageDuration as AverageDuration, F_Count as Count FROM T_ScoreCache
 			WHERE F_ProductCode = ?

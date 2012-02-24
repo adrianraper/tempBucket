@@ -495,7 +495,7 @@ function sendEmail($templateID) {
 		case 22: #CLS enews - to Customer
 			$body = file_get_contents("$templateFolder/email_CLS_enews_toCustomer.htm");
 			$to = $data['customerEmail'];
-			$subject = "Expand your reading skills with Active Reading";
+			$subject = "ClarityLifeSkills: Explore new ways to improve your English";
 			$from = $clarityCLSSupport;
 			break;
 			

@@ -190,10 +190,16 @@
 													
 													// #213
 													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
+														
+													// #234
+													if (!enabled)
+														// Add a mouseover to the item saying that it is only in the Full Version
+														// Ah, but Spark doesn't do this for disabled components
+														this.toolTip = "This item is only in the full version. See My Profile page.";
 												}
 											]]>
 										</fx:Script>
-										<s:Rect id="imageBorder" width="75" height="35" top="-2" left="-2" >
+										<s:Rect id="imageBorder" width="75" height="35" top="-2" left="-2">
 											<s:fill>
 												<s:SolidColor color="#000000" />
 											</s:fill>
