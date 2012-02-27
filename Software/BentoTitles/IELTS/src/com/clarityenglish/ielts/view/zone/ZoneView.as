@@ -1,4 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
+	import caurina.transitions.Tweener;
+	
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
@@ -7,17 +9,12 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
 	import org.osflash.signals.Signal;
-	import org.osmf.events.MediaPlayerStateChangeEvent;
-	import org.osmf.events.TimeEvent;
-	import org.osmf.net.DynamicStreamingItem;
-	import org.osmf.net.DynamicStreamingResource;
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
@@ -66,6 +63,9 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart(required="true")]
 		public var questionZoneVideoPlayer:VideoPlayer;
+		
+		[SkinPart(required="true")]
+		public var questionZoneEBookGraphic:SWFLoader;
 		
 		[SkinPart(required="true")]
 		public var unitList:List;
@@ -171,13 +171,6 @@ package com.clarityenglish.ielts.view.zone {
 			if (_courseChanged) {
 				courseTitleLabel.text = _course.@caption;
 				
-				// Only display units with content in the XML - #51 - but this isn't working with Tink's Accordian right now
-				/*practiceZoneNavigatorContent.visible = practiceZoneNavigatorContent.includeInLayout = hasUnit("practice-zone");
-				adviceZoneNavigatorContent.visible = adviceZoneNavigatorContent.includeInLayout = hasUnit("advice-zone");
-				examPracticeNavigatorContent.visible = examPracticeNavigatorContent.includeInLayout = hasUnit("exam-practice");
-				examPracticeNavigatorContent.visible = examPracticeNavigatorContent.includeInLayout = hasUnit("exam-practice");
-				questionZoneNavigatorContent.visible = questionZoneNavigatorContent.includeInLayout = hasUnit("question-zone");*/
-				
 				// Give groups as the dataprovider to the unit list
 				unitList.dataProvider = new XMLListCollection(_course.groups.group);
 				
@@ -186,12 +179,15 @@ package com.clarityenglish.ielts.view.zone {
 				
 				// Give the exam practice exercises as a dataprovider to the exam practice data group
 				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
-
+				
 				// Give the exam practice exercises as a dataprovider to the exam practice answer group
 				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice2").exercise);
 				
 				// Change the course selector
 				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
+				
+				// #215
+				showEBook();
 				
 				_courseChanged = false;
 			}
@@ -367,6 +363,44 @@ package com.clarityenglish.ielts.view.zone {
 					questionZoneVideoPlayer.stop();
 				}
 			}
+		}
+		
+		/**
+		 * Reset the question zone graphics such that the ebook is shown and the video player is hidden.
+		 */
+		public function resetQuestionZoneGraphics():void {
+			Tweener.removeTweens(questionZoneVideoPlayer);
+			Tweener.removeTweens(questionZoneEBookGraphic);
+			
+			questionZoneVideoPlayer.x = 500;
+			questionZoneVideoPlayer.alpha = 0;
+			questionZoneVideoPlayer.visible = false;
+			
+			questionZoneEBookGraphic.x = 0;
+			questionZoneEBookGraphic.alpha = 1;
+			questionZoneEBookGraphic.visible = true;
+		}
+		
+		/**
+		 * Animate the ebook into view
+		 */
+		public function showEBook():void {
+			Tweener.removeTweens(questionZoneVideoPlayer);
+			Tweener.removeTweens(questionZoneEBookGraphic);
+			
+			Tweener.addTween(questionZoneVideoPlayer, { x: 500, _autoAlpha: 0, time: 1.2 });
+			Tweener.addTween(questionZoneEBookGraphic, { x: 0, _autoAlpha: 1, time: 1.2 });
+		}
+		
+		/**
+		 * Animate the video into view
+		 */
+		public function showVideo():void {
+			Tweener.removeTweens(questionZoneVideoPlayer);
+			Tweener.removeTweens(questionZoneEBookGraphic);
+			
+			Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 1.2, transition:"easeOutSine" });
+			Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition:"easeOutSine" });
 		}
 		
 	}

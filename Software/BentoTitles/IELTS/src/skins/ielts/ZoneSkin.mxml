@@ -29,9 +29,7 @@
 			import spark.events.ListEvent;
 			
 			protected function creationComplete(event:FlexEvent):void {
-				questionZoneVideoPlayer.x = 500;
-				questionZoneVideoPlayer.alpha = 0;
-				questionZoneVideoPlayer.visible = false;
+				hostComponent.resetQuestionZoneGraphics();
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
@@ -50,25 +48,6 @@
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
 				// Too much happening here, shift to the view/mediator
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);
-			}
-			
-			protected function showEBook():void {
-				Tweener.removeTweens(questionZoneVideoPlayer);
-				Tweener.removeTweens(questionZoneEBookGraphic);
-				
-				Tweener.addTween(questionZoneVideoPlayer, { x: 500, _autoAlpha: 0, time: 1.2 });
-				Tweener.addTween(questionZoneEBookGraphic, { x: 0, _autoAlpha: 1, time: 1.2 });
-			}
-			
-			protected function showVideo():void {
-				Tweener.removeTweens(questionZoneVideoPlayer);
-				Tweener.removeTweens(questionZoneEBookGraphic);
-				
-				//Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 1.2 });
-				//Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2 });
-				
-				Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 1.2, transition:"easeOutSine" });
-				Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition:"easeOutSine" });
 			}
 			
 		]]>
@@ -151,9 +130,9 @@
 						</s:Group>
 							
 						<s:HGroup horizontalCenter="0"  paddingTop="20" >
-							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="showEBook()" />							  
-							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="showEBook()"  />
-							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12.6" width="160" height="30" click="showVideo()" />
+							<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="hostComponent.showEBook()" />							  
+							<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="hostComponent.showEBook()"  />
+							<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12.6" width="160" height="30" click="hostComponent.showVideo()" />
 						</s:HGroup>
 					</s:VGroup>
 				</s:NavigatorContent>
