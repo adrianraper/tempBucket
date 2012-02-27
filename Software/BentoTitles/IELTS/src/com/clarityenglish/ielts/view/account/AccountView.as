@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.manageable.User;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
@@ -101,6 +102,11 @@ package com.clarityenglish.ielts.view.account {
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
 				
+				case examHours:
+				case examMinutes:
+					instance.addEventListener(Event.CHANGE, onExamTimeChange);
+					break;
+				
 				case IELTSApp1:
 					var context:LoaderContext = new LoaderContext();
 					
@@ -117,18 +123,44 @@ package com.clarityenglish.ielts.view.account {
 		}
 		
 		/**
-		 * The user changed the exam date 
+		 * The user changed the exam date.  
 		 * @param event
 		 * 
 		 */
 		protected function onExamDateChange(eventObj:CalendarLayoutChangeEvent):void {
 			// Make sure selectedDate is not null.
-			if (eventObj.currentTarget.selectedDate) {
+			//if (eventObj.currentTarget.selectedDate) {
+			if (examDateField.selectedDate) {
 				// Just update the counter for now
 				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
 				userDetails.examDate = eventObj.currentTarget.selectedDate;
 				userDetails.examDate.setHours(examHours.value as Number, examHours.value as Number);
 				trace("exam date changed to " + userDetails.examDate.toDateString()); 
+			}
+		}
+		/**
+		 * The user changed the exam hours or minutes.  
+		 * @param event
+		 * 
+		 */
+		protected function onExamTimeChange(eventObj:Event):void {
+			// Make sure selectedDate is not null.
+			//if (eventObj.currentTarget.selectedDate) {
+			if (examDateField.selectedDate) {
+				// Just update the counter for now
+				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
+				// TODO. None of this is working. examHours is 13, after setting it examDate.hours = 0!
+				//userDetails.examDate.setHours(examHours.value as Number, examMinutes.value as Number);
+				// Try converting to milliseconds, adding some hours/minutes then converting back.
+				//userDetails.examDate = examDateField.selectedDate;
+				var examDateBuilder:Date = examDateField.selectedDate;
+				var examDateTime:Number = examDateBuilder.getTime();
+				examDateTime += (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
+				userDetails.examDate = new Date(examDateTime);
+				//userDetails.examDate.hours = examHours.value as Number;
+				//userDetails.examDate.minutes = examMinutes.value as Number;
+				//trace("exam date changed to " + userDetails.examDate.toDateString()); 
+				trace("exam date changed to " + DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd hh:mm")); 
 			}
 		}
 		

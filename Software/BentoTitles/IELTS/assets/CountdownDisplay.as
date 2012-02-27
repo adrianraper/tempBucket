@@ -32,6 +32,7 @@
 				secsTxt.text = "--";			
 			} else {
 				// Difference between now and the target date
+				trace("target date=" + this.targetDate.toString());
 				var justNow:Date = new Date();
 				var ms:Number = targetDate.getTime()- justNow.getTime();
 				var sec:Number = Math.floor(ms/1000);

@@ -21,7 +21,7 @@
 				if (userDetails.examDate) {
 					var myDate:Date = userDetails.examDate;
 				} else if (userDetails.expiryDate) {
-						myDate = DateUtil.dateAdd(DateUtil.ansiStringToDate(userDetails.expiryDate), "d", -7);	
+					myDate = DateUtil.dateAdd(DateUtil.ansiStringToDate(userDetails.expiryDate), "d", -7);	
 				} else {
 					myDate = new Date();
 				}
