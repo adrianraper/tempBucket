@@ -22,6 +22,7 @@
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace error "com.clarityenglish.common.view.error.*";
 @namespace components "com.clarityenglish.textLayout.components.*";
+@namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
 
 @font-face {
 	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
@@ -319,7 +320,6 @@ warning|WarningView #yesButton {
 	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
 }
 
-
 /* Error view styles (this overwrites the default skin) */
 error|ErrorView {
 	skinClass: ClassReference("skins.ielts.error.ErrorSkin");
@@ -336,4 +336,8 @@ s|TitleWindow.feedbackTitleWindow {
 
 s|TitleWindow.titleWindowClose {
 	skinClass: ClassReference("skins.ielts.titlewindows.TitleWindowCloseSkin");
+}
+
+swfplayer|SWFPlayerView {
+	loadingGraphic: Embed(source="skins/ielts/assets/loading.swf");
 }

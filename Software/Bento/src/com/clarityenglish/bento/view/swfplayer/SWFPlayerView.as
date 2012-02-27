@@ -4,17 +4,31 @@ package com.clarityenglish.bento.view.swfplayer {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
 	import flash.system.SecurityDomain;
 	
 	import mx.controls.SWFLoader;
-	import flash.events.Event;
+	import mx.core.UIComponent;
 	
 	public class SWFPlayerView extends BentoView {
 		
 		[SkinPart(required="true")]
 		public var swfLoader:SWFLoader;
+		
+		[SkinPart]
+		public var loadingGraphic:SWFLoader;
+
+		protected override function partAdded(partName:String, instance:Object):void {
+			super.partAdded(partName, instance);
+			
+			switch (instance) {
+				case loadingGraphic:
+					loadingGraphic.source = getStyle("loadingGraphic");
+					break;
+			}
+		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -40,13 +54,28 @@ package com.clarityenglish.bento.view.swfplayer {
 			// context.applicationDomain = new ApplicationDomain();
 			// swfLoader.loaderContext = context;
 			
+			swfLoader.addEventListener(Event.COMPLETE, onComplete);
+			showLoadingGraphic();
 			swfLoader.load(url);
+		}
+		
+		protected function onComplete(event:Event):void {
+			swfLoader.removeEventListener(Event.COMPLETE, onComplete);
+			hideLoadingGraphic();
 		}
 		
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
 			
 			swfLoader.unloadAndStop();
+		}
+		
+		private function showLoadingGraphic():void {
+			if (loadingGraphic) loadingGraphic.visible = true;
+		}
+		
+		private function hideLoadingGraphic():void {
+			if (loadingGraphic) loadingGraphic.visible = false;
 		}
 		
 	}

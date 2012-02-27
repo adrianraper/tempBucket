@@ -242,8 +242,8 @@ package com.clarityenglish.ielts.view.zone {
 			
 			var exercises:XMLList = new XMLList();
 			for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
-			if (Exercise.showExerciseInMenu(exerciseNode))
-				exercises += exerciseNode;
+				if (Exercise.showExerciseInMenu(exerciseNode))
+					exercises += exerciseNode;
 			
 			return exercises;
 		}

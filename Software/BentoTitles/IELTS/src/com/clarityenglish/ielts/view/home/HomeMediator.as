@@ -53,6 +53,7 @@
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
 			view.courseSelect.remove(onCourseSelected);
 		}
 		
