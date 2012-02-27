@@ -159,7 +159,10 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 				if (flowElement) {
 					var eventMirror:IEventDispatcher = flowElement.tlf_internal::getEventMirror();
 					if (eventMirror) {
-						eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onAnswerClick, flowElementXmlBiMap, exercise, question, answer, source));
+						if (!eventMirror.hasEventListener(FlowElementMouseEvent.CLICK)) { // #226 This is a little bit of a hack, but this makes sure that listeners are not added twice
+							log.debug("Adding click listener to {0} - {1}", answer.source);
+							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onAnswerClick, flowElementXmlBiMap, exercise, question, answer, source));
+						}
 					} else {
 						log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}, answer {2}]", flowElement, question, answer);
 					}
