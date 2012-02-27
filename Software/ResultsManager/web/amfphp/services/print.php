@@ -23,7 +23,7 @@ $simpleXml = simpledom_load_string($xmlString);
 $baseElement = $simpleXml->head->insertBefore(new SimpleDOM('<base href="'.$basePath.'/" />'));
 
 // Add a copyright notice at the end of the document
-$copyrightElement = $simpleXml->body->addChild("p", "Copyright © 1993 - 2011 Clarity Language Consultants Ltd. All rights reserved.");
+$copyrightElement = $simpleXml->body->addChild("p", "Copyright © 1993 - 2012 Clarity Language Consultants Ltd. All rights reserved.");
 $copyrightElement["id"] = "copyright";
 $copyrightElement["style"] = "border-top: 1px solid black";
 

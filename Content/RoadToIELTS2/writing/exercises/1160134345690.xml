@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,31 +26,28 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/ST_GW_001.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>General Training Writing Task 1</b>
-    </font>
-  </p>
-  <p align="left"><b>Letter of praise</b>You will read a task and find the mistakes in a sample answer.</p>
-  <p align="left">
-    <font color="#0000ff">
-      <b>General Training Writing Task 2</b>
-    </font>
-  </p>
-  <p align="left"><b>Problem and solution 3</b>You will ...</p>
-  <ol>
-    <li>write a composition discussing the causes of a	problem and suggesting solutions.</li>
-    <li>complete a sample composition with appropriate words	and phrases.</li>
-  </ol>
-  <p align="left">
-    <font size="2"/>
-  </p>
-</section>
+<img class="rightFloat" src="../media/LC_GW_001.jpg" mode="1" id="1001"  />
+<div id="presentation">
+	
+	<h1><p>General Training Writing Task 1</p></h1>
+	<p><b>Letter of praise</b></p>
+	<p>You will read a task and find the mistakes in a sample answer.</p>
+	<p></p>
+	<h1><p>General Training Writing Task 2</p></h1>
+	<p><b>Problem and solution 3</b></p>
+	<p>You will ...</p>
+	<ol>
+		<li>write a composition discussing the causes of a problem and suggesting solutions;</li>
+		<li>complete a sample composition with appropriate words and phrases.</li>
+	</ol>
+</div>
+</section>	
 
 </body>
 </bento>

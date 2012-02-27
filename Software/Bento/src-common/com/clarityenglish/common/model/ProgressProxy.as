@@ -145,7 +145,9 @@ package com.clarityenglish.common.model {
 				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				if (!bentoProxy.menuXHTML) {
-					bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
+					// #250. Save xml rather than a string
+					// bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
+					bentoProxy.menuXHTML = new XHTML(loadedResources[progressType], this.href);
 					sendNotification(BBNotifications.MENU_XHTML_LOADED);
 				}
 			}
@@ -160,7 +162,9 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		private function updateSummaryData():void {
-			var detailXML:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
+			// #250. Save xml rather than a string
+			//var detailXML:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
+			var detailXML:XML = loadedResources[Progress.PROGRESS_MY_DETAILS];
 			
 			var summaryXML:XML = <progress />;
 			
@@ -219,7 +223,9 @@ package com.clarityenglish.common.model {
 				summaryXML[0].appendChild(courseNode);
 			}
 			
-			loadedResources[Progress.PROGRESS_MY_SUMMARY] = summaryXML.toString();
+			// #250. Save xml rather than a string
+			//loadedResources[Progress.PROGRESS_MY_SUMMARY] = summaryXML.toString();
+			loadedResources[Progress.PROGRESS_MY_SUMMARY] = summaryXML;
 		}
 		
 		/**
@@ -266,7 +272,12 @@ package com.clarityenglish.common.model {
 			if (loadedResources[Progress.PROGRESS_MY_DETAILS]) {
 				
 				// Get the cached records
-				var currentRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
+				// #250. Save xml rather than a string
+				// NOTE: get it from bentoProxy instead of here?
+				// var currentRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
+				//var currentRecords:XML = loadedResources[Progress.PROGRESS_MY_DETAILS];
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				var currentRecords:XML = bentoProxy.menuXHTML.xml;
 				
 				// what is the UID of this record?
 				var uid:Object = UIDUtil.UID(mark.UID);
@@ -289,13 +300,16 @@ package com.clarityenglish.common.model {
 						thisExercise.@done = 1;
 					}
 						
-					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
+					// #250. Don't go via a string. Just use the xml in bentoProxy.
+					//loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
+					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords;
 					
 					// #164. A copy of this was saved in BentoProxy.menuXHTML too (above on line 134)
 					// But because of new XML() cloning (?) - you need to update that too. Seems wrong.
 					// This doesn't work - to the extent that the coverage blobs in the menu don't update.
-					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-					bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+					// #250. If you work on the right object, you don't need to do this
+					//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					//bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
 					
 					// #164. After changing the detail records, recalculate the summary
 					updateSummaryData();
@@ -337,9 +351,13 @@ package com.clarityenglish.common.model {
 								loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
 								// For consistency with other progress data, just grab the menu bit
 								var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
-								loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
+								// #250. Save xml rather than a string
+								//loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
+								loadedResources[loadingData] = myMenu.head.script.menu[0];
 							} else {
-								loadedResources[loadingData] = data.progress.dataProvider;
+								// #250. Save xml rather than a string
+								//loadedResources[loadingData] = data.progress.dataProvider;
+								loadedResources[loadingData] = new XML(data.progress.dataProvider);
 							}
 							notifyDataLoaded(loadingData);
 							

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -56,78 +56,65 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">
 		Questions 1-10. Read the passage on the left and match the descriptions 1-10 to the appropriate person at the top of the column. Write the person's initials in the gaps provided.
+</div>
 </header>
 	
-<section id="body">
-  <br/>
-  <ol id="questionList">
-    <li id="1"><input id="q1"/> was the first to sell ballpoint pens in the United States.</li>
-    <li id="2"><input id="q2"/> extended the range of products sold by his company.</li>
-    <li id="3"><input id="q3"/> invented the ballpoint pen.</li>
-    <li id="4"><input id="q4"/> used the media to promote his ballpoint pens.</li>
-    <li id="5"><input id="q5"/> gained control of other companies during his career.</li>
-    <li id="6"><input id="q6"/> was the first to obtain the rights to the ballpoint pen from its inventor.</li>
-    <li id="7"><input id="q7"/> employed people in the travel business to make his ballpoint pens.</li>
-    <li id="8"><input id="q8"/> managed to mass-produce an effective ballpoint pen.</li>
-    <li id="9"><input id="q9"/> made serious errors in his bid to sell his ballpoint pens.</li>
-    <li id="10"><input id="q10"/> had previous experience of manufacturing writing instruments.</li>
-  </ol>
-</section>
-
 <section id="readingText">
-  <p align="left">
-    <font color="#0000ff">
-      <b>Fine line between Biro and fame</b>
-    </font>
-  </p>
+
+  <h1><p>Fine line between Biro and fame</p></h1>
+  
   <p align="left">The ballpoint has a history of false starts and missed opportunities for its inventor.</p>
   <p align="left">Second World War pilots found that fountain pens leaked at high altitude. The problem was solved in 1944 when an English accountant offered the Royal Air Force a new invention, the Biro.</p>
   <p align="left">Henry George Martin had acquired the rights to the ballpoint from its inventor, Hungarian journalist Ladislo Biro, then living in Argentina. Biro had seen the quick drying ink used by printers, patenting his idea in 1938.</p>
   <p align="left">Unknown to Biro and those who copied him, a similar device had been patented by John Loud in 1888. Loud's pen was intended to mark leather, but it was never commercially exploited, leaving Biro to make his mark on the world.</p>
-  <p align="left">
-    <font color="#000000">Biro made two big mistakes &#x2013; he failed to get a US patent for the ballpoint, and he distributed samples months ahead of launch.</font>
-  </p>
+  <p align="left">Biro made two big mistakes &#x2013; he failed to get a US patent for the ballpoint, and he distributed samples months ahead of launch.</p>
   <p align="left">This gave Chicago businessman Milton Reynolds, who had seen a sample, time to market his own version in the US ahead of Biro.</p>
   <p align="left">The battle between Biro and Reynolds was fierce and costly, not helped by the fact that neither was able to make ballpoints which were reliable. The public soon returned to the fountain pen and Biro concentrated on surrealist painting.</p>
   <p align="left">Enter Marcel Bich, the former production manager of a French ink company, who had set up his own business in Paris making fountain pens and propelling pencils. Italian-born Baron Bich launched his own improved Biro in Europe in 1949. He called it after himself, but shortened the name to Bic and was hugely successful.</p>
-  <p align="left">
-    <font color="#000000">In 1957 Bich acquired the rights to the original Biro when this company, Soci&#xE9;t&#xE9; Bic, took over the Biro Swan Company, the result of a merger between the Miles Martin Aircraft Company, which had made the Biros for the RAF, and the Swan Pen Company. Miles Martin had made the RAF ballpoints in a hangar at Woodley, near Reading, using staff from the Lunn travel agency, which was owned by a friend of Martin.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">In 1960 Bich started selling his ballpoint pens in the US. Customers were reluctant to buy until he launched a TV advertising campaign with the slogan: 'Writes first time, every time and for only 29 cents.'</font>
-  </p>
+  <p align="left">In 1957 Bich acquired the rights to the original Biro when this company, Soci&#xE9;t&#xE9; Bic, took over the Biro Swan Company, the result of a merger between the Miles Martin Aircraft Company, which had made the Biros for the RAF, and the Swan Pen Company. Miles Martin had made the RAF ballpoints in a hangar at Woodley, near Reading, using staff from the Lunn travel agency, which was owned by a friend of Martin.</p>
+  <p align="left">In 1960 Bich started selling his ballpoint pens in the US. Customers were reluctant to buy until he launched a TV advertising campaign with the slogan: 'Writes first time, every time and for only 29 cents.'</p>
   <p align="left">Bich bought the Waterman Pen Company in the US. He encountered very little competition except from companies such as Parker Pens which were selling luxury ballpoints for several dollars apiece.</p>
   <p align="left">The Bic Biro looks simple, but batches of the tungsten carbide balls can take up to 90 hours to make. They are fitted in brass housings, which are ultrasonically cleaned and then shaped to prevent the ball from slipping out. Tiny grooves machined in the housing let the ink flow.  On top of that there is the plastic casing, the tubes of ink, the stopper and the air hole.</p>
   <p align="left">Bic went on to make its first disposable cigarette lighters in 1973, sold initially under the slogan 'Flick your Bic'. In 1975 it started to make one-piece disposable razors. Today it makes 8m razors and 4m lighters a day.</p>
   <p align="left">It promotes the Bic name in the leisure industry, sponsoring American football and the Prost-Peugeot Formula 1 motor racing team. It also makes windsurfing boards, reflecting Bich's own interest in sailing.</p>
-  <p align="left">
-    <font color="#000000">Soci&#xE9;t&#xE9; Bic is now one of France's leading quoted companies, and Bic itself is the third best known French trademark. The company has added names such as Shaeffer, the US pen maker, and Tipp-Ex, the German correcting fluid company, to its stable.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">The keys to Bich's success were his knowledge of inks, his production expertise and his early use of plastics, enabling him to produce reliable products in vast numbers at low cost. It is ironic that the product he made world famous is still known by the name of the man who was unable to make it work properly &#x2013; Biro.</font>
-  </p>
+  <p align="left">Soci&#xE9;t&#xE9; Bic is now one of France's leading quoted companies, and Bic itself is the third best known French trademark. The company has added names such as Shaeffer, the US pen maker, and Tipp-Ex, the German correcting fluid company, to its stable.</p>
+  <p align="left">The keys to Bich's success were his knowledge of inks, his production expertise and his early use of plastics, enabling him to produce reliable products in vast numbers at low cost. It is ironic that the product he made world famous is still known by the name of the man who was unable to make it work properly &#x2013; Biro.</p>
   <p align="left">Nicholas Bannister, The Guardian, 26th June 1999.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This text needs to be read very carefully. It tells the history of the ballpoint pen, commonly known as the biro. However, the story is not told in chronological order. In other words, events are not told in the order that they really happened. This can make it a little difficult to follow sometimes.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Read through the classifications carefully. They are all names of people involved in the development of the pen. Notice that there are three different 'Martins' in the story. Be careful not to confuse them.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">The questions do not follow the order of the text, so you'll have to keep moving back and forth through the text in order to find your answers.</font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="body">
+ 
+  <ol id="splitquestionList">
+  <p>Henry George Martin -&#xA0;<b>HGM</b></p>
+  <p>Ladislo Biro -&#xA0;<b>LB</b></p>
+  <p>Nuktib retbikds -&#xA0;<b>MR</b></p>
+  <p>Marcel Bich -&#xA0;<b>MB</b></p>
+  <p>Miles martin -&#xA0;<b>NN</b></p>
+  <p class="linespace"></p>
+  <p></p>  
+    <li id="1"><input id="q1"/>&#xA0;was the first to sell ballpoint pens in the United States.</li>
+	<p class="linespace"></p>
+    <li id="2"><input id="q2"/>&#xA0;extended the range of products sold by his company.</li>
+	<p class="linespace"></p>
+    <li id="3"><input id="q3"/>&#xA0;invented the ballpoint pen.</li>
+	<p class="linespace"></p>
+    <li id="4"><input id="q4"/>&#xA0;used the media to promote his ballpoint pens.</li>
+	<p class="linespace"></p>
+    <li id="5"><input id="q5"/>&#xA0;gained control of other companies during his career.</li>
+	<p class="linespace"></p>
+    <li id="6"><input id="q6"/>&#xA0;was the first to obtain the rights to the ballpoint pen from its inventor.</li>
+	<p class="linespace"></p>
+    <li id="7"><input id="q7"/>&#xA0;employed people in the travel business to make his ballpoint pens.</li>
+	<p class="linespace"></p>
+    <li id="8"><input id="q8"/>&#xA0;managed to mass-produce an effective ballpoint pen.</li>
+	<p class="linespace"></p>
+    <li id="9"><input id="q9"/>&#xA0;made serious errors in his bid to sell his ballpoint pens.</li>
+	<p class="linespace"></p>
+    <li id="10"><input id="q10"/>&#xA0;had previous experience of manufacturing writing instruments.</li>
+  </ol>
 </section>
 
 </body>

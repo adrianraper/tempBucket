@@ -73,13 +73,17 @@
 					switch (rs.type) {
 						case Progress.PROGRESS_MY_DETAILS:
 							// How should this merge with menu - or can it just replace it?
-							var detailDataProvider:XML = new XML(rs.dataProvider);
+							// #250. Save xml rather than a string
+							//var detailDataProvider:XML = new XML(rs.dataProvider);
+							var detailDataProvider:XML = rs.dataProvider;
 							break;
 						
 						// No longer call mySummary, calculate it from myDetails instead
 						// So all this stuff goes in the above case
 						case Progress.PROGRESS_MY_SUMMARY:
-							view.dataProvider = new XML(rs.dataProvider);
+							// #250. Save xml rather than a string
+							//view.dataProvider = new XML(rs.dataProvider);
+							view.dataProvider = rs.dataProvider;
 							
 							// Do a quick check to see if there is any data
 							var foundAValue:Boolean  = false;

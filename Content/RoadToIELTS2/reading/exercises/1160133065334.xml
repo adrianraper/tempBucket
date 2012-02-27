@@ -101,21 +101,21 @@
 <p>Date of Manufacture:<tab/>1873</p>
 <p>Country of Manufacture:<tab/>US</p>
 <p>Total Number of Cards:<tab/>37</p>
-<p>Number of Players:<tab/>(1)&#xA0;<input id="q1"/></p>
+<p>Number of Players:<tab/><tab/>(1)&#xA0;<input id="q1"/></p>
 <p>Theme of Game:<tab/><tab/>wild animals and birds</p>
 <p></p>
 <p><b>Name of Game:</b><tab/><tab/><b>PIT</b></p>
 <p>Date of Manufacture:<tab/>(2)&#xA0;<input id="q2"/></p>
 <p>Country of Manufacture:<tab/>US</p>
 <p>Total Number of Cards:<tab/>63</p>
-<p>Number of Players:<tab/>three to six</p>
+<p>Number of Players:<tab/><tab/>three to six</p>
 <p>Theme of Game:<tab/><tab/>(3)&#xA0;<input id="q3"/></p>
 <p></p>
 <p><b>Name of Game:</b><tab/><tab/><b>Game of Rebellion</b></p>
 <p>Date of Manufacture:<tab/>early 20th century</p>
 <p>Country of Manufacture:<tab/>US</p>
 <p>Total Number of Cards:<tab/>(4)&#xA0;<input id="q4"/></p>
-<p>Number of Players:<tab/>(5)&#xA0;<input id="q5"/></p>
+<p>Number of Players:<tab/><tab/>(5)&#xA0;<input id="q5"/></p>
 <p>Theme of Game:<tab/><tab/>the American Civil War</p>
 <p></p>
 
@@ -123,7 +123,7 @@
 <p>Date of Manufacture:<tab/>1970s</p>
 <p>Country of Manufacture:<tab/>(6)&#xA0;<input id="q6"/></p>
 <p>Total Number of Cards:<tab/>25</p>
-<p>Number of Players:<tab/>(7)&#xA0;<input id="q7"/></p>
+<p>Number of Players:<tab/><tab/>(7)&#xA0;<input id="q7"/></p>
 <p>Theme of Game:<tab/><tab/>(8)&#xA0;<input id="q8"/></p>
 <p></p>
 </div>

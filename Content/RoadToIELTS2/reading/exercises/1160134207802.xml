@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -109,47 +109,97 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Questions 1-10. Answer the questions on the right using NO MORE THAN THREE WORDS from the passage on the left.
+</div>
 </header>
 	
+<section id="readingText">
+<h8>Can you discover your hidden talent?</h8>
+<p><b>With learndirect &#x2013; course you can </b><br/>
+<b>What's learndirect all about?</b></p>
+
+<p><b>Learndirect</b>&#xA0;is a fresh new approach to learning that can help you choose the learning that's right for you.</p>
+
+<p>How? Through a free impartial helpline 0800 100 900, an easy to use website www.learndirect.co.uk and an ever increasing number of&#xA0;<b>learndirect</b>&#xA0;centres opening throughout the country.</p>
+
+<h7>One free call &#x2013; help with the answers</h7>
+
+<p>I'm not sure what to do.<br/>
+Can I get help to pay for my course?<br/>
+Can I get a professional qualification?<br/>
+Who'll look after the children?</p>
+
+<p>Advisors at the&#xA0;<b>learndirect</b>&#xA0;helpline will give you impartial information and advice on any aspect of learning &#x2013; from the courses available in your area to careers, funding and childcare. You can also find this information on the&#xA0;<b>learndirect</b>&#xA0;website. Whatever you want to do, and even if you've not sure yet,&#xA0;<b>learndirect</b>&#xA0;can help in lots of ways.</p>
+
+<h7>Don't know what to do?</h7>
+<p>We've information on over half a million courses throughout the country &#x2013; from accountancy and computing through to painting and photography. With such a wide range there's bound to be a course for you.</p>
+
+<p>The helpline is open 9am to 9pm Monday to Friday and 9am to 12 noon on Saturday. If you have problems hearing, you can contact the helpline through a textphone on the same number.</p>
+
+<h7>Learner Stories</h7>
+<p><b>Sharon Green</b>&#xA0;Sharon Green contacted the learndirect helpline to find out about the courses that were offered in her area. "I was very impressed by the speed of the service and the information the helpline provided. I've recommended learndirect to a number of other people at work" says Sharon. "The helpline has such a variety of information that it's an excellent starting point and a genuine resource".</p>
+
+<p><b>Derek Ford</b>&#xA0;Having taken early retirement from his production post in the pharmaceutical industry, Derek, aged 63, decide to "brush up on his skills". "I was particularly interested in information technology and learndirect advised me of a suitable course on databases and spreadsheets. The new skills I learnt enabled me to get a job."</p>
+
+<h7>Get started </h7>
+<p><b>Learndirect</b>&#xA0;is a brand new form of learning &#x2013; that's for everyone!</p>
+<p><b>Learndirect</b>&#xA0;is designed with you in mind. Our courses are computer-based, but don't let that bother you! The easiest way to get started is to go to one of the many&#xA0;<b>learndirect</b>&#xA0;centres around the country. Our friendly staff will be on hand to help you out. You don't need any experience &#x2013; we'll take you through your learning step by step.</p>
+<p>Take a look at the range of&#xA0;<b>learndirect</b>&#xA0;courses in 'our courses' and choose what you'd like to learn. For a preview of what our courses are like, look in our 'tasters section'. When you've chosen a&#xA0;<b>learndirect</b>&#xA0;course you are ready to register, which you can do by clicking on the 'join us' button. You'll be asked to fill in some personal details. Once you've filled in and submitted the form, you're a&#xA0;<b>learndirect</b>&#xA0;member - with your own e- mail address and learning log - which will come in useful as you learn. Your Personal Learning Log will record the courses you are taking, at what stage you are, and courses you would like to take in the future. When you've chosen your course and registered, you need to decide where you want to enrol. Find this by clicking on the&#xA0;<b>learndirect</b>&#xA0;centres button. To enrol you need to pop in to your chosen &#xA0;<b>learndirect</b>&#xA0;centre and they'll arrange any payment.</p>
+<p>You can learn at home, at work, or in any&#xA0;<b>learndirect</b>&#xA0;centre. In fact anywhere there's access to a computer and the internet. If your course is online, you can start straight away. If it uses workbooks, CD-ROMS or videos, they'll be sent to your home address. You can learn at home, at work, or in any&#xA0;<b>learndirect</b>&#xA0;centre. In fact, anywhere there's access to a computer and the internet.</p>
+<p>It's that simple. So come and join us!</p>
+<p><b>Learndirect</b>&#xA0;websitewww.learndirect.co.uk</p>
+<p><b>Learndirect</b>&#xA0;leaflet 2000 Ufi limited. All rights reserved.</p>
+</section>
+
 <section id="body">
   <br/>
   <ol id="questionList">
-    <p align="left">List <b>THREE</b> sources of information about learndirect.</p>
+    <p align="left">List&#xA0;<b>THREE</b>&#xA0;sources of information about learndirect.</p>
+    <p class="linespace"></p>
     <li id="1">
       <input id="q1"/>
     </li>
+	<p class="linespace"></p>
     <li id="2">
       <input id="q2"/>
     </li>
+	<p class="linespace"></p>
     <li id="3">
       <input id="q3"/>
     </li>
-    <li id="4">What facility is offered by learndirect to people with hearing difficulties?<input id="q4"/></li>
-    <li id="5">What did Derek Ford mange to do on completion of his learndirect course?<input id="q5"/></li>
-    <p align="left">List <b>TWO</b> benefits that members receive when they join learndirect.</p>
+	<p class="linespace"></p>
+    <li id="4">What facility is offered by learndirect to people with hearing difficulties?&#xA0;<input id="q4"/></li>
+	<p class="linespace"></p>
+    <li id="5">What did Derek Ford mange to do on completion of his learndirect course?&#xA0;<input id="q5"/></li>
+	<p class="linespace"></p>
+	<p class="linespace"></p>
+    <p align="left">List&#xA0;<b>TWO</b>&#xA0;benefits that members receive when they join learndirect.</p>
+	<p class="linespace"></p>
     <li id="6">
       <input id="q6"/>
     </li>
+	<p class="linespace"></p>
     <li id="7">
       <input id="q7"/>
     </li>
-    <p align="left">List <b>THREE</b> possible locations for study on learndirect courses.</p>
+	<p class="linespace"></p>
+	<p class="linespace"></p>
+    <p align="left">List&#xA0;<b>THREE</b>&#xA0;possible locations for study on learndirect courses.</p>
+	<p class="linespace"></p>
     <li id="8">
       <input id="q8"/>
     </li>
+	<p class="linespace"></p>
     <li id="9">
       <input id="q9"/>
     </li>
+	<p class="linespace"></p>
     <li id="10">
       <input id="q10"/>
     </li>
   </ol>
 </section>
-
-<section id="readingText"><p align="left"><font color="#0000ff"><b>Can you discover your hidden talent?</b></font>With learndirect &#x2013; course you can</p>What's learndirect all about?<p align="left"><b>Learndirect</b> is a fresh new approach to learning that can help you choose the learning that's right for you.</p><p align="left">How? Through a free impartial helpline 0800 100 900, an easy to use website www.learndirect.co.uk and an ever increasing number of <b>learndirect</b> centres opening throughout the country.</p><p align="left"><font color="#000000"><b>One free call &#x2013; help with the answers</b></font></p><p align="left">I'm not sure what to do.</p><p align="left">Can I get help to pay for my course?</p><p align="left">Can I get a professional qualification?</p><p align="left">Who'll look after the children?</p><p align="left"><font color="#000000">Advisors at the <b>learndirect</b> helpline will give you impartial information and advice on any aspect of learning &#x2013; from the courses available in your area to careers, funding and childcare. You can also find this information on the <b>learndirect </b>website. Whatever you want to do, and even if you've not sure yet, <b>learndirect</b> can help in lots of ways.</font></p><p align="left"><b>Don't know what to do?</b></p><p align="left"><font color="#000000">We've information on over half a million courses throughout the country &#x2013; from accountancy and computing through to painting and photography. With such a wide range there's bound to be a course for you.</font></p><p align="left">The helpline is open 9am to 9pm Monday to Friday and 9am to 12 noon on Saturday. If you have problems hearing, you can contact the helpline through a textphone on the same number.</p><p align="left"><b>Learner Stories</b></p><p align="left"><b>Sharon Green</b>Sharon Green contacted the learndirect helpline to find out about the courses that were offered in her area. "I was very impressed by the speed of the service and the information the helpline provided. I've recommended learndirect to a number of other people at work" says Sharon. "The helpline has such a variety of information that it's an excellent starting point and a genuine resource".</p><p align="left"><b>Derek Ford</b>Having taken early retirement from his production post in the pharmaceutical industry, Derek, aged 63, decide to "brush up on his skills". "I was particularly interested in information technology and learndirect advised me of a suitable course on databases and spreadsheets. The new skills I learnt enabled me to get a job."</p><p align="left"><b>Get started </b></p><p align="left"><font color="#000000"><b>Learndirect</b> is a brand new form of learning &#x2013; that's for everyone!</font></p><p align="left"><font color="#000000"><b>Learndirect</b> is designed with you in mind. Our courses are computer-based, but don't let that bother you! The easiest way to get started is to go to one of the many <b>learndirect</b> centres around the country. Our friendly staff will be on hand to help you out. You don't need any experience &#x2013; we'll take you through your learning step by step.</font></p><p align="left">Take a look at the range of <b>learndirect</b> courses in 'our courses' and choose what you'd like to learn. For a preview of what our courses are like, look in our 'tasters section'. When you've chosen a <b>learndirect</b> course you are ready to register, which you can do by clicking on the 'join us' button. You'll be asked to fill in some personal details. Once you've filled in and submitted the form, you're a <b>learndirect</b> member - with your own e- mail address and learning log - which will come in useful as you learn. Your Personal Learning Log will record the courses you are taking, at what stage you are, and courses you would like to take in the future. When you've chosen your course and registered, you need to decide where you want to enrol. Find this by clicking on the <b>learndirect</b> centres button. To enrol you need to pop in to your chosen <b>learndirect</b> centre and they'll arrange any payment.</p><p align="left">You can learn at home, at work, or in any <b>learndirect</b> centre. In fact anywhere there's access to a computer and the internet. If your course is online, you can start straight away. If it uses workbooks, CD-ROMS or videos, they'll be sent to your home address. You can learn at home, at work, or in any <b>learndirect</b> centre. In fact, anywhere there's access to a computer and the internet.</p><p align="left"><font color="#000000">It's that simple. So come and join us!</font></p><p align="left"><b>Learndirect</b> websitewww.learndirect.co.uk</p><p align="left"><b>Learndirect</b> leaflet 2000 Ufi limited. All rights reserved.</p><p align="left"><font size="2"/></p></section>
 
 </body>
 </bento>

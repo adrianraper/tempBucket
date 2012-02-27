@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -18,25 +18,26 @@
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
+  
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="versatile" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="learning" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="pay" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="additional" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="self-employment" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="teaching" correct="true"/>
-    </GapFillQuestion>
+     <DragQuestion source="q1" block="b1">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a1" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a12" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a3" correct="true"/>
+	  </DragQuestion>
+	    <DragQuestion source="q6" block="b6">
+      <answer source="a5" correct="true"/>
+	  </DragQuestion>
   </questions>
 </script>
 
@@ -44,42 +45,63 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the passage on the left and complete the summary on the right using words from the top of the column. There are more answers than spaces, so you will not use them all.
+</div>
 </header>
 	
-<section id="body"><p align="left"><b>pay,  optimistic,  self-employment,  rigid,  teaching,  idealistic,  job sharing,  versatile,  pension,  learning,  communication,  additional,</b>sports and leisure</p><p align="left"/>The writer suggests that people should adopt a more <input id="q1"/> approach to the changing demands of the workplace. They need to place a higher priority on <input id="q2"/> than on their <input id="q3"/>. The only way to survive in the new working environment is to develop <input id="q4"/> skills. Those who once could have retired may need to consider other options, such as <input id="q5"/> or a new career in <input id="q6"/>.<p align="left"><font size="2"/></p>
+<section id="readingText">
+
+	<h1>Extended lifespans: Are you ready to live over 120 or more?</h1>
+
+	<p><b>It won't be long before lifespans of 120, 150, or even 200 years are possible. Both individuals and society need to plan for the consequences.</b></p>
+
+	<p>Extended lifespans are likely to produce significant economic impacts, even an end to retirement as we know it. No social security program in the world, and few private pension plans, can provide for the needs of pure consumers who can expect to live to the age of 115 or 120. Almost inevitably, this means that most baby boomers are unlikely to retire by age 65. They may never be able to retire completely. Instead, they will remain in the job market or, if the anti-aging revolution is delayed slightly longer than we expect, will return it. They will compete for jobs with younger workers, and by remaining in place for years beyond their original time of retirement, they will make it difficult or impossible for their successors to move from entry-level jobs into positions of authority.</p>
+	
+	<p>Certain businesses will be particularly affected by the transition to extended life. For example, the longer people remain healthy and active, the larger the market of sports equipment and clothing. And if old people can make do with part-time employment, many of them are likely to travel, bringing new growth to the hospitality industry. On the other hand, how many people will feel the need for life and health insurance if they can expect to live far beyond their natural span with little fear of major illness?</p>
+		
+	<p>Life extension will transform one industry above all: health care. In the late 1990s, hospitals, clinics, medical laboratories, and related services represent fully 14% of U.S. economy. Health care employs some 10.4 million Americans and pays out more than $283 billion per year in salaries. It is one of the fastest-growing industries in the national economy. Most observers believe that this remarkable growth will continue, thanks in large part to the fact that people are now living longer &#x2013; into the years when they becomes subject to chronic illness and require more care.</p>
+			
+	<p>But this rapid growth is unlikely to continue. Fully half of the money now devoted to health care in the United States is spent during the last six months of the patient's life, combating illnesses the doctor and victim alike know will prove terminal. As healthy lifespans stretch out, any final decline almost surely will be compressed from months or years to weeks. Very possibly, we will simply pass out of life without warning or obvious cause, in good health to the last &#x2013; and demanding little health care.</p>
+    
+	<p>True, we will continue to suffer broken legs, colds, auto accidents, and life's other random afflictions. Hereditary diseases will take their toll, at least until genetic research eliminates them. But these will not make up for the removal of heart disease, cancer, diabetes, arthritis, and the many other "markets" for health care that could all but disappear with successful anti-aging therapy. Hundreds of thousands of health-related jobs now expected to appear in the coming decades will never arrive. Hundreds of thousands of the jobs that now exist could vanish in the next 15 years. The effects will ripple throughout the economy.</p>
+	
+	<p>Unemployment will rise. Wages will fall. Canada, Europe, and Japan face much the same economic shocks as will occur in the United States. Thus, growth will slow around the world. It could be many years before the global economy expands enough to give its unexpectedly large population the standard of living it once enjoyed.</p>
+	
+	<p>The key to financial survival for life-extended boomers will be a kind of flexibility the World War II generation never needed. The best job for you is not the one with the highest salary or richest benefits, but the one that offers the best chance to broaden your skills. It may be within the same company, in which case you will have to apply for it just like any outsider. It may be with the competition, or in a different industry altogether. Or it may be whatever make- do job will keep you afloat while you take graduate-level courses or professional training. No option can be overlooked. No plan can go unrevised whenever an opportunity beckons or a new idea dawns.</p>
+	
+	<p>Here are the rules of coping with extended longevity:</p>
+	
+	<p>Give up the notion of a traditional retirement at or before age 65. Unless your economic position is rock-solid, you could eventually be forced back to work. Better to remain on the job, if possible, until you are absolutely certain that you will never have to return.</p>
+	
+	<p>There are alternatives, however. You may decide to start your own business and work 60 hours a week for yourself instead of 40 or so for someone else or become a teacher and pass your hard- won skills on to a new generation. Or you may find, just before you qualify for one of those rare pensions, that your longtime employer no longer needs you and you have no choice but to scramble for a living at an age when you hoped leisure would be at hand. What you are not likely to do is play golf and putter around the house.</p>
+	
+	<p><b>Glossary</b>&#xA0;baby boomers: people who were born in the 15-year period immediately following the Second World War, when there was a large increase in the birth-rate.</p>
+	
+	<p>Marvin Cetron and Owen Davies, The Futurist, Vol. 32, No. 3, 1st Apirl 1998.</p>
+	
 </section>
 
-<section id="readingText">
-  <p align="left">
-    <font color="#0000ff">
-      <b>Extended lifespans: Are you ready to live over 120 or more? </b>
-    </font>
-  </p>
-  <p align="left">
-    <b>It won't be long before lifespans of 120, 150, or even 200 years are possible. Both individuals and society need to plan for the consequences.</b>
-  </p>
-  <p align="left">Extended lifespans are likely to produce significant economic impacts, even an end to retirement as we know it. No social security program in the world, and few private pension plans, can provide for the needs of pure consumers who can expect to live to the age of 115 or 120. Almost inevitably, this means that most baby boomers are unlikely to retire by age 65. They may never be able to retire completely. Instead, they will remain in the job market or, if the anti-aging revolution is delayed slightly longer than we expect, will return it. They will compete for jobs with younger workers, and by remaining in place for years beyond their original time of retirement, they will make it difficult or impossible for their successors to move from entry-level jobs into positions of authority.</p>
-  <p align="left">Certain businesses will be particularly affected by the transition to extended life. For example, the longer people remain healthy and active, the larger the market of sports equipment and clothing. And if old people can make do with part-time employment, many of them are likely to travel, bringing new growth to the hospitality industry. On the other hand, how many people will feel the need for life and health insurance if they can expect to live far beyond their natural span with little fear of major illness?</p>
-  <p align="left">
-    <font color="#000000">Life extension will transform one industry above all: health care. In the late 1990s, hospitals, clinics, medical laboratories, and related services represent fully 14% of U.S. economy. Health care employs some 10.4 million Americans and pays out more than $283 billion per year in salaries. It is one of the fastest-growing industries in the national economy. Most observers believe that this remarkable growth will continue, thanks in large part to the fact that people are now living longer &#x2013; into the years when they becomes subject to chronic illness and require more care.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">But this rapid growth is unlikely to continue. Fully half of the money now devoted to health care in the United States is spent during the last six months of the patient's life, combating illnesses the doctor and victim alike know will prove terminal. As healthy lifespans stretch out, any final decline almost surely will be compressed from months or years to weeks. Very possibly, we will simply pass out of life without warning or obvious cause, in good health to the last &#x2013; and demanding little health care.</font>
-  </p>
-  <p align="left">True, we will continue to suffer broken legs, colds, auto accidents, and life's other random afflictions. Hereditary diseases will take their toll, at least until genetic research eliminates them. But these will not make up for the removal of heart disease, cancer, diabetes, arthritis, and the many other "markets" for health care that could all but disappear with successful anti-aging therapy. Hundreds of thousands of health-related jobs now expected to appear in the coming decades will never arrive. Hundreds of thousands of the jobs that now exist could vanish in the next 15 years. The effects will ripple throughout the economy.</p>
-  <p align="left">Unemployment will rise. Wages will fall. Canada, Europe, and Japan face much the same economic shocks as will occur in the United States. Thus, growth will slow around the world. It could be many years before the global economy expands enough to give its unexpectedly large population the standard of living it once enjoyed.</p>
-  <p align="left">The key to financial survival for life-extended boomers will be a kind of flexibility the World War II generation never needed. The best job for you is not the one with the highest salary or richest benefits, but the one that offers the best chance to broaden your skills. It may be within the same company, in which case you will have to apply for it just like any outsider. It may be with the competition, or in a different industry altogether. Or it may be whatever make- do job will keep you afloat while you take graduate-level courses or professional training. No option can be overlooked. No plan can go unrevised whenever an opportunity beckons or a new idea dawns.</p>
-  <p align="left">
-    <font color="#000000">Here are the rules of coping with extended longevity:</font>
-  </p>
-  <p align="left">Give up the notion of a traditional retirement at or before age 65. Unless your economic position is rock-solid, you could eventually be forced back to work. Better to remain on the job, if possible, until you are absolutely certain that you will never have to return.</p>
-  <p align="left">There are alternatives, however. You may decide to start your own business and work 60 hours a week for yourself instead of 40 or so for someone else or become a teacher and pass your hard- won skills on to a new generation. Or you may find, just before you qualify for one of those rare pensions, that your longtime employer no longer needs you and you have no choice but to scramble for a living at an age when you hoped leisure would be at hand. What you are not likely to do is play golf and putter around the house.</p>
-  <p align="left"><b>Glossary</b>baby boomers: people who were born in the 15-year period immediately following the Second World War, when there was a large increase in the birth-rate.</p>
-  <p align="left">Marvin Cetron and Owen Davies, The Futurist, Vol. 32, No. 3, 1st Apirl 1998.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<section id="noscroll">
+  <span id="a1" draggable="true">pay</span>
+  <span id="a2" draggable="true">optimistic</span>
+  <span id="a3" draggable="true">self-employment</span>
+  <span id="a4" draggable="true">rigid</span>
+  <span id="a5" draggable="true">teaching</span>
+  <span id="a6" draggable="true">idealistic</span>
+  <span id="a7" draggable="true">job sharing</span>
+  <span id="a8" draggable="true">versatile</span>
+  <span id="a9" draggable="true">pension</span>
+  <span id="a10" draggable="true">learning</span>
+  <span id="a11" draggable="true">communication</span>
+  <span id="a12" draggable="true">additional</span>
+  <span id="a13" draggable="true">sports and leisure</span>
+</section>
+
+<section id="body">
+<div id="splitdrag">
+<p>The writer suggests that people should adopt a more&#xA0;<input id="q1" type="droptarget"/>&#xA0;approach to the changing demands of the workplace. They need to place a higher priority on&#xA0;<input id="q2" type="droptarget"/>&#xA0;than on their&#xA0;<input id="q3" type="droptarget"/>. The only way to survive in the new working environment is to develop&#xA0;<input id="q4" type="droptarget"/>&#xA0;skills. Those who once could have retired may need to consider other options, such as&#xA0;<input id="q5" type="droptarget"/>&#xA0;or a new career in&#xA0;<input id="q6" type="droptarget"/>.</p>
+</div>
 </section>
 
 </body>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,10 +26,26 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
-	
-<section id="body"><img class="rightFloat" src="../media/LE_GW_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>General Training Writing Task 1</b></font></p><p align="left"><font color="#000000"><b>Letter &#x2013; making an application</b></font></p>You will ...<ol><li>read a task and analyse what is required.</li><li>consider expressions for likes and dislikes.</li><li>consider expressions for talking about frequency.</li><li>practise beginning and ending letters.</li><li>read a task and find mistakes in a sample answer.</li></ol><p align="left"><font size="2"/></p></section>
+
+<section id="body">
+<img class="rightFloat" src="../media/LC_GW_001.jpg" mode="1" id="1001"  />
+<div id="presentation">
+<h1><p>General Training Writing Task 1</p></h1>
+	<p><b>Letter &#x2013; making an application</b></p>
+	<p>You will ...</p>
+	<ol>
+		<li>read a task and analyse what is required;</li>
+		<li>consider expressions for likes and dislikes;</li>
+		<li>consider expressions for talking about frequency;</li>
+		<li>practise beginning and ending letters;</li>
+		<li>read a task and find mistakes in a sample answer.</li>
+	</ol>
+	</div>
+</section>
 
 </body>
 </bento>

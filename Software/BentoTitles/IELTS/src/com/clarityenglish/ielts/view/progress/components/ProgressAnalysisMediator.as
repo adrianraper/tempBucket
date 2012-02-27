@@ -54,7 +54,9 @@ package com.clarityenglish.ielts.view.progress.components {
 					var rs:Object = note.getBody() as Object;
 					//trace("progAnalysisMediator, got back " + rs.type);
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						view.setDataProvider(new XML(rs.dataProvider));
+						// #250. Save xml rather than a string
+						//view.setDataProvider(new XML(rs.dataProvider));
+						view.setDataProvider(rs.dataProvider);
 					}
 					break;
 				

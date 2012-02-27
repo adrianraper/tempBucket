@@ -62,13 +62,19 @@ package com.clarityenglish.ielts.view.progress.components {
 					var rs:Object = note.getBody() as Object;
 					switch (rs.type) {
 						case Progress.PROGRESS_MY_DETAILS:
-							view.detailDataProvider = new XML(rs.dataProvider);
+							// #250. Save xml rather than a string
+							//view.detailDataProvider = new XML(rs.dataProvider);
+							view.detailDataProvider = rs.dataProvider;
 							break;
 						case Progress.PROGRESS_MY_SUMMARY:
-							view.summaryDataProvider = new XML(rs.dataProvider);
+							// #250. Save xml rather than a string
+							//view.summaryDataProvider = new XML(rs.dataProvider);
+							view.summaryDataProvider = rs.dataProvider;
 							break;
 						case Progress.PROGRESS_MY_BOOKMARK:
-							view.bookmark = new XML(rs.dataProvider);
+							// #250. Save xml rather than a string
+							//view.bookmark = new XML(rs.dataProvider);
+							view.bookmark = rs.dataProvider;
 							break;
 						default:
 					}

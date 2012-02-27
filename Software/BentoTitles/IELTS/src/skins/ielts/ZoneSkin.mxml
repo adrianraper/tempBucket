@@ -177,7 +177,7 @@
 														this.toolTip = "This item is only in the full version. See My Profile page.";
 													
 													// DK options 
-													// - manually use ToolTipManager - this would be the best way to do it
+													// - manually use ToolTipManager - this would be the correct way to do it
 													// - or don't disable it, leave it enabled, put a box over it with 50%
 													// - or capture mouseEvent, preventDefault.
 												}

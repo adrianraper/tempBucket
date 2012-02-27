@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,10 +26,28 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/DD_GW_001.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>General Training Writing Task 1</b></font></p><p align="left"><font color="#000000"><b>Letter &#x2013; giving advice</b></font></p>You will read a task and complete a sample answer.<p align="left"><font color="#0000ff"><b>General Training Writing Task 2</b></font></p><p align="left"><b>Giving an opinion</b>You will ...</p><ol><li>write a composition giving and justifying your opinion.</li><li>correct mistakes in a sample composition.</li></ol><p align="left"><font size="2"/></p></section>
+<section id="body">
+<img class="rightFloat" src="../media/DD_GW_001.jpg" mode="1" id="1001"  />
+<div id="presentation">
+	
+	<h1><p>General Training Writing Task 1</p></h1>
+	<p><b>Letter &#x2013; giving advice</b></p>
+	<p>You will read a task and complete a sample answer.</p>
+	<p></p>
+	<h1><p>General Training Writing Task 2</p></h1>
+	<p><b>Giving an opinion</b></p>
+	<p>You will ...</p>
+	<ol>
+		<li>write a composition giving and justifying your opinion;</li>
+		<li>correct mistakes in a sample composition.</li>
+	</ol>
+</div>
+</section>
 
 </body>
 </bento>

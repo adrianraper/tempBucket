@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -58,24 +58,86 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Complete the text on the right. Choose NO MORE THAN THREE WORDS from the passage for each answer. Write your answers in gaps 1-8.
+</div>
 </header>
 	
-<section id="body"><img class="leftFloat" src="../media/HF_GR_004.jpg" mode="1" id="1001"/><p align="left"><font color="#0000ff"><b>Quercetin</b></font>Found in: (1) <input id="q1"/></p>Possible effects on health:Protects against the effects of pollution and cigarette smoke.<p align="left"><font color="#000000">(2) <b><font color="#0000ff"><input id="q2"/></font></b></font></p>Found in: AvocadosPossible effects on health: Slows down the ageing process<p align="left"><font color="#0000ff"><b>Manganese and monounsaturated fat</b></font>Found in: (3) <input id="q3"/></p>Possible effects on health:Reduce cholesterol levels<p align="left"><font color="#000000">(4) <b><font color="#0000ff"><input id="q4"/></font></b></font></p>Found in: WatermelonsPossible effects on health:Provides protection against some cancers<p align="left"><font color="#0000ff"><b>Aspartame</b></font>Found in: Food additives</p>Possible effects on health:Causes (5) <input id="q5"/> and(6) <input id="q6"/><p align="left"><font color="#000000">(7) <b><font color="#0000ff"><input id="q7"/></font></b></font></p>Found in: Food colouringPossible effects on health:Causes asthma attacks and fatal shock<p align="left"><font color="#0000ff"><b>Nitrates and nitrites</b></font>Found in: (8) <input id="q8"/></p>Possible effects on health:Linked to cancer in laboratory animals<p align="left"><font size="2"/></p>
+<section id="readingText">
+
+<h1><p>Your life on a plate</p></h1>
+
+<p>Once upon a time there was a simple rule of thumb for making healthy food choices &#x2013; greens were good, sugars were bad. But not any more. Almost every day new research emerges that overturns previously held wisdom, extolling the virtues of little known fruit and veg, or promoting hitherto unheard- of compounds that are found in foods which are commonly eaten by rainforest tribes who never seem to get a certain type of cancer.</p>
+
+<p>Eating five or six apples a week, for instance, has been found to be good for the lungs. According to researchers they contain an antioxidant called quercetin which may protect against the effects of pollution and cigarette smoke.</p>
+
+<p>Avocados, too, have hidden depths. Researchers have discovered the fruit has phytochemicals which may be important in anti-ageing, and they are also said to be rich in manganese and monounsaturated fat for lowering bad cholesterol levels.</p>
+
+<p>An eight-year study at Harvard University involving 44,000 men suggests that five bananas a day lowers high blood pressure, while bilberries in the diet may enhance night vision. The watermelon has been found to contain lycopene, which could help reduce the risk of prostate and cervical cancer, while a nightcap of cocoa may offer some protection against heart attacks and strokes.</p>
+
+<p>Then there are the bad reports on food once considered good. Aspartame, for example, a sugar substitute food additive, has been blamed for dizziness and seizures, while caffeine has been linked to stomach ulcers, insomnia, nervousness and birth defects.</p>
+
+<p>Monosodium glutamate causes headaches and a tightening of the chest, and has also been blamed for neurological problems, while sulphites, used to preserve food colouring, may trigger severe asthma attacks and fatal shock. Nitrates and nitrites, used in cured meats, have also been linked to cancer in laboratory animals.</p>
+
+<p>Professor Cary Cooper of Manchester University Institute of Science and Technology says that there is now so much information and advice about healthy food and diets, consumers are having difficulty coping. "One of the problems is that we have so many conflicting reports from doctors on what is nutritious. The advice changes all the time. First roughage was good for you, then it was found it didn't prevent bowel cancer. Salt was first bad, and now it might have some good properties. Too much information is being thrown at people. There is confusion and people no longer know what the definitive line is on nutrition. They don't hear common messages from the nutritionists. First one study will show one thing, then a second, another. As a result, I don't think that people actually take much notice."</p>
+
+<p>Despite the confusion, dieticians say that it is still possible to cut through the overload, the jargon, and the conflicting reports, and come up with healthy meals. Here leading dietician Gaynor Bussell has done just that, designing and explaining the perfect day's menu with readily available foods, and not a mung bean or tofu salad in sight.</p>
+
+<h1><p>Breakfast:</p></h1>
+
+<p>Orange juice fortified with calcium, breakfast cereal with soya milk, wholemeal or rye bread with olive oil- based margarine.</p>
+
+<p>The orange juice provides vitamin C and the calcium helps prevent osteoporosis, which more and more people are getting. Oat-based cereals are good because they help to reduce cholesterol levels. American studies have shown that half- a-pint of soya milk a day reduces the risk of heart disease, and might also be beneficial against prostate and breast cancer. Olive oil spread helps to control blood cholesterol levels.</p>
+
+<h1><p>Lunch:</p></h1>
+
+<p>Baked potato, baked beans, side salad, bio-yoghurt, glass of water.</p>
+
+<p>People should not just rely on one grain because they could become allergic to it, so the baked potato can be an alternative source of nutrients. The skin provides vitamin C and several minerals, and the potato is very starchy, which provides someone with energy for the afternoon. Five helpings of fruit and vegetables a day are recommended, and baked beans count. They are high in fibre and are good for the heart and digestion. They are also low in fat. The salad provides plenty of antioxidants, and the bio-yoghurt helps normalise the bacteria balance in the gut.</p>
+
+<h1><p>Dinner:</p></h1>
+
+<p>Stir-fry with chicken, brown rice, fresh fruit salad or sorbet, one glass of red wine.</p>
+
+<p>The stir-fry and rice provides another grain, as well as more fruit and vegetables. The meat is lean and a source of iron and can be alternated with tofu. With the fruit, go for a mix of many different colours because each colour has a different acting antioxidant. Red wine also contains antioxidants and has been found to protect against heart disease.</p>
+
+<p>Roger Dobson, The Independent, 14th September 2000.</p>
+
 </section>
 
-<section id="readingText"><p align="left"><font face="verdana" size="13" color="#0000ff"><b>Your life on a plate</b></font></p><p align="left"><font face="verdana" size="13" color="#000000">Once upon a time there was a simple rule of thumb for making healthy food choices &#x2013; greens were good, sugars were bad. But not any more. Almost every day new research emerges that overturns previously held wisdom, extolling the virtues of little known fruit and veg, or promoting hitherto unheard- of compounds that are found in foods which are commonly eaten by rainforest tribes who never seem to get a certain type of cancer.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Eating five or six apples a week, for instance, has been found to be good for the lungs. According to researchers they contain an antioxidant called quercetin which may protect against the effects of pollution and cigarette smoke.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Avocados, too, have hidden depths. Researchers have discovered the fruit has phytochemicals which may be important in anti-ageing, and they are also said to be rich in manganese and monounsaturated fat for lowering bad cholesterol levels.</font></p><p align="left"><font face="verdana" size="13" color="#000000">An eight-year study at Harvard University involving 44,000 men suggests that five bananas a day lowers high blood pressure, while bilberries in the diet may enhance night vision. The watermelon has been found to contain lycopene, which could help reduce the risk of prostate and cervical cancer, while a nightcap of cocoa may offer some protection against heart attacks and strokes.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Then there are the bad reports on food once considered good. Aspartame, for example, a sugar substitute food additive, has been blamed for dizziness and seizures, while caffeine has been linked to stomach ulcers, insomnia, nervousness and birth defects.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Monosodium glutamate causes headaches and a tightening of the chest, and has also been blamed for neurological problems, while sulphites, used to preserve food colouring, may trigger severe asthma attacks and fatal shock. Nitrates and nitrites, used in cured meats, have also been linked to cancer in laboratory animals.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Professor Cary Cooper of Manchester University Institute of Science and Technology says that there is now so much information and advice about healthy food and diets, consumers are having difficulty coping. "One of the problems is that we have so many conflicting reports from doctors on what is nutritious. The advice changes all the time. First roughage was good for you, then it was found it didn't prevent bowel cancer. Salt was first bad, and now it might have some good properties. Too much information is being thrown at people. There is confusion and people no longer know what the definitive line is on nutrition. They don't hear common messages from the nutritionists. First one study will show one thing, then a second, another. As a result, I don't think that people actually take much notice."</font></p><p align="left"><font face="verdana" size="13" color="#000000">Despite the confusion, dieticians say that it is still possible to cut through the overload, the jargon, and the conflicting reports, and come up with healthy meals. Here leading dietician Gaynor Bussell has done just that, designing and explaining the perfect day's menu with readily available foods, and not a mung bean or tofu salad in sight.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Breakfast:</b></font></p>Orange juice fortified with calcium, breakfast cereal with soya milk, wholemeal or rye bread with olive oil- based margarine.<p align="left"><font face="verdana" size="13" color="#000000">The orange juice provides vitamin C and the calcium helps prevent osteoporosis, which more and more people are getting. Oat-based cereals are good because they help to reduce cholesterol levels. American studies have shown that half- a-pint of soya milk a day reduces the risk of heart disease, and might also be beneficial against prostate and breast cancer. Olive oil spread helps to control blood cholesterol levels.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Lunch:</b></font></p>Baked potato, baked beans, side salad, bio-yoghurt, glass of water.<p align="left"><font face="verdana" size="13" color="#000000">People should not just rely on one grain because they could become allergic to it, so the baked potato can be an alternative source of nutrients. The skin provides vitamin C and several minerals, and the potato is very starchy, which provides someone with energy for the afternoon. Five helpings of fruit and vegetables a day are recommended, and baked beans count. They are high in fibre and are good for the heart and digestion. They are also low in fat. The salad provides plenty of antioxidants, and the bio-yoghurt helps normalise the bacteria balance in the gut.</font></p><p align="left"><font face="verdana" size="13" color="#000000"><b>Dinner:</b></font></p>Stir-fry with chicken, brown rice, fresh fruit salad or sorbet, one glass of red wine.<p align="left"><font face="verdana" size="13" color="#000000">The stir-fry and rice provides another grain, as well as more fruit and vegetables. The meat is lean and a source of iron and can be alternated with tofu. With the fruit, go for a mix of many different colours because each colour has a different acting antioxidant. Red wine also contains antioxidants and has been found to protect against heart disease.</font></p><p align="left"><font face="verdana" size="13" color="#000000">Roger Dobson, The Independent, 14th September 2000.</font></p><p align="left"><font size="2"/></p></section>
+<section id="body">
+<div id="splitquestionList">
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This text about healthy eating contains a lot of information, but you don't have to read the whole passage word by word to find the details you need to complete the exercises. Both tasks can be completed by scanning the text for key words and then reading carefully around those words until you find the answer.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">As with all table completion exercises, make sure you read the column and row headings so that you know what kind of information is missing. This table is best completed row by row, moving across from left to right, instead of column by column, moving across from left to right, instead of column by column, moving down. For each row, choose a key word in the table to search for in the text. In the first row, for example, choose the substance 'quercetin' and search for it in the text.</font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<p><b>Quercetin</b></p>
+<p>Found in:<tab/>(1)&#xA0;<input id="q1"/></p>
+<p>Possible effects on health:<tab/>Protects against the effects of pollution and cigarette smoke.</p>
+<p></p>
+<p>(2)<b>&#xA0;<input id="q2"/></b></p>
+<p>Found in:<tab/>Avocados</p>
+<p>Possible effects on health:<tab/>Slows down the ageing process</p>
+<p></p>
+<p><b>Manganese and monounsaturated fat</b></p>
+<p>Found in:<tab/>(3)&#xA0;<input id="q3"/></p>
+<p>Possible effects on health:<tab/>Reduce cholesterol levels</p>
+<p></p>
+<p>(4)<b>&#xA0;<input id="q4"/></b></p>
+<p>Found in:<tab/>Watermelons</p>
+<p>Possible effects on health:<tab/>Provides protection against some cancers</p>
+<p></p>
+<p><b>Aspartame</b></p>
+<p>Found in:<tab/>Food additives</p>
+<p>Possible effects on health:<tab/>Causes (5)&#xA0;<input id="q5"/>&#xA0;and (6)&#xA0;<input id="q6"/></p>
+<p></p>
+<p>(7)<b>&#xA0;<input id="q7"/></b></p>
+<p>Found in:<tab/>Food colouring</p>
+<p>Possible effects on health:<tab/>Causes asthma attacks and fatal shock</p>
+<p></p>
+<p><b>Nitrates and nitrites</b></p>
+<p>Found in:<tab/>(8)&#xA0;<input id="q8"/></p>
+<p>Possible effects on health:<tab/>Linked to cancer in laboratory animals</p>
+<p></p>
+
+</div>
 </section>
 
 </body>

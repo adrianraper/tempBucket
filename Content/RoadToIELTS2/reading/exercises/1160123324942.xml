@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -76,54 +76,64 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the passage on the left and look at the statements on the right (Questions 1-10). For each question, click on the best option; TRUE - if the statement is true, FALSE - if the statement is false, NOT GIVEN - if the information is not given in the passage. 
+</div>
 </header>
 	
-<section id="body">
-  <img class="leftFloat" src="../media/EN_GR_002.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">2% of all crude oil produced is used to make plastic bottles.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q2">275,000 tonnes of plastic are used in British households annually.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q3">RECOUP is a voluntary environmental group.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q4">Over a third of local authorities in the UK operate plastic bottle collection schemes.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q5">There are two types of plastic bottle collection scheme in the UK.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q6">Brown beer bottles are not suitable for recycling.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q7">Plastic bottles need to be rinsed before collection.<list class="answerList"><li><a id="a19">True</a></li><li><a id="a20">False</a></li><li><a id="a21">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q8">The code on a plastic bottle indicates what kind of plastic it is made from.<list class="answerList"><li><a id="a22">True</a></li><li><a id="a23">False</a></li><li><a id="a24">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q9">Bottles made from PET and PVC are opaque.<list class="answerList"><li><a id="a25">True</a></li><li><a id="a26">False</a></li><li><a id="a27">Not given</a></li></list><br/></li>
-    <br/>
-    <li id="q10">There is a white spot on the base of bottles made from PET.<list class="answerList"><li><a id="a28">True</a></li><li><a id="a29">False</a></li><li><a id="a30">Not given</a></li></list><br/></li>
-  </ol>
+<section id="readingText">
+
+	<h1>FANTASTIC PLASTIC</h1>
+	
+	<p>Did you know that plastics are made from oil? Plastic packaging uses only a very small amount, about 2% of all crude oil produced. Plastic bottles use less than a sixth of this.</p>
+	
+	<p>In Britain we use about 275,000 tonnes of plastic bottles in the home every year &#x2013; that works out at about 15 million bottles every day. More and more people are able to recycle their plastic bottles through schemes such as those assisted by RECOUP. Help recycle plastic bottles and conserve the use of our natural resources.</p>
+	
+	<p><b>Start Collecting</b>More than one in three UK local authorities runs a plastic bottle collection scheme. This could be either a 'kerbside' collection (where recyclables are regularly collected from your home) or a bottle bank scheme.</p>
+
+	<p>All household plastic bottles, with only a few exceptions, can be collected for recycling. So that means start saving your drinks, milk, shampoo and household cleaning bottles where you have a local collection scheme.</p>
+	
+	<p>Most plastic collection schemes only collect plastic bottles. You wouldn't put newspapers into a glass bank. Putting the wrong materials into collection banks makes recycling more difficult. Please, help make plastic bottle recycling a great success by following the instructions at collection points carefully. Any items which are not plastic bottles are removed at a later stage: for example, egg cartons; plastic car parts; ice cream tubs; toys and plastic bags. These items are made with different types of plastic (polymers) such as polystyrene and polypropylene. Different polymers have different properties; when recycled they are generally processed separately.</p>
+	
+	<p>All household plastic bottles can be recycled except brown drink bottles, such as the bottles used to hold beer. These bottles need several types of plastic to keep the beer fresh, which makes recycling difficult. Bottles found in the garage or garden shed, such as lubricating and motor oil bottles, and bottles which have held pesticides, horticultural chemicals and other hazardous chemicals should not be collected for recycling.</p>
+	
+	<p>Finally, don't forget to take the caps off and squash the bottles because then you can fit more in collection skips and collection vehicles. This helps to reduce costs and conserves energy.</p>
+	
+	<p>By following the simple instructions above you can be confident that everything you deposit will be recycled. You will give the companies reprocessing collected plastic the best chance to develop technology and expand the range of products made from used plastic bottles.</p>
+	
+	<h1>Sort It Out!</h1>
+	
+	<p>More and more companies are now putting a special code on the bottle labels or base of the bottle to make sorting even easier. If you see this code then you'll be doubly sure what polymer the bottle is made from.</p>
+	
+	<p>Fantastic Plastic, RECOUP</p>
+	
 </section>
 
-<section id="readingText"><img class="leftFloat" src="../media/EN_GR_002a.jpg" mode="1" id="1002"/><p align="left"><font color="#0000ff"><b>FANTASTIC PLASTIC</b></font></p><p align="left"><font color="#000000">Did you know that plastics are made from oil? Plastic packaging uses only a very small amount, about 2% of all crude oil produced. Plastic bottles use less than a sixth of this.</font></p><p align="left"><font color="#000000">In Britain we use about 275,000 tonnes of plastic bottles in the home every year &#x2013; that works out at about 15 million bottles every day. More and more people are able to recycle their plastic bottles through schemes such as those assisted by RECOUP. Help recycle plastic bottles and conserve the use of our natural resources.</font></p><p align="left"><b>Start Collecting</b>More than one in three UK local authorities runs a plastic bottle collection scheme. This could be either a 'kerbside' collection (where recyclables are regularly collected from your home) or a bottle bank scheme.</p><p align="left">All household plastic bottles, with only a few exceptions, can be collected for recycling. So that means start saving your drinks, milk, shampoo and household cleaning bottles where you have a local collection scheme.</p><p align="left"><font color="#000000">Most plastic collection schemes only collect plastic bottles. You wouldn't put newspapers into a glass bank. Putting the wrong materials into collection banks makes recycling more difficult. Please, help make plastic bottle recycling a great success by following the instructions at collection points carefully. Any items which are not plastic bottles are removed at a later stage: for example, egg cartons; plastic car parts; ice cream tubs; toys and plastic bags. These items are made with different types of plastic (polymers) such as polystyrene and polypropylene. Different polymers have different properties; when recycled they are generally processed separately.</font></p><p align="left">All household plastic bottles can be recycled except brown drink bottles, such as the bottles used to hold beer. These bottles need several types of plastic to keep the beer fresh, which makes recycling difficult. Bottles found in the garage or garden shed, such as lubricating and motor oil bottles, and bottles which have held pesticides, horticultural chemicals and other hazardous chemicals should not be collected for recycling.</p><p align="left">Finally, don't forget to take the caps off and squash the bottles because then you can fit more in collection skips and collection vehicles. This helps to reduce costs and conserves energy.</p><p align="left">By following the simple instructions above you can be confident that everything you deposit will be recycled. You will give the companies reprocessing collected plastic the best chance to develop technology and expand the range of products made from used plastic bottles.</p><p align="left"><font color="#000000"><b>Sort It Out!</b></font></p>More and more companies are now putting a special code on the bottle labels or base of the bottle to make sorting even easier. If you see this code then you'll be doubly sure what polymer the bottle is made from.<p align="left">Fantastic Plastic, RECOUP</p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p><p align="left"><font size="2"/></p></section>
+<section id="body">
+  <img class="leftFloat" src="../media/EN_GR_002.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This text gives facts and figures concerning the recycling of plastic bottles.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Many of the questions involve numbers. It is important to check exactly what the numbers refer to in the text, and if the numbers are used to refer to the same thing in the question. Don't choose 'True' simply because the same number appears in both the question and the text.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Remember that there are a number of different ways of expressing the same number. A quarter, for example, can be expressed as a fourth, one in four or 25 per cent.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">As with all exercises of this kind, don't forget that some of the answers will probably be Not Given. This is not the same as FALSE.</font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+    <li id="q1">2% of all crude oil produced is used to make plastic bottles.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q2">275,000 tonnes of plastic are used in British households annually.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q3">RECOUP is a voluntary environmental group.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q4">Over a third of local authorities in the UK operate plastic bottle collection schemes.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q5">There are two types of plastic bottle collection scheme in the UK.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q6">Brown beer bottles are not suitable for recycling.<list class="answerList"><li><a id="a16">True</a></li><li><a id="a17">False</a></li><li><a id="a18">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q7">Plastic bottles need to be rinsed before collection.<list class="answerList"><li><a id="a19">True</a></li><li><a id="a20">False</a></li><li><a id="a21">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q8">The code on a plastic bottle indicates what kind of plastic it is made from.<list class="answerList"><li><a id="a22">True</a></li><li><a id="a23">False</a></li><li><a id="a24">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q9">Bottles made from PET and PVC are opaque.<list class="answerList"><li><a id="a25">True</a></li><li><a id="a26">False</a></li><li><a id="a27">Not given</a></li></list></li>
+    <p class="linespace"></p>
+    <li id="q10">There is a white spot on the base of bottles made from PET.<list class="answerList"><li><a id="a28">True</a></li><li><a id="a29">False</a></li><li><a id="a30">Not given</a></li></list></li>
+	<p class="linespace"></p>
+  </ol>
 </section>
 
 </body>

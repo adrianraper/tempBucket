@@ -55,10 +55,13 @@ package com.clarityenglish.ielts.view.progress.components {
 					var rs:Object = note.getBody() as Object;
 					trace("progCompareMediator, got back " + rs.type);
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						view.setMySummaryDataProvider(new XML(rs.dataProvider));
+						// #250. Save xml rather than a string
+						//view.setMySummaryDataProvider(new XML(rs.dataProvider));
+						view.setMySummaryDataProvider(rs.dataProvider);
 					}
 					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
-						view.setEveryoneSummaryDataProvider(new XML(rs.dataProvider));
+						//view.setEveryoneSummaryDataProvider(new XML(rs.dataProvider));
+						view.setEveryoneSummaryDataProvider(rs.dataProvider);
 					}
 					break;
 				
