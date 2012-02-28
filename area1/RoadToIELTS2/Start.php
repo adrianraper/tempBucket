@@ -86,6 +86,11 @@
 		
 		function onLoad() {
 			thisMovie("bento").focus();
+
+			// #224
+			window.onbeforeunload = function() {
+				return "If you navigate away from this window during a session you may lose data you are working on and will need to log in again.";
+			}
 		}
 		// *********
 		// *********
