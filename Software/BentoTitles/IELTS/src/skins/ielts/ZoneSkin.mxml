@@ -46,7 +46,6 @@
 			}
 			
 			protected function onAdviceZoneVideoSelect(event:IndexChangeEvent):void {
-				// Too much happening here, shift to the view/mediator
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);
 			}
 			
@@ -148,7 +147,6 @@
 						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-				
 						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
 								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
 							<s:layout>
@@ -171,15 +169,18 @@
 													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
 														
 													// #234
-													if (!enabled)
+													if (!enabled) {
 														// Add a mouseover to the item saying that it is only in the Full Version
 														// Ah, but Spark doesn't do this for disabled components
-														this.toolTip = "This item is only in the full version. See My Profile page.";
+														// So instead, put a toolTip on the whole list, and override it to an empty tip for enabled items.
+														// Downsides are that any gaps between two active ones can throw up toolTip
+														// and that if you move between two disabled ones the toolTip doesn't move.
 													
-													// DK options 
-													// - manually use ToolTipManager - this would be the correct way to do it
-													// - or don't disable it, leave it enabled, put a box over it with 50%
-													// - or capture mouseEvent, preventDefault.
+														// DK options 
+														// - manually use ToolTipManager - this would be the correct way to do it
+														// - or don't disable it, leave it enabled, put a box over it with 50%
+														// - or capture mouseEvent, preventDefault.
+													}
 												}
 											]]>
 										</fx:Script>

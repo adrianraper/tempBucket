@@ -163,14 +163,14 @@
 			id: "bento",
 			name: "bento"
 		};
-		var expressInstall = startControl + "expressInstall.swf";
+		var expressInstall = "playerProductInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
+		//swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
 	</script>
 </head>
 <body onload="onLoad()">
 	<div style="text-align:center" id="bento">
-		<p>This application requires Adobe's Flash player, running at least version 9.</p>
+		<p>This application requires Adobe's Flash player, running at least version 10.2.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>

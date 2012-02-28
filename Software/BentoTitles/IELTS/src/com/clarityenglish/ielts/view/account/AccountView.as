@@ -149,17 +149,13 @@ package com.clarityenglish.ielts.view.account {
 			if (examDateField.selectedDate) {
 				// Just update the counter for now
 				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
-				// TODO. None of this is working. examHours is 13, after setting it examDate.hours = 0!
+				// TODO. You should be able to just do setHours on the date. But it isn't working.
+				// So convert to milliseconds, adding some hours/minutes then converting back.
 				//userDetails.examDate.setHours(examHours.value as Number, examMinutes.value as Number);
-				// Try converting to milliseconds, adding some hours/minutes then converting back.
-				//userDetails.examDate = examDateField.selectedDate;
 				var examDateBuilder:Date = examDateField.selectedDate;
 				var examDateTime:Number = examDateBuilder.getTime();
 				examDateTime += (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
 				userDetails.examDate = new Date(examDateTime);
-				//userDetails.examDate.hours = examHours.value as Number;
-				//userDetails.examDate.minutes = examMinutes.value as Number;
-				//trace("exam date changed to " + userDetails.examDate.toDateString()); 
 				trace("exam date changed to " + DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd hh:mm")); 
 			}
 		}
