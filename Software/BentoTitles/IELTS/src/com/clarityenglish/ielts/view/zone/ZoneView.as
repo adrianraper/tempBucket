@@ -6,9 +6,11 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
+	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
@@ -104,6 +106,11 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		/**
+		 * ZoneView specifically needs to know if it is mediated or not in order to implement #222.  This is not necessary for most views.
+		 */
+		public var isMediated:Boolean;
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean;
 		
@@ -157,12 +164,14 @@ package com.clarityenglish.ielts.view.zone {
 			super.onAddedToStage(event);
 			
 			stage.addEventListener(MouseEvent.CLICK, onMouseClick);
+			stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 		}
 		
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
 			
 			stage.removeEventListener(MouseEvent.CLICK, onMouseClick);
+			stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 		}
 		
 		protected override function commitProperties():void {
@@ -363,6 +372,17 @@ package com.clarityenglish.ielts.view.zone {
 					questionZoneVideoPlayer.stop();
 				}
 			}
+		}
+		
+		/**
+		 * Detect mouse ups over the whole stage in order to stop any audio playing.  We check that the view is being mediator in order to make sure that
+		 * we don't stop audio unless the view is actually visible (but visible can be true and it can be on the stage, even when an exercise is in progress
+		 * which is why we explicitly inject the mediation status!) #222
+		 * 
+		 * @param event
+		 */
+		protected function onMouseUp(event:MouseEvent):void {
+			if (isMediated) AudioPlayer.stopAllAudio();
 		}
 		
 		/**

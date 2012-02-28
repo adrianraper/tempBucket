@@ -59,6 +59,8 @@
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			
+			view.isMediated = true; // #222
 		}
 		
 		override public function onRemove():void {
@@ -67,6 +69,8 @@
 			view.courseSelect.remove(onCourseSelected);
 			view.exerciseSelect.remove(onExerciseSelected);
 			view.exerciseSelect.remove(onVideoSelected);
+			
+			view.isMediated = false; // #222
 		}
         
 		override public function listNotificationInterests():Array {
@@ -108,7 +112,6 @@
 		 *
 		 */
 		private function onCourseSelected(course:XML):void {
-			
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
