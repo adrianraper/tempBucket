@@ -21,15 +21,21 @@
 		<![CDATA[
 			import caurina.transitions.Tweener;
 			
+			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
 			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
 			
+			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
+			
+			import org.davekeen.util.PointUtil;
 			
 			import spark.events.IndexChangeEvent;
 			import spark.events.ListEvent;
 			
 			protected function creationComplete(event:FlexEvent):void {
 				hostComponent.resetQuestionZoneGraphics();
+				
+				new DisabledPopupWatcher(adviceZoneVideoList); // #234
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
@@ -147,8 +153,7 @@
 						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" 
-								borderVisible="false" change="onAdviceZoneVideoSelect(event)" >
+						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
 							<s:layout>
 								<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="10" horizontalGap="5" />
 							</s:layout>
@@ -166,21 +171,7 @@
 													videoLabel.text = data.@caption;
 													
 													// #213
-													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
-														
-													// #234
-													if (!enabled) {
-														// Add a mouseover to the item saying that it is only in the Full Version
-														// Ah, but Spark doesn't do this for disabled components
-														// So instead, put a toolTip on the whole list, and override it to an empty tip for enabled items.
-														// Downsides are that any gaps between two active ones can throw up toolTip
-														// and that if you move between two disabled ones the toolTip doesn't move.
-													
-														// DK options 
-														// - manually use ToolTipManager - this would be the correct way to do it
-														// - or don't disable it, leave it enabled, put a box over it with 50%
-														// - or capture mouseEvent, preventDefault.
-													}
+													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false");
 												}
 											]]>
 										</fx:Script>
@@ -193,6 +184,7 @@
 											<s:Image id="image" width="68" />
 											<s:Label id="videoLabel" width="150" paddingTop="7" fontWeight="bold"/>
 										</s:HGroup>
+										<!--<s:Button id="tooltipHolder" width="100%" height="100%" toolTip="Only available in the Last minute version" />-->
 									</s:ItemRenderer>
 								</fx:Component>
 							</s:itemRenderer>
