@@ -147,6 +147,7 @@ package com.clarityenglish.common.model {
 				if (!bentoProxy.menuXHTML) {
 					// #250. Save xml rather than a string
 					// bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
+					
 					bentoProxy.menuXHTML = new XHTML(loadedResources[progressType], this.href);
 					sendNotification(BBNotifications.MENU_XHTML_LOADED);
 				}
