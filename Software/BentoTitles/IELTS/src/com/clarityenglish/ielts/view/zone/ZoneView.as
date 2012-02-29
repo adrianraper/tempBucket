@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.zone {
 	import mx.formatters.DateFormatter;
 	
 	import org.osflash.signals.Signal;
+	import org.osmf.events.MediaPlayerStateChangeEvent;
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
@@ -237,7 +238,15 @@ package com.clarityenglish.ielts.view.zone {
 					courseSelectorWidget.addEventListener("listeningSelected", onCourseSelectorClick, false, 0, true);
 					courseSelectorWidget.addEventListener("speakingSelected", onCourseSelectorClick, false, 0, true);
 					break;
+				case questionZoneVideoPlayer:
+				case adviceZoneVideoPlayer:
+					(instance as VideoPlayer).addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
+					break;
 			}
+		}
+		
+		protected function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
+			log.debug("VIDEO PLAYER STATE CHANGE: " + event.state);
 		}
 		
 		/**
