@@ -89,7 +89,8 @@
 
 			// #224. Extend so that we check isDirty from bento - only ask if this is true.
 			window.onbeforeunload = function() {
-				//return "If you navigate away from this window during a session you may lose data you are working on and will need to log in again.";
+				if (thisMovie("bento").isExerciseDirty())
+					return "If you navigate away from this window during a session you may lose data you are working on and will need to log in again.";
 			}
 		}
 		// *********
@@ -159,7 +160,8 @@
 			name: "bento",
 			quality: "high",
 			allowfullscreen: "true",
-			scale: "default"
+			scale: "default",
+			allowscriptaccess: "always"
 		};
 		var attr = {
 			id: "bento",

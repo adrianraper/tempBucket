@@ -3,6 +3,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.model.ExternalInterfaceProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -27,6 +28,7 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new XHTMLProxy());
 			facade.registerProxy(new LoginProxy());
 			facade.registerProxy(new ProgressProxy());
+			facade.registerProxy(new ExternalInterfaceProxy());
 			
 			// Inject the FSM into PureMVC
 			// Note that 'changed' means entered, really
