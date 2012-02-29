@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
@@ -13,11 +14,15 @@ package com.clarityenglish.ielts.view.zone {
 	import org.davekeen.util.PointUtil;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
+	import spark.components.DataGroup;
 	import spark.components.IItemRenderer;
+	import spark.components.List;
 	
 	public class DisabledPopupWatcher {
 		
 		private var target:UIComponent;
+		
+		private var dataGroup:DataGroup;
 		
 		private var lastItemRenderer:UIComponent;
 		
@@ -27,6 +32,13 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public function DisabledPopupWatcher(target:UIComponent, productVersion:String = null, toolTipText:String = null) {
 			this.target = target;
+			
+			// Determine the datagroup
+			if (target is List) {
+				this.dataGroup = (target as List).dataGroup;
+			} else if (target is DataGroup) {
+				this.dataGroup = target as DataGroup;
+			}
 			
 			// Text depends on version
 			if (toolTipText) {
@@ -48,6 +60,16 @@ package com.clarityenglish.ielts.view.zone {
 			}
 			
 			target.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+			target.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			target.addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+		}
+		
+		protected function onRemovedFromStage(event:Event):void {
+			target.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+			target.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			target.removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			target = lastItemRenderer = dataGroup = null;
 		}
 		
 		private function onMouseMove(event:MouseEvent):void {
@@ -55,7 +77,7 @@ package com.clarityenglish.ielts.view.zone {
 			
 			// Loop through the item renderers trying to figure out if we are in one
 			for (var n:int = 0; n < event.currentTarget.dataProvider.length; n++) {
-				var itemRenderer:UIComponent = event.currentTarget.dataGroup.getElementAt(n);
+				var itemRenderer:UIComponent = dataGroup.getElementAt(n) as UIComponent;
 				
 				// Figure out if the mouse is over this item renderer
 				if (itemRenderer.getBounds(event.currentTarget as DisplayObject).containsPoint(point)) {
@@ -73,6 +95,10 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 				}
 			}
+		}
+		
+		protected function onMouseOut(event:MouseEvent):void {
+			destroyToolTip();
 		}
 		
 		private function destroyToolTip():void {

@@ -246,7 +246,6 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function stopSession():void {
-			
 			// sessionID is the only key we need, and that is held in this model
 			var params:Array = [ sessionID, new Date().getTime() ];
 			new RemoteDelegate("stopSession", params, this).execute();			

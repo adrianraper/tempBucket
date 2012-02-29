@@ -37,7 +37,8 @@
 				
 				// #234
 				new DisabledPopupWatcher(adviceZoneVideoList, hostComponent._productVersion); 
-				// new DisabledPopupWatcher(examPracticeDataGroup, hostComponent._productVersion); 
+				new DisabledPopupWatcher(examPracticeDataGroup, hostComponent._productVersion); 
+				new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent._productVersion); 
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
