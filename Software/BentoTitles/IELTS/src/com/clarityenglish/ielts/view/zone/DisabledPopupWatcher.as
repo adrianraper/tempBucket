@@ -1,4 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.common.model.ConfigProxy;
+	
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
@@ -9,6 +11,7 @@ package com.clarityenglish.ielts.view.zone {
 	import mx.managers.ToolTipManager;
 	
 	import org.davekeen.util.PointUtil;
+	import org.puremvc.as3.patterns.facade.Facade;
 	
 	import spark.components.IItemRenderer;
 	
@@ -22,9 +25,27 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var toolTip:IToolTip;
 		
-		public function DisabledPopupWatcher(target:UIComponent, toolTipText:String = "Not available in the current version") {
+		public function DisabledPopupWatcher(target:UIComponent, productVersion:String = null, toolTipText:String = null) {
 			this.target = target;
-			this.toolTipText = toolTipText;
+			
+			// Text depends on version
+			if (toolTipText) {
+				this.toolTipText = toolTipText;
+			} else {
+				switch (productVersion) {
+					case "fullVersion":
+						this.toolTipText = "Not currently available.";
+						break;
+					case "lastMinute":
+						this.toolTipText = "Only available in the full version. See My Profile page for more details."
+						break;
+					case "tenHour":
+						this.toolTipText = "Only available in the candidate version. See My Profile page for more details."
+						break;
+					default:
+						this.toolTipText = "Not available in the current version. See My Profile page for more details."
+				}
+			}
 			
 			target.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 		}

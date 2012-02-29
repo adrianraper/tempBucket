@@ -50,6 +50,8 @@
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
+			// #234
+			view._productVersion = configProxy.getProductVersion();
 			
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);

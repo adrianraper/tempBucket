@@ -35,7 +35,9 @@
 			protected function creationComplete(event:FlexEvent):void {
 				hostComponent.resetQuestionZoneGraphics();
 				
-				new DisabledPopupWatcher(adviceZoneVideoList); // #234
+				// #234
+				new DisabledPopupWatcher(adviceZoneVideoList, hostComponent._productVersion); 
+				// new DisabledPopupWatcher(examPracticeDataGroup, hostComponent._productVersion); 
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {

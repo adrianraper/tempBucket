@@ -106,6 +106,10 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		// #234
+		[Bindable]
+		public var _productVersion:String;
+		
 		/**
 		 * ZoneView specifically needs to know if it is mediated or not in order to implement #222.  This is not necessary for most views.
 		 */
@@ -190,7 +194,7 @@ package com.clarityenglish.ielts.view.zone {
 				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
 				
 				// Give the exam practice exercises as a dataprovider to the exam practice answer group
-				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice2").exercise);
+				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-answers").exercise);
 				
 				// Change the course selector
 				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());

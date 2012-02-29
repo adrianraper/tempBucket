@@ -54,7 +54,7 @@
 				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_gt_practice2.pdf" />
 				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_gt_practice3.pdf" enabled="false" />
 			</unit>
-			<unit id="1287130121000" class="exam-practice2">
+			<unit id="1287130121000" class="exam-answers">
 				<exercise id="1287130121001" caption="Answer sheet 1" href="reading/pdf/reading_gt_answer1.pdf" />
 				<exercise id="1287130121002" caption="Answer sheet 2" href="reading/pdf/reading_gt_answer2.pdf" />
 				<exercise id="1287130121003" caption="Answer sheet 3" href="reading/pdf/reading_gt_answer3.pdf" enabled="false" />
@@ -111,7 +111,7 @@
 				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" audioHref="listening/media/listening_tp_part2.mp3" />
 				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" audioHref="listening/media/listening_tp_part3.mp3" enabled="false" />
 			</unit>
-		 	<unit id="1287130221000" class="exam-practice2">
+		 	<unit id="1287130221000" class="exam-answers">
 				<exercise id="1287130221001" href="listening/pdf/listening_answer1.pdf" caption="Answer sheet 1" />
 				<exercise id="1287130221002" href="listening/pdf/listening_answer2.pdf" caption="Answer sheet 2" />
 				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3" enabled="false" />
@@ -366,7 +366,7 @@
 				<exercise id="1287130420002" href="writing/pdf/writing_gt_practice2.pdf" caption="Practice test 2" />
 				<exercise id="1287130420003" href="writing/pdf/writing_gt_practice3.pdf" caption="Practice test 3" enabled="false" />
 			</unit>
-			 <unit id="1287130421000" class="exam-practice2" caption="">
+			 <unit id="1287130421000" class="exam-answers" caption="">
 				<exercise id="1287130421001" href="writing/pdf/writing_gt_answer1.pdf" caption="Answer sheet 1" />
 				<exercise id="1287130421002" href="writing/pdf/writing_gt_answer2.pdf" caption="Answer sheet 2" />
 				<exercise id="1287130421003" href="writing/pdf/writing_gt_answer3.pdf" caption="Answer sheet 3" enabled="false" />

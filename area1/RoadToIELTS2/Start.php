@@ -87,9 +87,9 @@
 		function onLoad() {
 			thisMovie("bento").focus();
 
-			// #224
+			// #224. Extend so that we check isDirty from bento - only ask if this is true.
 			window.onbeforeunload = function() {
-				return "If you navigate away from this window during a session you may lose data you are working on and will need to log in again.";
+				//return "If you navigate away from this window during a session you may lose data you are working on and will need to log in again.";
 			}
 		}
 		// *********
