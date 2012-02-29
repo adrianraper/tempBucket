@@ -28,10 +28,6 @@
 		<s:Spacer height="5" />
 		<s:Label text="Password:" fontWeight="bold" />
 		<s:TextInput id="passwordInput" displayAsPassword="true" width="200"/>
-		<s:Group>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/forgotpassword.png')"/>
-		<s:Label id="lostYourPasswordButton" text="Lost your password?" color="#666666" paddingTop="6" paddingLeft="27" />
-		</s:Group>
 		<s:Spacer height="3" />
 		<s:HGroup>
 		<!--

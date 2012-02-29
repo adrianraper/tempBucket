@@ -313,11 +313,11 @@ warning|WarningView {
 }
 /* currently use the same buttons as marking */
 warning|WarningView #noButton {
-	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
+	skinClass: ClassReference("skins.ielts.warning.WarningBoxButtonSkin");
 }
 
 warning|WarningView #yesButton {	
-	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
+	skinClass: ClassReference("skins.ielts.warning.WarningBoxButtonSkin");
 }
 
 /* Error view styles (this overwrites the default skin) */

@@ -24,7 +24,7 @@ in accordance with the terms of the license agreement accompanying it.
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="135" minHeight="21" 
+				   minWidth="111" minHeight="36" 
 				   alpha.disabled="0.5">
 	
 	<!-- host component -->
@@ -75,13 +75,12 @@ in accordance with the terms of the license agreement accompanying it.
 	<s:Group left="0" right="0" top="0" bottom="0">
 		<!-- layer 2: fill -->
 		<!--- @private -->
-		<s:Rect id="fill" left="0" right="5" top="10" bottom="0" radiusX="6" radiusY="6" height="50">
+		<s:Rect id="fill" left="0" right="5" top="10" bottom="0" radiusX="4" radiusY="4" height="36">
 			<s:fill>
-				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"
-									 color.selectedUpStates="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"
-									 color.overStates="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" 
-									 color.downStates="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"/>
+				<s:LinearGradient rotation="90">		
+						<s:GradientEntry color="0x808080" ratio="0.33" />
+						<s:GradientEntry color="0xAAAAAA" ratio="0.66"/>
+						<s:GradientEntry color.over="0xE6E6E6"/>
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
@@ -96,11 +95,11 @@ in accordance with the terms of the license agreement accompanying it.
 			 maxDisplayedLines="1"
 			 paddingTop="12"
 			 horizontalCenter="0" verticalCenter="0"
-			 color="0xFFFFFF"
-			 color.selectedUpStates="0xFFFFFF"
-			 color.over="0xFFFFFF"
-			 color.up="0xFFFFFF"
-			 fontSize="14"
+			 color="0x000000"
+			 color.selectedUpStates="0x000000"
+			 color.over="0x000000"
+			 color.up="0x000000"
+			 fontSize="12.6"
 			 >
 	</s:Label>
 	
