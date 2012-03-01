@@ -1,0 +1,278 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color:#E0E0E0;
+	font-size:12px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+
+}
+
+.form_widget {
+	margin:0 auto;
+	padding:0;
+		width: 1000px;
+}
+
+.clear {
+	clear:both;
+	margin:0;
+	padding:0;
+}
+
+#container {
+	margin:0 auto;
+	width: 1000px;
+	background: #ffffff url(../images/mainbg.jpg) center bottom repeat-x;
+}
+
+#header {
+	width: 1000px;
+	height:120px;
+	margin:0;
+	padding:0;
+	background-image: url(../images/BC_topbanner.jpg);
+	
+}
+
+#header_title {
+	margin:0;
+	padding:0;
+	background-color:#D4092F;
+	height:35px;
+	position: relative;
+	color:#FFFFFF;
+}
+
+#title_select {
+	background: url(../images/bullet_white_mulit.jpg) no-repeat center left;
+	padding:0 0 0 35px;
+	position:absolute;
+	left: 58px;
+	top: 11px;
+}
+
+#title_contact {
+	background: url(../images/bullet_white.jpg) no-repeat center left;
+	padding:0 0 0 20px;
+	position:absolute;
+	left: 834px;
+	top: 11px;
+}
+
+#title_contact a {
+	text-decoration:none;
+	color:#FFFFFF;
+}
+
+#setting_box {
+	width:904px;
+	margin:0 auto;
+	padding: 15px 0;
+}
+
+#setting_box_top {
+	background-image:url(../images/stepbox_top.jpg);
+	height:52px;
+	width:904px;
+	margin: 0;
+	position: relative;
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+#setting_box_top #step1_title {
+	position: absolute;
+	left: 52px;
+	top: 17px;
+	
+}
+
+#setting_box_top #step2_title {
+	position: absolute;
+	left: 482px;
+	top: 17px;
+}
+
+#setting_box_mid {
+	background-image:url(../images/stepbox_mid.jpg);
+	padding: 10px 0 20px 0;
+}
+
+#setting_config {
+	width:404px;
+	padding:0 15px 0 32px;
+	border-right:1px #D4092F solid;
+	float:left;
+}
+div.aup {
+	padding-left:30px; padding-top:12px;
+}
+#config_body {
+	background:#004B85 url(../images/Settingbg1.jpg) no-repeat;
+	padding: 25px 0 0 0;
+}
+
+.config_line {
+	padding: 0 0 0 45px;
+	margin:0 20px 10px 20px;
+
+}
+
+.button_line {
+	padding: 0 0 0 45px;
+	margin:0 20px 10px 20px;
+	position: relative;
+	height: 30px;
+}
+
+#step1 {
+	background:url(../images/bullet1.jpg) no-repeat top left;
+}
+
+#step2 {
+	background:url(../images/bullet2.jpg) no-repeat top left;
+}
+
+#step3 {
+	background:url(../images/bullet3.jpg) no-repeat top left;
+}
+
+#step4 {
+	background:url(../images/bullet4.jpg) no-repeat top left;
+}
+
+.config_line .title {
+	margin:0;
+	padding:10px 0;
+	color:#FFFFFF;
+	font-size:14px;
+}
+
+.config_line .selector {
+	height:20px;
+	color: #FFFFFF;
+}
+
+.config_line .select {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	width:110px;
+}		
+
+.config_line .selector .choosebox {
+	float:left;
+	width:80px;
+}
+
+#config_btm {
+	background:url(../images/Settingbg3.jpg);
+	width:404px;
+	height:97px;
+	margin: 0;
+}
+
+#setting_widget {
+	width:405px;
+	padding:0 0 0 15px;
+	float:left;
+}
+
+.widget_line {
+	background:url(../images/widgetbg_leftbg.jpg) repeat-x;
+	width:405px;
+	height:93px;
+	color: #FFFFFF;
+	font-size: 12px;
+	margin: 0 0 10px 0;
+}
+
+.widget_textbox {
+	width:405px;
+	font-size: 10px;
+	margin: 0;
+}
+
+.widget_textbox .title {
+	font-size:12px;
+	margin:8px 0;
+	padding:0;
+}
+
+.widget_textfield {
+	font-size:10px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	width: 405px;
+}
+
+.widget_line .title {
+	height:24px;
+	padding: 7px 0 0 0;
+	font-size: 14px;
+}
+
+.widget_line .content {
+	height:54px;
+	padding: 8px 8px 0 0;
+	font-size: 14px;
+}
+
+
+.widget_line_left {
+	width:222px;
+	background:url(../images/widgetbg_left.jpg) no-repeat top left;
+	float: left;
+	height: 93px;
+	padding: 0 0 0 15px;
+
+}
+
+.widget_line_right_outter {
+	width:168px;
+	background:url(../images/widgetbg_right.jpg) no-repeat top right;
+	float: left;
+	height: 93px;
+}
+
+.widget_line_right {
+	width:156px;
+	background:url(../images/widgetbg_rightbg.jpg) repeat-x;
+	height: 62px;
+	padding: 31px 0 0 6px;
+}
+
+#setting_box_btm {
+	background-image:url(../images/stepbox_btm.jpg);
+	height:9px;
+	width:904px;
+}
+
+#footer {
+	margin:0;
+	padding:0;
+	background-color:#D4092F;
+	height:35px;
+	position: relative;
+	color:#FFFFFF;
+}
+
+.btn_GetCorde {
+	background:url(../images/Btn_getcode.gif);
+	width:153px;
+	height:30px;
+	cursor: pointer;
+}
+
+.btn_Preview {
+	background:url(../images/Btn_preview.jpg);
+	width:153px;
+	height:30px;
+	margin: 0;
+	cursor: pointer;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}

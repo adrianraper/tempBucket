@@ -1,4 +1,4 @@
-package com.clarityenglish
+﻿package com.clarityenglish
 {
 	/**
 	 * ...
@@ -6,18 +6,23 @@ package com.clarityenglish
 	 */
 	import com.clarityenglish.utils.TraceUtils;
 	import com.clarityenglish.utils.Literals;
-	import flash.display.MovieClip;
+	import com.clarityenglish.XMLDatabase;
 	import flash.display.Sprite;
+	import flash.display.MovieClip;
 	import flash.display.LoaderInfo;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import fl.events.ListEvent;
 	import flash.events.Event;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
+	import fl.data.DataProvider;
+	import fl.controls.List;
 	import flash.net.*;
 	
-	public class BandScoreCalculator extends MovieClip
+	public class WhereToStudy extends MovieClip
 	{
 		var literals:Literals;
 		var title_txt:TextField;
@@ -31,11 +36,12 @@ package com.clarityenglish
 		var headerVerticalPadding:uint = 12;
 		var headerHorizontalPadding:uint = 5;
 		var horizontalPadding:uint = 5;
+		var institutions:XMLDatabase;
 		var titleTF:TextFormat;
 		var detailsTF:TextFormat;
 		var originalTitleTextY:uint;
 		
-		public function BandScoreCalculator() {
+		public function WhereToStudy() {
 			//TraceUtils.myTrace("in the class " + new Date().getTime());
 			
 			// Are there any variables to pick up from the URL that control the layout?
@@ -108,7 +114,7 @@ package com.clarityenglish
 			//this.stage.height = Number(paramObj['widgetdataheight']);
 			
 			// Instantiate the literals class and start loading.
-			thisWidget = 'BandScoreCalculator';
+			thisWidget = 'WhereToStudy';
 			this.literals =  new Literals(websiteLanguage, thisWidget);
 			this.literals.loadXMLFile(applicationRoot);
 			this.literals.addEventListener(Literals.LOADED, initLiterals);
@@ -123,6 +129,9 @@ package com.clarityenglish
 			//TraceUtils.myTrace("screen.width=" + this.stage.fullScreenWidth);
 			//TraceUtils.myTrace("displayObject.width=" + this.width);
 			this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			// Load the XML database now so you can search more quickly later, and even do type-ahead if possible
+			
+			this.institutions = new XMLDatabase('USInstitutions.xml', applicationRoot);
 			
 			// And we need to make the origin in the top left corner
 			// If you publish the flash with width 160, changing that with the Flash options means that the
@@ -130,9 +139,15 @@ package com.clarityenglish
 			// This code doesn't need to be different, just the fla document size.
 			
 			// set events for buttons clicks
-			this.calculatorFields.actionBtn.addEventListener(MouseEvent.CLICK, onCalculate);
+			this.calculatorFields.actionBtn.addEventListener(MouseEvent.CLICK, onSearch);
+			this.calculatorFields.search_txt.addEventListener(KeyboardEvent.KEY_DOWN, onEnter);
 			this.resultFields.actionBtn.addEventListener(MouseEvent.CLICK, onRestart);
 			this.resultFields.moreInfoBtn.addEventListener(MouseEvent.CLICK, onMoreInfo);
+			//this.resultFields.descriptor_txt.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
+			this.resultFields.list_txt.addEventListener(ListEvent.ITEM_ROLL_OVER, showFullDetails);
+			this.resultFields.list_txt.addEventListener(ListEvent.ITEM_DOUBLE_CLICK, goToInstitution);
+			//this.resultFields.list_txt.addEventListener(ListEvent.ITEM_CLICK, goToInstitution);
+			this.resultFields.list_txt.addEventListener(flash.events.MouseEvent.MOUSE_OUT, resetTitle);
 		}
 		
 		private function widgetLayout(width:uint, height:uint) {
@@ -255,13 +270,8 @@ package com.clarityenglish
 			textTF.leftMargin = .6;
 			
 			textTF.align = TextFormatAlign.LEFT;
-			calculatorFields.listeningQ_ltl.defaultTextFormat = textTF;
-			calculatorFields.examQ_ltl.defaultTextFormat = textTF;
-			calculatorFields.reading_ltl.defaultTextFormat = textTF;
-			calculatorFields.listening_ltl.defaultTextFormat = textTF;
-			// Set the radio buttons
-			calculatorFields.examTypeAC_rb.setStyle("textFormat", textTF);
-			calculatorFields.examTypeGT_rb.setStyle("textFormat", textTF);
+			calculatorFields.explanation_ltl.defaultTextFormat = textTF;
+			//resultFields.action_txt.defaultTextFormat = textTF;
 			
 			// You can't use defaultTextFormat for htmlText - has to be a style sheet
 			//resultFields.moreinfo_txt.defaultTextFormat = textTF;
@@ -271,6 +281,15 @@ package com.clarityenglish
 			resultFields.disclaimer_txt.addEventListener(MouseEvent.MOUSE_OVER, onDisclaimer);
 			// You lose the field, so mouseOff that is no good.
 			disclaimer.disclaimer_txt.addEventListener(MouseEvent.MOUSE_OUT, offDisclaimer);
+
+			// Text format for the list box and search box (just to cure the cut-off W)
+			//resultFields.list_txt.defaultTextFormat = textTF;
+			var listTextFormat:TextFormat = new TextFormat();
+			listTextFormat.font = "Helvetica";
+			listTextFormat.color = "0xFF000000";
+			listTextFormat.leftMargin = 0.6;
+			resultFields.list_txt.setRendererStyle("textFormat", listTextFormat);
+			calculatorFields.search_txt.setStyle("textFormat", listTextFormat);
 			
 			// And text on the Button
 			var buttonTF:TextFormat = new TextFormat();
@@ -289,21 +308,20 @@ package com.clarityenglish
 			// But then override alignment for next two (this changes the original too)
 			var overrideFormat:TextFormat = textTF;
 			overrideFormat.align = TextFormatAlign.RIGHT;
-			calculatorFields.preReading_ltl.defaultTextFormat = overrideFormat;
-			calculatorFields.preListening_ltl.defaultTextFormat = overrideFormat;
-
 			// If the vertical spacing is too much, push down the fields
 			if (headerVerticalPadding>10) {
 				calculatorFields.y+=(headerVerticalPadding/2);
 				resultFields.y+=(headerVerticalPadding/2);
 			}
 			// make any fields wider?
-			calculatorFields.listeningQ_ltl.width = width-(2*horizontalPadding);
-			calculatorFields.examQ_ltl.width = width-(2*horizontalPadding);
+			calculatorFields.explanation_ltl.width = width-(2*horizontalPadding);
+			calculatorFields.search_txt.width = width-(2*horizontalPadding);
 			calculatorFields.status_txt.width = width-(2*horizontalPadding);
 			//resultFields.moreinfo_txt.width = width-(2*horizontalPadding);
+			resultFields.list_txt.width = width-(2*horizontalPadding);
 			resultFields.descriptor_txt.width = width-(2*horizontalPadding);
 			resultFields.disclaimer_txt.width = width-(2*horizontalPadding);
+			//resultFields.action_txt.width = width-(2*horizontalPadding);
 			
 			// center anything?
 			disclaimer.x = (width-disclaimer.width)/2;
@@ -322,19 +340,10 @@ package com.clarityenglish
 		}
 		
 		private function initLiterals(e:Event):void {
-			TraceUtils.myTrace("get literals for " + this.literals.getLiteral('applicationName'));
+			TraceUtils.myTrace("can get literal as " + this.literals.getLiteral('applicationName'));
 			var replaceObj:Object = {newline:'\n'};
 			title_txt.text = this.literals.getLiteral('applicationName', replaceObj);
-			calculatorFields.listeningQ_ltl.text = this.literals.getLiteral('listeningQ');
-			//calculatorFields.readingQ_ltl.text = this.literals.getLiteral('readingQ');
-			calculatorFields.preReading_ltl.text = this.literals.getLiteral('preReading');
-			calculatorFields.preListening_ltl.text = this.literals.getLiteral('preListening');
-			calculatorFields.examQ_ltl.text = this.literals.getLiteral('examQ');
-			calculatorFields.examTypeAC_rb.label =  this.literals.getLiteral('examAC');
-			calculatorFields.examTypeGT_rb.label =  this.literals.getLiteral('examGT');
-			replaceObj = {questions: '40'};
-			calculatorFields.reading_ltl.text = this.literals.getLiteral('numQuestions', replaceObj);
-			calculatorFields.listening_ltl.text = this.literals.getLiteral('numQuestions', replaceObj);
+			calculatorFields.explanation_ltl.text = this.literals.getLiteral('intro');
 			calculatorFields.actionBtn.label =  this.literals.getLiteral('btnCalculate');
 			resultFields.actionBtn.label =  this.literals.getLiteral('btnTryAgain');
 			replaceObj = {newline:'\n'};
@@ -352,6 +361,7 @@ package com.clarityenglish
 			}
 			//resultFields.moreinfo_txt.htmlText =  this.literals.getLiteral('moreInfo');
 			disclaimer.disclaimer_txt.htmlText =  this.literals.getLiteral('disclaimerFull');
+			//resultFields.action_txt.text =  this.literals.getLiteral('whatToDo');
 			// Vertically centre the title now that you have the text
 			var titleY:uint = this.header.height + (headerVerticalPadding * 2);
 			//TraceUtils.myTrace("title text height=" + title_txt.height + " box height=" + titleHeight)
@@ -359,10 +369,8 @@ package com.clarityenglish
 		}
 		
 		private function onRestart(e:MouseEvent):void {
-			//this.calculatorFields.status_txt.text = "Type new numbers";
+			//this.calculatorFields.explanation_ltl.text = this.literals.getLiteral('explanation');
 			this.calculatorFields.status_txt.text =  this.literals.getLiteral('statusRestart');
-			this.calculatorFields.readingQ_i.text = "";
-			this.calculatorFields.listeningQ_i.text = "";
 			this.calculatorFields.visible = true;
 			this.resultFields.visible = false;
 			this.disclaimer.visible = false;
@@ -401,225 +409,42 @@ package com.clarityenglish
 			}
 		}
 		
-		private function onCalculate(e:MouseEvent) {
-
-			TraceUtils.myTrace("you clicked");
-			var errorStyle:TextFormat = new TextFormat();
-			errorStyle.color = 0xFF0000;
-			errorStyle.font = "Helvetica";
-			errorStyle.size = 12;
-			var normalStyle:TextFormat = new TextFormat();
-			normalStyle.color = 0x000000;
-			normalStyle.font = "Helvetica";
-			normalStyle.size = 12;
-			var formHasError:Boolean = false;
+		private function onSearch(e:MouseEvent) {
+			doSearch();
+		}
+		private function doSearch() {
+			var searchString:String = this.calculatorFields.search_txt.text;
+			TraceUtils.myTrace("search for " + searchString);
 			
-			// Pick up the numbers typed. Check validity and then do the band score calculation.
-			var readingNumber:Number = parseInt(this.calculatorFields.readingQ_i.text);
-			if ( isNaN(readingNumber) || readingNumber < 0 || readingNumber > 40 ) {
-				TraceUtils.myTrace("reading number invalid:" + readingNumber);
-				//this.calculatorFields.status_txt.text = "Type a number";
-				this.calculatorFields.status_txt.text = this.literals.getLiteral('statusNeedNumber');
-				this.calculatorFields.reading_ltl.setTextFormat(errorStyle);
-				formHasError = true;
-			} else {
-				this.calculatorFields.reading_ltl.setTextFormat(normalStyle);
-			}
-			var listeningNumber:Number = parseInt(this.calculatorFields.listeningQ_i.text);
-			if ( isNaN(listeningNumber) || listeningNumber < 0 || listeningNumber > 40 ) {
-				TraceUtils.myTrace("listening number invalid:" + listeningNumber);
-				this.calculatorFields.status_txt.text = this.literals.getLiteral('statusNeedNumber');
-				this.calculatorFields.listening_ltl.setTextFormat(errorStyle);
-				formHasError = true;
-			} else {
-				this.calculatorFields.listening_ltl.setTextFormat(normalStyle);
-			}
-			// Check that the exam type is selected
-			if (this.calculatorFields.examTypeAC_rb.selected || this.calculatorFields.examTypeGT_rb.selected) {
-				this.calculatorFields.examTypeAC_rb.setStyle("textFormat", normalStyle);
-				this.calculatorFields.examTypeGT_rb.setStyle("textFormat", normalStyle);
-				if (this.calculatorFields.examTypeAC_rb.selected) {
-					var examType:String = "AC";
-				} else {
-					examType = "GT";
+			var matchingInstitutions:XMLList = this.institutions.getInstitution(searchString);
+			var results:String = new String();
+			var link:String;
+			var item:XML;
+			var myDataProvider:DataProvider = new DataProvider();
+			if(matchingInstitutions.length() == 0){
+				//results += "<p>" + "Sorry, we don't search anything, please input institutions again ang check the spell" + "</p>";
+				this.resultFields.descriptor_txt.text = this.literals.getLiteral('noResults');
+				this.resultFields.descriptor_txt.visible = true;
+				this.resultFields.list_txt.visible = false;
+			}else{
+				this.resultFields.descriptor_txt.visible = false;
+				this.resultFields.list_txt.visible = true;
+				// SInce we found at least one item, lets put a note about it in the first space
+				myDataProvider.addItem({id:undefined, name:this.literals.getLiteral('whatToDo')});
+				for each(item in matchingInstitutions){
+					//results += item.name.toString() + "<br>";
+					//link = "<a href=\"http://www.google.com/search?q=" + spaceToPlus(item.name.toString()) + " IELTS \">" + item.name.toString() + "</a>";
+					//results += "<p><u>" + link + "</u></p>";
+					// Add to a list item
+					//myDataProvider.addItem({name:item.name.toString(), score:item.score, city:item.city, state:item.state});
+					myDataProvider.addItem({id:item.id, name:item.name.toString(), state:item.state});
 				}
-			} else {
-				TraceUtils.myTrace("no exam type");
-				//this.calculatorFields.status_txt.text = "Choose an exam";
-				this.calculatorFields.status_txt.text = this.literals.getLiteral('statusNeedExamType');
-				this.calculatorFields.examTypeAC_rb.setStyle("textFormat", errorStyle);
-				this.calculatorFields.examTypeGT_rb.setStyle("textFormat", errorStyle);
-				formHasError = true;
+				//this.resultFields.descriptor_txt.wordWrap = false;
+				this.resultFields.list_txt.dataProvider = myDataProvider;
+				this.resultFields.list_txt.labelFunction = institutionNiceName;
+				// highlight the first (special) one
+				this.resultFields.list_txt.selectedIndex=0;
 			}
-			if (formHasError)
-				return false;
-				
-			// Band score is: listening is simple
-			// Note slightly strange switch as you are hacking the === operator that is forced on you.
-			switch (true) {
-			case listeningNumber >=39:
-				var listeningBand:Number = 9.0;
-				break;
-			case listeningNumber >=37:
-				listeningBand = 8.5;
-				break;
-			case listeningNumber >=35:
-				listeningBand = 8.0;
-				break;
-			case listeningNumber >=33:
-				listeningBand = 7.5;
-				break;
-			case listeningNumber >=30:
-				listeningBand = 7.0;
-				break;
-			case listeningNumber >=27:
-				listeningBand = 6.5;
-				break;
-			case listeningNumber >=23:
-				listeningBand = 6.0;
-				break;
-			case listeningNumber >=20:
-				listeningBand = 5.5;
-				break;
-			case listeningNumber >=16:
-				listeningBand = 5.0;
-				break;
-			case listeningNumber >=13:
-				listeningBand = 4.5;
-				break;
-			case listeningNumber >=9:
-				listeningBand = 4.0;
-				break;
-			case listeningNumber >=5:
-				listeningBand = 3.0;
-				break;
-			case listeningNumber >=3:
-				listeningBand = 2.0;
-				break;
-			case listeningNumber >=1:
-				listeningBand = 1.0;
-				break;
-			default:
-				listeningBand = 0.0;
-			}
-			TraceUtils.myTrace("listeningNumber is " + listeningNumber.toString());
-			TraceUtils.myTrace("listeningBand is " + listeningBand.toString());
-			
-			// Band score is: reading depends on the exam type
-			if (examType=="AC") {
-				switch (true) {
-				case readingNumber >=39:
-					var readingBand:Number = 9.0;
-					break;
-				case readingNumber >=37:
-					readingBand = 8.5;
-					break;
-				case readingNumber >=35:
-					readingBand = 8.0;
-					break;
-				case readingNumber >=33:
-					readingBand = 7.5;
-					break;
-				case readingNumber >=30:
-					readingBand = 7.0;
-					break;
-				case readingNumber >=27:
-					readingBand = 6.5;
-					break;
-				case readingNumber >=23:
-					readingBand = 6.0;
-					break;
-				case readingNumber >=19:
-					readingBand = 5.5;
-					break;
-				case readingNumber >=15:
-					readingBand = 5.0;
-					break;
-				case readingNumber >=12:
-					readingBand = 4.5;
-					break;
-				case readingNumber >=9:
-					readingBand = 4.0;
-					break;
-				case readingNumber >=5:
-					readingBand = 3.0;
-					break;
-				case readingNumber >=3:
-					readingBand = 2.0;
-					break;
-				case readingNumber >=1:
-					readingBand = 1.0;
-					break;
-				default:
-					readingBand = 0.0;
-				}
-			} else {
-				switch (true) {
-				case readingNumber >=39:
-					readingBand = 9.0;
-					break;
-				case readingNumber >=38:
-					readingBand = 8.5;
-					break;
-				case readingNumber >=37:
-					readingBand = 8.0;
-					break;
-				case readingNumber >=36:
-					readingBand = 7.5;
-					break;
-				case readingNumber >=34:
-					readingBand = 7.0;
-					break;
-				case readingNumber >=32:
-					readingBand = 6.5;
-					break;
-				case readingNumber >=30:
-					readingBand = 6.0;
-					break;
-				case readingNumber >=27:
-					readingBand = 5.5;
-					break;
-				case readingNumber >=23:
-					readingBand = 5.0;
-					break;
-				case readingNumber >=19:
-					readingBand = 4.5;
-					break;
-				case readingNumber >=15:
-					readingBand = 4.0;
-					break;
-				case readingNumber >=12:
-					readingBand = 3.0;
-					break;
-				case readingNumber >=8:
-					readingBand = 2.0;
-					break;
-				case readingNumber >=4:
-					readingBand = 1.0;
-					break;
-				default:
-					readingBand = 0.0;
-				}
-			}
-			TraceUtils.myTrace("readingNumber is " + readingNumber.toString());
-			TraceUtils.myTrace("readingBand is " + readingBand.toString());
-			
-			// Then average to get band score. 
-			// No longer requried, keep separate
-			/*
-			var bandScoreNumber:Number = (readingBand + listeningBand) / 2;
-			TraceUtils.myTrace("bandScoreNumber=" + bandScoreNumber.toString());
-			// First round to nearest .5 (multiply by 2, round, then halve)
-			bandScoreNumber = Math.round(2 * bandScoreNumber) / 2;
-			TraceUtils.myTrace("bandScoreNumber=" + bandScoreNumber.toString());
-			// Then format with one decimal point
-			var bandScore:String = bandScoreNumber.toFixed(1);
-			TraceUtils.myTrace("band score is " + bandScore);
-			*/
-			// Create the descriptor
-			//this.resultFields.descriptor_txt.text = "If you are right you will score " + bandScore + " in the reading and listening sections of the test.";
-			var replaceObj:Object = {bandScoreListening: listeningBand, bandScoreReading: readingBand};
-			this.resultFields.descriptor_txt.htmlText = this.literals.getLiteral('bandScoreDescriptor', replaceObj);
 			
 			// Work out the destination of the more info/action link based on the country
 			//TraceUtils.myTrace("country=" + websiteCountry);
@@ -634,7 +459,6 @@ package com.clarityenglish
 			this.resultFields.visible = true;
 			this.disclaimer.visible = false;
 			
-			// At the end of this, write a log if we know the referrer
 			if (websiteReferrer!="") {
 				TraceUtils.myTrace("log to " + websiteReferrer);
 				// Since you are running on many domains, this must be a full URL
@@ -661,7 +485,76 @@ package com.clarityenglish
 			} else {
 				TraceUtils.myTrace("don't log as we don't know referrer");
 			}
+			
+		}
+		private function institutionNiceName(item:Object):String {
+			//return item.score + "-" + item.name;
+			return item.name;
+		}
+		private function showFullDetails(e:ListEvent):void {
+			var list:List = e.target as List;
+			var item:Object = e.item;
+			//TraceUtils.myTrace("you are over " + list.itemToLabel(item));
+			//var titleTF:TextFormat = new TextFormat();
+			//titleTF.font = "Helvetica";
+			//titleTF.color = "0xFFFFFFFF";
+			//titleTF.size = 11;
+			//titleTF.align = TextFormatAlign.CENTER;
+			//titleTF.bold = false;
+			title_txt.defaultTextFormat = detailsTF;
+			// tidy up wording
+			//if (item.score == undefined || item.score == 'undefined' || parseFloat(item.score) > 9 || parseFloat(item.score) < 3) {
+			//	var itemScoreText:String = "unknown";
+			//} else {
+			//	itemScoreText = item.score.toString();
+			//}
+			//title_txt.text = "Minimum IELTS is " + itemScoreText + " at " + list.itemToLabel(item);
+			// Special case
+			if (item.id==undefined) {
+				title_txt.text = this.literals.getLiteral('whatToDoFull');
+			} else {
+				title_txt.text = list.itemToLabel(item);
+				// If the name is not too long, add state to it. But you can only really measure once you have added the state!
+				title_txt.appendText(", " + item.state);
+			}
+			// So if there is no space left, go back to the stateless name
+			//TraceUtils.myTrace("space left=" + (Number(titleHeight) - Number(title_txt.height)));
+			if (titleHeight - title_txt.height<-4) {
+				title_txt.text = list.itemToLabel(item);
+			}
+			// Centre it vertically
+			title_txt.y = this.header.height + (headerVerticalPadding * 2) + (titleHeight - title_txt.height)/2;
+		}
+
+		private function goToInstitution(e:ListEvent):void {
+			var list:List = e.target as List;
+			var item:Object = e.item;
+			if (item.id==undefined) return;
+			TraceUtils.myTrace("go to " + list.itemToLabel(item));
+			//var url:String = "http://www.google.com/search?q=" + spaceToPlus(item.name.toString()) + " IELTS";
+			var url:String = "http://bandscore.ielts.org/course_info.aspx?OrgId=" + spaceToPlus(item.id.toString());
+			var request:URLRequest = new URLRequest(url);
+			try {
+				navigateToURL(request, '_blank'); // second argument is target
+			} catch (e:Error) {
+				trace("Error occurred!");
+			}
+
+		}
+		private function onEnter(event:KeyboardEvent){
+			// if the key is ENTER
+			if(event.charCode == 13){
+				doSearch();
+			}
+		}
+		
+		private function onMouseOver(event:MouseEvent){
+			
+		}
+		
+		public function spaceToPlus(s:String) : String {
+			s = s.replace("/ /", "+");
+			return s;
 		}
 	}
-
 }

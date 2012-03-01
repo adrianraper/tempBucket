@@ -17,7 +17,7 @@ package com.clarityenglish
 	import flash.text.TextFieldAutoSize;
 	import flash.net.*;
 	
-	public class BandScoreCalculator extends MovieClip
+	public class PredictYourBandScore extends MovieClip
 	{
 		var literals:Literals;
 		var title_txt:TextField;
@@ -35,7 +35,7 @@ package com.clarityenglish
 		var detailsTF:TextFormat;
 		var originalTitleTextY:uint;
 		
-		public function BandScoreCalculator() {
+		public function PredictYourBandScore() {
 			//TraceUtils.myTrace("in the class " + new Date().getTime());
 			
 			// Are there any variables to pick up from the URL that control the layout?
@@ -108,7 +108,7 @@ package com.clarityenglish
 			//this.stage.height = Number(paramObj['widgetdataheight']);
 			
 			// Instantiate the literals class and start loading.
-			thisWidget = 'BandScoreCalculator';
+			thisWidget = 'PredictYourBandScore';
 			this.literals =  new Literals(websiteLanguage, thisWidget);
 			this.literals.loadXMLFile(applicationRoot);
 			this.literals.addEventListener(Literals.LOADED, initLiterals);
@@ -255,13 +255,11 @@ package com.clarityenglish
 			textTF.leftMargin = .6;
 			
 			textTF.align = TextFormatAlign.LEFT;
-			calculatorFields.listeningQ_ltl.defaultTextFormat = textTF;
-			calculatorFields.examQ_ltl.defaultTextFormat = textTF;
-			calculatorFields.reading_ltl.defaultTextFormat = textTF;
-			calculatorFields.listening_ltl.defaultTextFormat = textTF;
-			// Set the radio buttons
-			calculatorFields.examTypeAC_rb.setStyle("textFormat", textTF);
-			calculatorFields.examTypeGT_rb.setStyle("textFormat", textTF);
+			calculatorFields.intro_ltl.defaultTextFormat = textTF;
+			
+			// And the comboboxes
+			//calculatorFields.listeningQ.setStyle("textFormat", textTF);
+			calculatorFields.listeningQ.editable = false;
 			
 			// You can't use defaultTextFormat for htmlText - has to be a style sheet
 			//resultFields.moreinfo_txt.defaultTextFormat = textTF;
@@ -291,6 +289,8 @@ package com.clarityenglish
 			overrideFormat.align = TextFormatAlign.RIGHT;
 			calculatorFields.preReading_ltl.defaultTextFormat = overrideFormat;
 			calculatorFields.preListening_ltl.defaultTextFormat = overrideFormat;
+			calculatorFields.preWriting_ltl.defaultTextFormat = overrideFormat;
+			calculatorFields.preSpeaking_ltl.defaultTextFormat = overrideFormat;
 
 			// If the vertical spacing is too much, push down the fields
 			if (headerVerticalPadding>10) {
@@ -298,9 +298,7 @@ package com.clarityenglish
 				resultFields.y+=(headerVerticalPadding/2);
 			}
 			// make any fields wider?
-			calculatorFields.listeningQ_ltl.width = width-(2*horizontalPadding);
-			calculatorFields.examQ_ltl.width = width-(2*horizontalPadding);
-			calculatorFields.status_txt.width = width-(2*horizontalPadding);
+			calculatorFields.intro_ltl.width = width-(2*horizontalPadding);
 			//resultFields.moreinfo_txt.width = width-(2*horizontalPadding);
 			resultFields.descriptor_txt.width = width-(2*horizontalPadding);
 			resultFields.disclaimer_txt.width = width-(2*horizontalPadding);
@@ -322,19 +320,67 @@ package com.clarityenglish
 		}
 		
 		private function initLiterals(e:Event):void {
-			TraceUtils.myTrace("get literals for " + this.literals.getLiteral('applicationName'));
+			TraceUtils.myTrace("can get literal as " + this.literals.getLiteral('applicationName'));
 			var replaceObj:Object = {newline:'\n'};
 			title_txt.text = this.literals.getLiteral('applicationName', replaceObj);
-			calculatorFields.listeningQ_ltl.text = this.literals.getLiteral('listeningQ');
-			//calculatorFields.readingQ_ltl.text = this.literals.getLiteral('readingQ');
+			calculatorFields.intro_ltl.text = this.literals.getLiteral('intro');
+			with(calculatorFields.listeningQ) {
+				addItem({label:'4.0'});
+				addItem({label:'4.5'});
+				addItem({label:'5.0'});
+				addItem({label:'5.5'});
+				addItem({label:'6.0'});
+				addItem({label:'6.5'});
+				addItem({label:'7.0'});
+				addItem({label:'7.5'});
+				addItem({label:'8.0'});
+				addItem({label:'8.5'});
+				addItem({label:'9.0'});
+			}
+			with(calculatorFields.readingQ) {
+				addItem({label:'4.0'});
+				addItem({label:'4.5'});
+				addItem({label:'5.0'});
+				addItem({label:'5.5'});
+				addItem({label:'6.0'});
+				addItem({label:'6.5'});
+				addItem({label:'7.0'});
+				addItem({label:'7.5'});
+				addItem({label:'8.0'});
+				addItem({label:'8.5'});
+				addItem({label:'9.0'});
+			}
+			with(calculatorFields.writingQ) {
+				addItem({label:'4.0'});
+				addItem({label:'4.5'});
+				addItem({label:'5.0'});
+				addItem({label:'5.5'});
+				addItem({label:'6.0'});
+				addItem({label:'6.5'});
+				addItem({label:'7.0'});
+				addItem({label:'7.5'});
+				addItem({label:'8.0'});
+				addItem({label:'8.5'});
+				addItem({label:'9.0'});
+			}
+			with(calculatorFields.speakingQ) {
+				addItem({label:'4.0'});
+				addItem({label:'4.5'});
+				addItem({label:'5.0'});
+				addItem({label:'5.5'});
+				addItem({label:'6.0'});
+				addItem({label:'6.5'});
+				addItem({label:'7.0'});
+				addItem({label:'7.5'});
+				addItem({label:'8.0'});
+				addItem({label:'8.5'});
+				addItem({label:'9.0'});
+			}
 			calculatorFields.preReading_ltl.text = this.literals.getLiteral('preReading');
 			calculatorFields.preListening_ltl.text = this.literals.getLiteral('preListening');
-			calculatorFields.examQ_ltl.text = this.literals.getLiteral('examQ');
-			calculatorFields.examTypeAC_rb.label =  this.literals.getLiteral('examAC');
-			calculatorFields.examTypeGT_rb.label =  this.literals.getLiteral('examGT');
-			replaceObj = {questions: '40'};
-			calculatorFields.reading_ltl.text = this.literals.getLiteral('numQuestions', replaceObj);
-			calculatorFields.listening_ltl.text = this.literals.getLiteral('numQuestions', replaceObj);
+			calculatorFields.preWriting_ltl.text = this.literals.getLiteral('preWriting');
+			calculatorFields.preSpeaking_ltl.text = this.literals.getLiteral('preSpeaking');
+			
 			calculatorFields.actionBtn.label =  this.literals.getLiteral('btnCalculate');
 			resultFields.actionBtn.label =  this.literals.getLiteral('btnTryAgain');
 			replaceObj = {newline:'\n'};
@@ -361,8 +407,6 @@ package com.clarityenglish
 		private function onRestart(e:MouseEvent):void {
 			//this.calculatorFields.status_txt.text = "Type new numbers";
 			this.calculatorFields.status_txt.text =  this.literals.getLiteral('statusRestart');
-			this.calculatorFields.readingQ_i.text = "";
-			this.calculatorFields.listeningQ_i.text = "";
 			this.calculatorFields.visible = true;
 			this.resultFields.visible = false;
 			this.disclaimer.visible = false;
@@ -415,199 +459,13 @@ package com.clarityenglish
 			var formHasError:Boolean = false;
 			
 			// Pick up the numbers typed. Check validity and then do the band score calculation.
-			var readingNumber:Number = parseInt(this.calculatorFields.readingQ_i.text);
-			if ( isNaN(readingNumber) || readingNumber < 0 || readingNumber > 40 ) {
-				TraceUtils.myTrace("reading number invalid:" + readingNumber);
-				//this.calculatorFields.status_txt.text = "Type a number";
-				this.calculatorFields.status_txt.text = this.literals.getLiteral('statusNeedNumber');
-				this.calculatorFields.reading_ltl.setTextFormat(errorStyle);
-				formHasError = true;
-			} else {
-				this.calculatorFields.reading_ltl.setTextFormat(normalStyle);
-			}
-			var listeningNumber:Number = parseInt(this.calculatorFields.listeningQ_i.text);
-			if ( isNaN(listeningNumber) || listeningNumber < 0 || listeningNumber > 40 ) {
-				TraceUtils.myTrace("listening number invalid:" + listeningNumber);
-				this.calculatorFields.status_txt.text = this.literals.getLiteral('statusNeedNumber');
-				this.calculatorFields.listening_ltl.setTextFormat(errorStyle);
-				formHasError = true;
-			} else {
-				this.calculatorFields.listening_ltl.setTextFormat(normalStyle);
-			}
-			// Check that the exam type is selected
-			if (this.calculatorFields.examTypeAC_rb.selected || this.calculatorFields.examTypeGT_rb.selected) {
-				this.calculatorFields.examTypeAC_rb.setStyle("textFormat", normalStyle);
-				this.calculatorFields.examTypeGT_rb.setStyle("textFormat", normalStyle);
-				if (this.calculatorFields.examTypeAC_rb.selected) {
-					var examType:String = "AC";
-				} else {
-					examType = "GT";
-				}
-			} else {
-				TraceUtils.myTrace("no exam type");
-				//this.calculatorFields.status_txt.text = "Choose an exam";
-				this.calculatorFields.status_txt.text = this.literals.getLiteral('statusNeedExamType');
-				this.calculatorFields.examTypeAC_rb.setStyle("textFormat", errorStyle);
-				this.calculatorFields.examTypeGT_rb.setStyle("textFormat", errorStyle);
-				formHasError = true;
-			}
-			if (formHasError)
-				return false;
+			var listeningBand:Number = parseFloat(calculatorFields.listeningQ.selectedItem.label);
+			var readingBand:Number = parseFloat(calculatorFields.readingQ.selectedItem.label);
+			var writingBand:Number = parseFloat(calculatorFields.writingQ.selectedItem.label);
+			var speakingBand:Number = parseFloat(calculatorFields.speakingQ.selectedItem.label);
 				
-			// Band score is: listening is simple
-			// Note slightly strange switch as you are hacking the === operator that is forced on you.
-			switch (true) {
-			case listeningNumber >=39:
-				var listeningBand:Number = 9.0;
-				break;
-			case listeningNumber >=37:
-				listeningBand = 8.5;
-				break;
-			case listeningNumber >=35:
-				listeningBand = 8.0;
-				break;
-			case listeningNumber >=33:
-				listeningBand = 7.5;
-				break;
-			case listeningNumber >=30:
-				listeningBand = 7.0;
-				break;
-			case listeningNumber >=27:
-				listeningBand = 6.5;
-				break;
-			case listeningNumber >=23:
-				listeningBand = 6.0;
-				break;
-			case listeningNumber >=20:
-				listeningBand = 5.5;
-				break;
-			case listeningNumber >=16:
-				listeningBand = 5.0;
-				break;
-			case listeningNumber >=13:
-				listeningBand = 4.5;
-				break;
-			case listeningNumber >=9:
-				listeningBand = 4.0;
-				break;
-			case listeningNumber >=5:
-				listeningBand = 3.0;
-				break;
-			case listeningNumber >=3:
-				listeningBand = 2.0;
-				break;
-			case listeningNumber >=1:
-				listeningBand = 1.0;
-				break;
-			default:
-				listeningBand = 0.0;
-			}
-			TraceUtils.myTrace("listeningNumber is " + listeningNumber.toString());
-			TraceUtils.myTrace("listeningBand is " + listeningBand.toString());
-			
-			// Band score is: reading depends on the exam type
-			if (examType=="AC") {
-				switch (true) {
-				case readingNumber >=39:
-					var readingBand:Number = 9.0;
-					break;
-				case readingNumber >=37:
-					readingBand = 8.5;
-					break;
-				case readingNumber >=35:
-					readingBand = 8.0;
-					break;
-				case readingNumber >=33:
-					readingBand = 7.5;
-					break;
-				case readingNumber >=30:
-					readingBand = 7.0;
-					break;
-				case readingNumber >=27:
-					readingBand = 6.5;
-					break;
-				case readingNumber >=23:
-					readingBand = 6.0;
-					break;
-				case readingNumber >=19:
-					readingBand = 5.5;
-					break;
-				case readingNumber >=15:
-					readingBand = 5.0;
-					break;
-				case readingNumber >=12:
-					readingBand = 4.5;
-					break;
-				case readingNumber >=9:
-					readingBand = 4.0;
-					break;
-				case readingNumber >=5:
-					readingBand = 3.0;
-					break;
-				case readingNumber >=3:
-					readingBand = 2.0;
-					break;
-				case readingNumber >=1:
-					readingBand = 1.0;
-					break;
-				default:
-					readingBand = 0.0;
-				}
-			} else {
-				switch (true) {
-				case readingNumber >=39:
-					readingBand = 9.0;
-					break;
-				case readingNumber >=38:
-					readingBand = 8.5;
-					break;
-				case readingNumber >=37:
-					readingBand = 8.0;
-					break;
-				case readingNumber >=36:
-					readingBand = 7.5;
-					break;
-				case readingNumber >=34:
-					readingBand = 7.0;
-					break;
-				case readingNumber >=32:
-					readingBand = 6.5;
-					break;
-				case readingNumber >=30:
-					readingBand = 6.0;
-					break;
-				case readingNumber >=27:
-					readingBand = 5.5;
-					break;
-				case readingNumber >=23:
-					readingBand = 5.0;
-					break;
-				case readingNumber >=19:
-					readingBand = 4.5;
-					break;
-				case readingNumber >=15:
-					readingBand = 4.0;
-					break;
-				case readingNumber >=12:
-					readingBand = 3.0;
-					break;
-				case readingNumber >=8:
-					readingBand = 2.0;
-					break;
-				case readingNumber >=4:
-					readingBand = 1.0;
-					break;
-				default:
-					readingBand = 0.0;
-				}
-			}
-			TraceUtils.myTrace("readingNumber is " + readingNumber.toString());
-			TraceUtils.myTrace("readingBand is " + readingBand.toString());
-			
-			// Then average to get band score. 
-			// No longer requried, keep separate
-			/*
-			var bandScoreNumber:Number = (readingBand + listeningBand) / 2;
+			// Then average to get band score
+			var bandScoreNumber:Number = (readingBand + listeningBand + writingBand + speakingBand) / 4;
 			TraceUtils.myTrace("bandScoreNumber=" + bandScoreNumber.toString());
 			// First round to nearest .5 (multiply by 2, round, then halve)
 			bandScoreNumber = Math.round(2 * bandScoreNumber) / 2;
@@ -615,10 +473,10 @@ package com.clarityenglish
 			// Then format with one decimal point
 			var bandScore:String = bandScoreNumber.toFixed(1);
 			TraceUtils.myTrace("band score is " + bandScore);
-			*/
+			
 			// Create the descriptor
 			//this.resultFields.descriptor_txt.text = "If you are right you will score " + bandScore + " in the reading and listening sections of the test.";
-			var replaceObj:Object = {bandScoreListening: listeningBand, bandScoreReading: readingBand};
+			var replaceObj:Object = {bandScore: bandScore};
 			this.resultFields.descriptor_txt.htmlText = this.literals.getLiteral('bandScoreDescriptor', replaceObj);
 			
 			// Work out the destination of the more info/action link based on the country
@@ -634,7 +492,6 @@ package com.clarityenglish
 			this.resultFields.visible = true;
 			this.disclaimer.visible = false;
 			
-			// At the end of this, write a log if we know the referrer
 			if (websiteReferrer!="") {
 				TraceUtils.myTrace("log to " + websiteReferrer);
 				// Since you are running on many domains, this must be a full URL
