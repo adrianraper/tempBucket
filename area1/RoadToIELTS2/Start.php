@@ -65,9 +65,15 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
+	<link rel="stylesheet" type="text/css" href="ielts.css" />
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
+	
+	<script type="text/javascript" language="JavaScript" src="ielts.js"></script>
+	
 	<script type="text/javascript">
 		// ****
 		// 
@@ -84,15 +90,7 @@
 			}
 		}
 		
-		function onLoad() {
-			thisMovie("bento").focus();
 
-			// #224. Extend so that we check isDirty from bento - only ask if this is true.
-			window.onbeforeunload = function() {
-				if (thisMovie("bento").isExerciseDirty())
-					return "If you navigate away from this window during a session you may lose data you are working on and will need to log in again.";
-			}
-		}
 		// *********
 		// *********
 		var webShare = "<?php echo $webShare ?>";
@@ -168,12 +166,12 @@
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
+		swfobject.embedSWF(startControl + swfName + argList, "altContent", 300, 300, "10.2.0", expressInstall, flashvars, params, attr);
+		//swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
 	</script>
 
 </head>
-<body onload="onLoad()">
+<body>
 	<div align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
