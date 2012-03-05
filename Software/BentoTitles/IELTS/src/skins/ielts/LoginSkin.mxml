@@ -27,7 +27,7 @@
 		<s:Label text="It looks like this: 1280-8666-1111." color="#666666"/>
 		<s:Spacer height="5" />
 		<s:Label text="Password:" fontWeight="bold" />
-		<s:TextInput id="passwordInput" displayAsPassword="true" width="200"/>
+		<s:TextInput id="passwordInput" displayAsPassword="true" width="200" />
 		<s:Spacer height="3" />
 		<s:HGroup>
 		<!--

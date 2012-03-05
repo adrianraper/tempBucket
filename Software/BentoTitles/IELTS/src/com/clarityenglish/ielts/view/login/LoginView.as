@@ -3,12 +3,16 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
-		
+	
+	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.events.TextEvent;
 	
 	import mx.controls.Alert;
 	import mx.core.ITextInput;
+	import mx.events.FlexEvent;
+	import mx.utils.StringUtil;
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
@@ -40,8 +44,10 @@ package com.clarityenglish.ielts.view.login {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case loginButton:
-					instance.addEventListener(KeyboardEvent.KEY_DOWN, onKeyClick);
+				case nameInput:
+				case passwordInput:
+					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
+					break;
 				case quickStartButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;				
@@ -59,12 +65,12 @@ package com.clarityenglish.ielts.view.login {
 				loginHeading.label = name;
 		}
 		
-		protected function onKeyClick(event:KeyboardEvent):void {
-			// TODO. This might be better as a form event, then don't need to worry about which field you are on when pressing Enter
-			// Just pick up Enter key to trigger login
-			if (event.charCode == 13)
+		// #254
+		public function onEnter(event:FlexEvent):void {
+			if (StringUtil.trim(nameInput.text) && StringUtil.trim(passwordInput.text))
 				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
 		}
+		
 		/**
 		 * The user has clicked the login button
 		 *
