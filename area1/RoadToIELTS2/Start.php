@@ -70,7 +70,6 @@
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
 	
 	<script type="text/javascript" language="JavaScript" src="ielts.js"></script>
 	
@@ -98,7 +97,6 @@
 		var swfName = "<?php echo $swfName ?>";
 		
 		// v6.5.5.6 Allow resize screen mode
-		var coordsWidth = "100%"; var coordsHeight = "100%"; 
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
 		var coordsMinHeight = "760"; var coordsMaxHeight = null;
 		
@@ -166,8 +164,7 @@
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "altContent", 300, 300, "10.2.0", expressInstall, flashvars, params, attr);
-		//swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
+		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 
 </head>

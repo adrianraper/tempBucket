@@ -10,6 +10,7 @@ $(window).load(function() {
 	
 	// #255
 	onResize = function() {
+		// Resize the flash object within the minima and maxima
 		var width = $(window).width();
 		var height = $(window).height();
 		
@@ -19,13 +20,21 @@ $(window).load(function() {
 		if (coordsMinHeight) height = Math.max(height, coordsMinHeight);
 		if (coordsMaxHeight) height = Math.min(height, coordsMaxHeight);
 		
-		if (width < $(window).width() || height < $(window).height()) {
-			$("html").css("overflow", "hidden");
-		} else {
-			$("html").css("overflow", "auto");
+		// Deal with the scrollbars in a cross-browser friendly way
+		if (!$.browser.mozilla) {
+			if (width < $(window).width() || height < $(window).height()) {
+				$("html").css("overflow", "hidden");
+			} else {
+				$("html").css("overflow", "auto");
+			}
 		}
 		
+		// Size the flash object
 		$("#bento").width(width).height(height);
+		
+		// Center the flash object
+		$("#bento").css("left", Math.max(0, ($(window).width() - width) / 2))
+				   .css("top", Math.max(0, ($(window).height() - height) / 2));
 	}
 	
 	$(window).on("resize", onResize);
