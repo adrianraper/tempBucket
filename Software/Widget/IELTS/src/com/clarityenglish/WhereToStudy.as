@@ -131,7 +131,9 @@
 			this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
 			// Load the XML database now so you can search more quickly later, and even do type-ahead if possible
 			
-			this.institutions = new XMLDatabase('USInstitutions.xml', applicationRoot);
+			// v1.1 Update the source of information
+			//this.institutions = new XMLDatabase('USInstitutions.xml', applicationRoot);
+			this.institutions = new XMLDatabase('ROlocations-USA', applicationRoot);
 			
 			// And we need to make the origin in the top left corner
 			// If you publish the flash with width 160, changing that with the Flash options means that the
@@ -464,7 +466,8 @@
 				// Since you are running on many domains, this must be a full URL
 				//var url:String = "http://www.ClarityEnglish/Software/Common/lib/php/writeLog.php";
 				//var url:String = "http://dock.fixbench/Software/Common/lib/php/writeLog.php";
-				var url:String = "http://www.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
+				// v1.1 Only write to one server
+				var url:String = "http://p1.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
 				var request:URLRequest = new URLRequest(url);
 				var variables:URLVariables = new URLVariables();
 				variables.referrer = websiteReferrer;
@@ -515,7 +518,9 @@
 			} else {
 				title_txt.text = list.itemToLabel(item);
 				// If the name is not too long, add state to it. But you can only really measure once you have added the state!
-				title_txt.appendText(", " + item.state);
+				// v1.1 I don't currently have state in the XML
+				//title_txt.appendText(", " + item.state);
+				title_txt.appendText(", " + item.city);
 			}
 			// So if there is no space left, go back to the stateless name
 			//TraceUtils.myTrace("space left=" + (Number(titleHeight) - Number(title_txt.height)));
@@ -531,8 +536,10 @@
 			var item:Object = e.item;
 			if (item.id==undefined) return;
 			TraceUtils.myTrace("go to " + list.itemToLabel(item));
+			// v1.1 Go to page on takeielts.com
 			//var url:String = "http://www.google.com/search?q=" + spaceToPlus(item.name.toString()) + " IELTS";
-			var url:String = "http://bandscore.ielts.org/course_info.aspx?OrgId=" + spaceToPlus(item.id.toString());
+			//var url:String = "http://bandscore.ielts.org/course_info.aspx?OrgId=" + spaceToPlus(item.id.toString());
+			var url:String = "http://www.takeielts.com" + spaceToPlus(item.url.toString());
 			var request:URLRequest = new URLRequest(url);
 			try {
 				navigateToURL(request, '_blank'); // second argument is target

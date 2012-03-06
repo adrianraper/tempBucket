@@ -47,13 +47,20 @@
 		
 		public function getInstitution(searchString:String):XMLList {
 			if (!this.institutionsXML) return new XMLList();
-			var searchPattern:RegExp = new RegExp(searchString, "i"); 
+			var searchPattern:RegExp = new RegExp(searchString, "i");
+			// v1.1 Change the structure of the institutions file
+			/*
 			var idResults:XMLList = this.institutionsXML.institution.(id.toString().search(searchPattern) > -1);
 			var nameResults:XMLList = this.institutionsXML.institution.(name.toString().search(searchPattern) > -1);
 			//var cityResults:XMLList = this.institutionsXML.institution.(city.toString().search(searchPattern) > -1);
 			var stateResults:XMLList = this.institutionsXML.institution.(state.toString().search(searchPattern) > -1);
+			*/
+			var idResults:XMLList = this.institutionsXML.ro.(@id.toString().search(searchPattern) > -1);
+			var nameResults:XMLList = this.institutionsXML.ro.(@name.toString().search(searchPattern) > -1);
+			var cityResults:XMLList = this.institutionsXML.ro.(@city.toString().search(searchPattern) > -1);
+			var stateResults:XMLList = this.institutionsXML.ro.(@state.toString().search(searchPattern) > -1);
 			//var thisInstitution:XMLList = nameResults + cityResults + stateResults;
-			var thisInstitution:XMLList = idResults + nameResults + stateResults;
+			var thisInstitution:XMLList = idResults + nameResults + +cityResults + stateResults;
 			return thisInstitution;
 		}
 
