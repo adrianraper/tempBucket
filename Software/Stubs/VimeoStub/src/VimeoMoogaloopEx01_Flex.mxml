@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+* Demo of Vimeo Moogaloop video player switching between two videos.
+* */
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   creationComplete="creationCompleteHandler(event)"
+			   width="800" height="500">
+
+	<fx:Script>
+		<![CDATA[
+			import com.vimeo.moogaloop.VimeoPlayer;
+			import com.vimeo.moogaloop.VimeoEvent;
+			
+			import mx.events.FlexEvent;
+			
+			/**
+			 * Vimeo developer id.
+			 * */
+			//private const VIMEO_ID:String = "8694c30dc18f79b4507f0f87b5c3f18a";
+			private const VIMEO_CONSUMER_KEY:String = "f459ecc3033b88f879eaf8c0c382acbb";
+			private const VIMEO_SECRET:String = "7a99c4e2287d3ba4";
+			
+			/**
+			 * Vimeo video id for the first loaded video.
+			 * */
+			private const VIDEO_ID_1:int = 38073355;
+			/**
+			 * Vimeo video id for the second video.
+			 * */
+			private const VIDEO_ID_2:int = 13854989;
+			/**
+			 * Properties for background
+			 */
+			private static const backgroundColor:Number = 0x333333;
+			/**
+			 * The Vimeo Moogaloop video player.
+			 * */
+			private var vimeoPlayer:VimeoPlayer;
+			/**
+			 * Event handler for creationComplete event.
+			 * */
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				// Create the Vimeo VideoPlayer class instance.
+				vimeoPlayer = new VimeoPlayer(VIMEO_CONSUMER_KEY, VIDEO_ID_1, 460, 300);
+				// Add to SpriteVisualElement
+				vimeoVideoPlayer.addChild(vimeoPlayer);
+				// Disable the first video switching button.
+				video1.enabled = false;
+				// Setup events
+				//trace("add event listeners");
+				vimeoPlayer.addEventListener(Event.COMPLETE, vimeoPlayerLoaded);
+				vimeoPlayer.addEventListener(VimeoEvent.READY, readyHandler, false, 0, true);
+				vimeoPlayer.addEventListener(VimeoEvent.PLAY, playHandler, false, 0, true);
+				vimeoPlayer.addEventListener(VimeoEvent.PAUSE, pauseHandler, false, 0, true);
+			}
+			/**
+			 * Event handler for the first video button MouseEvent.CLICK event.
+			 * */
+			protected function video1_clickHandler(event:MouseEvent):void
+			{
+				// Load the video.
+				loadVideo(VIDEO_ID_1);
+				// Reset the video switching button states.
+				video1.enabled = false;
+				video2.enabled = true;
+			}
+			/**
+			 * Event handler for the second video button MouseEvent.CLICK event.
+			 * */
+			protected function video2_clickHandler(event:MouseEvent):void
+			{
+				// Load the video.
+				loadVideo(VIDEO_ID_2);
+				// Reset the video switching button states.
+				video1.enabled = true;
+				video2.enabled = false;
+			}
+			/**
+			 * Loads a new video into the Vimeo Moogaloop player.
+			 * */
+			private function loadVideo(videoId:int):void {
+				vimeoPlayer.loadVideo(videoId);
+			}
+			
+			// See what events we can use and information we can get
+			protected function loadProgressHandler(event:Event):void {
+				mytrace("my loadProgressHandler");
+				if (event.hasOwnProperty('data') && Object(event).data) {
+					mytrace('Percent loaded: ' + Object(event).data.percent);
+				}
+			}
+			protected function readyHandler(event:Event):void {
+				mytrace('my readyHandler');
+			}
+			protected function playHandler(event:Event):void {
+				mytrace('my playHandler');
+			}
+			protected function pauseHandler(event:Event):void {
+				mytrace('my pauseHandler');
+			}
+			protected function vimeoPlayerLoaded(event:Event):void {
+				// This is the only event handler that is triggered
+				mytrace('my player loaded');
+			}
+			protected function info_clickHandler(event:MouseEvent):void	{
+				// Look up some properties of the video
+				mytrace("duration=" + vimeoPlayer.getDuration());
+				mytrace("bytesLoaded=" + vimeoPlayer.getBytesLoaded());
+			}
+			public function mytrace(msg:String):void {
+				trace(msg);
+				traceBox.text = traceBox.text + "\r\n" + msg;
+			}
+		]]>
+	</fx:Script>
+	<!--
+	UI
+	--> 
+	<s:BorderContainer id = "background_bc"
+					   width="{width}" height = "{height}"
+					   backgroundColor="{backgroundColor}">
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="center"/>
+		</s:layout>
+		<s:SpriteVisualElement id = "vimeoVideoPlayer" width="460" height="350"/>
+		<mx:HBox> 
+			<s:Button id = "video1" label="Video 1" click="video1_clickHandler(event)" />
+			<s:Button id = "video2" label="Video 2" click="video2_clickHandler(event)" />		
+			<s:Button id = "info" label="Duration" click="info_clickHandler(event)" />		
+		</mx:HBox>
+		<s:RichEditableText id="traceBox" width="100%" height="100" clipAndEnableScrolling="true" />
+	</s:BorderContainer> 
+</s:Application>

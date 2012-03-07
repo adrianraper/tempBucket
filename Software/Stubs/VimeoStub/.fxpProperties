@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fxpProperties abbreviated="false" authoringTool="Flex Builder" compiles="true" parentProject="801e5730-f308-4b71-bb53-850a86b679e6" projectUUID="801e5730-f308-4b71-bb53-850a86b679e6" sdkVersion="4.1.0" uuid="53ebb4b9-732e-460d-b2a3-b29a52bea216" version="4">
+  <projects/>
+  <src/>
+  <swc>
+    <linked location="sdkPlaceHolder" path="sdkPlaceHolder" position="0" uuid="53ebb4b9-732e-460d-b2a3-b29a52bea216"/>
+    <linked location="C:/Users/owner/Documents/alh_workspaces_svn/FlexBuilder/VideoCatelog/VimeoMoogaloopEx01_Flex/libs" path="/libs" position="1" uuid="3d79e72a-5bf9-4588-81f0-8ed7f201439e"/>
+  </swc>
+  <misc/>
+  <theme/>
+</fxpProperties>
