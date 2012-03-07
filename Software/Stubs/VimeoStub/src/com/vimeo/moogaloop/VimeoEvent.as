@@ -11,16 +11,23 @@ package com.vimeo.moogaloop {
 		public static const READY : String          = 'ready';
 		public static const SEEK : String           = 'seek';
 		
-		public function VimeoEvent(type:String, bubbles:Boolean = false) {
+		private var _data:Object;
+		
+		public function VimeoEvent(type:String, data:Object = null, bubbles:Boolean = false) {
 			super(type, bubbles);
+			this._data = data;
+		}
+
+		public function get data():Object {
+			return _data;
 		}
 		
 		public override function clone():Event {
-			return new VimeoEvent(type, bubbles);
+			return new VimeoEvent(type, _data, bubbles);
 		}
 		
 		public override function toString():String {
-			return formatToString("VimeoEvent", "bubbles");
+			return formatToString("VimeoEvent", "data", "bubbles");
 		}
 		
 	}

@@ -31,7 +31,7 @@
 			/**
 			 * Vimeo video id for the second video.
 			 * */
-			private const VIDEO_ID_2:int = 13854989;
+			private const VIDEO_ID_2:int = 38078083;
 			/**
 			 * Properties for background
 			 */
@@ -57,6 +57,7 @@
 				vimeoPlayer.addEventListener(VimeoEvent.READY, readyHandler, false, 0, true);
 				vimeoPlayer.addEventListener(VimeoEvent.PLAY, playHandler, false, 0, true);
 				vimeoPlayer.addEventListener(VimeoEvent.PAUSE, pauseHandler, false, 0, true);
+				vimeoPlayer.addEventListener(VimeoEvent.PLAY_PROGRESS, playProgressHandler, false, 0, true);
 			}
 			/**
 			 * Event handler for the first video button MouseEvent.CLICK event.
@@ -89,9 +90,15 @@
 			
 			// See what events we can use and information we can get
 			protected function loadProgressHandler(event:Event):void {
-				mytrace("my loadProgressHandler");
+				//mytrace("my loadProgressHandler");
 				if (event.hasOwnProperty('data') && Object(event).data) {
-					mytrace('Percent loaded: ' + Object(event).data.percent);
+					mytrace('my percent loaded: ' + Object(event).data.percent);
+				}
+			}
+			protected function playProgressHandler(event:Event):void {
+				//mytrace("my playProgressHandler");
+				if (event.hasOwnProperty('data') && Object(event).data) {
+					//mytrace('my seconds played: ' + Object(event).data.seconds);
 				}
 			}
 			protected function readyHandler(event:Event):void {
@@ -111,10 +118,12 @@
 				// Look up some properties of the video
 				mytrace("duration=" + vimeoPlayer.getDuration());
 				mytrace("bytesLoaded=" + vimeoPlayer.getBytesLoaded());
+				//vimeoPlayer.setSize(920,600);
 			}
 			public function mytrace(msg:String):void {
 				trace(msg);
-				traceBox.text = traceBox.text + "\r\n" + msg;
+				//traceBox.text = traceBox.text + "\r\n" + msg;
+				traceBox.text = msg;
 			}
 		]]>
 	</fx:Script>

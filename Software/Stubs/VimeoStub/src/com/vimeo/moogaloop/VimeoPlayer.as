@@ -17,6 +17,8 @@
  */
 package com.vimeo.moogaloop
 {
+	import com.vimeo.moogaloop.VimeoEvent;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.Sprite;
@@ -29,7 +31,6 @@ package com.vimeo.moogaloop
 	import flash.system.LoaderContext;
 	import flash.system.Security;
 	import flash.utils.Timer;
-	import com.vimeo.moogaloop.VimeoEvent;
 	
 	import spark.components.Application;
 	
@@ -170,11 +171,11 @@ package com.vimeo.moogaloop
 			}
 			
 			// Create the mask for moogaloop
-			this.addChild(player_mask);
-			container.mask = player_mask;
+			//this.addChild(player_mask);
+			//container.mask = player_mask;
 			this.addChild(container);
 			
-			redrawMask();
+			//redrawMask();
 			
 			load_timer.addEventListener(TimerEvent.TIMER, playerLoadedCheck);
 			load_timer.start();
@@ -193,8 +194,7 @@ package com.vimeo.moogaloop
 				
 				// remove moogaloop's mouse listeners listener
 				moogaloop.disableMouseMove();
-				if (stage)
-				{
+				if (stage) {
 					stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMove, false, 0, true);
 				}
 				
@@ -203,20 +203,19 @@ package com.vimeo.moogaloop
 		}
 		
 		/**
-		 * Fake the mouse move/out events for Moogaloop
+		 * Fake the mouse move/out events for Moogaloop.
+		 * Clarity. This doesn't seem to work very effectively - it means that you can mouse over and 
+		 * NOT get the control bar appear each time.
 		 */
-		private function mouseMove(e:MouseEvent) : void
-		{
-			if (moogaloop && moogaloop.player_loaded)
-			{
-				var pos : Point = this.parent.localToGlobal(new Point(this.x, this.y));
+		private function mouseMove(e:MouseEvent) : void {
+			if (moogaloop && moogaloop.player_loaded) {
+				var pos:Point = this.parent.localToGlobal(new Point(this.x, this.y));
 				if (e.stageX >= pos.x && e.stageX <= pos.x + this.player_width &&
-					e.stageY >= pos.y && e.stageY <= pos.y + this.player_height)
-				{
+					e.stageY >= pos.y && e.stageY <= pos.y + this.player_height) {
+					trace("mouseMove");
 					moogaloop.mouseMove(e);
-				}
-				else
-				{
+				} else {
+					// trace("mouseOut");
 					moogaloop.mouseOut();
 				}
 			}
@@ -249,6 +248,7 @@ package com.vimeo.moogaloop
 		{
 			return moogaloop.duration;
 		}
+		// Clarity added.
 		public function getBytesLoaded() : int
 		{
 			return moogaloop.bytesLoaded;
@@ -282,7 +282,7 @@ package com.vimeo.moogaloop
 		{
 			this.setDimensions(w, h);
 			moogaloop.setSize(w, h);
-			this.redrawMask();
+			//this.redrawMask();
 		}
 		
 		// Event Handlers ____________________________________________________
@@ -301,10 +301,12 @@ package com.vimeo.moogaloop
 		
 		/**
 		 * API v2 Event Handlers
+		 * NOTE. To get these to fire you MUST have allowscriptaccess = "always"; in the swfobject.
 		 */
 		private function readyHandler(event:Event) : void
 		{
 			trace('readyHandler');
+			// Clarity. Add a VimeoEvent to be picked up by the application using this player.
 			dispatchEvent(new VimeoEvent(VimeoEvent.READY));
 		}
 		
@@ -323,21 +325,31 @@ package com.vimeo.moogaloop
 		private function seekHandler(event:Event) : void
 		{
 			trace('seekHandler');
+			dispatchEvent(new VimeoEvent(VimeoEvent.SEEK));
 		}
 		
-		private function loadProgressHandler(event:Event) : void
-		{
-			trace('loadProgressHandler');
+		private function loadProgressHandler(event:Event) : void {
+			if (event.hasOwnProperty('data') && Object(event).data) {
+				var passedData:Object = Object(event).data;
+			} else {
+				passedData = null;
+			}
+			dispatchEvent(new VimeoEvent(VimeoEvent.LOAD_PROGRESS, passedData));
 		}
 		
-		private function playProgressHandler(event:Event) : void
-		{
-			trace('playProgressHandler');
+		private function playProgressHandler(event:Event) : void {
+			if (event.hasOwnProperty('data') && Object(event).data) {
+				var passedData:Object = Object(event).data;
+			} else {
+				passedData = null;
+			}
+			dispatchEvent(new VimeoEvent(VimeoEvent.PLAY_PROGRESS, passedData));
 		}
 		
 		private function finishHandler(event:Event) : void
 		{
 			trace('finishHandler');
+			dispatchEvent(new VimeoEvent(VimeoEvent.FINISH));
 		}
 		
 		/**
