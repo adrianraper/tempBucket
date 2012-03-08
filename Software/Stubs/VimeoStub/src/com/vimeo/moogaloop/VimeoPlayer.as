@@ -184,10 +184,8 @@ package com.vimeo.moogaloop
 		/**
 		 * Wait for Moogaloop to finish setting up
 		 */
-		private function playerLoadedCheck(e:TimerEvent) : void
-		{
-			if (moogaloop.player_loaded)
-			{
+		private function playerLoadedCheck(e:TimerEvent) : void {
+			if (moogaloop.player_loaded) {
 				// Moogaloop is finished configuring
 				load_timer.stop();
 				load_timer.removeEventListener(TimerEvent.TIMER, playerLoadedCheck);
