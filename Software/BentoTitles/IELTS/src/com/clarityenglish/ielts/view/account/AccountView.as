@@ -92,7 +92,15 @@ package com.clarityenglish.ielts.view.account {
 				case countdownLabel:
 					// We will only tell the user about the countdown if they have confirmed their exam date
 					if (userDetails.examDate) {
-						instance.text = "This is the remaining time until your test."
+						var daysLeft:Number = DateUtil.dateDiff(new Date(), userDetails.examDate, "d");
+						if (daysLeft > 0) {
+							instance.text = "This is the remaining time until your test."
+						} else if (daysLeft == 0) {
+							instance.text = "Your test is today, good luck!";
+						} else {
+							instance.text = "Hope your test went well...";
+						}
+						
 					} else {
 						instance.text = "Please set your test date below:"
 					}

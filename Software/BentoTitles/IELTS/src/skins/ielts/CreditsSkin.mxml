@@ -27,7 +27,7 @@
 		<s:Spacer height="10" />
 		<s:Label text="Thank you for using Road to IELTS." fontSize="20" color="0X0C436B" />
 		<s:Spacer height="1" />
-		<s:Label text="Good luck in your IELTS exam." fontSize="20" color="0X0C436B" />
+		<s:Label text="Good luck in your IELTS test." fontSize="20" color="0X0C436B" />
 		<s:Spacer height="5" />
 	</s:VGroup>
 	<s:VGroup>

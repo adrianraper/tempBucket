@@ -48,6 +48,7 @@ package com.clarityenglish.ielts.view.login {
 				case passwordInput:
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
 					break;
+				case loginButton:
 				case quickStartButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;				
@@ -69,6 +70,11 @@ package com.clarityenglish.ielts.view.login {
 		public function onEnter(event:FlexEvent):void {
 			if (StringUtil.trim(nameInput.text) && StringUtil.trim(passwordInput.text))
 				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+			
+			// Go to the password field if press Enter but it is empty
+			// TODO. Ideally we would check loginOptions to see if password required
+			if (StringUtil.trim(nameInput.text) && StringUtil.trim(passwordInput.text)=='')
+				passwordInput.setFocus();
 		}
 		
 		/**
