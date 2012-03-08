@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,25 +26,23 @@
 <body>
 	
 <header>
+<div id="instruction">
 	IELTS Writing Task 1&#160;You should spend about 20 minutes on this task. You should write at least 150 words.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/ED_GW_002.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>You have seen an advertisement for a course at your local college. You would like further information.</b>
-  </p>
-  <p align="left">
-    <b>Write a letter to the college explaining why you are interested in the course. Find out about the content of the course and the entry requirements. Ask them to send you a prospectus and an application form.</b>
-  </p>
-  <p align="left">You do <b>NOT</b> need to write your own address.</p>
-  <p align="left">
-    <font color="#000000">Begin your letter as follows:</font>
-  </p>
-  <p align="left">Dear Sir/Madam,</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+    <div id="presentation">
+  <p><b>You have seen an advertisement for a course at your local college. You would like further information.</b></p>
+  
+  <p><b>Write a letter to the college explaining why you are interested in the course. Find out about the content of the course and the entry requirements. Ask them to send you a prospectus and an application form.</b></p>
+  
+  <p>You do&#xA0; <b>NOT</b> &#xA0;need to write your own address.</p>
+  <p>Begin your letter as follows:</p>
+  <p>Dear Sir/Madam,</p>
+  </div>
 </section>
 
 </body>

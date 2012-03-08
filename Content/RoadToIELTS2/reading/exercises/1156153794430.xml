@@ -11,6 +11,9 @@
 	</style>
 		
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500"  />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -76,7 +79,9 @@
 
 
 <section id="readingText">
-	<h1>Pastimes and Games of Native Peoples around the World</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Pastimes and Games of Native Peoples around the World</p></h1>
 	
 	<p>A culture's pastimes and games reflect more than recreation. In order to appreciate and understand indigenous peoples, one must understand the function and significance of their material culture.</p>
 	<h7><p>Infinity Marbles</p></h7>
@@ -130,6 +135,20 @@
 <p class="hangingindenttable">Format:<tab/><tab/>I</p>
 
 </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-10 - Table completion</b></p>
+<p class="popuptext2">Don't spend too much time on this exercise. Examine the whole table before you begin reading so that you know how it is organised. Look carefully at the column headings and at the information that has already been filled in. Decide what kind of information is required in each gap and then scan the text quickly to find the answers. You will find the information you need in the same order as the questions, so follow the question numbers.</p>
+
+<p class="popuptext1"><b>Questions 1, 2, 7 and 9</b></p>
+<p class="popuptext2">Do you think numbers are missing from these questions, or some other kind of information?</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">Be careful here! You might think that you can get this answer by using this information in the 'Players' point, but in fact you'll have to read the text to find it.</p>
+
+<p class="popuptext1"><b>Questions 6 and 8</b></p>
+<p class="popuptext2">Make sure you follow the instructions for these two questions.</p>
 </section>
 
 </body>

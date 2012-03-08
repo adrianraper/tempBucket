@@ -6,18 +6,18 @@
       <menu id="52">
 		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" alt="" />
-				<group id="3" caption="Unit 3" task="1" alt="" />
-				<group id="4" caption="Unit 4" task="1" alt="" />
-				<group id="5" caption="Unit 5" task="1" alt="" />
-				<group id="6" caption="Unit 6" task="1" alt="" />
-				<group id="7" caption="Unit 7" task="1" alt="" />
-				<group id="8" caption="Unit 8" task="1" alt="" />
-				<group id="9" caption="Unit 9" task="1" alt="" />
-				<group id="10" caption="Unit 10" task="1" alt="" />
-				<group id="11" caption="Unit 11" task="1" alt="" />
-				<group id="12" caption="Unit 12" task="1" alt="" />
+				<group id="1" caption="Set 1" task="1" alt="" />
+				<group id="2" caption="Set 2" task="1" alt="" />
+				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="4" caption="Set 4" task="1" alt="" />
+				<group id="5" caption="Set 5" task="1" alt="" />
+				<group id="6" caption="Set 6" task="1" alt="" />
+				<group id="7" caption="Set 7" task="1" alt="" />
+				<group id="8" caption="Set 8" task="1" alt="" />
+				<group id="9" caption="Set 9" task="1" alt="" />
+				<group id="10" caption="Set 10" task="1" alt="" />
+				<group id="11" caption="Set 11" task="1" alt="" />
+				<group id="12" caption="Set 12" task="1" alt="" />
 			</groups>
 			<unit id="1287130110000" class="question-zone">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
@@ -131,7 +131,7 @@
 				<exercise id="1161572095299" group="11" caption="True, False, Not given" href="reading/exercises/1161572095299.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_truefalse1.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1161157617216" group="12" caption="BBC Experience" href="reading/exercises/1161157617216.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_bbc.jpg">
+				<exercise id="1161157617216" group="12" caption="Matching headings to paragraphs" href="reading/exercises/1161157617216.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_bbc.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
 				<exercise id="1161157803985" group="12" caption="True, False, Not Given (2)" href="reading/exercises/1161157803985.xml" enabledFlag="3" difficulty="3" thumbnail="reading/thumbnails/generaltraining/reading3_truefalse2.jpg">
@@ -151,25 +151,30 @@
 				</exercise>
 </unit>
 			<unit id="1287130120000" class="exam-practice">
-				<exercise id="1287130120001" caption="Reading practice paper part 1" href="reading/pdf/reading_ac_practice1.pdf" difficulty="1" />
-				<exercise id="1287130120002" caption="Reading practice paper part 2" href="reading/pdf/reading_ac_practice2.pdf" difficulty="2" />
-				<exercise id="1287130120003" caption="Reading practice paper part 3" href="reading/pdf/reading_ac_practice3.pdf" difficulty="3" />
+				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_gt_practice1.pdf" />
+				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_gt_practice2.pdf" />
+				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_gt_practice3.pdf" />
+			</unit>
+			<unit id="1287130121000" class="exam-answers">
+				<exercise id="1287130121001" caption="Answer sheet 1" href="reading/pdf/reading_gt_answer1.pdf" />
+				<exercise id="1287130121002" caption="Answer sheet 2" href="reading/pdf/reading_gt_answer2.pdf" />
+				<exercise id="1287130121003" caption="Answer sheet 3" href="reading/pdf/reading_gt_answer3.pdf" />
 			</unit>
 		</course>
 		<course id="1287130200000" class="listening" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" alt="" />
-				<group id="3" caption="Unit 3" task="1" alt="" />
-				<group id="4" caption="Unit 4" task="1" alt="" />
-				<group id="5" caption="Unit 5" task="1" alt="" />
-				<group id="6" caption="Unit 6" task="1" alt="" />
-				<group id="7" caption="Unit 7" task="1" alt="" />
-				<group id="8" caption="Unit 8" task="1" alt="" />
-				<group id="9" caption="Unit 9" task="1" alt="" />
-				<group id="10" caption="Unit 10" task="1" alt="" />
-				<group id="11" caption="Unit 11" task="1" alt="" />
-				<group id="12" caption="Unit 12" task="1" alt="" />
+				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Set 2" task="1" alt="" />
+				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="4" caption="Set 4" task="1" alt="" />
+				<group id="5" caption="Set 5" task="1" alt="" />
+				<group id="6" caption="Set 6" task="1" alt="" />
+				<group id="7" caption="Set 7" task="1" alt="" />
+				<group id="8" caption="Set 8" task="1" alt="" />
+				<group id="9" caption="Set 9" task="1" alt="" />
+				<group id="10" caption="Set 10" task="1" alt="" />
+				<group id="11" caption="Set 11" task="1" alt="" />
+				<group id="12" caption="Set 12" task="1" alt="" />
 			</groups>
 			<unit id="1287130210000" class="question-zone">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
@@ -307,25 +312,30 @@
 				</exercise>
             </unit>
 			<unit id="1287130220000" class="exam-practice">
-				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Listening practice paper part 1" difficulty="1" />
-				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Listening practice paper part 2" difficulty="2" />
-				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Listening practice paper part 3" difficulty="3" />
+				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1" audioHref="listening/media/listening_tp_part1.mp3" />
+				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" audioHref="listening/media/listening_tp_part2.mp3" />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" audioHref="listening/media/listening_tp_part3.mp3" />
+			</unit>
+		 	<unit id="1287130221000" class="exam-answers">
+				<exercise id="1287130221001" href="listening/pdf/listening_answer1.pdf" caption="Answer sheet 1" />
+				<exercise id="1287130221002" href="listening/pdf/listening_answer2.pdf" caption="Answer sheet 2" />
+				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3" />
 			</unit>
 		 </course>
 		<course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
-				<group id="1" caption="Unit 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Unit 2" task="1" alt="" />
-				<group id="3" caption="Unit 3" task="1" alt="" />
-				<group id="4" caption="Unit 4" task="1" alt="" />
-				<group id="5" caption="Unit 5" task="1" alt="" />
-				<group id="6" caption="Unit 6" task="1" alt="" />
-				<group id="7" caption="Unit 7" task="1" alt="" />
-				<group id="8" caption="Unit 8" task="1" alt="" />
-				<group id="9" caption="Unit 9" task="1" alt="" />
-				<group id="10" caption="Unit 10" task="1" alt="" />
-				<group id="11" caption="Unit 11" task="1" alt="" />
-				<group id="12" caption="Unit 12" task="1" alt="" />
+				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="2" caption="Set 2" task="1" alt="" />
+				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="4" caption="Set 4" task="1" alt="" />
+				<group id="5" caption="Set 5" task="1" alt="" />
+				<group id="6" caption="Set 6" task="1" alt="" />
+				<group id="7" caption="Set 7" task="1" alt="" />
+				<group id="8" caption="Set 8" task="1" alt="" />
+				<group id="9" caption="Set 9" task="1" alt="" />
+				<group id="10" caption="Set 10" task="1" alt="" />
+				<group id="11" caption="Set 11" task="1" alt="" />
+				<group id="12" caption="Set 12" task="1" alt="" />
 			</groups>
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
@@ -601,26 +611,26 @@
 		</course>
 		<course id="1287130400000" class="writing" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
 			<groups>
-				<group id="1" caption="Unit 1 task 1" task="1" alt="" />
-				<group id="2" caption="Unit 2 task 1" task="1" alt="" />
-				<group id="3" caption="Unit 2 task 2" task="2" alt="" />
-				<group id="4" caption="Unit 3 task 1" task="1" alt="" />
-				<group id="5" caption="Unit 3 task 2" task="2" alt="" />
-				<group id="6" caption="Unit 4 task 1" task="1" alt="" />
-				<group id="7" caption="Unit 4 task 2" task="2" alt="" />
-				<group id="8" caption="Unit 5 task 1" task="1" alt="" />
-				<group id="9" caption="Unit 5 task 2" task="2" alt="" />
-				<group id="10" caption="Unit 6 task 1" task="1" alt="" />
-				<group id="11" caption="Unit 6 task 2" task="2" alt="" />
-				<group id="12" caption="Unit 7 task 1" task="1" alt="" />
-				<group id="13" caption="Unit 7 task 2" task="2" alt="" />
-				<group id="14" caption="Unit 8 task 1" task="1" alt="" />
-				<group id="15" caption="Unit 8 task 2" task="2" alt="" />
-				<group id="16" caption="Unit 9 task 1" task="1" alt="" />
-				<group id="17" caption="Unit 9 task 2" task="2" alt="" />
-				<group id="18" caption="Unit 10" task="1" alt="" />
-				<group id="19" caption="Unit 11" task="1" alt="" />
-				<group id="20" caption="Unit 12" task="1" alt="" />
+				<group id="1" caption="Set 1 task 1" task="1" alt="" />
+				<group id="2" caption="Set 2 task 1" task="1" alt="" />
+				<group id="3" caption="Set 2 task 2" task="2" alt="" />
+				<group id="4" caption="Set 3 task 1" task="1" alt="" />
+				<group id="5" caption="Set 3 task 2" task="2" alt="" />
+				<group id="6" caption="Set 4 task 1" task="1" alt="" />
+				<group id="7" caption="Set 4 task 2" task="2" alt="" />
+				<group id="8" caption="Set 5 task 1" task="1" alt="" />
+				<group id="9" caption="Set 5 task 2" task="2" alt="" />
+				<group id="10" caption="Set 6 task 1" task="1" alt="" />
+				<group id="11" caption="Set 6 task 2" task="2" alt="" />
+				<group id="12" caption="Set 7 task 1" task="1" alt="" />
+				<group id="13" caption="Set 7 task 2" task="2" alt="" />
+				<group id="14" caption="Set 8 task 1" task="1" alt="" />
+				<group id="15" caption="Set 8 task 2" task="2" alt="" />
+				<group id="16" caption="Set 9 task 1" task="1" alt="" />
+				<group id="17" caption="Set 9 task 2" task="2" alt="" />
+				<group id="18" caption="Set 10" task="1" alt="" />
+				<group id="19" caption="Set 11" task="1" alt="" />
+				<group id="20" caption="Set 12" task="1" alt="" />
 			</groups>
 			<unit id="1287130410000" class="question-zone">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
@@ -1096,10 +1106,15 @@
 				  <!--Presentation - TB-->
 				</exercise>
           </unit>
-		  <unit id="1287130420000" class="exam-practice" caption="Try the practice papers.">
-				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Writing practice paper part 1" difficulty="1" />
-				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Writing practice paper part 2" difficulty="2" />
-				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Writing practice paper part 3" difficulty="3" />
+		  <unit id="1287130420000" class="exam-practice" caption="Try the test practices.">
+				<exercise id="1287130420001" href="writing/pdf/writing_gt_practice1.pdf" caption="Practice test 1" />
+				<exercise id="1287130420002" href="writing/pdf/writing_gt_practice2.pdf" caption="Practice test 2" />
+				<exercise id="1287130420003" href="writing/pdf/writing_gt_practice3.pdf" caption="Practice test 3" />
+			</unit>
+			 <unit id="1287130421000" class="exam-answers" caption="">
+				<exercise id="1287130421001" href="writing/pdf/writing_gt_answer1.pdf" caption="Answer sheet 1" />
+				<exercise id="1287130421002" href="writing/pdf/writing_gt_answer2.pdf" caption="Answer sheet 2" />
+				<exercise id="1287130421003" href="writing/pdf/writing_gt_answer3.pdf" caption="Answer sheet 3" />
 			</unit>
         </course>
       </menu>

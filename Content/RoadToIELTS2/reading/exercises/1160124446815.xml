@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -30,7 +33,6 @@
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="60" correct="true"/>
-      <answer value="sixty" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="nesting places" correct="true"/>
@@ -42,7 +44,6 @@
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
       <answer value="65" correct="true"/>
-      <answer value="sixty-five" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q7" block="b7">
       <answer value="willow tit" correct="true"/>
@@ -54,7 +55,6 @@
     </GapFillQuestion>
     <GapFillQuestion source="q9" block="b9">
       <answer value="52" correct="true"/>
-      <answer value="fifty-two" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q10" block="b10">
       <answer value="intensive farmland practices" correct="true"/>
@@ -77,7 +77,8 @@
 	
 
 <section id="readingText">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
   <h1><p>Starlings put to flight by proud house owners</p></h1>
   
 	<p>Conservationists are so concerned about the decline in numbers of the house sparrow and starling that for the first time these common garden birds could be included in the Red List of birds in urgent need of protection.</p>
@@ -94,7 +95,7 @@
 	
 	<p>Experts are also puzzled by the decline in the population of woodland birds, particularly the marsh tit and the willow tit, whose numbers have fallen by an average of 65 per cent in the past 30 years. These, too, are candidates for the Red List.</p>
 	
-	<p>Mr Madge said, "We have noticed an even faster rate of decline of the willow tit in the past five years. It really is the first sign we have had that woodland birds are in trouble. Again, we don&#x2019;t know why, when other relatives such as the blue tit and the great tit are doing well. There must be something happening on woodland and scrubland that we have not detected."</p>
+	<p>Mr Madge said, "We have noticed an even faster rate of decline of the willow tit in the past five years. It really is the first sign we have had that woodland birds are in trouble. Again, we don't know why, when other relatives such as the blue tit and the great tit are doing well. There must be something happening on woodland and scrubland that we have not detected."</p>
 
 	<p>One possibility is that willow tits, which excavate their nesting holes, are somehow being deterred from nesting.</p>
 	
@@ -106,7 +107,7 @@
 	
 	<p>The Joint Nature Conservation Committee, the British Trust for Ornithology and the Royal Society for the Protection of Birds are discussing the format of a new Red List. Any species that appears on the list is treated as a conservation priority. The Ministry of Agriculture and English Nature are more likely to provide funding to set up special protection schemes for birds on the list.</p>
 	
-	<p>Valerie Elliott, Countryside Editor, The Times, 2nd January 2001.</p>
+	<p>Valerie Elliott, Countryside Editor, The Times</p>
 
 </section>
 
@@ -115,32 +116,45 @@
 <p><b>BRITAIN&#x2019;S DECLINING BIRD POPULATION</b></p>
 <p class="linespace"></p>
 <p><b>Common Garden Birds</b></p>
+<img class="leftFloat" src="../media/EN_GR_003a.jpg" mode="1" id="1001"/>
 <p>a. Common Name: starling</p>
 <p>&#xA0;&#xA0;&#xA0;&#xA0;Scientific Name: (1)&#xA0;<input id="q1"/></p>
+<img class="leftFloat" src="../media/EN_GR_003b.jpg" mode="1" id="1002"/>
 <p>b. Common Name: (2)&#xA0;<input id="q2"/></p>
 <p>&#xA0;&#xA0;&#xA0;&#xA0;Scientific Name: Passer domesticus</p>
+<p class="linespace"></p>
 <p>Status: (3)&#xA0;<input id="q3"/>&#xA0;% decrease in numbers in the last 30 years.</p>
 <p>Possible cause of decline: lack of (4)&#xA0;<input id="q4"/></p>
 
 <p class="linespace"></p>
 <p class="linespace"></p>
-<p>(5)&#xA0;<b><input id="q5"/></b>&#xA0;<b>Birds</b></p>
+<p>(5)&#xA0;<input id="q5"/>&#xA0;<b>Birds</b></p>
+<img class="leftFloat" src="../media/EN_GR_003c.jpg" mode="1" id="1003"/>
 <p>a. Common Name: marsh tit</p>
 <p>&#xA0;&#xA0;&#xA0;&#xA0;Scientific Name: Parus palustris</p>
+<img class="leftFloat" src="../media/EN_GR_003d.jpg" mode="1" id="1004"/>
 <p>b. Common Name: willow tit</p>
 <p>&#xA0;&#xA0;&#xA0;&#xA0;Scientific Name: Parus montanus</p>
+<p class="linespace"></p>
 <p>Status: (6)&#xA0;<input id="q6"/>&#xA0;% decrease in the number of both birds on average in the last 30 years.</p>
 <p>More recently, an even greater decrease in the (7)&#xA0;<input id="q7"/>&#xA0;population has been observed.</p>
 
 <p class="linespace"></p>
 <p class="linespace"></p>
 <p><b>Farmland Birds</b></p>
+<img class="leftFloat" src="../media/EN_GR_003e.jpg" mode="1" id="1005"/>
 <p>Common Name: (8)&#xA0;<input id="q8"/></p>
 <p>Scientific Name: Vanellus vanellus</p>
 <p>Status: (9)&#xA0;<input id="q9"/>&#xA0;% decrease in numbers in the last 30 years.</p>
 <p>Possible cause of decline:(10)&#xA0;<input id="q10"/></p>
+<p class="linespace"></p>
 </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This exercise shouldn't take more than a few minutes. The text, about British birds that are becoming endangered, is quite straightforward. The diagram you have to complete is very clearly organised. Examine it carefully before you read the text so that you know what information to look for.</p>
+
+<p class="popuptext">The 'common name' is the name most people use for the bird. The 'scientific name' is usually a Latin term used by scientists when they refer to the species. Status refers to how much at risk the bird is.</p>
+</section>
 </body>
 </bento>

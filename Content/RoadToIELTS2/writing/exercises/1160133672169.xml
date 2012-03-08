@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfilltext.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfilltext-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -65,32 +65,54 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/AC_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the present simple of one of the verbs provided. You will use some of the verbs more than once, and in some cases you will need to use passive voice.
-
-Writing Task 1
+<div id="instruction">
+Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the present simple of one of the verbs provided. You will use some of the verbs more than once, and in some cases you will need to use passive voice.
+</div>
 </header>
 	
 <section id="noscroll">
+  <span id="a10" draggable="false">be</span>
+  <span id="a4" draggable="false">begin</span>
+  <span id="a11" draggable="false">bring</span>
+  <span id="a12" draggable="false">go</span>
+  <span id="a7" draggable="false">grow</span>
+  <span id="a1" draggable="false">know</span>
+  <span id="a8" draggable="false">leave</span>
+  <span id="a6" draggable="false">rescue</span>
+  <span id="a3" draggable="false">see</span>
+  <span id="a5" draggable="false">tell</span>
+  <span id="a2" draggable="false">think</span>
+  <span id="a9" draggable="false">unfold</span>
 </section>
 
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/>
   <img class="rightFloat" src="../media/AC_GW_007.jpg" mode="1" id="1001"/>
-  <p align="left">Dear Justin,</p>
-  <p align="left">
-    <font color="#000000">You won't believe this but I've just sat through 'Titanic'. I <input id="q1"/> you and I swore we would never watch it but I really <input id="q2"/> you might be missing a great film if you <input id="q3"/> it!</font>
-  </p>
-  <p align="left">
-    <font color="#000000">It's not just about the sinking of the ship &#x2013; it's a romance and a disaster film rolled into one! It <input id="q4"/> in modern times and then the whole story <input id="q5"/> in flashbacks by Rose, a survivor of the tragedy. The main story is about how Rose, as a young woman, <input id="q6"/> from a suicide attempt by Jack, a passenger from the lower decks of the ship, and how they gradually <input id="q7"/> closer to each other. The plot is full of suspense and <input id="q8"/> you breathless in parts. You really can't help but get caught up in the emotions of their impossible situation and the tragedy that <input id="q9"/>, though there are a few corny moments! The two main stars and the supporting cast <input id="q10"/> excellent though. The costumes and the sets inside the ship are fabulous and really <input id="q11"/> the period to life.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">So do try and find a spare three hours or so and <input id="q12"/> and <input id="q13"/> it. I really do think you'll be pleasantly surprised!</font>
-  </p>
-  <p align="left">Looking forward to catching up on all your news.</p>
-  <p align="left">All the best,</p>
-  <p align="left">Maxine </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <div id="gapfillText">
+  
+  <p>Dear Justin,</p>
+  
+  <p>You won't believe this but I've just sat through 'Titanic'. I &#xA0;<input id="q1"/>&#xA0; you and I swore we would never watch it but I really &#xA0;<input id="q2"/>&#xA0; you might be missing a great film if you &#xA0;<input id="q3"/>&#xA0; it!</p>
+  
+  <p>It's not just about the sinking of the ship &#x2013; it's a romance and a disaster film rolled into one! It &#xA0;<input id="q4"/>&#xA0; in modern times and then the whole story &#xA0;<input id="q5"/>&#xA0; in flashbacks by Rose, a survivor of the tragedy. The main story is about how Rose, as a young woman, &#xA0;<input id="q6"/>&#xA0; from a suicide attempt by Jack, a passenger from the lower decks of the ship, and how they gradually &#xA0;<input id="q7"/>&#xA0; closer to each other. The plot is full of suspense and &#xA0;<input id="q8"/>&#xA0; you breathless in parts. You really can't help but get caught up in the emotions of their impossible situation and the tragedy that &#xA0;<input id="q9"/>, though there are a few corny moments! The two main stars and the supporting cast &#xA0;<input id="q10"/>&#xA0; excellent though. The costumes and the sets inside the ship are fabulous and really &#xA0;<input id="q11"/>&#xA0; the period to life.</p>
+  
+  <p>So do try and find a spare three hours or so and &#xA0;<input id="q12"/>&#xA0; and &#xA0;<input id="q13"/>&#xA0; it. I really do think you'll be pleasantly surprised!</p>
+  
+  <p>Looking forward to catching up on all your news.</p>
+  <p>All the best,</p>
+  <p>Maxine </p>
+  </div>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	<p class="popuptext"><b>You have just seen a film you think your friend would enjoy.</b></p>
+	<p class="popuptext"><b>Write a letter to your friend telling them about the film. Explain why you enjoyed it and recommend that they see it.</b></p>
+	<p class="popuptext">You should write at least 150 words.</p>
+	<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+	<p class="popuptext">Begin your letter as follows:</p>
+	<p class="popuptext">Dear ...,</p>
 </section>
 
 </body>

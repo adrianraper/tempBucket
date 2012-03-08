@@ -15,29 +15,33 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
+	<param name="allowMultipleDrags" value="false" />
   </settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="H" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="A" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="J" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="E" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="K" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="D" correct="true"/>
-    </GapFillQuestion>
-  </questions>
+  	<DragQuestion source="q1" block="b1">
+      <answer source="a8" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q2" block="b2">
+      <answer source="a1" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q3" block="b3">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q4" block="b4">
+      <answer source="a5" correct="true"/>
+    </DragQuestion>
+    <DragQuestion source="q5" block="b5">
+      <answer source="a11" correct="true"/>
+	  </DragQuestion>
+	    <DragQuestion source="q6" block="b6">
+      <answer source="a4" correct="true"/>
+	  </DragQuestion>
+   </questions>
 </script>
 
 </head>
@@ -50,10 +54,11 @@
 </header>
 	
 <section id="readingText">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
 <h1><p>Your life on a plate</p></h1>
 
-<p>Once upon a time there was a simple rule of thumb for making healthy food choices &#x2013; greens were good, sugars were bad. But not any more. Almost every day new research emerges that overturns previously held wisdom, extolling the virtues of little known fruit and veg, or promoting hitherto unheard- of compounds that are found in foods which are commonly eaten by rainforest tribes who never seem to get a certain type of cancer.</p>
+<p>Once upon a time there was a simple rule of thumb for making healthy food choices &#x2013; greens were good, sugars were bad. But not any more. Almost every day new research emerges that overturns previously held wisdom, extolling the virtues of little known fruit and veg, or promoting hitherto unheard-of compounds that are found in foods which are commonly eaten by rainforest tribes who never seem to get a certain type of cancer.</p>
 
 <p>Eating five or six apples a week, for instance, has been found to be good for the lungs. According to researchers they contain an antioxidant called quercetin which may protect against the effects of pollution and cigarette smoke.</p>
 
@@ -69,54 +74,62 @@
 
 <p>Despite the confusion, dieticians say that it is still possible to cut through the overload, the jargon, and the conflicting reports, and come up with healthy meals. Here leading dietician Gaynor Bussell has done just that, designing and explaining the perfect day's menu with readily available foods, and not a mung bean or tofu salad in sight.</p>
 
-<h8>Breakfast:</h8>
+<h7><p>Breakfast:</p></h7>
 
-<p>Orange juice fortified with calcium, breakfast cereal with soya milk, wholemeal or rye bread with olive oil- based margarine.</p>
+<p>Orange juice fortified with calcium, breakfast cereal with soya milk, wholemeal or rye bread with olive oil-based margarine.</p>
 
-<p>The orange juice provides vitamin C and the calcium helps prevent osteoporosis, which more and more people are getting. Oat-based cereals are good because they help to reduce cholesterol levels. American studies have shown that half- a-pint of soya milk a day reduces the risk of heart disease, and might also be beneficial against prostate and breast cancer. Olive oil spread helps to control blood cholesterol levels.</p>
+<p>The orange juice provides vitamin C and the calcium helps prevent osteoporosis, which more and more people are getting. Oat-based cereals are good because they help to reduce cholesterol levels. American studies have shown that half a pint of soya milk a day reduces the risk of heart disease, and might also be beneficial against prostate and breast cancer. Olive oil spread helps to control blood cholesterol levels.</p>
 
-<h8>Lunch:</h8>
+<h7><p>Lunch:</p></h7>
 
 <p>Baked potato, baked beans, side salad, bio-yoghurt, glass of water.</p>
 
 <p>People should not just rely on one grain because they could become allergic to it, so the baked potato can be an alternative source of nutrients. The skin provides vitamin C and several minerals, and the potato is very starchy, which provides someone with energy for the afternoon. Five helpings of fruit and vegetables a day are recommended, and baked beans count. They are high in fibre and are good for the heart and digestion. They are also low in fat. The salad provides plenty of antioxidants, and the bio-yoghurt helps normalise the bacteria balance in the gut.</p>
 
-<h8>Dinner:</h8>
+<h7><p>Dinner:</p></h7>
 
 <p>Stir-fry with chicken, brown rice, fresh fruit salad or sorbet, one glass of red wine.</p>
 
 <p>The stir-fry and rice provides another grain, as well as more fruit and vegetables. The meat is lean and a source of iron and can be alternated with tofu. With the fruit, go for a mix of many different colours because each colour has a different acting antioxidant. Red wine also contains antioxidants and has been found to protect against heart disease.</p>
 
-<p>Roger Dobson, The Independent, 14th September 2000.</p>
+<p>Roger Dobson, The Independent</p>
 
+</section>
+
+<section id="noscroll">
+  <span id="a1" draggable="true">may improve the ability to see in the dark</span>
+  <span id="a2" draggable="true">good source of vitamin C</span>
+  <span id="a3" draggable="true">can lower cholesterol levels</span>
+  <span id="a4" draggable="true">rich in iron</span>
+  <span id="a5" draggable="true">may protect against heart disease and cancer</span>
+  <span id="a6" draggable="true">believed to prevent allergies</span>
+  <span id="a7" draggable="true">no longer considered good for the health</span>
+  <span id="a8" draggable="true">thought to bring down blood pressure</span>
+    <span id="a9" draggable="true">can increase energy levels</span>
+  <span id="a10" draggable="true">regarded as bad for the health in the past</span>
+  <span id="a11" draggable="true">good for the digestive system</span>
+  <span id="a12" draggable="true">rich in antioxidants</span>
 </section>
 
 <section id="body">
 <div id="splitquestionList">
 
-<p><b>List of Descriptions</b></p>
-
-<p>A.  may improve the ability to see in the dark</p>
-<p>B.  good source of vitamin C</p>
-<p>C.  can lower cholesterol levels</p>
-<p>D.  rich in iron</p>
-<p>E.  may protect against heart disease and cancer</p>
-<p>F.  believed to prevent allergies</p>
-<p>G.  no longer considered good for the health</p>
-<p>H.  thought to bring down blood pressure</p>
-<p>I.  can increase energy levels</p>
-<p>J.  regarded as bad for the health in the past</p>
-<p>K.  good for the digestive system</p>
-<p>L.  rich in antioxidants</p>
-<p></p>
-<p><b>Bananas</b><tab/><tab/>(09)&#xA0;<input id="q1"/></p>
-<p><b>Bilberries</b><tab/><tab/>(10)&#xA0;<input id="q2"/></p>
-<p><b>Salt</b><tab/><tab/>(11)&#xA0;<input id="q3"/></p>
-<p><b>Soya milk</b><tab/><tab/>(12)&#xA0;<input id="q4"/></p>
-<p><b>Beans</b><tab/><tab/>(13)&#xA0;<input id="q5"/></p>
-<p><b>Chicken</b><tab/><tab/>(14)&#xA0;<input id="q6"/></p>
+<p>9.<tab/><b>Bananas</b><br/><tab/><input id="q1" type="droptarget"/></p>
+<p class="linespace"></p>
+<p>10.<tab/><b>Bilberries</b><br/><tab/><input id="q2" type="droptarget"/></p>
+<p class="linespace"></p>
+<p>11.<tab/><b>Salt</b><br/><tab/><input id="q3" type="droptarget"/></p>
+<p class="linespace"></p>
+<p>12.<tab/><b>Soya milk</b><br/><tab/><input id="q4" type="droptarget"/></p>
+<p class="linespace"></p>
+<p>13.<tab/><b>Beans</b><br/><tab/><input id="q5" type="droptarget"/></p>
+<p class="linespace"></p>
+<p>14.<tab/><b>Chicken</b><br/><tab/><input id="q6" type="droptarget"/></p>
 </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">Read the list of qualities carefully so that you understand how they differ from one another. Using the list of foods in the exercise as key words, scan the text to find the information you need. Remember that you will not need all the qualities in the list because many of them apply to foods mentioned in the text but not listed in the exercise.</p>
+</section>
 </body>
 </bento>

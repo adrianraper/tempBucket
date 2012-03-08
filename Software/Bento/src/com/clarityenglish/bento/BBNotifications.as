@@ -62,8 +62,11 @@
 		public static const EXERCISE_SECTION_FINISHED:String = "exercise_section_finished";
 		
 		// Warnings that you are about to do something that will lose your data
-		// TODO. Trac 210. Implement this!
 		public static const WARN_DATA_LOSS:String = "warn_data_loss";
+		
+		// Check that the same user is only logged in once
+		public static const FAILED_INSTANCE_CHECK:String = "failed_instance_check";
+		
 	}
 	
 }

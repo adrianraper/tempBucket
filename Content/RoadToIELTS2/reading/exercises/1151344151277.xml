@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -54,6 +57,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
 	<h1><p>Back from the dead</p></h1>
 	
 	<p>Prehistoric viruses are lying dormant in the polar ice caps – and a bout of warm weather could release them into the atmosphere, sparking new epidemics. This chilling warning follows the discovery, for the first time, of an ancient virus in Arctic ice.</p>
@@ -110,9 +115,36 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set6_02.jpg" mode="1" id="1003"  />
 <div id="splitdrag">
   <p>Researchers have found a virus known as ToMV preserved in ice of up to&#xA0;<input id="q1" type="droptarget"/>&#xA0;of years old. Despite being frozen for such a length of time, it is believed that the ToMV could still cause infections. For this reason, the team used&#xA0;<input id="q2" type="droptarget"/>&#xA0;to avoid contamination while handling the ice. If other similar viruses exist in the ice, there is a fear that&#xA0;<input id="q3" type="droptarget"/>&#xA0;may release them and result in epidemics. The discovery could also help answer questions concerning the evolution of viruses such as&#xA0;<input id="q4" type="droptarget"/>. These viruses have puzzled scientists because they have&#xA0;<input id="q5" type="droptarget"/>&#xA0;for so long. Future research is planned using&#xA0;<input id="q6" type="droptarget"/>&#xA0;to study even older ice from&#xA0;<input id="q7" type="droptarget"/>.</p>
   </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Gaps 1-7 - Summary completion</b></p>
+<p class="popuptext2">This summary summarises the main points of the whole passage, not just one section, so you'll need to find the information from different parts in order to complete the task. Make sure that your answers agree with the information in the passage and are grammatically correct.</p>
+
+<p class="popuptext1"><b>Gap 1</b></p>
+<p class="popuptext2">Be careful counting the zeros in the figures and note that the phrase immediately before the gap is 'up to', so you need to find the maximum age of the ice where the virus was found.</p>
+
+<p class="popuptext1"><b>Gap 2</b></p>
+<p class="popuptext2">How did the researchers protect themselves against contamination?</p>
+
+<p class="popuptext1"><b>Gap 3</b></p>
+<p class="popuptext2">What could release something that's trapped in ice?</p>
+
+<p class="popuptext1"><b>Gap 4</b></p>
+<p class="popuptext2">The phrase 'such as' is used to introduce an example. In this case, an example of what?</p>
+
+<p class="popuptext1"><b>Gap 5</b></p>
+<p class="popuptext2">What was unusual about these particular viruses? Why did they puzzle scientists?</p>
+
+<p class="popuptext1"><b>Gap 6</b></p>
+<p class="popuptext2">What do researchers use to conduct experiments?</p>
+
+<p class="popuptext1"><b>Gap 7</b></p>
+<p class="popuptext2">Another source of ice.</p>
 </section>
 </body>
 </bento>

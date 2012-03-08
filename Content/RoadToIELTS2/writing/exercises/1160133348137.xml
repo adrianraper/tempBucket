@@ -31,28 +31,28 @@
       <answer source="a4" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
-      <answer source="a5" correct="true"/>
+      <answer source="a5" correct="false"/>
       <answer source="a6" correct="false"/>
-      <answer source="a7" correct="false"/>
+      <answer source="a7" correct="true"/>
       <answer source="a8" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q3" block="b3">
-      <answer source="a9" correct="true"/>
-      <answer source="a10" correct="false"/>
+      <answer source="a9" correct="false"/>
+      <answer source="a10" correct="true"/>
       <answer source="a11" correct="false"/>
       <answer source="a12" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q4" block="b4">
-      <answer source="a13" correct="true"/>
+      <answer source="a13" correct="false"/>
       <answer source="a14" correct="false"/>
       <answer source="a15" correct="false"/>
-      <answer source="a16" correct="false"/>
+      <answer source="a16" correct="true"/>
     </DropDownQuestion>
     <DropDownQuestion source="q5" block="b5">
-      <answer source="a17" correct="true"/>
+      <answer source="a17" correct="false"/>
       <answer source="a18" correct="false"/>
       <answer source="a19" correct="false"/>
-      <answer source="a20" correct="false"/>
+      <answer source="a20" correct="true"/>
     </DropDownQuestion>
     <DropDownQuestion source="q6" block="b6">
       <answer source="a21" correct="true"/>
@@ -67,9 +67,9 @@
       <answer source="a28" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q8" block="b8">
-      <answer source="a29" correct="true"/>
+      <answer source="a29" correct="false"/>
       <answer source="a30" correct="false"/>
-      <answer source="a31" correct="false"/>
+      <answer source="a31" correct="true"/>
       <answer source="a32" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q9" block="b9">
@@ -79,8 +79,8 @@
       <answer source="a36" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q10" block="b10">
-      <answer source="a37" correct="true"/>
-      <answer source="a38" correct="false"/>
+      <answer source="a37" correct="false"/>
+      <answer source="a38" correct="true"/>
       <answer source="a39" correct="false"/>
       <answer source="a40" correct="false"/>
     </DropDownQuestion>
@@ -105,11 +105,11 @@ Read this sample answer to the writing task in the previous exercise. Complete t
   <p>Dear Sir/Madam,</p>
   <p>I am writing to enquire about staying at your hotel as I am planning a trip to Sydney next month.</p>
   
-  <p>First of all, I would like to know &#xA0;<select id="q1"><option id="a1">if it would be</option><option id="a2">it would be</option><option id="a3">would it be</option><option id="a4">if would it be</option></select>&#xA0; possible to book a double room for 7 nights from Friday 16th to Thursday 22nd. Also, we would prefer to stay in a room with a view of Sydney Harbour so could you let me know whether&#xA0; <select id="q2"><option id="a5">there are</option><option id="a6">there is</option><option id="a7">is there</option><option id="a8">are there</option></select> &#xA0;any available?</p>
+  <p>First of all, I would like to know &#xA0;<select id="q1"><option id="a1">if it would be</option><option id="a2">it would be</option><option id="a3">would it be</option><option id="a4">if would it be</option></select>&#xA0; possible to book a double room for 7 nights from Friday 16th to Thursday 22nd. Also, we would prefer to stay in a room with a view of Sydney Harbour so could you let me know whether&#xA0; <select id="q2"><option id="a5">is there</option><option id="a6">there is</option><option id="a7">there are</option><option id="a8">are there</option></select> &#xA0;any available?</p>
   
-  <p>Secondly, I would be grateful if&#xA0; <select id="q3"><option id="a9">you could send</option><option id="a10">could you send</option><option id="a11">you can send</option><option id="a12">you send</option></select> &#xA0;me details of the hotel facilities. I would particularly like to know what outdoor sports facilities&#xA0; <select id="q4"><option  id="a13">the hotel has</option><option id="a14">does the hotel have</option><option id="a15">has got the hotel</option><option id="a16">has the hotel</option></select>&#xA0;.  For example,&#xA0; <select id="q5"><option id="a17">is there</option><option id="a18">there is</option><option id="a19">there are</option><option id="a20">are there</option></select> &#xA0;a swimming pool and&#xA0; <select id="q6"><option id="a21">are there</option><option id="a22">there is</option><option id="a23">is there</option><option id="a24">there are</option></select> &#xA0;any tennis courts in the hotel grounds?</p>
+  <p>Secondly, I would be grateful if&#xA0; <select id="q3"><option id="a9">could you send</option><option id="a10">you could send</option><option id="a11">you can send</option><option id="a12">you send</option></select> &#xA0;me details of the hotel facilities. I would particularly like to know what outdoor sports facilities&#xA0; <select id="q4"><option  id="a13">has the hotel</option><option id="a14">does the hotel have</option><option id="a15">has got the hotel</option><option id="a16">the hotel has</option></select>&#xA0;.  For example,&#xA0; <select id="q5"><option id="a17">are there</option><option id="a18">there is</option><option id="a19">there are</option><option id="a20">is there</option></select> &#xA0;a swimming pool and&#xA0; <select id="q6"><option id="a21">are there</option><option id="a22">there is</option><option id="a23">is there</option><option id="a24">there are</option></select> &#xA0;any tennis courts in the hotel grounds?</p>
   
-  <p>Lastly, I was wondering&#xA0; <select id="q7"><option id="a25">if you arrange</option><option id="a26">you arrange</option><option id="a27">do you arrange</option><option id="a28">if do you arrange</option></select> &#xA0;day trips to places in and around Sydney.&#xA0; <select id="q8"><option id="a29">Do you have</option><option id="a30">You have</option><option id="a31">Have you</option><option id="a32">You do have</option></select> &#xA0;trips to any of the historical sights or to the mountains, and how much&#xA0; <select id="q9"><option id="a33">do they cost</option><option id="a34">they cost</option><option id="a35">cost they</option><option id="a36">they do cost</option></select>&#xA0; ? &#xA0;<select id="q10"><option id="a37">Could you</option><option id="a38">You can</option><option id="a39">You could</option><option id="a40">You will</option></select> &#xA0;please send me any brochures you have so that I can plan in advance?</p>
+  <p>Lastly, I was wondering&#xA0; <select id="q7"><option id="a25">if you arrange</option><option id="a26">you arrange</option><option id="a27">do you arrange</option><option id="a28">if do you arrange</option></select> &#xA0;day trips to places in and around Sydney.&#xA0; <select id="q8"><option id="a29">Have you</option><option id="a30">You have</option><option id="a31">Do you have</option><option id="a32">You do have</option></select> &#xA0;trips to any of the historical sights or to the mountains, and how much&#xA0; <select id="q9"><option id="a33">do they cost</option><option id="a34">they cost</option><option id="a35">cost they</option><option id="a36">they do cost</option></select>&#xA0; ? &#xA0;<select id="q10"><option id="a37">You can</option><option id="a38">Could you</option><option id="a39">You could</option><option id="a40">You will</option></select> &#xA0;please send me any brochures you have so that I can plan in advance?</p>
   
   <p>Thank you for your kind attention. I look forward to hearing from you.</p>
   <p>Yours faithfully,</p>

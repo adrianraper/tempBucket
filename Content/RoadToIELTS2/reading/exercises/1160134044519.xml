@@ -17,29 +17,30 @@
 <script id="model" type="application/xml">
   <settings>
     <param name="delayedMarking" value="true"/>
+	<param name="allowMultipleDrags" value="false" />
   </settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="vii" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="v" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="x" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="iv" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
-      <answer value="i" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q6" block="b6">
-      <answer value="ix" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q7" block="b7">
-      <answer value="iii" correct="true"/>
-    </GapFillQuestion>
+  <DragQuestion source="q1" block="b1">
+      <answer source="a7" correct="true"/>
+    </DragQuestion>
+	<DragQuestion source="q2" block="b2">
+      <answer source="a5" correct="true"/>
+    </DragQuestion>
+	<DragQuestion source="q3" block="b3">
+      <answer source="a10" correct="true"/>
+    </DragQuestion>
+	<DragQuestion source="q4" block="b4">
+      <answer source="a4" correct="true"/>
+    </DragQuestion>
+	<DragQuestion source="q5" block="b5">
+      <answer source="a1" correct="true"/>
+    </DragQuestion>
+	<DragQuestion source="q6" block="b6">
+      <answer source="a9" correct="true"/>
+    </DragQuestion>
+	<DragQuestion source="q7" block="b7">
+      <answer source="a3" correct="true"/>
+    </DragQuestion>
   </questions>
 </script>
 
@@ -79,29 +80,47 @@
 	<b>G</b>&#xA0;Watches need not to be confined to residential neighbourhoods. For instance, Business Watch can be very effective in high streets and industrial estates. Farm Watches can encourage farmers to keep an eye on one another's livestock and machinery. Boat Watches can greatly improve the security of marinas and harbours.</p>
   </div>	
   
-  <p><b>Glossary</b>&#xA0;post-coding equipment: a tool used to mark valuable items with owner's postcode. The marking makes it harder for a thief to sell property to a dealer, and easier for the police to return the property if it is found.</p>
+  <h7><p>Glossary</p></h7>
+  <ol id="splitreadingList">
+	<li>post-coding equipment: a tool used to mark valuable items with owner's postcode. The marking makes it harder for a thief to sell property to a dealer, and easier for the police to return the property if it is found.</li>
+</ol>
   <p>Practical Ways to Crack Crime &#x2014; The Family Guide &#x2014; 2nd edition The Home Office.</p>
   
+</section>
+
+<section id="noscroll">
+  <span id="a1" draggable="true">Establishing a watch scheme</span>
+  <span id="a2" draggable="true">Responsibilities of watch scheme members</span>
+  <span id="a3" draggable="true">Other kinds of watch scheme</span>
+  <span id="a4" draggable="true">How do watch schemes work?</span>
+  <span id="a5" draggable="true">What are watch schemes?</span>
+  <span id="a6" draggable="true">Supporting the victims of crime</span>
+  <span id="a7" draggable="true">Joining forces with the police to beat crime</span>
+  <span id="a8" draggable="true">Look, listen and report</span>
+  <span id="a9" draggable="true">Maintaining a watch scheme</span>
+  <span id="a10" draggable="true">Why set up a watch scheme?</span>
 </section>
 
 <section id="body">
   <img class="leftFloat" src="../media/RD_S4M_001.jpg" mode="1" id="1001"/>
   
   <ol id="splitquestionList">
-    <li id="1">Paragraph A<tab/><input id="q1"/></li>
+    <li id="1">Paragraph A<br/><input id="q1" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="2">Paragraph B<tab/><input id="q2"/></li>
+    <li id="2">Paragraph B<br/><input id="q2" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="3">Paragraph C<tab/><input id="q3"/></li>
+    <li id="3">Paragraph C<br/><input id="q3" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="4">Paragraph D<tab/><input id="q4"/></li>
+    <li id="4">Paragraph D<br/><input id="q4" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="5">Paragraph E<tab/><input id="q5"/></li>
+    <li id="5">Paragraph E<br/><input id="q5" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="6">Paragraph F<tab/><input id="q6"/></li>
+    <li id="6">Paragraph F<br/><input id="q6" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="7">Paragraph G<tab/><input id="q7"/></li>
+    <li id="7">Paragraph G<br/><input id="q7" type="droptarget"/></li>
+	<p class="linespace"></p>
   </ol>
+  
 </section>
 
 </body>

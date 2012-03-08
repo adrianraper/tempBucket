@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -64,10 +67,11 @@
 </header>
 	
 <section id="readingText">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
 <h1><p>Your life on a plate</p></h1>
 
-<p>Once upon a time there was a simple rule of thumb for making healthy food choices &#x2013; greens were good, sugars were bad. But not any more. Almost every day new research emerges that overturns previously held wisdom, extolling the virtues of little known fruit and veg, or promoting hitherto unheard- of compounds that are found in foods which are commonly eaten by rainforest tribes who never seem to get a certain type of cancer.</p>
+<p>Once upon a time there was a simple rule of thumb for making healthy food choices &#x2013; greens were good, sugars were bad. But not any more. Almost every day new research emerges that overturns previously held wisdom, extolling the virtues of little known fruit and veg, or promoting hitherto unheard-of compounds that are found in foods which are commonly eaten by rainforest tribes who never seem to get a certain type of cancer.</p>
 
 <p>Eating five or six apples a week, for instance, has been found to be good for the lungs. According to researchers they contain an antioxidant called quercetin which may protect against the effects of pollution and cigarette smoke.</p>
 
@@ -83,25 +87,25 @@
 
 <p>Despite the confusion, dieticians say that it is still possible to cut through the overload, the jargon, and the conflicting reports, and come up with healthy meals. Here leading dietician Gaynor Bussell has done just that, designing and explaining the perfect day's menu with readily available foods, and not a mung bean or tofu salad in sight.</p>
 
-<h1><p>Breakfast:</p></h1>
+<h7><p>Breakfast:</p></h7>
 
-<p>Orange juice fortified with calcium, breakfast cereal with soya milk, wholemeal or rye bread with olive oil- based margarine.</p>
+<p>Orange juice fortified with calcium, breakfast cereal with soya milk, wholemeal or rye bread with olive oil-based margarine.</p>
 
-<p>The orange juice provides vitamin C and the calcium helps prevent osteoporosis, which more and more people are getting. Oat-based cereals are good because they help to reduce cholesterol levels. American studies have shown that half- a-pint of soya milk a day reduces the risk of heart disease, and might also be beneficial against prostate and breast cancer. Olive oil spread helps to control blood cholesterol levels.</p>
+<p>The orange juice provides vitamin C and the calcium helps prevent osteoporosis, which more and more people are getting. Oat-based cereals are good because they help to reduce cholesterol levels. American studies have shown that half a pint of soya milk a day reduces the risk of heart disease, and might also be beneficial against prostate and breast cancer. Olive oil spread helps to control blood cholesterol levels.</p>
 
-<h1><p>Lunch:</p></h1>
+<h7><p>Lunch:</p></h7>
 
 <p>Baked potato, baked beans, side salad, bio-yoghurt, glass of water.</p>
 
 <p>People should not just rely on one grain because they could become allergic to it, so the baked potato can be an alternative source of nutrients. The skin provides vitamin C and several minerals, and the potato is very starchy, which provides someone with energy for the afternoon. Five helpings of fruit and vegetables a day are recommended, and baked beans count. They are high in fibre and are good for the heart and digestion. They are also low in fat. The salad provides plenty of antioxidants, and the bio-yoghurt helps normalise the bacteria balance in the gut.</p>
 
-<h1><p>Dinner:</p></h1>
+<h7><p>Dinner:</p></h7>
 
 <p>Stir-fry with chicken, brown rice, fresh fruit salad or sorbet, one glass of red wine.</p>
 
 <p>The stir-fry and rice provides another grain, as well as more fruit and vegetables. The meat is lean and a source of iron and can be alternated with tofu. With the fruit, go for a mix of many different colours because each colour has a different acting antioxidant. Red wine also contains antioxidants and has been found to protect against heart disease.</p>
 
-<p>Roger Dobson, The Independent, 14th September 2000.</p>
+<p>Roger Dobson, The Independent</p>
 
 </section>
 
@@ -109,35 +113,41 @@
 <div id="splitquestionList">
 
 <p><b>Quercetin</b></p>
-<p>Found in:<tab/>(1)&#xA0;<input id="q1"/></p>
-<p>Possible effects on health:<tab/>Protects against the effects of pollution and cigarette smoke.</p>
+<p>Found in: (1)&#xA0;<input id="q1"/></p>
+<p>Possible effects on health: Protects against the effects of pollution and cigarette smoke.</p>
 <p></p>
 <p>(2)<b>&#xA0;<input id="q2"/></b></p>
-<p>Found in:<tab/>Avocados</p>
-<p>Possible effects on health:<tab/>Slows down the ageing process</p>
+<p>Found in: Avocados</p>
+<p>Possible effects on health: Slows down the ageing process</p>
 <p></p>
 <p><b>Manganese and monounsaturated fat</b></p>
-<p>Found in:<tab/>(3)&#xA0;<input id="q3"/></p>
-<p>Possible effects on health:<tab/>Reduce cholesterol levels</p>
+<p>Found in: (3)&#xA0;<input id="q3"/></p>
+<p>Possible effects on health: Reduce cholesterol levels</p>
 <p></p>
 <p>(4)<b>&#xA0;<input id="q4"/></b></p>
-<p>Found in:<tab/>Watermelons</p>
-<p>Possible effects on health:<tab/>Provides protection against some cancers</p>
+<p>Found in: Watermelons</p>
+<p>Possible effects on health: Provides protection against some cancers</p>
 <p></p>
 <p><b>Aspartame</b></p>
-<p>Found in:<tab/>Food additives</p>
-<p>Possible effects on health:<tab/>Causes (5)&#xA0;<input id="q5"/>&#xA0;and (6)&#xA0;<input id="q6"/></p>
+<p>Found in: Food additives</p>
+<p>Possible effects on health: Causes (5)&#xA0;<input id="q5"/>&#xA0;and (6)&#xA0;<input id="q6"/></p>
 <p></p>
 <p>(7)<b>&#xA0;<input id="q7"/></b></p>
-<p>Found in:<tab/>Food colouring</p>
-<p>Possible effects on health:<tab/>Causes asthma attacks and fatal shock</p>
+<p>Found in: Food colouring</p>
+<p>Possible effects on health: Causes asthma attacks and fatal shock</p>
 <p></p>
 <p><b>Nitrates and nitrites</b></p>
-<p>Found in:<tab/>(8)&#xA0;<input id="q8"/></p>
-<p>Possible effects on health:<tab/>Linked to cancer in laboratory animals</p>
+<p>Found in: (8)&#xA0;<input id="q8"/></p>
+<p>Possible effects on health: Linked to cancer in laboratory animals</p>
 <p></p>
 
 </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext">This text about healthy eating contains a lot of information, but you don't have to read the whole passage word by word to find the details you need to complete the exercises. Both tasks can be completed by scanning the text for key words and then reading carefully around those words until you find the answer.</p>
+
+<p class="popuptext">As with all table completion exercises, make sure you read the column and row headings so that you know what kind of information is missing. This table is best completed row by row, moving across from left to right, instead of column by column, moving down. For each row, choose a key word in the table to search for in the text. In the first row, for example, choose the substance 'quercetin' and search for it in the text.</p>
 </section>
 
 </body>

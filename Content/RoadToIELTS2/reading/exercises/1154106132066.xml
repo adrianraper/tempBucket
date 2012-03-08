@@ -17,6 +17,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -62,6 +65,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
 	<h7><p>Has the sun protection factor had its day?</p></h7>
 	<p>The concept of the sun protection factor was originally proposed by the Austrian scientist Franz Greiter and subsequently adopted by many regulatory authorities and the cosmetic and pharmaceutical industries. It is popularly interpreted as how much longer skin covered with sunscreen takes to burn compared with unprotected skin.</p>
 	
@@ -89,6 +94,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set6_04.jpg" mode="1" id="1003"  />
   <ol id="splitquestionList">
  <p class="hangingIndent2">10.<tab/>Sunscreen products generally had lower sun protection factors ten years ago.</p>
  <list class="answerList1">
@@ -126,6 +132,23 @@
  </list>
  </ol>
  
+</section>
+
+<section id="examtips">
+<p class="popuptext"><b>Questions 10-14 - True, False, Not given</b></p>
+
+<p class="popuptext1"><b>Question 10</b></p>
+<p class="popuptext2">Which part of the passage would you expect to contain information about the situation in the past?</p>
+
+<p class="popuptext1"><b>Question 11</b></p>
+<p class="popuptext2">The key phrase here is 'more likely to burn'.</p>
+
+<p class="popuptext1"><b>Questions 12 and 13</b></p>
+<p class="popuptext2">You might think the answers to these two questions are obvious, but you should never assume anything in the IELTS exam. Always base your answers on information given in the passage.</p>
+
+<p class="popuptext1"><b>Question 14</b></p>
+<p class="popuptext2">This is a general statement about sun protection factors. The word 'should' indicates that this is an opinion, not a fact. In which part of the passage are you likely to find the answer to this question?</p>
+
 </section>
 </body>
 </bento>

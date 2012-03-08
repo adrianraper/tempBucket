@@ -136,7 +136,19 @@ package com.clarityenglish.common.model {
 		public function errorHandler(e:IOErrorEvent):void {
 			log.error("Problem loading the config file: {0}", e.text);
 		}
-	
+
+		/**
+		 * Method to get user's instance ID from the database
+		 *
+		 * @return void - Asynchronous call. Will return instanceID and error objects later. 
+		 */
+		public function checkInstance():void {
+			
+			var userDetails:Object = { userID: getUserID() };
+			var params:Array = [ userDetails ];
+			new RemoteDelegate("checkInstance", params, this).execute();
+		}
+
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
 			//return "menu-Academic-LastMinute.xml";
@@ -215,6 +227,25 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
+				
+				case "checkInstance":
+					if (data) {
+						if (config.anyError())
+							error = config.error;
+						
+						// Check if the returned instance ID is the same as our version
+						if (data.instanceID != config.instanceID)
+							sendNotification(BBNotifications.FAILED_INSTANCE_CHECK);
+						
+					} else {
+						// Can't read from the database
+						error = new BentoError(BentoError.ERROR_DATABASE_READING);
+					}
+					if (error) {
+						sendNotification(CommonNotifications.CONFIG_ERROR, error);
+					}
+					break;
+				
 				case "getAccountSettings":
 					if (data) {
 						// TODO. We should be able to set the language code for 

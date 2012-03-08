@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +15,10 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+  </popups>
+	
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -244,9 +248,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	<img class="rightFloat" src="../media/TT_WTG01.jpg" mode="16" id="1004"  />Here is a list of ideas that a student brainstormed for the writing task in the previous exercise. Put each point under the appropriate heading by dragging it down.
-
-Writing Task 1
+</div>
 </header>
 	
 <section id="noscroll">
@@ -273,28 +277,59 @@ Writing Task 1
 </section>
 
 <section id="body">
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  
   <img class="rightFloat" src="../media/TT_GW_003.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>Location</b>
-    <input id="q13" type="droptarget"/>
-    <input id="q14" type="droptarget"/>
-    <input id="q15" type="droptarget"/>
-    <input id="q16" type="droptarget"/>
-    <input id="q17" type="droptarget"/>
-  </p>
-  <p align="left">
-    <b>Special requirement</b>
-    <input id="q18" type="droptarget"/>
-    <input id="q19" type="droptarget"/>
-    <input id="q20" type="droptarget"/>
-  </p>
-  <p align="left"><font size="2"/>Hotel facilities<input id="q1" type="droptarget"/><input id="q2" type="droptarget"/><input id="q3" type="droptarget"/><input id="q4" type="droptarget"/><input id="q5" type="droptarget"/><input id="q6" type="droptarget"/><input id="q7" type="droptarget"/><input id="q8" type="droptarget"/><input id="q9" type="droptarget"/><input id="q10" type="droptarget"/><input id="q11" type="droptarget"/><input id="q12" type="droptarget"/></p>
+  
+  <div id="gapfillText">
+<h7>Location</h7>
+    <p><input id="q13" type="droptarget"/><br/>
+    <input id="q14" type="droptarget"/><br/>
+    <input id="q15" type="droptarget"/><br/>
+    <input id="q16" type="droptarget"/><br/>
+    <input id="q17" type="droptarget"/></p>
+	<p class="linespace"></p>
+
+<h7>Special requirement</h7>
+	<p><input id="q18" type="droptarget"/><br/>
+    <input id="q19" type="droptarget"/><br/>
+    <input id="q20" type="droptarget"/></p>
+	<p class="linespace"></p>
+
+<h7>Hotel facilities</h7>
+	<p><input id="q1" type="droptarget"/><br/>
+	<input id="q2" type="droptarget"/><br/>
+	<input id="q3" type="droptarget"/><br/>
+	<input id="q4" type="droptarget"/><br/>
+	<input id="q5" type="droptarget"/><br/>
+	<input id="q6" type="droptarget"/><br/>
+	<input id="q7" type="droptarget"/><br/>
+	<input id="q8" type="droptarget"/><br/>
+	<input id="q9" type="droptarget"/><br/>
+	<input id="q10" type="droptarget"/><br/>
+	<input id="q11" type="droptarget"/><br/>
+	<input id="q12" type="droptarget"/></p>
+	<p class="linespace"></p>
+  </div>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Before you start writing, it's a good idea to spend one or two minutes brainstorming ideas for your letter. 'Brainstorming' just means thinking of as many ideas as possible. After brainstorming, you can then choose the best, most relevant ideas and decide how to organise them into paragraphs.</font>
-  </p>
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+  
+  <p class="popuptext"><b>You are planning a holiday in Scotland. You have been given the name and address of a hotel near the sea and would like some further information.</b></p>
+
+  <p class="popuptext"><b>Write a letter to the hotel. Ask for information about the hotel's exact location and facilities. Explain any special requirements you have and ask whether the hotel can accommodate them.</b></p>
+  
+  <p class="popuptext">You should write at least 150 words.</p>
+  
+  <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p class="popuptext">Begin your letter as follows:</p>
+  
+  <p class="popuptext">Dear Sir/Madam,</p>
+
 </section>
 
 </body>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +15,10 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
+
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -82,9 +86,9 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/AC_WTG01.jpg" mode="16" id="1004"  />Here is a list of points that a student brainstormed for the writing task in the previous exercise. Put each point under the most appropriate heading to make a plan for the letter.
-
-Writing Task 1
+<div id="instruction">
+Here is a list of points that a student brainstormed for the writing task in the previous exercise. Put each point under the most appropriate heading to make a plan for the letter.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -101,29 +105,53 @@ Writing Task 1
 </section>
 
 <section id="body">
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
+  
   <img class="rightFloat" src="../media/AC_GW_003.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>Opening paragraph</b>
-    <input id="q1" type="droptarget"/>
-    <input id="q2" type="droptarget"/>
-    <input id="q3" type="droptarget"/>
-    <input id="q4" type="droptarget"/>
-  </p>
-  <p align="left">
-    <b>Body of letter</b>
-    <input id="q5" type="droptarget"/>
-    <input id="q6" type="droptarget"/>
-    <input id="q7" type="droptarget"/>
-    <input id="q8" type="droptarget"/>
-  </p>
-  <p align="left">
-    <b>Closing paragraph</b>
-    <input id="q9" type="droptarget"/>
-    <input id="q10" type="droptarget"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="gapfillText">
+  
+  <h7>Opening paragraph</h7>
+  <p><input id="q1" type="droptarget"/><br/>
+    <input id="q2" type="droptarget"/><br/>
+    <input id="q3" type="droptarget"/><br/>
+    <input id="q4" type="droptarget"/></p>
+	<p class="linespace"></p>
+	
+  <h7>Body of letter</h7>
+  <p>
+    <input id="q5" type="droptarget"/><br/>
+    <input id="q6" type="droptarget"/><br/>
+    <input id="q7" type="droptarget"/><br/>
+    <input id="q8" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <h7>Closing paragraph</h7>
+  <p>
+    <input id="q9" type="droptarget"/><br/>
+    <input id="q10" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+</div>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+  
+  <p class="popuptext"><b>You have just finished reading a book you think your friend would enjoy.</b></p>
+
+  <p class="popuptext"><b>Write a letter to your friend telling them about the book. Explain why you enjoyed it and recommend that they read it.</b></p>
+  
+  <p class="popuptext">You should write at least 150 words.</p>
+  
+  <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p class="popuptext">Begin your letter as follows:</p>
+  
+  <p class="popuptext">Dear Sir/Madam,</p>
+
 </section>
 
 </body>

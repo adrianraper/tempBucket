@@ -233,7 +233,7 @@
 
 			</unit>
 			<unit id="1287130440000" class="practice-zone">
-				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/last_minute/1156153794055.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_introduction.jpg">
+				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1156153794671" group="1" caption="Static charts" href="writing/exercises/1156153794671.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_static.jpg">
@@ -242,13 +242,13 @@
 				<exercise id="1156153794787" group="1" caption="Understanding static charts" href="writing/exercises/1156153794787.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_understanding1.jpg">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="2" difficulty="1">
+				<exercise id="1156153794786" group="1" caption="Understanding static charts (2)" href="writing/exercises/1156153794786.xml" enabledFlag="34" difficulty="1">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="2" difficulty="1">
+				<exercise id="1156153794788" group="1" caption="Understanding static charts (3)" href="writing/exercises/1156153794788.xml" enabledFlag="34" difficulty="1">
 				  <!--T/F-->
 				</exercise>
-				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="2" difficulty="1">
+				<exercise id="1156153794789" group="1" caption="Understanding static charts (4)" href="writing/exercises/1156153794789.xml" enabledFlag="34" difficulty="1">
 				  <!--T/F-->
 				</exercise>
 				<exercise id="1156153794241" group="1" caption="Dealing with numbers" href="writing/exercises/1156153794241.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t1_dealing.jpg">

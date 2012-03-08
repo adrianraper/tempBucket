@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -69,10 +72,12 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/>
 <img class="photo2" src="../media/RD_GOPC_001.jpg" mode="1" id="1001"/>
 
-	<h1><p>University of Waterloo, Ontario, Canada</p></h1>
-	<h7>The Museum and Archive of Games </h7>
+	<h8><p>University of Waterloo, Ontario, Canada</p></h8>
+	<h2><p>The Museum and Archive of Games</p></h2>
 	
 	<h7>Games on Playing Cards</h7>
 	<p>Because of the flexibility of a playing card deck during use and the small space in which decks can be stored, it is not surprising that game manufacturers selected a playing card format for some games as early as the 19th century. It seems the possibilities for adaptation to the playing card format are endless. Thus, the Museum Collection houses a number of games in playing card format.</p>
@@ -101,21 +106,21 @@
 <p>Date of Manufacture:<tab/>1873</p>
 <p>Country of Manufacture:<tab/>US</p>
 <p>Total Number of Cards:<tab/>37</p>
-<p>Number of Players:<tab/><tab/>(1)&#xA0;<input id="q1"/></p>
+<p>Number of Players:<tab/>(1)&#xA0;<input id="q1"/></p>
 <p>Theme of Game:<tab/><tab/>wild animals and birds</p>
 <p></p>
 <p><b>Name of Game:</b><tab/><tab/><b>PIT</b></p>
 <p>Date of Manufacture:<tab/>(2)&#xA0;<input id="q2"/></p>
 <p>Country of Manufacture:<tab/>US</p>
 <p>Total Number of Cards:<tab/>63</p>
-<p>Number of Players:<tab/><tab/>three to six</p>
+<p>Number of Players:<tab/>three to six</p>
 <p>Theme of Game:<tab/><tab/>(3)&#xA0;<input id="q3"/></p>
 <p></p>
 <p><b>Name of Game:</b><tab/><tab/><b>Game of Rebellion</b></p>
 <p>Date of Manufacture:<tab/>early 20th century</p>
 <p>Country of Manufacture:<tab/>US</p>
 <p>Total Number of Cards:<tab/>(4)&#xA0;<input id="q4"/></p>
-<p>Number of Players:<tab/><tab/>(5)&#xA0;<input id="q5"/></p>
+<p>Number of Players:<tab/>(5)&#xA0;<input id="q5"/></p>
 <p>Theme of Game:<tab/><tab/>the American Civil War</p>
 <p></p>
 
@@ -123,11 +128,14 @@
 <p>Date of Manufacture:<tab/>1970s</p>
 <p>Country of Manufacture:<tab/>(6)&#xA0;<input id="q6"/></p>
 <p>Total Number of Cards:<tab/>25</p>
-<p>Number of Players:<tab/><tab/>(7)&#xA0;<input id="q7"/></p>
+<p>Number of Players:<tab/>(7)&#xA0;<input id="q7"/></p>
 <p>Theme of Game:<tab/><tab/>(8)&#xA0;<input id="q8"/></p>
 <p></p>
 </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This exercise shouldn't take you more than a few minutes. Examine the table carefully so that you understand what kind of information is missing and then scan the text until you find it. Use the section headings to help you.</p>
+</section>
 </body>
 </bento>

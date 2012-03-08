@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -69,9 +72,10 @@
 	
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/>
+<h8><p>Write on! Guide to Letter Writing</p></h8>
 
-<h8>Write On! Guide to letter writing</h8>
-<br/>
 <h7><p>Why write letters?</p></h7>
 <p>Even in today's high-tech, fast moving world of faxes, phones, cables and computers where messages zoom along the information highway to destinations all over the world &#x2013; the personal letter is still one of the most popular forms of communication.</p>
 
@@ -101,11 +105,11 @@
 
 <p>An address should be set out like this:<br/>
 Name<tab/><tab/><tab/>Mr J Smith<br/>
-No. and Street<tab/><tab/>13 Evesham Lane<br/>
+No. and Street<tab/>13 Evesham Lane<br/>
 TOWN in capitals<tab/>COVENTRY<br/>
-County<tab/><tab/>Warwickshire<br/>
+County<tab/><tab/>Warwickshire 
 (if required)<br/>
-POSTCODE<tab/><tab/>CV3 2PW<br/>
+POSTCODE<tab/><tab/>CV3 2PW 
 (clearly written in capitals)</p>
 
 <p>Write On! Guide to letter writing, Royal Mail.</p>
@@ -137,6 +141,29 @@ POSTCODE<tab/><tab/>CV3 2PW<br/>
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">Don't spend too much time on this exercise. Read the questions first and then scan the text quickly to find information you need. Use the section headings in the text to help you find information.</p>
 
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">'Functions' in the question means 'uses of letters' or 'reasons for writing'.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">You need a word that means 'plan'.</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">What style would you use writing to a friend or family member?</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">'Writing materials' means pens and paper. What would they improve when writing your letter?</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">An important part of the address.</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">This could refer to a time or to a charge.</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">Something the post office puts on letters during the sorting process.</p>
+</section>
 </body>
 </bento>

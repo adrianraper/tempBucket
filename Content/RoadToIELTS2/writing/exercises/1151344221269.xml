@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -21,144 +21,144 @@
   </settings>
   <questions>
     <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="true"/>
+      <answer source="a1" correct="true">
+	  	<feedback source="fb1"/>
+	  </answer>
       <answer source="a2" correct="false"/>
-      <answer source="a3" correct="false">
-        <feedback source="fb1"/>
-      </answer>
+      <answer source="a3" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
-      <answer source="a4" correct="true"/>
+      <answer source="a4" correct="false"/>
       <answer source="a5" correct="false"/>
-      <answer source="a6" correct="false">
+      <answer source="a6" correct="true">
         <feedback source="fb2"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q3" block="b3">
-      <answer source="a7" correct="true"/>
-      <answer source="a8" correct="false"/>
-      <answer source="a9" correct="false">
-        <feedback source="fb3"/>
+      <answer source="a7" correct="false"/>
+      <answer source="a8" correct="true">
+	    <feedback source="fb3"/>
       </answer>
+      <answer source="a9" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q4" block="b4">
-      <answer source="a10" correct="true"/>
+      <answer source="a10" correct="false"/>
       <answer source="a11" correct="false"/>
-      <answer source="a12" correct="false">
+      <answer source="a12" correct="true">
         <feedback source="fb4"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q5" block="b5">
-      <answer source="a13" correct="true"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="false">
-        <feedback source="fb5"/>
+      <answer source="a13" correct="true">
+	    <feedback source="fb5"/>
       </answer>
+      <answer source="a14" correct="false"/>
+      <answer source="a15" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q6" block="b6">
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="false">
-        <feedback source="fb6"/>
+      <answer source="a16" correct="false"/>
+      <answer source="a17" correct="true">
+	    <feedback source="fb6"/>
       </answer>
+      <answer source="a18" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q7" block="b7">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="false"/>
-      <answer source="a21" correct="false">
-        <feedback source="fb7"/>
+      <answer source="a19" correct="true">
+	    <feedback source="fb7"/>
       </answer>
+      <answer source="a20" correct="false"/>
+      <answer source="a21" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q8" block="b8">
-      <answer source="a22" correct="true"/>
+      <answer source="a22" correct="false"/>
       <answer source="a23" correct="false"/>
-      <answer source="a24" correct="false">
+      <answer source="a24" correct="true">
         <feedback source="fb8"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q9" block="b9">
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="false"/>
-      <answer source="a27" correct="false">
-        <feedback source="fb9"/>
+      <answer source="a25" correct="true">
+	    <feedback source="fb9"/>
       </answer>
+      <answer source="a26" correct="false"/>
+      <answer source="a27" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q10" block="b10">
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="false"/>
-      <answer source="a30" correct="false">
-        <feedback source="fb10"/>
+      <answer source="a28" correct="false"/>
+      <answer source="a29" correct="true">
+	    <feedback source="fb10"/>
       </answer>
+      <answer source="a30" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q11" block="b11">
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="false"/>
-      <answer source="a33" correct="false">
-        <feedback source="fb11"/>
+      <answer source="a31" correct="false"/>
+      <answer source="a32" correct="true">
+	    <feedback source="fb11"/>
       </answer>
+      <answer source="a33" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q12" block="b12">
-      <answer source="a34" correct="true"/>
+      <answer source="a34" correct="false"/>
       <answer source="a35" correct="false"/>
-      <answer source="a36" correct="false">
+      <answer source="a36" correct="true">
         <feedback source="fb12"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q13" block="b13">
-      <answer source="a37" correct="true"/>
-      <answer source="a38" correct="false"/>
-      <answer source="a39" correct="false">
-        <feedback source="fb13"/>
+      <answer source="a37" correct="true">
+	    <feedback source="fb13"/>
       </answer>
+      <answer source="a38" correct="false"/>
+      <answer source="a39" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q14" block="b14">
-      <answer source="a40" correct="true"/>
-      <answer source="a41" correct="false"/>
-      <answer source="a42" correct="false">
-        <feedback source="fb14"/>
+      <answer source="a40" correct="true">
+	    <feedback source="fb14"/>
       </answer>
+      <answer source="a41" correct="false"/>
+      <answer source="a42" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q15" block="b15">
-      <answer source="a43" correct="true"/>
+      <answer source="a43" correct="false"/>
       <answer source="a44" correct="false"/>
-      <answer source="a45" correct="false">
+      <answer source="a45" correct="true">
         <feedback source="fb15"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q16" block="b16">
-      <answer source="a46" correct="true"/>
-      <answer source="a47" correct="false"/>
-      <answer source="a48" correct="false">
-        <feedback source="fb16"/>
+      <answer source="a46" correct="false"/>
+      <answer source="a47" correct="true">
+	    <feedback source="fb16"/>
       </answer>
+      <answer source="a48" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q17" block="b17">
-      <answer source="a49" correct="true"/>
-      <answer source="a50" correct="false"/>
-      <answer source="a51" correct="false">
-        <feedback source="fb17"/>
+      <answer source="a49" correct="true">
+	    <feedback source="fb17"/>
       </answer>
+      <answer source="a50" correct="false"/>
+      <answer source="a51" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q18" block="b18">
-      <answer source="a52" correct="true"/>
-      <answer source="a53" correct="false"/>
-      <answer source="a54" correct="false">
-        <feedback source="fb18"/>
+      <answer source="a52" correct="true">
+	    <feedback source="fb18"/>
       </answer>
+      <answer source="a53" correct="false"/>
+      <answer source="a54" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q19" block="b19">
-      <answer source="a55" correct="true"/>
+      <answer source="a55" correct="false"/>
       <answer source="a56" correct="false"/>
-      <answer source="a57" correct="false">
+      <answer source="a57" correct="true">
         <feedback source="fb19"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q20" block="b20">
-      <answer source="a58" correct="true"/>
-      <answer source="a59" correct="false"/>
-      <answer source="a60" correct="false">
-        <feedback source="fb20"/>
+      <answer source="a58" correct="false"/>
+      <answer source="a59" correct="true">
+	    <feedback source="fb20"/>
       </answer>
+      <answer source="a60" correct="false"/>
     </DropDownQuestion>
   </questions>
 </script>
@@ -167,204 +167,169 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read this sample answer to the writing task in the previous exercise. Complete the composition by choosing the word or phrase which best fits each gap.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/ED_AW_004.jpg" mode="1" id="1001"/>
-  <p align="left">The burgeoning number of distance-learning courses available on the Internet has led some people to speculate that the future of education is 'online'. However, enthusiasm for <select id="q1"><option>this</option><option>their</option><option>such</option></select> mode of learning is not universal, and many people feel that the limitations of online education mean that <select id="q2"><option>it</option><option>they</option><option>these</option></select> should never replace traditional classroom teaching altogether.</p>
-  <p align="left">Advocates of online learning argue that the replacement of conventional classroom-based learning with wholly online courses <select id="q3"><option>would bring</option><option>brought</option><option>would have brought</option></select> both pedagogical and practical benefits. It <select id="q4"><option>is claimed</option><option>claims</option><option>has claimed</option></select>, for example, that <select id="q5"><option>such</option><option>their</option><option>this</option></select> courses would allow students to organise their study programme and set the pace of their learning to suit <select id="q6"><option>themselves</option><option>them</option><option>those</option></select>. In addition, they would be able to concentrate and work more easily in the comfort of <select id="q7"><option>their</option><option>whose</option><option>your</option></select> own homes. It is also argued that online tutors would be able to provide students with far more individual attention than is possible in conventional classroom situations. Finally, it is <select id="q8"><option>often</option><option>always</option><option>seldom</option></select> suggested that education providers <select id="q9"><option>would</option><option>must</option><option>should</option></select> benefit because <select id="q10"><option>they</option><option>these</option><option>those</option></select> could run online courses at a fraction of the cost of employing classroom teachers and operating premises.</p>
-  <p align="left">Despite <select id="q11"><option>these</option><option>their</option><option>those</option></select> potential benefits, sceptics give equally convincing reasons <select id="q12"><option>why</option><option>which</option><option>that</option></select> this new educational trend should not be allowed to replace classrooms and teachers entirely. Firstly, it is generally <select id="q13"><option>agreed</option><option>argued</option><option>pointed out</option></select> that learning best takes place in environments <select id="q14"><option>where</option><option>which</option><option>whose</option></select> students work face-to-face in groups, sharing ideas and knowledge and solving learning problems together. This kind of interaction, it is said, would not be possible over the Internet. Secondly, a requirement of online learning is familiarity with computers and computer software, but not everyone feels comfortable using this technology. If courses <select id="q15"><option>were</option><option>are</option><option>had been</option></select> only available online, students <select id="q16"><option>who</option><option>which</option><option>they</option></select> are not so at ease using computers would be severely disadvantaged. Finally, many courses involve hands-on practical work and it is <select id="q17"><option>widely</option><option>greatly</option><option>highly</option></select> believed that <select id="q18"><option>this</option><option>a</option><option>such</option></select> kind of practical experience, <select id="q19"><option>which</option><option>that</option><option>(...)</option></select> is an essential part of many subjects from natural sciences to vocational training, could not be provided over the Internet.</p>
-  <p align="left">On balance, I would say that educational establishments <select id="q20"><option>should</option><option>will</option><option>would</option></select> include both online and traditional face-to-face elements in the courses they provide. In this way, students would benefit from the more personalised learning that Internet courses offer without losing opportunities for face-to-face interaction with fellow students and valuable practical work.</p>
+  <div id="dropdown">
+  <p>The burgeoning number of distance-learning courses available on the Internet has led some people to speculate that the future of education is 'online'. However, enthusiasm for &#xA0;<select id="q1"><option id="a1">this</option><option id="a2">their</option><option id="a3">such</option></select>&#xA0; mode of learning is not universal, and many people feel that the limitations of online education mean that &#xA0;<select id="q2"><option id="a4">these</option><option id="a5">they</option><option id="a6">it</option></select>&#xA0; should never replace traditional classroom teaching altogether.</p>
+  
+  <p>Advocates of online learning argue that the replacement of conventional classroom-based learning with wholly online courses &#xA0;<select id="q3"><option id="a7">brought</option><option id="a8">would bring</option><option id="a9">would have brought</option></select>&#xA0; both pedagogical and practical benefits. It &#xA0;<select id="q4"><option id="a10">has claimed</option><option id="a11">claims</option><option id="a12">is claimed</option></select>, for example, that &#xA0;<select id="q5"><option id="a13">such</option><option id="a14">their</option><option id="a15">this</option></select>&#xA0; courses would allow students to organise their study programme and set the pace of their learning to suit &#xA0;<select id="q6"><option id="a16">them</option><option id="a17">themselves</option><option id="a18">those</option></select>. In addition, they would be able to concentrate and work more easily in the comfort of &#xA0;<select id="q7"><option id="a19">their</option><option id="a20">whose</option><option id="a21">your</option></select>&#xA0; own homes. It is also argued that online tutors would be able to provide students with far more individual attention than is possible in conventional classroom situations. Finally, it is &#xA0;<select id="q8"><option id="a22">seldom</option><option id="a23">always</option><option id="a24">often</option></select>&#xA0; suggested that education providers &#xA0;<select id="q9"><option id="a25">would</option><option id="a26">must</option><option id="a27">should</option></select>&#xA0; benefit because &#xA0;<select id="q10"><option id="a28">these</option><option id="a29">they</option><option id="a30">those</option></select>&#xA0; could run online courses at a fraction of the cost of employing classroom teachers and operating premises.</p>
+  
+  <p>Despite &#xA0;<select id="q11"><option id="a31">their</option><option id="a32">these</option><option id="a33">those</option></select>&#xA0; potential benefits, sceptics give equally convincing reasons &#xA0;<select id="q12"><option id="a34">that</option><option id="a35">which</option><option id="a36">why</option></select>&#xA0; this new educational trend should not be allowed to replace classrooms and teachers entirely. Firstly, it is generally &#xA0;<select id="q13"><option id="a37">agreed</option><option id="a38">argued</option><option id="a39">pointed out</option></select>&#xA0; that learning best takes place in environments &#xA0;<select id="q14"><option id="a40">where</option><option id="a41">which</option><option id="a42">whose</option></select>&#xA0; students work face-to-face in groups, sharing ideas and knowledge and solving learning problems together. This kind of interaction, it is said, would not be possible over the Internet. Secondly, a requirement of online learning is familiarity with computers and computer software, but not everyone feels comfortable using this technology. If courses &#xA0;<select id="q15"><option id="a43">had been</option><option id="a44">are</option><option id="a45">were</option></select>&#xA0; only available online, students &#xA0;<select id="q16"><option id="a46">which</option><option id="a47">who</option><option id="a48">they</option></select>&#xA0; are not so at ease using computers would be severely disadvantaged. Finally, many courses involve hands-on practical work and it is &#xA0;<select id="q17"><option id="a49">widely</option><option id="a50">greatly</option><option id="a51">highly</option></select>&#xA0; believed that &#xA0;<select id="q18"><option id="a52">this</option><option id="a53">a</option><option id="a54">such</option></select>&#xA0; kind of practical experience, &#xA0;<select id="q19"><option id="a55">(...)</option><option id="a56">that</option><option id="a57">which</option></select>&#xA0; is an essential part of many subjects from natural sciences to vocational training, could not be provided over the Internet.</p>
+  
+  <p>On balance, I would say that educational establishments &#xA0;<select id="q20"><option id="a58">will</option><option id="a59">should</option><option id="a60">would</option></select>&#xA0; include both online and traditional face-to-face elements in the courses they provide. In this way, students would benefit from the more personalised learning that Internet courses offer without losing opportunities for face-to-face interaction with fellow students and valuable practical work.</p>
+  <p class="linespace"></p>
+</div>
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font color="#0000ff"><b>this:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>their/such:</b> The missing word refers to 'online' learning.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>this:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>their/such:&#xA0;</b> The missing word refers to 'online' learning.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <font color="#0000ff"><b>it:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>they/these:</b> The missing word refers to 'education', a noun which is uncountable.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>it:&#xA0;</b> This is the correct answer.  </p>
+  <p class="feedbacktext">
+    <b>they/these:&#xA0;</b> The missing word refers to 'education', a noun which is uncountable.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font color="#0000ff"><b>would bring:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>brought:</b> The 'conditional' form of the verb is needed here. This sentence doesn't have an 'if' clause.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>would have brought:</b> 'would + have + past participle' is used to make hypotheses about the past. This is not the case here.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>would bring:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>brought:&#xA0;</b> The 'conditional' form of the verb is needed here. This sentence doesn't have an 'if' clause.</p>
+  <p class="feedbacktext">
+    <b>would have brought:&#xA0;</b> 'would + have + past participle' is used to make hypotheses about the past. This is not the case here.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <font color="#0000ff"><b>is claimed:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>claims/has claimed:</b> Passive voice is needed here.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>is claimed:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+   <b>claims/has claimed:&#xA0;</b> Passive voice is needed here.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <font color="#0000ff"><b>such:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>their:</b> Whose courses? You don't need the possessive pronoun here.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>this:</b> The following noun, 'courses', is plural.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>such:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>their:&#xA0;</b> Whose courses? You don't need the possessive pronoun here.</p>
+  <p class="feedbacktext">
+    <b>this:&#xA0;</b> The following noun, 'courses', is plural.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <font color="#0000ff"><b>themselves:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>them/those:</b> The missing pronoun refers back to the students. You need the reflexible pronoun.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>themselves:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>them/those:&#xA0;</b> The missing pronoun refers back to the students. You need the reflexible pronoun. </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <font color="#0000ff"><b>their:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>whose/your:</b> The students' homes.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>their:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>whose/your:&#xA0;</b> The students' homes.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <font color="#0000ff"><b>often:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>always:</b> This would be an exaggeration.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>seldom:</b> If a point is 'seldom suggested' it probably isn't worth mentioning.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>often:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>always:&#xA0;</b> This would be an exaggeration.</p>
+  <p class="feedbacktext">
+    <b>seldom:&#xA0;</b> If a point is 'seldom suggested' it probably isn't worth mentioning.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <font color="#0000ff"><b>would:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>must/should:</b> Which modal verb is used to describe hypothetical situations?</font>
-  </p>
+  <p class="feedbacktext">
+    <b>would:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>must/should:&#xA0;</b> Which modal verb is used to describe hypothetical situations?</p>
 </section>
 
 <section id="fb10">
-  <p align="left">
-    <font color="#0000ff"><b>they:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>these/those:</b> The missing word refers to 'education providers', which means people such as teachers. You need the plural subject pronoun.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>they:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>these/those:&#xA0;</b> The missing word refers to 'education providers', which means people such as teachers. You need the plural subject pronoun.</p>
 </section>
 
 <section id="fb11">
-  <p align="left">
-    <font color="#0000ff"><b>these:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>their/those:</b> The missing word refers back to the benefits listed in the previous paragraph. It's quite a 'close' reference.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>these:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>their/those:&#xA0;</b> The missing word refers back to the benefits listed in the previous paragraph. It's quite a 'close' reference.</p>
 </section>
 
 <section id="fb12">
-  <p align="left">
-    <font color="#0000ff"><b>why:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>which/that:</b> Note that the word before the gap is 'reasons'.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>why:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>which/that:&#xA0;</b> Note that the word before the gap is 'reasons'.</p>
 </section>
 
 <section id="fb13">
-  <p align="left">
-    <font color="#0000ff"><b>agree:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>argued/pointed out:</b> We can say 'often argued' but not 'generally argued'.</font>
-  </p>
+  <p class="feedbacktext">
+   <b>agree:&#xA0;</b> This is the correct answer.  </p>
+  <p class="feedbacktext">
+    <b>argued/pointed out:&#xA0;</b> We can say 'often argued' but not 'generally argued'. </p>
 </section>
 
 <section id="fb14">
-  <p align="left">
-    <font color="#0000ff"><b>where:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>which/whose:</b> 'Environments' are places.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>where:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>which/whose:&#xA0;</b> 'Environments' are places.</p>
 </section>
 
 <section id="fb15">
-  <p align="left">
-    <font color="#0000ff"><b>were:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>are:</b> A hypothetical situation is being described here.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>had been:</b> The writer is not discussing a situation in the past.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>were:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>are:&#xA0;</b> A hypothetical situation is being described here.</p>
+  <p class="feedbacktext">
+    <b>had been:&#xA0;</b> The writer is not discussing a situation in the past.</p>
 </section>
 
 <section id="fb16">
-  <p align="left">
-    <font color="#0000ff"><b>who:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>which:</b> The missing pronoun refers to people &#x2013; students.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>they:</b> This is a relative clause.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>who:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>which:&#xA0;</b> The missing pronoun refers to people &#x2013; students.</p>
+  <p class="feedbacktext">
+    <b>they:&#xA0;</b> This is a relative clause.</p>
 </section>
 
 <section id="fb17">
-  <p align="left">
-    <font color="#0000ff"><b>widely:</b> This is the correct answer.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>widely:&#xA0;</b> This is the correct answer.</p>
 </section>
 
 <section id="fb18">
-  <p align="left">
-    <font color="#0000ff"><b>this:</b> This is the correct answer.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>this:&#xA0;</b> This is the correct answer.</p>
 </section>
 
 <section id="fb19">
-  <p align="left">
-    <font color="#0000ff"><b>which:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>that/(...):</b> This is a non-defining relative clause.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>which:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>that/(...):&#xA0;</b> This is a non-defining relative clause.</p>
 </section>
 
 <section id="fb20">
-  <p align="left">
-    <font color="#0000ff"><b>should:</b> This is the correct answer.</font>
-  </p>
-  <p align="left">
-    <font color="#000000"><b>will/would:</b> The writer is making a suggestion.</font>
-  </p>
+  <p class="feedbacktext">
+    <b>should:&#xA0;</b> This is the correct answer.</p>
+  <p class="feedbacktext">
+    <b>will/would:&#xA0;</b> The writer is making a suggestion. </p>
 </section>
 
 </body>

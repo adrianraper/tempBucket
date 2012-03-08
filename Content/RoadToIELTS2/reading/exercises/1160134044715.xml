@@ -85,7 +85,10 @@
 
 	</div>
 	
-	<p><b>Glossary</b>&#xA0;post-coding equipment: a tool used to mark valuable items with owner's postcode. The marking makes it harder for a thief to sell property to a dealer, and easier for the police to return the property if it is found.</p>
+	<h7><p>Glossary</p></h7>
+  <ol id="splitreadingList">
+	<li>post-coding equipment: a tool used to mark valuable items with owner's postcode. The marking makes it harder for a thief to sell property to a dealer, and easier for the police to return the property if it is found.</li>
+</ol>
 	
 	<p>Practical Ways to Crack Crime &#x2014; The Family Guide &#x2014; 2nd edition The Home Office.</p>
 
@@ -95,19 +98,29 @@
   <img class="leftFloat" src="../media/EN_GR_002.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
 
-    <li id="q1">All Watch schemes generally have the same objectives.<list class="answerList"><li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list></li>
+    <p class="hangingIndent2">8.<tab/>All Watch schemes generally have the same objectives.</p>
+	<list class="answerList1">
+	<li><a id="a1">True</a></li><li><a id="a2">False</a></li><li><a id="a3">Not given</a></li></list>
     <p class="linespace"></p>
 
-    <li id="q2">Watch schemes are based in residential areas.<list class="answerList"><li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list></li>
+    <p class="hangingIndent2">9.<tab/>Watch schemes are based in residential areas.</p>
+	<list class="answerList1">
+	<li><a id="a4">True</a></li><li><a id="a5">False</a></li><li><a id="a6">Not given</a></li></list>
     <p class="linespace"></p>
 
-    <li id="q3">Watch scheme groups vary in size.<list class="answerList"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li></list></li>
+    <p class="hangingIndent2">10.<tab/>Watch scheme groups vary in size.</p>
+	<list class="answerList1"><li><a id="a7">True</a></li><li><a id="a8">False</a></li><li><a id="a9">Not given</a></li>
+	</list>
     <p class="linespace"></p>
 
-    <li id="q4">All Watch scheme members have access to post-coding equipment.<list class="answerList"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li></list></li>
+    <p class="hangingIndent2">11.<tab/>All Watch scheme members have access to post-coding equipment.</p>
+	<list class="answerList1"><li><a id="a10">True</a></li><li><a id="a11">False</a></li><li><a id="a12">Not given</a></li>
+	</list>
     <p class="linespace"></p>
 
-    <li id="q5">Each Watch scheme is managed by a co-ordinator.<list class="answerList"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li></list></li>
+    <p class="hangingIndent2">12.<tab/>Each Watch scheme is managed by a co-ordinator.</p>
+	<list class="answerList1"><li><a id="a13">True</a></li><li><a id="a14">False</a></li><li><a id="a15">Not given</a></li>
+	</list>
     <p class="linespace"></p>
   </ol>
 </section>

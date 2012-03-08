@@ -112,7 +112,7 @@
 	
 	<h7>Simple Fares</h7>
 	
-	<p>Express Class: 18 pounds each way.First Class: 26 pounds each way.Returns are priced at two single fares.Frequent Flyer fare: 11 single, adult tickets for the price of 10. Available exclusively from Heathrow Express ticket offices.Special fares for children.</p>
+	<p>Express Class: 18 pounds each way.<br/>First Class: 26 pounds each way.<br/>Returns are priced at two single fares.<br/>Frequent Flyer fare: 11 single, adult tickets for the price of 10. Available exclusively from Heathrow Express ticket offices.<br/>Special fares for children.</p>
 	
 	<h7>Easy Ticketing</h7>
 	
@@ -124,7 +124,7 @@
 	<ul id="splitreadingList">
 		<li>London Underground Stations</li>
 		<li>UK rail stations and rail agents</li>
-		<li>Concierge desks in London and Heathrowhotels</li>
+		<li>Concierge desks in London and Heathrow hotels</li>
 		<li>Bus and coach centres</li>
 		<li>Selected newsagents, shops and offices</li>
 	</ul>

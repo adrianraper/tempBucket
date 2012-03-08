@@ -315,6 +315,28 @@ class BentoService extends AbstractService {
 	
 	/**
 	 * 
+	 * This service call will get the instance ID from the user's record in the database.
+	 *  
+	 *  @param userID - these are all self-explanatory
+	 */
+	public function getInstanceID($userID) {
+		
+		$errorObj = array("errorNumber" => 0);
+		
+		try {
+			$instanceID = $this->loginOps->getInstanceID($userID);
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		return array("error" => $errorObj,
+					"instanceID" => $instanceID);
+	}
+	
+	/**
+	 * 
 	 * This service call will create a score record when a user has completed an exercise or activitiy
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory

@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -61,6 +64,8 @@ The reading passage on the left has ten paragraphs A-J. Which paragraphs contain
 
 	
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
 <h1><p>Success in Four Minutes or Less</p></h1>
   
 	<div id="reading">
@@ -68,7 +73,7 @@ The reading passage on the left has ten paragraphs A-J. Which paragraphs contain
 	<b>A</b>&#xA0;A job interview typically lasts anything up to forty-five minutes, but it appears that the length of an interview may, in reality, be academic. Why? Because researchers both in Canada and at Aston University in the UK have shown that interviewers make their minds up about a candidate's personality within just the first four minutes of an interview. Other experts reckon it takes only 120 seconds &#x2013; not long by anyone's standards. So perhaps we should forget about the length of the interview for a moment and concentrate on how to make the best use of those crucial first few minutes &#x2013; on how to make the right sort of impression. Psychologists call it 'impression management'.</p>
 
 	<p class="hangingIndent">
-	<b>B</b>&#xA0;The term refers to 'conscious or unconscious attempts to control the images that are projected in &#x2026; social interactions' (Schlenker, 1980). And if there are only four minutes in which to do this at an interview, it's important to look at how a good impression might be managed in those few decisive moments. According to Reed Personnel, a common remark made by employers is 'Above all, it's the first impression that counts.'</p>
+	<b>B</b>&#xA0;The term refers to 'conscious or unconscious attempts to control the images that are projected in ... social interactions' (Schlenker, 1980). And if there are only four minutes in which to do this at an interview, it's important to look at how a good impression might be managed in those few decisive moments. According to Reed Personnel, a common remark made by employers is 'Above all, it's the first impression that counts.'</p>
 
 	<p class="hangingIndent">
 	<b>C</b>&#xA0;The right sort of impact at the start of an interview is a central factor in making a success of it. This isn't just a commonly held belief. Findings by researchers at Sheffield University confirm that those of us most likely to succeed are the people who are most skilled at impression management.</p>
@@ -97,29 +102,53 @@ The reading passage on the left has ten paragraphs A-J. Which paragraphs contain
 	<p class="hangingIndent">
 	<b>J</b>&#xA0;We all tend to wave our arms around to a greater or lesser extent when explaining something or as we become involved in what we are saying. This is fine. It shows a certain amount of enthusiasm. What can work against someone in interview is not the occasional flourish but the sort of fidgeting which can be downright distracting to watch. If this is a problem for you when you are nervous, it may be worthwhile to practise sitting with your hands gently resting in your lap or on the arms or a chair. Folding your arms to try to control their waywardness, however, tends to look uncomfortable and hostile.</p>
   
-  <p>The Guardian Careers Guide &#x2013; Interviews, Christine Ingham, Fourth Estate, 1997, pp. 13-23.</p>
+  <p>The Guardian Careers Guide &#x2013; Interviews, Christine Ingham, Fourth Estate, pp. 13-23.</p>
 </div>
 </section>
 
 <section id="body">
   <img class="leftFloat" src="../media/RD_S4M_001.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
-    <li id="1">a definition of body language&#xA0;<input id="q1"/></li>
+    <li id="1">a definition of body language<br/><input id="q1"/></li>
 		<p class="linespace"></p>
-    <li id="2">how excessive gesturing can be avoided&#xA0;<input id="q2"/></li>
+    <li id="2">how excessive gesturing can be avoided<br/><input id="q2"/></li>
 		<p class="linespace"></p>
-    <li id="3">the meaning of impression management&#xA0;<input id="q3"/></li>
+    <li id="3">the meaning of impression management<br/><input id="q3"/></li>
 		<p class="linespace"></p>
-    <li id="4">types of posture to avoid&#xA0;<input id="q4"/></li>
+    <li id="4">types of posture to avoid<br/><input id="q4"/></li>
 		<p class="linespace"></p>
-    <li id="5">the format of the start of an interview&#xA0;<input id="q5"/></li>
+    <li id="5">the format of the start of an interview<br/><input id="q5"/></li>
 		<p class="linespace"></p>
-    <li id="6">appropriate and inappropriate kinds of eye contact&#xA0;<input id="q6"/></li>
+    <li id="6">appropriate and inappropriate kinds of eye contact<br/><input id="q6"/></li>
 		<p class="linespace"></p>
-    <li id="7">the relative importance of verbal and non-verbal behaviour&#xA0;<input id="q7"/></li>
+    <li id="7">the relative importance of verbal and non-verbal behaviour<br/><input id="q7"/></li>
 		<p class="linespace"></p>
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">Remember that although this exercise looks like 'matching headings to paragraphs', it is not exactly the same. You are trying to find paragraphs that contain certain information. You don't have to worry so much about the overall 'theme' of each paragraph, although knowing this can help you find the information.</p>
+
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">You are looking for an explanation of the term, not necessarily examples of it.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">'Excessive gesturing' means too much body movement.</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">This is similar to Question 1. You are looking for a definition, not necessarily examples.</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">Your 'posture' is the way you hold your body.</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">In other words, what happens during the first few minutes of an interview?</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">In other words, when, how often and how should you look at your interviewer during the interview?</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">'Relative' here means 'compared with'. In other words, how important is non-verbal behaviour in comparison to verbal behaviour?</p>
+</section>
 </body>
 </bento>

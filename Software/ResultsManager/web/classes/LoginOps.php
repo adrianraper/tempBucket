@@ -319,6 +319,25 @@ EOD;
 		throw new Exception("Can't set the instance ID for the user $userID", 100);
 	}
 	
+	/**
+	 * 
+	 * This function gets the instanceID for a user
+	 * @param Number $userID
+	 */
+	function getInstanceID($userID) {
+		
+		$sql .=	<<<EOD
+				SELECT F_LicenceID 
+				FROM T_User u					
+				WHERE u.F_UserID=?
+EOD;
+		$bindingParams = array($userID);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs)
+			return $rs->FetchNextObj()->F_LicenceID;
+		throw new Exception("Can't get the instance ID for the user $userID", 100);
+	}
+	
 	// v3.2 A simplified login which is for identification rather than authentication purposes
 	// Not used yet.
 	/*

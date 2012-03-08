@@ -16,6 +16,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -56,7 +59,9 @@
 
 
 <section id="readingText">
-  <h1>Hypermobility</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+  <h1><p>Hypermobility</p></h1>
 
   <p>Transport and communications provide the means by which everyone connects with everyone else. But the transformation in the speed and reach of these means is having profound social consequences. Many of the unwelcome characteristics of the hypermobile society can readily be imagined by extrapolating existing trends.</p>
   
@@ -80,7 +85,7 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/SS_AR_005.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/set8_04.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
   
   <p class="hangingIndent2">7.<tab/>What will the status of the 'mobility have-nots' be in a hypermobile society?<br/><input id="q1"/></p>
@@ -89,13 +94,33 @@
   <p class="linespace"></p>
   <p class="hangingIndent2">9.<tab/>Give the name of ONE scheme which tries to foster traditional community values.<br/><input id="q3"/></p>
   <p class="linespace"></p>
-  <p class="hangingIndent2">10.<tab/>List TWO characteristics of modern police methods.<br/><input id="q4"/></p>
+  <p class="hangingIndent2">List TWO characteristics of modern police methods.</p>
+  <p class="hangingIndent2">10.<tab/><input id="q4"/></p>
   <p class="linespace"></p>
   <p class="hangingIndent2">11.<tab/><input id="q5"/></p>
   <p class="linespace"></p>
   <p class="hangingIndent2">12.<tab/>Which political institutions are losing power as a result of increasing mobility in society?<br/><input id="q6"/></p>
   <p class="linespace"></p>
   </ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext">Read the instructions carefully. In this case you can use a number but not more than two words from the text.</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">'Status' means your position in society and how much power, influence and freedom it brings you. Which section will you read to find the answer?</p>
+
+<p class="popuptext1"><b>Question 8</b></p>
+<p class="popuptext2">Which section mostly discusses the effects of hypermobility on children?</p>
+
+<p class="popuptext1"><b>Question 9</b></p>
+<p class="popuptext2">The word 'scheme' here means an official project organised to achieve some goal. Such schemes are often given names or titles, which describe that goal. Names begin with capital letters.</p>
+
+<p class="popuptext1"><b>Questions 10 and 11</b></p>
+<p class="popuptext2">The order you answer these in doesn't matter.</p>
+
+<p class="popuptext1"><b>Question 12</b></p>
+<p class="popuptext2">What do you think is meant by 'political institutions'? Can you name any?</p>
 </section>
 
 </body>

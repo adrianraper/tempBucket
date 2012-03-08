@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -82,14 +85,16 @@
 </header>
 	
 <section id="readingText">
-
-	<h1>FANTASTIC PLASTIC</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>FANTASTIC PLASTIC</p></h1>
 	
 	<p>Did you know that plastics are made from oil? Plastic packaging uses only a very small amount, about 2% of all crude oil produced. Plastic bottles use less than a sixth of this.</p>
 	
 	<p>In Britain we use about 275,000 tonnes of plastic bottles in the home every year &#x2013; that works out at about 15 million bottles every day. More and more people are able to recycle their plastic bottles through schemes such as those assisted by RECOUP. Help recycle plastic bottles and conserve the use of our natural resources.</p>
 	
-	<p><b>Start Collecting</b>More than one in three UK local authorities runs a plastic bottle collection scheme. This could be either a 'kerbside' collection (where recyclables are regularly collected from your home) or a bottle bank scheme.</p>
+	<h7><p>Start Collecting</p></h7>
+	<p>More than one in three UK local authorities runs a plastic bottle collection scheme. This could be either a 'kerbside' collection (where recyclables are regularly collected from your home) or a bottle bank scheme.</p>
 
 	<p>All household plastic bottles, with only a few exceptions, can be collected for recycling. So that means start saving your drinks, milk, shampoo and household cleaning bottles where you have a local collection scheme.</p>
 	
@@ -101,12 +106,12 @@
 	
 	<p>By following the simple instructions above you can be confident that everything you deposit will be recycled. You will give the companies reprocessing collected plastic the best chance to develop technology and expand the range of products made from used plastic bottles.</p>
 	
-	<h1>Sort It Out!</h1>
+	<h7><p>Sort It Out!</p></h7>
 	
 	<p>More and more companies are now putting a special code on the bottle labels or base of the bottle to make sorting even easier. If you see this code then you'll be doubly sure what polymer the bottle is made from.</p>
 	
 	<p>Fantastic Plastic, RECOUP</p>
-	
+	<img class="leftFloat" src="../media/EN_GR_002a.jpg" mode="1" id="1002"/>
 </section>
 
 <section id="body">
@@ -134,6 +139,16 @@
     <li id="q10">There is a white spot on the base of bottles made from PET.<list class="answerList"><li><a id="a28">True</a></li><li><a id="a29">False</a></li><li><a id="a30">Not given</a></li></list></li>
 	<p class="linespace"></p>
   </ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext">This text gives facts and figures concerning the recycling of plastic bottles.</p>
+
+<p class="popuptext">Many of the questions involve numbers. It is important to check exactly what the numbers refer to in the text, and if the numbers are used to refer to the same thing in the question. Don't choose 'True' simply because the same number appears in both the question and the text.</p>
+
+<p class="popuptext">Remember that there are a number of different ways of expressing the same number. A quarter, for example, can be expressed as a fourth, one in four or 25 per cent.</p>
+
+<p class="popuptext">As with all exercises of this kind, don't forget that some of the answers will probably be Not given. This is not the same as FALSE.</p>
 </section>
 
 </body>

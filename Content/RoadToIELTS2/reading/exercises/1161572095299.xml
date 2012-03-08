@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -69,8 +72,9 @@
 
 
 <section id="readingText">
-
-	<h1>Smoke gets in your throat</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+	<h1><p>Smoke gets in your throat</p></h1>
 
   	<p>The semi-nomadic lifestyle of the Maasai is under threat from market forces. Nick Hall describes how Maasai women are developing new housing options of their own.</p>
   
@@ -124,5 +128,30 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">Remember that these questions follow the order that information is given in the text.</p>
+
+<p class="popuptext1"><b>Question 10</b></p>
+<p class="popuptext2">Scan quickly for the word 'status' in the text.</p>
+
+<p class="popuptext1"><b>Question 11</b></p>
+<p class="popuptext2">The key word here is 'regularly'.</p>
+
+<p class="popuptext1"><b>Question 12</b></p>
+<p class="popuptext2">What do you think 'market economy' means? Scan the text for 'colonial administration' to find the answer.</p>
+
+<p class="popuptext1"><b>Question 13</b></p>
+<p class="popuptext2">You should be able to guess from the question what 'Enkangs' are.</p>
+
+<p class="popuptext1"><b>Question 14</b></p>
+<p class="popuptext2">The information in this statement is very specific. Does this match information given in the text?</p>
+
+<p class="popuptext1"><b>Question 15</b></p>
+<p class="popuptext2">Scan quickly for any mention of food and drink.</p>
+
+<p class="popuptext1"><b>Question 16</b></p>
+<p class="popuptext2">Which section mentions building materials? Answer according to the information in the text. You can probably make water containers out of almost anything, but what does the text say?</p>
+
+</section>
 </body>
 </bento>

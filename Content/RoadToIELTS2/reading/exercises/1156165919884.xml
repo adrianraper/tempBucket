@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -61,8 +64,9 @@
 
 
 <section id="readingText">
-
-<h1>Language and the Brain</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+<h1><p>Language and the Brain</p></h1>
 
 <p>In 1861 the French physician Paul Broca dissected the brain of an aphasic patient who had been nicknamed "Tan" by hospital workers because that was the only syllable he uttered. Broca discovered a large cyst producing a lesion in Tan's left hemisphere. The next eight cases of aphasia he observed also had left-hemisphere lesions, too many to be attributed to chance. Broca concluded that "the faculty for articulate language" resides in the left hemisphere.</p>
 
@@ -112,5 +116,29 @@
   
 </section>
 
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-7 - Sentence completion</b></p>
+<p class="popuptext2">First read the gapped sentences carefully and identify key words and phrases. Then skim through the passage to find the relevant information. You also need to think about what kind of words can go in each gap. A noun or noun phrase? A verb or verb phrases? An adjective? An adverb? This is very important, as your answers must be grammatically correct.</p>
+
+<p class="popuptext">Remember, you should use a maximum of three words for each answer and these must be taken from the reading passage.</p>
+
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">Looking for the name Broca will help you find the missing information. The word 'patients' tell you that you're looking for some abnormality, something that we don't ordinary have in our brains. 'Patients' is plural so you need to find something that Broca discovered in more than one person.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">Notice that this sentence has a kind of balance to it. The first half is almost the same as the second half. What's missing?</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">This must be something that eyes and ears can do.</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">What could follow the word 'use' in connection with language and communication?</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">Find the part of the passage that discusses the PET technique and the information you need will be nearby. Can you think of any words that might fit the gap, even before you read?</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">The key phrase in this questions is 'rather than the physical acts'.</p>
+</section>
 </body>
 </bento>

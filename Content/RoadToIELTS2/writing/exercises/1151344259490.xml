@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,6 +16,9 @@
 	
 
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -75,9 +78,8 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/ST_WT2.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in Exercise 1. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.
-		
-		Writing Task 2
+<div id="instruction">Read this sample answer to the writing task in Exercise 1. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -104,14 +106,32 @@
 </section>
 
 <section id="body">
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/>
   <img class="rightFloat" src="../media/ST_AW_003.jpg" mode="1" id="1001"/>
-  <p align="left">Information on private citizens has been collected and stored in electronic form by governments and organisations for many years. However, with the advent of the Internet, information about our finances, health, relationships and tastes as consumers can now be easily accessed and disseminated without our knowledge or consent. <font color="#0000ff"><input id="q1" type="droptarget"/> this, unscrupulous individuals and organisations can misuse this information and our privacy is threatened.</font></p>
-  <p align="left">There are a number of ways in which personal data can be misused. The most common is probably the trading of consumers' personal details between commercial organisations <font color="#0000ff"><input id="q2" type="droptarget"/> targeting potential customers. This <font color="#0000ff"><input id="q3" type="droptarget"/></font> people being inundated with unsolicited promotional leaflets, catalogues and e-mails. More seriously, employers can run checks on prospective employees to glean details about their health, criminal record or political allegiances. Similarly, insurance companies, <font color="#0000ff"><input id="q4" type="droptarget"/></font> pay out expensive medical claims, may access the health records of individuals <font color="#0000ff"><input id="q5" type="droptarget"/></font> life insurance policies before deciding whether or not to insure them.</font></p>
-  <p align="left">How can such abuses be prevented? Regarding the exchange of customer information between companies, the only <font color="#0000ff"><input id="q6" type="droptarget"/> solution is to make unsolicited promotional post and e-mail illegal. <font color="#0000ff"><input id="q7" type="droptarget"/></font>, organisations would have no incentive to trade in people's personal details. <font color="#0000ff"><input id="q8" type="droptarget"/></font> protect people <font color="#0000ff"><input id="q9" type="droptarget"/></font> work, only information <font color="#0000ff"><input id="q10" type="droptarget"/></font> by applicants themselves on the application form or during the interview <font color="#0000ff"><input id="q11" type="droptarget"/></font> be legitimate grounds for rejection, and candidates <font color="#0000ff"><input id="q12" type="droptarget"/></font> should have the right to ask for the reasons why. Finally, as a general measure to prevent misuse by insurance companies, it is <font color="#0000ff"><input id="q13" type="droptarget"/></font> that organisations <font color="#0000ff"><input id="q14" type="droptarget"/></font> data should inform individuals of the information that is collected. Individuals must be able to access the data themselves <font color="#0000ff"><input id="q15" type="droptarget"/></font> they can find out exactly what kind of information it is and check for inaccuracies, they must be allowed to choose how and to what extent it is used, and the data must be held securely.</font></p>
-  <p align="left">It is not likely that the above measures will <font color="#0000ff"><input id="q16" type="droptarget"/> guaranteed individual privacy. However, I am convinced that they will go some way to help limit the misuse of personal information while at the same time giving individuals more control over the information that is held on them.</font></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <div id="gapfillText">
+  
+  <p>Information on private citizens has been collected and stored in electronic form by governments and organisations for many years. However, with the advent of the Internet, information about our finances, health, relationships and tastes as consumers can now be easily accessed and disseminated without our knowledge or consent. &#xA0;<input id="q1" type="droptarget"/>&#xA0; this, unscrupulous individuals and organisations can misuse this information and our privacy is threatened.</p>
+  
+  <p>There are a number of ways in which personal data can be misused. The most common is probably the trading of consumers' personal details between commercial organisations &#xA0;<input id="q2" type="droptarget"/>&#xA0; targeting potential customers. This &#xA0;<input id="q3" type="droptarget"/>&#xA0; people being inundated with unsolicited promotional leaflets, catalogues and e-mails. More seriously, employers can run checks on prospective employees to glean details about their health, criminal record or political allegiances. Similarly, insurance companies, &#xA0;<input id="q4" type="droptarget"/>&#xA0; pay out expensive medical claims, may access the health records of individuals &#xA0;<input id="q5" type="droptarget"/>&#xA0; life insurance policies before deciding whether or not to insure them.</p>
+  
+  <p>How can such abuses be prevented? Regarding the exchange of customer information between companies, the only &#xA0;<input id="q6" type="droptarget"/>&#xA0; solution is to make unsolicited promotional post and e-mail illegal. &#xA0;<input id="q7" type="droptarget"/>, organisations would have no incentive to trade in people's personal details. &#xA0;<input id="q8" type="droptarget"/>&#xA0; protect people &#xA0;<input id="q9" type="droptarget"/>&#xA0; work, only information &#xA0;<input id="q10" type="droptarget"/>&#xA0; by applicants themselves on the application form or during the interview &#xA0;<input id="q11" type="droptarget"/>&#xA0; be legitimate grounds for rejection, and candidates &#xA0;<input id="q12" type="droptarget"/>&#xA0; should have the right to ask for the reasons why. Finally, as a general measure to prevent misuse by insurance companies, it is &#xA0;<input id="q13" type="droptarget"/>&#xA0; that organisations &#xA0;<input id="q14" type="droptarget"/>&#xA0; data should inform individuals of the information that is collected. Individuals must be able to access the data themselves &#xA0;<input id="q15" type="droptarget"/>&#xA0; they can find out exactly what kind of information it is and check for inaccuracies, they must be allowed to choose how and to what extent it is used, and the data must be held securely.</p>
+  
+  <p>It is not likely that the above measures will &#xA0;<input id="q16" type="droptarget"/>&#xA0; guaranteed individual privacy. However, I am convinced that they will go some way to help limit the misuse of personal information while at the same time giving individuals more control over the information that is held on them.</p>
+<p class="linespace"></p>
+</div>
+</section>
+
+<section id="writingtask1">
+<p class="popuptext">You should spend about 40 minutes on this task.</p>
+	
+<p class="popuptext">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+			
+<p class="popuptext"><b>Information technology is making it increasingly easy to collect and access computerised data on individuals, which poses a threat to our privacy. In what ways can the information gathered be misused and what can be done to minimise these misuses and protect the privacy of the individual?</b></p>
+			
+<p class="popuptext">You should write at least 250 words.</p>
+			
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
 </section>
 
 </body>

@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -74,8 +77,9 @@
 
 
 <section id="readingText">
-
-	<h1>Untangling the science of climate</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Untangling the science of climate</p></h1>
 	
 	<p>Life has prospered on this planet for nearly four billion years. In that time climate has fluctuated drastically, from ice ages lasting tens of thousands of years to epochs of steamy heat. With each change, sundry species have benefited and flourished. Others adapted, faltered, or died.</p>
 	<p>Now, many experts believe, humans are imperiling their own ecological niche with the threat of global warming. The vaporous by-products of civilization, in the form of greenhouse gases such as carbon dioxide (CO2), have trapped enough heat in the atmosphere to raise Earth's average surface air temperature a half degree Celsius (one degree Fahrenheit) during the last century. If the trend continues, it could alter climate patterns worldwide – thawing glaciers, boosting sea levels, scorching plains into deserts, and shifting vegetation zones.</p>
@@ -115,6 +119,25 @@
 	<li id="10">Aerosols can lead to the formation of clouds which are so&#xA0;<input id="q9" />&#xA0;that they can block sunlight for periods of&#xA0;<input id="q10" />.</li>
 	<p class="linespace"></p>
 	</ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-10 - Diagram completion</b></p>
+<p class="popuptext2">First of all you should study the diagram carefully. The information you need to complete the labels can be found in a relatively small section of the passage. In fact, you only really need to read two paragraphs to do this exercise. Skim through the passage quickly to find these two paragraphs and then read them again more carefully to find the answers.</p>
+
+<p class="popuptext">Remember that the numbered gaps follow the order of the information in the passage.</p>
+
+<p class="popuptext1"><b>Questions 1, 2 and 5</b></p>
+<p class="popuptext2">What is missing here? A word or phrase, or a number?</p>
+
+<p class="popuptext1"><b>Questions 3 and 4</b></p>
+<p class="popuptext2">What can you see here in the diagram?</p>
+
+<p class="popuptext1"><b>Questions 6, 7 and 8</b></p>
+<p class="popuptext2">What quality of clouds could affect the climate, do you think?</p>
+
+<p class="popuptext1"><b>Questions 9 and 10</b></p>
+<p class="popuptext2">Your knowledge of grammar and general context should help you decide what kind of words or information is missing here.</p>
 </section>
 
 </body>

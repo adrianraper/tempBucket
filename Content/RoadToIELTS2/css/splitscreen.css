@@ -83,6 +83,19 @@ a, span[draggable="true"] {
 	text-decoration: none;
 	}
 /* Draggable spans in noscroll should be in a bordered filled box */
+#noscroll p[draggable=false] {
+	float: left;
+	color: #0E00AB;
+	padding: 5px 8px 4px 8px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #B5B5B5;
+	border-radius: 12px;
+	background-color: #FFFFFF;
+	}
+
 #noscroll span[draggable=true] {
 	float: left;
 	color: #0E00AB;
@@ -496,3 +509,9 @@ sh1{
 	}
 
 /*-----------------------------------------------------------------------------------------------*/
+/* Specifically for Reading Set 7 Table completion (1) */
+
+	.healthyteeth {
+	padding-left: -17px;
+ 	text-indent: -83px;
+	}

@@ -15,51 +15,34 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
-    <GapFillQuestion source="q1" block="b1">
-      <answer value="abscesses" correct="true"/>
-      <answer value="abscess" correct="true"/>
-      <answer value="an abscess" correct="true"/>
-      <answer value="thrush" correct="true"/>
+  	<GapFillQuestion source="{#q1,#q2}" block="b1">
+		<answer value="abscesses" correct="true" synonymGroup="abscess"/>
+	    <answer value="abscess" correct="true" synonymGroup="abscess"/>
+      	<answer value="an abscess" correct="true" synonymGroup="abscess"/>
+      	<answer value="thrush" correct="true" synonymGroup="thrush"/>
+	</GapFillQuestion>
+    <GapFillQuestion source="{#q3,#q4}" block="b2">
+      <answer value="inflames the gums" correct="true" synonymGroup="inflame"/>
+      <answer value="plaque inflames them" correct="true" synonymGroup="inflame"/>
+      <answer value="it inflames them" correct="true" synonymGroup="inflame"/>
+      <answer value="inflames them" correct="true" synonymGroup="inflame"/>
+      <answer value="plaque inflames gums" correct="true" synonymGroup="inflame"/>
+      <answer value="it inflames gums" correct="true" synonymGroup="inflame"/>
+      <answer value="inflames gums" correct="true" synonymGroup="inflame"/>
+      <answer value="makes them bleed" correct="true" synonymGroup="bleed"/>
+      <answer value="makes gums bleed" correct="true" synonymGroup="bleed"/>
+      <answer value="the gums bleed" correct="true" synonymGroup="bleed"/>
+      <answer value="gums bleed" correct="true" synonymGroup="bleed"/>
+      <answer value="they bleed" correct="true" synonymGroup="bleed"/>
     </GapFillQuestion>
-    <GapFillQuestion source="q2" block="b2">
-      <answer value="thrush" correct="true"/>
-      <answer value="abscesses" correct="true"/>
-      <answer value="abscess" correct="true"/>
-      <answer value="an abscess" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q3" block="b3">
-      <answer value="inflames the gums" correct="true"/>
-      <answer value="plaque inflames them" correct="true"/>
-      <answer value="it inflames them" correct="true"/>
-      <answer value="inflames them" correct="true"/>
-      <answer value="plaque inflames gums" correct="true"/>
-      <answer value="it inflames gums" correct="true"/>
-      <answer value="inflames gums" correct="true"/>
-      <answer value="makes them bleed" correct="true"/>
-      <answer value="makes gums bleed" correct="true"/>
-      <answer value="the gums bleed" correct="true"/>
-      <answer value="gums bleed" correct="true"/>
-      <answer value="they bleed" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q4" block="b4">
-      <answer value="makes them bleed" correct="true"/>
-      <answer value="makes gums bleed" correct="true"/>
-      <answer value="the gums bleed" correct="true"/>
-      <answer value="gums bleed" correct="true"/>
-      <answer value="they bleed" correct="true"/>
-      <answer value="inflames the gums" correct="true"/>
-      <answer value="plaque inflames them" correct="true"/>
-      <answer value="it inflames them" correct="true"/>
-      <answer value="inflames them" correct="true"/>
-      <answer value="plaque inflames gums" correct="true"/>
-      <answer value="it inflames gums" correct="true"/>
-      <answer value="inflames gums" correct="true"/>
-    </GapFillQuestion>
-    <GapFillQuestion source="q5" block="b5">
+    <GapFillQuestion source="q5" block="b3">
       <answer value="disclosing tablets" correct="true"/>
     </GapFillQuestion>
   </questions>
@@ -75,12 +58,14 @@
 </header>
 	
 <section id="readingText">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
 <h1><p>Keeping your teeth healthy</p></h1>
 
 <p>Clean teeth and healthy gums feel good and look great. They help you to have the confidence to get really close to people. Good mouth care from birth sets the pattern for healthy teeth for life. To maintain healthy teeth it's important to choose the right drinks and foods, to brush your teeth twice every day and to visit the dentist on a regular basis throughout your life.</p>
 
-<p><b>Common dental problems</b>&#xA0;Tooth root decay can occur when the gum recedes as a result of gum disease and is an increasing problem as more people aged over 65 keep their own teeth. Reducing between-meals sugar intake and using a fluoride toothpaste are particularly important if you have receding gums.</p>
+<h7><p>Common dental problems</p></h7>
+<p><b>Tooth root decay</b>&#xA0;can occur when the gum recedes as a result of gum disease and is an increasing problem as more people aged over 65 keep their own teeth. Reducing between-meals sugar intake and using a fluoride toothpaste are particularly important if you have receding gums.</p>
 
 <p><b>Abscesses</b>&#xA0;can cause pain, swelling and fever. Contact your dentist without delay if you have an abscess.</p>
 
@@ -94,11 +79,10 @@
 
 <p><b>Bleeding of the gums</b>&#xA0;while brushing is caused by a build-up of plaque or germs where your teeth and gums meet. The plaque inflames the gums and makes them bleed. Keep brushing the problem areas gently. Disclosing tablets will show where you have left plaque or germs on your teeth after brushing. Your dentist or hygienist will explain how to use them. The bleeding should soon stop, but if it doesn't, ask your dentist for help.</p>
 
-<p>Keeping your teeth healthy, NHS Direct, Healthy Living guide:
-<br/>http://www.nhsdirect.nhs.uk</p>
+<p>Keeping your teeth healthy, NHS Direct, Healthy Living guide:<br/>
+http://www.nhsdirect.nhs.uk</p>
 
-<p>Copyright Information:
-<br/>http://www.nhsdirect.nhs.uk </p>
+<p>Copyright Information: http://www.nhsdirect.nhs.uk</p>
 
 </section>
 
@@ -106,19 +90,27 @@
 <div id="splitquestionList">
 
 <p>List&#xA0;<b>TWO</b>&#xA0;dental problems which require immediate attention from a dentist.</p>
-<p>(10)&#xA0;<input id="q1"/></p>
-<p>(11)&#xA0;<input id="q2"/></p>
-<p></p>
+<p class="linespace"></p>
+<p>10.<tab/><input id="q1"/></p>
+<p class="linespace"></p>
+<p>11.<tab/><input id="q2"/></p>
+<p class="linespace"></p>
 <p>List&#xA0;<b>TWO</b>&#xA0;ways in which plaque affects the gums.</p>
-<p>(12)&#xA0;<input id="q3"/></p>
-<p>(13)&#xA0;<input id="q4"/></p>
-<p></p>
+<p class="linespace"></p>
+<p>12.<tab/><input id="q3"/></p>
+<p class="linespace"></p>
+<p>13.<tab/><input id="q4"/></p>
+<p class="linespace"></p>
 <p>What can be used to reveal plaque on the teeth?</p>
-<p>(14)&#xA0;<input id="q5"/></p>
-<p></p>
+<p class="linespace"></p>
+<p>14.<tab/><input id="q5"/></p>
+<p class="linespace"></p>
 
 </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This is a very short exercise focusing on two small parts of the text. The order you list the items doesn't matter in this particular case.</p>
+</section>
 </body>
 </bento>

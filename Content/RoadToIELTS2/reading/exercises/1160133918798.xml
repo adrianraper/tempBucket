@@ -127,32 +127,37 @@
 
 <section id="body">
 <div id="splitquestionList">
-<p><b>The reading text provides information about benefits offered to Valleyfair employees.</b></p>
+<p>The reading text provides information about benefits offered to Valleyfair employees.</p>
 <p class="linespace"></p>
-<p><b>Question 1-4.</b></p>
-<p>Which&#xA0;<b>FOUR</b>&#xA0;employee benefits are covered?</p>
-<p><g id="t1">A.  free park admission</g></p>
-<p><g id="t2">B.  discounts</g></p>
-<p><g id="t3">C.  opportunities for promotion</g></p>
-<p><g id="t4">D.  incentive schemes</g></p>
-<p><g id="t5">E.  social events</g></p>
-<p><g id="t6">F.  insurance</g></p>
-<p><g id="t7">G.  sporting events</g></p>
-<p><g id="t8">H.  opportunities for scholarships</g></p>
+<p><b>Question 1-4</b></p>
+<p><b>Which FOUR employee benefits are covered?</b></p>
+<list class="answerList">    
+	<li><a id="t1">free park admission</a></li>
+	<li><a id="t2">discounts</a></li>
+	<li><a id="t3">opportunities for promotion</a></li>
+	<li><a id="t4">incentive schemes</a></li>
+	<li><a id="t5">social events</a></li>
+	<li><a id="t6">insurance</a></li>
+	<li><a id="t7">sporting events</a></li>
+	<li><a id="t8">opportunities for scholarships</a></li>
+	<p class="linespace"></p>
+</list>
+<p>The reading text provides information about standards of appearance and conduct required of Valleyfair employees.</p>
 <p class="linespace"></p>
-<p><b>The reading text provides information about standards of appearance and conduct required of Valleyfair employees.</b></p>
-<p class="linespace"></p>
-<p><b>Question 5-9.</b></p>
-<p>Which&#xA0;<b>FIVE</b>&#xA0;employee standards are covered?</p>
-<p><g id="t9">A.  dress</g></p>
-<p><g id="t10">B.  jewellery</g></p>
-<p><g id="t11">C.  footwear</g></p>
-<p><g id="t12">D.  grooming</g></p>
-<p><g id="t13">E.  honesty</g></p>
-<p><g id="t14">F.  punctuality</g></p>
-<p><g id="t15">G.  politeness</g></p>
-<p><g id="t16">H.  personal hygiene</g></p>
-<p><g id="t17">I.  company loyalty</g></p>
+<p><b>Question 5-9</b></p>
+<p><b>Which FIVE employee standards are covered?</b></p>
+<list class="answerList">
+	<li><a id="t9">dress</a></li>
+	<li><a id="t10">jewellery</a></li>
+	<li><a id="t11">footwear</a></li>
+	<li><a id="t12">grooming</a></li>
+	<li><a id="t13">honesty</a></li>
+	<li><a id="t14">punctuality</a></li>
+	<li><a id="t15">politeness</a></li>
+	<li><a id="t16">personal hygiene</a></li>
+	<li><a id="t17">company loyalty</a></li>
+	<p class="linespace"></p>
+</list>
 
 </div>
 </section>

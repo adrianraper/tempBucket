@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,60 +16,105 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+</popups>
+
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="F" correct="true"/>
+      <answer value="F" correct="true">
+	  <feedback source="fb1"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="A" correct="true"/>
+      <answer value="A" correct="true">
+	  <feedback source="fb2"/>
+      </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="H" correct="true">
         <feedback source="fb3"/>
       </answer>
     </GapFillQuestion>
-    <GapFillQuestion source="q4"/>
-    <GapFillQuestion source="q5"/>
-  </questions>
+    </questions>
 </script>
 
 </head>
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/MM_ANS_002.jpg" mode="16" id="1004"  />
-		
+<div id="instruction">		
 		Read the arguments on the right and the counter-arguments on the left. Match a counter-argument to each argument by writing the appropriate letter in each gap. Check your answer by reading the completed composition.
-		
-		
-		Sample answer
+</div>
 </header>
 	
+<section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/>
+ <div id="reading">
+ <p class="hangingIndent"><b>A.</b>&#xA0;Children may be traumatised by disturbing images.</p>
+
+ <p class="hangingIndent"><b>B.</b>&#xA0;Important news events must not be 'censored' for the public, even if the images are unpleasant.</p>
+
+ <p class="hangingIndent"><b>C.</b>&#xA0;Pictures have more impact than words.</p>
+
+ <p class="hangingIndent"><b>D.</b>&#xA0;Some political systems work better when people know exactly what is happening in the world.</p>
+
+ <p class="hangingIndent"><b>E.</b>&#xA0;Television news reports often trivialise tragic events by turning them into entertainment.</p>
+
+ <p class="hangingIndent"><b>F.</b>&#xA0;Too much exposure to disturbing images may accustom us to them, so we no longer react.</p>
+
+ <p class="hangingIndent"><b>G.</b>&#xA0;Victims of violence may not want to be shown on television.</p>
+
+ <p class="hangingIndent"><b>H.</b>&#xA0;Viewers are not always given enough warning before disturbing images are shown.</p>
+
+ <p class="hangingIndent"><b>I.</b>&#xA0;Viewers want to be entertained, not distressed, when they watch television.</p>
+
+</div>
+</section>
+
 <section id="body">
-  <br/>
-  <ol id="questionList"/>
+<div id="splitquestionList">
+	<p><b>Paragraph 1</b>&#xA0;– Introduction</p>
+	<p></p>
+	
+	<p><b>Paragraph 2</b>&#xA0;– Argument 1 + Counter-argument<br/>
+	If unpleasant images are shown on television, people may take action.
+	</p>
+	<p><input id="q1"/></p>
+	<p></p>
+	
+	<p><b>Paragraph 3</b>&#xA0;– Argument 2 + Counter-argument<br/>
+	Young people should not be sheltered from the unpleasant realities of the world.
+	</p>
+	<p><input id="q2"/></p>
+	<p></p>
+	
+	<p><b>Paragraph 4</b>&#xA0;– Argument 3 + Counter-argument<br/>
+	If you find the images upsetting, you can turn the television off.
+	</p>
+	<p><input id="q3"/></p>
+	<p></p>
+	
+	<p><b>Paragraph 5</b>&#xA0;– Conclusion</p>
+	<p></p>
+
+</div>  
+</section>
+
+<section id="fb1">
+  <p class="feedbacktext">There is no feedback for this question.</p>
+</section>
+
+<section id="fb2">
+  <p class="feedbacktext">There is no feedback for this question.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. This paragraph is all about the how such images affect children.</p>
-</section>
-
-<section id="readingText">
-  <p align="left"><b>A </b>Children may be traumatised by disturbing images.</p>
-  <p align="left"><b>B.</b> Important news events must not be 'censored' for the public, even if the images are unpleasant.</p>
-  <p align="left"><b>C.</b> Pictures have more impact than words.</p>
-  <p align="left"><b>D.</b> Some political systems work better when people know exactly what is happening in the world.</p>
-  <p align="left"><b>E.</b> Television news reports often trivialise tragic events by turning them into entertainment.</p>
-  <p align="left"><b>F.</b> Too much exposure to disturbing images may accustom us to them, so we no longer react.</p>
-  <p align="left"><b>G.</b> Victims of violence may not want to be shown on television.</p>
-  <p align="left"><b>H.</b> Viewers are not always given enough warning before disturbing images are shown.</p>
-  <p align="left"><b>I.</b> Viewers want to be entertained, not distressed, when they watch television.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p class="feedbacktext">3. This paragraph is all about the how such images affect children.</p>
 </section>
 
 </body>

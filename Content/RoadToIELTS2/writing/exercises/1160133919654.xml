@@ -18,9 +18,11 @@
   <popups>
     	<popup click="clickme" source="writingtask1" width="629" />
 	</popups>
+	
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
+  
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true">
@@ -110,7 +112,7 @@
 	
 <section id="body">
  
-    <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
   <br/><br/><br/>
    <img class="rightFloat" src="../media/WB_GW_008.jpg" mode="1" id="1001"/>
   <div id="targetspotting">

@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -24,12 +27,12 @@
       <answer value="ferro-cement coating" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="wattle mud ash" correct="true"/>
-      <answer value="wattle ash mud" correct="true"/>
-      <answer value="mud wattle ash" correct="true"/>
-      <answer value="mud ash wattle" correct="true"/>
-      <answer value="ash wattle mud" correct="true"/>
-      <answer value="ash mud wattle" correct="true"/>
+      <answer value="wattle, mud, ash" correct="true"/>
+      <answer value="wattle, ash, mud" correct="true"/>
+      <answer value="mud, wattle, ash" correct="true"/>
+      <answer value="mud, ash, wattle" correct="true"/>
+      <answer value="ash, wattle, mud" correct="true"/>
+      <answer value="ash, mud, wattle" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="guttering" correct="true"/>
@@ -55,8 +58,9 @@
 
 
 <section id="readingText">
-
-	<h1>Smoke gets in your throat</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+	<h1><p>Smoke gets in your throat</p></h1>
 
   	<p>The semi-nomadic lifestyle of the Maasai is under threat from market forces. Nick Hall describes how Maasai women are developing new housing options of their own.</p>
   
@@ -103,5 +107,8 @@
 </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This exercise shouldn't take you too long. All the answers come from one small paragraph. Can you find the relevant paragraph? Make sure your answers are grammatically possible and make sure that you copy correctly from the text.</p>
+</section>
 </body>
 </bento>

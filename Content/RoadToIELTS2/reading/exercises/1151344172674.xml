@@ -121,6 +121,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set7_01.jpg" mode="1" id="1003"  />
   <ol id="splitquestionList">
     <li id="1">Paragraph A<tab/><input id="q1" type="droptarget"/></li>
 	<p class="linespace"></p>

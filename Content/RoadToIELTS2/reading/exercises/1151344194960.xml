@@ -90,6 +90,7 @@
 
 
 <section id="body">
+<img class="leftFloat" src="../media/set8_02.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
     <li id="1">Bands basically consist of &#xA0;<input id="q1" type="droptarget"/>.</li>
 	<p class="linespace"></p>

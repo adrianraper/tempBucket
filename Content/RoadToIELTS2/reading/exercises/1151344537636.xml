@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -87,16 +90,23 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/>
 <img class="photo1" src="../media/RD_AWC_001.jpg" mode="1" id="1001"/>
 <h1><p>Why Study Ancient World Cultures?</p></h1>
 <p>Why study ancient cultures? You might feel that the question is moot: students &#xA0;<i>do</i>&#xA0; study and &#xA0;<i>will</i>&#xA0; study ancient cultures; such study is an expected part of a tradition of intellectual development. The response to the &#xA0;<i>why</i>&#xA0; of the initial question is a matter of tradition, if not fact. A study of the Roman Empire, a reading of Greek philosophy and literature, a look at the Pyramids of Egypt &#x2013; these are all accepted parts of a Western education, aren't they? Probably so: even today, in the plurality of approaches to the study of history and to the study of cultures, people talk about Plato or Dante or Krishna or Mohammed. At this point, you might ask yourself these two additional questions:  Do we study these cultures because, to some extent, all cultures share certain characteristics? Does our own culture reflect aspects of these other cultures? The answer to the first of the two questions has historically been found in a discussion of universality. The danger in looking for universals consists in reformulating other, possibly alien, views to fit our own. We must always guard against the assumption that other people think as we do &#x2013; or that they should. The differences among cultures are of greatest interest here, and reading about ancient cultures is thus reading about other people whose lives were surely different from our own. The social organization of Socrates' Athens &#x2013; where a gimpy-legged man could hobble around interrogating citizens at will &#x2013; differs profoundly from today's world beset with modern media whereby people rarely get to see or literally hear their critics. How can we today understand the psychology of the thousands of Egyptian workers who, apparently unquestioningly, spent their lives dragging great blocks of stone across burning sands in the construction of staggering pyramidal edifices whose completion took many lifetimes?  Interestingly, these differences may help us better to see &#x2013; and know &#x2013; the limits of our culture and the limits of our language and experience.</p>
+
 <p>The problem with the second question lies in its formulation. What is a culture after all? This paper proceeds under the assumption that there is some sort of definition to the word &#xA0;<i>culture</i>. Most people would ascribe an abstract value to culture &#x2013; that which produces &#xA0;<i>good</i>&#xA0; art, &#xA0;<i>great</i>&#xA0; literature, etc. Yet the criteria of quality are scarcely international or inter-cultural: a revered "classical" work on the sitar resists comparison to a Mozart symphony beyond the statement that both are considered great cultural achievements in the context of their home cultures. Is, then, culture something that can be taught, or are its constituent parts more sweeping and pervasive than what can be learned from books or lectures? Answers to this second question already exist in the form of canons and reading lists, though there is much discussion today about what makes up those reading lists and about the assumptions concerning what should or should not fit on such lists.</p>
-<p >Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</p>
-<p >So, what have we learned about ancient cultures? You could probably tally up a list of facts, e.g. Mohammed's birth and death dates, and key concepts: the association of Hinduism with the illusory nature of the material world, the Greek belief in rationality, the Roman ability to organize and delegate. But these generalizations do not allow for minority opinions within the cultures, nor, most likely, do the generalizations say much about the people who were not gifted writers, powerful politicians, influential artists, successful interpreters of their social circumstances. On just about any given day in the midst of choking sand and blazing heat, what might some of those Egyptian stone-haulers have said in passing about their omnipotent pharaoh?</p>
+
+<p>Many people would like to conceive of history as a succession of movements or stages in an on-going (and, generally) ever-improving cultural novel of human life. Yet, how can any culture speak for all its practitioners? Do all people share equally in the culture of which they are a part? It is precisely because Akhenaton chose to resist the pantheism that characterized pharaonic Egypt before and after his brief reign and instituted a qualified monotheism that he is remembered. So, a culture includes both the dominant tradition and its transgression.</p>
+
+<p>So, what have we learned about ancient cultures? You could probably tally up a list of facts, e.g. Mohammed's birth and death dates, and key concepts: the association of Hinduism with the illusory nature of the material world, the Greek belief in rationality, the Roman ability to organize and delegate. But these generalizations do not allow for minority opinions within the cultures, nor, most likely, do the generalizations say much about the people who were not gifted writers, powerful politicians, influential artists, successful interpreters of their social circumstances. On just about any given day in the midst of choking sand and blazing heat, what might some of those Egyptian stone-haulers have said in passing about their omnipotent pharaoh?</p>
+
 <h7><p>Glossary</p></h7>
 <ol id="splitreadingList">
 	<li>Akhenaton:  Egyptian pharaoh (1603-36 BC) of the 18th dynasty who introduced a new monotheistic cult of the sun god Aton.</li>
 </ol>
+
 <p >Bill Hemminger, Exploring Ancient World Cultures web site at the University of Evansville.</p>
 </section>
 <section id="body">
@@ -124,6 +134,12 @@
 	<p class="linespace"></p>
   </ol>
 </section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-10 - Yes, No, Not Given</b></p>
+<p class="popuptext2">This is a difficult passage with some reasonably complex ideas. However, the statements themselves are quite straightforward if you read them carefully. The most important thing to remember is that for each statement you have to decide whether it agrees with the writer's views, disagrees with the writer's views, or if the writer doesn't give an opinion in that particular point. You must also be very careful to distinguish between facts and the writer's opinions.</p>
+</section>
+
 
 </body>
 </bento>

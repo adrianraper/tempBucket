@@ -14,6 +14,9 @@
 	]]>
 	</style>
 	<script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 	<settings>
  	<param name="delayedMarking" value="false" />
 </settings>
@@ -79,7 +82,9 @@
 
 
 <section id="readingText">
-	<h1>Student Motivation To Learn</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Student Motivation to Learn</p></h1>
 	
 	<p>Infants and young children appear to be propelled by curiosity, driven by an intense need to explore, interact with, and make sense of their environment.  Unfortunately, as children grow, their passion for learning frequently seems to shrink. Learning often becomes associated with drudgery instead of delight. A large number of students – more than one in four – leave school before graduating.  Many more are physically present in the classroom but largely mentally absent; they fail to invest themselves fully in the experience of learning.</p>
 	
@@ -136,6 +141,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set9_03.jpg" mode="1" id="1001"/>
 <div id="splitquestionList">
   <p class="hangingIndent2">13.<tab/>To encourage motivation teachers should ...</p>
   <list class="answerList1">
@@ -166,6 +172,14 @@
   <p class="linespace"></p>
   </div>
   
+</section>
+
+<section id="examtips">
+<p class="popuptext">By reading the three sentence beginnings, you should notice that they all refer to the same two sections of the text. Which sections do they refer to?</p>
+
+<p class="popuptext">Now read through the possible endings for each sentence. Note the ones which seem most likely or that you think you remember from earlier readings of the text.</p>
+
+<p class="popuptext">Now check by reading the appropriate section. Don't forget that the sentences should express views stated in the text, not views which you happen to think are correct or believe to be true.</p>
 </section>
 </body>
 </bento>

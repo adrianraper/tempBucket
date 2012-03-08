@@ -16,6 +16,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -50,7 +53,9 @@
 	
 
 <section id="readingText">
-	<h1>Play: An Endangered Species</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Play: an Endangered Species</p></h1>
 	
 	<p>In their rush to increase teaching hours, many districts are eliminating recess and free time – and something valuable is being lost.</p>
 	
@@ -99,13 +104,19 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set9_06.jpg" mode="1" id="1001"/>
 <div id="splitquestionList">
 	<p><b>The Value of Play</b></p>
 	
 	<p>Giving children free unorganised playtime during school hours has a number of associated benefits. For a long time&#xA0;<input id="q1" />&#xA0;have recognised the importance of play in the growth of children's intellectual abilities. In addition, during play children go through a process of discovery and practice which prepares them for&#xA0;<input id="q2" />. </p>
-	
+	<p class="linespace"></p>
 	<p>Through play children learn&#xA0;<input id="q3" />&#xA0;such as co-operation, turn-taking and sharing. This in turn helps children's&#xA0;<input id="q4" />&#xA0;as they begin to see things from another's point of view. Finally, there is evidence that children today are in&#xA0;<input id="q5" />&#xA0;and energetic play at school can help address this problem.</p>
 	</div>
+	
+</section>
+
+<section id="examtips">
+<p class="popuptext">Make sure your answers agree with the text and are grammatically possible. Read through the whole summary again once you've finished.</p>
 </section>
 
 </body>

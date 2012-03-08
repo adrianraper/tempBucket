@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -64,7 +67,9 @@
 	
 
 <section id="readingText">
-	<h1>Play: An Endangered Species</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Play: an Endangered Species</p></h1>
 	
 	<p>In their rush to increase teaching hours, many districts are eliminating recess and free time – and something valuable is being lost.</p>
 	
@@ -113,6 +118,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set9_05.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
   
   <p class="hangingIndent2">5.<tab/>Administrators have forgotten what it is like to be a child.</p>
@@ -160,5 +166,21 @@
  <p class="linespace"></p>
 </section>
 
+<section id="examtips">
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">What exactly have administrators forgotten, according to the writer? Is this the same thing?</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">The second headings should give you the answer.</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">Where does the writer refer to age?</p>
+
+<p class="popuptext1"><b>Question 8</b></p>
+<p class="popuptext2">Find another way of saying 'concentrate' in the text.</p>
+
+<p class="popuptext1"><b>Questions 9 and 10</b></p>
+<p class="popuptext2">Notice the use of the modal verbs 'should' and 'have to' in these questions.</p>
+</section>
 </body>
 </bento>

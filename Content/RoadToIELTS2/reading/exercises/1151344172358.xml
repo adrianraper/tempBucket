@@ -16,6 +16,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -59,8 +62,9 @@
 
 
 <section id="readingText">
-
-   <h1>Abolishing management, one slice at a time</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+   <h1><p>Abolishing management, one slice at a time</p></h1>
 
   <p>The management function has been whittled away since the seventies. Harry Onsman suggests the whittling may not be over yet.</p>
   
@@ -111,6 +115,31 @@
     <li id="6">Teams consist of up to&#xA0;<input id="q6"/>&#xA0;employees but no&#xA0;<input id="q7"/></li>
   </ol>
 	<p class="linespace"></p>
+</section>
+
+<section id="examtips">
+<p class="popuptext">Look carefully at the diagram and use it to help you predict or guess some answers before you read the relevant sections of the text in detail.</p>
+
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">How would you describe this management structure? Now look for that word, or similar words, in the text.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">Where are these managers in relation to employees and other management levels?</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">What do managers have in the company that makes them managers?</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">How could you describe this level? How are the employees organised in this diagram?</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">What kind of information must follow the phrase 'up to ...'?</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">Why do you think the employees are grouped loosely in circles? What's missing?</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">What can someone be 'responsible for'?</p>
 </section>
 
 </body>

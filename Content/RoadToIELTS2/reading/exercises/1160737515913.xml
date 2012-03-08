@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -67,6 +70,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/><br/>
 <img class="photo2" src="../media/RD_WBC_001.jpg" mode="1" id="1001"/>
 
 <h1><p>Welcome to the BOOKS etc. Catalogue</p></h1>
@@ -96,7 +101,7 @@ Master storyteller Stephen King reflects on the road accident that almost put pa
 
 <p class="hangingIndent"><h7>F LONDON: THE BIOGRAPHY - Peter Ackroyd</h7>
 <br/>
-Peter Akroyd's unconventional approach to the city that has informed so much of his previous work, both fiction and non- fiction, is to treat it as a living organism that has evolved and changed over the centuries. He finds as many connections through time as he does in three-dimensional space and the portrait that emerges is therefore richly complex and totally engaging.</p>
+Peter Akroyd's unconventional approach to the city that has informed so much of his previous work, both fiction and non-fiction, is to treat it as a living organism that has evolved and changed over the centuries. He finds as many connections through time as he does in three-dimensional space and the portrait that emerges is therefore richly complex and totally engaging.</p>
 
 <p class="hangingIndent"><h7>G APPETITE - Nigel Slater</h7>
 <br/>
@@ -106,7 +111,7 @@ Food to console, food to excite &#x2013; whatever your appetite, Nigel Slater ha
 <br/>
 Subtitled 'the autobiography of a species in 23 chapters' (one for each chromosome), this is an indispensable book for anyone who would seek to understand recent developments at the frontiers of genetics and their implications for the human race. A timely and thought-provoking book.</p>
 
-<p class="hangingIndent">Books etc Christmas Catalogue 2000.</p>
+<p class="hangingIndent">Books etc Christmas Catalogue</p>
 </div>
 </section>
 
@@ -148,5 +153,8 @@ Subtitled 'the autobiography of a species in 23 chapters' (one for each chromoso
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This exercise shouldn't take too long, but does need care. There are a few 'traps' here and there. Skim for key words, but don't assume that you've found the correct match because you've found the key words. Read the description carefully. Also, don't be fooled by the titles. Some of these books are not what you think they are at first.</p>
+</section>
 </body>
 </bento>

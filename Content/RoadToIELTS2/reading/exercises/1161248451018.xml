@@ -48,9 +48,9 @@
 	
 <section id="readingText">
 
-<h1><p>FOR AN ECOLOGY OF LEARNING</p></h1>
+<h8>For an Ecology  of Learning</h8>
 
-<p><b>Despite decades of effort the world still counts almost one billion illiterate adults. Why?</b></p>
+<h2><p>Despite decades of effort the world still counts almost one billion illiterate adults. Why?</p></h2>
 
 	<div id="reading">
 	<p class="hangingIndent">
@@ -81,26 +81,34 @@
 	<b>I</b>&#xA0;We are also abandoning the idea that the illiterate lives in total ignorance and only in developing countries. We've noticed that in the most remote villages, there are people who possess very sophisticated knowledge and succeed in transmitting this wisdom without the need for writing either words or concepts borrowed from foreign languages. We recognize &#x2013; finally &#x2013; that we must build on what people are doing themselves; in fact people must do their own building.</p>
 </div>	
 
-	<p><b>Glossary</b>&#xA0;NGO: non-governmental organisation. A non-profit independent organisation that works at an international level to improve social, health or environmental conditions.</p>
+	<h7>Glossary</h7>
+	<ol id="splitreadingList">
+	<li>NGO: non-governmental organisation. A non-profit independent organisation that works at an international level to improve social, health or environmental conditions.</li>
 	
-	<p>epopee: epic poems.Peuls: a primarily Muslim people found in many parts of West Africa.</p>
-	<p>Adama Ouane, Section for Literacy and Adult Education, UNESCO, UNESCO Sources, June 1997, Section: FOCUS: Dossier, p. 10.</p>
+	<li>epopee: epic poems.</li>
+	
+	<li>Peuls: a primarily Muslim people found in many parts of West Africa.</li>
+	</ol>
+	<p>Adama Ouane, Section for Literacy and Adult Education, UNESCO, UNESCO Sources, Section: FOCUS: Dossier, p. 10.</p>
 	
 </section>
 
 <section id="body">
   <img class="leftFloat" src="../media/RD_S4M_001.jpg" mode="1" id="1001"/>
-	<p class="linespace"></p>
     <ol id="splitquestionList">
-    <li id="1">the importance of making writing a necessary means of communication -&#xA0;<input id="q1"/></li>
+    <li id="1">the importance of making writing a necessary means of communication<br/>Paragraph&#xA0;<input id="q1"/></li>
 	<p class="linespace"></p>
-    <li id="2">the decrease in the amount of money spent on adult literacy -&#xA0;<input id="q2"/></li>
+    <li id="2">the decrease in the amount of money spent on adult literacy<br/>
+	Paragraph&#xA0;<input id="q2"/></li>
 	<p class="linespace"></p>
-    <li id="3">mistaken beliefs about people who are illiterate -&#xA0;<input id="q3"/></li>
+    <li id="3">mistaken beliefs about people who are illiterate<br/>
+	Paragraph&#xA0;<input id="q3"/></li>
 	<p class="linespace"></p>
-    <li id="4">the value of involving the whole family in literacy training programmes -&#xA0;<input id="q4"/></li>
+    <li id="4">the value of involving the whole family in literacy training programmes<br/>
+	Paragraph&#xA0;<input id="q4"/></li>
 	<p class="linespace"></p>
-    <li id="5">the need for literacy training to be carried out in the learner's mother tongue -&#xA0;<input id="q5"/></li>
+    <li id="5">the need for literacy training to be carried out in the learner's mother tongue <br/>Paragraph&#xA0;<input id="q5"/></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

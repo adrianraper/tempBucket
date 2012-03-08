@@ -31,7 +31,7 @@
     <GapFillQuestion source="q3" block="b3">
       <answer value="find" correct="true"/>
       <answer value="would find" correct="true"/>
-      <answer value="minght find" correct="true"/>
+      <answer value="might find" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="would agree" correct="true"/>
@@ -69,8 +69,9 @@
 <body>
 	
 <header>
-	
+<div id="instruction"> 
 Complete the sentences by filling each gap with an appropriate form of one of the verbs provided. You will need to use one of the verbs more than once.
+</div>
 </header>
 	
 <section id="noscroll">

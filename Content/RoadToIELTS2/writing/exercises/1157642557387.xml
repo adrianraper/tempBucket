@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -40,32 +40,32 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/SS_AW_013c.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>Every year thousands of workers from poor countries enter richer, more developed countries illegally to live and work, and this gives rise to a variety of social problems in those countries. What can be done to deal with this situation?</b>
-  </p>
-  <p align="left"><b><g id="t1">A</g></b>  The migration of workers from poorer countries to richer, more developed countries is becoming increasingly common in the modern world. War, political oppression, poverty and lack of employment opportunities are the main reasons why people leave their home countries. The governments of these countries need to take urgent measures to prevent people leaving in such large numbers.</p>
-  <p align="left"><b><g id="t2">B</g></b>  In recent years, restrictions on immigration into rich countries combined with a lack of opportunities in their home countries have resulted in an increase in the number of illegal immigrants. This influx of immigrants, in turn, has led to a range of social problems related to unemployment, cultural integration, education and housing, all of which require an appropriate response from the governments of the countries affected.</p>
-  <p align="left"><b><g id="t3">C</g></b>  The widening gap between the relatively high standard of living in developed countries and the hardship of poorer nations continues to force many people to enter countries illegally in search of a better life. It is argued that this situation causes social problems such as increased crime and unemployment. However, there is very little evidence to support this point of view.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="targetspotting">
+  <p><b>Every year thousands of workers from poor countries enter richer, more developed countries illegally to live and work, and this gives rise to a variety of social problems in those countries. What can be done to deal with this situation?</b></p>
+  
+    <p><b><g id="t1">A. The migration of workers from poorer countries to richer, more developed countries is becoming increasingly common in the modern world. War, political oppression, poverty and lack of employment opportunities are the main reasons why people leave their home countries. The governments of these countries need to take urgent measures to prevent people leaving in such large numbers.</g></b></p>
+	
+	<p><b><g id="t2">B. In recent years, restrictions on immigration into rich countries combined with a lack of opportunities in their home countries have resulted in an increase in the number of illegal immigrants. This influx of immigrants, in turn, has led to a range of social problems related to unemployment, cultural integration, education and housing, all of which require an appropriate response from the governments of the countries affected.</g></b></p>
+	
+	<p><b><g id="t3">C. The widening gap between the relatively high standard of living in developed countries and the hardship of poorer nations continues to force many people to enter countries illegally in search of a better life. It is argued that this situation causes social problems such as increased crime and unemployment. However, there is very little evidence to support this point of view.</g></b></p>
+  
+</div>
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This writer has not read the task carefully enough. In the task 'those countries' means the 'more developed countries', not the immigrants' original home countries. Also, the writer has not picked up on the keyword 'illegally', but instead seems to be referring to emigration in general.</font>
-  </p>
+  <p class="feedbacktext">This writer has not read the task carefully enough. In the task 'those countries' means the 'more developed countries', not the immigrants' original home countries. Also, the writer has not picked up on the keyword 'illegally', but instead seems to be referring to emigration in general.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This writer has chosen to dispute the fact that the situation causes problems and it seems that the rest of the composition will support this opinion. However, the task is clearly a 'problem and solution' composition, not 'presenting an opinion.'</font>
-  </p>
+  <p class="feedbacktext">This writer has chosen to dispute the fact that the situation causes problems and it seems that the rest of the composition will support this opinion. However, the task is clearly a 'problem and solution' composition, not 'presenting an opinion.'</p>
 </section>
 
 </body>

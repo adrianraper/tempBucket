@@ -13,7 +13,6 @@
 						currentState="loading"
 						addedToStage="onAddedToStage(event)"
 						preloader="com.clarityenglish.ielts.IELTSPreloader">
-	<!--width="100%" height="100%"-->
 	
 	<fx:Metadata>
 		[SWF(width="1000", height="700")]

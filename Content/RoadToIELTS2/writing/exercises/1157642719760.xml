@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -40,25 +40,32 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/SS_AW_013d.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>We are all citizens of the world. People should be allowed to move freely, and to live and work in the country of their choice without restrictions.</b>
-  </p>
-  <p align="left"><b><g id="t1">A</g></b>  Due to phenomena such as globalisation and the general opening up of borders which have taken place in recent decades, an increasing number of people are choosing to work and settle down outside their county of birth. This has certain benefits and drawbacks, both for individuals and for society as a whole.</p>
-  <p align="left"><b><g id="t2">B</g></b> Increasing numbers of asylum seekers and economic and political refugees have led many governments to impose harsh immigration restrictions. However, such restrictions mean that many individuals are condemned to lives of poverty or oppression from which they cannot escape. Governments of wealthier nations ought to take measures to alleviate the problems these people face.</p>
-  <p align="left"><b><g id="t3">C</g></b>  In response to the growing pressure from people living in developing countries to be allowed to migrate and work in developed countries, many governments have now imposed harsh restrictions on immigration. However, more and more people believe that these restrictions should be relaxed.</p>
+  
+  <div id="targetspotting">
+  <p><b>We are all citizens of the world. People should be allowed to move freely, and to live and work in the country of their choice without restrictions.</b></p>
+  
+    <p><b><g id="t1">A. Due to phenomena such as globalisation and the general opening up of borders which have taken place in recent decades, an increasing number of people are choosing to work and settle down outside their county of birth. This has certain benefits and drawbacks, both for individuals and for society as a whole.</g></b></p>
+	
+	<p><b><g id="t2">B. Increasing numbers of asylum seekers and economic and political refugees have led many governments to impose harsh immigration restrictions. However, such restrictions mean that many individuals are condemned to lives of poverty or oppression from which they cannot escape. Governments of wealthier nations ought to take measures to alleviate the problems these people face.</g></b></p>
+	
+	<p><b><g id="t3">C. In response to the growing pressure from people living in developing countries to be allowed to migrate and work in developed countries, many governments have now imposed harsh restrictions on immigration. However, more and more people believe that these restrictions should be relaxed.</g></b></p>
+  
+</div>
 </section>
 
 <section id="fb1">
-  <p align="left">This writer has turned the task into an 'advantages and disadvantages' composition. However, the wording clearly invites candidates to express their opinions on this issue.</p>
+  <p class="feedbacktext">This writer has turned the task into an 'advantages and disadvantages' composition. However, the wording clearly invites candidates to express their opinions on this issue.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">The writer has limited the discussion to 'asylum seekers' and refugees'. However, the statement in the task is more general. It does not refer specifically to any single type of emigrants.</p>
+  <p class="feedbacktext">The writer has limited the discussion to 'asylum seekers' and refugees'. However, the statement in the task is more general. It does not refer specifically to any single type of emigrants.</p>
 </section>
 
 </body>

@@ -81,6 +81,10 @@
 			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
 			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
+			
+			// For checking that each user is on once
+			registerCommand(BBNotifications.FAILED_INSTANCE_CHECK, FailedInstanceCheckCommand);
+			
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

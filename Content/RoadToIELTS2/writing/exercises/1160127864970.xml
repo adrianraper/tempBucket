@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +15,10 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+	<popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
+
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -50,9 +54,9 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/EN_WTG02.jpg" mode="16" id="1004"  />Read this sample answer to the writing task in the previous exercise. Complete the letter by putting the best word or phrase in each gap.
-
-Writing Task 1
+<div id="instruction">
+Read this sample answer to the writing task in the previous exercise. Complete the letter by putting the best word or phrase in each gap.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -67,31 +71,34 @@ Writing Task 1
 </section>
 
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/>
   <img class="rightFloat" src="../media/EN_GW_006.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Dear Sir/Madam,</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">As you can see from my address, I live in the flat immediately above your restaurant and I am writing to complain about the open-air dining that you have started recently.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#0000ff"><input id="q1" type="droptarget"/>, I am disturbed almost every evening by the noise made by people sitting outside talking and laughing until the early hours of the morning. As if <input id="q2" type="droptarget"/> were not enough, your staff leave the doors wide open and turn the music up as loud as possible. <input id="q3" type="droptarget"/> makes it impossible for me to hear my own music or television. <input id="q4" type="droptarget"/>, I am unable to fall asleep until after the restaurant has closed, and, <input id="q5" type="droptarget"/>, the only decent night's sleep I have had recently was when it rained.<font color="#0000ff"/></font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">I feel that something needs to be done about <font color="#0000ff"><input id="q6" type="droptarget"/></font>. I suggest that you either dispense with the tables outside altogether or restrict outside dining hours to no later than 9 p.m. I would <font color="#0000ff"><input id="q7" type="droptarget"/></font> appreciate it if you could tell your staff to keep the doors closed and play the music at a reasonable volume.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">I would be grateful for your prompt attention in <font color="#0000ff"><input id="q8" type="droptarget"/></font>.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Yours faithfully,</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Mr M. Clowes</font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="gapfillText">
+  <p>Dear Sir/Madam,</p>
+  
+  <p>As you can see from my address, I live in the flat immediately above your restaurant and I am writing to complain about the open-air dining that you have started recently.</p>
+  
+  <p><input id="q1" type="droptarget"/>, I am disturbed almost every evening by the noise made by people sitting outside talking and laughing until the early hours of the morning. As if&#xA0; <input id="q2" type="droptarget"/>&#xA0; were not enough, your staff leave the doors wide open and turn the music up as loud as possible. &#xA0;<input id="q3" type="droptarget"/>&#xA0; makes it impossible for me to hear my own music or television.&#xA0; <input id="q4" type="droptarget"/>, I am unable to fall asleep until after the restaurant has closed, and,&#xA0; <input id="q5" type="droptarget"/>, the only decent night's sleep I have had recently was when it rained.</p>
+  
+  <p>I feel that something needs to be done about &#xA0;<input id="q6" type="droptarget"/>. I suggest that you either dispense with the tables outside altogether or restrict outside dining hours to no later than 9 p.m. I would &#xA0;<input id="q7" type="droptarget"/>&#xA0; appreciate it if you could tell your staff to keep the doors closed and play the music at a reasonable volume.</p>
+  
+  <p>I would be grateful for your prompt attention in &#xA0;<input id="q8" type="droptarget"/>.</p>
+  
+  <p>Yours faithfully,</p>
+  <p>Mr M. Clowes</p>
+  </div>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+	<p class="popuptext"><b>You live in a flat above a restaurant. Recently the restaurant has started to put tables and chairs outside and this has resulted in an increase in noise.</b></p>
+	<p class="popuptext"><b>Write a letter to the restaurant. Explain how you are being affected by this situation and say what you would like them to do about it.</b></p>
+	<p class="popuptext">You should write at least 150 words.</p>
+	<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+	<p class="popuptext">Begin your letter as follows:</p>
+	<p class="popuptext">Dear Sir/Madam,</p>
 </section>
 
 </body>

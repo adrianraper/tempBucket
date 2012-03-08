@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -51,7 +54,8 @@
 
 
 		<section id="readingText">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/>
 	<h8><p>No place like home</p></h8>
 	
 	<h2><p>Intelligent life on other planets is rarer than you think, says Peter Ward</p></h2>
@@ -128,5 +132,18 @@
 		
 </section>
 
+<section id="examtips">
+<p class="popuptext">In this case the summary does not summarise the whole text, but only one section. The first sentence of the summary tells you which section of the text if refers to. Read through the whole summary once before filling in any gaps. Here are some things to consider:</p>
+
+<p class="popuptext1"><b>Questions 12, 13 and 15</b></p>
+<p class="popuptext2">In both cases the gaps follows the preposition 'in', so the missing words must be places.</p>
+
+<p class="popuptext1"><b>Question 14</b></p>
+<p class="popuptext2">The whole sentence tells you that the missing word refers to something that 'survives', so it must be a living thing.</p>
+
+<p class="popuptext1"><b>Question 16</b></p>
+<p class="popuptext2">This could be a living thing, or evidence of living things.</p>
+
+</section>
 </body>
 </bento>

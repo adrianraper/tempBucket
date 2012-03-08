@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -20,36 +20,126 @@
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
-    <MultipleChoiceQuestion block="q1">
-      <answer source="a1" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q2">
-      <answer source="a2" correct="true"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q3">
-      <answer source="a3" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q4">
-      <answer source="a4" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q5">
-      <answer source="a5" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q6">
-      <answer source="a6" correct="true"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q7">
-      <answer source="a7" correct="true"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q8">
-      <answer source="a8" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q9">
-      <answer source="a9" correct="false"/>
-    </MultipleChoiceQuestion>
-    <MultipleChoiceQuestion block="q10">
-      <answer source="a10" correct="true"/>
-    </MultipleChoiceQuestion>
+    <TargetSpottingQuestion block="q1">
+      <answer source="t1" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q2">
+      <answer source="t2" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q3">
+      <answer source="t3" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q4">
+      <answer source="t4" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q5">
+      <answer source="t5" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q6">
+      <answer source="t6" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q7">
+      <answer source="t7" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q8">
+      <answer source="t8" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q9">
+      <answer source="t9" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q10">
+      <answer source="t10" correct="true"/>
+    </TargetSpottingQuestion>
+	<TargetSpottingQuestion block="q11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q12">
+      <answer source="t12" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q13">
+      <answer source="t13" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q14">
+      <answer source="t14" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q15">
+      <answer source="t15" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q16">
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q17">
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q18">
+      <answer source="t18" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q19">
+      <answer source="t19" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q20">
+      <answer source="t20" correct="false"/>
+    </TargetSpottingQuestion>
+	<TargetSpottingQuestion block="q21">
+      <answer source="t21" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q22">
+      <answer source="t22" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q23">
+      <answer source="t23" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q24">
+      <answer source="t24" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q25">
+      <answer source="t25" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q26">
+      <answer source="t26" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q27">
+      <answer source="t27" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q28">
+      <answer source="t28" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q29">
+      <answer source="t29" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q30">
+      <answer source="t30" correct="true"/>
+    </TargetSpottingQuestion>
+	<TargetSpottingQuestion block="q31">
+      <answer source="t31" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q32">
+      <answer source="t32" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q33">
+      <answer source="t33" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q34">
+      <answer source="t34" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q35">
+      <answer source="t35" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q36">
+      <answer source="t36" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q37">
+      <answer source="t37" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q38">
+      <answer source="t38" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q39">
+      <answer source="t39" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="q40">
+      <answer source="t40" correct="false"/>
+    </TargetSpottingQuestion>
   </questions>
 </script>
 
@@ -57,18 +147,106 @@
 <body>
 	
 <header>
-	
-		
-		Here are some advantages and disadvantages of cultural tourism, which is the topic of the writing task in the next exercise. Complete the sentences by choosing a correct option to fit into the gap (...). There may be one, two or three correct options in each case.
-		
+
+<div id="instruction">Here are some advantages and disadvantages of cultural tourism, which is the topic of the writing task in the next exercise. Complete the sentences by choosing a correct option to fit into the gap (...). There may be one, two or three correct options in each case.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/AC_AW_010.jpg" mode="1" id="1001"/>
-  <br/>
+  
   <ol id="questionList">
-    <br/>
-    <li id="q1">Cultural tourism, &#x2026; involves people travelling to a country in order to visit its museums and monuments, is generally considered to benefit the country.<list class="answerList"><li><a id="a1">who</a></li><li><a id="a2"/></li><li><a id="a3"/></li><li><a id="a4"/></li></list><br/></li>
+   
+	<li>Cultural tourism, … involves people travelling to a country in order to visit its museums and monuments, is generally considered to benefit the country.
+	<list class="answerList">
+	<li><a id="t1">who</a></li>
+	<li><a id="t2">which</a></li>
+	<li><a id="t3">that</a></li>
+	<li><a id="t4">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>The money … is generated by cultural tourism pays for monuments to be restored and new museums and exhibitions to be opened.
+	<list class="answerList">
+	<li><a id="t5">who</a></li>
+	<li><a id="t6">which</a></li>
+	<li><a id="t7">that</a></li>
+	<li><a id="t8">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>Local people benefit from the income … cultural tourism generates.
+	<list class="answerList">
+	<li><a id="t9">who</a></li>
+	<li><a id="t10">which</a></li>
+	<li><a id="t11">that</a></li>
+	<li><a id="t12">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>Through cultural tourism, visitors learn about the way of life and traditions of the people … country they are visiting.
+	<list class="answerList">
+	<li><a id="t13">who</a></li>
+	<li><a id="t14">whose</a></li>
+	<li><a id="t15">which</a></li>
+	<li><a id="t16">that</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>People … live in the host country also learn from tourists.
+	<list class="answerList">
+	<li><a id="t17">who</a></li>
+	<li><a id="t18">which</a></li>
+	<li><a id="t19">that</a></li>
+	<li><a id="t20">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>National monuments and other important sites are often looked upon with great pride by the inhabitants of a country, … welcome the chance to show them off to visitors.
+	<list class="answerList">
+	<li><a id="t21">who</a></li>
+	<li><a id="t22">which</a></li>
+	<li><a id="t23">that</a></li>
+	<li><a id="t24">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>Some countries … monuments have great religious or cultural significance do not want to attract large numbers of tourists.
+	<list class="answerList">
+	<li><a id="t25">which</a></li>
+	<li><a id="t26">that</a></li>
+	<li><a id="t27">whose</a></li>
+	<li><a id="t28">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>Monuments … are fragile, such as ancient temples or cave paintings, can be damaged by large numbers of tourists.
+	<list class="answerList">
+	<li><a id="t29">who</a></li>
+	<li><a id="t30">which</a></li>
+	<li><a id="t31">that</a></li>
+	<li><a id="t32">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>At the height of the tourist season, … monuments receive large numbers of visitors, they require extra protection.
+	<list class="answerList">
+	<li><a id="t33">when</a></li>
+	<li><a id="t34">which</a></li>
+	<li><a id="t35">where</a></li>
+	<li><a id="t36">(…)</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>Small towns and seaside resorts … large modern hotels are built may lose their unique local character forever.
+	<list class="answerList">
+	<li><a id="t37">when</a></li>
+	<li><a id="t38">which</a></li>
+	<li><a id="t39">where</a></li>
+	<li><a id="t40">whose</a></li>
+	</list></li>
+	<p class="linespace"></p>
+  
   </ol>
 </section>
 

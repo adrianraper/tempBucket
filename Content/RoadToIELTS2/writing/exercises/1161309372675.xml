@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -31,29 +31,47 @@
     <TargetSpottingQuestion block="b4">
       <answer source="t4" correct="true"/>
     </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b5">
+      <answer source="t5" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b6">
+      <answer source="t6" correct="false"/>
+    </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b7">
-      <answer source="t7" correct="true"/>
+      <answer source="t7" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b8">
-      <answer source="t8" correct="false"/>
+      <answer source="t8" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b9">
       <answer source="t9" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b10">
-      <answer source="t10" correct="true"/>
+      <answer source="t10" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b11">
+      <answer source="t11" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b12">
+      <answer source="t12" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b13">
       <answer source="t13" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b14">
-      <answer source="t14" correct="false"/>
+      <answer source="t14" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b15">
       <answer source="t15" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b16">
-      <answer source="t16" correct="true"/>
+      <answer source="t16" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b17">
+      <answer source="t17" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b18">
+      <answer source="t18" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b19">
       <answer source="t19" correct="false"/>
@@ -62,10 +80,16 @@
       <answer source="t20" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b21">
-      <answer source="t21" correct="true"/>
+      <answer source="t21" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b22">
-      <answer source="t22" correct="false"/>
+      <answer source="t22" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b23">
+      <answer source="t23" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b24">
+      <answer source="t24" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b25">
       <answer source="t25" correct="true"/>
@@ -74,46 +98,22 @@
       <answer source="t26" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b27">
-      <answer source="t27" correct="false"/>
+      <answer source="t27" correct="true"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b28">
-      <answer source="t28" correct="true"/>
+      <answer source="t28" correct="false"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b29">
+      <answer source="t29" correct="true"/>
+    </TargetSpottingQuestion>
+    <TargetSpottingQuestion block="b30">
+      <answer source="t30" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b31">
       <answer source="t31" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b32">
       <answer source="t32" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b33">
-      <answer source="t33" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b34">
-      <answer source="t34" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b37">
-      <answer source="t37" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b38">
-      <answer source="t38" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b39">
-      <answer source="t39" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b40">
-      <answer source="t40" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b41">
-      <answer source="t41" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b42">
-      <answer source="t42" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b43">
-      <answer source="t43" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b44">
-      <answer source="t44" correct="true"/>
     </TargetSpottingQuestion>
   </questions>
 </script>
@@ -122,11 +122,89 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the writing tasks and choose the options that are most appropriate for each case. Choose two options in each case.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/SS_GW_003.jpg" mode="1" id="1001"/>
+  
+  <ol id="questionList">
+	
+	<li>You have seen an advertisement for a language exchange friend. A native English speaker is looking for a friend to meet socially and exchange languages. Write a letter and introduce yourself. Tell them what language(s) you speak and say how you like spending your free time.<br/><br/>Which opening sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t1">In reference to the advertisement you placed in yesterday's edition of the Evening Times, I would like to apply to become your language exchange friend.</a></li>
+	<li><a id="t2">I saw your advertisement in the Evening Times and I'm writing because I'm interested in becoming your language exchange friend.</a></li>
+	<li><a id="t3">I want to be your language exchange friend.</a></li>
+	<li><a id="t4">I saw your advertisement for a language exchange friend and I'm writing to introduce myself.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>A friend of yours has been unemployed for several months and has asked for your advice. Write a letter to your friend. Give advice on job hunting, writing a CV and interview techniques.<br/><br/>Which opening sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t5">I'm so sorry to hear that you haven't had any luck finding a job.</a></li>
+	<li><a id="t6">I am writing to express my regret at the fact that you have been unable to find work.</a></li>
+	<li><a id="t7">I am writing in reference to your problem of finding suitable employment.</a></li>
+	<li><a id="t8">I've been thinking about your job search problems and I've come up with a few ideas.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>Your house was burgled recently and you called the police, who dealt with situation very well. Write a letter to your local police station. Praise the officers who came to your house, explaining why you were so impressed with their visit and their subsequent actions. Ask them to thank the officers.<br/><br/>Which opening sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t9">I just had to drop you a line and tell you what a great job your lads did last week.</a></li>
+	<li><a id="t10">I'm not sure how many people write and tell you how great the police are but I want to do just that!</a></li>
+	<li><a id="t11">I am writing to praise your officers for the excellent way they handled the burglary at my house last week.</a></li>
+	<li><a id="t12">I am writing to say how impressed I was last week with the way your officers handled the burglary at my house.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>A television station has just started showing a new crime series during the early evening. You saw the first episode and feel the series should not be shown so early. Write a letter to the television station. Explain that you saw the first episode of the new series. Tell them how you feel about it and say what you would like them to do.<br/><br/>Which opening sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t13">I've just watched your new crime series and I can't believe it's on when kids are still up.</a></li>
+	<li><a id="t14">I have just watched the first episode of your new crime series and feel I must complain about the early viewing time chosen for the broadcast.</a></li>
+	<li><a id="t15">I am writing to complain about the new series which your station is broadcasting at 7 p.m. on weekdays.</a></li>
+	<li><a id="t16">I want to complain about the new series that's on in the evenings.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>You missed an appointment with an employment officer at the local job centre because of a demonstration in town. Write a letter to the employment officer. Apologise for missing the appointment and explain why you missed it. Ask if you can arrange a new appointment.<br/><br/>Which closing sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t17">I hope it will be possible to rearrange the appointment.</a></li>
+	<li><a id="t18">Just give me a ring when you have a free moment to see me.</a></li>
+	<li><a id="t19">Really looking forward to seeing you sometime soon.</a></li>
+	<li><a id="t20">I would be grateful if you could make a new appointment for me.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>You are moving home and have a large number of belongings that you no longer want. You have been given the address of a company that collects second-hand items to sell for charity. Write a letter to the company. Briefly describe the items and ask if they would be interested in them. Find out if they can arrange for transportation.<br/><br/>Which closing sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t21">Do let me know if you want these things.</a></li>
+	<li><a id="t22">I hope some of these items will be of use to you and I look forward to hearing from you.</a></li>
+	<li><a id="t23">Drop me a line if you're interested.</a></li>
+	<li><a id="t24">If you require further information about the items, please do not hesitate to contact me.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>A friend of yours enjoys detective stories. You have just read a very good thriller. Write a letter to your friend explaining what the book is about. Say why you enjoyed it and recommend that they read it.<br/><br/>Which closing sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t25">You're more than welcome to borrow my copy anytime.</a></li>
+	<li><a id="t26">I strongly recommend you read this book.</a></li>
+	<li><a id="t27">Anyway, if you see the book anywhere, do get yourself a copy.</a></li>
+	<li><a id="t28">I sincerely believe that you will derive great enjoyment from this book.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+	<li>You have seen an advertisement for volunteers for an experimental study on treating sleep problems. Write a letter of application. Say why you are interested in taking part and when you would be available. Ask how long the experiment will last.<br/><br/>Which closing sentences would be the most appropriate for this letter?
+	<list class="answerList">
+	<li><a id="t29">I would enjoy being part of this experiment and look forward to hearing from you.</a></li>
+	<li><a id="t30">I love this sort of thing so do get in touch soon.</a></li>
+	<li><a id="t31">I really want to be part of this and can't wait to hear from you.</a></li>
+	<li><a id="t32">I am extremely keen to take part in this research and hope my application is successful.</a></li>
+	</list></li>
+	<p class="linespace"></p>
+	
+  </ol>
 </section>
 
 <section id="rt2001">

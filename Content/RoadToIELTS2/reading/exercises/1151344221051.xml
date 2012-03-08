@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -50,7 +53,9 @@
 
 
 <section id="readingText">
-	<h1>Play: An Endangered Species</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Play: an Endangered Species</p></h1>
 	
 	<p>In their rush to increase teaching hours, many districts are eliminating recess and free time – and something valuable is being lost.</p>
 	
@@ -99,6 +104,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set9_04.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
     <li id="1">Administrators are reducing school playtime because they are anxious to improve&#xA0;<input id="q1"/>.</li>
 	<p class="linespace"></p>
@@ -109,6 +115,12 @@
     <li id="4">Piaget recognised the importance of the&#xA0;<input id="q4"/>&#xA0;which take place when children play.</li>
 	<p class="linespace"></p>
   </ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext">The text, which discusses the importance of playtime during school hours, is clearly divided up into sections, each with its own heading. Questions 1 and 2 focus on the first section, while questions 3 and 4 focus on the second.</p>
+
+<p class="popuptext">Make sure that the words you choose to complete the sentences are from the text, unchanged and grammatically possible.</p>
 </section>
 </body>
 </bento>

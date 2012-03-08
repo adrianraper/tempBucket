@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -70,7 +73,9 @@
 
 
 <section id="readingText">
-	<h1>Student Motivation To Learn</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Student Motivation to Learn</p></h1>
 	
 	<p>Infants and young children appear to be propelled by curiosity, driven by an intense need to explore, interact with, and make sense of their environment.  Unfortunately, as children grow, their passion for learning frequently seems to shrink. Learning often becomes associated with drudgery instead of delight. A large number of students – more than one in four – leave school before graduating.  Many more are physically present in the classroom but largely mentally absent; they fail to invest themselves fully in the experience of learning.</p>
 	
@@ -127,7 +132,7 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/ED_AR_003.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/set9_02.jpg" mode="1" id="1001"/>
   
 <div id="splitquestionList">
   <p class="hangingIndent2">6. <tab/>Motivation to learn tends to decrease with age.</p>
@@ -180,6 +185,10 @@
    </list>
   <p class="linespace"></p>
   </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext">If you have already done the previous exercise you will know where to find the relevant section for each question. Don't forget that at least one of these statements is not discussed at all in the text. If you choose True or False, the author must express a clear opinion of the issue.</p>
 </section>
 </body>
 </bento>

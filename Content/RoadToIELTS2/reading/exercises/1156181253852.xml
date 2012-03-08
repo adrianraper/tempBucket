@@ -13,17 +13,11 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
-		<settings>
-		<marking/>
-		<feedback groupbased="true" wrongonly="false"/>
-		<buttons/>
-		<exercise samelengthgaps="true"/>
-		<misc splitscreen="true"/>
-	</settings>
-	</script>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -64,7 +58,9 @@
 
 
 <section id="readingText">
-<h8>Things that Go Bump in Your Flight</h8>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/>
+<h8><p>Things that Go Bump in Your Flight</p></h8>
 	
 	<h2><p>New sensing technologies could improve air safety by providing advance warning of turbulence</p></h2>
 	
@@ -103,6 +99,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set3_01.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
  <li id="1">Paragraph A<tab/>&#xA0;<input id="q1" type="droptarget"/></li>
 	<p class="linespace"></p>
@@ -121,5 +118,13 @@
 	</ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-7 - Matching headings to paragraphs</b></p>
+<p class="popuptext2">First look through the list of headings. Then skim quickly through the whole passage to get a general idea of the content and how it's organized. Next you should skim through the first paragraph more carefully without worrying too much about any unknown words. Your aim is to understand the gist, or main idea, of each paragraph. Then find the heading that expresses the same idea. Don't expect to find exactly the same vocabulary in the headings, but look for words that mean the same. Do the same with all the other paragraphs. In some cases you should be able to make a match by finding the topic sentence. This is often the first or last sentence in a paragraph, but it may be somewhere in the middle, which is why it's a good idea to skim through the whole paragraph.</p>
+
+<p class="popuptext">If you can't find a heading for a paragraph, don't spend a long time trying to match it. Leave it and go back to it at the end when you'll have fewer headings to choose from.</p>
+
+<p class="popuptext">Notice there are three extra headings that don't match any the paragraphs.</p>
+</section>
 </body>
 </bento>

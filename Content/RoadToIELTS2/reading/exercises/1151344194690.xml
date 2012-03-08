@@ -16,6 +16,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	
@@ -107,7 +110,9 @@
 
 
 <section id="readingText">
-<h1>Bands, Tribes and Chiefdoms</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+<h1><p>Bands, Tribes and Chiefdoms</p></h1>
 
   <p>Bands are the tiniest societies, consisting typically of 5 to 80 people, most or all of them close relatives by birth or by marriage. In effect, a band is an extended family or several related extended families. Today, bands still living autonomously are almost confined to the most remote parts of New Guinea and Amazonia, but within modern times there were many others that have only recently fallen under state control or been assimilated or exterminated. All those modern bands are or were nomadic hunter-gatherers rather than settled food producers. Probably all humans lived in bands until at least 40,000 years ago, and most still did as recently as 11,000 years ago.</p>
   
@@ -134,6 +139,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set8_01.jpg" mode="1" id="1001"/>
   <div id="wrapper">
 
  <div id="part1">
@@ -189,6 +195,14 @@
   </ol>
   </div>
   </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext">As with all classification exercises, once you've skimmed the text to get a general idea of its content and organisation, you should look carefully at the classifications and the letters that represent each one. The classifications in this case refer to different types of social grouping. Although there are no headings, the text is clearly divided into sections, which deal with each type of social group in turn.</p>
+
+<p class="popuptext">If you find that a description applies to 'bands', check if it also applies to tribes. The same is also true of 'chiefdoms'.</p>
+
+<p class="popuptext">Remember that the questions obviously don't follow the order of the text, so you should do the task in an organised, logical way. For each question, skim over the text from the beginning looking for words or phrases that match the description.</p>
 </section>
 </body>
 </bento>

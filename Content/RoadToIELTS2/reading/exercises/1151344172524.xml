@@ -16,6 +16,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true"/>
@@ -56,7 +59,9 @@
 
 
 <section id="readingText">
-  <h1>Abolishing management, one slice at a time</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+  <h1><p>Abolishing management, one slice at a time</p></h1>
 
   <p>The management function has been whittled away since the seventies. Harry Onsman suggests the whittling may not be over yet.</p>
   
@@ -88,7 +93,7 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/Education_004.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/set7_04.jpg" mode="1" id="1001"/>
   <div id="splitquestionList">
   <p><b>Which FIVE of the following changes are mentioned?</b></p>
   <list class="answerList">    
@@ -118,6 +123,10 @@
 	</list>
 
 </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext">Read through the list of changes. Which do you think are the most likely to cause the disappearance of management in companies and organisations? Underline key words and search for them in the text.</p>
 </section>
 
 </body>

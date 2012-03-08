@@ -136,6 +136,44 @@
 </section>
 
 <section id="body">
+<div id="splitquestionList">
+<p class="hangingIndent2">10.<tab/>Valleyfair provides all employees with ...</p>
+	<list class="answerList1">
+	<li><a id="t1">sports equipment.</a></li>
+	<li><a id="t2">accommodation.</a></li>
+	<li><a id="t3">company identity cards.</a></li>
+	<li><a id="t4">some items of clothing.</a></li>
+	<li><a id="t5">unlimited complimentary passes.</a></li>
+	</list>
+<p></p>
+<p class="hangingIndent2">11.<tab/>If you want to work at Valleyfair you need to ...</p>
+	<list class="answerList1">
+	<li><a id="t6">have previous work experience.</a></li>
+	<li><a id="t7">provide references.</a></li>
+	<li><a id="t8">have good communication skills.</a></li>
+	<li><a id="t9">be able to work in a team.</a></li>
+	<li><a id="t10">undergo on-the-job training.</a></li>
+	</list>
+<p></p>
+<p class="hangingIndent2">12.<tab/>Valleyfair employees can win prizes on ...</p>
+	<list class="answerList1">
+	<li><a id="t11">achiever programs.</a></li>
+	<li><a id="t12">games nights.</a></li>
+	<li><a id="t13">waterpark nights.</a></li>
+	<li><a id="t14">rides nights.</a></li>
+	<li><a id="t15">weekend work programs.</a></li>
+	</list>
+<p></p>
+<p class="hangingIndent2">13.<tab/>Reunion and Rehire Parties are held ...</p>
+	<list class="answerList1">
+	<li><a id="t16">several times a season.</a></li>
+	<li><a id="t17">twice a year.</a></li>
+	<li><a id="t18">all season.</a></li>
+	<li><a id="t19">out of season.</a></li>
+	<li><a id="t20">once a year</a></li>
+	</list>
+<p></p>
+</div>
 </section>
 
 </body>

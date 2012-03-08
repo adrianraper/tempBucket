@@ -58,31 +58,20 @@
 <section id="body">
 	<img class="rightFloat" src="../media/WB_AW_014.jpg" mode="1" id="1001"  />
 	<div id="gapfillText">
-	<h7>Plan 1</h7>
-	<h7><p>Paragraph 1</p></h7>
-	<p>Introduction</p>
+	<h8>Plan 1</h8>
+	<p>Paragraph 1&#xA0;-&#xA0;Introduction</p>
+	<p>Paragraph 2&#xA0;-&#xA0;<input id="q1" type="droptarget" /></p>
+	<p>Paragraph 3&#xA0;-&#xA0;<input id="q2" type="droptarget" /></p>
+	<p>Paragraph 4&#xA0;-&#xA0;Conclusion</p>
+	<p></p>
 	
-	<h7>Paragraph 2</h7>
-	<p><input id="q1" type="droptarget" /></p>
-	
-	<h7>Paragraph 3</h7>
-	<p><input id="q2" type="droptarget" /></p>
-	
-	<h7>Paragraph 4</h7>
-	<p>Conclusion</p>
-	
-	<h7>Plan 2</h7>
-	<h7><p>Paragraph 1</p></h7>
-	<p>Introduction</p>
-	<h7>Paragraph 2</h7>
-	<p><input id="q3" type="droptarget" /></p>
-	<h7>Paragraph 3 </h7>
-	<p><input id="q4" type="droptarget" /></p>
-	<h7>Paragraph 4 </h7>
-	<p><input id="q5" type="droptarget" /></p>
-	<h7>Paragraph 5 </h7>
-	<p>Conclusion</p>
-	
+	<h8>Plan 2</h8>
+	<p>Paragraph 1&#xA0;-&#xA0;Introduction</p>
+	<p>Paragraph 2&#xA0;-&#xA0;<input id="q3" type="droptarget" /></p>
+	<p>Paragraph 3&#xA0;-&#xA0;<input id="q4" type="droptarget" /></p>
+	<p>Paragraph 4&#xA0;-&#xA0;<input id="q5" type="droptarget" /></p>
+	<p>Paragraph 5&#xA0;-&#xA0;Conclusion</p>
+	<p></p>
 	</div>
 </section>
 </body>

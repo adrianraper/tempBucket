@@ -20,19 +20,19 @@
   </settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="C" correct="true"/>
+      <answer value="c" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="H" correct="true"/>
+      <answer value="h" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="D" correct="true"/>
+      <answer value="d" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="A" correct="true"/>
+      <answer value="a" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
-      <answer value="G" correct="true"/>
+      <answer value="g" correct="true"/>
     </GapFillQuestion>
   </questions>
 </script>
@@ -41,16 +41,18 @@
 <body>
 	
 <header>
-<div id="instruction">			
+	
+<div id="instruction">
 		Questions 6-10. Look at the countries (Questions 6-10) and the list of statements (A-H). Match each country with the appropriate statement by writing the letters (A-H) in gaps 6-10. There are more statements than countries, so you will not use all of them.
 </div>
 </header>
 	
+
 <section id="readingText">
 
-<h1><p>FOR AN ECOLOGY OF LEARNING</p></h1>
+<h8>For an Ecology  of Learning</h8>
 
-<p><b>Despite decades of effort the world still counts almost one billion illiterate adults. Why?</b></p>
+<h2><p>Despite decades of effort the world still counts almost one billion illiterate adults. Why?</p></h2>
 
 	<div id="reading">
 	<p class="hangingIndent">
@@ -81,28 +83,41 @@
 	<b>I</b>&#xA0;We are also abandoning the idea that the illiterate lives in total ignorance and only in developing countries. We've noticed that in the most remote villages, there are people who possess very sophisticated knowledge and succeed in transmitting this wisdom without the need for writing either words or concepts borrowed from foreign languages. We recognize &#x2013; finally &#x2013; that we must build on what people are doing themselves; in fact people must do their own building.</p>
 </div>	
 
-	<p><b>Glossary</b>&#xA0;NGO: non-governmental organisation. A non-profit independent organisation that works at an international level to improve social, health or environmental conditions.</p>
+	<h7>Glossary</h7>
+	<ol id="splitreadingList">
+	<li>NGO: non-governmental organisation. A non-profit independent organisation that works at an international level to improve social, health or environmental conditions.</li>
 	
-	<p>epopee: epic poems.Peuls: a primarily Muslim people found in many parts of West Africa.</p>
-	<p>Adama Ouane, Section for Literacy and Adult Education, UNESCO, UNESCO Sources, June 1997, Section: FOCUS: Dossier, p. 10.</p>
+	<li>epopee: epic poems.</li>
 	
+	<li>Peuls: a primarily Muslim people found in many parts of West Africa.</li>
+	</ol>
+	<p>Adama Ouane, Section for Literacy and Adult Education, UNESCO, UNESCO Sources, Section: FOCUS: Dossier, p. 10.</p>
+
+</section>
+
+<section id="noscroll">
+  <p id="a1" draggable="false">a. There is a lack of enthusisam for technical texts.</p>
+  <p id="a2" draggable="false">b. Literacy training only takes place in primary schools.</p>
+  <p id="a3" draggable="false">c. Compared to other countries, a higher proportion of the education budget is spent on adult literacy.</p>
+  <p id="a4" draggable="false">d. There is a demand for texts on practical subjects.</p>
+  <p id="a5" draggable="false">e. Advertising is used for literacy training.</p>
+  <p id="a6" draggable="false">f. Illiteracy is regarded as an illness.</p>
+  <p id="a7" draggable="false">g. Official documentation is produced in French.</p>
+  <p id="a8" draggable="false">h. Just under half the population is multilingual.</p>
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/RD_S4M_001.jpg" mode="1" id="1001"/>
-  <p class="linespace"></p> 
-  
-  <ol id="splitquestionList">
-    <li id="1">India<tab/><tab/><input id="q1"/></li>
+  <div id="splitquestionList">
+    <p class="hangingIndent2">6.<tab/>India<tab/><tab/><input id="q1"/></p>
 	<p class="linespace"></p>
-    <li id="2">Nigeria<tab/><tab/><input id="q2"/></li>
+    <p class="hangingIndent2">7.<tab/>Nigeria<tab/><tab/><input id="q2"/></p>
 	<p class="linespace"></p>
-    <li id="3">Tanzania<tab/><tab/><input id="q3"/></li>
+    <p class="hangingIndent2">8.<tab/>Tanzania<tab/><input id="q3"/></p>
 	<p class="linespace"></p>
-    <li id="4">Senegal<tab/><tab/><input id="q4"/></li>
+    <p class="hangingIndent2">9.<tab/>Senegal<tab/><input id="q4"/></p>
 	<p class="linespace"></p>
-    <li id="5">Mali<tab/><tab/><input id="q5"/></li>
-  </ol>
+    <p class="hangingIndent2">10.<tab/>Mali<tab/><tab/><input id="q5"/></p>
+  </div>
 </section>
 
 </body>

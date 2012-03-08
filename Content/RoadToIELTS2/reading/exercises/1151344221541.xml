@@ -16,6 +16,9 @@
 
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -52,7 +55,9 @@
 
 
 <section id="readingText">
-	<h1>Student Motivation To Learn</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+	<h1><p>Student Motivation to Learn</p></h1>
 	
 	<p>Infants and young children appear to be propelled by curiosity, driven by an intense need to explore, interact with, and make sense of their environment.  Unfortunately, as children grow, their passion for learning frequently seems to shrink. Learning often becomes associated with drudgery instead of delight. A large number of students – more than one in four – leave school before graduating.  Many more are physically present in the classroom but largely mentally absent; they fail to invest themselves fully in the experience of learning.</p>
 	
@@ -122,17 +127,25 @@
 
 </section>
 <section id="body">
-  <ol>
+<img class="leftFloat" src="../media/set9_01.jpg" mode="1" id="1001"/>
+  <ol id="splitquestionList">
     <li id="1">Section A<br/><input id="q1" type="droptarget"/><br/></li>
-	  <p class="linespace"></p>
+
     <li id="2">Section B<br/><input id="q2" type="droptarget"/><br/></li>
-	  <p class="linespace"></p>
+
     <li id="3">Section C<br/><input id="q3" type="droptarget"/><br/></li>
-	  <p class="linespace"></p>
+
     <li id="4">Section D<br/><input id="q4" type="droptarget"/><br/></li>
-	  <p class="linespace"></p>
+
     <li id="5">Section E<br/><input id="q5" type="droptarget"/></li>
+	<p class="linespace"></p>
   </ol>
+</section>
+
+<section id="examtips">
+<p class="popuptext">This reading passage is all about what motivates pupils to learn. In this exercise you must match headings to sections in the text. It is similar to exercises you've met so far in Units 3 and 8 where you matched headings to paragraphs. In this case, a section may include more than one paragraph.</p>
+
+<p class="popuptext">Remember that these are headings, not pieces of information. Make sure that the heading you choose sums up the content of the whole section, not just a part of it.</p>
 </section>
 </body>
 </bento>

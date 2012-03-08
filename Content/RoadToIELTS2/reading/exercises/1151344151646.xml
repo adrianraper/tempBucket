@@ -13,13 +13,14 @@
 		 */			
 	]]>
 	</style>
-	<script id="settings" type="application/xml">
+		
+<script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
-	</script>
-	
-<script id="model" type="application/xml">
   <questions>
     <GapFillQuestion source="q1" block="b1">
       <answer value="YES" correct="true"/>
@@ -64,6 +65,10 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/><br/>
+	<img class="photo2" src="../media/set6_03.jpg" mode="1" id="1001"/>
+	
 	<h7><p>Has the sun protection factor had its day?</p></h7>
 	<p>The concept of the sun protection factor was originally proposed by the Austrian scientist Franz Greiter and subsequently adopted by many regulatory authorities and the cosmetic and pharmaceutical industries. It is popularly interpreted as how much longer skin covered with sunscreen takes to burn compared with unprotected skin.</p>
 	
@@ -91,8 +96,7 @@
 </section>
 
 <section id="body">
-<img class="rightFloat" src="../media/Education_008.jpg" mode="1" id="1001"/>
-<div id ="skinbox">
+<div id="skinbox">
 <div id="skin1">
 <p><b>Skins Type</b></p>
 <p>Does this skin type burn?</p>
@@ -129,6 +133,13 @@
 </div>
 
 
+</section>
+
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-9 - Table completion</b></p>
+<p class="popuptext2">This passage is fairly complex in parts, but remember that all you need to do in order to complete the table is to 'use' the passage as a source of information.</p>
+
+<p class="popuptext">Study the table carefully before you start reading so that you know what you're looking for. What do the column headings refer to? Which parts of the table need the word 'Yes' or 'No' and which need a number? What do the numbers refer to? The information that has already been filled in should help you. Remember, you'll find the information you need in the same order as the questions, so make sure that you follow the question numbers.</p>
 </section>
 </body>
 </bento>

@@ -15,6 +15,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -65,7 +68,9 @@
 
 
 <section id="readingText">
-  <h1>The Mountain Sculptors</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/>
+  <h1><p>The Mountain Sculptors</p></h1>
   <div id="reading">
   <p class="hangingIndent"><b>A</b>&#xA0;The grandest of all human sculptures are, in fact, the work of the planet's poorest people. Unable to find a job or a plot of land in the valley, the most disadvantaged people of the developing world carve mountains to grow their food. The problem with terraced mountainsides is that they hide a cruel irony. While many would agree that mountain farming is a visual success, there is much less accord about its viability. Today, two-thirds of the non-irrigated farmland in developing countries suffers from some degree of limitation on its productivity:  acidity, aridity, salinity or erosion. Ten percent of this land, located on the flanks of mountains, is especially vulnerable to erosion. In many of these lands, where on average people can rely on plots of land measuring only 30 meters by 50 meters, the mountains are under a state of siege.</p>
 
@@ -113,5 +118,27 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">The information needed to complete this diagram does not all come from the same part of the text, so you will have to scan different sections in order to get your answers. However, as with most gap-filling exercises, the numbered gaps do follow the order that information is presented in the text and knowing this can help you find the missing words.</p>
+
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">Scan for the word 'walls' and you'll find the answer close by.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">What can be grown? Crops?</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">'Non-irrigated' is watered by rainfall only. What crops are grown on this land?</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">The gradient, or steepness of a slope or hillside, is expressed as a percentage.</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">Where does the irrigation water begin its journey?</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">'Used by' shows that you are looking for a person or people. In other words, who uses the lower terraces?</p>
+
+</section>
 </body>
 </bento>

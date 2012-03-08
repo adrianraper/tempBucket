@@ -1,7 +1,7 @@
 <?php	
 	session_start();
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
-	$studentID = $Email = $userID = $instanceID = '';
+	$studentID = $Email = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
 	
 	// For this product
@@ -58,7 +58,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>Road to IELTS 2 from Clarity and the British Council</title>
+	<title>Road to IELTS from Clarity and the British Council</title>
 	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
@@ -88,7 +88,6 @@
 				return document.getElementById(movieName);
 			}
 		}
-		
 
 		// *********
 		// *********
@@ -127,8 +126,8 @@
 		} else {
 			var jsUserID = swfobject.getQueryParamValue("userID");
 		}
-		if ("<?php echo $Email ?>".length>0) {
-			var jsEmail = "<?php echo $Email ?>";
+		if ("<?php echo $email ?>".length>0) {
+			var jsEmail = "<?php echo $email ?>";
 		} else {
 			var jsEmail = swfobject.getQueryParamValue("email");
 		}
@@ -168,15 +167,15 @@
 	</script>
 
 </head>
-<body>
-	<div align="center" id="altContent">
+<body style="background-color:#F9F9F9;">
+	<div style="background-color:#F9F9F9;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
 		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
 	</div>
-<NOSCRIPT>
+<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;"> 
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
 Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
 to switch this on and then refresh this page.</NOSCRIPT>

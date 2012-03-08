@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfilltext.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfilltext-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -107,23 +107,21 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Here are some extracts from letters describing books, plays and films. Complete them by filling each gap with the present simple of the verb given in the brackets. You will need to use both active and passive voice.
+</div>
 </header>
 	
 <section id="body">
   <img class="rightFloat" src="../media/AC_GW_005.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#000000">The film <input id="q1"/> (set) in the 1960s and 1970s and <input id="q2"/> (tell) the story of a young girl, Marie, who <input id="q3"/> (run) away from home and whose parents <input id="q4"/> (spend) the next ten years looking for her. They <input id="q5"/> (travel) all over the world and <input id="q6"/> (get) really close but just <input id="q7"/> (keep) missing her all the time.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">The plot <input id="q8"/> (be) quite good. It <input id="q9"/> (start) quite dramatically with a dead body lying in the middle of the stage and then the main character <input id="q10"/> (arrive) and, of course, he <input id="q11"/> (not want) other people to think he did it, so he <input id="q12"/> (hide) the body and <input id="q13"/> (try) to find out who did it himself.</font>
-  </p>
-  <p align="left">
-    <font color="#000000">The story <input id="q14"/> (set) in the present day and <input id="q15"/> (be) about a man who <input id="q16"/> (hate) his life so much that he <input id="q17"/> (fake) his own death. He <input id="q18"/> (have) plastic surgery and <input id="q19"/> (move) into a house about five miles away from his old home. One day he <input id="q20"/> (introduce) to his wife at a party but she <input id="q21"/> (not recognise) him &#x2013; she simply <input id="q22"/> (have) no idea at all who he <input id="q23"/> (be)! I won't tell you what <input id="q24"/> (happen) at the end of the book because I <input id="q25"/> (not want) to spoil it for you.</font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="gapfillText">
+  <p>The film &#xA0;<input id="q1"/>&#xA0; (set) in the 1960s and 1970s and &#xA0;<input id="q2"/>&#xA0; (tell) the story of a young girl, Marie, who &#xA0;<input id="q3"/>&#xA0; (run) away from home and whose parents &#xA0;<input id="q4"/>&#xA0; (spend) the next ten years looking for her. They &#xA0;<input id="q5"/>&#xA0; (travel) all over the world and &#xA0;<input id="q6"/>&#xA0; (get) really close but just &#xA0;<input id="q7"/>&#xA0; (keep) missing her all the time.</p>
+  
+  <p>The plot &#xA0;<input id="q8"/>&#xA0; (be) quite good. It &#xA0;<input id="q9"/>&#xA0; (start) quite dramatically with a dead body lying in the middle of the stage and then the main character &#xA0;<input id="q10"/>&#xA0; (arrive) and, of course, he &#xA0;<input id="q11"/>&#xA0; (not want) other people to think he did it, so he &#xA0;<input id="q12"/>&#xA0; (hide) the body and &#xA0;<input id="q13"/>&#xA0; (try) to find out who did it himself.</p>
+  
+  <p>The story &#xA0;<input id="q14"/>&#xA0; (set) in the present day and &#xA0;<input id="q15"/>&#xA0; (be) about a man who &#xA0;<input id="q16"/>&#xA0; (hate) his life so much that he &#xA0;<input id="q17"/>&#xA0; (fake) his own death. He &#xA0;<input id="q18"/>&#xA0; (have) plastic surgery and &#xA0;<input id="q19"/>&#xA0; (move) into a house about five miles away from his old home. One day he &#xA0;<input id="q20"/>&#xA0; (introduce) to his wife at a party but she &#xA0;<input id="q21"/>&#xA0; (not recognise) him &#x2013; she simply &#xA0;<input id="q22"/>&#xA0; (have) no idea at all who he &#xA0;<input id="q23"/>&#xA0; (be)! I won't tell you what &#xA0;<input id="q24"/>&#xA0; (happen) at the end of the book because I &#xA0;<input id="q25"/>&#xA0; (not want) to spoil it for you.</p>
+</div>
 </section>
 
 </body>

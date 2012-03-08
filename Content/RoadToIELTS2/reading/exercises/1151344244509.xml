@@ -20,6 +20,9 @@
 	</style>
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -116,7 +119,8 @@
 
 
 <section id="readingText">
-  
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/>
      <img class="photo2" src="../media/DD_AR_002.jpg" mode="1" id="1001"/>
 	 
 <h1><p>The Mountain Sculptors</p></h1>
@@ -181,5 +185,33 @@
   </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This task describes some of the difficulties facing farmers who grow their crops in some of the world's most mountainous areas and in particular how the farming method known as terrace farming is exhausting the land. A part of Nepal called Jhokhu Khola is describe as a typical example of a place, which face these problems.</p>
+
+<p class="popuptext">Read the instructions carefully. This is not matching headings to paragraphs. You must find which paragraph contains a certain piece of information, although the same paragraph will also contain other information as well as this.</p>
+
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">In other words, something invented or a system created by the local farmers, which is admired by others.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">The key word here is 'developing countries'. No specific country is mentioned in the question.</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">The key words here are 'more modern'. There must be another paragraph which deals with 'less modern' methods.</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">Scan for months or seasons. 'Land use' means what is grown on the land.</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">'Spread' refers to how widely the method is being used, geographically.</p>
+
+<p class="popuptext1"><b>Questions 7 to 12</b></p>
+<p class="popuptext2">You will have to scan different parts of the text in order to complete this table. Look for units of measurement, which match the missing information.</p>
+
+<p class="popuptext1">Distance: kilometres (km)</p>
+<p class="popuptext3">Area: square kilometres (km2)</p>
+<p class="popuptext3">Highest elevation (= height above sea level): metres (m)</p>
+<p class="popuptext2">Maximum rainfall: metres (m)</p>
+</section>
 </body>
 </bento>

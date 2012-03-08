@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +15,11 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+
+  <popups>
+    	<popup click="clickme" source="writingtask1" width="629" />
+	</popups>
+
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -105,9 +110,9 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/EN_WTG01.jpg" mode="16" id="1004"  />Here are the notes that a student made for the writing task in the previous exercise. Put each point under the correct paragraph heading to make a plan for the composition.
-
-Writing Task 1
+<div id="instruction">
+Here are the notes that a student made for the writing task in the previous exercise. Put each point under the correct paragraph heading to make a plan for the composition.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -125,42 +130,49 @@ Writing Task 1
 </section>
 
 <section id="body">
+
+  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
   <img class="rightFloat" src="../media/EN_GW_003.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <b>Paragraph 1 &#x2013; Reason for writing</b>
-    </font>
-  </p>
-  <input id="q1" type="droptarget"/>
-  <input id="q2" type="droptarget"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <b>Paragraph 2 &#x2013; Details of complaint</b>
-    </font>
-  </p>
-  <input id="q3" type="droptarget"/>
-  <input id="q4" type="droptarget"/>
-  <input id="q5" type="droptarget"/>
-  <input id="q6" type="droptarget"/>
-  <input id="q7" type="droptarget"/>
-  <input id="q8" type="droptarget"/>
-  <input id="q9" type="droptarget"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <b>Paragraph 3 &#x2013; Request for action</b>
-    </font>
-  </p>
-  <input id="q10" type="droptarget"/>
-  <input id="q11" type="droptarget"/>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  
+  <div id="gapfillText">
+  <h7>Paragraph 1 &#x2013; Reason for writing</h7>
+  <p><input id="q1" type="droptarget"/><br/>
+  <input id="q2" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <h7>Paragraph 2 &#x2013; Details of complaint</h7>
+  <p><input id="q3" type="droptarget"/><br/>
+  <input id="q4" type="droptarget"/><br/>
+  <input id="q5" type="droptarget"/><br/>
+  <input id="q6" type="droptarget"/><br/>
+  <input id="q7" type="droptarget"/><br/>
+  <input id="q8" type="droptarget"/><br/>
+  <input id="q9" type="droptarget"/></p>
+  <p class="linespace"></p>
+  
+  <h7>Paragraph 3 &#x2013; Request for action</h7>
+  <p><input id="q10" type="droptarget"/><br/>
+  <input id="q11" type="droptarget"/></p>
+  <p class="linespace"></p>
+  </div>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Letters of complaint are often organised into three paragraphs: a short introductory paragraph stating the nature of the complaint, a longer paragraph giving details and another short paragraph saying what you think should be done.</font>
-  </p>
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+  
+  <p class="popuptext"><b>You live next to a large hotel. The hotel's rubbish bins are kept directly below your bedroom window and this is causing you problems.</b></p>
+
+  <p class="popuptext"><b>Write a letter to the hotel. Explain how you are being affected by this situation and say what you would like them to do about it.</b></p>
+  
+  <p class="popuptext">You should write at least 150 words.</p>
+  
+  <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p class="popuptext">Begin your letter as follows:</p>
+  
+  <p class="popuptext">Dear Sir/Madam,</p>
+
 </section>
 
 </body>

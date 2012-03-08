@@ -16,6 +16,9 @@
 
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -76,8 +79,10 @@
 </header>
 
 <section id="readingText">
-
-   <h1>Leisure in the Fast Lane</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/>
+	<img class="photo2" src="../media/set3_02.jpg" mode="1" id="1001"/>
+   <h1><p>Leisure in the Fast Lane</p></h1>
 
   <p>Glen Nisbett, a London-based management accountant, is difficult to reach on weekends. He might be off "experiencing a real winter," he says, as he did in Bergen last January, or "catching up with an old friend" in Venice. Or he could be "having a riot" in New York or "just seeing the sun again," which he did on a last-minute break to Alicante in April. "There are so many places I want to see, but I'm restricted in terms of how much time I can take off work," he explains. "So I pack as much as possible into two or three days at a time."</p>
   
@@ -96,8 +101,6 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/TT_AR_003.jpg" mode="1" id="1001"/>
-
   <ol id="splitquestionList">
 
     <li id="q1">Glen Nisbett is mentioned in the text because he is an example of someone who...
@@ -118,7 +121,30 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext1"><b>Questions 1-7 - Multiple choice</b></p>
+<p class="popuptext2">The questions in this exercise need quite detailed, careful reading.</p>
 
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">Many of the options are true of Glen Nisbett, but there's only one reason why he's mentioned in the passage. The key phrase in the question is 'he is an example of someone who ...'</p>
 
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">This question requires some simple calculations.</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">Obviously, the key phrase in the question is 'is NOT a factor'.</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">Read the options carefully and look for synonyms in the relevant section of the passage.</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">The answer to this question isn't expressed clearly. You have to read between the lines.</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">The key word in the question is 'NOT'. You have to scan several different parts of the text to find the answer.</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">This question focuses on the gist of the whole text.</p>
+</section>
 </body>
 </bento>

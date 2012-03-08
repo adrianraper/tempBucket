@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -110,8 +113,9 @@
 
 
 <section id="readingText">
-
-	<h1>Smoke gets in your throat</h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+	<h1><p>Smoke gets in your throat</p></h1>
 
   	<p>The semi-nomadic lifestyle of the Maasai is under threat from market forces. Nick Hall describes how Maasai women are developing new housing options of their own.</p>
   
@@ -129,7 +133,7 @@
   	
 	<p>Generally speaking, the Maasai are not poor in the way that slum dwellers are poor. They do not have permanent homes or running water, but they are independent, self-sufficient and proud. They certainly do not consider themselves disadvantaged and their lives are well-adapted to the conditions in which they live.</p>
   	
-	<p>During the rainy season the Maasai live in homesteads &#x2013; enkang &#x2013; built usually on high ground, migrating during the dry season to temporary camps on the low- lying plains. After five to ten years they abandon their houses and build new ones.</p>
+	<p>During the rainy season the Maasai live in homesteads &#x2013; enkang &#x2013; built usually on high ground, migrating during the dry season to temporary camps on the low-lying plains. After five to ten years they abandon their houses and build new ones.</p>
   	
 	<p>Even so, a house designed to be lived in for part of the year is not going to be adequate as a permanent home. The walls tend to crack, for example, and women complain of having to get up in the middle of the night to bung up leaks. As the Maasai are supplementing their traditional diet of milk, meat and blood with tea, vegetables and grains, the women need to spend much more time cooking. This makes the old-style houses dangerously smoky. In February 1993 a study established that indoor air pollution in the form of carbon monoxide and particulates in Maasai rural housing was high &#x2013; the highest ever recorded.</p>
   	
@@ -148,7 +152,7 @@
 <section id="body">
 <img class="leftFloat" src="../media/RD_SGT_001.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
-  <li>Maasai women are responsible for &#x2026;
+  <li>Maasai women are responsible for ...
   <list class="answerList">
   	<li><a id="t1">fetching water.</a></li>
   	<li><a id="t2">rearing cattle.</a></li>
@@ -168,7 +172,7 @@
   </list></li>
   <p class="linespace"></p>
 
-  <li>Traditional Maasai houses &#x2026;
+  <li>Traditional Maasai houses ...
   <list class="answerList">  
   	<li><a id="t11">are owned by men.</a></li>
   	<li><a id="t12">are built only on high ground.</a></li>
@@ -178,7 +182,7 @@
   </list></li>
   <p class="linespace"></p>
 
- <li>The design of the new Maasai house aims to &#x2026;
+ <li>The design of the new Maasai house aims to ...
  <list class="answerList">  
   	<li><a id="t16">improve sanitation.</a></li>
   	<li><a id="t17">improve indoor air quality.</a></li>
@@ -188,7 +192,7 @@
   </list></li>
   <p class="linespace"></p>
   
-  <li>Intermediate Technology Development Group aims to provide the Maasai with &#x2026;
+  <li>Intermediate Technology Development Group aims to provide the Maasai with ...
   <list class="answerList">  
   	<li><a id="t21">free housing.</a></li>
   	<li><a id="t22">subsidised housing.</a></li>
@@ -200,5 +204,12 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">This text is about the Maasai people of Kenya and Tanzania and describes how their lives have changed in recent years. These changes have meant that the Maasai have had to redesign their traditional housing. The strange title might give you a clue as to why they needed to do so.</p>
+
+<p class="popuptext">Remember that for this exercise, two of the alternative answers for each question are correct and you must find both answers in order to get the mark.</p>
+
+<p class="popuptext">If you have already skimmed the text for its general content and organisation, you should recognise which part each question refers to. Read through all the alternatives carefully. Some of the answers are perhaps not what you might expect.</p>
+</section>
 </body>
 </bento>

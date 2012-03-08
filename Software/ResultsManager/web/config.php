@@ -34,6 +34,7 @@ $commonFolders = "/../../Common";
 $RMFolders = "";
 
 // Can we just read dbDetails and use dbHost to point to different databases?
+// No, not easily
 require_once(dirname(__FILE__).$commonFolders.'/../../Database/dbDetails.php');
 if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);

@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -51,6 +54,8 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
 
 	<h8><p>No place like home</p></h8>
 	
@@ -135,6 +140,12 @@
   <input id="q5" type="droptarget"/></p>
   <p class="linespace"></p>
   </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext">This exercise refers to the second half of the text, where the author explains the reasons why complex life has managed to evolve on Earth.</p>
+
+<p class="popuptext">The causes listed here are, in most cases, worded exactly as they are in the text. Scan for these and when you find one read carefully around it. You might want to read through and see if you can guess which causes and effects match before checking in the text.</p>
 </section>
 </body>
 </bento>
