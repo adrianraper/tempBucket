@@ -181,6 +181,7 @@ package com.clarityenglish.common.model {
 						sendNotification(CommonNotifications.INVALID_LOGIN);
 					}
 					break;
+				
 				case "logout":
 					trace("back from logout");
 					sendNotification(CommonNotifications.LOGGED_OUT);

@@ -337,6 +337,10 @@ s|TitleWindow.feedbackTitleWindow {
 	skinClass: ClassReference("skins.ielts.titlewindows.FeedbackTitleWindowSkin");
 }
 
+s|TitleWindow.errorTitleWindow {
+	skinClass: ClassReference("skins.ielts.titlewindows.ErrorTitleWindowSkin");
+}
+
 s|TitleWindow.titleWindowClose {
 	skinClass: ClassReference("skins.ielts.titlewindows.TitleWindowCloseSkin");
 }
