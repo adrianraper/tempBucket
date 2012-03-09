@@ -111,7 +111,7 @@ package com.clarityenglish.common.model {
 						if (data.error && data.error.errorNumber>0) 
 							sendNotification(BBNotifications.FAILED_INSTANCE_CHECK);
 						
-						// Check if the returned instance ID is the same as our version
+						// Check if the returned instance ID is the same as our current session
 						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						
 						// To help Alfred trigger the error screen
@@ -121,10 +121,10 @@ package com.clarityenglish.common.model {
 						}
 
 						if (data.instanceID != configProxy.getInstanceID()) {
-							// create a Bento Error and use standard error handling
 							var error:BentoError = new BentoError();
 							error.errorNumber = BentoError.ERROR_FAILED_INSTANCE_CHECK;
 							error.errorDescription = 'Somebody else has logged in with the same details. Please try again.';
+							error.errorContext = 'db='+data.instanceID+' session='+configProxy.getInstanceID();
 							sendNotification(CommonNotifications.INSTANCE_ERROR, error);
 						}
 						

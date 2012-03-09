@@ -46,7 +46,8 @@ package com.clarityenglish.common.controller {
 			
 			// Show the close button
 			// TODO. It might be easier for the user to also have an OK button that does the same thing as this close.
-			titleWindow.closeButton.visible = true;
+			// So hide the close button
+			titleWindow.closeButton.visible = false;
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
