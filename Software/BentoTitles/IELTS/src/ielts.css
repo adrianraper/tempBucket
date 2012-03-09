@@ -324,6 +324,9 @@ warning|WarningView #yesButton {
 error|ErrorView {
 	skinClass: ClassReference("skins.ielts.error.ErrorSkin");
 }
+error|ErrorView #closeButton {
+	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
 
 /* Popups */
 s|TitleWindow.markingTitleWindow {

@@ -30,7 +30,7 @@ package com.clarityenglish.common.vo.config {
 		public var action:String;
 		public var remoteGateway:String;
 		public var remoteService:String;
-		public var instanceID:Number;
+		public var instanceID:String;
 		// To help with testing
 		public var configID:String;
 		

@@ -13,6 +13,9 @@ package com.clarityenglish.common.view.error {
 	public class ErrorView extends BentoView {
 		
 		[SkinPart]
+		public var closeButton:Button;
+		
+		[SkinPart]
 		public var message:Label;
 		
 		[Bindable]
@@ -25,11 +28,22 @@ package com.clarityenglish.common.view.error {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
+			// Add an OK button that triggers the close event
+			switch (instance) {
+				case closeButton:
+					instance.addEventListener(MouseEvent.CLICK, onCloseButtonClick);
+					break;				
+			}
+			
 		}
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
 			
+		}
+
+		protected function onCloseButtonClick(event:MouseEvent):void {
+			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
 	}

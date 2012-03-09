@@ -11,10 +11,12 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
+	<s:Spacer height="10" />
 	<s:HGroup width="100%" >
 		<s:Spacer width="50" />
-		<s:Label width="250" text="Sorry, there is an error: {hostComponent.error.errorContext}" />
+		<s:Label width="250" text="{hostComponent.error.errorDescription} {hostComponent.error.errorContext}" />
 		<s:Spacer width="50" />
 	</s:HGroup>	
+	<s:Button id="closeButton" label="OK" />
 	
 </s:Skin>

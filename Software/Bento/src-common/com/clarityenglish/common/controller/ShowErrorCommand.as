@@ -33,7 +33,7 @@ package com.clarityenglish.common.controller {
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
-			titleWindow.title = "Error";
+			titleWindow.title = "Sorry, there is a problem:";
 			
 			var errorView:ErrorView = new ErrorView();
 			errorView.error = note.getBody() as BentoError;
@@ -44,6 +44,7 @@ package com.clarityenglish.common.controller {
 			PopUpManager.centerPopUp(titleWindow);
 			
 			// Show the close button
+			// TODO. It might be easier for the user to also have an OK button that does the same thing as this close.
 			titleWindow.closeButton.visible = true;
 			
 			// Listen for the close event so that we can cleanup

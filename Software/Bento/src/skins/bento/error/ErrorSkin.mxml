@@ -11,6 +11,8 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
+	<!-- This is common error, usually overwritten by each title -->
+	
 	<s:Label text="Sorry, there is an error: {hostComponent.error.errorContext}" />
 	
 </s:Skin>

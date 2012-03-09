@@ -78,6 +78,7 @@
 			// For use with errors and exit
 			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
 			registerCommand(CommonNotifications.LOGIN_ERROR, ShowErrorCommand);
+			registerCommand(CommonNotifications.INSTANCE_ERROR, ShowErrorCommand);
 			registerCommand(CommonNotifications.EXIT, LogoutCommand);
 			
 		}

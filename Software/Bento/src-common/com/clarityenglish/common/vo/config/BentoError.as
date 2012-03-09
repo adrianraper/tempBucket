@@ -27,6 +27,8 @@ package com.clarityenglish.common.vo.config {
 		public static const ERROR_TERMS_NOT_ACCEPTED:uint = 205;
 		public static const ERROR_OUTSIDE_IP_RANGE:uint = 206;
 		public static const ERROR_OUTSIDE_RU_RANGE:uint = 207;
+
+		public static const ERROR_FAILED_INSTANCE_CHECK:uint = 210;
 		
 		public static const ERROR_DATABASE_READING:uint = 100;
 		public static const ERROR_DATABASE_WRITING:uint = 100;

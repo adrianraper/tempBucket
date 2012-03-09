@@ -4,6 +4,8 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
 	
@@ -53,7 +55,7 @@ package com.clarityenglish.common.model {
 			
 			// Create a unique number to use as an instance ID, and save it in the config object
 			var instanceID:Number = new Date().getTime();
-			configProxy.getConfig().instanceID = instanceID;
+			configProxy.getConfig().instanceID = instanceID.toString();
 			
 			// Off to the database
 			var params:Array = [ loginObj, loginOption, instanceID ];
@@ -65,6 +67,18 @@ package com.clarityenglish.common.model {
 		public function logout():void {
 			//onDelegateResult("logout", {status:"success"});
 			new RemoteDelegate("logout", [ ], this).execute();
+		}
+
+		/**
+		 * Method to get user's instance ID from the database
+		 *
+		 * @return void - Asynchronous call. Will return instanceID and error objects later. 
+		 */
+		public function checkInstance():void {
+			
+			var userDetails:Object = { userID: user.userID };
+			var params:Array = [ userDetails ];
+			new RemoteDelegate("getInstanceID", params, this).execute();
 		}
 
 		public function updateUser(userChanges:Object):void {
@@ -91,6 +105,35 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
+				
+				case "getInstanceID":
+					if (data) {
+						if (data.error && data.error.errorNumber>0) 
+							sendNotification(BBNotifications.FAILED_INSTANCE_CHECK);
+						
+						// Check if the returned instance ID is the same as our version
+						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						
+						// To help Alfred trigger the error screen
+						if (Config.DEVELOPER.name == "AN") {
+							var config:Config = configProxy.getConfig();
+							config.instanceID = '123';
+						}
+
+						if (data.instanceID != configProxy.getInstanceID()) {
+							// create a Bento Error and use standard error handling
+							var error:BentoError = new BentoError();
+							error.errorNumber = BentoError.ERROR_FAILED_INSTANCE_CHECK;
+							error.errorDescription = 'Somebody else has logged in with the same details. Please try again.';
+							sendNotification(CommonNotifications.INSTANCE_ERROR, error);
+						}
+						
+					} else {
+						// TODO. This should be a general error NOT failed instance
+						sendNotification(BBNotifications.FAILED_INSTANCE_CHECK);
+					}
+					break;
+				
 				case "updateUser":
 					// First need to see if the return has an error
 					if (data == false) {

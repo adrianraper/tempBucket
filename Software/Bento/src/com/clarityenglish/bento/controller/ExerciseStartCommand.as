@@ -3,7 +3,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -42,8 +42,8 @@ package com.clarityenglish.bento.controller {
 			sendNotification(BBNotifications.EXERCISE_STARTED, exercise);
 			
 			// Check to see if this user is already running
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.checkInstance();
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			loginProxy.checkInstance();
 			
 		}
 		

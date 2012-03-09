@@ -66,6 +66,7 @@ package com.clarityenglish.common.view {
 					CommonNotifications.TRACE_ERROR,
 					CommonNotifications.COPY_LOADED,
 					CommonNotifications.CONFIG_ERROR,
+					CommonNotifications.INSTANCE_ERROR,
 			];
 		}
 
@@ -81,6 +82,7 @@ package com.clarityenglish.common.view {
 		override public function handleNotification(note:INotification):void {
 			switch (note.getName()) {
 				case CommonNotifications.CONFIG_ERROR:
+				case CommonNotifications.INSTANCE_ERROR:
 					// Errors handled by this mediator show an alert (or similar) on the current screen
 					// and are generally warnings that nothing is going to happen now. But
 					// some might request a state change as well as an alert.
