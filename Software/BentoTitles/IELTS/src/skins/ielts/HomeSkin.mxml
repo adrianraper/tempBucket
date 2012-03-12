@@ -10,9 +10,8 @@
 	</fx:Metadata>
 	
 	<s:layout>
-		<s:HorizontalLayout paddingTop="3"  />
+		<s:HorizontalLayout paddingTop="3" />
 	</s:layout>
-
 	<s:VGroup paddingTop="60" width="100%">
 		<s:HGroup>
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
@@ -39,7 +38,7 @@
 			<s:Label text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill." width="80%" lineHeight="18" />				
 		</s:VGroup>		
 	</s:VGroup>
-	
+
 	<s:VGroup width="100%">
 		<s:Button id="readingCourseButton" width="100%" />
 		<s:Spacer height="1" />
@@ -49,5 +48,4 @@
 		<s:Spacer height="1" />
 		<s:Button id="writingCourseButton" width="100%" />
 	</s:VGroup>		
-	
 </s:Skin>

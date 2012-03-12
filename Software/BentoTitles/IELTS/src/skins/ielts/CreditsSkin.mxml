@@ -7,29 +7,40 @@
 		[HostComponent("com.clarityenglish.ielts.view.credits.CreditsView")]
 	</fx:Metadata>
 	
-	<fx:Declarations>
-		<s:Animate id="anim" targets="{[endLogo]}" duration="1000" >
-			<s:SimpleMotionPath property="alpha" valueFrom="0.0" valueTo="1.0" />
-			<s:SimpleMotionPath property="horizontalCenter" valueFrom="-100" valueTo="0" />
-			<s:SimpleMotionPath property="rotationY" valueFrom="-45" valueTo="0" />
-			<s:SimpleMotionPath property="scaleX" valueFrom="1.5" valueTo="1" />
-			<s:SimpleMotionPath property="scaleY" valueFrom="1.5" valueTo="1" />
-		</s:Animate>
-	</fx:Declarations>
+	<fx:Script> 
+	<![CDATA[ 
+	import flash.net.navigateToURL; 
+	protected function clickHandler(event:MouseEvent):void 
+	{ 
+	var urlReq:URLRequest = new URLRequest("http://www.clarityenglish.com/questionnaire/rtiv2feedback.php"); 
+	navigateToURL(urlReq, "_self"); 
+	} 
+	]]> 
+</fx:Script> 
 
-	
+	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0">
 	<s:layout>
 		<s:VerticalLayout paddingTop="80" horizontalAlign="center" />
 	</s:layout>
 	
-	<s:VGroup horizontalAlign="center" verticalAlign="middle" width="100%">
-		<s:SWFLoader id="endLogo" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" autoLoad="true" width="400" height="70" />
-		<s:Spacer height="10" />
-		<s:Label text="Thank you for using Road to IELTS." fontSize="20" color="0X0C436B" />
-		<s:Spacer height="1" />
-		<s:Label text="Good luck in your IELTS test." fontSize="20" color="0X0C436B" />
-		<s:Spacer height="5" />
-	</s:VGroup>
+	<s:Group width="100%">
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CreditGraphic')" horizontalAlign="center" horizontalCenter="0" />
+		<s:VGroup width="100%" paddingLeft="423" paddingTop="70">
+		<s:SWFLoader id="endLogo" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" autoLoad="true" height="32" width="310" />
+		<s:Spacer height="0" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" width="236" />
+		<s:Spacer height="22" />
+		<s:Label text="Thank you for using Road to IELTS." fontSize="16" color="0X39944A" fontWeight="bold" paddingLeft="65" />
+		<s:Spacer height="0" />
+		<s:Label text="You have successfully logged out." fontSize="16" color="0X39944A" fontWeight="bold" paddingLeft="65" />
+		<s:Spacer height="0" />
+		<s:Label text="Good luck in your IELTS test." fontSize="16" color="0X39944A" fontWeight="bold" paddingLeft="65" />
+		<s:Spacer height="25" />
+		<s:Label text="We would love to know what you think!" fontSize="16" color="0X174A7D"  fontWeight="bold"  click="clickHandler(event)" paddingLeft="65" /> 
+		<s:Spacer height="0" />
+		<s:Label text="Click here to give us your feedback." textDecoration="underline" fontSize="16" color="0X0096D6" fontWeight="bold" click="clickHandler(event)" buttonMode="true" useHandCursor="true" paddingLeft="65"/> 
+		</s:VGroup>
+	</s:Group>
 	<s:VGroup>
 		<s:Rect width="80%" height="1" horizontalCenter="0" >
 			<s:fill>
@@ -37,5 +48,5 @@
 			</s:fill>
 		</s:Rect>
 	</s:VGroup>
-
+	</s:BorderContainer>
 </s:Skin>

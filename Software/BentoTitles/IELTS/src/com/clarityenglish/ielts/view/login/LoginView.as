@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.login {
 	import spark.components.Button;
 	import spark.components.FormHeading;
 	import spark.components.TextInput;
+	import spark.components.Label;
 	
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -36,9 +37,108 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var quickStartButton:Button;
 		
+		private var _productVersion:String;
+		private var _productCode:uint;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		private var fullVersionAcademicLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
+		private var fullVersionGeneralTrainingLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
+		private var tenHourAcademicLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
+		private var tenHourGeneralTrainingLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
+		private var lastMinuteAcademicLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
+		private var lastMinuteGeneralTrainingLogo:Class;
+
+		
 		public function LoginView() {
 			super();
 		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+				dispatchEvent(new Event("productVersionChanged"));
+			}
+		}
+		public function set productCode(value:uint):void {
+			if (_productCode != value) {
+				_productCode = value;
+				dispatchEvent(new Event("productVersionChanged"));
+			}
+		}
+		
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionLogo():Class {
+			switch (_productCode) {
+				case 52:
+					switch (_productVersion) {
+						case "fullVersion":
+							return fullVersionAcademicLogo;
+						case "lastMinute":
+							return lastMinuteAcademicLogo;
+						case "tenHour":
+							return tenHourAcademicLogo;
+					}
+					break;
+				case 53:
+					switch (_productVersion) {
+						case "fullVersion":
+							return fullVersionGeneralTrainingLogo;
+						case "lastMinute":
+							return lastMinuteAcademicLogo;
+						case "tenHour":
+							return tenHourGeneralTrainingLogo;
+					}
+					break;
+				default:
+					// No product code set yet so don't set the logo
+					return null;
+			}
+			return null;
+		}
+		
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionText():String {
+			switch (_productCode) {
+				case 52:
+					switch (_productVersion) {
+						case "fullVersion":
+							return "Full version - Academic module";
+						case "lastMinute":
+							return "Last minute - Academic module";
+						case "tenHour":
+							return "Test drive - Academic module";
+					}
+					break;
+				case 53:
+					switch (_productVersion) {
+						case "fullVersion":
+							return "Full version - General Training module";
+						case "lastMinute":
+							return "Last minute - General Training module";
+						case "tenHour":
+							return "Test drive - General Training module";
+					}
+					break;
+				default:
+					// No product code set yet so don't set the text
+					return null;
+			}
+			return null;
+		}
+
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
