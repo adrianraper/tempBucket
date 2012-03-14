@@ -23,7 +23,7 @@
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" blendMode="normal" mouseEnabled="false"
-    minWidth="76" minHeight="76" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5">
+    minWidth="458" minHeight="155" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5">
     
     <fx:Metadata>
         <![CDATA[ 
@@ -100,10 +100,10 @@
             {
                 cornerRadius = cr;
                 
-                dropShadow.tlRadius = cornerRadius;
-                dropShadow.trRadius = cornerRadius;
-                dropShadow.blRadius = withControls ? cornerRadius : 0;
-                dropShadow.brRadius = withControls ? cornerRadius : 0;
+                dropShadow.tlRadius = 12;
+                dropShadow.trRadius = 12;
+                dropShadow.blRadius = withControls ? cornerRadius : 12;
+                dropShadow.brRadius = withControls ? cornerRadius : 12;
                 
                 setPartCornerRadii(topMaskRect, withControls); 
                 setPartCornerRadii(border, withControls); 
@@ -124,10 +124,10 @@
          */  
         private function setPartCornerRadii(target:Rect, includeBottom:Boolean):void
         {            
-            target.topLeftRadiusX = cornerRadius;
-            target.topRightRadiusX = cornerRadius;
-            target.bottomLeftRadiusX = includeBottom ? cornerRadius : 0;
-            target.bottomRightRadiusX = includeBottom ? cornerRadius : 0;
+            target.topLeftRadiusX = 12;
+            target.topRightRadiusX = 12;
+            target.bottomLeftRadiusX = includeBottom ? cornerRadius : 12;
+            target.bottomRightRadiusX = includeBottom ? cornerRadius : 12;
         }
 			import com.clarityenglish.ielts.view.zone.ZoneView;
 
@@ -151,7 +151,8 @@
     
     <!--- drop shadow can't be hittable so all other graphics go in this group -->
     <s:Group left="0" right="0" top="0" bottom="0">
- 
+
+
 	
 		
         <!--- top group mask @private-->
@@ -176,7 +177,7 @@
         </s:Group>
         
         <!--- layer 1: border @private -->
-        <s:Rect id="border" left="0" right="0" top="0" bottom="0" >
+        <s:Rect id="border" left="0" right="0" top="0" bottom="0" topLeftRadiusY="12" topRightRadiusX="12" >
             <s:stroke>
                 <!--- Defines the TitleWindowSkin class's border stroke. The default value is 1. -->
                 <s:SolidColorStroke id="borderStroke" weight="0" />
@@ -185,11 +186,11 @@
         
         <!-- layer 2: background fill -->
         <!--- Defines the appearance of the TitleWindowSkin class's background. -->
-        <s:Rect id="background" left="1" top="1" right="1" bottom="1">
+        <s:Rect id="background" left="200" top="1" right="1" bottom="1">
 			<s:fill>
 				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
-					<s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"/>
+					<s:GradientEntry color="0xFFFFFF"/>
+					<s:GradientEntry color="0xFFFFFF"/>
 				</s:LinearGradient>
 			</s:fill>
         </s:Rect>
@@ -204,11 +205,11 @@
             <s:Group id="topGroup" mask="{topGroupMask}">
                 
                 <!--- layer 0: title bar fill @private -->
-                <s:Rect id="tbFill" left="0" right="0" top="0" bottom="1" height="40">
+                <s:Rect id="tbFill" left="0" right="0" top="0" bottom="1" height="20" topLeftRadiusY="12" topRightRadiusX="12" >
                     <s:fill>
                         <s:LinearGradient rotation="90">
-                            <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
-                            <s:GradientEntry color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
+                            <s:GradientEntry color="0xFFFFFF"/>
+                            <s:GradientEntry color="0xFFFFFF"/>
                         </s:LinearGradient>
                     </s:fill>
                 </s:Rect>
@@ -216,10 +217,10 @@
                
                 <!-- layer 3: text -->
                 <!--- @copy spark.components.Panel#titleDisplay -->
-                
+
 				<s:Label id="titleDisplay" maxDisplayedLines="1"
-                         left="20" right="36" top="3" bottom="0" minHeight="30"
-                         verticalAlign="middle" fontSize="14" fontWeight="bold" color="{getStyle('popUpBarTextColor') || 0xFFFFFF}" />
+                         left="150" right="0" top="0" bottom="10" minHeight="10"
+                         verticalAlign="middle" fontSize="16" fontWeight="bold" color="{getStyle('popUpBarTextColor') || 0xFFFFFF}" />
                 
                 <!-- layer 4: moveArea -->
                 <!--- @copy spark.components.TitleWindow#moveArea -->
@@ -227,7 +228,7 @@
 
                 <!--- @copy spark.components.TitleWindow#closeButton -->
                 <s:Button id="closeButton" skinClass="spark.skins.spark.TitleWindowCloseButtonSkin"
-                          width="15" height="15" right="7" top="7" />
+                          width="15" height="15" right="7" top="7" horizontalCenter="0" />
             </s:Group>
             
             <!--

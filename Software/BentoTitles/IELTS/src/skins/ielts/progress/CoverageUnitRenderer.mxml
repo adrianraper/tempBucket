@@ -49,7 +49,7 @@
 								}
 							]]>
 						</fx:Script>
-						<s:Rect id="exerciseIndicator" left="3" top="8" width="8" height="8" radiusX="2" radiusY="2" >
+						<s:Rect id="exerciseIndicator" left="0" top="8" width="8" height="8" radiusX="2" radiusY="2" >
 							<s:fill>
 								<s:SolidColor id="fillColor" />
 							</s:fill>

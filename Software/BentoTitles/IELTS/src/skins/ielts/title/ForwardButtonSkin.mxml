@@ -23,8 +23,8 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
+             minWidth="94" minHeight="32"              
+			 alpha.disabled="0.5">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -34,23 +34,97 @@
         [HostComponent("spark.components.Button")]
         ]]>
     </fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+							
+			import mx.events.EffectEvent;
+			
+			protected function resize1_effectStartHandler(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				
+			}
+			
+		]]>
+	</fx:Script>
     
-    <!-- states -->
-    <s:states>
-        <s:State name="up" />
-        <s:State name="over" />
-        <s:State name="down" />
-        <s:State name="disabled" />
-    </s:states>
-    
-    <!-- Hit area -->
-    <!--- @private -->
-    <s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2">
-        <s:fill>
-            <s:SolidColor alpha="0" />
-        </s:fill>
-    </s:Rect>
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" stateGroups="overStates" />
+		<s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+		<s:State name="down" stateGroups="downStates" />
+		<s:State name="disabled" stateGroups="disabledStates" />
+	</s:states>
 	
-    <s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ForwardButton')" />
-    
+	<s:transitions>
+		<s:Transition fromState="up"  toState="over" >
+			<s:Resize target="{fill}" duration="100"  />
+		</s:Transition>
+		<s:Transition fromState="over"  toState="up" >
+			<s:Resize target="{fill}" duration="200" />
+		</s:Transition>			
+		<s:Transition fromState="over"  toState="down" >
+			<s:Resize target="{fill}" />
+		</s:Transition>			
+	</s:transitions>
+	
+	<s:Group left="-1" right="0" top="0" bottom="-1" horizontalCenter="0" >
+		
+		<!-- layer 1: shadow -->
+		<!--- @private -->
+		<s:Rect id="shadow" left="0" right="0" top="0" bottom="0" width="69" height="20" topLeftRadiusY="6" topLeftRadiusX="6" topRightRadiusX="6" topRightRadiusY="6" >
+			<s:stroke>
+				<s:LinearGradientStroke rotation="90">
+					<s:GradientEntry color="0x000000" 
+									 color.downStates="0xFFFFFF"
+									 alpha="0.01"
+									 alpha.downStates="0" />
+					<s:GradientEntry color="0x000000" 
+									 color.downStates="0xFFFFFF" 
+									 alpha="0.07"
+									 alpha.downStates="0.5" />
+				</s:LinearGradientStroke>
+			</s:stroke>
+		</s:Rect>
+		
+		<!-- layer 2: fill -->
+		<!--- @private -->
+		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" width.over="98" width.down="98" topLeftRadiusY="6" topLeftRadiusX="6" topRightRadiusX="6" topRightRadiusY="6" 
+   >
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0x303030" 
+									 color.overStates="0x686868"  
+									 color.downStates="0x353535" />
+					<s:GradientEntry color="0x4D4E4E" 
+									 color.over="0x4D4E4E" 
+									 color.downStates="0x282929"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+	</s:Group>
+	
+	<!-- layer 8: text -->
+	<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+	<s:Group>
+	
+	<s:Group x="7" y="8" rotation="90" top="12" right="0" >
+		<s:Path winding="nonZero" data="M6.71729 8.2002C5.52002 8.2002 3.56104 8.2002 2.36572 8.2002L1.34326 8.2002C0.145996 8.2002 -0.343262 7.35254 0.255371 6.31543L0.76709 5.43066C1.36475 4.39404 2.34424 2.69873 2.94189 1.66357L3.45361 0.776855C4.05225 -0.259277 5.02979 -0.259277
+				5.62939 0.776855L6.14014 1.66357C6.73779 2.69873 7.71729 4.39404 8.31592 5.43066L8.82666 6.31543C9.42529 7.35254 8.93604 8.2002 7.73877 8.2002L6.71729 8.2002Z" >
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+
+	<s:Label id="labelDisplay" color="0xFFFFFF" paddingRight="8" paddingLeft="8"
+			 textAlign="center"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 horizontalCenter="0" verticalCenter="1"
+			 left="20" right="0" top="22" bottom="0">
+	</s:Label>    
+	</s:Group>
 </s:SparkButtonSkin>

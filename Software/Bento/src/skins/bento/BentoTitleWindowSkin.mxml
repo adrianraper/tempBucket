@@ -23,7 +23,7 @@
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" blendMode="normal" mouseEnabled="false"
-    minWidth="76" minHeight="76" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5">
+    minWidth="388" minHeight="145" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5">
     
     <fx:Metadata>
         <![CDATA[ 
@@ -100,10 +100,10 @@
             {
                 cornerRadius = cr;
                 
-                dropShadow.tlRadius = cornerRadius;
-                dropShadow.trRadius = cornerRadius;
-                dropShadow.blRadius = withControls ? cornerRadius : 0;
-                dropShadow.brRadius = withControls ? cornerRadius : 0;
+                dropShadow.tlRadius = 12;
+                dropShadow.trRadius = 12;
+                dropShadow.blRadius = withControls ? cornerRadius : 12;
+                dropShadow.brRadius = withControls ? cornerRadius : 12;
                 
                 setPartCornerRadii(topMaskRect, withControls); 
                 setPartCornerRadii(border, withControls); 
@@ -125,10 +125,10 @@
          */  
         private function setPartCornerRadii(target:Rect, includeBottom:Boolean):void
         {            
-            target.topLeftRadiusX = cornerRadius;
-            target.topRightRadiusX = cornerRadius;
-            target.bottomLeftRadiusX = includeBottom ? cornerRadius : 0;
-            target.bottomRightRadiusX = includeBottom ? cornerRadius : 0;
+            target.topLeftRadiusX = 12;
+            target.topRightRadiusX = 12;
+            target.bottomLeftRadiusX = includeBottom ? cornerRadius : 12;
+            target.bottomRightRadiusX = includeBottom ? cornerRadius : 12;
         }
         
         private var cornerRadius:Number;
@@ -174,7 +174,7 @@
         </s:Group>
         
         <!--- layer 1: border @private -->
-        <s:Rect id="border" left="0" right="0" top="0" bottom="0" >
+        <s:Rect id="border" left="0" right="0" top="0" bottom="0" topLeftRadiusY="12" topRightRadiusX="12" >
             <s:stroke>
                 <!--- Defines the TitleWindowSkin class's border stroke. The default value is 1. -->
                 <s:SolidColorStroke id="borderStroke" weight="1" />

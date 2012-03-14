@@ -44,8 +44,9 @@
 	<s:Group width="100%" left="100" >
 		<ui:ProgressBarRenderer id="progressBar" width="100%" height="60"/>
 	</s:Group>
-
-	<s:HGroup width="100%" height="100%" top="100" >
+	
+	<s:Scroller width="100%" height="70%">
+	<s:HGroup width="97%" height="100%" top="100" >
 		<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%"
 									  caption="Starting out"
 									  dataProvider="{hostComponent.questionZoneDataProvider}" />
@@ -59,5 +60,5 @@
 								  caption="Practice zone" 
 								  dataProvider="{hostComponent.practiceZoneDataProvider}"  />
 	</s:HGroup>
-
+	</s:Scroller>
 </s:Skin>

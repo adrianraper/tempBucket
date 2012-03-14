@@ -11,12 +11,18 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:Spacer height="10" />
-	<s:HGroup width="100%" >
-		<s:Spacer width="50" />
-		<s:Label width="250" text="{hostComponent.error.errorDescription} {hostComponent.error.errorContext}" />
-		<s:Spacer width="50" />
+	<s:Spacer height="0" />
+	<s:HGroup width="100%" paddingLeft="20" paddingBottom="30" >
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/errormessage.swf')" />
+		<s:Spacer width="10" />
+	<s:VGroup>
+		<s:Label width="310" text="Sorry, there is a problem:" fontSize="16" fontWeight="bold" paddingTop="10" />
+		<s:Spacer height="1" />
+		<s:Label width="310" text="{hostComponent.error.errorDescription} {hostComponent.error.errorContext}" lineHeight="20"  />
+		<s:Spacer height="1" />
+		<s:Button id="closeButton" label="OK" />
+	</s:VGroup>
 	</s:HGroup>	
-	<s:Button id="closeButton" label="OK" />
+
 	
 </s:Skin>

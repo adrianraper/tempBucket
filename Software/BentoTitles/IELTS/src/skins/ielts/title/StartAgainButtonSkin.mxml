@@ -23,8 +23,8 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-             minWidth="21" minHeight="21" 
-             alpha.disabled="0.5">
+			 minWidth="94" minHeight="32" 
+			 alpha.disabled="0.5">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -43,14 +43,64 @@
         <s:State name="disabled" />
     </s:states>
     
-    <!-- Hit area -->
-    <!--- @private -->
-    <s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="2">
-        <s:fill>
-            <s:SolidColor alpha="0" />
-        </s:fill>
-    </s:Rect>
+	<s:transitions>
+		<s:Transition fromState="up"  toState="over" >
+			<s:Resize target="{fill}" duration="100"  />
+		</s:Transition>
+		<s:Transition fromState="over"  toState="up" >
+			<s:Resize target="{fill}" duration="200" />
+		</s:Transition>			
+		<s:Transition fromState="over"  toState="down" >
+			<s:Resize target="{fill}"  />
+		</s:Transition>			
+	</s:transitions>
 	
-    <s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='StartAgainButton')" />
-    
+	<s:Group left="-1" right="0" top="0" bottom="-1" horizontalCenter="0" >
+		
+		<!-- layer 1: shadow -->
+		<!--- @private -->
+		<s:Rect id="shadow" left="0" right="0" top="0" bottom="0" width="69" height="20" topLeftRadiusY="6" topLeftRadiusX="6" topRightRadiusX="6" topRightRadiusY="6" >
+			<s:stroke>
+				<s:LinearGradientStroke rotation="90">
+					<s:GradientEntry color="0x000000" 
+									 color.down="0xFFFFFF"
+									 alpha="0.01"
+									 alpha.down="0" />
+					<s:GradientEntry color="0x000000" 
+									 color.down="0xFFFFFF" 
+									 alpha="0.07"
+									 alpha.down="0.5" />
+				</s:LinearGradientStroke>
+			</s:stroke>
+		</s:Rect>
+		
+		<!-- layer 2: fill -->
+		<!--- @private -->
+		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" width.over="105" width.down="105" topLeftRadiusY="6" topLeftRadiusX="6" topRightRadiusX="6" topRightRadiusY="6" 
+				>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0x303030" 
+									 color.over="0x686868"  
+									 color.down="0x353535" />
+					<s:GradientEntry color="0x4D4E4E" 
+									 color.over="0x4D4E4E" 
+									 color.down="0x282929"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+	</s:Group>
+	
+	<!-- layer 8: text -->
+	<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+		
+		<s:Label id="labelDisplay" color="0xFFFFFF" paddingRight="8" paddingLeft="8"
+				 textAlign="center"
+				 verticalAlign="middle"
+				 maxDisplayedLines="1"
+				 horizontalCenter="0" verticalCenter="1"
+				 left="0" right="22" top="22" bottom="0">
+		</s:Label>    
 </s:SparkButtonSkin>
+

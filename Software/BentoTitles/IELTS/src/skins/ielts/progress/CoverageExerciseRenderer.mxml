@@ -40,6 +40,6 @@
 				<s:SolidColor id="fillColor" />
 			</s:fill>
 		</s:Rect>
-		<s:Label id="captionLabel" left="15" height="24" paddingTop="8" right="10" fontWeight="normal" fontSize="12.6" />
+		<s:Label id="captionLabel" left="15" height="24" paddingTop="8" right="2" fontWeight="normal" fontSize="12.6" />
 	</s:Group>
 </s:ItemRenderer>
