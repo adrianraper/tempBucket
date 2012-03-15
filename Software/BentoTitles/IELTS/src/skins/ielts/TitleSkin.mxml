@@ -32,9 +32,9 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
 		<s:Label text = "{hostComponent.productVersionText}" top="84" left="37" color="#FFFFFF" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BetaIcon')" left="320" top="43"/>
 		<s:ButtonBar id="navBar" right="105" height="35" top="5" />
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BetaIcon')" right="0" top="43"/>
 	</s:Group>
 		
 	<s:Group width="100%" includeIn="exercise">

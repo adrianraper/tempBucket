@@ -23,6 +23,7 @@ package com.clarityenglish.textLayout.elements {
 		
 		private static const NORMAL:String = "normal";
 		private static const YOU_TUBE:String = "you_tube";
+		private static const VIMEO:String = "vimeo";
 		
 		private static var inititalized:Boolean = false;
 		
@@ -43,6 +44,7 @@ package com.clarityenglish.textLayout.elements {
 			// Allow www.youtube.com (only do this once)
 			if (!inititalized) {
 				Security.allowDomain("www.youtube.com");
+				Security.allowDomain("www.vimeo.com");
 				inititalized = true;
 			}
 		}
@@ -103,6 +105,7 @@ package com.clarityenglish.textLayout.elements {
 					} );
 					break;
 				case YOU_TUBE:
+				case VIMEO:
 					var swfLoader:SWFLoader = new SWFLoader();
 					swfLoader.addEventListener(Event.COMPLETE, onYouTubeComplete, false, 0, true);
 					
@@ -212,11 +215,19 @@ package com.clarityenglish.textLayout.elements {
 		
 		/**
 		 * If the src contains "www.youtube.com" this must be a YouTube embed, otherwise we use the Spark VideoPlayer
-		 * 
+		 * Add in vimeo.com
 		 * @return 
 		 */
 		private function getVideoType():String {
-			return (_src.search(/www\.youtube\.com/) >= 0) ? YOU_TUBE : NORMAL;
+			if (_src.search(/www\.youtube\.com/) >= 0) { 
+				trace("found a YouTube video");
+				return YOU_TUBE;
+			}
+			if (_src.search(/\.vimeo\.com/) >= 0) {
+				trace("found a vimeo video");
+				return VIMEO;
+			}
+			return NORMAL;
 		}
 		
 	}

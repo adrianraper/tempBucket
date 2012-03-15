@@ -2,26 +2,13 @@
 <rss version="2.0">
 <channel>
 	<title>Advice zone video 3</title>
-	<host>rtmp://streaming.clarityenglish.com:1935/cfx/st/</host>
+	<host>http://player.vimeo.com/external/</host>
 	<type>recorded</type>
-	<server>fms</server>
-	<streaming>rtmp</streaming>
-	<item>
-		<title>low quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_more_advice_180</streamName>
-		<bitrate>180</bitrate>
-		<width>411</width>
-	</item>
+	<server>vimeo</server>
+	<streaming>progressive-download</streaming>
 	<item>
 		<title>medium quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_more_advice_700</streamName>
-		<bitrate>700</bitrate>
-		<width>411</width>
-	</item>
-	<item>
-		<title>high quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_more_advice_1200</streamName>
-		<bitrate>1200</bitrate>
+		<streamName>38494078.sd.mp4?s=2a4e45d6f930e4ddb398ddb91b01c4aa</streamName>
 		<width>411</width>
 	</item>
 </channel>
