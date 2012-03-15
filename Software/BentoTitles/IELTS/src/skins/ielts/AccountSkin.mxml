@@ -165,11 +165,12 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-		<!-- 						 
-		source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
-		-->
 		<s:Group width="241" height="301">
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/bcwidget.png')" width="100%" top="8" />
+			<s:SWFLoader id="IELTSApp1" width="100%" top="8" />
+			<!-- 						 
+			source="@Embed(source='skins/ielts/assets/bcwidget.png')" 
+			source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
+			-->
 		</s:Group>
 	</s:VGroup>
 </s:Skin>

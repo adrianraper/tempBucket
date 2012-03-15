@@ -177,7 +177,7 @@
 													videoLabel.text = data.@caption;
 													
 													// #213
-													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false");
+													enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 												}
 											]]>
 										</fx:Script>
@@ -278,7 +278,8 @@
 													examPracticeViewButton.label = data.@caption;
 													
 													// #213
-													enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
+													//enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
+													enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 												}
 											}
 											
@@ -326,7 +327,8 @@
 														examPracticeAnswerButton.label = data.@caption;
 														
 														// #213
-														enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
+														//enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
+														enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 													}
 												}
 			

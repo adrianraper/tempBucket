@@ -10,26 +10,26 @@
 				<group id="2" caption="Set 2" task="1" description="" />
 				<group id="3" caption="Set 3" task="1" description="" />
 			</groups>
-			<unit id="1287130110000" class="question-zone">
-				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
-				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" />
-				<exercise id="1287130110003" caption="IELTS Reading Key Facts" href="reading/questionzonevideo1.rss" />
+			<unit id="1287130110000" class="question-zone" caption="Starting out" enabledFlag="3">
+				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" enabledFlag="3"  />
+				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" enabledFlag="3" />
+				<exercise id="1287130110003" caption="IELTS Reading Key Facts" href="reading/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
-			<unit id="1287130120000" class="exam-practice">
-				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" />
-				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" />
-				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" enabled="false" />
+			<unit id="1287130120000" class="exam-practice" caption="Test practice" enabledFlag="3">
+				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" enabledFlag="3" />
+				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" enabledFlag="3" />
+				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" enabledFlag="8" />
 			</unit>
 			<unit id="1287130121000" class="exam-answers">
 				<exercise id="1287130121001" caption="Answer sheet 1" href="reading/pdf/reading_ac_answer1.pdf" />
 				<exercise id="1287130121002" caption="Answer sheet 2" href="reading/pdf/reading_ac_answer2.pdf" />
-				<exercise id="1287130121003" caption="Answer sheet 3" href="reading/pdf/reading_ac_answer3.pdf" enabled="false" />
+				<exercise id="1287130121003" caption="Answer sheet 3" href="reading/pdf/reading_ac_answer3.pdf" enabledFlag="8" />
 			</unit>
 
-			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="IELTS Reading Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
+			<unit id="1287130130000" class="advice-zone" caption="Advice and tutorials" enabledFlag="3">
+				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="IELTS Reading Advice" thumbnail="reading/thumbnails/reading_advice.jpg" enabledFlag="3" />
 			</unit>
-			<unit id="1287130140000" class="practice-zone" >
+			<unit id="1287130140000" class="practice-zone" caption="Practice zone" enabledFlag="3">
 				<exercise id="1156153794672" group="1" caption="Short answer questions" href="reading/exercises/1156153794672.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/reading1_arp1.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>
@@ -76,12 +76,12 @@
 			<unit id="1287130220000" class="exam-practice">
 				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1" audioHref="listening/media/listening_tp_part1.mp3" />
 				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" audioHref="listening/media/listening_tp_part2.mp3" />
-				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" audioHref="listening/media/listening_tp_part3.mp3" enabled="false" />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" audioHref="listening/media/listening_tp_part3.mp3" enabledFlag="8" />
 			</unit>
 			<unit id="1287130221000" class="exam-answers">
 				<exercise id="1287130221001" href="listening/pdf/listening_answer1.pdf" caption="Answer sheet 1" />
 				<exercise id="1287130221002" href="listening/pdf/listening_answer2.pdf" caption="Answer sheet 2" />
-				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3" enabled="false" />
+				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3" enabledFlag="8" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="IELTS Listening Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
@@ -132,11 +132,11 @@
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
 				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="IELTS Speaking Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
-				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" enabled="false" />
+				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" enabledFlag="8" />
 				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" />
 				<exercise id="1287130330004" href="speaking/advicezonevideo4.rss" caption="Advice: Coping with nerves" thumbnail="speaking/thumbnails/speaking_coping.jpg" />
-				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Interview Phase 2" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" enabled="false" />
-				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Interview Phase 3" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" enabled="false" />
+				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Interview Phase 2" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" enabledFlag="8" />
+				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Interview Phase 3" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" enabledFlag="8" />
 			</unit>
 			<unit id="1287130340000" class="practice-zone">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" enabledFlag="3" thumbnail="speaking/thumbnails/speaking1_introduction.jpg">
@@ -208,25 +208,25 @@
 				<group id="6" caption="Set 3 task 2" task="2" description="" />
 			</groups>
 			<unit id="1287130410000" class="question-zone">
-				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
-				<exercise id="1287130410002" caption="Download PDF" href="writing/ebook/ebook_writing.pdf" />
-				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" />
+				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" enabledFlag="3" />
+				<exercise id="1287130410002" caption="Download PDF" href="writing/ebook/ebook_writing.pdf" enabledFlag="3" />
+				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
 			<unit id="1287130420000" class="exam-practice" caption="Try the test practices.">
 				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Practice test 1" />
 				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Practice test 2" />
-				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" enabled="false" />
+				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" enabledFlag="8" />
 			</unit>
 			
 			<unit id="1287130421000" class="exam-answers" caption="Try the test practices.">
 				<exercise id="1287130421001" href="writing/pdf/writing_ac_answer1.pdf" caption="Answer sheet 1" />
 				<exercise id="1287130421002" href="writing/pdf/writing_ac_answer2.pdf" caption="Answer sheet 2" />
-				<exercise id="1287130421003" href="writing/pdf/writing_ac_answer3.pdf" caption="Answer sheet 3" enabled="false" />
+				<exercise id="1287130421003" href="writing/pdf/writing_ac_answer3.pdf" caption="Answer sheet 3" enabledFlag="8" />
 			</unit>
 
 			<unit id="1287130430000" class="advice-zone">  
 				<exercise id="1287130430001" href="writing/advicezonevideo1.rss" caption="IELTS Writing Advice" thumbnail="writing/thumbnails/writing_keyfacts.jpg" />
-				<exercise id="1287130430002" href="writing/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" enabled="false" />
+				<exercise id="1287130430002" href="writing/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" enabledFlag="8" />
 				<exercise id="1287130430003" href="writing/advicezonevideo3.rss" caption="Advice: Writing task 2" thumbnail="writing/thumbnails/writing_advice.jpg" />
 				<exercise id="1287130430004" href="writing/advicezonevideo4a.rss" caption="Tutorial: Writing task 1" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />
 				<exercise id="1287130430005" href="writing/advicezonevideo5a.rss" caption="Tutorial: Writing task 2" thumbnail="writing/thumbnails/writing_tutorial1.jpg" />

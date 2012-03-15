@@ -70,6 +70,13 @@
 				case "show_previous":
 					sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
 					break;
+				case "start_again":
+					sendNotification(BBNotifications.EXERCISE_RESTART);
+					break;
+				case "back_to_menu":
+					// Hijack this notification as it has the same effect
+					sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
+					break;
 			}
 
 		}

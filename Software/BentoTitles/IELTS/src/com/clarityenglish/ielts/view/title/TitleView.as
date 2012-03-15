@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.title {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.config.Config;
@@ -81,6 +82,7 @@ package com.clarityenglish.ielts.view.title {
 		private var _productCode:uint;
 		
 		public var logout:Signal = new Signal();
+		public var backToMenu:Signal = new Signal();
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
 		private var homeIcon:Class;
@@ -242,7 +244,13 @@ package com.clarityenglish.ielts.view.title {
 					// TODO: Check whether we know the exam date, if not say go to my account page to set it
 					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
 					var daysUnit:String = (daysLeft==1) ? "day" : "days";
-					instance.text = daysLeft.toString() + " " + daysUnit + " left until your test.";
+					if (daysLeft > 0) {
+						instance.text = "Less than " + daysLeft.toString() + " " + daysUnit + " left until your test.";
+					} else if (daysLeft == 0) {
+						instance.text = "Your test is today, good luck!";
+					} else {
+						instance.text = "Hope your test went well...";
+					}
 					break;
 			}
 		}
@@ -292,7 +300,7 @@ package com.clarityenglish.ielts.view.title {
 		 * @param event
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
-			showExercise(null);
+			backToMenu.dispatch();
 		}
 		protected function onLogoutButtonClick(event:MouseEvent):void {
 			logout.dispatch();

@@ -125,7 +125,22 @@ package com.clarityenglish.ielts.view.account {
 					context.applicationDomain = new ApplicationDomain();
 					
 					instance.loaderContext = context;                 
-					instance.source = "/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true&cache=" + new Date().getTime();
+					instance.source = "/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?literals=/Software/Widget/IELTS/bin&widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatabclogo=true&cache=" + new Date().getTime();
+					if (userDetails.country) {
+						// The final names of countries MUST match the literals.xml list.
+						switch (userDetails.country) {
+							case "Hong Kong":
+							case "Hong-Kong":
+							case "HK":
+								var myCountry:String = "Hong-Kong";
+								break;
+							default:
+								myCountry = "userDetails.country";
+						}
+					} else {
+						myCountry = "global";
+					}
+					instance.source += "&widgetdatacountry=" + myCountry;
 					break
 			}
 		}

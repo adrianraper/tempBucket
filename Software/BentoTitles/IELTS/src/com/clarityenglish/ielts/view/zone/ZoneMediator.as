@@ -180,9 +180,9 @@
 			
 			var streaming:String = dynamicList.channel.streaming.toString();
 			var server:String = dynamicList.channel.server.toString();
+			var host:String = dynamicList.channel.host.toString();
 			
 			if (streaming == "rtmp") {
-				var host:String = dynamicList.channel.host.toString();
 				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
 				
 				if (server == "fms") dynamicSource.urlIncludesFMSApplicationInstance = true;
@@ -197,6 +197,17 @@
 				
 				videoPlayer.source = dynamicSource;
 				videoPlayer.callLater(videoPlayer.play);
+				
+			// Rackspace's pseudo streaming over http
+			} else if (streaming == "http") {
+				videoPlayer.source = host + dynamicList.channel.item[0].streamName.toString() + ".f4m";
+				videoPlayer.callLater(videoPlayer.play);
+				
+			// Vimeo's progressive download
+			} else if (streaming == "progressive-download") {
+				videoPlayer.source = host + dynamicList.channel.item[0].streamName.toString();
+				videoPlayer.callLater(videoPlayer.play);
+				
 			} else {
 				log.error(streaming + " streaming type not supported");
 				videoPlayer.stop();

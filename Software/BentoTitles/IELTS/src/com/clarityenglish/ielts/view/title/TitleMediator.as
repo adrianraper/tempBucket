@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
@@ -44,6 +45,7 @@
 			
 			// listen for these signals
 			view.logout.add(onLogout);
+			view.backToMenu.add(onBackToMenu);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -57,6 +59,21 @@
 		 */
 		private function onLogout():void {
 			sendNotification(CommonNotifications.LOGOUT);
+		}
+		
+		/**
+		 * Click to go back to menu from an exercise. 
+		 * Check if the exercise is dirty or with undisplayed feedback
+		 */
+		private function onBackToMenu():void {
+			// Trac 210. Can you simply stop the exercise now, or do you need any warning first?
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exercise:Exercise = bentoProxy.currentExercise;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+			
+			if (!exerciseProxy.exerciseMarked && exerciseProxy.exerciseDirty) {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { type:"lose_answers", action:"back_to_menu" });
+			}
 		}
 		
 		override public function onRemove():void {

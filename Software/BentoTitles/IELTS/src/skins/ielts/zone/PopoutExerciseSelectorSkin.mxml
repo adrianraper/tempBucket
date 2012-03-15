@@ -38,7 +38,7 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Group left="0" top="0" right="0" bottom="30">
+	<s:Group left="20" top="20" right="0" bottom="20">
 		
 		<!-- drop shadow -->
 		<s:Rect left="0" top="0" right="0" bottom="0" topLeftRadiusX="10" topLeftRadiusY="10" bottomLeftRadiusX="10" bottomLeftRadiusY="10" >

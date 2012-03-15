@@ -58,15 +58,6 @@ package com.vimeo.moogaloop
 		public static const READY : String          = 'ready';
 		public static const SEEK : String           = 'seek';
 		
-		// API v1
-		public static const ON_FINISH : String      = 'onFinish';
-		public static const ON_LOADING : String     = 'onLoading';
-		public static const ON_PAUSE : String       = 'onPause';
-		public static const ON_PLAY : String        = 'onPlay';
-		public static const ON_PROGRESS : String    = 'onProgress';
-		public static const ON_SEEK : String        = 'onSeek';
-		
-		
 		public function VimeoPlayer(oauth_key:String, clip_id:int, w:int, h:int, fp_version:String='10', api_version:int=2)
 		{
 			this.setDimensions(w, h);
@@ -77,18 +68,9 @@ package com.vimeo.moogaloop
 			var api_param : String = '&js_api=1';
 			this.api_version = api_version;
 			
-			//
-			if (fp_version != '9')
-			{
-				switch(api_version)
-				{
-					case 2:
-						api_param = '&api=1';
-						break;
-				}
-			}
-			else
-			{
+			if (fp_version != '9') {
+				api_param = '&api=1';
+			} else {
 				this.api_version = 1;
 			}
 			
@@ -103,29 +85,23 @@ package com.vimeo.moogaloop
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler, false, 0, true);
 		}
 		
+		// Missing API methods?
+		public function getVideoUrl():void {
+			//return moogaloop.videoURL;
+		}
+		public function getBytesLoaded():int {
+			return moogaloop.bytesLoaded;
+		}
+		
 		public function destroy() : void
 		{
-			if (api_version == 2)
-			{
-				// API v2 Event Handlers
-				moogaloop.removeEventListener(READY, readyHandler);
-				moogaloop.removeEventListener(PLAY, playHandler);
-				moogaloop.removeEventListener(PAUSE, pauseHandler);
-				moogaloop.removeEventListener(SEEK, seekHandler);
-				moogaloop.removeEventListener(LOAD_PROGRESS, loadProgressHandler);
-				moogaloop.removeEventListener(PLAY_PROGRESS, playProgressHandler);
-				moogaloop.removeEventListener(FINISH, finishHandler);
-			}
-			else
-			{
-				// API v1 Event Handlers
-				moogaloop.removeEventListener(ON_PLAY, onPlayHandler);
-				moogaloop.removeEventListener(ON_PAUSE, onPauseHandler);
-				moogaloop.removeEventListener(ON_SEEK, onSeekHandler);
-				moogaloop.removeEventListener(ON_LOADING, onLoadingHandler);
-				moogaloop.removeEventListener(ON_PROGRESS, onProgressHandler);
-				moogaloop.removeEventListener(ON_FINISH, onFinishHandler);
-			}
+			moogaloop.removeEventListener(READY, readyHandler);
+			moogaloop.removeEventListener(PLAY, playHandler);
+			moogaloop.removeEventListener(PAUSE, pauseHandler);
+			moogaloop.removeEventListener(SEEK, seekHandler);
+			moogaloop.removeEventListener(LOAD_PROGRESS, loadProgressHandler);
+			moogaloop.removeEventListener(PLAY_PROGRESS, playProgressHandler);
+			moogaloop.removeEventListener(FINISH, finishHandler);
 			
 			moogaloop.destroy();
 			if (container.contains(DisplayObject(moogaloop))) container.removeChild(DisplayObject(moogaloop));
@@ -147,35 +123,21 @@ package com.vimeo.moogaloop
 			container.addChild(e.currentTarget.loader.content);
 			moogaloop = e.currentTarget.loader.content;
 			
-			if (api_version == 2)
-			{
-				trace("adding api v2 event handlers");
-				// API v2 Event Handlers
-				moogaloop.addEventListener(READY, readyHandler, false, 0, true);
-				moogaloop.addEventListener(PLAY, playHandler, false, 0, true);
-				moogaloop.addEventListener(PAUSE, pauseHandler, false, 0, true);
-				moogaloop.addEventListener(SEEK, seekHandler, false, 0, true);
-				moogaloop.addEventListener(LOAD_PROGRESS, loadProgressHandler, false, 0, true);
-				moogaloop.addEventListener(PLAY_PROGRESS, playProgressHandler, false, 0, true);
-				moogaloop.addEventListener(FINISH, finishHandler, false, 0, true);
-			}
-			else
-			{
-				// API v1 Event Handlers
-				moogaloop.addEventListener(ON_PLAY, onPlayHandler, false, 0, true);
-				moogaloop.addEventListener(ON_PAUSE, onPauseHandler, false, 0, true);
-				moogaloop.addEventListener(ON_SEEK, onSeekHandler, false, 0, true);
-				moogaloop.addEventListener(ON_LOADING, onLoadingHandler, false, 0, true);
-				moogaloop.addEventListener(ON_PROGRESS, onProgressHandler, false, 0, true);
-				moogaloop.addEventListener(ON_FINISH, onFinishHandler, false, 0, true);
-			}
+			// API v2 Event Handlers
+			moogaloop.addEventListener(READY, readyHandler, false, 0, true);
+			moogaloop.addEventListener(PLAY, playHandler, false, 0, true);
+			moogaloop.addEventListener(PAUSE, pauseHandler, false, 0, true);
+			moogaloop.addEventListener(SEEK, seekHandler, false, 0, true);
+			moogaloop.addEventListener(LOAD_PROGRESS, loadProgressHandler, false, 0, true);
+			moogaloop.addEventListener(PLAY_PROGRESS, playProgressHandler, false, 0, true);
+			moogaloop.addEventListener(FINISH, finishHandler, false, 0, true);
 			
 			// Create the mask for moogaloop
-			//this.addChild(player_mask);
-			//container.mask = player_mask;
+			this.addChild(player_mask);
+			container.mask = player_mask;
 			this.addChild(container);
 			
-			//redrawMask();
+			redrawMask();
 			
 			load_timer.addEventListener(TimerEvent.TIMER, playerLoadedCheck);
 			load_timer.start();
@@ -210,19 +172,15 @@ package com.vimeo.moogaloop
 				var pos:Point = this.parent.localToGlobal(new Point(this.x, this.y));
 				if (e.stageX >= pos.x && e.stageX <= pos.x + this.player_width &&
 					e.stageY >= pos.y && e.stageY <= pos.y + this.player_height) {
-					trace("mouseMove");
 					moogaloop.mouseMove(e);
 				} else {
-					// trace("mouseOut");
 					moogaloop.mouseOut();
 				}
 			}
 		}
 		
-		private function redrawMask() : void
-		{
-			with (player_mask.graphics)
-			{
+		private function redrawMask() : void {
+			with (player_mask.graphics) {
 				beginFill(0x000000, 1);
 				drawRect(container.x, container.y, player_width, player_height);
 				endFill();
@@ -245,11 +203,6 @@ package com.vimeo.moogaloop
 		public function getDuration() : int
 		{
 			return moogaloop.duration;
-		}
-		// Clarity added.
-		public function getBytesLoaded() : int
-		{
-			return moogaloop.bytesLoaded;
 		}
 		
 		/**
@@ -303,26 +256,26 @@ package com.vimeo.moogaloop
 		 */
 		private function readyHandler(event:Event) : void
 		{
-			trace('readyHandler');
+			//trace('readyHandler');
 			// Clarity. Add a VimeoEvent to be picked up by the application using this player.
 			dispatchEvent(new VimeoEvent(VimeoEvent.READY));
 		}
 		
 		private function playHandler(event:Event) : void
 		{
-			trace('playHandler');
+			//trace('playHandler');
 			dispatchEvent(new VimeoEvent(VimeoEvent.PLAY));
 		}
 		
 		private function pauseHandler(event:Event) : void
 		{
-			trace('pauseHandler');
+			//trace('pauseHandler');
 			dispatchEvent(new VimeoEvent(VimeoEvent.PAUSE));
 		}
 		
 		private function seekHandler(event:Event) : void
 		{
-			trace('seekHandler');
+			//trace('seekHandler');
 			dispatchEvent(new VimeoEvent(VimeoEvent.SEEK));
 		}
 		
@@ -346,7 +299,7 @@ package com.vimeo.moogaloop
 		
 		private function finishHandler(event:Event) : void
 		{
-			trace('finishHandler');
+			//trace('finishHandler');
 			dispatchEvent(new VimeoEvent(VimeoEvent.FINISH));
 		}
 		

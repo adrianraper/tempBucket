@@ -20,9 +20,7 @@
 			/**
 			 * Vimeo developer id.
 			 * */
-			//private const VIMEO_ID:String = "8694c30dc18f79b4507f0f87b5c3f18a";
 			private const VIMEO_CONSUMER_KEY:String = "f459ecc3033b88f879eaf8c0c382acbb";
-			private const VIMEO_SECRET:String = "7a99c4e2287d3ba4";
 			
 			/**
 			 * Vimeo video id for the first loaded video.
@@ -31,7 +29,7 @@
 			/**
 			 * Vimeo video id for the second video.
 			 * */
-			private const VIDEO_ID_2:int = 38078083;
+			private const VIDEO_ID_2:int = 38208239;
 			/**
 			 * Properties for background
 			 */
@@ -49,23 +47,23 @@
 				vimeoPlayer = new VimeoPlayer(VIMEO_CONSUMER_KEY, VIDEO_ID_1, 460, 300);
 				// Add to SpriteVisualElement
 				vimeoVideoPlayer.addChild(vimeoPlayer);
-				// Disable the first video switching button.
+				
+				// Buttons for loading a video
 				video1.enabled = false;
+				video2.enabled = true;
+				
 				// Setup events
 				//trace("add event listeners");
 				vimeoPlayer.addEventListener(Event.COMPLETE, vimeoPlayerLoaded);
-				vimeoPlayer.addEventListener(VimeoEvent.READY, readyHandler, false, 0, true);
-				vimeoPlayer.addEventListener(VimeoEvent.PLAY, playHandler, false, 0, true);
-				vimeoPlayer.addEventListener(VimeoEvent.PAUSE, pauseHandler, false, 0, true);
-				vimeoPlayer.addEventListener(VimeoEvent.PLAY_PROGRESS, playProgressHandler, false, 0, true);
 			}
 			/**
 			 * Event handler for the first video button MouseEvent.CLICK event.
 			 * */
 			protected function video1_clickHandler(event:MouseEvent):void
 			{
-				// Load the video.
+				// Load the video and start it playing.
 				loadVideo(VIDEO_ID_1);
+				
 				// Reset the video switching button states.
 				video1.enabled = false;
 				video2.enabled = true;
@@ -77,6 +75,7 @@
 			{
 				// Load the video.
 				loadVideo(VIDEO_ID_2);
+				
 				// Reset the video switching button states.
 				video1.enabled = true;
 				video2.enabled = false;
@@ -92,7 +91,7 @@
 			protected function loadProgressHandler(event:Event):void {
 				//mytrace("my loadProgressHandler");
 				if (event.hasOwnProperty('data') && Object(event).data) {
-					mytrace('my percent loaded: ' + Object(event).data.percent);
+					//mytrace('my percent loaded: ' + Object(event).data.percent);
 				}
 			}
 			protected function playProgressHandler(event:Event):void {
@@ -102,17 +101,27 @@
 				}
 			}
 			protected function readyHandler(event:Event):void {
-				mytrace('my readyHandler');
+				mytrace('my readyHandler, try to play xxx');
+				//reset();
+				vimeoPlayer.play();
+			}
+			protected function reset():void {
+				vimeoPlayer.pause();
+				vimeoPlayer.seekTo(0);
 			}
 			protected function playHandler(event:Event):void {
 				mytrace('my playHandler');
 			}
 			protected function pauseHandler(event:Event):void {
-				mytrace('my pauseHandler');
+				//mytrace('my pauseHandler');
 			}
 			protected function vimeoPlayerLoaded(event:Event):void {
 				// This is the only event handler that is triggered
 				mytrace('my player loaded');
+				vimeoPlayer.addEventListener(VimeoEvent.READY, readyHandler, false, 0, true);
+				vimeoPlayer.addEventListener(VimeoEvent.PLAY, playHandler, false, 0, true);
+				vimeoPlayer.addEventListener(VimeoEvent.PAUSE, pauseHandler, false, 0, true);
+				vimeoPlayer.addEventListener(VimeoEvent.PLAY_PROGRESS, playProgressHandler, false, 0, true);
 			}
 			protected function info_clickHandler(event:MouseEvent):void	{
 				// Look up some properties of the video
@@ -125,6 +134,7 @@
 				//traceBox.text = traceBox.text + "\r\n" + msg;
 				traceBox.text = msg;
 			}
+			
 		]]>
 	</fx:Script>
 	<!--

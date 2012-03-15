@@ -172,7 +172,7 @@ EOD;
 	// So, first see if this relatedID is the relatedID of any other moved or inserted exercises
 	// To help with finding new anchors for related moves, lets send the title. Which title if you move AP into TB? Worry later.
 	function moveContent($editedUID, $groupID, $relatedUID, $mode, $title) {
-		NetDebug::trace("moving $editedUID as mode=$mode to $relatedUID with title=".$title->productCode);
+		//NetDebug::trace("moving $editedUID as mode=$mode to $relatedUID with title=".$title->productCode);
 		$sql = 	<<<EOD
 				SELECT F_GroupID, F_EditedContentUID, F_RelatedUID, F_Mode
 				FROM T_EditedContent
@@ -188,9 +188,9 @@ EOD;
 		// For each record that comes back we need to see if we should change it's related ID to us
 		// If we are moving before an exercise that is already the relatedID for a move before, then we become the other ones move before.
 		if ($relatedRS->RecordCount()>0) {
-			NetDebug::trace("when moving found ".$relatedRS->RecordCount()." record(s) already linked to the moving one.");
+			//NetDebug::trace("when moving found ".$relatedRS->RecordCount()." record(s) already linked to the moving one.");
 		} else {
-			NetDebug::trace("nothing uses me as a relatedID");
+			//NetDebug::trace("nothing uses me as a relatedID");
 		}
 
 		// If there are several records all pointing at me, then they should all end up pointing at the same other exercise (next or prev)
@@ -206,26 +206,26 @@ EOD;
 				// It is rather poor programming, but if the item you are looking for is at the end of the unit, return the last ex as a UID
 				// rather than a full exercise class.
 				if (isset($nextUID->uid)) {
-					NetDebug::trace("I found a moveBefore {$relatedObj->F_EditedContentUID} that should be re-anchored to NEXT ".$nextUID->uid);
+					//NetDebug::trace("I found a moveBefore {$relatedObj->F_EditedContentUID} that should be re-anchored to NEXT ".$nextUID->uid);
 					$this->updateEditedContentRecord($relatedObj->F_EditedContentUID, $relatedObj->F_GroupID, $relatedObj->F_Mode, $nextUID->uid, $relatedObj->F_Mode);
 				} else if ($nextUID!=false) {
-					NetDebug::trace("I found a moveAfter {$relatedObj->F_EditedContentUID} that should be re-anchored to NEXT ".$nextUID);
+					//NetDebug::trace("I found a moveAfter {$relatedObj->F_EditedContentUID} that should be re-anchored to NEXT ".$nextUID);
 					$this->updateEditedContentRecord($relatedObj->F_EditedContentUID, $relatedObj->F_GroupID, $relatedObj->F_Mode, $nextUID, 5);
 				} else {
-					NetDebug::trace("I didn't find the NEXT record.");
+					//NetDebug::trace("I didn't find the NEXT record.");
 				}
 			// So, what happens if it used to be after the one I want to move?
 			} else if ($relatedObj->F_Mode == 5) {
 				// It is rather poor programming, but if the item you are looking for is at the beginning of the unit, return the next ex as a UID
 				// rather than a full exercise class. Mind you, I think that moveAfter's only ever happen at the end of the unit.
 				if (isset($prevUID->uid)) {
-					NetDebug::trace("I found a moveAfter {$relatedObj->F_EditedContentUID} that should be re-anchored to PREV ".$prevUID->uid);
+					//NetDebug::trace("I found a moveAfter {$relatedObj->F_EditedContentUID} that should be re-anchored to PREV ".$prevUID->uid);
 					$this->updateEditedContentRecord($relatedObj->F_EditedContentUID, $relatedObj->F_GroupID, $relatedObj->F_Mode, $prevUID->uid, $relatedObj->F_Mode);
 				} else if ($prevUID!=false) {
-					NetDebug::trace("I found a moveBefore {$relatedObj->F_EditedContentUID} that should be re-anchored to PREV ".$prevUID);
+					//NetDebug::trace("I found a moveBefore {$relatedObj->F_EditedContentUID} that should be re-anchored to PREV ".$prevUID);
 					$this->updateEditedContentRecord($relatedObj->F_EditedContentUID, $relatedObj->F_GroupID, $relatedObj->F_Mode, $prevUID, 4);
 				} else {
-					NetDebug::trace("I didn't find the PREV record.");
+					//NetDebug::trace("I didn't find the PREV record.");
 				}
 			}
 		}
@@ -654,7 +654,7 @@ EOD;
 		//$courseXMLPath = dirname(dirname($editedContentPath));
 		$courseXMLPath = $editedContentPath;
 		$toCourse = $courseXMLPath.'/course.xml';
-		NetDebug::trace("course file=".realpath($toCourse));
+		//NetDebug::trace("course file=".realpath($toCourse));
 		
 		// So first thing is to see if course.xml exists
 		// make sure that course.xml exists, copy from template if not
@@ -721,7 +721,7 @@ EOD;
 		} else {
 			$courseID = $results[0]->attributes()->id;
 			//NetDebug::trace("already got subFolder='EditedContent-$groupID' with courseID=$courseID" );
-			NetDebug::trace("already got subFolder with courseID=$courseID" );
+			//NetDebug::trace("already got subFolder with courseID=$courseID" );
 		}		
 		// Now we can extend our root to include the folder
 		$editedContentPath .= '/Courses/'.$courseID;
@@ -794,7 +794,7 @@ EOD;
 			}
 			
 		} else {
-			NetDebug::trace("already got menu.xml" );
+			//NetDebug::trace("already got menu.xml" );
 			// Make sure there is at least one unit to add exercises to
 			// Maybe this is best done when you actually want to do it, not much point now
 		}
@@ -1014,21 +1014,30 @@ EOD;
 				if (intval($titleObj->F_ProductCode) > 1000) {
 					// case-sensitive
 					$titleObj->indexFile = "Emu.xml";
+					$courseType = 'emu';	
 				// For Road to IELTS 2
-				} else if (intval($titleObj->F_ProductCode) == 52) {
+				} else if ((intval($titleObj->F_ProductCode) == 52) || 
+							(intval($titleObj->F_ProductCode) == 53)) {
+					$courseType = 'bento';	
 					switch ($titleObj->F_LanguageCode) {
 						case 'R2ILM':
 							$langCodeCopy = "LastMinute";
 							break;
-						case 'R2I10':
+						case 'R2ITD':
 							$langCodeCopy = "TestDrive";
 							break;
 						case 'R2IFV':
 							$langCodeCopy = "FullVersion";
 							break;
 					}
-					$titleObj->indexFile = "menu-Academic-".$langCodeCopy.".xml";
+					if (intval($titleObj->F_ProductCode) == 52) {
+						$version = "Academic";
+					} else {
+						$version = "GeneralTraining";
+					}					
+					$titleObj->indexFile = "menu-$version-$langCodeCopy.xml";
 				} else {
+					$courseType = 'orchid';	
 					$titleObj->indexFile = "course.xml";
 				}
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
@@ -1037,12 +1046,17 @@ EOD;
 				//AbstractService::$log->notice("get content from =".$folder."/".$titleObj->indexFile);
 
 				if ($forDMS || file_exists($folder."/".$titleObj->indexFile)) {
+					if ($courseType == 'bento') {
+						$rs = $this->_buildBentoTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
+					} else {	
+						$rs = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
+					}
 					if ($generateMaps) {
 						//echo "this product is code=$titleObj->F_ProductCode and file=$titleObj->indexFile<br/>"; // break 1;
-						$titles[$titleObj->F_ProductCode] = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS);
+						$titles[$titleObj->F_ProductCode] = $rs;
 					} else {
 						// Build the title and add it to the array
-						$titles[] = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS);
+						$titles[] = $rs;
 					}
 				}
 			}
@@ -1052,13 +1066,84 @@ EOD;
 	}
 	
 	/**
+	 * Build the titles for a given Bento product.
+	 *
+	 * @param String The folder containing the menu.xml file
+	 * @param String The product code
+	 * @return Array An Array of Title objects
+	 */
+	private function _buildBentoTitle($title, $folder, $generateMaps = false, $forDMS = false, $courseType = 'orchid') {
+		// Replace backslashes with forward slashes for Windows/Unix independence
+		$folder = ereg_replace("\\\\", "/", $folder);
+		
+		// v3.5 We have worked out which folder to use, and now need to save that in the title object
+		// It isn't done in createTitleFromObj because this is NOT a direct database field
+		// The direct db field is dbContentLocation
+		//NetDebug::trace("ContentOps: _buildBentoTitle=".$folder."/".$title->indexFile);
+		$title->contentLocation = substr($folder, 6);
+		
+		//$title->name = $folder;
+		//$title->caption = $this->getTitleCaptionFromProductCode($title->productCode);
+		//NetDebug::trace("ContentOps: _buildTitle for ".$title-> productCode);
+		// v3.3 Since you have to read product details before you call this to get the folder, can we get the name at the same time?
+		//$title-> name = $this->getTitleCaptionFromProductCode($title-> productCode);
+		// v3.3 What do I use this for?
+		//$title->softwareLocation = $this->getTitleSoftwareLocationFromProductCode($title->productCode);
+		
+		// If we only want titles then stop here and don't load any more
+		if ($forDMS) return $title;
+		
+		$doc = new DOMDocument();
+		//NetDebug::trace("read folder=".$folder."/".$title->indexFile);
+		// v3.2 Extra protection in case folders are missing
+		if (!file_exists($folder."/".$title->indexFile)) {
+			throw new Exception("missing title ".$folder."/".$title->indexFile);
+		}
+		$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile);
+		
+		// Bento titles have course nodes
+		$coursesXML = $doc->getElementsByTagName("course");
+		
+		// v3.5 For AP privacy
+		$myType = Session::get('userType');
+		
+		// v3.8 Get course tree for Bento title
+		foreach ($coursesXML as $courseXML) {
+			
+			// TODO. Privacy flags
+				
+			$course = new Course();
+			$course->setParent($title);
+			$course->id = $courseXML->getAttribute("id");
+			$course->name = urldecode($courseXML->getAttribute("caption"));
+			$course->enabledFlag = $courseXML->getAttribute("enabledFlag");
+			//NetDebug::trace("ContentOps: course=".$course->name);
+				
+			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
+				
+			if ($course->id != null) { // Ticket #104 - don't add content with missing id
+				if ($generateMaps) {
+					$title->courses[$course->id] = $course;
+				} else {
+					$title->courses[] = $course;
+				}
+				//NetDebug::trace("courses from ".$this->indexFile."-".$course-> id);	
+			}
+		}		
+		return $title;
+	}
+	private function _buildBentoUnits($courseXML, $course, $generateMaps = false, $courseType = 'orchid') {
+		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps, $courseType);
+	}
+
+	/**
 	 * Build the titles for a given folder and product code.
 	 *
 	 * @param String The folder containing the course.xml file
 	 * @param String The product code
 	 * @return Array An Array of Title objects
 	 */
-	private function _buildTitle($title, $folder, $generateMaps = false, $forDMS = false) {
+	private function _buildTitle($title, $folder, $generateMaps = false, $forDMS = false, $courseType = 'orchid') {
 		// Replace backslashes with forward slashes for Windows/Unix independence
 		$folder = ereg_replace("\\\\", "/", $folder);
 		
@@ -1160,13 +1245,13 @@ EOD;
 						//throw new Exception($this->copyOps->getCopyForId("corruptXMLError", array("errorMessage" => "courseFolder/subFolder missing in course id ".$courseXML->getAttribute("id"))));
 					} else {
 						$subFolder = $folder."/".$courseXML->getAttribute("courseFolder")."/".$courseXML->getAttribute("subFolder");
-						$course-> units = $this->_buildUnitsFromFile($subFolder, $courseXML->getAttribute("scaffold"), $course, $generateMaps);
+						$course-> units = $this->_buildUnitsFromFile($subFolder, $courseXML->getAttribute("scaffold"), $course, $generateMaps, $courseType);
 					}
 				} else {
 					// Ticket #104 - if a required attribute is missing throw an error message
 					//if ($course->id != null && ($courseXML->getAttribute("enableDate") == null))
 					//	throw new Exception($this->copyOps->getCopyForId("corruptXMLError", array("errorMessage" => "enableDate is missing in course ".$courseXML->getAttribute("id"))));
-					$course->units = $this->_buildUnitsFromXML($courseXML, $course, $generateMaps);
+					$course->units = $this->_buildUnitsFromXML($courseXML, $course, $generateMaps, $courseType);
 				}
 				
 				if ($course->id != null) { // Ticket #104 - don't add content with missing id
@@ -1194,7 +1279,7 @@ EOD;
 	 * @param Course The course these units belong to.  This is given because the course caption is actually defined in this xml file
 	 * @return Array An Array of Unit objects
 	 */
-	private function _buildUnitsFromFile($folder, $filename, $course, $generateMaps = false) {
+	private function _buildUnitsFromFile($folder, $filename, $course, $generateMaps = false, $courseType = 'orchid') {
 		// Replace backslashes with forward slashes for Windows/Unix independence
 		$folder = ereg_replace("\\\\", "/", $folder);
 		
@@ -1212,21 +1297,23 @@ EOD;
 		// $course->caption = urldecode($doc->documentElement->getAttribute("caption"));
 		
 		$xpath = new DOMxpath($doc);
-		return $this->_buildUnits($xpath->evaluate("/item/item"), $course, $generateMaps);
+		return $this->_buildUnits($xpath->evaluate("/item/item"), $course, $generateMaps, $courseType);
 	}
-	private function _buildUnitsFromXML($courseXML, $course, $generateMaps = false) {
-		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps);
+	private function _buildUnitsFromXML($courseXML, $course, $generateMaps = false, $courseType = 'orchid') {
+		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps, $courseType);
 	}
 	/**
 	 * Find all the units in a course.
 	 * @return Array An Array of Unit objects
 	 */
-	private function _buildUnits($unitsXML, $course, $generateMaps = false) {
+	private function _buildUnits($unitsXML, $course, $generateMaps = false, $courseType = 'orchid') {
 		
 		$units = array();
 		foreach ($unitsXML as $unitXML) {
 			// v3.0.5 I could duplicate the check on enabledFlag in _buildExercises rather than basing it on special unit numbers.
 			//if ($unitXML->getAttribute("unit") > "0") {  // DK: Uncomment this if clause if you want to ignore special units (certificates etc)
+
+			//NetDebug::trace("ContentOps: unitXML, eF=".$unitXML->getAttribute("enabledFlag"));
 			if ((intval($unitXML->getAttribute("enabledFlag")) & 8) || 
 				(intval($unitXML->getAttribute("enabledFlag")) & 128) || 
 				(!(intval($unitXML->getAttribute("enabledFlag")) & 3))) {
@@ -1248,8 +1335,9 @@ EOD;
 				$unit->enabledFlag = $unitXML->getAttribute("enabledFlag");
 				// v3.1 EMU information needed
 				//$unit->licencedProductCode = $unitXML->getAttribute("licencedProductCode");
-				
-				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps);	
+				//NetDebug::trace("ContentOps: unitXML, name=".$unit->name);
+
+				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType);	
 				
 				if ($unit->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
@@ -1271,8 +1359,12 @@ EOD;
 	 * @param DOMElement The course node containing the exercises
 	 * @return An array of exercise objects
 	 */
-	private function _buildExercises($unitXML, $unit, $generateMaps = false) {
-		$exercisesXML = $unitXML->getElementsByTagName("item");
+	private function _buildExercises($unitXML, $unit, $generateMaps = false, $courseType = 'orchid') {
+		if ($courseType == 'bento') {
+			$exercisesXML = $unitXML->getElementsByTagName("exercise");
+		} else {
+			$exercisesXML = $unitXML->getElementsByTagName("item");
+		}
 		
 		$exercises = array();
 		
@@ -1300,10 +1392,14 @@ EOD;
 				// v3.1 EMU information needed
 				//$exercise->licencedProductCode = $exerciseXML->getAttribute("licencedProductCode");
 				$exercise->trackableID = $exerciseXML->getAttribute("trackableID");
-				$exercise-> maxScore = $exerciseXML->getAttribute("maxScore");
+				$exercise->maxScore = $exerciseXML->getAttribute("maxScore");
 				// v3.4.1 Editing Clarity Content. Bug #132
-				$exercise->filename = $exerciseXML->getAttribute("fileName");
-				
+				if ($courseType == 'bento') {
+					$exercise->filename = $exerciseXML->getAttribute("href");
+				} else {
+					$exercise->filename = $exerciseXML->getAttribute("fileName");
+				}
+
 				if ($exercise->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
 						$exercises[$exercise->id] = $exercise;
