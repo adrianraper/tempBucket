@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -21,7 +21,9 @@
 </settings>
   <questions>
     <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="true"/>
+      <answer source="a1" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a2" correct="false"/>
       <answer source="a3" correct="false"/>
       <answer source="a4" correct="false"/>
@@ -30,25 +32,31 @@
       <answer source="a7" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
-      <answer source="a8" correct="true"/>
+      <answer source="a8" correct="false"/>
       <answer source="a9" correct="false"/>
       <answer source="a10" correct="false"/>
       <answer source="a11" correct="false"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a12" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a13" correct="false"/>
       <answer source="a14" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q3" block="b3">
-      <answer source="a15" correct="true"/>
+      <answer source="a15" correct="false"/>
       <answer source="a16" correct="false"/>
       <answer source="a17" correct="false"/>
       <answer source="a18" correct="false"/>
       <answer source="a19" correct="false"/>
-      <answer source="a20" correct="false"/>
+      <answer source="a20" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a21" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q4" block="b4">
-      <answer source="a22" correct="true"/>
+      <answer source="a22" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a23" correct="false"/>
       <answer source="a24" correct="false"/>
       <answer source="a25" correct="false"/>
@@ -57,52 +65,64 @@
       <answer source="a28" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q5" block="b5">
-      <answer source="a29" correct="true"/>
+      <answer source="a29" correct="false"/>
       <answer source="a30" correct="false"/>
       <answer source="a31" correct="false"/>
-      <answer source="a32" correct="false"/>
+      <answer source="a32" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a33" correct="false"/>
       <answer source="a34" correct="false"/>
       <answer source="a35" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q6" block="b6">
-      <answer source="a36" correct="true"/>
+      <answer source="a36" correct="false"/>
       <answer source="a37" correct="false"/>
       <answer source="a38" correct="false"/>
       <answer source="a39" correct="false"/>
       <answer source="a40" correct="false"/>
       <answer source="a41" correct="false"/>
-      <answer source="a42" correct="false"/>
+      <answer source="a42" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q7" block="b7">
-      <answer source="a43" correct="true"/>
+      <answer source="a43" correct="false"/>
       <answer source="a44" correct="false"/>
       <answer source="a45" correct="false"/>
       <answer source="a46" correct="false"/>
       <answer source="a47" correct="false"/>
       <answer source="a48" correct="false"/>
-      <answer source="a49" correct="false"/>
+      <answer source="a49" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q8" block="b8">
-      <answer source="a50" correct="true"/>
+      <answer source="a50" correct="false"/>
       <answer source="a51" correct="false"/>
       <answer source="a52" correct="false"/>
       <answer source="a53" correct="false"/>
       <answer source="a54" correct="false"/>
       <answer source="a55" correct="false"/>
-      <answer source="a56" correct="false"/>
+      <answer source="a56" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q9" block="b9">
-      <answer source="a57" correct="true"/>
+      <answer source="a57" correct="false"/>
       <answer source="a58" correct="false"/>
-      <answer source="a59" correct="false"/>
+      <answer source="a59" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a60" correct="false"/>
       <answer source="a61" correct="false"/>
       <answer source="a62" correct="false"/>
       <answer source="a63" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q10" block="b10">
-      <answer source="a64" correct="true"/>
+      <answer source="a64" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a65" correct="false"/>
       <answer source="a66" correct="false"/>
       <answer source="a67" correct="false"/>
@@ -111,16 +131,20 @@
       <answer source="a70" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q11" block="b11">
-      <answer source="a71" correct="true"/>
+      <answer source="a71" correct="false"/>
       <answer source="a72" correct="false"/>
       <answer source="a73" correct="false"/>
       <answer source="a74" correct="false"/>
-      <answer source="a75" correct="false"/>
+      <answer source="a75" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a76" correct="false"/>
       <answer source="a77" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q12" block="b12">
-      <answer source="a78" correct="true"/>
+      <answer source="a78" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a79" correct="false"/>
       <answer source="a80" correct="false"/>
       <answer source="a81" correct="false"/>
@@ -129,52 +153,64 @@
       <answer source="a84" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q13" block="b13">
-      <answer source="a85" correct="true"/>
+      <answer source="a85" correct="false"/>
       <answer source="a86" correct="false"/>
       <answer source="a87" correct="false"/>
       <answer source="a88" correct="false"/>
       <answer source="a89" correct="false"/>
       <answer source="a90" correct="false"/>
-      <answer source="a91" correct="false"/>
+      <answer source="a91" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q14" block="b14">
-      <answer source="a92" correct="true"/>
+      <answer source="a92" correct="false"/>
       <answer source="a93" correct="false"/>
       <answer source="a94" correct="false"/>
       <answer source="a95" correct="false"/>
       <answer source="a96" correct="false"/>
       <answer source="a97" correct="false"/>
-      <answer source="a98" correct="false"/>
+      <answer source="a98" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q15" block="b15">
-      <answer source="a99" correct="true"/>
+      <answer source="a99" correct="false"/>
       <answer source="a100" correct="false"/>
       <answer source="a101" correct="false"/>
       <answer source="a102" correct="false"/>
       <answer source="a103" correct="false"/>
       <answer source="a104" correct="false"/>
-      <answer source="a105" correct="false"/>
+      <answer source="a105" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q16" block="b16">
-      <answer source="a106" correct="true"/>
+      <answer source="a106" correct="false"/>
       <answer source="a107" correct="false"/>
       <answer source="a108" correct="false"/>
       <answer source="a109" correct="false"/>
-      <answer source="a110" correct="false"/>
+      <answer source="a110" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a111" correct="false"/>
       <answer source="a112" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q17" block="b17">
-      <answer source="a113" correct="true"/>
+      <answer source="a113" correct="false"/>
       <answer source="a114" correct="false"/>
       <answer source="a115" correct="false"/>
       <answer source="a116" correct="false"/>
-      <answer source="a117" correct="false"/>
+      <answer source="a117" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a118" correct="false"/>
       <answer source="a119" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q18" block="b18">
-      <answer source="a120" correct="true"/>
+      <answer source="a120" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a121" correct="false"/>
       <answer source="a122" correct="false"/>
       <answer source="a123" correct="false"/>
@@ -183,7 +219,9 @@
       <answer source="a126" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q19" block="b19">
-      <answer source="a127" correct="true"/>
+      <answer source="a127" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a128" correct="false"/>
       <answer source="a129" correct="false"/>
       <answer source="a130" correct="false"/>
@@ -192,34 +230,40 @@
       <answer source="a133" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q20" block="b20">
-      <answer source="a134" correct="true"/>
+      <answer source="a134" correct="false"/>
       <answer source="a135" correct="false"/>
       <answer source="a136" correct="false"/>
       <answer source="a137" correct="false"/>
       <answer source="a138" correct="false"/>
       <answer source="a139" correct="false"/>
-      <answer source="a140" correct="false"/>
+      <answer source="a140" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q21" block="b21">
-      <answer source="a141" correct="true"/>
+      <answer source="a141" correct="false"/>
       <answer source="a142" correct="false"/>
       <answer source="a143" correct="false"/>
       <answer source="a144" correct="false"/>
       <answer source="a145" correct="false"/>
-      <answer source="a146" correct="false"/>
+      <answer source="a146" correct="true"/>
       <answer source="a147" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q22" block="b22">
-      <answer source="a148" correct="true"/>
+      <answer source="a148" correct="false"/>
       <answer source="a149" correct="false"/>
       <answer source="a150" correct="false"/>
       <answer source="a151" correct="false"/>
       <answer source="a152" correct="false"/>
-      <answer source="a153" correct="false"/>
+      <answer source="a153" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a154" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q23" block="b23">
-      <answer source="a155" correct="true"/>
+      <answer source="a155" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a156" correct="false"/>
       <answer source="a157" correct="false"/>
       <answer source="a158" correct="false"/>
@@ -228,8 +272,10 @@
       <answer source="a161" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q24" block="b24">
-      <answer source="a162" correct="true"/>
-      <answer source="a163" correct="false"/>
+      <answer source="a162" correct="false"/>
+      <answer source="a163" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a164" correct="false"/>
       <answer source="a165" correct="false"/>
       <answer source="a166" correct="false"/>
@@ -237,7 +283,9 @@
       <answer source="a168" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q25" block="b25">
-      <answer source="a169" correct="true"/>
+      <answer source="a169" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a170" correct="false"/>
       <answer source="a171" correct="false"/>
       <answer source="a172" correct="false"/>
@@ -246,7 +294,9 @@
       <answer source="a175" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q26" block="b26">
-      <answer source="a176" correct="true"/>
+      <answer source="a176" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a177" correct="false"/>
       <answer source="a178" correct="false"/>
       <answer source="a179" correct="false"/>
@@ -255,8 +305,10 @@
       <answer source="a182" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q27" block="b27">
-      <answer source="a183" correct="true"/>
-      <answer source="a184" correct="false"/>
+      <answer source="a183" correct="false"/>
+      <answer source="a184" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a185" correct="false"/>
       <answer source="a186" correct="false"/>
       <answer source="a187" correct="false"/>
@@ -264,7 +316,9 @@
       <answer source="a189" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q28" block="b28">
-      <answer source="a190" correct="true"/>
+      <answer source="a190" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a191" correct="false"/>
       <answer source="a192" correct="false"/>
       <answer source="a193" correct="false"/>
@@ -273,16 +327,20 @@
       <answer source="a196" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q29" block="b29">
-      <answer source="a197" correct="true"/>
+      <answer source="a197" correct="false"/>
       <answer source="a198" correct="false"/>
       <answer source="a199" correct="false"/>
       <answer source="a200" correct="false"/>
-      <answer source="a201" correct="false"/>
+      <answer source="a201" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a202" correct="false"/>
       <answer source="a203" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q30" block="b30">
-      <answer source="a204" correct="true"/>
+      <answer source="a204" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a205" correct="false"/>
       <answer source="a206" correct="false"/>
       <answer source="a207" correct="false"/>
@@ -291,53 +349,65 @@
       <answer source="a210" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q31" block="b31">
-      <answer source="a211" correct="true"/>
+      <answer source="a211" correct="false"/>
       <answer source="a212" correct="false"/>
       <answer source="a213" correct="false"/>
       <answer source="a214" correct="false"/>
-      <answer source="a215" correct="false"/>
+      <answer source="a215" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a216" correct="false"/>
       <answer source="a217" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q32" block="b32">
-      <answer source="a218" correct="true"/>
+      <answer source="a218" correct="false"/>
       <answer source="a219" correct="false"/>
       <answer source="a220" correct="false"/>
-      <answer source="a221" correct="false"/>
+      <answer source="a221" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a222" correct="false"/>
       <answer source="a223" correct="false"/>
       <answer source="a224" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q33" block="b33">
-      <answer source="a225" correct="true"/>
+      <answer source="a225" correct="false"/>
       <answer source="a226" correct="false"/>
-      <answer source="a227" correct="false"/>
+      <answer source="a227" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a228" correct="false"/>
       <answer source="a229" correct="false"/>
       <answer source="a230" correct="false"/>
       <answer source="a231" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q34" block="b34">
-      <answer source="a232" correct="true"/>
+      <answer source="a232" correct="false"/>
       <answer source="a233" correct="false"/>
-      <answer source="a234" correct="false"/>
+      <answer source="a234" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a235" correct="false"/>
       <answer source="a236" correct="false"/>
       <answer source="a237" correct="false"/>
       <answer source="a238" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q35" block="b35">
-      <answer source="a239" correct="true"/>
+      <answer source="a239" correct="false"/>
       <answer source="a240" correct="false"/>
       <answer source="a241" correct="false"/>
       <answer source="a242" correct="false"/>
-      <answer source="a243" correct="false"/>
+      <answer source="a243" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a244" correct="false"/>
       <answer source="a245" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q36" block="b36">
-      <answer source="a246" correct="true"/>
-      <answer source="a247" correct="false"/>
+      <answer source="a246" correct="false"/>
+      <answer source="a247" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a248" correct="false"/>
       <answer source="a249" correct="false"/>
       <answer source="a250" correct="false"/>
@@ -345,35 +415,43 @@
       <answer source="a252" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q37" block="b37">
-      <answer source="a253" correct="true"/>
+      <answer source="a253" correct="false"/>
       <answer source="a254" correct="false"/>
       <answer source="a255" correct="false"/>
       <answer source="a256" correct="false"/>
       <answer source="a257" correct="false"/>
-      <answer source="a258" correct="false"/>
+      <answer source="a258" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a259" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q38" block="b38">
-      <answer source="a260" correct="true"/>
+      <answer source="a260" correct="false"/>
       <answer source="a261" correct="false"/>
-      <answer source="a262" correct="false"/>
+      <answer source="a262" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a263" correct="false"/>
       <answer source="a264" correct="false"/>
       <answer source="a265" correct="false"/>
       <answer source="a266" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q39" block="b39">
-      <answer source="a267" correct="true"/>
+      <answer source="a267" correct="false"/>
       <answer source="a268" correct="false"/>
       <answer source="a269" correct="false"/>
       <answer source="a270" correct="false"/>
       <answer source="a271" correct="false"/>
       <answer source="a272" correct="false"/>
-      <answer source="a273" correct="false"/>
+      <answer source="a273" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q40" block="b40">
-      <answer source="a274" correct="true"/>
-      <answer source="a275" correct="false"/>
+      <answer source="a274" correct="false"/>
+      <answer source="a275" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a276" correct="false"/>
       <answer source="a277" correct="false"/>
       <answer source="a278" correct="false"/>
@@ -381,62 +459,76 @@
       <answer source="a280" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q41" block="b41">
-      <answer source="a281" correct="true"/>
+      <answer source="a281" correct="false"/>
       <answer source="a282" correct="false"/>
       <answer source="a283" correct="false"/>
       <answer source="a284" correct="false"/>
       <answer source="a285" correct="false"/>
       <answer source="a286" correct="false"/>
-      <answer source="a287" correct="false"/>
+      <answer source="a287" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q42" block="b42">
-      <answer source="a288" correct="true"/>
+      <answer source="a288" correct="false"/>
       <answer source="a289" correct="false"/>
-      <answer source="a290" correct="false"/>
+      <answer source="a290" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a291" correct="false"/>
       <answer source="a292" correct="false"/>
       <answer source="a293" correct="false"/>
       <answer source="a294" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q43" block="b43">
-      <answer source="a295" correct="true"/>
+      <answer source="a295" correct="false"/>
       <answer source="a296" correct="false"/>
       <answer source="a297" correct="false"/>
       <answer source="a298" correct="false"/>
-      <answer source="a299" correct="false"/>
+      <answer source="a299" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a300" correct="false"/>
       <answer source="a301" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q44" block="b44">
-      <answer source="a302" correct="true"/>
+      <answer source="a302" correct="false"/>
       <answer source="a303" correct="false"/>
       <answer source="a304" correct="false"/>
       <answer source="a305" correct="false"/>
       <answer source="a306" correct="false"/>
       <answer source="a307" correct="false"/>
-      <answer source="a308" correct="false"/>
+      <answer source="a308" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q45" block="b45">
-      <answer source="a309" correct="true"/>
+      <answer source="a309" correct="false"/>
       <answer source="a310" correct="false"/>
-      <answer source="a311" correct="false"/>
+      <answer source="a311" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a312" correct="false"/>
       <answer source="a313" correct="false"/>
       <answer source="a314" correct="false"/>
       <answer source="a315" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q46" block="b46">
-      <answer source="a316" correct="true"/>
+      <answer source="a316" correct="false"/>
       <answer source="a317" correct="false"/>
       <answer source="a318" correct="false"/>
       <answer source="a319" correct="false"/>
       <answer source="a320" correct="false"/>
       <answer source="a321" correct="false"/>
-      <answer source="a322" correct="false"/>
+      <answer source="a322" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q47" block="b47">
-      <answer source="a323" correct="true"/>
-      <answer source="a324" correct="false"/>
+      <answer source="a323" correct="false"/>
+      <answer source="a324" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a325" correct="false"/>
       <answer source="a326" correct="false"/>
       <answer source="a327" correct="false"/>
@@ -444,17 +536,21 @@
       <answer source="a329" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q48" block="b48">
-      <answer source="a330" correct="true"/>
+      <answer source="a330" correct="false"/>
       <answer source="a331" correct="false"/>
       <answer source="a332" correct="false"/>
       <answer source="a333" correct="false"/>
       <answer source="a334" correct="false"/>
       <answer source="a335" correct="false"/>
-      <answer source="a336" correct="false"/>
+      <answer source="a336" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q49" block="b49">
-      <answer source="a337" correct="true"/>
-      <answer source="a338" correct="false"/>
+      <answer source="a337" correct="false"/>
+      <answer source="a338" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a339" correct="false"/>
       <answer source="a340" correct="false"/>
       <answer source="a341" correct="false"/>
@@ -462,8 +558,10 @@
       <answer source="a343" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q50" block="b50">
-      <answer source="a344" correct="true"/>
-      <answer source="a345" correct="false"/>
+      <answer source="a344" correct="false"/>
+      <answer source="a345" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a346" correct="false"/>
       <answer source="a347" correct="false"/>
       <answer source="a348" correct="false"/>
@@ -471,8 +569,10 @@
       <answer source="a350" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q51" block="b51">
-      <answer source="a351" correct="true"/>
-      <answer source="a352" correct="false"/>
+      <answer source="a351" correct="false"/>
+      <answer source="a352" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a353" correct="false"/>
       <answer source="a354" correct="false"/>
       <answer source="a355" correct="false"/>
@@ -480,8 +580,10 @@
       <answer source="a357" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q52" block="b52">
-      <answer source="a358" correct="true"/>
-      <answer source="a359" correct="false"/>
+      <answer source="a358" correct="false"/>
+      <answer source="a359" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
       <answer source="a360" correct="false"/>
       <answer source="a361" correct="false"/>
       <answer source="a362" correct="false"/>
@@ -489,13 +591,15 @@
       <answer source="a364" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q53" block="b53">
-      <answer source="a365" correct="true"/>
+      <answer source="a365" correct="false"/>
       <answer source="a366" correct="false"/>
       <answer source="a367" correct="false"/>
       <answer source="a368" correct="false"/>
       <answer source="a369" correct="false"/>
       <answer source="a370" correct="false"/>
-      <answer source="a371" correct="false"/>
+      <answer source="a371" correct="true">
+	  <feedback source="fb0"/>
+      </answer>
     </DropDownQuestion>
   </questions>
 </script>
@@ -504,108 +608,658 @@
 <body>
 	
 <header>
-	
-		
-		Put the words and phrases into the correct group according to how each one is used. Click on the arrows on the gaps on the right hand side. Decide how to categorise each word or phrase on the left.
-		
+<div id="instruction">
+Put the words and phrases into the correct group according to how each one is used. Click on the arrows on the gaps on the right hand side. Decide how to categorise each word or phrase on the left.
+</div>	
 </header>
 	
 <section id="body">
-  <p align="left">as a consequence of	<select id="q1"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>although	<select id="q2"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>with the aim of	<select id="q3"><option>Expressing purpose</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Giving opinions</option></select>as a result	<select id="q4"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>to sum up	<select id="q5"><option>Drawing conclusions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I am convinced that	<select id="q6"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>I strongly support the idea that	<select id="q7"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>I am of the opinion that	<select id="q8"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>a case in point is	<select id="q9"><option>Giving examples</option><option>Listing points</option><option>Expressing cause and result</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>bring about	<select id="q10"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>whereas	<select id="q11"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>consequently	<select id="q12"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I am in favour of	<select id="q13"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>I am sure	<select id="q14"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>I believe	<select id="q15"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>on the other hand	<select id="q16"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>though	<select id="q17"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>due to	<select id="q18"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>give rise to	<select id="q19"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I am opposed to	<select id="q20"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>in order to	<select id="q21"><option>Expressing purpose</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Giving opinions</option></select>so that		<select id="q22"><option>Expressing purpose</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Giving opinions</option></select>lead to		<select id="q23"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>thirdly	<select id="q24"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>on account of	<select id="q25"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>owing to	<select id="q26"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>secondly	<select id="q27"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>result in	<select id="q28"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>in spite of	<select id="q29"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>stem from	<select id="q30"><option>Expressing cause and result</option><option>Listing points</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>despite	<select id="q31"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>in conclusion	<select id="q32"><option>Drawing conclusions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>like	<select id="q33"><option>Giving examples</option><option>Listing points</option><option>Expressing cause and result</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>such as	<select id="q34"><option>Giving examples</option><option>Listing points</option><option>Expressing cause and result</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>however	<select id="q35"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>finally	<select id="q36"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>so as to	<select id="q37"><option>Expressing purpose</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Giving opinions</option></select>for example	<select id="q38"><option>Giving examples</option><option>Listing points</option><option>Expressing cause and result</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I disagree	<select id="q39"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>what is more	<select id="q40"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I think	<select id="q41"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>for instance	<select id="q42"><option>Giving examples</option><option>Listing points</option><option>Expressing cause and result</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>in contrast	<select id="q43"><option>Expressing contrast</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing purpose</option><option>Giving opinions</option></select>Personally, I feel that	<select id="q44"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>including	<select id="q45"><option>Giving examples</option><option>Listing points</option><option>Expressing cause and result</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I agree	<select id="q46"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>moreover	<select id="q47"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>I am against	<select id="q48"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select>firstly	<select id="q49"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>furthermore	<select id="q50"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>in addition	<select id="q51"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>lastly	<select id="q52"><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option><option>Giving opinions</option></select>In my opinion	<select id="q53"><option>Giving opinions</option><option>Listing points</option><option>Expressing cause and result</option><option>Giving examples</option><option>Drawing conclusions</option><option>Expressing contrast</option><option>Expressing purpose</option></select></p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<img class="rightFloat" src="../media/SS_AW_014.jpg" mode="1" id="1001"/>
+
+<div id="dropdown">
+
+  <p>as a consequence of<tab/><tab/><tab/><tab/>
+  <select id="q1">
+  <option id="a1">Expressing cause and result</option>
+  <option id="a2">Listing points</option>
+  <option id="a3">Giving examples</option>
+  <option id="a4">Drawing conclusions</option>
+  <option id="a5">Expressing contrast</option>
+  <option id="a6">Expressing purpose</option>
+  <option id="a7">Giving opinions</option>
+  </select></p>
+  
+  <p>although<tab/><tab/><tab/><tab/><tab/>
+  <select id="q2">
+  <option id="a8">Expressing cause and result</option>
+  <option id="a9">Listing points</option>
+  <option id="a10">Giving examples</option>
+  <option id="a11">Drawing conclusions</option>
+  <option id="a12">Expressing contrast</option>
+  <option id="a13">Expressing purpose</option>
+  <option id="a14">Giving opinions</option>
+  </select></p>
+  
+  <p>with the aim of<tab/><tab/><tab/><tab/>
+  <select id="q3">
+  <option id="a15">Expressing cause and result</option>
+  <option id="a16">Listing points</option>
+  <option id="a17">Giving examples</option>
+  <option id="a18">Drawing conclusions</option>
+  <option id="a19">Expressing contrast</option>
+  <option id="a20">Expressing purpose</option>
+  <option id="a21">Giving opinions</option>
+  </select></p>
+  
+  <p>as a result<tab/><tab/><tab/><tab/><tab/>
+  <select id="q4">
+  <option id="a22">Expressing cause and result</option>
+  <option id="a23">Listing points</option>
+  <option id="a24">Giving examples</option>
+  <option id="a25">Drawing conclusions</option>
+  <option id="a26">Expressing contrast</option>
+  <option id="a27">Expressing purpose</option>
+  <option id="a28">Giving opinions</option>
+  </select></p>
+  
+  <p>to sum up<tab/><tab/><tab/><tab/><tab/>
+  <select id="q5">
+  <option id="a29">Expressing cause and result</option>
+  <option id="a30">Listing points</option>
+  <option id="a31">Giving examples</option>
+  <option id="a32">Drawing conclusions</option>
+  <option id="a33">Expressing contrast</option>
+  <option id="a34">Expressing purpose</option>
+  <option id="a35">Giving opinions</option>
+  </select></p>
+  
+  <p>I am convinced that<tab/><tab/><tab/><tab/>
+  <select id="q6">
+  <option id="a36">Expressing cause and result</option>
+  <option id="a37">Listing points</option>
+  <option id="a38">Giving examples</option>
+  <option id="a39">Drawing conclusions</option>
+  <option id="a40">Expressing contrast</option>
+  <option id="a41">Expressing purpose</option>
+  <option id="a42">Giving opinions</option>
+  </select></p>
+  
+  <p>I strongly support the idea that<tab/><tab/>
+  <select id="q7">
+  <option id="a43">Expressing cause and result</option>
+  <option id="a44">Listing points</option>
+  <option id="a45">Giving examples</option>
+  <option id="a46">Drawing conclusions</option>
+  <option id="a47">Expressing contrast</option>
+  <option id="a48">Expressing purpose</option>
+  <option id="a49">Giving opinions</option>
+  </select></p>
+  
+  <p>I am of the opinion that<tab/><tab/><tab/>
+  <select id="q8">
+  <option id="a50">Expressing cause and result</option>
+  <option id="a51">Listing points</option>
+  <option id="a52">Giving examples</option>
+  <option id="a53">Drawing conclusions</option>
+  <option id="a54">Expressing contrast</option>
+  <option id="a55">Expressing purpose</option>
+  <option id="a56">Giving opinions</option>
+  </select></p>
+  
+  <p>a case in point is<tab/><tab/><tab/><tab/>
+  <select id="q9">
+  <option id="a57">Expressing cause and result</option>
+  <option id="a58">Listing points</option>
+  <option id="a59">Giving examples</option>
+  <option id="a60">Drawing conclusions</option>
+  <option id="a61">Expressing contrast</option>
+  <option id="a62">Expressing purpose</option>
+  <option id="a63">Giving opinions</option>
+  </select></p>
+  
+  <p>bring about<tab/><tab/><tab/><tab/><tab/>
+  <select id="q10">
+  <option id="a64">Expressing cause and result</option>
+  <option id="a65">Listing points</option>
+  <option id="a66">Giving examples</option>
+  <option id="a67">Drawing conclusions</option>
+  <option id="a68">Expressing contrast</option>
+  <option id="a69">Expressing purpose</option>
+  <option id="a70">Giving opinions</option>
+  </select></p>
+  
+  <p>whereas<tab/><tab/><tab/><tab/><tab/>
+  <select id="q11">
+  <option id="a71">Expressing cause and result</option>
+  <option id="a72">Listing points</option>
+  <option id="a73">Giving examples</option>
+  <option id="a74">Drawing conclusions</option>
+  <option id="a75">Expressing contrast</option>
+  <option id="a76">Expressing purpose</option>
+  <option id="a77">Giving opinions</option>
+  </select></p>
+  
+  <p>consequently<tab/><tab/><tab/><tab/>
+  <select id="q12">
+  <option id="a78">Expressing cause and result</option>
+  <option id="a79">Listing points</option>
+  <option id="a80">Giving examples</option>
+  <option id="a81">Drawing conclusions</option>
+  <option id="a82">Expressing contrast</option>
+  <option id="a83">Expressing purpose</option>
+  <option id="a84">Giving opinions</option>
+  </select></p>
+  
+  <p>I am in favour of<tab/><tab/><tab/><tab/>
+  <select id="q13">
+  <option id="a85">Expressing cause and result</option>
+  <option id="a86">Listing points</option>
+  <option id="a87">Giving examples</option>
+  <option id="a88">Drawing conclusions</option>
+  <option id="a89">Expressing contrast</option>
+  <option id="a90">Expressing purpose</option>
+  <option id="a91">Giving opinions</option>
+  </select></p>
+  
+  <p>I am sure<tab/><tab/><tab/><tab/><tab/>
+  <select id="q14">
+  <option id="a92">Expressing cause and result</option>
+  <option id="a93">Listing points</option>
+  <option id="a94">Giving examples</option>
+  <option id="a95">Drawing conclusions</option>
+  <option id="a96">Expressing contrast</option>
+  <option id="a97">Expressing purpose</option>
+  <option id="a98">Giving opinions</option>
+  </select></p>
+  
+  <p>I believe<tab/><tab/><tab/><tab/><tab/>
+  <select id="q15">
+  <option id="a99">Expressing cause and result</option>
+  <option id="a100">Listing points</option>
+  <option id="a101">Giving examples</option>
+  <option id="a102">Drawing conclusions</option>
+  <option id="a103">Expressing contrast</option>
+  <option id="a104">Expressing purpose</option>
+  <option id="a105">Giving opinions</option>
+  </select></p>
+  
+  <p>on the other hand<tab/><tab/><tab/><tab/>
+  <select id="q16">
+  <option id="a106">Expressing cause and result</option>
+  <option id="a107">Listing points</option>
+  <option id="a108">Giving examples</option>
+  <option id="a109">Drawing conclusions</option>
+  <option id="a110">Expressing contrast</option>
+  <option id="a111">Expressing purpose</option>
+  <option id="a112">Giving opinions</option>
+  </select></p>
+  
+  <p>though<tab/><tab/><tab/><tab/><tab/>
+  <select id="q17">
+  <option id="a113">Expressing cause and result</option>
+  <option id="a114">Listing points</option>
+  <option id="a115">Giving examples</option>
+  <option id="a116">Drawing conclusions</option>
+  <option id="a117">Expressing contrast</option>
+  <option id="a118">Expressing purpose</option>
+  <option id="a119">Giving opinions</option>
+  </select></p>
+  
+  <p>due to<tab/><tab/><tab/><tab/><tab/>
+  <select id="q18">
+  <option id="a120">Expressing cause and result</option>
+  <option id="a121">Listing points</option>
+  <option id="a122">Giving examples</option>
+  <option id="a123">Drawing conclusions</option>
+  <option id="a124">Expressing contrast</option>
+  <option id="a125">Expressing purpose</option>
+  <option id="a126">Giving opinions</option>
+  </select></p>
+  
+  <p>give rise to<tab/><tab/><tab/><tab/><tab/>
+  <select id="q19">
+  <option id="a127">Expressing cause and result</option>
+  <option id="a128">Listing points</option>
+  <option id="a129">Giving examples</option>
+  <option id="a130">Drawing conclusions</option>
+  <option id="a131">Expressing contrast</option>
+  <option id="a132">Expressing purpose</option>
+  <option id="a133">Giving opinions</option>
+  </select></p>
+  
+  <p>I am opposed to<tab/><tab/><tab/><tab/>
+  <select id="q20">
+  <option id="a134">Expressing cause and result</option>
+  <option id="a135">Listing points</option>
+  <option id="a136">Giving examples</option>
+  <option id="a137">Drawing conclusions</option>
+  <option id="a138">Expressing contrast</option>
+  <option id="a139">Expressing purpose</option>
+  <option id="a140">Giving opinions</option>
+  </select></p>
+  
+  <p>in order to<tab/><tab/><tab/><tab/><tab/>
+  <select id="q21">
+  <option id="a141">Expressing cause and result</option>
+  <option id="a142">Listing points</option>
+  <option id="a143">Giving examples</option>
+  <option id="a144">Drawing conclusions</option>
+  <option id="a145">Expressing contrast</option>
+  <option id="a146">Expressing purpose</option>
+  <option id="a147">Giving opinions</option>
+  </select></p>
+  
+  <p>so that<tab/><tab/><tab/><tab/><tab/>
+  <select id="q22">
+  <option id="a148">Expressing cause and result</option>
+  <option id="a149">Listing points</option>
+  <option id="a150">Giving examples</option>
+  <option id="a151">Drawing conclusions</option>
+  <option id="a152">Expressing contrast</option>
+  <option id="a153">Expressing purpose</option>
+  <option id="a154">Giving opinions</option>
+  </select></p>
+  
+  <p>lead to<tab/><tab/><tab/><tab/><tab/>
+  <select id="q23">
+  <option id="a155">Expressing cause and result</option>
+  <option id="a156">Listing points</option>
+  <option id="a157">Giving examples</option>
+  <option id="a158">Drawing conclusions</option>
+  <option id="a159">Expressing contrast</option>
+  <option id="a160">Expressing purpose</option>
+  <option id="a161">Giving opinions</option>
+  </select></p>
+  
+  <p>thirdly<tab/><tab/><tab/><tab/><tab/>
+  <select id="q24">
+  <option id="a162">Expressing cause and result</option>
+  <option id="a163">Listing points</option>
+  <option id="a164">Giving examples</option>
+  <option id="a165">Drawing conclusions</option>
+  <option id="a166">Expressing contrast</option>
+  <option id="a167">Expressing purpose</option>
+  <option id="a168">Giving opinions</option>
+  </select></p>
+  
+  <p>on account of<tab/><tab/><tab/><tab/>
+  <select id="q25">
+  <option id="a169">Expressing cause and result</option>
+  <option id="a170">Listing points</option>
+  <option id="a171">Giving examples</option>
+  <option id="a172">Drawing conclusions</option>
+  <option id="a173">Expressing contrast</option>
+  <option id="a174">Expressing purpose</option>
+  <option id="a175">Giving opinions</option>
+  </select></p>
+  
+  <p>owing to<tab/><tab/><tab/><tab/><tab/>
+  <select id="q26">
+  <option id="a176">Expressing cause and result</option>
+  <option id="a177">Listing points</option>
+  <option id="a178">Giving examples</option>
+  <option id="a179">Drawing conclusions</option>
+  <option id="a180">Expressing contrast</option>
+  <option id="a181">Expressing purpose</option>
+  <option id="a182">Giving opinions</option>
+  </select></p>
+  
+  <p>secondly<tab/><tab/><tab/><tab/><tab/>
+  <select id="q27">
+  <option id="a183">Expressing cause and result</option>
+  <option id="a184">Listing points</option>
+  <option id="a185">Giving examples</option>
+  <option id="a186">Drawing conclusions</option>
+  <option id="a187">Expressing contrast</option>
+  <option id="a188">Expressing purpose</option>
+  <option id="a189">Giving opinions</option>
+  </select></p>
+  
+  <p>result in<tab/><tab/><tab/><tab/><tab/>
+  <select id="q28">
+  <option id="a190">Expressing cause and result</option>
+  <option id="a191">Listing points</option>
+  <option id="a192">Giving examples</option>
+  <option id="a193">Drawing conclusions</option>
+  <option id="a194">Expressing contrast</option>
+  <option id="a195">Expressing purpose</option>
+  <option id="a196">Giving opinions</option>
+  </select></p>
+  
+  <p>in spite of<tab/><tab/><tab/><tab/><tab/>
+  <select id="q29">
+  <option id="a197">Expressing cause and result</option>
+  <option id="a198">Listing points</option>
+  <option id="a199">Giving examples</option>
+  <option id="a200">Drawing conclusions</option>
+  <option id="a201">Expressing contrast</option>
+  <option id="a202">Expressing purpose</option>
+  <option id="a203">Giving opinions</option>
+  </select></p>
+  
+  <p>stem from<tab/><tab/><tab/><tab/><tab/>
+  <select id="q30">
+  <option id="a204">Expressing cause and result</option>
+  <option id="a205">Listing points</option>
+  <option id="a206">Giving examples</option>
+  <option id="a207">Drawing conclusions</option>
+  <option id="a208">Expressing contrast</option>
+  <option id="a209">Expressing purpose</option>
+  <option id="a210">Giving opinions</option>
+  </select></p>
+  
+  <p>despite<tab/><tab/><tab/><tab/><tab/>
+  <select id="q31">
+  <option id="a211">Expressing cause and result</option>
+  <option id="a212">Listing points</option>
+  <option id="a213">Giving examples</option>
+  <option id="a214">Drawing conclusions</option>
+  <option id="a215">Expressing contrast</option>
+  <option id="a216">Expressing purpose</option>
+  <option id="a217">Giving opinions</option>
+  </select></p>
+  
+  <p>in conclusion<tab/><tab/><tab/><tab/>
+  <select id="q32">
+  <option id="a218">Expressing cause and result</option>
+  <option id="a219">Listing points</option>
+  <option id="a220">Giving examples</option>
+  <option id="a221">Drawing conclusions</option>
+  <option id="a222">Expressing contrast</option>
+  <option id="a223">Expressing purpose</option>
+  <option id="a224">Giving opinions</option>
+  </select></p>
+  
+  <p>like<tab/><tab/><tab/><tab/><tab/><tab/>
+  <select id="q33">
+  <option id="a225">Expressing cause and result</option>
+  <option id="a226">Listing points</option>
+  <option id="a227">Giving examples</option>
+  <option id="a228">Drawing conclusions</option>
+  <option id="a229">Expressing contrast</option>
+  <option id="a230">Expressing purpose</option>
+  <option id="a231">Giving opinions</option>
+  </select></p>
+  
+  <p>such as<tab/><tab/><tab/><tab/><tab/>
+  <select id="q34">
+  <option id="a232">Expressing cause and result</option>
+  <option id="a233">Listing points</option>
+  <option id="a234">Giving examples</option>
+  <option id="a235">Drawing conclusions</option>
+  <option id="a236">Expressing contrast</option>
+  <option id="a237">Expressing purpose</option>
+  <option id="a238">Giving opinions</option>
+  </select></p>
+  
+  <p>however<tab/><tab/><tab/><tab/><tab/>
+  <select id="q35">
+  <option id="a239">Expressing cause and result</option>
+  <option id="a240">Listing points</option>
+  <option id="a241">Giving examples</option>
+  <option id="a242">Drawing conclusions</option>
+  <option id="a243">Expressing contrast</option>
+  <option id="a244">Expressing purpose</option>
+  <option id="a245">Giving opinions</option>
+  </select></p>
+  
+  <p>finally<tab/><tab/><tab/><tab/><tab/>
+  <select id="q36">
+  <option id="a246">Expressing cause and result</option>
+  <option id="a247">Listing points</option>
+  <option id="a248">Giving examples</option>
+  <option id="a249">Drawing conclusions</option>
+  <option id="a250">Expressing contrast</option>
+  <option id="a251">Expressing purpose</option>
+  <option id="a252">Giving opinions</option>
+  </select></p>
+  
+  <p>so as to <tab/><tab/><tab/><tab/><tab/>
+  <select id="q37">
+  <option id="a253">Expressing cause and result</option>
+  <option id="a254">Listing points</option>
+  <option id="a255">Giving examples</option>
+  <option id="a256">Drawing conclusions</option>
+  <option id="a257">Expressing contrast</option>
+  <option id="a258">Expressing purpose</option>
+  <option id="a259">Giving opinions</option>
+  </select></p>
+  
+  <p>for example<tab/><tab/><tab/><tab/><tab/>
+  <select id="q38">
+  <option id="a260">Expressing cause and result</option>
+  <option id="a261">Listing points</option>
+  <option id="a262">Giving examples</option>
+  <option id="a263">Drawing conclusions</option>
+  <option id="a264">Expressing contrast</option>
+  <option id="a265">Expressing purpose</option>
+  <option id="a266">Giving opinions</option>
+  </select></p>
+  
+  <p>I disagree<tab/><tab/><tab/><tab/><tab/>
+  <select id="q39">
+  <option id="a267">Expressing cause and result</option>
+  <option id="a268">Listing points</option>
+  <option id="a269">Giving examples</option>
+  <option id="a270">Drawing conclusions</option>
+  <option id="a271">Expressing contrast</option>
+  <option id="a272">Expressing purpose</option>
+  <option id="a273">Giving opinions</option>
+  </select></p>
+  
+  <p>what is more<tab/><tab/><tab/><tab/>
+  <select id="q40">
+  <option id="a274">Expressing cause and result</option>
+  <option id="a275">Listing points</option>
+  <option id="a276">Giving examples</option>
+  <option id="a277">Drawing conclusions</option>
+  <option id="a278">Expressing contrast</option>
+  <option id="a279">Expressing purpose</option>
+  <option id="a280">Giving opinions</option>
+  </select></p>
+  
+  <p>I think<tab/><tab/><tab/><tab/><tab/>
+  <select id="q41">
+  <option id="a281">Expressing cause and result</option>
+  <option id="a282">Listing points</option>
+  <option id="a283">Giving examples</option>
+  <option id="a284">Drawing conclusions</option>
+  <option id="a285">Expressing contrast</option>
+  <option id="a286">Expressing purpose</option>
+  <option id="a287">Giving opinions</option>
+  </select></p>
+  
+  <p>for instance<tab/><tab/><tab/><tab/><tab/>
+  <select id="q42">
+  <option id="a288">Expressing cause and result</option>
+  <option id="a289">Listing points</option>
+  <option id="a290">Giving examples</option>
+  <option id="a291">Drawing conclusions</option>
+  <option id="a292">Expressing contrast</option>
+  <option id="a293">Expressing purpose</option>
+  <option id="a294">Giving opinions</option>
+  </select></p>
+  
+  <p>in contrast<tab/><tab/><tab/><tab/><tab/>
+  <select id="q43">
+  <option id="a295">Expressing cause and result</option>
+  <option id="a296">Listing points</option>
+  <option id="a297">Giving examples</option>
+  <option id="a298">Drawing conclusions</option>
+  <option id="a299">Expressing contrast</option>
+  <option id="a300">Expressing purpose</option>
+  <option id="a301">Giving opinions</option>
+  </select></p>  
+  
+  <p>Personally, I feel that<tab/><tab/><tab/>
+  <select id="q44">
+  <option id="a302">Expressing cause and result</option>
+  <option id="a303">Listing points</option>
+  <option id="a304">Giving examples</option>
+  <option id="a305">Drawing conclusions</option>
+  <option id="a306">Expressing contrast</option>
+  <option id="a307">Expressing purpose</option>
+  <option id="a308">Giving opinions</option>
+  </select></p>
+  
+  <p>including<tab/><tab/><tab/><tab/><tab/>
+  <select id="q45">
+  <option id="a309">Expressing cause and result</option>
+  <option id="a310">Listing points</option>
+  <option id="a311">Giving examples</option>
+  <option id="a312">Drawing conclusions</option>
+  <option id="a313">Expressing contrast</option>
+  <option id="a314">Expressing purpose</option>
+  <option id="a315">Giving opinions</option>
+  </select></p>
+  
+  <p>I agree<tab/><tab/><tab/><tab/><tab/>
+  <select id="q46">
+  <option id="a316">Expressing cause and result</option>
+  <option id="a317">Listing points</option>
+  <option id="a318">Giving examples</option>
+  <option id="a319">Drawing conclusions</option>
+  <option id="a320">Expressing contrast</option>
+  <option id="a321">Expressing purpose</option>
+  <option id="a322">Giving opinions</option>
+  </select></p>
+  
+  <p>moreover<tab/><tab/><tab/><tab/><tab/>
+  <select id="q47">
+  <option id="a323">Expressing cause and result</option>
+  <option id="a324">Listing points</option>
+  <option id="a325">Giving examples</option>
+  <option id="a326">Drawing conclusions</option>
+  <option id="a327">Expressing contrast</option>
+  <option id="a328">Expressing purpose</option>
+  <option id="a329">Giving opinions</option>
+  </select></p>
+  
+  <p>I am against<tab/><tab/><tab/><tab/>
+  <select id="q48">
+  <option id="a330">Expressing cause and result</option>
+  <option id="a331">Listing points</option>
+  <option id="a332">Giving examples</option>
+  <option id="a333">Drawing conclusions</option>
+  <option id="a334">Expressing contrast</option>
+  <option id="a335">Expressing purpose</option>
+  <option id="a336">Giving opinions</option>
+  </select></p>
+  
+  <p>firstly<tab/><tab/><tab/><tab/><tab/>
+  <select id="q49">
+  <option id="a337">Expressing cause and result</option>
+  <option id="a338">Listing points</option>
+  <option id="a339">Giving examples</option>
+  <option id="a340">Drawing conclusions</option>
+  <option id="a341">Expressing contrast</option>
+  <option id="a342">Expressing purpose</option>
+  <option id="a343">Giving opinions</option>
+  </select></p>
+  
+  <p>furthermore<tab/><tab/><tab/><tab/><tab/>
+  <select id="q50">
+  <option id="a344">Expressing cause and result</option>
+  <option id="a345">Listing points</option>
+  <option id="a346">Giving examples</option>
+  <option id="a347">Drawing conclusions</option>
+  <option id="a348">Expressing contrast</option>
+  <option id="a349">Expressing purpose</option>
+  <option id="a350">Giving opinions</option>
+  </select></p>
+  
+  <p>in addition<tab/><tab/><tab/><tab/><tab/>
+  <select id="q51">
+  <option id="a351">Expressing cause and result</option>
+  <option id="a352">Listing points</option>
+  <option id="a353">Giving examples</option>
+  <option id="a354">Drawing conclusions</option>
+  <option id="a355">Expressing contrast</option>
+  <option id="a356">Expressing purpose</option>
+  <option id="a357">Giving opinions</option>
+  </select></p>
+  
+  <p>lastly<tab/><tab/><tab/><tab/><tab/>
+  <select id="q52">
+  <option id="a358">Expressing cause and result</option>
+  <option id="a359">Listing points</option>
+  <option id="a360">Giving examples</option>
+  <option id="a361">Drawing conclusions</option>
+  <option id="a362">Expressing contrast</option>
+  <option id="a363">Expressing purpose</option>
+  <option id="a364">Giving opinions</option>
+  </select></p>
+  
+  <p>In my opinion<tab/><tab/><tab/><tab/>
+  <select id="q53">
+  <option id="a365">Expressing cause and result</option>
+  <option id="a366">Listing points</option>
+  <option id="a367">Giving examples</option>
+  <option id="a368">Drawing conclusions</option>
+  <option id="a369">Expressing contrast</option>
+  <option id="a370">Expressing purpose</option>
+  <option id="a371">Giving opinions</option>
+  </select></p>
+	<p></p>
+</div>
 </section>
 
 <section id="fb0">
-  <p align="left">
-    <b>Expressing cause and result</b>
+  <p class="feedbacktext">
+    <b>Expressing cause and result</b><br/>
+	as a result<tab/>as a consequence of<br/>
+	consequently<tab/>bring about<br/>
+	due to<tab/><tab/>give rise to<br/>
+	lead to<tab/><tab/>on account of<br/>
+	owing to<tab/>result in<br/>
+	stem from
   </p>
-  <p align="left">as a consequence of</p>
-  <p align="left">as a result</p>
-  <p align="left">consequently</p>
-  <p align="left">bring about</p>
-  <p align="left">due to	</p>
-  <p align="left">give rise to</p>
-  <p align="left">lead to</p>
-  <p align="left">on account of</p>
-  <p align="left">owing to</p>
-  <p align="left">result in</p>
-  <p align="left">stem from</p>
-  <p align="left"/>
-  <p align="left">
-    <b>Expressing contrast</b>
+  
+  <p class="feedbacktext">
+    <b>Expressing contrast</b><br/>
+  although<tab/>whereas<br/>
+  though<tab/><tab/>in spite of<br/>
+  despite<tab/><tab/>in contrast<br/>
+  however<tab/>on the other hand
   </p>
-  <p align="left">although</p>
-  <p align="left">whereas</p>
-  <p align="left">on the other hand</p>
-  <p align="left">though</p>
-  <p align="left">in spite of</p>
-  <p align="left">despite</p>
-  <p align="left">however</p>
-  <p align="left">in contrast</p>
-  <p align="left"/>
-  <p align="left">
-    <b>Expressing purpose</b>
+  
+  <p class="feedbacktext">
+    <b>Expressing purpose</b><br/>
+	so that<tab/><tab/>with the aim of<br/>
+	so as to<tab/>in order to
   </p>
-  <p align="left">with the aim of</p>
-  <p align="left">in order to</p>
-  <p align="left">so that</p>
-  <p align="left">so as to</p>
-  <p align="left">
-    <b/>
+  
+  <p class="feedbacktext">
+    <b>Giving opinions</b><br/>
+  I am sure<tab/><tab/>I am convinced that<br/>
+  I believe<tab/><tab/>I am in favour of<br/>
+  I disagree<tab/><tab/>I am against<br/>
+  I agree<tab/><tab/>I am of the opinion that<br/>
+  I think<tab/><tab/>I am opposed to<br/>
+  In my opinion<tab/><tab/>Personally, I feel that<br/>
+  I strongly support the idea that
   </p>
-  <p align="left">
-    <b>Giving opinions</b>
+  
+  <p class="feedbacktext">
+    <b>Giving examples</b><br/>
+	like<tab/><tab/>for instance<br/>
+	for example<tab/><tab/>including<br/>
+	such as<tab/><tab/>a case in point is<br/>
   </p>
-  <p align="left">I am convinced that</p>
-  <p align="left">I strongly support the idea that</p>
-  <p align="left">I am of the opinion that</p>
-  <p align="left">I am in favour of</p>
-  <p align="left">I am sure</p>
-  <p align="left">I believe</p>
-  <p align="left">I disagree</p>
-  <p align="left">I think</p>
-  <p align="left">Personally, I feel that</p>
-  <p align="left">I agree</p>
-  <p align="left">I am against</p>
-  <p align="left">In my opinion</p>
-  <p align="left">I am opposed to</p>
-  <p align="left"/>
-  <p align="left">
-    <b>Giving examples</b>
+
+  <p class="feedbacktext">
+    <b>Listing points</b><br/>
+	finally<tab/><tab/>secondly<br/>
+	thirdly<tab/><tab/>what is more<br/>
+	moreover<tab/><tab/>firstly<br/>
+	furthermore<tab/><tab/>lastly<br/>
+	in addition
   </p>
-  <p align="left">a case in point is</p>
-  <p align="left">like</p>
-  <p align="left">such as</p>
-  <p align="left">for example</p>
-  <p align="left">including</p>
-  <p align="left">for instance</p>
-  <p align="left"/>
-  <p align="left">
-    <b>Listing points</b>
+
+  <p class="feedbacktext">
+    <b>Drawing conclusions</b><br/>
+	to sum up<tab/><tab/>in conclusion
   </p>
-  <p align="left">finally</p>
-  <p align="left">secondly</p>
-  <p align="left">thirdly</p>
-  <p align="left">what is more</p>
-  <p align="left">moreover</p>
-  <p align="left">firstly</p>
-  <p align="left">furthermore</p>
-  <p align="left">in addition</p>
-  <p align="left">lastly</p>
-  <p align="left"/>
-  <p align="left">
-    <b>Drawing conclusions</b>
-  </p>
-  <p align="left">to sum up</p>
-  <p align="left">in conclusion</p>
 </section>
 
 </body>

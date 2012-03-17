@@ -31,12 +31,12 @@
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b3">
-      <answer source="t3" correct="true">
+      <answer source="t3" correct="false">
 	  <feedback source="fb3"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b4">
-      <answer source="t4" correct="true">
+      <answer source="t4" correct="false">
 	  <feedback source="fb4"/>
       </answer>
     </TargetSpottingQuestion>
@@ -72,7 +72,7 @@
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">a. "Cover up" means to hide something, Zenia doesn't try to hide anything.</p>
+  <p class="feedbacktext">a.&#xA0;<b>Cover up</b>&#xA0;means to hide something, Zenia doesn't try to hide anything.</p>
 </section>
 
 <section id="fb2">

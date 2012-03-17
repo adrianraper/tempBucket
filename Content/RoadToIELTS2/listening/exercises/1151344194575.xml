@@ -16,35 +16,69 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="210" />
 </settings>
 
   <questions>
   	 <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="true"/>
-      <answer source="a2" correct="false"/>
-      <answer source="a3" correct="false"/>
+      <answer source="a1" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="false">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer source="a3" correct="false">
+	    <feedback source="fb1"/>
+      </answer>
     </DropDownQuestion>
-	  	 <DropDownQuestion source="q2" block="b2">
-      <answer source="a4" correct="false"/>
-      <answer source="a5" correct="false"/>
-      <answer source="a6" correct="true"/>
+	<DropDownQuestion source="q2" block="b2">
+      <answer source="a4" correct="false">
+	    <feedback source="fb2"/>
+      </answer>
+      <answer source="a5" correct="false">
+	    <feedback source="fb2"/>
+      </answer>
+      <answer source="a6" correct="true">
+	    <feedback source="fb2"/>
+      </answer>
     </DropDownQuestion>
  	<DropDownQuestion source="q3" block="b3">
-      <answer source="a7" correct="true"/>
-      <answer source="a8" correct="false"/>
-      <answer source="a9" correct="false"/>
+      <answer source="a7" correct="true">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a8" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a9" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
     </DropDownQuestion>
   	<DropDownQuestion source="q4" block="b4">
-      <answer source="a10" correct="false"/>
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a10" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a11" correct="true">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a12" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
     </DropDownQuestion>
 	  	<DropDownQuestion source="q5" block="b5">
-      <answer source="a13" correct="false"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a15" correct="false"/>
+      <answer source="a13" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a14" correct="true">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a15" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
     </DropDownQuestion>
    </questions>
 </script>
@@ -62,31 +96,42 @@
 </header>
 	
 <section id="body">
+<img class="rightFloat" src="../media/set9_03.jpg" mode="1" id="1001"/>
+<br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 
-  <img class="rightFloat" src="../media/SS_LN_004.jpg" mode="1" id="1001"/>
+ <div id="wrapper">
 
-<div id="questionList">
-    <p>1. a rise in life expectancy
-	<br/><select id="q1"><option id="a1">She expresses a positive opinion</option>
+ <div id="part1">
+  <ol> 
+    <li>a rise in life expectancy<tab/><tab/><tab/><tab/><tab/><tab/>
+		<select id="q1"><option id="a1">She expresses a positive opinion</option>
 		<option id="a2">She does not express a strong opinion either way</option>
-		<option id="a3">She expresses a negative opinion</option></select></p>
-    <p>2. a growing percentage of old people in the population
-	<br/><select id="q2"><option id="a4">She expresses a positive opinion</option>
-		<option id="a5">She does not express a strong opinion either way</option>
-		<option id="a6">She expresses a negative opinion</option></select></p>
-    <p>3. a longer working life
-	<br/><select id="q3"><option id="a7">She expresses a positive opinion</option>
-		<option id="a8">She does not express a strong opinion either way</option>
-		<option id="a9">She expresses a negative opinion</option></select></p>
-    <p>4. greater dependence on private pension funds
-	<br/><select id="q4"><option id="a10">She expresses a positive opinion</option>
-		<option id="a11">She does not express a strong opinion either way</option>
-		<option id="a12">She expresses a negative opinion</option></select></p>
-    <p>5. family responsibility for the care of the elderly
-	<br/><select id="q5"><option id="a13">She expresses a positive opinion</option>
-		<option id="a14">She does not express a strong opinion either way</option>
-		<option id="a15">She expresses a negative opinion</option></select></p>
+		<option id="a3">She expresses a negative opinion</option></select><br/></li>
 
+    <li>a growing percentage of old people in the population<tab/><tab/>
+		<select id="q2"><option id="a4">She expresses a positive opinion</option>
+		<option id="a5">She does not express a strong opinion either way</option>
+		<option id="a6">She expresses a negative opinion</option></select><br/></li>
+    
+	<li>a longer working life<tab/><tab/><tab/><tab/><tab/><tab/>
+		<select id="q3"><option id="a7">She expresses a positive opinion</option>
+		<option id="a8">She does not express a strong opinion either way</option>
+		<option id="a9">She expresses a negative opinion</option></select><br/></li>
+
+    <li>greater dependence on private pension funds<tab/><tab/><tab/>
+		<select id="q4"><option id="a10">She expresses a positive opinion</option>
+		<option id="a11">She does not express a strong opinion either way</option>
+		<option id="a12">She expresses a negative opinion</option></select><br/></li>
+    
+	<li>family responsibility for the care of the elderly<tab/><tab/><tab/>
+		<select id="q5"><option id="a13">She expresses a positive opinion</option>
+		<option id="a14">She does not express a strong opinion either way</option>
+		<option id="a15">She expresses a negative opinion</option></select><br/></li>
+  </ol>
+
+</div>
 </div>
 
 
@@ -117,6 +162,13 @@
   </p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to tell from the question and the points given that you will hear someone expressing their opinion on the consequences of an ageing population.</p>
+
+<p class="popuptext1"><b>Questions 1-5</b></p>
+<p class="popuptext2">You will be unable to predict what the speaker's opinions are but you need to check you know what the A, B and C represent and that you know what to listen out for. Think about other ways of expressing the points as well. For example, 'a rise in life expectancy' could be expressed as 'increase in life expectancy'.</p>
+
+</section>
 
 </body>
 </bento>

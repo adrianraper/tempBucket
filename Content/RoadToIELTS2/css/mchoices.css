@@ -35,6 +35,14 @@ p {
 	padding-left: 39px;
 	margin-left: 0px;
 	}
+	
+/* answerList class specifically for FV Listening, Set 9, Multiple choice */
+
+.answerList2{
+	list-style-type: lowerLatin;
+	padding-left: 49px;
+	margin-left: 0px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -62,6 +70,20 @@ p {
 	float: left;
 	margin: 5px;
 	padding: 10px 450% 0px  0px;
+	}
+
+/* specifically for FV Listening, Set 9, Multiple choice */
+.leftFloat2{
+	float: left;
+	margin: 5px;
+	padding: 10px 450% 0px  30px;
+	}
+
+/* Specifically for FV Listening, Set 11, Multiple choice 3 */
+.leftFloat3{
+	float: left;
+	margin: 5px;
+	padding: 10px 0px 10px  30px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
@@ -137,9 +159,28 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for writing task text. */
+/*Formatting used for writing task text. */
 .popuptext {
 	margin: 0 0 0 0;
 	padding: 20px 50px 20px 50px;
+	line-height: 22em;
+	}
+	
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext3 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 0px 50px;
 	line-height: 22em;
 	}		
 /*-----------------------------------------------------------------------------------------------*/

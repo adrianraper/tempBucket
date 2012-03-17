@@ -47,6 +47,17 @@ p {
  	tab-stops: 30px;
  	text-indent: -26px;
  	padding-left: 46px;
+	}
+	
+.briefhangingIndent {
+ 	tab-stops: 30px;
+ 	text-indent: 0px;
+ 	padding-left: 0px;
+	}
+
+.briefhangingIndent2 {
+ 	text-indent: 30px;
+ 	padding-left: 55px;
 	}	
 /*-----------------------------------------------------------------------------------------------*/
 /* This is the image or video floating on the right hand side in many exercises */
@@ -128,7 +139,7 @@ h1 {
 	font-size: 16px;
 	font-weight: bold;
 	padding-bottom: 10px;
-	padding-left:17px;
+	padding-left:20px;
 	text-align: left;
 	line-height: 20em
 	}
@@ -170,7 +181,25 @@ h6 {
 	margin: 0 0 0 0;
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
-	}		
+	}
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 ul{
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 45px;
+	line-height: 22em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* This is for image of writing task */
 	.imagetask {
@@ -223,6 +252,16 @@ padding-left: -27em;
 	padding-left: 0px;
 	}
 
+/* For FV Speaking, Set 5, Not knowing what to say */
+#content1 {
+	position:relative;
+	padding-top:25px;
+    height: 400px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
+
 #video {
 	position:relative;
 	padding: 25em 0em 0 520px;
@@ -240,3 +279,56 @@ padding-left: -27em;
 			padding-left: 35px;
 			line-height: 22em;
 }
+
+/*-----------------------------------------------------------------------------------------------*/
+
+/* For FV Speaking > Set 4 > Preparation for Phase 1 */
+
+.dialogue {
+	padding: 12px 0 12px 9px;
+	tab-stops: 55px;
+ 	text-indent: -17px;
+}
+
+/* Settings for graphics in FV Speaking, Set 2, Preparing a topic */
+
+#body .preptopic {
+	float: left;
+	padding-top: 5em;
+	padding-bottom: 5em;
+	padding-right: 20em;
+	padding-left: -5em;
+	}
+
+.brieftext {
+	text-align: left;
+	padding-left: 2px;
+	line-height: 22em;
+	padding-right: 380%;
+	}
+	
+.brieftext p {
+	padding-left: 45px;
+	text-indent: -30px;
+	}
+
+.brieftext ol {
+	padding-bottom: 20em;
+	padding-left: 10px;
+	}
+
+.brieftext ul {
+	padding-bottom: 20em;
+	}
+
+.brieftext2 {
+	text-align: left;
+	padding-left: 2px;
+	line-height: 22em;
+	padding-right: 380%;
+	}
+	
+.brieftext2 p {
+	padding-left: 10px;
+	padding-bottom: 12px;
+	}

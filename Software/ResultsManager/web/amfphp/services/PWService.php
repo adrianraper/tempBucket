@@ -19,6 +19,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.ph
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
+require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
@@ -53,6 +54,7 @@ class PWService extends AbstractService {
 		$this->copyOps = new CopyOps($this->db);
 		$this->contentOps = new ContentOps($this->db);
 		$this->usageOps = new UsageOps($this->db);
+		$this->accountOps = new AccountOps($this->db);
 
 	}
 	

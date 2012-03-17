@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,27 +26,27 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_SP_001.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>Preparing for the interview</b>
-    </font>
-  </p>
-  <p align="left">You will ...</p>
+  <img class="rightFloat" src="../media/set7_01.jpg" mode="1" id="1001"/>
+  <div id="presentation">
+    
+      <h1>Preparing for the interview</h1>
+    
+  <p>You will ...</p>
   <ol>
-    <li>read advice on how you are assessed on the speaking	test and what you can do to prepare.</li>
-    <li>review what you can and can't do during the test.</li>
-    <li>watch a video clip of a candidate extending his answers	to questions about his home town.</li>
-    <li>watch candidates answering questions from Part 1 of	the speaking test concerning health.</li>
-    <li>review the three parts of the speaking test and how	you can prepare for each.</li>
+    <li>read advice on how you are assessed on the speaking	test and what you can do to prepare;</li>
+    <li>review what you can and can't do during the test;</li>
+    <li>watch a video clip of a candidate extending his answers	to questions about his home town;</li>
+    <li>watch candidates answering questions from Phase 1 of	the speaking test concerning health;</li>
+    <li>review the three phases of the speaking test and how	you can prepare for each.</li>
   </ol>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p class="linespace"></p>
+</div>
 </section>
 
 </body>

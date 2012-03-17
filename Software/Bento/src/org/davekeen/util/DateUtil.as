@@ -78,7 +78,7 @@
 		
 		/**
 		 * This function returns the difference between two dates. 
-		 * The answer is rounded to the closest unit your choose. 
+		 * The answer is rounded to the closest unit you choose. 
 		 * @param startDate as a Date
 		 * @param endDate as a Date
 		 * @param datePart as a String - s,m,h,d,w,M,y - follow spark date formatter key
@@ -93,7 +93,9 @@
 			
 			var startNumber:Number = startDate.getTime();
 			var endNumber:Number = endDate.getTime();
-			var difference:Number = Math.abs(endNumber - startNumber);
+			// Don't do abs as we might want to know -ve difference
+			//var difference:Number = Math.abs(endNumber - startNumber);
+			var difference:Number = endNumber - startNumber;
 			switch (datePart) {
 				case "s":
 					var divisor:Number = 1000;

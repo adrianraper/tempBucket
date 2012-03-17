@@ -17,7 +17,8 @@
 <script id="model" type="application/xml">
 
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="clickme1" source="examtips" width="500" />
 </popups>
   <settings>
   
@@ -93,8 +94,10 @@ Read the writing task from the previous exercises again and answer the questions
 	
 <section id="body">
 
-<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-<br/><br/><br/>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme1"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+  <img class="rightFloat" src="../media/set1.1_06.jpg" mode="1" id="1003"/>
 
   <ol id="questionList">
 
@@ -115,7 +118,7 @@ Read the writing task from the previous exercises again and answer the questions
   
   <li><a id="t7">I would appreciate a prompt reply.</a></li>
   <li><a id="t8">I hope you'll write soon and tell me all about yourself. Looking forward to hearing from you.</a></li>
-  <li><a id="t8">I very much hope that my application will be successful.</a></li>
+  <li><a id="t9">I very much hope that my application will be successful.</a></li>
   <li><a id="t10">I look forward to a favourable reply as soon as possible.</a></li>
   <li><a id="t11">I hope you'll write to me, and I look forward to hearing all about you.</a></li>
   <li><a id="t12">Thank you for taking the time to write to me.</a></li>
@@ -146,13 +149,13 @@ Read the writing task from the previous exercises again and answer the questions
 			
 			<p class="popuptext">You should write at least 150 words.</p>
 			
-			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 			
 			<p class="popuptext">Begin your letter as follows: Dear...,</p>
 		</section>
 
-<section id="rt2001">
-  <p>When you write a letter it's important to think carefully about who you are writing to and why you are writing to them in order to select appropriate ways of starting and closing the letter.</p>
+<section id="examtips">
+  <p class="popuptext">When you write a letter it's important to think carefully about who you are writing to and why you are writing to them in order to select appropriate ways of starting and closing the letter.</p>
 </section>
 
 </body>

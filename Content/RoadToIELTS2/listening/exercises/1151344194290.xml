@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="280" />
 </settings>
 
   <questions>
@@ -26,48 +27,84 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="false">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a3" correct="false">
-        <feedback source="fb3"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a4" correct="true">
-        <feedback source="fb4"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a6" correct="true">
-        <feedback source="fb6"/>
+        <feedback source="fb2"/>
       </answer>
-      <answer source="a7" correct="false"/>
-      <answer source="a8" correct="false"/>
+      <answer source="a7" correct="false">
+	    <feedback source="fb2"/>
+      </answer>
+      <answer source="a8" correct="false">
+	    <feedback source="fb2"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a9" correct="false"/>
-      <answer source="a10" correct="true"/>
-      <answer source="a11" correct="false"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a9" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a10" correct="true">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a11" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a12" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
-      <answer source="a13" correct="false"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="true"/>
-      <answer source="a16" correct="false"/>
+      <answer source="a13" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a14" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a15" correct="true">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a16" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="false"/>
-      <answer source="a19" correct="false"/>
-      <answer source="a20" correct="true"/>
+      <answer source="a17" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a18" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a19" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a20" correct="true">
+	    <feedback source="fb5"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="false"/>
-      <answer source="a24" correct="false"/>
+      <answer source="a21" correct="true">
+	    <feedback source="fb6"/>
+      </answer>
+      <answer source="a22" correct="false">
+	    <feedback source="fb6"/>
+      </answer>
+      <answer source="a23" correct="false">
+	    <feedback source="fb6"/>
+      </answer>
+      <answer source="a24" correct="false">
+	    <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>
@@ -94,9 +131,9 @@
   
   <ol id="mchoices1">
   
-  <p>6. What does Lucy's stereo look like?</p>
-    <img class="leftFloat1" src="../media/SS_LN_003a.jpg" mode="1" id="1011"/>
-  <list class="answerList">
+  <p>6.<tab/>What does Lucy's stereo look like?</p>
+    <img class="leftFloat2" src="../media/SS_LN_003a.jpg" mode="1" id="1011"/>
+  <list class="answerList2">
   <li><a id="a1">Pic A</a></li>
   <li><a id="a2">Pic B</a></li>
   <li><a id="a3">Pic C</a></li>
@@ -104,9 +141,9 @@
   </list>
       <p class="linespace"></p>
 	<p class="linespace"></p>
-  <p>7. What jewellery was stolen?</p>
-    <img class="leftFloat1" src="../media/SS_LN_003b.jpg" mode="1" id="1012"/>
-	  <list class="answerList">
+  <p>7.<tab/>What jewellery was stolen?</p>
+    <img class="leftFloat2" src="../media/SS_LN_003b.jpg" mode="1" id="1012"/>
+	  <list class="answerList2">
   <li><a id="a5">Pic A</a></li>
   <li><a id="a6">Pic B</a></li>
   <li><a id="a7">Pic C</a></li>
@@ -114,9 +151,9 @@
    </list>
       <p class="linespace"></p>
 	<p class="linespace"></p>
-  <p>8. What time did Lucy discover that the items were missing?</p>
-    <img class="leftFloat1" src="../media/SS_LN_003c.jpg" mode="1" id="1013"/>
-    <list class="answerList">
+  <p>8.<tab/>What time did Lucy discover that the items were missing?</p>
+    <img class="leftFloat2" src="../media/SS_LN_003c.jpg" mode="1" id="1013"/>
+    <list class="answerList2">
   <li><a id="a9">Pic A</a></li>
   <li><a id="a10">Pic B</a></li>
   <li><a id="a11">Pic C</a></li>
@@ -124,9 +161,9 @@
   </list>
       <p class="linespace"></p>
 	<p class="linespace"></p>
-  <p>9. What time did Lucy leave her room?</p>
-  <img class="leftFloat1" src="../media/SS_LN_003d.jpg" mode="1" id="1014"/>
-  <list class="answerList">
+  <p>9.<tab/>What time did Lucy leave her room?</p>
+  <img class="leftFloat2" src="../media/SS_LN_003d.jpg" mode="1" id="1014"/>
+  <list class="answerList2">
 	<li><a id="a13">Pic A</a></li>
 	<li><a id="a14">Pic B</a></li>
 	<li><a id="a15">Pic C</a></li>
@@ -134,9 +171,9 @@
 	</list>
       <p class="linespace"></p>
 	<p class="linespace"></p>
-  <p>10. What did the stranger look like?</p>
-    <img class="leftFloat1" src="../media/SS_LN_003e.jpg" mode="1" id="1015"/>
-	<list class="answerList">
+  <p>10.<tab/>What did the stranger look like?</p>
+    <img class="leftFloat2" src="../media/SS_LN_003e.jpg" mode="1" id="1015"/>
+	<list class="answerList2">
 	<li><a id="a17">Pic A</a></li>
 	<li><a id="a18">Pic B</a></li>
 	<li><a id="a19">Pic C</a></li>
@@ -144,9 +181,9 @@
 	</list>
       <p class="linespace"></p>
 	<p class="linespace"></p>
-  <p>11. Where was the stranger sitting?</p>
-    <img class="leftFloat1" src="../media/SS_LN_003f.jpg" mode="1" id="1016"/>
-	<list class="answerList">
+  <p>11.<tab/>Where was the stranger sitting?</p>
+    <img class="leftFloat2" src="../media/SS_LN_003f.jpg" mode="1" id="1016"/>
+	<list class="answerList2">
 	<li><a id="a21">Pic A</a></li>
 	<li><a id="a22">Pic B</a></li>
 	<li><a id="a23">Pic C</a></li>

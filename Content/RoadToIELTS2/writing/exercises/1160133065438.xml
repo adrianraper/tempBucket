@@ -15,68 +15,26 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500"  />
+		<popup click="clickme1" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
-    <DragQuestion source="q1" block="b1">
+    <DragQuestion source="{#q1,#q2,#q3,#q4,#q5}" block="b1">
       <answer source="a1" correct="true"/>
       <answer source="a3" correct="true"/>
       <answer source="a4" correct="true"/>
       <answer source="a8" correct="true"/>
       <answer source="a9" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a3" correct="true"/>
-      <answer source="a4" correct="true"/>
-      <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a1" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
-      <answer source="a4" correct="true"/>
-      <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a3" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a9" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a8" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
+    <DragQuestion source="{#q6,#q7,#q8,#q9}" block="b2">
       <answer source="a2" correct="true"/>
       <answer source="a5" correct="true"/>
       <answer source="a6" correct="true"/>
       <answer source="a7" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
-      <answer source="a5" correct="true"/>
-      <answer source="a6" correct="true"/>
-      <answer source="a7" correct="true"/>
-	  <answer source="a2" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a6" correct="true"/>
-      <answer source="a7" correct="true"/>
-	  <answer source="a2" correct="true"/>
-	  <answer source="a5" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q9" block="b9">
-      <answer source="a7" correct="true"/>
-	  <answer source="a2" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a6" correct="true"/>
     </DragQuestion>
   </questions>
 </script>
@@ -86,7 +44,7 @@
 	
 <header>
 <div id="instruction">
-	<img class="rightFloat" src="../media/LE_WTG01.jpg" mode="16" id="1004"  />Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter on the left, click on the words and phrases the writer uses to express her likes and dislikes, and drag them to the approprite category on the right.
+Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter on the left, click on the words and phrases the writer uses to express her likes and dislikes, and drag them to the approprite category on the right.
 </div>
 </header>
 
@@ -103,6 +61,9 @@
 </section>
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme1"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/><br/><br/><br/><br/>
   <p>Dear Pat,</p>
   <p>My English teacher has told me you're looking for a penfriend so I'm writing to introduce myself to you.</p>
   
@@ -118,15 +79,18 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/LE_GW_004.jpg" mode="1" id="1001"/>
-  <div id="splitquestionList">
+  <img class="leftFloat" src="../media/set1.1_04.jpg" mode="1" id="1003"/>
+  <br/><br/>
+  <div id="likes1">
   <p><b>Expressing Likes</b></p>
     <p><input id="q1" type="droptarget"/></p>
     <p><input id="q2" type="droptarget"/></p>
     <p><input id="q3" type="droptarget"/></p>
     <p><input id="q4" type="droptarget"/></p>
     <p><input id="q5" type="droptarget"/></p>
-<p class="linespace"></p> 
+  </div>
+  
+  <div id="likes2">
   <p><b>Expressing Dislikes</b></p>
      <p><input id="q6" type="droptarget"/></p>
      <p><input id="q7" type="droptarget"/></p>
@@ -135,6 +99,24 @@
 </div>
 </section>
 
+<section id="writingtask1">
+<p class="popuptext">You should spend about 20 minutes on this task.</p>
+
+<p class="popuptext"><b>Your English teacher has found a new penfriend for you.</b></p>
+
+<p class="popuptext"><b>Write a letter to the penfriend and introduce yourself. Tell them what you like doing in your free time. Ask your penfriend to tell you about their hobbies and interests.</b></p>
+
+<p class="popuptext">You should write at least 150 words.</p>
+
+<p class="popuptext">You do&#xA0;<b>NOT&#xA0;</b>need to write your own address.</p>
+
+<p class="popuptext">Begin your letter as follows: Dear ...</p>
+
+</section>
+
+<section id="examtips">
+<p class="popuptext">There are several ways you can express likes and dislikes. You should try to use a variety of expressions in a letter like this.</p>
+</section>
 
 </body>
 </bento>

@@ -241,3 +241,13 @@ a.neutral, input.neutral, g.neutral, select.neutral {
     line-height:22em;
 	padding-left: -30px;
 	}
+
+#content3{
+	position:relative;
+	padding-top:30px;
+    height: 400px;
+    width:400px;
+    line-height:22em;
+	padding-left: -30px;
+	}
+

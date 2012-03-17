@@ -131,6 +131,7 @@ Listen to the recording, which will play automatically, and follow the instructi
 	<li id="7"><input id="q7"/><br/></li>
   Where is the 'The Cellar'?
     <li id="8"><input id="q8"/></li>
+	<p class="linespace"></p>
   </ol>
 </section>
 

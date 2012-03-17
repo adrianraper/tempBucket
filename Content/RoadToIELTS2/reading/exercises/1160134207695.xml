@@ -86,7 +86,7 @@ Who'll look after the children?</p>
 </section>
 
 <section id="body">
-
+<img class="leftFloat" src="../media/gt_set10_02.jpg" mode="1" id="1001"/>
 <div id="splitquestionList">
 <p><b>Join learndirect in 5 easy steps!</b></p>
 <p class="linespace"></p>
@@ -104,6 +104,7 @@ Who'll look after the children?</p>
 <p class="linespace"></p>
 <p><b>Step 5</b></p>
 <p>(14)&#xA0;<input id="q4"/>&#xA0;&#x2013; Visit your chosen centre and arrange to pay for your learndirect course</p>
+<p class="linespace"></p>
 </div>
 </section>
 

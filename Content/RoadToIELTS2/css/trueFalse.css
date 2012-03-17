@@ -133,6 +133,24 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
 	}		
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext3 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 0px 50px;
+	line-height: 22em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* This is for image of writing task */
 .imagetask {
@@ -234,9 +252,28 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding-left: -25px;
 	}
 
+#content p{
+	padding-left: 45px;
+	line-height:22em;
+}
+
+#content ul{
+	padding-left:38px;
+}
+
 #video {
 	position:relative;
 	padding: 25em 0em 0 520px;
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+
+/* This is used for heading of the Question Card in Speaking exercises, e.g. Set 6, Watch a candidate */
+h7{
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 20px;
+	line-height: 20em;
+	padding-right: 0%;
+	padding-left:45px
+	}

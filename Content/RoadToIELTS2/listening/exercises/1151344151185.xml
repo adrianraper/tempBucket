@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="265" />
 </settings>
 
   <questions>
@@ -76,12 +77,13 @@
   <span id="a7" draggable="true">Q-fever</span>
   <span id="a8" draggable="true">dengue fever</span>
   <span id="a9" draggable="true">sleeping sickness</span>
-    <span id="a9" draggable="true">Lyme disease</span>
-	<span id="a9" draggable="true">dysentery</span>
+    <span id="a10" draggable="true">Lyme disease</span>
+	<span id="a11" draggable="true">dysentery</span>
 
 </section>
 
 <section id="body">
+ <img class="rightFloat" src="../media/set7_03.jpg" mode="1" id="1001"/>
 <div id="box1">
 <div id="disease1">
 <p><b>Insects</b></p>
@@ -99,14 +101,14 @@
 <div id="disease2">
 <p><b>Diseases</b></p>
 <p></p>
-<p>(1) <input id="q1" type="droptarget"/></p> 
-<p>(2) <input id="q2" type="droptarget"/></p>
-<p>(3) <input id="q3" type="droptarget"/></p>
-<p>(4) <input id="q4" type="droptarget"/></p>
-<p>(5) <input id="q5" type="droptarget"/></p>
-<p>(6) <input id="q6" type="droptarget"/></p>
-<p>(7) <input id="q7" type="droptarget"/></p>
-<p>(8) <input id="q8" type="droptarget"/></p>
+<p>1.<tab/><input id="q1" type="droptarget"/></p> 
+<p>2.<tab/><input id="q2" type="droptarget"/></p>
+<p>3.<tab/><input id="q3" type="droptarget"/></p>
+<p>4.<tab/><input id="q4" type="droptarget"/></p>
+<p>5.<tab/><input id="q5" type="droptarget"/></p>
+<p>6.<tab/><input id="q6" type="droptarget"/></p>
+<p>7.<tab/><input id="q7" type="droptarget"/></p>
+<p>8.<tab/><input id="q8" type="droptarget"/></p>
 </div>
 </div>
 </section>

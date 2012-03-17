@@ -15,19 +15,19 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="190" />
-	<feedback>
-		 <feedback source="fb1"/>
-	</feedback>
 	</settings>
 	
    <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="Italian conversation" correct="true"/>
-       
-	
+      <answer value="Italian conversation" correct="true">
+       <feedback source="fb1"/>
+		</answer>	
       <answer value="conversational Italian" correct="true">
         <feedback source="fb1"/>
 		</answer>
@@ -116,7 +116,9 @@
 
 
   <img class="rightFloat" src="../media/ED_LN_002.jpg" mode="1" id="1001"/>
-  
+  <br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <div id="box1">
   
   <div id="table1">
@@ -154,5 +156,31 @@
   </p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to tell from looking at the headings in the table and the information already given that you will hear about the details of a course in Italian.</p>
+
+<p class="popuptext1"><b>Question 1</b></p>
+<p class="popuptext2">Think about what aspects language courses focus on. Grammar, vocabulary, pronunciation and skills, for example.</p>
+
+<p class="popuptext1"><b>Question 2</b></p>
+<p class="popuptext2">You are given the pound sign, so you know that you must listen out for a price in pounds. Do you know how much a pound is worth? Is the course likely to be closer to a hundred pounds or a thousand pounds?</p>
+
+<p class="popuptext1"><b>Question 3</b></p>
+<p class="popuptext2">You know you have to listen out for a period of time, so you should be prepared to hear 'weeks' or 'months' or 'days' mentioned.</p>
+
+<p class="popuptext1"><b>Question 4</b></p>
+<p class="popuptext2">There are only seven possibilities for each of the gaps here. Remember when the question is this simple there may be some discussion or misunderstanding and you will have to follow the conversation carefully.</p>
+
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">Another straightforward question. You just have to listen out for the time.</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">In what form is the length of a class usually given?</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">What do you think would be the maximum number in a language class? Definitely not over 30.</p>
+
+
+</section>
 </body>
 </bento>

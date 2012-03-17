@@ -47,8 +47,8 @@
 </header>
 	
 <section id="readingText">
-
-<h8>For an Ecology  of Learning</h8>
+<img class="photo2" src="../media/gt_set10_04.jpg" mode="1" id="1001"/>
+<h8><p>For an Ecology of Learning</p></h8>
 
 <h2><p>Despite decades of effort the world still counts almost one billion illiterate adults. Why?</p></h2>
 
@@ -94,7 +94,6 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/RD_S4M_001.jpg" mode="1" id="1001"/>
     <ol id="splitquestionList">
     <li id="1">the importance of making writing a necessary means of communication<br/>Paragraph&#xA0;<input id="q1"/></li>
 	<p class="linespace"></p>

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="150" />
@@ -74,7 +77,9 @@
 <section id="body">
 
   <img class="rightFloat" src="../media/ST_LN_005.jpg" mode="1" id="1001"/>
-  
+  <br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/><br/>
   
   
     <p><b>Questions 1-4. Which FOUR advantages of having a web site are mentioned by the speaker?</b></p>
@@ -121,9 +126,10 @@
   <p class="feedbacktext">g. The speaker says that you can quickly and easily change the information on your web site and keep customers informed. In other words keep them up-to-date.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">You should be able to see from the question and the possible answers that you will hear someone talking about the advantages of a web site on the World Wide Web.</p>
-  <p align="left">Questions 1 - 4The statements here from A to G might all seem to be advantages so you need to be familiar with them so you can recognise the ones that are mentioned. Are there any that you could eliminate? What about 'F'? Why would having a web site make it easier to adapt products? Which do you think are the greatest advantages out of this list?</p>
+<section id="examtips">
+  <p class="popuptext">You should be able to see from the question and the possible answers that you will hear someone talking about the advantages of a web site on the World Wide Web.</p>
+  <p class="popuptext1"><b>Questions 1-4</b></p>
+  <p class="popuptext2">The statements here from A to G might all seem to be advantages so you need to be familiar with them so you can recognise the ones that are mentioned. Are there any that you could eliminate? What about 'F'? Why would having a web site make it easier to adapt products? Which do you think are the greatest advantages out of this list?</p>
 </section>
 
 </body>

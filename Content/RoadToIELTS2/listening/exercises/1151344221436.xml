@@ -16,9 +16,12 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
-	<param name="autoMarkTimeout" value="110" />
+	<param name="autoMarkTimeout" value="150" />
 </settings>
 
   <questions>
@@ -27,7 +30,6 @@
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="14" correct="true"/>
-      <answer value="fourteen" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="about ten minutes" correct="true"/>
@@ -64,14 +66,34 @@
 	
 <section id="body">
   <img class="rightFloat" src="../media/ED_LN_004.jpg" mode="1" id="1001"/>
-
+<br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   
   <div id="questionList">
-  <p class="hanging">13. What is the title of the coursebook used on the course?<br/><input id="q1"/></p>
-  <p class="hanging">14. How much does the coursebook cost?<br/>&#xA3;<input id="q2"/></p>
-  <p class="hanging">15. How long is the break?<br/><input id="q3"/></p>
-  <p class="hanging">16. What nationality is the teacher?<br/><input id="q4"/></p>
+  <p class="hanging">13.<tab/>What is the title of the coursebook used on the course?<br/><tab/><input id="q1"/></p>
+  <p class="hanging">14.<tab/>How much does the coursebook cost?<br/><tab/>&#xA3;<input id="q2"/></p>
+  <p class="hanging">15.<tab/>How long is the break?<br/><tab/><input id="q3"/></p>
+  <p class="hanging">16.<tab/>What nationality is the teacher?<br/><tab/><input id="q4"/></p>
   </div>
+</section>
+
+<section id="examtips">
+<p class="popuptext">You should be able to see from the questions that you will hear some details about the course.</p>
+
+<p class="popuptext1"><b>Question 13</b></p>
+<p class="popuptext2">You are asked for the name of the course book.</p>
+
+<p class="popuptext1"><b>Question 14</b></p>
+<p class="popuptext2">You are asked for the cost of the book. Think about an appropriate figure in pounds.</p>
+
+<p class="popuptext1"><b>Question 15</b></p>
+<p class="popuptext2">What do you think the length of the break might be?</p>
+
+<p class="popuptext1"><b>Question 16</b></p>
+<p class="popuptext2">What nationality do you think the teacher could be?</p>
+
+
 </section>
 
 </body>

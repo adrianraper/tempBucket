@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="310" />
 </settings>
 
   <questions>
@@ -70,7 +71,7 @@
 <header>
 <div id="instruction">
 	Complete the labels on the diagram below. Choose your answers from the box.There are more words/phrases than labels, so you will not use them all.
-	  <audio controls="hidden" loop="1" autoPlay="true" class="leftFloat" src="../media/EN_LN2.mp3" mode="4" id="1002"/>
+	  <audio controls="hidden" loop="1" autoPlay="true" src="../media/EN_LN2.mp3" mode="4" id="1002"/>
 	</div>
 </header>
 	

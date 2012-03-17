@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="165" />
 </settings>
 
   <questions>
@@ -71,7 +72,7 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_LN_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set8_02.jpg" mode="1" id="1001"/>
 
   <h7><p>Questions 9-12</p></h7>
   <p>Which FOUR pieces of advice about writing a CV does the speaker give?</p>

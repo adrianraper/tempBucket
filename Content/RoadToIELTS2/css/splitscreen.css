@@ -236,6 +236,14 @@ h10{
 	padding-left: 50em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/* This class is used for subscript, e.g. the 2 in CO2 */
+
+.subscript {
+	font-size:9px; 
+	vertical-align:bottom;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
 /* This class is used to add line spacing between question items. */
 .linespace {
 	line-height: 12px;
@@ -467,6 +475,21 @@ sh1{
 	line-height: 22em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+
+/* For GT Writing Set 1 task 1 Express likes and dislikes */
+
+#likes1 {
+	width: 200px;
+	float:left;
+	padding-left: 30px;
+	line-height: 22em;
+	}
+
+#likes2{
+	width: 200px;
+	float:left;
+	line-height: 22em;
+	}
 /* Specify for GT reading Unit 6 The sun protection factor */
 #skinbox {
 	width: 600px;
@@ -514,4 +537,27 @@ sh1{
 	.healthyteeth {
 	padding-left: -17px;
  	text-indent: -83px;
+	}
+	
+/*------------------------------------------------------------------------------------------------*/
+/* For table completion exercises */	
+	#box1 {
+	position: absolute;
+    width:440px;
+	}
+	
+	#rightcolumn {
+	position:relative;
+	line-height: 22em;
+	padding-left: 100px;
+	padding-top:40px;
+	width: 60px;
+	}
+	
+	#leftcolumn {
+	position:absolute;
+	padding-top:40px;
+	padding-left:-5px;
+	line-height: 22em;
+	width: 100px;
 	}

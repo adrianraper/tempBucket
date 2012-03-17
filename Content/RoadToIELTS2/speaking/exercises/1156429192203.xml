@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,28 +26,27 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will I learn in this unit?
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_SP_001.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#0000ff">
-      <b>The Speaking Test Part 2: Dealing with the topic</b>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You will read advice for candidates in Part 2 of the speaking test, including a review of how to behave in the speaking test.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You will watch a candidate dealing with the Part 2 topic and the questions that followed, and will think about what advice you would give the candidate. You will then watch two more candidates deal with the same topic.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You will think about the follow-up question and giving reasons for your answer.</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Finally, you will study the link between Part 2 and Part 3 of the speaking test. You will watch three candidates talking about the news.</font>
-  </p>
+  <img class="rightFloat" src="../media/set6_01.jpg" mode="1" id="1001"/>
+  <div id="presentation">
+    
+      <h1>The Speaking Test Phase 2: Dealing with the topic</h1>
+
+  <p>You will read advice for candidates in Phase 2 of the speaking test, including a review of how to behave in the speaking test.</p>
+  
+  <p>You will watch a candidate dealing with the Phase 2 topic and the questions that followed, and will think about what advice you would give the candidate. You will then watch two more candidates deal with the same topic.</p>
+  
+  <p>You will think about the follow-up question and giving reasons for your answer.</p>
+  
+  <p>Finally, you will study the link between Phase 2 and Phase 3 of the speaking test. You will watch three candidates talking about the news.</p>
+  
+  <p class="linespace"></p>
+  </div>
 </section>
 </body>
 </bento>

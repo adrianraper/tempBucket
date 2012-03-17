@@ -16,8 +16,12 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="130" />
 </settings>
 
   <questions>
@@ -56,7 +60,9 @@
 	
 <section id="body">
 
-<img class="rightFloat" src="../media/SS_LN_002.jpg" mode="1" id="1001"/>
+<img class="rightFloat" src="../media/set9_01.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 
 <h1><p>Campus Security</p></h1>
 <p class="hangingIndent1"><b>Report of theft or burglary</b></p>
@@ -81,6 +87,13 @@
 
 
 
+</section>
+
+<section id="examtips">
+<p class="popuptext">You should be able to see from the form that you will need to listen for names and numbers.</p>
+
+<p class="popuptext1"><b>Questions 1-5</b></p>
+<p class="popuptext2">Make sure you are familiar with the form and you know where to put the information you hear.</p>
 </section>
 
 </body>

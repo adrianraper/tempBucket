@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,22 +26,25 @@
 <body>
 	
 <header>
-	What will I learn in this unit?
+<div id="instruction">
+	What will I learn in this set?
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/EN_SP_001.jpg" mode="1" id="1001"/>
-  <p align="left">You will ...</p>
+  <img class="rightFloat" src="../media/set4_01.jpg" mode="1" id="1001"/>
+  
+  <div id="presentation">
+  <p>You will ...</p>
   <ol>
-    <li>review the three parts of the speaking test.</li>
-    <li>look at tenses you will need to use in describing	different aspects of your life.</li>
-    <li>watch a candidate responding to a variety of Part 1	questions and decide what she is doing.</li>
-    <li>develop strategies for improving your performance in	Part 1 of the speaking test.</li>
-    <li>watch a candidate answer questions about her home	town.</li>
+    <li>review the three phases of the speaking test;</li>
+    <li>look at tenses you will need to use in describing different aspects of your life;</li>
+    <li>watch a candidate responding to a variety of Phase 1 questions and decide what she is doing;</li>
+    <li>develop strategies for improving your performance in Phase 1 of the speaking test;</li>
+    <li>watch a candidate answer questions about her home town.</li>
   </ol>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <p></p>
+  </div>
 </section>
 
 </body>

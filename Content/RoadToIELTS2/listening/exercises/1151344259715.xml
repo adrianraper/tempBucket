@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" height="325"/>
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="180" />
@@ -87,7 +90,9 @@
 <section id="body">
 
 <img class="rightFloat" src="../media/ST_LN_006.jpg" mode="1" id="1001"/>
-
+<br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
 <h1><p>Setting up a web site</p></h1>
 <p class="hangingIndent2"><b>Step 1</b><tab/>Find a reliable Internet Service Provider (ISP).</p>
 <p class="hangingIndent2"><b>Step 2</b><tab/>Acquire (5)&#xA0;<input id="q1"/>.</p>
@@ -99,6 +104,27 @@
 <p class="hangingIndent2"><b>Step 8</b><tab/>Set up your web site once but (10)&#xA0;<input id="q6"/>.</p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to tell from the title of the flow chart and the information provided that you will hear someone talking about how to set up a web site.</p>
 
+<p class="popuptext1"><b>Question 5</b></p>
+<p class="popuptext2">What part of speech do you think can follow 'acquire'? What do you think you need to acquire when setting up a web site? What words of similar meaning can you think of for 'acquire'?</p>
+
+<p class="popuptext1"><b>Question 6</b></p>
+<p class="popuptext2">What do you think you should 'look at' before creating your site? What would you do? What other words or phrases might you hear instead of 'look at'?</p>
+
+<p class="popuptext1"><b>Question 7</b></p>
+<p class="popuptext2">The stem of this sentence should help you. What do you think the 'who' could refer to, a business? Who are the people involved?</p>
+
+<p class="popuptext1"><b>Question 8</b></p>
+<p class="popuptext2">Think about other words for 'collect'. Any ideas about what you might need to collect?</p>
+
+<p class="popuptext1"><b>Question 9</b></p>
+<p class="popuptext2">In this question you are given the stem, which helps you when you are listening. Make sure you understand what is written here.</p>
+
+<p class="popuptext1"><b>Question 10</b></p>
+<p class="popuptext2">The 'but' in this statement should help you. The advice is to do something 'once' so maybe you have to do something else more frequently?</p>
+
+</section>
 </body>
 </bento>

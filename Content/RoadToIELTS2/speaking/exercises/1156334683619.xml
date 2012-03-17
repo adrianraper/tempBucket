@@ -4,13 +4,27 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+	#body .rightFloatvideo1 {	
+	width:860px;
+	height: 830px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 480px;
+	margin-top: 0em;
+	}
+	
+	#content1{
+	position:relative;
+	padding-top:25px;
+    height: 790px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}			
 	]]>
 	</style>
 	
@@ -63,16 +77,53 @@
 <body>
 	
 <header>
-	
-		
-		Watch Alexandra as she answers some questions about her home town. There might be more than one correct answer for each question. Click to watch the videos.
-		
+<div id="instruction">	
+Watch Alexandra as she answers some questions about her home town. There might be more than one correct answer for each question. Click to watch the videos.
+</div>		
 </header>
 	
 <section id="body">
-  <video src="../media/Unit04_e6a.flv" mode="16" id="1003"/>
-  <video src="../media/Unit04_e6b.flv" mode="16" id="1004"/>
-  <video src="../media/Unit04_e6c.flv" mode="16" id="1005"/>
+<div id="outer">
+<div class="rightFloatvideo1">
+  <video src="../media/Unit04_e6a.flv" mode="16" id="1003" autoPlay="false"/>
+  <video src="../media/Unit04_e6b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit04_e6c.flv" mode="16" id="1005" autoPlay="false"/>
+</div>
+
+<div id="content1">
+  <p><b>What types of pollution does she mention?</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t1">air</a></li>
+			<li><a id="t2">noise</a></li>
+			<li><a id="t3">water</a></li>
+			<li><a id="t4">sea</a></li>
+		</list>
+	</ol>
+  <br/><br/><br/><br/><br/><br/><br/>
+  
+  <p><b>What causes this pollution?</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t5">cars</a></li>
+			<li><a id="t6">boats</a></li>
+			<li><a id="t7">factories</a></li>
+			<li><a id="t8">power stations</a></li>
+		</list>
+	</ol>
+  <br/><br/><br/><br/><br/><br/><br/>
+  
+  <p><b>What affects Alexandra the most?</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+			<li><a id="t9">breathing the air</a></li>
+			<li><a id="t10">eating polluted food</a></li>
+			<li><a id="t11">drinking the water</a></li>
+			<li><a id="t12">the pollution on her skin</a></li>
+		</list>
+	</ol>
+</div>
+</div>
 </section>
 
 </body>

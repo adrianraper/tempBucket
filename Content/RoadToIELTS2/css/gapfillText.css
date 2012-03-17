@@ -52,6 +52,11 @@ p {
  	text-indent: -177px;
  	padding-left: 192px;
 	}
+
+.hangingIndent4 {
+ 	text-indent: -80px;
+ 	padding-left: 95px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
@@ -349,30 +354,30 @@ h7{
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
-/* specify for Listening 2 Purchasing tickets & FV Listening 4 Adopt an animal*/
-	#rightcolumn {
-	position:relative;
-	line-height: 22em;
-	padding-left: 200px;
-	padding-top:95px;
-	}
-	
+/* specify for Listening 2 Purchasing tickets*/
 	
 	#leftcolumn {
-	position:relative;
-	padding-top:95px;
-	padding-left:-5px;
-	line-height: 22em;
+		position: relative;
+		float:left;
+		padding-left:-3px;
+		padding-top: 100px;
+		line-height:22em;
 	}
 	
-
+	#rightcolumn {
+		position: relative;
+		float:left;
+		padding-left:202px;
+		padding-top:100px;
+		line-height:22em;
+	}
 /*-----------------------------------------------------------------------------------------------*/	
 /* specify for Listening 3 form completion (2) */
 	#rightcolumn1 {
 	position:relative;
 	line-height: 22em;
 	padding-left: 200px;
-	padding-top:75px;
+	padding-top:139px;
 	}
 	
 	#rightcolumn1 p {
@@ -392,7 +397,7 @@ h7{
 	#table1{
 	position:relative;
 	padding-left:-3px;
-	padding-top: 35px;
+	padding-top: 95px;
 	line-height: 50em;
 	}
 					
@@ -403,7 +408,7 @@ h7{
 	#table2{
 	position:relative;
 	padding-left:202px;
-	padding-top:35px;
+	padding-top:95px;
 	}
 	
 	#table2 p {
@@ -425,39 +430,82 @@ h7{
 	}
 /*-----------------------------------------------------------------------------------------------*/	
 /* specify for FV Listening 7 Fill in the table (1)*/
-	#food1 {
-		float: left;
-		width: 300px;
-		padding-left: -20px;
-	}
 	
+	#food1 {
+		position: relative;
+		padding-left:-3px;
+		padding-top: 35px;
+		line-height:22em;
+	}
+		
 	#food2 {
-	float: left;
-	width: 200px;
+		position: relative;
+		padding-left:452px;
+		padding-top:35px;
+		line-height:22em;
 	}
 /*-----------------------------------------------------------------------------------------------*/	
 /* specify for FV Listening 9 Form completion*/
-	#theft1 {
+	/*#theft1 {
 		position:relative;
 		padding-top: 85px;
 		float: left;
 		width:180px;
 		padding-left: -5px;
+	}*/
+	
+	#theft1 {
+		position: relative;
+		float:left;
+		padding-left:-3px;
+		padding-top: 160px;
+		line-height:22em;
 	}
 	
 	#theft1 p{
 	padding-bottom: 12em;
 	}
 	
-	#theft2 {
+	/*#theft2 {
 	padding-top: 20px;
 	float: left;
 	width: 200px;
-	}
+	}*/
 	
 	#theft2 p{
 	padding-bottom: 12em;
 	}
-	/*-----------------------------------------------------------------------------------------------*/	
-
-/*-----------------------------------------------------------------------------------------------*/	
+	
+	#theft2 {
+		position: relative;
+		float:left;
+		padding-left:202px;
+		padding-top:160px;
+		line-height:22em;
+	}	/*-----------------------------------------------------------------------------------------------*/	
+/* This is used for FV - Listening, Set 4, Form completion */
+	
+	#animalright {
+		position: relative;
+		padding-left:203px;
+		padding-top:140px;
+		line-height:22em;
+		float:left;
+	}
+	
+	
+	#animalleft {
+		position: relative;
+		padding-left:1px;
+		padding-top: 140px;
+		line-height:22em;	
+		float:left;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Paragraph settings for FV - Listening, Set 8, Form completion */
+	.cv {
+	padding-left: 143px;
+	}
+	
+	
+	

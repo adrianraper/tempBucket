@@ -49,6 +49,9 @@ package com.clarityenglish.ielts.view.account {
 
 		[SkinPart]
 		public var IELTSApp1:SWFLoader;
+		
+		[SkinPart]
+		public var countdownDisplay:CountdownDisplay;
 
 		public var updateUser:Signal = new Signal(Object);
 		
@@ -98,6 +101,7 @@ package com.clarityenglish.ielts.view.account {
 						} else if (daysLeft == 0) {
 							instance.text = "Your test is today, good luck!";
 						} else {
+							countdownDisplay.enabled = false;
 							instance.text = "Hope your test went well...";
 						}
 						

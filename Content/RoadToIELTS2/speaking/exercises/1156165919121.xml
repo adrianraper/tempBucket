@@ -4,14 +4,28 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#body .rightFloatvideowrap {	
+	width:860px;
+	height: 150px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 100px;
+	margin-top: 0em;
+	}
+	
+	
+	
+	#content1{
+	position:relative;
+	padding-top:25px;
+    height: 790px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
 	</style>
 	
 	
@@ -27,36 +41,60 @@
 	
 <header>
 	
-		
+<div id="instruction">		
 		The beginning of Part 1 of the IELTS Speaking Module is easy, in that you can prepare for it. The questions ask for specific details about you. The Examiner will say "Good morning", or "Good afternoon", or "Good evening". You should respond in the same way.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_SP_002.JPG" mode="1" id="1001"/>
-  <video src="../media/Unit02_e1a.flv" mode="16" id="1003"/>
-  <video src="../media/Unit02_e1b.flv" mode="16" id="1004"/>
-  <video src="../media/Unit02_e1c.flv" mode="16" id="1005"/>
-  <video src="../media/Unit02_e1d.flv" mode="16" id="1006"/>
-  <video src="../media/Unit02_e1e.flv" mode="16" id="1007"/>
-  <video src="../media/Unit02_e1f.flv" mode="16" id="1008"/>
-  <video src="../media/Unit02_e1g.flv" mode="16" id="1009"/>
-  <video src="../media/Unit02_e1h.flv" mode="16" id="1010"/>
-  <video src="../media/Unit02_e1i.flv" mode="16" id="1011"/>
-  <video src="../media/Unit02_e1j.flv" mode="16" id="1012"/>
-  <video src="../media/Unit02_e1k.flv" mode="16" id="1013"/>
-  <video src="../media/Unit02_e1l.flv" mode="16" id="1014"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>You will be asked questions such as the following:</b>
-    </font>
-  </p>
-  <p align="left"><b>1. What is your name?</b>Give your full name - given name, then surname.</p>
-  <p align="left"><b>2. Where are you from?</b>Give your town and country, if the Examiner is unlikely to know it. Follow with a brief explanation, eg "it's the capital of my country", or "it's a small village fifty kilometers from the capital".</p>
-  <p align="left"><b>3. Do you work or do you study?</b>I study engineering / I'm a teacher etc. Follow with a brief description.</p>
-  <p align="left">After this giving of personal information, you will be asked to give your opinion on general topics, such as friends, family, leisure activities, celebrations, or hobbies.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <div class="brieftext">
+  <p><b>You will be asked questions such as the following:</b></p>
+  <p class="linespace"></p>
+  <p>1.<tab/>What is your name?</p>
+  <p><tab/>Give your full name - given name, then surname.</p>
+  </div>
+  
+  <div class="rightFloatvideo1">
+  <tab/><video src="../media/Unit02_e1a.flv" mode="16" id="1003" autoPlay="false" /><tab/><tab/>
+  <video src="../media/Unit02_e1b.flv" mode="16" id="1004" autoPlay="false"/>
+  </div>
+  
+  <div class="rightFloatvideo1">
+  <tab/><video src="../media/Unit02_e1c.flv" mode="16" id="1005" autoPlay="false"/><tab/><tab/>
+  <video src="../media/Unit02_e1d.flv" mode="16" id="1006" autoPlay="false"/>
+  </div>
+  <br/><br/>
+  <div class="brieftext">
+  <p>2.<tab/>Where are you from?<br/>
+	Give your town and country, if the Examiner is unlikely to know it. Follow with a brief explanation, eg "it's the capital of my country", or "it's a small village fifty kilometers from the capital".</p>
+  </div>
+  
+  <div class="rightFloatvideo1">
+  <tab/><video src="../media/Unit02_e1e.flv" mode="16" id="1007" autoPlay="false"/><tab/><tab/>
+  <video src="../media/Unit02_e1f.flv" mode="16" id="1008" autoPlay="false"/>
+  </div>
+  
+  <div class="rightFloatvideo1">
+  <tab/><video src="../media/Unit02_e1g.flv" mode="16" id="1009" autoPlay="false"/><tab/><tab/>
+  <video src="../media/Unit02_e1h.flv" mode="16" id="1010" autoPlay="false"/>
+  </div>
+  
+  <br/><br/>
+  <div class="brieftext">
+  <p>3.<tab/>Do you work or do you study?I study engineering / I'm a teacher etc. Follow with a brief description.<br/>
+  After this giving of personal information, you will be asked to give your opinion on general topics, such as friends, family, leisure activities, celebrations, or hobbies.</p>
+  </div>
+  <div class="rightFloatvideo1">
+  <tab/><video src="../media/Unit02_e1i.flv" mode="16" id="1011" autoPlay="false"/><tab/><tab/>
+  <video src="../media/Unit02_e1j.flv" mode="16" id="1012" autoPlay="false"/>
+  </div>
+  
+  <div class="rightFloatvideo1"> 
+  <tab/><video src="../media/Unit02_e1k.flv" mode="16" id="1013" autoPlay="false"/><tab/><tab/>
+  <video src="../media/Unit02_e1l.flv" mode="16" id="1014" autoPlay="false"/>
+  </div>
+  <p class="linespace"></p>
+  <p class="linespace"></p>
 </section>
 
 </body>

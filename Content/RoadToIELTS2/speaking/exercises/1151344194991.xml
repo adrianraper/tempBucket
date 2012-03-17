@@ -4,14 +4,33 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#outer{
+	position: absolute;
+    width:500px;
+	}
+	
+	#body .rightFloatvideo1 {	
+	float:left;
+	position:relative;
+	width:860px;
+	height: 600px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 480px;
+	margin-top: 0em;
+	}
+	
+	#content1{
+	position:relative;
+	padding-top:25px;
+    height: 600px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}	
 	</style>
 	
 	
@@ -57,23 +76,28 @@
 <body>
 	
 <header>
+<div id="instruction">
 	The examiner asks: "How do you think city life will change in the next few decades?" Watch the very different but equally acceptable answers from Zafir and Alexandra. Fill in the missing words.
+</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit09_e5a.flv" mode="16" id="1005"/>
-  <video src="../media/Unit09_e5b.flv" mode="16" id="1006"/>
-  <p align="left"><font color="#0000ff"><b>Zafir</b></font><input id="q1"/> to what we have today, I mean technology, everything we are seeing every day, I think it's <input id="q2"/> difficult just to <input id="q3"/> what's going to happen tomorrow, not in a few decades. And that's because things are going very fast and life is changing very fast. And <input id="q4"/> before ten years, I think nobody <input id="q5"/> imagine what we are having nowadays &#x2013; what we live or what we see.</p>
-  <p align="left"><font color="#0000ff"><b>Alexandra</b></font>Not much, <input id="q6"/>. I hope, though, that we will have <input id="q7"/> concentration of cars and buses in the centres of the cities. I <input id="q8"/> some programme will be developed that will push the people to use <input id="q9"/>, or special roads will be built for the people who can travel on roller skates <input id="q10"/>. Maybe the roads for pedestrians will be better.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
+<div id="outer">
+<div class="rightFloatvideo1">
+  <video src="../media/Unit09_e5a.flv" mode="16" id="1005" autoPlay="false"/>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <video src="../media/Unit09_e5b.flv" mode="16" id="1006" autoPlay="false"/>
+</div>
+
+<div id="content1">
+  <p><b>Zafir</b></p>
+  <p><input id="q1"/>&#xA0;to what we have today, I mean technology, everything we are seeing every day, I think it's&#xA0;<input id="q2"/>&#xA0;difficult just to&#xA0;<input id="q3"/>&#xA0;what's going to happen tomorrow, not in a few decades. And that's because things are going very fast and life is changing very fast. And&#xA0;<input id="q4"/>&#xA0;before ten years, I think nobody&#xA0;<input id="q5"/>&#xA0;imagine what we are having nowadays - what we live or what we see.</p>
+  
+  <br/><br/><br/><br/><br/><br/>
+  <p><b>Alexandra</b></p>
+  <p>Not much,&#xA0;<input id="q6"/>. I hope, though, that we will have&#xA0;<input id="q7"/>&#xA0;concentration of cars and buses in the centres of the cities. I&#xA0;<input id="q8"/>&#xA0;some programme will be developed that will push the people to use&#xA0;<input id="q9"/>,&#xA0;or special roads will be built for the people who can travel on roller skates&#xA0;<input id="q10"/>. Maybe the roads for pedestrians will be better.</p>
+</div>
+</div>
 </section>
 
 </body>

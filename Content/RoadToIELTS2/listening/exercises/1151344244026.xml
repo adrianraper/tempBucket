@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="140" />
 </settings>
 
   <questions>
@@ -83,7 +84,7 @@
 </header>
 	
 <section id="body">
-<img class="rightFloat" src="../media/DD_LN_004.jpg" mode="1" id="1001"/>
+<img class="rightFloat" src="../media/set11_03.jpg" mode="1" id="1001"/>
 
 <h1><p>Voluntary Workers International</p></h1>
 <h9>How can you help?</h9>

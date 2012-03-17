@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="300" />
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -25,49 +26,77 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="true">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a3" correct="false">
-        <feedback source="fb3"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a4" correct="true">
-        <feedback source="fb4"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a6" correct="false">
-        <feedback source="fb6"/>
+        <feedback source="fb2"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
       <answer source="a7" correct="false">
-        <feedback source="fb7"/>
+        <feedback source="fb3"/>
       </answer>
-      <answer source="a8" correct="false"/>
-      <answer source="a9" correct="true"/>
+      <answer source="a8" correct="false">
+	  <feedback source="fb3"/>
+      </answer>
+      <answer source="a9" correct="true">
+	  <feedback source="fb3"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
-      <answer source="a10" correct="false"/>
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a10" correct="false">
+	  <feedback source="fb4"/>
+      </answer>
+      <answer source="a11" correct="true">
+	  <feedback source="fb4"/>
+      </answer>
+      <answer source="a12" correct="false">
+	  <feedback source="fb4"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a13" correct="true"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="false"/>
+      <answer source="a13" correct="true">
+	  <feedback source="fb5"/>
+      </answer>
+      <answer source="a14" correct="false">
+	  <feedback source="fb5"/>
+      </answer>
+      <answer source="a15" correct="false">
+	  <feedback source="fb5"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a16" correct="false"/>
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="true"/>
+      <answer source="a16" correct="false">
+	  <feedback source="fb6"/>
+      </answer>
+      <answer source="a17" correct="false">
+	  <feedback source="fb6"/>
+      </answer>
+      <answer source="a18" correct="true">
+	  <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q7">
-      <answer source="a19" correct="false"/>
-      <answer source="a20" correct="true"/>
-      <answer source="a21" correct="false"/>
+      <answer source="a19" correct="false">
+	  <feedback source="fb7"/>
+      </answer>
+      <answer source="a20" correct="true">
+	  <feedback source="fb7"/>
+      </answer>
+      <answer source="a21" correct="false">
+	  <feedback source="fb7"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>
@@ -79,12 +108,12 @@
 	
 		<div id="instruction">
 		Listen to the recording, which will play automatically, and follow the instructions. Click on the correct answers.
-		  <audio controls="hidden" loop="1" autoPlay="true"  class="leftFloat" src="../media/TT_LN2.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/TT_LN2.mp3" mode="4" id="1002"/>
 		</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/TT_LN_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set3_02.jpg" mode="1" id="1001"/>
 
 
   <ol id="mchoices">

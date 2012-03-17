@@ -126,7 +126,7 @@
 </header>
 	
 <section id="readingText">
-  <p><b>Writing Task 2</b></p>
+  <h1>Writing Task 2</h1>
   
   <p>You should spend about 40 minutes on this task.</p>
   
@@ -143,6 +143,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set2.2_02.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
 
     <li id="q1">Cost of teaching everyone the language 

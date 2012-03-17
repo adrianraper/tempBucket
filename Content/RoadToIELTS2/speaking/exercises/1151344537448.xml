@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,10 +26,36 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look at the advice below about not knowing what to say and then watch the video.
+</div>
 </header>
 	
-<section id="body"><video src="../media/Unit05_e6.flv" mode="1" id="1003"/><p align="left"><font color="#0000ff"><b>Strategies</b></font>There are always other ways to say things!</p><p align="left">Don't panic if you can't remember a word, or if you feel you are stuck for words.</p><p align="left"><font color="#000000">Remember the following expressions:</font></p><p align="left"><font color="#000000">"I'm not sure what it's called, but it is/looks like/is used for &#x2026;"</font></p>"I've forgotten what it is in English, but &#x2026;""It's similar to &#x2026;, but I don't remember the word."<p align="left"><font color="#000000"><b>We all forget words sometimes. It happens in natural conversations.</b>&#xA0;<b>Don't let it bother you!</b></font></p>
+<section id="body">
+<div id="outer">
+<div id="video">
+<video src="../media/Unit05_e6.flv" mode="1" id="1003" autoPlay="false"/>
+</div>
+
+<div id="content1">
+<h1><p>Strategies</p></h1>
+<p><b>There are always other ways to say things!</b></p>
+
+<p class="linespace"></p>
+<p>Don't panic if you can't remember a word, or if you feel you are stuck for words.</p>
+
+<p class="linespace"></p>
+<p>Remember the following expressions:</p>
+
+<p color="#7935AB">I'm not sure what it's called, but it is / looks like / is used for ..."</p>
+<p color="#7935AB">"I've forgotten what it is in English, but ..."</p>
+<p color="#7935AB">"It's similar to ... , but I don't remember the word."</p>
+
+<p class="linespace"></p>
+<p><b>We all forget words sometimes. It happens in natural conversations. Don't let it bother you!</b></p>
+<p class="linespace"></p>
+</div>
+</div>
 </section>
 
 </body>

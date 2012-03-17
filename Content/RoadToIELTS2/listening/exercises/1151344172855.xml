@@ -18,7 +18,8 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
-		 	<feedback>
+	<param name="autoMarkTimeout" value="240" />
+ 	<feedback>
 		<feedback source="fb1"/>
 	</feedback>
 </settings>
@@ -78,44 +79,43 @@
 </header>
 	
 <section id="body">
-<img class="rightFloat" src="../media/WB_LN_002.jpg" mode="1" id="1001"/>
+<img class="rightFloat" src="../media/set8_01.jpg" mode="1" id="1001"/>
 
 <h1><p>Layout of a Curriculum Vitae</p></h1>
 
 
-<p class="hangingIndent1"><b>Section 1:	Personal Information</b></p>
-<p class="hangingIndent1">Name</p>
-<p class="hangingIndent1">Home</p>
-<p class="hangingIndent1">address</p>
-<p class="hangingIndent1">Telephone number</p>
-<p class="hangingIndent1">(1)&#xA0;<input id="q1"/></p>
-<p class="hangingIndent1">Date of Birth</p>
-<p class="hangingIndent1">Place of Birth</p>
-<p class="hangingIndent1">(2)&#xA0;<input id="q2"/></p>
-<p>&#xA0;</p>
-<p class="hangingIndent1"><b>Section 2:	Education &amp; Qualifications</b></p>
-<p class="hangingIndent1">University Degrees<tab/>(dates)</p>
-<p class="hangingIndent1">(3)&#xA0;<input id="q3"/></p>
-<p class="hangingIndent1">(4)&#xA0;<input id="q4"/></p>
-<p class="hangingIndent1">Secondary School<tab/>(dates)</p>
-<p class="hangingIndent1">A-levels</p>
-<p class="hangingIndent1">GCSEs</p>
-<p>&#xA0;</p>
-<p class="hangingIndent1"><b>Section 3:	Skills</b></p>
-<p class="hangingIndent1">Driving</p>
-<p class="hangingIndent1">(5)&#xA0;<input id="q5"/></p>
-<p class="hangingIndent1">Typing</p>
-<p class="hangingIndent1">(6)&#xA0;<input id="q6"/></p>
-<p>&#xA0;</p>
-<p class="hangingIndent1">Section 4: (7)&#xA0;<input id="q7"/></p>
-<p class="hangingIndent1">(8)&#xA0;<input id="q8"/></p>
-<p class="hangingIndent1">Company</p>
-<p class="hangingIndent1">Address</p>
-<p class="hangingIndent1">Duties</p>
-<p>&#xA0;</p>
-<p class="hangingIndent1"><b>Section 5:	Activities</b></p>
-<p class="hangingIndent1">Hobbies and interests</p>
-<p></p>
+<p class="hangingIndent1"><b>Section 1:<tab/><tab/>Personal Information</b></p>
+<p class="cv">Name</p>
+<p class="cv">Home address</p>
+<p class="cv">Telephone number</p>
+<p class="cv">(1)&#xA0;<input id="q1"/></p>
+<p class="cv">Date of Birth</p>
+<p class="cv">Place of Birth</p>
+<p class="cv">(2)&#xA0;<input id="q2"/></p>
+<p class="linespace"></p>
+<p class="hangingIndent1"><b>Section 2:<tab/><tab/>Education &amp; Qualifications</b></p>
+<p class="hangingIndent1">(dates)<tab/><tab/>University Degrees</p>
+<p class="cv">(3)&#xA0;<input id="q3"/></p>
+<p class="cv">(4)&#xA0;<input id="q4"/></p>
+<p class="hangingIndent1">(dates)<tab/><tab/>Secondary School</p>
+<p class="cv">A-levels</p>
+<p class="cv">GCSEs</p>
+<p class="linespace"></p>
+<p class="hangingIndent1"><b>Section 3:<tab/><tab/>Skills</b></p>
+<p class="hangingIndent1">Examples:<tab/><tab/>Driving</p>
+<p class="cv">(5)&#xA0;<input id="q5"/></p>
+<p class="cv">Typing</p>
+<p class="cv">(6)&#xA0;<input id="q6"/></p>
+<p class="linespace"></p>
+<p class="hangingIndent1">Section 4:<tab/><tab/>(7)&#xA0;<input id="q7"/></p>
+<p class="hangingIndent1">(dates)<tab/><tab/>(8)&#xA0;<input id="q8"/></p>
+<p class="cv">Company</p>
+<p class="cv">Address</p>
+<p class="cv">Duties</p>
+<p class="linespace"></p>
+<p class="hangingIndent1"><b>Section 5:<tab/><tab/>Activities</b></p>
+<p class="cv">Hobbies and interests</p>
+<p class="linespace"></p>
 
 
 

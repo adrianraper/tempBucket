@@ -102,6 +102,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/gt_set9_04.jpg" mode="1" id="1001"/>
 <div id="splitdrag">
 <p>The writer suggests that people should adopt a more&#xA0;<input id="q1" type="droptarget"/>&#xA0;approach to the changing demands of the workplace. They need to place a higher priority on&#xA0;<input id="q2" type="droptarget"/>&#xA0;than on their&#xA0;<input id="q3" type="droptarget"/>. The only way to survive in the new working environment is to develop&#xA0;<input id="q4" type="droptarget"/>&#xA0;skills. Those who once could have retired may need to consider other options, such as&#xA0;<input id="q5" type="droptarget"/>&#xA0;or a new career in&#xA0;<input id="q6" type="droptarget"/>.</p>
 </div>

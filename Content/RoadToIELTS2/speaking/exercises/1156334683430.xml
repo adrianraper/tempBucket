@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,14 +26,14 @@
       <answer source="a3" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
-      <answer source="a4" correct="true"/>
-      <answer source="a5" correct="false"/>
+      <answer source="a4" correct="false"/>
+      <answer source="a5" correct="true"/>
       <answer source="a6" correct="false"/>
     </DropDownQuestion>
     <DropDownQuestion source="q3" block="b3">
-      <answer source="a7" correct="true"/>
+      <answer source="a7" correct="false"/>
       <answer source="a8" correct="false"/>
-      <answer source="a9" correct="false"/>
+      <answer source="a9" correct="true"/>
     </DropDownQuestion>
   </questions>
 </script>
@@ -42,14 +42,22 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">
 		Link the the description of what happens in each stage of the IELTS Speaking test to the correct part.
-		
+</div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/EN_SP_002.jpg" mode="1" id="1001"  /><p align="left"><font color="#000000">candidate gives personal information and opinions: <select id="q1" ><option>Part 1</option><option>Part 2</option><option>Part 3</option></select></font></p>&nbsp;candidate speaks for 1-2 minutes: <select id="q2" ><option>Part 2</option><option>Part 3</option><option>Part 1</option></select><p align="left"><font color="#000000">candidate and examiner discuss together: <select id="q3" ><option>Part 3</option><option>Part 1</option><option>Part 2</option></select></font></p><p align="left"><font size="2"></font></p>
+	<img class="rightFloat" src="../media/set4_02.jpg" mode="1" id="1001"  />
+	<div id="dropdown">
+	<p>candidate gives personal information and opinions:<tab/><select id="q1" ><option id="a1">Phase 1</option><option id="a2">Phase 2</option><option id="a3">Phase 3</option></select></p>
+	
+	<p>candidate speaks for 1-2 minutes:<tab/><tab/><tab/><tab/><select id="q2" ><option id="a4">Phase 1</option><option id="a5">Phase 2</option><option id="a6">Phase 3</option></select></p>
+	
+	<p>candidate and examiner discuss together:<tab/><tab/><tab/><select id="q3" ><option id="a7">Phase 1</option><option id="a8">Phase 2</option><option id="a9">Phase 3</option></select></p>
+	
+	<p></p>
+	</div>
 </section>
 </body>
 </bento>

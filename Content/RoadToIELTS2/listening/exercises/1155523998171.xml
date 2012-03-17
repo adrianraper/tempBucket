@@ -16,14 +16,18 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="190" />
 </settings>
-		<feedback source="fb1" >
-	</feedback>
   <questions>
     <DragQuestion source="q1" block="b1">
-      <answer source="a4" correct="true"/>
+      <answer source="a4" correct="true">
+	  <feedback source="fb1"/>
+      </answer>
     </DragQuestion>
     <DragQuestion source="q2" block="b2">
       <answer source="a6" correct="true"/>
@@ -65,14 +69,21 @@
 <section id="body">
 	<audio controls="hidden" loop="1" autoPlay="true" src="../media/DD_LN2a.mp3" mode="4" id="1002"  />
 	
-	<img class="rightFloat" src="../media/DD_LN_005.jpg" mode="1" id="1001"  />
-	
+	<img class="rightFloat" src="../media/set11_04.jpg" mode="1" id="1001"  />
+	 <br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
 	<ol id="questionList">
 	<li>A lifelong aim of Trevor Baylis has been to <br/><input id="q1" type="droptarget"/></li>
+	<p class="linespace"></p>
 	<li>The original purpose of windup technology was to <br/><input id="q2" type="droptarget"/></li>
+	<p class="linespace"></p>
 	<li>One of BayGen's policies is to <br/><input id="q3" type="droptarget"/></li>
+	<p class="linespace"></p>
 	<li>One use for the radio in developed countries is to <br/><input id="q4" type="droptarget"/></li>
+	<p class="linespace"></p>
 	<li>A future use of the generator might be to <br/><input id="q5" type="droptarget"/></li>
+	<p class="linespace"></p>
 	</ol>
 </section>
 
@@ -80,7 +91,13 @@
     <p class="feedbacktext">1. Martin says that Trevor Bayliss has always been interested in designing devices that make life easier for people with physical disabilities, which means the same as improving life for the handicapped.</p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to tell from looking at both the numbered sentence halves and those in the box that you will hear someone talking about some kind of technology. If you read carefully you might also be able to see that the technological item is a windup radio, which has more than one application. You could also look ahead to the other exercises and see if they can help, as the talk should continue in the same theme. There is a diagram in the next exercise.</p>
 
+<p class="popuptext1"><b>Questions 1-5</b></p>
+<p class="popuptext2">It's not easy to predict the answers to an exercise like this unless you know something about the subject already. So you need to make sure you are familiar with the stems and that you can think of alternative ways in which the information might be presented. For example, A - 'power landmine detectors' could be have 'give power to ...' or 'provide energy for ...' etc. before it.</p>
+
+</section>
 
 </body>
 </bento>

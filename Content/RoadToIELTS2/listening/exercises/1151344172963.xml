@@ -18,16 +18,29 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="175" />
 </settings>
 
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="in part-time jobs" correct="true"/>
-      <answer value="part time jobs" correct="true"/>
-      <answer value="part-time jobs" correct="true"/>
-      <answer value="in part-time employment" correct="true"/>
-      <answer value="in part time jobs" correct="true"/>
-      <answer value="part time" correct="true"/>
+      <answer value="in part-time jobs" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="part time jobs" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="part-time jobs" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="in part-time employment" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="in part time jobs" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="part time" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
       <answer value="part-time" correct="true">
         <feedback source="fb1"/>
       </answer>
@@ -95,23 +108,23 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_LN_005.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set8_04.jpg" mode="1" id="1001"/>
 
 
   <ol id="questionList">
   <p class="hanging">6. &#xA0;&#xA0;Compared to men, women are more prepared to work&#xA0;<input id="q1"/>.</p>
-  <p class="linespace"></p>
+
   <p class="hanging">7. &#xA0;&#xA0;The growth in&#xA0;<input id="q2"/>&#xA0;has led to an increase in the rate of female employment.</p>
-  <p class="linespace"></p>
+
   <p class="hanging">8. &#xA0;&#xA0;Female managers often have higher incomes than&#xA0;<input id="q3"/>.</p>
-  <p class="linespace"></p>
+
   <p class="hanging">9. &#xA0;&#xA0;Female managers often employ&#xA0;<input id="q4"/>&#xA0;in their companies.</p>
-  <p class="linespace"></p>
+
   <p class="hanging">10. Husbands of female managers often retire in their&#xA0;<input id="q5"/>.</p>
-  <p class="linespace"></p>
+
   <p class="hanging">11. Men and women sometimes reverse roles, with men looking after&#xA0;<input id="q6"/>.</p>
-  <p class="linespace"></p>
- <p class="hanging">12. The people who have greatest difficulty in role reversal are&#xA0;<input id="q7"/></p>.</ol>
+
+ <p class="hanging">12. The people who have greatest difficulty in role reversal are&#xA0;<input id="q7"/>.</p></ol>
 </section>
 
 <section id="fb1">

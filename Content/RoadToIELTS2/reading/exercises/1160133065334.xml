@@ -74,10 +74,10 @@
 <section id="readingText">
 <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 	<br/><br/><br/>
-<img class="photo2" src="../media/RD_GOPC_001.jpg" mode="1" id="1001"/>
+<img class="photo1" src="../media/RD_GOPC_001.jpg" mode="1" id="1001"/>
 
-	<h8><p>University of Waterloo, Ontario, Canada</p></h8>
-	<h2><p>The Museum and Archive of Games</p></h2>
+	<h1><p>University of Waterloo, Ontario, Canada<br/>
+	The Museum and Archive of Games</p></h1>
 	
 	<h7>Games on Playing Cards</h7>
 	<p>Because of the flexibility of a playing card deck during use and the small space in which decks can be stored, it is not surprising that game manufacturers selected a playing card format for some games as early as the 19th century. It seems the possibilities for adaptation to the playing card format are endless. Thus, the Museum Collection houses a number of games in playing card format.</p>
@@ -102,6 +102,7 @@
 
 <section id="body">
 <div id="splitquestionList">
+
 <p><b>Name of Game:</b><tab/><tab/><b>Totem</b></p>
 <p>Date of Manufacture:<tab/>1873</p>
 <p>Country of Manufacture:<tab/>US</p>
@@ -132,6 +133,8 @@
 <p>Theme of Game:<tab/><tab/>(8)&#xA0;<input id="q8"/></p>
 <p></p>
 </div>
+
+
 </section>
 
 <section id="examtips">

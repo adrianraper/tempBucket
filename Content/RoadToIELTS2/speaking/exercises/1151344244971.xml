@@ -4,14 +4,26 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#body .rightFloatvideo1 {	
+	width:860px;
+	height: 830px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 480px;
+	margin-top: 0em;
+	}
+	
+	#content1{
+	position:relative;
+	padding-top:25px;
+    height: 800px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
 	</style>
 	
 	
@@ -63,43 +75,50 @@
 <body>
 	
 <header>
-	Alexandra, Zenia and Zifir answer a question about the achievements of the twentieth century. Click to watch the videos and while you are listening think about what you would have said.
+<div id="instruction">
+	Alexandra, Zenia and Zifir answer a question about the achievements of the twentieth century. Click to watch the videos and while you are listening think about what you would have said.</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit011_e2a.flv" mode="16" id="1003"/>
-  <video src="../media/Unit011_e2b.flv" mode="16" id="1004"/>
-  <video src="../media/Unit011_e2c.flv" mode="16" id="1005"/>
-  <p align="left">
-    <b>What does Alexandra think about cloning?</b>
-    <g id="t1">A.  It is too dangerous</g>
-    <g id="t2">B.  It will become commonplace in the future</g>
-    <g id="t3">C.  It fills a need</g>
-    <g id="t4">D.  It shouldn't be so expensive</g>
-  </p>
-  <p align="left">
-    <b>Why does Zenia think technology is so great?</b>
-    <g id="t5">A.  All young people use it</g>
-    <g id="t6">B.  It solves problems</g>
-    <g id="t7">C.  It provides employment</g>
-    <g id="t8">D.  It has given us computers and the Internet</g>
-  </p>
-  <p align="left">
-    <b>What does Zafir say about aeroplanes?</b>
-    <g id="t9">A.  They increase tourism</g>
-    <g id="t10">B.  They make the world smaller</g>
-    <g id="t11">C.  They increase trade</g>
-    <g id="t12">D.  They make everything easier</g>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
+<div id="outer">
+<div class="rightFloatvideo1">
+  <video src="../media/Unit011_e2a.flv" mode="16" id="1003" autoPlay="false"/>
+  <video src="../media/Unit011_e2b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit011_e2c.flv" mode="16" id="1005" autoPlay="false"/>
+</div>
+
+<div id="content1">
+  <p><b>What does Alexandra think about cloning?</b></p>
+  <ol id="targetspottingvideo">
+    	<list class="answerList">
+    	<li><a id="t1">It is too dangerous</a></li>
+	    <li><a id="t2">It will become commonplace in the future</a></li>
+    	<li><a id="t3">It fills a need</a></li>
+	    <li><a id="t4">It shouldn't be so expensive</a></li></list>
+  </ol>
+
+  <br/><br/><br/><br/><br/><br/><br/>
+  <p><b>Why does Zenia think technology is so great?</b></p>
+  <ol id="targetspottingvideo">
+    	<list class="answerList">
+    	<li><a id="t5">All young people use it</a></li>
+	    <li><a id="t6">It solves problems</a></li>
+    	<li><a id="t7">It provides employment</a></li>
+	    <li><a id="t8">It has given us computers and the Internet</a></li></list>
+  </ol>
+  
+  <br/><br/><br/><br/><br/><br/><br/>
+  <p><b>What does Zafir say about aeroplanes?</b></p>
+  <ol id="targetspottingvideo">
+    	<list class="answerList">
+    	<li><a id="t9">They increase tourism</a></li>
+	    <li><a id="t10">They make the world smaller</a></li>
+    	<li><a id="t11">They increase trade</a></li>
+	    <li><a id="t12">They make everything easier</a></li></list>
+  </ol>
+ 
+</div>
+</div>
 </section>
 
 </body>

@@ -32,6 +32,7 @@ p {
 	margin-left: 0px;
 	line-height: 20em;
 	text-indent: 0px;
+	tab-stop: 50px;
 	}
 /* Answerlist for writing only */
 .answerList1 {
@@ -69,6 +70,15 @@ p {
 	margin-left: 0px;
 	line-height: 20em;
 	text-indent: 0px;
+	}
+
+/* For FV Speaking, Set 9, Making comparisons */
+.answerList5 {
+	list-style-type: lowerLatin;
+	padding-left: 18em;
+	padding-top: 0em;
+	margin-left: 0px;
+	line-height: 20em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
@@ -203,6 +213,24 @@ h7{
 	padding: 20px 50px 20px 50px;
 	line-height: 22em;
 	}		
+
+.popuptext1 {
+	margin: 0 0 0 0;
+	padding: 20px 50px 0px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 {
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 50px;
+	line-height: 22em;
+	}
+
+.popuptext2 ul{
+	margin: 0 0 0 0;
+	padding: 0px 50px 20px 45px;
+	line-height: 22em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* This is for image of writing task */
 .imagetask {
@@ -284,6 +312,22 @@ h7{
     line-height:22em;
 	padding-left: -5px;
 	}
+
+	
+/* Used to accommodate the list of answer choices in FV Speaking, Set 5, Watch a candidate */
+
+#content1{
+	position:relative;
+	padding-top:25px;
+    height: 320px;
+    width:500px;
+    line-height:22em;
+	padding-left: -5px;
+	}
+
+#content1 ul{
+	padding-left:12px;
+}
 
 #video{
 	position:relative;

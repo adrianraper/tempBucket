@@ -4,18 +4,33 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#body .rightFloatvideo1 {	
+	width:860px;
+	height: 300px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 480px;
+	margin-top: 0em;
+	}
+	
+#content1{
+	position:relative;
+	padding-top:25px;
+    height: 400px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -53,6 +68,8 @@
     <TargetSpottingQuestion block="b11">
       <answer source="t11" correct="false"/>
     </TargetSpottingQuestion>
+
+
   </questions>
 </script>
 
@@ -60,32 +77,55 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/MM_SP_004.jpg" mode="16" id="1004"  />Part 3 of the speaking test consists of questions related to the topic in Part 2. The news is the related topic being discussed here. Watch the first of the three candidates. Then click forward to watch Zafir and Dmitris.
-		Card
+	<div id="instruction">
+	Phase 3 of the speaking test consists of questions related to the topic in Phase 2. The news is the related topic being discussed here. Watch the first of the three candidates. Then click forward to watch Zafir and Dmitris.</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit06_e7a.flv" mode="1" id="1001"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">What, according to the three candidates, are the main reasons for choosing a particular news medium?</font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <b>Alexandra</b>
-    </font>
-    <g id="t1">A. Trust</g>
-    <g id="t2">B. Availability</g>
-    <g id="t3">C. Like to read it</g>
-    <g id="t4">D. Immediacy</g>
-    <g id="t5">E. Political orientation</g>
-    <g id="t6">F. Cost</g>
-    <g id="t7">G. Some prefer to look than listen</g>
-    <g id="t8">H. Objectivity</g>
-    <g id="t9">I. Personal circumstances</g>
-    <g id="t10">J. Can be read anywhere</g>
-    <g id="t11">K. Easy to access</g>
-  </p>
+<div id="outer">
+<div class="rightFloatvideo1">
+  <video src="../media/Unit06_e7a.flv" mode="1" id="1001" autoPlay="false"/>
+  </div>
+  
+  <div id="content1">
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
+  <p><b>What, according to the three candidates, are the main reasons for choosing a particular news medium?</b></p>
+  <p class="linespace"></p>
+  <p><b>Alexandra</b></p>
+    <ol id="targetspottingvideo">
+    	<list class="answerList">
+    		<li><a id="t1">Trust</a></li>
+		    <li><a id="t2">Availability</a></li>
+		    <li><a id="t3">Like to read it</a></li>
+		    <li><a id="t4">Immediacy</a></li>
+		    <li><a id="t5">Political orientation</a></li>
+		    <li><a id="t6">Cost</a></li>
+		    <li><a id="t7">Some prefer to look than listen</a></li>
+		    <li><a id="t8">Objectivity</a></li>
+		    <li><a id="t9">Personal circumstances</a></li>
+		    <li><a id="t10">Can be read anywhere</a></li>
+		    <li><a id="t11">Easy to access</a></li></list>
+	</ol>
+  
+<p class="linespace"></p>
+	
+		
+
+</div>
+</div>
 </section>
 
+<section id="examtips">
+  <p class="popuptext1"><b>Question Card</b></p>
+  <p class="popuptext2">Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
+  <p class="popuptext1">You should say:</p>
+  <ul class="popuptext2">
+  	<li>what it showed</li>
+	<li>who it was aimed at</li>
+	<li>what effect it had on you</li>
+  </ul>
+  <p class="popuptext">And explain why you find this type of advertising admirable or not.</p>
+</section>
 </body>
 </bento>

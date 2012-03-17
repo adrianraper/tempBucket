@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -107,118 +107,142 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Read the following statements and decide if they are true or false.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/AC_SP_003.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">You should talk about every question until the Examiner stops you. <a id="a1">True</a><tab/><a id="a2">False</a><br/></li>
-    <br/>
-    <li id="q2">Use as many big words as you can - they will impress the Examiner. <a id="a3">True</a><tab/><a id="a4">False</a><br/></li>
-    <br/>
-    <li id="q3">Long complex answers which you have memorised will give a good impression of your general knowledge. <a id="a5">True</a><tab/><a id="a6">False</a><br/></li>
-    <br/>
-    <li id="q4">A complex sentence always sounds better than a simple one. <a id="a7">True</a><tab/><a id="a8">False</a><br/></li>
-    <br/>
-    <li id="q5">You will be penalised if your answers have obviously been learned by heart. <a id="a9">True</a><tab/><a id="a10">False</a><br/></li>
-    <br/>
-    <li id="q6">Looking relaxed, intelligent and confident gives the impression that you are relaxed, intelligent and confident. <a id="a11">True</a><tab/><a id="a12">False</a><br/></li>
-    <br/>
-    <li id="q7">Answer yes or no to the question, then wait for the next one. <a id="a13">True</a><tab/><a id="a14">False</a><br/></li>
-    <br/>
-    <li id="q8">Giving examples and details to fill out your answers will increase your chances of success. <a id="a15">True</a><tab/><a id="a16">False</a><br/></li>
-    <br/>
-    <li id="q9">If you are not sure about the question, just say as little as possible about it. <a id="a17">True</a><tab/><a id="a18">False</a><br/></li>
-    <br/>
-    <li id="q10">The Examiner wants you to make mistakes so the less you say the better it is. <a id="a19">True</a><tab/><a id="a20">False</a><br/></li>
+<div id="outer">
+  <img class="rightFloat" src="../media/set5_03.jpg" mode="1" id="1001"/>
+  
+  <div id="content">
+  <ol>
+    <li>You should talk about every question until the Examiner stops you.</li>
+		<a id="a1"><b>True</b></a><tab/><tab/><a id="a2"><b>False</b></a>
+	
+	<p class="linespace"></p>
+    <li id="q2">Use as many big words as you can - they will impress the Examiner.</li>
+		<a id="a3"><b>True</b></a><tab/><tab/><a id="a4"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q3">Long complex answers which you have memorised will give a good impression of your general knowledge.</li>
+		<a id="a5"><b>True</b></a><tab/><tab/><a id="a6"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q4">A complex sentence always sounds better than a simple one.</li>
+		<a id="a7"><b>True</b></a><tab/><tab/><a id="a8"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q5">You will be penalised if your answers have obviously been learned by heart.</li>
+		<a id="a9"><b>True</b></a><tab/><tab/><a id="a10"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q6">Looking relaxed, intelligent and confident gives the impression that you are relaxed, intelligent and confident.</li>
+		<a id="a11"><b>True</b></a><tab/><tab/><a id="a12"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q7">Answer yes or no to the question, then wait for the next one.</li>
+		<a id="a13"><b>True</b></a><tab/><tab/><a id="a14"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q8">Giving examples and details to fill out your answers will increase your chances of success.</li>
+		<a id="a15"><b>True</b></a><tab/><tab/><a id="a16"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q9">If you are not sure about the question, just say as little as possible about it.</li>
+		<a id="a17"><b>True</b></a><tab/><tab/><a id="a18"><b>False</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q10">The Examiner wants you to make mistakes so the less you say the better it is.</li>
+		<a id="a19"><b>True</b></a><tab/><tab/><a id="a20"><b>False</b></a>
   </ol>
+  <p class="linespace"></p>
+  </div>
+ </div>
 </section>
 
+
 <section id="fb1">
-  <p align="left">
-    <font color="#000000">1. This is not very natural!</font>
+  <p class="feedbacktext">1. This is not very natural!
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">1. Think about how you behave in a normal conversation and try to do the same in the exam.</p>
+  <p class="feedbacktext">1. Think about how you behave in a normal conversation and try to do the same in the exam.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">2. This is a test of communication not vocabulary.</p>
+  <p class="feedbacktext">2. This is a test of communication not vocabulary.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">2. Sometimes you communicate better with small words.</p>
+  <p class="feedbacktext">2. Sometimes you communicate better with small words.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">3. This is not a test of memory. You will lose marks for learning answers.</p>
+  <p class="feedbacktext">3. This is not a test of memory. You will lose marks for learning answers.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">3. This is not a test of general knowledge but of communication.</p>
+  <p class="feedbacktext">3. This is not a test of general knowledge but of communication.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">4. Sometimes simple is better.</p>
+  <p class="feedbacktext">4. Sometimes simple is better.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">4. If you can communicate your ideas using simple language then that is fine.</p>
+  <p class="feedbacktext">4. If you can communicate your ideas using simple language then that is fine.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <font color="#000000">5. So don't try to learn answers by heart!</font>
+  <p class="feedbacktext">5. So don't try to learn answers by heart!
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">5. This is not a test of memory but of communication.</p>
+  <p class="feedbacktext">5. This is not a test of memory but of communication.</p>
 </section>
 
 <section id="fb11">
-  <p align="left">6. It also makes examiners feel more comfortable.</p>
+  <p class="feedbacktext">6. It also makes examiners feel more comfortable.</p>
 </section>
 
 <section id="fb12">
-  <p align="left">6. The way you look and behave gives very strong signals to examiners.</p>
+  <p class="feedbacktext">6. The way you look and behave gives very strong signals to examiners.</p>
 </section>
 
 <section id="fb13">
-  <p align="left">7. This wouldn't give examiners much to judge you on, would it?</p>
+  <p class="feedbacktext">7. This wouldn't give examiners much to judge you on, would it?</p>
 </section>
 
 <section id="fb14">
-  <p align="left">7. It is usually a good idea to answer the question and then extend the answer with an example or explanation.</p>
+  <p class="feedbacktext">7. It is usually a good idea to answer the question and then extend the answer with an example or explanation.</p>
 </section>
 
 <section id="fb15">
-  <p align="left">8. Adding to the answer is a good idea.</p>
+  <p class="feedbacktext">8. Adding to the answer is a good idea.</p>
 </section>
 
 <section id="fb16">
-  <p align="left">8. Adding to the answer is a good idea.</p>
+  <p class="feedbacktext">8. Adding to the answer is a good idea.</p>
 </section>
 
 <section id="fb17">
-  <p align="left">9. If you are not sure, then you should ask the examiner to repeat the question or say you don't understand.</p>
+  <p class="feedbacktext">9. If you are not sure, then you should ask the examiner to repeat the question or say you don't understand.</p>
 </section>
 
 <section id="fb18">
-  <p align="left">9. Always ask for help if you are not sure, this is an important part of communication.</p>
+  <p class="feedbacktext">9. Always ask for help if you are not sure, this is an important part of communication.</p>
 </section>
 
 <section id="fb19">
-  <p align="left">10. Examiners do not mark your mistakes. Your communication is what matters.</p>
+  <p class="feedbacktext">10. Examiners do not mark your mistakes. Your communication is what matters.</p>
 </section>
 
 <section id="fb20">
-  <p align="left">10. Examiners want to give you the best chance to show off your skills at communicating in English.</p>
+  <p class="feedbacktext">10. Examiners want to give you the best chance to show off your skills at communicating in English.</p>
 </section>
 
 </body>

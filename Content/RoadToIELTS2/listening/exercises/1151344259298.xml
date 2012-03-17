@@ -58,7 +58,7 @@
 <header>
 <div id="instruction">		
 		Questions 10-13. Listen to the recording, which will play automatically, and follow the instructions. Write NO MORE THAN THREE WORDS for each answer.
-		  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ST_LN1c.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1c.mp3" mode="4" id="1002"/>
 </div>		
 
 </header>
@@ -68,10 +68,10 @@
   <img class="rightFloat" src="../media/ST_LN_004.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-  <p class="hanging">10. When is the earliest a service engineer is available?<br/><input id="q1"/></p>
-  <p class="hanging">11. Why is this inconvenient for Jane?<br/><input id="q2"/></p>
-  <p class="hanging">12. When would be most convenient for Jane?<br/><input id="q3"/></p>
-  <p class="hanging">13. When do they arrange for the service engineer to see the machine?<br/><input id="q4"/></p>
+  <p class="hanging">10.<tab/>When is the earliest a service engineer is available?<br/><tab/><input id="q1"/></p>
+  <p class="hanging">11.<tab/>Why is this inconvenient for Jane?<br/><tab/><input id="q2"/></p>
+  <p class="hanging">12.<tab/>When would be most convenient for Jane?<br/><tab/><input id="q3"/></p>
+  <p class="hanging">13.<tab/>When do they arrange for the service engineer to see the machine?<br/><tab/><input id="q4"/></p>
   </ol>
 </section>
 

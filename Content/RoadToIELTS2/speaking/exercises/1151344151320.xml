@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -67,64 +67,77 @@
 <body>
 	
 <header>
-	You should know what you can and can't do during the exam. Look at the questions below, choose YES if you can do this and NO if you can't.
+<div id="instruction">
+	You should know what you can and can't do during the test. Look at the questions below, choose Yes if you can do this and No if you can't.</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_SP_003.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">Ask for another topic to discuss. <a id="a1">YES</a><tab/><a id="a2">NO</a><br/></li>
-    <br/>
-    <li id="q2">Ask the Examiner his or her opinion of the topic. <a id="a3">YES</a><tab/><a id="a4">NO</a><br/></li>
-    <br/>
-    <li id="q3">Ask the Examiner to repeat the question. <a id="a5">YES</a><tab/><a id="a6">NO</a><br/></li>
-    <br/>
-    <li id="q4">Ask what the Examiner thought of your performance. <a id="a7">YES</a><tab/><a id="a8">NO</a><br/></li>
-    <br/>
-    <li id="q5">Ask for the correct answer to the question. <a id="a9">YES</a><tab/><a id="a10">NO</a><br/></li>
+<div id="outer">
+  <img class="rightFloat" src="../media/set7_03.jpg" mode="1" id="1001"/>
+  
+  <div id="content">
+  <ol>
+    <li id="q1">Ask for another topic to discuss.</li>
+		<a id="a1"><b>Yes</b></a><tab/><tab/><a id="a2"><b>No</b></a>
+    <p class="linespace"></p>
+    
+	<li id="q2">Ask the Examiner his or her opinion of the topic.</li>
+		<a id="a3"><b>Yes</b></a><tab/><tab/><a id="a4"><b>No</b></a>
+    <p class="linespace"></p>
+    
+	<li id="q3">Ask the Examiner to repeat the question.</li>
+		<a id="a5"><b>Yes</b></a><tab/><tab/><a id="a6"><b>No</b></a>
+    <p class="linespace"></p>
+    
+	<li id="q4">Ask what the Examiner thought of your performance.</li>
+		<a id="a7"><b>Yes</b></a><tab/><tab/><a id="a8"><b>No</b></a>
+    <p class="linespace"></p>
+    
+	<li id="q5">Ask for the correct answer to the question.</li>
+		<a id="a9"><b>Yes</b></a><tab/><tab/><a id="a10"><b>No</b></a>
   </ol>
+  </div>
+  </div>
 </section>
 
 <section id="fb1">
-  <p align="left">You can't do that.</p>
+  <p class="feedbacktext">You can't do that.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">You must discuss the topic you are given.</p>
+  <p class="feedbacktext">You must discuss the topic you are given.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">Examiners want to know your opinion, not give theirs.</p>
+  <p class="feedbacktext">Examiners want to know your opinion, not give theirs.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">Examiners should ask the questions, not you.</p>
+  <p class="feedbacktext">Examiners should ask the questions, not you.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">This is fine.</p>
+  <p class="feedbacktext">This is fine.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">Of course you can, so learn a polite way of asking.</p>
+  <p class="feedbacktext">Of course you can, so learn a polite way of asking.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">You will find out when you get your results, no sooner.</p>
+  <p class="feedbacktext">You will find out when you get your results, no sooner.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">Examiners can't answer this question, so you shouldn't ask it.</p>
+  <p class="feedbacktext">Examiners can't answer this question, so you shouldn't ask it.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">There are no correct or wrong answers to questions.</p>
+  <p class="feedbacktext">There are no correct or wrong answers to questions.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">It is your opinion that matters and how well you communicate it.</p>
+  <p class="feedbacktext">It is your opinion that matters and how well you communicate it.</p>
 </section>
 
 </body>

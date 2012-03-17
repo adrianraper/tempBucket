@@ -4,13 +4,11 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
+	
 	]]>
 	</style>
 	
@@ -26,10 +24,70 @@
 <body>
 	
 <header>
+<div id="instruction">
 	What will you do when you're not sure about something?
+</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/LC_SP_003.JPG" mode="1" id="1001"/><video src="../media/Unit02_e3a.flv" mode="16" id="1003"/><video src="../media/Unit02_e3b.flv" mode="16" id="1004"/><video src="../media/Unit02_e3c.flv" mode="16" id="1005"/><video src="../media/Unit02_e3d.flv" mode="16" id="1006"/><p align="left"><font color="#000000"><b>Look at these expressions:</b></font></p><ol><li>Sorry, could you repeat that?</li><li>Could you say that again?</li><li>I didn't catch what you said?</li><li>I'm not sure what you mean by &#x2026; ?</li><li>Do you mean &#x2026; or &#x2026; ?</li><li>I'm not sure what "urban" means.</li></ol><p align="left"><font color="#000000">Now look at the following clips:</font></p>Dimitris realises he has nothing more to say: "Nothing else, really."<p align="left"><font color="#000000">Zafir asks for clarification: "This is a little bit confusing, you mean &#x2026; ?"</font></p><p align="left">Alexandra hesitates to collect her thoughts before talking about the family.</p><p align="left">Dimitris explains, "I don't see really a big difference".</p><p align="left">These examples, and others you will notice during the other interviews, should reassure you.</p><p align="left"><font color="#000000">You are not being tested on your general knowledge, but on your ability to communicate. There are no fixed answers! Concentrate on learning language skills and communication skills.</font></p><p align="left"><font size="2"/></p></section>
+<section id="body">
+
+<div class="brieftext">
+<p><b>Look at these expressions:</b></p>
+
+<ol color="#7935AB">
+	<li>Sorry, could you repeat that?</li>
+	<li>Could you say that again?</li>
+	<li>I didn't catch what you said?</li>
+	<li>I'm not sure what you mean by ... ?</li>
+	<li>Do you mean ... or ... ?</li>
+	<li>I'm not sure what "urban" means.</li>
+</ol>
+
+
+
+<p>Now look at the following clips:</p>
+
+<p>Dimitris realises he has nothing more to say: "Nothing else, really."</p>
+</div>
+
+<div class="rightFloatvideo1">
+<video src="../media/Unit02_e3a.flv" mode="16" id="1003" autoPlay="false"/>
+</div>
+<br/><br/>
+<div class="brieftext">
+<p>Zafir asks for clarification: "This is a little bit confusing, you mean ... ?"</p>
+</div>
+
+<div class="rightFloatvideo1">
+<video src="../media/Unit02_e3b.flv" mode="16" id="1004" autoPlay="false"/>
+</div>
+<br/><br/>
+<div class="brieftext2">
+<p>Alexandra hesitates to collect her thoughts before talking about the family.</p>
+</div>
+
+<div class="rightFloatvideo1">
+<video src="../media/Unit02_e3c.flv" mode="16" id="1005" autoPlay="false"/>
+</div>
+<br/><br/>
+<div class="brieftext">
+<p>Dimitris explains, "I don't see really a big difference".</p>
+</div>
+
+<div class="rightFloatvideo1">
+<video src="../media/Unit02_e3d.flv" mode="16" id="1006" autoPlay="false"/>
+</div>
+<br/><br/>
+<div class="brieftext2">
+<p>These examples, and others you will notice during the other interviews, should reassure you.</p>
+
+<p>You are not being tested on your general knowledge, but on your ability to communicate. There are no fixed answers! Concentrate on learning language skills and communication skills.</p>
+</div>
+<p class="linespace"></p>
+<p class="linespace"></p>
+
+
+</section>
 
 </body>
 </bento>

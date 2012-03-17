@@ -107,6 +107,7 @@
 </section>
 
 <section id="body">
+
   <div id="splitquestionList">
     <p class="hangingIndent2">6.<tab/>India<tab/><tab/><input id="q1"/></p>
 	<p class="linespace"></p>
@@ -117,7 +118,9 @@
     <p class="hangingIndent2">9.<tab/>Senegal<tab/><input id="q4"/></p>
 	<p class="linespace"></p>
     <p class="hangingIndent2">10.<tab/>Mali<tab/><tab/><input id="q5"/></p>
+	<p class="linespace"></p>
   </div>
+  	<img class="leftFloat" src="../media/gt_set10_05.jpg" mode="1" id="1001"/>
 </section>
 
 </body>

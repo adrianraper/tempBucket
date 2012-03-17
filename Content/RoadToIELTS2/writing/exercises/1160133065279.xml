@@ -16,7 +16,8 @@
 	<br/>
 <script id="model" type="application/xml">
 <popups>
-    <popup click="clickme" source="writingtask1" width="629" />
+    <popup click="clickme" source="writingtask1" width="500" />
+	<popup click="clickme1" source="examtips" width="500" />
 </popups>
 	
   <settings>
@@ -57,8 +58,10 @@
 </header>
 	
 <section id="body">
-  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-  <br/><br/><br/>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme1"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/><br/>
+  <img class="rightFloat" src="../media/set1.1_05.jpg" mode="1" id="1003"/>
   
   <div id="targetspotting">
   <p>Dear Pat,</p>
@@ -81,14 +84,14 @@
 
 <p class="popuptext">You should write at least 150 words.</p>
 
-<p class="popuptext">You do NOT need to write your own address.</p>
+<p class="popuptext">You do&#xA0;<b>NOT&#xA0;</b>need to write your own address.</p>
 
 <p class="popuptext">Begin your letter as follows: Dear ...</p>
 
 </section>
 
-<section id="rt2001">
-  <p>There are also several ways to express the frequency with which we do things. To avoid repetition, you should try to use a mixture of frequency adverbs such as 'always' and 'usually', and adverbial phrases such as 'once or twice a week' and 'every day'.</p>
+<section id="examtips">
+  <p class="popuptext">There are also several ways to express the frequency with which we do things. To avoid repetition, you should try to use a mixture of frequency adverbs such as 'always' and 'usually', and adverbial phrases such as 'once or twice a week' and 'every day'.</p>
 </section>
 
 </body>

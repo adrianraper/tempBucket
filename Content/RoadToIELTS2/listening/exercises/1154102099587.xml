@@ -18,41 +18,68 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="130" />
 </settings>
 
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="take regular exercise" correct="true"/>
-      <answer value="do exercise" correct="true"/>
-      <answer value="take exercise" correct="true"/>
-      <answer value="exercise regularly" correct="true"/>
+      <answer value="take regular exercise" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="do exercise" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="take exercise" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
+      <answer value="exercise regularly" correct="true">
+	    <feedback source="fb1"/>
+      </answer>
       <answer value="do regular exercise" correct="true">
         <feedback source="fb1"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="wash hands often" correct="true"/>
-      <answer value="wash hands" correct="true"/>
-      <answer value="wash hands regularly" correct="true"/>
-      <answer value="wash hands frequently" correct="true"/>
+      <answer value="wash hands often" correct="true">
+	    <feedback source="fb2"/>
+      </answer>
+      <answer value="wash hands" correct="true">
+	    <feedback source="fb2"/>
+      </answer>
+      <answer value="wash hands regularly" correct="true">
+	    <feedback source="fb2"/>
+      </answer>
+      <answer value="wash hands frequently" correct="true">
+	    <feedback source="fb2"/>
+      </answer>
       <answer value="wash your hands" correct="true">
         <feedback source="fb2"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
-      <answer value="get enough sleep" correct="true"/>
+      <answer value="get enough sleep" correct="true">
+	    <feedback source="fb3"/>
+      </answer>
       <answer value="sleep enough" correct="true">
         <feedback source="fb3"/>
       </answer>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
-      <answer value="wrap up warmly" correct="true"/>
-      <answer value="wrap up well" correct="true"/>
-      <answer value="wear warm clothes" correct="true"/>
-      <answer value="dress well" correct="true"/>
+      <answer value="wrap up warmly" correct="true">
+	  <feedback source="fb4"/>
+	  </answer>
+      <answer value="wrap up well" correct="true">
+	  <feedback source="fb4"/>
+	  </answer>
+      <answer value="wear warm clothes" correct="true">
+	  <feedback source="fb4"/>
+	  </answer>
+      <answer value="dress well" correct="true">
+	  <feedback source="fb4"/>
+	  </answer>
       <answer value="dress warmly" correct="true">
-        <feedback source="fb4"/>
-      </answer>
+	  <feedback source="fb4"/>
+	  </answer>
     </GapFillQuestion>
   </questions>
 </script>
@@ -69,24 +96,24 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_LN_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set7_02.jpg" mode="1" id="1001"/>
  
   
   <div id="questionList">
-  <p align="left">
+  <p>
     <b>What FOUR pieces of advice does the speaker give about keeping healthy in winter?</b>
   </p>
-  <p align="left">
-    <font color="#000000">8.  <input id="q1"/>&#xA0;</font>
+  <p>
+    8.<tab/><input id="q1"/>
   </p>
-  <p align="left">
-    <font color="#000000">9.   <input id="q2"/>&#xA0;</font>
+  <p>
+    9.<tab/><input id="q2"/>
   </p>
-  <p align="left">
-    <font color="#000000">10.  <input id="q3"/></font>
+  <p>
+    10.<tab/><input id="q3"/>
   </p>
-  <p align="left">
-    <font color="#000000">11.  <input id="q4"/></font>
+  <p>
+    11.<tab/><input id="q4"/>
   </p>
 
   </div>

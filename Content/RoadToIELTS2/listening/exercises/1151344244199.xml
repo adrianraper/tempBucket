@@ -16,8 +16,12 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="130" />
 </settings>
 
   <questions>
@@ -63,22 +67,32 @@
 <section id="body">
 
   <img class="rightFloat" src="../media/DD_LN2.jpg" mode="1" id="1004"/>
+   <br/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/>
 
   <div id="questionList">
 
-    <p>6.&#xA0;<input id="q1"/></p>
+    <p>6.<tab/><input id="q1"/></p>
     <p class="linespace"></p>
-    <p>7.&#xA0;<input id="q2"/></p>
+    <p>7.<tab/><input id="q2"/></p>
     <p class="linespace"></p>
-    <p>8.&#xA0;<input id="q3"/></p>
+    <p>8.<tab/><input id="q3"/></p>
     <p class="linespace"></p>
-    <p>9.&#xA0;<input id="q4"/></p>
+    <p>9.<tab/><input id="q4"/></p>
     <p class="linespace"></p>
-    <p>10.&#xA0;<input id="q5"/></p>
+    <p>10.<tab/><input id="q5"/></p>
 
   </div>
 </section>
 
+<section id="examtips">
+<p class="popuptext">From the diagram you can tell that you will hear someone describe the parts of the windup radio. Notice that the questions are in a clockwise direction from the bottom of the diagram to the top.</p>
+
+<p class="popuptext1"><b>Questions 6-10</b></p>
+<p class="popuptext2">Can you guess what any of the parts are? Or can you think of any associated vocabulary you might hear? When describing number 1, for example, you might hear the word 'detachable' or the phrase 'comes off'. Notice also the words given – 'socket' and 'cord'. You may hear them mentioned too.</p>
+
+</section>
 
 </body>
 </bento>

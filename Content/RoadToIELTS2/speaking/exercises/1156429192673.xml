@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="quiz" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -25,48 +25,64 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="false">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a3" correct="true">
-        <feedback source="fb3"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a4" correct="false">
-        <feedback source="fb4"/>
+        <feedback source="fb2"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb3"/>
       </answer>
       <answer source="a6" correct="true">
-        <feedback source="fb6"/>
+        <feedback source="fb3"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
       <answer source="a7" correct="true">
-        <feedback source="fb7"/>
+        <feedback source="fb4"/>
       </answer>
       <answer source="a8" correct="false">
-        <feedback source="fb8"/>
+        <feedback source="fb4"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a9" correct="true"/>
-      <answer source="a10" correct="false"/>
+      <answer source="a9" correct="true">
+	  <feedback source="fb5"/>
+      </answer>
+      <answer source="a10" correct="false">
+	  <feedback source="fb5"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a11" correct="true">
+	  <feedback source="fb6"/>
+      </answer>
+      <answer source="a12" correct="false">
+	  <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q7">
-      <answer source="a13" correct="false"/>
-      <answer source="a14" correct="true"/>
+      <answer source="a13" correct="false">
+	  <feedback source="fb7"/>
+      </answer>
+      <answer source="a14" correct="true">
+	  <feedback source="fb7"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q8">
-      <answer source="a15" correct="false"/>
-      <answer source="a16" correct="true"/>
+      <answer source="a15" correct="false">
+	  <feedback source="fb8"/>
+      </answer>
+      <answer source="a16" correct="true">
+	  <feedback source="fb8"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>
@@ -75,78 +91,94 @@
 <body>
 	
 <header>
-	
-		
-		Which of the following do you think would be good advice to a candidate about to do IELTS Speaking Part 2? Click yes or no against the statements.
-		
+<div id="instruction">	
+		Which of the following do you think would be good advice to a candidate about to do IELTS speaking Phase 2? Click yes or no against the statements.
+</div>		
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_SP_003.jpg" mode="1" id="1001"/>
-  <br/>
-  <ol id="questionList">
-    <br/>
-    <li id="q1">Talk confidently.  <a id="a1">Yes</a><tab/><a id="a2">No</a><br/></li>
-    <br/>
-    <li id="q2">Feel free to correct yourself if you make a mistake. <a id="a3">Yes</a><tab/><a id="a4">No</a><br/></li>
-    <br/>
-    <li id="q3">Tell the examiner you are very nervous. <a id="a5">Yes</a><tab/><a id="a6">No</a><br/></li>
-    <br/>
-    <li id="q4">Smile and look directly at the examiner. <a id="a7">Yes</a><tab/><a id="a8">No</a><br/></li>
-    <br/>
-    <li id="q5">Think of enough material to talk about until the examiner stops you.<a id="a9">Yes</a><tab/><a id="a10">No</a><br/></li>
-    <br/>
-    <li id="q6">Show interest in the topic.<a id="a11">Yes</a><tab/><a id="a12">No</a><br/></li>
-    <br/>
-    <li id="q7">Learn by heart several short speeches on topics which may come up. <a id="a13">Yes</a><tab/><a id="a14">No</a><br/></li>
-    <br/>
-    <li id="q8">Don't speak about something if you know nothing about it. <a id="a15">Yes</a><tab/><a id="a16">No</a><br/></li>
+<div id="outer">
+  <img class="rightFloat" src="../media/set6_03.jpg" mode="1" id="1001"/>
+<div id="content">
+  <ol>
+    <li id="q1">Talk confidently.</li>
+		<a id="a1"><b>Yes</b></a><tab/><tab/><a id="a2"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q2">Feel free to correct yourself if you make a mistake.</li>
+		<a id="a3"><b>Yes</b></a><tab/><tab/><a id="a4"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q3">Tell the examiner you are very nervous.</li>
+		<a id="a5"><b>Yes</b></a><tab/><tab/><a id="a6"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q4">Smile and look directly at the examiner.</li>
+		<a id="a7"><b>Yes</b></a><tab/><tab/><a id="a8"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q5">Think of enough material to talk about until the examiner stops you.</li>
+		<a id="a9"><b>Yes</b></a><tab/><tab/><a id="a10"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q6">Show interest in the topic.</li>
+		<a id="a11"><b>Yes</b></a><tab/><tab/><a id="a12"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q7">Learn by heart several short speeches on topics which may come up.</li>
+		<a id="a13"><b>Yes</b></a><tab/><tab/><a id="a14"><b>No</b></a>
+    
+	<p class="linespace"></p>
+    <li id="q8">Don't speak about something if you know nothing about it.</li>
+		<a id="a15"><b>Yes</b></a><tab/><tab/><a id="a16"><b>No</b></a>
   </ol>
+</div>
+</div>
 </section>
 
 <section id="fb1">
-  <p align="left">Confidence is a positive thing and will make what you say more interesting.</p>
+  <p class="feedbacktext">Confidence is a positive thing and will make what you say more interesting.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Correcting yourself shows that you are aware of the mistake and that you know the correct language too. This is positive.</font>
+  <p class="feedbacktext">
+    Correcting yourself shows that you are aware of the mistake and that you know the correct language too. This is positive.
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">The examiner expects you to be a bit nervous. There is no need to say it.</font>
+  <p class="feedbacktext">
+    The examiner expects you to be a bit nervous. There is no need to say it.
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This is a friendly thing to do and helps establish good communication.</font>
+  <p class="feedbacktext">
+    This is a friendly thing to do and helps establish good communication.
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">In Part 2 it is good to talk until the examiner stops you.</font>
+  <p class="feedbacktext">
+    In Phase 2 it is good to talk until the examiner stops you.
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">If you show interest, then what you say will be more interesting to the examiner.</font>
+  <p class="feedbacktext">
+    If you show interest, then what you say will be more interesting to the examiner.
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Learning by heart will not help you in this exam. It may cause you to lose marks.</font>
+  <p class="feedbacktext">
+    Learning by heart will not help you in this exam. It may cause you to lose marks.
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">You are not expected to know everything, but you should express an opinion or some thoughts on everything you are asked.</font>
+  <p class="feedbacktext">
+    You are not expected to know everything, but you should express an opinion or some thoughts on everything you are asked.
   </p>
 </section>
 

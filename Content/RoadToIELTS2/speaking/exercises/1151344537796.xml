@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,10 +26,36 @@
 <body>
 	
 <header>
+<div id="instruction">	
 	Think about the these questions:
+</div>
 </header>
 	
-<section id="body"><img class="rightFloat" src="../media/AC_SP_004.jpg" mode="1" id="1001"/><p align="left"> How can you describe complex things using simple language?</p><p align="left">The answers to these questions will help you to prepare for your own test.</p><p align="left"><font color="#0000ff"><b>Speaking task:</b></font></p><p align="left">Describe a piece of modern art and explain how it made you feel when you saw it.&#xA0;</p><p align="left">Practice what you would say and then look at the checklist below of strategies that you could include.</p><p align="left"><font color="#0000ff"><b>Did you find ways:</b></font></p>- to get around vocabulary you didn't know?- to explain things clearly without knowing the correct vocabulary?- to use expressions to give you more time to think?
+<section id="body">
+
+<img class="rightFloat" src="../media/set5_08.jpg" mode="1" id="1001"/>
+
+<div id="presentation">
+<ol>
+	<li>What phrases do you know that can be used when you don't know the right word to use?</li>
+	<li>How can you describe complex things using simple language?</li>
+</ol>
+
+<p>The answers to these questions will help you to prepare for your own test.</p>
+
+<h6>Speaking task:</h6>
+
+<p>Describe a piece of modern art and explain how it made you feel when you saw it.</p>
+
+<p>Practice what you would say and then look at the checklist below of strategies that you could include.</p>
+
+<h6>Did you find ways:</h6>
+<ul>
+	<li>to get around vocabulary you didn't know?</li>
+	<li>to explain things clearly without knowing the correct vocabulary?</li>
+	<li>to use expressions to give you more time to think?</li>
+</ul>
+</div>
 </section>
 
 </body>

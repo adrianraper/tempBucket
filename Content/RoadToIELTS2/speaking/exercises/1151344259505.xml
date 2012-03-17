@@ -4,14 +4,26 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
-	<![CDATA[
-		/*
-		 * List any exercise specific css here
-		 */			
-	]]>
+	#body .rightFloatvideo1 {	
+	width:860px;
+	height: 830px;
+	padding-top: 10em;
+	padding-right: 10em;
+	padding-left: 480px;
+	margin-top: 0em;
+	}
+	
+	#content1{
+	position:relative;
+	padding-top:25px;
+    height: 800px;
+    width:500px;
+    line-height:22em;
+	padding-left: 0px;
+	}
 	</style>
 	
 	
@@ -105,50 +117,58 @@
 <body>
 	
 <header>
-	Zenia and Zafir both choose the mobile phone for their topic in Part 2. Which points did the two candidates make?
+<div id="instruction">
+	Zenia and Zafir both choose the mobile phone for their topic in Phase 2. Which points did the two candidates make?</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit012_e5a.flv" mode="16" id="1003"/>
-  <video src="../media/Unit012_e5b.flv" mode="16" id="1004"/>
-  <p align="left">
-    <b>Zenia</b>
-    <g id="t1">A.  it can be used everywhere</g>
-    <g id="t2">B.  it's very helpful</g>
-    <g id="t3">C.  it makes it easy for someone to be found</g>
-    <g id="t4">D.  it can save a life</g>
-    <g id="t5">E.  emergency</g>
-    <g id="t6">F.  useful when you have no other means of communication</g>
-    <g id="t7">G.  it's a great technical device</g>
-    <g id="t8">H.  it's useful if you get lost</g>
-    <g id="t9">I.  it can make life easier</g>
-    <g id="t10">J.  it bring us the news more quickly</g>
-    <g id="t11">K.  it's noisy</g>
-    <g id="t12">L.  it interrupts people in quiet places</g>
-    <g id="t13">M.  it interrupts your rest</g>
-  </p>
-  <p align="left">
-    <b>Zafir</b>
-    <g id="t14">A.  it can be used everywhere</g>
-    <g id="t15">B.  it's very helpful</g>
-    <g id="t16">C.  it makes it easy for someone to be found</g>
-    <g id="t17">D.  it can save a life</g>
-    <g id="t18">E.  emergency</g>
-    <g id="t19">F.  useful when you have no other means of communication</g>
-    <g id="t20">G.  it's a great technical device</g>
-    <g id="t21">H.  it's useful if you get lost</g>
-    <g id="t22">I.  it can make life easier</g>
-    <g id="t23">J.  it bring us the news more quickly</g>
-    <g id="t24">K.  it's noisy</g>
-    <g id="t25">L.  it interrupts people in quiet places</g>
-    <g id="t26">M.  it interrupts your rest</g>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
-  <p align="left">
-    <b>Click to watch the video</b>
-  </p>
+<div id="outer">
+<div class="rightFloatvideo1">
+  <video src="../media/Unit012_e5a.flv" mode="16" id="1003" autoPlay="false"/><br/><br/><br/><br/><br/><p class="linespace"></p>
+  <video src="../media/Unit012_e5b.flv" mode="16" id="1004" autoPlay="false"/>
+</div>
+
+<div id="content1">
+  <p><b>Zenia</b></p>
+  <ol id="targetspottingvideo">
+    	<list class="answerList">
+    <li><a id="t1">it can be used everywhere</a></li>
+    <li><a id="t2">it's very helpful</a></li>
+    <li><a id="t3">it makes it easy for someone to be found</a></li>
+    <li><a id="t4">it can save a life</a></li>
+    <li><a id="t5">emergency</a></li>
+    <li><a id="t6">useful when you have no other means of communication</a></li>
+    <li><a id="t7">it's a great technical device</a></li>
+    <li><a id="t8">it's useful if you get lost</a></li>
+    <li><a id="t9">it can make life easier</a></li>
+    <li><a id="t10">it bring us the news more quickly</a></li>
+    <li><a id="t11">it's noisy</a></li>
+    <li><a id="t12">it interrupts people in quiet places</a></li>
+    <li><a id="t13">it interrupts your rest</a></li></list>
+  </ol>
+  
+  <p class="linespace"></p><br/>
+  
+  <p><b>Zafir</b></p>
+  <ol id="targetspottingvideo">
+    	<list class="answerList">
+    <li><a id="t14">it can be used everywhere</a></li>
+    <li><a id="t15">it's very helpful</a></li>
+    <li><a id="t16">it makes it easy for someone to be found</a></li>
+    <li><a id="t17">it can save a life</a></li>
+    <li><a id="t18">emergency</a></li>
+    <li><a id="t19">useful when you have no other means of communication</a></li>
+    <li><a id="t20">it's a great technical device</a></li>
+    <li><a id="t21">it's useful if you get lost</a></li>
+    <li><a id="t22">it can make life easier</a></li>
+    <li><a id="t23">it bring us the news more quickly</a></li>
+    <li><a id="t24">it's noisy</a></li>
+    <li><a id="t25">it interrupts people in quiet places</a></li>
+    <li><a id="t26">it interrupts your rest</a></li></list>
+  </ol>
+</div>
+</div>
+
 </section>
 
 </body>

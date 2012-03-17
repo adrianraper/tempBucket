@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="170" />
@@ -63,6 +66,9 @@
 	
 <section id="body">
 <img class="rightFloat" src="../media/ED_LN_003.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
+
 
 <h1><p>REGISTRATION FORM</p></h1>
 <div id="box1">
@@ -82,7 +88,7 @@
 <br/>&#xA0;</p>
 <p><b>Card No.</b></p>
 <p><b>Expiry Date:</b></p>
-<p></p>
+
 </div>
 
 <div id="rightcolumn1">
@@ -101,13 +107,17 @@
 <br/>_ VISA</p>
 <p>(12)&#xA0;<input id="q5"/></p>
 <p>July 2004</p>
-<p></p>
 </div>
 </div>
 
-  <p class="feedbacktext"></p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to see from the name of the form, the headings and the information given that you will hear a girl called Karen giving a course administrator some personal details.</p>
 
+<p class="popuptext1"><b>Questions 8-12</b></p>
+<p class="popuptext2">For all of these questions you just need to listen very carefully. Make sure you are  familiar with the form and you know where to put the information you hear.</p>
+
+</section>
 </body>
 </bento>

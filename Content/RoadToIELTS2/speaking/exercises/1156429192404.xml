@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -57,79 +57,52 @@
 <body>
 	
 <header>
-	In the previous exercise we saw that Alexandra didn't really pay attention to the topic in Part 2. Which of the following would you suggest to improve Alexandra's performance?
+<div id="instruction">
+	In the previous exercise we saw that Alexandra didn't really pay attention to the topic in Phase 2. Which of the following would you suggest to improve Alexandra's performance?
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_SP_005.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <g id="t1">A. Talk more about the subject in general.</g>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <g id="t2">B. Read the instructions carefully.</g>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <g id="t3">C. Find out what to expect in each part of the test.</g>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <g id="t4">D. Ask the examiner for more information.</g>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <g id="t5">E. Learn more about advertising and other popular topics.</g>
-    </font>
-  </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">
-      <g id="t6">F. Consider taking notes to sort out her thoughts.</g>
-    </font>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <img class="rightFloat" src="../media/set6_05.jpg" mode="1" id="1001"/>
+  <ol id="targetspotting">
+		<list class="answerList">
+        <li><a id="t1">Talk more about the subject in general.</a></li>
+	    <li><a id="t2">Read the instructions carefully.</a></li>
+        <li><a id="t3">Find out what to expect in each part of the test.</a></li>
+        <li><a id="t4">Ask the examiner for more information.</a></li>
+	    <li><a id="t5">Learn more about advertising and other popular topics.</a></li>
+        <li><a id="t6">Consider taking notes to sort out her thoughts.</a></li></list>
+	</ol>
+  
+  <p class="linespace"></p>
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Speaking more generally would not help.</font>
-  </p>
+  <p class="feedbacktext">Speaking more generally would not help.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Yes. You will never answer the question correctly unless you read the instructions carefully.</font>
+  <p class="feedbacktext">Yes. You will never answer the question correctly unless you read the instructions carefully.
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">This will help you to prepare properly, and will increase your confidence.</font>
+  <p class="feedbacktext">This will help you to prepare properly, and will increase your confidence.
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">She had all the information she needed on the card.</font>
+  <p class="feedbacktext">She had all the information she needed on the card.
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Her knowledge was not the problem here.</font>
+  <p class="feedbacktext">Her knowledge was not the problem here.
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Notes will help you to keep going, and will also prevent you from straying from the topic.</font>
+  <p class="feedbacktext">Notes will help you to keep going, and will also prevent you from straying from the topic.
   </p>
 </section>
 

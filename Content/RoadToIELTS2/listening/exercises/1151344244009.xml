@@ -106,13 +106,13 @@
 	
 		<div id="instruction">
 		Questions 1-3. Listen to the recording, which will play automatically, and follow the instructions. Click TWO letters A-E for each question.
-		  <audio controls="hidden" loop="1" autoPlay="true" class="leftFloat" src="../media/DD_LN1a.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/DD_LN1a.mp3" mode="4" id="1002"/>
 		</div>
 </header>
 	
 <section id="body">
 
-  <img class="rightFloat" src="../media/DD_LN_002.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set11_01.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
  <li> Which areas of the world does Voluntary Workers International send people to work in?

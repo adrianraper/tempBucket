@@ -20,6 +20,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<param name="autoMarkTimeout" value="150" />
@@ -83,7 +86,10 @@
 <section id="body">
 
   <img class="rightFloat" src="../media/ST_LN_007.jpg" mode="1" id="1001"/>
-  
+  <br/>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
+
   <ol id="trueFalse">
   <p class="hanging">11. texts with lots of detailed information<br/>
   <a id="a1"><b>B</b></a><tab/><a id="a2"><b>G</b></a></p>
@@ -118,8 +124,11 @@
   <p class="feedbacktext">15. The speaker says that you don't want people searching all over the site for company details as they might give up, so sees this an important feature.</p>
 </section>
 
-<section id="rt2001">
-	<p align="left"><font face="verdana" size="13" color="#000000">You should be able to tell that you will hear someone giving their opinions about designing a web site.</font>Questions 11-15Think about each of these statements and from your own knowledge of web sites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
+<section id="examtips">
+	<p class="popuptext">You should be able to tell that you will hear someone giving their opinions about designing a web site.</p>
+	
+	<p class="popuptext1"><b>Questions 11-15</b></p>
+	<p class="popuptext2">Think about each of these statements and from your own knowledge of web sites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
 </section>
 </body>
 </bento>

@@ -19,7 +19,11 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+		<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
+	<param name="autoMarkTimeout" value="300" />
  	<param name="delayedMarking" value="true" />
 </settings>
 
@@ -77,12 +81,15 @@
 </header>
 	
 <section id="body">
-<img class="rightFloat" src="../media/EN_LN_002.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/><br/>
+<img class="rightFloat" src="../media/set4_01.jpg" mode="1" id="1001"/>
 
 
-<h1><p>ADOPT AN ANIMAL - GIFT APPLICATION FORM</p></h1>
+<h1><p>&#xA0;ADOPT AN ANIMAL - GIFT APPLICATION FORM</p></h1>
+
 <div id="box1">
-<div id="leftcolumn"> 
+<div id="animalleft"> 
 <p><b>PURCHASER'S DETAILS</b></p>
 <p>Name</p>
 <p>Address</p>
@@ -105,7 +112,7 @@
 
 </div>
 
-<div id="rightcolumn">
+<div id="animalright">
 <p>&#xA0;</p>
 <p>Mr&#xA0;<input id="q1"/>&#xA0;Kennedy</p>
 <p><input id="q2"/>, Manly</p>
@@ -114,10 +121,10 @@
 <p><input id="q4"/></p>
 <p></p>
 <p></p>
-<p><input id="q5"/> Kennedy</p>
+<p><input id="q5"/>&#xA0;Kennedy</p>
 <p>as above</p>
 <p>as above</p>
-<p>18th June <input id="q6"/></p>
+<p>18th June&#xA0;<input id="q6"/></p>
 <p>2</p>
 <p><input id="q7"/></p>
 <p>_ Cash
@@ -126,13 +133,20 @@
 <br/><tab/><tab/><tab/>_ MasterCard</p>
 <p>Card No.&#xA0;<input id="q8"/></p>
 <p>Expiry date: November 2004</p>
-
+<p class="linespace"></p>
 </div>
 </div>
 
 
 </section>
 
+<section id="examtips">
+<p class="popuptext">You should be able to see from the form that you will need to listen for names, an address, the name of an animal, a date and some numbers.</p>
+
+<p class="popuptext1"><b>Questions 1-8</b></p>
+<p class="popuptext2">Make sure you are familiar with the form and you know where to put the information you hear.</p>
+
+</section>
 
 
 </body>

@@ -17,6 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
+	<param name="autoMarkTimeout" value="306" />
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
@@ -25,48 +26,84 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="true">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a3" correct="false">
-        <feedback source="fb3"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a4" correct="false">
-        <feedback source="fb4"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a6" correct="true">
-        <feedback source="fb6"/>
+        <feedback source="fb2"/>
       </answer>
-      <answer source="a7" correct="false"/>
-      <answer source="a8" correct="false"/>
+      <answer source="a7" correct="false">
+	  <feedback source="fb2"/>
+      </answer>
+      <answer source="a8" correct="false">
+	  <feedback source="fb2"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a9" correct="false"/>
-      <answer source="a10" correct="false"/>
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="false"/>
+      <answer source="a9" correct="false">
+	  <feedback source="fb3"/>
+      </answer>
+      <answer source="a10" correct="false">
+	  <feedback source="fb3"/>
+      </answer>
+      <answer source="a11" correct="true">
+	  <feedback source="fb3"/>
+      </answer>
+      <answer source="a12" correct="false">
+	  <feedback source="fb3"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
-      <answer source="a13" correct="false"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="false"/>
-      <answer source="a16" correct="true"/>
+      <answer source="a13" correct="false">
+	  <feedback source="fb4"/>
+      </answer>
+      <answer source="a14" correct="false">
+	  <feedback source="fb4"/>
+      </answer>
+      <answer source="a15" correct="false">
+	  <feedback source="fb4"/>
+      </answer>
+      <answer source="a16" correct="true">
+	  <feedback source="fb4"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a19" correct="false"/>
-      <answer source="a20" correct="false"/>
+      <answer source="a17" correct="false">
+	  <feedback source="fb5"/>
+      </answer>
+      <answer source="a18" correct="true">
+	  <feedback source="fb5"/>
+      </answer>
+      <answer source="a19" correct="false">
+	  <feedback source="fb5"/>
+      </answer>
+      <answer source="a20" correct="false">
+	  <feedback source="fb5"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a21" correct="false"/>
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="false"/>
+      <answer source="a21" correct="false">
+	  <feedback source="fb6"/>
+      </answer>
+      <answer source="a22" correct="false">
+	  <feedback source="fb6"/>
+      </answer>
+      <answer source="a23" correct="true">
+	  <feedback source="fb6"/>
+      </answer>
+      <answer source="a24" correct="false">
+	  <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>

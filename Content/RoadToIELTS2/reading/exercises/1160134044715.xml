@@ -58,8 +58,8 @@
 	
 
 <section id="readingText">
-
-	<h1>Practical Guide to Crime Prevention Watch Scheme</h1>
+	<img class="photo2" src="../media/gt_set9_02.jpg" mode="1" id="1001"/>
+	<h1><p>Practical Guide to Crime Prevention Watch Scheme</p></h1>
 	
 	<div id="reading">
 	<p class="hangingIndent">
@@ -95,7 +95,6 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/EN_GR_002.jpg" mode="1" id="1001"/>
   <ol id="splitquestionList">
 
     <p class="hangingIndent2">8.<tab/>All Watch schemes generally have the same objectives.</p>

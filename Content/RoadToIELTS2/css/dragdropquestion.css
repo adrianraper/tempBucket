@@ -444,7 +444,7 @@ h8{
 	}
 	/*-----------------------------------------------------------------------------------------------*/
 	/* Specify for FV Listening Unit 7 Fill in the table (2) */
-	#disease1 {
+	/*#disease1 {
 	float: left;
 	width: 220px;
 	line-height: 25em;
@@ -455,7 +455,23 @@ h8{
 	float: left;
 	width: 170px;
 	line-height: 25em;
+	}*/
+	
+	#disease1 {
+		position: relative;
+		float:left;
+		padding-left:-3px;
+		padding-top: 35px;
+		line-height:22em;
 	}
+
+	#disease2 {	
+		position: relative;
+		float:left;
+		padding-left:202px;
+		padding-top:35px;
+		line-height:22em;
+	}	
 	/*-----------------------------------------------------------------------------------------------*/
 /* Specify for FV Writing 2 task 1 Useful expressions */
 	#expbox {

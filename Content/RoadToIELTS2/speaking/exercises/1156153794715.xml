@@ -45,7 +45,8 @@
 <body>
 	
 <header>
-	Fill the gaps by dragging down the appropriate words.
+<div id="instruction">
+	Fill the gaps by dragging down the appropriate words.</div>
 </header>
 	
 <section id="noscroll">
@@ -61,12 +62,12 @@
   <img class="rightFloat" src="../media/LE_SP_002.jpg" mode="1" id="1001"/>
 
   <ol id="questionList">
-    <li id="1">The test is &#xA0;<input id="q1" type="droptarget"/>&#xA0; minutes long.</li>
-    <li id="2">There are &#xA0;<input id="q2" type="droptarget"/> &#xA0;to the test.</li>
-    <li id="3">The test assesses your ability to &#xA0;<input id="q3" type="droptarget"/>&#xA0; in English.</li>
-    <li id="4">You talk on a particular topic for&#xA0; <input id="q4" type="droptarget"/>&#xA0; minutes.</li>
-    <li id="5">In &#xA0;<input id="q5" type="droptarget"/> &#xA0;you answer general questions about yourself and your life.</li>
-    <li id="6"><input id="q6" type="droptarget"/> &#xA0;are linked by a common theme.</li>
+    <li id="1">The test is&#xA0;<input id="q1" type="droptarget"/>&#xA0;minutes long.</li>
+    <li id="2">There are&#xA0;<input id="q2" type="droptarget"/>&#xA0;to the test.</li>
+    <li id="3">The test assesses your ability to&#xA0;<input id="q3" type="droptarget"/>&#xA0;in English.</li>
+    <li id="4">You talk on a particular topic for&#xA0;<input id="q4" type="droptarget"/>&#xA0;minutes.</li>
+    <li id="5">In&#xA0;<input id="q5" type="droptarget"/>&#xA0;you answer general questions about yourself and your life.</li>
+    <li id="6"><input id="q6" type="droptarget"/>&#xA0;are linked by a common theme.</li>
   </ol>
 </section>
 

@@ -54,7 +54,7 @@
 </header>
 	
 <section id="readingText">
-
+<img class="photo2" src="../media/gt_set9_01.jpg" mode="1" id="1001"/> 
 <h1><p>Practical Guide to Crime Prevention Watch Scheme</p></h1>
 
 	<div id="reading">
@@ -102,8 +102,6 @@
 </section>
 
 <section id="body">
-  <img class="leftFloat" src="../media/RD_S4M_001.jpg" mode="1" id="1001"/>
-  
   <ol id="splitquestionList">
     <li id="1">Paragraph A<br/><input id="q1" type="droptarget"/></li>
 	<p class="linespace"></p>

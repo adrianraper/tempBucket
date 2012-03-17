@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="191" />
 </settings>
 
   <questions>
@@ -57,7 +58,7 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/HF_LN_002.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/set7_01.jpg" mode="1" id="1001"  />
 	<div id="box1">
 	<div id="food1">
 	<p><b>To keep healthy in winter eat: </b></p>
@@ -70,13 +71,13 @@
 	<p></p>
 	<p>Citrus fruits, (3)&#xA0;<input id="q3" />&#xA0;&#38; blackcurrants</p>
 	<p></p>
-	<p>(4) <input id="q4" />, egg yolks &amp; carrots</p>
+	<p>(4)&#xA0;<input id="q4" />, egg yolks &amp; carrots</p>
 	<p></p>
-	<p>(5) <input id="q5" /> &amp; wholegrain cereals</p>
+	<p>(5)&#xA0;<input id="q5" />&#xA0;&amp; wholegrain cereals</p>
 	<p></p>
 	<p>Oily fish</p>
 	<p></p>
-	<p>Nuts &amp; (7) <input id="q7" /></p>
+	<p>Nuts &amp; (7)&#xA0;<input id="q7" /></p>
 	<p></p>
 	<p></p>
 	</div>
@@ -85,20 +86,17 @@
 	<p></p>
 	<p>carbohydrates</p>
 	<p></p>
-	<p></p>
 	<p>protein</p>
-	<p></p>
 	<p></p>
 	<p>vitamins &amp; minerals</p>
 	<p></p>
 	<p>vitamin C</p>
 	<p></p>
-	<p></p>
 	<p>vitamin A</p>
 	<p></p>
 	<p>zinc</p>
 	<p></p>
-	<p>(6) <input id="q6" /></p>
+	<p>(6)&#xA0;<input id="q6" /></p>
 	<p></p>
 	<p>vitamin E</p>
 	<p></p>

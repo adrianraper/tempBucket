@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -26,45 +29,42 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Now look at how the candidates deal with the follow-up question.
+</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit06_e6.flv" mode="1" id="1002"/>
-  <img class="rightFloat" src="../media/MM_SP_004.jpg" mode="1" id="1004"/>
-  <p align="left">
-    <font color="#0000ff">
-      <b>The follow-up question</b>
-    </font>
-  </p>
-  <p align="left">At the end of Part 2, the Examiner often asks a question. The next clip shows the end of each candidate's talk about an advertisement. Look at the different ways they answer the question.</p>
-  <p align="left">Zafir should have expanded in one or two short sentences.</p>
-  <p align="left">Dmitris performs much better. Always remember to give reasons for your answers, rather then just agreeing or disagreeing with the statement the examiner makes.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+<div id="outer">
+<div id="video">
+  <video src="../media/Unit06_e6.flv" mode="1" id="1002" autoPlay="false"/>
+</div>
+
+<div id="content1">
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/><br/>
+  <h1><p>The follow-up question</p></h1>
+
+  <p>At the end of Part 2, the Examiner often asks a question. The next clip shows the end of each candidate's talk about an advertisement. Look at the different ways they answer the question.</p>
+  
+  <p>Zafir should have expanded in one or two short sentences.</p>
+  
+  <p>Dmitris performs much better. Always remember to give reasons for your answers, rather then just agreeing or disagreeing with the statement the examiner makes.</p>
+
+</div>
+</div>
 </section>
 
+<section id="examtips">
+<p class="popuptext1"><b>Question Card</b></p>
+  <p class="popuptext2">Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
+  <p class="popuptext1">You should say:</p>
+  <ul class="popuptext2">
+  	<li>what it showed</li>
+	<li>who it was aimed at</li>
+	<li>what effect it had on you</li>
+  </ul>
+  <p class="popuptext">And explain why you find this type of advertising admirable or not.</p>
+</section>
 </body>
 </bento>
