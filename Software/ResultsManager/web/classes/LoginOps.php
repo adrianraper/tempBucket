@@ -594,5 +594,91 @@ SQL;
 		
 		return $account;
 	}
+	
+	/**
+	 * Check that this user can get a licence slot right now 
+	 */
+	function getLicenceSlot($userObj, $rootID, $productCode) {
+		
+		// During getAccountSettings we picked this up and saved it
+		// TODO. Or do you want to pass it to login?
+		$licenceType = Session::get('licenceType');
+		$maxStudents = Session::get('maxStudents');
+		$licenceClearanceDate = Session::get('licenceClearanceDate');
+		$licenceClearanceFrequency = Session::get('licenceClearanceFrequency');
+		$expiryDate = Session::get('expiryDate');
+		$licenceStartDate = Session::get('licenceStartDate');
+				
+		// Some checks are independent of licence type
+		if ($licenceStartDate > $now) 
+			throw new Exception("Your licence hasn't started yet", 100);
+		if ($expiryDate < $now) 
+			throw new Exception("Your licence has expired", 100);
+		if ($maxStudents < 1) 
+			throw new Exception("You have no licences for this title", 100);
+			
+		// Then licence slot checking is based on licence type
+		switch ($licenceType) {
+			// Concurrent licences
+			case 2:
+			case 3:
+				
+				$aWhileAgo = time() - 1*60; // one minute
+				$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
+				
+				// First, just delete all old licences for this product/root
+				$sql = <<<EOD
+				DELETE FROM T_Licences 
+				WHERE F_ProductCode=? 
+				AND F_RootID IN (?)
+				AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
+EOD;
+				$bindingParams = array($updateTime, $productCode, $singleRootID);
+				$rs = $db->Execute($sql, $bindingParams);
+				// the sql call failed
+				if (!$rs) 
+					throw new Exception("Error, can't clear out old licences", 100);
+
+				// Then count how many are currently in use
+				$bindingParams = array($productCode, $rootID);			
+	
+				$sql = <<<EOD
+				SELECT COUNT(F_LicenceID) as i FROM T_Licences 
+				WHERE F_ProductCode=?
+				AND F_RootID in (?) 
+EOD;
+				$rs = $db->Execute($sql, $bindingParams);
+				$usedLicences = $rs->FetchNextObj()->i;
+
+				if ($usedLicences >= $maxStudents) 
+					throw new Exception("The licence is full, try again later", 100);
+				
+				// Insert this user in the licence control table
+				$dateNow = date('Y-m-d H:i:s', time());
+				$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
+				$sql = <<<EOD
+				INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
+				('$userIP', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
+EOD;
+				$rs = $db->Execute($sql);
+				// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
+				// Except that it fails. Seems due to fact that with parameters, the insert is in a different scope to the identity scope call so fails. 
+				// If I don't do it with parameters then it works. Seems safe since nothing is typed by the user.
+				$licenceID = $db->Insert_ID();
+
+				// Final error check
+				if (!$licenceID)
+					throw new Exception("Error, can't allocate a licence number", 100);
+
+				break;
+				
+			// Named licences
+			case 1:
+			case 4:
+				break;
+		}
+		
+		return $licenceID;
+				
+	}
 }
-?>

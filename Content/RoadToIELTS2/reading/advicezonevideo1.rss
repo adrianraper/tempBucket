@@ -7,8 +7,13 @@
 	<server>vimeo</server>
 	<streaming>progressive-download</streaming>
 	<item>
-		<title>medium quality</title>
-		<streamName>38562277.sd.mp4?s=f1faadd0adabd518602235aa91114a8d</streamName>
+		<title>high def</title>
+		<streamName>38197524.hd.mp4?s=0a558d28cd170394f6b8fa86db9bc808</streamName>
+		<width>411</width>
+	</item>
+	<item>
+		<title>standard def</title>
+		<streamName>38197524.sd.mp4?s=b8a9f819fb096b60916f9a609e33d50a</streamName>
 		<width>411</width>
 	</item>
 </channel>

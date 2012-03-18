@@ -112,6 +112,14 @@ class BentoService extends AbstractService {
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
 		Session::set('productCode', $config['productCode']);
+		// TODO. Maybe it would be better to use another call to get this info again, or pass it back from Bento
+		// I'm would just prefer as little session data as possible.
+		Session::set('licenceType', $account->titles[0]->licenceType);
+		Session::set('maxStudents', $account->titles[0]->maxStudents);
+		Session::set('licenceClearanceDate', $account->titles[0]->licenceClearanceDate);
+		Session::set('licenceClearanceFrequency', $account->titles[0]->licenceClearanceFrequency);
+		Session::set('expiryDate', $account->titles[0]->expiryDate);
+		Session::set('licenceStartDate', $account->titles[0]->licenceStartDate);
 				
 		return array("error" => $errorObj, 
 					"config" => $configObj,
@@ -151,6 +159,10 @@ class BentoService extends AbstractService {
 			Session::set('valid_userIDs', array($userObj->F_UserID));
 			Session::set('userID', $userObj->F_UserID);
 			Session::set('userType', $userObj->F_UserType);
+			
+			// Check that you can give this user a licence
+			// Use exception handling if there is NO licence, otherwise just keep going
+			$licenceObj = $this->loginOps->getLicenceSlot($userObj, $rootID, $productCode);
 			
 			// That call also gave us the groupID
 			// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
