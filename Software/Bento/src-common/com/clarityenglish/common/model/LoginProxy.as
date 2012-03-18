@@ -8,6 +8,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.dms.vo.account.Licence;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
@@ -23,8 +24,8 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "LoginProxy";
 		
 		private var _user:User;
-		
 		private var _group:Group;
+		private var _licence:Licence;
 
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
@@ -147,7 +148,7 @@ package com.clarityenglish.common.model {
 					if (data) {
 						// First need to see if the return has an error
 						if (data.error && data.error.errorNumber>0) {
-							sendNotification(CommonNotifications.INVALID_LOGIN);
+							sendNotification(CommonNotifications.INVALID_LOGIN, data.error);
 						} else {
 							// Successful login
 							// This should have been set in configProxy
@@ -166,6 +167,9 @@ package com.clarityenglish.common.model {
 							
 							_group = data.group as Group;
 							//_user = _group.children[0];
+							
+							// Hold licence information here
+							_licence = data.licenceObj as Licence;
 							
 							// Carry on with the process
 							sendNotification(CommonNotifications.LOGGED_IN, data);

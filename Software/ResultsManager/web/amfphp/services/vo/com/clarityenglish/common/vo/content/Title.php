@@ -180,7 +180,7 @@ class Title extends Content {
 		/*$title->licenceStartDate = $titleObj->F_LICENCESTARTDATE;
 		if (is_null($title->licenceStartDate)) {
 			$aYearAgo = time() - 365.25*24*60*60; // seconds in an average year
-			$title->licenceStartDate = date('Y-m-d G:i:s', $aYearAgo);
+			$title->licenceStartDate = date('Y-m-d H:i:s', $aYearAgo);
 		}*/
 		// Ditto, start date is from the beginning of the day
 		$this->licenceStartDate = substr($obj->F_LicenceStartDate,0,10).' 00:00:00';

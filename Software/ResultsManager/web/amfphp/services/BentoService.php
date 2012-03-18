@@ -25,6 +25,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.p
 
 // v3.4 To allow the account root information to be passed back to RM
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Licence.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
@@ -161,8 +162,8 @@ class BentoService extends AbstractService {
 			Session::set('userType', $userObj->F_UserType);
 			
 			// Check that you can give this user a licence
-			// Use exception handling if there is NO licence, otherwise just keep going
-			$licenceObj = $this->loginOps->getLicenceSlot($userObj, $rootID, $productCode);
+			// Use exception handling if there is NO available licence
+			$licenceObj = $this->loginOps->getLicenceSlot($user, $rootID, $productCode);
 			
 			// That call also gave us the groupID
 			// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
@@ -197,6 +198,7 @@ class BentoService extends AbstractService {
 		// Send this information back
 		return array("error" => $errorObj,
 					"group" => $group,
+					"licence" => $licenceObj,
 					"content" => $contentObj);
 		
 	}
@@ -323,6 +325,28 @@ class BentoService extends AbstractService {
 	 */
 	public function stopSession($sessionID, $dateNow ) {
 		return $this->updateSession($sessionID, $dateNow);
+	}
+	
+	/**
+	 * 
+	 * This service call will update the licence record for this user in the database.
+	 *  
+	 *  @param id - key to the table.
+	 */
+	public function updateLicence($licenceID) {
+		
+		$errorObj = array("errorNumber" => 0);
+		
+		try {
+			// A successful licence update will not generate an error
+			$rs = $this->loginOps->updateLicence($licenceID);
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			return array("error" => $errorObj);
+		}
+		return array("error" => $errorObj);
 	}
 	
 	/**
