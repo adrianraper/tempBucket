@@ -25,7 +25,7 @@ package com.clarityenglish.common.model {
 		
 		private var _user:User;
 		private var _group:Group;
-		private var _licence:Licence;
+		//private var _licence:Licence;
 
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
@@ -59,7 +59,7 @@ package com.clarityenglish.common.model {
 			configProxy.getConfig().instanceID = instanceID.toString();
 			
 			// Off to the database
-			var params:Array = [ loginObj, loginOption, instanceID ];
+			var params:Array = [ loginObj, loginOption, instanceID, configProxy.getConfig().licence ];
 			new RemoteDelegate("login", params, this).execute();
 			//trace("In LoginProxy calling RemoteDelegate");
 			//onDelegateResult("login", {status:"success", user:{id:"10159", name:username}, languageCode:"EN"});
@@ -168,14 +168,14 @@ package com.clarityenglish.common.model {
 							_group = data.group as Group;
 							//_user = _group.children[0];
 							
-							// Hold licence information here
-							_licence = data.licenceObj as Licence;
+							// Add the licence id you just got to the config
+							var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+							configProxy.getConfig().licence.id = (data.licence as Licence).id;
 							
 							// Carry on with the process
 							sendNotification(CommonNotifications.LOGGED_IN, data);
 							
 							// Now that you are logged in, trigger the session start command
-							var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 							var sessionData:Object = {user:_user, account:configProxy.getAccount()};
 							sendNotification(BBNotifications.SESSION_START, sessionData);
 							

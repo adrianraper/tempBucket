@@ -628,7 +628,6 @@ package com.clarityenglish.textLayout.conversion {
 			// Inject XML properties into the element
 			if (xmlToParse.hasOwnProperty("@src")) audioElement.src = updateWithRootPath(xmlToParse.@src.toString());
 			if (xmlToParse.hasOwnProperty("@controls")) audioElement.controls = xmlToParse.@controls.toString();
-			if (xmlToParse.hasOwnProperty("@autoplay")) audioElement.autoplay = xmlToParse.@autoplay.toString();
 			if (xmlToParse.hasOwnProperty("@autoPlay")) audioElement.autoplay = xmlToParse.@autoPlay.toString();
 			
 			addToFlowElementXmlMap(xmlToParse, audioElement);

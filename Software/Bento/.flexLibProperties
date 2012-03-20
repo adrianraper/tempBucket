@@ -112,7 +112,6 @@
     <classEntry path="com.clarityenglish.common.vo.Reportable"/>
     <classEntry path="com.clarityenglish.common.vo.config.BentoError"/>
     <classEntry path="com.clarityenglish.common.vo.config.Config"/>
-    <classEntry path="com.clarityenglish.common.vo.config.Licence"/>
     <classEntry path="com.clarityenglish.common.vo.content.Content"/>
     <classEntry path="com.clarityenglish.common.vo.content.Course"/>
     <classEntry path="com.clarityenglish.common.vo.content.Exercise"/>
@@ -128,15 +127,15 @@
     <classEntry path="com.clarityenglish.alivepdf.pdf.PDF"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
-    <resourceEntry destPath="skins/assets/correctIcon.png" sourcePath="skins/assets/correctIcon.png"/>
-    <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
+    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
+    <resourceEntry destPath="skins/assets/correctIcon.png" sourcePath="skins/assets/correctIcon.png"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.png" sourcePath="skins/assets/incorrectIcon.png"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.swf" sourcePath="skins/assets/incorrectIcon.swf"/>
     <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
     <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
-    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="skins/assets/stop.png" sourcePath="skins/assets/stop.png"/>
   </includeResources>
   <namespaceManifests/>

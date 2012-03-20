@@ -144,8 +144,11 @@ class EmailOps {
 		$mail = new Rmail();	
 		$mail->setHTMLCharset('UTF-8');
 		$mail->setTextCharset('UTF-8');
-		$mail->setTextEncoding(new EightBitEncoding());
-		$mail->setHTMLEncoding(new EightBitEncoding());
+		// BUG. Getting odd spaces added into the sent email (especially in filenames of links)
+		//$mail->setTextEncoding(new EightBitEncoding());
+		//$mail->setHTMLEncoding(new EightBitEncoding());
+		$mail->setTextEncoding(new Base64Encoding());
+		$mail->setHTMLEncoding(new Base64Encoding());
 		$mail->setSMTPParams($GLOBALS['rmail_smtp_host'], $GLOBALS['rmail_smtp_port'], $GLOBALS['rmail_smtp_helo'], $GLOBALS['rmail_smtp_auth'], $GLOBALS['rmail_smtp_username'], $GLOBALS['rmail_smtp_password']);
 		// v3.5 You might have sent $from in the parameters, or you might get it from the template.
 		// This is just the default.

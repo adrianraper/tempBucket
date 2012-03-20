@@ -35,13 +35,18 @@ package com.clarityenglish.ielts.controller {
 			thisExerciseMark.duration = 0;
 			// How can I find the exerciseUID?
 			// This is cheating as I should be setting currentExercise somewhere...
+			// TODO. This is also wrong, as some exercises have href and answerHref etc.
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var matchingExerciseNodes:XMLList = bentoProxy.menuXHTML..exercise.(@href == href.filename);
 			var pdfNode:XML = matchingExerciseNodes[0];
-			var eid:String = pdfNode.@id;
-			var uid:String = pdfNode.parent().@id;			
-			var cid:String = pdfNode.parent().parent().@id;			
-			var pid:String = pdfNode.parent().parent().parent().@id;
+			if (pdfNode && pdfNode.(hasOwnProperty("@id"))) {
+				var eid:String = pdfNode.@id;
+				var uid:String = pdfNode.parent().@id;			
+				var cid:String = pdfNode.parent().parent().@id;			
+				var pid:String = pdfNode.parent().parent().parent().@id;
+			} else {
+				pid = cid = uid = eid = '0';
+			}
 			thisExerciseMark.UID = pid + "." + cid + "." + uid + "." + eid;
 			
 			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark)

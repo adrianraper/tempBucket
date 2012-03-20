@@ -76,7 +76,7 @@ function dhtmlXGridCellObject(obj){
 		if (this.cell.style.color)
 			return this.cell.style.color
 		else
-			return "#FFFFFF";
+			return "#000000";
 	}
 	/**
 	*	@desc: determ. cell's background color

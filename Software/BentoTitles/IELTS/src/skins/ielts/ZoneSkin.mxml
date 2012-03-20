@@ -324,7 +324,7 @@
 													super.data = value;
 													
 													if (data) {
-														examPracticeAnswerButton.label = data.@caption;
+														examPracticeAnswerButton.label = data.@answerCaption;
 														
 														// #213
 														//enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
@@ -334,7 +334,7 @@
 			
 												
 												protected function onViewButtonClick(event:MouseEvent):void {
-													dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
+													dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@answerHref));
 												}
 												
 											]]>

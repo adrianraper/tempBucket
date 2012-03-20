@@ -25,14 +25,14 @@
 		}
 		private function counterDisplay(e:Event):void {
 			if (!this.targetDate) {
-				trace("no date yet");
+				//trace("no date yet");
 				daysTxt.text = "--";
 				hoursTxt.text = "--";
 				minsTxt.text = "--";
 				secsTxt.text = "--";			
 			} else {
 				// Difference between now and the target date
-				trace("target date=" + this.targetDate.toString());
+				//trace("target date=" + this.targetDate.toString());
 				var justNow:Date = new Date();
 				var ms:Number = targetDate.getTime()- justNow.getTime();
 				

@@ -2,6 +2,7 @@ package com.clarityenglish.common.vo.config {
 	//import com.clarityenglish.common.vo.config.Licence;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.dms.vo.account.Account;
+	import com.clarityenglish.dms.vo.account.Licence;
 	
 	/**
 	 * This holds configuration information that comes from any source.
@@ -42,7 +43,7 @@ package com.clarityenglish.common.vo.config {
 		// Is it worth paths being a separate class?
 		public var paths:Object;
 		// Licence control is a separate class fed by this one
-		//public var licence:Licence;
+		public var licence:Licence;
 		// Actually, we might just use the Account class rather than a special licence class
 		public var account:Account;
 		
@@ -249,31 +250,8 @@ package com.clarityenglish.common.vo.config {
 			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('[version]').join(data.contentLocation);
 			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('[prefix]').join(data.prefix);
 		
-			// Licence details - all part of the account now
-			/*
-			if (thisTitle.licenceType) {
-				this.licence.type = thisTitle.licenceType;
-			} else {
-				// Defaults don't really make sense - it is more likely an error if this is not set
-				this.licence.type == Licence.LEARNER_TRACKING;
-			}
-			if (data.licenceSize) {
-				this.licence.size = data.licenceSize;
-			} else {
-				this.licence.size = 1;
-			}
-			// TODO. Would it be better to keep all dates in the model as real dates, not as strings?
-			if (data.licenceExpiryDate) {
-				this.licence.expiryDate = new Date(data.licenceExpiryDate as Number);
-			} else {
-				this.licence.expiryDate = new Date(); // well, what? yesterday?
-			}
-			if (data.licenceStartDate) {
-				this.licence.startDate = new Date(data.licenceStartDate as Number);
-			} else {
-				this.licence.startDate = new Date(); // well, what? today?
-			}
-			*/
+			// Whilst the title/account holds most licence info, it is nice to keep it in one class
+			this.licence = data.licence as Licence;
 		}
 		
 		/**

@@ -6,14 +6,72 @@ class Licence {
 	 */
 	var $_explicitType = 'com.clarityenglish.dms.vo.account.Licence';
 
-	// Create a class for the licence even though it only has ID at the moment
+	// The id for the record in the licence control table
+	public $id;
 	
-	var $id;
+	// Whilst most data in this class is picked up from title, it makes it easier to keep it altogether
+	public $maxStudents;
+	public $licenceClearanceDate;
+	public $expiryDate;
+	public $licenceStartDate;
+	public $licenceClearanceFrequency;
+	public $licenceType;
 	
-	function Licence($id) {
+	public $licenceControlStartDate;
 		
-		$this->id = $id;
+	public function Licence($id = null) {
+		
+		if ($id)
+			$this->id = $id;
 		
 	}
-	
+	private function findLicenceClearanceDate() {
+		// The from date for counting licence use is calculated as follows:
+		// If there is no licenceClearanceDate, then use licenceStartDate.
+		// If there is no licenceClearanceFrequency, then use +1y
+		// Take licenceClearanceDate and add the frequency to it until we get a date in the future.
+		// The previous date is our fromDate.
+		if (!$this->licenceClearanceDate) 
+			$this->licenceClearanceDate = $this->licenceStartDate;
+		// Just in case dates have been put in wrongly. 
+		// First, if clearance date is in the future, use the start date
+		if ($this->licenceClearanceDate > time()) 
+			$this->licenceClearanceDate = $this->licenceStartDate;
+		// If clearance date is before the start date, it doesn't much matter
+		// Turn the string into a timestamp
+		$fromDateStamp = strtotime($this->licenceClearanceDate);
+		
+		// You mustn't have a negative frequency otherwise the loop will be infinite
+		if (!$this->licenceClearanceFrequency)
+			$this->licenceClearanceFrequency = '1 year';
+		if (stristr($this->licenceClearanceFrequency, '-')!==FALSE) 
+			$this->licenceClearanceFrequency = str_replace('-', '', $title-> licenceClearanceFrequency);
+		// Check that the frequency is valid
+		if (!strtotime($this->licenceClearanceFrequency, $fromDateStamp) > 0)
+			$this->licenceClearanceFrequency = '1 year';
+		// Just in case we still have invalid data
+		$safetyCount=0;
+		while ($safetyCount<99 && strtotime($this->licenceClearanceFrequency, $fromDateStamp) < time()) {
+			$fromDateStamp = strtotime($this->licenceClearanceFrequency, $fromDateStamp);
+			$safetyCount++;
+		}
+		
+		// We want a formatted date
+		$this->licenceControlStartDate = date('Y-m-d 00:00:00', $fromDateStamp);
+	}
+
+	/**
+	 * Grab the relevant bits of information from the title object to save here
+	 * @param Title $title
+	 */
+	public function fromDatabaseObj($title) {
+		$this->licenceType = (int)$title->licenceType;
+		$this->maxStudents = (int)$title->maxStudents;
+		$this->licenceClearanceDate = $title->licenceClearanceDate;
+		$this->licenceClearanceFrequency = $title->licenceClearanceFrequency;
+		$this->expiryDate = $title->expiryDate;
+		$this->licenceStartDate = $title->licenceStartDate;
+		$this->findLicenceClearanceDate();
+	}		
+		
 }	

@@ -195,7 +195,8 @@ package com.clarityenglish.ielts.view.zone {
 				examPracticeDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
 				
 				// Give the exam practice exercises as a dataprovider to the exam practice answer group
-				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-answers").exercise);
+				//examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-answers").exercise);
+				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise.(hasOwnProperty("@answerHref")));
 				
 				// Change the course selector
 				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());

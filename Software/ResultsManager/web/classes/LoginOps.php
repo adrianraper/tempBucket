@@ -3,9 +3,6 @@
 class LoginOps {
 	
 	var $db;
-	// We expect Bento to update the licence record every minute that the user is connected
-	// This is the number of minutes after which a licence record can be removed
-	const LICENCE_DELAY = 2;
 	
 	function LoginOps($db) {
 		
@@ -38,22 +35,6 @@ class LoginOps {
 		if (isset($loginObj['password']))
 			$password = $loginObj['password'];
 			
-		
-		// Build the basic login query
-		// TODO: This currently binds the language to productCode=2 (RM) but we'll want to make this configurable when we add more products)
-		// AR I also want to know the login user's ID back in RM. Hmm, I think I was able to pick this up anyway without it being in the selectFields. How?
-		// No, I don't think it was being properly passed. Anyway, it is now.
-		// AR. Surely I should pass back the entire user object? Why ever wouldn't I?
-		/*
-		$selectFields = array("g.F_GroupID as groupID",
-							  "m.F_RootID",
-							  "u.F_UserType",
-							  "u.F_UserName",
-							  "u.F_UserID",
-							  "u.F_Password",
-							  $this->db->SQLDate("Y-m-d H:i:s", "u.F_StartDate")." UserStartDate",
-							  $this->db->SQLDate("Y-m-d H:i:s", "u.F_ExpiryDate")." UserExpiryDate");
-		*/					  
 		$selectFields = array("g.F_GroupID as groupID",
 							  "m.F_RootID",
 							  "u.*");
@@ -341,26 +322,6 @@ EOD;
 		throw new Exception("Can't get the instance ID for the user $userID", 100);
 	}
 	
-	/**
-	 * 
-	 * This function updates a licence record with an timestamp
-	 * @param Number $ID
-	 */
-	function updateLicence($licenceID) {
-		
-		$dateNow = date('Y-m-d H:i:s');
-		$sql =	<<<EOD
-				UPDATE T_Licence l					
-				SET l.F_LastUpdateTime=? 
-				WHERE l.F_LicenceID=?
-EOD;
-		$bindingParams = array($dateNow, $licenceID);
-		$resultObj = $this->db->Execute($sql, $bindingParams);
-		if ($resultObj)
-			return true;
-		throw new Exception("Can't update the licence record for $licenceID", 100);
-	}
-	
 	// v3.2 A simplified login which is for identification rather than authentication purposes
 	// Not used yet.
 	/*
@@ -616,187 +577,5 @@ SQL;
 		}
 		
 		return $account;
-	}
-	
-	/**
-	 * Check that this user can get a licence slot right now 
-	 */
-	function getLicenceSlot($userObj, $rootID, $productCode) {
-		
-		// During getAccountSettings we picked this up and saved it
-		// TODO. Or do you want to pass it to login?
-		$licenceType = Session::get('licenceType');
-		$maxStudents = Session::get('maxStudents');
-		$licenceClearanceDate = Session::get('licenceClearanceDate');
-		$licenceClearanceFrequency = Session::get('licenceClearanceFrequency');
-		$expiryDate = Session::get('expiryDate');
-		$licenceStartDate = Session::get('licenceStartDate');
-		
-		// Whilst rootID might be a comma delimited list, you can treat
-		// licence control as simply use the first one in the list
-		$singleRootID = explode(",", $rootID)[0];
-				
-		// Some checks are independent of licence type
-		if ($licenceStartDate > $now) 
-			throw new Exception("Your licence hasn't started yet", 100);
-		if ($expiryDate < $now) 
-			throw new Exception("Your licence has expired", 100);
-		if ($maxStudents < 1) 
-			throw new Exception("You have no licences for this title", 100);
-			
-		// Then licence slot checking is based on licence type
-		switch ($licenceType) {
-			// Concurrent licences
-			case 2:
-			case 3:
-				
-				$aWhileAgo = time() - LICENCE_DELAY*60;
-				$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
-				
-				// First, just delete all old licences for this product/root
-				$sql = <<<EOD
-				DELETE FROM T_Licences 
-				WHERE F_ProductCode=? 
-				AND F_RootID=?
-				AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
-EOD;
-				$bindingParams = array($productCode, $singleRootID, $updateTime);
-				$rs = $db->Execute($sql, $bindingParams);
-				// the sql call failed
-				if (!$rs) 
-					throw new Exception("Error, can't clear out old licences", 100);
-
-				// Then count how many are currently in use
-				$bindingParams = array($productCode, $singleRootID);			
-	
-				$sql = <<<EOD
-				SELECT COUNT(F_LicenceID) as i FROM T_Licences 
-				WHERE F_ProductCode=?
-				AND F_RootID=? 
-EOD;
-				$rs = $db->Execute($sql, $bindingParams);
-				$usedLicences = $rs->FetchNextObj()->i;
-
-				if ($usedLicences >= $maxStudents) 
-					throw new Exception("The licence is full, try again later", 100);
-				
-				// Insert this user in the licence control table
-				$dateNow = date('Y-m-d H:i:s');
-				//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
-				$sql = <<<EOD
-				INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
-				('$userIP', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
-EOD;
-				$rs = $db->Execute($sql);
-				// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
-				// Except that it fails. Seems due to fact that with parameters, the insert is in a different scope to the identity scope call so fails. 
-				// If I don't do it with parameters then it works. Seems safe since nothing is typed by the user.
-				$licenceID = $db->Insert_ID();
-
-				// Final error check
-				if (!$licenceID)
-					throw new Exception("Error, can't allocate a licence number", 100);
-
-				break;
-				
-			// Named licences
-			case 1:
-			case 4:
-				
-				// Only track learners
-				if ($user->userType != User::USER_TYPE_STUDENT) {
-					$licenceID = 0;
-					
-				} else {
-					
-					// Need to know what the licence clearance date is
-					$licenceDate = $x;
-					
-					// Has this user got an existing licence we can use?
-					$licenceID = $this->checkExistingLicence($user, $productCode, $licenceDate);
-					if (!$licenceID) {
-						
-						// Are there any licences left?
-						if ($this->checkAvailableLicences($rootID, $productCode, $licenceDate, $maxStudents)) {
-							
-							// Grab one
-							$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
-							
-						} else {
-							throw new Exception("The licence is full", 100);
-						}
-					}
-				}
-				break;
-		}
-		
-		$licenceObj = new Licence($licenceID);
-		return $licenceObj;
-				
-	}
-	function checkExistingLicence($user, $productCode, $licenceDate) {
-		
-		// Is there a record in T_LicenceControl for this user/product since the date?
-		$sql = <<<EOD
-			SELECT F_LicenceID as i FROM T_LicenceControl 
-			WHERE F_ProductCode=?
-			AND F_UserID=?
-			AND F_DateStamp >= ?
-EOD;
-		$bindingParams = array($productCode, $user->userID, $licenceDate);
-		$rs = $db->Execute($sql, $bindingParams);
-		// SQL error
-		if (!$rs) 
-			throw new Exception("Error reading licence control table", 100);
-			
-		switch ($rs->RecordCount()) {
-			case 0:
-				return false;
-				break;
-			default:
-				// Valid login
-				$licenceObj = $rs->FetchNextObj();
-				return $licenceObj['i'];
-		}
-	}
-	function checkAvailableLicences($rootID, $productCode, $licenceDate, $maxStudents) {
-		
-		// How many records in T_LicenceControl for this root/product since the date?
-		$sql = <<<EOD
-			SELECT count(F_LicenceID) as i FROM T_LicenceControl 
-			WHERE F_ProductCode=?
-			AND F_RootID=?
-			AND F_DateStamp >= ?
-EOD;
-		$bindingParams = array($productCode, $rootID, $licenceDate);
-		$rs = $db->Execute($sql, $bindingParams);
-		// SQL error
-		if (!$rs) 
-			throw new Exception("Error reading licence control table", 100);
-			
-		$licencesUsed = $rs->FetchNextObj();
-		if ($licencesUsed < $maxStudents) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	function allocateNewLicence($user, $rootID, $productCode) {
-
-		// Insert this user in the licence control table
-		$dateNow = date('Y-m-d H:i:s');
-		//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
-		$sql = <<<EOD
-		INSERT INTO T_LicenceControl (F_UserID, F_ProductCode, F_RootID, F_DateStamp) VALUES
-		($user->userID, $productCode, $rootID, '$dateNow')
-EOD;
-		$rs = $db->Execute($sql);
-		$licenceID = $db->Insert_ID();
-
-		// Final error check
-		if (!$licenceID)
-			throw new Exception("Error, can't allocate a licence number", 100);
-
-		return $licenceID;
 	}
 }

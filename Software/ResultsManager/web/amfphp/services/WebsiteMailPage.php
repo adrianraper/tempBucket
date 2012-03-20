@@ -340,8 +340,10 @@ function sendEmail($templateID) {
 
 		case 4: # enquiry form - to customer
 			if($data['sector']=="Home user"||$data['sector']=="Student") { //for student
-				$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_header.htm");
-				$body .= file_get_contents("$templateFolder/email_enquiry_toHomeUser_contents.htm");
+				// The home user/student email doesn't need a header or footer
+				//$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_header.htm");
+				//$body .= file_get_contents("$templateFolder/email_enquiry_toHomeUser_contents.htm");
+				$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_master.htm");
 				$from = $clarityCLSSupport;
 			} else { //not student
 				$body = file_get_contents("$templateFolder/email_enquiry_toCustomer_header.htm");
@@ -352,8 +354,8 @@ function sendEmail($templateID) {
 					$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_byEmail.htm");
 				}
 				$from = $clarityNews;
+				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
 			}
-			$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
 			// This only leads to complications
 			//$to = "'".$data['customerName']."' <".$data['customerEmail'].">";
 			$to = $data['customerEmail'];

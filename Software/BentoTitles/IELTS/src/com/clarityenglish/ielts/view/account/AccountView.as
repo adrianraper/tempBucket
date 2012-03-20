@@ -101,7 +101,7 @@ package com.clarityenglish.ielts.view.account {
 						} else if (daysLeft == 0) {
 							instance.text = "Your test is today, good luck!";
 						} else {
-							countdownDisplay.enabled = false;
+							//countdownDisplay.enabled = false;
 							instance.text = "Hope your test went well...";
 						}
 						

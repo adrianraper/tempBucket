@@ -1,148 +1,272 @@
 <?php
-// The whole of licence ops is deprecated, so remove it.
+// With Bento we will start licence control again, so reinstate this class
 class LicenceOps {
 
 	var $db;
-
+	// We expect Bento to update the licence record every minute that the user is connected
+	// This is the number of minutes after which a licence record can be removed
+	const LICENCE_DELAY = 2;
+	
 	function LicenceOps($db) {
-	/*
+		
 		$this->db = $db;
 		
-		$this->manageableOps = new ManageableOps($db);
 		$this->copyOps = new CopyOps($db);
-	*/
 	}
 
-	// v3.2 This function is deprecated
-	// So remove it
-	/*
-	function getLicences() {
-		$sql = 	<<<EOD
-				SELECT l.F_ProductCode, l.F_UserID
-				FROM T_TitleLicences l
-				WHERE F_RootID=?
-				ORDER BY l.F_ProductCode;
+	/**
+	 * Check that this user can get a licence slot right now 
+	 */
+	function getLicenceSlot($user, $rootID, $productCode, $licence) {
+		
+		// Whilst rootID might be a comma delimited list, you can treat
+		// licence control as simply use the first one in the list
+		if (stristr($rootID, ',')) {
+			$rootArray = explode(',', $rootID);
+			$singleRootID = $rootArray[0];
+		} else {
+			$singleRootID = $rootID;
+		}
+				
+		// Some checks are independent of licence type
+		$dateNow = date('Y-m-d 23:59:59');
+		if ($licence->licenceStartDate > $dateNow) 
+			throw new Exception("Your licence hasn't started yet", 100);
+		if ($licence->expiryDate < $dateNow) 
+			throw new Exception("Your licence expired on ".$licence->expiryDate, 100);
+		if ($licence->maxStudents < 5) 
+			throw new Exception("You have no licences for this title ".$licence->maxStudents.' so there', 100);
+			
+		// Then licence slot checking is based on licence type
+		switch ($licence->licenceType) {
+			
+			// Concurrent licences
+			case Title::LICENCE_TYPE_AA:
+			case Title::LICENCE_TYPE_CT:
+				
+				$aWhileAgo = time() - LICENCE_DELAY*60;
+				$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
+				
+				// First, always delete old licences for this product/root
+				$sql = <<<EOD
+				DELETE FROM T_Licences 
+				WHERE F_ProductCode=? 
+				AND F_RootID=?
+				AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
 EOD;
+				$bindingParams = array($productCode, $singleRootID, $updateTime);
+				$rs = $this->db->Execute($sql, $bindingParams);
+				// the sql call failed
+				if (!$rs) 
+					throw new Exception("Error, can't clear out old licences", 100);
 
-		$licencesRS = $this->db->Execute($sql, array(Session::get('rootID')));
-		
-		$licences = array();
-		while ($licenceObj = $licencesRS->FetchNextObj()) {
-			$productCode = $licenceObj->F_ProductCode;
-			if ($licences[$productCode] == null)
-				$licences[$productCode] = array();
-			
-			$licences[$productCode][] = (string)($licenceObj->F_UserID);
-		}
-		
-		return $licences;
-	}
+				// Then count how many are currently in use
+				$bindingParams = array($productCode, $singleRootID);			
 	
-	// v3.2 This function is deprecated
-	function allocateLicences($userIdArray, $productCode) {
-		// Check that the logged in user is allowed to access these users
-		AuthenticationOps::authenticateUserIDs($userIdArray);
-		
-		// Check that adding these users doesn't exceed the licence limit.  Get the current number of allocated students and the maximum
-		// allowed for this product and root.
-		$sql = 	<<<EOD
-				SELECT COUNT(*) CurrentStudents
-				FROM T_TitleLicences l
-				WHERE l.F_ProductCode=? AND l.F_RootID=?
+				$sql = <<<EOD
+				SELECT COUNT(F_LicenceID) as i FROM T_Licences 
+				WHERE F_ProductCode=?
+				AND F_RootID=? 
 EOD;
-		
-		$rs = $this->db->GetRow($sql, array($productCode, Session::get('rootID')));
-		$currentStudents = $rs['CurrentStudents'];
-		
-		$sql = 	<<<EOD
-				SELECT a.F_MaxStudents
-				FROM T_Accounts a
-				WHERE a.F_ProductCode=? AND a.F_RootID=?
+				$rs = $this->db->Execute($sql, $bindingParams);
+				$usedLicences = $rs->FetchNextObj()->i;
+
+				if ($usedLicences >= $licence->maxStudents) 
+					throw new Exception("The licence is full, try again later", 100);
+				
+				// Insert this user in the licence control table
+				$dateNow = date('Y-m-d H:i:s');
+				//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
+				$sql = <<<EOD
+				INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
+				('$userIP', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
 EOD;
-		
-		$rs = $this->db->GetRow($sql , array($productCode, Session::get('rootID')));
-		$maxStudents = $rs['F_MaxStudents'];
-		
-		if ($maxStudents != null && (sizeof($userIdArray) + $currentStudents) > $maxStudents) {
-			$amount = sizeof($userIdArray) + $currentStudents - $maxStudents;
+				$rs = $this->db->Execute($sql);
+				// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
+				// Except that it fails. Seems due to fact that with parameters, the insert is in a different scope to the identity scope call so fails. 
+				// If I don't do it with parameters then it works. Seems safe since nothing is typed by the user.
+				$licenceID = $this->db->Insert_ID();
+
+				// Final error check
+				if (!$licenceID)
+					throw new Exception("Error, can't allocate a licence number", 100);
+
+				break;
+
+			// TODO. What about single and individual licences?
+			case Title::LICENCE_TYPE_SINGLE:
+			case Title::LICENCE_TYPE_I:
 			
-			// Return a subsituted error message from the literals
-			$replaceObj = array("userCount" => $amount);
-			throw new Exception($this->copyOps->getCopyForId("tooManyUsersToAllocate", $replaceObj));
+			// Named licences
+			case Title::LICENCE_TYPE_LT:
+			case Title::LICENCE_TYPE_TT:
+				
+				// Only track learners
+				if ($user->userType != User::USER_TYPE_STUDENT) {
+					$licenceID = 0;
+					
+				} else {
+					
+					// Has this user got an existing licence we can use?
+					$licenceID = $this->checkExistingLicence($user, $productCode, $licence);
+					if ($licenceID) {
+						
+						// If so, update their use of it
+						$rc = $this->updateLicence($licenceID);
+						
+					} else {
+						
+						// How many licences have been used?
+						if ($this->countUsedLicences($rootID, $productCode, $licence) < $licence->maxStudents) {
+							
+							// Grab one
+							$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
+							
+						} else {
+							throw new Exception("The licence is full", 100);
+						}
+					}
+				}
+				break;
 		}
 		
-		$this->db->StartTrans();
-		
-		// First attempt to delete all existing licences as duplicates can cause errors and not sure if MSSQL has REPLACE
-		$this->unallocateLicences($userIdArray, $productCode);
-		
-		foreach ($userIdArray as $userID) {
-			$dbObj = array();
-			$dbObj['F_UserID'] = $userID;
-			$dbObj['F_ProductCode'] = $productCode;
-			$dbObj['F_RootID'] = Session::get('rootID');
-			$this->db->AutoExecute("T_TitleLicences", $dbObj, "INSERT");
-		}
-		
-		$this->db->CompleteTrans();
-		
-		return true;
+		return $licenceID;
+				
 	}
-	
-	// v3.2 This function is deprecated
-	function unallocateLicences($userIdArray, $productCode) {
-		// Check that the logged in user is allowed to access these users
-		AuthenticationOps::authenticateUserIDs($userIdArray);
+	/**
+	 * 
+	 * Does this user already have a licence for this product?
+	 * @param User $user
+	 * @param Number $productCode
+	 * @param Licence $licence
+	 */
+	function checkExistingLicence($user, $productCode, $licence) {
 		
-		$this->db->StartTrans();
-		
-		foreach ($userIdArray as $userID) {
-			$sql = 	<<<EOD
-					DELETE FROM T_TitleLicences WHERE
-					F_UserID=? AND
-					F_ProductCode=? AND
-					F_RootID=?
+		// Is there a record in T_LicenceControl for this user/product since the date?
+		$sql = <<<EOD
+			SELECT F_LicenceID as i FROM T_LicenceControl 
+			WHERE F_ProductCode=?
+			AND F_UserID=?
+			AND F_LastUpdateTime>=?
 EOD;
+		$bindingParams = array($productCode, $user->userID, $licence->licenceControlStartDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		// SQL error
+		if (!$rs) 
+			throw new Exception("Error reading licence control table", 100);
 			
-			$this->db->Execute($sql, array($userID, $productCode, Session::get('rootID')));
+		switch ($rs->RecordCount()) {
+			case 0:
+				return false;
+				break;
+			default:
+				// Valid login, return the id
+				return $rs->FetchNextObj()->i;
+		}
+	}
+	/**
+	 * 
+	 * Count the number of used licences for this root / product since the clearance date
+	 * @param String $rootID
+	 * @param Number $productCode
+	 * @param Licence $licence
+	 */
+	function countUsedLicences($rootID, $productCode, $licence) {
+
+		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
+				FROM T_LicenceControl c, T_User u
+				WHERE c.F_ProductCode = ?
+				AND c.F_UserID = u.F_UserID
+				AND c.F_LastUpdateTime >= ?
+EOD;
+		} else {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
+				WHERE F_ProductCode = ?
+				AND F_LastUpdateTime >= ?
+EOD;
 		}
 		
-		$this->db->CompleteTrans();
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+		} else {
+			$sql.= " AND F_RootID = $rootID";
+		}
+		$bindingParams = array($productCode, $licence->licenceControlStartDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		return true;
+		if ($rs && $rs->RecordCount()>0) {
+			$licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
+		} else {
+			throw new Exception('Error reading licence control table', 100);
+		}
+				
+		return $licencesUsed;
 	}
-	*/
 	
 	/**
-	 * Dynamically generate a licence.ini file from the given account id and product code
+	 * 
+	 * Add a new record to the licence control table for this user/product
+	 * @param User $user
+	 * @param String $rootID
+	 * @param Number $productCode
 	 */
-	// This function is deprecated as we don't use licence files anymore
-	/*
-	function generateLicenceFile($accountID, $productCode) {
-		// Since this may not be included (if this is a RM install, for example) we can't create AccountOps or TemplateOps in the constructor.
-		$accountOps = new AccountOps($this->db);
-		$templateOps = new TemplateOps($this->db);
-		
-		// Get the account
-		$accounts = $accountOps->getAccounts(array($accountID));
-		$account = $accounts[0];
+	function allocateNewLicence($user, $rootID, $productCode) {
 
-		// Get the title
-		$title = $account->getTitleByProductCode($productCode);
+		// Insert this user in the licence control table
+		$dateNow = date('Y-m-d H:i:s');
+		//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
+		$sql = <<<EOD
+		INSERT INTO T_LicenceControl (F_UserID, F_ProductCode, F_RootID, F_LastUpdateTime) VALUES
+		($user->userID, $productCode, $rootID, '$dateNow')
+EOD;
+		$rs = $this->db->Execute($sql);
+		$licenceID = $this->db->Insert_ID();
 
-		// Get the licence file from the template
-		$licenceFileText = $templateOps->fetchTemplate("licences/licence_file", array("account" => $account, "title" => $title));
+		// Final error check
+		if (!$licenceID)
+			throw new Exception("Error, can't allocate a licence number", 100);
 
-		// Generate the checksum,  Not quite sure if this is correct!
-		$checksum = md5("claritylicencechecksum" + $licenceFileText);
-
-		// Add it to the licence file
-		$licenceFileText .= "\nCheckSum=$checksum";
-		
-		return $licenceFileText;
+		return $licenceID;
 	}
-	*/
+	/**
+	 * 
+	 * This function updates a licence record with a timestamp
+	 * @param Number $ID
+	 */
+	function updateLicence($id) {
 
+		$dateNow = date('Y-m-d H:i:s');
+		
+		// First need to confirm that this licence record exists
+		$sql = <<<EOD
+			SELECT * FROM T_LicenceControl
+			WHERE F_LicenceID=?
+EOD;
+		$bindingParams = array($id);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->RecordCount() == 1) {
+			$rs->Close();
+			
+			$sql = <<<EOD
+				UPDATE T_LicenceControl
+				SET F_LastUpdateTime=?
+				WHERE F_LicenceID=?
+EOD;
+			$bindingParams = array($dateNow, $id);
+			$resultObj = $this->db->Execute($sql, $bindingParams);
+			if ($resultObj)
+				return true;
+				
+		}
+		
+		throw new Exception("Can't update the licence record for $licenceID", 100);
+	}
+	
 }
 
-?>

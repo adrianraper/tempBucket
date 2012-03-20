@@ -33,6 +33,7 @@ require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/ProgressOps.php");
+require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -70,6 +71,7 @@ class BentoService extends AbstractService {
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
+		$this->licenceOps = new LicenceOps($this->db);
 	}
 	
 	/**
@@ -113,17 +115,15 @@ class BentoService extends AbstractService {
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
 		Session::set('productCode', $config['productCode']);
-		// TODO. Maybe it would be better to use another call to get this info again, or pass it back from Bento
-		// I'm would just prefer as little session data as possible.
-		Session::set('licenceType', $account->titles[0]->licenceType);
-		Session::set('maxStudents', $account->titles[0]->maxStudents);
-		Session::set('licenceClearanceDate', $account->titles[0]->licenceClearanceDate);
-		Session::set('licenceClearanceFrequency', $account->titles[0]->licenceClearanceFrequency);
-		Session::set('expiryDate', $account->titles[0]->expiryDate);
-		Session::set('licenceStartDate', $account->titles[0]->licenceStartDate);
-				
+		// TODO. Maybe it would be better to use another call to get this info again later, or pass it back from Bento
+		// I would just prefer as little session data as possible.
+		$licence = new Licence();
+		$licence->fromDatabaseObj($account->titles[0]);
+		//Session::set('licence', $licence);
+		
 		return array("error" => $errorObj, 
 					"config" => $configObj,
+					"licence" => $licence,
 					"account" => $account);
 	}
 	
@@ -132,7 +132,7 @@ class BentoService extends AbstractService {
 	// Assume, for now, that rootID and productCode were put into session variables by getAccountDetails
 	// otherwise they need to be passed with every call.
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
-	public function login($loginObj, $loginOption, $instanceID) {
+	public function login($loginObj, $loginOption, $instanceID, $licence) {
 	
 		// All errors are caught with an exception handler. This includes expected
 		// errors such as incorrect password, data errors such as no account
@@ -142,7 +142,10 @@ class BentoService extends AbstractService {
 				
 			$rootID = Session::get('rootID');
 			$productCode = Session::get('productCode');
-		
+			// You can't safely put a class object in the session as the class definition
+			// has to exist before you do session_start or you will get errors.
+			//$licence = Session::get('licence');
+			
 			$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 									 User::USER_TYPE_ADMINISTRATOR,
 									 User::USER_TYPE_AUTHOR,
@@ -163,7 +166,8 @@ class BentoService extends AbstractService {
 			
 			// Check that you can give this user a licence
 			// Use exception handling if there is NO available licence
-			$licenceObj = $this->loginOps->getLicenceSlot($user, $rootID, $productCode);
+			$licenceID = $this->licenceOps->getLicenceSlot($user, $rootID, $productCode, $licence);
+			$licence->id = $licenceID;
 			
 			// That call also gave us the groupID
 			// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
@@ -198,7 +202,7 @@ class BentoService extends AbstractService {
 		// Send this information back
 		return array("error" => $errorObj,
 					"group" => $group,
-					"licence" => $licenceObj,
+					"licence" => $licence,
 					"content" => $contentObj);
 		
 	}
@@ -339,7 +343,7 @@ class BentoService extends AbstractService {
 		
 		try {
 			// A successful licence update will not generate an error
-			$rs = $this->loginOps->updateLicence($licenceID);
+			$rs = $this->licenceOps->updateLicence($licenceID);
 			
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 

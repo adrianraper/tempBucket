@@ -13,6 +13,8 @@ package com.clarityenglish.ielts.view.title {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.collections.ArrayCollection;
 	import mx.events.ItemClickEvent;
@@ -80,6 +82,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		private var _productVersion:String;
 		private var _productCode:uint;
+		
+		// #260 
+		private var shortDelayTimer:Timer;
 		
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
@@ -198,8 +203,6 @@ package com.clarityenglish.ielts.view.title {
 			return null;
 		}
 
-		//public function set productVersion:String;
-		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
@@ -237,9 +240,11 @@ package com.clarityenglish.ielts.view.title {
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
+				
 				case exerciseView:
 					exerciseView.href = currentExerciseHref;
 					break;
+				
 				case noticeLabel:
 					// TODO: Check whether we know the exam date, if not say go to my account page to set it
 					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
@@ -265,7 +270,7 @@ package com.clarityenglish.ielts.view.title {
 				case backToMenuButton:
 					instance.removeEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
-				case onLogoutButtonClick:
+				case logoutButton:
 					instance.removeEventListener(MouseEvent.CLICK, onLogoutButtonClick);
 					break;
 			}
@@ -294,6 +299,9 @@ package com.clarityenglish.ielts.view.title {
 			if (event.target.selectedItem) currentState = event.target.selectedItem.data;
 		}
 		
+		protected function onLogoutButtonClick(event:MouseEvent):void {
+			logout.dispatch();
+		}
 		/**
 		 * The user has clicked the back button to get out of an exercise, so clear the current exercise
 		 * 
@@ -301,9 +309,26 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			backToMenu.dispatch();
+			// #260 
+			logoutButton.enabled = false;
+			shortDelayTimer = new Timer(1000, 60);
+			shortDelayTimer.start();
+			shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
+			shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
 		}
-		protected function onLogoutButtonClick(event:MouseEvent):void {
-			logout.dispatch();
+		// #260 
+		// This function enables logoutButton no matter what
+		private function resetLogoutButton(event:TimerEvent):void {
+			trace("enable logout button");
+			logoutButton.enabled = true;
+		}
+		// #260 
+		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
+		private function timerHandler(event:TimerEvent):void {
+			if (zoneView.isMediated) {
+				resetLogoutButton(event);
+				shortDelayTimer.stop();
+			}
 		}
 		
 	}

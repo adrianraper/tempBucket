@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-	<title>Question zone video 1</title>
-	<host>rtmp://streaming.clarityenglish.com:1935/cfx/st/</host>
+	<title>Reading key facts</title>
+	<host>http://player.vimeo.com/external/</host>
 	<type>recorded</type>
-	<server>fms</server>
-	<streaming>rtmp</streaming>
+	<server>vimeo</server>
+	<streaming>progressive-download</streaming>
 	<item>
-		<title>low quality</title>
-		<streamName>RoadToIELTS2/reading/media/reading_key_facts_180</streamName>
-		<bitrate>180</bitrate>
+		<title>standard def</title>
+		<streamName>38759003.sd.mp4?s=0a8b6975264f8a9c909268b03f8cd10a</streamName>
 		<width>411</width>
 	</item>
 	<item>
-		<title>medium quality</title>
-		<streamName>RoadToIELTS2/reading/media/reading_key_facts_700</streamName>
-		<bitrate>700</bitrate>
+		<title>high def</title>
+		<streamName>38759003.hd.mp4?s=b9d404f4a10f85e44491c05207031e12</streamName>
 		<width>411</width>
-	</item>
-	<item>
-		<title>high quality</title>
-		<streamName>RoadToIELTS2/reading/media/reading_key_facts_1200</streamName>
-		<bitrate>1200</bitrate>
-		<width>822</width>
 	</item>
 </channel>
 </rss>

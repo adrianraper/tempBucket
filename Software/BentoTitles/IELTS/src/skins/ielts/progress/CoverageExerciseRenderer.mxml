@@ -17,7 +17,7 @@
 				captionLabel.text = data.@caption;
 
 				// Trac 247. Show disabled menu items as such
-				if (data.hasOwnProperty("@enabled") && data.@enabled == 'false') {
+				if (data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8) {
 					// Probably don't need to change the colour as simply setting enabled to false dulls it
 					//captionLabel.setStyle("color", 0xE6E6E6);
 					fillColor.color = 0xE6E6E6;
