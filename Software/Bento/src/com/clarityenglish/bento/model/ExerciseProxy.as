@@ -59,6 +59,11 @@ package com.clarityenglish.bento.model {
 		private var _exerciseMarked:Boolean = false;
 		
 		/**
+		 * A flag to track whether or not the exercise has had its feedback seen 
+		 */
+		private var _exerciseFeedbackSeen:Boolean = false;
+
+		/**
 		 * A flag to track whether or not the exercise has had anything done to it 
 		 */
 		private var _exerciseDirty:Boolean = false;
@@ -113,6 +118,13 @@ package com.clarityenglish.bento.model {
 		
 		public function get exerciseMarked():Boolean {
 			return _exerciseMarked;
+		}
+		
+		public function get exerciseFeedbackSeen():Boolean {
+			return _exerciseFeedbackSeen;
+		}
+		public function set exerciseFeedbackSeen(value:Boolean):void {
+			_exerciseFeedbackSeen = value;
 		}
 		
 		public function get exerciseDirty():Boolean {
@@ -217,8 +229,8 @@ package com.clarityenglish.bento.model {
 				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
 			}
 			
-			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback.  If delayed marking is on
-			// we only show feedback once the exercise has been marked.
+			// If there is any feedback attached to the answer send a notification to tell the framework to display some feedback.  
+			// If delayed marking is on we only show feedback once the exercise has been marked.
 			if (answer.feedback && (!delayedMarking || exerciseMarked)) {
 				// Create substitutions where appropriate
 				var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();

@@ -47,7 +47,7 @@ package com.clarityenglish.bento.view.warning {
 							instance.text = "Are you sure you want to leave this exercise? (You will lose your work in this exercise.)";
 							break;
 						case "feedback_not_seen":
-							instance.text = "This exercise has feedback you haven't seen. Is this OK?";
+							instance.text = "This exercise has feedback you haven't read. Do you want to read it?";
 							break;
 						
 					}

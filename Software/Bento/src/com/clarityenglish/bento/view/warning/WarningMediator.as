@@ -53,16 +53,54 @@
 			}
 		}
 		
-		// The user sees the warning and wants to go on anyway.
+		// The user sees the warning and clicks Yes. Sometimes this means go on, sometimes it means stop!
 		protected function onYes(event:Event):void {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			
-			// Set the condition that caused the warning to false and try again
-			if (view.type == "lose_answers")
-				exerciseProxy.exerciseDirty = false;
+			switch (view.type) {
+				case "lose_answers":
+					// Set the condition that caused the warning to false and try again
+					exerciseProxy.exerciseDirty = false;
+					break;
+				
+				// Don't just go back, trigger the feedback display
+				case "feedback_not_seen":
+					sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
+					return;
+					break;
+				
+				default:
+					return;
+			}
+			// Take action if you are still here
+			warningIgnored();
+
+		}
+		
+		// The user sees the warning and clicks No. Sometimes this means stop, sometimes it means go on!
+		protected function onNo(event:Event):void {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exercise:Exercise = bentoProxy.currentExercise;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+		
+			// Some types of warning have NO action
+			switch (view.type) {
+				// #256
+				case "feedback_not_seen":
+					// Set the condition that caused the warning to false and try again
+					exerciseProxy.exerciseFeedbackSeen = true;
+					break;
+				default:
+					return;
+			}
+			// Take action if you are still here
+			warningIgnored();
 			
+		}
+		// Go on with what you were doing before the warning 
+		protected function warningIgnored():void {
 			switch (view.action) {
 				case "show_next":
 					sendNotification(BBNotifications.EXERCISE_SHOW_NEXT);
@@ -78,14 +116,6 @@
 					sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 					break;
 			}
-
-		}
-		
-		// The user sees the warning and wants to heed it.
-		protected function onNo(event:Event):void {
-			// Do nothing
-			log.info("Clicked no on warning so go back to where you were.");
-
 		}
 		
 	}

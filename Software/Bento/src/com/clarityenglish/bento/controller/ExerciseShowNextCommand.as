@@ -38,8 +38,9 @@ package com.clarityenglish.bento.controller {
 				// Trigger a notification to warn them and handle the response
 				sendNotification(BBNotifications.WARN_DATA_LOSS, { type:"lose_answers", action:"show_next" });
 				
-			// Or if it has been marked and there is feedback that they haven't seen, warn them
-			} else if (exerciseProxy.exerciseMarked && exerciseProxy.hasExerciseFeedback()) {
+			// Or if it has been marked and there is exercise feedback that they haven't seen, warn them
+			// #256 Remember that question based feedback is different from score based (exercise) feedback.
+			} else if (exerciseProxy.exerciseMarked && exerciseProxy.hasExerciseFeedback() && !exerciseProxy.exerciseFeedbackSeen) {
 				sendNotification(BBNotifications.WARN_DATA_LOSS, { type:"feedback_not_seen", action:"show_next" });
 				
 			} else {

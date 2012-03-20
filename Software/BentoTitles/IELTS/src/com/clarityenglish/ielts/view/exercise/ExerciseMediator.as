@@ -121,6 +121,13 @@
 		}
 		
 		private function onShowFeedback():void {
+
+			// #256
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exercise:Exercise = bentoProxy.currentExercise;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+			exerciseProxy.exerciseFeedbackSeen = true;
+			
 			log.debug("The user clicked on feedback");
 			sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
 		}
