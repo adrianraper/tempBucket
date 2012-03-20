@@ -343,13 +343,9 @@
 											<s:HorizontalLayout />
 										</s:layout>
 										
-										<s:Button id="examPracticeAnswerButton" click="onViewButtonClick(event)" width="132" height="30" textAlignLast="left" fontSize="12.6" />
-										<s:Group height="33">
-											<s:HGroup paddingLeft="0" paddingTop="3" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
-												<components:AudioPlayer id="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
-												<s:Label text="{data.@audioCaption}" fontSize="12.6" paddingTop="2" />
-											</s:HGroup>
-										</s:Group>
+										<s:Button id="examPracticeAnswerButton" click="onViewButtonClick(event)" left="0" width="132" height="30" textAlignLast="left" fontSize="12.6" />
+										<s:Spacer width="28" />
+										
 									</s:DataRenderer>
 								</fx:Component>
 							</s:itemRenderer>

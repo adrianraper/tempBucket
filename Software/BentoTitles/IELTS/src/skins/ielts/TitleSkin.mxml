@@ -39,9 +39,9 @@
 		
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')"/>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="200" top="12" />
-		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="420" top="3" />
-		<s:Label text = "{hostComponent.productVersionText}" top="13" left="460" color="#FFFFFF" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="210" top="7" />
+		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="460" top="0" />
+		<s:Label text = "{hostComponent.productVersionText}" top="10" left="500" color="#FFFFFF" />
 		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="10" top="4" />
 	</s:Group>
 	
