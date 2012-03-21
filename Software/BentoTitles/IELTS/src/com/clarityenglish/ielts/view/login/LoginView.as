@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
+	import com.clarityenglish.common.vo.config.BentoError;
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -16,8 +17,8 @@ package com.clarityenglish.ielts.view.login {
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
-	import spark.components.TextInput;
 	import spark.components.Label;
+	import spark.components.TextInput;
 	
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -215,8 +216,22 @@ package com.clarityenglish.ielts.view.login {
 		
 		}
 		
-		public function showInvalidLogin():void {
-			Alert.show("Sorry, the login ID or password is wrong. Please try again.", "Login problem");
+		public function showInvalidLogin(error:BentoError):void {
+			var msgTitle:String = "Login problem";
+			switch (error.errorNumber) {
+				case BentoError.ERROR_DATABASE_READING:
+				case BentoError.ERROR_DATABASE_WRITING:
+					var msg:String = "Sorry, there is a problem reading the database.";
+					break;
+				
+				case BentoError.ERROR_LOGIN_WRONG_DETAILS:
+					msg = "Sorry, that login or password are wrong. Please try again.";
+					break;
+				
+				default:
+					msg = "Sorry, something unexpected has happened.";
+			}
+			Alert.show(msg + ' ' + error.errorNumber + ': ' + error.errorContext, msgTitle);
 		}
 		
 		public function clearData():void {

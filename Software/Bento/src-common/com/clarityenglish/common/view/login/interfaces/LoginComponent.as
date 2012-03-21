@@ -1,5 +1,7 @@
 ﻿package com.clarityenglish.common.view.login.interfaces {
 	import com.clarityenglish.common.view.interfaces.CopyReceiver;
+	import com.clarityenglish.common.vo.config.BentoError;
+	
 	import flash.events.IEventDispatcher;
 	
 	/**
@@ -8,7 +10,7 @@
 	 * @author ...
 	 */
 	public interface LoginComponent extends IEventDispatcher, CopyReceiver {
-		function showInvalidLogin():void;
+		function showInvalidLogin(error:BentoError):void;
 		function setLicencee(name:String):void;
 		function clearData():void;
 	}

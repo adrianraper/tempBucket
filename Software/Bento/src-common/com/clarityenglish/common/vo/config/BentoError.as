@@ -33,6 +33,9 @@ package com.clarityenglish.common.vo.config {
 		public static const ERROR_DATABASE_READING:uint = 100;
 		public static const ERROR_DATABASE_WRITING:uint = 100;
 		
+		public static const ERROR_LOGIN_WRONG_DETAILS:uint = 100;
+		public static const ERROR_LOGIN_USER_EXPIRED:uint = 100;
+		
 		public static const ERROR_UNKNOWN:uint = 1;
 		
 		public function BentoError(errNum:uint=0) {
@@ -41,6 +44,14 @@ package com.clarityenglish.common.vo.config {
 			// Get the description for this number
 			// TODO. Need the copyReceiver
 			
+		}
+		public function fromObject(errObj:Object):void {
+			if (errObj.errorNumber)
+				errorNumber = errObj.errorNumber; 
+			if (errObj.errorDescription)
+				errorDescription = errObj.errorDescription; 
+			if (errObj.errorContext)
+				errorContext = errObj.errorContext; 
 		}
 		
 	}

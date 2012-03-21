@@ -10,6 +10,7 @@ package com.clarityenglish.common.view.login {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
+	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -70,7 +71,7 @@ package com.clarityenglish.common.view.login {
 			
 			switch (note.getName()) {
 				case CommonNotifications.INVALID_LOGIN:
-					view.showInvalidLogin();
+					view.showInvalidLogin(note.getBody() as BentoError);
 					break;
 				case CommonNotifications.COPY_LOADED:
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;

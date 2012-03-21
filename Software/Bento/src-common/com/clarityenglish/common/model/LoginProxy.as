@@ -145,10 +145,15 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "login":
+							//trace("loginProxy, login error=" + data);
 					if (data) {
+							//trace("loginProxy, login error=" + data.error);
 						// First need to see if the return has an error
 						if (data.error && data.error.errorNumber>0) {
-							sendNotification(CommonNotifications.INVALID_LOGIN, data.error);
+							trace("loginProxy, login error=" + data.error.errorNumber);
+							var loginError:BentoError = new BentoError();
+							loginError.fromObject(data.error);
+							sendNotification(CommonNotifications.INVALID_LOGIN, loginError);
 						} else {
 							// Successful login
 							// This should have been set in configProxy
