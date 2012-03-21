@@ -6,6 +6,7 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
+	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
@@ -70,8 +71,9 @@ package com.clarityenglish.ielts.view {
 					handleStateChange(state);
 					break;
 				
+				// #280
 				case CommonNotifications.INVALID_LOGIN:
-					trace("caught login error");
+					log.debug("caught login error {0}", (note.getBody() as BentoError).errorNumber);
 					view.currentState = "login";
 					//sendNotification(CommonNotifications.INVALID_LOGIN, note.getBody());
 					//view.showInvalidLogin(note.getBody() as BentoError);

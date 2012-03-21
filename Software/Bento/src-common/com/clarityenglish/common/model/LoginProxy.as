@@ -10,8 +10,12 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.DateUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -20,6 +24,11 @@ package com.clarityenglish.common.model {
 	 * A proxy
 	 */
 	public class LoginProxy extends Proxy implements IProxy, IDelegateResponder {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const NAME:String = "LoginProxy";
 		
@@ -145,12 +154,10 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "login":
-							//trace("loginProxy, login error=" + data);
 					if (data) {
-							//trace("loginProxy, login error=" + data.error);
 						// First need to see if the return has an error
 						if (data.error && data.error.errorNumber>0) {
-							trace("loginProxy, login error=" + data.error.errorNumber);
+							log.debug("loginProxy, login error={0}", data.error.errorNumber);
 							var loginError:BentoError = new BentoError();
 							loginError.fromObject(data.error);
 							sendNotification(CommonNotifications.INVALID_LOGIN, loginError);
