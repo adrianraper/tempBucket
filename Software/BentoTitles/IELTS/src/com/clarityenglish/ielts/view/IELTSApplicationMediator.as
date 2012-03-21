@@ -70,14 +70,6 @@ package com.clarityenglish.ielts.view {
 					var state:State = note.getBody() as State;
 					handleStateChange(state);
 					break;
-				
-				// #280
-				case CommonNotifications.INVALID_LOGIN:
-					log.debug("caught login error {0}", (note.getBody() as BentoError).errorNumber);
-					view.currentState = "login";
-					//sendNotification(CommonNotifications.INVALID_LOGIN, note.getBody());
-					//view.showInvalidLogin(note.getBody() as BentoError);
-					break;
 			}
 		}
 		
