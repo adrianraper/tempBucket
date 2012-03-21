@@ -6,7 +6,7 @@
 			<lit name="btnRegister">Register for IELTS</lit>
 			<lit name="btnTryAgain">Do it again</lit>
 			
-			<lit name = "registerGlobal">http://takeielts.britishcouncil.org/book-your-test/book-now</lit>
+			<lit name="registerGlobal">http://takeielts.britishcouncil.org/book-your-test/book-now</lit>
 			<lit name="registerAfghanistan">http://takeielts.britishcouncil.org/locations/Afghanistan</lit>
 			<lit name="registerAlbania">http://takeielts.britishcouncil.org/locations/Albania</lit>
 			<lit name="registerAlgeria">http://takeielts.britishcouncil.org/locations/Algeria</lit>

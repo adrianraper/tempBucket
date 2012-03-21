@@ -5,5 +5,5 @@
    <allow-access-from domain="dock.projectbench" />
    <allow-access-from domain="*.clarityenglish.com" />
    <allow-access-from domain="*.claritylifeskills.com" />
-   <allow-access-from domain="api.vimeo.com" />
+   <allow-access-from domain="*.vimeo.com" />
 </cross-domain-policy>
