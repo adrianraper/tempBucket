@@ -92,7 +92,8 @@ package com.clarityenglish.ielts.view {
 				case BBStates.STATE_LOGIN:
 					// If there is no direct login display the login state
 					// TODO: This should be moved into Bento instead of IELTS
-					if (!handleDirectLogin()) view.currentState = "login";
+					view.currentState = "login";
+					handleDirectLogin();
 					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";
