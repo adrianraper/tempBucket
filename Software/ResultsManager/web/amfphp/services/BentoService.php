@@ -145,17 +145,20 @@ class BentoService extends AbstractService {
 				
 			$rootID = Session::get('rootID');
 			$productCode = Session::get('productCode');
-			// You can't safely put a class object in the session as the class definition
-			// has to exist before you do session_start or you will get errors.
-			//$licence = Session::get('licence');
-			
+
 			$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 									 User::USER_TYPE_ADMINISTRATOR,
 									 User::USER_TYPE_AUTHOR,
 									 User::USER_TYPE_STUDENT,
 									 User::USER_TYPE_REPORTER);
-			// First, confirm that the user details are correct
-			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
+									 
+			// No need to check names for anonymous licence
+			if ($licence->licenceType == Title::LICENCE_TYPE_AA) {
+				$userObj = $this->loginOps->anonymousUser($rootID);
+			} else {
+				// First, confirm that the user details are correct
+				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
+			}
 			$user = new User();
 			$user->fromDatabaseObj($userObj);
 			// Hack the name for now
@@ -169,7 +172,8 @@ class BentoService extends AbstractService {
 			
 			// Check that you can give this user a licence
 			// Use exception handling if there is NO available licence
-			$licenceID = $this->licenceOps->getLicenceSlot($user, $rootID, $productCode, $licence);
+			$ip = (isset($loginObj['ip'])) ? $loginObj['ip'] : '';
+			$licenceID = $this->licenceOps->getLicenceSlot($user, $rootID, $productCode, $licence, $ip);
 			$licence->id = $licenceID;
 			
 			// That call also gave us the groupID

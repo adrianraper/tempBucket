@@ -17,7 +17,7 @@ package com.clarityenglish.common.vo.config {
 		public var productCode:uint;
 		public var productVersion:String;
 		public var prefix:String;
-		public var rootID:Number
+		public var rootID:Number;
 		public var username:String;
 		public var studentID:String;
 		public var email:String;
@@ -32,6 +32,9 @@ package com.clarityenglish.common.vo.config {
 		public var remoteGateway:String;
 		public var remoteService:String;
 		public var instanceID:String;
+		public var ip:String;
+		public var referrer:String;
+		
 		// To help with testing
 		public var configID:String;
 		
@@ -75,6 +78,8 @@ package com.clarityenglish.common.vo.config {
 		 * 	  userID
 		 * 	  courseFile
 		 * 	  language
+		 *    ip
+		 *    referrer
 		 */
 		public function mergeParameters(parameters:Object):void {
 			if (parameters.dbHost)
@@ -102,20 +107,48 @@ package com.clarityenglish.common.vo.config {
 			if (parameters.sessionID) this.sessionID = parameters.sessionID;
 			if (parameters.language) this.language = parameters.language;
 			
-			// See if you can now do any substitutions
-			// For loginService, the config.xml might not know which productCode you are
-			// <courseFile>menu-{productCode}-LastMinute.xml</courseFile>
-			if (paths.menuFilename.indexOf("{productCode}")>=0) {
-				if (productCode==52) {
-					var replace:String = "Academic";
-					paths.menuFilename = paths.menuFilename.replace("{productCode}", replace);
-				} else if (productCode==53) {
-					replace = "GeneralTraining";
-					paths.menuFilename = paths.menuFilename.replace("{productCode}", replace);
-				}
-			}
+			if (parameters.ip) this.ip = parameters.ip;
+			if (parameters.referrer) this.referrer = parameters.referrer;
+			
 		}
-		
+		/**
+		 * Do any substitutions that you can for the menu filename
+		 */
+		private function buildMenuFilename():void {
+			// For loginService, the config.xml might not know which productCode you are
+			// <courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+			if (paths.menuFilename.indexOf("{productCode}")>=0) {
+				switch (productCode) {
+					case 52:
+						var replace:String = "Academic";
+						break;
+					case 53:
+						replace = "GeneralTraining";
+						break;
+					default:
+						replace = "";
+				}
+				paths.menuFilename = paths.menuFilename.replace("{productCode}", replace);
+			}
+			
+			if (paths.menuFilename.indexOf("{productVersion}")>=0) {
+				switch (productVersion) {
+					case 'R2ILM':
+						replace = "LastMinute";
+						break;
+					case 'R2ITD':
+						replace = "TestDrive";
+						break;
+					case 'R2IFV':
+						replace = "FullVersion";
+						break;
+					default:
+						replace = "";
+				}
+				paths.menuFilename = paths.menuFilename.replace("{productVersion}", replace);
+			}
+
+		}
 		/**
 		 *  You can pass the following to the application from the config file
 		 * 	  dbHost
@@ -135,11 +168,11 @@ package com.clarityenglish.common.vo.config {
 			//ODD. For some reason, xml.config.dbHost.length() fails but xml..dbHost.length(); succeeds.
 			//var myL:int = xml.config.dbHost.length();
 			//var myS:String = xml..dbHost.toString();
-			if (xml..dbHost.length() > 0) this.dbHost = xml..dbHost.toString();
+			//if (xml..dbHost.length() > 0) this.dbHost = xml..dbHost.toString();
 			if (xml..dbHost.toString())	this.dbHost = xml..dbHost.toString();
 			if (xml..productCode.toString()) this.productCode = xml..productCode.toString();
-			if (xml..action.toString()) this.action = xml..action.toString();
 			if (xml..productVersion.toString()) this.productVersion = xml..productVersion.toString();
+			if (xml..action.toString()) this.action = xml..action.toString();
 			
 			// Use the config.xml to help with developer options
 			if (xml..developer.toString()) Config.DEVELOPER.name = xml..developer.toString();
@@ -236,6 +269,10 @@ package com.clarityenglish.common.vo.config {
 			
 			var thisTitle:Title = this.account.getTitle();
 			
+			// The account holds the languageCode - which in Bento terms is productVersion
+			if (thisTitle.languageCode) 
+				this.productVersion = thisTitle.languageCode;
+			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.
@@ -243,12 +280,15 @@ package com.clarityenglish.common.vo.config {
 				this.paths.content += thisTitle.contentLocation;
 			}
 			
+			// See if you can now do any substitutions on the menu filename
+			buildMenuFilename();
+
 			// You can now adjust the streamingMedia and sharedMedia as necessary
 			// Remember that streamingMedia might look like 
-			// streamingMedia=http://streaming.clarityenglish.com:1935/cfx/ty/[version]/streamingMedia
-			this.paths.streamingMedia = this.paths.streamingMedia.toString().split('[version]').join(data.contentLocation);
-			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('[version]').join(data.contentLocation);
-			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('[prefix]').join(data.prefix);
+			// streamingMedia=http://streaming.clarityenglish.com:1935/cfx/ty/{version}/streamingMedia
+			this.paths.streamingMedia = this.paths.streamingMedia.toString().split('{productCode}').join(data.contentLocation);
+			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{productCode}').join(data.contentLocation);
+			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(data.prefix);
 		
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
 			this.licence = data.licence as Licence;

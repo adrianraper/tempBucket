@@ -7,6 +7,8 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.dms.vo.account.Licence;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
@@ -93,7 +95,7 @@ package com.clarityenglish.ielts.view {
 				case BBStates.STATE_LOGIN:
 					// TODO: This should be moved into Bento instead of IELTS
 					// #280
-					// If there is no direct login display the login state
+					// If there is no direct (or anonymous) login display the login state
 					if (!handleDirectLogin()) view.currentState = "login";
 					break;
 				case BBStates.STATE_TITLE:

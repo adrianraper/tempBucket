@@ -8,6 +8,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	
@@ -167,6 +168,10 @@ package com.clarityenglish.common.model {
 			return config.productCode;
 		}
 		
+		public function getLicenceType():uint {
+			return config.licenceType;
+		}
+		
 		// Is it OK to just get the config object?
 		public function getConfig():Config {
 			return config;
@@ -195,7 +200,11 @@ package com.clarityenglish.common.model {
 			if (config.studentID) {
 				return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
 			}
-			
+
+			// Anonymous login
+			if (config.licenceType == Title.LICENCE_TYPE_AA) 
+				return new LoginEvent(LoginEvent.LOGIN, null, null)
+
 			return null;
 		}
 		

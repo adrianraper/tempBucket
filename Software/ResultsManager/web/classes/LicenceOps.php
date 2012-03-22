@@ -17,7 +17,7 @@ class LicenceOps {
 	/**
 	 * Check that this user can get a licence slot right now 
 	 */
-	function getLicenceSlot($user, $rootID, $productCode, $licence) {
+	function getLicenceSlot($user, $rootID, $productCode, $licence, $ip = '') {
 		
 		// Whilst rootID might be a comma delimited list, you can treat
 		// licence control as simply use the first one in the list
@@ -34,8 +34,6 @@ class LicenceOps {
 			throw new Exception("Your licence hasn't started yet", 100);
 		if ($licence->expiryDate < $dateNow) 
 			throw new Exception("Your licence expired on ".$licence->expiryDate, 100);
-		if ($licence->maxStudents < 5) 
-			throw new Exception("You have no licences for this title ".$licence->maxStudents.' so there', 100);
 			
 		// Then licence slot checking is based on licence type
 		switch ($licence->licenceType) {
@@ -77,9 +75,10 @@ EOD;
 				// Insert this user in the licence control table
 				$dateNow = date('Y-m-d H:i:s');
 				//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
+				$userID = $user->userID; 
 				$sql = <<<EOD
 				INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
-				('$userIP', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
+				('$ip', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
 EOD;
 				$rs = $this->db->Execute($sql);
 				// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.

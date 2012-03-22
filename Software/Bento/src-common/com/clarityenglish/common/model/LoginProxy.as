@@ -6,6 +6,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
@@ -56,12 +57,17 @@ package com.clarityenglish.common.model {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
+			// For AA licences you still do the call as this does getLicenceSlot
+			
 			var loginOption:uint = configProxy.getAccount().loginOption;
 			if (loginOption==1) {
 				var loginObj:Object = {username:key, password:password};
 			} else if (loginOption==2) {
 				loginObj = {studentID:key, password:password};
 			}
+			if (configProxy.getConfig().ip)
+				loginObj.ip = configProxy.getConfig().ip;
 			
 			// Create a unique number to use as an instance ID, and save it in the config object
 			var instanceID:Number = new Date().getTime();

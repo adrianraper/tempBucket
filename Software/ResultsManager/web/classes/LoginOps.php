@@ -114,6 +114,42 @@ EOD;
 		}
 		
 	}
+	/**
+	 * Get the anonymous user from the database
+	 */
+	public function anonymousUser($rootID) {
+		
+		$sql =	<<<EOD
+				SELECT * FROM T_User u
+				WHERE F_UserID=-1; 
+EOD;
+		$rs = $this->db->Execute($sql);
+		
+		if ($rs->RecordCount()>0) {
+			$loginObj = $rs->FetchNextObj();
+		} else {
+			throw new Exception("No such user", 100);
+		}
+		
+		// Then we need the top level group ID for this root.
+		$sql =	<<<EOD
+				SELECT m.F_GroupID as groupID FROM T_Membership m, T_User u
+				WHERE F_RootID=?
+				AND m.F_UserID = u.F_UserID
+				AND u.F_UserType=?; 
+EOD;
+		$bindingParams = array($rootID, User::USER_TYPE_ADMINISTRATOR);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		
+		if ($rs->RecordCount()>0) {
+			$loginObj->groupID = $rs->FetchNextObj()->groupID;
+		} else {
+			throw new Exception("No such user", 100);
+		}
+			
+		return $loginObj;
+	}
+	
 	// Results Manager login
 	function login($username, $password, $userTypes, $rootID, $productCode = null) {
 		// Network version. SQLite can't cope with this query. RIGHT and FULL OUTER JOINs are not currently supported.

@@ -3,9 +3,7 @@
 	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
 	<developer>none</developer>
 	<dbHost>2</dbHost>
-	<productCode>53</productCode>
-	<productVersion>{productVersion}</productVersion>
-	<courseFile>menu-GeneralTraining-{productVersion}.xml</courseFile>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />
