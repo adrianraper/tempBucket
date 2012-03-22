@@ -185,7 +185,7 @@ package com.clarityenglish.ielts.view.login {
 		 */
 		protected function onLoginButtonClick(event:MouseEvent):void {
 			// Trigger the login command
-			if ((event.target)==quickStartButton) {
+			if ((event.target) == quickStartButton) {
 				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "Adrian Raper", "passwording", true));				
 			} else {
 				// RM process does it like this - and all the code is copied from RM to Bento.com.clarityenglish.common
@@ -217,25 +217,7 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function showInvalidLogin(error:BentoError):void {
-			var msgTitle:String = "Login problem";
-			switch (error.errorNumber) {
-				case BentoError.ERROR_DATABASE_READING:
-				case BentoError.ERROR_DATABASE_WRITING:
-					var msg:String = "Sorry, there is a problem reading the database.";
-					break;
-				
-				case BentoError.ERROR_LOGIN_WRONG_DETAILS:
-					msg = "Sorry, that login or password are wrong. Please try again.";
-					break;
-				
-				case BentoError.ERROR_CONTENT_MENU:
-					msg = "Sorry, there is a problem reading the content index.";
-					break;
-				
-				default:
-					msg = "Sorry, something unexpected has happened.";
-			}
-			Alert.show(msg + ' ' + error.errorNumber + ': ' + error.errorContext, msgTitle);
+			// #280 - this is no longer used=
 		}
 		
 		public function clearData():void {

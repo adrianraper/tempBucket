@@ -71,8 +71,11 @@ package com.clarityenglish.ielts.view {
 					var state:State = note.getBody() as State;
 					handleStateChange(state);
 					break;
-				
-				// An error has occurred, but you are not in a state with a mediator to handle it
+				/*case CommonNotifications.INVALID_LOGIN:
+					view.showInvalidLogin(note.getBody() as BentoError);
+					break;*/
+				// An error has occurred
+				case CommonNotifications.INVALID_LOGIN:
 				case CommonNotifications.INVALID_DATA:
 					view.showErrorMessage(note.getBody() as BentoError);
 					break;
@@ -91,8 +94,7 @@ package com.clarityenglish.ielts.view {
 					// TODO: This should be moved into Bento instead of IELTS
 					// #280
 					// If there is no direct login display the login state
-					view.currentState = "login";
-					handleDirectLogin();
+					if (!handleDirectLogin()) view.currentState = "login";
 					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";

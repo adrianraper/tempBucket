@@ -70,9 +70,6 @@ package com.clarityenglish.common.view.login {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case CommonNotifications.INVALID_LOGIN:
-					view.showInvalidLogin(note.getBody() as BentoError);
-					break;
 				case CommonNotifications.COPY_LOADED:
 					var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 					view.setCopyProvider(copyProvider);
