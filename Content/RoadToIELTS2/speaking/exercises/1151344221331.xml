@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -51,11 +51,32 @@
 <body>
 	
 <header>
-	Now you are going to hear Dimitris doing the same topic as you have just done for part 2 of the interview.
+<div id="instruction">
+	Now you are going to hear Dimitris doing the same topic as you have just done for Phase 2 of the interview.</div>
 </header>
 	
 <section id="body">
-	<video src="../media/Unit010_e4.flv" mode="1" id="1003"  /><p align="left"><b>Which of the following does Dimitris do in his response?</b>&nbsp;<g id="t1">A.  read the instructions carefully</g><g id="t2">B.  make notes</g><g id="t3">C.  say what the device is</g><g id="t4">D.  say why he got the device</g><g id="t5">E.  say what he uses it for</g><g id="t6">F.  talk about its advantages and disadvantages</g><g id="t7">G.  explain how it has changed his life</g><g id="t8">H.  appear confident and relaxed</g></p>
+<div id="outer">
+<div id="video">
+	<video src="../media/Unit010_e4.flv" mode="1" id="1003" autoPlay="false" />
+</div>
+<div id="content">
+
+<p><b>Which of the following does Dimitris do in his response?</b></p>
+<ol id="targetspottingvideo">
+    	<list class="answerList">
+		<li><a id="t1">read the instructions carefully</a></li>
+		<li><a id="t2">make notes</a></li>
+		<li><a id="t3">say what the device is</a></li>
+		<li><a id="t4">say why he got the device</a></li>
+		<li><a id="t5">say what he uses it for</a></li>
+		<li><a id="t6">talk about its advantages and disadvantages</a></li>
+		<li><a id="t7">explain how it has changed his life</a></li>
+		<li><a id="t8">appear confident and relaxed</a></li>
+		</list>
+</ol>
+</div>
+</div>
 </section>
 </body>
 </bento>

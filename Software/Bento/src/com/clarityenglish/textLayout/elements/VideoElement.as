@@ -14,6 +14,8 @@ package com.clarityenglish.textLayout.elements {
 	import org.osmf.events.SeekEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.media.MediaPlayerState;
+	import org.osmf.net.DynamicStreamingItem;
+	import org.osmf.net.DynamicStreamingResource;
 	
 	import spark.components.VideoPlayer;
 
@@ -80,7 +82,30 @@ package com.clarityenglish.textLayout.elements {
 					videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange, false, 0, true);
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onTimeComplete, false, 0, true);
 					
-					videoPlayer.source = _src;
+					// To let practice zone video come from rtmp too, we need some handling here
+					// But this does NOT work, we see nothing in the exercise.
+					if (_src.indexOf("rtmp")>=0) {
+						
+						trace("try a rtmp stream");
+						// Parse the filename
+						var host:String = "rtmp://streaming.clarityenglish.com:1935/cfx/st";
+						var streamName:String = "RoadToIELTS2/speaking/media/speaking_key_facts_700";
+						var bitrate:Number = 700; 
+						var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+						dynamicSource.urlIncludesFMSApplicationInstance = true;
+						
+						dynamicSource.streamType = 'recorded';
+						var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
+						var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
+						streamItems.push(streamingItem);
+						dynamicSource.streamItems = streamItems; 
+						
+						videoPlayer.source = dynamicSource;
+						videoPlayer.callLater(videoPlayer.play);
+						
+					} else {
+						videoPlayer.source = _src;
+					}
 					videoPlayer.width = width;
 					videoPlayer.height = height;
 					videoPlayer.autoPlay = _autoPlay;
@@ -112,6 +137,7 @@ package com.clarityenglish.textLayout.elements {
 					swfLoader.scaleContent = false;
 					swfLoader.maintainAspectRatio = true;
 					swfLoader.load(_src);
+					trace("try to load " + _src);
 					
 					component = swfLoader;
 					break;
@@ -182,6 +208,7 @@ package com.clarityenglish.textLayout.elements {
 		private function onYouTubeComplete(event:Event):void {
 			// Default dimensions are 400x300
 			// TODO: Perhaps this should detect widescreen and change the default aspect accordingly
+			trace("YouTube video player loaded");
 			var youTubeWidth:int = (isAutoWidth()) ? 400 : width;
 			var youTubeHeight:int = (isAutoHeight()) ? 300 : height;
 			

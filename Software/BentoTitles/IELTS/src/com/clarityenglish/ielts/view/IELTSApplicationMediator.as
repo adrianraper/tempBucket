@@ -51,6 +51,7 @@ package com.clarityenglish.ielts.view {
 				// Register interest in LOGGED_IN here
 				// so that this mediator can change the state of the application from login to home.
 				CommonNotifications.INVALID_LOGIN,
+				CommonNotifications.INVALID_DATA,
 				CommonNotifications.LOGGED_IN,
 				CommonNotifications.CONFIG_LOADED,
 				StateMachine.CHANGED,
@@ -64,11 +65,16 @@ package com.clarityenglish.ielts.view {
 		 */
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
-			
+			trace("handleNoti for IELTSAppMed " + note.getName());
 			switch (note.getName()) {
 				case StateMachine.CHANGED:
 					var state:State = note.getBody() as State;
 					handleStateChange(state);
+					break;
+				
+				// An error has occurred, but you are not in a state with a mediator to handle it
+				case CommonNotifications.INVALID_DATA:
+					view.showErrorMessage(note.getBody() as BentoError);
 					break;
 			}
 		}
@@ -82,8 +88,9 @@ package com.clarityenglish.ielts.view {
 					view.currentState = "loading";
 					break;
 				case BBStates.STATE_LOGIN:
-					// If there is no direct login display the login state
 					// TODO: This should be moved into Bento instead of IELTS
+					// #280
+					// If there is no direct login display the login state
 					view.currentState = "login";
 					handleDirectLogin();
 					break;
@@ -92,7 +99,6 @@ package com.clarityenglish.ielts.view {
 					handleDirectStart();
 					break;
 				case BBStates.STATE_CREDITS:
-					trace("fsm - go to credits view");
 					view.currentState = "credits";
 					break;
 			}

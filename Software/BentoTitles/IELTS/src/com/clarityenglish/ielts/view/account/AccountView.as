@@ -155,15 +155,7 @@ package com.clarityenglish.ielts.view.account {
 		 * 
 		 */
 		protected function onExamDateChange(eventObj:CalendarLayoutChangeEvent):void {
-			// Make sure selectedDate is not null.
-			//if (eventObj.currentTarget.selectedDate) {
-			if (examDateField.selectedDate) {
-				// Just update the counter for now
-				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
-				userDetails.examDate = eventObj.currentTarget.selectedDate;
-				userDetails.examDate.setHours(examHours.value as Number, examHours.value as Number);
-				trace("exam date changed to " + userDetails.examDate.toDateString()); 
-			}
+			updateExamDate();
 		}
 		/**
 		 * The user changed the exam hours or minutes.  
@@ -171,20 +163,32 @@ package com.clarityenglish.ielts.view.account {
 		 * 
 		 */
 		protected function onExamTimeChange(eventObj:Event):void {
+			updateExamDate();
+		}
+		protected function updateExamDate():void {
 			// Make sure selectedDate is not null.
-			//if (eventObj.currentTarget.selectedDate) {
+			// Quite often it is, though you can clearly see a date on the screen...
+			// So instead build the date from userDetails...
 			if (examDateField.selectedDate) {
-				// Just update the counter for now
-				//userDetails.birthday = dbDateFormatter.format(eventObj.currentTarget.selectedDate);
+				var baseDateTime:Number = examDateField.selectedDate.getTime();
+				//trace("selectedDate =" + DateUtil.formatDate(examDateField.selectedDate, "yyyy-MM-dd hh:mm:ss"));
+			} else if (userDetails.examDate) {
+				var baseDate:Date = new Date(userDetails.examDate.getTime());
+				baseDate.hours = 0;
+				baseDate.minutes = 0;
+				baseDate.seconds = 0;
+				baseDateTime = baseDate.getTime(); 
+				//trace("selectedDate null, but baseDate=" + DateUtil.formatDate(baseDate, "yyyy-MM-dd hh:mm:ss"));
+			}
+			if (baseDateTime) {
 				// TODO. You should be able to just do setHours on the date. But it isn't working.
 				// So convert to milliseconds, adding some hours/minutes then converting back.
 				//userDetails.examDate.setHours(examHours.value as Number, examMinutes.value as Number);
-				var examDateBuilder:Date = examDateField.selectedDate;
-				var examDateTime:Number = examDateBuilder.getTime();
-				examDateTime += (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
+				var examDateTime:Number = baseDateTime + (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
 				userDetails.examDate = new Date(examDateTime);
 				trace("exam date changed to " + DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd hh:mm")); 
 			}
+			
 		}
 		
 		/**
@@ -227,7 +231,7 @@ package com.clarityenglish.ielts.view.account {
 			if (msg) {
 				Alert.show(msg, "Update success");
 			} else {
-				Alert.show("Your details have been changed.", "Update");				
+				Alert.show("Your details have been saved.", "Your profile");				
 			}
 		}
 		

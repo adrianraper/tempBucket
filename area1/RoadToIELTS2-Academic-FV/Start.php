@@ -97,7 +97,7 @@
 		
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
-		var coordsMinHeight = "700"; var coordsMaxHeight = null;
+		var coordsMinHeight = "760"; var coordsMaxHeight = null;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -167,8 +167,8 @@
 	</script>
 
 </head>
-<body style="background-color:#F2F2F2;">
-	<div style="background-color:#F2F2F2;" align="center" id="altContent">
+<body style="background-color:#F9F9F9;">
+	<div style="background-color:#F9F9F9;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

@@ -171,8 +171,9 @@
 		}
 		
 		protected function onBufferingChange(event:Event):void {
-			event.target.removeEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
-			event.target.bufferTime = 8;
+			trace("buffering change, bufferTime is " + event.target.bufferTime);
+			//event.target.removeEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
+			//event.target.bufferTime = 4;
 		}
 		
 		private function onRssLoadComplete(e:Event, videoPlayer:VideoPlayer):void {

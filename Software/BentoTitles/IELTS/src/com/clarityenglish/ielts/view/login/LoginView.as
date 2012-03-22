@@ -228,6 +228,10 @@ package com.clarityenglish.ielts.view.login {
 					msg = "Sorry, that login or password are wrong. Please try again.";
 					break;
 				
+				case BentoError.ERROR_CONTENT_MENU:
+					msg = "Sorry, there is a problem reading the content index.";
+					break;
+				
 				default:
 					msg = "Sorry, something unexpected has happened.";
 			}

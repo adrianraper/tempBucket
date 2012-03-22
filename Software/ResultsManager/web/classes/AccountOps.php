@@ -472,6 +472,14 @@ EOD;
 			// Create a new user, add them to the group then update adminUserID in $account with the newly added user id
 			$adminUser = $this->manageableOps->addUser($account->adminUser, $group, $account->id);
 			//echo "added user {$account->adminUser->id}"."<br/>";
+			// v3.7 Also create a learner user at the same time. Mostly useful for AA accounts.
+			$learnerUser = new User();
+			$learnerUser->name = $account->prefix.'_learner';
+			$learnerUser->password = $account->prefix;
+			$learnerUser->userType = User::USER_TYPE_STUDENT;
+			$learnerUser = $this->manageableOps->addUser($learnerUser, $group, $account->id);			
+			//NetDebug::trace('AccountOps'."Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
+			AbstractService::$log->notice("Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
 			
 			// Update the adminUserID field in the database to point at the newly created user
 			// v3.4 Multi-group users

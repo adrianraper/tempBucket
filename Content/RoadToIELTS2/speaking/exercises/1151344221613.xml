@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/mchoices-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -63,28 +63,75 @@
 <body>
 	
 <header>
-	
-		
-		In Part 1 of the test, you will be giving opinions and information about yourself. Look at Dimitris talking and listen to what information you can pick up about him.
+<div id="instruction">	
+In Phase 1 of the test, you will be giving opinions and information about yourself. Look at Dimitris talking and listen to what information you can pick up about him.</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit010_e2.flv" mode="1" id="1003"/>
-  <br/>
+<div id="outer">
+
+<div id="video">
+  <video src="../media/Unit010_e2.flv" mode="16" id="1003" autoPlay="false" />
+  </div>
+
+<div id="content3">
   <ol id="questionList">
-    <br/>
-    <li id="q1">What is his nationality?<list class="answerList"><li><a id="a1">Albanian</a></li><li><a id="a2">Afghan</a></li><li><a id="a3">Athenian</a></li><li><a id="a4">Greek</a></li></list><br/></li>
-    <br/>
-    <li id="q2">Does he work or study?<list class="answerList"><li><a id="a5">he works part time</a></li><li><a id="a6">he is a university student</a></li><li><a id="a7">he is studying to prepare for university</a></li><li><a id="a8">he works full-time</a></li></list><br/></li>
-    <br/>
-    <li id="q3">Why does he want to follow one particular course of study?<list class="answerList"><li><a id="a9">he wants to be an athlete</a></li><li><a id="a10">he wants to help athletes do better</a></li><li><a id="a11">he wants to help old people get better</a></li><li><a id="a12">he wants to help injured athletes</a></li></list><br/></li>
-    <br/>
-    <li id="q4">How does Dimitris prefer to study?<list class="answerList"><li><a id="a13">from books</a></li><li><a id="a14">by asking questions</a></li><li><a id="a15">from lectures</a></li><li><a id="a16">through doing</a></li></list><br/></li>
-    <br/>
-    <li id="q5">What interests him most about physiotherapy?<list class="answerList"><li><a id="a17">the anatomy of the body</a></li><li><a id="a18">what to do about the injury</a></li><li><a id="a19">the different types of injury</a></li><li><a id="a20">how the athletes hurt themselves</a></li></list><br/></li>
-    <br/>
-    <li id="q6">How will his studies affect his life?<list class="answerList"><li><a id="a21">he will get a good job</a></li><li><a id="a22">he will live with sportsmen</a></li><li><a id="a23">he will have a lot to do with sport</a></li><li><a id="a24">he will heal people</a></li></list><br/></li>
+    <li id="q1">What is his nationality?
+		<list class="answerList">
+		<li><a id="a1">Albanian</a></li>
+		<li><a id="a2">Afghan</a></li>
+		<li><a id="a3">Athenian</a></li>
+		<li><a id="a4">Greek</a></li>
+		</list></li>
+    
+	<p class="linespace"></p>
+    <li id="q2">Does he work or study?
+		<list class="answerList">
+		<li><a id="a5">he works part time</a></li>
+		<li><a id="a6">he is a university student</a></li>
+		<li><a id="a7">he is studying to prepare for university</a></li>
+		<li><a id="a8">he works full-time</a></li>
+		</list></li>
+    
+	<p class="linespace"></p>
+    <li id="q3">Why does he want to follow one particular course of study?
+		<list class="answerList">
+		<li><a id="a9">he wants to be an athlete</a></li>
+		<li><a id="a10">he wants to help athletes do better</a></li>
+		<li><a id="a11">he wants to help old people get better</a></li>
+		<li><a id="a12">he wants to help injured athletes</a></li>
+		</list></li>
+    
+	<p class="linespace"></p>
+    <li id="q4">How does Dimitris prefer to study?
+		<list class="answerList">
+		<li><a id="a13">from books</a></li>
+		<li><a id="a14">by asking questions</a></li>
+		<li><a id="a15">from lectures</a></li>
+		<li><a id="a16">through doing</a></li>
+		</list></li>
+    
+	<p class="linespace"></p>
+    <li id="q5">What interests him most about physiotherapy?
+		<list class="answerList">
+		<li><a id="a17">the anatomy of the body</a></li>
+		<li><a id="a18">what to do about the injury</a></li>
+		<li><a id="a19">the different types of injury</a></li>
+		<li><a id="a20">how the athletes hurt themselves</a></li>
+		</list></li>
+    
+	<p class="linespace"></p>
+    <li id="q6">How will his studies affect his life?
+		<list class="answerList">
+		<li><a id="a21">he will get a good job</a></li>
+		<li><a id="a22">he will live with sportsmen</a></li>
+		<li><a id="a23">he will have a lot to do with sport</a></li>
+		<li><a id="a24">he will heal people</a></li>
+		</list></li>
   </ol>
+  <p class="linespace"></p>
+</div>
+</div>
 </section>
 
 </body>

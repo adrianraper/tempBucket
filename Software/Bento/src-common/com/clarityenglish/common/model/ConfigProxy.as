@@ -213,7 +213,8 @@ package com.clarityenglish.common.model {
 				//return { exerciseId: "1151344259319" };
 			}
 			if (Config.DEVELOPER.name == "AR") {
-				return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
+			//	return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
+			//	return { exerciseId: "1156153794077" }; // Speaking>The speaking test (2)
 			}
 			
 			return null;

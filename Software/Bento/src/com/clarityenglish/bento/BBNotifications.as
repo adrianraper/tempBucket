@@ -67,6 +67,9 @@
 		// Check that the same user is only logged in once
 		public static const FAILED_INSTANCE_CHECK:String = "failed_instance_check";
 		
+		// Handle errors in loading data
+		public static const INVALID_PROGRESS_DATA:String = "invalid_progress_data";
+		
 	}
 	
 }

@@ -16,6 +16,7 @@
 		public static const CONFIG_LOADED:String = "config_loaded";
 		
 		public static const INVALID_LOGIN:String = "invalid_login";
+		public static const INVALID_DATA:String = "invalid_data";
 		
 		public static const COPY_LOADED:String = "copy_loaded";
 		

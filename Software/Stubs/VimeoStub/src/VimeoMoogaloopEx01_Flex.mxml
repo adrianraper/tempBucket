@@ -8,7 +8,7 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
 			   creationComplete="creationCompleteHandler(event)"
-			   width="800" height="500">
+			   width="800" height="600">
 
 	<fx:Script>
 		<![CDATA[
@@ -25,11 +25,11 @@
 			/**
 			 * Vimeo video id for the first loaded video.
 			 * */
-			private const VIDEO_ID_1:int = 38197524;
+			private const VIDEO_ID_1:int = 38890906;
 			/**
 			 * Vimeo video id for the second video.
 			 * */
-			private const VIDEO_ID_2:int = 38208239;
+			private const VIDEO_ID_2:int = 38831674;
 			/**
 			 * Properties for background
 			 */
@@ -44,7 +44,7 @@
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
 				// Create the Vimeo VideoPlayer class instance.
-				vimeoPlayer = new VimeoPlayer(VIMEO_CONSUMER_KEY, VIDEO_ID_1, 720, 480);
+				vimeoPlayer = new VimeoPlayer(VIMEO_CONSUMER_KEY, VIDEO_ID_1, 411, 231);
 				// Add to SpriteVisualElement
 				vimeoVideoPlayer.addChild(vimeoPlayer);
 				
@@ -146,7 +146,7 @@
 		<s:layout>
 			<s:VerticalLayout horizontalAlign="center"/>
 		</s:layout>
-		<s:SpriteVisualElement id = "vimeoVideoPlayer" width="720" height="480"/>
+		<s:SpriteVisualElement id = "vimeoVideoPlayer" width="411" height="231"/>
 		<mx:HBox> 
 			<s:Button id = "video1" label="Video 1" click="video1_clickHandler(event)" />
 			<s:Button id = "video2" label="Video 2" click="video2_clickHandler(event)" />		

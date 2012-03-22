@@ -68,14 +68,9 @@
 				<exercise id="1287130210003" caption="Advice" href="listening/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130220000" class="exam-practice">
-				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1" audioHref="listening/media/listening_tp_part1.mp3" />
-				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" audioHref="listening/media/listening_tp_part2.mp3" />
-				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" audioHref="listening/media/listening_tp_part3.mp3" enabledFlag="8" />
-			</unit>
-			<unit id="1287130221000" class="exam-answers">
-				<exercise id="1287130221001" href="listening/pdf/listening_answer1.pdf" caption="Answer sheet 1" />
-				<exercise id="1287130221002" href="listening/pdf/listening_answer2.pdf" caption="Answer sheet 2" />
-				<exercise id="1287130221003" href="listening/pdf/listening_answer3.pdf" caption="Answer sheet 3" enabledFlag="8" />
+				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1" answerCaption="Answer sheet 1" answerHref="listening/pdf/listening_answer1.pdf" audioHref="listening/media/listening_tp_part1.mp3" />
+				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" answerCaption="Answer sheet 2" answerHref="listening/pdf/listening_answer2.pdf" audioHref="listening/media/listening_tp_part2.mp3" />
+				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" answerCaption="Answer sheet 3" answerHref="listening/pdf/listening_answer3.pdf" audioHref="listening/media/listening_tp_part3.mp3" enabledFlag="8" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="IELTS Listening Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
@@ -207,15 +202,9 @@
 				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
 			<unit id="1287130420000" class="exam-practice" caption="Try the test practices.">
-				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Practice test 1" />
-				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Practice test 2" />
-				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" enabledFlag="8" />
-			</unit>
-			
-			<unit id="1287130421000" class="exam-answers" caption="Try the test practices.">
-				<exercise id="1287130421001" href="writing/pdf/writing_ac_answer1.pdf" caption="Answer sheet 1" />
-				<exercise id="1287130421002" href="writing/pdf/writing_ac_answer2.pdf" caption="Answer sheet 2" />
-				<exercise id="1287130421003" href="writing/pdf/writing_ac_answer3.pdf" caption="Answer sheet 3" enabledFlag="8" />
+				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Practice test 1" answerCaption="Answer sheet 1" answerHref="writing/pdf/writing_ac_answer1.pdf" />
+				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Practice test 2" answerCaption="Answer sheet 2" answerHref="writing/pdf/writing_ac_answer2.pdf" />
+				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" answerCaption="Answer sheet 3" answerHref="writing/pdf/writing_ac_answer3.pdf" enabledFlag="8" />
 			</unit>
 
 			<unit id="1287130430000" class="advice-zone">  

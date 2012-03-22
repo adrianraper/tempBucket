@@ -90,7 +90,7 @@ class ProgressOps {
 			
 			if (count($exercise)>1) {
 				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
-				throw new Exception('The menu xml has more than one exercise node with id='.$record['F_ExerciseID']);
+				throw new Exception('The menu xml has more than one exercise node with id='.$record['F_ExerciseID'], 301);
 			} else if (count($exercise)<1) {
 				// Whilst we are mixing up old and new IDs, this might happen. Just ignore the record.
 				//throw new Exception('The menu xml contains no exercise node with id='.$record['F_ExerciseID']);

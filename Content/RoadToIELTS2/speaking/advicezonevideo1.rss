@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-	<title>Speaking advice</title>
+	<title>Advice zone video 1</title>
 	<host>http://player.vimeo.com/external/</host>
 	<type>recorded</type>
 	<server>vimeo</server>
 	<streaming>progressive-download</streaming>
 	<item>
-		<title>medium quality</title>
-		<streamName>38488914.sd.mp4?s=dd6df036483c62157334e128c8b63fd7</streamName>
+		<title>standard def</title>
+		<streamName>38892864.sd.mp4?s=3da206b3c2cc00cfc54b1f79211c4d56</streamName>
+		<width>411</width>
+	</item>
+	<item>
+		<title>high def</title>
+		<streamName>38892864.hd.mp4?s=36b039104be13c915693faeee211a50f</streamName>
 		<width>411</width>
 	</item>
 </channel>

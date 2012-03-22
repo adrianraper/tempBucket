@@ -32,6 +32,47 @@
 				
 				 return 1;
 			}
+			private function sortDuration(obj1:Object, obj2:Object, gc:GridColumn):int  {
+				if (obj1[gc.dataField] == obj2[gc.dataField])
+					return 0;
+				
+				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
+					return -1;
+				
+				return 1;
+			}
+			/**
+			 * Display duration in a friendly format
+			 * Convert from seconds to a nice string
+			 */
+			private function displayDuration(score:Object, column:GridColumn):String {
+				
+				var seconds:Number = Number(score.@duration);
+				var minutes:Number = Math.round(seconds / 60);
+
+				if (minutes < 1)
+					return "<" + pluralUnits(1, "min");
+
+				if (minutes < 60)
+					return pluralUnits(minutes, "min");
+				
+				// Any figures after here will use hour and modulus of the minutes
+				minutes = Math.floor(seconds / 60);
+				var hours:Number = Math.floor(minutes / 60);
+				minutes = minutes % 60;
+				
+				return pluralUnits(hours, "hr") + " " + pluralUnits(minutes, "min");
+			}
+			/**
+			 * Utility function for 0, 1 and more of a unit
+			 */
+			private function pluralUnits(value:uint, unit:String):String {
+				if (value==0)
+					return "";
+				if (value==1)
+					return "1 " + unit;
+				return value.toString() + " " + unit + "s";
+			}
 
 		]]> 
 	</fx:Script> 
@@ -64,7 +105,7 @@
 					<s:GridColumn headerText="Unit" dataField="@unitCaption"  />
 					<s:GridColumn headerText="Exercise" dataField="@caption" />
 					<s:GridColumn headerText="Score %" dataField="@displayScore" sortCompareFunction="sortScores" />
-					<s:GridColumn headerText="Time spent (mins)" dataField="@duration" />
+					<s:GridColumn headerText="Time spent" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
 					<s:GridColumn headerText="Date" dataField="@datetime" />
 				</s:ArrayList>
 			</s:columns>

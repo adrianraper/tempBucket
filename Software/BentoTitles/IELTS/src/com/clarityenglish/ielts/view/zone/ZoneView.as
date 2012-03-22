@@ -248,6 +248,20 @@ package com.clarityenglish.ielts.view.zone {
 		
 		protected function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			log.debug("VIDEO PLAYER STATE CHANGE: " + event.state);
+			// React to some states
+			switch (event.state) {
+				case "playbackError":
+					// Load an error message onto the video player
+					// That can be done with a state in the skin
+					break;
+				case "buffering":
+				case "loading":
+				case "uninitialized":
+					// Run the loading animation
+					break;
+				default:
+					// Just play
+			}
 		}
 		
 		/**

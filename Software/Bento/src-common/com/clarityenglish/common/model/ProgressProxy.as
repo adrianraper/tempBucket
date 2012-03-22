@@ -322,10 +322,6 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "getProgressData":
 					if (data) {
-						// Take the data loading note out now that we have a result
-						var loadingData:String = data.progress.type;
-						delete dataLoading[loadingData];
-						
 						/*
 						We will get back the following objects in data
 						error - should this be called status and include info/warning/error objects?
@@ -333,14 +329,25 @@ package com.clarityenglish.common.model {
 						*/
 						// First need to see if the return has an error
 						if (data.error && data.error.errorNumber>0) {
-							
-							log.error("loadData received an error");
-
-							// Who will handle this?
-							sendNotification(CommonNotifications.PROGRESS_LOAD_ERROR, data.error);
+							log.debug("progressProxy, error={0}", data.error.errorNumber);
+							var progressError:BentoError = new BentoError();
+							progressError.fromObject(data.error);
+							// If the error has stopped the loading of menu.xml, then can't get past login
+							if (progressError.errorNumber == BentoError.ERROR_CONTENT_MENU) {
+								sendNotification(CommonNotifications.INVALID_DATA, progressError);
+							} else {
+								// This might be complicated, but in this case we probably just want
+								// to warn the user that their progress records can't be saved or read
+								// but we could still go on with the show?
+								sendNotification(BBNotifications.INVALID_PROGRESS_DATA, progressError);
+							}
 							
 						} else {
 
+							// Take the data loading note out now that we have a result
+							var loadingData:String = data.progress.type;
+							delete dataLoading[loadingData];
+	
 							log.info("Successfully loaded data for type {0}", loadingData);
 
 							// Put the returned data into the cache and send out the notification

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="presentation" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -26,13 +26,24 @@
 <body>
 	
 <header>
+<div id="instruction">
 	It is important during the Speaking component to expand on your answers. Read the advice below and watch the video.
+</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit011_e1.flv" mode="1" id="1003"/>
-  <p align="left">Success in the spoken test depends on simple clear statements, extended where appropriate with suitable examples or remarks. When you talk about yourself, give an example to illustrate your point. The Examiner knows nothing about you. Your words will give him or her a clearer picture of you and your interests. Parts 1 and 2 consist of questions asked by the examiner. Answer them fully, logically and clearly, if you can. If you can't, communicate fully, logically and clearly.</p>
-  <p align="left">Now listen to Alexandra explaining her answer to the question "What do you do? Do you work or study?" How would you answer this question?</p>
+<div id="outer">
+<div id="video">
+  <video src="../media/Unit011_e1.flv" mode="1" id="1003" autoPlay="false"/>
+  
+  </div>
+  <div id="content1">
+  <p>Success in the spoken test depends on simple clear statements, extended where appropriate with suitable examples or remarks. When you talk about yourself, give an example to illustrate your point. The Examiner knows nothing about you. Your words will give him or her a clearer picture of you and your interests. Phases 1 and 2 consist of questions asked by the examiner. Answer them fully, logically and clearly, if you can. If you can't, communicate fully, logically and clearly.</p>
+  
+  <p class="linespace"></p>
+  <p>Now listen to Alexandra explaining her answer to the question "What do you do? Do you work or study?" How would you answer this question?</p>
+  </div>
+  </div>
 </section>
 
 </body>

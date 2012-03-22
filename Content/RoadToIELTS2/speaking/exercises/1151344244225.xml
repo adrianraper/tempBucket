@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -42,14 +42,21 @@
 <body>
 	
 <header>
-	The Examiner asks Zafir "How do you think daily life has changed since the arrival of modern technology?" Now watch Zafir talk, and fill in the blanks.
+<div id="instruction">
+	The Examiner asks Zafir, "How do you think daily life has changed since the arrival of modern technology?" Now watch Zafir talk, and fill in the blanks.
+</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit011_e3n4.flv" mode="1" id="1003"/>
-  <p align="left">
-    <font color="#000000">I think <input id="q1"/> is that now life is going very <input id="q2"/> let's say ten years or twenty years ago. Everything has changed &#x2013; life-style, you know, because nowadays, because we have this technology we can see what is there. I mean, in the other countries you can see, you can learn, you can see what are they doing, what are <input id="q3"/> you can see everything. This has changed even the way of thinking of people <input id="q4"/>. I mean they are learning from each other. They are sharing. We say <input id="q5"/>. It's very good.</font>
-  </p>
+<div id="video">
+  <video src="../media/Unit011_e3n4.flv" mode="1" id="1003" autoPlay="false"/>
+</div>
+
+<div id="content">
+    <p>I think&#xA0;<input id="q1"/>&#xA0;is that now life is going very&#xA0;<input id="q2"/>&#xA0;let's say ten years or twenty years ago. Everything has changed - life-style, you know, because nowadays, because we have this technology we can see what is there. I mean, in the other countries you can see, you can learn, you can see what are they doing, what are&#xA0;<input id="q3"/>&#xA0;you can see everything. This has changed even the way of thinking of people&#xA0;<input id="q4"/>. I mean they are learning from each other. They are sharing. We say&#xA0;<input id="q5"/>. It's very good.</p>
+<p class="linespace"></p>
+</div>
+
 </section>
 
 </body>

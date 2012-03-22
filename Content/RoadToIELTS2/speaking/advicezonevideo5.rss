@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
 	<title>Advice zone video 4</title>
-	<host>rtmp://streaming.clarityenglish.com:1935/cfx/st/</host>
+	<host>http://player.vimeo.com/external/</host>
 	<type>recorded</type>
-	<server>fms</server>
-	<streaming>rtmp</streaming>
+	<server>vimeo</server>
+	<streaming>progressive-download</streaming>
 	<item>
 		<title>low quality</title>
 		<streamName>RoadToIELTS2/speaking/media/speaking_tutorial1_180</streamName>

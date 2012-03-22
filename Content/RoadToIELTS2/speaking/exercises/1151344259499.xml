@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -63,26 +63,38 @@
 <body>
 	
 <header>
+<div id="instruction">
 	For the task you have just read, you may want to talk about computers. This is what Alexandra chooses to talk about, and she lists the reasons why she needs one.
+</div>
 </header>
 	
 <section id="body">
-  <video src="../media/Unit012_e3.flv" mode="1" id="1003"/>
-  <p align="left">
-    <b>What does Alexandra say about a computer?</b>
-    <g id="t1">A a necessity</g>
-    <g id="t2">B use it every day</g>
-    <g id="t3">C Internet</g>
-    <g id="t4">D entertainment</g>
-    <g id="t5">E cheap</g>
-    <g id="t6">F give information</g>
-    <g id="t7">G can be annoying</g>
-    <g id="t8">H communicate with friends</g>
-    <g id="t9">I saves time</g>
-    <g id="t10">J helps the disabled</g>
-    <g id="t11">K speed</g>
-    <g id="t12">L sometimes breaks</g>
-  </p>
+<div id="outer">
+<div id="video">
+  <video src="../media/Unit012_e3.flv" mode="1" id="1003" autoPlay="false"/>
+  </div>
+<div id="content1">
+    <p><b>What does Alexandra say about a computer?</b></p>
+	<ol id="targetspottingvideo">
+    	<list class="answerList">
+		<li><a id="t1">a necessity</a></li>
+		<li><a id="t2">use it every day</a></li>
+		<li><a id="t3">Internet</a></li>
+		<li><a id="t4">entertainment</a></li>
+		<li><a id="t5">cheap</a></li>
+		<li><a id="t6">give information</a></li>
+		<li><a id="t7">can be annoying</a></li>
+		<li><a id="t8">communicate with friends</a></li>
+		<li><a id="t9">saves time</a></li>
+		<li><a id="t10">helps the disabled</a></li>
+		<li><a id="t11">speed</a></li>
+		<li><a id="t12">sometimes breaks</a></li>
+		</list>
+	</ol>
+	<p class="linespace"></p>
+</div>
+</div>
+
 </section>
 
 </body>

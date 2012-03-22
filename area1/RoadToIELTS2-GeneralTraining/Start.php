@@ -1,7 +1,7 @@
 <?php	
 	session_start();
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
-	$studentID = $Email = $userID = $instanceID = '';
+	$studentID = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
 	
 	// For this product
@@ -58,15 +58,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<title>Road to IELTS 2 from Clarity and the British Council</title>
+	<title>Road to IELTS from Clarity and the British Council</title>
 	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
+	<link rel="stylesheet" type="text/css" href="ielts.css" />
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
+	
+	<script type="text/javascript" language="JavaScript" src="ielts.js"></script>
+	
 	<script type="text/javascript">
 		// ****
 		// 
@@ -82,10 +88,7 @@
 				return document.getElementById(movieName);
 			}
 		}
-		
-		function onLoad() {
-			thisMovie("bento").focus();
-		}
+
 		// *********
 		// *********
 		var webShare = "<?php echo $webShare ?>";
@@ -93,9 +96,8 @@
 		var swfName = "<?php echo $swfName ?>";
 		
 		// v6.5.5.6 Allow resize screen mode
-		var coordsWidth = "100%"; var coordsHeight = "100%"; 
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
-		var coordsMinHeight = "760"; var coordsMaxHeight = null;
+		var coordsMinHeight = "700"; var coordsMaxHeight = null;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -124,8 +126,8 @@
 		} else {
 			var jsUserID = swfobject.getQueryParamValue("userID");
 		}
-		if ("<?php echo $Email ?>".length>0) {
-			var jsEmail = "<?php echo $Email ?>";
+		if ("<?php echo $email ?>".length>0) {
+			var jsEmail = "<?php echo $email ?>";
 		} else {
 			var jsEmail = swfobject.getQueryParamValue("email");
 		}
@@ -153,29 +155,27 @@
 			name: "bento",
 			quality: "high",
 			allowfullscreen: "true",
-			scale: "default"
+			scale: "default",
+			allowscriptaccess: "always"
 		};
 		var attr = {
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight, true, true);
+		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
-<!--CSS pop up layout box-->
-<link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
 
 </head>
-<body onload="onLoad()">
-	<div align="center" id="altContent">
+<body style="background-color:#F2F2F2;">
+	<div style="background-color:#F2F2F2;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
 		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
 	</div>
-<NOSCRIPT>
+<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;"> 
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
 Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
 to switch this on and then refresh this page.</NOSCRIPT>

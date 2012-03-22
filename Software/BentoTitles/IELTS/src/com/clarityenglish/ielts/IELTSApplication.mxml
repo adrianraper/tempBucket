@@ -29,15 +29,17 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 			import caurina.transitions.Tweener;
 			import caurina.transitions.properties.DisplayShortcuts;
 			
 			import com.clarityenglish.bento.BBNotifications;
 			import com.clarityenglish.bento.BentoFacade;
 			import com.clarityenglish.common.vo.config.BentoError;
+			import com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 			
+			import mx.controls.Alert;
 			import mx.core.FlexGlobals;
+			import mx.events.CloseEvent;
 			import mx.events.FlexEvent;
 			import mx.managers.BrowserManager;
 			import mx.managers.IBrowserManager;
@@ -75,8 +77,33 @@
 			}
 			
 			// Implement the function from the interface to display errors
+			// You would expect to only be using this handler if there is no active view
 			public function showErrorMessage(error:BentoError):void {
-				trace("want to handle the error " + error.errorNumber); 
+				log.error("Need to handle the error {0}", error.errorNumber);
+				var msgTitle:String = "Unexpected problem";
+				switch (error.errorNumber) {
+					case BentoError.ERROR_CONTENT_MENU:
+						var msg:String = "Sorry, there is a problem reading the content index.";
+						break;
+					
+					default:
+						msg = "Sorry, something unexpected has happened.";
+				}
+				Alert.show(msg + ' ' + error.errorNumber + ': ' + error.errorContext, 
+							msgTitle,
+							mx.controls.Alert.OK,
+				this,
+				onHandleAlertResponse,
+				null,
+				mx.controls.Alert.OK);
+
+			}
+			public function onHandleAlertResponse(event:CloseEvent):void {
+				// Check to see if the OK button was pressed.
+				// Though currently there is not much else you can do!
+				if (event.detail==Alert.OK) {
+					currentState = "credits";
+				}
 			}
 			
 		]]>

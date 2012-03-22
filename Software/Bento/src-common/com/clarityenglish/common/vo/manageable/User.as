@@ -51,6 +51,8 @@
 		public var startDate:String;
 		public var contactMethod:String;
 		public var registrationDate:String;
+		public var userProfileOption:Number;
+		public var registerMethod:String;
 		
 		/** 
 		 * The user's birthday. 

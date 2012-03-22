@@ -115,7 +115,6 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
-				
 				case "getInstanceID":
 					if (data) {
 						if (data.error && data.error.errorNumber>0) 

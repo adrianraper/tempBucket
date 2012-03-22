@@ -109,6 +109,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		
@@ -196,6 +199,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		
@@ -224,50 +230,61 @@ class BentoService extends AbstractService {
 		
 		$errorObj = array("errorNumber" => 0);
 		
-		// Before you get progress records, read the menu.xml
-		// TODO. Possibly move this bit into contentOps?
-		// This path is relative to the Bento application, not this script
-		// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
-		// if we keep the everyone summary coming from a computed table.
-		if (stristr($menuXMLFile, 'http://')===FALSE) {
-			$menuXMLFile = '../../'.$menuXMLFile;
-		}
-		$this->progressOps->getMenuXML($menuXMLFile);
+		try {
 		
-		$progress = New Progress();
-		// Each type of progress that we get goes back in data.
-		$progress->type = $progressType;
-		switch ($progressType) {
-			// MySummary data will now be calculated by ProgressProxy from the detail data
-			/*
-			case Progress::PROGRESS_MY_SUMMARY:
-				$rs = $this->progressOps->getMySummary($userID, $productCode);
-				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
-				break;
-			*/
-			case Progress::PROGRESS_EVERYONE_SUMMARY:
-				$rs = $this->progressOps->getEveryoneSummary($productCode);
-				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
-				break;
-				
-			case Progress::PROGRESS_MY_DETAILS:
-				$rs = $this->progressOps->getMyDetails($userID, $productCode);
-				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
-				break;
-				
-			case Progress::PROGRESS_MY_BOOKMARK:
-				// Pick up the last exercise done as a bookmark.
-				$rs = $this->progressOps->getMyLastExercise($userID, $productCode);
-				$progress->dataProvider = $this->progressOps->formatBookmark($rs);
-				break;
+			// Before you get progress records, read the menu.xml
+			// TODO. Possibly move this bit into contentOps?
+			// This path is relative to the Bento application, not this script
+			// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
+			// if we keep the everyone summary coming from a computed table.
+			if (stristr($menuXMLFile, 'http://')===FALSE) {
+				$menuXMLFile = '../../'.$menuXMLFile;
+			}
+			$this->progressOps->getMenuXML($menuXMLFile);
+			
+			$progress = New Progress();
+			// Each type of progress that we get goes back in data.
+			$progress->type = $progressType;
+			switch ($progressType) {
+				// MySummary data will now be calculated by ProgressProxy from the detail data
+				/*
+				case Progress::PROGRESS_MY_SUMMARY:
+					$rs = $this->progressOps->getMySummary($userID, $productCode);
+					$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+					break;
+				*/
+				case Progress::PROGRESS_EVERYONE_SUMMARY:
+					$rs = $this->progressOps->getEveryoneSummary($productCode);
+					$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+					break;
+					
+				case Progress::PROGRESS_MY_DETAILS:
+					$rs = $this->progressOps->getMyDetails($userID, $productCode);
+					$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
+					break;
+					
+				case Progress::PROGRESS_MY_BOOKMARK:
+					// Pick up the last exercise done as a bookmark.
+					$rs = $this->progressOps->getMyLastExercise($userID, $productCode);
+					$progress->dataProvider = $this->progressOps->formatBookmark($rs);
+					break;
+			}
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
+			return array("error" => $errorObj);
 		}
+			
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
 		//	a summary at the course level for time spent by me
 		 
 		return array("error" => $errorObj,
-					"progress" => $progress
-		);
+					"progress" => $progress);
 	}
 	
 	/**
@@ -288,6 +305,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj,
@@ -313,6 +333,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj);
@@ -348,6 +371,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj);
@@ -369,6 +395,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj,
@@ -418,6 +447,9 @@ class BentoService extends AbstractService {
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
 			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj);
