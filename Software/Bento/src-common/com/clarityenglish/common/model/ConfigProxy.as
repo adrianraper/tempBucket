@@ -193,9 +193,7 @@ package com.clarityenglish.common.model {
 			//if (FlexGlobals.topLevelApplication.parameters.studentID &&
 			//	FlexGlobals.topLevelApplication.parameters.password) {
 			if (config.studentID) {
-				return new LoginEvent(LoginEvent.LOGIN, 
-										config.studentID, 
-										config.password);
+				return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
 			}
 			
 			return null;
@@ -209,8 +207,8 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectStart():Object {
 			if (Config.DEVELOPER.name == "DK") {
-				return { courseClass: "reading" };
-				//return { exerciseId: "1151344259319" };
+				//return { courseClass: "reading" };
+				//return { exerciseId: "1156165919121" };
 			}
 			if (Config.DEVELOPER.name == "AR") {
 			//	return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)

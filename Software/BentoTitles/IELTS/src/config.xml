@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
+	<id>/area1/RoadToIELTS2-Academic in dock.projectbench</id>
 	<developer>DK</developer>
-	<courseFile>menu-Academic-LastMinute.xml</courseFile>
 	<dbHost>2</dbHost>
 	<productCode>52</productCode>
 	<productVersion>fullVersion</productVersion>
-	<streamingMedia />
-	<sharedMedia />
-	<brandingMedia />
+	<courseFile>menu-Academic-FullVersion.xml</courseFile>
+	<streamingMedia/>
+	<sharedMedia/>
+	<brandingMedia/>
 	<language>EN*</language>
 	<contentPath>http://dock.projectbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>

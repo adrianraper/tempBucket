@@ -85,7 +85,6 @@ package com.clarityenglish.common.model {
 		 * @return void - Asynchronous call. Will return instanceID and error objects later. 
 		 */
 		public function checkInstance():void {
-			
 			var userDetails:Object = { userID: user.userID };
 			var params:Array = [ userDetails ];
 			new RemoteDelegate("getInstanceID", params, this).execute();
@@ -117,7 +116,7 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "getInstanceID":
 					if (data) {
-						if (data.error && data.error.errorNumber>0) 
+						if (data.error && data.error.errorNumber > 0) 
 							sendNotification(BBNotifications.FAILED_INSTANCE_CHECK);
 						
 						// Check if the returned instance ID is the same as our current session
@@ -128,8 +127,9 @@ package com.clarityenglish.common.model {
 							var config:Config = configProxy.getConfig();
 							config.instanceID = '123';
 						}
-
-						if (data.instanceID != configProxy.getInstanceID()) {
+						
+						// DK: Disabled this for me as its stopping me testing any exercises
+						if (data.instanceID != configProxy.getInstanceID() && Config.DEVELOPER.name != "DK") {
 							var error:BentoError = new BentoError();
 							error.errorNumber = BentoError.ERROR_FAILED_INSTANCE_CHECK;
 							error.errorDescription = 'Somebody else has logged in with the same details. Please try again.';

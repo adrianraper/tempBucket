@@ -42,7 +42,7 @@
 <header>
 	
 <div id="instruction">		
-		The beginning of Part 1 of the IELTS Speaking Module is easy, in that you can prepare for it. The questions ask for specific details about you. The Examiner will say "Good morning", or "Good afternoon", or "Good evening". You should respond in the same way.
+	The beginning of Part 1 of the IELTS Speaking Module is easy, in that you can prepare for it. The questions ask for specific details about you. The Examiner will say "Good morning", or "Good afternoon", or "Good evening". You should respond in the same way.
 </div>
 </header>
 	
@@ -55,13 +55,13 @@
   </div>
   
   <div class="rightFloatvideo1">
-  <tab/><video src="../media/Unit02_e1a.flv" mode="16" id="1003" autoPlay="false" /><tab/><tab/>
-  <video src="../media/Unit02_e1b.flv" mode="16" id="1004" autoPlay="false"/>
+  <tab/><video src="../media/Unit02_e1a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" /><tab/><tab/>
+  <video src="../media/Unit02_e1b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240"/>
   </div>
   
   <div class="rightFloatvideo1">
-  <tab/><video src="../media/Unit02_e1c.flv" mode="16" id="1005" autoPlay="false"/><tab/><tab/>
-  <video src="../media/Unit02_e1d.flv" mode="16" id="1006" autoPlay="false"/>
+  <tab/><video src="../media/Unit02_e1c.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" /><tab/><tab/>
+  <video src="../media/Unit02_e1d.flv" mode="16" id="1006" autoPlay="false" width="320" height="240" />
   </div>
   <br/><br/>
   <div class="brieftext">
@@ -70,13 +70,13 @@
   </div>
   
   <div class="rightFloatvideo1">
-  <tab/><video src="../media/Unit02_e1e.flv" mode="16" id="1007" autoPlay="false"/><tab/><tab/>
-  <video src="../media/Unit02_e1f.flv" mode="16" id="1008" autoPlay="false"/>
+  <tab/><video src="../media/Unit02_e1e.flv" mode="16" id="1007" autoPlay="false" width="320" height="240" /><tab/><tab/>
+  <video src="../media/Unit02_e1f.flv" mode="16" id="1008" autoPlay="false" width="320" height="240" />
   </div>
   
   <div class="rightFloatvideo1">
-  <tab/><video src="../media/Unit02_e1g.flv" mode="16" id="1009" autoPlay="false"/><tab/><tab/>
-  <video src="../media/Unit02_e1h.flv" mode="16" id="1010" autoPlay="false"/>
+  <tab/><video src="../media/Unit02_e1g.flv" mode="16" id="1009" autoPlay="false" width="320" height="240" /><tab/><tab/>
+  <video src="../media/Unit02_e1h.flv" mode="16" id="1010" autoPlay="false" width="320" height="240" />
   </div>
   
   <br/><br/>
@@ -85,13 +85,13 @@
   After this giving of personal information, you will be asked to give your opinion on general topics, such as friends, family, leisure activities, celebrations, or hobbies.</p>
   </div>
   <div class="rightFloatvideo1">
-  <tab/><video src="../media/Unit02_e1i.flv" mode="16" id="1011" autoPlay="false"/><tab/><tab/>
-  <video src="../media/Unit02_e1j.flv" mode="16" id="1012" autoPlay="false"/>
+  <tab/><video src="../media/Unit02_e1i.flv" mode="16" id="1011" autoPlay="false" width="320" height="240" /><tab/><tab/>
+  <video src="../media/Unit02_e1j.flv" mode="16" id="1012" autoPlay="false" width="320" height="240" />
   </div>
   
   <div class="rightFloatvideo1"> 
-  <tab/><video src="../media/Unit02_e1k.flv" mode="16" id="1013" autoPlay="false"/><tab/><tab/>
-  <video src="../media/Unit02_e1l.flv" mode="16" id="1014" autoPlay="false"/>
+  <tab/><video src="../media/Unit02_e1k.flv" mode="16" id="1013" autoPlay="false" width="320" height="240" /><tab/><tab/>
+  <video src="../media/Unit02_e1l.flv" mode="16" id="1014" autoPlay="false" width="320" height="240" />
   </div>
   <p class="linespace"></p>
   <p class="linespace"></p>
