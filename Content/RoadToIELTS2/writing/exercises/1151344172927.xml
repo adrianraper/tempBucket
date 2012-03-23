@@ -56,16 +56,16 @@
 </section>
 
 <section id="body">
-	<img class="rightFloat" src="../media/WB_AW_014.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/set8.2_04.jpg" mode="1" id="1001"  />
 	<div id="gapfillText">
-	<h8>Plan 1</h8>
+	<h7>Plan 1</h7>
 	<p>Paragraph 1&#xA0;-&#xA0;Introduction</p>
 	<p>Paragraph 2&#xA0;-&#xA0;<input id="q1" type="droptarget" /></p>
 	<p>Paragraph 3&#xA0;-&#xA0;<input id="q2" type="droptarget" /></p>
 	<p>Paragraph 4&#xA0;-&#xA0;Conclusion</p>
-	<p></p>
-	
-	<h8>Plan 2</h8>
+
+	<p class="linespace"></p>
+	<h7>Plan 2</h7>
 	<p>Paragraph 1&#xA0;-&#xA0;Introduction</p>
 	<p>Paragraph 2&#xA0;-&#xA0;<input id="q3" type="droptarget" /></p>
 	<p>Paragraph 3&#xA0;-&#xA0;<input id="q4" type="droptarget" /></p>

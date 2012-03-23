@@ -14,7 +14,7 @@
 	<br/>
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
   <settings>
@@ -74,30 +74,37 @@
 <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
 <a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 <br/><br/><br/>
-<div id="gapfillText">
-
-<h7>Paragraph 1 - Opening paragraph</h7>
+<div id="box1">
+<div id="set2t1orgideas1">
+<h7><p>Paragraph 1 - Opening paragraph</p></h7>
 <p><input id="q1" type="droptarget"/><br/>
 <input id="q2" type="droptarget"/></p>
+
 <p class="linespace"></p>
-<h7>Paragraph 2 - Advice on teaching methods</h7>
+<h7><p>Paragraph 2 - Advice on teaching methods</p></h7>
 <p><input id="q3" type="droptarget"/><br/>
 <input id="q4" type="droptarget"/><br/>
 <input id="q5" type="droptarget"/></p>
+
 <p class="linespace"></p>
-<h7>Paragraph 3 - Advice on number of students in class</h7>
+<h7><p>Paragraph 3 - Advice on number of students in class</p></h7>
 <p><input id="q6" type="droptarget"/><br/>
 <input id="q7" type="droptarget"/><br/>
 <input id="q8" type="droptarget"/></p>
 <p class="linespace"></p>
-<h7>Paragraph 4 - Advice on number of hours a week</h7>
+</div>
+
+<div id="set2t1orgideas2">
+<h7><p>Paragraph 4 - Advice on number of hours a week</p></h7>
 <p><input id="q9" type="droptarget"/><br/>
 <input id="q10" type="droptarget"/></p>
+
 <p class="linespace"></p>
-<h7>Paragraph 5 - Closing paragraph</h7>
+<h7><p>Paragraph 5 - Closing paragraph</p></h7>
 <p><input id="q11" type="droptarget"/><br/>
 <input id="q12" type="droptarget"/></p>
 <p class="linespace"></p>
+</div>
 </div>
 
 </section>

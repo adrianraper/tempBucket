@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -19,6 +19,13 @@
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
+  <DropDownQuestion source="q1" block="b1">
+      <answer source="a1" correct="false"/>
+      <answer source="a2" correct="true"/>
+      <answer source="a3" correct="false"/>
+	  <answer source="a4" correct="false"/>
+	  <answer source="a5" correct="false"/>
+    </DropDownQuestion>
     <DragQuestion source="q1" block="b1">
       <answer source="aunknown" correct="true"/>
       <answer source="aunknown" correct="true"/>

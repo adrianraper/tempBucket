@@ -369,3 +369,9 @@ h7{
 			padding-left: -25px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+/* This class is used for subscript, e.g. the 2 in CO2 */
+
+.subscript {
+	font-size:9px; 
+	vertical-align:bottom;
+}

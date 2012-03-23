@@ -9,6 +9,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.ProgressView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.vo.content.Title;
+		]]>
+	</fx:Script>
 	
 	<s:states>
 		<s:State name="coverage" />
@@ -27,8 +32,12 @@
 		</s:Transition>
 	</s:transitions>
 
+	<s:Group width="100%" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}">
+		<s:Label left="0" height="25" top="40" text="You are anonymous so your progress will not be saved after you close the program." />
+	</s:Group>
+	
 	<s:Group width="100%">
-		<s:ButtonBar id="progressNavBar" left="0" height="25" top="65" />
+		<s:ButtonBar id="progressNavBar" left="0" height="25" top="25" />
 	</s:Group>
 
 	<s:Group top="10" width="100%">

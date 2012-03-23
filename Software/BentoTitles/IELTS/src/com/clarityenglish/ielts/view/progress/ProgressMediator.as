@@ -3,6 +3,8 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.vo.content.Title;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -27,6 +29,10 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			view.currentCourseClass = bentoProxy.currentCourseClass;
+
+			// Inject required data into the view
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
 
 		}
         

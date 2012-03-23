@@ -252,6 +252,8 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						config.mergeAccountData(data);
+						
+						config.checkErrors();
 
 						// TODO. This account doesn't have this title error DOESN'T stop us at this point.
 						// At this point we can check to see if the config contains anything that stops us going on
@@ -270,10 +272,10 @@ package com.clarityenglish.common.model {
 							error = new BentoError(BentoError.ERROR_LICENCE_NOT_STARTED);
 						if (config.termsNotAccepted())
 							error = new BentoError(BentoError.ERROR_TERMS_NOT_ACCEPTED);
-						if (config.outsideIPRange())
-							error = new BentoError(BentoError.ERROR_OUTSIDE_IP_RANGE);
 						if (config.outsideRURange())
 							error = new BentoError(BentoError.ERROR_OUTSIDE_RU_RANGE);
+						if (config.outsideIPRange())
+							error = new BentoError(BentoError.ERROR_OUTSIDE_IP_RANGE);
 						*/
 						if (config.anyError())
 							var error:BentoError = config.error;

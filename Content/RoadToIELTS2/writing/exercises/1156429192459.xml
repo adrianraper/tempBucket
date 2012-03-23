@@ -16,33 +16,36 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
     <DragQuestion source="q1" block="b1">
       <answer source="a6" correct="true">
-        <feedback source="fb1"/>
+        <feedback source="fb1" width="500" />
       </answer>
     </DragQuestion>
     <DragQuestion source="q2" block="b2">
       <answer source="a7" correct="true">
-        <feedback source="fb2"/>
+        <feedback source="fb2" width="500" />
       </answer>
     </DragQuestion>
     <DragQuestion source="q3" block="b3">
       <answer source="a8" correct="true">
-        <feedback source="fb3"/>
+        <feedback source="fb3" width="500" />
       </answer>
     </DragQuestion>
     <DragQuestion source="q4" block="b4">
       <answer source="a9" correct="true">
-        <feedback source="fb4"/>
+        <feedback source="fb4" width="500" />
       </answer>
     </DragQuestion>
     <DragQuestion source="q5" block="b5">
       <answer source="a10" correct="true">
-        <feedback source="fb5"/>
+        <feedback source="fb5" width="500" />
       </answer>
     </DragQuestion>
   </questions>
@@ -87,64 +90,68 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/MM_AW_013.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1001"/></a><br/><br/><br/>
+  <img class="rightFloat" src="../media/set6.2_05.jpg" mode="1" id="1001"/>
 
-  <ol id="questionList">
+  <ol id="writecon">
     <li id="1">
-			To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.&#xA0; <input id="q1" type="droptarget"/></li>
+			To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.<br/><input id="q1" type="droptarget"/></li>
 			<p class="linespace"></p>
-    <li id="2">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.&#xA0; <input id="q2" type="droptarget"/></li>
+    <li id="2">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.<br/><input id="q2" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="3">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.&#xA0; <input id="q3" type="droptarget"/></li>
+    <li id="3">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.<br/><input id="q3" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="4">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.&#xA0; <input id="q4" type="droptarget"/></li>
+    <li id="4">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.<br/><input id="q4" type="droptarget"/></li>
 	<p class="linespace"></p>
-    <li id="5">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.&#xA0; <input id="q5" type="droptarget"/></li>
+    <li id="5">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.<br/><input id="q5" type="droptarget"/></li>
+	<p class="linespace"></p>
 	<p class="linespace"></p>
   </ol>
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">Q1. </p>
-  <p class="feedbacktext">To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.</p>
-  <p class="feedbacktext">
+  <p class="popuptext1"><b>Q1</b></p>
+  <p class="popuptext2">To sum up, I believe that such events should be reported in a way which shows sensitivity towards victims and their families. Although we have a right to be informed of these events, they too have a right to their privacy.</p>
+  <p class="popuptext">
     <b>Conclusion introduces new points</b>
   </p>
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">Q2.</p>
-  <p class="feedbacktext">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.</p>
-  <p class="feedbacktext">
+  <p class="popuptext1"><b>Q2</b></p>
+  <p class="popuptext2">To conclude, some people feel that powerful images in news reports can motivate people to do something about situations such as famine or war. On the other hand, there are those who feel that such images are excessively upsetting, especially for children, and should not be broadcast at all.</p>
+  <p class="popuptext">
     <b>No personal opinion</b>
   </p>
 </section>
 
 <section id="fb3">
-  <p class="feedbacktext">Q3.</p>
-  <p class="feedbacktext">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.</p>
-  <p class="feedbacktext">
+  <p class="popuptext1"><b>Q3</b></p>
+  <p class="popuptext2">In summary, I believe that television channels have a duty to show us events in as much detail as possible. However, news crews must edit disturbing images out of their reports before they are broadcast so that sensitive people, particularly children, are not upset.</p>
+  <p class="popuptext">
     <b>Contradictory</b>
   </p>
 </section>
 
 <section id="fb4">
-  <p class="feedbacktext">Q4.</p>
-  <p class="feedbacktext">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</p>
-  <p class="feedbacktext">
+  <p class="popuptext1"><b>Q4</b></p>
+  <p class="popuptext2">On balance, I think the argument that this kind of television reporting can sometimes help bring an end to a tragic situation is a very powerful one. However, broadcasters must take care to protect children, and others who do not wish to be upset, by showing potentially disturbing images only after a certain time in the evening.</p>
+  <p class="popuptext">
     <b>Good conclusion</b>
   </p>
 </section>
 
 <section id="fb5">
-  <p class="feedbacktext">Q5.</p>
-  <p class="feedbacktext">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.</p>
-  <p class="feedbacktext">
+  <p class="popuptext1"><b>Q5</b></p>
+  <p class="popuptext2">In conclusion, I would say that viewers should not have to see such disturbing images in their own homes.</p>
+  <p class="popuptext">
     <b>No reason given for opinion</b>
   </p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">It is very important to create a good impression with your final paragraph. The conclusion should be relevant to the arguments you have included in the main body of the composition and it should also give your opinion, with brief reasons for it.</p>
+</section>
 
 </body>
 </bento>

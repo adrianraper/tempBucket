@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -122,27 +122,36 @@ Here are some extracts from letters from people explaining why they were unable 
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_GW_004.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set7.1_04.jpg" mode="1" id="1001"/>
   
-  <div id="gapfillText">
-  <p>My daughter&#xA0; <input id="q1"/> &#xA0;(fall) off a chair at school,&#xA0; <input id="q2"/> &#xA0;(hit) her head and&#xA0; <input id="q3"/> &#xA0;(take) to hospital.</p>
+  <ol id="questionList">
+  <li>My daughter&#xA0; <input id="q1"/> &#xA0;(fall) off a chair at school,&#xA0; <input id="q2"/> &#xA0;(hit) her head and&#xA0; <input id="q3"/> &#xA0;(take) to hospital.</li>
   
-  <p>My dog&#xA0; <input id="q4"/> &#xA0;(involve) in a fight with another dog and I&#xA0; <input id="q5"/> &#xA0;(have) to pull them apart. The other dog then&#xA0; <input id="q6"/> &#xA0;(attack) me and I&#xA0; <input id="q7"/> &#xA0;(bit) extremely badly and&#xA0; <input id="q8"/> &#xA0;(have) to go to hospital.</p>
+  <p class="linespace"></p>
+  <li>My dog&#xA0; <input id="q4"/> &#xA0;(involve) in a fight with another dog and I&#xA0; <input id="q5"/> &#xA0;(have) to pull them apart. The other dog then&#xA0; <input id="q6"/> &#xA0;(attack) me and I&#xA0; <input id="q7"/> &#xA0;(bit) extremely badly and&#xA0; <input id="q8"/> &#xA0;(have) to go to hospital.</li>
   
-  <p>The lift&#xA0; <input id="q9"/> &#xA0;(break down) and I&#xA0; <input id="q10"/> &#xA0;(trap) for over an hour. I&#xA0; <input id="q11"/> &#xA0;(not have) my mobile phone with me so I&#xA0; <input id="q12"/> &#xA0;(have) to wait for the emergency services to rescue me.</p>
+  <p class="linespace"></p>
+  <li>The lift&#xA0; <input id="q9"/> &#xA0;(break down) and I&#xA0; <input id="q10"/> &#xA0;(trap) for over an hour. I&#xA0; <input id="q11"/> &#xA0;(not have) my mobile phone with me so I&#xA0; <input id="q12"/> &#xA0;(have) to wait for the emergency services to rescue me.</li>
   
-  <p>I&#xA0; <input id="q13"/> &#xA0;(run) over a stone on my bicycle,&#xA0; <input id="q14"/> &#xA0;(go) flying over the handlebars and&#xA0; <input id="q15"/> &#xA0;(knock) unconscious.</p>
+  <p class="linespace"></p>
+  <li>I&#xA0; <input id="q13"/> &#xA0;(run) over a stone on my bicycle,&#xA0; <input id="q14"/> &#xA0;(go) flying over the handlebars and&#xA0; <input id="q15"/> &#xA0;(knock) unconscious.</li>
   
-  <p>I&#xA0; <input id="q16"/> &#xA0;(give) hepatitis vaccination for my holiday and I&#xA0; <input id="q17"/> &#xA0;(develop) a high fever and&#xA0; <input id="q18"/> &#xA0;(feel) extremely nauseous.</p>
+  <p class="linespace"></p>
+  <li>I&#xA0; <input id="q16"/> &#xA0;(give) hepatitis vaccination for my holiday and I&#xA0; <input id="q17"/> &#xA0;(develop) a high fever and&#xA0; <input id="q18"/> &#xA0;(feel) extremely nauseous.</li>
   
-  <p>My five-year-old son&#xA0; <input id="q19"/> &#xA0;(catch) chicken pox. He was running a fever and&#xA0; <input id="q20"/> &#xA0;(come) out in a nasty skin rash so I&#xA0; <input id="q21"/> &#xA0;(stay) at home to look after him.</p>
+  <p class="linespace"></p>
+  <li>My five-year-old son&#xA0; <input id="q19"/> &#xA0;(catch) chicken pox. He was running a fever and&#xA0; <input id="q20"/> &#xA0;(come) out in a nasty skin rash so I&#xA0; <input id="q21"/> &#xA0;(stay) at home to look after him.</li>
   
-  <p>I&#xA0; <input id="q22"/> &#xA0;(undergo) a minor operation last week but there&#xA0; <input id="q23"/> &#xA0;(be) complications and I&#xA0; <input id="q24"/> &#xA0;(not discharge) from hospital until yesterday.</p>
+  <p class="linespace"></p>
+  <li>I&#xA0; <input id="q22"/> &#xA0;(undergo) a minor operation last week but there&#xA0; <input id="q23"/> &#xA0;(be) complications and I&#xA0; <input id="q24"/> &#xA0;(not discharge) from hospital until yesterday.</li>
   
-  <p>I&#xA0; <input id="q25"/> &#xA0;(trip) over one of my children's toys and&#xA0; <input id="q26"/> &#xA0;(sprain) my ankle. I&#xA0; <input id="q27"/> &#xA0;(tell) by the doctor not to walk for three days.</p>
+  <p class="linespace"></p>
+  <li>I&#xA0; <input id="q25"/> &#xA0;(trip) over one of my children's toys and&#xA0; <input id="q26"/> &#xA0;(sprain) my ankle. I&#xA0; <input id="q27"/> &#xA0;(tell) by the doctor not to walk for three days.</li>
   
-  <p>My wife and I&#xA0; <input id="q28"/> &#xA0;(involve) in a minor car accident. We&#xA0; <input id="q29"/> &#xA0;(not injure) but our car&#xA0; <input id="q30"/> &#xA0;(damage) in the collision.</p>
-</div>
+  <p class="linespace"></p>
+  <li>My wife and I&#xA0; <input id="q28"/> &#xA0;(involve) in a minor car accident. We&#xA0; <input id="q29"/> &#xA0;(not injure) but our car&#xA0; <input id="q30"/> &#xA0;(damage) in the collision.</li>
+  <p class="linespace"></p>
+</ol>
 </section>
 
 </body>

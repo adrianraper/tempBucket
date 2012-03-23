@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="targetspotting" />
@@ -69,7 +69,7 @@
 <header>
 <div id="instruction">
 		Questions 1-4. Listen to the recording, which will play automatically, and follow the instructions. Click FOUR letters a-g.
-		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/ST_LN2a.mp3" mode="4" id="1002"/>
 </div>		
 
 </header>

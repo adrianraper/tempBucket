@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
@@ -64,7 +64,7 @@
 <header>
 <div id="instruction">
 	Complete the table below by dragging down the pieces of information to match the languages they describe.
-		<audio controls="hidden" loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoplay="true"/>
+		<audio controls="hidden" loop="1" src="../media/LC_LN2.mp3" mode="4" id="1020" autoPlay="true"/>
 	</div>
 
 	</header>

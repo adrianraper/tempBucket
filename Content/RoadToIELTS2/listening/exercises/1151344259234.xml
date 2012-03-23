@@ -57,7 +57,7 @@
 <header>
 <div id="instruction">		
 		Questions 7-9. Listen to the recording, which will play automatically, and follow the instructions. Click THREE letters a-f.
-		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/ST_LN1b.mp3" mode="4" id="1002"/>
 </div>		
 
 </header>

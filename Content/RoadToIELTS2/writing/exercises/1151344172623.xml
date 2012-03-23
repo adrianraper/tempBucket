@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   
   <questions>
@@ -67,7 +67,7 @@ Read the three main paragraphs from the sample answer in an earlier exercise aga
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/WB_AW_017.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set8.2_07.jpg" mode="1" id="1001"/>
   
 <div id="targetspotting"> 
   <p>Firstly, work-related stress stems largely from ever-increasing workloads. Companies today demand that employees cope with heavier workloads while working to tighter and tighter deadlines. This not only puts workers under great pressure but also means that they work far longer hours than they used to.&#xA0;<g id="t1">For</g>&#xA0;the sake of employees' well-being, legislation limiting the number of hours worked should be strictly enforced. Furthermore, systems agreed on by both management and employees ought to be implemented&#xA0;<g id="t2">to</g>&#xA0;avoid excessive workloads and unrealistic deadlines.</p>

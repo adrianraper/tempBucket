@@ -15,8 +15,11 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+		<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   
   <questions>
@@ -86,17 +89,18 @@
 </header>
 	
 <section id="body">
-
-  <img class="rightFloat" src="../media/EN_GW_004.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1001"/></a>
+<br/><br/><br/><br/>
+  <img class="rightFloat" src="../media/set4.1_04.jpg" mode="1" id="1002"/>
   
 <div id="targetspotting">
 	<p>Dear Sir/Madam,</p>
 	
 	<p><g id="t1">As you can see from the address above</g>, I live in the house next door to your hotel and I am writing to complain about your rubbish collection and disposal system.</p>
 	
-	<p><g id="t2">To begin with</g>, the ten large rubbish bins that you have lined up in the hotel courtyard completely spoil the view from my bedroom window.&#xA0;<g id="t3">As if the ugly view were not enough</g>, some members of your staff leave the lids of&#xA0;<g id="t4">these bins</g>&#xA0;open. &#xA0;<g id="t5">This</g>&#xA0;attracts stray cats and dogs and, consequently, the rubbish ends up strewn all over the road in front of my house.&#xA0;<g id="t6">What is more</g>, the noise the rubbish disposal truck makes when it lifts and empties&#xA0;<g id="t7">the bins</g>&#xA0;is deafening and I am woken up at 6 o'clock every morning.&#xA0;<g id="t8">To make matters even worse</g>, the smell that is produced as the rubbish is being emptied is revolting and lingers in the air for hours afterwards.&#xA0;<g id="t9">As a result of this</g>, I cannot continue sleeping and I cannot open any of the windows in my house.</p>
+	<p><g id="t2">To begin with</g>, the ten large rubbish bins that you have lined up in the hotel courtyard completely spoil the view from my bedroom window.&#xA0;<g id="t3">As if the ugly view were not enough</g>, some members of your staff leave the lids of&#xA0;<g id="t4">these bins</g>&#xA0;open.&#xA0;<g id="t5">This</g>&#xA0;attracts stray cats and dogs and, consequently, the rubbish ends up strewn all over the road in front of my house.&#xA0;<g id="t6">What is more</g>, the noise the rubbish disposal truck makes when it lifts and empties&#xA0;<g id="t7">the bins</g>&#xA0;is deafening and I am woken up at 6 o'clock every morning.&#xA0;<g id="t8">To make matters even worse</g>, the smell that is produced as the rubbish is being emptied is revolting and lingers in the air for hours afterwards.&#xA0;<g id="t9">As a result of this</g>, I cannot continue sleeping and I cannot open any of the windows in my house.</p>
 	
-	<p>I feel that something needs to be done about&#xA0;<g id="t10">this situation</g>&#xA0;and I suggest that you build some kind of structure to house&#xA0;<g id="t11">these bins</g>, preferably at the back of the hotel. I would&#xA0;<g id="t12">also</g>&#xA0; appreciate it if you could arrange for the rubbish to be collected after 8 a.m. in the morning.</p>
+	<p>I feel that something needs to be done about&#xA0;<g id="t10">this situation</g>&#xA0;and I suggest that you build some kind of structure to house&#xA0;<g id="t11">these bins</g>, preferably at the back of the hotel. I would&#xA0;<g id="t12">also</g>&#xA0;appreciate it if you could arrange for the rubbish to be collected after 8 a.m. in the morning.</p>
 	
 	<p>I trust that you will give&#xA0;<g id="t13">this matter</g>&#xA0;your immediate attention.</p>
 	
@@ -105,6 +109,11 @@
 	<p>Mrs W. Pursey</p>
   
 </div>  
+</section>
+
+<section id="examtips">
+
+<p class="popuptext">It is very important to write clearly and to link your sentences and paragraphs appropriately. To do this you need to use linking words and phrases and other cohesive devices like the ones in this sample composition.</p>
 </section>
 
 </body>

@@ -1,27 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
 	<title>Advice zone video 1</title>
-	<host>rtmp://streaming.clarityenglish.com:1935/cfx/st/</host>
+	<host>http://player.vimeo.com/external/</host>
 	<type>recorded</type>
-	<server>fms</server>
-	<streaming>rtmp</streaming>
+	<server>vimeo</server>
+	<streaming>progressive-download</streaming>
 	<item>
-		<title>low quality</title>
-		<streamName>RoadToIELTS2/writing/media/writing_advice_180</streamName>
-		<bitrate>180</bitrate>
+		<title>standard def</title>
+		<streamName>38839491.sd.mp4?s=501d8610d7abf269895b897411d34554</streamName>
 		<width>411</width>
 	</item>
 	<item>
-		<title>medium quality</title>
-		<streamName>RoadToIELTS2/writing/media/writing_advice_700</streamName>
-		<bitrate>700</bitrate>
-		<width>411</width>
-	</item>
-	<item>
-		<title>high quality</title>
-		<streamName>RoadToIELTS2/writing/media/writing_advice_1200</streamName>
-		<bitrate>1200</bitrate>
+		<title>high def</title>
+		<streamName>38839491.hd.mp4?s=38c49e11c9ba85973ccd0103d1bfd2b5</streamName>
 		<width>411</width>
 	</item>
 </channel>

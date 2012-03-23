@@ -5,6 +5,7 @@
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.vo.content.Title;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -34,8 +35,10 @@
 
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			// TODO. Not sure it makes any sense to have default values - unless perhaps they relate to a DEMO mode?
 			view.productVersion = configProxy.getProductVersion() || "fullVersion";
 			view.productCode = configProxy.getProductCode() || 52;
+			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
 
 		}
         

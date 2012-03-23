@@ -26,13 +26,15 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/EN_GW_005.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set4.1_05.jpg" mode="1" id="1001"/>
   <div id="presentation">
+  	<h1><p>IELTS writing task 1</p></h1>
+	
     <p><b>You live in a flat above a restaurant. Recently the restaurant has started to put tables and chairs outside and this has resulted in an increase in noise.</b></p>
 	
   <p><b>Write a letter to the restaurant. Explain how you are being affected by this situation and say what you would like them to do about it.</b></p>

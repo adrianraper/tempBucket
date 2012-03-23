@@ -50,7 +50,7 @@
 <header>
 <div id="instruction">		
 		Questions 9-12. Click to choose the appropriate answer.
-		  <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/ED_LN2b.mp3" mode="4" id="1002"/>
 </div>
 
 </header>

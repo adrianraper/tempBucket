@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -80,7 +80,7 @@
 </header>
 	
 <section id="readingText">
-	<h1>Writing Task 1</h1>
+	<h1>Writing task 1</h1>
 	<p>You should spend about 20 minutes on this task.</p>
 	<p><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
 	<p>You should write at least 150 words.</p>

@@ -107,7 +107,7 @@
 <header>
 <div id="instruction">
 		Questions 1-7. Listen to the recording, which will play automatically, and follow the instructions. Complete the table below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		    <audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN1a.mp3" mode="4" id="1002"/>
+		    <audio controls="hidden" loop="1" autoPlay="true" src="../media/ED_LN1a.mp3" mode="4" id="1003"/>
 </div>		
 
 </header>

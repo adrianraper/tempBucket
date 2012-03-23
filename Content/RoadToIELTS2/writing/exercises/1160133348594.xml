@@ -12,18 +12,23 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#body .rightFloat2 {
+	float: right;
+	padding: -10px 20em 0 20em;
+	}
 	</style>
 	<br/>
 <script id="model" type="application/xml">
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
-  </popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="clickme2" source="examtips" width="500" />
+	</popups>
 	
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
-    <DragQuestion source="q1" block="b1">
+    <DragQuestion source="{#q1,#q2,#q3,#q4,#q5,#q6,#q7,#q8,#q9,#q10,#q11,#q12}" block="b1">
       <answer source="a21" correct="true"/>
       <answer source="a22" correct="true"/>
       <answer source="a23" correct="true"/>
@@ -37,209 +42,17 @@
       <answer source="a31" correct="true"/>
       <answer source="a32" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a22" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
-      <answer source="a23" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a24" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a25" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
-      <answer source="a26" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
-      <answer source="a27" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a28" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q9" block="b9">
-      <answer source="a29" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q10" block="b10">
-      <answer source="a30" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q11" block="b11">
-      <answer source="a31" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a32" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q12" block="b12">
-      <answer source="a32" correct="true"/>
-      <answer source="a21" correct="true"/>
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="true"/>
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="true"/>
-      <answer source="a27" correct="true"/>
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="true"/>
-      <answer source="a30" correct="true"/>
-      <answer source="a31" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q13" block="b13">
+    <DragQuestion source="{#q13,#q14,#q15,#q16,#q17}" block="b2">
       <answer source="a33" correct="true"/>
       <answer source="a34" correct="true"/>
       <answer source="a35" correct="true"/>
       <answer source="a36" correct="true"/>
       <answer source="a37" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q14" block="b14">
-      <answer source="a34" correct="true"/>
-      <answer source="a33" correct="true"/>
-      <answer source="a35" correct="true"/>
-      <answer source="a36" correct="true"/>
-      <answer source="a37" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q15" block="b15">
-      <answer source="a35" correct="true"/>
-      <answer source="a33" correct="true"/>
-      <answer source="a34" correct="true"/>
-      <answer source="a36" correct="true"/>
-      <answer source="a37" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q16" block="b16">
-      <answer source="a36" correct="true"/>
-      <answer source="a33" correct="true"/>
-      <answer source="a34" correct="true"/>
-      <answer source="a35" correct="true"/>
-      <answer source="a37" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q17" block="b17">
-      <answer source="a37" correct="true"/>
-      <answer source="a33" correct="true"/>
-      <answer source="a34" correct="true"/>
-      <answer source="a35" correct="true"/>
-      <answer source="a36" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q18" block="b18">
+    <DragQuestion source="{#q18,#q19,#q20}" block="b3">
       <answer source="a38" correct="true"/>
       <answer source="a39" correct="true"/>
       <answer source="a40" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q19" block="b19">
-      <answer source="a39" correct="true"/>
-      <answer source="a38" correct="true"/>
-      <answer source="a40" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q20" block="b20">
-      <answer source="a40" correct="true"/>
-      <answer source="a38" correct="true"/>
-      <answer source="a39" correct="true"/>
     </DragQuestion>
   </questions>
 </script>
@@ -249,7 +62,7 @@
 	
 <header>
 <div id="instruction">
-	<img class="rightFloat" src="../media/TT_WTG01.jpg" mode="16" id="1004"  />Here is a list of ideas that a student brainstormed for the writing task in the previous exercise. Put each point under the appropriate heading by dragging it down.
+Here is a list of ideas that a student brainstormed for the writing task in the previous exercise. Put each point under the appropriate heading by dragging it down.
 </div>
 </header>
 	
@@ -278,13 +91,14 @@
 
 <section id="body">
 
-  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-  <br/><br/><br/>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   
-  <img class="rightFloat" src="../media/TT_GW_003.jpg" mode="1" id="1001"/>
-  
-  <div id="gapfillText">
-<h7>Location</h7>
+  <img class="rightFloat2" src="../media/gt_set3.1_03.jpg" mode="1" id="1001"/>
+  <div id="box1">
+<div id="set3t1orgideas1">
+<h7><p>Location</p></h7>
     <p><input id="q13" type="droptarget"/><br/>
     <input id="q14" type="droptarget"/><br/>
     <input id="q15" type="droptarget"/><br/>
@@ -292,13 +106,16 @@
     <input id="q17" type="droptarget"/></p>
 	<p class="linespace"></p>
 
-<h7>Special requirement</h7>
+<p></p>
+<h7><p>Special requirement</p></h7>
 	<p><input id="q18" type="droptarget"/><br/>
     <input id="q19" type="droptarget"/><br/>
     <input id="q20" type="droptarget"/></p>
 	<p class="linespace"></p>
+</div>
 
-<h7>Hotel facilities</h7>
+<div id="set3t1orgideas2">
+<h7><p>Hotel facilities</p></h7>
 	<p><input id="q1" type="droptarget"/><br/>
 	<input id="q2" type="droptarget"/><br/>
 	<input id="q3" type="droptarget"/><br/>
@@ -312,6 +129,7 @@
 	<input id="q11" type="droptarget"/><br/>
 	<input id="q12" type="droptarget"/></p>
 	<p class="linespace"></p>
+  </div>
   </div>
 </section>
 
@@ -330,6 +148,10 @@
   
   <p class="popuptext">Dear Sir/Madam,</p>
 
+</section>
+
+<section id="examtips">
+<p class="popuptext">Before you start writing, it's a good idea to spend one or two minutes brainstorming ideas for your letter. 'Brainstorming' just means thinking of as many ideas as possible. After brainstorming, you can then choose the best, most relevant ideas and decide how to organise them into paragraphs.</p>
 </section>
 
 </body>

@@ -22,17 +22,18 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1You should spend about 20 minutes on this task. You should write at least 150 words. </div>
+You should spend about 20 minutes on this task. You should write at least 150 words.</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/TT_GW_007.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set3.1_07.jpg" mode="1" id="1001"/>
   <div id="presentation">
+  <h1><p>IELTS writing task 1</p></h1>
   <p><b>You are planning a holiday in Australia. You have been given the name and address of a hotel in the centre of Sydney and would like further information.</b></p>
   <p><b>Write a letter to the hotel. Ask for the availability of the rooms and the hotel's facilities. Find out if the hotel arranges day trips and ask them to send you a brochure.</b></p>
   <p>You do&#xA0; <b>NOT</b> &#xA0;need to write your own address.</p>
-  <p>Begin your letter as follows:</p>
-  <p>Dear Sir/Madam,</p>
+  <p>Begin your letter as follows: Dear Sir/Madam,</p>
+  <p class="linespace"></p>
   </div>
 </section>
 

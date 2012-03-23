@@ -90,7 +90,7 @@
 	
 		<div id="instruction">		
 		Questions 1-5. Listen to the recording, which will play automatically, and follow the instructions. Write the appropriate letters A-C against Questions 1-5.
-		  <audio controls="hidden" loop="1" autoplay="true" src="../media/SS_LN2a.mp3" mode="4" id="1001"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/SS_LN2a.mp3" mode="4" id="1001"/>
 		  </div>
 		
 </header>

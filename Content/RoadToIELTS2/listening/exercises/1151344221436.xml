@@ -59,7 +59,7 @@
 <header>
 <div id="instruction">	
 		Questions 13-16. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		  <audio controls="hidden" loop="1" autoplay="true" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
+		  <audio controls="hidden" loop="1" autoPlay="true" class="leftFloat" src="../media/ED_LN1c.mp3" mode="4" id="1002"/>
 </div>		
 
 </header>

@@ -262,9 +262,14 @@ function decodeCharacters ($rawText) {
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
+	<link rel="stylesheet" type="text/css" href="ielts.css" />
+
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swffit.js"></script>
+	
+	<script type="text/javascript" language="JavaScript" src="ielts.js"></script>
+	
 	<script type="text/javascript">
 		// ****
 		// 
@@ -280,10 +285,7 @@ function decodeCharacters ($rawText) {
 				return document.getElementById(movieName);
 			}
 		}
-		
-		function onLoad() {
-			thisMovie("bento").focus();
-		}
+
 		// *********
 		// *********
 		var webShare = "<?php echo $webShare ?>";
@@ -291,10 +293,8 @@ function decodeCharacters ($rawText) {
 		var swfName = "<?php echo $swfName ?>";
 		
 		// v6.5.5.6 Allow resize screen mode
-		var coordsWidth = "100%"; var coordsHeight = "100%"; 
-		//var coordsWidth = "990"; var coordsHeight = "600"; 
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
-		var coordsMinHeight = "600"; var coordsMaxHeight = null;
+		var coordsMinHeight = "700"; var coordsMaxHeight = null;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -350,33 +350,32 @@ function decodeCharacters ($rawText) {
 			id: "bento",
 			name: "bento",
 			quality: "high",
-			allowfullscreen: "true",			
-			salign: "tc",
-			scale: "noscale"
+			allowfullscreen: "true",
+			scale: "default",
+			allowscriptaccess: "always"
 		};
 		var attr = {
-			align: "middle",
 			id: "bento",
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "bento", coordsWidth, coordsHeight, "10.2.0", expressInstall, flashvars, params, attr);
-		swffit.fit('bento', coordsMinWidth, coordsMinHeight, coordsMaxWidth, coordsMaxHeight);
+		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
+
 </head>
-<body onload="onLoad()">
+<body style="background-color:#F2F2F2;">
 <?php if ($validLink): ?> 
-	<div style="text-align:center" id="bento">
+	<div style="background-color:#F2F2F2;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
 		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
 	</div>
-<noscript>
-This application requires your browser to support javascript and to have Adobe's Flash player installed. <br/>
-Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br/>
-to switch this on and then refresh this page.</noscript>
+<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;"> 
+This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
+Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
+to switch this on and then refresh this page.</NOSCRIPT>
 <?php endif ?>
 <?php if ($validLink==false): ?> 
 <div id="invalidLink">

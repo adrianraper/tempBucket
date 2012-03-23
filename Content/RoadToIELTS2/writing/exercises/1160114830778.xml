@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -111,7 +111,7 @@
     I am writing to thank you for&#xA0;<input id="q1"/>&#xA0;<input id="q2"/>&#xA0;(inspire) series of articles by Paul Hodgson on&#xA0;<input id="q3"/>&#xA0;pressures of modern life. I only wish I had had&#xA0;<input id="q4"/>&#xA0;benefit of&#xA0;<input id="q5"/>&#xA0;<input id="q6"/>&#xA0;(value) insights ten years ago before&#xA0;<input id="q7"/>&#xA0;son was born as it might have saved me a few heartaches.
   </p>
   <p>
-    I believe Hodgson's&#xA0;<input id="q8"/>&#xA0;(fascinate) articles are among&#xA0;<input id="q9"/>&#xA0;most&#xA0;<input id="q10"/>&#xA0;(inform) I have ever read. This&#xA0;<input id="q11"/>&#xA0;(impress) standard of journalism is sadly lacking in most newspapers today. Hodgson is not only&#xA0;<input id="q12"/>&#xA0;eloquent and&#xA0;<input id="q13"/>&#xA0;(power) writer, but it is also quite obvious that he undertakes painstaking research. I particularly enjoyed&#xA0;<input id="q14"/>&#xA0;article 'Life with television' in yesterday's edition of&#xA0;<input id="q15"/>&#xA0;newspaper. I found&#xA0;<input id="q16"/>&#xA0;ideas on&#xA0;<input id="q17"/>&#xA0;influence of television on family life both thought- provoking and extremely&#xA0;<input id="q18"/>&#xA0;(insight).
+    I believe Hodgson's&#xA0;<input id="q8"/>&#xA0;(fascinate) articles are among&#xA0;<input id="q9"/>&#xA0;most&#xA0;<input id="q10"/>&#xA0;(inform) I have ever read. This&#xA0;<input id="q11"/>&#xA0;(impress) standard of journalism is sadly lacking in most newspapers today. Hodgson is not only&#xA0;<input id="q12"/>&#xA0;eloquent and&#xA0;<input id="q13"/>&#xA0;(power) writer, but it is also quite obvious that he undertakes painstaking research. I particularly enjoyed&#xA0;<input id="q14"/>&#xA0;article 'Life with television' in yesterday's edition of&#xA0;<input id="q15"/>&#xA0;newspaper. I found&#xA0;<input id="q16"/>&#xA0;ideas on&#xA0;<input id="q17"/>&#xA0;influence of television on family life both thought-provoking and extremely&#xA0;<input id="q18"/>&#xA0;(insight).
   </p>
   <p>I would very much like to see more of Hodgson's articles in&#xA0;<input id="q19"/> future, and sincerely hope that he will soon have&#xA0;<input id="q20"/>&#xA0;regular column in the Post.</p>
   <p>Yours faithfully,</p>

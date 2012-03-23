@@ -5,7 +5,7 @@
 	$referrer = $ip = $server = $productCode = '';
 	
 	// For this product
-	$productCode = 52; // RoadToIELTS 2
+	$productCode = 53; // RoadToIELTS 2
 	$swfName = 'IELTSApplication.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/ResultsManager/web/";

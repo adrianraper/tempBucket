@@ -20,7 +20,7 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" height="325"/>
 		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>

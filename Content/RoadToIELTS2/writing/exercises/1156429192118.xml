@@ -17,10 +17,11 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="634"  />
+    	<popup click="clickme" source="writingtask1" width="500"  />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -76,19 +77,20 @@
 <header>
 
 		<div id="instruction">
-		First click to read the Writing Task. Then listen to the recording of a class discussion about whether disturbing images should be included in television news reports. Click on the arguments for and against that are mentioned.
+		First click to read the writing task. Then listen to the recording of a class discussion about whether disturbing images should be included in television news reports. Click on the arguments for and against that are mentioned.
 		</div>
 
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/MM_AW_012.jpg" mode="1" id="1001"/>
   
+  
+  
+    <div><a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <audio controls="compact"  src="../media/MM_WR1aa.mp3" mode="1" id="1002"/></div>
+  <img class="rightFloat" src="../media/set6.2_03.jpg" mode="1" id="1001"/> 
   <div id="targetspotting">
-    <div><a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a></div>
-  <audio controls="compact"  src="../media/MM_WR1aa.mp3" mode="1" id="1002"/>
-
-
   <h7><p>Arguments for</p></h7>
     
   <list class="answerList2">
@@ -99,7 +101,7 @@
     <li><a id="t5">Some political systems work better when people know exactly what is happening in the world.</a></li>
     <li><a id="t6">Young people should not be sheltered from the unpleasant realities of the world.</a></li>
   </list>
-  
+  <p class="linespace"></p>
   <h7><p>Arguments against</p></h7>
 
   <list class="answerList2">
@@ -110,6 +112,7 @@
     <li><a id="t11">Children may be traumatised by disturbing images.</a></li>
     <li><a id="t12">Too much exposure to disturbing images may accustom us to them, so we no longer react.</a></li>
   </list>
+  <p class="linespace"></p>
 
   </div>
 </section>
@@ -143,6 +146,12 @@
   <p class="feedbacktext">This is a valid argument, but it wasn't mentioned in the class discussion you heard.</p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">The plan you saw in the previous exercise is just one way to organize a 'for and against' composition. Another way is to form paragraphs by pairing arguments and counter-arguments. If you are going to use the composition structure shown in this exercise, the easiest way to do this is to state the argument you don't agree with first, and then state a counter-argument, which refutes it. In order to be able to write at least 250 words, you will need three or four arguments and the same number of counter-arguments.</p>
+
+<p class="popuptext">This is a good structure to use if you find you have thought of a lot of arguments for and against. You will not have the time or space to include them all, and by using this composition structure, you will find it easier to decide which arguments to keep and which to reject. But remember, this structure only works when you have a counter-argument to match each argument.</p>
+
+</section>
 
 </body>
 </bento>

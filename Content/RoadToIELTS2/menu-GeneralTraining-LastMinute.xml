@@ -52,7 +52,7 @@
 			<unit id="1287130120000" class="exam-practice">
 				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_gt_practice1.pdf" answerCaption="Answer sheet 1" answerHref="reading/pdf/reading_gt_answer1.pdf" />
 				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_gt_practice2.pdf" answerCaption="Answer sheet 2" answerHref="reading/pdf/reading_gt_answer2.pdf" />
-				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_gt_practice3.pdf" enabled="false" answerCaption="Answer sheet 3" answerHref="reading/pdf/reading_gt_answer3.pdf" enabled="false" />
+				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_gt_practice3.pdf" answerCaption="Answer sheet 3" answerHref="reading/pdf/reading_gt_answer3.pdf" enabled="false" />
 			</unit>
 		</course>
 		<course id="1287130200000" class="listening" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">

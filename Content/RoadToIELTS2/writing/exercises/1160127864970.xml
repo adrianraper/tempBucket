@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
 
   <settings>
@@ -80,11 +80,11 @@ Read this sample answer to the writing task in the previous exercise. Complete t
   
   <p>As you can see from my address, I live in the flat immediately above your restaurant and I am writing to complain about the open-air dining that you have started recently.</p>
   
-  <p><input id="q1" type="droptarget"/>, I am disturbed almost every evening by the noise made by people sitting outside talking and laughing until the early hours of the morning. As if&#xA0; <input id="q2" type="droptarget"/>&#xA0; were not enough, your staff leave the doors wide open and turn the music up as loud as possible. &#xA0;<input id="q3" type="droptarget"/>&#xA0; makes it impossible for me to hear my own music or television.&#xA0; <input id="q4" type="droptarget"/>, I am unable to fall asleep until after the restaurant has closed, and,&#xA0; <input id="q5" type="droptarget"/>, the only decent night's sleep I have had recently was when it rained.</p>
+  <p><input id="q1" type="droptarget"/>, I am disturbed almost every evening by the noise made by people sitting outside talking and laughing until the early hours of the morning. As if&#xA0; <input id="q2" type="droptarget"/>&#xA0;were not enough, your staff leave the doors wide open and turn the music up as loud as possible.&#xA0;<input id="q3" type="droptarget"/>&#xA0;makes it impossible for me to hear my own music or television.&#xA0; <input id="q4" type="droptarget"/>, I am unable to fall asleep until after the restaurant has closed, and,&#xA0; <input id="q5" type="droptarget"/>, the only decent night's sleep I have had recently was when it rained.</p>
   
-  <p>I feel that something needs to be done about &#xA0;<input id="q6" type="droptarget"/>. I suggest that you either dispense with the tables outside altogether or restrict outside dining hours to no later than 9 p.m. I would &#xA0;<input id="q7" type="droptarget"/>&#xA0; appreciate it if you could tell your staff to keep the doors closed and play the music at a reasonable volume.</p>
+  <p>I feel that something needs to be done about&#xA0;<input id="q6" type="droptarget"/>. I suggest that you either dispense with the tables outside altogether or restrict outside dining hours to no later than 9 p.m. I would&#xA0;<input id="q7" type="droptarget"/>&#xA0;appreciate it if you could tell your staff to keep the doors closed and play the music at a reasonable volume.</p>
   
-  <p>I would be grateful for your prompt attention in &#xA0;<input id="q8" type="droptarget"/>.</p>
+  <p>I would be grateful for your prompt attention in&#xA0;<input id="q8" type="droptarget"/>.</p>
   
   <p>Yours faithfully,</p>
   <p>Mr M. Clowes</p>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/gapfilltext.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/gapfilltext-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -87,21 +90,21 @@ Read this sample answer to the writing task in the previous exercise. Complete t
 
 <section id="body">
 <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-<br/><br/><br/>
-  <img class="rightFloat" src="../media/AC_GW_007.jpg" mode="1" id="1001"/>
-  <div id="gapfillText">
+<br/><br/>
+  <img class="rightFloat" src="../media/set5.1_07.jpg" mode="1" id="1001"/>
+  <div id="sampleanswer">
   
   <p>Dear Justin,</p>
   
-  <p>You won't believe this but I've just sat through 'Titanic'. I &#xA0;<input id="q1"/>&#xA0; you and I swore we would never watch it but I really &#xA0;<input id="q2"/>&#xA0; you might be missing a great film if you &#xA0;<input id="q3"/>&#xA0; it!</p>
+  <p>You won't believe this but I've just sat through 'Titanic'. I&#xA0;<input id="q1"/>&#xA0;you and I swore we would never watch it but I really&#xA0;<input id="q2"/>&#xA0;you might be missing a great film if you&#xA0;<input id="q3"/>&#xA0;it!</p>
   
-  <p>It's not just about the sinking of the ship &#x2013; it's a romance and a disaster film rolled into one! It &#xA0;<input id="q4"/>&#xA0; in modern times and then the whole story &#xA0;<input id="q5"/>&#xA0; in flashbacks by Rose, a survivor of the tragedy. The main story is about how Rose, as a young woman, &#xA0;<input id="q6"/>&#xA0; from a suicide attempt by Jack, a passenger from the lower decks of the ship, and how they gradually &#xA0;<input id="q7"/>&#xA0; closer to each other. The plot is full of suspense and &#xA0;<input id="q8"/>&#xA0; you breathless in parts. You really can't help but get caught up in the emotions of their impossible situation and the tragedy that &#xA0;<input id="q9"/>, though there are a few corny moments! The two main stars and the supporting cast &#xA0;<input id="q10"/>&#xA0; excellent though. The costumes and the sets inside the ship are fabulous and really &#xA0;<input id="q11"/>&#xA0; the period to life.</p>
+  <p>It's not just about the sinking of the ship - it's a romance and a disaster film rolled into one! It&#xA0;<input id="q4"/>&#xA0;in modern times and then the whole story&#xA0;<input id="q5"/>&#xA0;in flashbacks by Rose, a survivor of the tragedy. The main story is about how Rose, as a young woman,&#xA0;<input id="q6"/>&#xA0;from a suicide attempt by Jack, a passenger from the lower decks of the ship, and how they gradually&#xA0;<input id="q7"/>&#xA0;closer to each other. The plot is full of suspense and&#xA0;<input id="q8"/>&#xA0;you breathless in parts. You really can't help but get caught up in the emotions of their impossible situation and the tragedy that&#xA0;<input id="q9"/>, though there are a few corny moments! The two main stars and the supporting cast&#xA0;<input id="q10"/>&#xA0;excellent though. The costumes and the sets inside the ship are fabulous and really&#xA0;<input id="q11"/>&#xA0;the period to life.</p>
   
-  <p>So do try and find a spare three hours or so and &#xA0;<input id="q12"/>&#xA0; and &#xA0;<input id="q13"/>&#xA0; it. I really do think you'll be pleasantly surprised!</p>
+  <p>So do try and find a spare three hours or so and&#xA0;<input id="q12"/>&#xA0;and&#xA0;<input id="q13"/>&#xA0;it. I really do think you'll be pleasantly surprised!</p>
   
   <p>Looking forward to catching up on all your news.</p>
-  <p>All the best,</p>
-  <p>Maxine </p>
+  <p>All the best,<br/>
+	Maxine </p>
   </div>
 </section>
 
@@ -110,7 +113,7 @@ Read this sample answer to the writing task in the previous exercise. Complete t
 	<p class="popuptext"><b>You have just seen a film you think your friend would enjoy.</b></p>
 	<p class="popuptext"><b>Write a letter to your friend telling them about the film. Explain why you enjoyed it and recommend that they see it.</b></p>
 	<p class="popuptext">You should write at least 150 words.</p>
-	<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 	<p class="popuptext">Begin your letter as follows:</p>
 	<p class="popuptext">Dear ...,</p>
 </section>

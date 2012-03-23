@@ -15,26 +15,20 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="clickme1" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
-    <DragQuestion source="q1" block="b1">
+    <DragQuestion source="{#q1,#q2,#q3}" block="b1">
       <answer source="a2" correct="true"/>
       <answer source="a3" correct="true"/>
       <answer source="a5" correct="true"/>
     </DragQuestion>
-	<DragQuestion source="q2" block="b2">
-      <answer source="a3" correct="true"/>
-      <answer source="a5" correct="true"/>
-	  <answer source="a2" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q3" block="b3">
-      <answer source="a5" correct="true"/>
-	  <answer source="a2" correct="true"/>
-      <answer source="a3" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q4" block="b4">
+	<DragQuestion source="{#q4,#q5,#q6,#q7,#q8,#q9,#q10,#q11,#q12,#q13,#q14}" block="b4">
       <answer source="a1" correct="true"/>
 	  <answer source="a4" correct="true"/>
       <answer source="a6" correct="true"/>
@@ -47,137 +41,7 @@
 	  <answer source="a13" correct="true"/>
 	  <answer source="a14" correct="true"/>
     </DragQuestion>
-	<DragQuestion source="q5" block="b5">
-      <answer source="a4" correct="true"/>
-      <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q6" block="b6">
-      <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q7" block="b7">
-      <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q8" block="b8">
-      <answer source="a8" correct="true"/>
-      <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q9" block="b9">
-      <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q10" block="b10">
-      <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a9" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q11" block="b11">
-      <answer source="a11" correct="true"/>
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q12" block="b12">
-      <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q13" block="b13">
-      <answer source="a13" correct="true"/>
-	  <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-    </DragQuestion>
-	<DragQuestion source="q14" block="b14">
-      <answer source="a14" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a6" correct="true"/>
-	  <answer source="a7" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a9" correct="true"/>
-	  <answer source="a10" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-  </questions>
+	</questions>
 </script>
 </head>
 
@@ -208,42 +72,74 @@ Here is a sample answer to the previous exercise. Read the letter and group the 
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme1"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+ <br/><br/><br/><br/>
   <p>Dear Hilary,</p>
-  <p>I've just finished reading the most amazing book and I just had to write and tell you about it as I &#xA0;<b>know</b>&#xA0; you'd really enjoy it. You've probably heard about these books but won't have read them because they &#xA0;<b>are meant</b>&#xA0; for children &#x2013; J.K. Rowling's 'Harry Potter' series?</p>
-  <p>Well, last night I stayed up all night reading the first in the series &#x2013; 'Harry Potter and the Philosopher's Stone'. The plot of each book &#xA0;<b>is based</b>&#xA0; around a young boy called Harry Potter and his best friends Ron and Hermione. They all &#xA0;<b>go</b>&#xA0; to a school for wizards, which is where most of the story &#xA0;<b>is set</b>. In this book Harry &#xA0;<b>learns</b>&#xA0; lots of tricks like how to fly a broom and how to use a cloak to make himself invisible and &#xA0;<b>has</b>&#xA0; to go through a series of dangerous trials. My description &#xA0;<b>makes</b>&#xA0; the book seem childish but Rowling &#xA0;<b>is</b>&#xA0; a wonderful storyteller and her books &#xA0;<b>are</b>&#xA0; compulsive reading. The characters are amazingly three-dimensional, although I &#xA0;<b>think</b>&#xA0; in this particular book they &#xA0;<b>start</b>&#xA0; to behave a little out of character towards the end in order to serve the plot. However, the books are really quite special and I can't recommend them enough.</p>
-  <p>Anyway, just give one of the books a go. I know you'll absolutely love them. If you &#xA0;<b>don't want</b>&#xA0; to splash out on the books yourself, I &#xA0;<b>have</b>&#xA0; them all in hardback and you are welcome to borrow them anytime.</p>
+  
+  <p>I've just finished reading the most amazing book and I just had to write and tell you about it as I&#xA0;<b>know</b>&#xA0;you'd really enjoy it. You've probably heard about these books but won't have read them because they&#xA0;<b>are meant</b>&#xA0;for children - J.K. Rowling's 'Harry Potter' series?</p>
+  
+  <p>Well, last night I stayed up all night reading the first in the series - 'Harry Potter and the Philosopher's Stone'. The plot of each book&#xA0;<b>is based</b>&#xA0;around a young boy called Harry Potter and his best friends Ron and Hermione. They all&#xA0;<b>go</b>&#xA0;to a school for wizards, which is where most of the story&#xA0;<b>is set</b>. In this book Harry&#xA0;<b>learns</b>&#xA0;lots of tricks like how to fly a broom and how to use a cloak to make himself invisible and&#xA0;<b>has</b>&#xA0;to go through a series of dangerous trials. My description&#xA0;<b>makes</b>&#xA0;the book seem childish but Rowling&#xA0;<b>is</b>&#xA0;a wonderful storyteller and her books&#xA0;<b>are</b>&#xA0;compulsive reading. The characters are amazingly three-dimensional, although I&#xA0;<b>think</b>&#xA0;in this particular book they&#xA0;<b>start</b>&#xA0;to behave a little out of character towards the end in order to serve the plot. However, the books are really quite special and I can't recommend them enough.</p>
+  <p>Anyway, just give one of the books a go. I know you'll absolutely love them. If you&#xA0;<b>don't want</b>&#xA0;to splash out on the books yourself, I&#xA0;<b>have</b>&#xA0;them all in hardback and you are welcome to borrow them anytime.</p>
   <p>Looking forward to hearing from you soon.</p>
-  <p>Lots of love, Janine</p>
+  <p>Lots of love,<br/>Janine</p>
 </section>
 
 
 <section id="body">
-  <img class="rightFloat" src="../media/AC_GW_004.jpg" mode="1" id="1001"/>
+  <img class="leftFloat" src="../media/set5.1_04.jpg" mode="1" id="1001"/>
   
-  <div id="splitquestionList">
-  <p><b>Present Simple - Passive Voice</b></p>
-    <p><input id="q1" type="droptarget"/></p>
+  <div id="splitdrag1">
+  <p><b>Present simple - passive voice</b></p>
+    <div id="splitdragleft1">
+	<p><input id="q1" type="droptarget"/></p>
     <p><input id="q2" type="droptarget"/></p>
+	</div>
+	<div id="splitdragright1">
     <p><input id="q3" type="droptarget"/></p>
-	<p class="linespace"></p> 
-  <p><b>Present Simple - Active Voice</b></p>
+	<p class="linespace"></p>
+	</div>
+	<br/><br/><br/><br/><br/>
+	<div id="splitdragleft2">
+  <p><b>Present simple - active voice</b></p>
     <p><input id="q4" type="droptarget"/></p>
     <p><input id="q5" type="droptarget"/></p>
     <p><input id="q6" type="droptarget"/></p>
     <p><input id="q7" type="droptarget"/></p>
     <p><input id="q8" type="droptarget"/></p>
     <p><input id="q9" type="droptarget"/></p>
+	</div>
+	<div id="splitdragright2">
 	<p><input id="q10" type="droptarget"/></p>
     <p><input id="q11" type="droptarget"/></p>
     <p><input id="q12" type="droptarget"/></p>
     <p><input id="q13" type="droptarget"/></p>
 	<p><input id="q14" type="droptarget"/></p>
+	</div>
   </div>
 </section>
 
+<section id="writingtask1">
+	<p class="popuptext">You should spend about 20 minutes on this task.</p>
+  
+  <p class="popuptext"><b>You have just finished reading a book you think your friend would enjoy.</b></p>
 
-<section id="rt2001">
-  <p align="left">Exercise 3When describing books, films or plays we tend to relate the story in the present tense.</p>
+  <p class="popuptext"><b>Write a letter to your friend telling them about the book. Explain why you enjoyed it and recommend that they read it.</b></p>
+  
+  <p class="popuptext">You should write at least 150 words.</p>
+  
+  <p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
+  
+  <p class="popuptext">Begin your letter as follows:</p>
+  
+  <p class="popuptext">Dear ...,</p>
+
+</section>
+
+
+<section id="examtips">
+  <p class="popuptext1"><b>Exercise 3</b></p>
+  <p class="popuptext2">When describing books, films or plays we tend to relate the story in the present tense.</p>
 </section>
 
 </body>

@@ -45,6 +45,7 @@ package com.clarityenglish.common.vo.config {
 		
 		// Is it worth paths being a separate class?
 		public var paths:Object;
+		
 		// Licence control is a separate class fed by this one
 		public var licence:Licence;
 		// Actually, we might just use the Account class rather than a special licence class
@@ -293,7 +294,30 @@ package com.clarityenglish.common.vo.config {
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
 			this.licence = data.licence as Licence;
 		}
-		
+
+		/**
+		 * Check for all the errors that you might know about now
+		 */
+		public function checkErrors():void {
+			
+			// IP range
+			// Match the user's IP against the range listed in the licence attributes
+			var gotLA:Boolean = false;
+			for each (var lA:Object in account.licenceAttributes) {
+				if (lA.licenceKey.toLowerCase() == 'iprange') {
+					gotLA = true;
+					break;
+				}
+			}
+			if (gotLA) {
+				if (!isIPInRange(ip, lA.licenceValue)) {
+					error.errorNumber = BentoError.ERROR_OUTSIDE_IP_RANGE;
+					error.errorDescription = 'This program can only be run from limited computers or through one website.';
+					error.errorContext = "Your IP doesn't match and is " + ip;
+				}
+			}
+			
+		}
 		/**
 		 * This sends back the XML that is the chart templates
 		 * 
@@ -417,6 +441,45 @@ package com.clarityenglish.common.vo.config {
 		public function anyError():Boolean {
 			return this.error.errorNumber > 0;
 		}
-		
+
+		/**
+		 * Detail function to see if one specific IP address is in a range 
+		 * @param ip
+		 * @param range
+		 * @return Boolean
+		 * 
+		 */
+		private function isIPInRange(thisIP:String, range:String):Boolean {
+			var ipRangeArray:Array = range.split(",");
+			for (var t:String in ipRangeArray) {
+				// first, is there an exact match?
+				if (thisIP == ipRangeArray[t])
+					return true;
+				
+				// or does it fall in the range? 
+				// assume nnn.nnn.nnn.x-y or nnn.nnn.x-y
+				var targetBlocks:Array = ipRangeArray[t].split(".");
+				var thisBlocks:Array = thisIP.split(".");
+				// how far down do they specify?
+				for (var i:uint=0; i<thisBlocks.length; i++) {
+					//myTrace("match " + thisBlocks[i] + " against " + targetBlocks[i]);
+					if (targetBlocks[i] == thisBlocks[i]) {
+					} else if (targetBlocks[i].indexOf("-")>0) {
+						var target:Array = targetBlocks[i].split("-");
+						var targetStart:uint = Number(target[0]);
+						var targetEnd:uint = Number(target[1]);
+						var thisDetail:uint = Number(thisBlocks[i]);
+						if (targetStart <= thisDetail && thisDetail <= targetEnd) {
+							//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
+							return true;
+						}
+					} else {
+						//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
+						break;
+					}
+				}
+			}
+			return false;
+		}
 	}
 }

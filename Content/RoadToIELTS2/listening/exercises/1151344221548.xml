@@ -59,7 +59,7 @@
 <header>
 <div id="instruction">		
 		Questions 8-12. Complete the form below. Write NO MORE THAN THREE WORDS OR A NUMBER for each answer.
-		<audio controls="hidden" loop="1" autoplay="true" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
+		<audio controls="hidden" loop="1" autoPlay="true" src="../media/ED_LN1b.mp3" mode="4" id="1002"/>
 </div>		
 
 </header>

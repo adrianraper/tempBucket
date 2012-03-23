@@ -18,6 +18,9 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<feedback>
+		<feedback source="fb0" width="500" />
+	</feedback>
 </settings>
   <questions>
     <DragQuestion source="q1" block="b1">
@@ -49,7 +52,7 @@
 
 <section id="body">
 
-  <img class="rightFloat" src="../media/WB_AW_015.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set8.2_05.jpg" mode="1" id="1001"/>
   
   <div id="gapfillText">
   
@@ -67,9 +70,7 @@
 </section>
 
 <section id="fb0">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Remember that in this composition each paragraph deals with one cause of the problem and suggests solutions for that particular cause. Which cause of stress is dealt with in each paragraph?</font>
-  </p>
+  <p class="popuptext">Remember that in this composition each paragraph deals with one cause of the problem and suggests solutions for that particular cause. Which cause of stress is dealt with in each paragraph?</p>
 </section>
 
 </body>

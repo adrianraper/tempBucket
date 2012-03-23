@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -96,76 +96,80 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/AC_AW_012.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set5.2_08.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
-  <p align="left">Nowadays, cultural tourism is welcomed and encouraged in most countries,&#xA0; <g id="t1">which</g> &#xA0;it is seen both as an opportunity to display national treasures and achievements to visitors, and also as a source of income and jobs. However, in&#xA0; <g id="t2">despite</g> &#xA0;of these benefits, it can also pose severe problems for the specific sites which are visited.</p>
-  <p align="left">There are various advantages of cultural tourism for the sites themselves. In particular, they may benefit from greatly increased income, part of&#xA0; <g id="t3">this</g> &#xA0;may be spent, for example, on improving museums and galleries and on more frequent and more ambitious exhibitions.</p>
-  <p align="left"><g id="t4">Despite</g> &#xA0;these may be designed primarily to attract tourists, they are also available for local people to enjoy. A further advantage is that local authorities recognise the value of their sites,&#xA0; <g id="t5">that</g> &#xA0;they then invest money in. As a result, monuments and historic buildings are restored and protected. Finally, visitors learn about the country,&#xA0; <g id="t6">its</g> &#xA0;culture and customs are consequently understood and appreciated better by both tourists and local people. As a result, they flourish.</p>
-  <p align="left">
-    <font color="#000000">On the other hand, cultural tourism has a number of drawbacks. The main one is that,&#xA0; <g id="t7">although</g> &#xA0;protective measures being taken, the sheer number of visitors can cause serious damage to monuments such as ancient temples or cave paintings. This may mean that an important part of a country&#x2019;s national heritage is lost. Furthermore, in a region&#xA0; <g id="t8">whose</g> &#xA0;the monuments are expected to generate income for the local economy, the site may be spoilt by being surrounded by ugly hotels and other tourist facilities. Finally, if too many tourists visit a site, it may lose its cultural significance within the local community. This is particularly the case for monuments &#xA0;<g id="t9">their</g> &#xA0;religious or social importance makes them a central part of community life.</font>
-  </p>
-  <p align="left">On the whole,&#xA0; <g id="t10">when</g> &#xA0;cultural tourism is generally beneficial, the problems <g id="t11">what</g> it causes can only be avoided with proper planning and sufficient investment in the protection and preservation of the sites which tourists visit. In addition,&#xA0; <g id="t12">however</g> &#xA0;cultural tourism in general should not be discouraged, the number of tourists visiting certain sites should be restricted and tourists should be educated to respect them.</p>
+  <p>Nowadays, cultural tourism is welcomed and encouraged in most countries,&#xA0; <g id="t1">which</g> &#xA0;it is seen both as an opportunity to display national treasures and achievements to visitors, and also as a source of income and jobs. However, in&#xA0; <g id="t2">despite</g> &#xA0;of these benefits, it can also pose severe problems for the specific sites which are visited.</p>
+  
+  <p>There are various advantages of cultural tourism for the sites themselves. In particular, they may benefit from greatly increased income, part of&#xA0; <g id="t3">this</g> &#xA0;may be spent, for example, on improving museums and galleries and on more frequent and more ambitious exhibitions.</p>
+  
+  <p><g id="t4">Despite</g> &#xA0;these may be designed primarily to attract tourists, they are also available for local people to enjoy. A further advantage is that local authorities recognise the value of their sites,&#xA0; <g id="t5">that</g> &#xA0;they then invest money in. As a result, monuments and historic buildings are restored and protected. Finally, visitors learn about the country,&#xA0; <g id="t6">its</g> &#xA0;culture and customs are consequently understood and appreciated better by both tourists and local people. As a result, they flourish.</p>
+  
+  <p>
+    On the other hand, cultural tourism has a number of drawbacks. The main one is that,&#xA0; <g id="t7">although</g> &#xA0;protective measures being taken, the sheer number of visitors can cause serious damage to monuments such as ancient temples or cave paintings. This may mean that an important part of a country&#x2019;s national heritage is lost. Furthermore, in a region&#xA0; <g id="t8">whose</g> &#xA0;the monuments are expected to generate income for the local economy, the site may be spoilt by being surrounded by ugly hotels and other tourist facilities. Finally, if too many tourists visit a site, it may lose its cultural significance within the local community. This is particularly the case for monuments &#xA0;<g id="t9">their</g> &#xA0;religious or social importance makes them a central part of community life.</p>
+	
+  <p>On the whole,&#xA0; <g id="t10">when</g> &#xA0;cultural tourism is generally beneficial, the problems&#xA0;<g id="t11">what</g>&#xA0;it causes can only be avoided with proper planning and sufficient investment in the protection and preservation of the sites which tourists visit. In addition,&#xA0; <g id="t12">however</g> &#xA0;cultural tourism in general should not be discouraged, the number of tourists visiting certain sites should be restricted and tourists should be educated to respect them.</p>
+  <p class="linespace"></p>
   </div>
 </section>
 
 <section id="fb1">
-  <p align="left">1<font face="verdana" size="13">. <font color="#0000ff"><b>where</b> it is seen...</font></font></p>
-  <p align="left">This pronoun refers to a place or places.<font color="#0000ff"/></p>
+  <p class="feedbacktext">1.&#xA0;<b>where</b>&#xA0;it is seen ...<br/>
+  This pronoun refers to a place or places.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. in <font color="#0000ff"><b>spite</b> of</font></p>
-  <p align="left">'Despite' is not followed by 'of'.</p>
+  <p class="feedbacktext">2. in&#xA0;<b>spite</b>&#xA0;of<br/>
+  'Despite' is not followed by 'of'.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. <font color="#0000ff"><b>which</b> may be ...</font></p>
-  <p align="left">This is a relative clause and it needs a relative pronoun.</p>
+  <p class="feedbacktext">3.&#xA0;<b>which</b>&#xA0;may be ...<br/>
+  This is a relative clause and it needs a relative pronoun.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. <font color="#0000ff"><b>Although</b></font></p>
-  <p align="left">'Despite' is followed by a noun or a gerund</p>
+  <p class="feedbacktext">4.&#xA0;<b>Although</b><br/>
+  'Despite' is followed by a noun or a gerund</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. <font color="#0000ff"><b>which</b> ...</font></p>
-  <p align="left">'That' cannot be used in a non-defining clause like this one.</p>
+  <p class="feedbacktext">5.&#xA0;<b>which</b>&#xA0;...<br/>
+  'That' cannot be used in a non-defining clause like this one.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. <font color="#0000ff"><b>whose</b> ...</font></p>
-  <p align="left">This is a relative clause and it needs a relative pronoun.</p>
+  <p class="feedbacktext">6.&#xA0;<b>whose</b>&#xA0;...<br/>
+  This is a relative clause and it needs a relative pronoun.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">7. <font color="#0000ff"><b>despite</b> ...</font></p>
-  <p align="left">'Although' needs to be followed with a subject -  verb clause.</p>
+  <p class="feedbacktext">7.&#xA0;<b>despite</b>&#xA0;...<br/>
+  'Although' needs to be followed with a subject -  verb clause.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">8. <font color="#0000ff"><b>where</b></font></p>
-  <p align="left">This relative clause defines a place.</p>
+  <p class="feedbacktext">8.&#xA0;<b>where</b><br/>
+  This relative clause defines a place.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">9. <font color="#0000ff"><b>whose</b> ...</font></p>
-  <p align="left">This is a relative clause and it needs a relative pronoun. 'Their' is not a relative pronoun.</p>
+  <p class="feedbacktext">9.&#xA0;<b>whose</b>&#xA0;...<br/>
+  This is a relative clause and it needs a relative pronoun. 'Their' is not a relative pronoun.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">10. <font color="#0000ff"><b>while</b> ... </font></p>
-  <p align="left">What's needed here is a connector which shows 'concession'. </p>
+  <p class="feedbacktext">10.&#xA0;<b>while</b>&#xA0;...<br/>
+  What's needed here is a connector which shows 'concession'.</p>
 </section>
 
 <section id="fb11">
-  <p align="left">11. <font color="#0000ff"><b>which</b> it cause ...</font></p>
-  <p align="left">This is a relative clause and it needs a relative pronoun. 'What' is not a relative pronoun.</p>
+  <p class="feedbacktext">11.&#xA0;<b>which</b>&#xA0;it cause ...<br/>
+  This is a relative clause and it needs a relative pronoun. 'What' is not a relative pronoun.</p>
 </section>
 
 <section id="fb12">
-  <p align="left">12. <font color="#0000ff"><b>although </b></font></p>
-  <p align="left">'However' is not a conjunction. It can't be used to join two clauses together in this way.</p>
+  <p class="feedbacktext">12.&#xA0;<b>although</b><br/>
+  'However' is not a conjunction. It can't be used to join two clauses together in this way.</p>
 </section>
 
 </body>

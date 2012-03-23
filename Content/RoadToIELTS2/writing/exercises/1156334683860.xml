@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
@@ -73,7 +73,7 @@
 <h7><p>Solution E:</p></h7>
 <p>Industry ought to only use timber from renewable forests.</p>
 <h7><p>Solution F:</p></h7>
-<p>CO2 emissions from vehicles and industry should be reduced and more use made of renewable energy sources such as wind and solar power.</p>
+<p>CO<span class="subscript">2</span>&#xA0;emissions from vehicles and industry should be reduced and more use made of renewable energy sources such as wind and solar power.</p>
 </section>
 
 <section id="body">

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
@@ -95,7 +95,7 @@
 <header>
 <div id="instruction">		
 		Listen to the recording, which will play automatically, and follow the instructions. Complete the notes below. Write NO MORE THAN THREE WORDS for each answer.
-		<audio controls="hidden" loop="1" src="../media/LC_LN1.mp3" mode="4" id="1002" autoplay="true"/>
+		<audio controls="hidden" loop="1" src="../media/LC_LN1.mp3" mode="4" id="1002" autoPlay="true"/>
 </div>		
 
 </header>

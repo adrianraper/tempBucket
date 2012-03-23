@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
@@ -82,6 +83,7 @@ package com.clarityenglish.ielts.view.title {
 		
 		private var _productVersion:String;
 		private var _productCode:uint;
+		private var _licenceType:uint;
 		
 		// #260 
 		private var shortDelayTimer:Timer;
@@ -142,6 +144,12 @@ package com.clarityenglish.ielts.view.title {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+				dispatchEvent(new Event("licenceTypeChanged"));
+			}
+		}
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
@@ -152,7 +160,7 @@ package com.clarityenglish.ielts.view.title {
 							return fullVersionAcademicLogo;
 						case "lastMinute":
 							return lastMinuteAcademicLogo;
-						case "tenHour":
+						case "testDrive":
 							return tenHourAcademicLogo;
 					}
 					break;
@@ -162,7 +170,7 @@ package com.clarityenglish.ielts.view.title {
 							return fullVersionGeneralTrainingLogo;
 						case "lastMinute":
 							return lastMinuteAcademicLogo;
-						case "tenHour":
+						case "testDrive":
 							return tenHourGeneralTrainingLogo;
 					}
 					break;
@@ -182,7 +190,7 @@ package com.clarityenglish.ielts.view.title {
 							return "Full version - Academic module";
 						case "lastMinute":
 							return "Last minute - Academic module";
-						case "tenHour":
+						case "testDrive":
 							return "Test drive - Academic module";
 					}
 					break;
@@ -192,7 +200,7 @@ package com.clarityenglish.ielts.view.title {
 							return "Full version - General Training module";
 						case "lastMinute":
 							return "Last minute - General Training module";
-						case "tenHour":
+						case "testDrive":
 							return "Test drive - General Training module";
 					}
 					break;
@@ -201,6 +209,10 @@ package com.clarityenglish.ielts.view.title {
 					return null;
 			}
 			return null;
+		}
+		[Bindable(event="licenceTypeChanged")]
+		public function get licenceTypeText():String {
+			return Title.getLicenceTypeText(_licenceType);
 		}
 
 		public function showExercise(exerciseHref:Href):void {
@@ -326,7 +338,7 @@ package com.clarityenglish.ielts.view.title {
 		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
 		private function timerHandler(event:TimerEvent):void {
 			if (zoneView.isMediated) {
-				resetLogoutButton(event);
+				callLater(resetLogoutButton, new Array(event));
 				shortDelayTimer.stop();
 			}
 		}

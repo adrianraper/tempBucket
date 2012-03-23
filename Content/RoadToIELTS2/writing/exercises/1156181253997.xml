@@ -19,7 +19,7 @@
 <settings>
  	<param name="delayedMarking" value="true" />
  	<feedback>
-		<feedback source="fb0" width="550" height="370" />
+		<feedback source="fb0" width="550" />
 	</feedback>
 </settings>
   <questions>
@@ -205,7 +205,7 @@
 		<li>I am convinced that<tab/><tab/><tab/>
 		<select id="q11"><option id="a31">Introducing reasons for opinions</option><option id="a32">Giving opinions</option><option  id="a33">Giving examples</option></select><br/></li>
 
-		<li>a good example of this is<tab/><tab/><tab/>
+		<li>a good example of this is<tab/><tab/>
 		<select id="q12"><option id="a34">Introducing reasons for opinions</option><option  id="a35">Giving opinions</option><option id="a36">Giving examples</option></select><br/></li>
 
 		<li>I am of the opinion that<tab/><tab/><tab/>
@@ -254,7 +254,7 @@
 
 <section id="fb0">
 <div id="feedback1">
-  <p class="feedbacktext">
+  <p>
     <b>Giving opinions</b>
   </p>
   <ul>
@@ -274,7 +274,7 @@
 </ul>
 </div>
 <div id="feedback2">
-  <p class="feedbacktext">
+  <p>
     <b>Giving examples</b>
   </p>
   <ul>
@@ -285,7 +285,7 @@
   <li>including</li>
   <li>such as</li>
 </ul>
-  <p class="feedbacktext">
+  <p>
     <b>Introducing reasons for opinions</b>
   </p>
   <ul>

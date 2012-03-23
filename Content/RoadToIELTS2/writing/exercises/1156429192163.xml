@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" height="500" />
 </popups>
 
 <settings>
@@ -25,14 +25,10 @@
 </settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="F" correct="true">
-	  <feedback source="fb1"/>
-      </answer>
+      <answer value="F" correct="true" />
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="A" correct="true">
-	  <feedback source="fb2"/>
-      </answer>
+      <answer value="A" correct="true" />
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="H" correct="true">
@@ -52,8 +48,7 @@
 </header>
 	
 <section id="readingText">
-<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-<br/><br/>
+
  <div id="reading">
  <p class="hangingIndent"><b>A.</b>&#xA0;Children may be traumatised by disturbing images.</p>
 
@@ -78,43 +73,50 @@
 
 <section id="body">
 <div id="splitquestionList">
-	<p><b>Paragraph 1</b>&#xA0;– Introduction</p>
-	<p></p>
+	<p><b>Paragraph 1 – Introduction</b></p>
+	<p class="linespace"></p>
 	
-	<p><b>Paragraph 2</b>&#xA0;– Argument 1 + Counter-argument<br/>
+	<p><b>Paragraph 2 – Argument 1 + Counter-argument</b><br/>
 	If unpleasant images are shown on television, people may take action.
 	</p>
 	<p><input id="q1"/></p>
-	<p></p>
+	<p class="linespace"></p>
 	
-	<p><b>Paragraph 3</b>&#xA0;– Argument 2 + Counter-argument<br/>
+	<p><b>Paragraph 3 – Argument 2 + Counter-argument</b><br/>
 	Young people should not be sheltered from the unpleasant realities of the world.
 	</p>
 	<p><input id="q2"/></p>
-	<p></p>
+	<p class="linespace"></p>
 	
-	<p><b>Paragraph 4</b>&#xA0;– Argument 3 + Counter-argument<br/>
+	<p><b>Paragraph 4 – Argument 3 + Counter-argument</b><br/>
 	If you find the images upsetting, you can turn the television off.
 	</p>
 	<p><input id="q3"/></p>
-	<p></p>
+	<p class="linespace"></p>
 	
-	<p><b>Paragraph 5</b>&#xA0;– Conclusion</p>
-	<p></p>
+	<p><b>Paragraph 5 – Conclusion</b></p>
+	<p class="linespace"></p>
+	<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a><br/>
+</div>
+	<p class="linespace"></p>
+	<img class="leftFloat" src="../media/set6.2_04.jpg" mode="1" id="1001"/>
+	<p class="linespace"></p>
 
-</div>  
-</section>
-
-<section id="fb1">
-  <p class="feedbacktext">There is no feedback for this question.</p>
-</section>
-
-<section id="fb2">
-  <p class="feedbacktext">There is no feedback for this question.</p>
+  
 </section>
 
 <section id="fb3">
   <p class="feedbacktext">3. This paragraph is all about the how such images affect children.</p>
+</section>
+
+<section id="writingtask1">
+	<p class="popuptext">Nowadays, whenever a catastrophic event such as a war or an earthquake takes place, there is usually a television or video camera on hand which will film and broadcast images of it around the world almost instantly, no matter how disturbing they might be. It is often suggested that these are not the kind of pictures we should have to see in our homes. but there are some who think there are very good reasons why such images should be included in television news reports.</p>
+	
+	<p class="popuptext">Firstly, it is sometimes claimed that when disturbing images of war or some other disastrous event are broadcast, people become motivated to do something to remedy the situation or to help the victims. Unless the public see these images, it is argued, they are unlikely to act. On the other hand, it is also said that if people see too many disturbing or violent scenes on the news, they grow accustomed to them and no longer react as if these events were something unusual. As a result, they may begin to think that what they are seeing is normal or even acceptable.</p>
+	
+	<p class="popuptext">Secondly, there is the issue of whether or not children should be exposed to such images. It is sometimes argued that television news reports should show the world as it really is and that it is best for children to be aware of this reality. The counter-argument to this, however, is that violent images on television can be particularly disturbing for children, and that some of them may be severely traumatised by seeing such things.</p>
+	
+	<p class="popuptext">Finally, it is often pointed out that if viewers find images upsetting, they can simply switch off the television or change channel. However, viewers are not always forewarned that a report may include distressing pictures. Besides this, most people would find flicking from one channel to another during a news programme rather frustrating.</p>
 </section>
 
 </body>

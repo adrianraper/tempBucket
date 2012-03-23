@@ -19,7 +19,7 @@
     	<popup click="clickme" source="examtips" width="500" />
 </popups>
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -110,8 +110,8 @@
 </header>
 
 <section id="readingText">
-<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/><br/>
-	<h1><p>Writing Task 1</p></h1>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/>
+	<h1><p>Writing task 1</p></h1>
 	
 	<p>You should spend about 20 minutes on this task.</p>
   

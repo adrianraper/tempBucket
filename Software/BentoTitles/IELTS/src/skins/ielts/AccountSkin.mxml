@@ -10,12 +10,12 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import org.davekeen.util.DateUtil;
+			import com.clarityenglish.common.vo.content.Title;
 			import com.clarityenglish.common.vo.manageable.User;
 			
-			// TODO. There is a dateFormatter in configProxy that we should probably use
-			// See HomeMediator for how it is injected into that view.
 			import mx.events.CalendarLayoutChangeEvent;
+			
+			import org.davekeen.util.DateUtil;
 			private function formatExamDetails(userDetails:User, type:String):String {
 				// If examDate is not set, then default to expiryDate - 1 week
 				if (userDetails.examDate) {
@@ -103,7 +103,7 @@
 							
 						
 					
-					<s:VGroup paddingTop="13">	
+					<s:VGroup paddingTop="13" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">	
 						<s:HGroup>
 							<s:Label text="Registered name:" />
 							<s:Spacer width="30"/>
@@ -146,14 +146,14 @@
 								<s:TextInput id="confirmPassword" width="180" />
 							</s:HGroup>
 
-				</s:VGroup>
+					</s:VGroup>
 				</s:VGroup>
 			</s:HGroup>
 		</s:VGroup>
 		
 		<s:Spacer height="3" />
 		
-		<s:Button id="saveChangesButton" label="Save changes" />
+		<s:Button id="saveChangesButton" label="Save changes" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"/>
 		
 	</s:VGroup>
 	

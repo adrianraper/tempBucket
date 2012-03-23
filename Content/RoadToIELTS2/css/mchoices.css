@@ -223,6 +223,13 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	text-align: left;
 	line-height: 20em;
 	}
+
+#mchoices3 {
+	list-style-type: decimal;
+	padding: 0 380% 12px 15px;
+	text-align: left;
+	line-height: 20em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* video div */
 #outer {
@@ -245,12 +252,21 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	margin-top: 0em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
-/* video div for exercises where the content section needs a bigger height.*/
+/* video divs for exercises where the content section needs a bigger height.*/
 
 #content2{
 	position:relative;
 	padding-top:30px;
     height: 300px;
+    width:400px;
+    line-height:22em;
+	padding-left: -30px;
+	}
+
+#content3{
+	position:relative;
+	padding-top:30px;
+    height: 790px;
     width:400px;
     line-height:22em;
 	padding-left: -30px;

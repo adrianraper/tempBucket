@@ -60,6 +60,7 @@ package com.clarityenglish.ielts.view.account {
 
 		private var _productVersion:String;
 		private var _productCode:uint;
+		private var _licenceType:uint;
 		
 		public function AccountView() {
 			super();
@@ -81,6 +82,15 @@ package com.clarityenglish.ielts.view.account {
 		public function set productCode(value:uint):void {
 			if (_productCode != value) {
 				_productCode = value;
+			}
+		}
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
 			}
 		}
 		

@@ -65,7 +65,7 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_AW_026.JPG" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set2.2_06.jpg" mode="1" id="1001"/>
 
   <ol id="questionList">
     <li><span color="#7935AB">Some people think that an international language would reduce nationalistic feelings.</span>
@@ -98,6 +98,8 @@
 	<li><span color="#7935AB">Linguists have pointed out that all languages diversify into dialects.</span>
 	<br/>It&#xA0;<input id="q10"/>&#xA0;that all languages diversify into dialects.</li>
   </ol>
+  <p class="linespace"></p>
+  <p class="linespace"></p>
 </section>
 
 </body>

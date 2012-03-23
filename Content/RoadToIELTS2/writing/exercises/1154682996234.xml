@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -20,36 +20,36 @@
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
-    <DragQuestion source="q1" block="b1">
-      <answer source="a9" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a6" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
-      <answer source="a4" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a7" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a10" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
-      <answer source="a8" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
-      <answer source="a3" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a5" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q9" block="b9">
-      <answer source="a2" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q10" block="b10">
-      <answer source="a1" correct="true"/>
-    </DragQuestion>
+    <GapFillQuestion source="q1" block="b1">
+      <answer value="i" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q2" block="b2">
+      <answer value="f" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q3" block="b3">
+      <answer value="d" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q4" block="b4">
+      <answer value="g" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q5" block="b5">
+      <answer value="j" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q6" block="b6">
+      <answer value="g" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q7" block="b7">
+      <answer value="c" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q8" block="b8">
+      <answer value="e" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q9" block="b9">
+      <answer value="b" correct="true"/>
+    </GapFillQuestion>
+	<GapFillQuestion source="q10" block="b10">
+      <answer value="a" correct="true"/>
+    </GapFillQuestion>
   </questions>
 </script>
 
@@ -63,51 +63,61 @@ The sentences 1-10 below suggest ways of dealing with the problem of youth unemp
 </header>
 	
 <section id="noscroll">
-  <span id="a1" draggable="true">help young people find the right course of higher education and a job which suits them</span>
-    <span id="a2" draggable="true">young people can continue learning instead of being unemployed when they leave school</span>
-  <span id="a3" draggable="true">they have more of an incentive to leave home and look for a job</span>
-  <span id="a4" draggable="true">encouraging them to take on more young people</span>
-  <span id="a5" draggable="true">encourage job mobility among the young</span>
-  <span id="a6" draggable="true">make school leavers more attractive to potential employers</span>
-  <span id="a7" draggable="true">prepare themselves better for jobs in the new economy</span>
-  <span id="a8" draggable="true">help them start up their own businesses</span>
-  <span id="a9" draggable="true">they can choose courses and careers that they are suited for</span>
-  <span id="a10" draggable="true">providing young people with practical work experience</span>
+  <span id="a1" draggable="false">a. help young people find the right course of higher education and a job which suits them</span>
+    <span id="a2" draggable="false">b. young people can continue learning instead of being unemployed when they leave school</span>
+  <span id="a3" draggable="false">c. they have more of an incentive to leave home and look for a job</span>
+  <span id="a4" draggable="false">e. encouraging them to take on more young people</span>
+  <span id="a5" draggable="false">d. encourage job mobility among the young</span>
+  <span id="a6" draggable="false">f. make school leavers more attractive to potential employers</span>
+  <span id="a7" draggable="false">g. prepare themselves better for jobs in the new economy</span>
+  <span id="a8" draggable="false">h. help them start up their own businesses</span>
+  <span id="a9" draggable="false">i. they can choose courses and careers that they are suited for</span>
+  <span id="a10" draggable="false">j. providing young people with practical work experience</span>
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/WB_AW_018.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set8.2_08.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
   
-  <li id="1">Schools should provide students with more individual careers advice and guidance so that &#xA0; <input id="q1" type="droptarget"/>.</li>
+  <li>Schools should provide students with more individual careers advice and guidance so that ... .<br/>
+  <input id="q1"/></li>
   <p class="linespace"></p>
   
-  <li id="2">Secondary school education needs to be more practical so as to &#xA0; <input id="q2" type="droptarget"/>.</li>
+  <li>Secondary school education needs to be more practical so as to ... .<br/>
+  <input id="q2"/></li>
   <p class="linespace"></p>
   
-  <li id="3">The government should give subsidies to companies which employ school leavers with the aim of &#xA0; <input id="q3" type="droptarget"/>.</li>
+  <li>The government should give subsidies to companies which employ school leavers with the aim of ... <br/>
+  <input id="q3"/></li>
   <p class="linespace"></p>
   
-  <li id="4">In order to &#xA0; <input id="q4" type="droptarget"/>, young people should stay in education longer.</li>
+  <li>In order to ... , young people should stay in education longer.<br/>
+  <input id="q4"/></li>
   <p class="linespace"></p>
   
-  <li id="5">There need to be more youth training schemes for &#xA0; <input id="q5" type="droptarget"/>.</li>
+  <li>There need to be more youth training schemes for ...<br/>
+  <input id="q5"/></li>
   <p class="linespace"></p>
   
-  <li id="6">Young people should be given grants to &#xA0; <input id="q6" type="droptarget"/>.</li>
+  <li>Young people should be given grants to ... .<br/>
+  <input id="q6"/></li>
   <p class="linespace"></p>
   
-  <li id="7">Parents should not give so much money to their children so that &#xA0; <input id="q7" type="droptarget"/>.</li>
+  <li>Parents should not give so much money to their children so that ... .<br/>
+  <input id="q7"/></li>
   <p class="linespace"></p>
   
-  <li id="8">So as to &#xA0; <input id="q8" type="droptarget"/>, governments should make subsidised housing available for young people from other towns.</li>
+  <li>So as to ... , governments should make subsidised housing available for young people from other towns.<br/>
+  <input id="q8"/></li>
   <p class="linespace"></p>
   
-  <li id="9">More places should be created in higher and further education so that &#xA0; <input id="q9" type="droptarget"/>.</li>
+  <li>More places should be created in higher and further education so that<br/>
+  <input id="q9"/></li>
   <p class="linespace"></p>
   
-  <li id="10">In order to &#xA0; <input id="q10" type="droptarget"/>, schools need properly trained careers advisers.</li>
+  <li>In order to ... , schools need properly trained careers advisers.<br/>
+  <input id="q10"/></li>
   <p class="linespace"></p>
 <p class="linespace"></p>
   </ol>

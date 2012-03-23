@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -170,7 +170,7 @@
   </div>
 </section>
 <section id="writingtask1">
-			<p class="popuptext"><b>Writing Task 2</b></p>
+			<p class="popuptext"><b>Writing task 2</b></p>
 <p class="popuptext"> You should spend about 40 minutes on this task.</p>
 <p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
 <p class="popuptext"><b> Excessive traffic has made cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres.</b></p>

@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -107,7 +107,7 @@
 </header>
 	
 <section id="readingText">
-  <h1>Writing Task 1</h1>
+  <h1>Writing task 1</h1>
   <p>You should spend about 20 minutes on this task.</p>
   <p><b>You live next to a large hotel. The hotel's rubbish bins are kept directly below your bedroom window and this is causing you problems.</b></p>
   <p><b>Write a letter to the hotel. Explain how you are being affected by this situation and say what you would like them to do about it.</b></p>

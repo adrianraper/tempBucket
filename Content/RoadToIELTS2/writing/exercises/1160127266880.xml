@@ -17,22 +17,19 @@
 <script id="model" type="application/xml">
 
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   <questions>
-    <DragQuestion source="q1" block="b1">
+    <DragQuestion source="{#q1,#q2}" block="b1">
       <answer source="a12" correct="true"/>
       <answer source="a13" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a13" correct="true"/>
-      <answer source="a12" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
+    <DragQuestion source="{#q3,#q4,#q5,#q6,#q7,#q8,#q9}" block="b2">
       <answer source="a14" correct="true"/>
       <answer source="a15" correct="true"/>
       <answer source="a16" correct="true"/>
@@ -41,69 +38,11 @@
       <answer source="a19" correct="true"/>
       <answer source="a20" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a15" correct="true"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a16" correct="true"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a15" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
-      <answer source="a17" correct="true"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a15" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
-      <answer source="a18" correct="true"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a15" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a19" correct="true"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a15" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a20" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q9" block="b9">
-      <answer source="a20" correct="true"/>
-      <answer source="a14" correct="true"/>
-      <answer source="a15" correct="true"/>
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="true"/>
-      <answer source="a19" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q10" block="b10">
+    <DragQuestion source="{#q10,#q11}" block="b3">
       <answer source="a21" correct="true"/>
       <answer source="a22" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q11" block="b11">
-      <answer source="a22" correct="true"/>
-      <answer source="a21" correct="true"/>
-    </DragQuestion>
-  </questions>
+    </questions>
 </script>
 
 </head>
@@ -116,11 +55,11 @@ Here are the notes that a student made for the writing task in the previous exer
 </header>
 	
 <section id="noscroll">
-  <span id="a15" draggable="true">Can't open windows</span>
+  <span id="a13" draggable="true">Writing to complain</span>  
   <span id="a22" draggable="true">Build structure to house bins</span>
   <span id="a18" draggable="true">Noise wakes me at 6 a.m.</span>
   <span id="a14" draggable="true">Bins spoil view from bedroom window</span>
-  <span id="a13" draggable="true">Writing to complain</span>
+  <span id="a15" draggable="true">Can't open windows</span>
   <span id="a17" draggable="true">Hotel staff leave bin lids open</span>
   <span id="a12" draggable="true">Live next door</span>
   <span id="a21" draggable="true">Arrange for rubbish collection after 8 a.m.</span>
@@ -131,9 +70,10 @@ Here are the notes that a student made for the writing task in the previous exer
 
 <section id="body">
 
-  <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <br/><br/><br/>
-  <img class="rightFloat" src="../media/EN_GW_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set4.1_03.jpg" mode="1" id="1003"/>
   
   <div id="gapfillText">
   <h7>Paragraph 1 &#x2013; Reason for writing</h7>
@@ -155,7 +95,12 @@ Here are the notes that a student made for the writing task in the previous exer
   <p><input id="q10" type="droptarget"/><br/>
   <input id="q11" type="droptarget"/></p>
   <p class="linespace"></p>
+    <p class="linespace"></p>
+  <p class="linespace"></p>
+  <p class="linespace"></p>
+
   </div>
+
 </section>
 
 <section id="writingtask1">
@@ -173,6 +118,11 @@ Here are the notes that a student made for the writing task in the previous exer
   
   <p class="popuptext">Dear Sir/Madam,</p>
 
+</section>
+
+<section id="examtips">
+
+<p class="popuptext">Letters of complaint are often organised into three paragraphs: a short introductory paragraph stating the nature of the complaint, a longer paragraph giving details and another short paragraph saying what you think should be done.</p>
 </section>
 
 </body>

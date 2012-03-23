@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -174,9 +177,10 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/AC_AW_009.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1001"/></a><br/><br/><br/><br/>
+  <img class="rightFloat" src="../media/set5.2_04.jpg" mode="1" id="1001"/>
 
-  <ol id="mchoices">
+  <ol id="mchoices3">
 
     <li id="q1">State-owned museums generally suffer from rising costs. ..., many are reluctant to introduce admission charges.<list class="answerList"><li><a id="a1">Whereas</a></li><li><a id="a2">However</a></li><li><a id="a3">Although</a></li><li><a id="a4">In spite of</a></li></list></li>
 <p class="linespace"></p>
@@ -198,91 +202,92 @@
 <p class="linespace"></p>
     <li id="q10">Some museums reflect mainstream culture, ... others are very specialist.<list class="answerList"><li><a id="a37">even though</a></li><li><a id="a38">while</a></li><li><a id="a39">in spite of</a></li><li><a id="a40">despite</a></li></list></li>
   </ol>
+  <p class="linespace"></p>
 </section>
 
 <section id="fb1">
-  <p align="left">1. 'Whereas' and 'Although' join two clauses together, but this sentence only has one clause. 'In spite of' is always followed by a gerund or a noun.</p>
+  <p class="feedbacktext">1. 'Whereas' and 'Although' join two clauses together, but this sentence only has one clause. 'In spite of' is always followed by a gerund or a noun.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. 'However' can't be used to connect two clauses in this way. 'In spite of' and 'Despite' are always followed by a gerund or a noun.</p>
+  <p class="feedbacktext">2. 'However' can't be used to connect two clauses in this way. 'In spite of' and 'Despite' are always followed by a gerund or a noun.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font color="#000000">3. a, d: Notice the words 'the fact that' after the gap. </font>
+  <p class="feedbacktext">
+    3. a, d: Notice the words 'the fact that' after the gap. 
   </p>
-  <p align="left">
-    <font color="#000000">b: 'However' can't be used to connect two clauses in this way.</font>
+  <p class="feedbacktext">
+    b: 'However' can't be used to connect two clauses in this way.
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. What's missing here is a connector that shows contrast rather than concession.</p>
+  <p class="feedbacktext">4. What's missing here is a connector that shows contrast rather than concession.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <font color="#000000">5. b: 'However' can't be used to connect two clauses in this way.</font>
+  <p class="feedbacktext">
+    5. b: 'However' can't be used to connect two clauses in this way.
   </p>
-  <p align="left">
-    <font color="#000000">c: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  <p class="feedbacktext">
+    c: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.
   </p>
-  <p align="left">
-    <font color="#000000">d: 'Nevertheless' is used in the same way as 'However'. It can't be used to connect two clauses in this way.</font>
+  <p class="feedbacktext">
+    d: 'Nevertheless' is used in the same way as 'However'. It can't be used to connect two clauses in this way.
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <font color="#000000">6. a: 'Whereas' is used to show contrast rather than concession.</font>
+  <p class="feedbacktext">
+    6. a: 'Whereas' is used to show contrast rather than concession.
   </p>
-  <p align="left">
-    <font color="#000000">c, d: 'In spite of' and 'Despite' need to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  <p class="feedbacktext">
+    c, d: 'In spite of' and 'Despite' need to be followed by a noun, a gerund or the phrase 'the fact that'.
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <font color="#000000">7. b, d: 'However' and 'Whereas' are used to connect two clauses together, but this sentence only has one clause. Notice the full stop after the word 'students'.</font>
+  <p class="feedbacktext">
+    7. b, d: 'However' and 'Whereas' are used to connect two clauses together, but this sentence only has one clause. Notice the full stop after the word 'students'.
   </p>
-  <p align="left">
-    <font color="#000000">c: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  <p class="feedbacktext">
+    c: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <font color="#000000">8. a: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  <p class="feedbacktext">
+    8. a: 'Despite' needs to be followed by a noun, a gerund or the phrase 'the fact that'.
   </p>
-  <p align="left">
-    <font color="#000000">b, d: 'Although' and 'Whereas' are used to connect two clauses together, but this sentence only has one clause. Notice the full stop after the word 'system'.</font>
+  <p class="feedbacktext">
+    b, d: 'Although' and 'Whereas' are used to connect two clauses together, but this sentence only has one clause. Notice the full stop after the word 'system'.
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <font color="#000000">9. a: 'Nevertheless' is used in the same way as 'However'. It can't be used to connect two clauses in this way.</font>
+  <p class="feedbacktext">
+    9. a: 'Nevertheless' is used in the same way as 'However'. It can't be used to connect two clauses in this way.
   </p>
-  <p align="left">
-    <font color="#000000">b: 'Although' has to be followed by a subject + verb clause: although museums are popular...</font>
+  <p class="feedbacktext">
+    b: 'Although' has to be followed by a subject + verb clause: although museums are popular...
   </p>
-  <p align="left">
-    <font color="#000000">d: 'while' has to be followed by a subject + verb clause: while museums are popular...</font>
+  <p class="feedbacktext">
+    d: 'while' has to be followed by a subject + verb clause: while museums are popular...
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
-    <font color="#000000">10. a: The missing connector is one which shows contrast rather than concession.</font>
+  <p class="feedbacktext">
+    10. a: The missing connector is one which shows contrast rather than concession.
   </p>
-  <p align="left">
-    <font color="#000000">c: 'In spite of' and 'Despite' need to be followed by a noun, a gerund or the phrase 'the fact that'.</font>
+  <p class="feedbacktext">
+    c: 'In spite of' and 'Despite' need to be followed by a noun, a gerund or the phrase 'the fact that'.
   </p>
 </section>
 
-<section id="rt2001">
-  <p align="left">Choosing the correct linking word or phrases depends partly on the meaning of the sentence and partly on the grammar of the sentence. You should pay careful attention to both.</p>
+<section id="examtips">
+  <p class="popuptext">Choosing the correct linking word or phrases depends partly on the meaning of the sentence and partly on the grammar of the sentence. You should pay careful attention to both.</p>
 </section>
 
 </body>

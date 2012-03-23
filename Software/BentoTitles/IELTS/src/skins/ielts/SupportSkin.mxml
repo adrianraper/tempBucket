@@ -15,6 +15,10 @@
 	<fx:Declarations> 
 		<fx:String id="creditsTextAsHTML"><![CDATA[					
 			<p align='left'>
+			<b>Lead Programmer</b><br />
+			Dave Keen</p>
+			
+			<p align='left'>
 			<b>Video Recordings</b><br />
 			Producer<br />
 			Andy Lewis</p>
@@ -85,7 +89,7 @@
 		<fx:String id="helpTextAsHTML"><![CDATA[					
 			<p align='left'>
 			<b>Technical problems</b><br />
-			Clarity will be pleased to help you with any technical problems. Email support@clarityenglish.com with a description of your problem<br /> and the URL of your course (if you are running online).</p>
+			Clarity will be pleased to help you with any technical problems. Email support@roadtoielts.com<br /> with a description of your problem and the URL of your course (if you are running online).</p>
 			
 			<p align='left'>
 			<u>Clarity Language Consultants Ltd</u><br />
@@ -95,7 +99,7 @@
 			</p>
 			
 			<b>Content problems</b><br />
-			If you have any enquiries about the content, for example, if you have questions about an answer in the exercises, please contact British Council.
+			If you have any enquiries about the content, for example, if you have questions about an answer<br /> in the exercises, please contact British Council.
 			</p>
 			
 			</p>]]>

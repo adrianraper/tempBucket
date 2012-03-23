@@ -22,7 +22,7 @@
 <settings>
  	<param name="delayedMarking" value="true" />
 	<feedback>
-		<feedback source="fb0" width="550" height="420" />
+		<feedback source="fb0" width="550" height="520" />
 	</feedback>
 </settings>
   <questions>
@@ -323,7 +323,6 @@
   <li>Improved physical and mental health</li>
   <li>Better quality of life in cities</li>
   </ul>
-  <p></p>
   </div>
 </section>
 

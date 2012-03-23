@@ -17,10 +17,13 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="634"  />
+    	<popup click="clickme" source="writingtask1" width="500"  />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<feedback>
+		<feedback source="fb0" width="500" height="325" />
+	</feedback>
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -98,7 +101,7 @@
 	<p class="linespace"></p>
 	</div>
 	
-  <img class="rightFloat" src="../media/WB_AW_012.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set8.2_02.jpg" mode="1" id="1001"/>
   
   <div id="questiondiv">
   <ol>
@@ -180,7 +183,7 @@
 
 <section id="writingtask1">
 
-<p class="popuptext"><b>Writing Task 2</b></p>
+<p class="popuptext"><b>Writing task 2</b></p>
 <p class="popuptext"> You should spend about 40 minutes on this task.</p>
 <p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
 <p class="popuptext"><b>Increasing numbers of workers are suffering from stress and stress-related illness. Why is the modern workplace so stressful, and what can be done to reduce this problem?</b></p>
@@ -192,39 +195,26 @@
 		</section>
 		
 <section id="fb0">
-  <p align="left">
-    <b>Causes of the problem</b>
+  <p class="popuptext1"><b>Causes of the problem</b></p>
+  <p class="popuptext3">1:  Increased workloads and tighter deadlines
   </p>
-  <p align="left">
-    <font color="#000000">1:  Increased workloads and tighter deadlines</font>
+  <p class="popuptext3">3:  Rapid pace of technological change in the workplace
   </p>
-  <p align="left">
-    <font color="#000000">3:  Rapid pace of technological change in the workplace</font>
+  <p class="popuptext3">9:  Lack of job security
   </p>
-  <p align="left">
-    <font color="#000000">9:  Lack of job security</font>
+
+  <p class="popuptext1"><b>Possible solutions to the problem</b></p>
+  <p class="popuptext3">2:  Avoidance of unnecessary change
   </p>
-  <p align="left"/>
-  <p align="left">
-    <b>Possible solutions to the problem</b>
+  <p class="popuptext3">4:  More legal protection to ensure job security
   </p>
-  <p align="left">
-    <font color="#000000">2:  Avoidance of unnecessary change</font>
+  <p class="popuptext3">5:  Realistic workloads and deadlines agreed on by management and employees
   </p>
-  <p align="left">
-    <font color="#000000">4:  More legal protection to ensure job security</font>
+  <p class="popuptext3">6:  Legislation to limit working hours
   </p>
-  <p align="left">
-    <font color="#000000">5:  Realistic workloads and deadlines agreed on by management and employees</font>
+  <p class="popuptext3">7:  Provision of training and support for new technology
   </p>
-  <p align="left">
-    <font color="#000000">6:  Legislation to limit working hours</font>
-  </p>
-  <p align="left">
-    <font color="#000000">7:  Provision of training and support for new technology</font>
-  </p>
-  <p align="left">
-    <font color="#000000">8:  Greater commitment from employers</font>
+  <p class="popuptext3">8:  Greater commitment from employers
   </p>
 </section>
 

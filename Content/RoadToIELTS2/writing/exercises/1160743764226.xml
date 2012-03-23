@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -104,14 +104,14 @@
 </header>
 	
 <section id="readingText">
-	<h1>Writing Task 1</h1>
+	<h1>Writing task 1</h1>
 	<p>You should spend about 20 minutes on this task.</p>
  	<p><b>You have just finished reading a book you think your friend would enjoy.</b></p>
 	<p><b>Write a letter to your friend telling them about the book. Explain why you enjoyed it and recommend that they read it.</b></p>
 	<p>You should write at least 150 words.</p>
 	<p>You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 	<p>Begin your letter as follows:</p>
-	<p>Dear &#x2026;&#x2026;&#x2026;&#x2026;,</p>
+	<p>Dear ...,</p>
 </section>
 
 <section id="body">

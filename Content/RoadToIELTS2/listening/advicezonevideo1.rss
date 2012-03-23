@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-	<title>Listening advice</title>
+	<title>Advice zone video 1</title>
 	<host>http://player.vimeo.com/external/</host>
 	<type>recorded</type>
 	<server>vimeo</server>
 	<streaming>progressive-download</streaming>
 	<item>
-		<title>medium quality</title>
-		<streamName>38553029.sd.mp4?s=bec8319a7ae5f1ee6c3f8a97d9eb71b6</streamName>
-		<width>411</width>
+		<title>high def</title>
+		<streamName>38833185.hd.mp4?s=d7d9680d7800b3955e527a125eaaeddf</streamName>
 	</item>
 </channel>
 </rss>

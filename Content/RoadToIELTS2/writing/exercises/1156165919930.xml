@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+		<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -51,10 +54,12 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_AW_024.JPG" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/><br/>
+  <img class="rightFloat" src="../media/set2.2_04.jpg" mode="1" id="1001"/>
     <div id="targetspotting">
 	
-  <p align="left">However, there are strong arguments against the introduction of an international language. To start with, it is often pointed out that while an international language might initially facilitate communication, all languages tend to divide into dialects, some of which cannot always be understood by all native speakers. Secondly, it is often claimed that an international language would eventually come to dominate over, and in some cases cause the disappearance of, less widely-spoken languages. Furthermore, as culture and language are closely associated, it is widely believed that the threat to minority languages posed by an international one would also mean a threat to their related cultures. The result would be a dull world, lacking in both linguistic and cultural diversity.</p>
+  <p>However, there are strong arguments against the introduction of an international language. To start with, it is often pointed out that while an international language might initially facilitate communication, all languages tend to divide into dialects, some of which cannot always be understood by all native speakers. Secondly, it is often claimed that an international language would eventually come to dominate over, and in some cases cause the disappearance of, less widely-spoken languages. Furthermore, as culture and language are closely associated, it is widely believed that the threat to minority languages posed by an international one would also mean a threat to their related cultures. The result would be a dull world, lacking in both linguistic and cultural diversity.</p>
   
   
   <p class="hangingIndent1">2. Which of these arguments against an international language are included in the paragraph?</p>
@@ -70,8 +75,8 @@
   </div>
 </section>
 
-<section id="rt2001">
-  <p align="left">The aim of brainstorming is to generate as many ideas as you can before you start writing. However, as you only have about 40 minutes to write and as your composition should be around 250 words in length, you will not be able to use all your ideas. The next stage is to select the best arguments to include in your composition. The 'best' arguments may be the strongest ones or they may be the ones that you know most about and, as a result, the ones that you will probably be able to write about best. It is not a good idea to include arguments that you don't know anything about, as you will find that you don't have very much to say.</p>
+<section id="examtips">
+  <p class="popuptext">The aim of brainstorming is to generate as many ideas as you can before you start writing. However, as you only have about 40 minutes to write and as your composition should be around 250 words in length, you will not be able to use all your ideas. The next stage is to select the best arguments to include in your composition. The 'best' arguments may be the strongest ones or they may be the ones that you know most about and, as a result, the ones that you will probably be able to write about best. It is not a good idea to include arguments that you don't know anything about, as you will find that you don't have very much to say.</p>
 </section>
 
 </body>

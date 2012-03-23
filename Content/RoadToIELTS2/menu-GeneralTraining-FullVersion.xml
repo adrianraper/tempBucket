@@ -21,6 +21,8 @@
 			</groups>
 			<unit id="1287130110000" class="question-zone">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
+				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" />
+				<exercise id="1287130110003" caption="IELTS Reading Key Facts" href="reading/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130130000" class="advice-zone">
 				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
@@ -174,6 +176,7 @@
 			<unit id="1287130210000" class="question-zone">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" />
 				<exercise id="1287130210002" caption="Download PDF" href="listening/ebook/ebook_listening.pdf" />
+				<exercise id="1287130210003" caption="Advice" href="listening/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130230000" class="advice-zone">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="Advice" thumbnail="listening/thumbnails/listening_advice.jpg" />
@@ -329,6 +332,8 @@
 			</groups>
 			<unit id="1287130310000" class="question-zone">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" />
+				<exercise id="1287130310002" caption="Download PDF" href="speaking/ebook/ebook_speaking.pdf" />
+				<exercise id="1287130310003" caption="Advice" href="speaking/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
 				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
@@ -624,6 +629,8 @@
 			</groups>
 			<unit id="1287130410000" class="question-zone">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" />
+				<exercise id="1287130410002" caption="Download PDF" href="writing/ebook/ebook_writing.pdf" />
+				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130430000" class="advice-zone">  
 				<exercise id="1287130430001" href="writing/advicezonevideo1.rss" caption="Advice: General tips" thumbnail="writing/thumbnails/writing_keyfacts.jpg" />
@@ -747,7 +754,7 @@
 				<exercise id="1156181253915" group="5" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml" enabledFlag="3" difficulty="1"  thumbnail="writing/thumbnails/writing1t2_linking2.jpg">
 				  <!--Dropdown TB-->
 				</exercise>
-				<exercise id="1156181253598" group="5" caption="Ideas for the Writing task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1"  thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
+				<exercise id="1156181253598" group="5" caption="Ideas for the writing task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1"  thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
 				  <!--D&D TB-->
 				</exercise>
 				<exercise id="1156181253928" group="5" caption="Practice activity E" href="writing/exercises/1156181253928.xml" enabledFlag="3" difficulty="1"  thumbnail="writing/thumbnails/writing1t2_practice.jpg">
@@ -966,7 +973,7 @@
 				<exercise id="1154110371956" group="15" caption="Introduction" href="writing/exercises/1154110371956.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172726" group="15" caption="Ideas for the Writing Task" href="writing/exercises/1151344172726.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
+				<exercise id="1151344172726" group="15" caption="Ideas for the writing task" href="writing/exercises/1151344172726.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1151344172370" group="15" caption="Organising your ideas" href="writing/exercises/1151344172370.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
@@ -1017,7 +1024,7 @@
 				<exercise id="1160134044864" group="16" caption="Practice activity A" href="writing/exercises/1160134044864.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1160134044354" group="16" caption="Sample%20answer" href="writing/exercises/1160134044354.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
+				<exercise id="1160134044354" group="16" caption="Sample answer" href="writing/exercises/1160134044354.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1154542110626" group="17" caption="Introduction" href="writing/exercises/1154542110626.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">

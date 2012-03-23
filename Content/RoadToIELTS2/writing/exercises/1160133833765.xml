@@ -15,6 +15,9 @@
 	</style>
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -68,7 +71,8 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_GW_005.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1001"/></a><br/><br/><br/>
+  <img class="rightFloat" src="../media/gt_set7.1_05.jpg" mode="1" id="1001"/>
 
   <ol id="questionList">
     <li id="1">You cancelled an appointment at very short notice.<br/>I am writing to apologise&#xA0; <input id="q1"/> &#xA0;our appointment at such short notice.</li>
@@ -109,5 +113,18 @@
   </ol>
 </section>
 
+<section id="examtips">
+<p class="popuptext">There are several ways of apologising in written English. Here are three of the most common structures:</p>
+
+<p class="popuptext1"><b>Formal</b></p>
+<p class="popuptext3"><span color="#7935AB">I am writing to apologise for not informing you of my new address.</span></p>
+<p class="popuptext2"><span color="#7935AB">Please accept my apologies for not informing you of my new address.</span></p>
+
+<p class="popuptext1"><b>Informal</b></p>
+<p class="popuptext2"><span color="#7935AB">Please forgive me for not telling you my new address.</span></p>
+
+<p class="popuptext">Notice that in all three structures, the introductory phrase is followed by the preposition 'for' and the '-ing' form of the verb.</p>
+
+</section>
 </body>
 </bento>

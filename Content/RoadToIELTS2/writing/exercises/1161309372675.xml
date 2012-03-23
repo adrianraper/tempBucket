@@ -15,6 +15,9 @@
 	</style>
 	<br/>
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -128,7 +131,8 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_GW_003.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1001"/></a><br/><br/><br/><br/>
+  <img class="rightFloat" src="../media/gt_set9.1_03.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
 	
@@ -207,8 +211,8 @@
   </ol>
 </section>
 
-<section id="rt2001">
-  <p align="left">It is very important to open and close letters appropriately.</p>
+<section id="examtips">
+  <p class="popuptext">It is very important to open and close letters appropriately.</p>
 </section>
 
 </body>

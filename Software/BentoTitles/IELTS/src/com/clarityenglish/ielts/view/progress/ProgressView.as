@@ -41,6 +41,7 @@ package com.clarityenglish.ielts.view.progress {
 		public var progressCoverageView:ProgressCoverageView;
 
 		public var currentCourseClass:String;
+		private var _licenceType:uint;
 
 		// Constructor to let us initialise our states
 		public function ProgressView() {
@@ -115,6 +116,16 @@ package com.clarityenglish.ielts.view.progress {
 			// We can set the skin state from the tab bar click
 			currentState = event.target.selectedItem.data;
 			
+		}
+		
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+			}
 		}
 		
 	}

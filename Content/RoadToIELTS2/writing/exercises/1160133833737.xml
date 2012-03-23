@@ -16,14 +16,15 @@
 
 <script id="model" type="application/xml">
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="clickme1" source="examtips" width="500" />
   </popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
   
   <questions>
-    <DragQuestion source="q1" block="b1">
+    <DragQuestion source="{#q1,#q2,#q3,#q4,#q5,#q6,#q7,#q8,#q9}" block="b1">
       <answer source="a1" correct="true"/>
       <answer source="a2" correct="true"/>
 	  <answer source="a3" correct="true"/>
@@ -34,117 +35,11 @@
 	  <answer source="a12" correct="true"/>
 	  <answer source="a13" correct="true"/>
     </DragQuestion>
-    <DragQuestion source="q2" block="b2">
-      <answer source="a2" correct="true"/>
-      <answer source="a1" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q3" block="b3">
-      <answer source="a3" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q4" block="b4">
-      <answer source="a4" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q5" block="b5">
-      <answer source="a5" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q6" block="b6">
-      <answer source="a8" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q7" block="b7">
-      <answer source="a11" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q8" block="b8">
-      <answer source="a12" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a1" correct="true"/>
-	  <answer source="a13" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q9" block="b9">
-      <answer source="a13" correct="true"/>
-      <answer source="a2" correct="true"/>
-	  <answer source="a3" correct="true"/>
-	  <answer source="a4" correct="true"/>
-	  <answer source="a5" correct="true"/>
-	  <answer source="a8" correct="true"/>
-	  <answer source="a11" correct="true"/>
-	  <answer source="a12" correct="true"/>
-	  <answer source="a11" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q10" block="b10">
+    <DragQuestion source="{#q10,#q11,#q12,#q13}" block="b2">
       <answer source="a6" correct="true"/>
       <answer source="a7" correct="true"/>
       <answer source="a9" correct="true"/>
       <answer source="a10" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q11" block="b11">
-      <answer source="a7" correct="true"/>
-      <answer source="a6" correct="true"/>
-      <answer source="a9" correct="true"/>
-      <answer source="a10" correct="true"/>
-    </DragQuestion>
-    <DragQuestion source="q12" block="b12">
-      <answer source="a9" correct="true"/>
-      <answer source="a7" correct="true"/>
-      <answer source="a6" correct="true"/>
-      <answer source="a10" correct="true"/>
-    </DragQuestion>
-	    <DragQuestion source="q13" block="b13">
-      <answer source="a10" correct="true"/>
-      <answer source="a7" correct="true"/>
-      <answer source="a9" correct="true"/>
-      <answer source="a6" correct="true"/>
     </DragQuestion>
   </questions>
 </script>
@@ -175,10 +70,11 @@
 	
 <section id="readingText">
 <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-<br/><br/>
+<a id="clickme1"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/><br/>
   <p>Dear Sir/Madam,</p>
   <p>I am writing to apologise for missing my 3 p.m. appointment with you on Thursday, 12th November.</p>
-  <p>I am terribly sorry but on my way to your office the taxi I &#xA0;<b>was</b> &#xA0;in &#xA0;<b>collided</b> &#xA0;with a bus. Although I only &#xA0;<b>suffered</b> &#xA0;minor bruising, the taxi driver &#xA0;<b>hit</b> &#xA0;his head against the windscreen, &#xA0;<b>cut</b> &#xA0;it very badly and &#xA0;<b>was knocked</b> &#xA0;unconscious. Also, several of the passengers on the bus &#xA0;<b>were seriously injured</b> &#xA0;and &#xA0;<b>had</b> &#xA0;to be taken to hospital. Although I &#xA0;<b>was not injured</b> &#xA0;myself, I &#xA0;<b>was also taken</b> &#xA0;to hospital. I &#xA0;<b>did not need</b> &#xA0;any treatment but I was in a state of shock for a number of hours afterwards. I &#xA0;<b>made</b> &#xA0;repeated attempts to contact your office but every time I &#xA0;<b>rang</b> &#xA0;, the line was engaged.</p>
+  <p>I am terribly sorry but on my way to your office the taxi I&#xA0;<b>was</b> &#xA0;in&#xA0;<b>collided</b> &#xA0;with a bus. Although I only&#xA0;<b>suffered</b> &#xA0;minor bruising, the taxi driver&#xA0;<b>hit</b> &#xA0;his head against the windscreen,&#xA0;<b>cut</b> &#xA0;it very badly and&#xA0;<b>was knocked</b> &#xA0;unconscious. Also, several of the passengers on the bus&#xA0;<b>were seriously injured</b> &#xA0;and&#xA0;<b>had</b> &#xA0;to be taken to hospital. Although I&#xA0;<b>was not injured</b> &#xA0;myself, I&#xA0;<b>was also taken</b> &#xA0;to hospital. I&#xA0;<b>did not need</b> &#xA0;any treatment but I was in a state of shock for a number of hours afterwards. I&#xA0;<b>made</b> &#xA0;repeated attempts to contact your office but every time I&#xA0;<b>rang</b> &#xA0;, the line was engaged.</p>
   
   <p>I would like to know if it would be possible to rearrange the appointment. I am free on Tuesday and Thursday afternoons, however, if I have enough notice, it would also be possible for me to rearrange my work schedule and meet at your convenience.</p>
   <p align="left">Thank you for your kind attention. I look forward to hearing from you.</p>
@@ -187,8 +83,12 @@
 </section>
 
 <section id="body">
-<div id="splitquestionList">
-  <p><b>Past Simple - Active Voice</b></p>
+<img class="leftFloat" src="../media/gt_set7.1_03.jpg" mode="1" id="1001"/>
+  
+  <div id="splitdrag1">
+ 
+  <div id="splitdragleft3">
+   <p><b>Past Simple - Active Voice</b></p>
     <p><input id="q1" type="droptarget"/></p>
     <p><input id="q2" type="droptarget"/></p>
     <p><input id="q3" type="droptarget"/></p>
@@ -198,12 +98,15 @@
     <p><input id="q7" type="droptarget"/></p>
     <p><input id="q8" type="droptarget"/></p>
     <p><input id="q9" type="droptarget"/></p>
-<p class="linespace"></p>
+  </div>
+  
+  <div id="splitdragright3">
   <p><b>Past Simple - Passive Voice</b></p>
     <p><input id="q10" type="droptarget"/></p>
     <p><input id="q11" type="droptarget"/></p>
     <p><input id="q12" type="droptarget"/></p>
     <p><input id="q13" type="droptarget"/></p>
+  </div>
   </div>
 </section>
 
@@ -215,10 +118,14 @@
 			<p class="popuptext"><b>Write a letter to the immigration officer. Apologise for missing the appointment and explain why you missed it. Ask if you can make a new appointment.</b></p>
 			
 			<p class="popuptext">You should write at least 150 words.</p>
-			<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+			<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 			<p class="popuptext">Begin your letter as follows:</p>
 			<p class="popuptext">Dear Sir/Madam,</p>
 </section>
 
+<section id="examtips">
+<p class="popuptext">When we recount something that happened in the past, we mainly use the past simple, and we often need to use passive as well as active voice. The past simple form (for active voice) and the past participle form (for passive voice) of many common verbs are irregular so make sure you know them!</p>
+
+</section>
 </body>
 </bento>

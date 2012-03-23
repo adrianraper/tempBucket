@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.common.vo.content {
 	import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+	
 	import org.davekeen.util.DateUtil;
 	
 	/**
@@ -18,6 +19,30 @@
 		public static const LICENCE_TYPE_I:int = 5;
 		public static const LICENCE_TYPE_TT:int = 6;
 		
+		public static function getLicenceTypeText(licenceType:int):String {
+			switch (licenceType) {
+				case LICENCE_TYPE_AA:
+					return "Anonymous Access";
+					break;
+				case LICENCE_TYPE_LT:
+					return "Learner Tracking";
+					break;
+				case LICENCE_TYPE_CT:
+					return "Concurrent Tracking";
+					break;
+				case LICENCE_TYPE_TT:
+					return "Transferable Tracking";
+					break;
+				case LICENCE_TYPE_I:
+					return "Home User";
+					break;
+				case LICENCE_TYPE_SINGLE:
+					return "Single User";
+					break;
+				default:
+					return null;
+			}
+		}
 		/**
 		 * The collection of courses belonging to this title
 		 */

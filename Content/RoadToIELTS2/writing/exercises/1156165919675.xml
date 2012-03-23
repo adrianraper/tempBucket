@@ -17,12 +17,12 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="634"  />
+    	<popup click="clickme" source="writingtask1" width="500"  />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<feedback>
-		<feedback source="fb0" width="550" />
+		<feedback source="fb0" width="500" />
 	</feedback>
 </settings>
   <questions>
@@ -77,10 +77,10 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_AW_028.JPG" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set2.2_08.jpg" mode="1" id="1001"/>
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
   <div id="audio">
-<p><audio controls="compact"  class="leftFloat" src="../media/LC_WR1aa.mp3" mode="1" id="1"/></p>
+<p><audio controls="compact" class="leftFloat" src="../media/LC_WR1aa.mp3" mode="1" id="1"/></p>
 <p class="linespace"></p>
 <p><audio controls="compact" class="leftFloat" src="../media/LC_WR1ab.mp3" mode="1" id="2"/></p>
 <p class="linespace"></p>
@@ -178,8 +178,6 @@
 </section>
 
 <section id="fb0">
-  <p class="feedbacktext">Your score: #ya#</p>
-  
   <p class="feedbacktext">Remember that 'Arguments against' means arguments against restricting mobile phone use. It doesn't mean 'arguments against' mobile phones.</p>
 </section>
 

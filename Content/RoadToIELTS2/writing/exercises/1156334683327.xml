@@ -233,7 +233,7 @@
   <img class="rightFloat" src="../media/EN_AW_011.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-  <li>Many experts believe that CO2 emissions from industry and vehicles have (&#x2026;) global warming.</li>
+  <li>Many experts believe that CO<span class="subscript">2</span>&#xA0;emissions from industry and vehicles have (...) global warming.</li>
   <list class="answerList1">
   
   <li><a id="t1">caused</a></li>
@@ -244,7 +244,7 @@
   </list>
 	<p class="linespace"></p> 
 	
-      <li>  Sea levels have begun to rise (&#x2026;) to global warming.</li>
+      <li>  Sea levels have begun to rise (...) to global warming.</li>
     <list class="answerList1">
   
   <li><a id="t6">leading</a></li>
@@ -255,7 +255,7 @@
  </list>
     <p class="linespace"></p>
 	
-      <li>  The destruction of forest habitats has (&#x2026;) many animal species to die out.</li>
+      <li>  The destruction of forest habitats has (...) many animal species to die out.</li>
     <list class="answerList1">
   
   <li><a id="t11">led</a></li>
@@ -266,7 +266,7 @@
   </list>
     <p class="linespace"></p>
 	
-      <li> Marine life in the world's seas is being devastated (&#x2026;) overfishing.</li>
+      <li> Marine life in the world's seas is being devastated (...) overfishing.</li>
     <list class="answerList1">
   
   <li><a id="t16">due to</a></li>
@@ -277,7 +277,7 @@
 </list>
 <p class="linespace"></p>
 
-      <li> In many parts of the world, once fertile land is turning into semi-desert (&#x2026;) intensive farming methods.</li>
+      <li> In many parts of the world, once fertile land is turning into semi-desert (...) intensive farming methods.</li>
      <list class="answerList1">
   <li><a id="t21">owing to</a></li>
   <li><a id="t22">leading to</a></li>
@@ -287,7 +287,7 @@
   </list>
   <p class="linespace"></p>
   
-      <li> Accidents at sea involving large oil tankers have often (&#x2026;) environmental damage on a huge scale.</li>
+      <li> Accidents at sea involving large oil tankers have often (...) environmental damage on a huge scale.</li>
     <list class="answerList1">
   
   <li><a id="t26">been due to</a></li>
@@ -298,7 +298,7 @@
   </list>
   <p class="linespace"></p>
   
-      <li> The difficulty meteorologists have in making predictions about climate change (&#x2026;) the complexity of global weather systems.</li>
+      <li> The difficulty meteorologists have in making predictions about climate change (...) the complexity of global weather systems.</li>
     <list class="answerList1">
 	
   <li><a id="t31">results in</a></li>
@@ -309,7 +309,7 @@
   </list>
   <p class="linespace"></p>
   
-      <li> Public awareness of environmental issues is far greater than it used to be (&#x2026;) energetic campaigning by environmentalists.</li>
+      <li> Public awareness of environmental issues is far greater than it used to be (...) energetic campaigning by environmentalists.</li>
     <list class="answerList1">
   <li><a id="t36">on account of</a></li>
   <li><a id="t37">thanks to</a></li>
@@ -319,7 +319,7 @@
   </list>
   <p class="linespace"></p>
   
-      <li> Zoos can sometimes help prevent certain species from becoming extinct (&#x2026;) they can breed the animals in captivity.</li>
+      <li> Zoos can sometimes help prevent certain species from becoming extinct (...) they can breed the animals in captivity.</li>
   <list class="answerList1">
   <li><a id="t41">owing to</a></li>
   <li><a id="t42">because</a></li>
@@ -329,7 +329,7 @@
   </list>
   <p class="linespace"></p>
   
-      <li> Poor air quality in urban areas is known to have (&#x2026;) an increase in breathing disorders such as asthma.</li>
+      <li> Poor air quality in urban areas is known to have (...) an increase in breathing disorders such as asthma.</li>
 	  <list class="answerList1">
   <li><a id="t46">stemmed from</a></li>
   <li><a id="t47">given rise to</a></li>

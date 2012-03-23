@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+		<popup click="clickme" source="examtips" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -89,7 +92,9 @@ Complete the sentences by filling each gap with an appropriate form of one of th
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/LC_AW_027.JPG" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+  <br/><br/>
+  <img class="rightFloat" src="../media/set2.2_07.jpg" mode="1" id="1001"/>
 
   <ol id="questionList">
     <li id="1">Perhaps there would be fewer conflicts in the world if everyone&#xA0; <input id="q1"/> &#xA0;the same language.</li>
@@ -115,7 +120,14 @@ Complete the sentences by filling each gap with an appropriate form of one of th
   </ol>
 </section>
 
-<section id="rt2001"><p align="left"><font color="#000000">In compositions where we want to discuss the arguments for and against something, it is sometimes necessary to discuss hypothetical situations. To do this, we use a verb form known as the conditional. This is often found in sentences with an 'if' clause, for example:</font></p>If we removed language differences, we would find it easier to understand each other's point of view.However, we can also use the conditional without an 'if' clause. For example:It is generally agreed that a common language would make international travel much easier for everyone.
+<section id="examtips">
+<p class="popuptext">In compositions where we want to discuss the arguments for and against something, it is sometimes necessary to discuss hypothetical situations. To do this, we use a verb form known as the conditional. This is often found in sentences with an 'if' clause, for example:</p>
+
+<p class="popuptext"><span color="#7935AB">If we removed language differences, we would find it easier to understand each other's point of view.</span></p>
+
+<p class="popuptext">However, we can also use the conditional without an 'if' clause. For example:</p>
+
+<p class="popuptext"><span color="#7935AB">It is generally agreed that a common language would make international travel much easier for everyone.</span></p>
 </section>
 
 </body>

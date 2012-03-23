@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -161,12 +161,139 @@
   
   <div id="dropdown">
   <p>Dear Sir/Madam,</p>
-  <p>I am writing to apply&#xA0;<select id="q1"><option id="a1">for</option><option id="a2">to</option><option id="a3">about</option><option id="a4">in</option></select>&#xA0;the position&#xA0;<select id="q2"><option id="a5">of</option><option id="a6">to</option><option id="a7">at</option><option id="a8">for</option></select>&#xA0;part-time bookshop assistant as advertised&#xA0;<select id="q3"><option id="a9">in</option><option id="a10">at</option><option id="a11">on</option><option id="a12">by</option></select>&#xA0;The Post&#xA0;<select id="q4"><option id="a13">on</option><option id="a14">in</option><option id="a15">at</option><option id="a16">for</option></select>&#xA0;Monday, 12th December.</p>
-  <p>As you can see&#xA0;<select id="q5"><option id="a17">from</option><option id="a18">at</option><option id="a19">for</option><option id="a20">with</option></select>&#xA0;my CV, I have two years' experience&#xA0;<select id="q6"><option id="a21">in</option><option id="a22">at</option><option id="a23">by</option><option id="a24">from</option></select>&#xA0;the retail industry. This includes six months working as a sales assistant in a boutique, followed&#xA0;<select id="q7"><option id="a25">by</option><option id="a26">on</option><option id="a27">at</option><option id="a28">to</option></select>&#xA0;a year in a supermarket and my most recent post was in a large department store, where I spent six months in charge&#xA0;<select id="q8"><option id="a29">of</option><option id="a30">with</option><option id="a31">by</option><option id="a32">for</option></select>&#xA0;the book department.</p>
-  <p>You will also see that I am currently studying&#xA0;<select id="q9"><option id="a33">for</option><option id="a34">about</option><option id="a35">with</option><option id="a36">in</option></select>&#xA0;a degree&#xA0;<select id="q10"><option id="a37">in</option><option id="a38">of</option><option id="a39">on</option><option id="a40">about</option></select>&#xA0;English literature&#xA0;<select id="q11"><option id="a41">at</option><option id="a42">in</option><option id="a43">of</option><option id="a44">by</option></select>&#xA0;City University. In addition to this, while working&#xA0;<select id="q12"><option id="a45">for</option><option id="a46">at</option><option id="a47">in</option><option id="a48">by</option></select>&#xA0;my previous employer, I attended a short retail course and carried out a case-study on a bookshop.</p>
-  <p>I have always loved books and am an avid reader, and I am particularly interested&#xA0;<select id="q13"><option id="a49">in</option><option id="a50">to</option><option id="a51">of</option><option id="a52">about</option></select>&#xA0; working&#xA0;<select id="q14"><option id="a53">in</option><option id="a54">on</option><option id="a55">with</option><option id="a56">by</option></select>&#xA0;your bookshop as it is considered to be the best&#xA0;<select id="q15"><option id="a57">in</option><option id="a58">of</option><option id="a59">at</option><option id="a60">from</option></select>&#xA0;the city. It also has a reputation&#xA0;<select id="q16"><option id="a60">from</option><option id="a61">for</option><option id="a62">to</option><option id="a63">about</option><option id="a64">on</option></select>&#xA0;being an excellent employer and I believe it would offer a very pleasant working environment.</p>
-  <p>I am available&#xA0;<select id="q17"><option id="a65">for</option><option id="a66">at</option><option id="a67">in</option><option id="a68">with</option></select>&#xA0;interview&#xA0;<select id="q18"><option id="a69">at</option><option id="a70">by</option><option id="a71">with</option><option id="a72">on</option></select>&#xA0;your convenience.</p>
-  <p>I look forward&#xA0;<select id="q19"><option id="a73">to</option><option id="a74">in</option><option id="a75">about</option><option id="a76">at</option></select>&#xA0;hearing&#xA0;<select id="q20"><option id="a77">from</option><option id="a78">about</option><option id="a79">to</option><option id="a80">for</option></select>&#xA0;you.</p>
+  <p>I am writing to apply&#xA0;
+  <select id="q1">
+  <option id="a2">to</option>
+  <option id="a3">about</option>
+  <option id="a4">in</option>
+  <option id="a1">for</option></select>
+  &#xA0;the position&#xA0;
+  <select id="q2">
+  <option id="a6">to</option>
+  <option id="a5">of</option>
+  <option id="a7">at</option>
+  <option id="a8">for</option></select>
+  &#xA0;part-time bookshop assistant as advertised&#xA0;
+  <select id="q3">
+  <option id="a9">in</option>
+  <option id="a10">at</option>
+  <option id="a11">on</option>
+  <option id="a12">by</option></select>&#xA0;
+  The Post&#xA0;
+  <select id="q4">
+  <option id="a14">in</option>
+  <option id="a15">at</option>
+  <option id="a13">on</option>
+  <option id="a16">for</option></select>&#xA0;
+  Monday, 12th December.</p>
+  
+  <p>As you can see&#xA0;
+  <select id="q5">
+  <option id="a18">at</option>
+  <option id="a17">from</option>
+  <option id="a19">for</option>
+  <option id="a20">with</option></select>
+  &#xA0;my CV, I have two years' experience&#xA0;
+  <select id="q6">
+  <option id="a21">in</option>
+  <option id="a22">at</option>
+  <option id="a23">by</option>
+  <option id="a24">from</option></select>
+  &#xA0;the retail industry. This includes six months working as a sales assistant in a boutique, followed&#xA0;
+  <select id="q7">
+  <option id="a25">by</option>
+  <option id="a26">on</option>
+  <option id="a27">at</option>
+  <option id="a28">to</option></select>
+  &#xA0;a year in a supermarket and my most recent post was in a large department store, where I spent six months in charge&#xA0;
+  <select id="q8">
+  <option id="a30">with</option>
+  <option id="a31">by</option>
+  <option id="a32">for</option>
+  <option id="a29">of</option></select>
+  &#xA0;the book department.</p>
+  
+  <p>You will also see that I am currently studying&#xA0;
+  <select id="q9">
+  <option id="a34">about</option>
+  <option id="a33">for</option>
+  <option id="a35">with</option>
+  <option id="a36">in</option></select>
+  &#xA0;a degree&#xA0;
+  <select id="q10">
+  <option id="a38">of</option>
+  <option id="a39">on</option>
+  <option id="a40">about</option>
+  <option id="a37">in</option></select>
+  &#xA0;English literature&#xA0;
+  <select id="q11">
+  <option id="a42">in</option>
+  <option id="a41">at</option>
+  <option id="a43">of</option>
+  <option id="a44">by</option></select>
+  &#xA0;City University. In addition to this, while working&#xA0;
+  <select id="q12">
+  <option id="a46">at</option>
+  <option id="a47">in</option>
+  <option id="a45">for</option>
+  <option id="a48">by</option></select>
+  &#xA0;my previous employer, I attended a short retail course and carried out a case-study on a bookshop.</p>
+  
+  <p>I have always loved books and am an avid reader, and I am particularly interested&#xA0;
+  <select id="q13">
+  <option id="a50">to</option>
+  <option id="a51">of</option>
+  <option id="a52">about</option>
+  <option id="a49">in</option></select>
+  &#xA0;working&#xA0;
+  <select id="q14">
+  <option id="a53">in</option>
+  <option id="a54">on</option>
+  <option id="a55">with</option>
+  <option id="a56">by</option></select>
+  &#xA0;your bookshop as it is considered to be the best&#xA0;
+  <select id="q15">
+  <option id="a58">of</option>
+  <option id="a57">in</option>
+  <option id="a59">at</option>
+  <option id="a60">from</option></select>
+  &#xA0;the city. It also has a reputation&#xA0;
+  <select id="q16">
+  <option id="a60">from</option>
+  <option id="a61">for</option>
+  <option id="a62">to</option>
+  <option id="a63">about</option>
+  <option id="a64">on</option></select>
+  &#xA0;being an excellent employer and I believe it would offer a very pleasant working environment.</p>
+  
+  <p>I am available&#xA0;
+  <select id="q17">
+  <option id="a65">for</option>
+  <option id="a66">at</option>
+  <option id="a67">in</option>
+  <option id="a68">with</option></select>
+  &#xA0;interview&#xA0;
+  <select id="q18">
+   <option id="a70">by</option>
+  <option id="a71">with</option>
+  <option id="a69">at</option>
+  <option id="a72">on</option></select>
+  &#xA0;your convenience.</p>
+  
+  <p>I look forward&#xA0;
+  <select id="q19">
+  <option id="a74">in</option>
+  <option id="a73">to</option>
+  <option id="a75">about</option>
+  <option id="a76">at</option></select>
+  &#xA0;hearing&#xA0;
+  <select id="q20">
+  <option id="a78">about</option>
+  <option id="a79">to</option>
+  <option id="a80">for</option>
+  <option id="a77">from</option></select>
+  &#xA0;you.</p>
+  
   <p>Yours faithfully, </p>
   <p>Melanie Scott</p>
  <p class="linespace"></p>

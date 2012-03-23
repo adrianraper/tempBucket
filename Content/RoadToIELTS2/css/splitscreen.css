@@ -38,6 +38,13 @@ body > header {
 	padding-left: 17em;
 	line-height: 20em;
 	}
+
+/* Used in FV>Writing>Set 5 task 2>Free museums, where there's no question text */
+.museums {
+	list-style-type: lowerLatin;
+	padding: -30px 0 0 0;
+	line-height: 20em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -300,6 +307,12 @@ h10{
 	font-size: 12px;
 	}
 
+.boldtext {
+	font-weight: bold;
+	font-size: 12px;
+	line-height:22em;
+}
+
 #readingText {
 	padding-top:20px;
 	line-height:22em;
@@ -560,4 +573,71 @@ sh1{
 	padding-left:-5px;
 	line-height: 22em;
 	width: 100px;
+	}
+/*------------------------------------------------------------------------------------------------*/
+/* This is for FV GT Writing, Set 5 task 1, Active and passive (1) */
+#splitdrag1{
+	position: absolute;
+	padding: 0 25em 0 25px;
+	}
+	
+#splitdrag1 p{
+	text-align: left;
+	line-height: 22em;
+	}
+
+#splitdragright1 {
+		position: relative;
+		padding-left:173px;
+		padding-top:265px;
+		line-height:22em;
+		float:left;
+	}
+	
+	
+#splitdragleft1 {
+		position: relative;
+		padding-left:25px;
+		padding-top: 265px;
+		line-height:22em;	
+		float:left;
+	}
+	
+#splitdragright2 {
+		position: relative;
+		padding-left:173px;
+		padding-top:345px;
+		padding-bottom: 25px;
+		line-height:22em;
+		float:left;
+	}
+	
+	
+#splitdragleft2 {
+		position: relative;
+		padding-left:25px;
+		padding-top: 325px;
+		padding-bottom: 25px;
+		line-height:22em;	
+		float:left;
+	}
+
+/*------------------------------------------------------------------------------------------------*/
+/* This is for FV GT Writing, Set 7 task 1, Past simple active and passive (1) */
+
+#splitdragright3 {
+		position: relative;
+		padding-left:233px;
+		padding-top:265px;
+		line-height:22em;
+		float:left;
+	}
+	
+	
+#splitdragleft3 {
+		position: relative;
+		padding-left:25px;
+		padding-top: 265px;
+		line-height:22em;	
+		float:left;
 	}

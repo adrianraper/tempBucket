@@ -7,21 +7,13 @@
 	<server>vimeo</server>
 	<streaming>progressive-download</streaming>
 	<item>
-		<title>low quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_tutorial2_180</streamName>
-		<bitrate>180</bitrate>
+		<title>standard def</title>
+		<streamName>38972701.sd.mp4?s=03aef7853efa15a5309280cea15769fc</streamName>
 		<width>411</width>
 	</item>
 	<item>
-		<title>medium quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_tutorial2_700</streamName>
-		<bitrate>700</bitrate>
-		<width>411</width>
-	</item>
-	<item>
-		<title>high quality</title>
-		<streamName>RoadToIELTS2/speaking/media/speaking_tutorial2_1200</streamName>
-		<bitrate>1200</bitrate>
+		<title>high def</title>
+		<streamName>38972701.hd.mp4?s=bec2c912d266f2bd222608ef256833b3</streamName>
 		<width>411</width>
 	</item>
 </channel>

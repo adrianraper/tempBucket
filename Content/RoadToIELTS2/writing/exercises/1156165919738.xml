@@ -22,12 +22,13 @@
 <body>
 	
 <header>
-	<div id="instruction">IELTS Writing Task 2. You should spend about 40 minutes on this task. You should write at least 250 words.</div>
+	<div id="instruction">You should spend about 40 minutes on this task. You should write at least 250 words.</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/LC_AW_029.JPG" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set2.2_09.jpg" mode="1" id="1001"/>
   <div id="presentation">
+  <h1><p>IELTS writing task 2</p></h1>
   <p>Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
   
   <p><b>Ownership of mobile phones has risen dramatically in recent years despite the potentially harmful effects they may have on our health and on society. Governments should introduce measures to restrict ownership of mobile phones to those who need them for their work.</b></p>
@@ -35,6 +36,7 @@
   <p><b>To what extent do you agree or disagree with this statement?</b></p>
   
   <p>You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+  <p class="linespace"></p>
   </div>
 </section>
 

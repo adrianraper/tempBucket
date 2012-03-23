@@ -126,6 +126,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding: 20px 0px 20px 50px;
 	line-height: 22em;
 	}
+
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for writing task text. */
 .popuptext {
@@ -229,6 +230,31 @@ padding-bottom: 12px;
 	width: 270px;
 	padding: 0 30px 0 0;
 	}
+
+/*In use for paragraphs where padding-bottom is not wanted */
+#feedback1 p{
+	margin: 0 0 0 0;
+	padding: 20px 0px 0px 50px;
+	line-height: 22em;
+	}
+
+#feedback2 p{
+	margin: 0 0 0 0;
+	padding: 20px 0px 0px 50px;
+	line-height: 22em;
+	}
+
+/* In use for feedback where bullet lists are required, e.g. FV GT Writing, Set 3 task 2, Linking words and phrases (1) */
+#feedback1 ul{
+	line-height: 22em;
+	padding: 0px 0px 20px 50px;
+}
+
+#feedback2 ul{
+	line-height: 22em;
+	padding: 0px 0px 20px 50px;
+}
+
 /*-----------------------------------------------------------------------------------------------*/
 /* Specify for Listening 2 British cinema */
 	#wrapper{

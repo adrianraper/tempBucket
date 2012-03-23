@@ -16,7 +16,7 @@
 
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -90,7 +90,7 @@ Read this sample answer to the writing task in the previous exercise. Complete t
 <section id="body">
 <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
 <br/><br/><br/>
-<img class="rightFloat" src="../media/HF_GW_007.jpg" mode="1" id="1001"/>
+<img class="rightFloat" src="../media/set7.1_07.jpg" mode="1" id="1001"/>
   
   <div id="gapfillText">
   <p>Dear Mr Robinson,</p>
@@ -106,6 +106,7 @@ Read this sample answer to the writing task in the previous exercise. Complete t
   <p>Yours sincerely,</p>
   
   <p>Mark Cross</p>
+  <p class="linespace"></p>
   </div>
 </section>
 
@@ -114,7 +115,7 @@ Read this sample answer to the writing task in the previous exercise. Complete t
 	<p class="popuptext"><b>You were unable to give an assessed presentation at a tutorial at college because you were ill.</b></p>
 	<p class="popuptext"><b>Write a letter to your tutor. Apologise for missing the tutorial and explain why you missed it. Ask if you can arrange to give the presentation another day.</b></p>
 	<p class="popuptext">You should write at least 150 words.</p>
-	<p class="popuptext">You do &#xA0;<b>NOT</b>&#xA0; need to write your own address.</p>
+	<p class="popuptext">You do&#xA0;<b>NOT</b>&#xA0;need to write your own address.</p>
 	<p class="popuptext">Begin your letter as follows:</p>
 	<p class="popuptext">Dear...,</p>
 </section>

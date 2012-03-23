@@ -443,7 +443,7 @@ h8{
 	margin-top: 2px;
 	}
 	/*-----------------------------------------------------------------------------------------------*/
-	/* Specify for FV Listening Unit 7 Fill in the table (2) */
+	/* Specify for FV Listening Unit 7 Table completion (2) */
 	/*#disease1 {
 	float: left;
 	width: 220px;
@@ -503,3 +503,62 @@ h8{
 			padding-bottom: 12px;
 			max-width:10px;
 		}	
+/*-----------------------------------------------------------------------------------------------*/
+	/* Specify for FV GT Writing, Set 2 task 1, Organise ideas */
+	
+	#set2t1orgideas1 {
+		position: relative;
+		float:left;
+		padding-left:-3px;
+		padding-top: 75px;
+		line-height:22em;
+		height: 350px;
+	}
+
+	#set2t1orgideas2 {	
+		position: relative;
+		float:left;
+		padding-left:450px;
+		padding-top:75px;
+		line-height:22em;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+	/* Specify for FV GT Writing, Set 3 task 1, Organising ideas */
+	
+	#set3t1orgideas1 {
+		position: relative;
+		float:left;
+		padding-left:-3px;
+		padding-top: 75px;
+		line-height:22em;
+		height: 400px;
+	}
+
+	#set3t1orgideas2 {	
+		position: relative;
+		float:left;
+		padding-left:300px;
+		padding-top:75px;
+		line-height:22em;
+	}
+/*-----------------------------------------------------------------------------------------------*/
+/* Used for FV GT, Writing, Set 6 task 2, Writing the conclusion */
+
+#writecon {
+	list-style-type: decimal;
+	padding-left: 0px;
+	padding-right: 380%;
+	padding-top: 0em;
+	text-align: left;
+	line-height: 22em;
+	}
+
+#writecon p{
+	padding-bottom: 12px;
+	}
+	
+#writecon li{
+	padding-bottom: 12px;
+	padding-left: 15px;
+	line-height: 22em;
+	}
