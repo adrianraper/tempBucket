@@ -3,16 +3,17 @@
 	header('Content-Type: text/html; charset=utf-8');
 	// For testing Login API
 	
-	$commonDomain  = 'http://dock.projectbench/'; 
+	$commonDomain  = 'http://dock.fixbench/'; 
 
-	$studentID = "1217-0552-6016";
-	$name = "Adrian Raper"; //senders name
-	$email = "support@ieltspractice.com"; //senders e-mail adress
+	$studentID = "cstdi-101";
+	$name = "RAPER, Adrian 101";
+	$email = "support@ieltspractice.com";
 	$dbHost = 2;
-	$productCode = 52;
-	$expiryDateStr = '2012-04-15 23:59:59';
-	$prefix = "BCHK";
-	$groupID = "170";
+	$prefix = "CSTDI";
+	$rootID = 14449;
+	$groupID = 26271;
+	$custom1 = 'Basic';
+	$custom2 = "IMD";
 	$city = "Hong Kong";
 	$country = "Hong Kong";
 	$loginOption = 2;
@@ -25,13 +26,14 @@
 	$LoginAPI['name'] = $name;
 	$LoginAPI['email'] = $email;
 	$LoginAPI['dbHost'] = $dbHost;
-	$LoginAPI['productCode'] = $productCode;
-	$LoginAPI['expiryDate'] = $expiryDateStr;
 	$LoginAPI['prefix'] = $prefix;
+	$LoginAPI['rootID'] = $rootID;
 	$LoginAPI['groupID'] = $groupID;
 	$LoginAPI['city'] = $city;
 	$LoginAPI['country'] = $country;
 	$LoginAPI['loginOption'] = $loginOption;
+	$LoginAPI['custom1'] = $custom1;
+	$LoginAPI['custom2'] = $custom2;
 			
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);

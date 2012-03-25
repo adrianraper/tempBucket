@@ -20,6 +20,10 @@ class LoginAPI {
 	var $loginOption;
 	var $dbHost;
 	var $emailTemplateID;
+	var $custom1;
+	var $custom2;
+	var $custom3;
+	var $custom4;
 	
 	function LoginAPI() {
 	}
@@ -58,6 +62,14 @@ class LoginAPI {
 			$this->country = $info['country'];
 		if (isset($info['emailTemplateID'])) 
 			$this->emailTemplateID = $info['emailTemplateID'];
+		if (isset($info['custom1'])) 
+			$this->custom1 = $info['custom1'];
+		if (isset($info['custom2'])) 
+			$this->custom2 = $info['custom2'];
+		if (isset($info['custom3'])) 
+			$this->custom3 = $info['custom3'];
+		if (isset($info['custom4'])) 
+			$this->custom4 = $info['custom4'];
 			
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account

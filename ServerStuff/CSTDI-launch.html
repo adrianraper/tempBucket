@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Test CLC Plus transparent sign-on</title>
+<script type="text/javascript" src="/Software/Common/jQuery/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="CSTDI-control.js"></script>
+
+<style type="text/css">
+<!--
+body {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	background: #666666;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+}
+.oneColFixCtr #container {
+	width: 780px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	background: #FFFFFF;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #000000;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+.oneColFixCtr #mainContent {
+	padding: 0 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+}
+-->
+</style>
+</head>
+
+<body class="oneColFixCtr">
+
+<div id="container">
+  <div id="mainContent">
+    <h1> CLC Plus transparent sign-on launcher</h1>
+    <p>&nbsp;</p>
+    <form id="CLCPlusDetails" name="CLCPlusDetails" method="post" action="transparentSignOn.php">
+      <p>
+      <label for="FirstName">First name:</label>
+      <input name="FirstName" type="text" id="FirstName" value="Adrian" tabindex="1" size="50" />
+      <label class="note" id="FirstNameNote"></label>
+      </p>
+      <p>
+      <label for="LastName">Last name:</label>
+        <input name="LastName" type="text" id="LastName" value="Raper" tabindex="2" size="50" />
+      <label class="note" id="LastNameNote"></label>
+      </p>
+      <p>
+        <label for="UserID">UserID:</label>
+        <input type="text" name="UserID" id="UserID" value="cstdi-1234" tabindex="3" />
+      <label class="note" id="UserIDNote"></label>
+	  </p>
+      <p>
+        <label for="SalCat">SalCat:</label>
+        <select name="SalCat" id="SalCat" tabindex="4" >
+          <option value="100" selected="true">Basic</option>
+          <option value="101">Intermediate</option>
+          <option value="102">Advanced</option>
+        </select>
+      <label class="note" id="SalCatNote">Also used as proxy for rank</label>
+	  </p>
+      <p>
+        <label for="DeptCode">DeptCode:</label>
+        <select name="DeptCode" id="DeptCode">
+          <option value="21" selected="true">IMD</option>
+          <option value="24">IRD</option>
+          <option value="31">Police</option>
+          <option value="30">ED</option>
+          <option value="18">EMSB</option>
+        </select>
+      </p>
+         <p>
+        <label for="ProductCode">Program:</label>
+        <select name="ProductCode" id="ProductCode">
+          <option value="10" selected="true">Business Writing</option>
+          <option value="39">Clear Pronunciation 1</option>
+          <option value="50">Clear Pronunciation 2</option>
+        </select>
+      </p>
+      <p>
+        <input type="submit" name="submit" id="submit" value="Login" />
+        <input type="submit" name="clear" id="clear" value="Clear" />
+      </p>
+    </form>
+    <p>&nbsp;</p>
+    <h2>Result</h2>
+    <div id='responseMessage'></div>
+	<!-- end #mainContent --></div>
+<!-- end #container --></div>
+</body>
+</html>

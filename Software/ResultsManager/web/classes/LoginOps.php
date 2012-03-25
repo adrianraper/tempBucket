@@ -35,6 +35,22 @@ class LoginOps {
 		if (isset($loginObj['password']))
 			$password = $loginObj['password'];
 			
+		
+		// Build the basic login query
+		// TODO: This currently binds the language to productCode=2 (RM) but we'll want to make this configurable when we add more products)
+		// AR I also want to know the login user's ID back in RM. Hmm, I think I was able to pick this up anyway without it being in the selectFields. How?
+		// No, I don't think it was being properly passed. Anyway, it is now.
+		// AR. Surely I should pass back the entire user object? Why ever wouldn't I?
+		/*
+		$selectFields = array("g.F_GroupID as groupID",
+							  "m.F_RootID",
+							  "u.F_UserType",
+							  "u.F_UserName",
+							  "u.F_UserID",
+							  "u.F_Password",
+							  $this->db->SQLDate("Y-m-d H:i:s", "u.F_StartDate")." UserStartDate",
+							  $this->db->SQLDate("Y-m-d H:i:s", "u.F_ExpiryDate")." UserExpiryDate");
+		*/					  
 		$selectFields = array("g.F_GroupID as groupID",
 							  "m.F_RootID",
 							  "u.*");

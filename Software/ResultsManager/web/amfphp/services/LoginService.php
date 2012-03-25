@@ -76,6 +76,14 @@ class LoginService extends AbstractService {
 			$stubUser->city = $loginDetails->city;
 		if ($loginDetails->country)
 			$stubUser->country = $loginDetails->country;
+		if ($loginDetails->custom1)
+			$stubUser->custom1 = $loginDetails->custom1;
+		if ($loginDetails->custom2)
+			$stubUser->custom2 = $loginDetails->custom2;
+		if ($loginDetails->custom3)
+			$stubUser->custom3 = $loginDetails->custom3;
+		if ($loginDetails->custom4)
+			$stubUser->custom4 = $loginDetails->custom4;
 			
 		$stubUser->userType = User::USER_TYPE_STUDENT;
 		$stubUser->registrationDate = date('Y-m-d H:i:s');
