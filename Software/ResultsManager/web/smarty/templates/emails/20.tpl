@@ -7,7 +7,8 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Clarity English - Usage Statistics</title>
-		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
+		<!-- <from>%22Clarity English%22 %3Csupport@clarityenglish.com%3E</from> -->
+		<!-- <bcc>admin@clarityenglish.com</bcc> -->
 </head>
 <body>
 <div style="width:600px; margin:0 auto; padding:0;">

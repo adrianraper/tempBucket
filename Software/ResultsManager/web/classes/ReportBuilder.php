@@ -18,6 +18,7 @@ class ReportBuilder {
 	const SHOW_GROUPNAME = "show_groupname";
 	const SHOW_USERNAME = "show_username";
 	const SHOW_STUDENTID = "show_studentID";
+	const SHOW_EMAIL = "show_email";
 	// v3.4 To allow you to group together scores from one session for summary (test) reports
 	const SHOW_SESSIONID = "show_sessionID";
 	
@@ -64,6 +65,7 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::SHOW_GROUPNAME])) $this->opts[ReportBuilder::SHOW_GROUPNAME] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_USERNAME])) $this->opts[ReportBuilder::SHOW_USERNAME] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_STUDENTID])) $this->opts[ReportBuilder::SHOW_STUDENTID] = "";
+		if (!isset($this->opts[ReportBuilder::SHOW_EMAIL])) $this->opts[ReportBuilder::SHOW_EMAIL] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_SCORE])) $this->opts[ReportBuilder::SHOW_SCORE] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_SCORE_CORRECT])) $this->opts[ReportBuilder::SHOW_SCORE_CORRECT] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_SCORE_WRONG])) $this->opts[ReportBuilder::SHOW_SCORE_WRONG] = "";
@@ -229,6 +231,7 @@ EOD;
 		if ($this->getOpt(ReportBuilder::SHOW_GROUPNAME)) $this->addColumn("g.F_GroupName", "groupName");
 		if ($this->getOpt(ReportBuilder::SHOW_USERNAME)) $this->addColumn("u.F_UserName", "userName");
 		if ($this->getOpt(ReportBuilder::SHOW_STUDENTID)) $this->addColumn("u.F_StudentID", "studentID");
+		if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->addColumn("u.F_Email", "email");
 		
 		// For Science Po who need more data. How can I tell if it is them?
 		// They were first of all root 12923, and now moved to 13770, and in 2011 to 14252 
@@ -241,6 +244,11 @@ EOD;
 			$this->addColumn("u.F_custom1", "studentsYear");
 			$this->addColumn("u.F_custom2", "correspondingFaculty");
 		}
+		// And BC Test summary wants email. Why not just add that to everything, surely the template can decide if it wants to use it?
+		// Sadly no, if you add it in, a normal report ends up using email instead of name :(
+		//if ($rootID == '14159') {
+		//	$this->addColumn("u.F_Email", "email");
+		//}		
 		
 		// Selection of ungrouped columns
 		if ($this->getOpt(ReportBuilder::SHOW_SCORE)) { $this->checkGrouped(false); $this->addColumn(null, "score", "CASE s.F_Score WHEN -1 THEN NULL ELSE s.F_Score END"); }
@@ -469,6 +477,7 @@ EOD;
 		if ($this->getOpt(ReportBuilder::SHOW_GROUPNAME)) $this->addColumn("g.F_GroupName", "groupName");
 		if ($this->getOpt(ReportBuilder::SHOW_USERNAME)) $this->addColumn("u.F_UserName", "userName");
 		if ($this->getOpt(ReportBuilder::SHOW_STUDENTID)) $this->addColumn("u.F_StudentID", "studentID");
+		if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->addColumn("u.F_Email", "email");
 		
 		// Selection of ungrouped columns
 		if ($this->getOpt(ReportBuilder::SHOW_SCORE)) { $this->checkGrouped(false); $this->addColumn(null, "score", "CASE s.F_Score WHEN -1 THEN NULL ELSE s.F_Score END"); }

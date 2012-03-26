@@ -87,7 +87,11 @@ class AbstractService {
 			$function_called == "getEveryonesCoverage" ||
 			$function_called == "getAccountSettings" ||
 			$function_called == "startSession" ||
+			$function_called == "updateSession" ||
 			$function_called == "stopSession" ||
+			$function_called == "updateUser" ||
+			$function_called == "updateLicence" ||
+			$function_called == "getInstanceID" ||
 			$function_called == "writeScore" ||
 			$function_called == "getCCBContent"
 			) return true;

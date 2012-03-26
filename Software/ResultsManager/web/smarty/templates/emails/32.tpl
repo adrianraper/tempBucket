@@ -7,8 +7,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Clarity English - Your subscription</title>
-		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
-</head>
+		<!-- <from>%22Clarity English%22 %3Csupport@clarityenglish.com%3E</from> -->
+		<!-- <bcc>admin@clarityenglish.com,support@clarityenglish.com</bcc> -->
+	</head>
+<body>
 {* Also work out some other stuff about the licences to help with wording *}
 {if $account->titles|@count > 1}
 	{assign var='multipleTitles' value='true'}

@@ -1,117 +1,38 @@
 ﻿{* Name: CLS Online subscription welcome *}
-{* Description: Email sent when you have renewed your CLS subscription. *}
+{* Description: Email sent when you have subscribed to CLS online. *}
 {* Parameters: $account *}
 {* Updated for CLS v2 with packages *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome to ClarityLifeSkills</title>
-	<!-- <from>support@claritylifeskills.com</from> -->
-	<!-- <cc>accounts@clarityenglish.com</cc> -->
-	<!-- <bcc>andrew.stokes@clarityenglish.com</bcc> -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Welcome to ClarityLifeSkills.com</title>
+	<!-- <from>%22ClarityLifeSkills%22 %3Cadmin@claritylifeskills.com%3E</from> -->
+	<!-- <bcc>admin@claritylifeskills.com</bcc> -->
 </head>
-<body>
-	
-<div style="margin: 8px;">
-<table style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;" width="600" border="0" cellpadding="0" cellspacing="0">
-  
-  <!--Header area-->
-  <tr>
-	<td width="600" height="96" background="http://www.claritylifeskills.com/email/header_purple.jpg">
-      <a href="http://www.ClarityLifeSkills.com/">
-      	<img src="http://www.claritylifeskills.com/email/header_purple.jpg" alt="www.ClarityLifeSkills.com" width="600" height="96" border="0"/>
-      </a>
-      </td>
-  </tr>
-    <tr>
-	<td>
-    <!--Start Content-->
-    <table width="600" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="24" rowspan="22"></td>
-    <td height="20">    </td>
-    <td width="24" rowspan="22"></td>
-  </tr>
-  <tr>
-    <td background="http://www.claritylifeskills.com/email/title_text.jpg">
-    	<img src="http://www.claritylifeskills.com/email/title_text.jpg" alt=" Welcome to ClarityLifeSkills" width="550" height="27" border="0" style="color:#5F3479; font-weight:bold; font-size:18px; border:0"/>        </td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td>
-    <!--Introduction line-->
-    	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-  <tr>
-    <td>Dear {$account->adminUser->name}</td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td>Thank you for renewing your ClarityLifeSkills subscription. This email lists your package details.</td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td><a href="http://www.ClarityLifeSkills.com" target="_blank">www.ClarityLifeSkills.com</a></td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td>Enter your login details as follows:</td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td height="10"><table border="0" cellspacing="0" cellpadding="0" bgcolor="#EBEBEB" width="100%" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-  <tr>
-    <td width="64%">
-    	<!--Login details-->
-        <table width="100%" height="60" border="0" cellpadding="0" cellspacing="0" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-  <tr>
-    <td colspan="2" height="15"></td>
-  </tr>
-  <tr>
-    <td width="15"></td>
-    <td width="305" height="15">
-       Login name: <strong>{$account->adminUser->email}</strong></td>
-  </tr>
+<body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 0 0; padding:0; color:#000000;">
+<div style="width:600px; margin:0 auto; padding:0;">
 
-  <tr>
-    <td width="15"></td>
-    <td width="305" height="15">Password: <strong>{$account->adminUser->password}</strong></td>
-  </tr>
- <tr>
-    <td colspan="2" height="15"></td>
-  </tr>
-</table>
-		<!--End of Login details-->	</td>
-    <td width="36%"><a href="http://www.claritylifeskills.com/members/login.php"><img src="http://www.claritylifeskills.com/email/start_but_purple.jpg" alt="Start learning now!" style="color:#5F3479; font-weight:bold; font-size:12px; border:0"/></a></td>
-  </tr>
-</table></td>
-  </tr>
-  
-    <tr>
-    <td height="5"></td>
-  </tr>
-</table>
- 	<!--End of Introduction line-->	</td>
-  </tr>
-    <tr>
-    <td height="10" background="http://www.claritylifeskills.com/email/box_line.jpg"></td>
-  </tr>
-  <tr>
-    <td height="5"></td>
-  </tr>
-  <tr>
-    <td>You have subscribed to:</td>
-  </tr>
+	<img src="http://www.claritylifeskills.com/email/header_purple.jpg" alt="www.ClarityLifeSkills.com" style="border:0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; text-align:center"/>
+        
+    
+    <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
+		
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin:0; padding:0 0 2px 0; color:#12384d; font-weight:bold; font-size:18px; background:url(http://www.ClarityLifeSkills.com/email/title_line.jpg) no-repeat bottom left;">Welcome to ClarityLifeSkills</p>
+	
+	  <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0; padding:0; color:#000000;">Dear {$account->adminUser->name}</p>
+		
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Thank you for renewing your ClarityLifeSkills subscription. This email lists your package details. To access the account, please go to this URL:
+<a href="http://www.claritylifeskills.com/members/login.php" target="_blank">www.ClarityLifeSkills.com</a></p>
+
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Enter your login details as follows:</p>
+        
+        
+	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Login name: {$account->adminUser->email}</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Password: {$account->adminUser->password}</p>
+	</div>
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">You have subscribed to:</p>
 <!--Subscription details-->
 {* We currently only have two mutually exclusive packages. So if they have ordered TB it means they have package 1, if IYJ then package 2 *}
 {* Not at all sure how we would work this out if more packages become overlapping. Will need a package ID(s) somewhere in T_AccountRoot *}
@@ -126,7 +47,7 @@
 {if $generalEnglishpackage=='true'}
 	{assign var='thisImage' value='title_GE_email.jpg'}
 	{assign var='thisName' value='General English'}
-	{assign var='thisPackageList' value='3,9,33,39'}
+	{assign var='thisPackageList' value='49,9,33,39'}
 	{include file='file:includes/CLS_welcome_package_details.tpl'}	
 {/if}
 {if $careerEnglishpackage=='true'}
@@ -135,50 +56,22 @@
 	{assign var='thisPackageList' value='10,40,43,1001'}
 	{include file='file:includes/CLS_welcome_package_details.tpl'}	
 {/if}
-  
-  <tr>
-    <td height="5"></td>
-  </tr>
-  <tr>
-    <td height="10" background="http://www.claritylifeskills.com/email/box_line.jpg"></td>
-  </tr>
-  <tr>
-    <td height="5"></td>
-    </tr>
-  
-  
-  
-  <tr>
-    <td height="10">
-{include file='file:includes/CLS_Email_Signature.tpl'}
 
-	</td>
-    </tr>
-  <tr>
-    <td>        </td>
-    </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td height="10" style="font-size:9px">
-   		Your privacy is important to us. Please review ClarityLifeSkills.com privacy policy by clicking here:<br />
-<a href="http://www.ClarityLifeSkills.com/disclaimer.php" target="_blank">http://www.ClarityLifeSkills.com/disclaimer.php</a>    </td>
-    </tr>
-  <tr>
-    <td>    </td>
-    </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
-
-    
-    <!--End of Content--></td>
-  </tr>
-</table>
+	
+<!-- 
+-- Email signature 
+-->
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Please feel free to contact us if you have any quesitons.</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">With best wishes</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Nicole Lung</p>
+	{include file='file:includes/CLS_Email_Signature.tpl'}
+<!--
+-- Privacy and terms and conditions
+-->
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 10px 0; padding:0; color:#000000;">
+	{include file='file:includes/CLS_Privacy.tpl'}
+	</p>
+    </div>
 </div>
 </body>
 </html>

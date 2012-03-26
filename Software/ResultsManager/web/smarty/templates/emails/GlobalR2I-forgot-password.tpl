@@ -37,7 +37,7 @@ font-size: 11px;}
   <tr align="left" valign="top">
     <td height="28" >Login id: <b>{$body.loginID}</b><br/>
 	Password: <b>{$body.password}</b><br/>
-	URL: <a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php">www.ieltspractice.com/BritishCouncil/RoadToIELTS.</a><br/>
+	URL: <a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php?loginID={$body.loginID}">www.ieltspractice.com/BritishCouncil/RoadToIELTS</a><br/>
 	Expiry date: {$body.expiryDate}
 	</td>
     <td height="28" ></td>

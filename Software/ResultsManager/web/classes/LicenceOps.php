@@ -42,7 +42,7 @@ class LicenceOps {
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
 				
-				$aWhileAgo = time() - LICENCE_DELAY*60;
+				$aWhileAgo = time() - LicenceOps::LICENCE_DELAY*60;
 				$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
 				
 				// First, always delete old licences for this product/root
@@ -236,35 +236,105 @@ EOD;
 	/**
 	 * 
 	 * This function updates a licence record with a timestamp
-	 * @param Number $ID
+	 * @param Number $id
+	 * @param Licence $licence
 	 */
-	function updateLicence($id) {
+	function updateLicence($licence) {
 
 		$dateNow = date('Y-m-d H:i:s');
-		
+
+		// The licence slot checking is based on licence type
+		switch ($licence->licenceType) {
+			
+			// Concurrent licences
+			case Title::LICENCE_TYPE_AA:
+			case Title::LICENCE_TYPE_CT:
+				$licenceControlTable = 'T_Licences';
+				break;
+				
+			// TODO. What about single and individual licences?
+			case Title::LICENCE_TYPE_SINGLE:
+			case Title::LICENCE_TYPE_I:
+			
+			// Named licences
+			case Title::LICENCE_TYPE_LT:
+			case Title::LICENCE_TYPE_TT:
+				$licenceControlTable = 'T_LicenceControl';
+				break;
+		}
+				
 		// First need to confirm that this licence record exists
 		$sql = <<<EOD
-			SELECT * FROM T_LicenceControl
+			SELECT * FROM $licenceControlTable
 			WHERE F_LicenceID=?
 EOD;
-		$bindingParams = array($id);
+		$bindingParams = array($licence->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs->RecordCount() == 1) {
-			$rs->Close();
-			
-			$sql = <<<EOD
-				UPDATE T_LicenceControl
-				SET F_LastUpdateTime=?
-				WHERE F_LicenceID=?
+		if (!$rs || $rs->RecordCount() != 1) 
+			throw new Exception("Error, can't find this licence ".$licence->id, 100);
+
+		// Update the licence in the table
+		$sql = <<<EOD
+			UPDATE $licenceControlTable 
+			SET F_LastUpdateTime=?
+			WHERE F_LicenceID=?
 EOD;
-			$bindingParams = array($dateNow, $id);
-			$resultObj = $this->db->Execute($sql, $bindingParams);
-			if ($resultObj)
-				return true;
+		$bindingParams = array($dateNow, $licence->id);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if (!$rs)
+			throw new Exception("Error, can't update this licence ".$licence->id, 100);
+
+	}
+
+	/**
+	 * 
+	 * This function closes this licence record
+	 * @param Number $id
+	 * @param Licence $licence
+	 */
+	function dropLicenceSlot($licence) {
+
+		// The licence slot checking is based on licence type
+		switch ($licence->licenceType) {
+			
+			// Concurrent licences
+			case Title::LICENCE_TYPE_AA:
+			case Title::LICENCE_TYPE_CT:
 				
-		}
+				// First need to confirm that this licence record exists
+				$sql = <<<EOD
+					SELECT * FROM T_Licences
+					WHERE F_LicenceID=?
+EOD;
+				$bindingParams = array($licence->id);
+				$rs = $this->db->Execute($sql, $bindingParams);
+				if (!$rs || $rs->RecordCount() != 1) 
+					throw new Exception("Error, can't find this licence ".$licence->id, 100);
+					
+				$sql = <<<EOD
+					DELETE FROM T_Licences 
+					WHERE F_LicenceID=?
+EOD;
+				$bindingParams = array($licence->id);
+				$rs = $this->db->Execute($sql, $bindingParams);
+				if (!$rs)
+					throw new Exception("Error, can't delete this licence ".$licence->id, 100);
+					
+				break;
 		
-		throw new Exception("Can't update the licence record for $licenceID", 100);
+			// TODO. What about single and individual licences?
+			case Title::LICENCE_TYPE_SINGLE:
+			case Title::LICENCE_TYPE_I:
+			
+			// Named licences
+			case Title::LICENCE_TYPE_LT:
+			case Title::LICENCE_TYPE_TT:
+
+				// Since you NEVER delete the T_LicenceControl records, just do an update
+				updateLicence($licence);
+				break;
+		}
+
 	}
 	
 }

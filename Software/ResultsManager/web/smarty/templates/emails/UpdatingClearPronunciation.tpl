@@ -1,6 +1,6 @@
-{* Name: Updating Clear Pronunciation *}
-{* Description: Use DMS to select all accounts with Clear Pronunciation. Then send this email to them
-	No. All titles will be in titles. *}
+{* Name: _Updating Clear Pronunciation *}
+{* Description: Use DMS to select all accounts with Clear Pronunciation. Then send this email to them *}
+{* Parameters: No. All titles will be in titles. *}
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

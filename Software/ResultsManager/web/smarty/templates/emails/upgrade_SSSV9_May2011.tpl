@@ -1,4 +1,4 @@
-{* Name: Upgrading Study Skills Success *}
+{* Name: _Upgrading Study Skills Success *}
 {* Description: Asking when administrators want to upgrade their SSS *}
 <html>
 	<head>

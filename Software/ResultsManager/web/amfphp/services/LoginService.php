@@ -70,8 +70,6 @@ class LoginService extends AbstractService {
 			$stubUser->email = $loginDetails->email;
 		if ($loginDetails->productCode)
 			$stubUser->userProfileOption = $loginDetails->productCode;
-		if ($loginDetails->expiryDate)
-			$stubUser->expiryDate = $loginDetails->expiryDate;
 		if ($loginDetails->city)
 			$stubUser->city = $loginDetails->city;
 		if ($loginDetails->country)
@@ -84,6 +82,36 @@ class LoginService extends AbstractService {
 			$stubUser->custom3 = $loginDetails->custom3;
 		if ($loginDetails->custom4)
 			$stubUser->custom4 = $loginDetails->custom4;
+		// If an explicit expiryDate is set, that is used
+		if ($loginDetails->expiryDate) {
+			$stubUser->expiryDate = $loginDetails->expiryDate;
+		// if a period is set, calculate the expiryDate based on that
+		} elseif ($loginDetails->subscriptionPeriod) {
+			// parse the period
+			sscanf($loginDetails->subscriptionPeriod, "%d%s", $periodValue, $periodUnit);
+			if ($periodValue && $periodValue>0 && $periodUnit) {
+				switch ($periodUnit) {
+					case "y":
+					case "year":
+						// When you have php 5.3 you can use DateAdd properly
+						$subscriptionSeconds = $periodValue * 31556926;
+						break;
+					case "m":
+					case "month":
+						$subscriptionSeconds = $periodValue * 2629744;
+						break;
+					case "w":
+					case "week":
+						$subscriptionSeconds = $periodValue * 604800;
+						break;
+					case "d":
+					case "day":
+						$subscriptionSeconds = $periodValue * 86400;
+						break;
+				}
+				$stubUser->expiryDate = date('Y-m-d H:m:s', time() + $subscriptionSeconds);
+			}
+		}
 			
 		$stubUser->userType = User::USER_TYPE_STUDENT;
 		$stubUser->registrationDate = date('Y-m-d H:i:s');

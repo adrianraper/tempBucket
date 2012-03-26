@@ -3,14 +3,12 @@
 	<id>/area1/RoadToIELTS2 in dock.projectbench</id>
 	<developer>AR</developer>
 	<dbHost>2</dbHost>
-	<productCode>52</productCode>
-	<productVersion>lastMinute</productVersion>
-	<courseFile>menu-Academic-LastMinute.xml</courseFile>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<streamingMedia />
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN*</language>
-	<contentPath>http://dock.projectbench/Content/</contentPath>
+	<contentPath>http://claritydevelop/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>BentoService</remoteService>

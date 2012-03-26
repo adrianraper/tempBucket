@@ -31,7 +31,7 @@ font-size: 11px;}
   </tr>
   <tr align="left" valign="top">
     <td height="28" >You have been registered for Road to IELTS. The start page for your account is: 
-	<a href="http://http://r2iv2.clarityenglish.com/BritishCouncil/R2IV2/login.php?loginID={$body.loginID}">http://r2iv2.clarityenglish.com/BritishCouncil/R2IV2/login.php</a></td>
+	<a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php?loginID={$body.loginID}">www.ieltspractice.com/BritishCouncil/RoadToIELTS</a></td>
     <td height="28" ></td>
   </tr>
   <tr align="left" valign="top">

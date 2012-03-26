@@ -141,7 +141,7 @@ $reportDom->documentElement->appendChild($reportDom->importNode($copyElement, tr
 
 // v3.4 To cope with the difference between 3 and 5 levels of the Clarity test, for now duplicate based on prefix
 // No, that won't work as I don't know the prefix or root here. The only variable data I can pick up is courseID.
-// So it will have to come as a new template for now.
+// So it will have to come as a new template for now. Set in ReportWindow.mxml
 $xslDom = new DOMDocument();
 $xslDom->load("../../reports/$template/report.xsl");
 

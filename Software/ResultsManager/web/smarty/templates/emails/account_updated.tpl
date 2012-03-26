@@ -5,9 +5,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Clarity English - Your account update</title>
-		<!-- <cc>accounts@clarityenglish.com</cc> -->
-		<!-- <bcc>andrew.stokes@clarityenglish.com</bcc> -->
-</head>
+		<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
+		<!-- <bcc>admin@clarityenglish.com, accounts@clarityenglish.com</bcc> -->
+	</head>
+<body>
 {foreach name=orderDetails from=$account->titles item=title}
 	{if $title->name|stristr:"Results Manager"}
 		{assign var='hasRM' value='true'}
@@ -69,12 +70,24 @@
 -- 3. Setting up a direct link to your Clarity English programs
 -->
 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">3. Setting up a direct link to your Clarity English programs</p>
+{if $hasAARM==true}
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Learners can access your Clarity English programs from <a href="http://www.clarityenglish.com/shared/{$account->prefix}" target="_blank">www.clarityenglish.com/shared/{$account->prefix}</a>. 
+			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access. 
+			Please note that a direct link should only be pasted in a password-protected area of your website. This is to prevent access from unlicensed learners.</p>
+{else}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Learners can access your Clarity English programs from <a href="http://www.clarityenglish.com" target="_blank">www.clarityenglish.com</a>. 
 			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access. 
 			Please note that a direct link should only be pasted in a password-protected area of your website. This is to prevent access from unlicensed learners.</p>
+{/if}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Copy and paste the following direct {if $multipleTitles=='true'}links{else}link{/if} into your website:</p>
 {foreach name=orderDetails from=$account->titles item=title}
 {if !$title->name|stristr:"Results Manager" && !$title->name|stristr:"Practice Centre" && $title->productCode!='3'}
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 10px 0; padding:0; color:#000000;">{include file='file:includes/titleTemplateDetails.tpl' method='startPage'}</p>
+{/if}
+{/foreach}
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">You can also use the following URL for direct access to Results Manager from a teachers' page.</p>
+{foreach name=orderDetails from=$account->titles item=title}
+{if $title->name|stristr:"Results Manager"}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 10px 0; padding:0; color:#000000;">{include file='file:includes/titleTemplateDetails.tpl' method='startPage'}</p>
 {/if}
 {/foreach}
@@ -82,11 +95,11 @@
 -- 4. Support
 -->
 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">4. Support</p>
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If at any time you have queries, requests or suggestions, please do not hesitate to contact the Clarity support team:</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If at any time you have queries, requests or suggestions, please do not hesitate to contact the Clarity Support team:</p>
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">
 	Email: <a href="mailto:support@clarityenglish.com">support@clarityenglish.com</a> <br />
-	United Kingdom phone: 0845 130 5627<br />
-	Hong Kong phone: (+852) 2791 1787
+	United Kingdom : 0845 130 5627<br />
+	Hong Kong : (+852) 2791 1787
 	</p>
 <!-- 
 -- End
@@ -105,8 +118,8 @@
 -- Email signature 
 -->
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 10px 0; padding:0; color:#000000;">Finally, may I take this opportunity to thank you for choosing Clarity programs. We will do everything we can to help you make them a great success with your colleagues and your learners.</p>
-{include file='file:includes/TechnicalDirector_Email_Signature.tpl'}
-</div>
+	{include file='file:includes/TechnicalDirector_Email_Signature.tpl'}
+	</div>
 </div>
 </body>
 </html>

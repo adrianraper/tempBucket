@@ -217,8 +217,26 @@ class BentoService extends AbstractService {
 		
 	}
 	
-	public function logout() {
-		$this->loginOps->logout();
+	public function logout($licence) {
+		
+		$errorObj = array("errorNumber" => 0);
+		
+		try {
+			// Lougout from loginOps
+			$this->loginOps->logout();
+			
+			// And also clear the licence
+			$rs = $this->licenceOps->dropLicenceSlot($licence);
+			
+		} catch (Exception $e) {
+			$errorObj['errorNumber']=$e->getCode(); 
+			$errorObj['errorContext']=$e->getMessage();
+			// In case we didn't set an error number, use our generic unknown one
+			if ($errorObj['errorNumber']==0)
+				$errorObj['errorNumber'] = 100;
+			return array("error" => $errorObj);
+		}
+		return array("error" => $errorObj);		
 	}
 	
 	/**
@@ -288,7 +306,8 @@ class BentoService extends AbstractService {
 		//	a summary at the course level for time spent by me
 		 
 		return array("error" => $errorObj,
-					"progress" => $progress);
+					"progress" => $progress
+		);
 	}
 	
 	/**
@@ -362,15 +381,15 @@ class BentoService extends AbstractService {
 	 * 
 	 * This service call will update the licence record for this user in the database.
 	 *  
-	 *  @param id - key to the table.
+	 *  @param Licence $licence - dummy object for the licence
 	 */
-	public function updateLicence($licenceID) {
+	public function updateLicence($licence) {
 		
 		$errorObj = array("errorNumber" => 0);
 		
 		try {
 			// A successful licence update will not generate an error
-			$rs = $this->licenceOps->updateLicence($licenceID);
+			$rs = $this->licenceOps->updateLicence($licence);
 			
 		} catch (Exception $e) {
 			$errorObj['errorNumber']=$e->getCode(); 
@@ -490,5 +509,5 @@ EOD;
 			
 		return 0;
 	}
-	
+
 }

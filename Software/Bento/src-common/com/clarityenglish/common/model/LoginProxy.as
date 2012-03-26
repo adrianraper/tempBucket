@@ -11,6 +11,9 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -32,10 +35,13 @@ package com.clarityenglish.common.model {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const NAME:String = "LoginProxy";
+		public static const LICENCE_UPDATE_DELAY:Number = 60000;
 		
 		private var _user:User;
 		private var _group:Group;
 		//private var _licence:Licence;
+
+		private var licenceTimer:Timer;
 
 		public function LoginProxy(data:Object = null) {
 			super(NAME, data);
@@ -61,9 +67,9 @@ package com.clarityenglish.common.model {
 			// For AA licences you still do the call as this does getLicenceSlot
 			
 			var loginOption:uint = configProxy.getAccount().loginOption;
-			if (loginOption==1) {
+			if (loginOption & 1) {
 				var loginObj:Object = {username:key, password:password};
-			} else if (loginOption==2) {
+			} else if (loginOption & 2) {
 				loginObj = {studentID:key, password:password};
 			}
 			if (configProxy.getConfig().ip)
@@ -81,8 +87,13 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
-			//onDelegateResult("logout", {status:"success"});
-			new RemoteDelegate("logout", [ ], this).execute();
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var params:Array = [ configProxy.getConfig().licence ];
+			new RemoteDelegate("logout", params, this).execute();
+			
+			// Stop the licence update timer
+			licenceTimer.stop();
 		}
 
 		/**
@@ -196,17 +207,29 @@ package com.clarityenglish.common.model {
 							var sessionData:Object = {user:_user, account:configProxy.getAccount()};
 							sendNotification(BBNotifications.SESSION_START, sessionData);
 							
+							// Create a timer that will be fire off every minute to update the licence
+							licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
+							licenceTimer.start();
 						}
+						
 					} else {
 						// Invalid login
 						sendNotification(CommonNotifications.INVALID_LOGIN);
 					}
+					break;
+					
+				case "updateLicence":
+					// Just check error
+					if (data == false) 
+						sendNotification(CommonNotifications.DATABASE_ERROR);
 					break;
 				
 				case "logout":
 					trace("back from logout");
 					sendNotification(CommonNotifications.LOGGED_OUT);
 					break;
+				
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}
@@ -214,6 +237,19 @@ package com.clarityenglish.common.model {
 		
 		public function onDelegateFault(operation:String, data:Object):void{
 			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		}
+		
+		/**
+		 * A timer handler that tells the database to update the licence record to show that the user is still active 
+		 * @param event
+		 * @param TimerEvent
+		 * 
+		 */
+		private function licenceTimerHandler(event:TimerEvent):void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
+			var params:Array = [ configProxy.getConfig().licence ];
+			new RemoteDelegate("updateLicence", params, this).execute();
 		}
 		
 	}

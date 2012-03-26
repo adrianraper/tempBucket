@@ -106,6 +106,9 @@ class ReportOps {
 					//echo $reportOpt."=".$reportOptValue;
 					$opts[ReportBuilder::SHOW_STUDENTID] = $reportOptValue;
 					break;
+				case "includeEmail":
+					$opts[ReportBuilder::SHOW_EMAIL] = $reportOptValue;
+					break;
 				case "headers":
 					// Headers are just included in the root xml element for the XSL to do whatever it likes with them
 					$headers = $reportOptValue;
@@ -118,6 +121,8 @@ class ReportOps {
 		// v3.4 Summary (test) reports want sessionID to allow grouping
 		if (stripos($template,"summary")!==false) {
 			$opts[ReportBuilder::SHOW_SESSIONID] = true;
+			// And they may want email to be displayed
+			$opts[ReportBuilder::SHOW_EMAIL] = true;
 		}
 		
 		// Create the ReportBuilder and set the options

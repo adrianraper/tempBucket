@@ -1,4 +1,4 @@
-{* Name: Announcing usage stats on demand *}
+{* Name: _Announcing usage stats on demand *}
 {* Description:  *}
 <html>
 	<head>

@@ -11,18 +11,21 @@
 		<xsl:for-each select="/report/row[@userName=$myName and not(@sessionID=preceding-sibling::row/@sessionID)]">
 			<xsl:call-template name="testSectionScores">
 				<xsl:with-param name="myName" select="@userName"/>
+				<xsl:with-param name="myEmail" select="@email"/>
 				<xsl:with-param name="myTest">LearnEnglish Level Test A</xsl:with-param>
 				<xsl:with-param name="mySessionID" select="@sessionID"/>
 				<xsl:with-param name="myStartDate" select="@start_date"/>
 			</xsl:call-template>
 			<xsl:call-template name="testSectionScores">
 				<xsl:with-param name="myName" select="@userName"/>
+				<xsl:with-param name="myEmail" select="@email"/>
 				<xsl:with-param name="myTest">LearnEnglish Level Test B</xsl:with-param>
 				<xsl:with-param name="mySessionID" select="@sessionID"/>
 				<xsl:with-param name="myStartDate" select="@start_date"/>
 			</xsl:call-template>
 			<xsl:call-template name="testSectionScores">
 				<xsl:with-param name="myName" select="@userName"/>
+				<xsl:with-param name="myEmail" select="@email"/>
 				<xsl:with-param name="myTest">LearnEnglish Level Test C</xsl:with-param>
 				<xsl:with-param name="mySessionID" select="@sessionID"/>
 				<xsl:with-param name="myStartDate" select="@start_date"/>
@@ -32,6 +35,7 @@
 	
 	<xsl:template name="testSectionScores">
 		<xsl:param name="myName" />
+		<xsl:param name="myEmail" />
 		<xsl:param name="myTest" />
 		<xsl:param name="mySessionID" />
 		<xsl:param name="myStartDate" />
@@ -41,6 +45,7 @@
 		<xsl:if test="/report/row[@userName=$myName and @unitName=$myTest]" >
 			<tr>
 				<td><xsl:value-of select="$myName"/></td>
+				<td><xsl:value-of select="$myEmail"/></td>
 				<td><xsl:value-of select="$myTest"/></td>
 				<td><xsl:value-of select="$myStartDate"/></td>
 				<xsl:variable name="grammarCorrect" select="sum(/report/row[@userName=$myName and @unitName=$myTest and @sessionID=$mySessionID and @exerciseName='Grammar']/@correct)" />
@@ -261,6 +266,7 @@
 					<table id="reportTable" style="width:100%" gridWidth="100%">
 						<tr>
 							<th type="ro" min-width="200px"><xsl:value-of select="report/language//lit[@name='report_student']"/></th>
+							<th type="ro">Email</th>
 							<th type="ro">Test taken</th>
 							<th type="ro">Date</th>
 							<th type="ro">Grammar</th>
@@ -286,6 +292,7 @@
 						<tr>
 							<xsl:if test="report/row/@groupName"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_group']"/></th></xsl:if>
 							<xsl:if test="report/row/@userName"><th type="ro" min-width="200px"><xsl:value-of select="report/language//lit[@name='report_student']"/></th></xsl:if>
+							<xsl:if test="report/row/@email"><th type="ro">Email</th></xsl:if>
 							
 							<xsl:if test="report/row/@unitName"><th type="ro">Test</th></xsl:if>
 							<xsl:if test="report/row/@exerciseName"><th type="ro">Section</th></xsl:if>
@@ -300,6 +307,7 @@
 							<tr>
 							<td><xsl:value-of select="@groupName"/></td>
 							<td><xsl:value-of select="@userName"/></td>
+							<td><xsl:value-of select="@email"/></td>
 							<td><xsl:value-of select="@unitName"/></td>
 							<td><xsl:value-of select="@exerciseName"/></td>
 							<td><xsl:value-of select="@start_date"/></td>

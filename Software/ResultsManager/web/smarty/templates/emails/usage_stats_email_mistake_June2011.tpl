@@ -1,4 +1,4 @@
-{* Name: Apology for usage stats email splurge *}
+{* Name: _Apology for usage stats email splurge *}
 {* Description: Apology for usage stats email splurge *}
 <html>
 	<head>

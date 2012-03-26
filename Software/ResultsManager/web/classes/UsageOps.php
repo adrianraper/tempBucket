@@ -294,6 +294,43 @@ EOD;
 	}
 	
 	// AR How many title/user licences have been used so far in this licence period?
+	// v3.5 Try using T_LicenceControl instead of session
+	private function xxgetTitleUserCounts($title, $rootID, $fromDateStamp = null) {
+		if (!$fromDateStamp)
+			$fromDateStamp = $this->getLicenceClearanceDate($title);
+		$fromDate = strftime('%Y-%m-%d 00:00:00', $fromDateStamp);
+		
+		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		if ($title->licenceType == 6) {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
+				FROM T_LicenceControl c, T_User u
+				WHERE c.F_ProductCode = ?
+				AND c.F_UserID = u.F_UserID
+				AND c.F_LastUpdateTime >= ?
+EOD;
+		} else {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
+				WHERE F_ProductCode = ?
+				AND F_LastUpdateTime >= ?
+EOD;
+		}
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+		} else {
+			$sql.= " AND F_RootID = $rootID";
+		}
+		$rs = $this->db->GetRow($sql, array($title->productCode, $fromDate));
+		if (!$rs) {
+			$licencesUsed = (int)$rs['licencesUsed'];
+		} else {
+			$licencesUsed = 0;
+		}
+		return $licencesUsed;
+	}
 	//private function getTitleUserCounts($title, $rootID) {
 	private function getTitleUserCounts($title, $rootID, $fromDateStamp = null) {
 		// AR We want special processing for counting licences in perpetual licences, basically a rolling 1 year.
@@ -991,98 +1028,6 @@ EOD;
 			}
 			//echo $this->emailOps->fetchEmail($templateID, array("account" => $account, "session" => $securityString))."<hr/>";
 		}
-	}
-	*/
-	/*
-	public function getCCBCoverage($reportables, $startDate=0, $endDate=0, $userID, $singleStyle=null) {
-		//$productList = implode(",", $reportables);
-		// I just use fixed product which can be used by CCB here first.
-		// 50 is Clear Pronunciation 2
-		// 51 is Clarity Course Builder self.
-		$productList = '1, 9, 10, 12, 13, 17, 20, 33, 37, 39, 40, 41, 43, 49, 50, 51';
-		// In order to have just one function, allow just one call to be made at a time
-		if ($userID > 0) {
-			$sql = 	"SELECT c.F_ExerciseID id, count(distinct c.F_ScoreCorrect) completed, round(avg(c.F_ScoreCorrect+c.F_ScoreMissed),0) total,
-							c.F_UnitID uid, c.F_CourseID cid, s.F_ProductCode pid
-					FROM T_Session s, T_Score c
-					WHERE s.F_ProductCode IN ( $productList )
-						AND s.F_UserID = ?
-						AND s.F_SessionID = c.F_SessionID
-					GROUP BY c.F_ExerciseID
-					ORDER BY c.F_ExerciseID ";
-			$rs = $this->db->GetArray( $sql, $userID );
-		} else {
-			$rs = array();
-		}
-
-		return $rs;
-	}
-	
-	public function getCCBEveryonesCoverage($reportables, $startDate = 0, $endDate = 0, $userID, $rootID = null, $country = 'worldwide') {
-		// I just use fixed product which can be used by CCB here first.
-		// 50 is Clear Pronunciation 2
-		// 51 is Clarity Course Builder self.
-		$productList = '1, 9, 10, 12, 13, 17, 20, 33, 37, 39, 40, 41, 43, 49, 50, 51';
-	
-		if ( $userID > 0 ) {
-			$bindingParams = array($userID);
-	
-			$sql = "SELECT s.F_userID userID, c.F_ExerciseID itemID, 
-								1 completed, 
-								1 total
-						FROM T_Score c, T_Session s
-						WHERE s.F_ProductCode IN ($productList)			
-						AND s.F_UserID != ?
-						AND s.F_SessionID = c.F_SessionID ";
-	
-			if ($startDate > 0) {
-				$sql .= " AND s.F_StartDateStamp >= ?";
-				$bindingParams[] = $startDate;
-			}
-			$sql .= "GROUP BY s.F_UserID, c.F_ExerciseID
-					ORDER BY c.F_ExerciseID";
-	
-			$workingrs = $this->db->GetArray($sql, $bindingParams);
-
-			$authorplusrs = array();
-			// Now we need to add up the completed and total for each itemID
-			$thisItemID = "";
-			$thisItem = array();
-			foreach ($workingrs as $record) {
-				// is this record for a new itemID?
-				if ($thisItemID != $record['itemID']) {
-					if ($thisItemID != "") {
-						array_push($authorplusrs, $thisItem);
-						$thisItem = array();
-					}
-					$thisItem['id'] = $record['itemID'];
-					$thisItemID = $record['itemID'];
-				}
-				$thisItem['completed']+= $record['completed'];
-				$thisItem['total']+= $record['total'];
-			}
-		} else {
-			$authorplusrs = array();
-		}
-	
-		$bindingParams = array($userID);
-		// This call for all countries
-		$sql = "SELECT count(distinct s.F_UserID) users, c.F_CourseID id 
-				FROM T_Session s, T_Score c 
-				WHERE s.F_ProductCode IN ($authorPlusList) 
-					AND s.F_UserID != ? 
-					AND s.F_SessionID = c.F_SessionID 
-					AND c.F_CourseID is not null ";
-		if ($startDate > 0) {
-			// v3.3 MySQL conversion
-			$sql.= "AND s.F_StartDateStamp >= ? ";
-			$bindingParams[] = $startDate;
-		}
-		$sql .= "GROUP BY c.F_CourseID";
-		
-		$overallrs = $this->db->GetArray($sql, $bindingParams);
-		// Add this as the first records in the return array. Yikes, that is so clumsy.
-		return array_merge($overallrs, $authorplusrs);
 	}
 	*/
 }

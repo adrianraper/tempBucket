@@ -67,7 +67,7 @@ try {
 	// Read and validate the data
 	// This will return an array of login requests
 	$apiInformation = loadAPIInformation();
-	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
+	AbstractService::$log->debug("api=".$apiInformation->toString());
 	//echo "loaded API";
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
@@ -101,13 +101,16 @@ try {
 			
 			if ($user==false) {
 				$user = $loginService->addUser($apiInformation);
+				AbstractService::$debugLog->info("added new user ".$user->name." expire on ".$user->expiryDate);
 				
 				// If we want to send an email on adding a new user, do it here
 				if ($apiInformation->emailTemplateID) {
 					$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);
 					AbstractService::$debugLog->info("sent email to ".$user->email.' using '.$apiInformation->emailTemplateID);
 				}
-			}			
+			} else {
+				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
+			}
 			break;
 			
 		default:

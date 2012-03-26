@@ -41,12 +41,21 @@
 {elseif $title->name|stristr:"It's Your Job"}
 	{assign var='titleImage' value='iyj'}
 	{assign var='startPageFolder' value='ItsYourJob'}
+{elseif $title->name|stristr:"Clear Pronunciation 2"}
+	{assign var='titleImage' value='cp2'}
+	{assign var='startPageFolder' value='ClearPronunciation2'}
 {elseif $title->name|stristr:"Clear Pronunciation"}
 	{assign var='titleImage' value='cp'}
 	{assign var='startPageFolder' value='ClearPronunciation'}
 {elseif $title->name|stristr:"English for Hotel Staff"}
 	{assign var='titleImage' value='efhs'}
 	{assign var='startPageFolder' value='EnglishForHotelStaff'}
+{elseif $title->name|stristr:"Access UK"}
+	{assign var='titleImage' value='auk'}
+	{assign var='startPageFolder' value='AccessUK'}
+{elseif $title->name|stristr:"Practical Placement Test"}
+	{assign var='titleImage' value='ppt'}
+	{assign var='startPageFolder' value='PracticalPlacementTest'}
 {elseif $title->name|stristr:"Issues in English 2"}
 	{assign var='titleImage' value='iie2'}
 	{assign var='startPageFolder' value='IssuesInEnglish2'}
@@ -82,6 +91,10 @@
 {if $method=='startPage'}
 	{if $title->name|stristr:"It's Your Job"}
 		http://www.ClarityEnglish.com/area1/{$startPageFolder}/index.php?prefix={$account->prefix}</br>
+	{* Actually no harm in using prefix for RM - it is just ignored
+		{elseif $title->name|stristr:"Results Manager"}
+			http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php</br>
+	*}
 	{else}
 		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php?prefix={$account->prefix}</br>
 	{/if}

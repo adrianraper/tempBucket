@@ -24,6 +24,7 @@ class LoginAPI {
 	var $custom2;
 	var $custom3;
 	var $custom4;
+	var $subscriptionPeriod;
 	
 	function LoginAPI() {
 	}
@@ -70,6 +71,8 @@ class LoginAPI {
 			$this->custom3 = $info['custom3'];
 		if (isset($info['custom4'])) 
 			$this->custom4 = $info['custom4'];
+		if (isset($info['subscriptionPeriod'])) 
+			$this->subscriptionPeriod = $info['subscriptionPeriod'];
 			
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account
@@ -94,6 +97,10 @@ class LoginAPI {
 			$buildString.= ', studentID:'.$this->studentID;
 		if (isset($this->email))
 			$buildString.= ', email:'.$this->email;
+		if (isset($this->rootID))
+			$buildString.= ' in root:'.$this->rootID;
+		if (isset($this->groupID))
+			$buildString.= ', group:'.$this->groupID;
 		return 'API '.$buildString;
 	}
 }

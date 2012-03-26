@@ -1,14 +1,14 @@
 {* Name: Trial nearly over *}
-{* Description: Email sent when titles in a TRIAL account are going to expire. 
-	$account, $expiryDate, $template_dir *}
+{* Description: Email sent when titles in a TRIAL account are going to expire. *}
+{* Parameters: $account, $expiryDate, $template_dir *}
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Clarity English - trial account expires tomorrow</title>
-		<!-- <from>info@clarityenglish.com</from> -->
-		<!-- <bcc>andrew.stokes@clarityenglish.com</bcc> -->
-
-</head>
+		<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
+		<!-- <bcc>admin@clarityenglish.com</bcc> -->
+	</head>
+<body>
 {* Also work out some other stuff about the licences to help with wording *}
 {if $account->titles|@count > 1}
 	{assign var='multipleTitles' value='true'}
@@ -48,6 +48,7 @@
 -- Email footer
 -->
 {include file='file:includes/Monthly_Email_Footer.tpl'}
+</div>
 </div>
 </body>
 </html>

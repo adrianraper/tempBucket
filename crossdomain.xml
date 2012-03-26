@@ -6,4 +6,5 @@
    <allow-access-from domain="*.clarityenglish.com" />
    <allow-access-from domain="*.claritylifeskills.com" />
    <allow-access-from domain="*.vimeo.com" />
+   <allow-access-from domain="claritydevelop" />
 </cross-domain-policy>

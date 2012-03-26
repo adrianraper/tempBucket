@@ -11,16 +11,43 @@
       
       <tr>
     <td width="9" height="103" ></td>
-    <td width="84"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_bookery.jpg" width="72" height="77" align="right" style="margin:10px 0;" /></td>
+    <td width="84"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_bookery.jpg" width="53" height="86" align="right" style="margin:2px 0 0 10px;" /></td>
     <td width="9"></td>
     <td width="258" align="left" valign="top">
      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Richard Hughes</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Markus Maciulaitis</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">
-		Bookery<br />
+		Bookery Education<br />
 		Australia<br />
-		Tel: 03 9416 2115<br />
+		Tel: 03 9654 2883<br />
 		Email: <a href="mailto: info@bookery.com.au">info@bookery.com.au</a>	</p>   </td>
+  </tr>
+    <tr>
+      <td valign="top"></td>
+    </tr>
+  <tr>
+    <td height="27" colspan="4" background="http://www.clarityenglish.com/images/email/q_bottom.jpg"></td>
+    </tr>
+</table>
+{elseif $resellerCode=='23'}
+	{* Sinirsiz Egitim Hizmetleri *}
+<table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED">
+      <tr>
+        <td height="45" colspan="4" background="http://www.clarityenglish.com/images/email/q_top.jpg">
+          <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; margin:0; padding:20px 0 0 70px; color:#000000; font-weight:bold;">Reminder</p>        </td>
+      </tr>
+      <tr>
+    <td width="9" height="103" ></td>
+    <td width="84"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_ues.jpg" width="46" height="88" align="right" style="margin:2px 0 0 10px;" /></td>
+    <td width="9"></td>
+    <td width="258" align="left" valign="top">
+     <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Ali Uzunyolcu</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">
+		Unlimited Educational Services<br />
+		Turkey<br />
+		Tel: 90 212 571 37 17<br />
+		Email: <a href="mailto: administrator@eltturkey.com">administrator@eltturkey.com</a>	</p>   </td>
   </tr>
     
     
@@ -141,12 +168,12 @@
     <td width="8"></td>
     <td width="250" align="left" valign="top">
       <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Subramoni Iyer</strong></p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mrs Shameema Parveen </strong></p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">
 		Edutech Middle East<br />
 		United Arab Emirates<br />
 		Tel: [971] 4 357 2002<br />
-		Email: <a href="mailto: subramoni@edutech.com">subramoni@edutech.com</a>
+		Email: <a href="mailto: shameema@edutech.com">shameema@edutech.com</a>
       </p></td>
   </tr>
     
