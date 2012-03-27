@@ -36,7 +36,10 @@
 			
 			// For standardised date formatting
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.accountName = configProxy.getConfig().accountName;
 			view.dateFormatter = configProxy.getDateFormatter();
+			view.productVersion = configProxy.getProductVersion() || "fullVersion";
+			view.productCode = configProxy.getProductCode() || 52;
 			
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;

@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.view.home.ui.CourseBarRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -64,6 +65,11 @@ package com.clarityenglish.ielts.view.home {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		private var _productVersion:String;
+		private var _productCode:uint;
+		private var _licenceType:uint;
+		private var _accountName:String;
+		
 		[Bindable]
 		public var noProgressData:Boolean;
 		
@@ -95,8 +101,13 @@ package com.clarityenglish.ielts.view.home {
 					break;
 				
 				case welcomeLabel:
-					instance.text="Welcome, " + user.fullName + ".";
+					if (licenceType == Title.LICENCE_TYPE_AA) {
+						instance.text="Licenced to " + accountName + ".";
+					} else {
+						instance.text="Welcome, " + user.fullName + ".";
+					}
 					break;
+				
 				case noticeLabel:
 					if (user.examDate) {
 						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
@@ -114,6 +125,25 @@ package com.clarityenglish.ielts.view.home {
 					break;
 			}
 		}
+		public function set productVersion(value:String):void {
+			_productVersion = value;
+		}
+		public function set productCode(value:uint):void {
+			_productCode = value;
+		}
+		public function set licenceType(value:uint):void {
+			_licenceType = value;
+		}
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		public function get accountName():String {
+			return _accountName;
+		}
+		public function set accountName(value:String):void {
+			_accountName = value;
+		}
+				
 		/**
 		 * The user has clicked a course button
 		 * 
