@@ -42,7 +42,7 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="210" top="7" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="460" top="0" />
 		<s:Label text="{hostComponent.productVersionText}" top="10" left="500" color="#FFFFFF" />
-		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Menu" right="10" top="4" />
+		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Back to Menu" right="10" top="4" />
 	</s:Group>
 	
 	<s:HGroup width="100%" height="100%">

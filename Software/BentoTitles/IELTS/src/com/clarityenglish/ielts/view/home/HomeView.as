@@ -102,7 +102,7 @@ package com.clarityenglish.ielts.view.home {
 						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
 						var daysUnit:String = (daysLeft==1) ? "day" : "days";
 						if (daysLeft > 0) {
-							instance.text = "You have less than " + daysLeft.toString() + " " + daysUnit + " until your test.";
+							instance.text = "You have fewer than " + daysLeft.toString() + " " + daysUnit + " until your test.";
 						} else if (daysLeft == 0) {
 							instance.text = "Good luck with your test!";
 						} else {

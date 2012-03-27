@@ -15,16 +15,19 @@
 	<fx:Declarations> 
 		<fx:String id="creditsTextAsHTML"><![CDATA[					
 			<p align='left'>
+			<b>Project Manager</b><br />
+			Greg Selby</p>
+			
+			<p align='left'>
 			<b>Lead Programmer</b><br />
 			Dave Keen</p>
 			
 			<p align='left'>
-			<b>Video Recordings</b><br />
-			Producer<br />
+			<b>Video recordings</b><br />
 			Andy Lewis</p>
 			
 			<p align='left'>
-			<b>Sources of Original Articles and Images</b></p>
+			<b>Sources of original articles and images</b></p>
 			<p align='left'>
 			Photo images are taken from Shutterstock with permission.</p>
 			<p align='left'>
@@ -83,7 +86,7 @@
 			</p>
 			
 			<p align='left'>
-			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the publisher will be pleased<br /> to make the necessary arrangements.
+			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British Council will be pleased<br /> to make the necessary arrangements.
 			</p>]]>
 		</fx:String>
 		<fx:String id="helpTextAsHTML"><![CDATA[					
@@ -117,7 +120,9 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-
+		<s:RichText width="65%" paddingLeft="0" paddingTop="10" >
+		<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please contact Clarity.</s:span></s:p>
+		</s:RichText>
 			<s:HGroup paddingTop="10" width="100%">
 				<s:SWFLoader width="39" height="42"
 							 source="@Embed(source='skins/ielts/assets/technical.png')" />

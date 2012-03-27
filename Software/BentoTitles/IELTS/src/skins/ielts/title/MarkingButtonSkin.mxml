@@ -23,7 +23,7 @@ in accordance with the terms of the license agreement accompanying it.
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="94" minHeight="32" 
+				   minWidth="134" minHeight="32" 
 				   alpha.disabled="0.5">
 	
 	<fx:Metadata>
@@ -76,7 +76,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 2: fill -->
 		<!--- @private -->
-		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" width.over="98" width.down="98" topLeftRadiusY="6" topLeftRadiusX="6" topRightRadiusX="6" topRightRadiusY="6" 
+		<s:Rect id="fill" left="2" right="1" top="2" bottom="2" width.over="106" width.down="106" topLeftRadiusY="6" topLeftRadiusX="6" topRightRadiusX="6" topRightRadiusY="6" 
 				>
 			<s:fill>
 				<s:LinearGradient rotation="90">
@@ -94,13 +94,25 @@ in accordance with the terms of the license agreement accompanying it.
 	
 	<!-- layer 8: text -->
 	<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+	<s:Group>
+		
 	
-	<s:Label id="labelDisplay" color="0xFFFFFF" paddingRight="8" paddingLeft="8"
+	<s:Group x="28" y="10">
+		<s:Path winding="nonZero" data="M15.416 1.57715L14.1094 0.268555C13.7549 -0.0908203 13.1074 -0.0864258 12.7627 0.265137L4.64258 8.3833 2.69238 6.6333C2.32813 6.30566 1.73535 6.31885 1.38379 6.6665L0.27832 7.77197C0.0966797 7.95264 -0.00488281 8.20361 0 8.45947 0.00488281
+			  8.71338 0.113281 8.95752 0.301758 9.13818L4.24219 12.8091C4.41895 12.9702 4.64746 13.0591 4.88477 13.0591 5.13867 13.0591 5.37695 12.9604 5.55664 12.7808L15.416 2.92041C15.5957 2.74072 15.6943 2.50146 15.6943 2.24707 15.6943 1.99316 15.5947 1.75439
+			  15.416 1.57715Z" >
+			<s:fill>
+				<s:SolidColor color="#ffffff"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+	<s:Label id="labelDisplay" color="0xFFFFFF" paddingRight="8" paddingLeft="40"
 			 textAlign="center"
 			 verticalAlign="middle"
 			 maxDisplayedLines="1"
 			 horizontalCenter="0" verticalCenter="1"
 			 left="0" right="22" top="22" bottom="0">
-	</s:Label>    
+	</s:Label>  
+	</s:Group>
 </s:SparkButtonSkin>
 

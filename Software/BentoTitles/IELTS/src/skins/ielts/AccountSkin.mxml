@@ -137,7 +137,7 @@
 							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
 								<s:Label text="New password:"  />
 								<s:Spacer width="40"/>
-								<s:TextInput id="newPassword" width="180" />
+								<s:TextInput id="newPassword" width="180"  />
 							</s:HGroup>
 							<s:Spacer height="3" />
 							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >

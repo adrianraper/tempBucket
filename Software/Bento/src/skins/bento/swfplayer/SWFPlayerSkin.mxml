@@ -9,6 +9,6 @@
 	
 	<s:SWFLoader id="loadingGraphic" horizontalCenter="0" verticalCenter="0" />
 	
-	<mx:SWFLoader id="swfLoader" horizontalCenter="0" verticalCenter="0" />
+	<mx:SWFLoader id="swfLoader" horizontalCenter="0" top="20" />
 	
 </s:Skin>

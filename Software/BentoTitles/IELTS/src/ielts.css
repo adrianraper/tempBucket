@@ -82,7 +82,7 @@ login|LoginView {
 login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
 	borderVisible: true;
-	borderColor: #E6E6E6;
+	borderColor: #E6E6E6; 
 	contentBackgroundColor: #FFFFFF;
 }
 

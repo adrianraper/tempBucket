@@ -76,7 +76,7 @@
 			</s:stroke>
 		</s:Line>
 		
-		<zone:HideIcon courseColor="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" courseColorDark="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" includeIn="selectedStates" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ShowIcon')" includeIn="unselectedStates" />
+		<zone:HideIcon courseColor="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}" courseColorDark="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}" rotation="270" includeIn="selectedStates" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ShowIcon')" includeIn="unselectedStates" alpha.over="0.7" rotation.over="180" rotation.down="180"   />
 	</s:Group>
 </s:SparkButtonSkin>
