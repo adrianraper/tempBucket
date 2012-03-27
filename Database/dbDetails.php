@@ -25,6 +25,12 @@ class DBDetails {
 				$this->dbname = "global_r2iv2";
 				break;
 			case 2:
+				$this->driver = "mysql"; 
+				$this->host = "ClarityDevelop"; 
+				$this->user = "root"; 
+				$this->password = "Sunshine1787"; 
+				$this->dbname = "rack80829";
+				break;
 			default:
 				$this->driver = "mysql"; 
 				$this->host = "localhost";  

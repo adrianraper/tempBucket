@@ -110,8 +110,10 @@ EOD;
 					$licenceID = $this->checkExistingLicence($user, $productCode, $licence);
 					if ($licenceID) {
 						
+						$licence->id = $licenceID;
+						
 						// If so, update their use of it
-						$rc = $this->updateLicence($licenceID);
+						$rc = $this->updateLicence($licence);
 						
 					} else {
 						
@@ -261,6 +263,9 @@ EOD;
 			case Title::LICENCE_TYPE_TT:
 				$licenceControlTable = 'T_LicenceControl';
 				break;
+				
+			default:
+				throw new Exception('The licence type '. $licence->licenceType .' is not recognised', 100);
 		}
 				
 		// First need to confirm that this licence record exists
