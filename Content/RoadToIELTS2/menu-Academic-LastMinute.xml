@@ -1,14 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
   <!--Road to IELTS 2, Last Minute, Academic-->
   <head>
     <script id="model" type="application/xml">
       <menu id="52">
-		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
+		<course id="1287130100000" class="reading" caption="Reading" description="" >
 			<groups>
-				<group id="1" caption="Set 1" task="1" description="You will practise Short answer questions and Table completion in social and education listening tests." />
+				<group id="1" caption="Set 1" task="1" description="" />
 				<group id="2" caption="Set 2" task="1" description="" />
 				<group id="3" caption="Set 3" task="1" description="" />
+				<group id="4" caption="Set 4" task="1" description="" />
+				<group id="5" caption="Set 5" task="1" description="" />
+				<group id="6" caption="Set 6" task="1" description="" />
+				<group id="7" caption="Set 7" task="1" description="" />
+				<group id="8" caption="Set 8" task="1" description="" />
+				<group id="9" caption="Set 9" task="1" description="" />
+				<group id="10" caption="Set 10" task="1" description="" />
+				<group id="11" caption="Set 11" task="1" description="" />
+				<group id="12" caption="Set 12" task="1" description="" />
 			</groups>
 			<unit id="1287130110000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" enabledFlag="3"  />
@@ -120,7 +129,7 @@
 				<exercise id="1287130310003" caption="Advice" href="speaking/questionzonevideo1.rss" />
 			</unit>
 			<unit id="1287130330000" class="advice-zone">
-				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="IELTS Speaking Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
+				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="IELTS Speaking Advice" scriptHref="speaking/pdf/speaking_tutorial2.pdf" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" />
 				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" enabledFlag="8" />
 				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" />
 				<exercise id="1287130330004" href="speaking/advicezonevideo4.rss" caption="Advice: Coping with nerves" thumbnail="speaking/thumbnails/speaking_coping.jpg" />
@@ -267,7 +276,7 @@
 				<exercise id="1156181253915" group="2" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_linking2.jpg">
 				  <!--Dropdown TB-->
 				</exercise>
-				<exercise id="1156181253598" group="2" caption="Ideas for the writing task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
+				<exercise id="1156181253598" group="2" caption="Ideas for the Writing Task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
 				  <!--D&D TB-->
 				</exercise>
 				<exercise id="1156181253928" group="2" caption="Practice activity E" href="writing/exercises/1156181253928.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_practice.jpg">
@@ -363,7 +372,7 @@
 				<exercise id="1154106427713" group="6" caption="Introduction" href="writing/exercises/1154106427713.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344151941" group="6" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
+				<exercise id="1151344151941" group="6" caption="Ideas for a Writing Task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
 				<exercise id="1155192197437" group="6" caption="Arguments" href="writing/exercises/1155192197437.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_arguments.jpg">

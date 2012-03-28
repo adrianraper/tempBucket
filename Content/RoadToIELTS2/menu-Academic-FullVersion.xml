@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
   <!--Road to IELTS 2, Full Version, Academic-->
   <head>
@@ -725,7 +725,7 @@
 				<exercise id="1156165919363" group="3" caption="Conditional in hypothetical discussion" href="writing/exercises/1156165919363.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1156165919675" group="3" caption="Ideas for a writing task" href="writing/exercises/1156165919675.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_introduction.jpg">
+				<exercise id="1156165919675" group="3" caption="Ideas for a Writing Task" href="writing/exercises/1156165919675.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1156165919738" group="3" caption="Practice activity C" href="writing/exercises/1156165919738.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_introduction.jpg">
@@ -773,7 +773,7 @@
 				<exercise id="1156181253915" group="5" caption="Linking words and phrases (2)" href="writing/exercises/1156181253915.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_linking2.jpg">
 				  <!--Dropdown TB-->
 				</exercise>
-				<exercise id="1156181253598" group="5" caption="Ideas for the writing task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
+				<exercise id="1156181253598" group="5" caption="Ideas for the Writing Task" href="writing/exercises/1156181253598.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_ideasforwt.jpg">
 				  <!--D&D TB-->
 				</exercise>
 				<exercise id="1156181253928" group="5" caption="Practice activity E" href="writing/exercises/1156181253928.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/writing1t2_practice.jpg">
@@ -784,6 +784,8 @@
 				</exercise>
 				<exercise id="1156334683219" group="6" caption="Introduction" href="writing/exercises/1156334683219.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_introduction.jpg">
 				  <!--Presentation - TB-->
+				</exercise>
+				<exercise id="1156334683158" group="6" caption="Describing an object" href="writing/exercises/1156334683158.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_describing.jpg">
 				</exercise>
 				<exercise id="1156334683833" group="6" caption="Express purpose, cause and result" href="writing/exercises/1156334683833.xml" enabledFlag="3" difficulty="2" thumbnail="writing/thumbnails/writing2t1_expresspcr.jpg">
 				  <!--D&D TB-->
@@ -860,7 +862,7 @@
 				<exercise id="1153925866014" group="9" caption="Introduction" href="writing/exercises/1153925866014.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1153929967942" group="9" caption="Ideas for a writing task" href="writing/exercises/1153929967942.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
+				<exercise id="1153929967942" group="9" caption="Ideas for a Writing Task" href="writing/exercises/1153929967942.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1151344537567" group="9" caption="Free museums" href="writing/exercises/1151344537567.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
@@ -950,7 +952,7 @@
 				<exercise id="1151344151248" group="12" caption="Adverbs" href="writing/exercises/1151344151248.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344151845" group="12" caption="%20'Signpost' expressions" href="writing/exercises/1151344151845.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
+				<exercise id="1151344151845" group="12" caption="'Signpost' expressions" href="writing/exercises/1151344151845.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1151344151514" group="12" caption="Practice activity A" href="writing/exercises/1151344151514.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
@@ -962,7 +964,7 @@
 				<exercise id="1154106427713" group="13" caption="Introduction" href="writing/exercises/1154106427713.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344151941" group="13" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
+				<exercise id="1151344151941" group="13" caption="Ideas for a Writing Task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
 				<exercise id="1155192197437" group="13" caption="Arguments" href="writing/exercises/1155192197437.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_arguments.jpg">
@@ -1019,7 +1021,7 @@
 				<exercise id="1154110371956" group="15" caption="Introduction" href="writing/exercises/1154110371956.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344172726" group="15" caption="Ideas for the writing task" href="writing/exercises/1151344172726.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
+				<exercise id="1151344172726" group="15" caption="Ideas for the Writing Task" href="writing/exercises/1151344172726.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1151344172370" group="15" caption="Organising your ideas" href="writing/exercises/1151344172370.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
@@ -1067,7 +1069,7 @@
 				<exercise id="1151344194254" group="16" caption="Describing a process" href="writing/exercises/1151344194254.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344194088" group="16" caption="Advice for writing task 1" href="writing/exercises/1151344194088.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
+				<exercise id="1151344194088" group="16" caption="Advice for Writing Task 1" href="writing/exercises/1151344194088.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
 				<exercise id="1151344194371" group="16" caption="Practice activity A" href="writing/exercises/1151344194371.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t1_introduction.jpg">
