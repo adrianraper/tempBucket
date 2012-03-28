@@ -170,6 +170,7 @@
 										<fx:Script>
 											<![CDATA[
 												import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+												
 												override public function set data(value:Object):void {
 													super.data = value;
 													
@@ -183,10 +184,9 @@
 													// #213
 													enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 												}
+												
 												private function onScriptButtonClick(event:MouseEvent):void {
-													trace("clicked script button for " + data.@scriptHref);
 													dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@scriptHref));
-													// And stop the click bubbling to the item please?
 												}
 											]]>
 										</fx:Script>
@@ -195,10 +195,10 @@
 												<s:SolidColor color="#000000" />
 											</s:fill>
 										</s:Rect>
-										<s:HGroup top="0" left="0" height="38" >
+										<s:HGroup top="0" left="0" height="38">
 											<s:Image id="image" width="68" />
 											<s:VGroup height="100%">
-												<s:Label id="videoLabel" width="150" paddingTop="7" fontWeight="bold"/>
+												<s:Label id="videoLabel" width="150" paddingTop="7" fontWeight="bold" />
 												<s:Button id="scriptButton" label="script" />
 											</s:VGroup>
 										</s:HGroup>
@@ -343,7 +343,6 @@
 														enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 													}
 												}
-			
 												
 												protected function onViewButtonClick(event:MouseEvent):void {
 													dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@answerHref));

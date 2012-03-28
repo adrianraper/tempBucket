@@ -219,6 +219,7 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 				case popoutExerciseSelector:
 				case examPracticeDataGroup:
+				case adviceZoneVideoList:
 					instance.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
 				case examPracticeAnswerDataGroup:

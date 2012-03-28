@@ -322,7 +322,7 @@ package com.clarityenglish.ielts.view.title {
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			backToMenu.dispatch();
 			// #260 
-			logoutButton.enabled = false;
+			if (logoutButton) logoutButton.enabled = false;
 			shortDelayTimer = new Timer(1000, 60);
 			shortDelayTimer.start();
 			shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
@@ -337,7 +337,7 @@ package com.clarityenglish.ielts.view.title {
 		// #260 
 		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
 		private function timerHandler(event:TimerEvent):void {
-			if (zoneView.isMediated) {
+			if (zoneView && zoneView.isMediated) {
 				callLater(resetLogoutButton, new Array(event));
 				shortDelayTimer.stop();
 			}
