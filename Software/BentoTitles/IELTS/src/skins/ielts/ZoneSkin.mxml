@@ -159,9 +159,9 @@
 						<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 						<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-						<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
+						<s:List id="adviceZoneVideoList" width="490" horizontalScrollPolicy="off" borderVisible="false" change="onAdviceZoneVideoSelect(event)">
 							<s:layout>
-								<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="10" horizontalGap="5" />
+								<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="250" verticalGap="10" horizontalGap="5" />
 							</s:layout>
 							
 							<s:itemRenderer>
@@ -198,7 +198,7 @@
 										<s:HGroup top="0" left="0" height="38">
 											<s:Image id="image" width="68" />
 											<s:VGroup height="100%">
-												<s:Label id="videoLabel" width="150" paddingTop="7" fontWeight="bold" />
+												<s:Label id="videoLabel" width="160" paddingTop="7" fontWeight="bold" />
 												<s:Button id="scriptButton" label="script" />
 											</s:VGroup>
 										</s:HGroup>
