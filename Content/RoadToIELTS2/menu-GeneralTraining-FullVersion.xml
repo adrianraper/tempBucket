@@ -340,7 +340,7 @@
 				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" />
 				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" />
 				<exercise id="1287130330004" href="speaking/advicezonevideo4.rss" caption="Advice: Coping with nerves" thumbnail="speaking/thumbnails/speaking_coping.jpg" />
-				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Speaking section 1" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" />
+				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Phase 1" scriptHref="speaking/pdf/tutorial_script1.pdf" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" />
 				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Speaking section 2" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" />
 			</unit>
 			<unit id="1287130340000" class="practice-zone">

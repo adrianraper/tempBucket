@@ -75,7 +75,7 @@
 			<s:HGroup>
 				<s:VGroup width="149" >
 					<ui:ImageItemRenderer id="imageItemRenderer" width="149" height="160" href="{hostComponent.href}" courseClass="{hostComponent.courseClass}" />
-					<ui:DifficultyRenderer id="difficultyRenderer" courseClass="{hostComponent.courseClass}" />		
+					<ui:DifficultyRenderer id="difficultyRenderer" visible="{hostComponent.courseClass != 'speaking'}" courseClass="{hostComponent.courseClass}" />		
 				</s:VGroup>
 				
 				<s:List id="exerciseList" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.exercises)}" 

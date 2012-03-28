@@ -71,6 +71,7 @@
 		
 		
 		<s:VGroup width="120" height="100%" >	
+			<s:Label id="countdownHeading" text="How long until my test?"  />
 			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.userDetails.examDate}"/>
 			
 			<s:Spacer height="3" />

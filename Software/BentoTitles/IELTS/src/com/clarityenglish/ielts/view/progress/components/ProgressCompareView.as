@@ -17,7 +17,9 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		[SkinPart(required="true")]
 		public var compareChart:AnyChartFlex;
-		
+
+		private var _licenceType:uint;
+
 		//[Bindable]
 		private var _fullChartXML:XML;
 
@@ -328,6 +330,16 @@ package com.clarityenglish.ielts.view.progress.components {
 			trace("ProgressCompareView.initCharts");
 			_fullChartXML = chartTemplates;
 			
+		}
+		
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+			}
 		}
 
 	}

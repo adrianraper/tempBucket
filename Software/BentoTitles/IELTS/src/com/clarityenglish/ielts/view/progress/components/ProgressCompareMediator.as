@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
@@ -35,6 +36,10 @@ package com.clarityenglish.ielts.view.progress.components {
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
 
+			// Inject required data into the view
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
+			
 		}
 		
 		override public function listNotificationInterests():Array {

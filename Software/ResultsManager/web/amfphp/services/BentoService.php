@@ -222,7 +222,7 @@ class BentoService extends AbstractService {
 		$errorObj = array("errorNumber" => 0);
 		
 		try {
-			// Lougout from loginOps
+			// Logout from loginOps
 			$this->loginOps->logout();
 			
 			// And also clear the licence

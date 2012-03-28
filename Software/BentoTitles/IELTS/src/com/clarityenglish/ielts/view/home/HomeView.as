@@ -109,18 +109,22 @@ package com.clarityenglish.ielts.view.home {
 					break;
 				
 				case noticeLabel:
-					if (user.examDate) {
-						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-						var daysUnit:String = (daysLeft==1) ? "day" : "days";
-						if (daysLeft > 0) {
-							instance.text = "You have fewer than " + daysLeft.toString() + " " + daysUnit + " until your test.";
-						} else if (daysLeft == 0) {
-							instance.text = "Good luck with your test!";
-						} else {
-							instance.text = "Hope your test went well...";
-						}
+					if (licenceType == Title.LICENCE_TYPE_AA) {
+						
 					} else {
-						instance.text = "Please confirm your test date on the My Profile page."
+						if (user.examDate) {
+							var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
+							var daysUnit:String = (daysLeft==1) ? "day" : "days";
+							if (daysLeft > 0) {
+								instance.text = "You have fewer than " + daysLeft.toString() + " " + daysUnit + " until your test.";
+							} else if (daysLeft == 0) {
+								instance.text = "Good luck with your test!";
+							} else {
+								instance.text = "Hope your test went well...";
+							}
+						} else {
+							instance.text = "Please confirm your test date on the My Profile page."
+						}
 					}
 					break;
 			}

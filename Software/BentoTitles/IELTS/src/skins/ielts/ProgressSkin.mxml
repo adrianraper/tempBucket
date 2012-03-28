@@ -33,7 +33,7 @@
 	</s:transitions>
 
 	<s:Group width="100%" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}">
-		<s:Label left="0" height="25" top="40" text="You are anonymous so your progress will not be saved after you close the program." />
+		<s:Label left="0" height="25" top="40" text="You have logged in anonymously, so your progress will not be saved after you close the program." />
 	</s:Group>
 	
 	<s:Group width="100%">

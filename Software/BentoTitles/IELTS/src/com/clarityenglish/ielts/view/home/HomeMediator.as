@@ -40,6 +40,7 @@
 			view.dateFormatter = configProxy.getDateFormatter();
 			view.productVersion = configProxy.getProductVersion() || "fullVersion";
 			view.productCode = configProxy.getProductCode() || 52;
+			view.licenceType = configProxy.getLicenceType();
 			
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
