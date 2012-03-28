@@ -67,7 +67,6 @@ package com.clarityenglish.ielts.view {
 		 */
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
-			trace("handleNoti for IELTSAppMed " + note.getName());
 			switch (note.getName()) {
 				case StateMachine.CHANGED:
 					var state:State = note.getBody() as State;

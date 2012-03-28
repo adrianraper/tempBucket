@@ -11,6 +11,7 @@ class LoginOps {
 		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($db);
 		$this->accountOps = new AccountOps($db);
+		$this->errorOps = new ErrorOps();
 	}
 	
 	// Bento login has different options than RM
@@ -76,7 +77,8 @@ EOD;
 			case 0:
 				// Invalid login
 				// Bento requires an error object as explanation
-				throw new Exception("No such user", 100);
+				//throw new Exception("No such user", 100);
+				throw new Exception("Login option $loginOption", $this->errorOps->getCode('no_such_user'));
 				break;
 			case 1:
 				// Valid login

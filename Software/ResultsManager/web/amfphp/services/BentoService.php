@@ -34,6 +34,7 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/ProgressOps.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
+require_once(dirname(__FILE__)."/../../classes/ErrorOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -72,6 +73,7 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
+		$this->errorOps = new ErrorOps();
 	}
 	
 	/**
@@ -107,11 +109,11 @@ class BentoService extends AbstractService {
 			$configObj = array("databaseVersion" => $this->getDatabaseVersion());
 
 		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
+			$errorObj['errorNumber'] = $e->getCode(); 
+			$errorObj['errorContext'] = $e->getMessage();
 			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
+			if ($errorObj['errorNumber'] == 0)
+				$errorObj['errorNumber'] = $errorOps->getCode('unknown');
 			return array("error" => $errorObj);
 		}
 		
@@ -205,7 +207,7 @@ class BentoService extends AbstractService {
 			$errorObj['errorContext']=$e->getMessage();
 			// In case we didn't set an error number, use our generic unknown one
 			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
+				$errorObj['errorNumber'] = $errorOps->getCode('unknown');
 			return array("error" => $errorObj);
 		}
 		
@@ -233,7 +235,7 @@ class BentoService extends AbstractService {
 			$errorObj['errorContext']=$e->getMessage();
 			// In case we didn't set an error number, use our generic unknown one
 			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
+				$errorObj['errorNumber'] = $errorOps->getCode('unknown');
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj);		
