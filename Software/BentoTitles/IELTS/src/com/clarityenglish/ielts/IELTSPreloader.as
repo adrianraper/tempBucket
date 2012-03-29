@@ -80,7 +80,7 @@ package com.clarityenglish.ielts {
 				total += i;
 			}
 			trace("total rsl = " + total + " swf total = " + swfTotalBytes);
-			//dispatchEvent(new Event(Event.COMPLETE));
+			dispatchEvent(new Event(Event.COMPLETE));
 		}
 		// AR
 		/*

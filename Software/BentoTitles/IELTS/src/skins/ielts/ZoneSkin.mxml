@@ -36,9 +36,9 @@
 				hostComponent.resetQuestionZoneGraphics();
 				
 				// #234
-				new DisabledPopupWatcher(adviceZoneVideoList, hostComponent._productVersion); 
-				new DisabledPopupWatcher(examPracticeDataGroup, hostComponent._productVersion); 
-				new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent._productVersion); 
+				new DisabledPopupWatcher(adviceZoneVideoList, hostComponent.productVersion); 
+				new DisabledPopupWatcher(examPracticeDataGroup, hostComponent.productVersion); 
+				new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent.productVersion); 
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
