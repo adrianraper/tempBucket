@@ -77,6 +77,16 @@ package com.clarityenglish.common.view.login {
 					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
 					view.clearData();
 					break;
+				
+				case CommonNotifications.INVALID_LOGIN:
+					// If we catch this notification here, I want to handle it on the loginView
+					// So I need to reimplement view.showInvalidLogin, and also stop the notification
+					// from going on to be caught be IELTSApplicationMediator.
+					trace("caught login error in login mediator");
+					
+					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
+					view.clearData();
+					break;
 				default:
 					break;
 			}

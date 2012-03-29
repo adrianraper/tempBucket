@@ -108,8 +108,8 @@ package com.clarityenglish.ielts.view.zone {
 		public var dateFormatter:DateFormatter;
 		
 		// #234
-		[Bindable]
-		public var _productVersion:String;
+		private var _productVersion:String;
+		private var _licenceType:uint;
 		
 		/**
 		 * ZoneView specifically needs to know if it is mediated or not in order to implement #222.  This is not necessary for most views.
@@ -157,6 +157,25 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable(event="courseChanged")]
 		public function hasUnit(unitClass:String):Boolean {
 			return (_course) ? _course.unit.(@["class"] == unitClass).length() > 0 : false;
+		}
+
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+			}
+		}
+		[Bindable]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
 		}
 		
 		public function set exerciseSelectorPoppedOut(value:Object):void {

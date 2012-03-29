@@ -113,7 +113,7 @@ class BentoService extends AbstractService {
 			$errorObj['errorContext'] = $e->getMessage();
 			// In case we didn't set an error number, use our generic unknown one
 			if ($errorObj['errorNumber'] == 0)
-				$errorObj['errorNumber'] = $errorOps->getCode('unknown');
+				$errorObj['errorNumber'] = $errorOps->getErrorNumber('unknown');
 			return array("error" => $errorObj);
 		}
 		
@@ -207,7 +207,7 @@ class BentoService extends AbstractService {
 			$errorObj['errorContext']=$e->getMessage();
 			// In case we didn't set an error number, use our generic unknown one
 			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = $errorOps->getCode('unknown');
+				$errorObj['errorNumber'] = $errorOps->getErrorNumber('unknown');
 			return array("error" => $errorObj);
 		}
 		
@@ -235,7 +235,7 @@ class BentoService extends AbstractService {
 			$errorObj['errorContext']=$e->getMessage();
 			// In case we didn't set an error number, use our generic unknown one
 			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = $errorOps->getCode('unknown');
+				$errorObj['errorNumber'] = $errorOps->getErrorNumber('unknown');
 			return array("error" => $errorObj);
 		}
 		return array("error" => $errorObj);		

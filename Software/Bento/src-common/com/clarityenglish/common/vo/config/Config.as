@@ -265,7 +265,7 @@ package com.clarityenglish.common.vo.config {
 			// Which I think should be caught in getRMSettings really
 			if (this.account.children.length != 1) {
 				this.error.errorNumber = BentoError.ERROR_DATABASE_READING;
-				this.error.errorDescription = 'More than one title matched the product code';
+				this.error.errorContext = 'More than one title matched the product code';
 			}
 			
 			var thisTitle:Title = this.account.getTitle();
@@ -312,7 +312,7 @@ package com.clarityenglish.common.vo.config {
 			if (gotLA) {
 				if (!isIPInRange(ip, lA.licenceValue)) {
 					error.errorNumber = BentoError.ERROR_OUTSIDE_IP_RANGE;
-					error.errorDescription = 'This program can only be run from limited computers or through one website.';
+					//error.errorDescription = 'This program can only be run from limited computers or through one website.';
 					error.errorContext = "Your IP doesn't match and is " + ip;
 				}
 			}

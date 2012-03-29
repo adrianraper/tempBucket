@@ -18,6 +18,7 @@ package com.clarityenglish.ielts.view.title {
 	import flash.utils.Timer;
 	
 	import mx.collections.ArrayCollection;
+	import mx.core.FlexGlobals;
 	import mx.events.ItemClickEvent;
 	import mx.formatters.DateFormatter;
 	
@@ -154,24 +155,29 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
 			switch (_productCode) {
+				//case parentApplication.ACADEMIC_MODULE:
 				case 52:
 					switch (_productVersion) {
-						case "fullVersion":
-							return fullVersionAcademicLogo;
-						case "lastMinute":
+						case "R2ILM":
 							return lastMinuteAcademicLogo;
-						case "testDrive":
+						case "R2ITD":
 							return tenHourAcademicLogo;
+						//case parentApplication.FULL_VERSION:
+						case "R2IFV":
+						default:
+							return fullVersionAcademicLogo;
 					}
 					break;
+				//case parentApplication.GENERAL_TRAINING_MODULE:
 				case 53:
 					switch (_productVersion) {
-						case "fullVersion":
-							return fullVersionGeneralTrainingLogo;
-						case "lastMinute":
+						case "R2ILM":
 							return lastMinuteAcademicLogo;
-						case "testDrive":
+						case "R2ITD":
 							return tenHourGeneralTrainingLogo;
+						case "R2IFV":
+						default:
+							return fullVersionGeneralTrainingLogo;
 					}
 					break;
 				default:
@@ -186,22 +192,24 @@ package com.clarityenglish.ielts.view.title {
 			switch (_productCode) {
 				case 52:
 					switch (_productVersion) {
-						case "fullVersion":
-							return "Full version - Academic module";
-						case "lastMinute":
+						case "R2ILM":
 							return "Last minute - Academic module";
-						case "testDrive":
+						case "R2ITD":
 							return "Test drive - Academic module";
+						case "R2IFV":
+						default:
+							return "Full version - Academic module";
 					}
 					break;
 				case 53:
 					switch (_productVersion) {
-						case "fullVersion":
-							return "Full version - General Training module";
-						case "lastMinute":
+						case "R2ILM":
 							return "Last minute - General Training module";
-						case "testDrive":
+						case "R2ITD":
 							return "Test drive - General Training module";
+						case "R2IFC":
+						default:
+							return "Full version - General Training module";
 					}
 					break;
 				default:

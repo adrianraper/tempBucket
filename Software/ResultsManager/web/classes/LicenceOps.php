@@ -336,7 +336,7 @@ EOD;
 			case Title::LICENCE_TYPE_TT:
 
 				// Since you NEVER delete the T_LicenceControl records, just do an update
-				updateLicence($licence);
+				$this->updateLicence($licence);
 				break;
 		}
 

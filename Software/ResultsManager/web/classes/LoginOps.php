@@ -78,7 +78,7 @@ EOD;
 				// Invalid login
 				// Bento requires an error object as explanation
 				//throw new Exception("No such user", 100);
-				throw new Exception("Login option $loginOption", $this->errorOps->getCode('no_such_user'));
+				throw new Exception("Login option $loginOption", $this->errorOps->getErrorNumber('no_such_user'));
 				break;
 			case 1:
 				// Valid login

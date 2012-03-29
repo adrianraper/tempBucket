@@ -46,6 +46,13 @@
 			
 			public var browserManager:IBrowserManager;
 			
+			public static const FULL_VERSION:String = 'R2IFV';
+			public static const LAST_MINUTE:String = 'R2ILM';
+			public static const TEST_DRIVE:String = 'R2ITD';
+			public static const HOME_USER:String = 'R2IHU';
+			public static const ACADEMIC_MODULE:uint = 52;
+			public static const GENERAL_TRAINING_MODULE:uint = 53;
+			
 			// How did this variable get generated?
 			//private var com_clarityenglish_ielts_view_progress_ui_ProgressCourseBarComponent_obj:com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 			
@@ -81,6 +88,7 @@
 			public function showErrorMessage(error:BentoError):void {
 				log.error("Need to handle the error {0}", error.errorNumber);
 				var msg:String, msgTitle:String = "Unexpected problem";
+				/*
 				switch (error.errorNumber) {
 					case BentoError.ERROR_CONTENT_MENU:
 						msg = "Sorry, there is a problem reading the content index.";
@@ -95,8 +103,9 @@
 					default:
 						msg = "Sorry, something unexpected has happened.";
 				}
-				
 				Alert.show(msg + " " + error.errorNumber + ": " + error.errorContext, msgTitle, mx.controls.Alert.OK, this, onHandleAlertResponse, null, mx.controls.Alert.OK);
+				*/
+				Alert.show(error.errorDescription + " " + error.errorContext, msgTitle, mx.controls.Alert.OK, this, onHandleAlertResponse, null, mx.controls.Alert.OK);
 			}
 			
 			public function onHandleAlertResponse(event:CloseEvent):void {
@@ -126,6 +135,7 @@
 	<s:Group left="20" right="20" top="10" bottom="{titleView.skin.currentState != 'exercise' ? 35 : 0}">
 		<s:Group includeIn="loading" horizontalCenter="0" verticalCenter="60">
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/loading.swf')" includeIn="loading" horizontalAlign="center"/>
+			<s:Label text="All the application is now downloaded, getting it ready to run the program..." width="50%" height="100%" />
 		</s:Group> 
 		
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
@@ -143,7 +153,7 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='FooterGraphic')" left="370" top="9"/>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="19" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" left="124" top="13" />
-		<s:Label text="Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="19" right="20" />
+		<s:Label text="Data, Video © The British Council 2006-2012. Software, Design, Navigation © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="19" right="20" />
 	</s:Group>
 	
 </bento:BentoApplication>

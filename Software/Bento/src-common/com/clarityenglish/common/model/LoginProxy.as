@@ -149,7 +149,6 @@ package com.clarityenglish.common.model {
 						if (data.instanceID != configProxy.getInstanceID() && Config.DEVELOPER.name != "DK") {
 							var error:BentoError = new BentoError();
 							error.errorNumber = BentoError.ERROR_FAILED_INSTANCE_CHECK;
-							error.errorDescription = 'Somebody else has logged in with the same details. Please try again.';
 							error.errorContext = 'db='+data.instanceID+' session='+configProxy.getInstanceID();
 							sendNotification(CommonNotifications.INSTANCE_ERROR, error);
 						}

@@ -14,13 +14,14 @@ package com.clarityenglish.common.vo.config {
 		/**
 		 * We use numbers as the key, with descriptions and actions
 		 */
-		public var errorNumber:uint;
-		public var errorDescription:String;
-		public var errorContext:String;
+		private var _errorNumber:uint;
+		private var _errorDescription:String;
+		private var _errorContext:String;
+		private var _errorName:String;
 
 		// A lot of these come back from the database so numbers are needed.
+		public static const NO_SUCH_USER:String = 'no_such_user';
 		public static const ERROR_NO_SUCH_ACCOUNT:uint = 200;
-		public static const NO_SUCH_ACCOUNT:String = 'no_such_account';
 		public static const ERROR_ACCOUNT_SUSPENDED:uint = 201;
 		public static const ERROR_LICENCE_INVALID:uint = 202;
 		public static const ERROR_LICENCE_EXPIRED:uint = 203;
@@ -52,10 +53,54 @@ package com.clarityenglish.common.vo.config {
 		public function fromObject(errObj:Object):void {
 			if (errObj.errorNumber)
 				errorNumber = errObj.errorNumber; 
-			if (errObj.errorDescription)
-				errorDescription = errObj.errorDescription; 
+			//if (errObj.errorDescription)
+			//	errorDescription = errObj.errorDescription; 
 			if (errObj.errorContext)
 				errorContext = errObj.errorContext; 
+		}
+		
+		public function get errorDescription():String {
+			return getDescription(_errorNumber);
+		}
+		public function set errorNumber(value:uint):void {
+			_errorNumber = value;
+		}
+		public function get errorNumber():uint {
+			return _errorNumber;
+		}
+		public function set errorContext(value:String):void {
+			_errorContext = value;
+		}
+		public function get errorContext():String {
+			return _errorContext;
+		}
+		public function set errorName(value:String):void {
+			_errorName = value;
+		}
+		public function get errorName():String {
+			return _errorName;
+		}
+		
+		private function getDescription(value:uint):String {
+			// First turn the number into a name - based on the xml
+			// This seems very odd!!
+			switch (value) {
+				case 200:
+					errorName = 'no_such_user';
+					return 'These user details are not recognised.';
+					break;
+				case BentoError.ERROR_FAILED_INSTANCE_CHECK:
+					errorName = 'failed_instance_check';
+					return 'Somebody else has logged in with the same details. Please try again.';
+					break;
+				case BentoError.ERROR_OUTSIDE_IP_RANGE:
+					errorName = 'failed_instance_check';
+					return 'This program can only be run from limited computers or through one website.';
+					break;
+				default:
+					errorName = 'unknown';
+					return 'An unrecognised error happened.';
+			}
 		}
 		
 	}
