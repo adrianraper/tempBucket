@@ -135,7 +135,6 @@
 	<s:Group left="20" right="20" top="10" bottom="{titleView.skin.currentState != 'exercise' ? 35 : 0}">
 		<s:Group includeIn="loading" horizontalCenter="0" verticalCenter="60">
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/loading.swf')" includeIn="loading" horizontalAlign="center"/>
-			<s:Label text="All the application is now downloaded, getting it ready to run the program..." width="50%" height="100%" />
 		</s:Group> 
 		
 		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />

@@ -95,7 +95,7 @@ package com.clarityenglish.ielts {
 		*/
 		// Called when each rsl has been loaded
 		override protected function rslCompleteHandler(e:RSLEvent):void {
-			trace("rsl("+e.rslIndex+") complete at " + e.bytesTotal);
+			//trace("rsl("+e.rslIndex+") complete at " + e.bytesTotal);
 			rslTotalBytes[e.rslIndex] = e.bytesTotal;				
 		}
 		

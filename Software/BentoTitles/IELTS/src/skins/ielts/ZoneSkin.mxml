@@ -21,6 +21,7 @@
 		<![CDATA[
 			import caurina.transitions.Tweener;
 			
+			import com.clarityenglish.common.vo.content.Title;
 			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
 			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
 			
@@ -280,7 +281,9 @@
 				</s:NavigatorContent>
 				
 				<!-- Exam practice -->
-				<s:NavigatorContent id="examPracticeNavigatorContent" label="Test practice" width="100%" >
+				<s:NavigatorContent id="examPracticeNavigatorContent" label="Test practice" width="100%" 
+									includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"
+									visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">
 					<s:layout>
 						<s:VerticalLayout paddingTop="2"/>
 					</s:layout>
