@@ -5,15 +5,16 @@ class ErrorOps {
 	function ErrorOps() {
 		
 		$this->filename = dirname(__FILE__).$GLOBALS['interface_dir']."errorCodes.xml";
-		//if (!file_exists($this->filename))
-		//	throw new Exception($this->filename." not found");
-		
+
 	}
 	
 	/**
-	 * Read and return the XML error codes document as a string
+	 * Read and return the XML literals document as a string
 	 */
-	function getCopy() {
+	function getErrorCodes() {
+		// If the file doesn't exist return false
+		if (!file_exists($this->filename))
+			throw new Exception("errorCodes.xml not found");
 		
 		// Read the file
 		$contents = file_get_contents($this->filename);
@@ -23,14 +24,27 @@ class ErrorOps {
 	}
 	
 	/**
-	 * Returns the error number based on the name
+	 * Returns the error code associated with a string
 	 */
-	function getErrorNumber($errorName) {
-		switch ($errorName) {
-			case 'no_such_user':
-				return 200;
-		}
-		return null;
+	function getCode($name, $languageCode = 'EN') {
+		
+		if (!file_exists($this->filename))
+			throw new Exception("errorCodes.xml not found");
+				
+		$doc = new DOMDocument();
+		$doc->load($this->filename);
+		
+		$xpath = new DOMxpath($doc);
+		$elements = $xpath->query("/errors/language[@code='".$languageCode."']//error[@const='".$name."']", $doc);
+		
+		// If no element was found return the generic one - 
+		if ($elements->length == 0)
+			return 100;
+		
+		// Otherwise get the textual content of the lit node
+		$str = $elements->item(0)->textContent;
+		
+		return $str;
 	}
 	
 }

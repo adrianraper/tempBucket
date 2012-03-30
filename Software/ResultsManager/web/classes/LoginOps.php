@@ -88,7 +88,7 @@ EOD;
 				if ($password != $loginObj->F_Password) {
 					//return false;
 					// If I do this as an Exception - can I catch it in BentoService? Yes
-					throw new Exception("Wrong password", 100);
+					throw new Exception("Login option $loginOption", $this->errorOps->getErrorNumber('wrong_password'));
 				}
 				
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
@@ -100,7 +100,7 @@ EOD;
 						(strtotime($loginObj->UserExpiryDate) < strtotime(date("Y-m-d")))) {
 					//throw new Exception($this->copyOps->getCopyForId("userExpiredError", array("date" => $loginObj->UserExpiryDate), "EN"));
 					//throw new Exception("Your user account expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)));
-					throw new Exception("Your user account expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)), 100);
+					throw new Exception("Expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)), $this->errorOps->getErrorNumber('user_expired'));
 				}
 
 				// Authenticate the user with the session
@@ -112,7 +112,7 @@ EOD;
 				
 			default:
 				// More than one user with this name/password
-				throw new Exception("More than one user matches these details", 100);
+				throw new Exception("Login option $loginOption", $this->errorOps->getErrorNumber('duplicate_users'));
 		}
 		
 	}
@@ -130,7 +130,7 @@ EOD;
 		if ($rs->RecordCount()>0) {
 			$loginObj = $rs->FetchNextObj();
 		} else {
-			throw new Exception("No such user", 100);
+			throw new Exception("", $this->errorOps->getErrorNumber('no_anonymous_user'));
 		}
 		
 		// Then we need the top level group ID for this root.
@@ -146,7 +146,7 @@ EOD;
 		if ($rs->RecordCount()>0) {
 			$loginObj->groupID = $rs->FetchNextObj()->groupID;
 		} else {
-			throw new Exception("No such user", 100);
+			throw new Exception("Anonymous", $this->errorOps->getErrorNumber('no_such_group'));
 		}
 			
 		return $loginObj;
