@@ -35,6 +35,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/ErrorOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?

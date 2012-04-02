@@ -314,6 +314,8 @@ package com.clarityenglish.common.vo.config {
 					error.errorNumber = BentoError.ERROR_OUTSIDE_IP_RANGE;
 					//error.errorDescription = 'This program can only be run from limited computers or through one website.';
 					error.errorContext = "Your IP doesn't match and is " + ip;
+				} else {
+					trace("your ip, " + ip + ", is in the listed range.");
 				}
 			}
 			

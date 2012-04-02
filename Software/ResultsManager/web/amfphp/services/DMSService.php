@@ -40,6 +40,7 @@ require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
+require_once(dirname(__FILE__)."/../../classes/ErrorOps.php");
 
 // v3.4 This is used for internal queries
 require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");

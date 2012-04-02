@@ -94,9 +94,10 @@ package com.clarityenglish.ielts {
 		}
 		*/
 		// Called when each rsl has been loaded
+		// This throws an error on CE.com - and I'm not really using it so comment out.
 		override protected function rslCompleteHandler(e:RSLEvent):void {
-			//trace("rsl("+e.rslIndex+") complete at " + e.bytesTotal);
-			rslTotalBytes[e.rslIndex] = e.bytesTotal;				
+			//if (rslTotalBytes)
+			//	rslTotalBytes[e.rslIndex] = e.bytesTotal;				
 		}
 		
 		/**
