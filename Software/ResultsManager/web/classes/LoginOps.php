@@ -338,7 +338,7 @@ EOD;
 		$resultObj = $this->db->Execute($sql, $bindingParams);
 		if ($resultObj)
 			return true;
-		throw new Exception("Can't set the instance ID for the user $userID", 100);
+		throw new Exception("user=$userID", $errorOps->getErrorNumber('set_instance_id'));
 	}
 	
 	/**
@@ -357,7 +357,7 @@ EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs)
 			return $rs->FetchNextObj()->F_LicenceID;
-		throw new Exception("Can't get the instance ID for the user $userID", 100);
+		throw new Exception("user=$userID", $errorOps->getErrorNumber('get_instance_id'));
 	}
 	
 	// v3.2 A simplified login which is for identification rather than authentication purposes
@@ -562,7 +562,7 @@ EOD;
 			$productCode = $config['productCode'];
 			
 		if (!$productCode)
-			throw new Exception("No productCode sent to getAccountSettings", 100);
+			throw new Exception('Checking account settings', $errorOps->getErrorNumber('no_productCode'));
 		
 		// RootID is more important than prefix.
 		// TODO. At present getAccounts can only cope with rootID not prefix. 
@@ -572,7 +572,7 @@ EOD;
 		//if (!$rootID)
 		//	throw new Exception("No rootID sent to getAccountSettings", 100);
 		if (!$prefix && !$rootID)
-			throw new Exception("No prefix or rootID sent to getAccountSettings", 100);
+			throw new Exception('Checking account settings', $errorOps->getErrorNumber('no_prefix_or_root'));
 		
 		// Query the database
 		// Kind of silly, but bento is usually keyed on prefix and getAccounts always works on rootID
@@ -580,7 +580,7 @@ EOD;
 		if (is_numeric($rootID)) {
 			$rootID = (int) $this->accountOps->getAccountRootID($prefix);
 			if (!$rootID)
-				throw new Exception("No prefix for rootID=$rootID", 100);
+				throw new Exception("root=$rootID", $errorOps->getErrorNumber('no_prefix_for_root'));
 		}
 		
 		// First get the record from T_AccountRoot and T_Accounts
@@ -592,9 +592,9 @@ EOD;
 		
 		// It would be an error to have more or less than one title in that account
 		if (count($account->titles)>1) {
-			throw new Exception("More than one title with productCode $productCode", 100);
+			throw new Exception($productCode, $errorOps->getErrorNumber('multiple_productCode_in_root'));
 		} else if (count($account->titles)==0) {
-			throw new Exception("No title with productCode $productCode in rootID $rootID", 100);
+			throw new Exception("No title with productCode $productCode in $rootID", $errorOps->getErrorNumber('no_productCode_in_root'));
 		} 
 		
 		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
