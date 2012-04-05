@@ -555,10 +555,16 @@ tryAgainCallback = function(event) {
 		//myTrace("start afterMarkingFieldDisable");
 		afterMarkingFieldDisable();
 		// v6.3.5 Countdown can now see the stats Button and hide the guess word thing
-		_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.cdStats_pb.setEnabled(true);
-		_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.word_i.setEnabled(false);
-		_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.cdGuess_lbl.setEnabled(false);
-		_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.cdGuessWord_pb.setEnabled(false);		
+		// v6.5.6.5 Except that we don't like this anymore - the stats seem useless. So can we hide the whole thing?
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) { 
+			_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController._visible = false;
+			// But I will also need to hide the NoScroll region I think.
+		} else {
+			_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.cdStats_pb.setEnabled(true);
+			_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.word_i.setEnabled(false);
+			_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.cdGuess_lbl.setEnabled(false);
+			_global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController.cdGuessWord_pb.setEnabled(false);
+		}
 
 	// they want to see feedback. For CUP this means NOT doing inserting 
 	} else if (event == "feedback") {

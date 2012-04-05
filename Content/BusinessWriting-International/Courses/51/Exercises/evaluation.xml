@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<exercise version="6.5.0.1" type="Stopgap" name="CSTDI evaluation" id="52">
+  <settings>
+    <marking test="true" />
+    <feedback groupBased="true" wrongOnly="true" />
+    <buttons feedback="false" hints="false" print="false" scratchPad="false" progress="false" backward="false" forward="false" menu="false" recorder="false" />
+    <exercise saveDetails="true" />
+    <misc soundEffects="false"  />
+  </settings>
+  <title>
+    <paragraph x="12" y="+4" width="605" height="0" style="headline" tabs="0" indent="0" id="1"><![CDATA[<B><TEXTFORMAT LEADING="2"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="12" COLOR="#000000" LETTERSPACING="0" KERNING="0"><B>Please evaluate this Business Writing package. Answer 1 to 5 for each question.<br/>Then click Submit.</B></FONT></P></TEXTFORMAT></B>]]></paragraph>
+  </title>
+  <noscroll>
+    <paragraph height="0" width="678" y="+10" x="12" id="5"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="12"><b>1</b> = strongly agree,&nbsp;&nbsp;<b>2</b> = agree,&nbsp;&nbsp;<b>3</b> = neutral,&nbsp;&nbsp;<b>4</b> = disagree,&nbsp;&nbsp;<b>5</b> = strongly disagree</FONT></P><p></p></TEXTFORMAT>]]></paragraph>
+  </noscroll>
+  <body>
+    <question>
+      <paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7" id="2"><![CDATA[<tab><B>#q</B>]]></paragraph>
+      <paragraph indent="0" tabs="50,100,150,200,250,300,350,400" style="normal" height="0" width="365" y="=" x="55" type="question" id="3"><![CDATA[<TEXTFORMAT LEADING="2" TABSTOPS="50,100,150,200,250,300,350,400"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I found this package useful.</FONT></P></TEXTFORMAT>]]></paragraph>
+      <paragraph indent="0" tabs="160" style="normal" height="0" width="319" y="+0" x="55" id="4"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[1]</FONT>]]></paragraph>
+      <gapLength />
+    </question>
+    <question>
+      <paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7" id="5"><![CDATA[<tab><B>#q</B>]]></paragraph>
+      <paragraph indent="0" tabs="50,100,150,200,250,300,350,400" style="normal" height="0" width="365" y="=" x="55" type="question" id="6"><![CDATA[<TEXTFORMAT LEADING="2" TABSTOPS="50,100,150,200,250,300,350,400"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I found this package attractive.</FONT></P></TEXTFORMAT>]]></paragraph>
+      <paragraph indent="0" tabs="160" style="normal" height="0" width="319" y="+0" x="55" id="7"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[2]</B></FONT>]]></paragraph>
+      <gapLength />
+    </question>
+    <question>
+      <paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7" id="8"><![CDATA[<tab><B>#q</B>]]></paragraph>
+      <paragraph indent="0" tabs="50,100,150,200,250,300,350,400" style="normal" height="0" width="365" y="=" x="55" type="question" id="9"><![CDATA[<TEXTFORMAT LEADING="2" TABSTOPS="50,100,150,200,250,300,350,400"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I found this package covered the subject well.</FONT></P></TEXTFORMAT>]]></paragraph>
+      <paragraph indent="0" tabs="160" style="normal" height="0" width="319" y="+0" x="55" id="10"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[3]</B></FONT>]]></paragraph>
+      <gapLength />
+    </question>
+    <question>
+      <paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7" id="8"><![CDATA[<tab><B>#q</B>]]></paragraph>
+      <paragraph indent="0" tabs="50,100,150,200,250,300,350,400" style="normal" height="0" width="365" y="=" x="55" type="question" id="9"><![CDATA[<TEXTFORMAT LEADING="2" TABSTOPS="50,100,150,200,250,300,350,400"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">I found this package easy to use.</FONT></P></TEXTFORMAT>]]></paragraph>
+      <paragraph indent="0" tabs="160" style="normal" height="0" width="319" y="+0" x="55" id="10"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[4]</B></FONT>]]></paragraph>
+      <gapLength />
+    </question>
+    <question>
+      <paragraph indent="0" tabs="19" style="normal" height="0" width="49" y="+16" x="7" id="8"><![CDATA[<tab><B>#q</B>]]></paragraph>
+      <paragraph indent="0" tabs="50,100,150,200,250,300,350,400" style="normal" height="0" width="365" y="=" x="55" type="question" id="9"><![CDATA[<TEXTFORMAT LEADING="2" TABSTOPS="50,100,150,200,250,300,350,400"><P ALIGN="LEFT"><FONT FACE="Verdana" SIZE="13" COLOR="#000000" LETTERSPACING="0" KERNING="0">Overall, I think this is a good package.</FONT></P></TEXTFORMAT>]]></paragraph>
+      <paragraph indent="0" tabs="160" style="normal" height="0" width="319" y="+0" x="55" id="10"><![CDATA[<FONT FACE="Verdana" SIZE="13" COLOR="#0F157A"><B>[5]</B></FONT>]]></paragraph>
+      <gapLength />
+    </question>
+    <paragraph height="0" width="400" y="+50" x="12" id="32"><![CDATA[<TEXTFORMAT LEADING="0"><P ALIGN="LEFT"><FONT SIZE="2"></FONT></P></TEXTFORMAT>]]></paragraph>
+    <field id="1" group="1" type="i:gap" mode="0">
+      <answer correct="true">1</answer>
+      <answer correct="true">one</answer>
+      <answer correct="true">2</answer>
+      <answer correct="true">3</answer>
+      <answer correct="true">4</answer>
+      <answer correct="true">5</answer>
+    </field>
+    <field id="2" group="2" type="i:gap" mode="0">
+      <answer correct="true">1</answer>
+      <answer correct="true">one</answer>
+      <answer correct="true">2</answer>
+      <answer correct="true">3</answer>
+      <answer correct="true">4</answer>
+      <answer correct="true">5</answer>
+    </field>
+    <field id="3" group="3" type="i:gap" mode="0">
+      <answer correct="true">1</answer>
+      <answer correct="true">one</answer>
+      <answer correct="true">2</answer>
+      <answer correct="true">3</answer>
+      <answer correct="true">4</answer>
+      <answer correct="true">5</answer>
+    </field>
+    <field id="4" group="4" type="i:gap" mode="0">
+      <answer correct="true">1</answer>
+      <answer correct="true">one</answer>
+      <answer correct="true">2</answer>
+      <answer correct="true">3</answer>
+      <answer correct="true">4</answer>
+      <answer correct="true">5</answer>
+    </field>
+    <field id="5" group="5" type="i:gap" mode="0">
+      <answer correct="true">1</answer>
+      <answer correct="true">one</answer>
+      <answer correct="true">2</answer>
+      <answer correct="true">3</answer>
+      <answer correct="true">4</answer>
+      <answer correct="true">5</answer>
+    </field>
+    <media filename="BusWriting122-P.jpg" y="32" x="448" height="250" width="165" stretch="false" mode="1" id="1001" category="YourGraphic" location="original" type="m:picture" />
+  </body>
+  <template>
+    <style align="left" color="0x000000" bold="false" size="13" font="Verdana" name="normal" />
+    <style align="left" color="0x000000" bold="true" size="13" font="Verdana" name="headline" />
+  </template>
+</exercise>

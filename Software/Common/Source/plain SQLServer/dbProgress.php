@@ -30,8 +30,9 @@ class PROGRESS {
 		43	=>	array('name' => "Customer Service Communication Skills", 'place' => "CSCS"),
 		44	=>	array('name' => "'placement test", 'place' => "ClarityTest"),
 		47	=>	array('name' => "HCT's i-Read", 'place' => "i-Read"),
-		48	=>	array('name' => "York project", 'place' => "York"),
+		48	=>	array('name' => "Access UK", 'place' => "AccessUK"),
 		49	=>	array('name' => "Study Skills Success V9", 'place' => "StudySkillsSuccessV9"),
+		50	=>	array('name' => "Clear Pronunciation 2", 'place' => "ClearPronunciation2"),
 		1001=>	array('name' => "It's Your Job", 'place' => "ItsYourJob")
 	);
 	 
@@ -133,6 +134,13 @@ EOD;
 		if ($vars['DATABASEVERSION']>2 ) {
 			$dbObj = $this->selectAccounts($vars, $node);
 			if ($dbObj) {
+			
+				// v6.5.6.6 At this point figure out the licence clearance date and set that to be the licence start date
+				//$dbObj->licenceClearanceDate;
+				//$dbObj->licenceClearanceFrequency;
+				$licenceStartDate = $this->getLicenceClearanceDate($dbObj);
+				//echo "checking startDate=".$dbObj->licenceStartDate." clearanceDate=".$dbObj->licenceClearanceDate." so, answer=".$licenceStartDate;
+			
 				// Check the account expiryDate. This is going to be something like 2009-06-30 00:00:000.
 				// But we really want to let people use the program all day on the expiry date, so should set the time to the end of the day
 				// we know the format of the date coming back from the db, so safe to just chop it to get the date
@@ -142,13 +150,23 @@ EOD;
 				$startOfTheDay = substr($dbObj->licenceStartDate,0,10).' 00:00:00';
 				$accountStartTimestamp = strtotime($startOfTheDay);
 				$queryTimeStamp = strtotime($vars['DATESTAMP']);
+				$systemDateStamp = time() + 43200;
+				$systemDate = date('Y-m-d', $systemDateStamp);
 				// Check the expiry date
 				//if ($accountExpiryTimestamp==0 || $accountExpiryTimestamp > $queryTimeStamp) {
-				if ($accountExpiryTimestamp>0 && $accountExpiryTimestamp < $queryTimeStamp) {
-					$node .= "<err code='207'>Account expired</err>";
+				// v6.5.6 See below for starting - but ending is more critical as we don't want to just give away an extra day...
+				// So set it to 12 hours? Yes. Later I might be able to add a timezone to an account and use that instead.
+				// 12 hours (43200 seconds) means that Australians (and all who are ahead of GMT) will get exact matches
+				// and everyone behind GMT will get an extra day.
+				//if ($accountExpiryTimestamp>0 && $accountExpiryTimestamp < $queryTimeStamp) {
+				if ($accountExpiryTimestamp>0 && $accountExpiryTimestamp < $systemDateStamp) {
+					$node .= "<err code='207'>Account expired, start=$startOfTheDay, systemDate=$systemDate</err>";
 				// v6.5.5.2 And add in licence start date too
-				} else if ($accountStartTimestamp>0 && $accountStartTimestamp > $queryTimeStamp) {
-					$node .= "<err code='212'>Account not started</err>";
+				// v6.5.6 AR change to use system time rather than student's computer time. Give 24 hours leeway to allow for timezones.
+				// Whilst you could make this less as we know the server timezone (AWS = GMT), keep it general to allow for other servers...
+				//} else if ($accountStartTimestamp>0 && $accountStartTimestamp > $queryTimeStamp) {
+				} else if ($accountStartTimestamp>0 && $accountStartTimestamp > $systemDateStamp) {
+					$node .= "<err code='212'>Account not started, start=$startOfTheDay, systemDate=$systemDate</err>";
 				// v6.5.5.6 Block suspended for non-payment accounts
 				} else if ($dbObj->accountStatus==11) {
 					// Whilst I could get the reseller name earlier, it will be so rare that I should just do it here
@@ -200,6 +218,7 @@ EOD;
 						} else {
 							$useContentLocation = $dbObj->defaultContentLocation;
 						}
+						// v6.5.6.6 use licence clearance date calculations
 						$node .= "<account expiryDate='" .$endOfTheDay . "'
 							maxStudents='" .$dbObj->F_MaxStudents ."'
 							groupID='" .$thisGroupID ."'
@@ -208,7 +227,7 @@ EOD;
 							institution='" .htmlspecialchars($dbObj->institution, ENT_QUOTES, 'UTF-8') ."'
 							contentLocation='" .$useContentLocation ."'
 							MGSRoot='" .$dbObj->F_MGSRoot ."'
-							licenceStartDate='" .$dbObj->licenceStartDate ."'
+							licenceStartDate='" .$licenceStartDate ."'
 							checksum='" .$dbObj->F_Checksum ."'
 							languageCode='" .$dbObj->F_LanguageCode ."'/>";
 					}
@@ -221,6 +240,41 @@ EOD;
 			}
 		}
 		return true;
+	}
+	//
+	// Utility function to calculate a licence clearance date from all info
+	private function getLicenceClearanceDate($title) {
+		// The from date for counting licence use is calculated as follows:
+		// If there is no licenceClearanceDate, then use licenceStartDate.
+		// If there is no licenceClearanceFrequency, then use +1y
+		// Take licenceClearanceDate and add the frequency to it until we get a date in the future.
+		// The previous date is our fromDate.
+		if (!$title->licenceClearanceDate) 
+			$title->licenceClearanceDate = $title->licenceStartDate;
+		// Just in case dates have been put in wrongly. 
+		// First, if clearance date is in the future, use the start date
+		if ($title->licenceClearanceDate > time()) 
+			$title->licenceClearanceDate = $title->licenceStartDate;
+		// If clearance date is before the start date, it doesn't much matter
+		// Turn the string into a timestamp
+		$fromDateStamp = strtotime($title->licenceClearanceDate);
+		
+		// You mustn't have a negative frequency otherwise the loop will be infinite
+		if (!$title->licenceClearanceFrequency)
+			$title->licenceClearanceFrequency = '1 year';
+		if (stristr($title->licenceClearanceFrequency, '-')!==FALSE) 
+			$title->licenceClearanceFrequency = str_replace('-', '', $title-> licenceClearanceFrequency);
+		// Check that the frequency is valid
+		if (!strtotime($title-> licenceClearanceFrequency, $fromDateStamp) > 0)
+			$title->licenceClearanceFrequency = '1 year';
+		// Just in case we still have invalid data
+		$safetyCount=0;
+		while ($safetyCount<99 && strtotime($title->licenceClearanceFrequency, $fromDateStamp) < time()) {
+			$fromDateStamp = strtotime($title->licenceClearanceFrequency, $fromDateStamp);
+			$safetyCount++;
+		}
+		// We want a formatted date
+		return date('Y-m-d 00:00:00', $fromDateStamp);
 	}
 
 	function getUser( &$vars, &$node ) {
@@ -383,20 +437,26 @@ EOD;
 			$searchType = "both";
 		} else if (($vars['LOGINOPTION'] & 1) == 1) {
 			$searchType = "name";
+		// v6.5.6.5 Add search by email
+		} else if (($vars['LOGINOPTION'] & 8) == 8) {
+			$searchType = "email";
+		// v6.5.4.7 ClarityEnglish.com special case
+		} else if (($vars['LOGINOPTION'] & 64) == 64) {
+			$searchType = "userID";
 		} else {
-				// v6.3.4 Add search type (though not used for adding)
-				// v6.4.2 Also allow id or both
-				//$rC = $Progress->selectUser( $vars , "name");
-				if ($vars['NAME'] <> "") {
-					$searchType = "name";
-					if ($vars['STUDENTID'] <> "") {
-						$searchType = "both";
-					}
-				} else {
-					if ($vars['STUDENTID'] <> "") {
-						$searchType = "id";
-					}
+			// v6.3.4 Add search type (though not used for adding)
+			// v6.4.2 Also allow id or both
+			//$rC = $Progress->selectUser( $vars , "name");
+			if ($vars['NAME'] <> "") {
+				$searchType = "name";
+				if ($vars['STUDENTID'] <> "") {
+					$searchType = "both";
 				}
+			} else {
+				if ($vars['STUDENTID'] <> "") {
+					$searchType = "id";
+				}
+			}
 		}
 
 		// Go get this user - if it exists
@@ -405,29 +465,6 @@ EOD;
 			$hasRoot = false;
 			switch ($rs->RecordCount()) {
 				case 0:
-					// No such user
-					// 6.5.4.7 WZ
-					// If you know group id and there is a admin of this group, you could get the rootID
-					// v6.5.5.0 Make this call return just the rootID - or failure
-					//$rs1 = $this->selectRootIDViaGroupID( $vars );
-					/*
-					if( $rs1){
-						switch ( $rs1->RecordCount() ){
-							case 0:
-								break;
-							case 1:
-								$dbObj1 = $rs1->FetchNextObj();
-								$hasRoot = true;
-								$tmpRootID = $dbObj1->F_ROOTID;
-								break;
-							default:
-								break;
-						}
-						$rs1->Close();
-					} else {
-						throw new Exception("RootID query failed");
-					}
-					*/
 					// v6.5.6 If you haven't passed a groupID, then it is sufficent to simply say you haven't found the user.
 					if ($vars['GROUPID']>0) {
 						$tmpRootID = $this->selectRootIDViaGroupID( $vars );
@@ -446,7 +483,7 @@ EOD;
 							}
 						} else {
 							if( $hasRoot ){
-								$node .= "<err code=\"203\" rootID='" .$tmpRootID ."'>no such id</err>";
+								$node .= "<err code=\"203\" rootID='" .$tmpRootID ."'>no such name</err>";
 							} else{
 								$node .= "<err code=\"203\">no such user</err>";
 							}
@@ -1032,9 +1069,8 @@ EOD;
 		// v6.5.6.5 Allow email as a unique field for login
 		} else if (($vars['LOGINOPTION'] & 8) == 8) {
 			$searchType = "email";
-		}
 		// v6.5.4.7 ClarityEnglish.com special case
-		else if (($vars['LOGINOPTION'] & 64) == 64) {
+		} else if (($vars['LOGINOPTION'] & 64) == 64) {
 			$searchType = "userID";
 		} else {
 				// v6.3.4 Add search type (though not used for adding)
@@ -1156,7 +1192,6 @@ EOD;
 		}
 		$dupScored = $duplicates - $countScored;
 
-
 		// then repeat for the unscored (viewed) ones
 		$rs = $this->getViewedStats( $vars );
 
@@ -1180,12 +1215,12 @@ EOD;
 		global $db;
 
 		$pc = $vars['PRODUCTCODE'];
-		//$root = $vars['ROOTID'];
-		$sid = $vars['SESSIONID'];
+		if (isset($vars['ROOTID'])) $root = $vars['ROOTID'];
+		if (isset($vars['ITEMID'])) $exerciseID = $vars['ITEMID'];
+		if (isset($vars['SESSIONID'])) $sid = $vars['SESSIONID'];
 		// To make testing quicker
 		//$sid='1514840';
 		//$cid = $vars['COURSEID'];
-		$pc = $vars['PRODUCTCODE'];
 		$uid = $vars['USERID'];
 		
 		// For Clarity placement test we want all records (including score details) from this session
@@ -1221,7 +1256,85 @@ EOD;
 					$node .= "<detail id='$row[F_ExerciseID].$row[F_ItemID]' score='$row[F_Score]' />";
 				}
 			}
+		// For CSTDI certificate we need a sequence number
+		// We used to do this by storing a score detail record for the certificate. It might be easier to put it in T_User.F_Custom3
+		// But it wouldn't work for different products!
+		// Mind you it is difficult to get uniqueness in T_ScoreDetail if the certificate exerciseID is the same for many products
+		// Perhaps I have to hijack unitID as productCode for this use?
+		} else if ($root==10127 || $root==14449) {
+		
+			$dateNow = date('Y-m-d H:m:s', time());
+			
+			// Has this user already generated their certificate?
+                        $sql = <<<EOD
+				SELECT *
+				FROM T_ScoreDetail
+				WHERE F_UserID=?
+				AND F_ExerciseID=?
+				AND F_ItemID=?
+				AND F_UnitID=?
+EOD;
+			$bindingParams = array($uid, $exerciseID, 0, $pc);
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs->RecordCount() > 0)  {
+			
+				// Yes, got a certificate already, so just return the sequence number
+				$sequenceNumber = $rs->FetchNextObj()->F_Detail;
+				$node .= "<detail sequenceNumber='$sequenceNumber' />";
+				return true;
+			}
+			
+			// No, so get the next number and store it for them
+                        $sql = <<<EOD
+				SELECT MAX(F_Detail) as highestSequenceNumber
+				FROM T_ScoreDetail
+				WHERE F_RootID=?
+				AND F_ExerciseID=?
+				AND F_ItemID=?
+				AND F_UnitID=?
+EOD;
+			$bindingParams = array($root, $exerciseID, 0, $pc);
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs->RecordCount() == 1)  {
+				$sequenceNumber = $rs->FetchNextObj()->highestSequenceNumber + 1;
+			} else {
+				$sequenceNumber = 1;
+			}
+			$node .= "<detail sequenceNumber='$sequenceNumber' />";
+			
+			// As well as writing the certificate sequence number, we need to know the average score for reporting purposes
+			// But we haven't called generalStats yet, so need to do that now as an extra call - shouldn't be too expensive
+			$newNode = '';
+			$rc = $this->getGeneralStats($vars, $newNode);
+			// Now average score will be in $node
+			// <stats total="1" average="10" counted="1" viewed="0" duplicatesCounted="0" duplicatesViewed="0" />
+			$avgStr = 'average=';
+			$strPos = stripos($newNode, $avgStr);
+			if ($strPos>0) {
+				$nearlyNumber = substr($newNode, $strPos + strlen($avgStr) + 1, 3);
+				$avgScore = intval($nearlyNumber);
+				if (!$nearlyNumber)
+					$avgScore = 0;
+			} else {
+				$avgScore = 0;
+			}
+			//$node .= "<note>found average=$avgScore at $strPos is $nearlyNumber</note>";
+			// So the item is 0, the score is the average score, the detail is the sequence number
+			$bindingParams = array($sid, $uid, $exerciseID, $pc, $dateNow, 0, $avgScore, $sequenceNumber, $root);
+			$sql = <<<EOD
+				INSERT INTO T_ScoreDetail (F_SessionID, F_UserID, F_ExerciseID, F_UnitID, F_DateStamp, F_ItemID, F_Score, F_Detail, F_RootID)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+EOD;
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs) {
+				return true;
+			} else {
+				$node .= "<err code='100'>Can't insert detail record for certificate sequence number.</err>";
+				return false;
+			}
+			
 		} else {
+			$node .= "<note>root is $root.</note>";
 			return false;
 		}
 		return true;
@@ -2484,6 +2597,8 @@ EOD;
 		$sql = <<<EOD
 			SELECT A.F_ExpiryDate as formattedDate,
 					A.F_LicenceStartDate as licenceStartDate,
+					A.F_LicenceClearanceDate as licenceClearanceDate,
+					A.F_LicenceClearanceFrequency as licenceClearanceFrequency,
 					R.F_Name as institution,
 					A.*,
 					P.F_ContentLocation as defaultContentLocation,
@@ -2811,10 +2926,11 @@ EOD;
 		// Also note that bigint in SQLServer relates to float in php.
 		$bindingParams = array($sid, $userid, $exid, $unitid, $date, $itemid, $detail, $score, $rootid);
 		//v6.5.5.0 Only the new database has this table
+		//		VALUES (?, ?, ?, ?, CONVERT(datetime,?,120), ?, ?, ?, ?)
 		if ($vars['DATABASEVERSION']>1) {
 			$sql = <<<EOD
 				INSERT INTO T_ScoreDetail (F_SessionID, F_UserID, F_ExerciseID, F_UnitID, F_DateStamp, F_ItemID, F_Detail, F_Score, F_RootID)
-				VALUES (?, ?, ?, ?, CONVERT(datetime,?,120), ?, ?, ?, ?)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 EOD;
 			$rs = $db->Execute($sql, $bindingParams);
 			if ($rs) {
@@ -2847,7 +2963,7 @@ EOD;
 	}
 
 	// WZ for auto-register
-	// AR deprecated.
+	// AR deprecated. No still used by global BC auto-login portal
 	function getRegDate(&$vars, &$node){
 		global $db;
 		// Go get this user - if it exists
@@ -3717,7 +3833,7 @@ EOD;
 					$userType = $dbObj->F_UserType;
 
 					// build user info
-					// TODO deprectate userName for name
+					// TODO deprecate userName for name
 					$node .= "<user userID='" .$dbObj->F_UserID ."'
 						userName='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
 						name='" .htmlspecialchars($dbObj->F_UserName, ENT_QUOTES, 'UTF-8') ."'
@@ -3785,7 +3901,10 @@ EOD;
 		}		
 
 		// First get unique userIDs - hopefully just one
-
+		// Why is this limiting to licence type 5? CLS only?
+		// It appears that this function is not being used. CLS goes to a special one.
+		// Common portal wants to use this (for HCT)
+		/*
 		$sql = <<<EOD
 				SELECT DISTINCT(u.F_UserID)
 				FROM T_User u, T_Membership m, T_Accounts t
@@ -3808,7 +3927,17 @@ EOD;
 EOD;
 			$rs = $db->Execute($sql);
 		}
-		// Send back full recordSet for evaluation and use
+		*/
+		$sql = <<<EOD
+				SELECT DISTINCT(u.F_UserID), u.*, m.F_RootID as RootID, a.F_Prefix as Prefix
+				FROM T_User u, T_Membership m, T_Accounts t, T_AccountRoot a
+				WHERE u.F_UserID = m.F_UserID
+				AND m.F_RootID = t.F_RootID
+				AND m.F_RootID = a.F_RootID
+				$whereClause
+EOD;
+		$rs = $db->Execute($sql, $bindingParams);
+		// Send back all details, multiple records handled in parent call
 		return $rs;
 	}
 	// WZ Added for IYJ SCORM functions
@@ -3845,5 +3974,142 @@ EOD;
 		$rs->Close();
 		return true;		
 	}
+	// AR Added for smarter forgot password lookup
+	function forgotPassword(&$vars, &$node){
+		global $db;
+		$email  = strtoupper($vars['EMAIL']);
+		
+		// First find any and all users who have this registered email address, and which account they are in
+		$sql = <<<EOD
+		SELECT r.F_RootID, r.F_Name, r.F_AccountStatus, u.F_UserName, u.F_StudentID, u.F_Password, MAX(a.F_ExpiryDate) as AccountExpiryDate
+		FROM T_User u, T_Membership m, T_AccountRoot r, T_Accounts a
+		WHERE {$db->upperCase}(u.F_Email)=?
+		AND u.F_UserID = m.F_UserID
+		AND m.F_RootID = a.F_RootID
+		AND m.F_RootID = r.F_RootID
+		GROUP BY a.F_RootID
+EOD;
+		$bindingParams = array($email);
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs) {
+			foreach($rs as $k=>$row) {
+				// Find each account that this email is registered in, check that it is an active account
+				// Is it better to match active, or not suspended?
+				//if (strtotime($row['AccountExpiryDate'])>time() && $row['F_AccountStatus']==2)	{
+				$name = $row['F_UserName'];
+				if (strtotime($row['AccountExpiryDate'])>time() && $row['F_AccountStatus']!=3)	{
+					$studentID = $row['F_StudentID'];
+					$password = $row['F_Password'];
+					$accountName = $row['F_Name'];
+					$accountStatus = $row['F_AccountStatus'];
+					$node .= "<user name='$name' studentID='$studentID' password='$password' accountName='$accountName' accountStatus='$accountStatus' />";
+				} else {
+					$node .= "<user name='$name' status='inactive' />";
+				}
+			}
+		}
+		$rs->Close();
+		return true;		
+	}
+	
+	// AR v6.5.6.9 Use T_LicenceControl 
+	function checkLicenceControl(&$vars, &$node){
+		global $db;
+		$sid  = $vars['SESSIONID'];
+		$pid  = $vars['PRODUCTCODE'];
+		$uid  = $vars['USERID'];
+		if (isset($this->dateNow)) {
+			$dateNow = $this->dateNow;
+		} else {
+			$dateNow = date('Y-m-d 00:00:00', time());
+		}
+		// First need to get rootID from T_Session and licenceType from T_Accounts
+		$sql = <<<EOD
+			SELECT a.F_RootID as rootID, a.F_LicenceType as licenceType FROM T_Session s, T_Accounts a
+			WHERE s.F_SessionID = ?
+			AND a.F_RootID = s.F_RootID
+			AND a.F_ProductCode = ?
+EOD;
+		$bindingParams = array($sid, $pid);
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs && $rs->RecordCount()>0) {
+			$dbObj = $rs->FetchNextObj();
+			$rootID = $dbObj->rootID;
+			$licenceType = $dbObj->licenceType;
+		} else {
+			$node .= "<err code='205'>Your licence cannot be recorded: " .$db->ErrorMsg() ."</err>";
+			return false;
+		}
+
+		// If this is NOT learner tracking or transferable tracking, just skip out now
+		if ($licenceType==1 || $licenceType==6) {
+			// Then see if we have already written a licence control record for today
+			$sql = <<<EOD
+				SELECT * FROM T_LicenceControl
+				WHERE F_UserID = ?
+				AND F_ProductCode = ?
+				AND F_LastUpdateTime >= ?
+EOD;
+			$bindingParams = array($uid, $pid, $dateNow);
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs && $rs->RecordCount()>0) {
+				$dbObj = $rs->FetchNextObj();
+				$node .= "<licence id='".$dbObj->F_LicenceID."'/>";
+				// We have already written a licence control record for this session, nothing to do now
+				return true;
+			}
+			
+			// Insert a licence control record to show this user has used this title today
+			$licenceID = $this->insertLicenceControlRecord( $vars, $dateNow );
+			if (!$licenceID) {
+				$node .= "<err code='205'>Your licence cannot be recorded: " .$db->ErrorMsg() ."</err>";
+				return false;
+			} else {
+				$node .= "<licence id='".$licenceID."'/>";
+			}
+		} else {
+			$node .= "<note>licence type=$licenceType so no control needed</note>";
+		}
+	}
+	// v6.5.6.9
+	function insertLicenceControlRecord ( &$vars, $dateNow ) {
+		global $db;
+		$userID  = $vars['USERID'];
+		$productCode  = $vars['PRODUCTCODE'];
+		$rootID = $vars['ROOTID'];
+		$sql = <<<EOD
+				INSERT INTO T_LicenceControl (F_ProductCode, F_RootID, F_UserID, F_LastUpdateTime)
+				VALUES (?,?,?,?);
+EOD;
+		$bindingParams = array($productCode, $rootID, $userID, $dateNow);
+		$rs = $db->Execute($sql, $bindingParams);
+		if (!$rs) {
+			// Log this failure so we can know if this is happening, and hopefully why
+			error_log("\r\nfailed licence control insert root=$rootid user=$uid productCode=$pid at=$dateNow", 3, dirname(__FILE__).'\logs\failedLicenceControl.txt');
+		} else {
+			// For a while keep a log of session inserts using server time
+			//error_log("\r\ngood session insert root=$rootid user=$uid courseID=$cid productCode=$pid at=".date('Y-m-d H:i:s', time()), 3, dirname(__FILE__).'\logs\goodSessionInsert.txt');
+		}
+		$id = $db->Insert_ID();
+                // Just in case the identity check doesn't work
+		if ($id == false) {
+			$sql = <<<EOD
+				SELECT MAX(F_LicenceID) as LicenceID FROM T_LicenceControl
+				WHERE F_UserID=?
+				AND F_ProductCode=?
+EOD;
+			$bindingParams = array($uid, $pid);
+			$rs = $db->Execute($sql, $bindingParams);
+
+			if ( $rs->RecordCount()==1 ) {
+				$dbObj = $rs->FetchNextObj();
+				$id = $dbObj->LicenceID;
+			} else {
+				$id=false;
+			}
+		}
+		return $id;
+	}
+
 }
 ?>

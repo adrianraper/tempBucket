@@ -209,7 +209,7 @@ _global.ORCHID.root.buttonsHolder.ExerciseScreen.setLiterals = function() {
 	_global.ORCHID.root.jukeboxHolder.loadProgress.loadStatus.text = _global.ORCHID.literalModelObj.getLiteral("loading", "labels");
 	_global.ORCHID.root.jukeboxHolder.errorMsg.text = _global.ORCHID.literalModelObj.getLiteral("loadMediaFail", "labels");
 	// v6.3.5 Countdown controller
-	myTrace("set guess word to " + _global.ORCHID.literalModelObj.getLiteral("guessWord", "buttons"));
+	//myTrace("set guess word to " + _global.ORCHID.literalModelObj.getLiteral("guessWord", "buttons"));
 	this.cdController.cdGuess_lbl.setLabel(_global.ORCHID.literalModelObj.getLiteral("guessWord", "buttons"));
 	this.cdController.cdStats_pb.setLabel(_global.ORCHID.literalModelObj.getLiteral("stats", "buttons"));
 	// v6.4.2 button label
@@ -599,11 +599,17 @@ _global.ORCHID.root.buttonsHolder.ExerciseScreen.display = function() {
 	// CUP noScroll code
 	// Do you want to see the shrinker button for the example region?
 	if (_global.ORCHID.LoadedExercises[0].regions & _global.ORCHID.regionMode.example) {
-		//myTrace("I do want to see a shrink button");
-		this.shrinkExample_pb.setEnabled(true);
-		// v6.5.6.5 I don't understand why, but when I set the button to disabled, I lose the release action.
-		this.shrinkExample_pb.setReleaseAction(_global.ORCHID.viewObj.cmdShrink);
-		this.expandExample_pb.setEnabled(false);
+		
+		if (_global.ORCHID.LoadedExercises[0].settings.misc.exampleRegionShown==false) {
+			myTrace("hide example region on start up");
+			_global.ORCHID.viewObj.cmdShrink();
+		} else {
+			//myTrace("I do want to see a shrink button");
+			this.shrinkExample_pb.setEnabled(true);
+			// v6.5.6.5 I don't understand why, but when I set the button to disabled, I lose the release action.
+			this.shrinkExample_pb.setReleaseAction(_global.ORCHID.viewObj.cmdShrink);
+			this.expandExample_pb.setEnabled(false);
+		}
 		// I also want them to appear on top of the title. You have to be very careful of which depth you choose.
 		// I originally choose ExerciseDepth, and the Example_SP never got cleared.
 		this.shrinkExample_pb.swapDepths(_global.ORCHID.MsgBoxDepth+1);
@@ -1023,13 +1029,19 @@ _global.ORCHID.root.buttonsHolder.MenuScreen.display = function() {
 	//v6.4.2.4 Sweet Biscuits. Interface also needs to know about demo.
 	this.setProductType(_global.ORCHID.root.licenceHolder.licenceNS.productType);
 	
+	// v6.5.6.5 CP2 wants different opening menu screen for demo
+	if ((_global.ORCHID.root.licenceHolder.licenceNS.productType.toLowerCase().indexOf("demo") >= 0) &&
+		(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0)) {
+		this.showMenu(3, true) ;
+		//this.cmdMenu3.setTarget('connectedSpeechBtnDemo'); 
+	}
 	// v6.5.5.5 For Clear Pronunciation we have a customised menu tabbing system.
 	// When you return to the menu, you want to display the tab that you left.
 	// v6.5.5.8 Yet if you are coming back from an exercise you don't want any kind of scrolling to get there
 	// Scrolling is just for when you are playing with the tabs.
 	//this.bookmarkMenu();
 	this.bookmarkMenuDirect(); 
-	
+
 	// v6.4.2.8 Not in demo warning, clear it
 	_global.ORCHID.root.buttonsHolder.MessageScreen.demoWarning.notInDemo._visible = false;
 
@@ -1760,10 +1772,10 @@ _global.ORCHID.root.buttonsHolder.CourseListScreen.display = function() {
 	} else {
 		// v6.4.2.4 Temporary avoidance of this check for CE.com
 		// v6.5 And for the new Rackspace server
-		if (	_global.ORCHID.paths.root.toLowerCase().indexOf("www.clarityenglish.com")>=0 ||
-			_global.ORCHID.paths.root.toLowerCase().indexOf("202.148.158.86")>=0 ||
-			_global.ORCHID.paths.root.toLowerCase().indexOf("67.192.58.54")>=0 ||
-			_global.ORCHID.paths.root.toLowerCase().indexOf("clarity02")>=0) {
+		if (	_global.ORCHID.paths.root.toLowerCase().indexOf("clarityenglish.com")>=0 ) {
+			//_global.ORCHID.paths.root.toLowerCase().indexOf("202.148.158.86")>=0 ||
+			//_global.ORCHID.paths.root.toLowerCase().indexOf("67.192.58.54")>=0 ||
+			//_global.ORCHID.paths.root.toLowerCase().indexOf("clarity02")>=0) {
 			myTrace("*** ignore mismatch licence=" + _global.ORCHID.root.licenceHolder.licenceNS.branding + " interface=" + _global.ORCHID.root.buttonsHolder.buttonsNS.branding)
 		} else if (_global.ORCHID.root.buttonsHolder.buttonsNS.branding.toLowerCase()=="clarity/ap") {
 			myTrace("*** ignore mismatch licence=" + _global.ORCHID.root.licenceHolder.licenceNS.branding + " interface=" + _global.ORCHID.root.buttonsHolder.buttonsNS.branding) 

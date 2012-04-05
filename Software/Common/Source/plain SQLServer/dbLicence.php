@@ -16,15 +16,31 @@ class LICENCE {
 
 		// v6.5.5.0 We don't try to limit teachers
 		if ($vars['USERTYPE']==0) {
+			//echo $db->database;
 			// v6.5.5.0 First of all see if this user has already used a licence
-			if ($this->checkExistingLicence( $vars, $node)) {
+			$licenceID = $this->checkExistingLicence( $vars, $node);
+			if ($licenceID) {
 				// They have, so update the time that we used it to now
 				// v6.5.5.0 Remove this as we are dropping T_Licences in favour of T_Session
-				//$rC = $this->udpateLicence( $vars, $node );
-				$node .= "<note>use existing licence</note>";
+				//$rC = $this->updateLicence( $vars, $node );
+				// v6.5.6.7 Add back in
+				$rC = $this->updateLicenceControl( $vars, $licenceID );
+				if ($rC) {
+					$node .= "<note>use existing licence</note>";
+				} else {
+					$node .= "<err code='203'>your licence can not be updated: ".$db->ErrorMsg()."</err>";
+				}
 			} else {
 				// This is a new licence, check to see if we have space
-				$rC = $this->checkAvailableLicences( $vars, $node );
+				// IF this is an account where we are really just counting licences used rather than setting a limit
+				// (such as BC Global R2I) there is not much point doing this.
+				// In particular for GlobalR2I this is a VERY expensive call. And totally unnecessary.
+				if (stristr($db->database, 'GlobalRoadToIELTS')!==false) {
+					$node .= "<licence id='0' />";
+					$node .= "<note>skip check because db=".$db->database."</note>";
+				} else {
+					$rC = $this->checkAvailableLicences( $vars, $node );
+				}
 				//if ($rC) {
 					// We do, so record it
 					// v6.5.5.0 Remove this as we are dropping T_Licences in favour of T_Session
@@ -121,6 +137,56 @@ class LICENCE {
 			return false;
 		}
 	}
+	// v6.5.6.7 This is used for tracking licences
+	function updateLicenceControl( $vars, $licenceID ) {
+		global $db;
+		$returnCode = $this->updateLicenceControlRecord($vars, $licenceID );
+		if ($returnCode) {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	// v6.5.6.7 This is used for tracking licences
+	function updateLicenceControlRecord( &$vars, $id ) {
+		global $db;
+		// v6.5.5.0 Should I use $vars['datestamp'] to get the user's own dates rather than the server time?
+		//$dateNow = $this->dateNow;
+		if (isset($this->dateNow)) {
+			$dateNow = $this->dateNow;
+		} else {
+			$dateNow = date('Y-m-d H:i:s', time());
+		}
+		// v6.5.5.1 but the SQL doesn't fail if the F_LicenceID is missing, it just updates 0 records. No good to us.
+		// So need to use a SELECT first
+		$sql = <<<EOD
+			SELECT * FROM T_LicenceControl
+			WHERE F_LicenceID=?
+EOD;
+		$bindingParams = array($id);
+		$rs = $db->Execute($sql, $bindingParams);
+		// Confirm that there is one and only one record for this licenceID
+		if ( $rs->RecordCount()==1 ) {
+			$rs->Close();
+			$sql = <<<EOD
+				UPDATE T_LicenceControl
+				SET F_LastUpdateTime=?
+				WHERE F_LicenceID=?
+EOD;
+			$bindingParams = array($dateNow, $id);
+			$rs = $db->Execute($sql, $bindingParams);
+			if (!$rs) {
+				// the sql call failed
+				return false;
+			} else {
+				return true;
+			};
+		} else {
+			// No such licence - oh dear
+			return false;
+		}
+	}
+	
 	// v6.5.5.0 This is used for concurrent and tracking licences
 	function updateLicence( &$vars, &$node ) {
 		global $db;
@@ -503,6 +569,82 @@ EOD;
 	}
 	// v6.5.5.0 Moved from dbProgress scripts
 	// Used for licence control (Learner Tracking licence)
+	// v6.5.6.7 Change to T_LicenceControl table
+	// Note that there are parallel functions in dbProgress for writing records.
+	function checkExistingLicence ( &$vars, &$node ) {
+		global $db;
+		$uid  = $vars['USERID'];
+		$pid  = $vars['PRODUCTCODE'];
+		$rootID = $vars['ROOTID'];
+		// This is actually licence clearance date as calculated by getRMSettings
+		$datestamp = $vars['LICENCESTARTDATE'];
+		$sql = <<<EOD
+			SELECT * FROM T_LicenceControl
+			WHERE F_UserID = ?
+			AND F_ProductCode = ?
+			AND F_LastUpdateTime >= ?
+EOD;
+		$bindingParams = array($uid, $pid, $datestamp);
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs && $rs->RecordCount()>0) {
+			$dbObj = $rs->FetchNextObj();
+			$licenceID = $dbObj->F_LicenceID;
+			$node .= "<licence id='$licenceID' />";
+			return $licenceID;
+		} else {
+			return false;
+		}
+	}
+	// v6.5.5.0 This is for tracking licences
+	// v6.5.6.7 Change to T_LicenceControl table
+	function checkAvailableLicences( &$vars, &$node) {
+		global $db;
+		$pid  = $vars['PRODUCTCODE'];
+		$rootID = $vars['ROOTID'];
+		// This is actually licence clearance date as calculated by getRMSettings
+		$datestamp = $vars['LICENCESTARTDATE'];
+		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		if ($vars['LICENCETYPE']=='6') {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
+				FROM T_LicenceControl c, T_User u
+				WHERE c.F_ProductCode = ?
+				AND c.F_UserID = u.F_UserID
+				AND c.F_LastUpdateTime >= ?
+EOD;
+		} else {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
+				WHERE F_ProductCode = ?
+				AND F_LastUpdateTime >= ?
+EOD;
+		}
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+		} else {
+			$sql.= " AND F_RootID = $rootID";
+		}
+		$bindingParams = array($pid, $datestamp);
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs && $rs->RecordCount()>0) {
+			$dbObj = $rs->FetchNextObj();
+			$licencesUsed = (int)$dbObj->licencesUsed;
+		} else {
+			$node .= "<err code='100' userID='".$vars['USERID']."' licencesUsed='$licencesUsed'>Error getting licence tracking</err>";
+			return false;
+		}
+		// Compare against the licences the school purchased
+		if ($licencesUsed>=$vars['LICENCES']) {
+			$vars['ERRORREASONCODE'] = 211;
+			$node .= "<err code='211' userID='".$vars['USERID']."' licencesUsed='$licencesUsed'>No licences available</err>";
+			return false;
+		} else {
+			$node .= "<licence id='0' users='$licencesUsed' />";
+		}
+	}
+	/*
 	function checkExistingLicence ( &$vars, &$node ) {
 		global $db;
 		$uid  = $vars['USERID'];
@@ -554,7 +696,8 @@ EOD;
 			return false;
 		}
 	}
-	// v6.5.5.0 This is for tracking licences
+	*/
+	/*
 	function checkAvailableLicences( &$vars, &$node) {
 		global $db;
 		if ($vars['DATABASEVERSION']>1 ) {
@@ -581,23 +724,48 @@ EOD;
 			//  This would make it useful to non-Orchid programs as well.
 			// v6.5.6.6 Change the rules for a Transferable Licence (6) - in which case you only care about active students
 			// Drop the check on a EXISTS score as I think this slows things down considerably. Mind you - it is very fast on production
+			
+			// v6.5.6.6 licence clearance date implementation is handled by getRMSettings and then just using licenceStartDate here
 			$rootID = $vars['ROOTID'];
 			// v6.5.6 SciencesPo temporary workround
-			if ($rootID==14652) {
-				$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
-				return true;
-			}
-			/*
-			$sql = <<<EOD
-				SELECT COUNT(DISTINCT s.F_UserID)  AS licencesUsed
-				FROM T_Session s, T_User u
-				WHERE s.F_RootID in ($rootID)
-				AND s.F_ProductCode=?
-				AND u.F_UserID = s.F_UserID
-				AND u.F_UserType=0
-				AND s.F_StartDateStamp>?
-EOD;
-			*/
+			// RL:Same happens on HCT: 14276,14277,14278,14279,14280,14281,14282,14283,14284,14286,14287,14288,14290,14291,14292
+			//if ($rootID==10719) {
+			//	$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
+			//	return true;
+			//}
+			switch ($rootID) {
+				case 14252: 
+					//$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
+					//return true;
+					//break;
+				case 14276:
+				case 14277:
+				case 14278:
+				case 14279:
+				case 14280:
+				case 14281:
+				case 14282:
+				case 14283:
+				case 14284:
+				case 14286:
+				case 14287:
+				case 14288:
+				case 14290:
+				case 14291:
+				case 14292:
+					$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
+					return true;
+			}			
+			//$sql = <<<EOD
+			//	SELECT COUNT(DISTINCT s.F_UserID)  AS licencesUsed
+			//	FROM T_Session s, T_User u
+			//	WHERE s.F_RootID in ($rootID)
+			//	AND s.F_ProductCode=?
+			//	AND u.F_UserID = s.F_UserID
+			//	AND u.F_UserType=0
+			//	AND s.F_StartDateStamp>?
+//EOD;
+			
 			//	AND s.F_StartDateStamp>CONVERT(datetime,?,120) 
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT s.F_UserID)  AS activeStudentCount
@@ -664,6 +832,7 @@ EOD;
 		}
 		return true;
 	}
+	*/
 	// v6.5.5.0 Drop this in favour of using the T_Session table for tracking licences
 	/*
 	function addNewLicence( &$vars, &$node ) {

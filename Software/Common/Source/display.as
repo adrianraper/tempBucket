@@ -180,7 +180,8 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 				//myBackgroundColour = 0xCCCCFF;
 				// BC/IELTS
 				//myTrace("title scroll, branding=" + _global.ORCHID.root.licenceHolder.licenceNS.branding); 
-				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("BC/IELTS") >= 0) {
+				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("BC/IELTS") >= 0 ||
+					_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 					myScroll = false;
 				} else {
 					myScroll = true;
@@ -381,7 +382,13 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 		}
 		//myTrace("use exercise background=" + myBackgroundColour);
 		//myBackgroundColour = 0xFFFFFF;
-		myScroll = true;
+		// v6.5.6.5 Possibly don't scroll if you have set that in <body noScrollBar='true'>...
+		if (_global.ORCHID.LoadedExercises[0].body.noScrollBar==true) {
+			myTrace("it's true, no scroll bar");
+			myScroll = false;
+		} else {
+			myScroll = true;
+		}
 		myLeftMargin = 0;  myTitleBar = "";
 		// v6.5.6 See comment in Title_SP
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
@@ -390,6 +397,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 
 	} else if (paneName == "Feedback_SP" || paneName == "Hint_SP" || paneName == "Related_SP") {
 		myDepth = _global.ORCHID.FeedbackDepth;
+		//myTrace("set paneName=" + paneName + " to depth=" + myDepth);
 		if (coords != undefined) {
 			//trace("sent coords are x=" + coords.x + " and the test is " + (coords!=undefined));
 			myX = coords.x; myY = coords.y; myW = coords.width; myH = coords.height;
@@ -416,6 +424,8 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 					//myX = 110; myY = 110;
 					myX = 100; myY = 140;
+				// CP2 wants to move all boxes down a bit so under the countdown interface
+				// No, fix it so that countdown fields are UNDER the relatedText box
 				} else {
 					myX = 30; myY = 130;	
 				}
@@ -457,9 +467,10 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 			myW = 60; myH = 60;
 			myScroll = false;
 			myLeftMargin = 0;
-			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0||
-				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
 				myBackgroundColour = 0xFFD25E;
+			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+				myBackgroundColour = 0x31376d;
 			}
 		}
 		//myTitleBar = paneName.substr(0, paneName.indexOf("_"));
@@ -576,7 +587,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 			myDepth = _global.ORCHID.FeedbackDepth;
 			if (coords != undefined) {
 				myX = coords.x; myY = coords.y; myW = coords.width; myH = coords.height;
-				myTrace("use myH=" + myH + " myW=" + myW);
+				//myTrace("use myH=" + myH + " myW=" + myW);
 			} else {
 				// v6.3.5 Change dimensions
 				//myX = 30; myY = 70;
@@ -649,6 +660,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 		// v6.5.6.4 Need to reset this as you might have changed it for instant feedback
 		myTitleColour = _global.ORCHID.root.buttonsHolder.buttonsNS.interface.titleFillColour;
 	}
+	
 	// 6.4.2.7 This needs to be moved to later as you still have to set stuff for drag panes
 	ppotsVars.myX = myX; ppotsVars.myY = myY; ppotsVars.myW = myW; ppotsVars.myH = myH;
 	ppotsVars.myMinW = myMinW; ppotsVars.myMinH = myMinH;
@@ -687,7 +699,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 		//} else {
 		var myPane = paneHolder.attachMovie(paneSymbol, paneName, myDepth, initObj); // For now, this is a reserved depth at root level
 		//}
-		myTrace("created " + paneSymbol + ":" + myPane);
+		myTrace("created " + paneSymbol + ":" + myPane + " at depth=" + myDepth);
 	}
 	
 	ppotsVars.myPane = myPane; 
@@ -1749,10 +1761,10 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 		}
 		var thisHeight = Math.min(myH, contentHolder._height);
 		//trace("take min of " + myW + " and " + contentHolder._width);
-		myTrace("finally set the content size to " + thisWidth + ", " + thisHeight);
+		//myTrace("finally set the content size to " + thisWidth + ", " + thisHeight);
 		// v6.5.6.4 If this is a ReadingText in a PUW, then minH and minW should be different
 		
-		myTrace("and I have minHeight= " + myMinH);
+		//myTrace("and I have minHeight= " + myMinH);
 		myPane.setContentSize(thisWidth, thisHeight);
 		// v6.4.2.7 Copied from view - need to resize score feedback immediately
 		// and get the scroll bar right by using resize routine
@@ -2283,11 +2295,13 @@ showMediaItem = function(thisMediaItem, contentHolder) {
 						// v6.4.3 Or if it is anchored
 						//myTrace("mediaType=" + this.mediaItem.type);
 						// if (this.mediaItem.type.substr(0,1) == "q") {
-						if (this.mediaItem.type.substr(0,1) == "q" || this.mediaItem.type.substr(0,1) == "a") {
-							this.mediaObj.streamingLabel == undefined;
-						} else {
+						// v6.5.6.5 But for CP2 we DO want to see a streaming bar whenever possible. 
+						// I suppose we do for other titles too, but do we need to check whether that ends up overwriting anything?
+						//if (this.mediaItem.type.substr(0,1) == "q" || this.mediaItem.type.substr(0,1) == "a") {
+						//	this.mediaObj.streamingLabel == undefined;
+						//} else {
 							this.mediaObj.streamingLabel = _global.ORCHID.literalModelObj.getLiteral("streaming", "labels");
-						}
+						//}
 						// v6.4.2.7 Trying to change the audio button after play has finished
 						this.contentHolder.onFinished = function(id) {
 							// link to the button (based on the id)
@@ -3934,6 +3948,7 @@ putParagraphsOnThePrinter_stuffBefore = function(paneHolder, thisText, paneType,
 		}
 		myScroll = true;
 	}
+	
 	// v6.2 I want to reduce the printing size by 80% so the x and y change accordingly
 	myX = Math.round(myX * 0.8); myY = Math.round(myY * 0.8);
 	

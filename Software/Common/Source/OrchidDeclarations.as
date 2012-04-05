@@ -100,8 +100,11 @@ _global.ORCHID.depth = 10; // and this is??
 _global.ORCHID.TitleDepth = 101;
 _global.ORCHID.ExerciseDepth = 105;
 _global.ORCHID.ReadingTextDepth = 106;
-_global.ORCHID.FeedbackDepth = 107;
-_global.ORCHID.CountDownControllerDepth = 108;
+// v6.5.6.5 Since we have a problem with Related_Text going under countdown controller, can i just switch these two deptsh?
+//_global.ORCHID.FeedbackDepth = 107;
+//_global.ORCHID.CountDownControllerDepth = 108;
+_global.ORCHID.CountDownControllerDepth = 107;
+_global.ORCHID.FeedbackDepth = 108;
 _global.ORCHID.MsgBoxDepth = 110;
 // CUP noScroll code
 _global.ORCHID.noScrollDepth = 104;

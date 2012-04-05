@@ -48,10 +48,12 @@ menuNS.displaySubMenu = function() {
 		//	thisSub._x = Math.floor(this._x + (menuDim.width * 0.95));
 		//	thisSub._y = Math.floor(this._y + (menuDim.height * 0));
 		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
-			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0 ||
 			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 			thisSub._x = Math.floor(this._x - 30);
 			thisSub._y = Math.floor(this._y - 30);
+		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+			thisSub._x = Math.floor((Stage.width - thisSub._width)/2);
+			thisSub._y = Math.floor((Stage.height - thisSub._height)/2);
 		} else {
 			thisSub._x = Math.floor(this._x + (menuDim.width * 0.45));
 			thisSub._y = Math.floor(this._y + (menuDim.height * 0.35));
@@ -61,7 +63,7 @@ menuNS.displaySubMenu = function() {
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
 			thisSub.setSize(421,294);
 		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
-			thisSub.setSize(421,294);
+			thisSub.setSize(465,242);
 		} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 			thisSub.setSize(558,475);
 		} else {
@@ -373,7 +375,7 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 				var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:-18, _y:6}; 
 			// v6.5.5.5 Clear Pronunciation 2
 			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
-				var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:-18, _y:6}; 
+				var initObj = {height:13, width:13, lineThick:1, outFill:0xFFFFFF, allFill:0xFFFFFF, doneFill:0x1E4447, _x:-6, _y:8}; 
 			// v6.5.5.5 English for Hotel Staff
 			} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("sky/efhs") >= 0) {
 				var initObj = {height:23, width:10, lineThick:1, doneFill:0xAD002B, _x:0, _y:2};
@@ -388,10 +390,12 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 			// Try making it at the same level. Well, onRollOver works, but only get one! And menu coords are not set yet. So go back.
 			// v6.5.5.8 Clear Pronunciation wants no progress indicator if 0% or if it is the introduction unit
 			//myTrace("progress, ex=" + progressItems[i].numExercisesDone[0]);
+			//myTrace('numExercisesDone=' + progressItems[i].numExercisesDone[0] + ' unit='+thisMenu.unit);
+				//(thisMenu.unit<1 || thisMenu.unit>25))) {
 			if ((_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
 				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) &&
 				((progressItems[i].numExercisesDone[0]==0 || progressItems[i].numExercisesDone[0]==undefined) ||
-				(thisMenu.unit<1 || thisMenu.unit>25))) {
+				thisMenu.unit<1)) {
 			} else {
 				thisMenu.attachMovie("FProgressIndicatorSymbol", "progressIndicator", menuNS.depth++, initObj);
 				//initObj._x = thisMenu._x;

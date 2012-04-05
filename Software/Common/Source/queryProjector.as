@@ -18,7 +18,7 @@ dbConnect = function(filename, scope, callback_param) {
 	_global.ORCHID.projector.callbacks.callBackFunction = callback_param;
 	//myTrace("set callback function=" + callback_param);
 	_global.ORCHID.projector.callbacks.dbConnected = function(value) {
-		myTrace("dbConnected with " + value);
+		//myTrace("dbConnected with " + value);
 		if (value == "true") {
 			var success = true;
 			//myTrace("callbacks.dbConnected:database connected through FSP");
@@ -172,10 +172,10 @@ querySendAndLoad = function(queryString, resultsAction, requiresWait) {
 		_global.ORCHID.projector.variables.doingWhat = "dbCall";
 		_global.ORCHID.projector.callbacks.resultsAction = resultsAction;
 		if (queryNS.databaseType == "access") {
-			myTrace("query: " + queryString.split(",").join("@c@"));
+			//myTrace("query: " + queryString.split(",").join("@c@"));
 			mdm.selectfromdb(queryString.split(",").join("@c@")); 
 		} else {
-			myTrace("query: " + queryString.split(",").join("@c@"));
+			//myTrace("query: " + queryString.split(",").join("@c@"));
 			mdm.mysqlquery(queryString.split(",").join("@c@"), "success"); 
 		}
 		if (requiresWait){
@@ -1775,7 +1775,7 @@ countUsers = function() {
 }
 // v6.4.2.8 New method for certificates
 getGeneralStats = function() {
-	myTrace("getGeneralStats");
+	//myTrace("getGeneralStats");
 	queryNS.thisQuery.fieldNames = "F_ExerciseID, maxScore, cntScore, totalScore";
 	var queryString = "SELECT F_ExerciseID, MAX( F_Score ) AS maxScore, COUNT( * ) AS cntScore, MAX( F_ScoreCorrect ) AS maxCorrect" +
 			" FROM T_Score, T_Session " +
@@ -1804,7 +1804,7 @@ getGeneralStats = function() {
 				var userNode = "";
 				for (var i=0; i<numRecords; i++) {
 					var rowObject = queryNS.FSPXMLtoObject(myXML.childNodes[0].childNodes[i]);
-					myTrace("this record score=" + rowObject.maxScore + " correct=" + rowObject.maxCorrect + " count=" + rowObject.cntScore);
+					//myTrace("this record score=" + rowObject.maxScore + " correct=" + rowObject.maxCorrect + " count=" + rowObject.cntScore);
 					statsObject.countScored++;
 					statsObject.totalScore += Number(rowObject.maxScore);
 					statsObject.totalCorrect += Number(rowObject.maxCorrect);

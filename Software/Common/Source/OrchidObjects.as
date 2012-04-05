@@ -222,7 +222,8 @@ ProgramSettingsObject.prototype.load = function() {
 				// v6.5.4.7 You need to change this round. Even if you do have a licenceStartDate set, a perpetual licence always uses a rolling year for counting purposes.
 				//if (tN.attributes.licenceStartDate==undefined || tN.attributes.licenceStartDate==null || tN.attributes.licenceStartDate=="") {
 				myTrace("account, expiryDate=" + this.master.expiryDate + " licenceStartDate=" + tN.attributes.licenceStartDate);
-				// If the expriy date is perpetual (2049), set start date to a year ago today
+				// If the expiry date is perpetual (2049), set start date to a year ago today
+				// Licence clearance date processing should avoid this calculations - but no need to take anything out here
 				var aYearAgo = new Date();
 				aYearAgo.setUTCFullYear(aYearAgo.getUTCFullYear() -1);
 				if (this.master.expiryDate>='2030') {
@@ -279,14 +280,25 @@ ProgramSettingsObject.prototype.load = function() {
 				}
 				myTrace("so paths.content=" + _global.ORCHID.paths.content);
 				// v6.5.5.6 Default sharedMedia and streamingMedia to this content root (with respective subFolder). If I have already read from location, I'll just keep that
+				// v6.5.6.5 It is necessary to do the same thing with streamingMedia (and I suppose shared) that we do for content regarding language versions
+				// Can you think of a good way to work out if the streamingMedia path in the configuration file is a root or a full path?
+				// How about using a placeholder?
+				// streamingMedia=rtmp://streaming.clarityenglish.com:1935/cfx/st/[version]/streamingMedia
 				if (_global.ORCHID.commandLine.sharedMedia == undefined) {
 					_global.ORCHID.paths.sharedMedia = _global.ORCHID.functions.addSlash(_global.ORCHID.paths.content) + _global.ORCHID.functions.addSlash("sharedMedia");
 					myTrace("default paths.sharedMedia =" + _global.ORCHID.paths.sharedMedia);
+				// Replace the place holder with the language version content path
+				} else if (_global.ORCHID.commandLine.sharedMedia.indexOf("[version]")>0) {
+					_global.ORCHID.commandLine.sharedMedia=findReplace(_global.ORCHID.commandLine.sharedMedia,"[version]",tN.attributes.contentLocation);
 				}
 				if (_global.ORCHID.commandLine.streamingMedia == undefined) {
 					_global.ORCHID.paths.streamingMedia=_global.ORCHID.functions.addSlash(_global.ORCHID.paths.content) + _global.ORCHID.functions.addSlash("streamingMedia");
 					myTrace("default paths.streamingMedia =" + _global.ORCHID.paths.streamingMedia);
+				// Replace the place holder with the language version content path
+				} else if (_global.ORCHID.commandLine.streamingMedia.indexOf("[version]")>0) {
+					_global.ORCHID.paths.streamingMedia=findReplace(_global.ORCHID.commandLine.streamingMedia,"[version]",tN.attributes.contentLocation);
 				}
+				myTrace("end up with streamingMedia=" + _global.ORCHID.paths.streamingMedia);
 				// I'm still not going to touch the MGS root - hoping to drop it altogether
 				this.master.MGSRoot = tN.attributes.MGSRoot;
 				//myTrace("account settings: key=" + tN.toString());
@@ -2199,6 +2211,8 @@ UserObject.prototype.getCourseEditedContent = function(){
 			editedCourseXML.onLoad = function(success) {
 				if (success) {
 					myTrace("Load edited course xml success!");
+					//v6.5.6.6 One problem is that a 404 error is considered success in that data has appeared...
+					// In that case, this.master seems to still be the getEditedContent response XML.
 					for (var node in this.master.firstChild.childNodes) {
 						var tN = this.master.firstChild.childNodes[node];
 						if (tN.nodeName == "err") {

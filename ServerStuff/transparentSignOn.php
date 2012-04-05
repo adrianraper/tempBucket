@@ -46,13 +46,14 @@ try {
 			break;
 		case '39':
 		case 'CP1':
+		case 'CP':
 		case 'Sounds':
-			$programFolder = 'ClearProunciation1';
+			$programFolder = 'ClearPronunciation';
 			break;
 		case '50':
 		case 'CP2':
 		case 'Speech':
-			$programFolder = 'ClearProunciation2';
+			$programFolder = 'ClearPronunciation2';
 			break;
 		default:
 			throw new Exception("The passed program name is not recognised.");
@@ -74,6 +75,7 @@ try {
 	$LoginAPI['city'] = $city;
 	$LoginAPI['country'] = $country;
 	$LoginAPI['loginOption'] = $loginOption;
+	$LoginAPI['subscriptionPeriod'] = $subscriptionPeriod;
 	
 	// The following come from CLC Plus
 	$LoginAPI['studentID'] = $studentID;
@@ -84,7 +86,7 @@ try {
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);
 	$targetURL = $domain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
-	echo $serializedObj;
+	// echo $serializedObj;
 
 	// Initialize the cURL session
 	$ch = curl_init();
@@ -124,12 +126,12 @@ try {
 	}
 	echo $contents;
 	if (isset($returnInfo['user'])) {
-		echo " userID is ".$returnInfo['user']['userID'];
+		// echo " userID is ".$returnInfo['user']['userID'];
 
-		// It would be best to just send Clarity's userID in session, but that isn't picked up by start.php
+		// It would be best to just send Clarity's userID in session, but that isn't picked up by Orchid
 		// So use CSTDI UserID
 		$_SESSION['StudentID'] = $studentID;
-		$targetURL = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI';
+		$targetURL = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI&units=bwnj';
 		
 		redirect($targetURL);
 	}

@@ -43,12 +43,6 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	// Fetch mode to use
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	
-	// v6.5.5.9 To be sure that this connection will use the dateformat we want (SQLServer only)
-	// Could this go into the adodb files for mssql? 
-	// I wouldn't need it at all if I could figure out how to set this as the default on SQLServer!
-	//$sql = 'set dateformat ymd';
-	//$rs = $db->Execute($sql);
-	
 	// load the progress functions - all code is in this class now
 	$Progress	= new PROGRESS();
 	//$node .= "<note>method=".$vars['METHOD']."</note>";
@@ -189,7 +183,13 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 			}
 			$rC = $Progress->insertScore( $vars, $node );
 			if ($rC) {
-			    $rC = $Progress->updateSession( $vars, $node );
+				$rC = $Progress->updateSession( $vars, $node );
+				// v6.5.6.7 Add in a check to see that we are writing one record per session to licence control
+				// As we don't know licenceType or rootID at this point, need to read from T_Session and T_Accounts.
+				// Do a simple check to avoid anything unnecessary for anonymous access.
+				if ($vars['USERID']>=1) {
+					$rC = $Progress->checkLicenceControl( $vars, $node );
+				}
 			}
 			break;
 			
@@ -339,6 +339,11 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 		// RL: Temporary function for iLearnIELTS
 		case "UPDATEUSERILEARNIELTS":
 			$rC = $Progress->updateUserILearnIELTS( $vars, $node );
+			break;
+
+		// AR: A smarter forgot password lookup
+		case "FORGOTPASSWORD":
+			$rC = $Progress->forgotPassword( $vars, $node );
 			break;
 			
 		default:

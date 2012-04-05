@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<item version="6.5" caption="" id="0">
+  <item picture="Menu-name" enabledFlag="35" unit="26" caption="Introduction" id="1250676420000" customised="true" x="200" y="150" image1="intro_demo.swf">
+    <item unit="26" id="1280130414284" action="1280130414284" exerciseID="1280130414284" caption="Getting started" fileName="1280130414284.xml" enabledFlag="35" example="Int_1.jpg"></item>
+    <item unit="26" id="1275983527469" action="1275983527469" exerciseID="1275983527469" caption="Important words" fileName="1275983527469.xml" enabledFlag="35" relatedID="1281501421007" example="Int_2.jpg" />
+    <item unit="26" id="1279849830290" action="1279849830290" exerciseID="1279849830290" caption="Parts of the mouth" fileName="1279849830290.xml" enabledFlag="35" relatedID="1281501585233" example="Int_3.jpg" />
+    <item unit="26" id="1280130842631" caption="What is the IPA?" fileName="1280130842631.xml" action="1280130842631" exerciseID="1280130842631" enabledFlag="35" relatedID="1281501862411" example="Int_4.jpg" />
+  </item>
+  <item picture="Unit1" enabledFlag="35" unit="1" caption="Unit%201%3A%20Pill%20%2F%20Fill" id="1250676410019" ruleID="1270699018801" customised="true" x="200" y="550" image1="pill_sound_medium.swf" image2="fill_sound_medium.swf">
+    <item unit="1" id="1250740678061" caption="Practise the sounds" fileName="1250740678061.xml" action="1250740678061" exerciseID="1250740678061" enabledFlag="11" example="1_1.jpg" relatedID="1281500223818" />
+    <item unit="1" id="1250741182500" caption="Sounds in a sentence" fileName="1250741182500.xml" action="1250741182500" exerciseID="1250741182500" enabledFlag="11" example="1_2.jpg" relatedID="1281500402545" />
+    <item unit="1" id="1251108232290" caption="Can you hear the sound?" fileName="1251108232290.xml" action="1251108232290" exerciseID="1251108232290" enabledFlag="11" example="1_3.jpg" relatedID="1281500486546" />
+    <item unit="1" id="1264053013197" caption="Sounds in action" fileName="1264053013197.xml" action="1264053013197" exerciseID="1264053013197" enabledFlag="11" relatedID="1281500820778" example="1_4.jpg"></item>
+    <item id="1193901049553" caption="Say the word" fileName="1193901049553.xml" action="1193901049553" exerciseID="1193901049553" enabledFlag="11" unit="1" relatedID="1281501050930" example="1_5.jpg" />
+    <item unit="1" id="1269935910927" caption="Unit%201%3A%20Pill%20%2F%20Fill" fileName="1269935910927.xml" action="1269935910927" exerciseID="1269935910927" enabledFlag="32" />
+    <item unit="1" id="1270699018801" caption="My mouth" fileName="1270699018801.xml" action="1270699018801" exerciseID="1270699018801" enabledFlag="32" />
+  </item>
+  <item picture="Unit2" enabledFlag="35" unit="2" caption="Unit%202%3A%20Buy%20%2F%20My" id="1250822462959" relatedID="1280473340298" ruleID="1270699018802" customised="true" x="200" y="595" image1="buy_sound_medium.swf" image2="my_sound_medium.swf">
+    <item unit="2" id="1250822486626" caption="Practise the sounds" fileName="1250822486626.xml" action="1250822486626" exerciseID="1250822486626" enabledFlag="11" relatedID="1281500223818" example="2_1.jpg" />
+    <item unit="2" id="1250823074193" caption="Sounds in a sentence" fileName="1250823074193.xml" action="1250823074193" exerciseID="1250823074193" enabledFlag="11" relatedID="1281500402545" example="2_2.jpg" />
+    <item unit="2" id="1251190462821" caption="Can you hear the sound?" fileName="1251190462821.xml" action="1251190462821" exerciseID="1251190462821" enabledFlag="11" relatedID="1281500486546" example="2_3.jpg" />
+    <item unit="2" id="1267503931827" caption="Sounds in action" fileName="1267503931827.xml" action="1267503931827" exerciseID="1267503931827" enabledFlag="11" relatedID="1281500820778" example="2_4.jpg" />
+    <item id="1193901049562" caption="Say the word" fileName="1193901049562.xml" action="1193901049562" exerciseID="1193901049562" enabledFlag="11" unit="2" relatedID="1281501050930" example="2_5.jpg" />
+    <item unit="2" id="1269935910936" caption="Unit%202%3A%20Buy%20%2F%20My" fileName="1269935910936.xml" action="1269935910936" exerciseID="1269935910936" enabledFlag="32" />
+    <item unit="2" id="1270699018802" caption="My mouth" fileName="1270699018802.xml" action="1270699018802" exerciseID="1270699018802" enabledFlag="32" />
+  </item>
+  <item picture="Unit3" enabledFlag="35" unit="3" caption="Unit%203%3A%20Tie%20%2F%20Die" id="1250760849010" relatedID="1280473340298" ruleID="1270699018803" customised="true" x="200" y="640" image1="tie_sound_medium.swf" image2="die_sound_medium.swf">
+    <item unit="3" id="1250760870002" caption="Practise the sounds" fileName="1250760870002.xml" action="1250760870002" exerciseID="1250760870002" enabledFlag="11" relatedID="1281500223818" example="3_1.jpg" />
+    <item unit="3" id="1250761256148" caption="Sounds in a sentence" fileName="1250761256148.xml" action="1250761256148" exerciseID="1250761256148" enabledFlag="11" relatedID="1281500402545" example="3_2.jpg" />
+    <item unit="3" id="1251184034955" caption="Can you hear the sound?" fileName="1251184034955.xml" action="1251184034955" exerciseID="1251184034955" enabledFlag="11" relatedID="1281500486546" example="3_3.jpg" />
+    <item unit="3" id="1264057748114" caption="Sounds in action" fileName="1264057748114.xml" action="1264057748114" exerciseID="1264057748114" enabledFlag="11" relatedID="1281500820778" example="3_4.jpg" />
+    <item id="1193901049555" caption="Say the word" fileName="1193901049555.xml" action="1193901049555" exerciseID="1193901049555" enabledFlag="11" unit="3" relatedID="1281501050930" example="3_5.jpg" />
+    <item unit="3" id="1269935910929" caption="Unit%203%3A%20Tie%20%2F%20Die" fileName="1269935910929.xml" action="1269935910929" exerciseID="1269935910929" enabledFlag="32" />
+    <item unit="3" id="1270699018803" caption="My mouth" fileName="1270699018803.xml" action="1270699018803" exerciseID="1270699018803" enabledFlag="32" />
+  </item>
+  <item picture="Unit4" enabledFlag="35" unit="4" caption="Unit%204%3A%20Ship%20%2F%20Chip" id="1250823531231" relatedID="1280473340298" ruleID="1270699018804" customised="true" y="685" x="200" image1="ship_sound_medium.swf" image2="chip_sound_medium.swf">
+    <item unit="4" id="1250823565312" caption="Practise the sounds" fileName="1250823565312.xml" action="1250823565312" exerciseID="1250823565312" enabledFlag="11" relatedID="1281500223818" example="4_1.jpg" />
+    <item unit="4" id="1250823922119" caption="Sounds in a sentence" fileName="1250823922119.xml" action="1250823922119" exerciseID="1250823922119" enabledFlag="11" relatedID="1281500402545" example="4_2.jpg" />
+    <item unit="4" id="1251193017418" caption="Can you hear the sound?" fileName="1251193017418.xml" action="1251193017418" exerciseID="1251193017418" enabledFlag="11" relatedID="1281500486546" example="4_3.jpg" />
+    <item unit="4" id="1263975701631" caption="Sounds in action" fileName="1263975701631.xml" action="1263975701631" exerciseID="1263975701631" enabledFlag="11" relatedID="1281500820778" example="4_4.jpg" />
+    <item id="1193901049563" caption="Say the word" fileName="1193901049563.xml" action="1193901049563" exerciseID="1193901049563" enabledFlag="11" unit="4" relatedID="1281501050930" example="4_5.jpg" />
+    <item unit="4" id="1269935910937" caption="Unit%204%3A%20Ship%20%2F%20Chip" fileName="1269935910937.xml" action="1269935910937" exerciseID="1269935910937" enabledFlag="32" />
+    <item unit="4" id="1270699018804" caption="My mouth" fileName="1270699018804.xml" action="1270699018804" exerciseID="1270699018804" enabledFlag="32" />
+  </item>
+  <item picture="Unit5" enabledFlag="35" unit="5" caption="Unit%205%3A%20Yet%20%2F%20Jet" id="1250818746529" relatedID="1280809568244" ruleID="1270699018805" customised="true" y="730" x="200" image1="yet_sound_medium.swf" image2="jet_sound_medium.swf">
+    <item unit="5" id="1250819136726" caption="Practise the sounds" fileName="1250819136726.xml" action="1250819136726" exerciseID="1250819136726" enabledFlag="11" relatedID="1281500223818" example="5_1.jpg" />
+    <item unit="5" id="1250820199918" caption="Sounds in a sentence" fileName="1250820199918.xml" action="1250820199918" exerciseID="1250820199918" enabledFlag="11" relatedID="1281500402545" example="5_2.jpg" />
+    <item unit="5" id="1251187819821" caption="Can you hear the sound?" fileName="1251187819821.xml" action="1251187819821" exerciseID="1251187819821" enabledFlag="11" relatedID="1281500486546" example="5_3.jpg" />
+    <item unit="5" id="1263889882119" caption="Sounds in action" fileName="1263889882119.xml" action="1263889882119" exerciseID="1263889882119" enabledFlag="11" relatedID="1281500820778" example="5_4.jpg" />
+    <item id="1193901049559" caption="Say the word" fileName="1193901049559.xml" action="1193901049559" exerciseID="1193901049559" enabledFlag="11" unit="5" relatedID="1281501050930" example="5_5.jpg" />
+    <item unit="5" id="1269935910933" caption="Unit%205%3A%20Yet%20%2F%20Jet" fileName="1269935910933.xml" action="1269935910933" exerciseID="1269935910933" enabledFlag="32" />
+    <item unit="5" id="1270699018805" caption="My mouth" fileName="1270699018805.xml" action="1270699018805" exerciseID="1270699018805" enabledFlag="32" />
+  </item>
+  <item picture="Unit6" enabledFlag="35" unit="6" caption="Unit%206%3A%20Game%20%2F%20Came" id="1250820647077" relatedID="1280473340298" ruleID="1270699018806" customised="true" y="775" x="200" image1="game_sound_medium.swf" image2="came_sound_medium.swf">
+    <item unit="6" id="1250820720604" caption="Practise the sounds" fileName="1250820720604.xml" action="1250820720604" exerciseID="1250820720604" enabledFlag="11" relatedID="1281500223818" example="6_1.jpg" />
+    <item unit="6" id="1250821095676" caption="Sounds in a sentence" fileName="1250821095676.xml" action="1250821095676" exerciseID="1250821095676" enabledFlag="11" relatedID="1281500402545" example="6_2.jpg" />
+    <item unit="6" id="1251188738448" caption="Can you hear the sound?" fileName="1251188738448.xml" action="1251188738448" exerciseID="1251188738448" enabledFlag="11" relatedID="1281500486546" example="6_3.jpg" />
+    <item unit="6" id="1264053403250" caption="Sounds in action" fileName="1264053403250.xml" action="1264053403250" exerciseID="1264053403250" enabledFlag="11" relatedID="1281500820778" example="6_4.jpg" />
+    <item id="1193901049560" caption="Say the word" fileName="1193901049560.xml" action="1193901049560" exerciseID="1193901049560" enabledFlag="11" unit="6" relatedID="1281501050930" example="6_5.jpg" />
+    <item unit="6" id="1269935910934" caption="Unit%206%3A%20Game%20%2F%20Came" fileName="1269935910934.xml" action="1269935910934" exerciseID="1269935910934" enabledFlag="32" />
+    <item unit="6" id="1270699018806" caption="My mouth" fileName="1270699018806.xml" action="1270699018806" exerciseID="1270699018806" enabledFlag="32" />
+  </item>
+  <item picture="Unit7" enabledFlag="35" unit="7" caption="Unit%207%3A%20Wail%20%2F%20Veil" id="1250676425404" relatedID="1280473340298" ruleID="1270699018807" customised="true" y="820" x="200" image1="wail_sound_medium.swf" image2="veil_sound_medium.swf">
+    <item unit="7" id="1250742730354" caption="Practise the sounds" fileName="1250742730354.xml" action="1250742730354" exerciseID="1250742730354" enabledFlag="11" relatedID="1281500223818" example="7_1.jpg" />
+    <item unit="7" id="1250743161787" caption="Sounds in a sentence" fileName="1250743161787.xml" action="1250743161787" exerciseID="1250743161787" enabledFlag="11" relatedID="1281500402545" example="7_2.jpg" />
+    <item unit="7" id="1251108954516" caption="Can you hear the sound?" fileName="1251108954516.xml" action="1251108954516" exerciseID="1251108954516" enabledFlag="11" relatedID="1281500486546" example="7_3.jpg"></item>
+    <item unit="7" id="1263973800002" caption="Sounds in action" fileName="1263973800002.xml" action="1263973800002" exerciseID="1263973800002" enabledFlag="11" relatedID="1281500820778" example="7_4.jpg" />
+    <item unit="7" id="1193901049552" caption="Say the word" fileName="1193901049552.xml" action="1193901049552" exerciseID="1193901049552" enabledFlag="11" relatedID="1281501050930" example="7_5.jpg" />
+    <item unit="7" id="1269935910926" caption="Unit%207%3A%20Wail%20%2F%20Veil" fileName="1269935910926.xml" action="1269935910926" exerciseID="1269935910926" enabledFlag="32" />
+    <item unit="7" id="1270699018807" caption="My mouth" fileName="1270699018807.xml" action="1270699018807" exerciseID="1270699018807" enabledFlag="32" />
+  </item>
+  <item picture="Unit8" enabledFlag="35" unit="8" caption="Unit%208%3A%20Think%20%2F%20Sink" id="1250764196013" relatedID="1280809568244" ruleID="1270699018808" customised="true" y="550" x="420" image1="think_sound_medium.swf" image2="sink_sound_medium.swf">
+    <item unit="8" id="1250764301091" caption="Practise the sounds" fileName="1250764301091.xml" action="1250764301091" exerciseID="1250764301091" enabledFlag="11" relatedID="1281500223818" example="8_1.jpg" />
+    <item unit="8" id="1250764727251" caption="Sounds in a sentence" fileName="1250764727251.xml" action="1250764727251" exerciseID="1250764727251" enabledFlag="11" relatedID="1281500402545" example="8_2.jpg" />
+    <item unit="8" id="1251186154349" caption="Can you hear the sound?" fileName="1251186154349.xml" action="1251186154349" exerciseID="1251186154349" enabledFlag="11" relatedID="1281500486546" example="8_3.jpg" />
+    <item unit="8" id="1267495707100" caption="Sounds in action" fileName="1267495707100.xml" action="1267495707100" exerciseID="1267495707100" enabledFlag="11" relatedID="1281500820778" example="8_4.jpg" />
+    <item id="1193901049558" caption="Say the word" fileName="1193901049558.xml" action="1193901049558" exerciseID="1193901049558" enabledFlag="11" unit="8" relatedID="1281501050930" example="8_5.jpg" />
+    <item unit="8" id="1269935910932" caption="Unit%208%3A%20Think%20%2F%20Sink" fileName="1269935910932.xml" action="1269935910932" exerciseID="1269935910932" enabledFlag="32" />
+    <item unit="8" id="1270699018808" caption="My mouth" fileName="1270699018808.xml" action="1270699018808" exerciseID="1270699018808" enabledFlag="32" />
+  </item>
+  <item picture="Unit9" enabledFlag="35" unit="9" caption="Unit%209%3A%20There%20%2F%20Dare" id="1250821593372" relatedID="1280809568244" ruleID="1270699018809" customised="true" y="595" x="420" image1="there_sound_medium.swf" image2="dare_sound_medium.swf">
+    <item unit="9" id="1250821625213" caption="Practise the sounds" fileName="1250821625213.xml" action="1250821625213" exerciseID="1250821625213" enabledFlag="11" relatedID="1281500223818" example="9_1.jpg" />
+    <item unit="9" id="1250822020840" caption="Sounds in a sentence" fileName="1250822020840.xml" action="1250822020840" exerciseID="1250822020840" enabledFlag="11" relatedID="1281500402545" example="9_2.jpg" />
+    <item unit="9" id="1251189281003" caption="Can you hear the sound?" fileName="1251189281003.xml" action="1251189281003" exerciseID="1251189281003" enabledFlag="11" relatedID="1281500486546" example="9_3.jpg" />
+    <item unit="9" id="1267496004944" caption="Sounds in action" fileName="1267496004944.xml" action="1267496004944" exerciseID="1267496004944" enabledFlag="11" relatedID="1281500820778" example="9_4.jpg" />
+    <item id="1193901049561" caption="Say the word" fileName="1193901049561.xml" action="1193901049561" exerciseID="1193901049561" enabledFlag="11" unit="9" relatedID="1281501050930" example="9_5.jpg" />
+    <item unit="9" id="1269935910935" caption="Unit%209%3A%20There%20%2F%20Dare" fileName="1269935910935.xml" action="1269935910935" exerciseID="1269935910935" enabledFlag="32" />
+    <item unit="9" id="1270699018809" caption="My mouth" fileName="1270699018809.xml" action="1270699018809" exerciseID="1270699018809" enabledFlag="32" />
+  </item>
+  <item picture="Unit10" enabledFlag="35" unit="10" caption="Unit%2010%3A%20Price%20%2F%20Prize" id="1250761690218" relatedID="1280809568244" ruleID="1270699018810" customised="true" y="640" x="420" image1="price_sound_medium.swf" image2="prize_sound_medium.swf">
+    <item unit="10" id="1250761710009" caption="Practise the sounds" fileName="1250761710009.xml" action="1250761710009" exerciseID="1250761710009" enabledFlag="11" relatedID="1281500223818" example="10_1.jpg" />
+    <item unit="10" id="1250762077571" caption="Sounds in a sentence" fileName="1250762077571.xml" action="1250762077571" exerciseID="1250762077571" enabledFlag="11" relatedID="1281500402545" example="10_2.jpg" />
+    <item unit="10" id="1251184709427" caption="Can you hear the sound?" fileName="1251184709427.xml" action="1251184709427" exerciseID="1251184709427" enabledFlag="11" relatedID="1281500486546" example="10_3.jpg" />
+    <item unit="10" id="1263872921529" caption="Sounds in action" fileName="1263872921529.xml" action="1263872921529" exerciseID="1263872921529" enabledFlag="11" relatedID="1281500820778" example="10_4.jpg" />
+    <item id="1193901049556" caption="Say the word" fileName="1193901049556.xml" action="1193901049556" exerciseID="1193901049556" enabledFlag="11" unit="10" relatedID="1281501050930" example="10_5.jpg" />
+    <item unit="10" id="1269935910930" caption="Unit%2010%3A%20Price%20%2F%20Prize" fileName="1269935910930.xml" action="1269935910930" exerciseID="1269935910930" enabledFlag="32" />
+    <item unit="10" id="1270699018810" caption="My mouth" fileName="1270699018810.xml" action="1270699018810" exerciseID="1270699018810" enabledFlag="32" />
+  </item>
+  <item picture="Unit11" enabledFlag="35" unit="11" caption="Unit%2011%3A%20Asia%20%2F%20Hard" id="1250824331640" relatedID="1280809568244" ruleID="1270699018711" customised="true" y="685" x="420" image1="asia_sound_medium.swf" image2="hard_sound_medium.swf">
+    <item unit="11" id="1250824365501" caption="Practise the sounds" fileName="1250824365501.xml" action="1250824365501" exerciseID="1250824365501" enabledFlag="11" relatedID="1281500223818" example="11_1.jpg" />
+    <item unit="11" id="1250824705767" caption="Sounds in a sentence" fileName="1250824705767.xml" action="1250824705767" exerciseID="1250824705767" enabledFlag="11" relatedID="1281500402545" example="11_2.jpg" />
+    <item unit="11" id="1251256178818" caption="Can you hear the sound?" fileName="1251256178818.xml" action="1251256178818" exerciseID="1251256178818" enabledFlag="11" relatedID="1281500486546" example="11_3.jpg" />
+    <item unit="11" id="1264047881210" caption="Sounds in action" fileName="1264047881210.xml" action="1264047881210" exerciseID="1264047881210" enabledFlag="11" relatedID="1281500820778" example="11_4.jpg" />
+    <item id="1193901049564" caption="Say the word" fileName="1193901049564.xml" action="1193901049564" exerciseID="1193901049564" enabledFlag="11" unit="11" relatedID="1281501050930" example="11_5.jpg" />
+    <item unit="11" id="1269935910938" caption="Unit%2011%3A%20Asia%20%2F%20Hard" fileName="1269935910938.xml" action="1269935910938" exerciseID="1269935910938" enabledFlag="32" />
+    <item unit="11" id="1270699018711" caption="My mouth" fileName="1270699018711.xml" action="1270699018711" exerciseID="1270699018711" enabledFlag="32" />
+  </item>
+  <item picture="Unit12" enabledFlag="35" unit="12" caption="Unit%2012%3A%20Ran%20%2F%20Rang" id="1250754557003" relatedID="1280473340298" ruleID="1270699018812" customised="true" y="730" x="420" image1="ran_sound_medium.swf" image2="rang_sound_medium.swf">
+    <item unit="12" id="1250754608940" caption="Practise the sounds" fileName="1250754608940.xml" action="1250754608940" exerciseID="1250754608940" enabledFlag="11" relatedID="1281500223818" example="12_1.jpg" />
+    <item unit="12" id="1250755239346" caption="Sounds in a sentence" fileName="1250755239346.xml" action="1250755239346" exerciseID="1250755239346" enabledFlag="11" relatedID="1281500402545" example="12_2.jpg" />
+    <item unit="12" id="1251112063206" caption="Can you hear the sound?" fileName="1251112063206.xml" action="1251112063206" exerciseID="1251112063206" enabledFlag="11" relatedID="1281500486546" example="12_3.jpg" />
+    <item unit="12" id="1267168638580" caption="Sounds in action" fileName="1267168638580.xml" action="1267168638580" exerciseID="1267168638580" enabledFlag="11" relatedID="1281500820778" example="12_4.jpg" />
+    <item id="1193901049554" caption="Say the word" fileName="1193901049554.xml" action="1193901049554" exerciseID="1193901049554" enabledFlag="11" unit="12" relatedID="1281501050930" example="12_5.jpg" />
+    <item unit="12" id="1269935910928" caption="Unit%2012%3A%20Ran%20%2F%20Rang" fileName="1269935910928.xml" action="1269935910928" exerciseID="1269935910928" enabledFlag="32" />
+    <item unit="12" id="1270699018812" caption="My mouth" fileName="1270699018812.xml" action="1270699018812" exerciseID="1270699018812" enabledFlag="32" />
+  </item>
+  <item picture="Unit13demo" enabledFlag="35" unit="13" caption="Unit%2013%3A%20Right%20%2F%20Light" id="1250762554665" relatedID="1280473340298" ruleID="1270699018813" customised="true" y="775" x="420" image1="right_sound_medium.swf" image2="light_sound_medium.swf">
+    <item unit="13" id="1250762608182" caption="Practise the sounds" fileName="1250762608182.xml" action="1250762608182" exerciseID="1250762608182" enabledFlag="35" relatedID="1281500223818" example="13_1.jpg" />
+    <item unit="13" id="1250763510083" caption="Sounds in a sentence" fileName="1250763510083.xml" action="1250763510083" exerciseID="1250763510083" enabledFlag="35" relatedID="1281500402545" example="13_2.jpg" />
+    <item unit="13" id="1251185706171" caption="Can you hear the sound?" fileName="1251185706171.xml" action="1251185706171" exerciseID="1251185706171" enabledFlag="35" relatedID="1281500486546" example="13_3.jpg" />
+    <item unit="13" id="1263972456313" caption="Sounds in action" fileName="1263972456313.xml" action="1263972456313" exerciseID="1263972456313" enabledFlag="35" relatedID="1281500820778" example="13_4.jpg" />
+    <item id="1193901049557" caption="Say the word" fileName="1193901049557.xml" action="1193901049557" exerciseID="1193901049557" enabledFlag="35" unit="13" relatedID="1281501050930" example="13_5.jpg" />
+    <item unit="13" id="1269935910931" caption="Unit%2013%3A%20Right%20%2F%20Light" fileName="1269935910931.xml" action="1269935910931" exerciseID="1269935910931" enabledFlag="32" />
+    <item unit="13" id="1270699018813" caption="My mouth" fileName="1270699018813.xml" action="1270699018813" exerciseID="1270699018813" enabledFlag="32"></item>
+  </item>
+  <item picture="Unit14" enabledFlag="35" unit="14" caption="Unit%2014%3A%20Ship%20%2F%20Sheep" id="1250564971547" relatedID="1280473340298" ruleID="1270699018814" customised="true" y="995" x="200" image1="i_sound_medium.swf" image2="sheep_sound_medium.swf">
+    <item unit="14" id="1250587749108" caption="Practise the sounds" fileName="1250587749108.xml" action="1250587749108" exerciseID="1250587749108" enabledFlag="11" relatedID="1281500223818" example="14_1.jpg" />
+    <item unit="14" id="1250752306585" caption="Sounds in a sentence" fileName="1250752306585.xml" action="1250752306585" exerciseID="1250752306585" enabledFlag="11" relatedID="1281500402545" example="14_2.jpg" />
+    <item unit="14" id="1250654544020" caption="Can you hear the sound?" fileName="1250654544020.xml" action="1250654544020" exerciseID="1250654544020" enabledFlag="11" relatedID="1281500486546" example="14_3.jpg" />
+    <item unit="14" id="1263869189981" caption="Sounds in action" fileName="1263869189981.xml" action="1263869189981" exerciseID="1263869189981" enabledFlag="11" relatedID="1281500820778" example="14_4.jpg" />
+    <item unit="14" id="1193901049540" caption="Say the word" fileName="1193901049540.xml" action="1193901049540" exerciseID="1193901049540" enabledFlag="11" relatedID="1281501050930" example="14_5.jpg" />
+    <item unit="14" id="1269935910914" caption="Unit 14: Ship / Sheep" fileName="1269935910914.xml" action="1269935910914" exerciseID="1269935910914" enabledFlag="32" />
+    <item unit="14" id="1270699018814" caption="My mouth" fileName="1270699018814.xml" action="1270699018814" exerciseID="1270699018814" enabledFlag="32" />
+  </item>
+  <item picture="Unit15" enabledFlag="35" unit="15" caption="Unit%2015%3A%20Head%20%2F%20Had" id="1250676350130" relatedID="1280809329795" ruleID="1270699018815" customised="true" y="1040" x="200" image1="head_sound_medium.swf" image2="had_sound_medium.swf">
+    <item unit="15" id="1250734860963" caption="Practise the sounds" fileName="1250734860963.xml" action="1250734860963" exerciseID="1250734860963" enabledFlag="11" relatedID="1281500223818" example="15_1.jpg" />
+    <item unit="15" id="1250735620779" caption="Sounds in a sentence" fileName="1250735620779.xml" action="1250735620779" exerciseID="1250735620779" enabledFlag="11" relatedID="1281500402545" example="15_2.jpg" />
+    <item unit="15" id="1251104263559" caption="Can you hear the sound?" fileName="1251104263559.xml" action="1251104263559" exerciseID="1251104263559" enabledFlag="11" relatedID="1281500486546" example="15_3.jpg" />
+    <item unit="15" id="1267165168686" caption="Sounds in action" fileName="1267165168686.xml" action="1267165168686" exerciseID="1267165168686" enabledFlag="11" relatedID="1281500820778" example="15_4.jpg" />
+    <item id="1193901049567" caption="Say the word" fileName="1193901049567.xml" action="1193901049567" exerciseID="1193901049567" enabledFlag="11" unit="15" relatedID="1281501050930" example="15_5.jpg" />
+    <item unit="15" id="1269935910941" caption="Unit%2015%3A%20Head%20%2F%20Had" fileName="1269935910941.xml" action="1269935910941" exerciseID="1269935910941" enabledFlag="32" />
+    <item unit="15" id="1270699018815" caption="My mouth" fileName="1270699018815.xml" action="1270699018815" exerciseID="1270699018815" enabledFlag="32" />
+  </item>
+  <item picture="Unit16" enabledFlag="35" unit="16" caption="Unit%2016%3A%20Schwa" id="1250755759188" relatedID="1280809568244" ruleID="1270699018816" customised="true" y="1085" x="200" image1="arrive_sound_medium.swf">
+    <item unit="16" id="1250755799148" caption="Practise the sounds" fileName="1250755799148.xml" action="1250755799148" exerciseID="1250755799148" enabledFlag="11" relatedID="1281500223818" example="16_1.jpg" />
+    <item unit="16" id="1250756703457" caption="Sounds in a sentence" fileName="1250756703457.xml" action="1250756703457" exerciseID="1250756703457" enabledFlag="11" relatedID="1281500402545" example="16_2.jpg" />
+    <item unit="16" id="1251170868634" caption="Can you hear the sound?" fileName="1251170868634.xml" action="1251170868634" exerciseID="1251170868634" enabledFlag="11" relatedID="1281500486546" example="16_3.jpg" />
+    <item unit="16" id="1263958402755" caption="Sounds in action" fileName="1263958402755.xml" action="1263958402755" exerciseID="1263958402755" enabledFlag="11" relatedID="1281500820778" example="16_4.jpg" />
+    <item id="1193901049571" caption="Say the word" fileName="1193901049571.xml" action="1193901049571" exerciseID="1193901049571" enabledFlag="11" unit="16" relatedID="1281501050930" example="16_5.jpg" />
+    <item unit="16" id="1269935910945" caption="Unit%2016%3A%20Schwa" fileName="1269935910945.xml" action="1269935910945" exerciseID="1269935910945" enabledFlag="32"></item>
+    <item unit="16" id="1270699018816" caption="My mouth" fileName="1270699018816.xml" action="1270699018816" exerciseID="1270699018816" enabledFlag="32" />
+  </item>
+  <item picture="Unit17" enabledFlag="35" unit="17" caption="Unit%2017%3A%20Luck%20%2F%20Look" id="1250676390393" relatedID="1280809329795" ruleID="1270699018817" customised="true" y="1130" x="200" image1="luck_sound_medium.swf" image2="look_sound_medium.swf">
+    <item unit="17" id="1250738809665" caption="Practise the sounds" fileName="1250738809665.xml" action="1250738809665" exerciseID="1250738809665" enabledFlag="11" relatedID="1281500223818" example="17_1.jpg" />
+    <item unit="17" id="1250739518554" caption="Sounds in a sentence" fileName="1250739518554.xml" action="1250739518554" exerciseID="1250739518554" enabledFlag="11" relatedID="1281500402545" example="17_2.jpg" />
+    <item unit="17" id="1251106656206" caption="Can you hear the sound?" fileName="1251106656206.xml" action="1251106656206" exerciseID="1251106656206" enabledFlag="11" relatedID="1281500486546" example="17_3.jpg" />
+    <item unit="17" id="1267499023788" caption="Sounds in action" fileName="1267499023788.xml" action="1267499023788" exerciseID="1267499023788" enabledFlag="11" relatedID="1281500820778" example="17_4.jpg" />
+    <item id="1193901049569" caption="Say the word" fileName="1193901049569.xml" action="1193901049569" exerciseID="1193901049569" enabledFlag="11" unit="17" relatedID="1281501050930" example="17_5.jpg" />
+    <item unit="17" id="1269935910943" caption="Unit%2017%3A%20Luck%20%2F%20Look" fileName="1269935910943.xml" action="1269935910943" exerciseID="1269935910943" enabledFlag="32" />
+    <item unit="17" id="1270699018817" caption="My mouth" fileName="1270699018817.xml" action="1270699018817" exerciseID="1270699018817" enabledFlag="32" />
+  </item>
+  <item picture="Unit18" enabledFlag="35" unit="18" caption="Unit%2018%3A%20Hat%20%2F%20Heart" id="1250676320152" relatedID="1280809329795" ruleID="1270699018818" customised="true" y="995" x="420" image1="hat_sound_medium.swf" image2="heart_sound_medium.swf">
+    <item unit="18" id="1250676525251" caption="Practise the sounds" fileName="1250676525251.xml" action="1250676525251" exerciseID="1250676525251" enabledFlag="11" relatedID="1281500223818" example="18_1.jpg" />
+    <item unit="18" id="1250732826882" caption="Sounds in a sentence" fileName="1250732826882.xml" action="1250732826882" exerciseID="1250732826882" enabledFlag="11" relatedID="1281500402545" example="18_2.jpg" />
+    <item unit="18" id="1251103255276" caption="Can you hear the sound?" fileName="1251103255276.xml" action="1251103255276" exerciseID="1251103255276" enabledFlag="11" relatedID="1281500486546" example="18_3.jpg" />
+    <item unit="18" id="1267164236746" caption="Sounds in action" fileName="1267164236746.xml" action="1267164236746" exerciseID="1267164236746" enabledFlag="11" relatedID="1281500820778" example="18_4.jpg" />
+    <item id="1193901049566" caption="Say the word" fileName="1193901049566.xml" action="1193901049566" exerciseID="1193901049566" enabledFlag="11" unit="18" relatedID="1281501050930" example="18_5.jpg" />
+    <item unit="18" id="1269935910940" caption="Unit%2018%3A%20Hat%20%2F%20Heart" fileName="1269935910940.xml" action="1269935910940" exerciseID="1269935910940" enabledFlag="32" />
+    <item unit="18" id="1270699018818" caption="My mouth" fileName="1270699018818.xml" action="1270699018818" exerciseID="1270699018818" enabledFlag="32" />
+  </item>
+  <item picture="Unit19" enabledFlag="35" unit="19" caption="Unit%2019%3A%20But%20%2F%20Boot" id="1250676371018" relatedID="1280809329795" ruleID="1270699018819" customised="true" y="1040" x="420" image1="but_sound_medium.swf" image2="boot_sound_medium.swf">
+    <item unit="19" id="1250736870641" caption="Practise the sounds" fileName="1250736870641.xml" action="1250736870641" exerciseID="1250736870641" enabledFlag="11" relatedID="1281500223818" example="19_1.jpg" />
+    <item unit="19" id="1250737262187" caption="Sounds in a sentence" fileName="1250737262187.xml" action="1250737262187" exerciseID="1250737262187" enabledFlag="11" relatedID="1281500402545" example="19_2.jpg" />
+    <item unit="19" id="1251105156960" caption="Can you hear the sound?" fileName="1251105156960.xml" action="1251105156960" exerciseID="1251105156960" enabledFlag="11" relatedID="1281500486546" example="19_3.jpg" />
+    <item unit="19" id="1267494701882" caption="Sounds in action" fileName="1267494701882.xml" action="1267494701882" exerciseID="1267494701882" enabledFlag="11" relatedID="1281500820778" example="19_4.jpg" />
+    <item id="1193901049568" caption="Say the word" fileName="1193901049568.xml" action="1193901049568" exerciseID="1193901049568" enabledFlag="11" unit="19" relatedID="1281501050930" example="19_5.jpg" />
+    <item unit="19" id="1269935910942" caption="Unit%2019%3A%20But%20%2F%20Boot" fileName="1269935910942.xml" action="1269935910942" exerciseID="1269935910942" enabledFlag="32" />
+    <item unit="19" id="1270699018819" caption="My mouth" fileName="1270699018819.xml" action="1270699018819" exerciseID="1270699018819" enabledFlag="32" />
+  </item>
+  <item picture="Unit20" enabledFlag="35" unit="20" caption="Unit%2020%3A%20Who%20%2F%20Her" id="1250753309218" relatedID="1280809329795" ruleID="1270699018820" customised="true" y="1085" x="420" image1="who_sound_medium.swf" image2="her_sound_medium.swf">
+    <item unit="20" id="1250753710518" caption="Practise the sounds" fileName="1250753710518.xml" action="1250753710518" exerciseID="1250753710518" enabledFlag="11" relatedID="1281500223818" example="20_1.jpg" />
+    <item unit="20" id="1250754117487" caption="Sounds in a sentence" fileName="1250754117487.xml" action="1250754117487" exerciseID="1250754117487" enabledFlag="11" relatedID="1281500402545" example="20_2.jpg" />
+    <item unit="20" id="1251111165888" caption="Can you hear the sound?" fileName="1251111165888.xml" action="1251111165888" exerciseID="1251111165888" enabledFlag="11" relatedID="1281500486546" example="20_3.jpg" />
+    <item unit="20" id="1264055333440" caption="Sounds in action" fileName="1264055333440.xml" action="1264055333440" exerciseID="1264055333440" enabledFlag="11" relatedID="1281500820778" example="20_4.jpg" />
+    <item id="1193901049570" caption="Say the word" fileName="1193901049570.xml" action="1193901049570" exerciseID="1193901049570" enabledFlag="11" unit="20" relatedID="1281501050930" example="20_5.jpg" />
+    <item unit="20" id="1269935910944" caption="Unit%2020%3A%20Who%20%2F%20Her" fileName="1269935910944.xml" action="1269935910944" exerciseID="1269935910944" enabledFlag="32" />
+    <item unit="20" id="1270699018820" caption="My mouth" fileName="1270699018820.xml" action="1270699018820" exerciseID="1270699018820" enabledFlag="32" />
+  </item>
+  <item picture="Unit21" enabledFlag="35" unit="21" caption="Unit%2021%3A%20Pot%20%2F%20Port" id="1250669557770" relatedID="1280809329795" ruleID="1270699018821" customised="true" y="1130" x="420" image1="pot_sound_medium.swf" image2="port_sound_medium.swf">
+    <item unit="21" id="1250670063503" caption="Practise the sounds" fileName="1250670063503.xml" action="1250670063503" exerciseID="1250670063503" enabledFlag="11" relatedID="1281500223818" example="21_1.jpg" />
+    <item unit="21" id="1250752728151" caption="Sounds in a sentence" fileName="1250752728151.xml" action="1250752728151" exerciseID="1250752728151" enabledFlag="11" relatedID="1281500402545" example="21_2.jpg" />
+    <item unit="21" id="1251101252020" caption="Can you hear the sound?" fileName="1251101252020.xml" action="1251101252020" exerciseID="1251101252020" enabledFlag="11" relatedID="1281500486546" example="21_3.jpg" />
+    <item unit="21" id="1263869815482" caption="Sounds in action" fileName="1263869815482.xml" action="1263869815482" exerciseID="1263869815482" enabledFlag="11" relatedID="1281500820778" example="21_4.jpg" />
+    <item id="1193901049565" caption="Say the word" fileName="1193901049565.xml" action="1193901049565" exerciseID="1193901049565" enabledFlag="11" unit="21" relatedID="1281501050930" example="21_5.jpg" />
+    <item unit="21" id="1269935910939" caption="Unit%2021%3A%20Pot%20%2F%20Port" fileName="1269935910939.xml" action="1269935910939" exerciseID="1269935910939" enabledFlag="32" />
+    <item unit="21" id="1270699018821" caption="My mouth" fileName="1270699018821.xml" action="1270699018821" exerciseID="1270699018821" enabledFlag="32" />
+  </item>
+  <item picture="Unit22" enabledFlag="35" unit="22" caption="Unit%2022%3A%20Hair%20%2F%20Hear" id="1250758717738" relatedID="1280473340298" ruleID="1270699018822" customised="true" y="1440" x="200" image1="hair_sound_medium.swf" image2="hear_sound_medium.swf">
+    <item unit="22" id="1250758739284" caption="Practise the sounds" fileName="1250758739284.xml" action="1250758739284" exerciseID="1250758739284" enabledFlag="11" relatedID="1281500223818" example="22_1.jpg" />
+    <item unit="22" id="1250759195317" caption="Sounds in a sentence" fileName="1250759195317.xml" action="1250759195317" exerciseID="1250759195317" enabledFlag="11" relatedID="1281500402545" example="22_2.jpg" />
+    <item unit="22" id="1251168306570" caption="Can you hear the sound?" fileName="1251168306570.xml" action="1251168306570" exerciseID="1251168306570" enabledFlag="11" relatedID="1281500486546" example="22_3.jpg" />
+    <item unit="22" id="1263959050822" caption="Sounds in action" fileName="1263959050822.xml" action="1263959050822" exerciseID="1263959050822" enabledFlag="11" relatedID="1281500820778" example="22_4.jpg" />
+    <item id="1193901049574" caption="Say the word" fileName="1193901049574.xml" action="1193901049574" exerciseID="1193901049574" enabledFlag="11" unit="22" relatedID="1281501050930" example="22_5.jpg" />
+    <item unit="22" id="1269935910948" caption="Unit%2022%3A%20Hair%20%2F%20Hear" fileName="1269935910948.xml" action="1269935910948" exerciseID="1269935910948" enabledFlag="32" />
+    <item unit="22" id="1270699018822" caption="My mouth" fileName="1270699018822.xml" action="1270699018822" exerciseID="1270699018822" enabledFlag="32" />
+  </item>
+  <item picture="Unit23" enabledFlag="35" unit="23" caption="Unit%2023%3A%20Pay%20%2F%20Pie" id="1250757058491" relatedID="1280809329795" ruleID="1270699018823" customised="true" y="1485" x="200" image1="pay_sound_medium.swf" image2="pie_sound_medium.swf">
+    <item unit="23" id="1250757098400" caption="Practise the sounds" fileName="1250757098400.xml" action="1250757098400" exerciseID="1250757098400" enabledFlag="11" relatedID="1281500223818" example="23_1.jpg" />
+    <item unit="23" id="1250757451714" caption="Sounds in a sentence" fileName="1250757451714.xml" action="1250757451714" exerciseID="1250757451714" enabledFlag="11" relatedID="1281500402545" example="23_2.jpg" />
+    <item unit="23" id="1251166289100" caption="Can you hear the sound?" fileName="1251166289100.xml" action="1251166289100" exerciseID="1251166289100" enabledFlag="11" relatedID="1281500486546" example="23_3.jpg"></item>
+    <item unit="23" id="1264059526896" caption="Sounds in action" fileName="1264059526896.xml" action="1264059526896" exerciseID="1264059526896" enabledFlag="11" relatedID="1281500820778" example="23_4.jpg" />
+    <item id="1193901049572" caption="Say the word" fileName="1193901049572.xml" action="1193901049572" exerciseID="1193901049572" enabledFlag="11" unit="23" relatedID="1281501050930" example="23_5.jpg" />
+    <item unit="23" id="1269935910946" caption="Unit%2023%3A%20Pay%20%2F%20Pie" fileName="1269935910946.xml" action="1269935910946" exerciseID="1269935910946" enabledFlag="32" />
+    <item unit="23" id="1270699018823" caption="My mouth" fileName="1270699018823.xml" action="1270699018823" exerciseID="1270699018823" enabledFlag="32" />
+  </item>
+  <item picture="Unit24" enabledFlag="35" unit="24" caption="Unit%2024%3A%20Boy%20%2F%20Buy" id="1250759640591" relatedID="1280809329795" ruleID="1270699018824" customised="true" y="1440" x="420" image1="boy_sound_medium.swf" image2="buyboy_sound_medium.swf">
+    <item unit="24" id="1250759660866" caption="Practise the sounds" fileName="1250759660866.xml" action="1250759660866" exerciseID="1250759660866" enabledFlag="11" relatedID="1281500223818" example="24_1.jpg" />
+    <item unit="24" id="1250760201453" caption="Sounds in a sentence" fileName="1250760201453.xml" action="1250760201453" exerciseID="1250760201453" enabledFlag="11" relatedID="1281500402545" example="24_2.jpg" />
+    <item unit="24" id="1251168889617" caption="Can you hear the sound?" fileName="1251168889617.xml" action="1251168889617" exerciseID="1251168889617" enabledFlag="11" relatedID="1281500486546" example="24_3.jpg" />
+    <item unit="24" id="1267495470163" caption="Sounds in action" fileName="1267495470163.xml" action="1267495470163" exerciseID="1267495470163" enabledFlag="11" relatedID="1281500820778" example="24_4.jpg" />
+    <item unit="24" id="1193901049551" caption="Say the word" fileName="1193901049551.xml" action="1193901049551" exerciseID="1193901049551" enabledFlag="11" relatedID="1281501050930" example="24_5.jpg" />
+    <item unit="24" id="1269935910925" caption="Unit%2024%3A%20Boy%20%2F%20Buy" fileName="1269935910925.xml" action="1269935910925" exerciseID="1269935910925" enabledFlag="32" />
+    <item unit="24" id="1270699018824" caption="My mouth" fileName="1270699018824.xml" action="1270699018824" exerciseID="1270699018824" enabledFlag="32" />
+  </item>
+  <item picture="Unit25" enabledFlag="35" unit="25" caption="Unit%2025%3A%20Know%20%2F%20Now" id="1250757871540" relatedID="1280809568244" ruleID="1270699018825" customised="true" y="1485" x="420" image1="know_sound_medium.swf" image2="now_sound_medium.swf">
+    <item unit="25" id="1250757900465" caption="Practise the sounds" fileName="1250757900465.xml" action="1250757900465" exerciseID="1250757900465" enabledFlag="11" relatedID="1281500223818" example="25_1.jpg" />
+    <item unit="25" id="1250758271706" caption="Sounds in a sentence" fileName="1250758271706.xml" action="1250758271706" exerciseID="1250758271706" enabledFlag="11" relatedID="1281500402545" example="25_2.jpg" />
+    <item unit="25" id="1251167421268" caption="Can you hear the sound?" fileName="1251167421268.xml" action="1251167421268" exerciseID="1251167421268" enabledFlag="11" relatedID="1281500486546" example="25_3.jpg" />
+    <item unit="25" id="1267500312147" caption="Sounds in action" fileName="1267500312147.xml" action="1267500312147" exerciseID="1267500312147" enabledFlag="11" relatedID="1281500820778" example="25_4.jpg" />
+    <item id="1193901049573" caption="Say the word" fileName="1193901049573.xml" action="1193901049573" exerciseID="1193901049573" enabledFlag="11" unit="25" relatedID="1281501050930" example="25_5.jpg"></item>
+    <item unit="25" id="1269935910947" caption="Unit%2025%3A%20Know%20%2F%20Now" fileName="1269935910947.xml" action="1269935910947" exerciseID="1269935910947" enabledFlag="32" />
+    <item unit="25" id="1270699018825" caption="My mouth" fileName="1270699018825.xml" action="1270699018825" exerciseID="1270699018825" enabledFlag="32" />
+  </item>
+  <item enabledFlag="8" caption="Certificate" unit="0" id="1271126407349" customised="true" y="0" x="0">
+    <item unit="0" id="51" exerciseID="51" caption="Your certificate" fileName="certificate.xml" enabledFlag="8" />
+    <item unit="0" id="1281500223818" caption="What will I learn? Ex 1" fileName="1281500223818.xml" enabledFlag="32" />
+    <item unit="0" id="1281500402545" caption="What will I learn? Ex 2" fileName="1281500402545.xml" enabledFlag="32"></item>
+    <item unit="0" id="1281500486546" caption="What will I learn? Ex 3a" fileName="1281500486546.xml" enabledFlag="32" />
+    <item unit="0" id="1281500820778" caption="What will I learn? Ex 4" fileName="1281500820778.xml" enabledFlag="32" />
+    <item unit="0" id="1281501050930" caption="What will I learn? Ex 5" fileName="1281501050930.xml" enabledFlag="32" />
+    <item unit="0" id="1281501421007" caption="What will I learn? Intro Ex 2" fileName="1281501421007.xml" enabledFlag="32" />
+    <item unit="0" id="1281501585233" caption="What will I learn? Intro Ex 3" fileName="1281501585233.xml" enabledFlag="32" />
+    <item unit="0" id="1281501862411" caption="What will I learn? Intro Ex 4" fileName="1281501862411.xml" enabledFlag="32" />
+  </item>
+</item>

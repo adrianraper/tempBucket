@@ -145,6 +145,11 @@ function populateExerciseFromXML(XMLSource, callBack, index) {
 				// this loop through the XML structure assumes you don't care about order of nodes
 				if (myNodes[i].nodeName.toLowerCase() == "body") {
 					//myTrace("processing main body");
+					// v6.5.6.6 Do you want a scroll bar for this section?
+					if (myNodes[i].attributes.noScrollBar=='true') {
+						myTrace("body has no scroll bar please");
+						me.body.noScrollBar=true;
+					}
 					me.body.text = getXMLContentAndFields(myNodes[i], "body", index);
 					//trace(">> get body at " + Number(getTimer() - _global.ORCHID.startTime));
 					// CUP noScroll code, switch on this region for this exercise
@@ -353,6 +358,10 @@ function defaultSettings() {
 	AllSettings.misc.splitScreen = false;
 	AllSettings.misc.timed = 0; // this means not timed
 	AllSettings.misc.soundEffects = true; // oops and clap
+	
+	// v6.5.6.2 To allow the example region to start shown or hidden
+	AllSettings.misc.exampleRegionShown = true; // when you open the exercise you see the example region
+	
 	// v6.5.5.0
 	//AllSettings.misc.subunit = false; // to allow grouping of several exercises (share a timer for instance)
 	
@@ -674,6 +683,11 @@ function getXMLSettings(XMLSource, index) {
 			if (thisSetting == "false"){
 				AllSettings.misc.soundEffects = false;
 			}
+			thisSetting = myNodes[i].attributes.exampleRegionShown; // default is on
+			if (thisSetting == "false"){
+				AllSettings.misc.exampleRegionShown = false;
+			}
+			
 			// v6.5.5.0 For grouping exercises into subunits
 			//thisSetting = myNodes[i].attributes.subunit; // default is false
 			//if (thisSetting == "true"){

@@ -13,6 +13,7 @@
 	$city = "Hong Kong";
 	$country = "Hong Kong";
 	$loginOption = 2;
+	$subscriptionPeriod = "1y";
 	
 	function redirect ($url) {
 		header('Location: ' . $url);

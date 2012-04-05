@@ -316,6 +316,13 @@ _global.ORCHID.setBrandStyles = function(branding) {
 		me.lineThickness = 1;
 		me.titleFontColour = 0xFFFFFF;
 		me.fillColour = 0xFFFFFF; 
+		
+		//me.titleFillColour = 0x4E2D94; // purple
+		me.titleFillColour = 0x31376D; // purple; overridden in FPopUpWindow!
+		// Ideally this would be a gradient
+		me.titleFillColourCorrect = 0x6AA940;
+		me.titleFillColourWrong = 0xCE0018; 
+		
 	} else if (branding.toLowerCase().indexOf("sky/efhs") >= 0) {
 		me.tileColour = 0x303030;
 		me.lineColour = 0x303030; 

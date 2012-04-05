@@ -122,7 +122,7 @@
       <lit name="markedRubricCountdown">The words you missed are [green]green[/green].</lit>
       <lit name="previewRubric">Read this text then close the window to start.</lit>
       <lit name="licencedTo">Licensed to: [x]</lit>
-      <lit name="tip">Exam tip</lit>
+      <lit name="tip">Learning Objective</lit>
       <lit name="streaming">Streaming...</lit>
       <lit name="feedbackFrom">Feedback from:</lit>
       <lit name="clickForFeedback">Click on any answer to see feedback (if available).</lit>

@@ -2027,10 +2027,11 @@ View.prototype.cmdStop = function() {
 		this._parent.record_pb.setVisible(true);
 		
 		if (_global.ORCHID.projector.isRecorderV2 == true) {
-			//myTrace("Clarity Recorder is v2, enable save");
+			myTrace("Clarity Recorder is v2, enable save");
 			this._parent.save_pb.setEnabled(true);
 			//this._parent.compare_pb.setEnabled(true);
 		} else {
+			myTrace("Clarity Recorder is NOT v2, no save");
 			//_global.myTrace("Interface____ b");
 			this._parent.save_pb.setEnabled(false);
 			//this._parent.compare_pb.setEnabled(false);
@@ -2738,10 +2739,11 @@ View.prototype.cmdProgress = function(component) {
 		}
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9")>=0 ||
 			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2")>=0) { 
-			myPane.setButtons([{caption:_global.ORCHID.literalModelObj.getLiteral("print", "buttons"), setReleaseAction:myPane.onPrint, noClose:true},
-							{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title1", "messages"), setReleaseAction:myPane.onScores, noClose:true, tabStyle:true},
+			// v6.5.6.5 Change the order of buttons a bit
+			myPane.setButtons([{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title1", "messages"), setReleaseAction:myPane.onScores, noClose:true, tabStyle:true},
 							{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title2", "messages"), setReleaseAction:myPane.onCompare, noClose:true},
-							{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title3", "messages"), setReleaseAction:myPane.onAnalysis, noClose:true}]);
+							{caption:_global.ORCHID.literalModelObj.getLiteral("progress_global_title3", "messages"), setReleaseAction:myPane.onAnalysis, noClose:true},
+							{caption:_global.ORCHID.literalModelObj.getLiteral("print", "buttons"), setReleaseAction:myPane.onPrint, noClose:true}]);
 			//myTrace("added lots of buttons to progress");
 			myPane.setKeys([{key:[KEY.ESCAPE], setReleaseAction:myPane.onClose},
 						{key:["P".charCodeAt(0)], setReleaseAction:myPane.onPrint},
@@ -4076,7 +4078,7 @@ View.prototype.cmdCountdownHint = function(word) {
 	var hintDetail = substTags(_global.ORCHID.literalModelObj.getLiteral("countdownHint", "messages"), substList);
 	var initObj = { _x:180, _y:160, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
  	if (_global.ORCHID.root.buttonsHolder.MessageScreen.hint_SP == undefined) {
-		var myPane = _global.ORCHID.root.buttonsHolder.MessageScreen.attachMovie("FPopupWindowSymbol", "hint_SP", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, initObj); 
+		var myPane = _global.ORCHID.root.buttonsHolder.MessageScreen.attachMovie("FPopupWindowSymbol", "Hint_SP", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, initObj); 
 	} else {
 		// if the window already exists, simply make sure it is displayed.
 		_global.ORCHID.root.buttonsHolder.MessageScreen.hint_SP._visible = true; 
@@ -4146,6 +4148,14 @@ View.prototype.cmdShrink = function (component) {
 			_global.ORCHID.root.buttonsHolder.ExerciseScreen[regions[i]]._y -= eRDepth;
 		}
 	}
+	// v6.5.6.5 You also need to move the cdController if you move the NoScroll region, which it uses as a background.
+	// Not tested as not used in CP2
+	//if (_global.ORCHID.LoadedExercises[0].settings.exercise.type == "Countdown") {
+	//	var cdController = _global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController;
+	//	var myY = _global.ORCHID.root.buttonsHolder.ExerciseScreen['NoScroll_SP']._y;
+	//	cdController._y = myY;
+	//}
+	
 	// v6.3.3 move exercise panels to buttons holder
 	var myW = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.getPaneWidth();
 	var myH = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.getPaneHeight();
@@ -4172,6 +4182,14 @@ View.prototype.cmdExpand = function (component) {
 			_global.ORCHID.root.buttonsHolder.ExerciseScreen[regions[i]]._y += eRDepth;
 		}
 	}
+	// v6.5.6.5 You also need to move the cdController if you move the NoScroll region, which it uses as a background.
+	// Not tested as not used in CP2
+	//if (_global.ORCHID.LoadedExercises[0].settings.exercise.type == "Countdown") {
+	//	var cdController = _global.ORCHID.root.buttonsHolder.ExerciseScreen.cdController;
+	//	var myY = _global.ORCHID.root.buttonsHolder.ExerciseScreen['NoScroll_SP']._y;
+	//	cdController._y = myY;
+	//}
+
 	var myW = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.getPaneWidth();
 	var myH = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.getPaneHeight();
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP.setSize(myW, myH - eRDepth);
@@ -6230,6 +6248,7 @@ View.prototype.selectCourseInner = function(courseXMLNode) {
 		_global.ORCHID.paths.sharedMedia = _global.ORCHID.functions.addSlash(_global.ORCHID.paths.content) + _global.ORCHID.functions.addSlash("sharedMedia");
 	} 
 	// Actually, I want to have a root folder for streamingMedia, which is parallel to /Content/xxx. Then this issue will not arise.
+	// v6.5.6.6 Hold on - you have already worked on this in OrchidObjects!
 	if (_global.ORCHID.paths.streamingMedia == undefined) {
 		//_global.ORCHID.paths.streamingMediaFolder = _global.ORCHID.paths.media;
 		//_global.ORCHID.paths.streamingMediaFolder = _global.ORCHID.paths.media;
@@ -6434,8 +6453,8 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 		}
 		myTrace("msgBox.setButtons to  " + _global.ORCHID.literalModelObj.getLiteral("seeTheAnswer", "buttons"));
 		// v6.5.5.8 CP switches the buttons alignment, and the easiest way to make it right is to change it here!
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0 ||
-			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+		// CP2 doesn't.
+		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/pro") >= 0) {
 			myMsgBox.setButtons([{caption:_global.ORCHID.literalModelObj.getLiteral(thisLiteralName, "buttons"), setReleaseAction:myObj.onTryAgain},
 						{caption:_global.ORCHID.literalModelObj.getLiteral("seeTheAnswer", "buttons"), setReleaseAction:myObj.seeTheAnswers},
 						{caption:_global.ORCHID.literalModelObj.getLiteral("forward", "buttons"), setReleaseAction:myObj.finish}]);
