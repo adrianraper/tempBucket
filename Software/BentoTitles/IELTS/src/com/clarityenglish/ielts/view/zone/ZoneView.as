@@ -279,6 +279,9 @@ package com.clarityenglish.ielts.view.zone {
 				case "uninitialized":
 					// Run the loading animation
 					break;
+				case "playing":
+					// Ensure smoothing is on
+					(event.target as VideoPlayer).videoObject.smoothing = true;
 				default:
 					// Just play
 			}
