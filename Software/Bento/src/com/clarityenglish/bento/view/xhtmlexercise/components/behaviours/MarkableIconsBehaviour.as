@@ -82,7 +82,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					
 					flowElementIcon.getComponent().x = bounds.right; // marking goes to the right of the component
-					flowElementIcon.getComponent().y = bounds.y - ((flowElementIcon.getComponent().height - bounds.height) / 2); // centre the icon vertically on the component
+					//flowElementIcon.getComponent().y = bounds.y - ((flowElementIcon.getComponent().height - bounds.height) / 2); // centre the icon vertically on the component
+					flowElementIcon.getComponent().y = bounds.bottom - flowElementIcon.getComponent().height; // centre the icon vertically on the component
 					
 					flowElementIcon.getComponent().visible = true;
 				} else {
