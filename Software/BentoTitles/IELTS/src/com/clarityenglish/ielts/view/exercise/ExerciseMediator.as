@@ -56,6 +56,7 @@
 				BBNotifications.EXERCISE_STARTED,
 				BBNotifications.MARKING_SHOWN,
 				BBNotifications.EXERCISE_PRINTED,
+				BBNotifications.EXERCISE_TRY_AGAIN,
 			]);
 		}
 		
@@ -92,6 +93,10 @@
 					break;
 				case BBNotifications.EXERCISE_PRINTED:
 					trace("exercise printed");
+					break;
+				case BBNotifications.EXERCISE_TRY_AGAIN:
+					view.isMarked = false;
+					configureButtonVisibility(note.getBody() as Exercise);
 					break;
 			}
 		}

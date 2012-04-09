@@ -11,7 +11,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		function get exercise():Exercise;
 		function selectAnswerMap(question:Question, answerMap:AnswerMap):void;
 		function markAnswerMap(question:Question, answerMap:AnswerMap, isShowAnswers:Boolean = false):void
-		function setExerciseMarked():void;
+		function setExerciseMarked(marked:Boolean = true):void;
 		function stopAllAudio():void;
 		
 	}

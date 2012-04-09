@@ -102,9 +102,11 @@ package com.clarityenglish.common.model {
 		 * @return void - Asynchronous call. Will return instanceID and error objects later. 
 		 */
 		public function checkInstance():void {
-			var userDetails:Object = { userID: user.userID };
-			var params:Array = [ userDetails ];
-			new RemoteDelegate("getInstanceID", params, this).execute();
+			if (user) {
+				var userDetails:Object = { userID: user.userID };
+				var params:Array = [ userDetails ];
+				new RemoteDelegate("getInstanceID", params, this).execute();
+			}
 		}
 
 		public function updateUser(userChanges:Object):void {

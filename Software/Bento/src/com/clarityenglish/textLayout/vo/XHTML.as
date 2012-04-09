@@ -309,6 +309,10 @@ package com.clarityenglish.textLayout.vo {
 		}
 		
 		public static function removeClass(node:XML, classString:String):void {
+			if (classString == "used") {
+				trace(1);
+			}
+			
 			if (classString.indexOf(" ") >= 0)
 				throw new Error("Only a single class can be manipulated at a time");
 			

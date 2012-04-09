@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.bento.view.marking {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.marking.events.MarkingEvent;
@@ -53,7 +54,8 @@
 		}
 		
 		protected function onTryAgain(event:Event):void {
-			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			facade.sendNotification(BBNotifications.EXERCISE_TRY_AGAIN, bentoProxy.currentExercise);
 		}
 		
 		protected function onSeeAnswers(event:Event):void {

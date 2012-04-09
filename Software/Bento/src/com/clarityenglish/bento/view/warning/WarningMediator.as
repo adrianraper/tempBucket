@@ -53,7 +53,9 @@
 			}
 		}
 		
-		// The user sees the warning and clicks Yes. Sometimes this means go on, sometimes it means stop!
+		/**
+		 * The user sees the warning and clicks Yes. Sometimes this means go on, sometimes it means stop!
+		 */
 		protected function onYes(event:Event):void {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
@@ -74,12 +76,14 @@
 				default:
 					return;
 			}
+			
 			// Take action if you are still here
 			warningIgnored();
-
 		}
 		
-		// The user sees the warning and clicks No. Sometimes this means stop, sometimes it means go on!
+		/**
+		 * The user sees the warning and clicks No. Sometimes this means stop, sometimes it means go on!
+		 */
 		protected function onNo(event:Event):void {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
@@ -95,11 +99,14 @@
 				default:
 					return;
 			}
+			
 			// Take action if you are still here
 			warningIgnored();
-			
 		}
-		// Go on with what you were doing before the warning 
+		
+		/**
+		 * Go on with what you were doing before the warning 
+		 */
 		protected function warningIgnored():void {
 			switch (view.action) {
 				case "show_next":

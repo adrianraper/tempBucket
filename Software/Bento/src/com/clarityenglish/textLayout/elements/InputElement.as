@@ -226,8 +226,8 @@ package com.clarityenglish.textLayout.elements {
 		public function dragDrop(node:XML, flowElement:FlowElement, text:String):void {
 			if (node) {
 				// #11 - when dragging over an input which already has some content we want to renabled the drag source we just replaced
-				if (_droppedNode && _droppedFlowElement) {
-					XHTML.removeClass(_droppedNode, "disabled");
+				if (_droppedNode && _droppedFlowElement && node !== _droppedNode) {
+					XHTML.removeClasses(_droppedNode, [ "disabled", "used" ]);
 					TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
 					_droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 				}
@@ -258,9 +258,11 @@ package com.clarityenglish.textLayout.elements {
 				return;
 			
 			// #11
-			XHTML.removeClass(_droppedNode, "disabled");
-			TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
-			droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+			if (_droppedNode && _droppedFlowElement) {
+				XHTML.removeClasses(_droppedNode, [ "disabled", "used" ]);
+				TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
+				droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+			}
 			
 			// #101 states than no matter what the source will be cleared so no need to check for DragManager.NONE - if (DragManager.getFeedback() == DragManager.NONE) {
 			_droppedFlowElement = null;

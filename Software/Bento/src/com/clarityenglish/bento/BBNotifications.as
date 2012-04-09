@@ -36,6 +36,7 @@
 		
 		// Exercise navigation notifications
 		public static const EXERCISE_RESTART:String = "exercise_restart";
+		public static const EXERCISE_TRY_AGAIN:String = "exercise_try_again";
 		public static const EXERCISE_SHOW_NEXT:String = "exercise_show_next";
 		public static const EXERCISE_SHOW_PREVIOUS:String = "exercise_show_previous";
 		public static const EXERCISE_SHOW_FEEDBACK:String = "exercise_show_feedback";

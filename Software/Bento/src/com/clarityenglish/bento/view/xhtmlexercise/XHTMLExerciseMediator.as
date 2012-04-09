@@ -12,6 +12,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flashx.textLayout.elements.BreakElement;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	
 	public class XHTMLExerciseMediator extends BentoMediator {
@@ -52,6 +54,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				BBNotifications.ANSWERS_SHOW,
 				BBNotifications.MARKING_SHOWN,
 				BBNotifications.EXERCISE_STARTED,
+				BBNotifications.EXERCISE_TRY_AGAIN,
 			]);
 		}
 		
@@ -73,6 +76,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
 					
 					view.stopAllAudio();
+					break;
+				case BBNotifications.EXERCISE_TRY_AGAIN:
+					view.setExerciseMarked(false);
 					break;
 			}
 		}

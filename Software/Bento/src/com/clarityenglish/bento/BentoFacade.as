@@ -69,6 +69,7 @@
 			registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_FEEDBACK, ExerciseShowFeedbackCommand);
 			registerCommand(BBNotifications.EXERCISE_PRINT, ExercisePrintCommand);
+			registerCommand(BBNotifications.EXERCISE_TRY_AGAIN, ExerciseTryAgainCommand);
 			registerCommand(BBNotifications.COURSE_SELECT, CourseSelectCommand);
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
 			

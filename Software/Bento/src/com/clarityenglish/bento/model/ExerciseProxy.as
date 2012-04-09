@@ -189,12 +189,16 @@ package com.clarityenglish.bento.model {
 			return selectedAnswerMap[question];
 		}
 		
+		public function getAllSelectedAnswerMaps():Dictionary {
+			return selectedAnswerMap;
+		}
+		
 		/** 
 		 * @param question
 		 * @param answer
 		 * @param key
 		 * @param disabled If this is true then the only effect of this will be to display feedback, if there is any.  
-		 * 					This is used when things happen after marking has been shown.
+		 * 				   This is used when things happen after marking has been shown.
 		 */
 		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false):void {
 			checkExercise();
@@ -415,6 +419,15 @@ package com.clarityenglish.bento.model {
 			}
 			
 			return _exerciseMark;
+		}
+		
+		public function unmarkExercise():void {
+			_exerciseMarked = false;
+			_exerciseMark = null;
+			_exerciseFeedbackSeen = false;
+			
+			if (delayedMarking)
+				markableAnswerMap = markableAnswerMap = new Dictionary(true);
 		}
 		
 		/**

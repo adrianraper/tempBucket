@@ -204,6 +204,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 						// TODO: This is not putting the flow element into the input; right now this has no impact as the flow element here is used
 						// during a live drag and drop and its not possible to drag after marking.  However, keep an eye on this in case things change
 						// in the future.
+						// Later note: This makes 'see answers' work for drag and drop nodes
 						if (sourceNodes) inputElement.dragDrop(sourceNodes[0], null, sourceNodes[0].toString());
 					}
 				}
@@ -249,7 +250,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * 
 		 * @param value 
 		 */
-		public function setExerciseMarked():void {
+		public function setExerciseMarked(marked:Boolean = true):void {
 			// Get all the source node
 			var sourceNodes:Vector.<XML> = exercise.model.getAllSourceNodes();
 			
@@ -265,10 +266,23 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				var flowElement:FlowElement = getFlowElement(node);
 				
 				if (flowElement) {
-					XHTML.addClass(node, "disabled");
+					if (marked) {
+						XHTML.addClass(node, "disabled");
+					} else {
+						trace(node.toXMLString());
+						XHTML.removeClasses(node, [ "disabled", Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ]);
+						
+						// When clicking try again we want to re-disable dragdrops that were already in use
+						if (XHTML.hasClass(node, "used")) {
+							trace("USED!!!!"); // (this never gets called)
+							XHTML.addClass(node, "disabled");
+						}
+						
+						flowElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_MARKED, flowElement));
+					}
 					
 					if (flowElement is TextComponentElement)
-						(flowElement as TextComponentElement).enabled = false;
+						(flowElement as TextComponentElement).enabled = !marked;
 					
 					// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 					TLFUtil.markFlowElementFormatChanged(flowElement);
