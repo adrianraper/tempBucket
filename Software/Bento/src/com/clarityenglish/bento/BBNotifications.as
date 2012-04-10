@@ -4,6 +4,8 @@
 		
 		public static const STARTUP:String = "startup";
 		
+		public static const ACTIVITY_TIMER_RESET:String = "activity_timer_reset";
+		
 		public static const MENU_XHTML_LOAD:String = "menu_xhtml_load";
 		public static const MENU_XHTML_LOADED:String = "menu_xhtml_loaded";
 		
@@ -29,6 +31,7 @@
 		// The notifications are sent when the user answers a question
 		public static const QUESTION_NODE_ANSWER:String = "question_node_answer";
 		public static const QUESTION_STRING_ANSWER:String = "question_string_answer";
+		public static const QUESTION_INCORRECT_ANSWER:String = "question_incorrect_answer";
 		public static const QUESTION_ANSWERED:String = "question_answered";
 		
 		// Dictionary behaviour

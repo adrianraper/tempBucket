@@ -33,6 +33,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				throw new Error("Attempted to use a view with XHTMLExerciseMediator that did not implement IExerciseView");
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered, false, 0, true);
+			view.addEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered, false, 0, true);
 			view.addEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow, false, 0, true);
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 		}
@@ -44,6 +45,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.stopAllAudio();
 			
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			view.removeEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered);
 			view.removeEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
 		}
@@ -132,6 +134,18 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}
+		}
+		
+		/**
+		 * #258
+		 * Exercises can have a 'incorrectClickSection' parameter which generates an incorrect answer for every click that isn't on an interactive element.  This is
+		 * used in target spotting exercises where missing a target counts as a wrong answer.  Since this is a very specialized kind of behaviour we use kind of a hack
+		 * to display the incorrect icon at the mouse position 
+		 * 
+		 * @param event
+		 */
+		protected function onIncorrectQuestionAnswered(event:SectionEvent):void {
+			facade.sendNotification(BBNotifications.QUESTION_INCORRECT_ANSWER, view.exercise);
 		}
 		
 		protected function onFeedbackShow(e:FeedbackEvent):void {

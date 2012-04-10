@@ -1,4 +1,6 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components {
+	import caurina.transitions.Tweener;
+	
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
@@ -17,8 +19,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.display.DisplayObject;
+	import flash.events.MouseEvent;
+	import flash.geom.Point;
+	
 	import flashx.textLayout.elements.FlowElement;
+	
+	import mx.controls.SWFLoader;
 	import mx.graphics.SolidColor;
+	
+	import org.davekeen.util.PointUtil;
+	
 	import spark.components.Group;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
@@ -107,7 +118,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		}
 		
 		public function set dataProvider(value:XML):void {
-			
 			if (value) {
 				var course:XML = value.course.(@["class"]==courseClass)[0];
 				backColour.color = getStyle(courseClass + "ColorDark");		
@@ -128,8 +138,36 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					
 					xhtmlRichText.xhtml = exercise;
 					xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
+					
+					// #258
+					group.removeEventListener(MouseEvent.CLICK, onSectionClick);
+					if (exercise.model.hasSettingParam("incorrectClickSection") && exercise.model.getSettingParam("incorrectClickSection") == sectionName)
+						group.addEventListener(MouseEvent.CLICK, onSectionClick);
 				}
 			}
+		}
+		
+		/**
+		 * #258 - display the incorrect icon for a few seconds where the user clicked
+		 * 
+		 * @param event
+		 */
+		protected function onSectionClick(event:MouseEvent):void {
+			dispatchEvent(new SectionEvent(SectionEvent.INCORRECT_QUESTION_ANSWER, null, null, null, true));
+			
+			var swfLoader:SWFLoader = new SWFLoader();
+			swfLoader.source = getStyle("incorrectIcon");
+			swfLoader.mouseEnabled = swfLoader.mouseChildren = false;
+			
+			var point:Point = PointUtil.convertPointCoordinateSpace(new Point(event.localX, event.localY), event.target as DisplayObject, event.currentTarget as DisplayObject);
+			swfLoader.x = point.x - getStyle("incorrectIconWidth") / 2;
+			swfLoader.y = point.y - getStyle("incorrectIconHeight") / 2;
+			
+			swfLoader.alpha = 0;
+			event.currentTarget.addElement(swfLoader);
+			
+			Tweener.addTween(swfLoader, { alpha: 1, time: 0.6 } );
+			Tweener.addTween(swfLoader, { alpha: 0, time: 0.6, delay: 2, onComplete: function():void { (this.parent as Group).removeElement(this); } } );
 		}
 		
 		public function stopAllAudio():void {

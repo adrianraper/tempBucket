@@ -58,6 +58,9 @@ package com.clarityenglish.bento.controller {
 			
 			var fsmInjector:FSMInjector = new FSMInjector(fsm);
 			fsmInjector.inject();
+			
+			// #269
+			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);
 		}
 		
 	}

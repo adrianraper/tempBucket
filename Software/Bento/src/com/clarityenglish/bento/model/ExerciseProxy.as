@@ -74,6 +74,11 @@ package com.clarityenglish.bento.model {
 		private var _exerciseMark:ExerciseMark;
 		
 		/**
+		 * #258 - used to records the number of extra incorrect answers to add for param incorrectClickSection
+		 */
+		private var _incorrectOffset:uint = 0;
+		
+		/**
 		 * This saves how long since the exercise was started
 		 */
 		private var _startTime:Number = 0;
@@ -246,6 +251,16 @@ package com.clarityenglish.bento.model {
 			}
 		}
 		
+		/** #258
+		 * Exercises can have a 'incorrectClickSection' parameter which generates an incorrect answer for every click that isn't on an interactive element.  This is
+		 * used in target spotting exercises where missing a target counts as a wrong answer.  We maintain an incorrectOffset for this special case.
+		 */
+		public function questionIncorrectAnswer():void {
+			checkExercise();
+			
+			_incorrectOffset++;
+		}
+		
 		private function markQuestion(question:Question, answer:Answer, key:Object = null):void {
 			checkExercise();
 			
@@ -406,8 +421,9 @@ package com.clarityenglish.bento.model {
 					// Add values to the exercise mark, including calculating the number of missed points
 					_exerciseMark.correctCount += correctCount;
 					_exerciseMark.incorrectCount += incorrectCount;
+					
 					// #106. If a target spotting is wrong and you click it, you shouldn't end up with missed count of -1
-					if (question.getMaximumPossibleScore()>0) {
+					if (question.getMaximumPossibleScore() > 0) {
 						_exerciseMark.missedCount += (question.getMaximumPossibleScore() - correctCount - incorrectCount);
 					} else {
 						_exerciseMark.missedCount += 0;
@@ -418,6 +434,9 @@ package com.clarityenglish.bento.model {
 				}
 			}
 			
+			// Add the incorrect offset
+			_exerciseMark.incorrectCount += _incorrectOffset;
+			
 			return _exerciseMark;
 		}
 		
@@ -425,6 +444,7 @@ package com.clarityenglish.bento.model {
 			_exerciseMarked = false;
 			_exerciseMark = null;
 			_exerciseFeedbackSeen = false;
+			//_incorrectOffset = 0; In fact we want to roll this score over when using try again so don't reset it
 			
 			if (delayedMarking)
 				markableAnswerMap = markableAnswerMap = new Dictionary(true);

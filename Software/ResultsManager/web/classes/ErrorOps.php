@@ -25,6 +25,7 @@ class ErrorOps {
 	
 	/**
 	 * Returns the error code number associated with a string
+	 * Adrian is just testing this function; it should be getErrorNumber instead
 	 */
 	function getCode($name, $languageCode = 'EN') {
 		

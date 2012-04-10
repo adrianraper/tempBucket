@@ -60,6 +60,7 @@
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
+			registerCommand(BBNotifications.QUESTION_INCORRECT_ANSWER, QuestionIncorrectAnswerCommand);
 			registerCommand(BBNotifications.FEEDBACK_SHOW, FeedbackShowCommand);
 			registerCommand(BBNotifications.MARKING_SHOW, MarkingShowCommand);
 			registerCommand(BBNotifications.WARN_DATA_LOSS, WarningShowCommand);
@@ -82,6 +83,9 @@
 			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
 			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
+			
+			// #269
+			registerCommand(BBNotifications.ACTIVITY_TIMER_RESET, ActivityTimerResetCommand);
 			
 		}
 		

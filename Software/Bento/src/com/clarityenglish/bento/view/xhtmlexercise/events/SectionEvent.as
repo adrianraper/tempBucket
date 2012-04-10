@@ -7,15 +7,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 	public class SectionEvent extends Event {
 		
 		public static const QUESTION_ANSWER:String = "questionAnswer";
+		public static const INCORRECT_QUESTION_ANSWER:String = "incorrectQuestionAnswer";
 		
 		private var _question:Question;
 		private var _answerOrString:*;
 		private var _key:Object;
 		
-		public function SectionEvent(type:String, question:Question, answerOrString:*, key:Object = null, bubbles:Boolean = false) {
+		public function SectionEvent(type:String, question:Question = null, answerOrString:* = null, key:Object = null, bubbles:Boolean = false) {
 			super(type, bubbles);
 			
-			if (!(answerOrString is Answer || answerOrString is String))
+			if (type == QUESTION_ANSWER && !(answerOrString is Answer || answerOrString is String))
 				throw new Error("An answer must be either an Answer or a String");
 			
 			this._question = question;

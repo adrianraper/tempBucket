@@ -17,6 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
+	<param name="incorrectClickSection" value="body" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
