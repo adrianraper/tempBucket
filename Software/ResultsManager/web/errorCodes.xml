@@ -4,17 +4,17 @@
 		<error code="100" const="unknown">An unrecognised error has happened.</error>
 		<error code="101" const="database_read">The database can't be read.</error>
 		<error code="202" const="no_such_user">"These details are not registered.</error>
-		<error code="201" const="wrong_password">That password doesn't match the other details.</error>
-		<error code="201" const="user_expired">Your user account has expired.</error>
-		<error code="201" const="duplicate_users">More than one user matches these details.</error>
-		<error code="201" const="no_anonymous_user">No anonymous user registered.</error>
-		<error code="201" const="no_such_group">No anonymous user registered.</error>
-		<error code="201" const="no_productCode">No productCode.</error>
-		<error code="201" const="no_prefix_or_root">No prefix or rootID.</error>
-		<error code="201" const="no_prefix_for_root">No account matches this rootID.</error>
-		<error code="201" const="multiple_productCode_in_root">Duplicated titles in this account.</error>
-		<error code="201" const="no_productCode_in_root">No such title in this account.</error>
-		<error code="201" const="set_instance_id">Can't set the instance ID for this user.</error>
-		<error code="201" const="get_instance_id">Can't get the instance ID for this user.</error>
+		<error code="203" const="wrong_password">That password doesn't match the other details.</error>
+		<error code="204" const="user_expired">Your user account has expired.</error>
+		<error code="205" const="duplicate_users">More than one user matches these details.</error>
+		<error code="206" const="no_anonymous_user">No anonymous user registered.</error>
+		<error code="207" const="no_such_group">No anonymous user registered.</error>
+		<error code="208" const="no_productCode">No productCode.</error>
+		<error code="209" const="no_prefix_or_root">No prefix or rootID.</error>
+		<error code="210" const="no_prefix_for_root">No account matches this rootID.</error>
+		<error code="211" const="multiple_productCode_in_root">Duplicated titles in this account.</error>
+		<error code="212" const="no_productCode_in_root">No such title in this account.</error>
+		<error code="213" const="set_instance_id">Can't set the instance ID for this user.</error>
+		<error code="214" const="get_instance_id">Can't get the instance ID for this user.</error>
 	</language>
 </errors>
