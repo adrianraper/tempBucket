@@ -265,7 +265,7 @@
 			</s:Rect>
 			
 			<!-- buffering -->
-			<s:Group left="0" right="0" top="0" bottom="0" includeIn="bufferingStates">
+			<s:Group left="0" right="0" top="0" bottom="0" includeIn="bufferingStates,ready">
 				<s:Rect left="0" right="0" top="0" bottom="0">
 					<s:fill>
 						<s:SolidColor color="0x000000" alpha="0.75" />
@@ -273,7 +273,8 @@
 				</s:Rect>
 				
 				<!-- Alfred can replace this with something pretty -->
-				<s:Label text="buffering..." color="0xFFFFFF" fontSize="12.6" verticalCenter="30" horizontalCenter="4" alpha="0.7"  />
+				<s:Label text="loading..." color="0xFFFFFF" fontSize="12.6" verticalCenter="30" horizontalCenter="4" alpha="0.7" includeIn="ready" />
+				<s:Label text="buffering..." color="0xFFFFFF" fontSize="12.6" verticalCenter="30" horizontalCenter="4" alpha="0.7" includeIn="bufferingStates" />
 				<s:SWFLoader source="@Embed(source='skins/ielts/assets/buffering.swf')" verticalCenter="0" horizontalCenter="0"  />
 			</s:Group>
 			

@@ -313,10 +313,7 @@ package com.clarityenglish.ielts.view.zone {
 			// I want to know when the video player is removed. But this is never triggered.
 			
 		}		
-		//protected override function onRemovedFromStage(event:Event):void {
-		//	super.onRemovedFromStage(event);
-		//	log.info("removing ZoneView ");			
-		//}
+		
 		/**
 		 * The user has selected a course using the course selector widget
 		 * 

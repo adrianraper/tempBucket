@@ -217,7 +217,7 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			if (Config.DEVELOPER.name == "DK") {
 				//return { courseClass: "reading" };
-				return { exerciseId: "1151344151225" };
+				//return { exerciseId: "1151344151225" };
 			}
 			if (Config.DEVELOPER.name == "AR") {
 			//	return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
