@@ -10,6 +10,7 @@ package com.clarityenglish.textLayout.elements {
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
 	
@@ -288,6 +289,13 @@ package com.clarityenglish.textLayout.elements {
 				
 				// Bypass the gapText and gapAfterPadding properties by setting text on the superclass 
 				super.text = value;
+				
+				// #170 - put in an extra space at the end of the previous element in order to force word-wrap.  Very hacky!
+				var previousSibling:FlowElement = getPreviousSibling();
+				if (previousSibling is SpanElement) {
+					var spanElement:SpanElement = previousSibling as SpanElement;
+					if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
+				}
 			}
 		}
 		
