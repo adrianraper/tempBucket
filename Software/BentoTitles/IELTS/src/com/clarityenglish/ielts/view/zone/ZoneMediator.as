@@ -169,6 +169,9 @@
 			
 			// Trigger a notification to write the score out
 			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
+			
+			// #269
+			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);
 		}
 		
 		protected function onBufferingChange(event:Event):void {

@@ -11,6 +11,9 @@ package com.clarityenglish.bento.controller {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
+	/**
+	 * #269
+	 */
 	public class ActivityTimerResetCommand extends SimpleCommand {
 		
 		/**
@@ -25,9 +28,6 @@ package com.clarityenglish.bento.controller {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			
-			// Temporarily disable this feature
-			return;
 			
 			if (!activityTimer) {
 				activityTimer = new Timer(TIMEOUT * 6000, 1);

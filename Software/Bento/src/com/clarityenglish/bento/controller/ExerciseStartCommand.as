@@ -45,6 +45,8 @@ package com.clarityenglish.bento.controller {
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			loginProxy.checkInstance();
 			
+			// #269
+			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);
 		}
 		
 	}
