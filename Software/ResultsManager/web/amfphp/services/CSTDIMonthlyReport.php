@@ -13,6 +13,7 @@ $minimalService = new MinimalService();
  */
 
  // The script will be run on the first of the month, reporting on the last month
+ // It needs to be added to AWS cron to get the monthly triggering.
 $m = date('n'); 
 $startDate = date('Y-m-d', mktime(1,1,1,$m-1,1,date('Y'))); 
 $endDate = date('Y-m-d', mktime(1,1,1,$m,0,date('Y')));

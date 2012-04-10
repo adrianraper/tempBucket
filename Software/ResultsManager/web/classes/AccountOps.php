@@ -162,7 +162,12 @@ SQL;
 						break;
 					case 'productCode':
 						// Note that this doesn't just find accounts that have this product, it ONLY returns this product in the accounts
-						$selectBuilder->addWhere("t.F_ProductCode = '".$value."'");
+						// Add comma delimited product code to help search for Road to IELTS
+						if (stristr($value, ",")) {
+							$selectBuilder->addWhere("t.F_ProductCode in (".$value.")");
+						} else {
+							$selectBuilder->addWhere("t.F_ProductCode = '".$value."'");
+						}
 						$needsAccountsTable = true;
 						break;
 					// v3.4.3 This is a boolean - should it be string enclosed?

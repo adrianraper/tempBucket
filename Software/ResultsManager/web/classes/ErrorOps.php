@@ -24,7 +24,7 @@ class ErrorOps {
 	}
 	
 	/**
-	 * Returns the error code associated with a string
+	 * Returns the error code number associated with a string
 	 */
 	function getCode($name, $languageCode = 'EN') {
 		
@@ -42,9 +42,23 @@ class ErrorOps {
 			return 100;
 		
 		// Otherwise get the textual content of the lit node
-		$str = $elements->item(0)->textContent;
+		//$str = $elements->item(0)->textContent;
+		$nodeAttributes = $elements->item(0)->attributes();
+		$codeNum = $nodeAttributes['code'];
 		
-		return $str;
+		return $codeNum;
+	}
+	/**
+	 * Returns the error number based on the name
+	 */
+	function getErrorNumber($errorName) {
+		switch ($errorName) {
+			case 'no_such_user':
+				return 200;
+			default:
+				return 100;
+		}
+		return 100;
 	}
 	
 }
