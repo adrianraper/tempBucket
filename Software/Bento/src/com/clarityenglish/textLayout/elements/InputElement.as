@@ -3,6 +3,9 @@ package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.Stage;
 	import flash.events.Event;
 	
 	import flashx.textLayout.compose.FlowDamageType;
@@ -17,25 +20,26 @@ package com.clarityenglish.textLayout.elements {
 	import mx.utils.StringUtil;
 	
 	import spark.components.Button;
+	import spark.components.Scroller;
 	import spark.components.TextInput;
-
+	
 	use namespace tlf_internal;
 	
 	public class InputElement extends TextComponentElement implements IComponentElement {
 		
 		/**
-		 * An input of type 'text' maps to a Spark TextInput component. 
+		 * An input of type 'text' maps to a Spark TextInput component.
 		 */
 		public static const TYPE_TEXT:String = "text";
 		
 		/**
-		 * An input of type 'button' maps to a Spark Button component 
+		 * An input of type 'button' maps to a Spark Button component
 		 */
 		public static const TYPE_BUTTON:String = "button";
 		
 		/**
 		 * An input of type 'droptarget' maps to a Spark Label that accepts drops
-		 * TODO: This is currently a TextInput 
+		 * TODO: This is currently a TextInput
 		 */
 		public static const TYPE_DROPTARGET:String = "droptarget";
 		
@@ -48,9 +52,9 @@ package com.clarityenglish.textLayout.elements {
 		private var _gapText:String;
 		
 		/**
-		 * If the input was populated by drag and drop, this is the node and flow element that was dropped 
+		 * If the input was populated by drag and drop, this is the node and flow element that was dropped
 		 */
-		private var _droppedNode:XML;		
+		private var _droppedNode:XML;
 		private var _droppedFlowElement:FlowElement;
 		
 		private var disableValueCommitEvent:Boolean;
@@ -64,8 +68,9 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		/** @private */
-		tlf_internal override function get defaultTypeName():String
-		{ return "input"; }
+		tlf_internal override function get defaultTypeName():String {
+			return "input";
+		}
 		
 		public function get value():String {
 			return _value;
@@ -91,7 +96,7 @@ package com.clarityenglish.textLayout.elements {
 		
 		/**
 		 * If value is set the input is prefilled with the given value
-		 * 
+		 *
 		 * @param value
 		 */
 		public function set value(value:String):void {
@@ -106,7 +111,7 @@ package com.clarityenglish.textLayout.elements {
 		/**
 		 * Inputs are rendered above a TLF span element so that the width is correct.  If afterPad is set (through the CSS after-pad property) then after-pad "_" characters
 		 * are appended to the underlying text.
-		 * 
+		 *
 		 * @param value
 		 */
 		public function set gapAfterPadding(value:Number):void {
@@ -138,7 +143,7 @@ package com.clarityenglish.textLayout.elements {
 		/**
 		 * This is a little hacky, but if hideChrome is changed (e.g. when a hidden error correction input is clicked on) then set text again
 		 * from the value since the text may need to be updated depending on the value of hideChrome.
-		 * 
+		 *
 		 * @param value
 		 */
 		public override function set hideChrome(value:Boolean):void {
@@ -149,10 +154,10 @@ package com.clarityenglish.textLayout.elements {
 			textAlpha = (value) ? 1 : 0;
 		}
 		
-		[Inspectable(category="Common", enumeration="text,button,droptarget", defaultValue="text")]
+		[Inspectable(category = "Common", enumeration = "text,button,droptarget", defaultValue = "text")]
 		public function set type(value:String):void {
 			// Check this is an allowed type
-			if ( [ TYPE_TEXT, TYPE_BUTTON, TYPE_DROPTARGET ].indexOf(value) < 0)
+			if ([TYPE_TEXT, TYPE_BUTTON, TYPE_DROPTARGET].indexOf(value) < 0)
 				throw new Error("Illegal type '" + value + "' for InputElement");
 			
 			// Check that we are not trying to change from an existing type (not currently allowed)
@@ -172,12 +177,13 @@ package com.clarityenglish.textLayout.elements {
 					component = new TextInput();
 					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
-					component.addEventListener(FlexEvent.ENTER, function(e:FlexEvent):void {
-						e.target.focusManager.setFocus(e.target.focusManager.getNextFocusManagerComponent());
-					});
+					component.addEventListener(FlexEvent.ENTER, onEnter);
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
-					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void { if (!disableValueCommitEvent) getEventMirror().dispatchEvent(e.clone()); } );
+					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!disableValueCommitEvent)
+							getEventMirror().dispatchEvent(e.clone());
+					});
 					break;
 				case TYPE_DROPTARGET:
 					component = new TextInput();
@@ -186,9 +192,7 @@ package com.clarityenglish.textLayout.elements {
 					(component as TextInput).editable = (component as TextInput).selectable = false;
 					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
-					component.addEventListener(FlexEvent.ENTER, function(e:FlexEvent):void {
-						e.target.focusManager.setFocus(e.target.focusManager.getNextFocusManagerComponent());
-					});
+					component.addEventListener(FlexEvent.ENTER, onEnter);
 					
 					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
 					component.addEventListener(DragEvent.DRAG_DROP, onDragDrop);
@@ -200,6 +204,48 @@ package com.clarityenglish.textLayout.elements {
 			}
 			
 			updateComponentFromValue();
+		}
+		
+		private function onEnter(event:FlexEvent):void {
+			var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
+			event.target.focusManager.setFocus(nextComponent);
+			
+			// #187 - if the focused element is offscreen then scroll it into view
+			
+			// First find the parent scroller
+			var displayObject:DisplayObject = nextComponent;
+			while (!(displayObject is Scroller) && displayObject.parent)
+				displayObject = displayObject.parent;
+			
+			if (!displayObject || displayObject is Stage)
+				return;
+			
+			var scroller:Scroller = displayObject as Scroller;
+			
+			// If the scroller has no scrollbar then there is nothing to do
+			if (!scroller.verticalScrollBar)
+				return;
+			
+			// Get the component's y position by summing y positions up the hierarchy
+			var focusTopEdge:int = nextComponent.y;
+			var thisItem:DisplayObjectContainer = nextComponent.parent;
+			while (thisItem !== scroller) {
+				focusTopEdge += thisItem.y;
+				thisItem = thisItem.parent;
+			}
+			
+			var focusBottomEdge:int = focusTopEdge + nextComponent.height;
+			var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
+			var visibleWindowHeight:int = scroller.height;
+			var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
+			
+			if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
+				// Do nothing
+			} else if (focusTopEdge != 0) {
+				// If the component is out of view then scroll it into view
+				var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
+				scroller.viewport.verticalScrollPosition = newPos;
+			}
 		}
 		
 		private function onDragEnter(event:DragEvent):void {
@@ -222,12 +268,12 @@ package com.clarityenglish.textLayout.elements {
 				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 			}
 		}
-			
+		
 		public function dragDrop(node:XML, flowElement:FlowElement, text:String):void {
 			if (node) {
 				// #11 - when dragging over an input which already has some content we want to renabled the drag source we just replaced
 				if (_droppedNode && _droppedFlowElement && node !== _droppedNode) {
-					XHTML.removeClasses(_droppedNode, [ "disabled", "used" ]);
+					XHTML.removeClasses(_droppedNode, ["disabled", "used"]);
 					TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
 					_droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 				}
@@ -249,7 +295,7 @@ package com.clarityenglish.textLayout.elements {
 		 * If DRAG_COMPLETE is invoked with feedback of NONE it means that the content has been dropped outside of a valid target.  This may mean
 		 * we want to clear the gapfill.  Note that this is called on the drag initiator (i.e. the gapfill the user dragged from) unlike the other
 		 * onDrag methods in InputElement which are called on the drag target.
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function onDragComplete(event:DragEvent):void {
@@ -259,7 +305,7 @@ package com.clarityenglish.textLayout.elements {
 			
 			// #11
 			if (_droppedNode && _droppedFlowElement) {
-				XHTML.removeClasses(_droppedNode, [ "disabled", "used" ]);
+				XHTML.removeClasses(_droppedNode, ["disabled", "used"]);
 				TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
 				droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 			}
@@ -288,7 +334,7 @@ package com.clarityenglish.textLayout.elements {
 				}
 			}
 		}
-		
-	}
 	
+	}
+
 }
