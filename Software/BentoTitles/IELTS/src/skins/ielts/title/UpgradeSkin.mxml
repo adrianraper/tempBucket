@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		width="400" height="160">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="160">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("spark.components.supportClasses.SkinnableComponent")]
 	</fx:Metadata>
-	
+
 	<s:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout paddingLeft="36" paddingBottom="30" />
 	</s:layout>
 	
-	<s:Label text="Thankyou for your interest!" horizontalCenter="0" />
-	<s:Label text="Please choose from the options below" horizontalCenter="0" />
-	
-	<s:HGroup>
-		<s:Button id="teacherButton" label="Teacher" />
-		<s:Button id="candidateButton" label="Candidate" />
+	<s:Label width="300" text="Thank you for your interest!" fontSize="16" fontWeight="bold" paddingTop="10" paddingLeft="35" />
+	<s:Spacer height="1" />
+	<s:Label width="300" text="Please choose from the options below." fontSize="16" fontWeight="bold" lineHeight="20" />
+	<s:Spacer height="3" />
+
+	<s:HGroup paddingTop="5" paddingLeft="35">
+		<s:Button id="teacherButton" label="teacher" />
+		<s:Spacer width="1" />
+		<s:Button id="candidateButton" label="candidate" />
 	</s:HGroup>
-	
+
 </s:Skin>
