@@ -22,7 +22,7 @@
 		</s:Line> 
 	</s:Group>
 
-	<s:HGroup width="100%" height="100%" visible="{hostComponent.numberSectionsDone>1}" includeInLayout="{hostComponent.numberSectionsDone>1} ">
+	<s:HGroup width="100%" height="100%" visible="{hostComponent.numberSectionsDone>0}" includeInLayout="{hostComponent.numberSectionsDone>0} ">
 		<s:VGroup width="400" height="100%" horizontalAlign="center" >
 			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold"  paddingTop="60"  />
 			<s:Label text="Score (%)" fontSize="12.6" />
@@ -35,7 +35,6 @@
 		</s:VGroup>		
 	</s:HGroup>
 	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" visible="{hostComponent.numberSectionsDone&lt;=1}" includeInLayout="{hostComponent.numberSectionsDone&lt;=1}">
-		<s:Label text="These charts are only displayed when you have worked in at least two skill sections." />
 		<s:Spacer height="10" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/progressAnalyse_disable.png')" />
 	</s:VGroup>

@@ -27,13 +27,15 @@
 		<s:VerticalLayout paddingTop="3" />
 	</s:layout>
 	
-	<s:Group width="100%" height="50" excludeFrom="exercise">
+	<s:Group width="100%" height="38" excludeFrom="exercise">
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
 		<s:Label text="{hostComponent.productVersionText}" top="84" left="37" color="#FFFFFF" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BetaIcon')" left="320" top="43"/>
 		<s:ButtonBar id="navBar" right="105" height="35" top="5" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44"/>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/register.jpg')" right="0" top="44"/>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0" top="44"/>
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
 	</s:Group>
 		

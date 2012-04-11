@@ -41,7 +41,7 @@ package com.clarityenglish.common.view.error {
 			super.partRemoved(partName, instance);
 			
 		}
-
+		
 		protected function onCloseButtonClick(event:MouseEvent):void {
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}

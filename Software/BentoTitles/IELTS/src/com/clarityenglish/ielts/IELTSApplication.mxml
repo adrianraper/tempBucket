@@ -131,6 +131,7 @@
 		</s:fill>
 	</s:Rect>
 	
+	
 	<!-- Body -->
 	<s:Group left="20" right="20" top="10" bottom="{titleView.skin.currentState != 'exercise' ? 35 : 0}">
 		<s:Group includeIn="loading" horizontalCenter="0" verticalCenter="60">
@@ -152,7 +153,8 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='FooterGraphic')" left="370" top="9"/>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="19" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" left="124" top="13" />
-		<s:Label text="Data, Video © The British Council 2006-2012. Software, Design, Navigation © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="19" right="20" />
+		<s:Label text="Data, Video © The British Council 2006-2012. Software, Design, Navigation © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="26" right="20" fontSize="12" />
+		<s:Label text="V2.0.0.725" color="#FFFFFF" paddingTop="10" right="23" fontSize="12" />
 	</s:Group>
 	
 </bento:BentoApplication>

@@ -325,6 +325,12 @@ warning|WarningView #yesButton {
 error|ErrorView {
 	skinClass: ClassReference("skins.ielts.error.ErrorSkin");
 }
+error|ErrorView #teacherButton {
+	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
+error|ErrorView #candidateButton {
+	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
 error|ErrorView #closeButton {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
 }

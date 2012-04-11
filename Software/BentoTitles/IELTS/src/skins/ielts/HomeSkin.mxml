@@ -10,8 +10,9 @@
 	</fx:Metadata>
 	
 	<s:layout>
-		<s:HorizontalLayout paddingTop="3" />
-	</s:layout>
+		<s:HorizontalLayout paddingTop="0" />
+	</s:layout>	
+
 	<s:VGroup paddingTop="60" width="100%">
 		<s:HGroup>
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
@@ -40,6 +41,11 @@
 	</s:VGroup>
 
 	<s:VGroup width="100%">
+		<s:Group right="0" width="100%">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0"/>
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/register.jpg')" right="0"/>
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0"/>
+		</s:Group>		
 		<s:Button id="readingCourseButton" width="100%" />
 		<s:Spacer height="1" />
 		<s:Button id="listeningCourseButton" width="100%" />
