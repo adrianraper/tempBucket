@@ -107,6 +107,10 @@ title|TitleView #navBar s|ButtonBarButton {
 	
 }
 
+title|UpgradeView {
+	skinClass: ClassReference("skins.ielts.title.UpgradeSkin");
+}
+
 /* Home view styles */
 home|HomeView {
 	skinClass: ClassReference("skins.ielts.HomeSkin");
@@ -325,12 +329,7 @@ warning|WarningView #yesButton {
 error|ErrorView {
 	skinClass: ClassReference("skins.ielts.error.ErrorSkin");
 }
-error|ErrorView #teacherButton {
-	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
-error|ErrorView #candidateButton {
-	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
+
 error|ErrorView #closeButton {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
 }
@@ -346,6 +345,10 @@ s|TitleWindow.feedbackTitleWindow {
 
 s|TitleWindow.errorTitleWindow {
 	skinClass: ClassReference("skins.ielts.titlewindows.ErrorTitleWindowSkin");
+}
+
+s|TitleWindow.noTitleWindow {
+	skinClass: ClassReference("skins.ielts.titlewindows.NoTitleWindowSkin");
 }
 
 s|TitleWindow.titleWindowClose {

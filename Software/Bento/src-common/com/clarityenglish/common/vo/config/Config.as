@@ -96,6 +96,7 @@ package com.clarityenglish.common.vo.config {
 			// Not until you can login with it!
 			if (parameters.userID)
 				this.userID = parameters.userID;
+			
 			if (parameters.username) this.username = parameters.username;
 			if (parameters.studentID) this.studentID = parameters.studentID;
 			if (parameters.email) this.email = parameters.email;

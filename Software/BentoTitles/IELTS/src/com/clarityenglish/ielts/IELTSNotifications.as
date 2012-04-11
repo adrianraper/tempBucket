@@ -9,5 +9,8 @@ package com.clarityenglish.ielts {
 		
 		public static const LOGIN_SUCCESS:String = "ielts/login_success";
 		public static const LOGIN_FAILURE:String = "ielts/login_failure";
+		
+		public static const IELTS_UPGRADE_WINDOW_SHOW:String = "ielts/ielts_upgrade_window_show";
+		public static const IELTS_REGISTER:String = "ielts/ielts_register";
 	}
 }

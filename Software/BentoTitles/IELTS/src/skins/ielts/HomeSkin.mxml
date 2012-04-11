@@ -40,12 +40,7 @@
 		</s:VGroup>		
 	</s:VGroup>
 
-	<s:VGroup width="100%">
-		<s:Group right="0" width="100%">
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0"/>
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/register.jpg')" right="0"/>
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0"/>
-		</s:Group>		
+	<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 55}">
 		<s:Button id="readingCourseButton" width="100%" />
 		<s:Spacer height="1" />
 		<s:Button id="listeningCourseButton" width="100%" />

@@ -8,6 +8,8 @@
 	import com.clarityenglish.common.controller.UpdateUserCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
+	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
+	import com.clarityenglish.ielts.controller.IELTSUpgradeWindowShowCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.StartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
@@ -80,6 +82,10 @@
 			registerCommand(CommonNotifications.LOGIN_ERROR, ShowErrorCommand);
 			registerCommand(CommonNotifications.INSTANCE_ERROR, ShowErrorCommand);
 			registerCommand(CommonNotifications.EXIT, LogoutCommand);
+			
+			// Upgrade, register and buy
+			registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
+			registerCommand(IELTSNotifications.IELTS_REGISTER, IELTSRegisterCommand);
 			
 		}
 		

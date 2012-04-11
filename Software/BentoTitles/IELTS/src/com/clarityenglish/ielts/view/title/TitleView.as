@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
@@ -18,6 +19,7 @@ package com.clarityenglish.ielts.view.title {
 	import flash.utils.Timer;
 	
 	import mx.collections.ArrayCollection;
+	import mx.controls.SWFLoader;
 	import mx.core.FlexGlobals;
 	import mx.events.ItemClickEvent;
 	import mx.formatters.DateFormatter;
@@ -70,6 +72,15 @@ package com.clarityenglish.ielts.view.title {
 		
 		[SkinPart]
 		public var noticeLabel:Label;
+		
+		[SkinPart]
+		public var upgradeButton:SWFLoader;
+		
+		[SkinPart]
+		public var registerButton:SWFLoader;
+		
+		[SkinPart]
+		public var buyButton:SWFLoader;
 				
 		[Bindable]
 		public var user:User;
@@ -91,6 +102,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
+		public var register:Signal = new Signal();
+		public var upgrade:Signal = new Signal();
+		public var buy:Signal = new Signal();
 		
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
 		private var homeIcon:Class;
@@ -139,12 +153,19 @@ package com.clarityenglish.ielts.view.title {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		
+		[Bindable(event="productVersionChanged")]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
 		public function set productCode(value:uint):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
@@ -155,27 +176,24 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
 			switch (_productCode) {
-				//case parentApplication.ACADEMIC_MODULE:
-				case 52:
+				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
-						case "R2ILM":
+						case IELTSApplication.LAST_MINUTE:
 							return lastMinuteAcademicLogo;
-						case "R2ITD":
+						case IELTSApplication.TEST_DRIVE:
 							return tenHourAcademicLogo;
-						//case parentApplication.FULL_VERSION:
-						case "R2IFV":
+						case IELTSApplication.FULL_VERSION:
 						default:
 							return fullVersionAcademicLogo;
 					}
 					break;
-				//case parentApplication.GENERAL_TRAINING_MODULE:
-				case 53:
+				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
-						case "R2ILM":
+						case IELTSApplication.LAST_MINUTE:
 							return lastMinuteAcademicLogo;
-						case "R2ITD":
+						case IELTSApplication.TEST_DRIVE:
 							return tenHourGeneralTrainingLogo;
-						case "R2IFV":
+						case IELTSApplication.FULL_VERSION:
 						default:
 							return fullVersionGeneralTrainingLogo;
 					}
@@ -190,24 +208,24 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionText():String {
 			switch (_productCode) {
-				case 52:
+				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
-						case "R2ILM":
+						case IELTSApplication.LAST_MINUTE:
 							return "Last minute - Academic module";
-						case "R2ITD":
+						case IELTSApplication.TEST_DRIVE:
 							return "Test drive - Academic module";
-						case "R2IFV":
+						case IELTSApplication.FULL_VERSION:
 						default:
 							return "Full version - Academic module";
 					}
 					break;
-				case 53:
+				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
-						case "R2ILM":
+						case IELTSApplication.LAST_MINUTE:
 							return "Last minute - General Training module";
-						case "R2ITD":
+						case IELTSApplication.TEST_DRIVE:
 							return "Test drive - General Training module";
-						case "R2IFC":
+						case IELTSApplication.FULL_VERSION:
 						default:
 							return "Full version - General Training module";
 					}
@@ -218,11 +236,12 @@ package com.clarityenglish.ielts.view.title {
 			}
 			return null;
 		}
+		
 		[Bindable(event="licenceTypeChanged")]
 		public function get licenceTypeText():String {
 			return Title.getLicenceTypeText(_licenceType);
 		}
-
+		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
@@ -276,6 +295,16 @@ package com.clarityenglish.ielts.view.title {
 					} else {
 						instance.text = "Hope your test went well...";
 					}
+					break;
+				// #299
+				case upgradeButton:
+					upgradeButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { upgrade.dispatch(); } );
+					break;
+				case registerButton:
+					registerButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { register.dispatch(); } );
+					break;
+				case buyButton:
+					buyButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { buy.dispatch(); } );
 					break;
 			}
 		}

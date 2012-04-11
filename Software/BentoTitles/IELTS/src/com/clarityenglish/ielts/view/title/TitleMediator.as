@@ -45,6 +45,9 @@
 			// listen for these signals
 			view.logout.add(onLogout);
 			view.backToMenu.add(onBackToMenu);
+			view.upgrade.add(onUpgradeIELTS);
+			view.register.add(onRegisterIELTS);
+			view.buy.add(onBuyIELTS);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -119,6 +122,18 @@
 				case CommonNotifications.LOGGED_OUT:
 					break;
 			}
+		}
+		
+		private function onUpgradeIELTS():void {
+			sendNotification(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW);
+		}
+		
+		private function onRegisterIELTS():void {
+			sendNotification(IELTSNotifications.IELTS_REGISTER);
+		}
+		
+		private function onBuyIELTS():void {
+			sendNotification(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW);
 		}
 		
 	}

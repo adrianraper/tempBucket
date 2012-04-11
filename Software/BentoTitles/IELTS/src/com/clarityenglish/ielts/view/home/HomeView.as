@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.home.ui.CourseBarRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -102,9 +103,9 @@ package com.clarityenglish.ielts.view.home {
 				
 				case welcomeLabel:
 					if (licenceType == Title.LICENCE_TYPE_AA) {
-						instance.text="Licenced to " + accountName + ".";
+						instance.text = "Licenced to " + accountName + ".";
 					} else {
-						instance.text="Welcome, " + user.fullName + ".";
+						instance.text = "Welcome, " + user.fullName + ".";
 					}
 					break;
 				
@@ -114,7 +115,7 @@ package com.clarityenglish.ielts.view.home {
 					} else {
 						if (user.examDate) {
 							var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-							var daysUnit:String = (daysLeft==1) ? "day" : "days";
+							var daysUnit:String = (daysLeft == 1) ? "day" : "days";
 							if (daysLeft > 0) {
 								instance.text = "You have fewer than " + daysLeft.toString() + " " + daysUnit + " until your test.";
 							} else if (daysLeft == 0) {
@@ -129,25 +130,36 @@ package com.clarityenglish.ielts.view.home {
 					break;
 			}
 		}
+		
 		public function set productVersion(value:String):void {
 			_productVersion = value;
 		}
+		
 		public function set productCode(value:uint):void {
 			_productCode = value;
 		}
+		
 		public function set licenceType(value:uint):void {
 			_licenceType = value;
 		}
+		
 		public function get licenceType():uint {
 			return _licenceType;
 		}
+		
 		public function get accountName():String {
 			return _accountName;
 		}
+		
 		public function set accountName(value:String):void {
 			_accountName = value;
 		}
-				
+		
+		// #299
+		public function isFullVersion():Boolean {
+			return (_productVersion == IELTSApplication.FULL_VERSION);
+		}
+		
 		/**
 		 * The user has clicked a course button
 		 * 

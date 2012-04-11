@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
@@ -109,6 +110,7 @@ package com.clarityenglish.ielts.view.zone {
 		
 		// #234
 		private var _productVersion:String;
+		
 		private var _licenceType:uint;
 		
 		/**
@@ -163,19 +165,27 @@ package com.clarityenglish.ielts.view.zone {
 		public function get licenceType():uint {
 			return _licenceType;
 		}
+		
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
 			}
 		}
+		
 		[Bindable]
 		public function get productVersion():String {
 			return _productVersion;
 		}
+		
 		public function set productVersion(value:String):void {
 			if (_productVersion != value) {
 				_productVersion = value;
 			}
+		}
+		
+		// #299
+		public function isFullVersion():Boolean {
+			return (_productVersion == IELTSApplication.FULL_VERSION);
 		}
 		
 		public function set exerciseSelectorPoppedOut(value:Object):void {
