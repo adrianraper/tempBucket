@@ -49,7 +49,7 @@ package com.clarityenglish.bento.controller {
 			titleWindow.addElement(markingView);
 			
 			// Create and centre the popup
-			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
 			// Hide the close button
