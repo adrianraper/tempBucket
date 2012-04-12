@@ -135,8 +135,17 @@ package com.clarityenglish.bento.model {
 		public function get exerciseDirty():Boolean {
 			return _exerciseDirty;
 		}
+		
 		public function set exerciseDirty(value:Boolean):void {
 			_exerciseDirty = value;
+		}
+		
+		public function isLeavingGoingToLoseAnswers():Boolean {
+			return !exerciseMarked && exerciseDirty;
+		}
+		
+		public function isLeavingGoingToMissFeedback():Boolean {
+			return exerciseMarked && hasExerciseFeedback() && !exerciseFeedbackSeen;
 		}
 		
 		/**

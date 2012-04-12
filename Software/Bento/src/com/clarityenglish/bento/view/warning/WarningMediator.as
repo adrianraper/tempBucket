@@ -108,21 +108,7 @@
 		 * Go on with what you were doing before the warning 
 		 */
 		protected function warningIgnored():void {
-			switch (view.action) {
-				case "show_next":
-					sendNotification(BBNotifications.EXERCISE_SHOW_NEXT);
-					break;
-				case "show_previous":
-					sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
-					break;
-				case "start_again":
-					sendNotification(BBNotifications.EXERCISE_RESTART);
-					break;
-				case "back_to_menu":
-					// Hijack this notification as it has the same effect
-					sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
-					break;
-			}
+			sendNotification(view.action);
 		}
 		
 	}

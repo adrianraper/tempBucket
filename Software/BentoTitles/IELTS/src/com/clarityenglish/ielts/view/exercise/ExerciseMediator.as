@@ -119,7 +119,7 @@
 			var exercise:Exercise = bentoProxy.currentExercise;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			if (!exerciseProxy.exerciseMarked && exerciseProxy.exerciseDirty) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type:"lose_answers", action:"start_again" });
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", action: BBNotifications.EXERCISE_RESTART });
 			} else {
 				facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 			}

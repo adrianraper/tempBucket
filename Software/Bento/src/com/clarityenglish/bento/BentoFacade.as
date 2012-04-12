@@ -72,6 +72,7 @@
 			registerCommand(BBNotifications.EXERCISE_STOP, ExerciseStopCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
+			registerCommand(BBNotifications.EXERCISE_SHOW_OFFSET, ExerciseShowOffsetCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_FEEDBACK, ExerciseShowFeedbackCommand);
 			registerCommand(BBNotifications.EXERCISE_PRINT, ExercisePrintCommand);
 			registerCommand(BBNotifications.EXERCISE_TRY_AGAIN, ExerciseTryAgainCommand);

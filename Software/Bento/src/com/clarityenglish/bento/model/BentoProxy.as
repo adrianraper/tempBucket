@@ -141,7 +141,7 @@ package com.clarityenglish.bento.model {
 			return getExerciseNodeWithOffset(-1);
 		}
 		
-		private function getExerciseNodeWithOffset(offset:int):XML {
+		public function getExerciseNodeWithOffset(offset:int):XML {
 			var otherExerciseNode:XML;
 			
 			// Keep going through potential exercises until we find one with Exercise.linkExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section

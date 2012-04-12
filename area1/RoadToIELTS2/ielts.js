@@ -26,11 +26,8 @@ $(window).load(function() {
 		
 		// Deal with the scrollbars in a cross-browser friendly way
 		if (!$.browser.mozilla) {
-			if (width < $(window).width() || height < $(window).height()) {
-				$("html").css("overflow", "hidden");
-			} else {
-				$("html").css("overflow", "auto");
-			}
+			$("html").css("overflow-x", (width < $(window).width()) ? "hidden" : "auto");
+			$("html").css("overflow-y", (height < $(window).height()) ? "hidden" : "auto");
 		}
 		
 		// Size the flash object

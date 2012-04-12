@@ -74,7 +74,7 @@
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			
 			if (!exerciseProxy.exerciseMarked && exerciseProxy.exerciseDirty) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type:"lose_answers", action:"back_to_menu" });
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", action: BBNotifications.EXERCISE_SECTION_FINISHED });
 			} else {
 				view.showExercise(null);
 			}
