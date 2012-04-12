@@ -53,7 +53,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onTextFlowClear(textFlow:TextFlow):void { }
 		
 		private function onClick(e:FlowElementMouseEvent, source:String, width:String = null, height:String = null, title:String = " "):void {
-			var feedbackNode:XML = <feedback source={source} modal="false" />
+			var feedbackNode:XML = <feedback source={source} />
 			if (title && title.length > 0) feedbackNode.@title = title;
 			if (width) feedbackNode.@width = width;
 			if (height) feedbackNode.@height = height;					

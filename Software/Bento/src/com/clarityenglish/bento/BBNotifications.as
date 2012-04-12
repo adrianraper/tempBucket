@@ -75,6 +75,8 @@
 		// Handle errors in loading data
 		public static const INVALID_PROGRESS_DATA:String = "invalid_progress_data";
 		
+		public static const CLOSE_ALL_POPUPS:String = "close_all_popups";
+		
 	}
 	
 }

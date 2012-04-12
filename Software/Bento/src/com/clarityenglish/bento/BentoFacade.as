@@ -100,6 +100,9 @@
 			// #269
 			registerCommand(BBNotifications.ACTIVITY_TIMER_RESET, ActivityTimerResetCommand);
 			
+			// #265
+			registerCommand(BBNotifications.CLOSE_ALL_POPUPS, CloseAllPopUpsCommand);
+			
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

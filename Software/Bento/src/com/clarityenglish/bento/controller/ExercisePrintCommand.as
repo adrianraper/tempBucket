@@ -23,6 +23,8 @@ package com.clarityenglish.bento.controller {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public override function execute(note:INotification):void {
+			super.execute(note);
+			
 			var href:Href = note.getBody() as Href;
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

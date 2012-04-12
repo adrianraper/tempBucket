@@ -3,6 +3,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -27,6 +28,7 @@ package com.clarityenglish.bento.controller {
 			
 			// #210, #256 - warning messages when leaving an exercise
 			if (exerciseProxy.attemptToLeaveExercise(note)) {
+				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication); // #265
 				sendNotification(BBNotifications.EXERCISE_SHOW, bentoProxy.currentExercise.href.clone());
 			}
 		}

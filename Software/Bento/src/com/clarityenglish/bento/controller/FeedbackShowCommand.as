@@ -35,7 +35,9 @@ package com.clarityenglish.bento.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		private var titleWindow:TitleWindow;
+		private static var titleWindow:TitleWindow;
+		
+		private static var titleWindowAdded:Boolean;
 
 		private var feedback:Feedback;
 		
@@ -65,10 +67,14 @@ package com.clarityenglish.bento.controller {
 				}
 				
 				// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
-				titleWindow = new TitleWindow();
-				titleWindow.styleName = "feedbackTitleWindow";
-				titleWindow.title = feedback.title;
-				titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
+				if (!titleWindow) {
+					titleWindow = new TitleWindow();
+					titleWindow.styleName = "feedbackTitleWindow";
+					titleWindow.title = feedback.title;
+					titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
+				} else {
+					titleWindow.removeElement(titleWindow.getElementAt(0));
+				}
 				
 				// Create an XHTMLRichText component and add it to the title window
 				var xhtmlRichText:XHTMLRichText = new XHTMLRichText();
@@ -92,7 +98,7 @@ package com.clarityenglish.bento.controller {
 				
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
 				// a neater way to do this, but this works and doesn't seem to do any harm.
-				setTimeout(addPopupWindow, 150);
+				if (!titleWindowAdded) setTimeout(addPopupWindow, 150);
 			} else {
 				log.error("Unable to find feedback source {0}", feedback.source);
 			}
@@ -100,8 +106,10 @@ package com.clarityenglish.bento.controller {
 		
 		private function addPopupWindow():void {
 			// Create and centre the popup
-			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, feedback.modal, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
+			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
+			
+			titleWindowAdded = true;
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
@@ -164,6 +172,7 @@ package com.clarityenglish.bento.controller {
 			(FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
 			
 			PopUpManager.removePopUp(titleWindow);
+			titleWindowAdded = false;
 			titleWindow = null;
 			feedback = null;
 		}

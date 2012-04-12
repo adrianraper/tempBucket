@@ -13,6 +13,7 @@ package com.clarityenglish.bento.model {
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 	
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	

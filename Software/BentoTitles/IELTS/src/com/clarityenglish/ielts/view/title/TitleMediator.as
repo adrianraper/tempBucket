@@ -72,6 +72,7 @@
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 			
 			if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.EXERCISE_SECTION_FINISHED))) {
+				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
 				sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 			}
 		}
