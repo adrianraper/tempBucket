@@ -1,4 +1,6 @@
 package com.clarityenglish.bento.controller {
+	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
@@ -83,6 +85,10 @@ package com.clarityenglish.bento.controller {
 				var scroller:Scroller = new Scroller();
 				scroller.viewport = xhtmlRichText;
 				titleWindow.addElement(scroller);
+				
+				// #210, #256
+				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(note.getBody().exercise as Exercise)) as ExerciseProxy;
+				exerciseProxy.exerciseFeedbackSeen = true;
 				
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
 				// a neater way to do this, but this works and doesn't seem to do any harm.

@@ -114,6 +114,7 @@
 		
 		private function onStartAgain():void {
 			log.debug("The user clicked on start again");
+			
 			// #210
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
@@ -126,7 +127,6 @@
 		}
 		
 		private function onShowFeedback():void {
-
 			// #256
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;

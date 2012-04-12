@@ -140,10 +140,16 @@ package com.clarityenglish.bento.model {
 			_exerciseDirty = value;
 		}
 		
+		/**
+		 * Returns true if leaving this exercise would result in the user losing their answers - #210
+		 */
 		public function isLeavingGoingToLoseAnswers():Boolean {
 			return !exerciseMarked && exerciseDirty;
 		}
 		
+		/**
+		 * Returns true if leaving this exercise would result in the user not seeing some feedback -  #210
+		 */
 		public function isLeavingGoingToMissFeedback():Boolean {
 			return exerciseMarked && hasExerciseFeedback() && !exerciseFeedbackSeen;
 		}

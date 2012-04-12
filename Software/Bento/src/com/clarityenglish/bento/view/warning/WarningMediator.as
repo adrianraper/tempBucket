@@ -66,9 +66,8 @@
 					// Set the condition that caused the warning to false and try again
 					exerciseProxy.exerciseDirty = false;
 					break;
-				
-				// Don't just go back, trigger the feedback display
 				case "feedback_not_seen":
+					// Don't just go back, trigger the feedback display
 					sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
 					return;
 					break;
