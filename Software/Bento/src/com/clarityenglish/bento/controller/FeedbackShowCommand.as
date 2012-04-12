@@ -17,6 +17,8 @@ package com.clarityenglish.bento.controller {
 	import mx.events.CloseEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.managers.FocusManager;
+	import mx.managers.IFocusManagerComponent;
 	import mx.managers.PopUpManager;
 	import mx.managers.PopUpManagerChildList;
 	
@@ -25,6 +27,7 @@ package com.clarityenglish.bento.controller {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import spark.components.Scroller;
+	import spark.components.TextInput;
 	import spark.components.TitleWindow;
 	import spark.events.TitleWindowBoundsEvent;
 	
@@ -138,8 +141,13 @@ package com.clarityenglish.bento.controller {
 		 * @param event
 		 */
 		protected function onKeyboardDown(event:KeyboardEvent):void {
-			if (event.keyCode == Keyboard.ESCAPE || event.keyCode == Keyboard.ENTER)
+			if (event.keyCode == Keyboard.ESCAPE) {
 				onClosePopUp();
+			} else if (event.keyCode == Keyboard.ENTER) {
+				var focus:IFocusManagerComponent = titleWindow.focusManager.getFocus();
+				if (!focus || !(focus is TextInput)) // #265(d) - don't close the popup if focus is in a gapfill
+					onClosePopUp();
+			}
 		}
 		
 		/**
