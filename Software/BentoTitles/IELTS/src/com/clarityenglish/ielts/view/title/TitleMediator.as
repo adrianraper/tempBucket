@@ -5,7 +5,6 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
@@ -14,6 +13,7 @@
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
+	import org.puremvc.as3.patterns.observer.Notification;
 	
 	/**
 	 * A Mediator
@@ -69,13 +69,10 @@
 		private function onBackToMenu():void {
 			// #210. Can you simply stop the exercise now, or do you need any warning first?
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exercise:Exercise = bentoProxy.currentExercise;
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 			
-			if (!exerciseProxy.exerciseMarked && exerciseProxy.exerciseDirty) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", action: BBNotifications.EXERCISE_SECTION_FINISHED });
-			} else {
-				view.showExercise(null);
+			if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.EXERCISE_SECTION_FINISHED))) {
+				sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 			}
 		}
 		

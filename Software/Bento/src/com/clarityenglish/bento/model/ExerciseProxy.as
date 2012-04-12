@@ -17,7 +17,9 @@ package com.clarityenglish.bento.model {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.interfaces.IProxy;
+	import org.puremvc.as3.patterns.observer.Notification;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	public class ExerciseProxy extends Proxy implements IProxy {
@@ -141,16 +143,38 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
+		 * This checks the current exercise for any warnings that should be thrown.  If there are warnings preventing the exercise from being left
+		 * this will trigger the warnings and return false.  Otherwise this will return true, meaning that it is ok to leave the exercise.  This
+		 * method accepts parameters which tell it what notification to send in the event of the user overriding the warning. #210, #255
+		 * 
+		 * @param notificationName
+		 * @param body
+		 * @param type
+		 * @return 
+		 */
+		public function attemptToLeaveExercise(note:INotification):Boolean {
+			if (isLeavingGoingToLoseAnswers()) {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", note: note });
+				return false;
+			} else if (isLeavingGoingToMissFeedback()) {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "feedback_not_seen", note: note });
+				return false;
+			}
+			
+			return true;
+		}
+		
+		/**
 		 * Returns true if leaving this exercise would result in the user losing their answers - #210
 		 */
-		public function isLeavingGoingToLoseAnswers():Boolean {
+		private function isLeavingGoingToLoseAnswers():Boolean {
 			return !exerciseMarked && exerciseDirty;
 		}
 		
 		/**
 		 * Returns true if leaving this exercise would result in the user not seeing some feedback -  #210
 		 */
-		public function isLeavingGoingToMissFeedback():Boolean {
+		private function isLeavingGoingToMissFeedback():Boolean {
 			return exerciseMarked && hasExerciseFeedback() && !exerciseFeedbackSeen;
 		}
 		

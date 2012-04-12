@@ -115,15 +115,7 @@
 		private function onStartAgain():void {
 			log.debug("The user clicked on start again");
 			
-			// #210
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exercise:Exercise = bentoProxy.currentExercise;
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			if (!exerciseProxy.exerciseMarked && exerciseProxy.exerciseDirty) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", action: BBNotifications.EXERCISE_RESTART });
-			} else {
-				facade.sendNotification(BBNotifications.EXERCISE_RESTART);
-			}
+			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
 		private function onShowFeedback():void {

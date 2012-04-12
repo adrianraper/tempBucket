@@ -33,7 +33,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var type:String = note.getBody().type as String;
-			var action:String = note.getBody().action as String;
+			var note:INotification = note.getBody().note as INotification;
 
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
@@ -42,7 +42,7 @@ package com.clarityenglish.bento.controller {
 			
 			var warningView:WarningView = new WarningView();
 			warningView.type = type;
-			warningView.action = action;
+			warningView.note = note;
 			titleWindow.addElement(warningView);
 			
 			// Create and centre the popup

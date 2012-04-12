@@ -14,6 +14,7 @@ package com.clarityenglish.bento.controller {
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
+	import org.puremvc.as3.patterns.observer.Notification;
 	
 	public class ExerciseShowOffsetCommand extends SimpleCommand {
 		
@@ -26,16 +27,10 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exercise:Exercise = bentoProxy.currentExercise;
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			var exerciseHasQuestions:Boolean = (exercise.model.questions.length > 0);
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 			
 			// #210, #256 - warning messages when leaving an exercise
-			if (exerciseProxy.isLeavingGoingToLoseAnswers()) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", action: BBNotifications.EXERCISE_SHOW_NEXT });
-			} else if (exerciseProxy.isLeavingGoingToMissFeedback()) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "feedback_not_seen", action: BBNotifications.EXERCISE_SHOW_NEXT });
-			} else {
+			if (exerciseProxy.attemptToLeaveExercise(note)) {
 				var exerciseNode:XML = bentoProxy.getExerciseNodeWithOffset(note.getBody() as int);
 				if (exerciseNode) {
 					sendNotification(BBNotifications.EXERCISE_SHOW, bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exerciseNode.@href));

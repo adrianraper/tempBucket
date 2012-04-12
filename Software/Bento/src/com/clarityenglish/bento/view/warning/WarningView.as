@@ -8,6 +8,8 @@ package com.clarityenglish.bento.view.warning {
 	
 	import mx.events.CloseEvent;
 	
+	import org.puremvc.as3.interfaces.INotification;
+	
 	import spark.components.Button;
 	import spark.components.Label;
 	
@@ -25,7 +27,8 @@ package com.clarityenglish.bento.view.warning {
 		public var warningMessage:Label;
 		
 		public var type:String;
-		public var action:String;
+		
+		public var note:INotification;
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

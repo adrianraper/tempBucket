@@ -107,7 +107,7 @@
 		 * Go on with what you were doing before the warning 
 		 */
 		protected function warningIgnored():void {
-			sendNotification(view.action);
+			sendNotification(view.note.getName(), view.note.getBody(), view.note.getType());
 		}
 		
 	}
