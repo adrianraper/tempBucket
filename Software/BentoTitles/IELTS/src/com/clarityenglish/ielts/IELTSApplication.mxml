@@ -84,37 +84,8 @@
 				stage.quality = StageQuality.BEST;
 			}
 			
-			// Implement the function from the interface to display errors
-			// You would expect to only be using this handler if there is no active view
 			public function showErrorMessage(error:BentoError):void {
-				log.error("Need to handle the error {0}", error.errorNumber);
-				var msg:String, msgTitle:String = "Unexpected problem";
-				/*
-				switch (error.errorNumber) {
-					case BentoError.ERROR_CONTENT_MENU:
-						msg = "Sorry, there is a problem reading the content index.";
-						break;
-					case BentoError.ERROR_DATABASE_READING:
-					case BentoError.ERROR_DATABASE_WRITING:
-						msg = "Sorry, there is a problem reading the database.";
-						break;
-					case BentoError.ERROR_LOGIN_WRONG_DETAILS:
-						msg = "Sorry, that login or password are wrong. Please try again.";
-						break;
-					default:
-						msg = "Sorry, something unexpected has happened.";
-				}
-				Alert.show(msg + " " + error.errorNumber + ": " + error.errorContext, msgTitle, mx.controls.Alert.OK, this, onHandleAlertResponse, null, mx.controls.Alert.OK);
-				*/
-				Alert.show(error.errorDescription + " " + error.errorContext, msgTitle, mx.controls.Alert.OK, this, onHandleAlertResponse, null, mx.controls.Alert.OK);
-			}
-			
-			public function onHandleAlertResponse(event:CloseEvent):void {
-				// Check to see if the OK button was pressed.
-				// Though currently there is not much else you can do!
-				if (event.detail == Alert.OK) {
-					currentState = "credits";
-				}
+				// This is no longer used and is taken care of using notifications and commands instead
 			}
 			
 		]]>

@@ -1,5 +1,4 @@
 package com.clarityenglish.common.controller {
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.view.error.ErrorView;
 	import com.clarityenglish.common.vo.config.BentoError;

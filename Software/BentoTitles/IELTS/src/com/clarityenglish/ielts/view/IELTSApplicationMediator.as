@@ -50,12 +50,6 @@ package com.clarityenglish.ielts.view {
 		override public function listNotificationInterests():Array {
 			// Concatenate any extra notifications to the array returned by this function in the superclass
 			return super.listNotificationInterests().concat([
-				// Register interest in LOGGED_IN here
-				// so that this mediator can change the state of the application from login to home.
-				CommonNotifications.INVALID_LOGIN,
-				CommonNotifications.INVALID_DATA,
-				CommonNotifications.LOGGED_IN,
-				CommonNotifications.CONFIG_LOADED,
 				StateMachine.CHANGED,
 			]);
 		}
@@ -67,18 +61,10 @@ package com.clarityenglish.ielts.view {
 		 */
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
+			
 			switch (note.getName()) {
 				case StateMachine.CHANGED:
-					var state:State = note.getBody() as State;
-					handleStateChange(state);
-					break;
-				/*case CommonNotifications.INVALID_LOGIN:
-					view.showInvalidLogin(note.getBody() as BentoError);
-					break;*/
-				// An error has occurred
-				case CommonNotifications.INVALID_LOGIN:
-				case CommonNotifications.INVALID_DATA:
-					view.showErrorMessage(note.getBody() as BentoError);
+					handleStateChange(note.getBody() as State);
 					break;
 			}
 		}
@@ -87,7 +73,6 @@ package com.clarityenglish.ielts.view {
 			log.debug("State machine moved into state {0}", state.name);
 			
 			switch (state.name) {
-				case BBStates.STATE_LOAD_CONFIG:
 				case BBStates.STATE_LOAD_MENU:
 					view.currentState = "loading";
 					break;

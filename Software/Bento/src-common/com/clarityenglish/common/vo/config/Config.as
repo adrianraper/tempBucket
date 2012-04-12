@@ -340,7 +340,7 @@ package com.clarityenglish.common.vo.config {
 		 * @return the licence type - can match against Title.LEARNER_TRACKING etc
 		 */
 		public function get licenceType():uint {
-			return this.account.getTitle().licenceType;
+			return (this.account) ? this.account.getTitle().licenceType : null;
 		}
 		
 		/**

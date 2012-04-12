@@ -5,7 +5,7 @@ package com.clarityenglish.ielts.controller {
 	
 	import org.puremvc.as3.interfaces.INotification;
 
-	public class StartupCommand extends BentoStartupCommand {
+	public class IELTSStartupCommand extends BentoStartupCommand {
 
 		public override function execute(note:INotification):void {
 			super.execute(note);

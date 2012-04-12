@@ -54,8 +54,12 @@
 			mapView(MarkingView, MarkingMediator);
 			mapView(WarningView, WarningMediator);
 			
-			// Map built in commands
+			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
+			registerCommand(CommonNotifications.CONFIG_LOADED, BentoStartupStateMachineCommand);
+			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
+			
+			// Map built in commands
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
@@ -77,6 +81,13 @@
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
+			
+			// For use with errors and exit
+			registerCommand(CommonNotifications.LOGIN_ERROR, ShowErrorCommand); // unused?
+			registerCommand(CommonNotifications.INSTANCE_ERROR, ShowErrorCommand);
+			registerCommand(CommonNotifications.INVALID_DATA, ShowErrorCommand);
+			registerCommand(CommonNotifications.INVALID_LOGIN, ShowErrorCommand);
+			registerCommand(CommonNotifications.EXIT, LogoutCommand);
 
 			// For use with sessions and scores for progress
 			registerCommand(BBNotifications.SESSION_START, SessionStartCommand);

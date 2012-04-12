@@ -87,15 +87,14 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function logout():void {
-			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var params:Array = [ configProxy.getConfig().licence ];
 			new RemoteDelegate("logout", params, this).execute();
 			
 			// Stop the licence update timer
-			licenceTimer.stop();
+			if (licenceTimer) licenceTimer.stop();
 		}
-
+		
 		/**
 		 * Method to get user's instance ID from the database
 		 *

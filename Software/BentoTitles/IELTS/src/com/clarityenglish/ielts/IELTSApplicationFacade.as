@@ -11,7 +11,7 @@
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
 	import com.clarityenglish.ielts.controller.IELTSUpgradeWindowShowCommand;
 	import com.clarityenglish.ielts.controller.PdfShowCommand;
-	import com.clarityenglish.ielts.controller.StartupCommand;
+	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsMediator;
@@ -70,23 +70,17 @@
 			// Register IELTS specific commands
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
 			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
-			registerCommand(BBNotifications.STARTUP, StartupCommand);
-			
-			// Common ones are done in BentoFacade
-			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
-			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
-			registerCommand(BBNotifications.USER_UPDATE, UpdateUserCommand);
-			
-			// For use with errors and exit
-			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
-			registerCommand(CommonNotifications.LOGIN_ERROR, ShowErrorCommand);
-			registerCommand(CommonNotifications.INSTANCE_ERROR, ShowErrorCommand);
-			registerCommand(CommonNotifications.EXIT, LogoutCommand);
 			
 			// Upgrade, register and buy
 			registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
 			registerCommand(IELTSNotifications.IELTS_REGISTER, IELTSRegisterCommand);
 			
+			registerCommand(BBNotifications.STARTUP, IELTSStartupCommand);
+			
+			// Common ones are done in BentoFacade
+			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
+			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
+			registerCommand(BBNotifications.USER_UPDATE, UpdateUserCommand);
 		}
 		
 	}

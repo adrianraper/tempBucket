@@ -188,7 +188,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectLogin():LoginEvent {
 			if (Config.DEVELOPER.name == "DK") {
-				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
+				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "passwordA")
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
