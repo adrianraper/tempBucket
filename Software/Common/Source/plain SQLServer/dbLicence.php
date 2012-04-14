@@ -24,17 +24,19 @@ class LICENCE {
 				// v6.5.5.0 Remove this as we are dropping T_Licences in favour of T_Session
 				//$rC = $this->updateLicence( $vars, $node );
 				// v6.5.6.7 Add back in
-				$rC = $this->updateLicenceControl( $vars, $licenceID );
-				if ($rC) {
+				// v6.6.0 Licence control solely through T_Session
+				//$rC = $this->updateLicenceControl( $vars, $licenceID );
+				//if ($rC) {
 					$node .= "<note>use existing licence</note>";
-				} else {
-					$node .= "<err code='203'>your licence can not be updated: ".$db->ErrorMsg()."</err>";
-				}
+				//} else {
+				//	$node .= "<err code='203'>your licence can not be updated: ".$db->ErrorMsg()."</err>";
+				//}
 			} else {
 				// This is a new licence, check to see if we have space
 				// IF this is an account where we are really just counting licences used rather than setting a limit
 				// (such as BC Global R2I) there is not much point doing this.
 				// In particular for GlobalR2I this is a VERY expensive call. And totally unnecessary.
+				// 6.6.0 In fact, it ought to be a type of tracking licence - CountTrackingLicence
 				if (stristr($db->database, 'GlobalRoadToIELTS')!==false) {
 					$node .= "<licence id='0' />";
 					$node .= "<note>skip check because db=".$db->database."</note>";
@@ -138,16 +140,19 @@ class LICENCE {
 		}
 	}
 	// v6.5.6.7 This is used for tracking licences
+	// v6.6.0 Simply use T_Session so no need for this
 	function updateLicenceControl( $vars, $licenceID ) {
-		global $db;
-		$returnCode = $this->updateLicenceControlRecord($vars, $licenceID );
-		if ($returnCode) {
+		//global $db;
+		//$returnCode = $this->updateLicenceControlRecord($vars, $licenceID );
+		//if ($returnCode) {
 			return true;
-		} else {
-			return false;
-		}	
+		//} else {
+		//	return false;
+		//}	
 	}
 	// v6.5.6.7 This is used for tracking licences
+	// v6.6.0 Deprecated
+	/*
 	function updateLicenceControlRecord( &$vars, $id ) {
 		global $db;
 		// v6.5.5.0 Should I use $vars['datestamp'] to get the user's own dates rather than the server time?
@@ -186,7 +191,7 @@ EOD;
 			return false;
 		}
 	}
-	
+	*/
 	// v6.5.5.0 This is used for concurrent and tracking licences
 	function updateLicence( &$vars, &$node ) {
 		global $db;
@@ -571,6 +576,7 @@ EOD;
 	// Used for licence control (Learner Tracking licence)
 	// v6.5.6.7 Change to T_LicenceControl table
 	// Note that there are parallel functions in dbProgress for writing records.
+	// v6.6.0 T_session licence control
 	function checkExistingLicence ( &$vars, &$node ) {
 		global $db;
 		$uid  = $vars['USERID'];
@@ -579,16 +585,17 @@ EOD;
 		// This is actually licence clearance date as calculated by getRMSettings
 		$datestamp = $vars['LICENCESTARTDATE'];
 		$sql = <<<EOD
-			SELECT * FROM T_LicenceControl
+			SELECT * FROM T_Session
 			WHERE F_UserID = ?
 			AND F_ProductCode = ?
-			AND F_LastUpdateTime >= ?
+			AND F_EndDateStamp >= ?
 EOD;
 		$bindingParams = array($uid, $pid, $datestamp);
 		$rs = $db->Execute($sql, $bindingParams);
 		if ($rs && $rs->RecordCount()>0) {
 			$dbObj = $rs->FetchNextObj();
-			$licenceID = $dbObj->F_LicenceID;
+			// v6.6.0 Not sure there is any value in a licence ID, but might as well use the last session ID
+			$licenceID = $dbObj->F_SessionID;
 			$node .= "<licence id='$licenceID' />";
 			return $licenceID;
 		} else {
@@ -607,16 +614,18 @@ EOD;
 		if ($vars['LICENCETYPE']=='6') {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
-				FROM T_LicenceControl c, T_User u
+				FROM T_Session c, T_User u
 				WHERE c.F_ProductCode = ?
 				AND c.F_UserID = u.F_UserID
-				AND c.F_LastUpdateTime >= ?
+				AND c.F_EndDateStamp >= ?
 EOD;
 		} else {
+		// v6.6.0 BUT do confirm that teachers don't write session records. If they do, we need to exclude them by joining on T_User.F_UserType=0
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
+				FROM T_Session
 				WHERE F_ProductCode = ?
-				AND F_LastUpdateTime >= ?
+				AND F_EndDateStamp >= ?
 EOD;
 		}
 		if (stristr($rootID,',')!==FALSE) {

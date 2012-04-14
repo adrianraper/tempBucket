@@ -295,6 +295,7 @@ EOD;
 	
 	// AR How many title/user licences have been used so far in this licence period?
 	// v3.5 Try using T_LicenceControl instead of session
+	// No. Try using JUST T_Session
 	private function xxgetTitleUserCounts($title, $rootID, $fromDateStamp = null) {
 		if (!$fromDateStamp)
 			$fromDateStamp = $this->getLicenceClearanceDate($title);
@@ -304,14 +305,15 @@ EOD;
 		if ($title->licenceType == 6) {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
-				FROM T_LicenceControl c, T_User u
+				FROM T_Session c, T_User u
 				WHERE c.F_ProductCode = ?
 				AND c.F_UserID = u.F_UserID
 				AND c.F_LastUpdateTime >= ?
 EOD;
 		} else {
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
+				FROM T_Session
 				WHERE F_ProductCode = ?
 				AND F_LastUpdateTime >= ?
 EOD;
@@ -384,6 +386,27 @@ EOD;
 		// there was only 1 of 230 which had a session but no scores.
 		// Break this down into a couple of calls then to keep it simple. 
 		// First is students who are still in T_User
+		//v6.6.0 T_Session is now the only count for licence use. See dbLicence checkAvailableLicences
+		/*
+		// This is code from Orchid
+		if ($vars['LICENCETYPE']=='6') {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
+				FROM T_Session c, T_User u
+				WHERE c.F_ProductCode = ?
+				AND c.F_UserID = u.F_UserID
+				AND c.F_EndDateStamp >= ?
+EOD;
+		} else {
+		// v6.6.0 BUT do confirm that teachers don't write session records. If they do, we need to exclude them by joining on T_User.F_UserType=0
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
+				FROM T_Session
+				WHERE F_ProductCode = ?
+				AND F_EndDateStamp >= ?
+EOD;
+		}
+		*/
 		$sql = 	<<<EOD
 			SELECT COUNT(DISTINCT s.F_UserID) AS activeStudentCount
 			FROM T_Session s, T_User u

@@ -185,6 +185,7 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 				// As we don't know licenceType or rootID at this point, need to read from T_Session and T_Accounts.
 				// Do a simple check to avoid anything unnecessary for anonymous access.
 				// v6.5.6.9 Until we have licenceControl is ready for release, just skip this. Control will still be based on T_Session
+				// v6.6.0 Revert to T_Session use
 				/*
 				if ($vars['USERID']>=1) {
 					$rC = $Progress->checkLicenceControl( $vars, $node );

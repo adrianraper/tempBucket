@@ -131,7 +131,10 @@ try {
 		// It would be best to just send Clarity's userID in session, but that isn't picked up by Orchid
 		// So use CSTDI UserID
 		$_SESSION['StudentID'] = $studentID;
-		$targetURL = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI&units=bwnj';
+		$targetURL = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI';
+		
+		// rather than go direct to the program, display a page that has a button for the program and a button for the evaluation
+		// The key thing is making sure that the original page remains as the referrer URL, not the new landing page
 		
 		redirect($targetURL);
 	}

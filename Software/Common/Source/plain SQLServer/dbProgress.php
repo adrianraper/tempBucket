@@ -806,7 +806,11 @@ EOD;
 		}
 		//$date = $vars['DATESTAMP'];
 		//$returnCode = $this->insertSessionRecord($vars, $dateNow);
-		$sessionID = $this->insertSessionRecord($vars, $dateNow);
+		
+		// v6.6.0 For teachers we will set rootID to 0 in the session record, so, are you a teacher?
+		$userType = $this->getUserType($vars);
+		
+		$sessionID = $this->insertSessionRecord($vars, $dateNow, $userType);
 		//print 'affected_rows=' .$Db->affected_rows;
 		if (!$sessionID) {
 			$node .= "<err code='205'>Your progress cannot be recorded: " .$db->ErrorMsg() ."</err>";
@@ -1689,13 +1693,18 @@ EOD;
 	}
 
 	//v6.3.5 Session table holds courseID not courseName
-	function insertSessionRecord ( &$vars, $dateNow ) {
+	function insertSessionRecord ( &$vars, $dateNow, $userType = 0 ) {
 		//print 'insertSession';
 		global $db;
 		$cid  = $vars['COURSEID'];
 		$uid = $vars['USERID'];
-                $rootid = $vars['ROOTID'];
                 $pid  = $vars['PRODUCTCODE'];
+		// v6.6.0 Need to recognise teachers
+		if ($userType==0) {
+			$rootid = $vars['ROOTID'];
+		} else {
+			$rootid = -1;
+		}
 		/*
 		// Replace this insert with one that will use adodb to return the new id
 		//$bindingParams = array($uid, $cid, $date);
@@ -2353,6 +2362,28 @@ EOD;
 		}
 		return $dbObj->uid;
 	}
+	// v6.6.0 Need to know the type of a user
+	function getUserType ( &$vars ) {
+		global $db;
+
+		$uid = $vars['USERID'];
+		$bindingParams = array($uid);
+		$sql = <<<EOD
+				SELECT F_UserType FROM T_User
+				WHERE F_UserID=?
+EOD;
+		$rs = $db->Execute($sql, $bindingParams);
+		switch ($rs->RecordCount()) {
+			case 1:
+				$dbObj = $rs->FetchNextObj();
+				break;
+			default:
+				// This should be impossible of course, but if something is wrong, best to pretend this person is a student!
+				return 0;
+		}
+		return $dbObj->F_UserType;
+	}
+	
 	//v6.3.1 Add root groupID
 	function insertMembership( &$vars ) {
 		global $db;

@@ -3587,6 +3587,10 @@ View.prototype.cmdDictionaries = function() {
 	// v6.5.1 Yiu Force the recorder to stop
 	_global.ORCHID.viewObj.stopRecording();
 	
+	// Hijack this to display an evaluation exercise. Added for CSTDI
+	if (_global.ORCHID.root.licenceHolder.licenceNS.central.root == 14449) {
+		// Fire up the evaluation exercise. How?
+	}
 	//myTrace("cmdDictionaries");
 	// v6.3.6 debugging handle
 	/*
@@ -4295,7 +4299,7 @@ View.prototype.moveExercise = function(component, direction) {
 	// in the displayMsgBox bit IF they are asked and say YES (or are not asked)
 	} else if (isExercise && hasMarking && isDirty) {
 		//myTrace("marking: will they continue?");
-		//mainMarking();
+		//mainMarking();F
 		var marking = true;
 		if (nextItem == undefined) {
 			// v6.3.3 If you are in SCORM (and this is a unit SCO) getting to the end of a unit means exit please
@@ -4335,7 +4339,7 @@ View.prototype.moveExercise = function(component, direction) {
 		// don't go on any further here
 		return;
 	// It can be marked, but the student has done nothing, so ignore it
-	// This is a questionable/optional choice. It is probably just as valid to
+	// This is a questionable/optional choice. It is pFFrobably just as valid to
 	// ALWAYS do null marking, even if the student just looked
 	//} else if (isExercise && hasMarking && !isDirty) {
 	//	myTrace("marking: not dirty, so no marking");
