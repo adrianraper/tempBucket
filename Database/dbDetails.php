@@ -3,7 +3,7 @@ class DBDetails {
 
 	function __construct($dbHost) {
 		switch ($dbHost) {
-			case 102:
+			/*case 102:
 				$this->driver = "mysql";
 				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
 				$this->user = "clarity";
@@ -24,7 +24,7 @@ class DBDetails {
 				$this->password = "clarity123";
 				$this->dbname = "global_r2iv2";
 				break;
-			case 2:
+			case 2:*/
 				/*$this->driver = "mysql";
 				$this->host = "ClarityDevelop";
 				$this->user = "root";
