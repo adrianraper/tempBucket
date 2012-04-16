@@ -204,7 +204,6 @@ EOD;
 	 * @param Number $productCode
 	 */
 	function allocateNewLicence($user, $rootID, $productCode) {
-
 		// Insert this user in the licence control table
 		$dateNow = date('Y-m-d H:i:s');
 		//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
@@ -221,6 +220,7 @@ EOD;
 		
 		return $licenceID;
 	}
+	
 	/**
 	 * 
 	 * This function updates a licence record with a timestamp
@@ -281,7 +281,6 @@ EOD;
 	 * @param Licence $licence
 	 */
 	function dropLicenceSlot($licence) {
-
 		// The licence slot checking is based on licence type
 		switch ($licence->licenceType) {
 			
