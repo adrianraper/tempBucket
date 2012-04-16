@@ -40,7 +40,6 @@ require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
-require_once(dirname(__FILE__)."/../../classes/ErrorOps.php");
 
 // v3.4 This is used for internal queries
 require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
@@ -65,6 +64,10 @@ class DMSService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("DMS");
+		
+		// Set the title name for resources (DMS shares resources with rm so use rm for this too)
+		AbstractService::$title = "rm";
+		
 		if (Session::is_set('userID')) {
 			AbstractService::$log->setUserID(Session::get('userID'));
 		};

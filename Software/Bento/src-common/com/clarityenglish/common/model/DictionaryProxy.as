@@ -4,6 +4,9 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
+	
+	import mx.rpc.Fault;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
@@ -48,8 +51,8 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
+		public function onDelegateFault(operation:String, fault:Fault):void{
+			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
 		}
 		
 	}

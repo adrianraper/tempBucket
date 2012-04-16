@@ -4,7 +4,10 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	
+	import mx.rpc.Fault;
 	import mx.utils.ObjectUtil;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
@@ -42,7 +45,7 @@ package com.clarityenglish.common.model {
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
 				// in which case try in English
-				if (languageCode!="EN") {
+				if (languageCode != "EN") {
 					result = copy..language.(@code == "EN")..lit.(@name == id);
 					if (result.length() == 0) {
 						trace("Not in English either");
@@ -78,8 +81,8 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
+		public function onDelegateFault(operation:String, fault:Fault):void{
+			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
 		}
 		
 	}

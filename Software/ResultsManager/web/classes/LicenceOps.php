@@ -3,22 +3,20 @@
 class LicenceOps {
 
 	var $db;
+	
 	// We expect Bento to update the licence record every minute that the user is connected
 	// This is the number of minutes after which a licence record can be removed
 	const LICENCE_DELAY = 2;
 	
 	function LicenceOps($db) {
-		
 		$this->db = $db;
-		
 		$this->copyOps = new CopyOps($db);
 	}
-
+	
 	/**
 	 * Check that this user can get a licence slot right now 
 	 */
 	function getLicenceSlot($user, $rootID, $productCode, $licence, $ip = '') {
-		
 		// Whilst rootID might be a comma delimited list, you can treat
 		// licence control as simply use the first one in the list
 		if (stristr($rootID, ',')) {
@@ -27,22 +25,21 @@ class LicenceOps {
 		} else {
 			$singleRootID = $rootID;
 		}
-				
+			
 		// Some checks are independent of licence type
 		$dateNow = date('Y-m-d 23:59:59');
-		if ($licence->licenceStartDate > $dateNow) 
-			throw new Exception("Your licence hasn't started yet", 100);
-		if ($licence->expiryDate < $dateNow) 
-			throw new Exception("Your licence expired on ".$licence->expiryDate, 100);
-			
+		if ($licence->licenceStartDate > $dateNow)
+			throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
+		
+		if ($licence->expiryDate < $dateNow)
+			throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $licence->expiryDate));
+		
 		// Then licence slot checking is based on licence type
 		switch ($licence->licenceType) {
-			
 			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
-				
-				$aWhileAgo = time() - LicenceOps::LICENCE_DELAY*60;
+				$aWhileAgo = time() - LicenceOps::LICENCE_DELAY * 60;
 				$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
 				
 				// First, always delete old licences for this product/root
@@ -55,9 +52,9 @@ EOD;
 				$bindingParams = array($productCode, $singleRootID, $updateTime);
 				$rs = $this->db->Execute($sql, $bindingParams);
 				// the sql call failed
-				if (!$rs) 
-					throw new Exception("Error, can't clear out old licences", 100);
-
+				if (!$rs)
+					throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+				
 				// Then count how many are currently in use
 				$bindingParams = array($productCode, $singleRootID);			
 	
@@ -70,7 +67,7 @@ EOD;
 				$usedLicences = $rs->FetchNextObj()->i;
 
 				if ($usedLicences >= $licence->maxStudents) 
-					throw new Exception("The licence is full, try again later", 100);
+					throw $this->copyOps->getExceptionForId("errorLicenceFull");
 				
 				// Insert this user in the licence control table
 				$dateNow = date('Y-m-d H:i:s');
@@ -88,7 +85,7 @@ EOD;
 
 				// Final error check
 				if (!$licenceID)
-					throw new Exception("Error, can't allocate a licence number", 100);
+					throw $this->copyOps->getExceptionForId("errorCantAllocateLicenceNumber");
 
 				break;
 
@@ -99,32 +96,24 @@ EOD;
 			// Named licences
 			case Title::LICENCE_TYPE_LT:
 			case Title::LICENCE_TYPE_TT:
-				
 				// Only track learners
 				if ($user->userType != User::USER_TYPE_STUDENT) {
 					$licenceID = 0;
-					
 				} else {
-					
 					// Has this user got an existing licence we can use?
 					$licenceID = $this->checkExistingLicence($user, $productCode, $licence);
 					if ($licenceID) {
-						
 						$licence->id = $licenceID;
 						
 						// If so, update their use of it
 						$rc = $this->updateLicence($licence);
-						
 					} else {
-						
 						// How many licences have been used?
 						if ($this->countUsedLicences($rootID, $productCode, $licence) < $licence->maxStudents) {
-							
 							// Grab one
 							$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
-							
 						} else {
-							throw new Exception("The licence is full", 100);
+							throw $this->copyOps->getExceptionForId("errorLicenceFull");
 						}
 					}
 				}
@@ -132,7 +121,6 @@ EOD;
 		}
 		
 		return $licenceID;
-				
 	}
 	/**
 	 * 
@@ -142,7 +130,6 @@ EOD;
 	 * @param Licence $licence
 	 */
 	function checkExistingLicence($user, $productCode, $licence) {
-		
 		// Is there a record in T_LicenceControl for this user/product since the date?
 		$sql = <<<EOD
 			SELECT F_LicenceID as i FROM T_LicenceControl 
@@ -153,9 +140,9 @@ EOD;
 		$bindingParams = array($productCode, $user->userID, $licence->licenceControlStartDate);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		// SQL error
-		if (!$rs) 
-			throw new Exception("Error reading licence control table", 100);
-			
+		if (!$rs)
+			throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
+		
 		switch ($rs->RecordCount()) {
 			case 0:
 				return false;
@@ -173,7 +160,6 @@ EOD;
 	 * @param Licence $licence
 	 */
 	function countUsedLicences($rootID, $productCode, $licence) {
-
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
@@ -204,7 +190,7 @@ EOD;
 		if ($rs && $rs->RecordCount()>0) {
 			$licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
 		} else {
-			throw new Exception('Error reading licence control table', 100);
+			throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
 		}
 				
 		return $licencesUsed;
@@ -231,8 +217,8 @@ EOD;
 
 		// Final error check
 		if (!$licenceID)
-			throw new Exception("Error, can't allocate a licence number", 100);
-
+			throw $this->copyOps->getExceptionForId("errorCantAllocateLicenceNumber");
+		
 		return $licenceID;
 	}
 	/**
@@ -242,12 +228,10 @@ EOD;
 	 * @param Licence $licence
 	 */
 	function updateLicence($licence) {
-
 		$dateNow = date('Y-m-d H:i:s');
 
 		// The licence slot checking is based on licence type
 		switch ($licence->licenceType) {
-			
 			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
@@ -265,7 +249,7 @@ EOD;
 				break;
 				
 			default:
-				throw new Exception('The licence type '. $licence->licenceType .' is not recognised', 100);
+				throw $this->copyOps->getExceptionForId("errorUnrecognisedLicenceType", array("licenceType" => $licence->licenceType));
 		}
 				
 		// First need to confirm that this licence record exists
@@ -276,7 +260,7 @@ EOD;
 		$bindingParams = array($licence->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if (!$rs || $rs->RecordCount() != 1) 
-			throw new Exception("Error, can't find this licence ".$licence->id, 100);
+			throw $this->copyOps->getExceptionForId("errorCantFindLicence", array("licenceID" => $licence->id));
 
 		// Update the licence in the table
 		$sql = <<<EOD
@@ -287,8 +271,7 @@ EOD;
 		$bindingParams = array($dateNow, $licence->id);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if (!$rs)
-			throw new Exception("Error, can't update this licence ".$licence->id, 100);
-
+			throw $this->copyOps->getExceptionForId("errorCantUpdateLicence", array("licenceID" => $licence->id));
 	}
 
 	/**
@@ -313,8 +296,8 @@ EOD;
 EOD;
 				$bindingParams = array($licence->id);
 				$rs = $this->db->Execute($sql, $bindingParams);
-				if (!$rs || $rs->RecordCount() != 1) 
-					throw new Exception("Error, can't find this licence ".$licence->id, 100);
+				if (!$rs || $rs->RecordCount() != 1)
+					throw $this->copyOps->getExceptionForId("errorCantFindLicence", array("licenceID" => $licence->id));
 					
 				$sql = <<<EOD
 					DELETE FROM T_Licences 
@@ -323,7 +306,7 @@ EOD;
 				$bindingParams = array($licence->id);
 				$rs = $this->db->Execute($sql, $bindingParams);
 				if (!$rs)
-					throw new Exception("Error, can't delete this licence ".$licence->id, 100);
+					throw $this->copyOps->getExceptionForId("errorCantDeleteLicence", array("licenceID" => $licence->id));
 					
 				break;
 		
@@ -343,4 +326,3 @@ EOD;
 	}
 	
 }
-

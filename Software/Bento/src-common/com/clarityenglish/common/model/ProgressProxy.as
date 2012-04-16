@@ -29,6 +29,7 @@ package com.clarityenglish.common.model {
 	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.rpc.Fault;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
@@ -318,57 +319,34 @@ package com.clarityenglish.common.model {
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
-		public function onDelegateResult(operation:String, data:Object):void{
+		public function onDelegateResult(operation:String, data:Object):void {
+			// TODO: Most of these generate errors on the client side; I need to implement this
 			switch (operation) {
 				case "getProgressData":
 					if (data) {
-						/*
-						We will get back the following objects in data
-						error - should this be called status and include info/warning/error objects?
-						progress - this should be structured so that we can directly use it as a data-provider for any charts
-						*/
-						// First need to see if the return has an error
-						if (data.error && data.error.errorNumber>0) {
-							log.debug("progressProxy, error={0}", data.error.errorNumber);
-							var progressError:BentoError = new BentoError();
-							progressError.fromObject(data.error);
-							// If the error has stopped the loading of menu.xml, then can't get past login
-							if (progressError.errorNumber == BentoError.ERROR_CONTENT_MENU) {
-								sendNotification(CommonNotifications.INVALID_DATA, progressError);
-							} else {
-								// This might be complicated, but in this case we probably just want
-								// to warn the user that their progress records can't be saved or read
-								// but we could still go on with the show?
-								sendNotification(BBNotifications.INVALID_PROGRESS_DATA, progressError);
-							}
-							
+						// Take the data loading note out now that we have a result
+						var loadingData:String = data.progress.type;
+						delete dataLoading[loadingData];
+
+						log.info("Successfully loaded data for type {0}", loadingData);
+
+						// Put the returned data into the cache and send out the notification
+						
+						// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml
+						//if (href.type == Href.MENU_XHTML) {
+						if (loadingData == Progress.PROGRESS_MY_DETAILS) {
+							loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
+							// For consistency with other progress data, just grab the menu bit
+							var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
+							// #250. Save xml rather than a string
+							//loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
+							loadedResources[loadingData] = myMenu.head.script.menu[0];
 						} else {
-
-							// Take the data loading note out now that we have a result
-							var loadingData:String = data.progress.type;
-							delete dataLoading[loadingData];
-	
-							log.info("Successfully loaded data for type {0}", loadingData);
-
-							// Put the returned data into the cache and send out the notification
-							
-							// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml
-							//if (href.type == Href.MENU_XHTML) {
-							if (loadingData == Progress.PROGRESS_MY_DETAILS) {
-								loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
-								// For consistency with other progress data, just grab the menu bit
-								var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
-								// #250. Save xml rather than a string
-								//loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
-								loadedResources[loadingData] = myMenu.head.script.menu[0];
-							} else {
-								// #250. Save xml rather than a string
-								//loadedResources[loadingData] = data.progress.dataProvider;
-								loadedResources[loadingData] = new XML(data.progress.dataProvider);
-							}
-							notifyDataLoaded(loadingData);
-							
-						}							
+							// #250. Save xml rather than a string
+							//loadedResources[loadingData] = data.progress.dataProvider;
+							loadedResources[loadingData] = new XML(data.progress.dataProvider);
+						}
+						notifyDataLoaded(loadingData);						
 					} else {
 						// Can't read from the database
 						var error:BentoError = new BentoError(BentoError.ERROR_DATABASE_READING);
@@ -408,8 +386,24 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		public function onDelegateFault(operation:String, fault:Fault):void{
+			switch (operation) {
+				case "getProgressData":
+					var progressError:BentoError = BentoError.create(fault);
+					
+					// If the error has stopped the loading of menu.xml, then can't get past login
+					if (progressError.errorNumber == BentoError.ERROR_CONTENT_MENU) {
+						sendNotification(CommonNotifications.INVALID_DATA, progressError);
+					} else {
+						// This might be complicated, but in this case we probably just want
+						// to warn the user that their progress records can't be saved or read
+						// but we could still go on with the show?
+						sendNotification(BBNotifications.INVALID_PROGRESS_DATA, progressError);
+					}
+					break;
+			}
+			
+			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 		
 		// Since this loads the menu xml, we need to be able to return it from cache if asked

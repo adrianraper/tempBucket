@@ -137,7 +137,7 @@ package org.davekeen.delegates {
 		private function onFault(event:FaultEvent):void {
 			closeRemoteObject();
 			trace("RemoteDelegate:" + event.fault);
-			if (responder) responder.onDelegateFault(operationName, event.fault.faultString);
+			if (responder) responder.onDelegateFault(operationName, event.fault);
 			if (dispatchEvents) dispatchEvent(event);
 		}
 		

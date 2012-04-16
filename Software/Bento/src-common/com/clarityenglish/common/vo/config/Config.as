@@ -300,7 +300,6 @@ package com.clarityenglish.common.vo.config {
 		 * Check for all the errors that you might know about now
 		 */
 		public function checkErrors():void {
-			
 			// IP range
 			// Match the user's IP against the range listed in the licence attributes
 			var gotLA:Boolean = false;

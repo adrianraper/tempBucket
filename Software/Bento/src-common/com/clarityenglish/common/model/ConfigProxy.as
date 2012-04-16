@@ -3,13 +3,11 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	import flash.events.Event;
@@ -17,14 +15,11 @@ package com.clarityenglish.common.model {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import mx.core.Application;
 	import mx.core.FlexGlobals;
 	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	import mx.managers.BrowserManager;
-	import mx.managers.IBrowserManager;
-	import mx.utils.URLUtil;
+	import mx.rpc.Fault;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
@@ -77,8 +72,8 @@ package com.clarityenglish.common.model {
 
 			// Trigger the database call
 			getAccountSettings();
-			
 		}
+		
 		/**
 		 * Method to get details about the account from the database
 		 *
@@ -188,7 +183,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectLogin():LoginEvent {
 			if (Config.DEVELOPER.name == "DK") {
-				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
+				//return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
@@ -217,11 +212,12 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			if (Config.DEVELOPER.name == "DK") {
 				//return { courseClass: "reading" };
-				return { exerciseId: "1156334683860" };
+				//return { exerciseId: "1156334683860" };
 			}
+			
 			if (Config.DEVELOPER.name == "AR") {
-			//	return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
-			//	return { exerciseId: "1156153794077" }; // Speaking>The speaking test (2)
+				//return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
+				//return { exerciseId: "1156153794077" }; // Speaking>The speaking test (2)
 			}
 			
 			return null;
@@ -283,6 +279,7 @@ package com.clarityenglish.common.model {
 						// Can't read from the database
 						error = new BentoError(BentoError.ERROR_DATABASE_READING);
 					}
+					
 					if (error) {
 						sendNotification(CommonNotifications.CONFIG_ERROR, error);
 					} else {
@@ -294,8 +291,8 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		public function onDelegateFault(operation:String, fault:Fault):void{
+			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 		
 	}

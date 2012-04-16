@@ -16,6 +16,7 @@ package com.clarityenglish.common.model {
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.rpc.Fault;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
@@ -171,48 +172,39 @@ package com.clarityenglish.common.model {
 				
 				case "login":
 					if (data) {
-						// First need to see if the return has an error
-						if (data.error && data.error.errorNumber>0) {
-							log.debug("loginProxy, login error={0}", data.error.errorNumber);
-							var loginError:BentoError = new BentoError();
-							loginError.fromObject(data.error);
-							sendNotification(CommonNotifications.INVALID_LOGIN, loginError);
-						} else {
-							// Successful login
-							// This should have been set in configProxy
-							//CopyProxy.languageCode = data.languageCode as String;
-							
-							// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
-							// TODO. Although id and name are properties of manageable and thus user in PHP
-							// it seems that it doesn't get set here. It is in manageables[0].inherited data
-							// And id and name are the two key pieces of information I need.
-							_user = data.group.manageables[0] as User;
-							//var manageable:Manageable = data.group.manageables[0] as Manageable;
-							//_user.id = user.userID;
-							//_user.name = user.fullName;
-							//_user = new User();
-							//_user.buildUser(data.group.manageables[0]);
-							
-							_group = data.group as Group;
-							//_user = _group.children[0];
-							
-							// Add the licence id you just got to the config
-							var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-							configProxy.getConfig().licence.id = (data.licence as Licence).id;
-							
-							// Carry on with the process
-							sendNotification(CommonNotifications.LOGGED_IN, data);
-							
-							// Now that you are logged in, trigger the session start command
-							var sessionData:Object = {user:_user, account:configProxy.getAccount()};
-							sendNotification(BBNotifications.SESSION_START, sessionData);
-							
-							// Create a timer that will be fire off every minute to update the licence
-							licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
-							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
-							licenceTimer.start();
-						}
+						// Successful login
+						// This should have been set in configProxy
+						//CopyProxy.languageCode = data.languageCode as String;
 						
+						// AR Use the loginProxy as a model as well as a service by holding the data that comes back here
+						// TODO. Although id and name are properties of manageable and thus user in PHP
+						// it seems that it doesn't get set here. It is in manageables[0].inherited data
+						// And id and name are the two key pieces of information I need.
+						_user = data.group.manageables[0] as User;
+						//var manageable:Manageable = data.group.manageables[0] as Manageable;
+						//_user.id = user.userID;
+						//_user.name = user.fullName;
+						//_user = new User();
+						//_user.buildUser(data.group.manageables[0]);
+						
+						_group = data.group as Group;
+						//_user = _group.children[0];
+						
+						// Add the licence id you just got to the config
+						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						configProxy.getConfig().licence.id = (data.licence as Licence).id;
+						
+						// Carry on with the process
+						sendNotification(CommonNotifications.LOGGED_IN, data);
+						
+						// Now that you are logged in, trigger the session start command
+						var sessionData:Object = {user: _user, account: configProxy.getAccount()};
+						sendNotification(BBNotifications.SESSION_START, sessionData);
+						
+						// Create a timer that will be fire off every minute to update the licence
+						licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+						licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
+						licenceTimer.start();
 					} else {
 						// Invalid login
 						sendNotification(CommonNotifications.INVALID_LOGIN);
@@ -235,8 +227,14 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, data);
+		public function onDelegateFault(operation:String, fault:Fault):void {
+			switch (operation) {
+				case "login":
+					sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+					break;
+			}
+			
+			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 		
 		/**

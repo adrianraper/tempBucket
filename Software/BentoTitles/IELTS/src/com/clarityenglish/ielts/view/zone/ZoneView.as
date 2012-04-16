@@ -419,6 +419,7 @@ package com.clarityenglish.ielts.view.zone {
 				if (adviceZoneVideoPlayer.playing) {
 					log.debug("Stopped advice zone video player because click detected outside player or list");
 					adviceZoneVideoPlayer.stop();
+					adviceZoneVideoList.selectedItem = null;
 				}
 			}
 			
@@ -428,6 +429,7 @@ package com.clarityenglish.ielts.view.zone {
 				if (questionZoneVideoPlayer.playing) {
 					log.debug("Stopped question zone video player because click detected outside player or button");
 					questionZoneVideoPlayer.stop();
+					resetQuestionZoneGraphics();
 				}
 			}
 		}

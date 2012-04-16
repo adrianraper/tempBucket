@@ -34,7 +34,6 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/ProgressOps.php");
 require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
-require_once(dirname(__FILE__)."/../../classes/ErrorOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -48,6 +47,9 @@ class BentoService extends AbstractService {
 
 	function __construct() {
 		parent::__construct();
+		
+		if (get_class($this) == "BentoService")
+			throw new Exception("Cannot use BentoService as a gateway; extend with a title specific child (e.g. IELTSService)");
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("Bento");
@@ -73,7 +75,7 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
-		$this->errorOps = new ErrorOps();
+		$this->copyOps = new CopyOps($this->db);
 	}
 	
 	/**
@@ -96,40 +98,25 @@ class BentoService extends AbstractService {
 			configureGlobalDatabaseVars($config->dbHost);
 		}*/
 		
-		// All errors are caught with an exception handler. This includes expected
-		// errors such as terms and conditions not accepted yet
-		// and unexpected errors such as no database connection.
-		$errorObj = array("errorNumber" => 0);
-		try {
-			$account = $this->loginOps->getAccountSettings($config);
-
-			// TODO. We will also need the top group ID for this account to help with hiddenContent
-			
-			// We also need some misc stuff.
-			$configObj = array("databaseVersion" => $this->getDatabaseVersion());
-
-		} catch (Exception $e) {
-			$errorObj['errorNumber'] = $e->getCode(); 
-			$errorObj['errorContext'] = $e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber'] == 0)
-				$errorObj['errorNumber'] = $errorOps->getErrorNumber('unknown');
-			return array("error" => $errorObj);
-		}
+		$account = $this->loginOps->getAccountSettings($config);
+		// TODO. We will also need the top group ID for this account to help with hiddenContent
+		
+		// We also need some misc stuff.
+		$configObj = array("databaseVersion" => $this->getDatabaseVersion());
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
 		Session::set('productCode', $config['productCode']);
+		
 		// TODO. Maybe it would be better to use another call to get this info again later, or pass it back from Bento
 		// I would just prefer as little session data as possible.
 		$licence = new Licence();
 		$licence->fromDatabaseObj($account->titles[0]);
 		//Session::set('licence', $licence);
 		
-		return array("error" => $errorObj, 
-					"config" => $configObj,
-					"licence" => $licence,
-					"account" => $account);
+		return array("config" => $configObj,
+					 "licence" => $licence,
+					 "account" => $account);
 	}
 	
 	// Rewritten from RM version
@@ -138,107 +125,76 @@ class BentoService extends AbstractService {
 	// otherwise they need to be passed with every call.
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
 	public function login($loginObj, $loginOption, $instanceID, $licence) {
-	
-		// All errors are caught with an exception handler. This includes expected
-		// errors such as incorrect password, data errors such as no account
-		// and unexpected errors such as no database connection.
-		$errorObj = array("errorNumber" => 0);
-		try {
-				
-			$rootID = Session::get('rootID');
-			$productCode = Session::get('productCode');
+		$rootID = Session::get('rootID');
+		$productCode = Session::get('productCode');
 
-			$allowedUserTypes = array(User::USER_TYPE_TEACHER,
-									 User::USER_TYPE_ADMINISTRATOR,
-									 User::USER_TYPE_AUTHOR,
-									 User::USER_TYPE_STUDENT,
-									 User::USER_TYPE_REPORTER);
-									 
-			// No need to check names for anonymous licence
-			if ($licence->licenceType == Title::LICENCE_TYPE_AA) {
-				$userObj = $this->loginOps->anonymousUser($rootID);
-			} else {
-				// First, confirm that the user details are correct
-				$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
-			}
-			$user = new User();
-			$user->fromDatabaseObj($userObj);
-			// Hack the name for now
-			$user->fullName = $user->name;
-			
-			// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
-			// Well, above I am using rootID and productCode from sessionVariables...
-			Session::set('valid_userIDs', array($userObj->F_UserID));
-			Session::set('userID', $userObj->F_UserID);
-			Session::set('userType', $userObj->F_UserType);
-			
-			// Check that you can give this user a licence
-			// Use exception handling if there is NO available licence
-			$ip = (isset($loginObj['ip'])) ? $loginObj['ip'] : '';
-			$licenceID = $this->licenceOps->getLicenceSlot($user, $rootID, $productCode, $licence, $ip);
-			$licence->id = $licenceID;
-			
-			// That call also gave us the groupID
-			// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
-			$groupObj = $this->loginOps->getGroup($userObj->groupID);
-			// This might return an error object or a group object		 
-			$group = new Group();
-			$group->fromDatabaseObj($groupObj);
-			
-			// Add the user into the group
-			$group->addManageables(array($user));
-					
-			// Next we need to set the instance ID for the user in the database
-			$rc = $this->loginOps->setInstanceID($user->userID, $instanceID);
-			
-			// Content information - though you don't know which course they are going to start yet
-			// you can still send back hiddenContent information and bookmarks
-			// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
-			// although maybe we need the full is of parent groups in here too.
-			Session::set('valid_groupIDs', array($group->id));
-			$contentObj = $this->contentOps->getHiddenContent($productCode);
-			
-			// TODO. What is a good format for sending back bookmark information?
-			// For now I will just expect an array of courseIDs that this user has started so that
-			// you can use them in licence control.
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = $errorOps->getErrorNumber('unknown');
-			return array("error" => $errorObj);
+		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
+								  User::USER_TYPE_ADMINISTRATOR,
+								  User::USER_TYPE_AUTHOR,
+								  User::USER_TYPE_STUDENT,
+								  User::USER_TYPE_REPORTER);
+								 
+		// No need to check names for anonymous licence
+		if ($licence->licenceType == Title::LICENCE_TYPE_AA) {
+			$userObj = $this->loginOps->anonymousUser($rootID);
+		} else {
+			// First, confirm that the user details are correct
+			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
 		}
 		
-		// Send this information back
-		return array("error" => $errorObj,
-					"group" => $group,
-					"licence" => $licence,
-					"content" => $contentObj);
+		$user = new User();
+		$user->fromDatabaseObj($userObj);
+		// Hack the name for now
+		$user->fullName = $user->name;
 		
+		// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
+		// Well, above I am using rootID and productCode from sessionVariables...
+		Session::set('valid_userIDs', array($userObj->F_UserID));
+		Session::set('userID', $userObj->F_UserID);
+		Session::set('userType', $userObj->F_UserType);
+		
+		// Check that you can give this user a licence
+		// Use exception handling if there is NO available licence
+		$ip = (isset($loginObj['ip'])) ? $loginObj['ip'] : '';
+		$licenceID = $this->licenceOps->getLicenceSlot($user, $rootID, $productCode, $licence, $ip);
+		$licence->id = $licenceID;
+		
+		// That call also gave us the groupID
+		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
+		$groupObj = $this->loginOps->getGroup($userObj->groupID);
+		// This might return an error object or a group object		 
+		$group = new Group();
+		$group->fromDatabaseObj($groupObj);
+		
+		// Add the user into the group
+		$group->addManageables(array($user));
+				
+		// Next we need to set the instance ID for the user in the database
+		$rc = $this->loginOps->setInstanceID($user->userID, $instanceID);
+		
+		// Content information - though you don't know which course they are going to start yet
+		// you can still send back hiddenContent information and bookmarks
+		// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
+		// although maybe we need the full is of parent groups in here too.
+		Session::set('valid_groupIDs', array($group->id));
+		$contentObj = $this->contentOps->getHiddenContent($productCode);
+		
+		// TODO. What is a good format for sending back bookmark information?
+		// For now I will just expect an array of courseIDs that this user has started so that
+		// you can use them in licence control.
+		
+		// Send this information back
+		return array("group" => $group,
+					 "licence" => $licence,
+					 "content" => $contentObj);
 	}
 	
 	public function logout($licence) {
+		// Logout from loginOps
+		$this->loginOps->logout();
 		
-		$errorObj = array("errorNumber" => 0);
-		
-		try {
-			// Logout from loginOps
-			$this->loginOps->logout();
-			
-			// And also clear the licence
-			$rs = $this->licenceOps->dropLicenceSlot($licence);
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = $errorOps->getErrorNumber('unknown');
-			return array("error" => $errorObj);
-		}
-		return array("error" => $errorObj);		
+		// And also clear the licence
+		$rs = $this->licenceOps->dropLicenceSlot($licence);
 	}
 	
 	/**
@@ -250,66 +206,51 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param progressType. This object tells us what type of progress data to return
 	 */
-	public function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile ) {
+	public function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile) {
+		// Before you get progress records, read the menu.xml
+		// TODO. Possibly move this bit into contentOps?
+		// This path is relative to the Bento application, not this script
+		// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
+		// if we keep the everyone summary coming from a computed table.
+		if (stristr($menuXMLFile, 'http://') === FALSE) {
+			$menuXMLFile = '../../'.$menuXMLFile;
+		}
 		
-		$errorObj = array("errorNumber" => 0);
+		$this->progressOps->getMenuXML($menuXMLFile);
 		
-		try {
+		$progress = new Progress();
 		
-			// Before you get progress records, read the menu.xml
-			// TODO. Possibly move this bit into contentOps?
-			// This path is relative to the Bento application, not this script
-			// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
-			// if we keep the everyone summary coming from a computed table.
-			if (stristr($menuXMLFile, 'http://')===FALSE) {
-				$menuXMLFile = '../../'.$menuXMLFile;
-			}
-			$this->progressOps->getMenuXML($menuXMLFile);
-			
-			$progress = New Progress();
-			// Each type of progress that we get goes back in data.
-			$progress->type = $progressType;
-			switch ($progressType) {
-				// MySummary data will now be calculated by ProgressProxy from the detail data
-				/*
-				case Progress::PROGRESS_MY_SUMMARY:
-					$rs = $this->progressOps->getMySummary($userID, $productCode);
-					$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
-					break;
-				*/
-				case Progress::PROGRESS_EVERYONE_SUMMARY:
-					$rs = $this->progressOps->getEveryoneSummary($productCode);
-					$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
-					break;
-					
-				case Progress::PROGRESS_MY_DETAILS:
-					$rs = $this->progressOps->getMyDetails($userID, $productCode);
-					$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
-					break;
-					
-				case Progress::PROGRESS_MY_BOOKMARK:
-					// Pick up the last exercise done as a bookmark.
-					$rs = $this->progressOps->getMyLastExercise($userID, $productCode);
-					$progress->dataProvider = $this->progressOps->formatBookmark($rs);
-					break;
-			}
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
-			return array("error" => $errorObj);
+		// Each type of progress that we get goes back in data.
+		$progress->type = $progressType;
+		switch ($progressType) {
+			// MySummary data will now be calculated by ProgressProxy from the detail data
+			/*
+			case Progress::PROGRESS_MY_SUMMARY:
+				$rs = $this->progressOps->getMySummary($userID, $productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+				break;
+			*/
+			case Progress::PROGRESS_EVERYONE_SUMMARY:
+				$rs = $this->progressOps->getEveryoneSummary($productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+				break;
+				
+			case Progress::PROGRESS_MY_DETAILS:
+				$rs = $this->progressOps->getMyDetails($userID, $productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
+				break;
+				
+			case Progress::PROGRESS_MY_BOOKMARK:
+				// Pick up the last exercise done as a bookmark.
+				$rs = $this->progressOps->getMyLastExercise($userID, $productCode);
+				$progress->dataProvider = $this->progressOps->formatBookmark($rs);
+				break;
 		}
 			
 		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
 		//	a summary at the course level for practiceZone scores for me and for everyone else
 		//	a summary at the course level for time spent by me
-		 
-		return array("error" => $errorObj,
-					"progress" => $progress
-		);
+		return array("progress" => $progress);
 	}
 	
 	/**
@@ -320,23 +261,10 @@ class BentoService extends AbstractService {
 	 *  @param dateNow - used to get client time
 	 */
 	public function startSession($userID, $rootID, $productCode, $dateNow) {
+		// A successful session start will return a new ID
+		$sessionID = $this->progressOps->startSession($userID, $rootID, $productCode, $dateNow);
 		
-		$errorObj = array("errorNumber" => 0);
-		
-		try {
-			// A successful session start will return a new ID
-			$sessionID = $this->progressOps->startSession($userID, $rootID, $productCode, $dateNow);
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
-			return array("error" => $errorObj);
-		}
-		return array("error" => $errorObj,
-					"sessionID" => $sessionID);
+		return array("sessionID" => $sessionID);
 	}
 	
 	/**
@@ -347,23 +275,9 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function updateSession($sessionID, $dateNow ) {
-		
-		$errorObj = array("errorNumber" => 0);
-		
-		try {
-			// A successful session stop will not generate an error
-			$rs = $this->progressOps->updateSession($sessionID, $dateNow);
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
-			return array("error" => $errorObj);
-		}
-		return array("error" => $errorObj);
+	public function updateSession($sessionID, $dateNow) {
+		// A successful session stop will not generate an error
+		$this->progressOps->updateSession($sessionID, $dateNow);
 	}
 	
 	/**
@@ -375,7 +289,7 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function stopSession($sessionID, $dateNow ) {
+	public function stopSession($sessionID, $dateNow) {
 		return $this->updateSession($sessionID, $dateNow);
 	}
 	
@@ -386,22 +300,8 @@ class BentoService extends AbstractService {
 	 *  @param Licence $licence - dummy object for the licence
 	 */
 	public function updateLicence($licence) {
-		
-		$errorObj = array("errorNumber" => 0);
-		
-		try {
-			// A successful licence update will not generate an error
-			$rs = $this->licenceOps->updateLicence($licence);
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
-			return array("error" => $errorObj);
-		}
-		return array("error" => $errorObj);
+		// A successful licence update will not generate an error
+		$this->licenceOps->updateLicence($licence);
 	}
 	
 	/**
@@ -411,22 +311,9 @@ class BentoService extends AbstractService {
 	 *  @param userID - these are all self-explanatory
 	 */
 	public function getInstanceID($userID) {
+		$instanceID = $this->loginOps->getInstanceID($userID);
 		
-		$errorObj = array("errorNumber" => 0);
-		
-		try {
-			$instanceID = $this->loginOps->getInstanceID($userID);
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
-			return array("error" => $errorObj);
-		}
-		return array("error" => $errorObj,
-					"instanceID" => $instanceID);
+		return array("instanceID" => $instanceID);
 	}
 	
 	/**
@@ -437,9 +324,8 @@ class BentoService extends AbstractService {
 	 *  @param dateNow - used to get client time
 	 */
 	public function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
-		
 		// Manipulate the score object from Bento into PHP format
-		// TODO Surely we shoud be trying to keep the format the same!
+		// TODO Surely we should be trying to keep the format the same!
 		$score = new Score();
 		$score->setUID($scoreObj['UID']);
 		
@@ -448,7 +334,7 @@ class BentoService extends AbstractService {
 		$score->scoreMissed = $scoreObj['missedCount'];
 		
 		$totalQuestions = $score->scoreCorrect + $score->scoreWrong + $score->scoreMissed;
-		if ($totalQuestions>0) {
+		if ($totalQuestions > 0) {
 			$score->score = intval(100 * $score->scoreCorrect / $totalQuestions);
 		} else {
 			$score->score=-1;
@@ -460,24 +346,11 @@ class BentoService extends AbstractService {
 		$score->sessionID = $sessionID;
 		$score->userID = $userID;
 		
-		$errorObj = array("errorNumber" => 0);
+		// Write the score record
+		$this->progressOps->insertScore($score);
 		
-		try {
-			// Write the score record
-			$this->progressOps->insertScore($score);
-			
-			// and update the session
-			$this->progressOps->updateSession($sessionID, $dateNow);
-			
-		} catch (Exception $e) {
-			$errorObj['errorNumber']=$e->getCode(); 
-			$errorObj['errorContext']=$e->getMessage();
-			// In case we didn't set an error number, use our generic unknown one
-			if ($errorObj['errorNumber']==0)
-				$errorObj['errorNumber'] = 100;
-			return array("error" => $errorObj);
-		}
-		return array("error" => $errorObj);
+		// and update the session
+		$this->progressOps->updateSession($sessionID, $dateNow);
 	}
 
 	/**

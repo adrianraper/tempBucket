@@ -1,4 +1,6 @@
 package com.clarityenglish.common.vo.config {
+	import mx.rpc.Fault;
+
 	/**
 	 * 
 	 * @author Adrian
@@ -33,23 +35,30 @@ package com.clarityenglish.common.vo.config {
 		public static const ERROR_FAILED_INSTANCE_CHECK:uint = 210;
 		
 		public static const ERROR_DATABASE_READING:uint = 100;
-		public static const ERROR_DATABASE_WRITING:uint = 100;
+		public static const ERROR_DATABASE_WRITING:uint = 101;
 		
-		public static const ERROR_LOGIN_WRONG_DETAILS:uint = 100;
-		public static const ERROR_LOGIN_USER_EXPIRED:uint = 100;
+		public static const ERROR_LOGIN_WRONG_DETAILS:uint = 102;
+		public static const ERROR_LOGIN_USER_EXPIRED:uint = 103;
 
 		public static const ERROR_CONTENT_MENU:uint = 301;
 		public static const ERROR_CONTENT_EXERCISE:uint = 302;
 
 		public static const ERROR_UNKNOWN:uint = 1;
 		
-		public function BentoError(errNum:uint=0) {
+		public function BentoError(errNum:uint = 0) {
 			this.errorNumber = errNum;
 			
 			// Get the description for this number
 			// TODO. Need the copyReceiver
-			
 		}
+		
+		public static function create(fault:Fault):BentoError {
+			var bentoError:BentoError = new BentoError();
+			bentoError.errorContext = fault.faultString;
+			bentoError.errorNumber = fault.faultCode as uint;
+			return bentoError;
+		}
+		
 		public function fromObject(errObj:Object):void {
 			if (errObj.errorNumber)
 				errorNumber = errObj.errorNumber; 
@@ -62,21 +71,27 @@ package com.clarityenglish.common.vo.config {
 		public function get errorDescription():String {
 			return getDescription(_errorNumber);
 		}
+		
 		public function set errorNumber(value:uint):void {
 			_errorNumber = value;
 		}
+		
 		public function get errorNumber():uint {
 			return _errorNumber;
 		}
+		
 		public function set errorContext(value:String):void {
 			_errorContext = value;
 		}
+		
 		public function get errorContext():String {
 			return _errorContext;
 		}
+		
 		public function set errorName(value:String):void {
 			_errorName = value;
 		}
+		
 		public function get errorName():String {
 			return _errorName;
 		}

@@ -2,16 +2,18 @@
 
 class ErrorOps {
 	
-	function ErrorOps() {
-		
+	function ErrorOps($db) {
 		$this->filename = dirname(__FILE__).$GLOBALS['interface_dir']."errorCodes.xml";
-
+	}
+	
+	public function createException() {
+		
 	}
 	
 	/**
 	 * Read and return the XML literals document as a string
 	 */
-	function getErrorCodes() {
+	public function getErrorCodes() {
 		// If the file doesn't exist return false
 		if (!file_exists($this->filename))
 			throw new Exception("errorCodes.xml not found");
@@ -27,11 +29,10 @@ class ErrorOps {
 	 * Returns the error code number associated with a string
 	 * Adrian is just testing this function; it should be getErrorNumber instead
 	 */
-	function getCode($name, $languageCode = 'EN') {
-		
+	public function getCode($name, $languageCode = 'EN') {
 		if (!file_exists($this->filename))
 			throw new Exception("errorCodes.xml not found");
-				
+		
 		$doc = new DOMDocument();
 		$doc->load($this->filename);
 		
@@ -49,10 +50,11 @@ class ErrorOps {
 		
 		return $codeNum;
 	}
+	
 	/**
 	 * Returns the error number based on the name
 	 */
-	function getErrorNumber($errorName) {
+	public function getErrorNumber($errorName) {
 		switch ($errorName) {
 			case 'no_such_user':
 				return 200;

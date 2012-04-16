@@ -35,7 +35,6 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
-require_once(dirname(__FILE__)."/../../classes/ErrorOps.php");
 
 // v3.6 What happens if I want to add in AccountOps so that I can pull back the account object?
 // I already getContent - will that clash or duplicate?
@@ -70,6 +69,9 @@ class ClarityService extends AbstractService {
 		
 		// Set the product name for logging
 		AbstractService::$log->setProductName("RM");
+		
+		// Set the title name for resources
+		AbstractService::$title = "rm";
 		
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 
