@@ -6,10 +6,10 @@
 	</fx:Metadata>
 
 	<s:layout>
-		<s:VerticalLayout paddingLeft="36" paddingBottom="30" />
+		<s:VerticalLayout paddingLeft="50" paddingBottom="30" />
 	</s:layout>
 	
-	<s:Label width="300" text="Thank you for your interest!" fontSize="16" fontWeight="bold" paddingTop="10" paddingLeft="35" />
+	<s:Label width="300" text="Thank you for your interest!" fontSize="16" fontWeight="bold" paddingTop="20" paddingLeft="45" />
 	<s:Spacer height="1" />
 	<s:Label width="300" text="Please choose from the options below." fontSize="16" fontWeight="bold" lineHeight="20" />
 	<s:Spacer height="3" />

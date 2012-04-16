@@ -23,7 +23,7 @@ in accordance with the terms of the license agreement accompanying it.
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
 			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009" blendMode="normal" mouseEnabled="false"
-			 minWidth="360" minHeight="155" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5">
+			 minWidth="280" minHeight="155" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5">
 	
 	<fx:Metadata>
 		<![CDATA[ 
@@ -228,7 +228,7 @@ in accordance with the terms of the license agreement accompanying it.
 				
 				<!--- @copy spark.components.TitleWindow#closeButton -->
 				<s:Button id="closeButton" skinClass="spark.skins.spark.TitleWindowCloseButtonSkin"
-						  width="15" height="15" right="7" top="7" horizontalCenter="0" />
+						  width="15" height="15" right="15" top="15" />
 			</s:Group>
 			
 			<!--

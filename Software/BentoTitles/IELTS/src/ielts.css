@@ -111,6 +111,14 @@ title|UpgradeView {
 	skinClass: ClassReference("skins.ielts.title.UpgradeSkin");
 }
 
+title|UpgradeView #teacherButton{
+	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
+
+title|UpgradeView #candidateButton{
+	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
+}
+
 /* Home view styles */
 home|HomeView {
 	skinClass: ClassReference("skins.ielts.HomeSkin");
