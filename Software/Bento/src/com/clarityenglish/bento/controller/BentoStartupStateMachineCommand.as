@@ -52,6 +52,9 @@ package com.clarityenglish.bento.controller {
 			
 			var fsmInjector:FSMInjector = new FSMInjector(fsm);
 			fsmInjector.inject();
+			
+			// Kick off loading of the copy.  Mediators that use copy from the xml file should set it when COPY_LOADED is received.
+			sendNotification(CommonNotifications.COPY_LOAD);
 		}
 		
 	}

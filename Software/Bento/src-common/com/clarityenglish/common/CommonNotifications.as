@@ -18,23 +18,17 @@
 		public static const INVALID_LOGIN:String = "invalid_login";
 		public static const INVALID_DATA:String = "invalid_data";
 		
+		public static const COPY_LOAD:String = "copy_load";
 		public static const COPY_LOADED:String = "copy_loaded";
 		
 		public static const DICTIONARIES_LOADED:String = "dictionaries_loaded";
 		
 		public static const CHART_TEMPLATES_LOADED:String = "chart_templates_loaded";
-
+		
+		public static const BENTO_ERROR:String = "bento_error"; // we might be able to replace all other errors with this?
 		public static const CONFIG_ERROR:String = "config_error";
-		
 		public static const PROGRESS_LOAD_ERROR:String = "progress_load_error";
-		
-		public static const LOGIN_ERROR:String = "login_error";
-		
-		public static const INSTANCE_ERROR:String = "instance_error";
-		
 		public static const UPDATE_FAILED:String = "update_failed";
-		
-		public static const DATABASE_ERROR:String = "database_error";
 		
 		public static const TRACE_NOTICE:String = "trace_notice";
 		public static const TRACE_WARNING:String = "trace_warning";

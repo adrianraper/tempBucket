@@ -80,13 +80,15 @@
 			registerCommand(BBNotifications.COURSE_SELECT, CourseSelectCommand);
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
 			
+			// Copy
+			registerCommand(CommonNotifications.COPY_LOAD, CopyLoadCommand);
+			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			
 			// For use with errors and exit
-			registerCommand(CommonNotifications.LOGIN_ERROR, ShowErrorCommand); // unused?
-			registerCommand(CommonNotifications.INSTANCE_ERROR, ShowErrorCommand);
+			registerCommand(CommonNotifications.BENTO_ERROR, ShowErrorCommand); // we might be able to replace everything with this
 			registerCommand(CommonNotifications.INVALID_DATA, ShowErrorCommand);
 			registerCommand(CommonNotifications.INVALID_LOGIN, ShowErrorCommand);
 			registerCommand(CommonNotifications.EXIT, LogoutCommand);

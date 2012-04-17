@@ -183,7 +183,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectLogin():LoginEvent {
 			if (Config.DEVELOPER.name == "DK") {
-				//return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
+				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
@@ -226,7 +226,6 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void{
 			switch (operation) {
-				
 				case "getAccountSettings":
 					if (data) {
 						// TODO. We should be able to set the language code for 
@@ -234,7 +233,6 @@ package com.clarityenglish.common.model {
 						/*
 						We will get back the following objects in data
 						account
-						error - should this be called status and include info/warning/error objects?
 						config
 						<db>
 							<note>
@@ -248,40 +246,13 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						config.mergeAccountData(data);
-						
 						config.checkErrors();
-
-						// TODO. This account doesn't have this title error DOESN'T stop us at this point.
-						// At this point we can check to see if the config contains anything that stops us going on
-						// This account doesn't have this title
-						/* I don't see the value of doing this like this - just grab the error and throw it out
-							Unless you want to only do that for some types of error?
-						if (config.noSuchTitle())
-							var error:BentoError = new BentoError(BentoError.ERROR_NO_SUCH_ACCOUNT);
-						if (config.accountSuspended())
-							error = new BentoError(BentoError.ERROR_ACCOUNT_SUSPENDED);
-						if (config.licenceInvalid())
-							error = new BentoError(BentoError.ERROR_LICENCE_INVALID);
-						if (config.licenceExpired())
-							error = new BentoError(BentoError.ERROR_LICENCE_EXPIRED);
-						if (config.licenceNotStarted())
-							error = new BentoError(BentoError.ERROR_LICENCE_NOT_STARTED);
-						if (config.termsNotAccepted())
-							error = new BentoError(BentoError.ERROR_TERMS_NOT_ACCEPTED);
-						if (config.outsideRURange())
-							error = new BentoError(BentoError.ERROR_OUTSIDE_RU_RANGE);
-						if (config.outsideIPRange())
-							error = new BentoError(BentoError.ERROR_OUTSIDE_IP_RANGE);
-						*/
-						if (config.anyError())
-							var error:BentoError = config.error;
-					} else {
-						// Can't read from the database
-						error = new BentoError(BentoError.ERROR_DATABASE_READING);
 					}
 					
-					if (error) {
-						sendNotification(CommonNotifications.CONFIG_ERROR, error);
+					if (!data) {
+						sendNotification(CommonNotifications.CONFIG_ERROR, "Unable to read from database"); // at this point copy can't have loaded so this is in English!
+					} else if (config.anyError()) {
+						sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
 					} else {
 						sendNotification(CommonNotifications.CONFIG_LOADED);
 					}

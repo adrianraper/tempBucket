@@ -78,7 +78,7 @@ EOD;
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
-
+				
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 				if ($password != $loginObj->F_Password) {
 					throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
@@ -94,7 +94,7 @@ EOD;
 					
 					throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->UserExpiryDate))));
 				}
-
+				
 				// Authenticate the user with the session
 				Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
 				
@@ -301,8 +301,8 @@ EOD;
 	}
 	
 	/**
-	 * 
 	 * This function updates a user record with an instance ID
+	 * 
 	 * @param Number $instanceID
 	 */
 	function setInstanceID($userID, $instanceID) {
@@ -335,8 +335,8 @@ EOD;
 	}
 	
 	/**
-	 * 
 	 * This function gets the instanceID for a user
+	 * 
 	 * @param Number $userID
 	 */
 	function getInstanceID($userID) {

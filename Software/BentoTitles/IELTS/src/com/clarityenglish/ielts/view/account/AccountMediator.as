@@ -55,7 +55,7 @@
 			switch (note.getName()) {
 				case CommonNotifications.UPDATE_FAILED:
 					view.showUpdateError();
-					break;	
+					break;
 				
 				case BBNotifications.USER_UPDATED:
 					view.showUpdateSuccess();

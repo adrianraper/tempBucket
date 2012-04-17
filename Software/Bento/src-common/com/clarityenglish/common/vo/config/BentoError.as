@@ -47,29 +47,13 @@ package com.clarityenglish.common.vo.config {
 		
 		public function BentoError(errNum:uint = 0) {
 			this.errorNumber = errNum;
-			
-			// Get the description for this number
-			// TODO. Need the copyReceiver
 		}
 		
 		public static function create(fault:Fault):BentoError {
 			var bentoError:BentoError = new BentoError();
 			bentoError.errorContext = fault.faultString;
-			bentoError.errorNumber = fault.faultCode as uint;
+			bentoError.errorNumber = new Number(fault.faultCode);
 			return bentoError;
-		}
-		
-		public function fromObject(errObj:Object):void {
-			if (errObj.errorNumber)
-				errorNumber = errObj.errorNumber; 
-			//if (errObj.errorDescription)
-			//	errorDescription = errObj.errorDescription; 
-			if (errObj.errorContext)
-				errorContext = errObj.errorContext; 
-		}
-		
-		public function get errorDescription():String {
-			return getDescription(_errorNumber);
 		}
 		
 		public function set errorNumber(value:uint):void {
@@ -94,28 +78,6 @@ package com.clarityenglish.common.vo.config {
 		
 		public function get errorName():String {
 			return _errorName;
-		}
-		
-		private function getDescription(value:uint):String {
-			// First turn the number into a name - based on the xml
-			// This seems very odd!!
-			switch (value) {
-				case 200:
-					errorName = 'no_such_user';
-					return 'These user details are not recognised.';
-					break;
-				case BentoError.ERROR_FAILED_INSTANCE_CHECK:
-					errorName = 'failed_instance_check';
-					return 'Somebody else has logged in with the same details. Please try again.';
-					break;
-				case BentoError.ERROR_OUTSIDE_IP_RANGE:
-					errorName = 'failed_instance_check';
-					return 'This program can only be run from limited computers or through one website.';
-					break;
-				default:
-					errorName = 'unknown';
-					return 'An unrecognised error happened.';
-			}
 		}
 		
 	}

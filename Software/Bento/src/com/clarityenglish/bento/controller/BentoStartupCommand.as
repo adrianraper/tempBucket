@@ -7,6 +7,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	
@@ -31,6 +32,7 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new XHTMLProxy());
 			facade.registerProxy(new LoginProxy());
 			facade.registerProxy(new ProgressProxy());
+			facade.registerProxy(new CopyProxy());
 			facade.registerProxy(new ExternalInterfaceProxy());
 			
 			// Start the configuration loading

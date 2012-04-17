@@ -20,6 +20,7 @@
 			<lit name="errorNoSuchGroup" code="210">No such group</lit>
 			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}</lit>
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}</lit>
+			<lit name="errorFailedInstanceCheck" code="213">Failed instance check - instanceID={instanceID} sessionID={sessionID}</lit>
 			
 			<lit name="errorLicenceHasntStartedYet" code="300">Your licence hasn't started yet</lit>
 			<lit name="errorLicenceExpired" code="301">Your licence expired on {expiryDate}</lit>
@@ -34,6 +35,9 @@
 			
 			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
 			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
+			
+			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database</lit>
+			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database</lit>
 		</group>
 	</language>
 </literals>

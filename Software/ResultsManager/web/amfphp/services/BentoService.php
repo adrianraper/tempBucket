@@ -337,7 +337,7 @@ class BentoService extends AbstractService {
 		if ($totalQuestions > 0) {
 			$score->score = intval(100 * $score->scoreCorrect / $totalQuestions);
 		} else {
-			$score->score=-1;
+			$score->score = -1;
 		}
 		
 		$score->duration = $scoreObj['duration'];

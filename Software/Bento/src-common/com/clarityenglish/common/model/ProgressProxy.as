@@ -320,6 +320,8 @@ package com.clarityenglish.common.model {
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void {
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			
 			// TODO: Most of these generate errors on the client side; I need to implement this
 			switch (operation) {
 				case "getProgressData":
@@ -349,7 +351,7 @@ package com.clarityenglish.common.model {
 						notifyDataLoaded(loadingData);						
 					} else {
 						// Can't read from the database
-						var error:BentoError = new BentoError(BentoError.ERROR_DATABASE_READING);
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorDatabaseReading"));
 					}
 					break;
 				
@@ -359,7 +361,7 @@ package com.clarityenglish.common.model {
 						sendNotification(BBNotifications.SESSION_STARTED, data);
 					} else {
 						// Can't write to the database
-						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorDatabaseWriting"));
 					}
 					break;
 				
@@ -368,7 +370,7 @@ package com.clarityenglish.common.model {
 						sendNotification(BBNotifications.SESSION_STOPPED, data);
 					} else {
 						// Can't write to the database
-						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorDatabaseWriting"));
 					}
 					break;
 				
@@ -377,7 +379,7 @@ package com.clarityenglish.common.model {
 						sendNotification(BBNotifications.SCORE_WRITTEN, data);
 					} else {
 						// Can't write to the database
-						error = new BentoError(BentoError.ERROR_DATABASE_WRITING);
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorDatabaseWriting"));
 					}
 					break;
 					
@@ -386,13 +388,15 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, fault:Fault):void{
+		public function onDelegateFault(operation:String, fault:Fault):void {
 			switch (operation) {
 				case "getProgressData":
 					var progressError:BentoError = BentoError.create(fault);
+					sendNotification(CommonNotifications.INVALID_DATA, progressError);
 					
+					// TODO: Current ProgressOps doesn't throw specific errors so this is commented for now and everything is assumed to be INVALID_DATA
 					// If the error has stopped the loading of menu.xml, then can't get past login
-					if (progressError.errorNumber == BentoError.ERROR_CONTENT_MENU) {
+					/*if (progressError.errorNumber == BentoError.ERROR_CONTENT_MENU) {
 						sendNotification(CommonNotifications.INVALID_DATA, progressError);
 					} else {
 						// This might be complicated, but in this case we probably just want
@@ -400,7 +404,7 @@ package com.clarityenglish.common.model {
 						// but we could still go on with the show?
 						sendNotification(BBNotifications.INVALID_PROGRESS_DATA, progressError);
 					}
-					break;
+					break;*/
 			}
 			
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
