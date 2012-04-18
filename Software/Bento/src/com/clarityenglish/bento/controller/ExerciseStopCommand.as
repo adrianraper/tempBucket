@@ -23,7 +23,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-		
+			
 			log.info("Exercise stopped");
 			
 			// Stop the current exercise (if there is one) and clean up

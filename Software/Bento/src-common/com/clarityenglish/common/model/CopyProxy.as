@@ -79,13 +79,14 @@ package com.clarityenglish.common.model {
 			return new Number(result[0]);
 		}
 		
-		public function getBentoErrorForId(id:String, replaceObj:Object = null):BentoError {
+		public function getBentoErrorForId(id:String, replaceObj:Object = null, isFatal:Boolean = true):BentoError {
 			var copy:String = getCopyForId(id, replaceObj);
 			var code:uint = getCodeForId(id);
 		
 			var bentoError:BentoError = new BentoError();
 			bentoError.errorContext = copy;
 			bentoError.errorNumber = code;
+			bentoError.isFatal = isFatal;
 			return bentoError;
 		}
 		

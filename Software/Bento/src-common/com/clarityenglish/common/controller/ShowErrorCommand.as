@@ -26,6 +26,8 @@ package com.clarityenglish.common.controller {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var titleWindow:TitleWindow;
+
+		private var errorView:ErrorView;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
@@ -35,7 +37,7 @@ package com.clarityenglish.common.controller {
 			titleWindow.styleName = "errorTitleWindow";
 			titleWindow.title = "Sorry, there is a problem:";
 			
-			var errorView:ErrorView = new ErrorView();
+			errorView = new ErrorView();
 			errorView.error = note.getBody() as BentoError;
 			titleWindow.addElement(errorView);
 			
@@ -50,7 +52,6 @@ package com.clarityenglish.common.controller {
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
-			
 		}
 		
 		/**
@@ -61,11 +62,14 @@ package com.clarityenglish.common.controller {
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
+			var isFatal:Boolean = errorView.error.isFatal;
+			
+			errorView = null;
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
 			
 			// Exit the program
-			sendNotification(CommonNotifications.EXIT);
+			if (isFatal) sendNotification(CommonNotifications.EXIT);
 		}
 		
 	}

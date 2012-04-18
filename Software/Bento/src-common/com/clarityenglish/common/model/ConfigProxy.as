@@ -189,17 +189,18 @@ package com.clarityenglish.common.model {
 			if (Config.DEVELOPER.name == "AR") {
 				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording")
 			}
+			
 			// take it from config rather than direct from the parameters
 			//if (FlexGlobals.topLevelApplication.parameters.studentID &&
 			//	FlexGlobals.topLevelApplication.parameters.password) {
 			if (config.studentID) {
 				return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
 			}
-
+			
 			// Anonymous login
 			if (config.licenceType == Title.LICENCE_TYPE_AA) 
 				return new LoginEvent(LoginEvent.LOGIN, null, null)
-
+			
 			return null;
 		}
 		

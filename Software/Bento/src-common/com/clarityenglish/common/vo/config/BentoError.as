@@ -20,6 +20,8 @@ package com.clarityenglish.common.vo.config {
 		private var _errorDescription:String;
 		private var _errorContext:String;
 		private var _errorName:String;
+		
+		public var isFatal:Boolean = true;
 
 		// A lot of these come back from the database so numbers are needed.
 		public static const NO_SUCH_USER:String = 'no_such_user';
