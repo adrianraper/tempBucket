@@ -208,6 +208,8 @@ package com.clarityenglish.ielts.view.progress.components {
 				courseClass = _courseClass;
 
 			if (detailDataProvider) {
+				// #160 - initialise any 'zone' that might not have data in the XML
+				examPracticeDataProvider = new XMLListCollection();
 				for each (var unitNode:XML in detailDataProvider.course.(@["class"]==courseClass).unit) {
 					switch (unitNode.@["class"].toString()) {
 						case 'practice-zone':

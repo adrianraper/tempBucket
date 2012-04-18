@@ -15,7 +15,7 @@
 			import spark.events.IndexChangeEvent; 
 			
 			private function courseChangeHandler(event:IndexChangeEvent):void { 
-				trace("Selected button label: " + event.target.selectedItem.label.toLowerCase()); 
+				//trace("Selected button label: " + event.target.selectedItem.label.toLowerCase()); 
 				hostComponent.onCourseSelect(event.target.selectedItem.label.toLowerCase());
 			} 
 		]]> 
