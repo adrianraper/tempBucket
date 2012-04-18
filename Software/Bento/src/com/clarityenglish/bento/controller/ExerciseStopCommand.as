@@ -36,19 +36,18 @@ package com.clarityenglish.bento.controller {
 				
 				var exercise:Exercise = bentoProxy.currentExercise;
 				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-				var exerciseHasQuestions:Boolean = (exercise.model.questions.length > 0);
+				var exerciseHasQuestions:Boolean = exercise.hasQuestions();
 				
 				// Trac 121. But this also triggers when you simply open an exercise and close it immediately.
 				// Rules. If the exercise has been marked, or there are no questions, write the score
 				if (exerciseProxy.exerciseMarked || !exerciseHasQuestions) {
 					var thisExerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
-	
+					
 					if (thisExerciseMark) {
 						// Add more data to the exerciseMark ready to send it as a score
 						thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
 						thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
 						
-						// Trigger a notification to write the score out
 						sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
 					}
 					
