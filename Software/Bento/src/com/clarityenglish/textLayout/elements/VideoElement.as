@@ -84,9 +84,7 @@ package com.clarityenglish.textLayout.elements {
 					
 					// To let practice zone video come from rtmp too, we need some handling here
 					// But this does NOT work, we see nothing in the exercise.
-					if (_src.indexOf("rtmp")>=0) {
-						
-						trace("try a rtmp stream");
+					if (_src.indexOf("rtmp") >= 0) {
 						// Parse the filename
 						var host:String = "rtmp://streaming.clarityenglish.com:1935/cfx/st";
 						var streamName:String = "RoadToIELTS2/speaking/media/speaking_key_facts_700";
@@ -102,10 +100,10 @@ package com.clarityenglish.textLayout.elements {
 						
 						videoPlayer.source = dynamicSource;
 						videoPlayer.callLater(videoPlayer.play);
-						
 					} else {
 						videoPlayer.source = _src;
 					}
+					
 					videoPlayer.width = width;
 					videoPlayer.height = height;
 					videoPlayer.autoPlay = _autoPlay;
@@ -173,8 +171,9 @@ package com.clarityenglish.textLayout.elements {
 			
 			// #76 - only one video should play at once
 			if (event.state == MediaPlayerState.PLAYING) {
-				if (currentlyPlayingVideoPlayer && currentlyPlayingVideoPlayer !== getComponent())
-					currentlyPlayingVideoPlayer.stop();
+				if (currentlyPlayingVideoPlayer && currentlyPlayingVideoPlayer !== getComponent()) {
+					currentlyPlayingVideoPlayer.pause(); // #306 - pause instead of stop
+				}
 				
 				currentlyPlayingVideoPlayer = getComponent() as VideoPlayer;
 			} else if (event.state == MediaPlayerState.PAUSED) {
@@ -208,7 +207,6 @@ package com.clarityenglish.textLayout.elements {
 		private function onYouTubeComplete(event:Event):void {
 			// Default dimensions are 400x300
 			// TODO: Perhaps this should detect widescreen and change the default aspect accordingly
-			trace("YouTube video player loaded");
 			var youTubeWidth:int = (isAutoWidth()) ? 400 : width;
 			var youTubeHeight:int = (isAutoHeight()) ? 300 : height;
 			
